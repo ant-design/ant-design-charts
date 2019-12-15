@@ -1,0 +1,6 @@
+test/fixtures
+dist
+es
+lib
+config/wrapper.js
+.docz

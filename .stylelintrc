@@ -1,0 +1,3 @@
+{
+  "extends": "@alipay/bigfish/stylelint"
+}
