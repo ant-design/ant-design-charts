@@ -1,0 +1,33 @@
+---
+name: Line
+subName: 测试组件
+route: /
+order: -1
+---
+
+import Line from './';
+import { Playground } from 'docz';
+import { MockData } from './mock';
+
+# Line Component
+
+## Normal
+<Playground>
+  {
+    ()=>{
+      const config = {
+        data: MockData,
+        xField: 'year',
+        yField: 'value',
+        title: {
+            visible: true, 
+            text: '我是标题'
+        },
+        onInit: (chart)=>{
+          console.log('canvas instance', chart);
+        }
+      }
+      return (<Line {...config} />)
+    }
+  }
+</Playground>

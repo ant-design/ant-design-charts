@@ -1,1 +1,1 @@
-export { LineConfig } from '../src/chart/Line'; // line typings
+export { LineConfig } from '../src/Line'; // line typings
