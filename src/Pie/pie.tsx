@@ -1,17 +1,17 @@
 import React, { useRef, useEffect } from 'react';
-import { Line, LineConfig } from '@antv/g2plot';
+import { Pie, PieConfig } from '@antv/g2plot';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../Base';
 
-export interface ILineConfig extends LineConfig {
+export interface IPieConfig extends PieConfig {
   theme?: string;
-  onInit?: (chart: Line) => void;
+  onInit?: (chart: Pie) => void;
 }
 
 // 默认配置
 const DefaultConfig = {};
 
-const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
+const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
   const chart = useRef(null) as any;
   const chartsProps = useRef(null) as any;
   const container = useRef<HTMLDivElement>(null);
@@ -31,7 +31,7 @@ const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
       return;
     }
     const { onInit, theme, ...config } = props;
-    const chartInstance = new Line(container.current, {
+    const chartInstance = new Pie(container.current, {
       ...DefaultConfig,
       ...config,
     });
@@ -45,9 +45,9 @@ const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<ILineConfig> 新配置
+   * @param {config } Partial<IPieConfig> 新配置
    */
-  const updateConfig = (config: Partial<ILineConfig>) => {
+  const updateConfig = (config: Partial<IPieConfig>) => {
     if (existInstance && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;
@@ -69,4 +69,4 @@ const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
   return <div ref={container} />;
 };
 
-export default withContext(TechLine);
+export default withContext(TechPie);
