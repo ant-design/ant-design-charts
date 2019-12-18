@@ -1,23 +1,121 @@
-# Bigfish 组件开发 TypeScript 脚手架
+# TechCharts
 
-## 准备工作
+A react chart library, based on [Techg2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.0.
 
-- 安装 [nodejs](https://nodejs.org/en/)
-- 使用最新版本的 [tnpm](http://web.npm.alibaba-inc.com/)
+## Features
+
+- Easy to use
+- TypeScript
+
+## Installation
+
+### npm
+
+```sh
+$ npm install TechCharts
+```
+
+### umd
+
+```html
+<script src="xxx/xx.min.js"></script>
+```
+
+## Usage
+
+```jsx
+import { TechLine } from 'TechCharts';
+
+const data = [
+  { year: '1991', value: 3 },
+  { year: '1992', value: 4 },
+  { year: '1993', value: 3.5 },
+  { year: '1994', value: 5 },
+  { year: '1995', value: 4.9 },
+  { year: '1996', value: 6 },
+  { year: '1997', value: 7 },
+  { year: '1998', value: 9 },
+  { year: '1999', value: 13 },
+];
+
+const config = {
+    data,
+    xField: 'year',
+    yField: 'value',
+    title: {
+      visible: true,
+      text: '我是标题'
+    },
+    onInit: (chart)=>{
+      console.log('canvas instance', chart);
+    }
+}
+
+<TechLine {...config} />
+```
+
+## Document
+
+### tutorial
+
+- [quick start]()
+- [chart type]()
+
+### api
+
+- [TechLine]()
+- [TechTinyLine]()
+- [TechMultipleLine]()
+- [TechPie]()
+- [TechRing]()
+- [TechBar]()
+- [TechStackBar]()
+- [TechPercentageStackBar]()
+- [TechGroupedBar]()
+- [TechArea]()
+- [TechTinyArea]()
+- [TechStackedArea]()
+- [TechPercentageStackBar]()
+- [TechColumn]()
+- [TechTinyColumn]()
+- [TechStackColumn]()
+- [TechPercentageStackColumn]()
+- [TechGroupColumn]()
+- [TechHistogram]()
+- [TechScatter]()
+- [TechBubble]()
+- [TechRadar]()
+- [TechLiquid]()
+- [TechGauge]()
+- [TechProgress]()
+- [TechRingProgress]()
+
+- others
+  - [onInit]()
+  - [theme]()
+
+### [TechFAQ](http://gitlab.alipay-inc.com/tech-ui/tech-chart/issues)
+
+### How to Contribute
+
+We welcome all contributions. contact [Fu Jin](https://yuque.antfin-inc.com/liufu.lf).
+
+### License
+
+TechCharts is available under the License MIT.
 
 ## 开发
 
+### 准备工作
+
+- 安装 [Technodejs](https://nodejs.org/en/)
+
+### 启动
+
 ```bash
 # 安装依赖
-$ tnpm install
+$ npm install
 
 # 开发 library
-$ tnpm run dev
-
-# 打包 library
-$ tnpm run build
+$ npm run dev
 ```
-
-## 参考
-
-更多说明查看文档：[https://bigfish.antfin-inc.com/doc/zhq7zk](https://bigfish.antfin-inc.com/doc/zhq7zk)
