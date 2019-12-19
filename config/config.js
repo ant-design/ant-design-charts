@@ -3,8 +3,12 @@
 export default {
   appType: 'library',
   deployMode: 'custom',
+  doc: {
+    include: ['src'],
+  },
   library: {
     esm: 'rollup',
     cjs: 'rollup',
+    disableTypeCheck: true,
   },
 };
