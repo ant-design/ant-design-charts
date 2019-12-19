@@ -1,2 +1,2 @@
-export { default as TechLine } from './Line';
-export { default as TechPie } from './Pie';
+export { default as TechLine } from './line';
+export { default as TechPie } from './pie';

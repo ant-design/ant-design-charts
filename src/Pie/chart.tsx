@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Pie, PieConfig } from '@antv/g2plot';
 import { checkChanged } from '../util/utils';
-import { withContext } from '../Base';
+import { withContext } from '../base';
 
 export interface IPieConfig extends PieConfig {
   theme?: string;

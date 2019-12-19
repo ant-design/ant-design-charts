@@ -1,15 +1,14 @@
 ---
-title: TechPie
+title: Ring
 ---
 
-# TechPie Component
+# TechRing Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import Pie from './';
-import { Playground } from 'docz';
+import TechRing from './';
 
 const data = [
   {
@@ -39,26 +38,23 @@ const data = [
 ];
 
 const config = {
-  data,
   forceFit: true,
   title: {
     visible: true,
-    text: '饼图-图形标签蜘蛛布局',
+    text: '环图',
   },
   description: {
     visible: true,
-    text:
-      '当把饼图label的类型设置为spider时，标签分为两组，在图表两侧拉线对齐显示。一般来说，蜘蛛布局的label更不容易相互遮挡。',
+    text: '环图的外半径决定环图的大小，而内半径决定环图的厚度。',
   },
   radius: 0.8,
+  padding: 'auto',
   data,
   angleField: 'value',
   colorField: 'type',
-  label: {
-    visible: true,
-    type: 'spider',
+  onInit: chart => {
+    console.log('canvas instance', chart);
   },
 };
-
-export default () => <Pie {...config} />;
+export default () => <TechRing {...config} />;
 ```
