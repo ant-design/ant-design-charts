@@ -48,7 +48,7 @@ const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
    * @param {config } Partial<ILineConfig> 新配置
    */
   const updateConfig = (config: Partial<ILineConfig>) => {
-    if (existInstance && checkChanged(chartsProps.current, props)) {
+    if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;
     }
@@ -56,15 +56,13 @@ const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
 
   // 销毁组件
   const destroy = () => {
-    if (existInstance) {
+    if (existInstance()) {
       chart.current.destroy();
     }
   };
 
   // 是否存在canvas实例
-  const existInstance = (): boolean => {
-    return !!chart.current;
-  };
+  const existInstance = (): boolean => !!chart.current;
 
   return <div ref={container} />;
 };
