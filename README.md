@@ -1,6 +1,6 @@
 # TechCharts
 
-A react chart library, based on [Techg2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.0.
+A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.0.
 
 ## Features
 
@@ -108,7 +108,7 @@ TechCharts is available under the License MIT.
 
 ### 准备工作
 
-- 安装 [Technodejs](https://nodejs.org/en/)
+- 安装 [nodejs](https://nodejs.org/en/)
 
 ### 启动
 
