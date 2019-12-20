@@ -47,7 +47,7 @@ const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
    * @param {config } Partial<IPieConfig> 新配置
    */
   const updateConfig = (config: Partial<IPieConfig>) => {
-    if (existInstance && checkChanged(chartsProps.current, props)) {
+    if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;
     }
@@ -55,15 +55,13 @@ const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
 
   // 销毁组件
   const destroy = () => {
-    if (existInstance) {
+    if (existInstance()) {
       chart.current.destroy();
     }
   };
 
   // 是否存在canvas实例
-  const existInstance = (): boolean => {
-    return !!chart.current;
-  };
+  const existInstance = (): boolean => !!chart.current;
 
   return <div ref={container} />;
 };
