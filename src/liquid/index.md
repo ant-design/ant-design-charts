@@ -2,13 +2,13 @@
 title: Liquid
 ---
 
-# TechLiquid Component
+# Liquid Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechLiquid from './';
+import Liquid from './';
 
 const config = {
   title: {
@@ -26,5 +26,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechLiquid {...config} />;
+export default () => <Liquid {...config} />;
 ```

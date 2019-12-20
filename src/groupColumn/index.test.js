@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechGroupColumn from './index';
+import GroupColumn from './index';
 
-describe('<TechGroupColumn />', () => {
-  it('render TechGroupColumn with bigfish', () => {
-    const wrapper = shallow(<TechGroupColumn>bigfish</TechGroupColumn>).children();
+describe('<GroupColumn />', () => {
+  it('render GroupColumn with bigfish', () => {
+    const wrapper = shallow(<GroupColumn>bigfish</GroupColumn>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

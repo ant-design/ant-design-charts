@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechRing from './index';
+import Ring from './index';
 
-describe('<TechRing />', () => {
-  it('render TechRing with bigfish', () => {
-    const wrapper = shallow(<TechRing>bigfish</TechRing>).children();
+describe('<Ring />', () => {
+  it('render Ring with bigfish', () => {
+    const wrapper = shallow(<Ring>bigfish</Ring>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

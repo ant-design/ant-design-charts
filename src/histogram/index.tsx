@@ -1,4 +1,4 @@
-import TechHistogram, { IHistogramConfig } from './chart';
+import Histogram, { IHistogramConfig } from './chart';
 
 export type HistogramConfig = Partial<IHistogramConfig>;
-export default TechHistogram;
+export default Histogram;

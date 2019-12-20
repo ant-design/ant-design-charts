@@ -1,4 +1,4 @@
-import TechRadar, { IRadarConfig } from './chart';
+import Radar, { IRadarConfig } from './chart';
 
 export type RadarConfig = Partial<IRadarConfig>;
-export default TechRadar;
+export default Radar;

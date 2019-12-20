@@ -1,14 +1,15 @@
 ---
 title: PercentageStackBar
+order: 8
 ---
 
-# TechPercentageStackBar Component
+# PercentageStackBar Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechPercentageStackBar from './';
+import PercentageStackBar from './';
 
 const data = [
   {
@@ -131,5 +132,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechPercentageStackBar {...config} />;
+export default () => <PercentageStackBar {...config} />;
 ```

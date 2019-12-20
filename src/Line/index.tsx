@@ -1,4 +1,4 @@
-import TechLine, { ILineConfig } from './chart';
+import Line, { ILineConfig } from './chart';
 
 export type LineConfig = Partial<ILineConfig>;
-export default TechLine;
+export default Line;

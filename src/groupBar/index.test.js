@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechGroupBar from './index';
+import GroupBar from './index';
 
-describe('<TechGroupBar />', () => {
-  it('render TechGroupBar with bigfish', () => {
-    const wrapper = shallow(<TechGroupBar>bigfish</TechGroupBar>).children();
+describe('<GroupBar />', () => {
+  it('render GroupBar with bigfish', () => {
+    const wrapper = shallow(<GroupBar>bigfish</GroupBar>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

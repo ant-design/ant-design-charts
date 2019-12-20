@@ -2,13 +2,13 @@
 title: Column
 ---
 
-# TechColumn Component
+# Column Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechColumn from './';
+import Column from './';
 
 const data = [
   {
@@ -81,5 +81,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechColumn {...config} />;
+export default () => <Column {...config} />;
 ```

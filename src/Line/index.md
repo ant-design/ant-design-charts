@@ -1,5 +1,6 @@
 ---
 title: Line
+order: 10
 ---
 
 # Line Component
@@ -8,7 +9,7 @@ title: Line
 
 ```jsx
 import React from 'react';
-import TechLine from './';
+import Line from './';
 
 const data = [
   { year: '1991', value: 3 },
@@ -48,14 +49,14 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechLine {...config} />;
+export default () => <Line {...config} />;
 ```
 
 ## Multiple Line
 
 ```jsx
 import React from 'react';
-import TechLine from './';
+import Line from './';
 
 const data = [
   {
@@ -315,5 +316,5 @@ const config = {
   responsive: true,
 };
 
-export default () => <TechLine {...config} />;
+export default () => <Line {...config} />;
 ```

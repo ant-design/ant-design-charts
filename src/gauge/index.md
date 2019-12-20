@@ -2,13 +2,13 @@
 title: Gauge
 ---
 
-# TechGauge Component
+# Gauge Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechGauge from './';
+import Gauge from './';
 
 const config = {
   title: {
@@ -31,5 +31,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechGauge {...config} />;
+export default () => <Gauge {...config} />;
 ```

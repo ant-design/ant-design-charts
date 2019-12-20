@@ -1,14 +1,15 @@
 ---
 title: Ring
+order: 7
 ---
 
-# TechRing Component
+# Ring Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechRing from './';
+import Ring from './';
 
 const data = [
   {
@@ -56,5 +57,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechRing {...config} />;
+export default () => <Ring {...config} />;
 ```

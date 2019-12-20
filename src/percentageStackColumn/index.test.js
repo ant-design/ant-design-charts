@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechPercentageStackColumn from './index';
+import PercentageStackColumn from './index';
 
-describe('<TechPercentageStackColumn />', () => {
-  it('render TechPercentageStackColumn with bigfish', () => {
+describe('<PercentageStackColumn />', () => {
+  it('render PercentageStackColumn with bigfish', () => {
     const wrapper = shallow(
-      <TechPercentageStackColumn>bigfish</TechPercentageStackColumn>,
+      <PercentageStackColumn>bigfish</PercentageStackColumn>,
     ).children();
     expect(wrapper.text()).toBe('bigfish');
   });

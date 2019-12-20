@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechArea from './index';
+import Area from './index';
 
-describe('<TechArea />', () => {
-  it('render TechArea with bigfish', () => {
-    const wrapper = shallow(<TechArea>bigfish</TechArea>).children();
+describe('<Area />', () => {
+  it('render Area with bigfish', () => {
+    const wrapper = shallow(<Area>bigfish</Area>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

@@ -2,13 +2,13 @@
 title: Histogram
 ---
 
-# TechHistogram Component
+# Histogram Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechHistogram from './';
+import Histogram from './';
 
 const data = [
   { value: 1.2 },
@@ -85,5 +85,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechHistogram {...config} />;
+export default () => <Histogram {...config} />;
 ```

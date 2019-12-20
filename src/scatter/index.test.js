@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechScatter from './index';
+import Scatter from './index';
 
-describe('<TechScatter />', () => {
-  it('render TechScatter with bigfish', () => {
-    const wrapper = shallow(<TechScatter>bigfish</TechScatter>).children();
+describe('<Scatter />', () => {
+  it('render Scatter with bigfish', () => {
+    const wrapper = shallow(<Scatter>bigfish</Scatter>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

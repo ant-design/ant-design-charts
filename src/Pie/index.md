@@ -1,8 +1,9 @@
 ---
-title: TechPie
+title: Pie
+order: 7
 ---
 
-# TechPie Component
+# Pie Component
 
 ## Normal
 

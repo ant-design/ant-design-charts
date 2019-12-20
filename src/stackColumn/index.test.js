@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechStackColumn from './index';
+import StackColumn from './index';
 
-describe('<TechStackColumn />', () => {
-  it('render TechStackColumn with bigfish', () => {
-    const wrapper = shallow(<TechStackColumn>bigfish</TechStackColumn>).children();
+describe('<StackColumn />', () => {
+  it('render StackColumn with bigfish', () => {
+    const wrapper = shallow(<StackColumn>bigfish</StackColumn>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

@@ -1,4 +1,4 @@
-import TechBubble, { IBubbleConfig } from './chart';
+import Bubble, { IBubbleConfig } from './chart';
 
 export type BubbleConfig = Partial<IBubbleConfig>;
-export default TechBubble;
+export default Bubble;

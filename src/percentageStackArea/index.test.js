@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechPercentageStackArea from './index';
+import PercentageStackArea from './index';
 
-describe('<TechPercentageStackArea />', () => {
-  it('render TechPercentageStackArea with bigfish', () => {
-    const wrapper = shallow(<TechPercentageStackArea>bigfish</TechPercentageStackArea>).children();
+describe('<PercentageStackArea />', () => {
+  it('render PercentageStackArea with bigfish', () => {
+    const wrapper = shallow(<PercentageStackArea>bigfish</PercentageStackArea>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

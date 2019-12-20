@@ -1,4 +1,4 @@
-import TechStackBar, { IStackBarConfig } from './chart';
+import StackBar, { IStackBarConfig } from './chart';
 
 export type StackBarConfig = Partial<IStackBarConfig>;
-export default TechStackBar;
+export default StackBar;

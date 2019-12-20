@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechHistogram from './index';
+import Histogram from './index';
 
-describe('<TechHistogram />', () => {
-  it('render TechHistogram with bigfish', () => {
-    const wrapper = shallow(<TechHistogram>bigfish</TechHistogram>).children();
+describe('<Histogram />', () => {
+  it('render Histogram with bigfish', () => {
+    const wrapper = shallow(<Histogram>bigfish</Histogram>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

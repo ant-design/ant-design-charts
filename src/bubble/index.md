@@ -2,14 +2,14 @@
 title: Bubble
 ---
 
-# TechBubble Component
+# Bubble Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
 import { data1 } from '../../examples/data/bubble';
-import TechBubble from './';
+import Bubble from './';
 
 const config = {
   data: data1,
@@ -37,5 +37,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechBubble {...config} />;
+export default () => <Bubble {...config} />;
 ```

@@ -2,13 +2,13 @@
 title: PercentageStackColumn
 ---
 
-# TechPercentageStackColumn Component
+# PercentageStackColumn Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechPercentageStackColumn from './';
+import PercentageStackColumn from './';
 
 const data = [
   {
@@ -131,5 +131,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechPercentageStackColumn {...config} />;
+export default () => <PercentageStackColumn {...config} />;
 ```

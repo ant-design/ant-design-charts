@@ -1,14 +1,15 @@
 ---
 title: StackBar
+order: 8
 ---
 
-# TechStackBar Component
+# StackBar Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechStackBar from './';
+import StackBar from './';
 
 const data = [
   {
@@ -90,5 +91,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechStackBar {...config} />;
+export default () => <StackBar {...config} />;
 ```

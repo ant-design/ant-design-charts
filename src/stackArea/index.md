@@ -2,14 +2,14 @@
 title: StackArea
 ---
 
-# TechStackArea Component
+# StackArea Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
 import { data2 } from '../../examples/data/area';
-import TechStackArea from './';
+import StackArea from './';
 
 const config = {
   title: {
@@ -35,5 +35,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechStackArea {...config} />;
+export default () => <StackArea {...config} />;
 ```

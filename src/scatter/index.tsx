@@ -1,4 +1,4 @@
-import TechScatter, { IScatterConfig } from './chart';
+import Scatter, { IScatterConfig } from './chart';
 
 export type ScatterConfig = Partial<IScatterConfig>;
-export default TechScatter;
+export default Scatter;

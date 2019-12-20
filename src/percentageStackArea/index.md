@@ -2,13 +2,13 @@
 title: PercentageStackArea
 ---
 
-# TechPercentageStackArea Component
+# PercentageStackArea Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechPercentageStackArea from './';
+import PercentageStackArea from './';
 
 const data = [
   {
@@ -136,5 +136,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechPercentageStackArea {...config} />;
+export default () => <PercentageStackArea {...config} />;
 ```

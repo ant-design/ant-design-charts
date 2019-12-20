@@ -1,14 +1,15 @@
 ---
 title: Bar
+order: 9
 ---
 
-# TechBar Component
+# Bar Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechBar from './';
+import Bar from './';
 
 const data = [
   { 地区: '华东', 销售额: 4684506.442 },
@@ -34,5 +35,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechBar {...config} />;
+export default () => <Bar {...config} />;
 ```

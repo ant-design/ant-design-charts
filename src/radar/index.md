@@ -2,13 +2,13 @@
 title: Radar
 ---
 
-# TechRadar Component
+# Radar Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechRadar from './';
+import Radar from './';
 
 const data = [
   {
@@ -72,12 +72,12 @@ const data = [
     score: 50,
   },
   {
-    item: 'Technology',
+    item: 'nology',
     user: 'a',
     score: 50,
   },
   {
-    item: 'Technology',
+    item: 'nology',
     user: 'b',
     score: 40,
   },
@@ -129,5 +129,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechRadar {...config} />;
+export default () => <Radar {...config} />;
 ```

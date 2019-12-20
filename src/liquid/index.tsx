@@ -1,4 +1,4 @@
-import TechLiquid, { ILiquidConfig } from './chart';
+import Liquid, { ILiquidConfig } from './chart';
 
 export type LiquidConfig = Partial<ILiquidConfig>;
-export default TechLiquid;
+export default Liquid;

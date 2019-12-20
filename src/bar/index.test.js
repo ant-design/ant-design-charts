@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechBar from './index';
+import Bar from './index';
 
-describe('<TechBar />', () => {
-  it('render TechBar with bigfish', () => {
-    const wrapper = shallow(<TechBar>bigfish</TechBar>).children();
+describe('<Bar />', () => {
+  it('render Bar with bigfish', () => {
+    const wrapper = shallow(<Bar>bigfish</Bar>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

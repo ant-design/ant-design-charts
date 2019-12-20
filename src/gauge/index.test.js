@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechGauge from './index';
+import Gauge from './index';
 
-describe('<TechGauge />', () => {
-  it('render TechGauge with bigfish', () => {
-    const wrapper = shallow(<TechGauge>bigfish</TechGauge>).children();
+describe('<Gauge />', () => {
+  it('render Gauge with bigfish', () => {
+    const wrapper = shallow(<Gauge>bigfish</Gauge>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

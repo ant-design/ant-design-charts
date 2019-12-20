@@ -2,14 +2,14 @@
 title: Area
 ---
 
-# TechArea Component
+# Area Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
 import { data1 } from '../../examples/data/area';
-import TechArea from './';
+import Area from './';
 
 const config = {
   data: data1,
@@ -27,5 +27,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechArea {...config} />;
+export default () => <Area {...config} />;
 ```

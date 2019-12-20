@@ -1,14 +1,15 @@
 ---
 title: GroupBar
+order: 8
 ---
 
-# TechGroupBar Component
+# GroupBar Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechGroupBar from './';
+import GroupBar from './';
 
 const data = [
   {
@@ -79,5 +80,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechGroupBar {...config} />;
+export default () => <GroupBar {...config} />;
 ```

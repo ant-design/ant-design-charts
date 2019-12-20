@@ -1,4 +1,4 @@
-import TechRing, { IRingConfig } from './chart';
+import Ring, { IRingConfig } from './chart';
 
 export type RingConfig = Partial<IRingConfig>;
-export default TechRing;
+export default Ring;

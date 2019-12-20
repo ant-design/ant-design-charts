@@ -1,4 +1,4 @@
-import TechGroupBar, { IGroupBarConfig } from './chart';
+import GroupBar, { IGroupBarConfig } from './chart';
 
 export type GroupBarConfig = Partial<IGroupBarConfig>;
-export default TechGroupBar;
+export default GroupBar;

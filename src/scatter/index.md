@@ -2,13 +2,13 @@
 title: Scatter
 ---
 
-# TechScatter Component
+# Scatter Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechScatter from './';
+import Scatter from './';
 
 const data = [
   { x: 1, y: 4.181 },
@@ -70,5 +70,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechScatter {...config} />;
+export default () => <Scatter {...config} />;
 ```

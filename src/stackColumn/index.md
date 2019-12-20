@@ -2,13 +2,13 @@
 title: StackColumn
 ---
 
-# TechStackColumn Component
+# StackColumn Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechStackColumn from './';
+import StackColumn from './';
 
 const data = [
   { year: '2006', type: 'redDeliciou', value: 10 },
@@ -82,5 +82,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechStackColumn {...config} />;
+export default () => <StackColumn {...config} />;
 ```

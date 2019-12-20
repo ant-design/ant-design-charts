@@ -1,4 +1,4 @@
-import TechColumn, { IColumnConfig } from './chart';
+import Column, { IColumnConfig } from './chart';
 
 export type ColumnConfig = Partial<IColumnConfig>;
-export default TechColumn;
+export default Column;

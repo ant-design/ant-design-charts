@@ -2,13 +2,13 @@
 title: GroupColumn
 ---
 
-# TechGroupColumn Component
+# GroupColumn Component
 
 ## Normal
 
 ```jsx
 import React from 'react';
-import TechGroupColumn from './';
+import GroupColumn from './';
 
 const data = [
   {
@@ -113,5 +113,5 @@ const config = {
     console.log('canvas instance', chart);
   },
 };
-export default () => <TechGroupColumn {...config} />;
+export default () => <GroupColumn {...config} />;
 ```

@@ -1,4 +1,4 @@
-import TechStackColumn, { IStackColumnConfig } from './chart';
+import StackColumn, { IStackColumnConfig } from './chart';
 
 export type StackColumnConfig = Partial<IStackColumnConfig>;
-export default TechStackColumn;
+export default StackColumn;

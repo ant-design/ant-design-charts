@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import TechRadar from './index';
+import Radar from './index';
 
-describe('<TechRadar />', () => {
-  it('render TechRadar with bigfish', () => {
-    const wrapper = shallow(<TechRadar>bigfish</TechRadar>).children();
+describe('<Radar />', () => {
+  it('render Radar with bigfish', () => {
+    const wrapper = shallow(<Radar>bigfish</Radar>).children();
     expect(wrapper.text()).toBe('bigfish');
   });
 });

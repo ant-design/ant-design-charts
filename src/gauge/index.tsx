@@ -1,4 +1,4 @@
-import TechGauge, { IGaugeConfig } from './chart';
+import Gauge, { IGaugeConfig } from './chart';
 
 export type GaugeConfig = Partial<IGaugeConfig>;
-export default TechGauge;
+export default Gauge;

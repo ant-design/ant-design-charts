@@ -12,7 +12,7 @@ A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), curre
 ### npm
 
 ```sh
-$ npm install TechCharts
+$ npm install Charts
 ```
 
 ### umd
@@ -24,7 +24,7 @@ $ npm install TechCharts
 ## Usage
 
 ```jsx
-import { TechLine } from 'TechCharts';
+import { Line } from 'TechCharts';
 
 const data = [
   { year: '1991', value: 3 },
@@ -51,7 +51,7 @@ const config = {
     }
 }
 
-<TechLine {...config} />
+<Line {...config} />
 ```
 
 ## Document
@@ -63,38 +63,38 @@ const config = {
 
 ### api
 
-- [TechLine]()
-- [TechTinyLine]()
-- [TechMultipleLine]()
-- [TechPie]()
-- [TechRing]()
-- [TechBar]()
-- [TechStackBar]()
-- [TechPercentageStackBar]()
-- [TechGroupedBar]()
-- [TechArea]()
-- [TechTinyArea]()
-- [TechStackedArea]()
-- [TechPercentageStackBar]()
-- [TechColumn]()
-- [TechTinyColumn]()
-- [TechStackColumn]()
-- [TechPercentageStackColumn]()
-- [TechGroupColumn]()
-- [TechHistogram]()
-- [TechScatter]()
-- [TechBubble]()
-- [TechRadar]()
-- [TechLiquid]()
-- [TechGauge]()
-- [TechProgress]()
-- [TechRingProgress]()
+- [Line]()
+- [TinyLine]()
+- [MultipleLine]()
+- [Pie]()
+- [Ring]()
+- [Bar]()
+- [StackBar]()
+- [PercentageStackBar]()
+- [GroupedBar]()
+- [Area]()
+- [TinyArea]()
+- [StackedArea]()
+- [PercentageStackBar]()
+- [Column]()
+- [TinyColumn]()
+- [StackColumn]()
+- [PercentageStackColumn]()
+- [GroupColumn]()
+- [Histogram]()
+- [Scatter]()
+- [Bubble]()
+- [Radar]()
+- [Liquid]()
+- [Gauge]()
+- [Progress]()
+- [RingProgress]()
 
 - others
   - [onInit]()
   - [theme]()
 
-### [TechFAQ](http://gitlab.alipay-inc.com/tech-ui/tech-chart/issues)
+### [FAQ](http://gitlab.alipay-inc.com/tech-ui/tech-chart/issues)
 
 ### How to Contribute
 
@@ -102,7 +102,7 @@ We welcome all contributions. contact [Fu Jin](https://yuque.antfin-inc.com/liuf
 
 ### License
 
-TechCharts is available under the License MIT.
+Charts is available under the License MIT.
 
 ## 开发
 
@@ -119,3 +119,8 @@ $ npm install
 # 开发 library
 $ npm run dev
 ```
+
+## 贡献者
+
+- [福晋](https://yuque.antfin-inc.com/liufu.lf)
+- [辟起](https://yuque.antfin-inc.com/shengtao.xst)
