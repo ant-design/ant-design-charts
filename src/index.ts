@@ -1,2 +1,20 @@
-export { default as TechLine } from './line';
-export { default as TechPie } from './pie';
+export { default as TechArea } from './area'; // area
+export { default as TechBar } from './bar'; // bar
+export { default as TechBubble } from './bubble'; // bubble
+export { default as TechColumn } from './column'; // column
+export { default as TechGauge } from './gauge'; // gauge
+export { default as TechGroupBar } from './groupBar'; // groupBar
+export { default as TechGroupColumn } from './groupColumn'; // groupColumn
+export { default as TechHistogram } from './histogram'; // histogram
+export { default as TechLine } from './line'; // line
+export { default as TechLiquid } from './liquid'; // liquid
+export { default as TechPercentageStackArea } from './percentageStackArea'; // percentageStackArea
+export { default as TechPercentageStackBar } from './percentageStackBar'; // percentageStackBar
+export { default as TechPercentageStackColumn } from './percentageStackColumn'; // percentageStackColumn
+export { default as TechPie } from './pie'; // pie
+export { default as TechRadar } from './radar'; // radar
+export { default as TechRing } from './ring'; // ring
+export { default as TechScatter } from './scatter'; // scatter
+export { default as TechStackArea } from './stackArea'; // stackArea
+export { default as TechStackBar } from './stackBar'; // stackBar
+export { default as TechStackColumn } from './stackColumn'; // stackColumn

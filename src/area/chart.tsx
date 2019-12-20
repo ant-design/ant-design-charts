@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Area, AreaConfig } from '@antv/g2plot';
+import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
@@ -12,10 +13,7 @@ export interface IAreaConfig extends AreaConfig {
 const DefaultConfig = {};
 
 const TechArea: React.FC<IAreaConfig> = (props: IAreaConfig) => {
-  const chart = useRef(null) as any;
-  const chartsProps = useRef(null) as any;
-  const container = useRef<HTMLDivElement>(null);
-
+  const { chart, chartsProps, container } = useInit();
   useEffect(() => {
     if (chart.current) {
       updateConfig(props);

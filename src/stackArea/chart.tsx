@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { StackArea, StackAreaConfig } from '@antv/g2plot';
+import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
@@ -12,9 +13,7 @@ export interface IStackAreaConfig extends StackAreaConfig {
 const DefaultConfig = {};
 
 const TechStackArea: React.FC<IStackAreaConfig> = (props: IStackAreaConfig) => {
-  const chart = useRef(null) as any;
-  const chartsProps = useRef(null) as any;
-  const container = useRef<HTMLDivElement>(null);
+  const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
     if (chart.current) {

@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Pie, PieConfig } from '@antv/g2plot';
+import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
@@ -12,9 +13,7 @@ export interface IPieConfig extends PieConfig {
 const DefaultConfig = {};
 
 const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
-  const chart = useRef(null) as any;
-  const chartsProps = useRef(null) as any;
-  const container = useRef<HTMLDivElement>(null);
+  const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
     if (chart.current) {

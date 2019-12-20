@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Bubble, BubbleConfig } from '@antv/g2plot';
+import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
@@ -12,9 +13,7 @@ export interface IBubbleConfig extends BubbleConfig {
 const DefaultConfig = {};
 
 const TechBubble: React.FC<IBubbleConfig> = (props: IBubbleConfig) => {
-  const chart = useRef(null) as any;
-  const chartsProps = useRef(null) as any;
-  const container = useRef<HTMLDivElement>(null);
+  const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
     if (chart.current) {

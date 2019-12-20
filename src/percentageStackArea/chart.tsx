@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { PercentageStackArea, PercentageStackAreaConfig } from '@antv/g2plot';
+import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
@@ -14,9 +15,7 @@ const DefaultConfig = {};
 const TechPercentageStackArea: React.FC<IPercentageStackAreaConfig> = (
   props: IPercentageStackAreaConfig,
 ) => {
-  const chart = useRef(null) as any;
-  const chartsProps = useRef(null) as any;
-  const container = useRef<HTMLDivElement>(null);
+  const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
     if (chart.current) {
