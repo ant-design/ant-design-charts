@@ -1,4 +1,3 @@
-import Histogram, { IHistogramConfig } from './chart';
+import Histogram from './chart';
 
-export type HistogramConfig = Partial<IHistogramConfig>;
 export default Histogram;

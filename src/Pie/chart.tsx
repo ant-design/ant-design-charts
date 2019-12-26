@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Pie, PieConfig } from '@antv/g2plot';
+import { Pie, PieConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IPieConfig extends PieConfig {
+export interface PieConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Pie) => void;
 }
@@ -12,7 +12,7 @@ export interface IPieConfig extends PieConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
+const TechPie: React.FC<PieConfig> = (props: PieConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IPieConfig> 新配置
+   * @param {config } Partial<PieConfig> 新配置
    */
-  const updateConfig = (config: Partial<IPieConfig>) => {
+  const updateConfig = (config: Partial<PieConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

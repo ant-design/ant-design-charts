@@ -2,8 +2,9 @@
   "name": "@alipay/techui-charts",
   "description": "React translate g2plot",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "start": "tnpm run dev",
     "dev": "bigfish dev",

@@ -1,4 +1,3 @@
-import StackBar, { IStackBarConfig } from './chart';
+import StackBar from './chart';
 
-export type StackBarConfig = Partial<IStackBarConfig>;
 export default StackBar;

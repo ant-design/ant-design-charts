@@ -7,22 +7,21 @@ export interface IChartProps {
   onInit?: (chart: any) => void;
 }
 const withContext = (Component: React.ComponentType<IChartProps>) => {
-  class BaseComponent extends React.Component<IChartProps> {
-    render() {
-      const { theme = 'light', ...props } = this.props;
-      return (
-        <wrapContext.Provider value={{ theme }}>
-          <wrapContext.Consumer>
-            {(context: WrapProps) => (
-              <ErrorBoundary>
-                <Component {...props} {...context} />
-              </ErrorBoundary>
-            )}
-          </wrapContext.Consumer>
-        </wrapContext.Provider>
-      );
-    }
-  }
+  const BaseComponent: React.FC<IChartProps> = props => {
+    const { theme = 'light', ...rest } = props;
+
+    return (
+      <wrapContext.Provider value={{ theme }}>
+        <wrapContext.Consumer>
+          {(context: WrapProps) => (
+            <ErrorBoundary>
+              <Component {...rest} {...context} />
+            </ErrorBoundary>
+          )}
+        </wrapContext.Consumer>
+      </wrapContext.Provider>
+    );
+  };
   return BaseComponent;
 };
 

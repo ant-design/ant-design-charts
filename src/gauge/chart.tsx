@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Gauge, GaugeConfig } from '@antv/g2plot';
+import { Gauge, GaugeConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IGaugeConfig extends GaugeConfig {
+export interface GaugeConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Gauge) => void;
 }
@@ -12,7 +12,7 @@ export interface IGaugeConfig extends GaugeConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechGauge: React.FC<IGaugeConfig> = (props: IGaugeConfig) => {
+const TechGauge: React.FC<GaugeConfig> = (props: GaugeConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechGauge: React.FC<IGaugeConfig> = (props: IGaugeConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IGaugeConfig> 新配置
+   * @param {config } Partial<GaugeConfig> 新配置
    */
-  const updateConfig = (config: Partial<IGaugeConfig>) => {
+  const updateConfig = (config: Partial<GaugeConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

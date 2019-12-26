@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { PercentageStackArea, PercentageStackAreaConfig } from '@antv/g2plot';
+import { PercentageStackArea, PercentageStackAreaConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IPercentageStackAreaConfig extends PercentageStackAreaConfig {
+export interface PercentageStackAreaConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: PercentageStackArea) => void;
 }
@@ -12,8 +12,8 @@ export interface IPercentageStackAreaConfig extends PercentageStackAreaConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechPercentageStackArea: React.FC<IPercentageStackAreaConfig> = (
-  props: IPercentageStackAreaConfig,
+const TechPercentageStackArea: React.FC<PercentageStackAreaConfig> = (
+  props: PercentageStackAreaConfig,
 ) => {
   const { chart, chartsProps, container } = useInit();
 
@@ -46,9 +46,9 @@ const TechPercentageStackArea: React.FC<IPercentageStackAreaConfig> = (
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IPercentageStackAreaConfig> 新配置
+   * @param {config } Partial<PercentageStackAreaConfig> 新配置
    */
-  const updateConfig = (config: Partial<IPercentageStackAreaConfig>) => {
+  const updateConfig = (config: Partial<PercentageStackAreaConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

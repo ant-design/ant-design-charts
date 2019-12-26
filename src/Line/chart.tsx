@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Line, LineConfig } from '@antv/g2plot';
+import { Line, LineConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface ILineConfig extends LineConfig {
+export interface LineConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Line) => void;
 }
@@ -12,7 +12,7 @@ export interface ILineConfig extends LineConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
+const TechLine: React.FC<LineConfig> = (props: LineConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<ILineConfig> 新配置
+   * @param {config } Partial<LineConfig> 新配置
    */
-  const updateConfig = (config: Partial<ILineConfig>) => {
+  const updateConfig = (config: Partial<LineConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

@@ -1,4 +1,3 @@
-import PercentageStackBar, { IPercentageStackBarConfig } from './chart';
+import PercentageStackBar from './chart';
 
-export type PercentageStackBarConfig = Partial<IPercentageStackBarConfig>;
 export default PercentageStackBar;

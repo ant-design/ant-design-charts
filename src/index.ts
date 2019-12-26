@@ -1,20 +1,20 @@
-export * from './area'; // area
-export * from './bar'; // bar
-export * from './bubble'; // bubble
-export * from './column'; // column
-export * from './gauge'; // gauge
-export * from './groupBar'; // groupBar
-export * from './groupColumn'; // groupColumn
-export * from './histogram'; // histogram
-export * from './line'; // line
-export * from './liquid'; // liquid
-export * from './percentageStackArea'; // percentageStackArea
-export * from './percentageStackBar'; // percentageStackBar
-export * from './percentageStackColumn'; // percentageStackColumn
-export * from './pie'; // pie
-export * from './radar'; // radar
-export * from './ring'; // ring
-export * from './scatter'; // scatter
-export * from './stackArea'; // stackArea
-export * from './stackBar'; // stackBar
-export * from './stackColumn'; // stackColumn
+export { default as Area } from './area'; // area
+export { default as Bar } from './bar'; // bar
+export { default as Bubble } from './bubble'; // bubble
+export { default as Column } from './column'; // column
+export { default as Gauge } from './gauge'; // gauge
+export { default as GroupBar } from './groupBar'; // groupBar
+export { default as GroupColumn } from './groupColumn'; // groupColumn
+export { default as Histogram } from './histogram'; // histogram
+export { default as Line } from './line'; // line
+export { default as Liquid } from './liquid'; // liquid
+export { default as PercentageStackArea } from './percentageStackArea'; // percentageStackArea
+export { default as PercentageStackBar } from './percentageStackBar'; // percentageStackBar
+export { default as PercentageStackColumn } from './percentageStackColumn'; // percentageStackColumn
+export { default as Pie } from './pie'; // pie
+export { default as Radar } from './radar'; // radar
+export { default as Ring } from './ring'; // ring
+export { default as Scatter } from './scatter'; // scatter
+export { default as StackArea } from './stackArea'; // stackArea
+export { default as StackBar } from './stackBar'; // stackBar
+export { default as StackColumn } from './stackColumn'; // stackColumn

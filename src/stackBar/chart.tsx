@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { StackBar, StackBarConfig } from '@antv/g2plot';
+import { StackBar, StackBarConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IStackBarConfig extends StackBarConfig {
+export interface StackBarConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: StackBar) => void;
 }
@@ -12,7 +12,7 @@ export interface IStackBarConfig extends StackBarConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechStackBar: React.FC<IStackBarConfig> = (props: IStackBarConfig) => {
+const TechStackBar: React.FC<StackBarConfig> = (props: StackBarConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechStackBar: React.FC<IStackBarConfig> = (props: IStackBarConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IStackBarConfig> 新配置
+   * @param {config } Partial<StackBarConfig> 新配置
    */
-  const updateConfig = (config: Partial<IStackBarConfig>) => {
+  const updateConfig = (config: Partial<StackBarConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

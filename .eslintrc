@@ -1,7 +1,8 @@
 {
   "extends": "@alipay/bigfish/eslint",
   "rules": {
-    "import/no-unresolved": [2, {}],
-    "import/no-extraneous-dependencies": 0
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-use-before-define": 0
   }
 }
