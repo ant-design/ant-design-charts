@@ -9,7 +9,7 @@ order: 9
 
 ```jsx
 import React from 'react';
-import Bar from './';
+import { Bar } from '@alipay/techui-charts';
 
 const data = [
   { 地区: '华东', 销售额: 4684506.442 },

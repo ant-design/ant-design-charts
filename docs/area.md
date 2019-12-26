@@ -1,15 +1,17 @@
 ---
 title: Area
+order: 8
 ---
 
 # Area Component
 
 ## Normal
 
-```jsx
+```tsx
 import React from 'react';
-import { data1 } from '../../examples/data/area';
-import Area from './';
+import { Area } from '@alipay/techui-charts';
+
+import { data1 } from './data/area';
 
 const config = {
   data: data1,

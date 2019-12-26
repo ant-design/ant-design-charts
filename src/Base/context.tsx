@@ -1,9 +1,9 @@
 import React from 'react';
 
-export interface WrapProps {
+export interface ConfigContextProps {
   theme?: string;
 }
 
-export const wrapContext = React.createContext({
+export const ConfigContext = React.createContext({
   theme: 'light',
 });
