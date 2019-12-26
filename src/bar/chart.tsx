@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Bar, BarConfig } from '@antv/g2plot';
+import { Bar, BarConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IBarConfig extends BarConfig {
+export interface BarConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Bar) => void;
 }
@@ -12,7 +12,7 @@ export interface IBarConfig extends BarConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechBar: React.FC<IBarConfig> = (props: IBarConfig) => {
+const TechBar: React.FC<BarConfig> = (props: BarConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechBar: React.FC<IBarConfig> = (props: IBarConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IBarConfig> 新配置
+   * @param {config } Partial<BarConfig> 新配置
    */
-  const updateConfig = (config: Partial<IBarConfig>) => {
+  const updateConfig = (config: Partial<BarConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

@@ -1,4 +1,3 @@
-import PercentageStackColumn, { IPercentageStackColumnConfig } from './chart';
+import PercentageStackColumn from './chart';
 
-export type PercentageStackColumnConfig = Partial<IPercentageStackColumnConfig>;
 export default PercentageStackColumn;

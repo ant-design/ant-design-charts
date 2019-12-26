@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Column, ColumnConfig } from '@antv/g2plot';
+import { Column, ColumnConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IColumnConfig extends ColumnConfig {
+export interface ColumnConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Column) => void;
 }
@@ -12,7 +12,7 @@ export interface IColumnConfig extends ColumnConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechColumn: React.FC<IColumnConfig> = (props: IColumnConfig) => {
+const TechColumn: React.FC<ColumnConfig> = (props: ColumnConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechColumn: React.FC<IColumnConfig> = (props: IColumnConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IColumnConfig> 新配置
+   * @param {config } Partial<ColumnConfig> 新配置
    */
-  const updateConfig = (config: Partial<IColumnConfig>) => {
+  const updateConfig = (config: Partial<ColumnConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

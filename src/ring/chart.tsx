@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Ring, RingConfig } from '@antv/g2plot';
+import { Ring, RingConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IRingConfig extends RingConfig {
+export interface RingConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Ring) => void;
 }
@@ -12,7 +12,7 @@ export interface IRingConfig extends RingConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechRing: React.FC<IRingConfig> = (props: IRingConfig) => {
+const TechRing: React.FC<RingConfig> = (props: RingConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechRing: React.FC<IRingConfig> = (props: IRingConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IRingConfig> 新配置
+   * @param {config } Partial<RingConfig> 新配置
    */
-  const updateConfig = (config: Partial<IRingConfig>) => {
+  const updateConfig = (config: Partial<RingConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

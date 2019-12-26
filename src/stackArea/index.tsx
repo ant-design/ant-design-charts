@@ -1,4 +1,3 @@
-import StackArea, { IStackAreaConfig } from './chart';
+import StackArea from './chart';
 
-export type StackAreaConfig = Partial<IStackAreaConfig>;
 export default StackArea;

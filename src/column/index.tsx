@@ -1,4 +1,3 @@
-import Column, { IColumnConfig } from './chart';
+import Column from './chart';
 
-export type ColumnConfig = Partial<IColumnConfig>;
 export default Column;

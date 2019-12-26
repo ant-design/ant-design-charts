@@ -1,4 +1,3 @@
-import Area, { IAreaConfig } from './chart';
+import Area from './chart';
 
-export type AreaConfig = Partial<IAreaConfig>;
 export default Area;

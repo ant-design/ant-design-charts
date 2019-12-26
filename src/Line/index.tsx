@@ -1,4 +1,3 @@
-import Line, { ILineConfig } from './chart';
+import Line from './chart';
 
-export type LineConfig = Partial<ILineConfig>;
 export default Line;

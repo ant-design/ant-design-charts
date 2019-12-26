@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { GroupColumn, GroupColumnConfig } from '@antv/g2plot';
+import { GroupColumn, GroupColumnConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IGroupColumnConfig extends GroupColumnConfig {
+export interface GroupColumnConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: GroupColumn) => void;
 }
@@ -12,7 +12,7 @@ export interface IGroupColumnConfig extends GroupColumnConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechGroupColumn: React.FC<IGroupColumnConfig> = (props: IGroupColumnConfig) => {
+const TechGroupColumn: React.FC<GroupColumnConfig> = (props: GroupColumnConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechGroupColumn: React.FC<IGroupColumnConfig> = (props: IGroupColumnConfig
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IGroupColumnConfig> 新配置
+   * @param {config } Partial<GroupColumnConfig> 新配置
    */
-  const updateConfig = (config: Partial<IGroupColumnConfig>) => {
+  const updateConfig = (config: Partial<GroupColumnConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

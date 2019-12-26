@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Scatter, ScatterConfig } from '@antv/g2plot';
+import { Scatter, ScatterConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IScatterConfig extends ScatterConfig {
+export interface ScatterConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Scatter) => void;
 }
@@ -12,7 +12,7 @@ export interface IScatterConfig extends ScatterConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechScatter: React.FC<IScatterConfig> = (props: IScatterConfig) => {
+const TechScatter: React.FC<ScatterConfig> = (props: ScatterConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechScatter: React.FC<IScatterConfig> = (props: IScatterConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IScatterConfig> 新配置
+   * @param {config } Partial<ScatterConfig> 新配置
    */
-  const updateConfig = (config: Partial<IScatterConfig>) => {
+  const updateConfig = (config: Partial<ScatterConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

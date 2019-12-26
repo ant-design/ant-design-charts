@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Histogram, HistogramConfig } from '@antv/g2plot';
+import { Histogram, HistogramConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IHistogramConfig extends HistogramConfig {
+export interface HistogramConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Histogram) => void;
 }
@@ -12,7 +12,7 @@ export interface IHistogramConfig extends HistogramConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechHistogram: React.FC<IHistogramConfig> = (props: IHistogramConfig) => {
+const TechHistogram: React.FC<HistogramConfig> = (props: HistogramConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechHistogram: React.FC<IHistogramConfig> = (props: IHistogramConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IHistogramConfig> 新配置
+   * @param {config } Partial<HistogramConfig> 新配置
    */
-  const updateConfig = (config: Partial<IHistogramConfig>) => {
+  const updateConfig = (config: Partial<HistogramConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

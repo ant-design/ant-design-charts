@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { StackArea, StackAreaConfig } from '@antv/g2plot';
+import { StackArea, StackAreaConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IStackAreaConfig extends StackAreaConfig {
+export interface StackAreaConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: StackArea) => void;
 }
@@ -12,7 +12,7 @@ export interface IStackAreaConfig extends StackAreaConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechStackArea: React.FC<IStackAreaConfig> = (props: IStackAreaConfig) => {
+const TechStackArea: React.FC<StackAreaConfig> = (props: StackAreaConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechStackArea: React.FC<IStackAreaConfig> = (props: IStackAreaConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IStackAreaConfig> 新配置
+   * @param {config } Partial<StackAreaConfig> 新配置
    */
-  const updateConfig = (config: Partial<IStackAreaConfig>) => {
+  const updateConfig = (config: Partial<StackAreaConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

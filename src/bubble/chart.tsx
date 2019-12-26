@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Bubble, BubbleConfig } from '@antv/g2plot';
+import { Bubble, BubbleConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IBubbleConfig extends BubbleConfig {
+export interface BubbleConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Bubble) => void;
 }
@@ -12,7 +12,7 @@ export interface IBubbleConfig extends BubbleConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechBubble: React.FC<IBubbleConfig> = (props: IBubbleConfig) => {
+const TechBubble: React.FC<BubbleConfig> = (props: BubbleConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechBubble: React.FC<IBubbleConfig> = (props: IBubbleConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IBubbleConfig> 新配置
+   * @param {config } Partial<BubbleConfig> 新配置
    */
-  const updateConfig = (config: Partial<IBubbleConfig>) => {
+  const updateConfig = (config: Partial<BubbleConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

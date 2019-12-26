@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Liquid, LiquidConfig } from '@antv/g2plot';
+import { Liquid, LiquidConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface ILiquidConfig extends LiquidConfig {
+export interface LiquidConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Liquid) => void;
 }
@@ -12,7 +12,7 @@ export interface ILiquidConfig extends LiquidConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechLiquid: React.FC<ILiquidConfig> = (props: ILiquidConfig) => {
+const TechLiquid: React.FC<LiquidConfig> = (props: LiquidConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechLiquid: React.FC<ILiquidConfig> = (props: ILiquidConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<ILiquidConfig> 新配置
+   * @param {config } Partial<LiquidConfig> 新配置
    */
-  const updateConfig = (config: Partial<ILiquidConfig>) => {
+  const updateConfig = (config: Partial<LiquidConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

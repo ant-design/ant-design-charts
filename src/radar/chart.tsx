@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Radar, RadarConfig } from '@antv/g2plot';
+import { Radar, RadarConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IRadarConfig extends RadarConfig {
+export interface RadarConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Radar) => void;
 }
@@ -12,7 +12,7 @@ export interface IRadarConfig extends RadarConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechRadar: React.FC<IRadarConfig> = (props: IRadarConfig) => {
+const TechRadar: React.FC<RadarConfig> = (props: RadarConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechRadar: React.FC<IRadarConfig> = (props: IRadarConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IRadarConfig> 新配置
+   * @param {config } Partial<RadarConfig> 新配置
    */
-  const updateConfig = (config: Partial<IRadarConfig>) => {
+  const updateConfig = (config: Partial<RadarConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

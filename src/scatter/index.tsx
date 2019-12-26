@@ -1,4 +1,3 @@
-import Scatter, { IScatterConfig } from './chart';
+import Scatter from './chart';
 
-export type ScatterConfig = Partial<IScatterConfig>;
 export default Scatter;

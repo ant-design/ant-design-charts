@@ -1,4 +1,3 @@
-import Bar, { IBarConfig } from './chart';
+import Bar from './chart';
 
-export type BarConfig = Partial<IBarConfig>;
 export default Bar;

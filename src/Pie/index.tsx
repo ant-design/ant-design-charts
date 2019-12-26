@@ -1,4 +1,3 @@
-import Pie, { IPieConfig } from './chart';
+import Pie from './chart';
 
-export type PieConfig = Partial<IPieConfig>;
 export default Pie;

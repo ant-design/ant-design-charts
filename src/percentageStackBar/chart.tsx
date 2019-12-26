@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { PercentageStackBar, PercentageStackBarConfig } from '@antv/g2plot';
+import { PercentageStackBar, PercentageStackBarConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IPercentageStackBarConfig extends PercentageStackBarConfig {
+export interface PercentageStackBarConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: PercentageStackBar) => void;
 }
@@ -12,8 +12,8 @@ export interface IPercentageStackBarConfig extends PercentageStackBarConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechPercentageStackBar: React.FC<IPercentageStackBarConfig> = (
-  props: IPercentageStackBarConfig,
+const TechPercentageStackBar: React.FC<PercentageStackBarConfig> = (
+  props: PercentageStackBarConfig,
 ) => {
   const { chart, chartsProps, container } = useInit();
 
@@ -46,9 +46,9 @@ const TechPercentageStackBar: React.FC<IPercentageStackBarConfig> = (
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IPercentageStackBarConfig> 新配置
+   * @param {config } Partial<PercentageStackBarConfig> 新配置
    */
-  const updateConfig = (config: Partial<IPercentageStackBarConfig>) => {
+  const updateConfig = (config: Partial<PercentageStackBarConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

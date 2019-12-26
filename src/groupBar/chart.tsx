@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { GroupBar, GroupBarConfig } from '@antv/g2plot';
+import { GroupBar, GroupBarConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IGroupBarConfig extends GroupBarConfig {
+export interface GroupBarConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: GroupBar) => void;
 }
@@ -12,7 +12,7 @@ export interface IGroupBarConfig extends GroupBarConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechGroupBar: React.FC<IGroupBarConfig> = (props: IGroupBarConfig) => {
+const TechGroupBar: React.FC<GroupBarConfig> = (props: GroupBarConfig) => {
   const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const TechGroupBar: React.FC<IGroupBarConfig> = (props: IGroupBarConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IGroupBarConfig> 新配置
+   * @param {config } Partial<GroupBarConfig> 新配置
    */
-  const updateConfig = (config: Partial<IGroupBarConfig>) => {
+  const updateConfig = (config: Partial<GroupBarConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Area, AreaConfig } from '@antv/g2plot';
+import { Area, AreaConfig as G2plotProps } from '@antv/g2plot';
 import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
 import { withContext } from '../base';
 
-export interface IAreaConfig extends AreaConfig {
+export interface AreaConfig extends G2plotProps {
   theme?: string;
   onInit?: (chart: Area) => void;
 }
@@ -12,7 +12,7 @@ export interface IAreaConfig extends AreaConfig {
 // 默认配置
 const DefaultConfig = {};
 
-const TechArea: React.FC<IAreaConfig> = (props: IAreaConfig) => {
+const TechArea: React.FC<AreaConfig> = (props: AreaConfig) => {
   const { chart, chartsProps, container } = useInit();
   useEffect(() => {
     if (chart.current) {
@@ -43,9 +43,9 @@ const TechArea: React.FC<IAreaConfig> = (props: IAreaConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IAreaConfig> 新配置
+   * @param {config } Partial<AreaConfig> 新配置
    */
-  const updateConfig = (config: Partial<IAreaConfig>) => {
+  const updateConfig = (config: Partial<AreaConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;
