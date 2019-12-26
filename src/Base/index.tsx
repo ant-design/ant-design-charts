@@ -1,4 +1,4 @@
-import { wrapContext } from './context';
+import { wrapContext, WrapProps } from './context';
 import { withContext } from './withContext';
 
-export { withContext, wrapContext };
+export { withContext, wrapContext, WrapProps };

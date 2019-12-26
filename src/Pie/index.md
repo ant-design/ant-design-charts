@@ -1,38 +1,65 @@
 ---
 title: Pie
+order: 7
 ---
 
 # Pie Component
 
 ## Normal
 
-``` jsx
+```jsx
 import React from 'react';
 import Pie from './';
 import { Playground } from 'docz';
-import { MockData } from './mock';
+
+const data = [
+  {
+    type: '分类一',
+    value: 27,
+  },
+  {
+    type: '分类二',
+    value: 25,
+  },
+  {
+    type: '分类三',
+    value: 18,
+  },
+  {
+    type: '分类四',
+    value: 15,
+  },
+  {
+    type: '分类五',
+    value: 10,
+  },
+  {
+    type: '其它',
+    value: 5,
+  },
+];
 
 const config = {
-  data: MockData,
+  data,
   forceFit: true,
   title: {
     visible: true,
-    text: '多色饼图',
+    text: '饼图-图形标签蜘蛛布局',
   },
   description: {
     visible: true,
     text:
-      '指定颜色映射字段(colorField)，饼图切片将根据该字段数据显示为不同的颜色。指定颜色需要将color配置为一个数组。\n当把饼图label的类型设置为inner时，标签会显示在切片内部。设置offset控制标签的偏移值。',
+      '当把饼图label的类型设置为spider时，标签分为两组，在图表两侧拉线对齐显示。一般来说，蜘蛛布局的label更不容易相互遮挡。',
   },
   radius: 0.8,
-
+  data,
   angleField: 'value',
   colorField: 'type',
   label: {
     visible: true,
-    type: 'inner',
+    type: 'spider',
   },
-}
+};
 
 export default () => <Pie {...config} />;
 ```

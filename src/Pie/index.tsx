@@ -1,4 +1,4 @@
-import TechPie, { IPieConfig } from './pie';
+import Pie, { IPieConfig } from './chart';
 
 export type PieConfig = Partial<IPieConfig>;
-export default TechPie;
+export default Pie;

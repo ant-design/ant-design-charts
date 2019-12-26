@@ -1,20 +1,19 @@
-import React, { useRef, useEffect } from 'react';
-import { Line, LineConfig } from '@antv/g2plot';
+import React, { useEffect } from 'react';
+import { GroupColumn, GroupColumnConfig } from '@antv/g2plot';
+import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
-import { withContext } from '../Base';
+import { withContext } from '../base';
 
-export interface ILineConfig extends LineConfig {
+export interface IGroupColumnConfig extends GroupColumnConfig {
   theme?: string;
-  onInit?: (chart: Line) => void;
+  onInit?: (chart: GroupColumn) => void;
 }
 
 // 默认配置
 const DefaultConfig = {};
 
-const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
-  const chart = useRef(null) as any;
-  const chartsProps = useRef(null) as any;
-  const container = useRef<HTMLDivElement>(null);
+const TechGroupColumn: React.FC<IGroupColumnConfig> = (props: IGroupColumnConfig) => {
+  const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
     if (chart.current) {
@@ -31,7 +30,7 @@ const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
       return;
     }
     const { onInit, theme, ...config } = props;
-    const chartInstance = new Line(container.current, {
+    const chartInstance = new GroupColumn(container.current, {
       ...DefaultConfig,
       ...config,
     });
@@ -45,9 +44,9 @@ const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<ILineConfig> 新配置
+   * @param {config } Partial<IGroupColumnConfig> 新配置
    */
-  const updateConfig = (config: Partial<ILineConfig>) => {
+  const updateConfig = (config: Partial<IGroupColumnConfig>) => {
     if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;
@@ -67,4 +66,4 @@ const TechLine: React.FC<ILineConfig> = (props: ILineConfig) => {
   return <div ref={container} />;
 };
 
-export default withContext(TechLine);
+export default withContext(TechGroupColumn);

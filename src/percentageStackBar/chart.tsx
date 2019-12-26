@@ -1,20 +1,21 @@
-import React, { useRef, useEffect } from 'react';
-import { Pie, PieConfig } from '@antv/g2plot';
+import React, { useEffect } from 'react';
+import { PercentageStackBar, PercentageStackBarConfig } from '@antv/g2plot';
+import useInit from '../hooks/useInit';
 import { checkChanged } from '../util/utils';
-import { withContext } from '../Base';
+import { withContext } from '../base';
 
-export interface IPieConfig extends PieConfig {
+export interface IPercentageStackBarConfig extends PercentageStackBarConfig {
   theme?: string;
-  onInit?: (chart: Pie) => void;
+  onInit?: (chart: PercentageStackBar) => void;
 }
 
 // 默认配置
 const DefaultConfig = {};
 
-const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
-  const chart = useRef(null) as any;
-  const chartsProps = useRef(null) as any;
-  const container = useRef<HTMLDivElement>(null);
+const TechPercentageStackBar: React.FC<IPercentageStackBarConfig> = (
+  props: IPercentageStackBarConfig,
+) => {
+  const { chart, chartsProps, container } = useInit();
 
   useEffect(() => {
     if (chart.current) {
@@ -31,7 +32,7 @@ const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
       return;
     }
     const { onInit, theme, ...config } = props;
-    const chartInstance = new Pie(container.current, {
+    const chartInstance = new PercentageStackBar(container.current, {
       ...DefaultConfig,
       ...config,
     });
@@ -45,10 +46,10 @@ const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
 
   /**
    * 更新图表配置
-   * @param {config } Partial<IPieConfig> 新配置
+   * @param {config } Partial<IPercentageStackBarConfig> 新配置
    */
-  const updateConfig = (config: Partial<IPieConfig>) => {
-    if (existInstance && checkChanged(chartsProps.current, props)) {
+  const updateConfig = (config: Partial<IPercentageStackBarConfig>) => {
+    if (existInstance() && checkChanged(chartsProps.current, props)) {
       chart.current.updateConfig(config);
       chartsProps.current = props;
     }
@@ -56,17 +57,15 @@ const TechPie: React.FC<IPieConfig> = (props: IPieConfig) => {
 
   // 销毁组件
   const destroy = () => {
-    if (existInstance) {
+    if (existInstance()) {
       chart.current.destroy();
     }
   };
 
   // 是否存在canvas实例
-  const existInstance = (): boolean => {
-    return !!chart.current;
-  };
+  const existInstance = (): boolean => !!chart.current;
 
   return <div ref={container} />;
 };
 
-export default withContext(TechPie);
+export default withContext(TechPercentageStackBar);

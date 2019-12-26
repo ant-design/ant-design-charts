@@ -1,5 +1,6 @@
 import React from 'react';
-import { wrapContext } from './context';
+import ErrorBoundary from './errorBoundary';
+import { wrapContext, WrapProps } from './context';
 
 export interface IChartProps {
   theme?: string;
@@ -12,7 +13,11 @@ const withContext = (Component: React.ComponentType<IChartProps>) => {
       return (
         <wrapContext.Provider value={{ theme }}>
           <wrapContext.Consumer>
-            {context => <Component {...props} {...context} />}
+            {(context: WrapProps) => (
+              <ErrorBoundary>
+                <Component {...props} {...context} />
+              </ErrorBoundary>
+            )}
           </wrapContext.Consumer>
         </wrapContext.Provider>
       );
