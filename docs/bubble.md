@@ -7,7 +7,7 @@ title: Bubble
 ## Normal
 
 ```tsx
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { data1 } from './data/bubble';
 import { Bubble } from '@alipay/techui-charts';
 
@@ -33,9 +33,7 @@ const config = {
     max: 5,
     min: -25,
   },
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
+
 export default () => <Bubble {...config} />;
 ```

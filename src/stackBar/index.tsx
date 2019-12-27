@@ -1,21 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { StackBar, StackBarConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../Base';
+import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface StackBarConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<StackBar | undefined>;
+  chartRef?: React.MutableRefObject<StackBar | undefined>;
 }
 
 const TechStackBar: React.FC<StackBarConfig> = (props: StackBarConfig) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<StackBar, StackBarConfig>(StackBar, rest);
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 

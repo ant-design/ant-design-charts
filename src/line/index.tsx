@@ -1,21 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { Line, LineConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../Base';
+import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface LineConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<Line | undefined>;
+  chartRef?: React.MutableRefObject<Line | undefined>;
 }
 
 const TechLine: React.FC<LineConfig> = (props: LineConfig) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<Line, LineConfig>(Line, rest);
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 

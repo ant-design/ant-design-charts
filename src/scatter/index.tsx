@@ -1,21 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { Scatter, ScatterConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../Base';
+import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface ScatterConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<Scatter | undefined>;
+  chartRef?: React.MutableRefObject<Scatter | undefined>;
 }
 
 const TechScatter: React.FC<ScatterConfig> = (props: ScatterConfig) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<Scatter, ScatterConfig>(Scatter, rest);
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 

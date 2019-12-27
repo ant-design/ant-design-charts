@@ -1,21 +1,20 @@
 import React, { useEffect, useContext } from 'react';
 import { Bar, BarConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ErrorBoundary, ConfigContext } from '../Base';
+import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface BarConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<Bar | undefined>;
+  chartRef?: React.MutableRefObject<Bar | undefined>;
 }
 
 const TechBar: React.FC<BarConfig> = (props: BarConfig) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<Bar, BarConfig>(Bar, rest);
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 

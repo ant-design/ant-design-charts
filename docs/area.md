@@ -25,9 +25,6 @@ const config = {
     type: 'dateTime',
     tickCount: 5,
   },
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Area {...config} />;
 ```

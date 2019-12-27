@@ -1,21 +1,20 @@
 import React, { useEffect, useContext } from 'react';
 import { TinyArea, TinyAreaConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ErrorBoundary, ConfigContext } from '../Base';
+import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface TinyAreaConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<TinyArea | undefined>;
+  chartRef?: React.MutableRefObject<TinyArea | undefined>;
 }
 
 const TechTinyArea: React.FC<TinyAreaConfig> = (props: TinyAreaConfig) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<TinyArea, TinyAreaConfig>(TinyArea, rest);
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 

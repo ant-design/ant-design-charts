@@ -1,21 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { GroupBar, GroupBarConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../Base';
+import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface GroupBarConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<GroupBar | undefined>;
+  chartRef?: React.MutableRefObject<GroupBar | undefined>;
 }
 
 const TechGroupBar: React.FC<GroupBarConfig> = (props: GroupBarConfig) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<GroupBar, GroupBarConfig>(GroupBar, rest);
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 

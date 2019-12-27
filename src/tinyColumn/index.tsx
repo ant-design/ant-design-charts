@@ -1,21 +1,20 @@
 import React, { useEffect, useContext } from 'react';
 import { TinyColumn, TinyColumnConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ErrorBoundary, ConfigContext } from '../Base';
+import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface TinyColumnConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<TinyColumn | undefined>;
+  chartRef?: React.MutableRefObject<TinyColumn | undefined>;
 }
 
 const TechTinyColumn: React.FC<TinyColumnConfig> = (props: TinyColumnConfig) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<TinyColumn, TinyColumnConfig>(TinyColumn, rest);
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 

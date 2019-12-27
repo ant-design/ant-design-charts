@@ -1,21 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { Liquid, LiquidConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../Base';
+import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface LiquidConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<Liquid | undefined>;
+  chartRef?: React.MutableRefObject<Liquid | undefined>;
 }
 
 const TechLiquid: React.FC<LiquidConfig> = (props: LiquidConfig) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<Liquid, LiquidConfig>(Liquid, rest);
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 

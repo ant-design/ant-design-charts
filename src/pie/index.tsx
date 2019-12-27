@@ -1,21 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { Pie, PieConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../Base';
+import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface PieConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<Pie | undefined>;
+  chartRef?: React.MutableRefObject<Pie | undefined>;
 }
 
 const TechPie: React.FC<PieConfig> = (props: PieConfig) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<Pie, PieConfig>(Pie, rest);
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 

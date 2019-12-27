@@ -1,17 +1,16 @@
 import React, { useContext, useEffect } from 'react';
 import { PercentageStackColumn, PercentageStackColumnConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../Base';
+import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface PercentageStackColumnConfig extends G2plotProps {
-  theme?: string;
-  ref?: React.MutableRefObject<PercentageStackColumn | undefined>;
+  chartRef?: React.MutableRefObject<PercentageStackColumn | undefined>;
 }
 
 const TechPercentageStackColumn: React.FC<PercentageStackColumnConfig> = (
   props: PercentageStackColumnConfig,
 ) => {
-  const { ref, ...rest } = props;
+  const { chartRef, ...rest } = props;
 
   const { chart, container } = useChart<PercentageStackColumn, PercentageStackColumnConfig>(
     PercentageStackColumn,
@@ -19,8 +18,8 @@ const TechPercentageStackColumn: React.FC<PercentageStackColumnConfig> = (
   );
 
   useEffect(() => {
-    if (ref) {
-      ref.current = chart.current;
+    if (chartRef) {
+      chartRef.current = chart.current;
     }
   }, [chart.current]);
 
