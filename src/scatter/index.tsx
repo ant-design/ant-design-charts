@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from 'react';
-import { Area, AreaConfig as G2plotProps } from '@antv/g2plot';
+import { Scatter, ScatterConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
-export interface AreaConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Area | undefined>;
+export interface ScatterConfig extends G2plotProps {
+  chartRef?: React.MutableRefObject<Scatter | undefined>;
 }
 
-const TechArea: React.FC<AreaConfig> = (props: AreaConfig) => {
+const TechScatter: React.FC<ScatterConfig> = (props: ScatterConfig) => {
   const { chartRef, ...rest } = props;
 
-  const { chart, container } = useChart<Area, AreaConfig>(Area, rest);
+  const { chart, container } = useChart<Scatter, ScatterConfig>(Scatter, rest);
 
   useEffect(() => {
     if (chartRef) {
@@ -21,11 +21,11 @@ const TechArea: React.FC<AreaConfig> = (props: AreaConfig) => {
   return <div ref={container} />;
 };
 
-export default (props: AreaConfig) => {
+export default (props: ScatterConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
-      <TechArea {...config} {...props} />
+      <TechScatter {...config} {...props} />
     </ErrorBoundary>
   );
 };

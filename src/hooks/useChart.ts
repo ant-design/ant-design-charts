@@ -14,14 +14,13 @@ export default function useInit<T extends Base<U>, U extends PlotConfig>(
   config: U,
 ) {
   const chart = useRef<T>();
-  const chartsProps = useRef<U>();
 
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (chart.current) {
       chart.current.updateConfig(config as RecursivePartial<U>);
-      chartsProps.current = config;
+      chart.current.render();
     }
   }, [config]);
 
@@ -34,14 +33,11 @@ export default function useInit<T extends Base<U>, U extends PlotConfig>(
     });
     chart.current = chartInstance;
     chartInstance.render();
-    chartsProps.current = config;
-
     return () => chartInstance.destroy();
   }, [container.current]);
 
   return {
     chart,
-    chartsProps,
     container,
   };
 }

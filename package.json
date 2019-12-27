@@ -24,7 +24,7 @@
     "version": "bigfish -v"
   },
   "dependencies": {
-    "@antv/g2plot": "^0.11.6",
+    "@antv/g2plot": "^0.11.17",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

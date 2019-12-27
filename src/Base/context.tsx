@@ -1,9 +1,10 @@
 import React from 'react';
+import { Theme } from '@antv/g2plot';
 
 export interface ConfigContextProps {
-  theme?: string;
+  theme?: Theme;
 }
 
 export const ConfigContext = React.createContext({
-  theme: 'light',
+  theme: {},
 });

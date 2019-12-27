@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from 'react';
-import { Area, AreaConfig as G2plotProps } from '@antv/g2plot';
+import { Radar, RadarConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
-export interface AreaConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Area | undefined>;
+export interface RadarConfig extends G2plotProps {
+  chartRef?: React.MutableRefObject<Radar | undefined>;
 }
 
-const TechArea: React.FC<AreaConfig> = (props: AreaConfig) => {
+const TechRadar: React.FC<RadarConfig> = (props: RadarConfig) => {
   const { chartRef, ...rest } = props;
 
-  const { chart, container } = useChart<Area, AreaConfig>(Area, rest);
+  const { chart, container } = useChart<Radar, RadarConfig>(Radar, rest);
 
   useEffect(() => {
     if (chartRef) {
@@ -21,11 +21,11 @@ const TechArea: React.FC<AreaConfig> = (props: AreaConfig) => {
   return <div ref={container} />;
 };
 
-export default (props: AreaConfig) => {
+export default (props: RadarConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
-      <TechArea {...config} {...props} />
+      <TechRadar {...config} {...props} />
     </ErrorBoundary>
   );
 };

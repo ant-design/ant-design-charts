@@ -1,16 +1,16 @@
 import React, { useEffect, useContext } from 'react';
-import { Bar, BarConfig as G2plotProps } from '@antv/g2plot';
+import { TinyLine, TinyLineConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary, ConfigContext } from '../base';
 
-export interface BarConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Bar | undefined>;
+export interface TinyLineConfig extends G2plotProps {
+  chartRef?: React.MutableRefObject<TinyLine | undefined>;
 }
 
-const TechBar: React.FC<BarConfig> = (props: BarConfig) => {
+const TechTinyLine: React.FC<TinyLineConfig> = (props: TinyLineConfig) => {
   const { chartRef, ...rest } = props;
 
-  const { chart, container } = useChart<Bar, BarConfig>(Bar, rest);
+  const { chart, container } = useChart<TinyLine, TinyLineConfig>(TinyLine, rest);
 
   useEffect(() => {
     if (chartRef) {
@@ -21,11 +21,11 @@ const TechBar: React.FC<BarConfig> = (props: BarConfig) => {
   return <div ref={container} />;
 };
 
-export default (props: BarConfig) => {
+export default (props: TinyLineConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
-      <TechBar {...config} {...props} />
+      <TechTinyLine {...config} {...props} />
     </ErrorBoundary>
   );
 };
