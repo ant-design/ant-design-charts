@@ -34,7 +34,7 @@ export default function useInit<T extends Base<U>, U extends PlotConfig>(
     chart.current = chartInstance;
     chartInstance.render();
     return () => chartInstance.destroy();
-  }, [container.current]);
+  }, []);
 
   return {
     chart,
