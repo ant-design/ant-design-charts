@@ -1,3 +1,8 @@
+---
+title: README
+order: 1000
+---
+
 # TechCharts
 
 A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.0.
@@ -11,19 +16,19 @@ A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), curre
 
 ### npm
 
-```sh
+```bash | pure
 $ npm install Charts
 ```
 
 ### umd
 
-```html
+```html  | pure
 <script src="xxx/xx.min.js"></script>
 ```
 
 ## Usage
 
-```jsx
+```jsx  | pure
 import { Line } from 'TechCharts';
 
 const data = [
@@ -112,7 +117,7 @@ Charts is available under the License MIT.
 
 ### 启动
 
-```bash
+```bash  | pure
 # 安装依赖
 $ npm install
 

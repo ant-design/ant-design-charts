@@ -1,17 +1,36 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "strictNullChecks": true,
+    "outDir": "build/dist",
+    "module": "esnext",
+    "target": "ES2015",
+    "lib": ["esnext", "dom"],
+    "sourceMap": true,
+    "baseUrl": ".",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "jsx": "preserve",
-    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "noImplicitAny": true,
-    "target": "es6",
-    "lib": ["dom", "es2017"],
-    "skipLibCheck": true
+    "experimentalDecorators": true,
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@alipay/techui-charts": ["./src"]
+    }
   },
-  "exclude": ["node_modules", "lib", "es", "dist", "typings", "**/__test__", "test"]
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "tslint:latest",
+    "tslint-config-prettier",
+    "example",
+    "_test_"
+  ]
 }

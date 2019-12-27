@@ -1,4 +1,6 @@
-import { wrapContext, WrapProps } from './context';
-import { withContext } from './withContext';
+import { ConfigContextProps, ConfigContext } from './context';
+import ErrorBoundary from './errorBoundary';
 
-export { withContext, wrapContext, WrapProps };
+const ConfigProvider = ConfigContext.Provider;
+
+export { ConfigContext, ErrorBoundary, ConfigContextProps, ConfigProvider };

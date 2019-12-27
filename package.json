@@ -1,51 +1,50 @@
 {
   "name": "@alipay/techui-charts",
-  "description": "React translate g2plot",
   "version": "0.1.0",
+  "description": "React translate g2plot",
+  "files": [
+    "/lib",
+    "/es"
+  ],
   "main": "lib/index.js",
   "module": "es/index.js",
-  "typings": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "start": "tnpm run dev",
+    "build": "father-build build",
+    "ci": "bigfish lint && bigfish cov",
+    "cov": "bigfish cov",
     "dev": "bigfish dev",
-    "build": "bigfish lib build",
+    "help": "bigfish help",
     "lint": "bigfish lint --style --eslint.ext='.ts,.tsx,.jsx,.js'",
     "precommit": "bigfish lint --staged --prettier --style --fix --eslint.ext='.ts,.tsx,.jsx,.js'",
-    "test": "bigfish test",
-    "cov": "bigfish cov",
-    "help": "bigfish help",
-    "version": "bigfish -v",
-    "ci": "bigfish lint && bigfish cov",
+    "pub": "bigfish lib publish",
     "pub:doc": "bigfish lib doc publish",
-    "pub": "bigfish lib publish"
+    "start": "tnpm run dev",
+    "test": "bigfish test",
+    "version": "bigfish -v"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
-  "peerDependencies": {
-    "antd": "^3.15.1",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+  "dependencies": {
+    "@antv/g2plot": "^0.11.6",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@alipay/bigfish": "^2.24.2-beta.5",
     "@types/node": "^12.12.17",
     "@types/webpack-env": "^1.14.1",
-    "antd": "^3.15.1",
+    "father-build": "^1.17.1",
+    "typescript": "^3.7.4"
+  },
+  "peerDependencies": {
     "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "tslint": "^5.20.1",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-react": "^4.1.0"
+    "react-dom": "^16.8.4"
   },
   "engines": {
     "install-alinode": "4"
   },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
   "ci": {
     "version": "alinode=4"
-  },
-  "dependencies": {
-    "@antv/g2plot": "^0.11.6",
-    "lodash": "^4.17.15"
   }
 }
