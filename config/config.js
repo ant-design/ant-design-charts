@@ -5,7 +5,7 @@ export default {
   deployMode: 'custom',
 
   doc: {
-    title: 'Charts',
+    title: 'tech-charts',
   },
   library: {
     esm: 'babel',

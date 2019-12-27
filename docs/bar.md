@@ -7,7 +7,7 @@ order: 9
 
 ## Normal
 
-```jsx
+```tsx
 import React from 'react';
 import { Bar } from '@alipay/techui-charts';
 

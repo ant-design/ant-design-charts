@@ -1,6 +1,5 @@
 ---
-title: README
-order: 1000
+order: 1
 ---
 
 # TechCharts
@@ -17,7 +16,7 @@ A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), curre
 ### npm
 
 ```bash | pure
-$ npm install Charts
+$ npm install @alipay/techui-charts
 ```
 
 ### umd
@@ -28,8 +27,8 @@ $ npm install Charts
 
 ## Usage
 
-```jsx  | pure
-import { Line } from 'TechCharts';
+```tsx  | pure
+import { Line } from '@alipay/techui-charts';
 
 const data = [
   { year: '1991', value: 3 },
@@ -72,7 +71,8 @@ const config = {
 - [TinyLine]()
 - [MultipleLine]()
 - [Pie]()
-- [Ring]()
+- [Progress]()
+- [Ring]() = [RingProgress]()
 - [Bar]()
 - [StackBar]()
 - [PercentageStackBar]()
@@ -94,6 +94,9 @@ const config = {
 - [Gauge]()
 - [Progress]()
 - [RingProgress]()
+- [TinyArea]()
+- [TinyColumn]()
+- [TinyLine]()
 
 - others
   - [onInit]()
@@ -129,3 +132,6 @@ $ npm run dev
 
 - [福晋](https://yuque.antfin-inc.com/liufu.lf)
 - [辟起](https://yuque.antfin-inc.com/shengtao.xst)
+- [期贤](https://yuque.antfin-inc.com/qixian.cs)
+- [愚道](https://yuque.antfin-inc.com/tingzhao.ytz)
+- [偏右](https://yuque.antfin-inc.com/xingmin.zhu)
