@@ -72,8 +72,7 @@ const ref = useRef(null);
 - [MultipleLine](/line?anchor=multiple-line)
 - [Pie](/pie)
 - [Progress](/progress)
-  <!-- - [Ring](/ring)
-- [RingProgress](/ring-progress) -->
+- [Ring](/ring)
 - [Bar](/ba)
 - [StackBar](/stack-bar)
 - [PercentageStackBar](/percentage-stack-bar)
@@ -95,9 +94,6 @@ const ref = useRef(null);
 - [Gauge](/gauge)
 - [Progress](/progress)
 - [RingProgress](/ring-progress)
-  <!-- - [TinyArea](/tiny-area)
-- [TinyColumn](/tiny-column)
-- [TinyLine](/tiny-line) -->
 
 ### [FAQ](http://gitlab.alipay-inc.com/tech-ui/tech-chart/issues)
 
