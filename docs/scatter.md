@@ -66,9 +66,6 @@ const config = {
     type: 'quad', // linear, exp, loess, log, poly, pow, quad
     showConfidence: true,
   },
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Scatter {...config} />;
 ```

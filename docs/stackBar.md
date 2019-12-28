@@ -86,9 +86,6 @@ const config = {
     formatter: v => Math.round(v / 10000) + '万',
   },
   stackField: '细分',
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <StackBar {...config} />;
 ```

@@ -77,9 +77,6 @@ const config = {
       opacity: 0.6,
     },
   },
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Column {...config} />;
 ```

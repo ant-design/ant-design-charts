@@ -31,9 +31,6 @@ const config = {
   xAxis: {
     formatter: v => Math.round(v / 10000) + '万',
   },
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Bar {...config} />;
 ```

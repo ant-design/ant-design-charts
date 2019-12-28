@@ -109,9 +109,6 @@ const config = {
     visible: true,
   },
   groupField: 'name',
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <GroupColumn {...config} />;
 ```

@@ -127,9 +127,6 @@ const config = {
   xField: 'value',
   yField: 'year',
   stackField: 'country',
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <PercentageStackBar {...config} />;
 ```

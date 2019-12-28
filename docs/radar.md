@@ -125,9 +125,6 @@ const config = {
   line: {
     visible: true,
   },
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Radar {...config} />;
 ```

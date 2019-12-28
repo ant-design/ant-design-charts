@@ -52,9 +52,6 @@ const config = {
   data,
   angleField: 'value',
   colorField: 'type',
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Ring {...config} />;
 ```

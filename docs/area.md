@@ -8,23 +8,40 @@ order: 8
 ## Normal
 
 ```tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Area } from '@alipay/techui-charts';
 
-import { data1 } from './data/area';
+const DemoArea: React.FC = () => {
+  const [data, setData] = useState([]);
 
-const config = {
-  data: data1,
-  title: {
-    visible: true,
-    text: '基础面积图',
-  },
-  xField: 'Date',
-  yField: 'scales',
-  xAxis: {
-    type: 'dateTime',
-    tickCount: 5,
-  },
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/basement_prod/72ea027c-a7eb-404e-9c23-3761b016953c.json')
+      .then(response => response.json())
+      .then(json => setData(json))
+      .catch(error => {
+        console.log('fetch data failed', error);
+      });
+  };
+
+  const config = {
+    data,
+    title: {
+      visible: true,
+      text: '基础面积图',
+    },
+    xField: 'Date',
+    yField: 'scales',
+    xAxis: {
+      type: 'dateTime',
+      tickCount: 5,
+    },
+  };
+  return <Area {...config} />;
 };
-export default () => <Area {...config} />;
+
+export default () => <DemoArea />;
 ```

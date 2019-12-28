@@ -27,9 +27,6 @@ const config = {
   statistic: () => {
     return '<div class="g2plot-gauge-label"><p class="title">优</p><p class="value">系统表现</p></div>';
   },
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Gauge {...config} />;
 ```
