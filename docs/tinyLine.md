@@ -6,6 +6,9 @@ title: TinyLine
 
 ## Normal
 
+### 完善中
+
+<!--
 ```tsx
 import React from 'react';
 import { TinyLine } from '@alipay/techui-charts';
@@ -39,4 +42,4 @@ const config = {
 };
 
 export default () => <TinyLine {...config} />;
-```
+``` -->
