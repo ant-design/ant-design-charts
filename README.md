@@ -4,7 +4,7 @@ order: 1
 
 # TechCharts
 
-A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.0.
+A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.8.
 
 ## Features
 
@@ -28,6 +28,7 @@ $ npm install @alipay/techui-charts
 ## Usage
 
 ```tsx  | pure
+import React, { useRef } from 'react';
 import { Line } from '@alipay/techui-charts';
 
 const data = [
@@ -43,19 +44,18 @@ const data = [
 ];
 
 const config = {
-    data,
-    xField: 'year',
-    yField: 'value',
-    title: {
-      visible: true,
-      text: '我是标题'
-    },
-    onInit: (chart)=>{
-      console.log('canvas instance', chart);
-    }
-}
+  data,
+  xField: 'year',
+  yField: 'value',
+  title: {
+    visible: true,
+    text: '我是标题',
+  },
+};
 
-<Line {...config} />
+const ref = useRef(null);
+
+<Line chartRef={ref} {...config} />;
 ```
 
 ## Document
@@ -67,40 +67,37 @@ const config = {
 
 ### api
 
-- [Line]()
-- [TinyLine]()
-- [MultipleLine]()
-- [Pie]()
-- [Progress]()
-- [Ring]() = [RingProgress]()
-- [Bar]()
-- [StackBar]()
-- [PercentageStackBar]()
-- [GroupedBar]()
-- [Area]()
-- [TinyArea]()
-- [StackedArea]()
-- [PercentageStackBar]()
-- [Column]()
-- [TinyColumn]()
-- [StackColumn]()
-- [PercentageStackColumn]()
-- [GroupColumn]()
-- [Histogram]()
-- [Scatter]()
-- [Bubble]()
-- [Radar]()
-- [Liquid]()
-- [Gauge]()
-- [Progress]()
-- [RingProgress]()
-- [TinyArea]()
-- [TinyColumn]()
-- [TinyLine]()
-
-- others
-  - [onInit]()
-  - [theme]()
+- [Line](/line)
+- [TinyLine](/tiny-line)
+- [MultipleLine](/line?anchor=multiple-line)
+- [Pie](/pie)
+- [Progress](/progress)
+  <!-- - [Ring](/ring)
+- [RingProgress](/ring-progress) -->
+- [Bar](/ba)
+- [StackBar](/stack-bar)
+- [PercentageStackBar](/percentage-stack-bar)
+- [GroupedBar](/group-bar)
+- [Area](/area)
+- [TinyArea](/tiny-area)
+- [StackArea](/stack-area)
+- [PercentageStackArea](/percentage-stack-area)
+- [Column](/column)
+- [TinyColumn](/tiny-column)
+- [StackColumn](/stack-column)
+- [PercentageStackColumn](/percentage-stack-column)
+- [GroupColumn](/group-column)
+- [Histogram](/hsistogram)
+- [Scatter](/scatter)
+- [Bubble](/bubble)
+- [Radar](/radar)
+- [Liquid](/liquid)
+- [Gauge](/gauge)
+- [Progress](/progress)
+- [RingProgress](/ring-progress)
+  <!-- - [TinyArea](/tiny-area)
+- [TinyColumn](/tiny-column)
+- [TinyLine](/tiny-line) -->
 
 ### [FAQ](http://gitlab.alipay-inc.com/tech-ui/tech-chart/issues)
 

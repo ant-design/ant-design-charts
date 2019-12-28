@@ -44,9 +44,6 @@ const config = {
     visible: true,
     type: 'point',
   },
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Line {...config} />;
 ```
@@ -286,9 +283,6 @@ const data = [
 ];
 
 const config = {
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
   title: {
     visible: true,
     text: '多折线图',

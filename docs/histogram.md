@@ -81,9 +81,6 @@ const config = {
   data,
   binField: 'value',
   binNumber: 6,
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Histogram {...config} />;
 ```

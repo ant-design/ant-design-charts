@@ -22,9 +22,6 @@ const config = {
   max: 10000,
   value: 4500,
   showValue: true,
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <Liquid {...config} />;
 ```

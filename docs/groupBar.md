@@ -75,9 +75,6 @@ const config = {
   label: {
     formatter: v => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, s => `${s},`),
   },
-  onInit: chart => {
-    console.log('canvas instance', chart);
-  },
 };
 export default () => <GroupBar {...config} />;
 ```
