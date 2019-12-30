@@ -1,5 +1,6 @@
 ---
 title: Line
+order: 9
 ---
 
 # Line Component

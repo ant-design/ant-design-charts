@@ -12,6 +12,7 @@ public
 config.local.js
 .docz
 .doc
+build/local
 lib
 es
 pages

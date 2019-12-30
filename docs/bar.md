@@ -1,6 +1,6 @@
 ---
 title: Bar
-order: 9
+order: 8
 ---
 
 # Bar Component

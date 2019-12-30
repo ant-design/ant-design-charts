@@ -4,22 +4,27 @@
   "description": "React translate g2plot",
   "files": [
     "/lib",
-    "/es"
+    "/es",
+    "/dist"
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "lib/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "father-build build",
+    "start": "tnpm run dev",
+    "dev": "bigfish lib doc dev",
+    "build": "tnpm run build:lib && tnpm run build:tsc",
+    "build:lib": "bigfish lib build",
+    "build:umd": "BUILD_ENV=umd bigfish lib build",
+    "build:tsc": "tsc --declarationDir ./dist",
     "ci": "bigfish lint && bigfish cov",
     "cov": "bigfish cov",
-    "dev": "bigfish lib doc dev",
     "help": "bigfish help",
+    "contributors": "ali-contributors",
     "lint": "bigfish lint --style --eslint.ext='.ts,.tsx,.jsx,.js'",
     "precommit": "bigfish lint --staged --prettier --style --fix --eslint.ext='.ts,.tsx,.jsx,.js'",
-    "pub": "bigfish lib publish",
+    "pub": "ali-contributors && tnpm run build && bigfish lib publish",
     "pub:doc": "bigfish lib doc publish",
-    "start": "tnpm run dev",
     "test": "bigfish test",
     "version": "bigfish -v"
   },
@@ -30,8 +35,8 @@
     "@alipay/bigfish": "^2.24.2-beta.5",
     "@types/node": "^12.12.17",
     "@types/webpack-env": "^1.14.1",
-    "father-build": "^1.17.1",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.4",
+    "ali-contributors": "^2.2.2"
   },
   "peerDependencies": {
     "react": "^16.8.4",
