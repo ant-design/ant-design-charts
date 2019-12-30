@@ -15,14 +15,14 @@ import Pie from './pie'; // pie
 import Progress from './progress'; // progress
 import Radar from './radar'; // radar
 import Ring from './ring'; // ring
-// import RingProgress from './ringProgress'; // RingProgress
+import RingProgress from './ringProgress'; // RingProgress
 import Scatter from './scatter'; // scatter
 import StackArea from './stackArea'; // stackArea
 import StackBar from './stackBar'; // stackBar
 import StackColumn from './stackColumn'; // stackColumn
-// import TinyArea from './tinyArea'; // tinyArea
-// import TinyColumn from './tinyColumn'; // tinyColumn
-// import TinyLine from './tinyLine'; // tinyLine
+import TinyArea from './tinyArea'; // tinyArea
+import TinyColumn from './tinyColumn'; // tinyColumn
+import TinyLine from './tinyLine'; // tinyLine
 
 export {
   Area,
@@ -42,14 +42,14 @@ export {
   Progress,
   Radar,
   Ring,
-  // RingProgress,
+  RingProgress,
   Scatter,
   StackArea,
   StackBar,
   StackColumn,
-  // TinyArea,
-  // TinyColumn,
-  // TinyLine,
+  TinyArea,
+  TinyColumn,
+  TinyLine,
 };
 
 export default {
@@ -70,12 +70,12 @@ export default {
   Progress,
   Radar,
   Ring,
-  // RingProgress,
+  RingProgress,
   Scatter,
   StackArea,
   StackBar,
   StackColumn,
-  // TinyArea,
-  // TinyColumn,
-  // TinyLine,
+  TinyArea,
+  TinyColumn,
+  TinyLine,
 };

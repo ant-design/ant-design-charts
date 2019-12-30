@@ -6,9 +6,7 @@ title: TinyColumn
 
 ## Normal
 
-### 完善中
-
-<!-- ```tsx
+```tsx
 import React from 'react';
 import { TinyColumn } from '@alipay/techui-charts';
 const randomData = (num, max, min) => {
@@ -40,4 +38,4 @@ const config = {
 };
 
 export default () => <TinyColumn {...config} />;
-``` -->
+```

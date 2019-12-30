@@ -4,7 +4,7 @@ order: 1
 
 # TechCharts
 
-A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.8.
+A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.2.1, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
 
 ## Features
 
@@ -67,33 +67,37 @@ const ref = useRef(null);
 
 ### api
 
-- [Line](/line)
-- [TinyLine](/tiny-line)
-- [MultipleLine](/line?anchor=multiple-line)
-- [Pie](/pie)
-- [Progress](/progress)
-- [Ring](/ring)
-- [Bar](/ba)
-- [StackBar](/stack-bar)
-- [PercentageStackBar](/percentage-stack-bar)
-- [GroupedBar](/group-bar)
-- [Area](/area)
-- [TinyArea](/tiny-area)
-- [StackArea](/stack-area)
-- [PercentageStackArea](/percentage-stack-area)
-- [Column](/column)
-- [TinyColumn](/tiny-column)
-- [StackColumn](/stack-column)
-- [PercentageStackColumn](/percentage-stack-column)
-- [GroupColumn](/group-column)
-- [Histogram](/hsistogram)
-- [Scatter](/scatter)
-- [Bubble](/bubble)
-- [Radar](/radar)
-- [Liquid](/liquid)
-- [Gauge](/gauge)
-- [Progress](/progress)
-- [RingProgress](/ring-progress)
+- [Line](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/line)
+- [TinyLine](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/tiny-line)
+- [MultipleLine](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/line?anchor=multiple-line)
+- [Pie](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/pie)
+- [Progress](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/progress)
+- [Ring](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/ring)
+- [RingProgress](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/ring-progress)
+- [Bar](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/ba)
+- [StackBar](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/stack-bar)
+- [PercentageStackBar](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/percentage-stack-bar)
+- [GroupedBar](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/group-bar)
+- [Area](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/area)
+- [TinyArea](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/tiny-area)
+- [StackArea](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/stack-area)
+- [PercentageStackArea](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/percentage-stack-area)
+- [Column](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/column)
+- [TinyColumn](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/tiny-column)
+- [StackColumn](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/stack-column)
+- [PercentageStackColumn](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/percentage-stack-column)
+- [GroupColumn](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/group-column)
+- [Histogram](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/hsistogram)
+- [Scatter](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/scatter)
+- [Bubble](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/bubble)
+- [Radar](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/radar)
+- [Liquid](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/liquid)
+- [Gauge](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/gauge)
+- [Progress](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/progress)
+- [RingProgress](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/ring-progress)
+- [TinyArea](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/tiny-area)
+- [TinyColumn](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/tiny-column)
+- [TinyLine](https://bigfish.antfin-inc.com/component/@alipay/techui-charts/tiny-line)
 
 ### [FAQ](http://gitlab.alipay-inc.com/tech-ui/tech-chart/issues)
 

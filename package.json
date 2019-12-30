@@ -13,7 +13,7 @@
     "build": "father-build build",
     "ci": "bigfish lint && bigfish cov",
     "cov": "bigfish cov",
-    "dev": "bigfish dev",
+    "dev": "bigfish lib doc dev",
     "help": "bigfish help",
     "lint": "bigfish lint --style --eslint.ext='.ts,.tsx,.jsx,.js'",
     "precommit": "bigfish lint --staged --prettier --style --fix --eslint.ext='.ts,.tsx,.jsx,.js'",

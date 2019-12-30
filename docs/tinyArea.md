@@ -6,9 +6,6 @@ title: TinyArea
 
 ## Normal
 
-### 完善中
-
-<!--
 ```tsx
 import React from 'react';
 import { TinyArea } from '@alipay/techui-charts';
@@ -43,4 +40,4 @@ const config = {
 };
 
 export default () => <TinyArea {...config} />;
-``` -->
+```
