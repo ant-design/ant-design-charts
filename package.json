@@ -12,7 +12,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "tnpm run dev",
-    "dev": "bigfish lib doc dev",
+    "dev": "bigfish dev",
     "build": "tnpm run build:lib && tnpm run build:tsc",
     "build:lib": "bigfish lib build",
     "build:umd": "BUILD_ENV=umd bigfish lib build",
@@ -23,7 +23,7 @@
     "contributors": "ali-contributors",
     "lint": "bigfish lint --style --eslint.ext='.ts,.tsx,.jsx,.js'",
     "precommit": "bigfish lint --staged --prettier --style --fix --eslint.ext='.ts,.tsx,.jsx,.js'",
-    "pub": "ali-contributors && tnpm run build && bigfish lib publish",
+    "pub": "tnpm run build && bigfish lib publish",
     "pub:doc": "bigfish lib doc publish",
     "test": "bigfish test",
     "version": "bigfish -v"
