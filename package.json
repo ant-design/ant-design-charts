@@ -5,7 +5,7 @@
   "files": [
     "/lib",
     "/es",
-    "/dist"
+    "/types"
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
