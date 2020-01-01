@@ -1,15 +1,14 @@
 {
   "name": "@alipay/techui-charts",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "React translate g2plot",
   "files": [
     "/lib",
-    "/es",
-    "/types"
+    "/es"
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "types/index.d.ts",
+  "types": "./index.d.ts",
   "scripts": {
     "start": "tnpm run dev",
     "dev": "bigfish dev",
@@ -23,7 +22,7 @@
     "contributors": "ali-contributors",
     "lint": "bigfish lint --style --eslint.ext='.ts,.tsx,.jsx,.js'",
     "precommit": "bigfish lint --staged --prettier --style --fix --eslint.ext='.ts,.tsx,.jsx,.js'",
-    "pub": "tnpm run build && bigfish lib publish",
+    "pub": "tnpm run build && node ./scripts/publish.js",
     "pub:doc": "bigfish lib doc publish",
     "test": "bigfish test",
     "version": "bigfish -v"
@@ -35,8 +34,9 @@
     "@alipay/bigfish": "^2.24.2-beta.5",
     "@types/node": "^12.12.17",
     "@types/webpack-env": "^1.14.1",
-    "typescript": "^3.7.4",
-    "ali-contributors": "^2.2.2"
+    "ali-contributors": "^2.2.2",
+    "shelljs": "^0.8.3",
+    "typescript": "^3.7.4"
   },
   "peerDependencies": {
     "react": "^16.8.4",
