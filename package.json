@@ -16,7 +16,7 @@
     "build": "tnpm run build:lib && tnpm run build:tsc",
     "build:lib": "bigfish lib build",
     "build:umd": "BUILD_ENV=umd bigfish lib build",
-    "build:tsc": "tsc --declarationDir ./types",
+    "build:tsc": "tsc --declarationDir ./lib && tsc --declarationDir ./es",
     "ci": "bigfish lint && bigfish cov",
     "cov": "bigfish cov",
     "help": "bigfish help",

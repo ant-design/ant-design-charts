@@ -13,7 +13,6 @@ config.local.js
 .doc
 build/local
 dist
-types
 lib
 es
 pages
