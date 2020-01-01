@@ -1,5 +1,5 @@
-import { ConfigContextProps, ConfigContext } from './context';
-import ErrorBoundary from './errorBoundary';
+import { ConfigContextProps, ConfigContext } from '../context';
+import ErrorBoundary from '../errorBoundary';
 
 const ConfigProvider = ConfigContext.Provider;
 

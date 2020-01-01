@@ -1,18 +1,14 @@
-/* eslint-disable global-require */
-
-import { exec } from 'shelljs';
-import { join } from 'path';
+const shell = require('shelljs');
+const path = require('path');
 
 publishToTnpm();
 
 function publishToTnpm() {
-  console.log('start publish');
-  // eslint-disable-next-line import/no-dynamic-require
-  const { version } = require(join('../', 'package.json'));
+  // eslint-disable-next-line global-require
+  const { version } = require(path.join('../', 'package.json'));
   if (version.includes('-rc.') || version.includes('-beta.') || version.includes('-alpha.')) {
-    exec('tnpm publish --tag next');
+    shell.exec('tnpm publish --tag next');
   } else {
-    exec('tnpm publish');
+    shell.exec('tnpm publish');
   }
-  console.log(`finished publish, version: ${version}`);
 }
