@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface GroupColumnConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<GroupColumn | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechGroupColumn: React.FC<GroupColumnConfig> = (props: GroupColumnConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<GroupColumn, GroupColumnConfig>(GroupColumn, rest);
 
@@ -18,7 +20,7 @@ const TechGroupColumn: React.FC<GroupColumnConfig> = (props: GroupColumnConfig) 
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: GroupColumnConfig) => {

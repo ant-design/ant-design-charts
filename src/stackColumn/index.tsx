@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface StackColumnConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<StackColumn | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechStackColumn: React.FC<StackColumnConfig> = (props: StackColumnConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<StackColumn, StackColumnConfig>(StackColumn, rest);
 
@@ -18,7 +20,7 @@ const TechStackColumn: React.FC<StackColumnConfig> = (props: StackColumnConfig) 
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: StackColumnConfig) => {

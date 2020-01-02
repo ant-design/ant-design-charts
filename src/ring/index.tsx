@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface RingConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Ring | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechRing: React.FC<RingConfig> = (props: RingConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Ring, RingConfig>(Ring, rest);
 
@@ -18,7 +20,7 @@ const TechRing: React.FC<RingConfig> = (props: RingConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: RingConfig) => {

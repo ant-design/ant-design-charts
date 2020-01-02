@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface HistogramConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Histogram | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechHistogram: React.FC<HistogramConfig> = (props: HistogramConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Histogram, HistogramConfig>(Histogram, rest);
 
@@ -18,7 +20,7 @@ const TechHistogram: React.FC<HistogramConfig> = (props: HistogramConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: HistogramConfig) => {

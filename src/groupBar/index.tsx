@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface GroupBarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<GroupBar | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechGroupBar: React.FC<GroupBarConfig> = (props: GroupBarConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<GroupBar, GroupBarConfig>(GroupBar, rest);
 
@@ -18,7 +20,7 @@ const TechGroupBar: React.FC<GroupBarConfig> = (props: GroupBarConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: GroupBarConfig) => {

@@ -5,10 +5,12 @@ import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface ProgressConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Progress | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechProgress: React.FC<ProgressConfig> = (props: ProgressConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Progress, ProgressConfig>(Progress, rest);
 
@@ -18,7 +20,7 @@ const TechProgress: React.FC<ProgressConfig> = (props: ProgressConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: ProgressConfig) => {

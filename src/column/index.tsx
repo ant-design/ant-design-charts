@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface ColumnConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Column | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechColumn: React.FC<ColumnConfig> = (props: ColumnConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Column, ColumnConfig>(Column, rest);
 
@@ -18,7 +20,7 @@ const TechColumn: React.FC<ColumnConfig> = (props: ColumnConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: ColumnConfig) => {

@@ -5,10 +5,12 @@ import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface TinyColumnConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<TinyColumn | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechTinyColumn: React.FC<TinyColumnConfig> = (props: TinyColumnConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<TinyColumn, TinyColumnConfig>(TinyColumn, rest);
 
@@ -18,7 +20,7 @@ const TechTinyColumn: React.FC<TinyColumnConfig> = (props: TinyColumnConfig) => 
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: TinyColumnConfig) => {

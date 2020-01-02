@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface AreaConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Area | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechArea: React.FC<AreaConfig> = (props: AreaConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Area, AreaConfig>(Area, rest);
 
@@ -18,7 +20,7 @@ const TechArea: React.FC<AreaConfig> = (props: AreaConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: AreaConfig) => {

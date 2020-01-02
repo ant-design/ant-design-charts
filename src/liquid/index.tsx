@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface LiquidConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Liquid | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechLiquid: React.FC<LiquidConfig> = (props: LiquidConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Liquid, LiquidConfig>(Liquid, rest);
 
@@ -18,7 +20,7 @@ const TechLiquid: React.FC<LiquidConfig> = (props: LiquidConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: LiquidConfig) => {

@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface ScatterConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Scatter | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechScatter: React.FC<ScatterConfig> = (props: ScatterConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Scatter, ScatterConfig>(Scatter, rest);
 
@@ -18,7 +20,7 @@ const TechScatter: React.FC<ScatterConfig> = (props: ScatterConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: ScatterConfig) => {
