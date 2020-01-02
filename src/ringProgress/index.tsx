@@ -5,10 +5,12 @@ import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface RingProgressConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<RingProgress | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechRingProgress: React.FC<RingProgressConfig> = (props: RingProgressConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<RingProgress, RingProgressConfig>(RingProgress, rest);
 
@@ -18,7 +20,7 @@ const TechRingProgress: React.FC<RingProgressConfig> = (props: RingProgressConfi
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: RingProgressConfig) => {

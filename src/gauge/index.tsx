@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface GaugeConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Gauge | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechGauge: React.FC<GaugeConfig> = (props: GaugeConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Gauge, GaugeConfig>(Gauge, rest);
 
@@ -18,7 +20,7 @@ const TechGauge: React.FC<GaugeConfig> = (props: GaugeConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: GaugeConfig) => {

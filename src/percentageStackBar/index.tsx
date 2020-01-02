@@ -5,12 +5,14 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface PercentageStackBarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<PercentageStackBar | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechPercentageStackBar: React.FC<PercentageStackBarConfig> = (
   props: PercentageStackBarConfig,
 ) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<PercentageStackBar, PercentageStackBarConfig>(
     PercentageStackBar,
@@ -23,7 +25,7 @@ const TechPercentageStackBar: React.FC<PercentageStackBarConfig> = (
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: PercentageStackBarConfig) => {

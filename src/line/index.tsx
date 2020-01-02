@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface LineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Line | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechLine: React.FC<LineConfig> = (props: LineConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Line, LineConfig>(Line, rest);
 
@@ -18,7 +20,7 @@ const TechLine: React.FC<LineConfig> = (props: LineConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: LineConfig) => {

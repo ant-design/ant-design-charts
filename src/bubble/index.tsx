@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface BubbleConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Bubble | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechBubble: React.FC<BubbleConfig> = (props: BubbleConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Bubble, BubbleConfig>(Bubble, rest);
 
@@ -18,7 +20,7 @@ const TechBubble: React.FC<BubbleConfig> = (props: BubbleConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: BubbleConfig) => {

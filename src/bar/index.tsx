@@ -5,10 +5,12 @@ import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface BarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Bar | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechBar: React.FC<BarConfig> = (props: BarConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Bar, BarConfig>(Bar, rest);
 
@@ -18,7 +20,7 @@ const TechBar: React.FC<BarConfig> = (props: BarConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: BarConfig) => {

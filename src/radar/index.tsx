@@ -5,10 +5,12 @@ import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface RadarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<Radar | undefined>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const TechRadar: React.FC<RadarConfig> = (props: RadarConfig) => {
-  const { chartRef, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<Radar, RadarConfig>(Radar, rest);
 
@@ -18,7 +20,7 @@ const TechRadar: React.FC<RadarConfig> = (props: RadarConfig) => {
     }
   }, [chart.current]);
 
-  return <div ref={container} />;
+  return <div className={className} style={style} ref={container} />;
 };
 
 export default (props: RadarConfig) => {
