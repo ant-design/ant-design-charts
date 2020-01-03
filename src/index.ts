@@ -5,6 +5,7 @@ import Column from './column'; // column
 import Gauge from './gauge'; // gauge
 import GroupBar from './groupBar'; // groupBar
 import GroupColumn from './groupColumn'; // groupColumn
+import Heatmap from './Heatmap'; // Heatmap
 import Histogram from './histogram'; // histogram
 import Line from './line'; // line
 import Liquid from './liquid'; // liquid
@@ -32,6 +33,7 @@ export {
   Gauge,
   GroupBar,
   GroupColumn,
+  Heatmap,
   Histogram,
   Line,
   Liquid,
@@ -60,6 +62,7 @@ export default {
   Gauge,
   GroupBar,
   GroupColumn,
+  Heatmap,
   Histogram,
   Line,
   Liquid,
