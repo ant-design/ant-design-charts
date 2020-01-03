@@ -5,7 +5,7 @@ import Column from './column'; // column
 import Gauge from './gauge'; // gauge
 import GroupBar from './groupBar'; // groupBar
 import GroupColumn from './groupColumn'; // groupColumn
-import Heatmap from './Heatmap'; // Heatmap
+import Heatmap from './heatmap'; // Heatmap
 import Histogram from './histogram'; // histogram
 import Line from './line'; // line
 import Liquid from './liquid'; // liquid
