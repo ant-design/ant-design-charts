@@ -4,7 +4,7 @@ order: 9
 
 # [techui-charts](https://bigfish.antfin-inc.com/component/@alipay/techui-charts)
 
-A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.20, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
+A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.21, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
 
 ## Features
 
@@ -26,6 +26,8 @@ $ npm install @alipay/techui-charts
 ```
 
 ## Usage
+
+### Line
 
 ```tsx  | pure
 import React, { useRef } from 'react';
@@ -58,6 +60,57 @@ const ref = useRef(null);
 <Line chartRef={ref} {...config} />;
 ```
 
+### Bubble
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bubble } from '@alipay/techui-charts';
+
+const DemoBubble: React.FC = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/basement_prod/86530df2-6d61-4485-b645-0f2c5d59c07e.json')
+      .then(response => response.json())
+      .then(json => setData(json))
+      .catch(error => {
+        console.log('fetch data failed', error);
+      });
+  };
+
+  const config = {
+    data,
+    title: {
+      visible: true,
+      text: '基础气泡图',
+    },
+    xField: 'change in female rate',
+    yField: 'change in male rate',
+    sizeField: 'pop',
+    pointSize: [4, 30],
+    colorField: 'continent',
+    color: ['#ffd500', '#82cab2', '#193442', '#d18768', '#7e827a'],
+    pointStyle: {
+      stroke: '#777777',
+      lineWidth: 1,
+      opacity: 0.8,
+    },
+    xAxis: {
+      visble: true,
+      max: 5,
+      min: -25,
+    },
+  };
+  return <Bubble {...config} />;
+};
+
+export default () => <DemoBubble />;
+```
+
 ## Document
 
 ### api
@@ -82,6 +135,7 @@ const ref = useRef(null);
 - [StackColumn](/component/@alipay/techui-charts/stack-column)
 - [PercentageStackColumn](/component/@alipay/techui-charts/percentage-stack-column)
 - [GroupColumn](/component/@alipay/techui-charts/group-column)
+- [Heatmap](/component/@alipay/techui-charts/heatmap)
 - [Histogram](/component/@alipay/techui-charts/histogram)
 - [Scatter](/component/@alipay/techui-charts/scatter)
 - [Bubble](/component/@alipay/techui-charts/bubble)
