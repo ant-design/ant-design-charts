@@ -29,7 +29,7 @@ $ npm install @alipay/techui-charts
 
 ### Line
 
-```tsx  | pure
+```tsx
 import React, { useRef } from 'react';
 import { Line } from '@alipay/techui-charts';
 
@@ -57,7 +57,7 @@ const config = {
 
 const ref = useRef(null);
 
-<Line chartRef={ref} {...config} />;
+export default () => <Line chartRef={ref} {...config} />;
 ```
 
 ### Bubble
