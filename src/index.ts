@@ -85,3 +85,5 @@ export default {
   TinyColumn,
   TinyLine,
 };
+
+export { utils } from './util';
