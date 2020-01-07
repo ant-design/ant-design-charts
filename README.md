@@ -4,7 +4,7 @@ order: 9
 
 # [techui-charts](https://bigfish.antfin-inc.com/component/@alipay/techui-charts)
 
-A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.22, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
+A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.2.1, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
 
 ## Features
 

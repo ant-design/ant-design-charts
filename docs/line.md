@@ -35,7 +35,6 @@ const config = {
   },
   forceFit: true,
   padding: 'auto',
-  data,
   xField: 'year',
   yField: 'value',
   point: {
