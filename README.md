@@ -4,7 +4,7 @@ order: 9
 
 # [techui-charts](https://bigfish.antfin-inc.com/component/@alipay/techui-charts)
 
-A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.21, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
+A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.1.22, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
 
 ## Features
 
@@ -141,6 +141,7 @@ export default () => <DemoBubble />;
 - [Bubble](/component/@alipay/techui-charts/bubble)
 - [Radar](/component/@alipay/techui-charts/radar)
 - [Liquid](/component/@alipay/techui-charts/liquid)
+- [Matrix](/component/@alipay/techui-charts/matrix)
 - [Gauge](/component/@alipay/techui-charts/gauge)
 - [Progress](/component/@alipay/techui-charts/progress)
 - [RingProgress](/component/@alipay/techui-charts/ring-progress)
