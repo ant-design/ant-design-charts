@@ -9,6 +9,7 @@ import Heatmap from './heatmap'; // Heatmap
 import Histogram from './histogram'; // histogram
 import Line from './line'; // line
 import Liquid from './liquid'; // liquid
+import Matrix from './matrix'; // matrix
 import PercentageStackArea from './percentageStackArea'; // percentageStackArea
 import PercentageStackBar from './percentageStackBar'; // percentageStackBar
 import PercentageStackColumn from './percentageStackColumn'; // percentageStackColumn
@@ -37,6 +38,7 @@ export {
   Histogram,
   Line,
   Liquid,
+  Matrix,
   PercentageStackArea,
   PercentageStackBar,
   PercentageStackColumn,
@@ -66,6 +68,7 @@ export default {
   Histogram,
   Line,
   Liquid,
+  Matrix,
   PercentageStackArea,
   PercentageStackBar,
   PercentageStackColumn,
