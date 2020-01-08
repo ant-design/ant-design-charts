@@ -60,6 +60,70 @@ const ref = useRef(null);
 export default () => <Line chartRef={ref} {...config} />;
 ```
 
+### Custom tooltip
+
+```tsx
+import React from 'react';
+import { Line, utils } from '@alipay/techui-charts';
+
+const data = [
+  { year: '1991', value: 3 },
+  { year: '1992', value: 4 },
+  { year: '1993', value: 3.5 },
+  { year: '1994', value: 5 },
+  { year: '1995', value: 4.9 },
+  { year: '1996', value: 6 },
+  { year: '1997', value: 7 },
+  { year: '1998', value: 9 },
+  { year: '1999', value: 13 },
+];
+
+const reactNode = (title: string, list = []) => {
+  return (
+    <>
+      {list &&
+        list.map((item: any) => (
+          <div key={item.name}>
+            <span>{item.title}: </span>
+            <span>{item.value}</span>
+          </div>
+        ))}
+    </>
+  );
+};
+
+const config = {
+  data,
+  title: {
+    visible: true,
+    text: '带数据点的折线图',
+  },
+  description: {
+    visible: true,
+    text: '将折线图上的每一个数据点显示出来，作为辅助阅读。',
+  },
+  forceFit: true,
+  padding: 'auto',
+  xField: 'year',
+  yField: 'value',
+  point: {
+    visible: true,
+  },
+  label: {
+    visible: true,
+    type: 'point',
+  },
+  tooltip: {
+    visible: true,
+    htmlContent: (title: string, item: never[]) => {
+      return utils.createNode(reactNode(title, item));
+    },
+  },
+};
+
+export default () => <Line {...config} />;
+```
+
 ### Bubble
 
 ```tsx
