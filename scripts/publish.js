@@ -11,4 +11,7 @@ function publishToTnpm() {
   } else {
     shell.exec('tnpm publish');
   }
+  shell.exec('git add .');
+  shell.exec(`git commit -m 'publish version:${version}'`);
+  shell.exec('git push');
 }
