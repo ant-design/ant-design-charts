@@ -22,7 +22,7 @@ export default function useInit<T extends Base<U>, U extends PlotConfig>(
       chart.current.updateConfig(config as RecursivePartial<U>);
       chart.current.render();
     }
-  }, [config]);
+  }, [JSON.stringify(config)]);
 
   useEffect(() => {
     if (!container.current) {
