@@ -81,7 +81,7 @@ const data = [
 const reactNode = (title: string, list = []) => {
   return (
     <>
-      {ist?.map((item: any) => (
+      {list?.map((item: any) => (
         <div key={item.name}>
           <span>{item.title}: </span>
           <span>{item.value}</span>
