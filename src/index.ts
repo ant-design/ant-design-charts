@@ -25,6 +25,9 @@ import StackColumn from './stackColumn'; // stackColumn
 import TinyArea from './tinyArea'; // tinyArea
 import TinyColumn from './tinyColumn'; // tinyColumn
 import TinyLine from './tinyLine'; // tinyLine
+import StepLine from './stepLine'; // stepLine
+import Waterfall from './waterfall'; // waterFall
+import Funnel from './funnel'; // funnel
 
 export {
   Area,
@@ -54,6 +57,9 @@ export {
   TinyArea,
   TinyColumn,
   TinyLine,
+  StepLine,
+  Waterfall,
+  Funnel,
 };
 
 export default {
@@ -84,6 +90,9 @@ export default {
   TinyArea,
   TinyColumn,
   TinyLine,
+  StepLine,
+  Waterfall,
+  Funnel,
 };
 
 export { utils } from './util';

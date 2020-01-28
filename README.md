@@ -4,7 +4,7 @@ order: 9
 
 # [techui-charts](https://bigfish.antfin-inc.com/component/@alipay/techui-charts)
 
-A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.2.2, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
+A react chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.2.3, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
 
 ## Features
 
@@ -81,13 +81,12 @@ const data = [
 const reactNode = (title: string, list = []) => {
   return (
     <>
-      {list &&
-        list.map((item: any) => (
-          <div key={item.name}>
-            <span>{item.title}: </span>
-            <span>{item.value}</span>
-          </div>
-        ))}
+      {list?.map((item: any) => (
+        <div key={item.name}>
+          <span>{item.title}: </span>
+          <span>{item.value}</span>
+        </div>
+      ))}
     </>
   );
 };
@@ -177,7 +176,23 @@ export default () => <DemoBubble />;
 
 ## Document
 
-### api
+### Gallery
+
+[gallery](https://g2plot.antv.vision/zh/examples/gallery)
+
+### API
+
+Refer to [G2Plot](https://g2plot.antv.vision/zh/docs/manual/general-config)
+
+Extra props:
+
+| Property  | Description     | Type                                  | defaultValue |
+| --------- | --------------- | ------------------------------------- | ------------ |
+| chartRef  | chart ref       | (React.MutableRefObject<Line>)=> void | -            |
+| className | container class | string                                | -            |
+| style     | container style | React.CSSProperties                   | -            |
+
+### Support Chart
 
 - [Line](/component/@alipay/techui-charts/line)
 - [TinyLine](/component/@alipay/techui-charts/tiny-line)
@@ -212,6 +227,9 @@ export default () => <DemoBubble />;
 - [TinyArea](/component/@alipay/techui-charts/tiny-area)
 - [TinyColumn](/component/@alipay/techui-charts/tiny-column)
 - [TinyLine](/component/@alipay/techui-charts/tiny-line)
+- [StepLine](/component/@alipay/techui-charts/step-line)
+- [Waterfall](/component/@alipay/techui-charts/water-fall)
+- [Funnel](/component/@alipay/techui-charts/funnel)
 
 ### [FAQ](http://gitlab.alipay-inc.com/tech-ui/tech-charts/issues)
 
