@@ -174,11 +174,11 @@ const DemoBubble: React.FC = () => {
 export default () => <DemoBubble />;
 ```
 
-## Document
-
-### Gallery
+## Gallery
 
 [gallery](https://g2plot.antv.vision/zh/examples/gallery)
+
+## Document
 
 ### API
 
