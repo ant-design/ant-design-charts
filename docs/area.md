@@ -1,5 +1,5 @@
 ---
-title: Area
+title: 面积图
 order: 8
 ---
 
@@ -43,5 +43,5 @@ const DemoArea: React.FC = () => {
   return <Area {...config} />;
 };
 
-export default () => <DemoArea />;
+export default DemoArea;
 ```

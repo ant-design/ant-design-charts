@@ -1,5 +1,5 @@
 ---
-title: Matrix
+title: 色块热力图
 ---
 
 # Matrix Component
@@ -45,7 +45,7 @@ const DemoMatrix: React.FC = () => {
   return <Matrix {...config} />;
 };
 
-export default () => <DemoMatrix />;
+export default DemoMatrix;
 ```
 
 ## Change mode
@@ -200,7 +200,10 @@ const config = {
   shapeType: 'circle',
   color: ['#0d5fbb', '#7eadfc', '#fd8b6f', '#aa3523'],
 };
-export default () => <Matrix chartRef={chartRef} {...config} />;
+
+const App: React.FC = () => <Matrix chartRef={chartRef} {...config} />;
+
+export default App;
 ```
 
 ## Circle
@@ -327,7 +330,10 @@ const config = {
   shapeType: 'circle', //rect
   color: ['#0d5fbb', '#7eadfc', '#fd8b6f', '#aa3523'],
 };
-export default () => <Matrix {...config} />;
+
+const App: React.FC = () => <Matrix {...config} />;
+
+export default App;
 ```
 
 ## Size
@@ -451,5 +457,8 @@ const config = {
   //size: [10,40],
   color: ['#dddddd', '#9ec8e0', '#5fa4cd', '#2e7ab6', '#114d90'],
 };
-export default () => <Matrix {...config} />;
+
+const App: React.FC = () => <Matrix {...config} />;
+
+export default App;
 ```

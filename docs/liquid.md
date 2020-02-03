@@ -1,5 +1,5 @@
 ---
-title: Liquid
+title: 水波图
 ---
 
 # Liquid Component
@@ -10,18 +10,21 @@ title: Liquid
 import React from 'react';
 import { Liquid } from '@alipay/techui-charts';
 
-const config = {
-  title: {
-    visible: true,
-    text: '水波图',
-  },
-  statistic: 'normal',
-  width: 400,
-  height: 400,
-  min: 0,
-  max: 10000,
-  value: 4500,
-  showValue: true,
+const App: React.FC = () => {
+  const config = {
+    title: {
+      visible: true,
+      text: '水波图',
+    },
+    statistic: 'normal',
+    width: 400,
+    height: 400,
+    min: 0,
+    max: 10000,
+    value: 4500,
+    showValue: true,
+  };
+  return <Liquid {...config} />;
 };
-export default () => <Liquid {...config} />;
+export default App;
 ```

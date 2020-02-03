@@ -204,7 +204,7 @@ Extra props:
 - [Bar](/component/@alipay/techui-charts/bar)
 - [StackBar](/component/@alipay/techui-charts/stack-bar)
 - [PercentageStackBar](/component/@alipay/techui-charts/percentage-stack-bar)
-- [GroupedBar](/component/@alipay/techui-charts/group-bar)
+- [GroupBar](/component/@alipay/techui-charts/group-bar)
 - [Area](/component/@alipay/techui-charts/area)
 - [TinyArea](/component/@alipay/techui-charts/tiny-area)
 - [StackArea](/component/@alipay/techui-charts/stack-area)

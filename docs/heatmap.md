@@ -1,5 +1,5 @@
 ---
-title: Heatmap
+title: 热力图
 ---
 
 # Heatmap Component
@@ -48,7 +48,7 @@ const DemoHeatmap: React.FC = () => {
   return <Heatmap {...config} />;
 };
 
-export default () => <DemoHeatmap />;
+export default DemoHeatmap;
 ```
 
 ## backgroundImage
@@ -101,5 +101,5 @@ const DemoHeatmap: React.FC = () => {
   return <Heatmap {...config} />;
 };
 
-export default () => <DemoHeatmap />;
+export default DemoHeatmap;
 ```

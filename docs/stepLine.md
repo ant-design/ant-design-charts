@@ -1,5 +1,5 @@
 ---
-title: StepLine
+title: 阶梯图
 ---
 
 # StepLine Component
@@ -56,7 +56,7 @@ const DemoStepLine: React.FC = () => {
   return <StepLine {...config} />;
 };
 
-export default () => <DemoStepLine />;
+export default DemoStepLine;
 ```
 
 ## GDP
@@ -115,5 +115,5 @@ const DemoStepLine: React.FC = () => {
   return <StepLine {...config} />;
 };
 
-export default () => <DemoStepLine />;
+export default DemoStepLine;
 ```

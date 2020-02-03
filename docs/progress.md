@@ -1,5 +1,5 @@
 ---
-title: Progress
+title: 迷你进度条
 ---
 
 # Progress Component
@@ -10,12 +10,14 @@ title: Progress
 import React from 'react';
 import { Progress } from '@alipay/techui-charts';
 
-const config = {
-  width: 200,
-  height: 50,
-  percent: 0.3,
-  color: ['#F4664A', '#E8EDF3'],
+const App: React.FC = () => {
+  const config = {
+    width: 200,
+    height: 50,
+    percent: 0.3,
+    color: ['#F4664A', '#E8EDF3'],
+  };
+  return <Progress {...config} />;
 };
-
-export default () => <Progress {...config} />;
+export default App;
 ```

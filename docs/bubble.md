@@ -1,5 +1,5 @@
 ---
-title: Bubble
+title: 气泡图
 ---
 
 # Bubble Component
@@ -52,5 +52,5 @@ const DemoBubble: React.FC = () => {
   return <Bubble {...config} />;
 };
 
-export default () => <DemoBubble />;
+export default DemoBubble;
 ```

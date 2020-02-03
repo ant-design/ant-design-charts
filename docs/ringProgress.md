@@ -1,5 +1,5 @@
 ---
-title: RingProgress
+title: 迷你环形进度条
 ---
 
 # RingProgress Component
@@ -10,12 +10,16 @@ title: RingProgress
 import React from 'react';
 import { RingProgress } from '@alipay/techui-charts';
 
-const config = {
-  width: 100,
-  height: 100,
-  percent: 0.8,
-  color: ['#30BF78', '#E8EDF3'],
+const App: React.FC = () => {
+  const config = {
+    width: 100,
+    height: 100,
+    percent: 0.8,
+    color: ['#30BF78', '#E8EDF3'],
+  };
+
+  return <RingProgress {...config} />;
 };
 
-export default () => <RingProgress {...config} />;
+export default App;
 ```

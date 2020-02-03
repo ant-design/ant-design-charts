@@ -1,8 +1,8 @@
 ---
-title: StackStackArea
+title: 堆叠面积图
 ---
 
-# StackStackArea Component
+# StackArea Component
 
 ## Normal
 
@@ -50,5 +50,5 @@ const DemoStackArea: React.FC = () => {
   return <StackArea {...config} />;
 };
 
-export default () => <DemoStackArea />;
+export default DemoStackArea;
 ```
