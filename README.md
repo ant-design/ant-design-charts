@@ -186,11 +186,11 @@ Refer to [G2Plot](https://g2plot.antv.vision/zh/docs/manual/general-config)
 
 Extra props:
 
-| Property  | Description     | Type                                  | defaultValue |
-| --------- | --------------- | ------------------------------------- | ------------ |
-| chartRef  | chart ref       | (React.MutableRefObject<Line>)=> void | -            |
-| className | container class | string                                | -            |
-| style     | container style | React.CSSProperties                   | -            |
+| Property  | Description     | Type                                        | defaultValue |
+| --------- | --------------- | ------------------------------------------- | ------------ |
+| chartRef  | chart ref       | (React.MutableRefObject&lt;Line&gt;)=> void | -            |
+| className | container class | string                                      | -            |
+| style     | container style | React.CSSProperties                         | -            |
 
 ### Support Chart
 
