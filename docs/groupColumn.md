@@ -2,7 +2,7 @@
 title: 分组柱状图
 ---
 
-# GroupColumn Component
+# 分组柱状图
 
 ## Normal
 

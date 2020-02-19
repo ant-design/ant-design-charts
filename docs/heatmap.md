@@ -2,7 +2,7 @@
 title: 热力图
 ---
 
-# Heatmap Component
+# 热力图
 
 ## Normal
 

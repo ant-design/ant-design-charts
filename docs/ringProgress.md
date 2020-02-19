@@ -2,7 +2,7 @@
 title: 迷你环形进度条
 ---
 
-# RingProgress Component
+# 迷你环形进度条
 
 ## Normal
 

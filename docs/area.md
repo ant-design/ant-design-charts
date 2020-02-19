@@ -3,7 +3,7 @@ title: 面积图
 order: 8
 ---
 
-# Area Component
+# 面积图
 
 ## Normal
 

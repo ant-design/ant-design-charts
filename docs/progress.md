@@ -2,7 +2,7 @@
 title: 迷你进度条
 ---
 
-# Progress Component
+# 迷你进度条
 
 ## Normal
 

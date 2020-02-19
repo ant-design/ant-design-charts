@@ -2,7 +2,7 @@
 title: 迷你面积图
 ---
 
-# TinyArea Component
+# 迷你面积图
 
 ## Normal
 

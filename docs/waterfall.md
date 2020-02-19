@@ -2,7 +2,7 @@
 title: 瀑布图
 ---
 
-# Waterfall Component
+# 瀑布图
 
 ## Normal
 

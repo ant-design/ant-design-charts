@@ -2,7 +2,7 @@
 title: 漏斗图
 ---
 
-# Funnel Component
+# 漏斗图
 
 ## Normal
 

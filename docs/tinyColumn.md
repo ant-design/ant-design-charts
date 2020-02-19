@@ -2,7 +2,7 @@
 title: 迷你柱状体
 ---
 
-# TinyColumn Component
+# 迷你柱状体
 
 ## Normal
 

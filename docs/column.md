@@ -2,7 +2,7 @@
 title: 柱状图
 ---
 
-# Column Component
+# 柱状图
 
 ## Normal
 

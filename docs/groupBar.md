@@ -2,7 +2,7 @@
 title: 分组条形图
 ---
 
-# GroupBar Component
+# 分组条形图
 
 ## Normal
 

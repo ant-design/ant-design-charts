@@ -3,7 +3,7 @@ title: 折线图
 order: 9
 ---
 
-# Line Component
+# 折线图
 
 ## Normal
 
