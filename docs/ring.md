@@ -2,7 +2,7 @@
 title: 环图
 ---
 
-# Ring Component
+# 环图
 
 ## Normal
 

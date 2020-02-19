@@ -2,7 +2,7 @@
 title: 堆叠条形图
 ---
 
-# StackBar Component
+# 堆叠条形图
 
 ## Normal
 

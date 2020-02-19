@@ -2,7 +2,7 @@
 title: 直方图
 ---
 
-# Histogram Component
+# 直方图
 
 ## Normal
 

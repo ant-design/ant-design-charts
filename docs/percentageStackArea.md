@@ -2,7 +2,7 @@
 title: 百分比堆叠面积图
 ---
 
-# PercentageStackArea Component
+# 百分比堆叠面积图
 
 ## Normal
 

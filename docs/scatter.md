@@ -2,7 +2,7 @@
 title: 散点图
 ---
 
-# Scatter Component
+# 散点图
 
 ## Normal
 

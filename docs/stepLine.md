@@ -2,7 +2,7 @@
 title: 阶梯图
 ---
 
-# StepLine Component
+# 阶梯图
 
 ## Normal
 

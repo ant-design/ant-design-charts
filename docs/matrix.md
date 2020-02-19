@@ -2,7 +2,7 @@
 title: 色块热力图
 ---
 
-# Matrix Component
+# 色块热力图
 
 ## Normal
 

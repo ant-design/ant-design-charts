@@ -2,7 +2,7 @@
 title: 气泡图
 ---
 
-# Bubble Component
+# 气泡图
 
 ## Normal
 

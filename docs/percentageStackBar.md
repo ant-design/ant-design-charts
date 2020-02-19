@@ -2,7 +2,7 @@
 title: 百分比堆叠条形图
 ---
 
-# PercentageStackBar Component
+# 百分比堆叠条形图
 
 ## Normal
 

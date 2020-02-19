@@ -2,7 +2,7 @@
 title: 雷达图
 ---
 
-# Radar Component
+# 雷达图
 
 ## Normal
 

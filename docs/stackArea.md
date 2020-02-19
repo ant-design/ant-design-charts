@@ -2,7 +2,7 @@
 title: 堆叠面积图
 ---
 
-# StackArea Component
+# 堆叠面积图
 
 ## Normal
 

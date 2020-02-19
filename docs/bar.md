@@ -3,7 +3,7 @@ title: 条形图
 order: 8
 ---
 
-# Bar Component
+# 条形图
 
 ## Normal
 

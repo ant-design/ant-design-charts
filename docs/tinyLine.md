@@ -2,7 +2,7 @@
 title: 迷你折线图
 ---
 
-# TinyLine Component
+# 迷你折线图
 
 ## Normal
 

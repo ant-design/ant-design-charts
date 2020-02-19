@@ -2,7 +2,7 @@
 title: 百分比堆叠柱状图
 ---
 
-# PercentageStackColumn Component
+# 百分比堆叠柱状图
 
 ## Normal
 

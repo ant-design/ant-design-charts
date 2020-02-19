@@ -2,7 +2,7 @@
 title: 水波图
 ---
 
-# Liquid Component
+# 水波图
 
 ## Normal
 

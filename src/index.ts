@@ -16,7 +16,10 @@ import PercentageStackColumn from './percentageStackColumn'; // percentageStackC
 import Pie from './pie'; // pie
 import Progress from './progress'; // progress
 import Radar from './radar'; // radar
+import RangeBar from './rangeBar'; // RangeBar
+import RangeColumn from './rangeColumn'; // rangeColumn
 import Ring from './ring'; // ring
+import Rose from './rose'; // rose
 import RingProgress from './ringProgress'; // RingProgress
 import Scatter from './scatter'; // scatter
 import StackArea from './stackArea'; // stackArea
@@ -28,6 +31,7 @@ import TinyLine from './tinyLine'; // tinyLine
 import StepLine from './stepLine'; // stepLine
 import Waterfall from './waterfall'; // waterFall
 import Funnel from './funnel'; // funnel
+import WordCloud from './wordCloud';
 
 export {
   Area,
@@ -48,7 +52,10 @@ export {
   Pie,
   Progress,
   Radar,
+  RangeBar,
+  RangeColumn,
   Ring,
+  Rose,
   RingProgress,
   Scatter,
   StackArea,
@@ -60,6 +67,7 @@ export {
   StepLine,
   Waterfall,
   Funnel,
+  WordCloud,
 };
 
 export default {
@@ -81,7 +89,10 @@ export default {
   Pie,
   Progress,
   Radar,
+  RangeBar,
+  RangeColumn,
   Ring,
+  Rose,
   RingProgress,
   Scatter,
   StackArea,
@@ -93,6 +104,7 @@ export default {
   StepLine,
   Waterfall,
   Funnel,
+  WordCloud,
 };
 
 export { utils } from './util';

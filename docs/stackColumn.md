@@ -2,7 +2,7 @@
 title: 堆叠柱状图
 ---
 
-# StackColumn Component
+# 堆叠柱状图
 
 ## Normal
 

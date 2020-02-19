@@ -2,7 +2,7 @@
 title: 饼图
 ---
 
-# Pie Component
+# 饼图
 
 ## Normal
 
