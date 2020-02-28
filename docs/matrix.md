@@ -4,7 +4,7 @@ title: 色块热力图
 
 # 色块热力图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React, { useState, useEffect } from 'react';

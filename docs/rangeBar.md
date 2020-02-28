@@ -4,7 +4,7 @@ title: 区间条形图
 
 # 区间条形图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

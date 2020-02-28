@@ -4,7 +4,7 @@ title: 迷你进度条
 
 # 迷你进度条
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

@@ -4,7 +4,7 @@ title: 雷达图
 
 # 雷达图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

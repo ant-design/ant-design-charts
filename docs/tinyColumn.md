@@ -4,7 +4,7 @@ title: 迷你柱状图
 
 # 迷你柱状图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

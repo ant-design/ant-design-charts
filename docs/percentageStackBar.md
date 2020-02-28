@@ -4,7 +4,7 @@ title: 百分比堆叠条形图
 
 # 百分比堆叠条形图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

@@ -4,7 +4,7 @@ title: 百分比堆叠面积图
 
 # 百分比堆叠面积图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

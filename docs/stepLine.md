@@ -4,7 +4,7 @@ title: 阶梯图
 
 # 阶梯图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React, { useState, useEffect } from 'react';

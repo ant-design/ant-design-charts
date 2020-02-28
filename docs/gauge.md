@@ -4,7 +4,7 @@ title: 仪表盘
 
 # 仪表盘
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

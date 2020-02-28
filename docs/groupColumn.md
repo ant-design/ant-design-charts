@@ -4,7 +4,7 @@ title: 分组柱状图
 
 # 分组柱状图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

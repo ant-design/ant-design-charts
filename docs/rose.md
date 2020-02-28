@@ -4,7 +4,7 @@ title: 玫瑰图
 
 # 玫瑰图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

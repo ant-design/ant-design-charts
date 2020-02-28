@@ -4,7 +4,7 @@ title: 散点图
 
 # 散点图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';
