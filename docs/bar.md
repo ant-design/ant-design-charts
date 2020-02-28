@@ -5,7 +5,7 @@ order: 8
 
 # 条形图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

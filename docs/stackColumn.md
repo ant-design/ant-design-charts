@@ -4,7 +4,7 @@ title: 堆叠柱状图
 
 # 堆叠柱状图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

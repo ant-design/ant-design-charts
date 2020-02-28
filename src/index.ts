@@ -32,6 +32,9 @@ import StepLine from './stepLine'; // stepLine
 import Waterfall from './waterfall'; // waterFall
 import Funnel from './funnel'; // funnel
 import WordCloud from './wordCloud';
+import Bullet from './bullet';
+import Treemap from './treemap';
+import OverlappedComboPlot from './overlappedComboPlot';
 
 export {
   Area,
@@ -68,6 +71,9 @@ export {
   Waterfall,
   Funnel,
   WordCloud,
+  Bullet,
+  Treemap,
+  OverlappedComboPlot,
 };
 
 export default {
@@ -105,6 +111,9 @@ export default {
   Waterfall,
   Funnel,
   WordCloud,
+  Bullet,
+  Treemap,
+  OverlappedComboPlot,
 };
 
 export { utils } from './util';

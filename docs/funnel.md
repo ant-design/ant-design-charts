@@ -4,7 +4,7 @@ title: 漏斗图
 
 # 漏斗图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

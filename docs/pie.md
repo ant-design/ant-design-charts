@@ -4,7 +4,7 @@ title: 饼图
 
 # 饼图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

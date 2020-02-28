@@ -5,7 +5,7 @@ order: 9
 
 # 折线图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

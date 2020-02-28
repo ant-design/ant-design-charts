@@ -4,7 +4,7 @@ title: 迷你面积图
 
 # 迷你面积图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

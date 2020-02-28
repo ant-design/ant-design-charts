@@ -4,7 +4,7 @@ title: 瀑布图
 
 # 瀑布图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

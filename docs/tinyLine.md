@@ -4,7 +4,7 @@ title: 迷你折线图
 
 # 迷你折线图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React from 'react';

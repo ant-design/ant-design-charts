@@ -5,7 +5,7 @@ order: 8
 
 # 面积图
 
-## Normal
+## 基本用法
 
 ```tsx
 import React, { useState, useEffect } from 'react';
