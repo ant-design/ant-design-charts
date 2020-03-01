@@ -6,7 +6,7 @@ title: 堆叠条形图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { StackBar } from '@alipay/techui-charts';
 

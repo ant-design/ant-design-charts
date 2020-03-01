@@ -6,7 +6,7 @@ title: 漏斗图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Funnel } from '@alipay/techui-charts';
 
@@ -37,7 +37,7 @@ export default App;
 
 ## Dynamic height
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Funnel } from '@alipay/techui-charts';
 const App: React.FC = () => {

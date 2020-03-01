@@ -6,7 +6,7 @@ title: 词云图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React, { useState, useEffect } from 'react';
 import { WordCloud } from '@alipay/techui-charts';
 

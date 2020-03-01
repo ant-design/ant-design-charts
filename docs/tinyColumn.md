@@ -6,7 +6,7 @@ title: 迷你柱状图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { TinyColumn } from '@alipay/techui-charts';
 

@@ -6,7 +6,7 @@ title: 子弹图
 
 ## 基础子弹图
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Bullet } from '@alipay/techui-charts';
 
@@ -38,7 +38,7 @@ export default App;
 
 ## 基础子弹图-带多颜色范围区间
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Bullet } from '@alipay/techui-charts';
 
@@ -111,7 +111,7 @@ export default App;
 
 ## 基础子弹图-超出目标
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Bullet } from '@alipay/techui-charts';
 
@@ -188,7 +188,7 @@ export default App;
 
 ## 基础子弹图-多目标值
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Bullet } from '@alipay/techui-charts';
 
@@ -247,7 +247,7 @@ export default App;
 
 ## 堆叠子弹图
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Bullet } from '@alipay/techui-charts';
 
@@ -296,7 +296,7 @@ export default App;
 
 ## 分组子弹图
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Bullet } from '@alipay/techui-charts';
 
@@ -343,7 +343,7 @@ export default App;
 
 ## 分组子弹图-带颜色范围区间
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Bullet } from '@alipay/techui-charts';
 

@@ -6,7 +6,7 @@ title: 百分比堆叠条形图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { PercentageStackBar } from '@alipay/techui-charts';
 

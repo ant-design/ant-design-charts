@@ -6,7 +6,7 @@ title: 区间柱状图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { RangeColumn } from '@alipay/techui-charts';
 
@@ -38,7 +38,7 @@ export default App;
 
 ## 渐变
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { RangeColumn } from '@alipay/techui-charts';
 

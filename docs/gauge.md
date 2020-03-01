@@ -6,7 +6,7 @@ title: 仪表盘
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Gauge } from '@alipay/techui-charts';
 

@@ -6,7 +6,7 @@ title: 迷你折线图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { TinyLine } from '@alipay/techui-charts';
 

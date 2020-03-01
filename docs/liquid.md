@@ -6,7 +6,7 @@ title: 水波图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Liquid } from '@alipay/techui-charts';
 

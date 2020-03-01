@@ -7,7 +7,7 @@ order: 8
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Bar } from '@alipay/techui-charts';
 

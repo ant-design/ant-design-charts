@@ -6,7 +6,7 @@ title: 环图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Ring } from '@alipay/techui-charts';
 

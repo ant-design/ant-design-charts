@@ -6,7 +6,7 @@ title: 分组条形图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { GroupBar } from '@alipay/techui-charts';
 

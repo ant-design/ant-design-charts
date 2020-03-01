@@ -6,7 +6,7 @@ title: 区间条形图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { RangeBar } from '@alipay/techui-charts';
 
@@ -38,7 +38,7 @@ export default App;
 
 ## 渐变
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { RangeBar } from '@alipay/techui-charts';
 

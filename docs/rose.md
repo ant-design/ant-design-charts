@@ -6,7 +6,7 @@ title: 玫瑰图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Rose } from '@alipay/techui-charts';
 
@@ -67,7 +67,7 @@ export default App;
 
 ## 堆叠玫瑰图
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Rose } from '@alipay/techui-charts';
 
@@ -163,7 +163,7 @@ export default App;
 
 ## 分组玫瑰图
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Rose } from '@alipay/techui-charts';
 
@@ -264,7 +264,7 @@ export default App;
 
 ## 单色玫瑰图
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Rose } from '@alipay/techui-charts';
 

@@ -6,7 +6,7 @@ title: 瀑布图
 
 ## 基本用法
 
-```tsx | pure
+```tsx
 import React from 'react';
 import { Waterfall } from '@alipay/techui-charts';
 
