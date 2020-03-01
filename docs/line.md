@@ -7,7 +7,7 @@ order: 9
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Line } from '@alipay/techui-charts';
 
@@ -53,7 +53,7 @@ export default App;
 
 ## Multiple Line
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Line } from '@alipay/techui-charts';
 

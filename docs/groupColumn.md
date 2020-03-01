@@ -6,7 +6,7 @@ title: 分组柱状图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { GroupColumn } from '@alipay/techui-charts';
 

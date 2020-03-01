@@ -6,7 +6,7 @@ title: 迷你面积图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { TinyArea } from '@alipay/techui-charts';
 

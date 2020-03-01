@@ -6,7 +6,7 @@ title: 阶梯图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React, { useState, useEffect } from 'react';
 import { StepLine } from '@alipay/techui-charts';
 
@@ -61,7 +61,7 @@ export default DemoStepLine;
 
 ## GDP
 
-```tsx
+```tsx | pure
 import React, { useState, useEffect } from 'react';
 import { StepLine } from '@alipay/techui-charts';
 

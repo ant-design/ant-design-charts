@@ -6,7 +6,7 @@ title: 雷达图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Radar } from '@alipay/techui-charts';
 

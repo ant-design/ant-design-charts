@@ -6,7 +6,7 @@ title: 热力图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React, { useState, useEffect } from 'react';
 import { Heatmap } from '@alipay/techui-charts';
 
@@ -53,7 +53,7 @@ export default DemoHeatmap;
 
 ## backgroundImage
 
-```tsx
+```tsx | pure
 import React, { useState, useEffect } from 'react';
 import { Heatmap } from '@alipay/techui-charts';
 

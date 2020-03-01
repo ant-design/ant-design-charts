@@ -6,7 +6,7 @@ title: 堆叠面积图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React, { useState, useEffect } from 'react';
 import { StackArea } from '@alipay/techui-charts';
 

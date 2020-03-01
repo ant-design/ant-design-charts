@@ -6,7 +6,7 @@ title: 迷你环形进度条
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { RingProgress } from '@alipay/techui-charts';
 

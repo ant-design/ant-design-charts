@@ -6,7 +6,7 @@ title: 百分比堆叠面积图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { PercentageStackArea } from '@alipay/techui-charts';
 

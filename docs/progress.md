@@ -6,7 +6,7 @@ title: 迷你进度条
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Progress } from '@alipay/techui-charts';
 

@@ -6,7 +6,7 @@ title: 散点图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Scatter } from '@alipay/techui-charts';
 

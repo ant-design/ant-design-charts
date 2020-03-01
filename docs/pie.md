@@ -6,7 +6,7 @@ title: 饼图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Pie } from '@alipay/techui-charts';
 

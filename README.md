@@ -29,7 +29,7 @@ $ npm install @alipay/techui-charts
 
 ### Line
 
-```tsx
+```tsx | pure
 import React, { useRef } from 'react';
 import { Line } from '@alipay/techui-charts';
 
@@ -65,7 +65,7 @@ export default App;
 
 ### Custom tooltip
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Line, utils } from '@alipay/techui-charts';
 
@@ -131,7 +131,7 @@ export default App;
 
 ### Bubble
 
-```tsx
+```tsx | pure
 import React, { useState, useEffect } from 'react';
 import { Bubble } from '@alipay/techui-charts';
 

@@ -6,7 +6,7 @@ title: 矩形树图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Treemap } from '@alipay/techui-charts';
 
@@ -58,7 +58,7 @@ export default App;
 
 ## 多重嵌套
 
-```tsx
+```tsx | pure
 import React, { useState, useEffect } from 'react';
 import { Treemap } from '@alipay/techui-charts';
 

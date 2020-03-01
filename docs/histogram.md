@@ -6,7 +6,7 @@ title: 直方图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Histogram } from '@alipay/techui-charts';
 

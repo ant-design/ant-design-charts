@@ -6,7 +6,7 @@ title: 百分比堆叠柱状图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { PercentageStackColumn } from '@alipay/techui-charts';
 

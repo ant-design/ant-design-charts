@@ -6,7 +6,7 @@ title: 色块热力图
 
 ## 基本用法
 
-```tsx
+```tsx | pure
 import React, { useState, useEffect } from 'react';
 import { Matrix } from '@alipay/techui-charts';
 
@@ -50,7 +50,7 @@ export default DemoMatrix;
 
 ## Change mode
 
-```tsx
+```tsx | pure
 import React, { useRef } from 'react';
 import { Matrix } from '@alipay/techui-charts';
 
@@ -208,7 +208,7 @@ export default App;
 
 ## Circle
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Matrix } from '@alipay/techui-charts';
 
@@ -338,7 +338,7 @@ export default App;
 
 ## Size
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Matrix } from '@alipay/techui-charts';
 
