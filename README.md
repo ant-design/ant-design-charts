@@ -4,7 +4,7 @@ order: 9
 
 # [techui-charts](https://bigfish.antfin-inc.comhttps://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts)
 
-A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.2.6, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
+A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.2.7, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
 
 ## Features
 
@@ -241,6 +241,7 @@ Extra props:
 - [WordCloud](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/word-cloud)
 - [Bullet](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/bullet)
 - [Treemap](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/treemap)
+- [OverlappedComboPlot](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/overlapped-combo-plot)
 
 ### [FAQ](http://gitlab.alipay-inc.com/tech-ui/tech-charts/issues)
 

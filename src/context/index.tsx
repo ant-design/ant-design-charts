@@ -1,5 +1,3 @@
 import React from 'react';
 
-export const ConfigContext = React.createContext({
-  theme: {},
-});
+export const ConfigContext = React.createContext({});
