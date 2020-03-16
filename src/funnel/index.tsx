@@ -32,6 +32,6 @@ const FunnelChart = (props: FunnelConfig) => {
   );
 };
 
-FunnelChart.defaultProps = Funnel.getDefaultOptions();
+// FunnelChart.defaultProps = Funnel.getDefaultOptions();
 
 export default FunnelChart;

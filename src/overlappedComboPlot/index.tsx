@@ -37,6 +37,6 @@ const OverlappedComboPlotChart = (props: OverlappedComboPlotConfig) => {
   );
 };
 
-OverlappedComboPlotChart.defaultProps = OverlappedComboPlot.getDefaultOptions();
+// OverlappedComboPlotChart.defaultProps = OverlappedComboPlot.getDefaultOptions();
 
 export default OverlappedComboPlotChart;

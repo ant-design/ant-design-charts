@@ -32,6 +32,6 @@ const WordCloudChart = (props: WordCloudConfig) => {
   );
 };
 
-WordCloudChart.defaultProps = WordCloud.getDefaultOptions();
+// WordCloudChart.defaultProps = WordCloud.getDefaultOptions();
 
 export default WordCloudChart;
