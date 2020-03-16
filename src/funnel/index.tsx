@@ -23,7 +23,7 @@ const TechFunnel: React.FC<FunnelConfig> = (props: FunnelConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: FunnelConfig) => {
+const FunnelChart = (props: FunnelConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: FunnelConfig) => {
     </ErrorBoundary>
   );
 };
+
+FunnelChart.defaultProps = Funnel.getDefaultOptions();
+
+export default FunnelChart;

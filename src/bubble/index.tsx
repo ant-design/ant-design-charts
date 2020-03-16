@@ -23,7 +23,7 @@ const TechBubble: React.FC<BubbleConfig> = (props: BubbleConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: BubbleConfig) => {
+const BubbleChart = (props: BubbleConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: BubbleConfig) => {
     </ErrorBoundary>
   );
 };
+
+BubbleChart.defaultProps = Bubble.getDefaultOptions();
+
+export default BubbleChart;

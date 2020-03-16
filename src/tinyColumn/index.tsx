@@ -23,7 +23,7 @@ const TechTinyColumn: React.FC<TinyColumnConfig> = (props: TinyColumnConfig) => 
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: TinyColumnConfig) => {
+const TinyColumnChart = (props: TinyColumnConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: TinyColumnConfig) => {
     </ErrorBoundary>
   );
 };
+
+TinyColumnChart.defaultProps = TinyColumn.getDefaultOptions();
+
+export default TinyColumnChart;

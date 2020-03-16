@@ -23,7 +23,7 @@ const TechPie: React.FC<PieConfig> = (props: PieConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: PieConfig) => {
+const PieChart = (props: PieConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: PieConfig) => {
     </ErrorBoundary>
   );
 };
+
+PieChart.defaultProps = Pie.getDefaultOptions();
+
+export default PieChart;

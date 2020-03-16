@@ -23,7 +23,7 @@ const TechHistogram: React.FC<HistogramConfig> = (props: HistogramConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: HistogramConfig) => {
+const HistogramChart = (props: HistogramConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: HistogramConfig) => {
     </ErrorBoundary>
   );
 };
+
+HistogramChart.defaultProps = Histogram.getDefaultOptions();
+
+export default HistogramChart;

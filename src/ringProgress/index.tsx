@@ -23,7 +23,7 @@ const TechRingProgress: React.FC<RingProgressConfig> = (props: RingProgressConfi
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: RingProgressConfig) => {
+const RingProgressChart = (props: RingProgressConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: RingProgressConfig) => {
     </ErrorBoundary>
   );
 };
+
+RingProgressChart.defaultProps = RingProgress.getDefaultOptions();
+
+export default RingProgressChart;

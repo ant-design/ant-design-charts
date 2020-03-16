@@ -23,7 +23,7 @@ const TechHeatmap: React.FC<HeatmapConfig> = (props: HeatmapConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: HeatmapConfig) => {
+const HeatmapChart = (props: HeatmapConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: HeatmapConfig) => {
     </ErrorBoundary>
   );
 };
+
+HeatmapChart.defaultProps = Heatmap.getDefaultOptions();
+
+export default HeatmapChart;

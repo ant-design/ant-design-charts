@@ -23,7 +23,7 @@ const TechLiquid: React.FC<LiquidConfig> = (props: LiquidConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: LiquidConfig) => {
+const LiquidChart = (props: LiquidConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: LiquidConfig) => {
     </ErrorBoundary>
   );
 };
+
+LiquidChart.defaultProps = Liquid.getDefaultOptions();
+
+export default LiquidChart;

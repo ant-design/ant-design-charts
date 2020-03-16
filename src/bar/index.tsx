@@ -23,7 +23,7 @@ const TechBar: React.FC<BarConfig> = (props: BarConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: BarConfig) => {
+const BarChart = (props: BarConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: BarConfig) => {
     </ErrorBoundary>
   );
 };
+
+BarChart.defaultProps = Bar.getDefaultOptions();
+
+export default BarChart;

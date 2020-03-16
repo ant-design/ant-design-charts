@@ -23,7 +23,7 @@ const TechScatter: React.FC<ScatterConfig> = (props: ScatterConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: ScatterConfig) => {
+const ScatterChart = (props: ScatterConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: ScatterConfig) => {
     </ErrorBoundary>
   );
 };
+
+ScatterChart.defaultProps = Scatter.getDefaultOptions();
+
+export default ScatterChart;

@@ -23,7 +23,7 @@ const TechTinyArea: React.FC<TinyAreaConfig> = (props: TinyAreaConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: TinyAreaConfig) => {
+const TinyAreaChart = (props: TinyAreaConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: TinyAreaConfig) => {
     </ErrorBoundary>
   );
 };
+
+TinyAreaChart.defaultProps = TinyArea.getDefaultOptions();
+
+export default TinyAreaChart;

@@ -23,7 +23,7 @@ const TechTinyLine: React.FC<TinyLineConfig> = (props: TinyLineConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: TinyLineConfig) => {
+const TinyLineChart = (props: TinyLineConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: TinyLineConfig) => {
     </ErrorBoundary>
   );
 };
+
+TinyLineChart.defaultProps = TinyLine.getDefaultOptions();
+
+export default TinyLineChart;

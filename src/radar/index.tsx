@@ -23,7 +23,7 @@ const TechRadar: React.FC<RadarConfig> = (props: RadarConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: RadarConfig) => {
+const RadarChart = (props: RadarConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: RadarConfig) => {
     </ErrorBoundary>
   );
 };
+
+RadarChart.defaultProps = Radar.getDefaultOptions();
+
+export default RadarChart;

@@ -23,7 +23,7 @@ const TechStepLine: React.FC<StepLineConfig> = (props: StepLineConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: StepLineConfig) => {
+const StepLineChart = (props: StepLineConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: StepLineConfig) => {
     </ErrorBoundary>
   );
 };
+
+StepLineChart.defaultProps = StepLine.getDefaultOptions();
+
+export default StepLineChart;

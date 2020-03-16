@@ -23,7 +23,7 @@ const TechRose: React.FC<RoseConfig> = (props: RoseConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: RoseConfig) => {
+const RoseChart = (props: RoseConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: RoseConfig) => {
     </ErrorBoundary>
   );
 };
+
+RoseChart.defaultProps = Rose.getDefaultOptions();
+
+export default RoseChart;
