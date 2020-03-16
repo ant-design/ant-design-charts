@@ -28,7 +28,7 @@ const TechPercentageStackBar: React.FC<PercentageStackBarConfig> = (
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: PercentageStackBarConfig) => {
+const PercentageStackBarChart = (props: PercentageStackBarConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -36,3 +36,7 @@ export default (props: PercentageStackBarConfig) => {
     </ErrorBoundary>
   );
 };
+
+PercentageStackBarChart.defaultProps = PercentageStackBar.getDefaultOptions();
+
+export default PercentageStackBarChart;

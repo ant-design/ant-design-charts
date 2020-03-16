@@ -23,7 +23,7 @@ const TechGroupBar: React.FC<GroupBarConfig> = (props: GroupBarConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: GroupBarConfig) => {
+const GroupBarChart = (props: GroupBarConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: GroupBarConfig) => {
     </ErrorBoundary>
   );
 };
+
+GroupBarChart.defaultProps = GroupBar.getDefaultOptions();
+
+export default GroupBarChart;

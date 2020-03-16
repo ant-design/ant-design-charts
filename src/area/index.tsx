@@ -23,7 +23,7 @@ const TechArea: React.FC<AreaConfig> = (props: AreaConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: AreaConfig) => {
+const AreaChart = (props: AreaConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: AreaConfig) => {
     </ErrorBoundary>
   );
 };
+
+AreaChart.defaultProps = Area.getDefaultOptions();
+
+export default AreaChart;

@@ -23,7 +23,7 @@ const TechColumn: React.FC<ColumnConfig> = (props: ColumnConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: ColumnConfig) => {
+const ColumnChart = (props: ColumnConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: ColumnConfig) => {
     </ErrorBoundary>
   );
 };
+
+ColumnChart.defaultProps = Column.getDefaultOptions();
+
+export default ColumnChart;

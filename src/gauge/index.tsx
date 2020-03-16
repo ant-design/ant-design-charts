@@ -23,7 +23,7 @@ const TechGauge: React.FC<GaugeConfig> = (props: GaugeConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: GaugeConfig) => {
+const GaugeChart = (props: GaugeConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: GaugeConfig) => {
     </ErrorBoundary>
   );
 };
+
+GaugeChart.defaultProps = Gauge.getDefaultOptions();
+
+export default GaugeChart;

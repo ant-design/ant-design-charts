@@ -23,7 +23,7 @@ const TechGroupColumn: React.FC<GroupColumnConfig> = (props: GroupColumnConfig) 
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: GroupColumnConfig) => {
+const GroupColumnChart = (props: GroupColumnConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: GroupColumnConfig) => {
     </ErrorBoundary>
   );
 };
+
+GroupColumnChart.defaultProps = GroupColumn.getDefaultOptions();
+
+export default GroupColumnChart;

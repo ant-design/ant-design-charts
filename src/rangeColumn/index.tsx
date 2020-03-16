@@ -23,7 +23,7 @@ const TechRangeColumn: React.FC<RangeColumnConfig> = (props: RangeColumnConfig) 
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: RangeColumnConfig) => {
+const RangeColumnChart = (props: RangeColumnConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: RangeColumnConfig) => {
     </ErrorBoundary>
   );
 };
+
+RangeColumnChart.defaultProps = RangeColumn.getDefaultOptions();
+
+export default RangeColumnChart;

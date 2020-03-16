@@ -23,7 +23,7 @@ const TechBullet: React.FC<BulletConfig> = (props: BulletConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: BulletConfig) => {
+const BulletChart = (props: BulletConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: BulletConfig) => {
     </ErrorBoundary>
   );
 };
+
+BulletChart.defaultProps = Bullet.getDefaultOptions();
+
+export default BulletChart;

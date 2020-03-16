@@ -23,7 +23,7 @@ const TechLine: React.FC<LineConfig> = (props: LineConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: LineConfig) => {
+const LineChart = (props: LineConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: LineConfig) => {
     </ErrorBoundary>
   );
 };
+
+LineChart.defaultProps = Line.getDefaultOptions();
+
+export default LineChart;

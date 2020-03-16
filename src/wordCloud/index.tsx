@@ -23,7 +23,7 @@ const TechWordCloud: React.FC<WordCloudConfig> = (props: WordCloudConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: WordCloudConfig) => {
+const WordCloudChart = (props: WordCloudConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: WordCloudConfig) => {
     </ErrorBoundary>
   );
 };
+
+WordCloudChart.defaultProps = WordCloud.getDefaultOptions();
+
+export default WordCloudChart;

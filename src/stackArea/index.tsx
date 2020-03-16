@@ -23,7 +23,7 @@ const TechStackArea: React.FC<StackAreaConfig> = (props: StackAreaConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: StackAreaConfig) => {
+const StackAreaChart = (props: StackAreaConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: StackAreaConfig) => {
     </ErrorBoundary>
   );
 };
+
+StackAreaChart.defaultProps = StackArea.getDefaultOptions();
+
+export default StackAreaChart;

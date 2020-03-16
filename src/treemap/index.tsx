@@ -23,7 +23,7 @@ const TechTreemap: React.FC<TreemapConfig> = (props: TreemapConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: TreemapConfig) => {
+const TreemapChart = (props: TreemapConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: TreemapConfig) => {
     </ErrorBoundary>
   );
 };
+
+TreemapChart.defaultProps = Treemap.getDefaultOptions();
+
+export default TreemapChart;

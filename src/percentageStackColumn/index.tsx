@@ -28,7 +28,7 @@ const TechPercentageStackColumn: React.FC<PercentageStackColumnConfig> = (
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: PercentageStackColumnConfig) => {
+const PercentageStackColumnChart = (props: PercentageStackColumnConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -36,3 +36,7 @@ export default (props: PercentageStackColumnConfig) => {
     </ErrorBoundary>
   );
 };
+
+PercentageStackColumnChart.defaultProps = PercentageStackColumn.getDefaultOptions();
+
+export default PercentageStackColumnChart;

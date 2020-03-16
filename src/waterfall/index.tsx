@@ -23,7 +23,7 @@ const TechWaterfall: React.FC<WaterfallConfig> = (props: WaterfallConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: WaterfallConfig) => {
+const WaterfallChart = (props: WaterfallConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: WaterfallConfig) => {
     </ErrorBoundary>
   );
 };
+
+WaterfallChart.defaultProps = Waterfall.getDefaultOptions();
+
+export default WaterfallChart;

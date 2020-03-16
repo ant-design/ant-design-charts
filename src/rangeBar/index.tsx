@@ -23,7 +23,7 @@ const TechRangeBar: React.FC<RangeBarConfig> = (props: RangeBarConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: RangeBarConfig) => {
+const RangeBarChart = (props: RangeBarConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: RangeBarConfig) => {
     </ErrorBoundary>
   );
 };
+
+RangeBarChart.defaultProps = RangeBar.getDefaultOptions();
+
+export default RangeBarChart;

@@ -23,7 +23,7 @@ const TechStackBar: React.FC<StackBarConfig> = (props: StackBarConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: StackBarConfig) => {
+const StackBarChart = (props: StackBarConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: StackBarConfig) => {
     </ErrorBoundary>
   );
 };
+
+StackBarChart.defaultProps = StackBar.getDefaultOptions();
+
+export default StackBarChart;

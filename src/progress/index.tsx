@@ -23,7 +23,7 @@ const TechProgress: React.FC<ProgressConfig> = (props: ProgressConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: ProgressConfig) => {
+const ProgressChart = (props: ProgressConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: ProgressConfig) => {
     </ErrorBoundary>
   );
 };
+
+ProgressChart.defaultProps = Progress.getDefaultOptions();
+
+export default ProgressChart;

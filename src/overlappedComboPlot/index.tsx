@@ -28,7 +28,7 @@ const TechOverlappedComboPlot: React.FC<OverlappedComboPlotConfig> = (
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: OverlappedComboPlotConfig) => {
+const OverlappedComboPlotChart = (props: OverlappedComboPlotConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -36,3 +36,7 @@ export default (props: OverlappedComboPlotConfig) => {
     </ErrorBoundary>
   );
 };
+
+OverlappedComboPlotChart.defaultProps = OverlappedComboPlot.getDefaultOptions();
+
+export default OverlappedComboPlotChart;

@@ -23,7 +23,7 @@ const TechMatrix: React.FC<MatrixConfig> = (props: MatrixConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: MatrixConfig) => {
+const MatrixChart = (props: MatrixConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: MatrixConfig) => {
     </ErrorBoundary>
   );
 };
+
+MatrixChart.defaultProps = Matrix.getDefaultOptions();
+
+export default MatrixChart;

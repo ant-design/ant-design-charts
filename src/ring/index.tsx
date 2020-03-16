@@ -23,7 +23,7 @@ const TechRing: React.FC<RingConfig> = (props: RingConfig) => {
   return <div className={className} style={style} ref={container} />;
 };
 
-export default (props: RingConfig) => {
+const RingChart = (props: RingConfig) => {
   const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
@@ -31,3 +31,7 @@ export default (props: RingConfig) => {
     </ErrorBoundary>
   );
 };
+
+RingChart.defaultProps = Ring.getDefaultOptions();
+
+export default RingChart;
