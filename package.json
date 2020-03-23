@@ -1,5 +1,5 @@
 {
-  "name": "@alipay/techui-charts",
+  "name": "@ant-design/charts",
   "version": "0.2.9",
   "description": "React translate g2plot",
   "files": [
