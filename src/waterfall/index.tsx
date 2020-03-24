@@ -1,37 +1,35 @@
-import React, { useContext, useEffect } from 'react';
-import { Waterfall, WaterfallConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Waterfall as G2plotWaterfall, WaterfallConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface WaterfallConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Waterfall | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotWaterfall | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechWaterfall: React.FC<WaterfallConfig> = (props: WaterfallConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const WaterfallChart = forwardRef((props: WaterfallConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Waterfall, WaterfallConfig>(Waterfall, rest);
+  const { chart, container } = useChart<G2plotWaterfall, WaterfallConfig>(G2plotWaterfall, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const WaterfallChart = (props: WaterfallConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechWaterfall {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-WaterfallChart.defaultProps = Waterfall.getDefaultOptions();
+WaterfallChart.defaultProps = G2plotWaterfall.getDefaultOptions();
 
 export default WaterfallChart;

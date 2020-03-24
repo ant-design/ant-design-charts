@@ -1,37 +1,35 @@
-import React, { useContext, useEffect } from 'react';
-import { Line, LineConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Line as G2plotLine, LineConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface LineConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Line | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotLine | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechLine: React.FC<LineConfig> = (props: LineConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const LineChart = forwardRef((props: LineConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Line, LineConfig>(Line, rest);
+  const { chart, container } = useChart<G2plotLine, LineConfig>(G2plotLine, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const LineChart = (props: LineConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechLine {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-LineChart.defaultProps = Line.getDefaultOptions();
+LineChart.defaultProps = G2plotLine.getDefaultOptions();
 
 export default LineChart;

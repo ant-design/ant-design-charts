@@ -8,7 +8,7 @@ title: 子弹图
 
 ```tsx
 import React from 'react';
-import { Bullet } from '@alipay/techui-charts';
+import { Bullet } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const config = {
@@ -40,7 +40,7 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { Bullet } from '@alipay/techui-charts';
+import { Bullet } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const config = {
@@ -113,7 +113,7 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { Bullet } from '@alipay/techui-charts';
+import { Bullet } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const config = {
@@ -190,7 +190,7 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { Bullet } from '@alipay/techui-charts';
+import { Bullet } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const config = {
@@ -249,7 +249,7 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { Bullet } from '@alipay/techui-charts';
+import { Bullet } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const config = {
@@ -298,7 +298,7 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { Bullet } from '@alipay/techui-charts';
+import { Bullet } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const config = {
@@ -345,7 +345,7 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { Bullet } from '@alipay/techui-charts';
+import { Bullet } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const config = {

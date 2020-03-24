@@ -1,37 +1,36 @@
-import React, { useContext, useEffect } from 'react';
-import { Radar, RadarConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Radar as G2plotRadar, RadarConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface RadarConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Radar | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotRadar | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechRadar: React.FC<RadarConfig> = (props: RadarConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const RadarChart = forwardRef((props: RadarConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Radar, RadarConfig>(Radar, rest);
+  const { chart, container } = useChart<G2plotRadar, RadarConfig>(G2plotRadar, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
 
-  return <div className={className} style={style} ref={container} />;
-};
-
-const RadarChart = (props: RadarConfig) => {
-  const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
-      <TechRadar {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-RadarChart.defaultProps = Radar.getDefaultOptions();
+RadarChart.defaultProps = G2plotRadar.getDefaultOptions();
 
 export default RadarChart;

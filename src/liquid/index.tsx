@@ -1,37 +1,35 @@
-import React, { useContext, useEffect } from 'react';
-import { Liquid, LiquidConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Liquid as G2plotLiquid, LiquidConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface LiquidConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Liquid | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotLiquid | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechLiquid: React.FC<LiquidConfig> = (props: LiquidConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const LiquidChart = forwardRef((props: LiquidConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Liquid, LiquidConfig>(Liquid, rest);
+  const { chart, container } = useChart<G2plotLiquid, LiquidConfig>(G2plotLiquid, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const LiquidChart = (props: LiquidConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechLiquid {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-LiquidChart.defaultProps = Liquid.getDefaultOptions();
+LiquidChart.defaultProps = G2plotLiquid.getDefaultOptions();
 
 export default LiquidChart;

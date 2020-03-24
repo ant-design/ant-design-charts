@@ -1,37 +1,36 @@
-import React, { useContext, useEffect } from 'react';
-import { Gauge, GaugeConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Gauge as G2plotGauge, GaugeConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface GaugeConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Gauge | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotGauge | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechGauge: React.FC<GaugeConfig> = (props: GaugeConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const GaugeChart = forwardRef((props: GaugeConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Gauge, GaugeConfig>(Gauge, rest);
+  const { chart, container } = useChart<G2plotGauge, GaugeConfig>(G2plotGauge, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
 
-  return <div className={className} style={style} ref={container} />;
-};
-
-const GaugeChart = (props: GaugeConfig) => {
-  const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
-      <TechGauge {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-GaugeChart.defaultProps = Gauge.getDefaultOptions();
+GaugeChart.defaultProps = G2plotGauge.getDefaultOptions();
 
 export default GaugeChart;

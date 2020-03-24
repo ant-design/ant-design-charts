@@ -1,37 +1,38 @@
-import React, { useContext, useEffect } from 'react';
-import { RangeColumn, RangeColumnConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { RangeColumn as G2plotRangeColumn, RangeColumnConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface RangeColumnConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<RangeColumn | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotRangeColumn | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechRangeColumn: React.FC<RangeColumnConfig> = (props: RangeColumnConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const RangeColumnChart = forwardRef((props: RangeColumnConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<RangeColumn, RangeColumnConfig>(RangeColumn, rest);
+  const { chart, container } = useChart<G2plotRangeColumn, RangeColumnConfig>(
+    G2plotRangeColumn,
+    rest,
+  );
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const RangeColumnChart = (props: RangeColumnConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechRangeColumn {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-RangeColumnChart.defaultProps = RangeColumn.getDefaultOptions();
+RangeColumnChart.defaultProps = G2plotRangeColumn.getDefaultOptions();
 
 export default RangeColumnChart;

@@ -1,37 +1,35 @@
-import React, { useContext, useEffect } from 'react';
-import { Bubble, BubbleConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Bubble as G2plotBubble, BubbleConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface BubbleConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Bubble | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotBubble | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechBubble: React.FC<BubbleConfig> = (props: BubbleConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const BubbleChart = forwardRef((props: BubbleConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Bubble, BubbleConfig>(Bubble, rest);
+  const { chart, container } = useChart<G2plotBubble, BubbleConfig>(G2plotBubble, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const BubbleChart = (props: BubbleConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechBubble {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-BubbleChart.defaultProps = Bubble.getDefaultOptions();
+BubbleChart.defaultProps = G2plotBubble.getDefaultOptions();
 
 export default BubbleChart;

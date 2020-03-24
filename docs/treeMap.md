@@ -1,5 +1,5 @@
 ---
-title: 矩形树图
+title: 树图
 ---
 
 # 矩形树图
@@ -8,7 +8,7 @@ title: 矩形树图
 
 ```tsx
 import React from 'react';
-import { Treemap } from '@alipay/techui-charts';
+import { Treemap } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const data = {
@@ -60,7 +60,7 @@ export default App;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { Treemap } from '@alipay/techui-charts';
+import { Treemap } from '@ant-design/charts';
 
 const DemoTreemap: React.FC = () => {
   const [data, setData] = useState([]);

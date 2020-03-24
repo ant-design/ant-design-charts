@@ -1,37 +1,35 @@
-import React, { useContext, useEffect } from 'react';
-import { Rose, RoseConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Rose as G2plotRose, RoseConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface RoseConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Rose | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotRose | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechRose: React.FC<RoseConfig> = (props: RoseConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const RoseChart = forwardRef((props: RoseConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Rose, RoseConfig>(Rose, rest);
+  const { chart, container } = useChart<G2plotRose, RoseConfig>(G2plotRose, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const RoseChart = (props: RoseConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechRose {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-RoseChart.defaultProps = Rose.getDefaultOptions();
+RoseChart.defaultProps = G2plotRose.getDefaultOptions();
 
 export default RoseChart;

@@ -8,7 +8,7 @@ title: 词云图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { WordCloud } from '@alipay/techui-charts';
+import { WordCloud } from '@ant-design/charts';
 
 const DemoWordCloud: React.FC = () => {
   const [data, setData] = useState([]);
