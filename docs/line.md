@@ -9,7 +9,7 @@ order: 9
 
 ```tsx
 import React from 'react';
-import { Line } from '@alipay/techui-charts';
+import { Line } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const data = [
@@ -51,11 +51,11 @@ const App: React.FC = () => {
 export default App;
 ```
 
-## Multiple Line
+## 多折线
 
 ```tsx
 import React from 'react';
-import { Line } from '@alipay/techui-charts';
+import { Line } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const data = [

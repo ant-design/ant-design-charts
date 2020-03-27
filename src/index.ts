@@ -2,29 +2,33 @@ import Area from './area'; // area
 import Bar from './bar'; // bar
 import Bubble from './bubble'; // bubble
 import Column from './column'; // column
-import Gauge from './gauge'; // gauge
-import GroupBar from './groupBar'; // groupBar
-import GroupColumn from './groupColumn'; // groupColumn
+import Gauge from './gauge'; //
+import MeterGauge from './meterGauge'; // MeterGauge
+import FanGauge from './fanGauge'; // FanGauge
+import GroupedBar from './groupedBar'; // groupedBar
+import GroupedColumn from './groupedColumn'; // GroupedColumn
 import Heatmap from './heatmap'; // Heatmap
 import Histogram from './histogram'; // histogram
 import Line from './line'; // line
 import Liquid from './liquid'; // liquid
-import Matrix from './matrix'; // matrix
-import PercentageStackArea from './percentageStackArea'; // percentageStackArea
-import PercentageStackBar from './percentageStackBar'; // percentageStackBar
-import PercentageStackColumn from './percentageStackColumn'; // percentageStackColumn
+import DensityHeatmap from './densityHeatmap'; // DensityHeatmap
+import PercentStackedArea from './percentStackedArea'; // PercentStackedArea
+import PercentStackedBar from './percentStackedBar'; // PercentStackedBar
+import PercentStackedColumn from './percentStackedColumn'; // PercentStackedColumn
 import Pie from './pie'; // pie
 import Progress from './progress'; // progress
 import Radar from './radar'; // radar
 import RangeBar from './rangeBar'; // RangeBar
 import RangeColumn from './rangeColumn'; // rangeColumn
-import Ring from './ring'; // ring
+import Donut from './donut'; // Donut
 import Rose from './rose'; // rose
+import StackedRose from './StackedRose'; // StackedRose
+import GroupedRose from './GroupedRose'; // rGroupedRoseose
 import RingProgress from './ringProgress'; // RingProgress
 import Scatter from './scatter'; // scatter
-import StackArea from './stackArea'; // stackArea
-import StackBar from './stackBar'; // stackBar
-import StackColumn from './stackColumn'; // stackColumn
+import StackedArea from './stackedArea'; // stackedArea
+import StackedBar from './stackedBar'; // StackedBar
+import StackedColumn from './stackedColumn'; // StackedColumn
 import TinyArea from './tinyArea'; // tinyArea
 import TinyColumn from './tinyColumn'; // tinyColumn
 import TinyLine from './tinyLine'; // tinyLine
@@ -35,6 +39,7 @@ import WordCloud from './wordCloud';
 import Bullet from './bullet';
 import Treemap from './treemap';
 import OverlappedComboPlot from './overlappedComboPlot';
+import Calendar from './calendar'; // Calendar
 
 export {
   Area,
@@ -42,28 +47,32 @@ export {
   Bubble,
   Column,
   Gauge,
-  GroupBar,
-  GroupColumn,
-  Heatmap,
+  MeterGauge,
+  FanGauge,
+  GroupedBar,
+  GroupedColumn,
+  DensityHeatmap,
   Histogram,
   Line,
   Liquid,
-  Matrix,
-  PercentageStackArea,
-  PercentageStackBar,
-  PercentageStackColumn,
+  Heatmap,
+  PercentStackedArea,
+  PercentStackedBar,
+  PercentStackedColumn,
   Pie,
   Progress,
   Radar,
   RangeBar,
   RangeColumn,
-  Ring,
+  Donut,
   Rose,
+  StackedRose,
+  GroupedRose,
   RingProgress,
   Scatter,
-  StackArea,
-  StackBar,
-  StackColumn,
+  StackedArea,
+  StackedBar,
+  StackedColumn,
   TinyArea,
   TinyColumn,
   TinyLine,
@@ -74,6 +83,7 @@ export {
   Bullet,
   Treemap,
   OverlappedComboPlot,
+  Calendar,
 };
 
 export default {
@@ -82,28 +92,32 @@ export default {
   Bubble,
   Column,
   Gauge,
-  GroupBar,
-  GroupColumn,
-  Heatmap,
+  MeterGauge,
+  FanGauge,
+  GroupedBar,
+  GroupedColumn,
+  DensityHeatmap,
   Histogram,
   Line,
   Liquid,
-  Matrix,
-  PercentageStackArea,
-  PercentageStackBar,
-  PercentageStackColumn,
+  Heatmap,
+  PercentStackedArea,
+  PercentStackedBar,
+  PercentStackedColumn,
   Pie,
   Progress,
   Radar,
   RangeBar,
   RangeColumn,
-  Ring,
+  Donut,
   Rose,
+  StackedRose,
+  GroupedRose,
   RingProgress,
   Scatter,
-  StackArea,
-  StackBar,
-  StackColumn,
+  StackedArea,
+  StackedBar,
+  StackedColumn,
   TinyArea,
   TinyColumn,
   TinyLine,
@@ -114,6 +128,7 @@ export default {
   Bullet,
   Treemap,
   OverlappedComboPlot,
+  Calendar,
 };
 
 export { utils } from './util';

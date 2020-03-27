@@ -1,37 +1,34 @@
-import React, { useEffect, useContext } from 'react';
-import { Bar, BarConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Bar as G2plotBar, BarConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ErrorBoundary, ConfigContext } from '../base';
+import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface BarConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Bar | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotBar | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechBar: React.FC<BarConfig> = (props: BarConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const BarChart = forwardRef((props: BarConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Bar, BarConfig>(Bar, rest);
-
+  const { chart, container } = useChart<G2plotBar, BarConfig>(G2plotBar, rest);
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const BarChart = (props: BarConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechBar {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-BarChart.defaultProps = Bar.getDefaultOptions();
+BarChart.defaultProps = G2plotBar.getDefaultOptions();
 
 export default BarChart;

@@ -8,7 +8,7 @@ title: 阶梯图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { StepLine } from '@alipay/techui-charts';
+import { StepLine } from '@ant-design/charts';
 
 const DemoStepLine: React.FC = () => {
   const [data, setData] = useState([]);
@@ -63,7 +63,7 @@ export default DemoStepLine;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { StepLine } from '@alipay/techui-charts';
+import { StepLine } from '@ant-design/charts';
 
 const DemoStepLine: React.FC = () => {
   const [data, setData] = useState([]);

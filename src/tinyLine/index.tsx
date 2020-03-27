@@ -1,37 +1,35 @@
-import React, { useEffect, useContext } from 'react';
-import { TinyLine, TinyLineConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { TinyLine as G2plotTinyLine, TinyLineConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface TinyLineConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<TinyLine | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotTinyLine | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechTinyLine: React.FC<TinyLineConfig> = (props: TinyLineConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const TinyLineChart = forwardRef((props: TinyLineConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<TinyLine, TinyLineConfig>(TinyLine, rest);
+  const { chart, container } = useChart<G2plotTinyLine, TinyLineConfig>(G2plotTinyLine, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const TinyLineChart = (props: TinyLineConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechTinyLine {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-TinyLineChart.defaultProps = TinyLine.getDefaultOptions();
+TinyLineChart.defaultProps = G2plotTinyLine.getDefaultOptions();
 
 export default TinyLineChart;

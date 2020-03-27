@@ -1,21 +1,23 @@
-import React, { useEffect, useContext } from 'react';
-import { OverlappedComboPlot, OverlappedComboPlotConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import {
+  OverlappedComboPlot as G2plotOverlappedComboPlot,
+  OverlappedComboPlotConfig as G2plotProps,
+} from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface OverlappedComboPlotConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<OverlappedComboPlot | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotOverlappedComboPlot | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechOverlappedComboPlot: React.FC<OverlappedComboPlotConfig> = (
-  props: OverlappedComboPlotConfig,
-) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const OverlappedComboPlotChart = forwardRef((props: OverlappedComboPlotConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<OverlappedComboPlot, OverlappedComboPlotConfig>(
-    OverlappedComboPlot,
+  const { chart, container } = useChart<G2plotOverlappedComboPlot, OverlappedComboPlotConfig>(
+    G2plotOverlappedComboPlot,
     rest,
   );
 
@@ -24,18 +26,15 @@ const TechOverlappedComboPlot: React.FC<OverlappedComboPlotConfig> = (
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const OverlappedComboPlotChart = (props: OverlappedComboPlotConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechOverlappedComboPlot {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
 // OverlappedComboPlotChart.defaultProps = OverlappedComboPlot.getDefaultOptions();
 

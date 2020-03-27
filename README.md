@@ -1,8 +1,4 @@
----
-order: 9
----
-
-# [techui-charts](https://bigfish.antfin-inc.comhttps://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts)
+# @ant-design/charts
 
 A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.2.9, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
 
@@ -16,7 +12,7 @@ A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), curre
 ### npm
 
 ```bash | pure
-$ npm install @alipay/techui-charts
+$ npm install @ant-design/charts
 ```
 
 ### umd
@@ -31,7 +27,7 @@ $ npm install @alipay/techui-charts
 
 ```tsx
 import React, { useRef } from 'react';
-import { Line } from '@alipay/techui-charts';
+import { Line } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const data = [
@@ -67,7 +63,7 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { Line, utils } from '@alipay/techui-charts';
+import { Line, utils } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const data = [
@@ -133,7 +129,7 @@ export default App;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { Bubble } from '@alipay/techui-charts';
+import { Bubble } from '@ant-design/charts';
 
 const App: React.FC = () => {
   const [data, setData] = useState([]);
@@ -198,56 +194,11 @@ Extra props:
 | className | container class | string                                      | -            |
 | style     | container style | React.CSSProperties                         | -            |
 
-### Support Chart
-
-- [Line](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/line)
-- [TinyLine](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/tiny-line)
-- [MultipleLine](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/line?anchor=multiple-line)
-- [Pie](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/pie)
-- [Progress](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/progress)
-- [Ring](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/ring)
-- [RingProgress](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/ring-progress)
-- [Bar](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/bar)
-- [StackBar](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/stack-bar)
-- [PercentageStackBar](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/percentage-stack-bar)
-- [GroupBar](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/group-bar)
-- [Area](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/area)
-- [TinyArea](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/tiny-area)
-- [StackArea](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/stack-area)
-- [PercentageStackArea](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/percentage-stack-area)
-- [Column](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/column)
-- [TinyColumn](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/tiny-column)
-- [StackColumn](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/stack-column)
-- [PercentageStackColumn](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/percentage-stack-column)
-- [GroupColumn](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/group-column)
-- [Heatmap](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/heatmap)
-- [Histogram](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/histogram)
-- [Scatter](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/scatter)
-- [Bubble](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/bubble)
-- [Radar](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/radar)
-- [RangeBar](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/range-bar)
-- [RangeColumn](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/range-column)
-- [Liquid](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/liquid)
-- [Matrix](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/matrix)
-- [Gauge](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/gauge)
-- [Progress](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/progress)
-- [RingProgress](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/ring-progress)
-- [TinyArea](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/tiny-area)
-- [TinyColumn](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/tiny-column)
-- [TinyLine](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/tiny-line)
-- [StepLine](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/step-line)
-- [Waterfall](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/water-fall)
-- [Funnel](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/funnel)
-- [WordCloud](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/word-cloud)
-- [Bullet](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/bullet)
-- [Treemap](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/treemap)
-- [OverlappedComboPlot](https://bigfish.antfin-inc.com/component-doc/@alipay/techui-charts/overlapped-combo-plot)
-
-### [FAQ](http://gitlab.alipay-inc.com/tech-ui/tech-charts/issues)
+### [FAQ](http://gitlab.alipay-inc.com/tech-ui/charts/issues)
 
 ### How to Contribute
 
-We welcome all contributions. contact [Fu Jin](https://yuque.antfin-inc.com/liufu.lf).
+We welcome all contributions.
 
 ### License
 
@@ -271,12 +222,12 @@ $ npm run dev
 
 ## Contributors(5)
 
-Ordered by date of first contribution, by [ali-contributors](https://gitlab.alibaba-inc.com/node/ali-contributors).
+Ordered by date of first contribution.
 
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/206791"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/206791.40x40.xz.jpg"> @福晋</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=x3qyp7i"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 福晋</a>
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/197256"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/197256.40x40.xz.jpg"> @辟起</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=wuzoh5u"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 辟起 🍑</a>
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/138591"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/138591.40x40.xz.jpg"> @愚道</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=yutingzhao1991"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 愚道</a>
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/159252"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/159252.40x40.xz.jpg"> @期贤</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=zzo4dlq"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 期贤 🙏</a>
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/85225"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/85225.40x40.xz.jpg"> @绯一</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=qpfulnc"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 绯一</a>
+- 福晋
+- 辟起 🍑
+- 愚道
+- 期贤 🙏
+- 绯一
 
 ---

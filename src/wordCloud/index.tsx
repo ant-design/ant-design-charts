@@ -1,37 +1,36 @@
-import React, { useContext, useEffect } from 'react';
-import { WordCloud, WordCloudConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { WordCloud as G2plotWordCloud, WordCloudConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ConfigContext, ErrorBoundary } from '../base';
 
 export interface WordCloudConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<WordCloud | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotWordCloud | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechWordCloud: React.FC<WordCloudConfig> = (props: WordCloudConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const WordCloudChart = forwardRef((props: WordCloudConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<WordCloud, WordCloudConfig>(WordCloud, rest);
+  const { chart, container } = useChart<G2plotWordCloud, WordCloudConfig>(G2plotWordCloud, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
 
-  return <div className={className} style={style} ref={container} />;
-};
-
-const WordCloudChart = (props: WordCloudConfig) => {
-  const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
-      <TechWordCloud {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-// WordCloudChart.defaultProps = WordCloud.getDefaultOptions();
+// WordCloudChart.defaultProps = G2plotWordCloud.getDefaultOptions();
 
 export default WordCloudChart;

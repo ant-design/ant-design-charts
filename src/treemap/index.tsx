@@ -1,37 +1,36 @@
-import React, { useEffect, useContext } from 'react';
-import { Treemap, TreemapConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Treemap as G2plotTreemap, TreemapConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface TreemapConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Treemap | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotTreemap | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechTreemap: React.FC<TreemapConfig> = (props: TreemapConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const TreemapChart = forwardRef((props: TreemapConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Treemap, TreemapConfig>(Treemap, rest);
+  const { chart, container } = useChart<G2plotTreemap, TreemapConfig>(G2plotTreemap, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
 
-  return <div className={className} style={style} ref={container} />;
-};
-
-const TreemapChart = (props: TreemapConfig) => {
-  const config = useContext(ConfigContext);
   return (
     <ErrorBoundary>
-      <TechTreemap {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-TreemapChart.defaultProps = Treemap.getDefaultOptions();
+TreemapChart.defaultProps = G2plotTreemap.getDefaultOptions();
 
 export default TreemapChart;

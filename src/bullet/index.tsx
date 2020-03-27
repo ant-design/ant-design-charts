@@ -1,37 +1,35 @@
-import React, { useEffect, useContext } from 'react';
-import { Bullet, BulletConfig as G2plotProps } from '@antv/g2plot';
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Bullet as G2plotBullet, BulletConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary, ConfigContext } from '../base';
 
 export interface BulletConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<Bullet | undefined>;
-  style?: React.CSSProperties;
+  chartRef?: React.MutableRefObject<G2plotBullet | undefined>;
+  chartStyle?: React.CSSProperties;
   className?: string;
 }
 
-const TechBullet: React.FC<BulletConfig> = (props: BulletConfig) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+const BulletChart = forwardRef((props: BulletConfig, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
 
-  const { chart, container } = useChart<Bullet, BulletConfig>(Bullet, rest);
+  const { chart, container } = useChart<G2plotBullet, BulletConfig>(G2plotBullet, rest);
 
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
     }
   }, [chart.current]);
-
-  return <div className={className} style={style} ref={container} />;
-};
-
-const BulletChart = (props: BulletConfig) => {
-  const config = useContext(ConfigContext);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
   return (
     <ErrorBoundary>
-      <TechBullet {...config} {...props} />
+      <div className={className} style={chartStyle} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
-BulletChart.defaultProps = Bullet.getDefaultOptions();
+BulletChart.defaultProps = G2plotBullet.getDefaultOptions();
 
 export default BulletChart;
