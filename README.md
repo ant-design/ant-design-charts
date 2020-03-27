@@ -1,4 +1,4 @@
-# [@ant-design/charts](https://bigfish.antfin-inc.comhttps://bigfish.antfin-inc.com/component-doc/@ant-design/charts)
+# @ant-design/charts
 
 A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.2.9, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
 
@@ -198,7 +198,7 @@ Extra props:
 
 ### How to Contribute
 
-We welcome all contributions. contact [Fu Jin](https://yuque.antfin-inc.com/liufu.lf).
+We welcome all contributions.
 
 ### License
 
@@ -222,12 +222,12 @@ $ npm run dev
 
 ## Contributors(5)
 
-Ordered by date of first contribution, by [ali-contributors](https://gitlab.alibaba-inc.com/node/ali-contributors).
+Ordered by date of first contribution.
 
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/206791"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/206791.40x40.xz.jpg"> @福晋</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=x3qyp7i"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 福晋</a>
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/197256"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/197256.40x40.xz.jpg"> @辟起</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=wuzoh5u"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 辟起 🍑</a>
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/138591"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/138591.40x40.xz.jpg"> @愚道</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=yutingzhao1991"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 愚道</a>
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/159252"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/159252.40x40.xz.jpg"> @期贤</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=zzo4dlq"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 期贤 🙏</a>
-- <a target="_blank" href="https://work.alibaba-inc.com/work/u/85225"><img style="vertical-align: middle;" width="20" src="https://work.alibaba-inc.com/photo/85225.40x40.xz.jpg"> @绯一</a> <a target="_blank" href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=qpfulnc"><img style="vertical-align: middle;" width="20" src="https://img.alicdn.com/tfs/TB18HtyiyqAXuNjy1XdXXaYcVXa-24-24.svg"> 绯一</a>
+- 福晋
+- 辟起 🍑
+- 愚道
+- 期贤 🙏
+- 绯一
 
 ---
