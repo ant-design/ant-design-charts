@@ -46,9 +46,6 @@
   "engines": {
     "install-alinode": "4"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "ci": {
     "version": "alinode=4"
   }
