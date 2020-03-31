@@ -28,7 +28,6 @@ export default function useInit<T extends Base<U>, U extends PlotConfig>(
     if (!container.current) {
       return () => null;
     }
-
     const chartInstance: T = new (ChartClass as any)(container.current, {
       ...config,
     });

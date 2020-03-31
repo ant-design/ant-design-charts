@@ -19,7 +19,6 @@
     "ci": "bigfish lint && bigfish cov",
     "cov": "bigfish cov",
     "help": "bigfish help",
-    "contributors": "ali-contributors",
     "lint": "bigfish lint --style --eslint.ext='.ts,.tsx,.jsx,.js'",
     "precommit": "bigfish lint --staged --prettier --style --fix --eslint.ext='.ts,.tsx,.jsx,.js'",
     "pub": "tnpm run build && node ./scripts/publish.js",
@@ -28,13 +27,13 @@
     "version": "bigfish -v"
   },
   "dependencies": {
+    "@alipay/bigfish": "^2.28.4",
     "@antv/g2plot": "^1.0.2"
   },
   "devDependencies": {
     "@alipay/bigfish": "^2.24.2-alpha.5",
     "@types/node": "^12.12.17",
     "@types/webpack-env": "^1.14.1",
-    "ali-contributors": "^2.2.2",
     "shelljs": "^0.8.3",
     "typescript": "^3.7.4",
     "umi-plugin-father-doc": "^1.0.0-alpha.20"

@@ -4,6 +4,7 @@ title: 迷你图表
 
 # 迷你折线图
 
+<!--
 ## 基本用法
 
 ```tsx
@@ -41,7 +42,7 @@ const App: React.FC = () => {
   return <TinyLine {...config} />;
 };
 export default App;
-```
+``` -->
 
 ## 迷你进度条
 
@@ -61,6 +62,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
+<!--
 ## 迷你柱状图
 
 ```tsx
@@ -159,4 +161,4 @@ const App: React.FC = () => {
 };
 
 export default App;
-```
+``` -->
