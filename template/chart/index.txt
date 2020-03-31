@@ -1,0 +1,33 @@
+import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { $ as G2plot$, $Config as G2plotProps } from '@antv/g2plot';
+import useChart from '../hooks/useChart';
+import { ConfigContext, ErrorBoundary } from '../base';
+
+export interface $Config extends G2plotProps {
+  chartRef?: React.MutableRefObject<G2plot$ | undefined>;
+  chartStyle?: React.CSSProperties;
+  className?: string;
+}
+
+const $Chart = forwardRef((props: $Config, ref) => {
+  const config = useContext(ConfigContext);
+  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chart, container } = useChart<G2plot$, $Config>(G2plot$, rest);
+  useEffect(() => {
+    if (chartRef) {
+      chartRef.current = chart.current;
+    }
+  }, [chart.current]);
+  useImperativeHandle(ref, () => ({
+    getChart: () => chart.current,
+  }));
+  return (
+    <ErrorBoundary>
+      <div className={className} style={chartStyle} ref={container} />
+    </ErrorBoundary>
+  );
+});
+
+$Chart.defaultProps = G2plot$.getDefaultOptions();
+
+export default $Chart;

@@ -24,7 +24,8 @@
     "pub": "tnpm run build && node ./scripts/publish.js",
     "pub:doc": "bigfish lib doc publish",
     "test": "bigfish test",
-    "version": "bigfish -v"
+    "version": "bigfish -v",
+    "addChart": "node ./scripts/addChart.js"
   },
   "dependencies": {
     "@alipay/bigfish": "^2.28.4",
