@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import {
   PercentStackedColumn as G2plotPercentStackedColumn,
   PercentStackedColumnConfig as G2plotProps,
 } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface PercentStackedColumnConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotPercentStackedColumn | undefined>;
@@ -13,8 +13,7 @@ export interface PercentStackedColumnConfig extends G2plotProps {
 }
 
 const PercentStackedColumnChart = forwardRef((props: PercentStackedColumnConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotPercentStackedColumn, PercentStackedColumnConfig>(
     G2plotPercentStackedColumn,

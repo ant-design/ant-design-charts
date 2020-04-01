@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Donut as G2plotDonut, DonutConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface DonutConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotDonut | undefined>;
@@ -10,8 +10,7 @@ export interface DonutConfig extends G2plotProps {
 }
 
 const DonutChart = forwardRef((props: DonutConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotDonut, DonutConfig>(G2plotDonut, rest);
 

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Treemap as G2plotTreemap, TreemapConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ErrorBoundary, ConfigContext } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface TreemapConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotTreemap | undefined>;
@@ -10,8 +10,7 @@ export interface TreemapConfig extends G2plotProps {
 }
 
 const TreemapChart = forwardRef((props: TreemapConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotTreemap, TreemapConfig>(G2plotTreemap, rest);
 

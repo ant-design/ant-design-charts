@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { TinyLine as G2plotTinyLine, TinyLineConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ErrorBoundary, ConfigContext } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface TinyLineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotTinyLine | undefined>;
@@ -10,8 +10,7 @@ export interface TinyLineConfig extends G2plotProps {
 }
 
 const TinyLineChart = forwardRef((props: TinyLineConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotTinyLine, TinyLineConfig>(G2plotTinyLine, rest);
 

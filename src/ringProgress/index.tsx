@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import {
   RingProgress as G2plotRingProgress,
   RingProgressConfig as G2plotProps,
 } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ErrorBoundary, ConfigContext } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface RingProgressConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotRingProgress | undefined>;
@@ -13,8 +13,7 @@ export interface RingProgressConfig extends G2plotProps {
 }
 
 const RingProgressChart = forwardRef((props: RingProgressConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotRingProgress, RingProgressConfig>(
     G2plotRingProgress,

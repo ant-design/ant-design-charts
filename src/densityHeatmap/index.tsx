@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import {
   DensityHeatmap as G2plotDensityHeatmap,
   DensityHeatmapConfig as G2plotProps,
 } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface DensityHeatmapConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotDensityHeatmap | undefined>;
@@ -13,8 +13,7 @@ export interface DensityHeatmapConfig extends G2plotProps {
 }
 
 const DensityHeatmapChart = forwardRef((props: DensityHeatmapConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotDensityHeatmap, DensityHeatmapConfig>(
     G2plotDensityHeatmap,

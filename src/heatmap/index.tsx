@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Heatmap as G2plotHeatmap, HeatmapConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface HeatmapConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotHeatmap | undefined>;
@@ -10,8 +10,7 @@ export interface HeatmapConfig extends G2plotProps {
 }
 
 const HeatmapChart = forwardRef((props: HeatmapConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotHeatmap, HeatmapConfig>(G2plotHeatmap, rest);
 
