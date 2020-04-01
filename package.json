@@ -6,23 +6,27 @@
     "/lib",
     "/es"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ant-design/ant-design-charts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ant-design/ant-design-charts/issues"
+  },
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "scripts": {
-    "start": "tnpm run dev",
-    "dev": "bigfish dev",
-    "build": "tnpm run build:lib && tnpm run build:tsc",
-    "build:lib": "bigfish lib build",
-    "build:umd": "BUILD_ENV=umd bigfish lib build",
+    "start": "npm run dev",
+    "dev": "dumi dev",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "build": "npm run build:lib",
     "build:tsc": "tsc --declarationDir ./lib && tsc --declarationDir ./es",
-    "ci": "bigfish lint && bigfish cov",
-    "lint": "bigfish lint --style --eslint.ext='.ts,.tsx,.jsx,.js'",
-    "precommit": "bigfish lint --staged --prettier --style --fix --eslint.ext='.ts,.tsx,.jsx,.js'",
-    "pub": "tnpm run build && np",
-    "pub:doc": "bigfish lib doc publish",
-    "test": "bigfish test",
-    "version": "bigfish -v",
+    "build:lib": "father-build",
+    "build:umd": "BUILD_ENV=umd bigfish lib build",
+    "pub": "npm run build && np",
     "addChart": "node ./scripts/addChart.js",
     "entry": "node ./scripts/entry.js"
   },
@@ -30,13 +34,17 @@
     "@antv/g2plot": "^1.0.3"
   },
   "devDependencies": {
-    "@alipay/bigfish": "^2.28.4",
     "@types/node": "^12.12.17",
     "@types/webpack-env": "^1.14.1",
+    "@umijs/fabric": "^2.0.7",
+    "@umijs/preset-react": "^1.4.8",
+    "@umijs/test": "^3.0.16",
+    "dumi": "^1.0.13",
+    "father-build": "^1.17.2",
+    "np": "*",
+    "prettier": "^2.0.2",
     "shelljs": "^0.8.3",
-    "typescript": "^3.7.4",
-    "umi-plugin-father-doc": "^1.0.0-alpha.20",
-    "np": "*"
+    "typescript": "^3.7.4"
   },
   "peerDependencies": {
     "react": "^16.8.4",

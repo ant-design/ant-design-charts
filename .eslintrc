@@ -1,5 +1,5 @@
 {
-  "extends": "@alipay/bigfish/eslint",
+  "extends": "@umijs/fabric/dist/eslint",
   "rules": {
     "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": 0,
