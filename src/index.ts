@@ -1,61 +1,68 @@
-import Area from './area'; // area
-import Bar from './bar'; // bar
-import Bubble from './bubble'; // bubble
-import Column from './column'; // column
-import Gauge from './gauge'; //
-import MeterGauge from './meterGauge'; // MeterGauge
-import FanGauge from './fanGauge'; // FanGauge
-import GroupedBar from './groupedBar'; // groupedBar
-import GroupedColumn from './groupedColumn'; // GroupedColumn
-import Heatmap from './heatmap'; // Heatmap
-import Histogram from './histogram'; // histogram
-import Line from './line'; // line
-import Liquid from './liquid'; // liquid
-import DensityHeatmap from './densityHeatmap'; // DensityHeatmap
-import PercentStackedArea from './percentStackedArea'; // PercentStackedArea
-import PercentStackedBar from './percentStackedBar'; // PercentStackedBar
-import PercentStackedColumn from './percentStackedColumn'; // PercentStackedColumn
-import Pie from './pie'; // pie
-import Progress from './progress'; // progress
-import Radar from './radar'; // radar
-import RangeBar from './rangeBar'; // RangeBar
-import RangeColumn from './rangeColumn'; // rangeColumn
-import Donut from './donut'; // Donut
-import Rose from './rose'; // rose
-import StackedRose from './StackedRose'; // StackedRose
-import GroupedRose from './GroupedRose'; // rGroupedRoseose
-import RingProgress from './ringProgress'; // RingProgress
-import Scatter from './scatter'; // scatter
-import StackedArea from './stackedArea'; // stackedArea
-import StackedBar from './stackedBar'; // StackedBar
-import StackedColumn from './stackedColumn'; // StackedColumn
-import TinyArea from './tinyArea'; // tinyArea
-import TinyColumn from './tinyColumn'; // tinyColumn
-import TinyLine from './tinyLine'; // tinyLine
-import StepLine from './stepLine'; // stepLine
-import Waterfall from './waterfall'; // waterFall
-import Funnel from './funnel'; // funnel
-import WordCloud from './wordCloud';
+// 此文件在构建时会自动更新，请勿手动修改，详见 package.json 中的 entry script
+import Area from './area';
+import Bar from './bar';
+import Bubble from './bubble';
 import Bullet from './bullet';
-import Treemap from './treemap';
+import Calendar from './calendar';
+import Column from './column';
+import DensityHeatmap from './densityHeatmap';
+import Donut from './donut';
+import FanGauge from './fanGauge';
+import Funnel from './funnel';
+import Gauge from './gauge';
+import GroupedBar from './groupedBar';
+import GroupedColumn from './groupedColumn';
+import GroupedRose from './groupedRose';
+import Heatmap from './heatmap';
+import Histogram from './histogram';
+import Line from './line';
+import Liquid from './liquid';
+import MeterGauge from './meterGauge';
 import OverlappedComboPlot from './overlappedComboPlot';
-import Calendar from './calendar'; // Calendar
+import PercentStackedArea from './percentStackedArea';
+import PercentStackedBar from './percentStackedBar';
+import PercentStackedColumn from './percentStackedColumn';
+import Pie from './pie';
+import Progress from './progress';
+import Radar from './radar';
+import RangeBar from './rangeBar';
+import RangeColumn from './rangeColumn';
+import RingProgress from './ringProgress';
+import Rose from './rose';
+import Scatter from './scatter';
+import StackedArea from './stackedArea';
+import StackedBar from './stackedBar';
+import StackedColumn from './stackedColumn';
+import StackedRose from './stackedRose';
+import StepLine from './stepLine';
+import TinyArea from './tinyArea';
+import TinyColumn from './tinyColumn';
+import TinyLine from './tinyLine';
+import Treemap from './treemap';
+import Waterfall from './waterfall';
+import WordCloud from './wordCloud';
 
 export {
   Area,
   Bar,
   Bubble,
+  Bullet,
+  Calendar,
   Column,
-  Gauge,
-  MeterGauge,
+  DensityHeatmap,
+  Donut,
   FanGauge,
+  Funnel,
+  Gauge,
   GroupedBar,
   GroupedColumn,
-  DensityHeatmap,
+  GroupedRose,
+  Heatmap,
   Histogram,
   Line,
   Liquid,
-  Heatmap,
+  MeterGauge,
+  OverlappedComboPlot,
   PercentStackedArea,
   PercentStackedBar,
   PercentStackedColumn,
@@ -64,43 +71,43 @@ export {
   Radar,
   RangeBar,
   RangeColumn,
-  Donut,
-  Rose,
-  StackedRose,
-  GroupedRose,
   RingProgress,
+  Rose,
   Scatter,
   StackedArea,
   StackedBar,
   StackedColumn,
+  StackedRose,
+  StepLine,
   TinyArea,
   TinyColumn,
   TinyLine,
-  StepLine,
-  Waterfall,
-  Funnel,
-  WordCloud,
-  Bullet,
   Treemap,
-  OverlappedComboPlot,
-  Calendar,
+  Waterfall,
+  WordCloud,
 };
 
 export default {
   Area,
   Bar,
   Bubble,
+  Bullet,
+  Calendar,
   Column,
-  Gauge,
-  MeterGauge,
+  DensityHeatmap,
+  Donut,
   FanGauge,
+  Funnel,
+  Gauge,
   GroupedBar,
   GroupedColumn,
-  DensityHeatmap,
+  GroupedRose,
+  Heatmap,
   Histogram,
   Line,
   Liquid,
-  Heatmap,
+  MeterGauge,
+  OverlappedComboPlot,
   PercentStackedArea,
   PercentStackedBar,
   PercentStackedColumn,
@@ -109,26 +116,18 @@ export default {
   Radar,
   RangeBar,
   RangeColumn,
-  Donut,
-  Rose,
-  StackedRose,
-  GroupedRose,
   RingProgress,
+  Rose,
   Scatter,
   StackedArea,
   StackedBar,
   StackedColumn,
+  StackedRose,
+  StepLine,
   TinyArea,
   TinyColumn,
   TinyLine,
-  StepLine,
-  Waterfall,
-  Funnel,
-  WordCloud,
-  Bullet,
   Treemap,
-  OverlappedComboPlot,
-  Calendar,
+  Waterfall,
+  WordCloud,
 };
-
-export { utils } from './util';

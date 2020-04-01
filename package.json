@@ -25,7 +25,8 @@
     "pub:doc": "bigfish lib doc publish",
     "test": "bigfish test",
     "version": "bigfish -v",
-    "addChart": "node ./scripts/addChart.js"
+    "addChart": "node ./scripts/addChart.js",
+    "entry": "node ./scripts/entry.js"
   },
   "dependencies": {
     "@alipay/bigfish": "^2.28.4",
