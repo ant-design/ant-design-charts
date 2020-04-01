@@ -17,11 +17,9 @@
     "build:umd": "BUILD_ENV=umd bigfish lib build",
     "build:tsc": "tsc --declarationDir ./lib && tsc --declarationDir ./es",
     "ci": "bigfish lint && bigfish cov",
-    "cov": "bigfish cov",
-    "help": "bigfish help",
     "lint": "bigfish lint --style --eslint.ext='.ts,.tsx,.jsx,.js'",
     "precommit": "bigfish lint --staged --prettier --style --fix --eslint.ext='.ts,.tsx,.jsx,.js'",
-    "pub": "tnpm run build && node ./scripts/publish.js",
+    "pub": "tnpm run build && np",
     "pub:doc": "bigfish lib doc publish",
     "test": "bigfish test",
     "version": "bigfish -v",
@@ -37,7 +35,8 @@
     "@types/webpack-env": "^1.14.1",
     "shelljs": "^0.8.3",
     "typescript": "^3.7.4",
-    "umi-plugin-father-doc": "^1.0.0-alpha.20"
+    "umi-plugin-father-doc": "^1.0.0-alpha.20",
+    "np": "*"
   },
   "peerDependencies": {
     "react": "^16.8.4",
@@ -45,6 +44,13 @@
   },
   "engines": {
     "install-alinode": "4"
+  },
+  "np": {
+    "yarn": false,
+    "contents": "dist"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "ci": {
     "version": "alinode=4"
