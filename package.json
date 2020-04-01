@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/charts",
-  "version": "0.2.9",
+  "version": "0.9.1",
   "description": "React translate g2plot",
   "files": [
     "/lib",
@@ -29,10 +29,10 @@
     "entry": "node ./scripts/entry.js"
   },
   "dependencies": {
-    "@alipay/bigfish": "^2.28.4",
     "@antv/g2plot": "^1.0.3"
   },
   "devDependencies": {
+    "@alipay/bigfish": "^2.28.4",
     "@types/node": "^12.12.17",
     "@types/webpack-env": "^1.14.1",
     "shelljs": "^0.8.3",
@@ -45,9 +45,6 @@
   },
   "engines": {
     "install-alinode": "4"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
   },
   "ci": {
     "version": "alinode=4"
