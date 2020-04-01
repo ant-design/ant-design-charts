@@ -22,10 +22,7 @@
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
-    "build": "npm run build:lib",
-    "build:tsc": "tsc --declarationDir ./lib && tsc --declarationDir ./es",
-    "build:lib": "father-build",
-    "build:umd": "BUILD_ENV=umd bigfish lib build",
+    "build": "father-build",
     "pub": "npm run build && np",
     "addChart": "node ./scripts/addChart.js",
     "entry": "node ./scripts/entry.js"
