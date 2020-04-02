@@ -1,1 +1,5 @@
-module.exports = require('@alipay/bigfish/prettier');
+const fabric = require('@umijs/fabric');
+
+module.exports = {
+  ...fabric.prettier,
+};

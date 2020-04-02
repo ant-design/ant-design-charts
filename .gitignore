@@ -1,18 +1,22 @@
-pids
-logs
-node_modules
-npm-debug.log
-coverage/
-run
-public
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/npm-debug.log*
+/yarn-error.log
+/yarn.lock
+/package-lock.json
+
+# production
+/dist
+/lib
+/es
+# misc
 .DS_Store
-.nyc_output
-.basement
-config.local.js
+
+# umi
+*.umi
+/.umi-production
+/.umi-test
+/.env.local
 .docz
-.doc
-build/local
-dist
-lib
-es
-pages

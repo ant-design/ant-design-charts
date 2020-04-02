@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { RangeBar as G2plotRangeBar, RangeBarConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface RangeBarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotRangeBar | undefined>;
@@ -10,8 +10,7 @@ export interface RangeBarConfig extends G2plotProps {
 }
 
 const RangeBarChart = forwardRef((props: RangeBarConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotRangeBar, RangeBarConfig>(G2plotRangeBar, rest);
 

@@ -28,11 +28,11 @@ const DemoArea: React.FC = () => {
   };
 
   const config = {
-    data,
     title: {
       visible: true,
       text: '基础面积图',
     },
+    data,
     xField: 'Date',
     yField: 'scales',
     xAxis: {
@@ -40,7 +40,7 @@ const DemoArea: React.FC = () => {
       tickCount: 5,
     },
   };
-  return <Area />;
+  return <Area {...config} />;
 };
 
 export default DemoArea;

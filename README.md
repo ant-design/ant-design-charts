@@ -1,6 +1,6 @@
 # @ant-design/charts
 
-A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh), current version 0.2.9, refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
+A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh) refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
 
 ## Features
 

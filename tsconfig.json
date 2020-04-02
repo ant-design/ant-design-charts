@@ -17,7 +17,7 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "outDir": "build/local",
+    "outDir": "dist",
     "declaration": true
   },
   "exclude": [

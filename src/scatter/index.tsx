@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Scatter as G2plotScatter, ScatterConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface ScatterConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotScatter | undefined>;
@@ -10,8 +10,7 @@ export interface ScatterConfig extends G2plotProps {
 }
 
 const ScatterChart = forwardRef((props: ScatterConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotScatter, ScatterConfig>(G2plotScatter, rest);
 

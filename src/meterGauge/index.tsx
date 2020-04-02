@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { MeterGauge as G2plotMeterGauge, MeterGaugeConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import { ConfigContext, ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface MeterGaugeConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotMeterGauge | undefined>;
@@ -10,8 +10,7 @@ export interface MeterGaugeConfig extends G2plotProps {
 }
 
 const MeterGaugeChart = forwardRef((props: MeterGaugeConfig, ref) => {
-  const config = useContext(ConfigContext);
-  const { chartRef, chartStyle = {}, className, ...rest } = Object.assign(config, props);
+  const { chartRef, chartStyle = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotMeterGauge, MeterGaugeConfig>(G2plotMeterGauge, rest);
 
