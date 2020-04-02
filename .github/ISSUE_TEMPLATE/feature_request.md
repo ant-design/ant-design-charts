@@ -1,6 +1,6 @@
 ---
 name: '功能需求 ✨'
-about: 对 @ant-design/charts 的需求或建议
+about: 对 ant-design-charts 的需求或建议
 title: '👑 [需求]'
 labels: '👑 Feature'
 assignees: ''

@@ -1,6 +1,6 @@
 ---
 name: '报告Bug 🐛'
-about: 报告 @ant-design/charts 的 bug
+about: 报告 ant-design-charts 的 bug
 title: '🐛[BUG]'
 labels: '🐛 BUG'
 assignees: ''
@@ -16,7 +16,7 @@ assignees: ''
 
 ### © 版本信息
 
-- @ant-design/charts 版本: [e.g. 0.9.0]
+- ant-design-charts 版本: [e.g. 0.9.0]
 - 浏览器环境
 - 开发环境 [e.g. mac OS]
 
