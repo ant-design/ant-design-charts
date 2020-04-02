@@ -11,12 +11,10 @@ export interface GroupedRoseConfig extends G2plotProps {
 
 const GroupedRoseChart = forwardRef((props: GroupedRoseConfig, ref) => {
   const { chartRef, chartStyle = {}, className, ...rest } = props;
-
   const { chart, container } = useChart<G2plotGroupedRose, GroupedRoseConfig>(
     G2plotGroupedRose,
     rest,
   );
-
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;

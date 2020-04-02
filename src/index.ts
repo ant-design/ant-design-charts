@@ -1,4 +1,5 @@
 // 此文件在构建时会自动更新，请勿手动修改，详见 package.json 中的 entry script
+import .Umi from './.umi';
 import Area from './area';
 import Bar from './bar';
 import Bubble from './bubble';
@@ -43,6 +44,7 @@ import Waterfall from './waterfall';
 import WordCloud from './wordCloud';
 
 export {
+  .Umi,
   Area,
   Bar,
   Bubble,
@@ -84,10 +86,11 @@ export {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud,
+  WordCloud
 };
 
 export default {
+  .Umi,
   Area,
   Bar,
   Bubble,
@@ -129,5 +132,5 @@ export default {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud,
+  WordCloud
 };
