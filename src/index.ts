@@ -33,6 +33,7 @@ import Scatter from './scatter';
 import StackedArea from './stackedArea';
 import StackedBar from './stackedBar';
 import StackedColumn from './stackedColumn';
+import StackedRose from './stackedRose';
 import StepLine from './stepLine';
 import TinyArea from './tinyArea';
 import TinyColumn from './tinyColumn';
@@ -76,6 +77,7 @@ export {
   StackedArea,
   StackedBar,
   StackedColumn,
+  StackedRose,
   StepLine,
   TinyArea,
   TinyColumn,
@@ -120,6 +122,7 @@ export default {
   StackedArea,
   StackedBar,
   StackedColumn,
+  StackedRose,
   StepLine,
   TinyArea,
   TinyColumn,
