@@ -37,6 +37,7 @@
     "@umijs/preset-react": "^1.4.8",
     "@umijs/test": "^3.0.16",
     "dumi": "^1.0.13",
+    "ejs": "^3.0.2",
     "father-build": "^1.17.2",
     "np": "*",
     "prettier": "^2.0.2",

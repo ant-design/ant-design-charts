@@ -5,24 +5,25 @@
 const shell = require('shelljs');
 const fs = require('fs');
 const path = require('path');
+const ejs = require('ejs');
 
 // 代码存放路径
 const CODE_PATH = path.join(__dirname, '../src');
 // 文档存放路径
 const DOC_PATH = path.join(__dirname, '../docs');
 // 代码模版
-const templateChartPath = path.join(__dirname, '../template/chart/index.txt');
+const templateChartPath = path.join(__dirname, '../template/chart/index.ejs');
 // 文档模版
-const templateDocPath = path.join(__dirname, '../template/doc/index.txt');
+const templateDocPath = path.join(__dirname, '../template/doc/index.ejs');
 const arg = process.argv.splice(2);
 // 首字母小写
-const replaceReg = str => {
+const lowerCase = (str) => {
   const reg = /\b(\w)|\s(\w)/g;
-  return str.replace(reg, m => m.toLowerCase());
+  return str.replace(reg, (m) => m.toLowerCase());
 };
 try {
   // 生成的文件名，首字母小写
-  const fimeName = replaceReg(arg[0]);
+  const fimeName = lowerCase(arg[0]);
   // 文档名
   const docTitle = arg[1];
   // 文件夹路径
@@ -34,38 +35,51 @@ try {
   shell.exec(`mkdir -p ${fileFolderPath}`);
   shell.exec(`cd ${fileFolderPath} && touch index.tsx`);
   shell.exec(`cd ${DOC_PATH} && touch ${fimeName}.md`);
-  // 同步读写，防止读完写不下
-  const pipe = (source, target, name, title) => {
-    const rs = fs.createReadStream(source, { highWaterMark: 1, encoding: 'utf8' });
-    const ws = fs.createWriteStream(target, { highWaterMark: 1 });
 
-    // 可读流到可写流,异步操作，可以保证内存不会被淹没，读一点，写一点
-    rs.on('data', chunk => {
-      // chunk是buffer类型
-      const stringChunk = chunk.toString('UTF-8');
-      let content = name && stringChunk === name ? arg[0] : stringChunk;
-      if (title && content === title) {
-        content = docTitle;
+  // 生成文件
+  ejs.renderFile(
+    templateChartPath,
+    {
+      chartName: arg[0],
+    }, // 渲染的数据key: 对应到了ejs中的index
+    (err, data) => {
+      if (err) {
+        console.log('模版文件读取失败： ', err);
+        return;
       }
-      if (ws.write(content) === false) {
-        rs.pause();
-      }
-    });
+      // 生成文件内容
+      fs.writeFile(filePath, data, (error) => {
+        if (error) {
+          console.log('文件写入失败 ', error);
+          return;
+        }
+        console.log(`${filePath} 生成完成`);
+      });
+    },
+  );
 
-    ws.on('drain', () => {
-      rs.resume();
-    });
-
-    rs.on('end', () => {
-      // eslint-disable-next-line no-console
-      console.log(title ? `${docPath} 生成完成` : `${filePath} 生成完成`);
-      ws.end();
-    });
-  };
-  // 生成文件内容
-  pipe(templateChartPath, filePath, '$');
   // 生成文档
-  pipe(templateDocPath, docPath, '$', 'β');
+  ejs.renderFile(
+    templateDocPath,
+    {
+      chartName: arg[0],
+      docTitle: docTitle,
+    }, // 渲染的数据key: 对应到了ejs中的index
+    (err, data) => {
+      if (err) {
+        console.log('模版文件读取失败： ', err);
+        return;
+      }
+      // 生成文件内容
+      fs.writeFile(docPath, data, (error) => {
+        if (error) {
+          console.log('文档写入失败 ', error);
+          return;
+        }
+        console.log(`${docPath} 生成完成`);
+      });
+    },
+  );
 } catch (err) {
   // eslint-disable-next-line no-console
   console.log(err);
