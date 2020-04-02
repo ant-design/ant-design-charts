@@ -1,5 +1,4 @@
 // 此文件在构建时会自动更新，请勿手动修改，详见 package.json 中的 entry script
-import .Umi from './.umi';
 import Area from './area';
 import Bar from './bar';
 import Bubble from './bubble';
@@ -13,7 +12,6 @@ import Funnel from './funnel';
 import Gauge from './gauge';
 import GroupedBar from './groupedBar';
 import GroupedColumn from './groupedColumn';
-import GroupedRose from './groupedRose';
 import Heatmap from './heatmap';
 import Histogram from './histogram';
 import Line from './line';
@@ -34,7 +32,6 @@ import Scatter from './scatter';
 import StackedArea from './stackedArea';
 import StackedBar from './stackedBar';
 import StackedColumn from './stackedColumn';
-import StackedRose from './stackedRose';
 import StepLine from './stepLine';
 import TinyArea from './tinyArea';
 import TinyColumn from './tinyColumn';
@@ -44,7 +41,6 @@ import Waterfall from './waterfall';
 import WordCloud from './wordCloud';
 
 export {
-  .Umi,
   Area,
   Bar,
   Bubble,
@@ -58,7 +54,6 @@ export {
   Gauge,
   GroupedBar,
   GroupedColumn,
-  GroupedRose,
   Heatmap,
   Histogram,
   Line,
@@ -79,18 +74,16 @@ export {
   StackedArea,
   StackedBar,
   StackedColumn,
-  StackedRose,
   StepLine,
   TinyArea,
   TinyColumn,
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud
+  WordCloud,
 };
 
 export default {
-  .Umi,
   Area,
   Bar,
   Bubble,
@@ -104,7 +97,6 @@ export default {
   Gauge,
   GroupedBar,
   GroupedColumn,
-  GroupedRose,
   Heatmap,
   Histogram,
   Line,
@@ -125,12 +117,11 @@ export default {
   StackedArea,
   StackedBar,
   StackedColumn,
-  StackedRose,
   StepLine,
   TinyArea,
   TinyColumn,
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud
+  WordCloud,
 };
