@@ -12,6 +12,7 @@ import Funnel from './funnel';
 import Gauge from './gauge';
 import GroupedBar from './groupedBar';
 import GroupedColumn from './groupedColumn';
+import GroupedRose from './groupedRose';
 import Heatmap from './heatmap';
 import Histogram from './histogram';
 import Line from './line';
@@ -54,6 +55,7 @@ export {
   Gauge,
   GroupedBar,
   GroupedColumn,
+  GroupedRose,
   Heatmap,
   Histogram,
   Line,
@@ -80,7 +82,7 @@ export {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud,
+  WordCloud
 };
 
 export default {
@@ -97,6 +99,7 @@ export default {
   Gauge,
   GroupedBar,
   GroupedColumn,
+  GroupedRose,
   Heatmap,
   Histogram,
   Line,
@@ -123,5 +126,5 @@ export default {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud,
+  WordCloud
 };
