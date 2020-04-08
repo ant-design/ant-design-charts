@@ -6,6 +6,7 @@ import Bullet from './bullet';
 import Calendar from './calendar';
 import Column from './column';
 import DensityHeatmap from './densityHeatmap';
+import Description from './description';
 import Donut from './donut';
 import FanGauge from './fanGauge';
 import Funnel from './funnel';
@@ -38,6 +39,7 @@ import StepLine from './stepLine';
 import TinyArea from './tinyArea';
 import TinyColumn from './tinyColumn';
 import TinyLine from './tinyLine';
+import Title from './title';
 import Treemap from './treemap';
 import Waterfall from './waterfall';
 import WordCloud from './wordCloud';
@@ -50,6 +52,7 @@ export {
   Calendar,
   Column,
   DensityHeatmap,
+  Description,
   Donut,
   FanGauge,
   Funnel,
@@ -82,6 +85,7 @@ export {
   TinyArea,
   TinyColumn,
   TinyLine,
+  Title,
   Treemap,
   Waterfall,
   WordCloud
@@ -95,6 +99,7 @@ export default {
   Calendar,
   Column,
   DensityHeatmap,
+  Description,
   Donut,
   FanGauge,
   Funnel,
@@ -127,6 +132,7 @@ export default {
   TinyArea,
   TinyColumn,
   TinyLine,
+  Title,
   Treemap,
   Waterfall,
   WordCloud

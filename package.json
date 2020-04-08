@@ -28,7 +28,8 @@
     "entry": "node ./scripts/entry.js"
   },
   "dependencies": {
-    "@antv/g2plot": "^1.0.3"
+    "@antv/g2plot": "^1.0.3",
+    "@umijs/hooks": "^1.9.0"
   },
   "devDependencies": {
     "@types/node": "^12.12.17",
