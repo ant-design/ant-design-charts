@@ -48,17 +48,11 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   },
-  "engines": {
-    "install-alinode": "4"
-  },
   "np": {
     "yarn": false,
     "contents": "dist"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "ci": {
-    "version": "alinode=4"
   }
 }

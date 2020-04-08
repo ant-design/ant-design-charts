@@ -17,7 +17,7 @@ $ npm install @ant-design/charts
 
 ### umd
 
-```html  | pure
+```html | pure
 <script src="xxx/xx.min.js"></script>
 ```
 
@@ -194,7 +194,7 @@ Extra props:
 | className | container class | string                                      | -            |
 | style     | container style | React.CSSProperties                         | -            |
 
-### [FAQ](http://gitlab.alipay-inc.com/tech-ui/charts/issues)
+### [FAQ](https://github.com/ant-design/ant-design-charts/issues)
 
 ### How to Contribute
 
