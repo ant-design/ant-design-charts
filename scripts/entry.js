@@ -10,6 +10,7 @@ const filterFileFolder = [
   '.umi',
   'base',
   'context',
+  'defineConfig',
   'errorBoundary',
   'hooks',
   'util',
@@ -17,6 +18,9 @@ const filterFileFolder = [
   'loading',
   'theme',
 ];
+
+// 工具类导出
+const utilsFileFolder = ['defineConfig'];
 
 // 首字母大写
 const upperCase = (str) => {
@@ -34,10 +38,14 @@ try {
   // 生成的文件名，首字母小写
   const files = fs.readdirSync(SCAN_PATH);
   const useableFiles = [];
+  const utilsFiles = [];
   files.forEach((item) => {
     const stat = fs.statSync(`${SCAN_PATH}/${item}`);
     if (stat.isDirectory() && !filterFileFolder.includes(item)) {
       useableFiles.push(upperCase(item));
+    }
+    if (stat.isDirectory() && utilsFileFolder.includes(item)) {
+      utilsFiles.push(item);
     }
   });
   let fileString =
@@ -45,8 +53,11 @@ try {
   useableFiles.forEach((item) => {
     fileString += `import ${upperCase(item)} from './${lowerCase(item)}';\n`;
   });
-  fileString += `\nexport {\n  ${useableFiles.join(',\n  ')}\n};`;
-  fileString += `\n\nexport default {\n  ${useableFiles.join(',\n  ')}\n};`;
+  utilsFiles.forEach((item) => {
+    fileString += `import ${lowerCase(item)} from './${item}';\n`;
+  });
+  fileString += `\nexport {\n  ${useableFiles.join(',\n  ')},\n  ${utilsFiles.join(',\n  ')}\n};`;
+  fileString += `\n\nexport default {\n  ${useableFiles.join(',\n  ')},\n  ${utilsFiles.join(',\n  ')}\n};`;
 
   fs.writeFileSync(WRITE_PATH, fileString);
   // eslint-disable-next-line no-console

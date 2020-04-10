@@ -41,6 +41,7 @@ import TinyLine from './tinyLine';
 import Treemap from './treemap';
 import Waterfall from './waterfall';
 import WordCloud from './wordCloud';
+import defineConfig from './defineConfig';
 
 export {
   Area,
@@ -84,7 +85,8 @@ export {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud
+  WordCloud,
+  defineConfig
 };
 
 export default {
@@ -129,5 +131,6 @@ export default {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud
+  WordCloud,
+  defineConfig
 };
