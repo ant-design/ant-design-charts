@@ -27,7 +27,6 @@ const DemoCalendar: React.FC = () => {
   };
 
   const config = {
-    data,
     title: {
       visible: true,
       text: 'GitHub contribution',
@@ -38,8 +37,9 @@ const DemoCalendar: React.FC = () => {
     },
     width: 650,
     height: 300,
+    data,
     dateField: 'date',
-    valueField1: 'commits11',
+    valueField: 'commits',
     dateRange: ['2017-05-01', '2017-10-31'],
     colors: '#BAE7FF-#1890FF-#0050B3',
     padding: 'auto',

@@ -20,7 +20,7 @@ describe('Bar  plot', () => {
       forceFit: true,
       xField: '销售额',
       yField: '地区',
-      xAxis: { formatter: "(v) => Math.round(v / 10000) + '万'" },
+      xAxis: { formatter: (v) => Math.round(v / 10000) + '万' },
     };
     const ref = React.createRef();
     mount(<Bar {...config} chartRef={ref} />);

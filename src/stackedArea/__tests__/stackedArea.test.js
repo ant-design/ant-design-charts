@@ -3,12 +3,15 @@ import { mount } from 'enzyme';
 import StackedArea from '../';
 
 const asyncFetch = () => {
-  fetch('https://gw.alipayobjects.com/os/basement_prod/80f6324e-bf7c-4683-bcca-ab66e2520491.json')
-    .then((response) => response.json())
-    .then((json) => setData(json))
-    .catch((error) => {
-      console.log('fetch data failed', error);
-    });
+  return new Promise((resolve, reject) => {
+    fetch('https://gw.alipayobjects.com/os/basement_prod/80f6324e-bf7c-4683-bcca-ab66e2520491.json')
+      .then((response) => response.json())
+      .then((json) => resolve(json))
+      .catch((error) => {
+        reject(error);
+        console.log('fetch data failed', error);
+      });
+  });
 };
 
 // TODO: StackedArea-spec

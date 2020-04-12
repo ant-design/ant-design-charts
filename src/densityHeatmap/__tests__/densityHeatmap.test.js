@@ -3,12 +3,15 @@ import { mount } from 'enzyme';
 import DensityHeatmap from '../';
 
 const asyncFetch = () => {
-  fetch('https://gw.alipayobjects.com/os/basement_prod/293bb835-d067-4e94-be3e-f271d3c818a7.json')
-    .then((response) => response.json())
-    .then((json) => setData(json))
-    .catch((error) => {
-      console.log('fetch data failed', error);
-    });
+  return new Promise((resolve, reject) => {
+    fetch('https://gw.alipayobjects.com/os/basement_prod/293bb835-d067-4e94-be3e-f271d3c818a7.json')
+      .then((response) => response.json())
+      .then((json) => resolve(json))
+      .catch((error) => {
+        reject(error);
+        console.log('fetch data failed', error);
+      });
+  });
 };
 
 // TODO: DensityHeatmap-spec

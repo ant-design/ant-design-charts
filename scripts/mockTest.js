@@ -13,7 +13,7 @@ const SCAN_PATH = path.join(__dirname, '../src');
 
 // 请求路径
 const requestUrl =
-  'https://gw.alipayobjects.com/os/bmw-prod/0ab838d5-5f1f-460a-898b-74ee57f8f6eb.json';
+  'https://gw.alipayobjects.com/os/bmw-prod/1d247831-2ba3-406a-b65c-291f1b8277f6.json';
 
 // fetch path
 const TEMPLATEFETCHPATH = path.join(__dirname, '../template/test/local.ejs');
@@ -28,6 +28,7 @@ try {
       mockData.forEach((item) => {
         const currentPath = `${SCAN_PATH}/${item.name}/__tests__`;
         shell.exec(`mkdir -p ${currentPath} && cd ${currentPath}`);
+
         // 生成文件
         ejs.renderFile(
           item.dataType === 'local' ? TEMPLATEFETCHPATH : TEMPLATELOCALPATH,

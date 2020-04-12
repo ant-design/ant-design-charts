@@ -3,12 +3,15 @@ import { mount } from 'enzyme';
 import Area from '../';
 
 const asyncFetch = () => {
-  fetch('https://gw.alipayobjects.com/os/basement_prod/72ea027c-a7eb-404e-9c23-3761b016953c.json')
-    .then((response) => response.json())
-    .then((json) => setData(json))
-    .catch((error) => {
-      console.log('fetch data failed', error);
-    });
+  return new Promise((resolve, reject) => {
+    fetch('https://gw.alipayobjects.com/os/basement_prod/72ea027c-a7eb-404e-9c23-3761b016953c.json')
+      .then((response) => response.json())
+      .then((json) => resolve(json))
+      .catch((error) => {
+        reject(error);
+        console.log('fetch data failed', error);
+      });
+  });
 };
 
 // TODO: Area-spec

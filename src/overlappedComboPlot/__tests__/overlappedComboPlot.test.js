@@ -3,12 +3,15 @@ import { mount } from 'enzyme';
 import OverlappedComboPlot from '../';
 
 const asyncFetch = () => {
-  fetch('https://gw.alipayobjects.com/os/bmw-prod/9579a208-5420-4c43-bdd5-d7d5fdc005c9.json')
-    .then((response) => response.json())
-    .then((json) => setData(json))
-    .catch((error) => {
-      console.log('fetch data failed', error);
-    });
+  return new Promise((resolve, reject) => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/9579a208-5420-4c43-bdd5-d7d5fdc005c9.json')
+      .then((response) => response.json())
+      .then((json) => resolve(json))
+      .catch((error) => {
+        reject(error);
+        console.log('fetch data failed', error);
+      });
+  });
 };
 
 // TODO: OverlappedComboPlot-spec
