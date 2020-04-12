@@ -6,6 +6,7 @@ const shell = require('shelljs');
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
+const { lowerCase } = require('./util.js');
 
 // 代码存放路径
 const CODE_PATH = path.join(__dirname, '../src');
@@ -16,11 +17,7 @@ const templateChartPath = path.join(__dirname, '../template/chart/index.ejs');
 // 文档模版
 const templateDocPath = path.join(__dirname, '../template/doc/index.ejs');
 const arg = process.argv.splice(2);
-// 首字母小写
-const lowerCase = (str) => {
-  const reg = /\b(\w)|\s(\w)/g;
-  return str.replace(reg, (m) => m.toLowerCase());
-};
+
 try {
   // 生成的文件名，首字母小写
   const fimeName = lowerCase(arg[0]);

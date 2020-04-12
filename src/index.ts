@@ -84,7 +84,7 @@ export {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud
+  WordCloud,
 };
 
 export default {
@@ -129,5 +129,5 @@ export default {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud
+  WordCloud,
 };
