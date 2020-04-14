@@ -26,7 +26,6 @@
     "pub": "npm run build && np",
     "addChart": "node ./scripts/addChart.js",
     "entry": "node ./scripts/entry.js",
-    "addTest": "node ./scripts/addTest.js",
     "mockTest": "node ./scripts/mockTest.js"
   },
   "dependencies": {
