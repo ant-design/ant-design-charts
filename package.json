@@ -22,6 +22,7 @@
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
     "deploy": "gh-pages -d dist",
+    "docs:build": "dumi build",
     "test:coverage": "umi-test --coverage",
     "build": "father-build",
     "pub": "npm run build && np",
