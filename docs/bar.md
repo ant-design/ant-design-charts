@@ -30,10 +30,9 @@ const App: React.FC = () => {
     xField: '销售额',
     yField: '地区',
     xAxis: {
-      formatter: v => Math.round(v / 10000) + '万',
+      formatter: (v) => Math.round(v / 10000) + '万',
     },
   };
-
   return <Bar {...config} />;
 };
 
@@ -121,7 +120,7 @@ const App: React.FC = () => {
     xField: '销售额',
     label: {
       visible: true,
-      formatter: v => Math.round(v / 10000) + '万',
+      formatter: (v) => Math.round(v / 10000) + '万',
     },
     stackField: '细分',
   };
@@ -257,7 +256,7 @@ const App: React.FC = () => {
     color: ['#2582a1', '#f88c24', '#c52125', '#87f4d0'],
     label: {
       visible: true,
-      formatter: v => {
+      formatter: (v) => {
         return v.toFixed(2);
       },
     },
@@ -339,7 +338,7 @@ const App: React.FC = () => {
     groupField: 'type',
     color: ['#1383ab', '#c52125'],
     label: {
-      formatter: v => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, s => `${s},`),
+      formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`),
     },
   };
 

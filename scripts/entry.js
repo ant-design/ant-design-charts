@@ -1,34 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const { filterFileFolder } = require('./constant.js');
+const { lowerCase, upperCase } = require('./util.js');
 
 // 扫描路径
 const SCAN_PATH = path.join(__dirname, '../src');
 // 生成路径
 const WRITE_PATH = path.join(__dirname, '../src/index.ts');
-// 过滤文件
-const filterFileFolder = [
-  '.umi',
-  'base',
-  'context',
-  'errorBoundary',
-  'hooks',
-  'util',
-  'interface',
-  'loading',
-  'theme',
-];
-
-// 首字母大写
-const upperCase = (str) => {
-  const reg = /\b(\w)|\s(\w)/g;
-  return str.replace(reg, (m) => m.toUpperCase());
-};
-
-// 首字母小写
-const lowerCase = (str) => {
-  const reg = /\b(\w)|\s(\w)/g;
-  return str.replace(reg, (m) => m.toLowerCase());
-};
 
 try {
   // 生成的文件名，首字母小写

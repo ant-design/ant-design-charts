@@ -25,12 +25,17 @@
     "build": "father-build",
     "pub": "npm run build && np",
     "addChart": "node ./scripts/addChart.js",
-    "entry": "node ./scripts/entry.js"
+    "entry": "node ./scripts/entry.js",
+    "mockTest": "node ./scripts/mockTest.js"
   },
   "dependencies": {
     "@antv/g2plot": "^1.0.3"
   },
   "devDependencies": {
+    "@antv/util": "^2.0.8",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.2",
+    "@types/enzyme": "^3.10.5",
     "@types/node": "^12.12.17",
     "@types/webpack-env": "^1.14.1",
     "@umijs/fabric": "^2.0.7",
@@ -38,11 +43,16 @@
     "@umijs/test": "^3.0.16",
     "dumi": "^1.0.13",
     "ejs": "^3.0.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.4",
     "father-build": "^1.17.2",
+    "jest-canvas-mock": "^2.2.0",
     "np": "*",
     "prettier": "^2.0.2",
     "shelljs": "^0.8.3",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.4",
+    "whatwg-fetch": "^3.0.0"
   },
   "peerDependencies": {
     "react": "^16.8.4",

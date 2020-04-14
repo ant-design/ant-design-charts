@@ -531,7 +531,6 @@ const App: React.FC = () => {
     forceFit: true,
     data,
     padding: 'auto',
-    data,
     binField: 'value',
     binNumber: 6,
   };
