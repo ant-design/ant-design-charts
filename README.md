@@ -1,6 +1,6 @@
 # @ant-design/charts
 
-A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh) refer to [config](https://g2plot.antv.vision/zh/docs/manual/introduction)
+A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh)
 
 <div align="center">
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800">
@@ -10,6 +10,9 @@ A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh) refer 
 
 - Easy to use
 - TypeScript
+- Pretty & Lightweight
+- Responsive
+- Storytelling
 
 ## Installation
 
@@ -116,7 +119,7 @@ export default App;
 
 ### API
 
-Refer to [G2Plot](https://g2plot.antv.vision/zh/docs/manual/general-config)
+Direct [G2Plot](https://g2plot.antv.vision/zh/docs/manual/general-config)
 
 Extra props:
 
