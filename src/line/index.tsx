@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface LineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotLine | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const LineChart = forwardRef((props: LineConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotLine, LineConfig>(G2plotLine, rest);
 
@@ -24,7 +24,7 @@ const LineChart = forwardRef((props: LineConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

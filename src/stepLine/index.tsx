@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface StepLineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotStepLine | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const StepLineChart = forwardRef((props: StepLineConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotStepLine, StepLineConfig>(G2plotStepLine, rest);
 
@@ -24,7 +24,7 @@ const StepLineChart = forwardRef((props: StepLineConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

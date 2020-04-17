@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface BubbleConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotBubble | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const BubbleChart = forwardRef((props: BubbleConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotBubble, BubbleConfig>(G2plotBubble, rest);
 
@@ -24,7 +24,7 @@ const BubbleChart = forwardRef((props: BubbleConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

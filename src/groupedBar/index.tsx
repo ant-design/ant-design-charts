@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface GroupedBarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotGroupedBar | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const GroupedBarChart = forwardRef((props: GroupedBarConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotGroupedBar, GroupedBarConfig>(G2plotGroupedBar, rest);
 
@@ -24,7 +24,7 @@ const GroupedBarChart = forwardRef((props: GroupedBarConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

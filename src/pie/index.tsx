@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface PieConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotPie | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const PieChart = forwardRef((props: PieConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotPie, PieConfig>(G2plotPie, rest);
 
@@ -24,7 +24,7 @@ const PieChart = forwardRef((props: PieConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

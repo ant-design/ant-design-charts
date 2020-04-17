@@ -8,12 +8,12 @@ import { ErrorBoundary } from '../base';
 
 export interface RingProgressConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotRingProgress | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const RingProgressChart = forwardRef((props: RingProgressConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotRingProgress, RingProgressConfig>(
     G2plotRingProgress,
@@ -30,7 +30,7 @@ const RingProgressChart = forwardRef((props: RingProgressConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

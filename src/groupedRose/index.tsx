@@ -1,18 +1,20 @@
-import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { GroupedRose as G2plotGroupedRose, GroupedRoseConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import {  ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface GroupedRoseConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotGroupedRose | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const GroupedRoseChart = forwardRef((props: GroupedRoseConfig, ref) => {
-  
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
-  const { chart, container } = useChart<G2plotGroupedRose, GroupedRoseConfig>(G2plotGroupedRose, rest);
+  const { chartRef, style = {}, className, ...rest } = props;
+  const { chart, container } = useChart<G2plotGroupedRose, GroupedRoseConfig>(
+    G2plotGroupedRose,
+    rest,
+  );
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
@@ -23,7 +25,7 @@ const GroupedRoseChart = forwardRef((props: GroupedRoseConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });
