@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface HistogramConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotHistogram | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const HistogramChart = forwardRef((props: HistogramConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotHistogram, HistogramConfig>(G2plotHistogram, rest);
 
@@ -24,7 +24,7 @@ const HistogramChart = forwardRef((props: HistogramConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

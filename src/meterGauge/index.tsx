@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface MeterGaugeConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotMeterGauge | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const MeterGaugeChart = forwardRef((props: MeterGaugeConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotMeterGauge, MeterGaugeConfig>(G2plotMeterGauge, rest);
 
@@ -24,7 +24,7 @@ const MeterGaugeChart = forwardRef((props: MeterGaugeConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

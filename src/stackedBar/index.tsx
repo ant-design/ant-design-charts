@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface StackedBarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotStackedBar | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const StackedBarChart = forwardRef((props: StackedBarConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotStackedBar, StackedBarConfig>(G2plotStackedBar, rest);
 
@@ -24,7 +24,7 @@ const StackedBarChart = forwardRef((props: StackedBarConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

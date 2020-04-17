@@ -8,12 +8,12 @@ import { ErrorBoundary } from '../base';
 
 export interface DensityHeatmapConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotDensityHeatmap | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const DensityHeatmapChart = forwardRef((props: DensityHeatmapConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotDensityHeatmap, DensityHeatmapConfig>(
     G2plotDensityHeatmap,
@@ -30,7 +30,7 @@ const DensityHeatmapChart = forwardRef((props: DensityHeatmapConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

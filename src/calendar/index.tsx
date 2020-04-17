@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface CalendarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotCalendar | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const CalendarChart = forwardRef((props: CalendarConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotCalendar, CalendarConfig>(G2plotCalendar, rest);
 
@@ -24,7 +24,7 @@ const CalendarChart = forwardRef((props: CalendarConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

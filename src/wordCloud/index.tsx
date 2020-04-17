@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface WordCloudConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotWordCloud | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const WordCloudChart = forwardRef((props: WordCloudConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotWordCloud, WordCloudConfig>(G2plotWordCloud, rest);
 
@@ -25,7 +25,7 @@ const WordCloudChart = forwardRef((props: WordCloudConfig, ref) => {
 
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface DonutConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotDonut | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const DonutChart = forwardRef((props: DonutConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotDonut, DonutConfig>(G2plotDonut, rest);
 
@@ -24,7 +24,7 @@ const DonutChart = forwardRef((props: DonutConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });
