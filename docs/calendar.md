@@ -16,18 +16,17 @@ const DemoCalendar: React.FC = () => {
   useEffect(() => {
     asyncFetch();
   }, []);
-
+  const ref = React.createRef();
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/bmw-prod/dcffd1f8-265b-4bda-aab1-4ef5c32708b1.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
 
   const config = {
-    data,
     title: {
       visible: true,
       text: 'GitHub contribution',
@@ -38,6 +37,7 @@ const DemoCalendar: React.FC = () => {
     },
     width: 650,
     height: 300,
+    data,
     dateField: 'date',
     valueField: 'commits',
     dateRange: ['2017-05-01', '2017-10-31'],
@@ -55,7 +55,7 @@ const DemoCalendar: React.FC = () => {
       visible: true,
     },
   };
-  return <Calendar {...config} />;
+  return <Calendar {...config} chartRef={ref} />;
 };
 
 export default DemoCalendar;

@@ -8,12 +8,12 @@ import { ErrorBoundary } from '../base';
 
 export interface PercentStackedBarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotPercentStackedBar | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const PercentStackedBarChart = forwardRef((props: PercentStackedBarConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotPercentStackedBar, PercentStackedBarConfig>(
     G2plotPercentStackedBar,
@@ -30,7 +30,7 @@ const PercentStackedBarChart = forwardRef((props: PercentStackedBarConfig, ref) 
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface AreaConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotArea | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const AreaChart = forwardRef((props: AreaConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
   const { chart, container } = useChart<G2plotArea, AreaConfig>(G2plotArea, rest);
   useEffect(() => {
     if (chartRef) {
@@ -22,7 +22,7 @@ const AreaChart = forwardRef((props: AreaConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

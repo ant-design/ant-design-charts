@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const { filterFileFolder } = require('./constant.js');
+const { lowerCase, upperCase } = require('./util.js');
 
 // 扫描路径
 const SCAN_PATH = path.join(__dirname, '../src');

@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface TinyLineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotTinyLine | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const TinyLineChart = forwardRef((props: TinyLineConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotTinyLine, TinyLineConfig>(G2plotTinyLine, rest);
 
@@ -24,7 +24,7 @@ const TinyLineChart = forwardRef((props: TinyLineConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

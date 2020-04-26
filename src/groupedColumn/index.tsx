@@ -8,12 +8,12 @@ import { ErrorBoundary } from '../base';
 
 export interface GroupedColumnConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotGroupedColumn | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const GroupedColumnChart = forwardRef((props: GroupedColumnConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotGroupedColumn, GroupedColumnConfig>(
     G2plotGroupedColumn,
@@ -30,7 +30,7 @@ const GroupedColumnChart = forwardRef((props: GroupedColumnConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

@@ -5,12 +5,12 @@ import { ErrorBoundary } from '../base';
 
 export interface RoseConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotRose | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const RoseChart = forwardRef((props: RoseConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotRose, RoseConfig>(G2plotRose, rest);
 
@@ -24,7 +24,7 @@ const RoseChart = forwardRef((props: RoseConfig, ref) => {
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });

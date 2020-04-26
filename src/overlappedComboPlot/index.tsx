@@ -8,12 +8,12 @@ import { ErrorBoundary } from '../base';
 
 export interface OverlappedComboPlotConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotOverlappedComboPlot | undefined>;
-  chartStyle?: React.CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
 
 const OverlappedComboPlotChart = forwardRef((props: OverlappedComboPlotConfig, ref) => {
-  const { chartRef, chartStyle = {}, className, ...rest } = props;
+  const { chartRef, style = {}, className, ...rest } = props;
 
   const { chart, container } = useChart<G2plotOverlappedComboPlot, OverlappedComboPlotConfig>(
     G2plotOverlappedComboPlot,
@@ -30,7 +30,7 @@ const OverlappedComboPlotChart = forwardRef((props: OverlappedComboPlotConfig, r
   }));
   return (
     <ErrorBoundary>
-      <div className={className} style={chartStyle} ref={container} />
+      <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });
