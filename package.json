@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/charts",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "React translate g2plot",
   "files": [
     "/lib",
@@ -31,7 +31,7 @@
     "mockTest": "node ./scripts/mockTest.js"
   },
   "dependencies": {
-    "@antv/g2plot": "^1.0.3"
+    "@antv/g2plot": "^1.0.4"
   },
   "devDependencies": {
     "@antv/util": "^2.0.8",
