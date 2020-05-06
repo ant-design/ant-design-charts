@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/charts",
-  "version": "0.9.2",
+  "version": "0.9.4",
   "description": "React translate g2plot",
   "files": [
     "/lib",
@@ -31,7 +31,7 @@
     "mockTest": "node ./scripts/mockTest.js"
   },
   "dependencies": {
-    "@antv/g2plot": "^1.0.3"
+    "@antv/g2plot": "~1.1.1"
   },
   "devDependencies": {
     "@antv/util": "^2.0.8",
@@ -43,7 +43,7 @@
     "@umijs/fabric": "^2.0.7",
     "@umijs/preset-react": "^1.4.8",
     "@umijs/test": "^3.0.16",
-    "dumi": "^1.0.13",
+    "dumi": "^1.0.21",
     "ejs": "^3.0.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
