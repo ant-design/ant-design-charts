@@ -1,7 +1,10 @@
-import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
-import { StackedColumnLine as G2plotStackedColumnLine, StackedColumnLineConfig as G2plotProps } from '@antv/g2plot';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
+import {
+  StackedColumnLine as G2plotStackedColumnLine,
+  StackedColumnLineConfig as G2plotProps,
+} from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import {  ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface StackedColumnLineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotStackedColumnLine | undefined>;
@@ -10,9 +13,11 @@ export interface StackedColumnLineConfig extends G2plotProps {
 }
 
 const StackedColumnLineChart = forwardRef((props: StackedColumnLineConfig, ref) => {
-  
   const { chartRef, style = {}, className, ...rest } = props;
-  const { chart, container } = useChart<G2plotStackedColumnLine, StackedColumnLineConfig>(G2plotStackedColumnLine, rest);
+  const { chart, container } = useChart<G2plotStackedColumnLine, StackedColumnLineConfig>(
+    G2plotStackedColumnLine,
+    rest,
+  );
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;

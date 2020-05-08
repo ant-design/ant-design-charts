@@ -1,7 +1,7 @@
-import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { ColumnLine as G2plotColumnLine, ColumnLineConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import {  ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface ColumnLineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotColumnLine | undefined>;
@@ -10,7 +10,6 @@ export interface ColumnLineConfig extends G2plotProps {
 }
 
 const ColumnLineChart = forwardRef((props: ColumnLineConfig, ref) => {
-  
   const { chartRef, style = {}, className, ...rest } = props;
   const { chart, container } = useChart<G2plotColumnLine, ColumnLineConfig>(G2plotColumnLine, rest);
   useEffect(() => {

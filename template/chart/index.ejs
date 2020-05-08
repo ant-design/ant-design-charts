@@ -1,7 +1,7 @@
 import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
 import { <%= chartName %> as G2plot<%= chartName %>, <%= chartName %>Config as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
-import {  ErrorBoundary } from '../base';
+import { ErrorBoundary } from '../base';
 
 export interface <%= chartName %>Config extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plot<%= chartName %> | undefined>;
@@ -10,7 +10,6 @@ export interface <%= chartName %>Config extends G2plotProps {
 }
 
 const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) => {
-  
   const { chartRef, style = {}, className, ...rest } = props;
   const { chart, container } = useChart<G2plot<%= chartName %>, <%= chartName %>Config>(G2plot<%= chartName %>, rest);
   useEffect(() => {
