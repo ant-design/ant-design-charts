@@ -1,25 +1,23 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import {
-  OverlappedComboPlot as G2plotOverlappedComboPlot,
-  OverlappedComboPlotConfig as G2plotProps,
+  StackedColumnLine as G2plotStackedColumnLine,
+  StackedColumnLineConfig as G2plotProps,
 } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface OverlappedComboPlotConfig extends G2plotProps {
-  chartRef?: React.MutableRefObject<G2plotOverlappedComboPlot | undefined>;
+export interface StackedColumnLineConfig extends G2plotProps {
+  chartRef?: React.MutableRefObject<G2plotStackedColumnLine | undefined>;
   style?: React.CSSProperties;
   className?: string;
 }
 
-const OverlappedComboPlotChart = forwardRef((props: OverlappedComboPlotConfig, ref) => {
+const StackedColumnLineChart = forwardRef((props: StackedColumnLineConfig, ref) => {
   const { chartRef, style = {}, className, ...rest } = props;
-
-  const { chart, container } = useChart<G2plotOverlappedComboPlot, OverlappedComboPlotConfig>(
-    G2plotOverlappedComboPlot,
+  const { chart, container } = useChart<G2plotStackedColumnLine, StackedColumnLineConfig>(
+    G2plotStackedColumnLine,
     rest,
   );
-
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
@@ -35,6 +33,6 @@ const OverlappedComboPlotChart = forwardRef((props: OverlappedComboPlotConfig, r
   );
 });
 
-// OverlappedComboPlotChart.defaultProps = OverlappedComboPlot.getDefaultOptions();
+StackedColumnLineChart.defaultProps = G2plotStackedColumnLine.getDefaultOptions();
 
-export default OverlappedComboPlotChart;
+export default StackedColumnLineChart;

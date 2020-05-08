@@ -5,20 +5,22 @@ import Bubble from './bubble';
 import Bullet from './bullet';
 import Calendar from './calendar';
 import Column from './column';
+import ColumnLine from './columnLine';
 import DensityHeatmap from './densityHeatmap';
 import Donut from './donut';
+import DualLine from './dualLine';
 import FanGauge from './fanGauge';
 import Funnel from './funnel';
 import Gauge from './gauge';
 import GroupedBar from './groupedBar';
 import GroupedColumn from './groupedColumn';
+import GroupedColumnLine from './groupedColumnLine';
 import GroupedRose from './groupedRose';
 import Heatmap from './heatmap';
 import Histogram from './histogram';
 import Line from './line';
 import Liquid from './liquid';
 import MeterGauge from './meterGauge';
-import OverlappedComboPlot from './overlappedComboPlot';
 import PercentStackedArea from './percentStackedArea';
 import PercentStackedBar from './percentStackedBar';
 import PercentStackedColumn from './percentStackedColumn';
@@ -33,6 +35,7 @@ import Scatter from './scatter';
 import StackedArea from './stackedArea';
 import StackedBar from './stackedBar';
 import StackedColumn from './stackedColumn';
+import StackedColumnLine from './stackedColumnLine';
 import StackedRose from './stackedRose';
 import StepLine from './stepLine';
 import TinyArea from './tinyArea';
@@ -49,20 +52,22 @@ export {
   Bullet,
   Calendar,
   Column,
+  ColumnLine,
   DensityHeatmap,
   Donut,
+  DualLine,
   FanGauge,
   Funnel,
   Gauge,
   GroupedBar,
   GroupedColumn,
+  GroupedColumnLine,
   GroupedRose,
   Heatmap,
   Histogram,
   Line,
   Liquid,
   MeterGauge,
-  OverlappedComboPlot,
   PercentStackedArea,
   PercentStackedBar,
   PercentStackedColumn,
@@ -77,6 +82,7 @@ export {
   StackedArea,
   StackedBar,
   StackedColumn,
+  StackedColumnLine,
   StackedRose,
   StepLine,
   TinyArea,
@@ -84,7 +90,7 @@ export {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud,
+  WordCloud
 };
 
 export default {
@@ -94,20 +100,22 @@ export default {
   Bullet,
   Calendar,
   Column,
+  ColumnLine,
   DensityHeatmap,
   Donut,
+  DualLine,
   FanGauge,
   Funnel,
   Gauge,
   GroupedBar,
   GroupedColumn,
+  GroupedColumnLine,
   GroupedRose,
   Heatmap,
   Histogram,
   Line,
   Liquid,
   MeterGauge,
-  OverlappedComboPlot,
   PercentStackedArea,
   PercentStackedBar,
   PercentStackedColumn,
@@ -122,6 +130,7 @@ export default {
   StackedArea,
   StackedBar,
   StackedColumn,
+  StackedColumnLine,
   StackedRose,
   StepLine,
   TinyArea,
@@ -129,5 +138,5 @@ export default {
   TinyLine,
   Treemap,
   Waterfall,
-  WordCloud,
+  WordCloud
 };
