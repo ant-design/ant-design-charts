@@ -3,7 +3,7 @@
 A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh)
 
 <div align="center">
-<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800">
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800"/>
 </div>
 
 ## Features
