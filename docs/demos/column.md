@@ -4,7 +4,9 @@ title: 柱状图
 
 # 柱状图
 
-## 基本用法
+## 基础柱状图
+
+<a href="https://g2plot.antv.vision/zh/examples/column/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -86,6 +88,8 @@ export default App;
 
 ## 堆叠柱状图
 
+<a href="https://g2plot.antv.vision/zh/examples/column/stacked/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { StackedColumn } from '@ant-design/charts';
@@ -164,6 +168,8 @@ export default App;
 ```
 
 ## 百分比堆叠柱状图
+
+<a href="https://g2plot.antv.vision/zh/examples/column/percent-stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -296,6 +302,8 @@ export default App;
 
 ## 分组柱状图
 
+<a href="https://g2plot.antv.vision/zh/examples/column/grouped/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { GroupedColumn } from '@ant-design/charts';
@@ -408,6 +416,8 @@ export default App;
 
 ## 区间柱状图
 
+<a href="https://g2plot.antv.vision/zh/examples/column/range/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { RangeColumn } from '@ant-design/charts';
@@ -457,6 +467,8 @@ export default App;
 ```
 
 ## 直方图
+
+<a href="https://g2plot.antv.vision/zh/examples/column/histogram/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -535,47 +547,6 @@ const App: React.FC = () => {
     binNumber: 6,
   };
   return <Histogram {...config} />;
-};
-export default App;
-```
-
-## 瀑布图
-
-```tsx
-import React from 'react';
-import { Waterfall } from '@ant-design/charts';
-
-const App: React.FC = () => {
-  const data = [
-    { type: '日用品', money: 120 },
-    { type: '伙食费', money: 900 },
-    { type: '交通费', money: 200 },
-    { type: '水电费', money: 300 },
-    { type: '房租', money: 1200 },
-    { type: '商场消费', money: 1000 },
-    { type: '应酬红包', money: -2000 },
-  ];
-
-  const config = {
-    data,
-    title: {
-      visible: true,
-      text: '每月收支情况（瀑布图）',
-    },
-    forceFit: true,
-    padding: 'auto',
-    xField: 'type',
-    yField: 'money',
-    meta: {
-      type: {
-        alias: '类别',
-      },
-      money: {
-        alias: '金额',
-      },
-    },
-  };
-  return <Waterfall {...config} />;
 };
 export default App;
 ```

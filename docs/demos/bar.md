@@ -7,6 +7,8 @@ order: 8
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/bar/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Bar } from '@ant-design/charts';
@@ -40,6 +42,8 @@ export default App;
 ```
 
 ## 堆叠条形图
+
+<a href="https://g2plot.antv.vision/zh/examples/bar/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -130,6 +134,8 @@ export default App;
 ```
 
 ## 百分比堆叠条形图
+
+<a href="https://g2plot.antv.vision/zh/examples/bar/percent-stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -269,6 +275,8 @@ export default App;
 
 ## 分组条形图
 
+<a href="https://g2plot.antv.vision/zh/examples/bar/grouped/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { GroupedBar } from '@ant-design/charts';
@@ -348,6 +356,8 @@ export default App;
 ```
 
 ## 区间条形图
+
+<a href="https://g2plot.antv.vision/zh/examples/bar/range" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';

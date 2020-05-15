@@ -6,6 +6,8 @@ title: 仪表盘
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Gauge } from '@ant-design/charts';
@@ -36,6 +38,8 @@ export default App;
 ```
 
 ## 刻度仪表盘
+
+<a href="https://g2plot.antv.vision/zh/examples/gauge/gauge/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -68,6 +72,8 @@ export default App;
 
 ## 扇形仪表盘
 
+<a href="https://g2plot.antv.vision/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { FanGauge } from '@ant-design/charts';
@@ -85,7 +91,7 @@ const App: React.FC = () => {
     min: 0,
     max: 100,
     range: [0, 70],
-    format: v => {
+    format: (v) => {
       return v + '%';
     },
     color: ['l(0) 0:#b0d0ff 1:#5f92f9'],

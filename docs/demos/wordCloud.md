@@ -6,6 +6,8 @@ title: 词云图
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/word-cloud/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { WordCloud } from '@ant-design/charts';
@@ -19,17 +21,17 @@ const DemoWordCloud: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/1f72b119-c5c9-4e8c-abdb-9b090463e3cd.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
 
-  const getDataList = params => {
+  const getDataList = (params) => {
     const list = [];
     // change data type
-    params.forEach(d => {
+    params.forEach((d) => {
       list.push({
         word: d.name,
         weight: d.value,

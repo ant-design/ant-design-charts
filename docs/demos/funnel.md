@@ -6,6 +6,8 @@ title: 漏斗图
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/funnel/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Funnel } from '@ant-design/charts';
@@ -36,6 +38,8 @@ export default App;
 ```
 
 ## 动态高度
+
+<a href="https://g2plot.antv.vision/zh/examples/funnel/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -72,6 +76,8 @@ export default App;
 ```
 
 ## 横向展示
+
+<a href="https://g2plot.antv.vision/zh/examples/funnel/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
