@@ -4,7 +4,9 @@ title: 阶梯图
 
 # 阶梯图
 
-## 基本用法
+## 单阶梯折线的基础用法
+
+<a href="https://g2plot.antv.vision/zh/examples/step-line/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -19,9 +21,9 @@ const DemoStepLine: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/6c15fd60-2dc4-48da-94e1-76e4f023f635.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
@@ -44,7 +46,7 @@ const DemoStepLine: React.FC = () => {
     yAxis: {
       label: {
         // 数值格式化为千分位
-        formatter: v => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, s => `${s},`),
+        formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`),
       },
     },
     legend: {
@@ -59,7 +61,9 @@ const DemoStepLine: React.FC = () => {
 export default DemoStepLine;
 ```
 
-## GDP
+## 2000 ~ 2018 年各国家 GDP 趋势对比
+
+<a href="https://g2plot.antv.vision/zh/examples/step-line/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -74,9 +78,9 @@ const DemoStepLine: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/15dde058-6a47-412b-915f-672bc103dc5a.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
@@ -102,7 +106,7 @@ const DemoStepLine: React.FC = () => {
       autoHideLabel: true,
     },
     yAxis: {
-      formatter: v => `${(v / 10e8).toFixed(1)} B`,
+      formatter: (v) => `${(v / 10e8).toFixed(1)} B`,
     },
     legend: {
       visible: false,

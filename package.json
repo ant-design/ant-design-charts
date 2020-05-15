@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/charts",
-  "version": "0.10.0-beta.0",
+  "version": "0.9.4",
   "description": "React translate g2plot",
   "files": [
     "/lib",
@@ -31,7 +31,7 @@
     "mockTest": "node ./scripts/mockTest.js"
   },
   "dependencies": {
-    "@antv/g2plot": "~1.2.0-beta.0"
+    "@antv/g2plot": "~1.1.2"
   },
   "devDependencies": {
     "@antv/util": "^2.0.8",
@@ -53,6 +53,7 @@
     "jest-canvas-mock": "^2.2.0",
     "np": "*",
     "prettier": "^2.0.2",
+    "recast": "^0.19.1",
     "shelljs": "^0.8.3",
     "typescript": "^3.7.4",
     "whatwg-fetch": "^3.0.0"

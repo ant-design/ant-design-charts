@@ -6,6 +6,8 @@ title: 子弹图
 
 ## 基础子弹图
 
+<a href="https://g2plot.antv.vision/zh/examples/bullet/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Bullet } from '@ant-design/charts';
@@ -37,6 +39,8 @@ export default App;
 ```
 
 ## 基础子弹图-带多颜色范围区间
+
+<a href="https://g2plot.antv.vision/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -110,6 +114,8 @@ export default App;
 ```
 
 ## 基础子弹图-超出目标
+
+<a href="https://g2plot.antv.vision/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -188,6 +194,8 @@ export default App;
 
 ## 基础子弹图-多目标值
 
+<a href="https://g2plot.antv.vision/zh/examples/bullet/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Bullet } from '@ant-design/charts';
@@ -247,6 +255,8 @@ export default App;
 
 ## 分组子弹图
 
+<a href="https://g2plot.antv.vision/zh/examples/bullet/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Bullet } from '@ant-design/charts';
@@ -293,6 +303,8 @@ export default App;
 ```
 
 ## 分组子弹图-带颜色范围区间
+
+<a href="https://g2plot.antv.vision/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';

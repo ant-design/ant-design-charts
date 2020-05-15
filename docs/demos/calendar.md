@@ -6,6 +6,8 @@ title: 日历图
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/calendar/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Calendar } from '@ant-design/charts';

@@ -1,11 +1,12 @@
 ---
 title: 折线图
-order: 9
 ---
 
 # 折线图
 
 ## 基本用法
+
+<a href="https://g2plot.antv.vision/zh/examples/line/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -52,6 +53,8 @@ export default App;
 ```
 
 ## 多折线
+
+<a href="https://g2plot.antv.vision/zh/examples/line/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -303,7 +306,7 @@ const App: React.FC = () => {
     yAxis: {
       label: {
         // 数值格式化为千分位
-        formatter: v => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, s => `${s},`),
+        formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`),
       },
     },
     legend: {

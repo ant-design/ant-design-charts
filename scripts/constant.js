@@ -11,4 +11,56 @@ const filterFileFolder = [
   'theme',
 ];
 
-module.exports = { filterFileFolder };
+const filterTitle = ['基础', '分组', '堆叠', '密度'];
+
+const exampleBaseUrl = 'https://g2plot.antv.vision';
+
+const chartOrder = [
+  'Line',
+  'Bar',
+  'Area',
+  'Column',
+  'Pie',
+  'Rose',
+  'Bubble',
+  'Calendar',
+  'ColumnLine',
+  'DensityHeatmap',
+  'Donut',
+  'DualLine',
+  'FanGauge',
+  'Funnel',
+  'Bullet',
+  'Gauge',
+  'GroupedBar',
+  'GroupedColumn',
+  'GroupedColumnLine',
+  'GroupedRose',
+  'Heatmap',
+  'Histogram',
+  'Liquid',
+  'MeterGauge',
+  'PercentStackedArea',
+  'PercentStackedBar',
+  'PercentStackedColumn',
+  'Progress',
+  'Radar',
+  'RangeBar',
+  'RangeColumn',
+  'RingProgress',
+  'Scatter',
+  'StackedArea',
+  'StackedBar',
+  'StackedColumn',
+  'StackedColumnLine',
+  'StackedRose',
+  'StepLine',
+  'TinyArea',
+  'TinyColumn',
+  'TinyLine',
+  'Treemap',
+  'Waterfall',
+  'WordCloud',
+];
+
+module.exports = { filterFileFolder, chartOrder, filterTitle, exampleBaseUrl };

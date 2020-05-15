@@ -6,6 +6,8 @@ title: 树图
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/treemap/rect/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Treemap } from '@ant-design/charts';
@@ -37,9 +39,9 @@ const App: React.FC = () => {
     ],
   };
 
-  const processData = data => {
+  const processData = (data) => {
     let sumValue = 0;
-    data.children.forEach(d => {
+    data.children.forEach((d) => {
       sumValue += d.value;
     });
     data.value = sumValue;
@@ -58,6 +60,8 @@ export default App;
 
 ## 多重嵌套
 
+<a href="https://g2plot.antv.vision/zh/examples/treemap/rect/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Treemap } from '@ant-design/charts';
@@ -71,15 +75,15 @@ const DemoTreemap: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/be471bfc-b37f-407e-833b-0f489bd3fdb2.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
-  const processData = odata => {
+  const processData = (odata) => {
     let sumValue = 0;
-    odata.forEach(d => {
+    odata.forEach((d) => {
       sumValue += d.value;
     });
     return { name: 'root', value: sumValue, children: odata };

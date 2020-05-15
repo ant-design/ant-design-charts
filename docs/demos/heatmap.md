@@ -6,6 +6,8 @@ title: 热力图
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/heatmap/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Heatmap } from '@ant-design/charts';
@@ -19,9 +21,9 @@ const DemoHeatmap: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/a719cd4e-bd40-4878-a4b4-df8a6b531dfe.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
@@ -48,7 +50,9 @@ const DemoHeatmap: React.FC = () => {
 export default DemoHeatmap;
 ```
 
-## Change mode
+## 热力图模式切换
+
+<a href="https://g2plot.antv.vision/zh/examples/heatmap/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useRef } from 'react';
@@ -206,7 +210,9 @@ const App: React.FC = () => <Heatmap chartRef={chartRef} {...config} />;
 export default App;
 ```
 
-## Circle
+## 指定色块热力图形状
+
+<a href="https://g2plot.antv.vision/zh/examples/heatmap/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -336,7 +342,9 @@ const App: React.FC = () => <Heatmap {...config} />;
 export default App;
 ```
 
-## Size
+## 热力图形状大小映射
+
+<a href="https://g2plot.antv.vision/zh/examples/heatmap/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -465,6 +473,8 @@ export default App;
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/heatmap/density/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { DensityHeatmap } from '@ant-design/charts';
@@ -478,9 +488,9 @@ const DemoDensityHeatmap: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/293bb835-d067-4e94-be3e-f271d3c818a7.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
@@ -512,6 +522,8 @@ export default DemoDensityHeatmap;
 
 ## 密度热力图
 
+<a href="https://g2plot.antv.vision/zh/examples/heatmap/density/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { DensityHeatmap } from '@ant-design/charts';
@@ -525,9 +537,9 @@ const DemoDensityHeatmap: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/ec7af1f7-b00d-46b2-bd8e-d4d7463f6e1b.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };

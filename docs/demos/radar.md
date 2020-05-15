@@ -6,6 +6,8 @@ title: 雷达图
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/radar/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Radar } from '@ant-design/charts';
@@ -133,6 +135,8 @@ export default App;
 ```
 
 ## 多组雷达图
+
+<a href="https://g2plot.antv.vision/zh/examples/radar/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';

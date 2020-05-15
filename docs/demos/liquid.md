@@ -6,6 +6,8 @@ title: 水波图
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/liquid/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Liquid } from '@ant-design/charts';
@@ -27,6 +29,8 @@ export default App;
 
 ## 百分比展示
 
+<a href="https://g2plot.antv.vision/zh/examples/liquid/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Liquid } from '@ant-design/charts';
@@ -45,7 +49,7 @@ const App: React.FC = () => {
     max: 10000,
     value: 5639,
     statistic: {
-      formatter: value => ((100 * value) / 10000).toFixed(1) + '%',
+      formatter: (value) => ((100 * value) / 10000).toFixed(1) + '%',
     },
   };
   return <Liquid {...config} />;

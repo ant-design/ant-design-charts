@@ -1,0 +1,11 @@
+
+## <%= info.chartName %>
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  <% info.demos.forEach(function(item){ %>
+  <a href="/demos/<%= info.path.split('#')[0] + '#' + item.title.zh %>" style="display: block;margin: 8px">
+    <img src="<%= item.screenshot %>" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55"><%= item.title.zh %></p>
+  </a>
+<% }); %>
+</div>

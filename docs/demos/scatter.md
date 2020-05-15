@@ -6,6 +6,8 @@ title: 散点图
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/scatter/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React from 'react';
 import { Scatter } from '@ant-design/charts';
@@ -68,6 +70,8 @@ export default App;
 
 ## 多色
 
+<a href="https://g2plot.antv.vision/zh/examples/scatter/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Scatter } from '@ant-design/charts';
@@ -81,9 +85,9 @@ const DemoScatter: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/7a78a36d-c97c-459d-9090-9e664cd17167.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };

@@ -1,28 +1,20 @@
-# @ant-design/charts
+---
+title: 快速开始
+order: 2
+nav:
+  title: 使用文档
+  order: 1
+---
 
-A React chart library, based on [g2plot](https://g2plot.antv.vision/zh)
+## 快速上手
 
-<div align="center">
-<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800"/>
-</div>
+## 安装
 
-## Features
-
-- Easy to use
-- TypeScript
-- Pretty & Lightweight
-- Responsive
-- Storytelling
-
-## Installation
-
-### npm
-
-```bash | pure
+```bash
 $ npm install @ant-design/charts
 ```
 
-## Usage
+## 使用
 
 ### ClassComponent
 
@@ -92,62 +84,10 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-result：
+最终结果：
 
 <img src="https://gw.alipayobjects.com/zos/antfincdn/8hy4uv7YyD/60155b1e-41b0-4e02-8ce1-8c7044792ce8.png" width="600">
 
-## Gallery
+### 代码查看
 
-[gallery](https://charts.ant.design/demos/global)
-
-## Document
-
-### API
-
-Direct [G2Plot](https://g2plot.antv.vision/zh)
-
-Extra props:
-
-| Property  | Description     | Type                                        | defaultValue |
-| --------- | --------------- | ------------------------------------------- | ------------ |
-| chartRef  | chart ref       | (React.MutableRefObject&lt;Line&gt;)=> void | -            |
-| className | container class | string                                      | -            |
-| style     | container style | React.CSSProperties                         | -            |
-
-### [FAQ](https://github.com/ant-design/ant-design-charts/issues)
-
-### How to Contribute
-
-We welcome all contributions.
-
-### License
-
-Charts is available under the License MIT.
-
-## develop
-
-### depend
-
-- install [nodejs](https://nodejs.org/en/)
-
-### start
-
-```bash  | pure
-# 安装依赖
-$ npm install
-
-# 开发 library
-$ npm run dev
-```
-
-## Contributors(5)
-
-Ordered by date of first contribution.
-
-- 福晋
-- 辟起 🍑
-- 愚道
-- 期贤 🙏
-- 绯一
-
----
+在图表演示中点击代码图表可以查看代码 <img src="https://gw.alipayobjects.com/zos/antfincdn/HSJ5yd13zD/5be57c98-089d-4b67-adfa-e9a2914fdc81.png" width="600">

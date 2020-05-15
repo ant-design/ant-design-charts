@@ -6,6 +6,8 @@ title: 气泡图
 
 ## 基本用法
 
+<a href="https://g2plot.antv.vision/zh/examples/bubble/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Bubble } from '@ant-design/charts';
@@ -19,9 +21,9 @@ const DemoBubble: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/86530df2-6d61-4485-b645-0f2c5d59c07e.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
@@ -57,6 +59,8 @@ export default DemoBubble;
 
 ## 添加 quadrant
 
+<a href="https://g2plot.antv.vision/zh/examples/bubble/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Bubble } from '@ant-design/charts';
@@ -70,9 +74,9 @@ const DemoBubble: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/86530df2-6d61-4485-b645-0f2c5d59c07e.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
@@ -123,6 +127,8 @@ export default DemoBubble;
 
 ## 添加 trendline
 
+<a href="https://g2plot.antv.vision/zh/examples/bubble/basic/API" target="_blank">配置</a>
+
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Bubble } from '@ant-design/charts';
@@ -136,9 +142,9 @@ const DemoBubble: React.FC = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/bmw-prod/dbb54dbc-eac1-4323-8b81-ae270b30d74e.json')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
