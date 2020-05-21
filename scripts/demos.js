@@ -129,6 +129,8 @@ const writeFile = () => {
         const paths = toLine(lowerCase(item.chartName)).split('-');
         if (paths.length < 2) {
           paths.push('basic');
+        } else {
+          paths.reverse();
         }
         paths.forEach((a) => {
           apiPath += `/${a}`;
