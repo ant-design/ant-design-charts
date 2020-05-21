@@ -1,6 +1,6 @@
 # @ant-design/charts
 
-A React chart library, based on [g2plot](https://g2plot.antv.vision/zh)
+A React chart library, based on [g2plot](https://antv-g2plot.gitee.io/zh)
 
 <div align="center">
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800"/>
@@ -104,7 +104,7 @@ result：
 
 ### API
 
-Direct [G2Plot](https://g2plot.antv.vision/zh)
+Direct [G2Plot](https://antv-g2plot.gitee.io/zh)
 
 Extra props:
 

@@ -1,18 +1,21 @@
 ---
 title: 水波图
+order: 27
 ---
 
 # 水波图
 
-## 基本用法
+## Liquid
 
-<a href="https://g2plot.antv.vision/zh/examples/liquid/basic/API" target="_blank">配置</a>
+### 水波图
+
+<a href="https://antv-g2plot.gitee.io/zh/examples/liquid/basic/API" target="_blank">配置</a>
 
 ```tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Liquid } from '@ant-design/charts';
 
-const App: React.FC = () => {
+const DemoLiquid: React.FC = () => {
   const config = {
     title: {
       visible: true,
@@ -24,18 +27,19 @@ const App: React.FC = () => {
   };
   return <Liquid {...config} />;
 };
-export default App;
+
+export default DemoLiquid;
 ```
 
-## 百分比展示
+### 水波图
 
-<a href="https://g2plot.antv.vision/zh/examples/liquid/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot.gitee.io/zh/examples/liquid/basic/API" target="_blank">配置</a>
 
 ```tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Liquid } from '@ant-design/charts';
 
-const App: React.FC = () => {
+const DemoLiquid: React.FC = () => {
   const config = {
     title: {
       visible: true,
@@ -48,11 +52,10 @@ const App: React.FC = () => {
     min: 0,
     max: 10000,
     value: 5639,
-    statistic: {
-      formatter: (value) => ((100 * value) / 10000).toFixed(1) + '%',
-    },
+    statistic: { formatter: (value) => ((100 * value) / 10000).toFixed(1) + '%' },
   };
   return <Liquid {...config} />;
 };
-export default App;
+
+export default DemoLiquid;
 ```

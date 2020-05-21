@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
-const { chartOrder, filterTitle } = require('./constant');
+const { chartNames, filterTitle } = require('./constants');
 const { toHump, upperCase, updateG2plot } = require('./util.js');
 
 const fp = path.resolve('../', 'G2plot/examples');
@@ -62,7 +62,7 @@ const scanFiles = (foldPath, dir) => {
         const obj = JSON.parse(file);
         const fileInfo = dir.split('.');
         const chart = upperCase(toHump(fileInfo[0]));
-        const order = chartOrder.findIndex((item) => item === chart);
+        const order = Object.keys(chartNames).findIndex((item) => item === chart);
         let chartName = obj.demos[0].title.zh;
         fileInfo.splice(fileInfo.length - 1, 1);
         obj.chart = chart;

@@ -1,121 +1,63 @@
 ---
 title: 雷达图
+order: 21
 ---
 
 # 雷达图
 
-## 基本用法
+## Radar
 
-<a href="https://g2plot.antv.vision/zh/examples/radar/basic/API" target="_blank">配置</a>
+### 基础雷达图
+
+<a href="https://antv-g2plot.gitee.io/zh/examples/radar/basic/API" target="_blank">配置</a>
 
 ```tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Radar } from '@ant-design/charts';
 
-const App: React.FC = () => {
+const DemoRadar: React.FC = () => {
   const data = [
     {
       item: 'Design',
-      user: 'a',
       score: 70,
     },
     {
-      item: 'Design',
-      user: 'b',
-      score: 30,
-    },
-    {
       item: 'Development',
-      user: 'a',
-      score: 60,
-    },
-    {
-      item: 'Development',
-      user: 'b',
-      score: 70,
-    },
-    {
-      item: 'Marketing',
-      user: 'a',
       score: 60,
     },
     {
       item: 'Marketing',
-      user: 'b',
-      score: 50,
-    },
-    {
-      item: 'Users',
-      user: 'a',
-      score: 40,
-    },
-    {
-      item: 'Users',
-      user: 'b',
-      score: 50,
-    },
-    {
-      item: 'Test',
-      user: 'a',
       score: 60,
     },
     {
-      item: 'Test',
-      user: 'b',
-      score: 70,
-    },
-    {
-      item: 'Language',
-      user: 'a',
-      score: 70,
-    },
-    {
-      item: 'Language',
-      user: 'b',
-      score: 50,
-    },
-    {
-      item: 'nology',
-      user: 'a',
-      score: 50,
-    },
-    {
-      item: 'nology',
-      user: 'b',
+      item: 'Users',
       score: 40,
     },
     {
+      item: 'Test',
+      score: 60,
+    },
+    {
+      item: 'Language',
+      score: 70,
+    },
+    {
+      item: 'Technology',
+      score: 50,
+    },
+    {
       item: 'Support',
-      user: 'a',
       score: 30,
     },
     {
-      item: 'Support',
-      user: 'b',
-      score: 40,
-    },
-    {
       item: 'Sales',
-      user: 'a',
       score: 60,
     },
     {
-      item: 'Sales',
-      user: 'b',
-      score: 40,
-    },
-    {
       item: 'UX',
-      user: 'a',
       score: 50,
-    },
-    {
-      item: 'UX',
-      user: 'b',
-      score: 60,
     },
   ];
-
   const config = {
     title: {
       visible: true,
@@ -124,25 +66,29 @@ const App: React.FC = () => {
     data,
     angleField: 'item',
     radiusField: 'score',
-    seriesField: 'user',
-    line: {
-      visible: true,
+    radiusAxis: {
+      grid: {
+        alternateColor: ['rgba(0, 0, 0, 0.04)', null],
+      },
     },
+    area: { visible: false },
+    point: { visible: true },
   };
   return <Radar {...config} />;
 };
-export default App;
+
+export default DemoRadar;
 ```
 
-## 多组雷达图
+### 多组雷达图
 
-<a href="https://g2plot.antv.vision/zh/examples/radar/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot.gitee.io/zh/examples/radar/basic/API" target="_blank">配置</a>
 
 ```tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Radar } from '@ant-design/charts';
 
-const App: React.FC = () => {
+const DemoRadar: React.FC = () => {
   const data = [
     {
       item: 'Design',
@@ -245,7 +191,6 @@ const App: React.FC = () => {
       score: 60,
     },
   ];
-
   const config = {
     title: {
       visible: true,
@@ -255,16 +200,8 @@ const App: React.FC = () => {
     angleField: 'item',
     radiusField: 'score',
     seriesField: 'user',
-    radiusAxis: {
-      grid: {
-        line: {
-          type: 'line',
-        },
-      },
-    },
-    line: {
-      visible: true,
-    },
+    radiusAxis: { grid: { line: { type: 'line' } } },
+    line: { visible: true },
     point: {
       visible: true,
       shape: 'circle',
@@ -276,5 +213,6 @@ const App: React.FC = () => {
   };
   return <Radar {...config} />;
 };
-export default App;
+
+export default DemoRadar;
 ```

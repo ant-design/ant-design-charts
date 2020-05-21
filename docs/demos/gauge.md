@@ -1,18 +1,76 @@
 ---
 title: 仪表盘
+order: 34
 ---
 
 # 仪表盘
 
-## 基本用法
+## Gauge
 
-<a href="https://g2plot.antv.vision/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+### 仪表盘个性化配置
+
+<a href="https://antv-g2plot.gitee.io/zh/examples/gauge/gauge/API" target="_blank">配置</a>
 
 ```tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Gauge } from '@ant-design/charts';
 
-const App: React.FC = () => {
+const DemoGauge: React.FC = () => {
+  const config = {
+    title: {
+      visible: true,
+      text: '仪表盘个性化配置',
+    },
+    width: 400,
+    height: 400,
+    value: 75,
+    min: 0,
+    max: 100,
+    range: [0, 75],
+    color: ['l(0) 0:#5d7cef 1:#e35767'],
+    axis: {
+      offset: -15,
+      tickLine: {
+        visible: true,
+        length: 10,
+      },
+      label: { visible: false },
+    },
+    pivot: {
+      visible: true,
+      thickness: 10,
+      pointer: {
+        visible: true,
+        style: { fill: '#e25869' },
+      },
+      pin: {
+        visible: true,
+        style: { fill: '#e8e6ea' },
+      },
+    },
+    statistic: {
+      visible: true,
+      position: ['50%', '100%'],
+      text: '26/48',
+      color: '#2e3033',
+      size: 40,
+    },
+  };
+  return <Gauge {...config} />;
+};
+
+export default DemoGauge;
+```
+
+### 仪表盘
+
+<a href="https://antv-g2plot.gitee.io/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Gauge } from '@ant-design/charts';
+
+const DemoGauge: React.FC = () => {
   const config = {
     title: {
       visible: true,
@@ -34,18 +92,49 @@ const App: React.FC = () => {
   return <Gauge {...config} />;
 };
 
-export default App;
+export default DemoGauge;
 ```
 
-## 刻度仪表盘
+### 扇形仪表盘
 
-<a href="https://g2plot.antv.vision/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+<a href="https://antv-g2plot.gitee.io/zh/examples/gauge/gauge/API" target="_blank">配置</a>
 
 ```tsx
-import React from 'react';
-import { MeterGauge } from '@ant-design/charts';
+import React, { useState, useEffect } from 'react';
+import { Gauge } from '@ant-design/charts';
 
-const App: React.FC = () => {
+const DemoGauge: React.FC = () => {
+  const config = {
+    title: {
+      visible: true,
+      text: '扇形仪表盘',
+    },
+    width: 400,
+    height: 400,
+    value: 34,
+    min: 0,
+    max: 100,
+    range: [0, 70],
+    format: (v) => {
+      return v + '%';
+    },
+    color: ['l(0) 0:#b0d0ff 1:#5f92f9'],
+  };
+  return <Gauge {...config} />;
+};
+
+export default DemoGauge;
+```
+
+### 刻度仪表盘
+
+<a href="https://antv-g2plot.gitee.io/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Gauge } from '@ant-design/charts';
+
+const DemoGauge: React.FC = () => {
   const config = {
     title: {
       visible: true,
@@ -64,40 +153,8 @@ const App: React.FC = () => {
     },
     color: ['#39B8FF', '#52619B', '#43E089', '#C0EDF3'],
   };
-  return <MeterGauge {...config} />;
+  return <Gauge {...config} />;
 };
 
-export default App;
-```
-
-## 扇形仪表盘
-
-<a href="https://g2plot.antv.vision/zh/examples/gauge/gauge/API" target="_blank">配置</a>
-
-```tsx
-import React from 'react';
-import { FanGauge } from '@ant-design/charts';
-
-const App: React.FC = () => {
-  const config = {
-    title: {
-      visible: true,
-      text: '扇形仪表盘',
-    },
-    // style: 'fan',
-    width: 400,
-    height: 400,
-    value: 34,
-    min: 0,
-    max: 100,
-    range: [0, 70],
-    format: (v) => {
-      return v + '%';
-    },
-    color: ['l(0) 0:#b0d0ff 1:#5f92f9'],
-  };
-  return <FanGauge {...config} />;
-};
-
-export default App;
+export default DemoGauge;
 ```

@@ -1,12 +1,13 @@
 ---
 title: 瀑布图
+order: 2
 ---
 
 # 瀑布图
 
 ## 每月收支情况（瀑布图）
 
-<a href="https://g2plot.antv.vision/zh/examples/waterfall/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot.gitee.io/zh/examples/waterfall/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
