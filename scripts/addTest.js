@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const arg = process.argv.splice(2);
-const { filterFileFolder } = require('./constant.js');
+const { filterFileFolder } = require('./constants.js');
 const { lowerCase } = require('./util.js');
 
 // 扫描路径

@@ -1,12 +1,13 @@
 ---
 title: 迷你图表
+order: 2
 ---
 
 # 迷你折线图
 
 ## 基本用法
 
-<a href="https://g2plot.antv.vision/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot.gitee.io/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -47,7 +48,7 @@ export default App;
 
 ## 迷你进度条
 
-<a href="https://g2plot.antv.vision/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot.gitee.io/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -67,7 +68,7 @@ export default App;
 
 ## 迷你柱状图
 
-<a href="https://g2plot.antv.vision/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot.gitee.io/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -108,7 +109,7 @@ export default App;
 
 ## 迷你面积图
 
-<a href="https://g2plot.antv.vision/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot.gitee.io/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';
@@ -151,7 +152,7 @@ export default App;
 
 ## 迷你环形进度条
 
-<a href="https://g2plot.antv.vision/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot.gitee.io/zh/examples/sparkline/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';

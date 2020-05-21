@@ -1,12 +1,15 @@
 ---
 title: 日历图
+order: 42
 ---
 
 # 日历图
 
-## 基本用法
+## Calendar
 
-<a href="https://g2plot.antv.vision/zh/examples/calendar/basic/API" target="_blank">配置</a>
+### 月份
+
+<a href="https://antv-g2plot.gitee.io/zh/examples/calendar/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -14,20 +17,17 @@ import { Calendar } from '@ant-design/charts';
 
 const DemoCalendar: React.FC = () => {
   const [data, setData] = useState([]);
-
   useEffect(() => {
     asyncFetch();
   }, []);
-  const ref = React.createRef();
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/dcffd1f8-265b-4bda-aab1-4ef5c32708b1.json')
+    fetch('https://gw.alipayobjects.com/os/antfincdn/vIirZPDIu%26/contributions.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
-
   const config = {
     title: {
       visible: true,
@@ -45,19 +45,11 @@ const DemoCalendar: React.FC = () => {
     dateRange: ['2017-05-01', '2017-10-31'],
     colors: '#BAE7FF-#1890FF-#0050B3',
     padding: 'auto',
-    xAxis: {
-      title: {
-        text: '月份',
-      },
-    },
-    yAxis: {
-      title: null,
-    },
-    label: {
-      visible: true,
-    },
+    xAxis: { title: { text: '月份' } },
+    yAxis: { title: null },
+    label: { visible: true },
   };
-  return <Calendar {...config} chartRef={ref} />;
+  return <Calendar {...config} />;
 };
 
 export default DemoCalendar;

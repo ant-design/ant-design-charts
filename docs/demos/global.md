@@ -6,6 +6,7 @@ nav:
   title: 图表概览
 toc: content
 ---
+
 ## 多折线图
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
@@ -664,28 +665,131 @@ toc: content
 
 </div>
 
-## 配置坐标轴tick数量
+## 迷你柱 x 迷你折线 x 环形进度条
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
-  <a href="/demos/general#配置坐标轴tick数量" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*UUVRRqtbUjIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">配置坐标轴tick数量</p>
+  <a href="/demos/sparkline#迷你柱 x 迷你折线 x 环形进度条" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*mUOPSoV8TGUAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">迷你柱 x 迷你折线 x 环形进度条</p>
   </a>
 
-  <a href="/demos/general#配置坐标轴最大值最小值" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*shoeSZEOuJUAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">配置坐标轴最大值最小值</p>
+  <a href="/demos/sparkline#迷你面积图 x 进度条" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*nNIERqBGqfIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">迷你面积图 x 进度条</p>
   </a>
 
-  <a href="/demos/general#配置坐标轴标题" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GdlOSafNGWwAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">配置坐标轴标题</p>
+</div>
+
+## 柱+折线混合图表
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  
+  <a href="/demos/combo#堆叠柱+折线混合图表" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*S7V_SbjUSwsAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">堆叠柱+折线混合图表</p>
   </a>
 
-  <a href="/demos/general#配置坐标轴样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*XrBkRLeB4i0AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">配置坐标轴样式</p>
+  <a href="/demos/combo#堆叠柱+折线混合图表 - 多折线" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*El_nTpXUXHMAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">堆叠柱+折线混合图表 - 多折线</p>
+  </a>
+
+  <a href="/demos/combo#分组柱+折线混合图表" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*p8vjTLdBwVMAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">分组柱+折线混合图表</p>
+  </a>
+
+  <a href="/demos/combo#分组柱+折线混合图表 - 多折线" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RdF2Q6tngWYAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">分组柱+折线混合图表 - 多折线</p>
+  </a>
+
+  <a href="/demos/combo#双折线混合图表" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Omr4SK6froAAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">双折线混合图表</p>
+  </a>
+
+  <a href="/demos/combo#双折线图 - 自定义折线样式" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*kAgfTZPPjAsAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">双折线图 - 自定义折线样式</p>
+  </a>
+
+  <a href="/demos/combo#双折线图 - 统一双折线度量" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BnX8SJQXLc0AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">双折线图 - 统一双折线度量</p>
+  </a>
+
+  <a href="/demos/combo#柱线混合图表" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OjMdQamxTvsAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">柱线混合图表</p>
+  </a>
+
+  <a href="/demos/combo#柱线混合图表 -  自定义图形样式" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*e9DmR451GDwAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">柱线混合图表 -  自定义图形样式</p>
+  </a>
+
+  <a href="/demos/combo#柱线混合图表 - 关闭双Y轴颜色映射" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*L_26T6t2FXAAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">柱线混合图表 - 关闭双Y轴颜色映射</p>
+  </a>
+
+  <a href="/demos/combo#柱线混合图表 - 显示多折线" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ldsOR4yQZnAAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">柱线混合图表 - 显示多折线</p>
+  </a>
+
+</div>
+
+## 图表联动
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  
+  <a href="/demos/advanced#图表联动" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gd00QaD9110AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">图表联动</p>
+  </a>
+
+  <a href="/demos/advanced#响应式图表-坐标轴" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*6t9WQ7QgmjIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">响应式图表-坐标轴</p>
+  </a>
+
+  <a href="/demos/advanced#响应式图表-图形标签" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*nSJuTLRAPAUAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">响应式图表-图形标签</p>
+  </a>
+
+</div>
+
+## 统计值辅助线
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  
+  <a href="/demos/general#统计值辅助线" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*LIhaRqo-6M4AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">统计值辅助线</p>
+  </a>
+
+  <a href="/demos/general#自定义辅助线" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*N-jHTqiwSD4AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">自定义辅助线</p>
+  </a>
+
+  <a href="/demos/general#辅助线样式" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*-pobSIGwf_EAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">辅助线样式</p>
+  </a>
+
+  <a href="/demos/general#图表标题及描述" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ybpvQo7IFWIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">图表标题及描述</p>
+  </a>
+
+  <a href="/demos/general#图表标题及描述样式" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xqb1QKW8ivgAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">图表标题及描述样式</p>
   </a>
 
   <a href="/demos/general#tooltip内展示图表" style="display: block;margin: 8px">
@@ -773,127 +877,24 @@ toc: content
     <p style="text-align: center; color: #293c55">图形标签文本偏移量</p>
   </a>
 
-  <a href="/demos/general#统计值辅助线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*LIhaRqo-6M4AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">统计值辅助线</p>
+  <a href="/demos/general#配置坐标轴tick数量" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*UUVRRqtbUjIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">配置坐标轴tick数量</p>
   </a>
 
-  <a href="/demos/general#自定义辅助线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*N-jHTqiwSD4AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">自定义辅助线</p>
+  <a href="/demos/general#配置坐标轴最大值最小值" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*shoeSZEOuJUAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">配置坐标轴最大值最小值</p>
   </a>
 
-  <a href="/demos/general#辅助线样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*-pobSIGwf_EAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">辅助线样式</p>
+  <a href="/demos/general#配置坐标轴标题" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GdlOSafNGWwAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">配置坐标轴标题</p>
   </a>
 
-  <a href="/demos/general#图表标题及描述" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ybpvQo7IFWIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">图表标题及描述</p>
-  </a>
-
-  <a href="/demos/general#图表标题及描述样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xqb1QKW8ivgAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">图表标题及描述样式</p>
-  </a>
-
-</div>
-
-## 响应式图表-坐标轴
-
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-  
-  <a href="/demos/advanced#响应式图表-坐标轴" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*6t9WQ7QgmjIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">响应式图表-坐标轴</p>
-  </a>
-
-  <a href="/demos/advanced#响应式图表-图形标签" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*nSJuTLRAPAUAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">响应式图表-图形标签</p>
-  </a>
-
-  <a href="/demos/advanced#图表联动" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gd00QaD9110AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">图表联动</p>
-  </a>
-
-</div>
-
-## 柱+折线混合图表
-
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-  
-  <a href="/demos/combo#堆叠柱+折线混合图表" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*S7V_SbjUSwsAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠柱+折线混合图表</p>
-  </a>
-
-  <a href="/demos/combo#堆叠柱+折线混合图表 - 多折线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*El_nTpXUXHMAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠柱+折线混合图表 - 多折线</p>
-  </a>
-
-  <a href="/demos/combo#分组柱+折线混合图表" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*p8vjTLdBwVMAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组柱+折线混合图表</p>
-  </a>
-
-  <a href="/demos/combo#分组柱+折线混合图表 - 多折线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RdF2Q6tngWYAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组柱+折线混合图表 - 多折线</p>
-  </a>
-
-  <a href="/demos/combo#双折线混合图表" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Omr4SK6froAAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">双折线混合图表</p>
-  </a>
-
-  <a href="/demos/combo#双折线图 - 自定义折线样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*kAgfTZPPjAsAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">双折线图 - 自定义折线样式</p>
-  </a>
-
-  <a href="/demos/combo#双折线图 - 统一双折线度量" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BnX8SJQXLc0AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">双折线图 - 统一双折线度量</p>
-  </a>
-
-  <a href="/demos/combo#柱线混合图表" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OjMdQamxTvsAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">柱线混合图表</p>
-  </a>
-
-  <a href="/demos/combo#柱线混合图表 -  自定义图形样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*e9DmR451GDwAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">柱线混合图表 -  自定义图形样式</p>
-  </a>
-
-  <a href="/demos/combo#柱线混合图表 - 关闭双Y轴颜色映射" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*L_26T6t2FXAAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">柱线混合图表 - 关闭双Y轴颜色映射</p>
-  </a>
-
-  <a href="/demos/combo#柱线混合图表 - 显示多折线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ldsOR4yQZnAAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">柱线混合图表 - 显示多折线</p>
-  </a>
-
-</div>
-
-## 迷你柱 x 迷你折线 x 环形进度条
-
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-  
-  <a href="/demos/sparkline#迷你柱 x 迷你折线 x 环形进度条" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*mUOPSoV8TGUAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">迷你柱 x 迷你折线 x 环形进度条</p>
-  </a>
-
-  <a href="/demos/sparkline#迷你面积图 x 进度条" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*nNIERqBGqfIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">迷你面积图 x 进度条</p>
+  <a href="/demos/general#配置坐标轴样式" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*XrBkRLeB4i0AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">配置坐标轴样式</p>
   </a>
 
 </div>

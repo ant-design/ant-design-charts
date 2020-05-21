@@ -1,48 +1,28 @@
 /**
  * 扫描指定目录下的所有demo文件，生成demo文档
- * eg: node scripts/demo.js Area
+ * eg: node scripts/singledemo.js Bar 条形图
  */
-
 const fs = require('fs');
-const shell = require('shelljs');
 const path = require('path');
 const ejs = require('ejs');
-const recast = require('recast');
-const {
-  identifier: id,
-  expressionStatement,
-  memberExpression,
-  assignmentExpression,
-  arrowFunctionExpression,
-} = recast.types.builders;
-const { chartOrder, filterTitle } = require('./constant');
+const { groupBy } = require('loadsh');
+const { chartOrder } = require('./constants');
 const { toHump, upperCase, lowerCase, toLine } = require('./util.js');
+const parseFile = require('./parse.js');
 
 const arg = process.argv.splice(2);
+if (!arg.length) {
+  console.log('请指定扫描目录，例如: "node scripts/singledemo.js Bar 条形图" ');
+  return;
+}
 const lowerCaseFileName = lowerCase(arg[0]);
 const toLineName = toLine(lowerCaseFileName);
 const fp = path.resolve('../', `G2plot/examples/${toLineName}`);
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateDemoPath = path.join(__dirname, '../template/doc/demo.ejs');
 const templateTitlePath = path.join(__dirname, '../template/doc/title.ejs');
-const filePath = `${DOC_PATH}/demos/${lowerCaseFileName}.md`;
+const filePath = `${DOC_PATH}/testDemos/${lowerCaseFileName}.md`;
 
-/**
- * 更新g2plot
- */
-const updateG2plot = () => {
-  return new Promise((resolve, reject) => {
-    try {
-      shell.exec('cd ~/publicWorkspaces/G2Plot && git checkout master && git pull');
-      console.log('updating g2plot...');
-      setTimeout(() => {
-        resolve('updated');
-      }, 0);
-    } catch (err) {
-      reject(err);
-    }
-  });
-};
 // 存储所有的meta文件
 let result = [];
 
@@ -50,10 +30,13 @@ let result = [];
  * 根据length排序
  */
 const sortAndCombineCharts = () => {
+  // 类聚
+  const group = groupBy(result, 'chartName');
   // 排序
-  result = result.sort((pre, next) => {
-    return pre.path.length - next.path.length;
+  const keys = Object.keys(group).sort((pre, next) => {
+    return pre.length - next.length;
   });
+  result = keys.map((key) => group[key]);
 };
 
 /**
@@ -99,7 +82,7 @@ const writeTitle = () => {
       ejs.renderFile(
         templateTitlePath,
         {
-          chartTitle: '面积图',
+          chartTitle: arg[1] || '无标题',
           order: chartOrder.length - order,
         }, // 渲染的数据key: 对应到了ejs中的index
         (err, data) => {
@@ -128,50 +111,41 @@ const writeTitle = () => {
  */
 const writeFile = async () => {
   await writeTitle();
-  const oneArr = result[0];
-  [oneArr].forEach((item) => {
-    const fileInfo = fs.readFileSync(item.path, 'utf-8');
-    const ast = recast.parse(fileInfo);
-    recast.run(function (ast, printSource) {
-      recast.visit(ast, {
-        visitExpressionStatement: function (_path) {
-          const node = _path.node;
-          printSource(node);
-          console.log(node);
-          this.traverse(_path);
+  console.log(result);
+  result.forEach((group) => {
+    fs.appendFileSync(filePath, `## ${group[0].chartName}\n`);
+    group.forEach((item) => {
+      const chartContent = parseFile(item.path);
+      // 生成文件
+      ejs.renderFile(
+        templateDemoPath,
+        {
+          chartName: item.chartName,
+          chartTitle: chartContent.title,
+          chartContent: chartContent.code,
+        }, // 渲染的数据key: 对应到了ejs中的index
+        (err, data) => {
+          if (err) {
+            console.log('模版文件读取失败： ', err);
+            return;
+          }
+          // 生成文件内容
+          fs.appendFileSync(filePath, data);
         },
-      });
+      );
     });
-    // 生成文件
-    ejs.renderFile(
-      templateDemoPath,
-      {
-        chartName: arg[0],
-        chartTitle: '面积图',
-        chartContent: recast.prettyPrint(ast, { tabWidth: 2 }).code,
-      }, // 渲染的数据key: 对应到了ejs中的index
-      (err, data) => {
-        if (err) {
-          console.log('模版文件读取失败： ', err);
-          return;
-        }
-        // 生成文件内容
-        fs.appendFileSync(filePath, data);
-      },
-    );
   });
   console.log(`${filePath} 生成完成`);
 };
 
 const start = async () => {
-  const update = await updateG2plot();
-  if (update === 'updated') {
-    scanFiles(fp);
-    sortAndCombineCharts();
-    writeFile();
-  } else {
-    console.log(update);
-  }
+  console.info('记得更新同级目录的G2plot噢');
+  console.info('文档扫描中....');
+  scanFiles(fp);
+  console.info('文档组合中....');
+  sortAndCombineCharts();
+  console.info('文档生成中....');
+  writeFile();
 };
 
 start();
