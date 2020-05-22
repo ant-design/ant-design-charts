@@ -2,7 +2,7 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   mode: 'site',
-  title: 'antd/charts',
+  title: 'Ant Design Charts',
   base: '/',
   publicPath: '/',
   exportStatic: {},
