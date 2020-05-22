@@ -8,7 +8,7 @@ nav:
 
 ### 简介
 
-[antd/charts](https://github.com/ant-design/ant-design-charts) 是 [G2plot](https://antv-g2plot.gitee.io/zh/examples/gallery)的 react 版本，基于 react、typescript 封装了所有的 g2plot 图表，继承了的 g2plot 的所有配置，对 react 技术栈的同学更加友好。
+[Ant Design Charts](https://github.com/ant-design/ant-design-charts) 是 [G2plot](https://antv-g2plot.gitee.io/zh/examples/gallery)的 react 版本，基于 react、typescript 封装了所有的 g2plot 图表，继承了的 g2plot 的所有配置，对 react 技术栈的同学更加友好。
 
 - 开箱即用：默认呈现高质量图表，将对开发体验及用户体验的研究沉淀入图表的默认配置项
 
@@ -26,7 +26,7 @@ nav:
 
 - g2plot 的所有图表，都有，新增的图表，几乎可以做到同步更新。
 
-- 你无需感知 g2plot 里面的一堆函数，例如 destroy()、changeData()、updateConfig()等，你只需要关心 data 和 config 即可，所有操作我们都在 antd/charts 层给你做掉，降低了学习成本。
+- 你无需感知 g2plot 里面的一堆函数，例如 destroy()、changeData()、updateConfig()等，你只需要关心 data 和 config 即可，所有操作我们都在 Ant Design Charts 层给你做掉，降低了学习成本。
 
 - 如果实在有不满足你需求的，我们可以给你返回 chart 实例，你可以直接操作。
 
