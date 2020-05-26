@@ -8,7 +8,7 @@ nav:
 
 ### 简介
 
-[Ant Design Charts](https://github.com/ant-design/ant-design-charts) 是 [G2plot](https://antv-g2plot.gitee.io/zh/examples/gallery) 的 React 版本，基于 react、typescript 封装了所有的 G2Plot 图表，继承了 G2Plot 的所有配置，对 React 技术栈的同学更加友好。
+[Ant Design Charts](https://github.com/ant-design/ant-design-charts) 是 [G2Plot](https://antv-g2plot.gitee.io/zh/examples/gallery) 的 React 版本，基于 react、typescript 封装了所有的 G2Plot 图表，继承了 G2Plot 的所有配置，对 React 技术栈的同学更加友好。
 
 - 开箱即用：默认呈现高质量图表，将对开发体验及用户体验的研究沉淀入图表的默认配置项
 
@@ -22,13 +22,13 @@ nav:
 
 ### 为什么？
 
-也许你会问，为什么我不直接使用 G2plot？<br />当然，你可以选择 G2plot ，因为我们就是基于 G2Plot 进行开发的，但如果你的技术栈是基于 React 的话，我们会有如下优点，不知道你是否会心动。
+也许你会问，为什么我不直接使用 G2Plot ？<br />当然，你可以选择 G2Plot ，因为我们就是基于 G2Plot 进行开发的，但如果你的技术栈是基于 React 的话，我们会有如下优点，不知道你是否会心动。
 
-- G2Plot 的所有图表，都有，新增的图表，几乎可以做到同步更新
+- G2Plot 的所有图表，都有，新增的图表，几乎可以做到同步更新。
 
-- 你无需感知 G2Plot 里面的一堆函数，例如 destroy()、changeData()、updateConfig()等，你只需要关心 data 和 config 即可，所有操作都在 Ant Design Charts 层做掉，降低了学习成本
+- 你无需感知 G2Plot 里面的一堆函数，例如 `destroy()`、`changeData()`、`updateConfig()` 等，你只需要关心 data 和 config 即可，所有操作都在 Ant Design Charts 做掉，降低了学习成本。
 
-- 如果实在有不满足你需求的，我们可以给你返回 chart 实例，你可以直接操作
+- 如果实在有不满足你需求的，我们可以给你返回 chart 实例，你可以直接操作。
 
 #### 获取 chart 实例
 

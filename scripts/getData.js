@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const fp = path.resolve('../', `G2plot/examples/data`);
+const fp = path.resolve('../', `G2Plot/examples/data`);
 
 // 存储所有的meta文件
 let result = [];

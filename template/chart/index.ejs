@@ -1,17 +1,17 @@
 import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
-import { <%= chartName %> as G2plot<%= chartName %>, <%= chartName %>Config as G2plotProps } from '@antv/g2plot';
+import { <%= chartName %> as G2Plot<%= chartName %>, <%= chartName %>Config as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
 export interface <%= chartName %>Config extends G2plotProps {
-  chartRef?: React.MutableRefObject<G2plot<%= chartName %> | undefined>;
+  chartRef?: React.MutableRefObject<G2Plot<%= chartName %> | undefined>;
   style?: React.CSSProperties;
   className?: string;
 }
 
 const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) => {
   const { chartRef, style = {}, className, ...rest } = props;
-  const { chart, container } = useChart<G2plot<%= chartName %>, <%= chartName %>Config>(G2plot<%= chartName %>, rest);
+  const { chart, container } = useChart<G2Plot<%= chartName %>, <%= chartName %>Config>(G2Plot<%= chartName %>, rest);
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
@@ -27,6 +27,6 @@ const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) =>
   );
 });
 
-<%= chartName %>Chart.defaultProps = G2plot<%= chartName %>.getDefaultOptions();
+<%= chartName %>Chart.defaultProps = G2Plot<%= chartName %>.getDefaultOptions();
 
 export default <%= chartName %>Chart;
