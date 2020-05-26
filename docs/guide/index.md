@@ -26,7 +26,7 @@ nav:
 
 - G2Plot 的所有图表，都有，新增的图表，几乎可以做到同步更新。
 
-- 你无需感知 G2Plot 里面的一堆函数，例如 `destroy()`、`changeData()`、`updateConfig()` 等，你只需要关心 data 和 config 即可，所有操作都在 Ant Design Charts 做掉，降低了学习成本。
+- 你无需感知 G2Plot 里面的一堆函数，例如 `destroy()`、`changeData()`、`updateConfig()` 等，你只需要关心 data 和 config 即可，所有操作都在 Ant Design Charts 封装，降低了学习成本。
 
 - 如果实在有不满足你需求的，我们可以给你返回 chart 实例，你可以直接操作。
 
