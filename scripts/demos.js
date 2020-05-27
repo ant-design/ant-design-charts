@@ -12,7 +12,7 @@ const { chartNames } = require('./constants');
 const { toHump, upperCase, lowerCase, toLine } = require('./util.js');
 const parseFile = require('./parse.js');
 
-const fp = path.resolve('../', `G2plot/examples`);
+const fp = path.resolve('../', `G2Plot/examples`);
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateDemoPath = path.join(__dirname, '../template/doc/demo.ejs');
 const templateTitlePath = path.join(__dirname, '../template/doc/title.ejs');

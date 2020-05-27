@@ -9,7 +9,7 @@ const ejs = require('ejs');
 const { chartNames, filterTitle } = require('./constants');
 const { toHump, upperCase, updateG2plot } = require('./util.js');
 
-const fp = path.resolve('../', 'G2plot/examples');
+const fp = path.resolve('../', 'G2Plot/examples');
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateGalleryPath = path.join(__dirname, '../template/doc/gallery.ejs');
 const templateNavPath = path.join(__dirname, '../template/doc/nav.ejs');

@@ -84,7 +84,7 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-最终结果：
+最终效果：
 
 ```tsx
 import React from 'react';

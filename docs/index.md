@@ -13,11 +13,11 @@ features:
     desc: React组件的方式使用图表，一个简单的配置就能呈现优雅、标准的图表
   - icon: https://gw.alipayobjects.com/zos/antfincdn/oyqsrPh0Kg/houyuan.png
     title: 后援强大
-    desc: AntV团队支持，基于G2plot实现，简单方便、专业可靠、无限可能。
+    desc: AntV团队支持，基于 G2Plot 实现，简单方便、专业可靠、无限可能
   - icon: https://gw.alipayobjects.com/zos/antfincdn/aKCFl7vDAB/tubiao.png
     title: 图表完善
-    desc: 支持全量的G2plot图表，几乎做到同步升级更新。
-footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by self
+    desc: 支持全量的 G2Plot 图表，几乎做到同步升级更新
+footer: Open-source MIT Licensed | Copyright © 2019-present
 ---
 
 ## 安装

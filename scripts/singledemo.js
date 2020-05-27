@@ -17,7 +17,7 @@ if (!arg.length) {
 }
 const lowerCaseFileName = lowerCase(arg[0]);
 const toLineName = toLine(lowerCaseFileName);
-const fp = path.resolve('../', `G2plot/examples/${toLineName}`);
+const fp = path.resolve('../', `G2Plot/examples/${toLineName}`);
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateDemoPath = path.join(__dirname, '../template/doc/demo.ejs');
 const templateTitlePath = path.join(__dirname, '../template/doc/title.ejs');
