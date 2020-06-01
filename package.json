@@ -41,7 +41,6 @@
     "@types/node": "^12.12.17",
     "@types/webpack-env": "^1.14.1",
     "@umijs/fabric": "^2.0.7",
-    "@umijs/plugin-analytics": "^0.2.2",
     "@umijs/preset-react": "^1.4.8",
     "@umijs/test": "^3.0.16",
     "dumi": "1.0.18",
