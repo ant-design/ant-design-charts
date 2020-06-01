@@ -15,5 +15,8 @@ export default defineConfig({
     },
     { title: 'GitHub', path: 'https://github.com/ant-design/ant-design-charts' },
   ],
+  analytics: {
+    ga: 'UA-72788897-12',
+  },
   // more config: https://d.umijs.org/config
 });
