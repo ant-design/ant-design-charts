@@ -52,7 +52,7 @@
     "esprima": "^4.0.1",
     "estraverse": "^5.1.0",
     "father-build": "^1.17.2",
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^3.0.0",
     "jest-canvas-mock": "^2.2.0",
     "loadsh": "^0.0.4",
     "np": "*",
