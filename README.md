@@ -143,9 +143,3 @@ $ npm run dev
 ## Contributors(5)
 
 Ordered by date of first contribution.
-
-- 福晋
-- 辟起 🍑
-- 愚道
-- 期贤 🙏
-- 绯一
