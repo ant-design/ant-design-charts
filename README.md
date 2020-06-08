@@ -139,7 +139,3 @@ $ npm install
 # 开发 library
 $ npm run dev
 ```
-
-## Contributors(5)
-
-Ordered by date of first contribution.
