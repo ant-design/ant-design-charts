@@ -3,7 +3,7 @@ import { Liquid as G2plotLiquid, LiquidConfig as G2plotProps } from '@antv/g2plo
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface LiquidConfig extends G2plotProps {
+export interface LiquidConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotLiquid | undefined>;
   style?: React.CSSProperties;
   className?: string;

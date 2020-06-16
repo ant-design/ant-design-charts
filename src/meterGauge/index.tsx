@@ -3,7 +3,7 @@ import { MeterGauge as G2plotMeterGauge, MeterGaugeConfig as G2plotProps } from 
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface MeterGaugeConfig extends G2plotProps {
+export interface MeterGaugeConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotMeterGauge | undefined>;
   style?: React.CSSProperties;
   className?: string;

@@ -3,7 +3,7 @@ import { Waterfall as G2plotWaterfall, WaterfallConfig as G2plotProps } from '@a
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface WaterfallConfig extends G2plotProps {
+export interface WaterfallConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotWaterfall | undefined>;
   style?: React.CSSProperties;
   className?: string;

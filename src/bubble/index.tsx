@@ -3,7 +3,7 @@ import { Bubble as G2plotBubble, BubbleConfig as G2plotProps } from '@antv/g2plo
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface BubbleConfig extends G2plotProps {
+export interface BubbleConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotBubble | undefined>;
   style?: React.CSSProperties;
   className?: string;

@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export const createNode = (children: React.ReactElement) => {
+const createNode = (children: React.ReactNode) => {
   const mountPoint = document.createElement('div');
-  ReactDOM.render(children, mountPoint);
+  mountPoint.className = 'g2-tooltip eva-charts-tootip';
+  ReactDOM.render(children as React.ReactElement, mountPoint);
   return mountPoint;
 };
+
+export default createNode;

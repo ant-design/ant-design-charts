@@ -3,7 +3,7 @@ import { Donut as G2plotDonut, DonutConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface DonutConfig extends G2plotProps {
+export interface DonutConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotDonut | undefined>;
   style?: React.CSSProperties;
   className?: string;

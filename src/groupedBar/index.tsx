@@ -3,7 +3,7 @@ import { GroupedBar as G2plotGroupedBar, GroupedBarConfig as G2plotProps } from 
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface GroupedBarConfig extends G2plotProps {
+export interface GroupedBarConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotGroupedBar | undefined>;
   style?: React.CSSProperties;
   className?: string;

@@ -3,7 +3,7 @@ import { RangeColumn as G2plotRangeColumn, RangeColumnConfig as G2plotProps } fr
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface RangeColumnConfig extends G2plotProps {
+export interface RangeColumnConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotRangeColumn | undefined>;
   style?: React.CSSProperties;
   className?: string;

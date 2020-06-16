@@ -3,7 +3,7 @@ import { Gauge as G2plotGauge, GaugeConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface GaugeConfig extends G2plotProps {
+export interface GaugeConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotGauge | undefined>;
   style?: React.CSSProperties;
   className?: string;

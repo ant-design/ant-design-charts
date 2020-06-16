@@ -3,7 +3,7 @@ import { Heatmap as G2plotHeatmap, HeatmapConfig as G2plotProps } from '@antv/g2
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface HeatmapConfig extends G2plotProps {
+export interface HeatmapConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotHeatmap | undefined>;
   style?: React.CSSProperties;
   className?: string;

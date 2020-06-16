@@ -6,7 +6,7 @@ import {
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface RingProgressConfig extends G2plotProps {
+export interface RingProgressConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotRingProgress | undefined>;
   style?: React.CSSProperties;
   className?: string;

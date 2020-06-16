@@ -3,7 +3,7 @@ import { StackedBar as G2plotStackedBar, StackedBarConfig as G2plotProps } from 
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface StackedBarConfig extends G2plotProps {
+export interface StackedBarConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotStackedBar | undefined>;
   style?: React.CSSProperties;
   className?: string;

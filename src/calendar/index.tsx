@@ -3,7 +3,7 @@ import { Calendar as G2plotCalendar, CalendarConfig as G2plotProps } from '@antv
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface CalendarConfig extends G2plotProps {
+export interface CalendarConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotCalendar | undefined>;
   style?: React.CSSProperties;
   className?: string;

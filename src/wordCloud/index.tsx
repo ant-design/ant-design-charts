@@ -3,7 +3,7 @@ import { WordCloud as G2plotWordCloud, WordCloudConfig as G2plotProps } from '@a
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface WordCloudConfig extends G2plotProps {
+export interface WordCloudConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotWordCloud | undefined>;
   style?: React.CSSProperties;
   className?: string;

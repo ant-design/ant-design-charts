@@ -3,7 +3,7 @@ import { TinyColumn as G2plotTinyColumn, TinyColumnConfig as G2plotProps } from 
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface TinyColumnConfig extends G2plotProps {
+export interface TinyColumnConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotTinyColumn | undefined>;
   style?: React.CSSProperties;
   className?: string;

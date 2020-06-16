@@ -3,7 +3,7 @@ import { Funnel as G2plotFunnel, FunnelConfig as G2plotProps } from '@antv/g2plo
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface FunnelConfig extends G2plotProps {
+export interface FunnelConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotFunnel | undefined>;
   style?: React.CSSProperties;
   className?: string;

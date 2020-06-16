@@ -3,7 +3,7 @@ import { GroupedRose as G2plotGroupedRose, GroupedRoseConfig as G2plotProps } fr
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface GroupedRoseConfig extends G2plotProps {
+export interface GroupedRoseConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotGroupedRose | undefined>;
   style?: React.CSSProperties;
   className?: string;

@@ -3,7 +3,7 @@ import { Progress as G2plotProgress, ProgressConfig as G2plotProps } from '@antv
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface ProgressConfig extends G2plotProps {
+export interface ProgressConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotProgress | undefined>;
   style?: React.CSSProperties;
   className?: string;

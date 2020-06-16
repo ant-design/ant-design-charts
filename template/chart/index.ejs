@@ -3,7 +3,7 @@ import { <%= chartName %> as G2Plot<%= chartName %>, <%= chartName %>Config as G
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface <%= chartName %>Config extends G2plotProps {
+export interface <%= chartName %>Config extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2Plot<%= chartName %> | undefined>;
   style?: React.CSSProperties;
   className?: string;

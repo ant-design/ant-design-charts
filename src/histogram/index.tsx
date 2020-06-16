@@ -3,7 +3,7 @@ import { Histogram as G2plotHistogram, HistogramConfig as G2plotProps } from '@a
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface HistogramConfig extends G2plotProps {
+export interface HistogramConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotHistogram | undefined>;
   style?: React.CSSProperties;
   className?: string;
