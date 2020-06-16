@@ -154,11 +154,12 @@ Direct [G2Plot](https://antv-g2plot.gitee.io/zh)
 
 Extra props:
 
-| Property  | Description     | Type                                        | defaultValue |
-| --------- | --------------- | ------------------------------------------- | ------------ |
-| chartRef  | chart ref       | (React.MutableRefObject&lt;Line&gt;)=> void | -            |
-| className | container class | string                                      | -            |
-| style     | container style | React.CSSProperties                         | -            |
+| Property  | Description       | Type                                        | defaultValue |
+| --------- | ----------------- | ------------------------------------------- | ------------ |
+| chartRef  | chart ref         | (React.MutableRefObject&lt;Line&gt;)=> void | -            |
+| className | container class   | string                                      | -            |
+| style     | container style   | React.CSSProperties                         | -            |
+| memoData  | controll rerender | string \| number \| any []                  | -            |
 
 [More usage](/guide#为什么？)
 
