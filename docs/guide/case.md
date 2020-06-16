@@ -78,7 +78,7 @@ const DemoLine: React.FC = () => {
   };
   const ref = useRef();
 
-  // 下载图片
+  // 导出图片
   const downloadImage = () => {
     ref.current?.downloadImage();
   };
@@ -91,10 +91,10 @@ const DemoLine: React.FC = () => {
   return (
     <div>
       <button type="button" onClick={downloadImage} style={{ marginRight: 24 }}>
-        下载图片
+        导出图片
       </button>
       <button type="button" onClick={toDataURL}>
-        获取图片信息
+        获取图表信息
       </button>
       <Line {...config} chartRef={ref} />
     </div>
