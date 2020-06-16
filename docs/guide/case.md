@@ -317,7 +317,7 @@ export default DemoLine;
 
 ### 事件绑定
 
-请点打开控制台击图表区域。
+请打开控制台点击图表区域。
 
 ```tsx
 import React, { useState, useEffect, useRef } from 'react';
