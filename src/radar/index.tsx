@@ -3,7 +3,7 @@ import { Radar as G2plotRadar, RadarConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface RadarConfig extends G2plotProps {
+export interface RadarConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotRadar | undefined>;
   style?: React.CSSProperties;
   className?: string;

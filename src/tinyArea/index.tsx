@@ -3,7 +3,7 @@ import { TinyArea as G2plotTinyArea, TinyAreaConfig as G2plotProps } from '@antv
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface TinyAreaConfig extends G2plotProps {
+export interface TinyAreaConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotTinyArea | undefined>;
   style?: React.CSSProperties;
   className?: string;

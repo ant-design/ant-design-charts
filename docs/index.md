@@ -53,6 +53,16 @@ const Page: React.FC = () => {
     },
     xField: 'year',
     yField: 'value',
+    point: {
+      visible: true,
+      size: 5,
+      shape: 'diamond',
+      style: {
+        fill: 'white',
+        stroke: '#2593fc',
+        lineWidth: 2,
+      },
+    },
   };
   return <Line {...config} />;
 };
@@ -86,6 +96,16 @@ const Page: React.FC = () => {
     },
     xField: 'year',
     yField: 'value',
+    point: {
+      visible: true,
+      size: 5,
+      shape: 'diamond',
+      style: {
+        fill: 'white',
+        stroke: '#2593fc',
+        lineWidth: 2,
+      },
+    },
   };
   return <Line {...config} />;
 };

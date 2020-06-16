@@ -3,7 +3,7 @@ import { Treemap as G2plotTreemap, TreemapConfig as G2plotProps } from '@antv/g2
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface TreemapConfig extends G2plotProps {
+export interface TreemapConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotTreemap | undefined>;
   style?: React.CSSProperties;
   className?: string;

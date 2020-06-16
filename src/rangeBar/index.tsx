@@ -3,7 +3,7 @@ import { RangeBar as G2plotRangeBar, RangeBarConfig as G2plotProps } from '@antv
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface RangeBarConfig extends G2plotProps {
+export interface RangeBarConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotRangeBar | undefined>;
   style?: React.CSSProperties;
   className?: string;

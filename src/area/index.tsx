@@ -3,7 +3,7 @@ import { Area as G2plotArea, AreaConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface AreaConfig extends G2plotProps {
+export interface AreaConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotArea | undefined>;
   style?: React.CSSProperties;
   className?: string;

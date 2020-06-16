@@ -3,10 +3,11 @@ import { Line as G2plotLine, LineConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface LineConfig extends G2plotProps {
+export interface LineConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotLine | undefined>;
   style?: React.CSSProperties;
   className?: string;
+  memoData?: string | number;
 }
 
 const LineChart = forwardRef((props: LineConfig, ref) => {

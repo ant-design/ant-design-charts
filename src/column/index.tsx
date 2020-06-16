@@ -3,7 +3,7 @@ import { Column as G2plotColumn, ColumnConfig as G2plotProps } from '@antv/g2plo
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface ColumnConfig extends G2plotProps {
+export interface ColumnConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotColumn | undefined>;
   style?: React.CSSProperties;
   className?: string;

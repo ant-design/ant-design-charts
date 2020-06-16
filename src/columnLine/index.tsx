@@ -3,7 +3,7 @@ import { ColumnLine as G2plotColumnLine, ColumnLineConfig as G2plotProps } from 
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface ColumnLineConfig extends G2plotProps {
+export interface ColumnLineConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotColumnLine | undefined>;
   style?: React.CSSProperties;
   className?: string;

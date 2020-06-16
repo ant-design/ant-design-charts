@@ -3,7 +3,7 @@ import { Bullet as G2plotBullet, BulletConfig as G2plotProps } from '@antv/g2plo
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface BulletConfig extends G2plotProps {
+export interface BulletConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotBullet | undefined>;
   style?: React.CSSProperties;
   className?: string;

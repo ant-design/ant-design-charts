@@ -3,7 +3,7 @@ import { Rose as G2plotRose, RoseConfig as G2plotProps } from '@antv/g2plot';
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface RoseConfig extends G2plotProps {
+export interface RoseConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotRose | undefined>;
   style?: React.CSSProperties;
   className?: string;

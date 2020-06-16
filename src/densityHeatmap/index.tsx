@@ -6,7 +6,7 @@ import {
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface DensityHeatmapConfig extends G2plotProps {
+export interface DensityHeatmapConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotDensityHeatmap | undefined>;
   style?: React.CSSProperties;
   className?: string;

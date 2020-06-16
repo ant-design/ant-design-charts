@@ -27,10 +27,22 @@ $ npm install @ant-design/charts
 ### ClassComponent
 
 ```tsx | pure
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { Line } from '@ant-design/charts';
 
 class Page extends Component {
+  ref = createRef();
+
+  // DownloadImage
+  downloadImage = () => {
+    this.ref.current?.downloadImage();
+  };
+
+  // Get data base64
+  toDataURL = () => {
+    console.log(this.ref.current?.toDataURL());
+  };
+
   render() {
     const data = [
       { year: '1991', value: 3 },
@@ -53,7 +65,18 @@ class Page extends Component {
       xField: 'year',
       yField: 'value',
     };
-    return <Line {...config} />;
+
+    return (
+      <div>
+        <button type="button" onClick={this.downloadImage} style={{ marginRight: 24 }}>
+          下载图片
+        </button>
+        <button type="button" onClick={this.toDataURL}>
+          获取图片信息
+        </button>
+        <Line {...config} chartRef={this.ref} />
+      </div>
+    );
   }
 }
 export default Page;
@@ -62,7 +85,7 @@ export default Page;
 ### FunctionComponent
 
 ```tsx | pure
-import React from 'react';
+import React, { useRef } from 'react';
 import { Line } from '@ant-design/charts';
 
 const Page: React.FC = () => {
@@ -87,7 +110,30 @@ const Page: React.FC = () => {
     xField: 'year',
     yField: 'value',
   };
-  return <Line {...config} />;
+
+  const ref = useRef();
+
+  // 导出图片
+  const downloadImage = () => {
+    ref.current?.downloadImage();
+  };
+
+  // 获取图表 base64 数据
+  const toDataURL = () => {
+    console.log(ref.current?.toDataURL());
+  };
+
+  return (
+    <div>
+      <button type="button" onClick={downloadImage} style={{ marginRight: 24 }}>
+        导出图片
+      </button>
+      <button type="button" onClick={toDataURL}>
+        获取图表信息
+      </button>
+      <Line {...config} chartRef={ref} />
+    </div>
+  );
 };
 export default Page;
 ```
@@ -108,11 +154,14 @@ Direct [G2Plot](https://antv-g2plot.gitee.io/zh)
 
 Extra props:
 
-| Property  | Description     | Type                                        | defaultValue |
-| --------- | --------------- | ------------------------------------------- | ------------ |
-| chartRef  | chart ref       | (React.MutableRefObject&lt;Line&gt;)=> void | -            |
-| className | container class | string                                      | -            |
-| style     | container style | React.CSSProperties                         | -            |
+| Property  | Description       | Type                                        | defaultValue |
+| --------- | ----------------- | ------------------------------------------- | ------------ |
+| chartRef  | chart ref         | (React.MutableRefObject&lt;Line&gt;)=> void | -            |
+| className | container class   | string                                      | -            |
+| style     | container style   | React.CSSProperties                         | -            |
+| memoData  | controll rerender | string \| number \| any []                  | -            |
+
+[More usage](/guide/case)
 
 ### [FAQ](https://github.com/ant-design/ant-design-charts/issues)
 

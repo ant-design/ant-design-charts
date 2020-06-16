@@ -3,7 +3,7 @@ import { StepLine as G2plotStepLine, StepLineConfig as G2plotProps } from '@antv
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface StepLineConfig extends G2plotProps {
+export interface StepLineConfig extends Omit<G2plotProps, 'tooltip'> {
   chartRef?: React.MutableRefObject<G2plotStepLine | undefined>;
   style?: React.CSSProperties;
   className?: string;
