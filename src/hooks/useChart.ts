@@ -19,6 +19,8 @@ export interface Tooltip extends Omit<G2PlotTooltip, 'custom'> {
 export interface PlotConfig extends G2PlotPlotConfig {
   memoData?: string | number | any[];
   tooltip?: Tooltip;
+  data?: any[];
+  onlyChangeData?: boolean;
 }
 
 export interface Base extends G2PlotBase {
@@ -72,8 +74,12 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
 
   useEffect(() => {
     if (chart.current) {
-      chart.current.updateConfig(config);
-      chart.current.render();
+      if (config.onlyChangeData) {
+        chart.current.changeData(config?.data || []);
+      } else {
+        chart.current.updateConfig(config);
+        chart.current.render();
+      }
     }
   }, [config?.memoData ? config.memoData : JSON.stringify(config)]);
 
