@@ -19,7 +19,7 @@ export interface Tooltip extends Omit<G2PlotTooltip, 'custom'> {
 export interface PlotConfig extends G2PlotPlotConfig {
   memoData?: string | number | any[];
   tooltip?: Tooltip;
-  data?: any[];
+  data?: any;
   onlyChangeData?: boolean;
 }
 
