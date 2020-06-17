@@ -1,3 +1,7 @@
+### v: 0.9.6
+
+- 新增 onlyChangeData props 用于控制 changeData 。
+
 ### v: 0.9.5
 
 - tooltip 添加 ReactNode 支持。
