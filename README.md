@@ -161,7 +161,7 @@ Extra props:
 | style     | container style   | React.CSSProperties                         | -            |
 | memoData  | controll rerender | string \| number \| any []                  | -            |
 
-[More usage](/guide/case)
+[More usage](https://charts.ant.design/guide/case)
 
 ### [FAQ](https://github.com/ant-design/ant-design-charts/issues)
 
