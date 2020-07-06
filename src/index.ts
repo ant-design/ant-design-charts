@@ -44,7 +44,7 @@ import TinyLine from './tinyLine';
 import Treemap from './treemap';
 import Waterfall from './waterfall';
 import WordCloud from './wordCloud';
-import { RelationChart } from './graph'
+import { OrganizationGraph } from './graph'
 
 export {
   Area,
@@ -92,7 +92,7 @@ export {
   Treemap,
   Waterfall,
   WordCloud,
-  RelationChart
+  OrganizationGraph
 };
 
 export default {
@@ -141,5 +141,5 @@ export default {
   Treemap,
   Waterfall,
   WordCloud,
-  RelationChart
+  OrganizationGraph
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { RelationChart } from '../';
+import { OrganizationGraph } from '../';
 
 describe('Relation Graph', () => {
   it('初始化以及销毁', () => {
@@ -14,7 +14,7 @@ describe('Relation Graph', () => {
       ]
     }
     
-    mount(<RelationChart data={data} className='g6-graph' />);
+    mount(<OrganizationGraph data={data} className='g6-graph' />);
     // const container = document.querySelector('.g6-graph')
     // expect(container).not.toBeNull();
     // const canvas = ref.current.getCanvas();

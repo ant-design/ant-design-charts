@@ -1,1 +1,1 @@
-export { default as RelationChart } from './relationChart'
+export { default as OrganizationGraph } from './organizationGraph'

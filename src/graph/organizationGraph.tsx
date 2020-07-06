@@ -5,7 +5,7 @@ import { INode, IEdge } from '@antv/g6/lib/interface/item';
 import { EdgeConfig, TreeGraphData, StateStyles, ShapeStyle, NodeConfig, IG6GraphEvent } from '@antv/g6/lib/types';
 import { ErrorBoundary } from '../base';
 
-export interface RelationCharts {
+export interface OrganizationGraph {
   style?: React.CSSProperties;
   className?: string;
   data: TreeGraphData;
@@ -35,27 +35,6 @@ export interface RelationCharts {
   handleEdgeUnHover?: (item: IEdge, graph: IGraph) => void;
   collapseExpand?: boolean;
 }
-
-const COLLAPSE_ICON = function COLLAPSE_ICON(x: number, y: number, r: number) {
-  return [
-    ['M', x - r, y - r],
-    ['a', r, r, 0, 1, 0, r * 2, 0],
-    ['a', r, r, 0, 1, 0, -r * 2, 0],
-    ['M', x + 2 - r, y - r],
-    ['L', x + r - 2, y - r],
-  ];
-};
-const EXPAND_ICON = function EXPAND_ICON(x: number, y: number, r: number) {
-  return [
-    ['M', x - r, y - r],
-    ['a', r, r, 0, 1, 0, r * 2, 0],
-    ['a', r, r, 0, 1, 0, -r * 2, 0],
-    ['M', x + 2 - r, y - r],
-    ['L', x + r - 2, y - r],
-    ['M', x, y - 2 * r + 2],
-    ['L', x, y - 2],
-  ];
-};
 
 G6.registerEdge('flow-line', {
   draw(cfg: EdgeConfig, group) {
@@ -128,7 +107,7 @@ const defaultLabelCfg = {
   }
 }
 
-const FlowTree: React.SFC<RelationCharts> = ({
+const OrganizationGraphComponent: React.FC<OrganizationGraph> = ({
   data,
   className,
   style,
@@ -210,24 +189,24 @@ const FlowTree: React.SFC<RelationCharts> = ({
         if (enableEdit) {
           group!.addShape('marker', {
             attrs: {
-              x: 40,
-              y: 52,
+              x: styles.width / 3,
+              y: styles.height + 6,
               r: 6,
               stroke: '#73d13d',
               cursor: 'pointer',
-              symbol: EXPAND_ICON
+              symbol: G6.Marker.expand
             },
             name: 'add-item'
           })
       
           group!.addShape('marker', {
             attrs: {
-              x: 80,
-              y: 52,
+              x: styles.width * 2 / 3,
+              y: styles.height + 6,
               r: 6,
               stroke: '#ff4d4f',
               cursor: 'pointer',
-              symbol: COLLAPSE_ICON
+              symbol: G6.Marker.collapse
             },
             name: 'remove-item'
           })
@@ -238,8 +217,8 @@ const FlowTree: React.SFC<RelationCharts> = ({
             attrs: {
               ...labelCfg.style,
               text: cfg.label,
-              x: 50,
-              y: 25,
+              x: styles.width / 2,
+              y: styles.height / 1.5,
             }
           })
         }
@@ -379,4 +358,4 @@ const FlowTree: React.SFC<RelationCharts> = ({
   );
 };
 
-export default FlowTree;
+export default OrganizationGraphComponent;

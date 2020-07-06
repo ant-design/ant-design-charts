@@ -1,12 +1,12 @@
 ---
-title: 关系图
+title: 组织架构图
 order: 89
 ---
 
 # 关系图
 
-## Gauge
-RelationCharts 支持以下配置项：
+### 配置项
+OrganizationGraph 支持以下配置项：
 
 | 名称 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
@@ -37,14 +37,13 @@ RelationCharts 支持以下配置项：
 
 ### 基础关系图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+<a href="#配置项">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import G6 from '@antv/g6'
-import { RelationChart } from '@ant-design/charts';
+import { OrganizationGraph } from '@ant-design/charts';
 
-const DemoGauge: React.FC = () => {
+const DemoOrganizationGraph: React.FC = () => {
   const data = {
     id: 'root',
     label: 'root',
@@ -112,7 +111,27 @@ const DemoGauge: React.FC = () => {
     ]
   }
 
-  G6.Util.traverseTree((data as any), (d: any) => {
+  /**
+   * 遍历树的方法，仅作为演示 demo 中使用，实际使用中根据具体需求而定
+  */
+  const traverseTree = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
+    if (typeof fn !== 'function') {
+      return;
+    }
+
+    if (fn(data) === false) {
+      return false;
+    }
+
+    if (data && data.children) {
+      for (let i = data.children.length - 1; i >= 0; i--) {
+        if (!traverseTree(data.children[i], fn)) return false;
+      }
+    }
+    return true;
+  };
+
+  traverseTree((data as any), (d: any) => {
     d.leftIcon = {
       style: {
         fill: '#e6fffb',
@@ -123,25 +142,24 @@ const DemoGauge: React.FC = () => {
     return true
   })
 
-  return <RelationChart 
+  return <OrganizationGraph 
     data={data}
     width={800}
     nodeType='rect' />;
 };
 
-export default DemoGauge;
+export default DemoOrganizationGraph;
 ```
 
 ### 个性化定制-不可编辑
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+<a href="#配置项">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import G6 from '@antv/g6'
-import { RelationChart } from '@ant-design/charts';
+import { OrganizationGraph } from '@ant-design/charts';
 
-const DemoGauge: React.FC = () => {
+const DemoOrganizationGraph: React.FC = () => {
   const data = {
     id: 'root',
     label: 'root',
@@ -209,7 +227,27 @@ const DemoGauge: React.FC = () => {
     ]
   }
 
-  G6.Util.traverseTree((data as any), (d: any) => {
+  /**
+   * 遍历树的方法，仅作为演示 demo 中使用，实际使用中根据具体需求而定
+  */
+  const traverseTree = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
+    if (typeof fn !== 'function') {
+      return;
+    }
+
+    if (fn(data) === false) {
+      return false;
+    }
+
+    if (data && data.children) {
+      for (let i = data.children.length - 1; i >= 0; i--) {
+        if (!traverseTree(data.children[i], fn)) return false;
+      }
+    }
+    return true;
+  };
+
+  traverseTree((data as any), (d: any) => {
     d.leftIcon = {
       style: {
         fill: '#e6fffb',
@@ -220,26 +258,26 @@ const DemoGauge: React.FC = () => {
     return true
   })
 
-  return <RelationChart 
+  return <OrganizationGraph 
     data={data}
     width={800}
     nodeType='icon-node'
     enableEdit={false} />;
 };
 
-export default DemoGauge;
+export default DemoOrganizationGraph;
 ```
 
 ### 个性化定制-可编辑
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+<a href="#配置项">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import G6 from '@antv/g6'
-import { RelationChart } from '@ant-design/charts';
+import { OrganizationGraph } from '@ant-design/charts';
 
-const DemoGauge: React.FC = () => {
+const DemoOrganizationGraph: React.FC = () => {
   const data = {
     id: 'root',
     label: 'root',
@@ -307,7 +345,27 @@ const DemoGauge: React.FC = () => {
     ]
   }
 
-  G6.Util.traverseTree((data as any), (d: any) => {
+  /**
+   * 遍历树的方法，仅作为演示 demo 中使用，实际使用中根据具体需求而定
+  */
+  const traverseTree = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
+    if (typeof fn !== 'function') {
+      return;
+    }
+
+    if (fn(data) === false) {
+      return false;
+    }
+
+    if (data && data.children) {
+      for (let i = data.children.length - 1; i >= 0; i--) {
+        if (!traverseTree(data.children[i], fn)) return false;
+      }
+    }
+    return true;
+  };
+  
+  traverseTree((data as any), (d: any) => {
     d.leftIcon = {
       style: {
         fill: '#e6fffb',
@@ -318,26 +376,25 @@ const DemoGauge: React.FC = () => {
     return true
   })
 
-  return <RelationChart 
+  return <OrganizationGraph 
     data={data}
     width={800}
     nodeType='icon-node'
     enableEdit={true} />;
 };
 
-export default DemoGauge;
+export default DemoOrganizationGraph;
 ```
 
 ### 显示 Minimap
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/gauge/gauge/API" target="_blank">配置</a>
+<a href="#配置项">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import G6 from '@antv/g6'
-import { RelationChart } from '@ant-design/charts';
+import { OrganizationGraph } from '@ant-design/charts';
 
-const DemoGauge: React.FC = () => {
+const DemoOrganizationGraph: React.FC = () => {
   const data = {
     id: 'root',
     label: 'root',
@@ -405,7 +462,27 @@ const DemoGauge: React.FC = () => {
     ]
   }
 
-  G6.Util.traverseTree((data as any), (d: any) => {
+  /**
+   * 遍历树的方法，仅作为演示 demo 中使用，实际使用中根据具体需求而定
+  */
+  const traverseTree = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
+    if (typeof fn !== 'function') {
+      return;
+    }
+
+    if (fn(data) === false) {
+      return false;
+    }
+
+    if (data && data.children) {
+      for (let i = data.children.length - 1; i >= 0; i--) {
+        if (!traverseTree(data.children[i], fn)) return false;
+      }
+    }
+    return true;
+  };
+
+  traverseTree((data as any), (d: any) => {
     d.leftIcon = {
       style: {
         fill: '#e6fffb',
@@ -416,7 +493,7 @@ const DemoGauge: React.FC = () => {
     return true
   })
 
-  return <RelationChart 
+  return <OrganizationGraph 
     data={data}
     width={800}
     nodeType='icon-node'
@@ -424,5 +501,5 @@ const DemoGauge: React.FC = () => {
     showMinimap={true} />;
 };
 
-export default DemoGauge;
+export default DemoOrganizationGraph;
 ```
