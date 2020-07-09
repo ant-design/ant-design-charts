@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import G6 from '@antv/g6';
 import { ITreeGraph } from '@antv/g6/lib/interface/graph';
 import { INode, IEdge } from '@antv/g6/lib/interface/item';
-import { TreeGraphData, StateStyles, ShapeStyle, NodeConfig, IG6GraphEvent } from '@antv/g6/lib/types';
+import { TreeGraphData, NodeConfig, IG6GraphEvent } from '@antv/g6/lib/types';
 import { ErrorBoundary } from '../base';
 import { customIconNode } from './customItems';
 import { getGraphSize, processMinimap } from './util'
