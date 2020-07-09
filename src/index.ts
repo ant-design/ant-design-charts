@@ -44,7 +44,7 @@ import TinyLine from './tinyLine';
 import Treemap from './treemap';
 import Waterfall from './waterfall';
 import WordCloud from './wordCloud';
-import { OrganizationGraph, DagreGraph, IndentedTree, DagreFundFlow } from './graph'
+import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlow } from './graph'
 
 export {
   Area,
@@ -92,7 +92,7 @@ export {
   Treemap,
   Waterfall,
   WordCloud,
-  OrganizationGraph,
+  OrganizationTreeGraph,
   DagreGraph,
   IndentedTree,
   DagreFundFlow
@@ -144,7 +144,7 @@ export default {
   Treemap,
   Waterfall,
   WordCloud,
-  OrganizationGraph,
+  OrganizationTreeGraph,
   DagreGraph,
   IndentedTree,
   DagreFundFlow

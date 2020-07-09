@@ -3,8 +3,9 @@ import G6 from '@antv/g6';
 import { IGraph } from '@antv/g6/lib/interface/graph';
 import { IEdge } from '@antv/g6/lib/interface/item';
 import { IG6GraphEvent } from '@antv/g6/lib/types';
-import { RelationCharts } from './types';
+import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
+import { processMinimap, getGraphSize } from './util';
 
 
 const defaultStateStyles = {
@@ -44,12 +45,12 @@ const defaultLabelCfg = {
   }
 }
 
-const DagreFundFlow: React.SFC<RelationCharts> = ({
+const DagreFundFlow: React.SFC<RelationGraph> = ({
   data,
   className,
   style,
-  width = 500,
-  height = 500,
+  width,
+  height,
   nodeType = 'round-rect',
   edgeType = 'fund-polyline',
   behaviors = ['zoom-canvas', 'drag-canvas'],
@@ -57,7 +58,7 @@ const DagreFundFlow: React.SFC<RelationCharts> = ({
   nodeLabelCfg = defaultLabelCfg,
   nodeAnchorPoints = defaultNodeAnchorPoints,
   layout = defaultLayout,
-  showMinimap = false,
+  minimapCfg,
   nodeStyle = defaultNodeStyle,
   edgeStyle = defaultEdgeStyle,
   nodeStateStyles = defaultStateStyles,
@@ -72,11 +73,12 @@ const DagreFundFlow: React.SFC<RelationCharts> = ({
   const container = React.useRef(null);
 
   useEffect(() => {
+    const graphSize = getGraphSize(width, height, container);
     if (!graph) {
       graph = new G6.Graph({
         container: container.current as any,
-        width,
-        height,
+        width: graphSize[0],
+        height: graphSize[1],
         modes: {
           default: behaviors,
         },
@@ -99,14 +101,8 @@ const DagreFundFlow: React.SFC<RelationCharts> = ({
       });
     }
 
-    if (showMinimap) {
-      const minimap = new G6.Minimap({
-        size: [150, 100]
-      })
-
-      graph.addPlugin(minimap)
-    }
-
+    processMinimap(minimapCfg, graph);
+    
     graph.data(data);
     graph.render();
 

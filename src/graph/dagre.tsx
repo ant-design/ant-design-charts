@@ -3,9 +3,9 @@ import G6 from '@antv/g6';
 import { IGraph } from '@antv/g6/lib/interface/graph';
 import { IEdge } from '@antv/g6/lib/interface/item';
 import { IG6GraphEvent } from '@antv/g6/lib/types';
-import { RelationCharts } from './types';
+import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
-
+import { getGraphSize, processMinimap } from './util'
 
 const defaultStateStyles = {
   hover: {
@@ -49,20 +49,22 @@ const defaultLabelCfg = {
   }
 }
 
-const DagreGraph: React.SFC<RelationCharts> = ({
+
+const DagreGraph: React.SFC<RelationGraph> = ({
   data,
   className,
   style,
-  width = 500,
-  height = 500,
+  width,
+  height,
   nodeType = 'modelRect',
   edgeType = 'polyline',
   behaviors = ['zoom-canvas', 'drag-canvas'],
   nodeSize = defaultNodeSize,
   nodeLabelCfg = defaultLabelCfg,
+  edgeLabelCfg = defaultLabelCfg,
   nodeAnchorPoints = defaultNodeAnchorPoints,
   layout = defaultLayout,
-  showMinimap = false,
+  minimapCfg,
   nodeStyle = defaultNodeStyle,
   edgeStyle = defaultEdgeStyle,
   nodeStateStyles = defaultStateStyles,
@@ -76,11 +78,12 @@ const DagreGraph: React.SFC<RelationCharts> = ({
   const container = React.useRef(null);
 
   useEffect(() => {
+    const graphSize = getGraphSize(width, height, container);
     if (!graph) {
       graph = new G6.Graph({
         container: container.current as any,
-        width,
-        height,
+        width: graphSize[0],
+        height: graphSize[1],
         modes: {
           default: behaviors,
         },
@@ -94,6 +97,7 @@ const DagreGraph: React.SFC<RelationCharts> = ({
         defaultEdge: {
           type: edgeType,
           style: edgeStyle,
+          labelCfg: edgeLabelCfg
         },
         nodeStateStyles,
         edgeStateStyles,
@@ -102,13 +106,7 @@ const DagreGraph: React.SFC<RelationCharts> = ({
       });
     }
 
-    if (showMinimap) {
-      const minimap = new G6.Minimap({
-        size: [150, 100]
-      })
-
-      graph.addPlugin(minimap)
-    }
+    processMinimap(minimapCfg, graph);
 
     graph.data(data);
     graph.render();

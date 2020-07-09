@@ -5,7 +5,18 @@ import { INode, IEdge } from '@antv/g6/lib/interface/item';
 import G6 from '@antv/g6';
 
 
-export interface RelationCharts {
+
+export interface MiniMapConfig {
+  show?: boolean;
+  viewportClassName?: string;
+  type?: 'default' | 'keyShape' | 'delegate';
+  size?: number[];
+  delegateStyle?: ShapeStyle;
+  refresh?: boolean;
+  padding?: number;
+}
+
+export interface RelationGraph {
   style?: React.CSSProperties;
   className?: string;
   data: TreeGraphData | GraphData;
@@ -34,7 +45,7 @@ export interface RelationCharts {
   behaviors?: string[];
   layout?: any;
   enableEdit?: boolean;
-  showMinimap?: boolean;
+  minimapCfg?: MiniMapConfig;
   handleNodeClick?: (item: INode, graph: IGraph) => void;
   handleEdgeClick?: (item: IEdge, graph: IGraph) => void;
   handleNodeHover?: (item: INode, graph: IGraph) => void;

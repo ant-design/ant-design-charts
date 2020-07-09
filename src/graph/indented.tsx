@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import G6 from '@antv/g6';
 import { ITreeGraph } from '@antv/g6/lib/interface/graph';
-import { RelationCharts } from './types';
+import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import './customItems';
 
@@ -49,7 +49,7 @@ const defaultLabelCfg = {
   }
 }
 
-const IndentedTree: React.SFC<RelationCharts> = ({
+const IndentedTree: React.SFC<RelationGraph> = ({
   data,
   className,
   style,

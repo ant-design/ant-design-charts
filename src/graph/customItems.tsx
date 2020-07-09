@@ -123,8 +123,6 @@ G6.registerNode(
   }
 );
 
-
-
 G6.registerNode(
   'round-rect',
   {
@@ -198,6 +196,108 @@ G6.registerNode(
   },
   'single-node',
 );
+
+export const customIconNode = (params: {
+  enableEdit?: boolean;
+  options?: any
+}) => {
+
+  G6.registerNode('icon-node', {
+    options: {
+      size: [60, 20],
+      stroke: '#91d5ff',
+      fill: '#91d5ff'
+    },
+    draw(cfg: NodeConfig, group) {
+      const styles = this.getShapeStyle(cfg)
+      const { labelCfg = {} } = cfg
+      
+      const keyShape = group!.addShape('rect', {
+        attrs: {
+          ...styles,
+          x: 0,
+          y: 0
+        }
+      })
+  
+      /**
+       * leftIcon 格式如下：
+       *  {
+       *    style: ShapeStyle;
+       *    img: ''
+       *  }
+       */
+      let style = {
+        fill: '#e6fffb'
+      };
+      let img = 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png';
+      if (cfg.leftIcon) {
+        style = Object.assign({}, style, ( cfg.leftIcon as any).style);
+        img = ( cfg.leftIcon as any).img;
+      }
+      group!.addShape('rect', {
+        attrs: {
+          x: 1,
+          y: 1,
+          width: 38,
+          height: styles.height - 2,
+          ...style
+        }
+      })
+
+      group!.addShape('image', {
+        attrs: {
+          x: 8,
+          y: 8,
+          width: 24,
+          height: 24,
+          img: img,
+        },
+        name: 'image-shape',
+      });
+  
+      if (params.enableEdit) {
+        group!.addShape('marker', {
+          attrs: {
+            x: styles.width / 3,
+            y: styles.height + 6,
+            r: 6,
+            stroke: '#73d13d',
+            cursor: 'pointer',
+            symbol: G6.Marker.expand
+          },
+          name: 'add-item'
+        })
+    
+        group!.addShape('marker', {
+          attrs: {
+            x: styles.width * 2 / 3,
+            y: styles.height + 6,
+            r: 6,
+            stroke: '#ff4d4f',
+            cursor: 'pointer',
+            symbol: G6.Marker.collapse
+          },
+          name: 'remove-item'
+        })
+      }
+  
+      if (cfg.label) {
+        group!.addShape('text', {
+          attrs: {
+            ...labelCfg.style,
+            text: cfg.label,
+            x: styles.width / 2,
+            y: styles.height / 1.5,
+          }
+        })
+      }
+  
+      return keyShape
+    }
+  }, 'rect')
+}
+
 
 G6.registerEdge('fund-polyline', {
   draw: function draw(cfg: EdgeConfig, group) {
@@ -306,4 +406,27 @@ G6.registerEdge('fund-polyline', {
     }
     return line;
   },
+});
+
+
+G6.registerEdge('flow-line', {
+  draw(cfg: EdgeConfig, group) {
+    const startPoint = cfg.startPoint;
+    const endPoint = cfg.endPoint;
+
+    const { style = {} } = cfg
+    const shape = group!.addShape('path', {
+      attrs: {
+        stroke: style.stroke,
+        endArrow: style.endArrow,
+        path: [
+          ['M', startPoint!.x, startPoint!.y],
+          ['L', startPoint!.x, (startPoint!.y + endPoint!.y) / 2],
+          ['L', endPoint!.x, (startPoint!.y + endPoint!.y) / 2,],
+          ['L', endPoint!.x, endPoint!.y],
+        ],
+      },
+    });
+    return shape;
+  }
 });

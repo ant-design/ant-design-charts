@@ -1,62 +1,12 @@
 import React, { useEffect } from 'react';
 import G6 from '@antv/g6';
-import { IGraph, ITreeGraph } from '@antv/g6/lib/interface/graph';
+import { ITreeGraph } from '@antv/g6/lib/interface/graph';
 import { INode, IEdge } from '@antv/g6/lib/interface/item';
-import { EdgeConfig, TreeGraphData, StateStyles, ShapeStyle, NodeConfig, IG6GraphEvent } from '@antv/g6/lib/types';
+import { TreeGraphData, StateStyles, ShapeStyle, NodeConfig, IG6GraphEvent } from '@antv/g6/lib/types';
 import { ErrorBoundary } from '../base';
-
-export interface OrganizationGraph {
-  style?: React.CSSProperties;
-  className?: string;
-  data: TreeGraphData;
-  width?: number;
-  height?: number;
-  nodeType?: string;
-  edgeType?: string;
-  nodeStyle?: ShapeStyle;
-  edgeStyle?: ShapeStyle;
-  nodeStateStyles?: StateStyles;
-  edgeStateStyles?: StateStyles;
-  nodeSize?: number | number[];
-  labelCfg?: {
-    style: {
-      stroke?: string;
-      fontSize?: number;
-    }
-  };
-  layout?: any;
-  enableEdit?: boolean;
-  showMinimap?: boolean;
-  handleNodeClick?: (item: INode, graph: IGraph) => void;
-  handleEdgeClick?: (item: IEdge, graph: IGraph) => void;
-  handleNodeHover?: (item: INode, graph: IGraph) => void;
-  handleNodeUnHover?: (item: INode, graph: IGraph) => void;
-  handleEdgeHover?: (item: IEdge, graph: IGraph) => void;
-  handleEdgeUnHover?: (item: IEdge, graph: IGraph) => void;
-  collapseExpand?: boolean;
-}
-
-G6.registerEdge('flow-line', {
-  draw(cfg: EdgeConfig, group) {
-    const startPoint = cfg.startPoint;
-    const endPoint = cfg.endPoint;
-
-    const { style = {} } = cfg
-    const shape = group!.addShape('path', {
-      attrs: {
-        stroke: style.stroke,
-        endArrow: style.endArrow,
-        path: [
-          ['M', startPoint!.x, startPoint!.y],
-          ['L', startPoint!.x, (startPoint!.y + endPoint!.y) / 2],
-          ['L', endPoint!.x, (startPoint!.y + endPoint!.y) / 2,],
-          ['L', endPoint!.x, endPoint!.y],
-        ],
-      },
-    });
-    return shape;
-  }
-});
+import { customIconNode } from './customItems';
+import { getGraphSize, processMinimap } from './util'
+import { RelationGraph } from './types';
 
 const defaultStateStyles = {
   hover: {
@@ -107,20 +57,21 @@ const defaultLabelCfg = {
   }
 }
 
-const OrganizationGraphComponent: React.FC<OrganizationGraph> = ({
+const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   data,
   className,
   style,
-  width = 500,
-  height = 500,
+  width,
+  height,
   nodeType = 'rect',
   edgeType = 'flow-line',
   collapseExpand = false,
   nodeSize = [120, 40],
-  labelCfg = defaultLabelCfg,
+  nodeLabelCfg = defaultLabelCfg,
+  edgeLabelCfg = defaultLabelCfg,
   layout = defaultLayout,
   enableEdit = false,
-  showMinimap = false,
+  minimapCfg,
   nodeStyle = defaultNodeStyle,
   edgeStyle = defaultEdgeStyle,
   nodeStateStyles = defaultStateStyles,
@@ -136,103 +87,17 @@ const OrganizationGraphComponent: React.FC<OrganizationGraph> = ({
   const container = React.useRef(null);
 
   useEffect(() => {
-    G6.registerNode('icon-node', {
-      options: {
-        size: [60, 20],
-        stroke: '#91d5ff',
-        fill: '#91d5ff'
-      },
-      draw(cfg: NodeConfig, group) {
-        const styles = this.getShapeStyle(cfg)
-        const { labelCfg = {} } = cfg
-        
-        const keyShape = group!.addShape('rect', {
-          attrs: {
-            ...styles,
-            x: 0,
-            y: 0
-          }
-        })
-    
-        /**
-         * leftIcon 格式如下：
-         *  {
-         *    style: ShapeStyle;
-         *    img: ''
-         *  }
-         */
-        if (cfg.leftIcon) {
-          const { style, img } = cfg.leftIcon as any
-          group!.addShape('rect', {
-            attrs: {
-              x: 1,
-              y: 1,
-              width: 38,
-              height: styles.height - 2,
-              fill: '#8c8c8c',
-              ...style
-            }
-          })
-  
-          group!.addShape('image', {
-            attrs: {
-              x: 8,
-              y: 8,
-              width: 24,
-              height: 24,
-              img: img || 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png',
-            },
-            name: 'image-shape',
-          });
-        }
 
-        if (enableEdit) {
-          group!.addShape('marker', {
-            attrs: {
-              x: styles.width / 3,
-              y: styles.height + 6,
-              r: 6,
-              stroke: '#73d13d',
-              cursor: 'pointer',
-              symbol: G6.Marker.expand
-            },
-            name: 'add-item'
-          })
-      
-          group!.addShape('marker', {
-            attrs: {
-              x: styles.width * 2 / 3,
-              y: styles.height + 6,
-              r: 6,
-              stroke: '#ff4d4f',
-              cursor: 'pointer',
-              symbol: G6.Marker.collapse
-            },
-            name: 'remove-item'
-          })
-        }
-    
-        if (cfg.label) {
-          group!.addShape('text', {
-            attrs: {
-              ...labelCfg.style,
-              text: cfg.label,
-              x: styles.width / 2,
-              y: styles.height / 1.5,
-            }
-          })
-        }
-    
-        return keyShape
-      }
-    }, 'rect')
+    const graphSize = getGraphSize(width, height, container);
 
     if (!graph) {
-      
+      if (nodeType === 'icon-node') {
+        customIconNode({  enableEdit });
+      }
       graph = new G6.TreeGraph({
         container: container.current as any,
-        width,
-        height,
+        width: graphSize[0],
+        height: graphSize[1],
         linkCenter: true,
         modes: {
           default: [
@@ -244,11 +109,12 @@ const OrganizationGraphComponent: React.FC<OrganizationGraph> = ({
           type: nodeType,
           size: nodeSize,
           style: nodeStyle,
-          labelCfg
+          labelCfg: nodeLabelCfg
         },
         defaultEdge: {
           type: edgeType,
           style: edgeStyle,
+          labelCfg: edgeLabelCfg
         },
         nodeStateStyles,
         edgeStateStyles,
@@ -256,13 +122,7 @@ const OrganizationGraphComponent: React.FC<OrganizationGraph> = ({
       });
     }
 
-    if (showMinimap) {
-      const minimap = new G6.Minimap({
-        size: [150, 100]
-      })
-
-      graph.addPlugin(minimap)
-    }
+    processMinimap(minimapCfg, graph);
 
     graph.data(data);
     graph.render();
@@ -358,4 +218,4 @@ const OrganizationGraphComponent: React.FC<OrganizationGraph> = ({
   );
 };
 
-export default OrganizationGraphComponent;
+export default OrganizationTreeGraphComponent;

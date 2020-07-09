@@ -1,12 +1,10 @@
 ---
-title: 组织架构图
+title: 组织架构树图
 order: 89
 ---
 
-# 关系图
-
 ### 配置项
-OrganizationGraph 支持以下配置项：
+OrganizationTreeGraph 支持以下配置项：
 
 | 名称 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
@@ -22,10 +20,11 @@ OrganizationGraph 支持以下配置项：
 | nodeStateStyles | StateStyles | {} | 节点状态样式 |
 | edgeStateStyles | StateStyles | {} | 边状态样式 |
 | nodeSize | number / number[] | [120, 40] | 节点大小 |
-| labelCfg | object | null | 文本样式 |
+| nodeLabelCfg | object | null | 节点文本样式 |
+| edgeLabelCfg | object | null | 边文本样式 |
 | layout | object | - | 布局配置 |
 | enableEdit | boolean | false | 是否开启编辑功能，默认为 false，设置为 true 后，可以动态增加或删除节点 |
-| showMinimap | boolean | false | 是否显示缩略图，默认为 false，设置为 true 后，显示 Minimap |
+| minimapCfg | Object | {show: false, size: [150, 100], type: 'keyShape'} | 控制是否显示缩略图以及缩略图配置，若 minimapCfg.show 设置为 true，则显示 Minimap，其他配置参见 [G6 Minimap](https://g6.antv.vision/zh/docs/api/Plugins/#minimap) |
 | collapseExpand | boolean | false | 是否允许点击节点收起或展示子节点，默认为 false，设置为 true 后，可以通过点击节点收起或展示子节点，当 enableEdit 设置为 true 时，建议将该值设置为 false |
 | handleNodeClick | (item: INode, graph: IGraph) => void | null | 点击节点的回调函数 |
 | handleEdgeClick | (item: IEdge, graph: IGraph) => void | null | 点击边的回调函数 |
@@ -35,13 +34,13 @@ OrganizationGraph 支持以下配置项：
 | handleEdgeUnHover | (item: IEdge, graph: IGraph) => void | null | 鼠标从边上移开的回调函数 |
 
 
-### 基础关系图
+### 基础组织架构树图
 
 <a href="#配置项">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { OrganizationGraph } from '@ant-design/charts';
+import { OrganizationTreeGraph } from '@ant-design/charts';
 
 const DemoOrganizationGraph: React.FC = () => {
   const data = {
@@ -142,9 +141,8 @@ const DemoOrganizationGraph: React.FC = () => {
     return true
   })
 
-  return <OrganizationGraph 
+  return <OrganizationTreeGraph 
     data={data}
-    width={800}
     nodeType='rect' />;
 };
 
@@ -157,7 +155,7 @@ export default DemoOrganizationGraph;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { OrganizationGraph } from '@ant-design/charts';
+import { OrganizationTreeGraph } from '@ant-design/charts';
 
 const DemoOrganizationGraph: React.FC = () => {
   const data = {
@@ -258,9 +256,8 @@ const DemoOrganizationGraph: React.FC = () => {
     return true
   })
 
-  return <OrganizationGraph 
+  return <OrganizationTreeGraph 
     data={data}
-    width={800}
     nodeType='icon-node'
     enableEdit={false} />;
 };
@@ -275,7 +272,7 @@ export default DemoOrganizationGraph;
 ```tsx
 import React, { useState, useEffect } from 'react';
 import G6 from '@antv/g6'
-import { OrganizationGraph } from '@ant-design/charts';
+import { OrganizationTreeGraph } from '@ant-design/charts';
 
 const DemoOrganizationGraph: React.FC = () => {
   const data = {
@@ -376,9 +373,8 @@ const DemoOrganizationGraph: React.FC = () => {
     return true
   })
 
-  return <OrganizationGraph 
+  return <OrganizationTreeGraph 
     data={data}
-    width={800}
     nodeType='icon-node'
     enableEdit={true} />;
 };
@@ -392,7 +388,7 @@ export default DemoOrganizationGraph;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { OrganizationGraph } from '@ant-design/charts';
+import { OrganizationTreeGraph } from '@ant-design/charts';
 
 const DemoOrganizationGraph: React.FC = () => {
   const data = {
@@ -493,12 +489,12 @@ const DemoOrganizationGraph: React.FC = () => {
     return true
   })
 
-  return <OrganizationGraph 
+  return <OrganizationTreeGraph 
     data={data}
-    width={800}
     nodeType='icon-node'
     enableEdit={true}
-    showMinimap={true} />;
+    minimapCfg = {{ show: true}}
+    />;
 };
 
 export default DemoOrganizationGraph;
