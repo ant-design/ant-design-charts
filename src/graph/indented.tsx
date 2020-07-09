@@ -4,6 +4,7 @@ import { ITreeGraph } from '@antv/g6/lib/interface/graph';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import './customItems';
+import { processMinimap } from './util';
 
 
 const defaultStateStyles = {
@@ -62,14 +63,11 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   nodeLabelCfg = defaultLabelCfg,
   nodeAnchorPoints = defaultNodeAnchorPoints,
   layout = defaultLayout,
-  showMinimap = false,
+  minimapCfg,
   nodeStyle = defaultNodeStyle,
   edgeStyle = defaultEdgeStyle,
   nodeStateStyles = defaultStateStyles,
   edgeStateStyles = defaultStateStyles,
-  handleEdgeClick,
-  handleEdgeHover,
-  handleEdgeUnHover,
   collapseExpand = true,
   otherGraphOptions = {}
 }) => {
@@ -103,40 +101,11 @@ const IndentedTree: React.SFC<RelationGraph> = ({
       });
     }
 
-    if (showMinimap) {
-      const minimap = new G6.Minimap({
-        size: [150, 100]
-      })
-
-      graph.addPlugin(minimap)
-    }
+    processMinimap(minimapCfg, graph);
 
     graph.data(data);
     graph.render();
     graph.fitView();
-
-    // graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
-    //   const item = evt.item as IEdge
-    //   graph.setItemState(item, 'hover', true)
-    //   if (handleEdgeHover) {
-    //     handleEdgeHover(item, graph)
-    //   }
-    // })
-
-    // graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
-    //   const item = evt.item as IEdge
-    //   graph.setItemState(item, 'hover', false)
-    //   if (handleEdgeUnHover) {
-    //     handleEdgeUnHover(item, graph)
-    //   }
-    // })
-
-    // graph.on('edge:click', (evt: IG6GraphEvent) => {
-    //   const item = evt.item as IEdge
-    //   if (handleEdgeClick) {
-    //     handleEdgeClick(item, graph)
-    //   }
-    // })
 
     if (collapseExpand) {
       graph.on('node:click', (e: any) => {

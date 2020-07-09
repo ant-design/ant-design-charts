@@ -56,6 +56,7 @@ const DagreFundFlow: React.SFC<RelationGraph> = ({
   behaviors = ['zoom-canvas', 'drag-canvas'],
   nodeSize = defaultNodeSize,
   nodeLabelCfg = defaultLabelCfg,
+  edgeLabelCfg = defaultLabelCfg,
   nodeAnchorPoints = defaultNodeAnchorPoints,
   layout = defaultLayout,
   minimapCfg,
@@ -92,7 +93,8 @@ const DagreFundFlow: React.SFC<RelationGraph> = ({
         defaultEdge: {
           type: edgeType,
           style: edgeStyle,
-          colorMap
+          colorMap,
+          labelCfg: edgeLabelCfg,
         },
         nodeStateStyles,
         edgeStateStyles,
@@ -102,7 +104,7 @@ const DagreFundFlow: React.SFC<RelationGraph> = ({
     }
 
     processMinimap(minimapCfg, graph);
-    
+
     graph.data(data);
     graph.render();
 

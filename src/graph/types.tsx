@@ -1,8 +1,7 @@
 
-import { TreeGraphData, GraphData, StateStyles, ShapeStyle, GraphOptions, NodeConfig } from '@antv/g6/lib/types';
+import { TreeGraphData, GraphData, StateStyles, ShapeStyle, GraphOptions } from '@antv/g6/lib/types';
 import { IGraph } from '@antv/g6/lib/interface/graph';
 import { INode, IEdge } from '@antv/g6/lib/interface/item';
-import G6 from '@antv/g6';
 
 
 
