@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import DagreFundFlow from '../';
+import { DagreFundFlow } from '../';
 
 
 describe('Dagre Fund Flow', () => {
