@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import DagreGraph from '../';
+import { DagreGraph } from '../';
 
 describe('Dagre Graph', () => {
   const data = {

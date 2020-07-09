@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import IndentedTree from '../';
+import { IndentedTree } from '../';
 
 describe('Indented Tree Graph', () => {
   const data = {
