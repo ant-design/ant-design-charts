@@ -1,0 +1,47 @@
+
+import { TreeGraphData, GraphData, StateStyles, ShapeStyle, GraphOptions, NodeConfig } from '@antv/g6/lib/types';
+import { IGraph } from '@antv/g6/lib/interface/graph';
+import { INode, IEdge } from '@antv/g6/lib/interface/item';
+import G6 from '@antv/g6';
+
+
+export interface RelationCharts {
+  style?: React.CSSProperties;
+  className?: string;
+  data: TreeGraphData | GraphData;
+  width?: number;
+  height?: number;
+  nodeType?: string;
+  edgeType?: string;
+  nodeStyle?: ShapeStyle;
+  edgeStyle?: ShapeStyle;
+  nodeStateStyles?: StateStyles;
+  edgeStateStyles?: StateStyles;
+  nodeSize?: number | number[];
+  nodeLabelCfg?: {
+    style: {
+      stroke?: string;
+      fontSize?: number;
+    }
+  };
+  edgeLabelCfg?: {
+    style: {
+      stroke?: string;
+      fontSize?: number;
+    }
+  };
+  nodeAnchorPoints?: number[][];
+  behaviors?: string[];
+  layout?: any;
+  enableEdit?: boolean;
+  showMinimap?: boolean;
+  handleNodeClick?: (item: INode, graph: IGraph) => void;
+  handleEdgeClick?: (item: IEdge, graph: IGraph) => void;
+  handleNodeHover?: (item: INode, graph: IGraph) => void;
+  handleNodeUnHover?: (item: INode, graph: IGraph) => void;
+  handleEdgeHover?: (item: IEdge, graph: IGraph) => void;
+  handleEdgeUnHover?: (item: IEdge, graph: IGraph) => void;
+  collapseExpand?: boolean;
+  otherGraphOptions?: GraphOptions;
+  colorMap?: Object;
+}
