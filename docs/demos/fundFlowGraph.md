@@ -25,7 +25,6 @@ order: 91
 | behaviors | string[] | false | ['zoom-canvas', 'drag-canvas'] | 默认的[内置交互](https://g6.antv.vision/zh/docs/manual/middle/states/defaultBehavior) |
 | layout | Object | false | {type: 'dagre', rankdir: 'LR', nodesep: 30, ranksep: 50 } | 布局配置项 |
 | minimapCfg | Object | {show: false, size: [150, 100], type: 'keyShape'} | 控制是否显示缩略图以及缩略图配置，若 minimapCfg.show 设置为 true，则显示 Minimap，其他配置参见 [G6 Minimap](https://g6.antv.vision/zh/docs/api/Plugins/#minimap |
-| otherGraphOptions | Object | false | false | [Graph 的其他配置项](https://g6.antv.vision/zh/docs/api/Graph#g6graph)，可覆盖上面所有配置 |
 | handleEdgeClick | Object | false | undefined | 点击边的响应函数 |
 | handleEdgeHover | Object | false | undefined | hover 边的响应函数 |
 | handleEdgeUnHover | Object | false | undefined | unhover 边的响应函数 |
@@ -50,10 +49,10 @@ order: 91
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { DagreFundFlow } from '@ant-design/charts';
+import { DagreFundFlowGraph } from '@ant-design/charts';
 import { each } from '@antv/util';
 
-const DemoDagreFundFlow: React.FC = () => {
+const DemoDagreFundFlowGraph: React.FC = () => {
   
   const data = {
     nodes: [
@@ -162,17 +161,13 @@ const DemoDagreFundFlow: React.FC = () => {
       B: '#1A91FF',
       C: '#FFAA15',
     },
-    otherGraphOptions: {
-      modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node']
-      }
-    }
+    behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node']
   };
 
-  return <DagreFundFlow {...config} />;
+  return <DagreFundFlowGraph {...config} />;
 };
 
-export default DemoDagreFundFlow;
+export default DemoDagreFundFlowGraph;
 ```
 
 

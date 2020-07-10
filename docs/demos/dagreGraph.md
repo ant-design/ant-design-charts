@@ -25,7 +25,6 @@ order: 90
 | behaviors | string[] | false | 默认 udnefined，示例：['drag-canvas', 'zoom-canvas'] | ['drag-canvas', 'zoom-canvas'] | 默认的[内置交互](https://g6.antv.vision/zh/docs/manual/middle/states/defaultBehavior) |
 | layout | Object | false | {type: 'dagre', direction: 'TB', nodesepFunc: (d: any) => 0, ranksepFunc: (d: any) => 0, controlPoints: true } | 布局配置项 |
 | minimapCfg | Object | {show: false, size: [150, 100], type: 'keyShape'} | 控制是否显示缩略图以及缩略图配置，若 minimapCfg.show 设置为 true，则显示 Minimap，其他配置参见 [G6 Minimap](https://g6.antv.vision/zh/docs/api/Plugins/#minimap) |
-| otherGraphOptions | Object | false | false | [Graph 的其他配置项](https://g6.antv.vision/zh/docs/api/Graph#g6graph)，可覆盖上面所有配置 |
 | handleEdgeClick | Object | false | undefined | 点击边的响应函数 |
 | handleEdgeHover | Object | false | undefined | hover 边的响应函数 |
 | handleEdgeUnHover | Object | false | undefined | unhover 边的响应函数 |
@@ -145,11 +144,7 @@ const DemoDagreGraph: React.FC = () => {
     minimapCfg: {
       show: true
     },
-    otherGraphOptions: {
-      modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node']
-      }
-    }
+    behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node']
   };
 
   return <DagreGraph {...config} />;

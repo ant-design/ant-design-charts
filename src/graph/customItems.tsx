@@ -367,7 +367,7 @@ G6.registerEdge('fund-polyline', {
           fontSize: 14,
           textAlign: 'left',
           textBaseline: 'middle',
-          fill: '#000000D9',
+          fill: '#000',
         },
         name: 'text-shape-label',
       });
@@ -383,7 +383,7 @@ G6.registerEdge('fund-polyline', {
           fontSize: 10,
           textAlign: 'left',
           textBaseline: 'middle',
-          fill: '#000000D9',
+          fill: '#000',
         },
         name: 'text-shape-type',
       });
@@ -399,7 +399,7 @@ G6.registerEdge('fund-polyline', {
           fontWeight: 300,
           textAlign: 'left',
           textBaseline: 'middle',
-          fill: '#000000D9',
+          fill: '#000',
         },
         name: 'text-shape-sub-label',
       });

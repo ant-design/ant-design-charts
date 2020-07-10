@@ -43,11 +43,7 @@ describe('Indented Tree Graph', () => {
       height: 500,
       data,
       collasable: true,
-      otherGraphOptions: {
-        modes: {
-          default: ['drag-canvas', 'zoom-canvas', 'drag-node']
-        }
-      }
+      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node']
     };
     mount(<IndentedTree {...config} />);
   });

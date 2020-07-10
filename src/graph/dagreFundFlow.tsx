@@ -45,7 +45,7 @@ const defaultLabelCfg = {
   }
 }
 
-const DagreFundFlow: React.SFC<RelationGraph> = ({
+const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,
   className,
   style,
@@ -68,7 +68,6 @@ const DagreFundFlow: React.SFC<RelationGraph> = ({
   handleEdgeClick,
   handleEdgeHover,
   handleEdgeUnHover,
-  otherGraphOptions = {}
 }) => {
   let graph: IGraph;
   const container = React.useRef(null);
@@ -99,7 +98,6 @@ const DagreFundFlow: React.SFC<RelationGraph> = ({
         nodeStateStyles,
         edgeStateStyles,
         layout,
-        ...otherGraphOptions
       });
     }
 
@@ -155,4 +153,4 @@ const DagreFundFlow: React.SFC<RelationGraph> = ({
   );
 };
 
-export default DagreFundFlow;
+export default DagreFundFlowGraph;

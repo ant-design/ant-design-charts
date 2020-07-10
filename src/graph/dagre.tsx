@@ -72,7 +72,6 @@ const DagreGraph: React.SFC<RelationGraph> = ({
   handleEdgeClick,
   handleEdgeHover,
   handleEdgeUnHover,
-  otherGraphOptions = {}
 }) => {
   let graph: IGraph;
   const container = React.useRef(null);
@@ -102,7 +101,6 @@ const DagreGraph: React.SFC<RelationGraph> = ({
         nodeStateStyles,
         edgeStateStyles,
         layout,
-        ...otherGraphOptions
       });
     }
 

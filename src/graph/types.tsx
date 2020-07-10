@@ -1,11 +1,11 @@
 
-import { TreeGraphData, GraphData, StateStyles, ShapeStyle, GraphOptions } from '@antv/g6/lib/types';
+import { TreeGraphData, GraphData, StateStyles, ShapeStyle } from '@antv/g6/lib/types';
 import { IGraph } from '@antv/g6/lib/interface/graph';
 import { INode, IEdge } from '@antv/g6/lib/interface/item';
 
 
 
-export interface MiniMapConfig {
+export interface MiniMapConfig{
   show?: boolean;
   viewportClassName?: string;
   type?: 'default' | 'keyShape' | 'delegate';
@@ -52,6 +52,5 @@ export interface RelationGraph {
   handleEdgeHover?: (item: IEdge, graph: IGraph) => void;
   handleEdgeUnHover?: (item: IEdge, graph: IGraph) => void;
   collapseExpand?: boolean;
-  otherGraphOptions?: GraphOptions;
   colorMap?: Object;
 }

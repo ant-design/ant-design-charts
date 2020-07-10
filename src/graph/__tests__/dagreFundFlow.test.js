@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { DagreFundFlow } from '../';
+import { DagreFundFlowGraph } from '../';
 
 
 describe('Dagre Fund Flow', () => {
@@ -104,12 +104,8 @@ describe('Dagre Fund Flow', () => {
       width: 650,
       height: 500,
       data,
-      otherGraphOptions: {
-        modes: {
-          default: ['drag-canvas', 'zoom-canvas', 'drag-node']
-        }
-      }
+      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node']
     };
-    mount(<DagreFundFlow {...config} />);
+    mount(<DagreFundFlowGraph {...config} />);
   });
 });

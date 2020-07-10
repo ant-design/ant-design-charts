@@ -4,7 +4,7 @@ import { ITreeGraph } from '@antv/g6/lib/interface/graph';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import './customItems';
-import { processMinimap } from './util';
+import { processMinimap, getGraphSize } from './util';
 
 
 const defaultStateStyles = {
@@ -54,8 +54,8 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   data,
   className,
   style,
-  width = 500,
-  height = 500,
+  width,
+  height,
   nodeType = 'card-node',
   edgeType = 'cubic-horizontal',
   behaviors = ['zoom-canvas', 'drag-canvas'],
@@ -69,17 +69,17 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   nodeStateStyles = defaultStateStyles,
   edgeStateStyles = defaultStateStyles,
   collapseExpand = true,
-  otherGraphOptions = {}
 }) => {
   let graph: ITreeGraph;
   const container = React.useRef(null);
 
   useEffect(() => {
+    const graphSize = getGraphSize(width, height, container);
     if (!graph) {
       graph = new G6.TreeGraph({
         container: container.current as any,
-        width,
-        height,
+        width: graphSize[0],
+        height: graphSize[1],
         modes: {
           default: behaviors,
         },
@@ -97,7 +97,6 @@ const IndentedTree: React.SFC<RelationGraph> = ({
         nodeStateStyles,
         edgeStateStyles,
         layout,
-        ...otherGraphOptions
       });
     }
 

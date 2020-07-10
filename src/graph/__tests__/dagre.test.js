@@ -103,11 +103,7 @@ describe('Dagre Graph', () => {
       width: 650,
       height: 500,
       data,
-      otherGraphOptions: {
-        modes: {
-          default: ['drag-canvas', 'zoom-canvas', 'drag-node']
-        }
-      }
+      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node']
     };
     mount(<DagreGraph {...config} />);
   });
