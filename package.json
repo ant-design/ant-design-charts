@@ -31,7 +31,7 @@
     "mockTest": "node ./scripts/mockTest.js"
   },
   "dependencies": {
-    "@antv/g2plot": "~1.1.2",
+    "@antv/g2plot": "~1.1.12",
     "@antv/g6": "^3.5.10"
   },
   "devDependencies": {
