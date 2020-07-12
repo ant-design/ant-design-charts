@@ -87,7 +87,22 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
     if (!container.current) {
       return () => null;
     }
-    /* tooltip 支持 ReactNode */
+
+    // @ts-ignore 该属性只有 Liquid 和 Dount 存在且配置不一致，类型定义先忽略
+    if (config.statistic?.htmlContent) {
+      // @ts-ignore
+      const statisticHtmlContent = config.statistic.htmlContent;
+      // @ts-ignore
+      config.statistic.htmlContent = (...arg: any[]) => {
+        const statisticDom = statisticHtmlContent(...arg);
+        if (ReactTestUtils.isElement(statisticDom)) {
+          return createNode(statisticDom, true);
+        }
+        return statisticDom;
+      };
+    }
+
+    /* tooltip 支持 ReactNode, 1.0 版本会改用 createPortal  */
     if (config.tooltip?.custom?.container) {
       config.tooltip.custom.container = createNode(config.tooltip.custom.container);
     }
