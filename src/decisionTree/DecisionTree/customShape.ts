@@ -131,7 +131,8 @@ export default (config: IConfig, graphId: string) => {
         }
 
         return rect;
-      }
+      },
+      update: undefined,
     },
     "single-node"
   );
@@ -207,7 +208,8 @@ export default (config: IConfig, graphId: string) => {
           text.translate(-2);
         }
         return rect;
-      }
+      },
+      update: undefined,
     },
     "single-node"
   );
