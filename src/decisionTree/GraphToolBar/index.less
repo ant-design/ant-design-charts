@@ -1,0 +1,50 @@
+.tree_toolbar {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span,
+  img {
+    // 防止加减 zoom 过快时会选中文本 和 img 图标
+    user-select: none;
+  }
+
+  img:not(:last-child) {
+    margin-right: 16px;
+  }
+
+  .divider {
+    margin: 0;
+  }
+
+  .tree_zoomWrapper {
+    width: 90px;
+    height: 24px;
+    background-color: #f5f6fa;
+    font-size: 12px;
+    color: #000;
+    opacity: 0.65;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 2px;
+
+    :global {
+      .anticon {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.tree_fixed {
+  height: 40px;
+  border-radius: 20px;
+  position: absolute;
+  // left: 24px;
+  top: 24px;
+  padding: 8px 24px;
+  background: #fff;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
