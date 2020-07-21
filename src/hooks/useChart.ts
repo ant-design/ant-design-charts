@@ -72,22 +72,7 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
     }
   };
 
-  useEffect(() => {
-    if (chart.current) {
-      if (config.onlyChangeData) {
-        chart.current.changeData(config?.data || []);
-      } else {
-        chart.current.updateConfig(config);
-        chart.current.render();
-      }
-    }
-  }, [config?.memoData ? config.memoData : JSON.stringify(config)]);
-
-  useEffect(() => {
-    if (!container.current) {
-      return () => null;
-    }
-
+  const processConfig = () => {
     // @ts-ignore 该属性只有 Liquid 和 Dount 存在且配置不一致，类型定义先忽略
     if (config.statistic?.htmlContent) {
       // @ts-ignore
@@ -106,6 +91,7 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
     if (config.tooltip?.custom?.container) {
       config.tooltip.custom.container = createNode(config.tooltip.custom.container);
     }
+
     if (config.tooltip?.custom?.customContent) {
       const customContent = config.tooltip.custom.customContent;
       config.tooltip.custom.customContent = (title: string, items: any[]) => {
@@ -116,7 +102,25 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
         return tooltipDom;
       };
     }
+  };
 
+  useEffect(() => {
+    if (chart.current) {
+      if (config.onlyChangeData) {
+        chart.current.changeData(config?.data || []);
+      } else {
+        processConfig();
+        chart.current.updateConfig(config);
+        chart.current.render();
+      }
+    }
+  }, [config?.memoData ? config.memoData : JSON.stringify(config)]);
+
+  useEffect(() => {
+    if (!container.current) {
+      return () => null;
+    }
+    processConfig();
     const chartInstance: T = new (ChartClass as any)(container.current, {
       ...config,
     });
