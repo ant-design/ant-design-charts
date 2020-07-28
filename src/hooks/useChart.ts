@@ -1,4 +1,5 @@
 import { ReactNode, useRef, useEffect } from 'react';
+import { utils } from '../util';
 import {
   Base as G2PlotBase,
   PlotConfig as G2PlotPlotConfig,
@@ -79,6 +80,9 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
       // @ts-ignore
       config.statistic.htmlContent = (...arg: any[]) => {
         const statisticDom = statisticHtmlContent(...arg);
+        if (utils.isType(statisticDom, 'HTMLDivElement')) {
+          return statisticDom.innerHTML;
+        }
         return createNode(statisticDom, true);
       };
     }
@@ -92,6 +96,9 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
       const customContent = config.tooltip.custom.customContent;
       config.tooltip.custom.customContent = (title: string, items: any[]) => {
         const tooltipDom = customContent(title, items);
+        if (utils.isType(tooltipDom, 'HTMLDivElement')) {
+          return tooltipDom;
+        }
         return createNode(tooltipDom);
       };
     }
