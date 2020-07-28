@@ -1,5 +1,5 @@
 import { ReactNode, useRef, useEffect } from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
+import { utils } from '../util';
 import {
   Base as G2PlotBase,
   PlotConfig as G2PlotPlotConfig,
@@ -80,10 +80,10 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
       // @ts-ignore
       config.statistic.htmlContent = (...arg: any[]) => {
         const statisticDom = statisticHtmlContent(...arg);
-        if (ReactTestUtils.isElement(statisticDom)) {
-          return createNode(statisticDom, true);
+        if (utils.isType(statisticDom, 'HTMLDivElement')) {
+          return statisticDom.innerHTML;
         }
-        return statisticDom;
+        return createNode(statisticDom, true);
       };
     }
 
@@ -96,10 +96,10 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
       const customContent = config.tooltip.custom.customContent;
       config.tooltip.custom.customContent = (title: string, items: any[]) => {
         const tooltipDom = customContent(title, items);
-        if (ReactTestUtils.isElement(tooltipDom)) {
-          return createNode(tooltipDom);
+        if (utils.isType(tooltipDom, 'HTMLDivElement')) {
+          return tooltipDom;
         }
-        return tooltipDom;
+        return createNode(tooltipDom);
       };
     }
   };
