@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import G6 from '@antv/g6';
-import { IGraph } from '@antv/g6/lib/interface/graph';
-import { IEdge } from '@antv/g6/lib/interface/item';
-import { IG6GraphEvent } from '@antv/g6/lib/types';
+import G6, { Graph } from '@antv/g6/es';
+import { IEdge } from '@antv/g6/es/interface/item';
+import { IG6GraphEvent } from '@antv/g6/es/types';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import { processMinimap, getGraphSize } from './util';
+import useGraph from '../hooks/useGraph';
 
 
 const defaultStateStyles = {
@@ -18,7 +18,8 @@ const defaultStateStyles = {
 const defaultNodeSize = [150, 30];
 
 const defaultNodeStyle = {
-  stroke: '#72CC4A'
+  stroke: '#72CC4A',
+  fill: '#f00'
 }
 
 const defaultNodeAnchorPoints = [[0.5, 0], [0.5, 1]];
@@ -45,6 +46,8 @@ const defaultLabelCfg = {
   }
 }
 
+let graph: Graph;
+
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,
   className,
@@ -68,13 +71,41 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   handleEdgeClick,
   handleEdgeHover,
   handleEdgeUnHover,
+  graphRef
 }) => {
-  let graph: IGraph;
   const container = React.useRef(null);
+
+  const props = {
+    data,
+    className,
+    style,
+    width,
+    height,
+    nodeType,
+    edgeType,
+    behaviors,
+    nodeSize,
+    nodeLabelCfg,
+    edgeLabelCfg,
+    nodeAnchorPoints,
+    layout,
+    minimapCfg,
+    nodeStyle,
+    edgeStyle,
+    nodeStateStyles,
+    edgeStateStyles,
+    colorMap,
+    handleEdgeClick,
+    handleEdgeHover,
+    handleEdgeUnHover,
+    graphRef
+  };
+
+  useGraph(graph, props, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    if (!graph) {
+    if (!graph || graph.destroyed) {
       graph = new G6.Graph({
         container: container.current as any,
         width: graphSize[0],
@@ -99,6 +130,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
         edgeStateStyles,
         layout,
       });
+      graphRef!.current = graph;
     }
 
     processMinimap(minimapCfg, graph);
@@ -146,6 +178,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
 
     return () => graph.destroy()
   }, []);
+  
   return (
     <ErrorBoundary>
       <div className={className} style={style} ref={container} />

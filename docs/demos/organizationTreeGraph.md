@@ -271,7 +271,7 @@ export default DemoOrganizationGraph;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import G6 from '@antv/g6'
+import G6 from '@antv/g6/es'
 import { OrganizationTreeGraph } from '@ant-design/charts';
 
 const DemoOrganizationGraph: React.FC = () => {

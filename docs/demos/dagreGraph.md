@@ -23,7 +23,7 @@ order: 90
 | edgeLabelCfg | Object | false | {style: { fill: '#000', fontSize: 12 }} | [边文本配置](https://g6.antv.vision/zh/docs/manual/middle/elements/edges/defaultEdge#%E6%A0%87%E7%AD%BE%E6%96%87%E6%9C%AC-label-%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE-labelcfg) |
 | nodeAnchorPoints | Number[][] | false | [[0, 0.5], [1, 0.5]] | [节点相关边的连入位置](https://g6.antv.vision/zh/docs/manual/middle/elements/anchorpoint) |
 | behaviors | string[] | false | 默认 udnefined，示例：['drag-canvas', 'zoom-canvas'] | ['drag-canvas', 'zoom-canvas'] | 默认的[内置交互](https://g6.antv.vision/zh/docs/manual/middle/states/defaultBehavior) |
-| layout | Object | false | {type: 'dagre', direction: 'TB', nodesepFunc: (d: any) => 0, ranksepFunc: (d: any) => 0, controlPoints: true } | 布局配置项 |
+| layout | Object | false | {type: 'dagre', rankdir: 'TB', nodesepFunc: (d: any) => 0, ranksepFunc: (d: any) => 0, controlPoints: true } | 布局配置项 |
 | minimapCfg | Object | {show: false, size: [150, 100], type: 'keyShape'} | 控制是否显示缩略图以及缩略图配置，若 minimapCfg.show 设置为 true，则显示 Minimap，其他配置参见 [G6 Minimap](https://g6.antv.vision/zh/docs/api/Plugins/#minimap) |
 | handleEdgeClick | Object | false | undefined | 点击边的响应函数 |
 | handleEdgeHover | Object | false | undefined | hover 边的响应函数 |
@@ -38,13 +38,13 @@ order: 90
 
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DagreGraph } from '@ant-design/charts';
 import { each } from '@antv/util';
 
 const DemoDagreGraph: React.FC = () => {
   
-  const data = {
+  const sourceData = {
     nodes: [
       {
         id: '0',
@@ -139,15 +139,158 @@ const DemoDagreGraph: React.FC = () => {
     ],
   };
 
-  const config = {
-    data,
-    minimapCfg: {
-      show: true
-    },
-    behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node']
+
+  const sourceData2 = {
+    nodes: [
+      {
+        id: '0',
+        label: '0',
+      },
+      {
+        id: '1',
+        label: '1',
+      },
+      {
+        id: '2',
+        label: '2',
+      },
+      {
+        id: '3',
+        label: '3',
+      },
+      {
+        id: '4',
+        label: '4',
+      },
+    ],
+    edges: [
+      {
+          source: '0',
+          target: '1',
+      },
+      {
+          source: '0',
+          target: '2',
+      },
+      {
+          source: '1',
+          target: '4',
+      },
+      {
+          source: '0',
+          target: '3',
+      },
+      {
+          source: '3',
+          target: '4',
+      },
+    ],
   };
 
-  return <DagreGraph {...config} />;
+  const [data, setData] = useState(sourceData);
+
+  const [nodeStyle, setNodeStyle] = useState();
+  const [edgeStyle, setEdgeStyle] = useState();
+  const [size, setSize] = useState();
+  const [layoutCfg, setLayoutCfg] = useState();
+  const [anchorPoints, setAnchorPoints] = useState();
+  const [nodeType, setNodeType] = useState();
+  const [minimapCfg, setMinimapCfg] = useState({
+    show: true
+  });
+  const [behaviors, setBehaviors] = useState(['drag-canvas', 'zoom-canvas']);
+  const [nodeLabelCfg, setNodeLabelCfg] = useState();
+
+  const ref = useRef();
+
+  // 导出图片
+  const downloadImage = () => {
+    ref.current?.downloadImage();
+  };
+
+  const changeData = () => {
+    if (!data || data.nodes.length !== sourceData2.nodes.length) {
+      setData(sourceData2);
+    } else {
+      setData(sourceData);
+    }
+  }
+
+  const updateNodeStyle = () => {
+    if (!nodeType || nodeType !== 'rect') {
+      setNodeStyle({
+        stroke: '#666',
+        fill: '#fff'
+      });
+      setNodeLabelCfg({
+        style: {
+          fill: '#ccc',
+          fontWeight: 500,
+          fontSize: 20
+        }
+      });
+      setEdgeStyle({
+        stroke: '#666',
+        lineWidth: 3,
+      });
+      setNodeType('rect');
+    } else {
+      setNodeStyle();
+      setNodeType();
+      setNodeLabelCfg();
+    }
+  }
+
+  const changeSize = () => {
+    if (size && size[0] <= 300) {
+      setSize(undefined);
+    } else {
+      setSize([300, 500]);
+    }
+    setTimeout(() => {
+      ref.current.fitView();
+    }, 16);
+  };
+
+  const updateLayout = () => {
+    if (!layoutCfg || layoutCfg.rankdir !== 'lr') {
+      setLayoutCfg({
+        rankdir: 'lr',
+      });
+      setAnchorPoints([
+        [0, 0.5], [1, 0.5]
+      ]);
+    } else {
+      setLayoutCfg({
+        rankdir: 'TB',
+      });
+      setAnchorPoints();
+    }
+    setTimeout(() => {
+      ref.current?.fitView();
+    }, 16);
+  }
+
+  const updateMinimap = () => {
+    setMinimapCfg({
+      show: !minimapCfg.show
+    })
+  }
+
+  const destroyGraph = () => {
+    ref.current.destroy();
+  };
+
+  const updateBehaviors = () => {
+    if (behaviors.indexOf('drag-node') !== -1) {
+      setBehaviors(['drag-canvas', 'zoom-canvas']);
+    } else {
+      setBehaviors(['drag-canvas', 'zoom-canvas', 'drag-node']);
+    }
+  }
+
+  return (<div><button type="button" onClick={downloadImage} style={{ marginRight: 8 }}>导出图片</button><button type="button" onClick={changeData} style={{ marginRight: 8 }}>切换数据</button><button type="button" onClick={updateNodeStyle} style={{ marginRight: 8 }}>切换节点样式</button><button type="button" onClick={changeSize} style={{ marginRight: 8 }}>{size && size[0] === 300 ? '扩大画布' : '缩小画布'}</button><button type="button" onClick={updateLayout} style={{ marginRight: 8 }}>切换布局方向</button><button type="button" onClick={updateMinimap} style={{ marginRight: 8 }}>{minimapCfg.show ? '关闭 minimap' : '打开 minimap'}</button><button type="button" onClick={updateBehaviors} style={{ marginRight: 8 }}>{behaviors.indexOf('drag-node') !== -1 ? '关闭拖拽节点' : '打开拖拽节点'}</button><button type="button" onClick={destroyGraph} style={{ marginRight: 8 }}>销毁图</button><DagreGraph nodeStyle={nodeStyle} width={size ? size[0] : undefined} height={size ? size[1] : undefined} layout={layoutCfg} nodeAnchorPoints={anchorPoints} nodeType={nodeType} nodeLabelCfg={nodeLabelCfg} minimapCfg={minimapCfg} behaviors={behaviors} data={data} graphRef={ref} /></div>);
+  
 };
 
 export default DemoDagreGraph;

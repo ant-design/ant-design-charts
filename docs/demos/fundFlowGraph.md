@@ -48,7 +48,7 @@ order: 91
 ### 演示结果
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DagreFundFlowGraph } from '@ant-design/charts';
 import { each } from '@antv/util';
 
@@ -153,8 +153,61 @@ const DemoDagreFundFlowGraph: React.FC = () => {
     ],
   };
 
-
-  const config = {
+  const data2 = {
+    nodes: [
+      {
+        id: '1',
+        label: 'Company1',
+      },
+      {
+        id: '2',
+        label: 'Company2',
+      },
+      {
+        id: '5',
+        label: 'Company5',
+      },
+      {
+        id: '6',
+        label: 'Company6',
+      },
+      {
+        id: '9',
+        label: 'Company9',
+      },
+    ],
+    edges: [
+      {
+        source: '1',
+        target: '2',
+        dataType: 'A',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '2',
+        target: '5',
+        dataType: 'C',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '5',
+        target: '6',
+        dataType: 'B',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '1',
+        target: '9',
+        dataType: 'C',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+    ],
+  };
+  const [config, setConfig] = useState({
     data,
     colorMap: {
       A: '#72CC4A',
@@ -162,9 +215,30 @@ const DemoDagreFundFlowGraph: React.FC = () => {
       C: '#FFAA15',
     },
     behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node']
+  });
+
+  const [nodeStyle, setNodeStyle] = useState();
+
+  const ref = useRef();
+
+  // 导出图片
+  const downloadImage = () => {
+    ref.current?.downloadImage();
   };
 
-  return <DagreFundFlowGraph {...config} />;
+  const changeData = () => {
+    setConfig({
+      data: data2,
+      colorMap: {
+        A: '#72CC4A',
+        B: '#1A91FF',
+        C: '#FFAA15',
+      },
+      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node']
+    });
+  }
+
+  return (<div><button type="button" onClick={downloadImage} style={{ marginRight: 24 }}>导出图片</button><button type="button" onClick={changeData} style={{ marginRight: 24 }}>切换数据</button><DagreFundFlowGraph nodeStyle {...config} graphRef={ref} /></div>);
 };
 
 export default DemoDagreFundFlowGraph;
