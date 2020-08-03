@@ -83,7 +83,8 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   handleNodeHover,
   handleNodeUnHover,
   handleEdgeHover,
-  handleEdgeUnHover
+  handleEdgeUnHover,
+  graphRef
 }) => {
   const props = {
     data,
@@ -109,7 +110,8 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     handleNodeHover,
     handleNodeUnHover,
     handleEdgeHover,
-    handleEdgeUnHover
+    handleEdgeUnHover,
+    graphRef
   };
 
   const container = React.useRef(null);
@@ -150,6 +152,9 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
         edgeStateStyles,
         layout
       });
+      if (graphRef) {
+        graphRef!.current = graph;
+      }
     }
 
     processMinimap(minimapCfg, graph);

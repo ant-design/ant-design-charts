@@ -129,7 +129,9 @@ const DagreGraph: React.SFC<RelationGraph> = ({
         edgeStateStyles,
         layout,
       });
-      graphRef!.current = graph;
+      if (graphRef) {
+        graphRef!.current = graph;
+      }
     }
 
     processMinimap(minimapCfg, graph);

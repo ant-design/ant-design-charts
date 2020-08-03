@@ -71,6 +71,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   nodeStateStyles = defaultStateStyles,
   edgeStateStyles = defaultStateStyles,
   collapseExpand = true,
+  graphRef
 }) => {
   const container = React.useRef(null);
 
@@ -93,6 +94,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
     nodeStateStyles,
     edgeStateStyles,
     collapseExpand,
+    graphRef
   }
   
   useGraph(graph, props, container);
@@ -122,6 +124,9 @@ const IndentedTree: React.SFC<RelationGraph> = ({
         edgeStateStyles,
         layout,
       });
+      if (graphRef) {
+        graphRef!.current = graph;
+      }
     }
 
     processMinimap(minimapCfg, graph);
