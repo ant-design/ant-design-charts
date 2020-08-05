@@ -1,7 +1,7 @@
 
-import { NodeConfig, EdgeConfig, IPoint } from '@antv/g6/lib/types';
-import G6 from '@antv/g6';
-import { INode } from '@antv/g6/lib/interface/item';
+import { NodeConfig, EdgeConfig, IPoint } from '@antv/g6/es/types';
+import G6 from '@antv/g6/es';
+import { INode } from '@antv/g6/es/interface/item';
 
 
 
@@ -9,11 +9,12 @@ G6.registerNode(
   'card-node',
   {
     draw: (cfg: NodeConfig, group) => {
-      const color = (cfg && cfg.color) ? cfg.color : '#5B8FF9';
+      let color = (cfg && cfg.color) ? cfg.color : '#5B8FF9';
       let size = (cfg && cfg.size) ? cfg.size : [100, 30];
       if (typeof(size) === 'number') size = [size, size];
       let style = (cfg && cfg.style) ? cfg.style : {};
       style = Object.assign({ radius: 2, fill: '#fff' }, style);
+      color = style.stroke || '#5B8FF9';
       const r = style.radius || 0;
       const shape = group!.addShape('rect', {
         attrs: {
@@ -132,11 +133,12 @@ G6.registerNode(
       if (typeof(size) === 'number') size = [size, size];
       let style = (cfg && cfg.style) ? cfg.style : {};
       if (style.stroke) color = style.stroke;
+      let fill = (style && style.fill) ? style.fill : '#fff';
       style = Object.assign({
         width: size[0],
         height: size[1],
         radius: size[1] / 2,
-        fill: '#fff',
+        fill,
         lineWidth: 1.2,
         stroke: color
       }, style);

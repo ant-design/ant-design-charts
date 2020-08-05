@@ -1,7 +1,7 @@
 
-import { TreeGraphData, GraphData, StateStyles, ShapeStyle } from '@antv/g6/lib/types';
-import { IGraph } from '@antv/g6/lib/interface/graph';
-import { INode, IEdge } from '@antv/g6/lib/interface/item';
+import { TreeGraphData, GraphData, StateStyles, ShapeStyle } from '@antv/g6/es/types';
+import { IGraph } from '@antv/g6/es/interface/graph';
+import { INode, IEdge } from '@antv/g6/es/interface/item';
 
 
 
@@ -53,4 +53,5 @@ export interface RelationGraph {
   handleEdgeUnHover?: (item: IEdge, graph: IGraph) => void;
   collapseExpand?: boolean;
   colorMap?: Object;
+  graphRef?: React.MutableRefObject<IGraph | undefined>;
 }

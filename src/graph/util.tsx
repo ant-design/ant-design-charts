@@ -1,6 +1,6 @@
-import G6 from '@antv/g6';
+import G6, { Graph } from '@antv/g6/es';
 import { MiniMapConfig } from './types';
-import { IGraph } from '@antv/g6/lib/interface/graph';
+import MiniMap from '@antv/g6/es/plugins/minimap';
 
 
 const defaultMinimapCfg = {
@@ -15,7 +15,7 @@ export const getGraphSize = (width: number | undefined, height: number | undefin
       CANVAS_WIDTH = container.current.offsetWidth;
       CANVAS_HEIGHT = container.current.offsetHeight || 500;
     }
-    console.log('graph size', CANVAS_WIDTH, CANVAS_HEIGHT);
+    console.log('graph size', CANVAS_WIDTH, CANVAS_HEIGHT, height, width, container, container.current);
     if ((!width && !CANVAS_WIDTH) || (!height && !CANVAS_HEIGHT)) {
       console.warn('请为 Graph 指定 width 与 height！否则将使用默认值 500 * 500');
       return [500, 500];
@@ -23,13 +23,16 @@ export const getGraphSize = (width: number | undefined, height: number | undefin
     return [width || CANVAS_WIDTH || 500, height || CANVAS_HEIGHT || 500];
 }
 
-export const processMinimap = (cfg: MiniMapConfig | undefined, graph: IGraph) => {
-    if (cfg && cfg.show) {
-        const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);
-        const minimap = new G6.Minimap({
-          ...curMminimapCfg
-        })
-  
-        graph.addPlugin(minimap)
-      }
+export const processMinimap = (cfg: MiniMapConfig | undefined, graph: Graph): MiniMap | undefined => {
+  if (!graph || graph.destroyed) return;
+  if (cfg && cfg.show) {
+    const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);
+    const minimap = new G6.Minimap({
+      ...curMminimapCfg
+    })
+
+    graph.addPlugin(minimap)
+    return minimap;
+  }
+  return;
 }

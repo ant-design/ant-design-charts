@@ -1,0 +1,120 @@
+import { useRef, useEffect } from 'react';
+import { Graph, TreeGraph } from '@antv/g6/es';
+import { getGraphSize, processMinimap } from '../graph/util';
+import { isObject, isString } from '@antv/util';
+import { ModeType } from '@antv/g6/es/types';
+import { INode, IEdge } from '@antv/g6/es/interface/item';
+
+export interface Base extends Graph{
+  current?: Graph
+}
+
+export default function useInit(graphInstance: Graph | TreeGraph | undefined, config: any, container: React.MutableRefObject<null>) {
+  const graphHook = useRef<Base>();
+  const {
+    data,
+    nodeStyle,
+    nodeAnchorPoints,
+    nodeType,
+    edgeType,
+    edgeStyle,
+    width,
+    height,
+    layout,
+    minimapCfg,
+    behaviors,
+    nodeLabelCfg,
+    edgeLabelCfg
+   } = config;
+
+   let minimap;
+
+  useEffect(() => {
+    if (graphInstance && !graphInstance.destroyed) {
+      graphInstance.changeData(data);
+      graphInstance.layout();
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (graphInstance && !graphInstance.destroyed) {
+      graphInstance.getNodes().forEach((node: INode) => {
+        graphInstance!.updateItem(node, {
+          type: nodeType,
+          style: nodeStyle,
+          anchorPoints: nodeAnchorPoints,
+          labelCfg: nodeLabelCfg
+        });
+      });
+    }
+  }, [nodeStyle, nodeAnchorPoints, nodeType]);
+
+  useEffect(() => {
+    if (graphInstance && !graphInstance.destroyed) {
+      graphInstance.getEdges().forEach((edge: IEdge) => {
+        graphInstance!.updateItem(edge, {
+          type: edgeType,
+          style: edgeStyle,
+          labelCfg: edgeLabelCfg
+        });
+      });
+    }
+  }, [edgeStyle, edgeType]);
+
+  useEffect(() => {
+    if (graphInstance && !graphInstance.destroyed) {
+      const graphSize = getGraphSize(width, height, container);
+      graphInstance.changeSize(graphSize[0], graphSize[1]);
+    }
+  }, [container, width, height])
+
+  useEffect(() => {
+    if (graphInstance && !graphInstance.destroyed) {
+      graphInstance.updateLayout(layout);
+    }
+  }, [layout])
+
+  useEffect(() => {
+    if (!minimapCfg || !graphInstance || graphInstance.destroyed) {
+      return;
+    }
+    if (minimapCfg.show) {
+      minimap = processMinimap(minimapCfg, graphInstance);
+      minimap && minimap.updateCanvas();
+    } else {
+      const minimap = graphInstance.get('plugins')[0];
+      minimap && graphInstance.removePlugin(minimap);
+    }
+  }, [minimapCfg])
+
+  useEffect(() => {
+    if (graphInstance && !graphInstance.destroyed) {
+      const { default: defaultMode } = graphInstance.get('modes');
+      const removingBehaviors: string[] = [];
+      defaultMode.forEach((be: string | ModeType) => {
+        if (isObject(be)) {
+          removingBehaviors.push(be.type);
+        } else if (isString(be)) {
+          removingBehaviors.push(be);
+        }
+      });
+      graphInstance.removeBehaviors(removingBehaviors, 'default');
+      graphInstance.addBehaviors(behaviors, 'default');
+    }
+  }, [behaviors]);
+
+  useEffect(() => {
+    graphHook.current = graphInstance;
+    if (graphInstance && !graphInstance.destroyed) {
+      return () => {
+        graphInstance!.destroy();
+        graphInstance = undefined;
+      }
+    }
+    return;
+  }, []);
+
+  return {
+    graphHook,
+  };
+}

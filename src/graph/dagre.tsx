@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import G6 from '@antv/g6';
-import { IGraph } from '@antv/g6/lib/interface/graph';
-import { IEdge } from '@antv/g6/lib/interface/item';
-import { IG6GraphEvent } from '@antv/g6/lib/types';
+import G6, { Graph } from '@antv/g6/es';
+import { IEdge } from '@antv/g6/es/interface/item';
+import { IG6GraphEvent } from '@antv/g6/es/types';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
-import { getGraphSize, processMinimap } from './util'
+import { getGraphSize, processMinimap } from './util';
+import useGraph from '../hooks/useGraph';
 
 const defaultStateStyles = {
   hover: {
@@ -17,7 +17,7 @@ const defaultStateStyles = {
 const defaultNodeSize = [120, 40];
 
 const defaultNodeStyle = {
-  stroke: '#40a9ff',
+  stroke: '#40a9ff'
 }
 
 const defaultNodeAnchorPoints = [[0.5, 0], [0.5, 1]];
@@ -32,7 +32,7 @@ const defaultEdgeStyle = {
 
 const defaultLayout = {
   type: 'dagre',
-  direction: 'TB',
+  rankdir: 'TB',
   nodesepFunc: (d: any) => {
     return 0;
   },
@@ -49,6 +49,7 @@ const defaultLabelCfg = {
   }
 }
 
+let graph: Graph;
 
 const DagreGraph: React.SFC<RelationGraph> = ({
   data,
@@ -72,13 +73,39 @@ const DagreGraph: React.SFC<RelationGraph> = ({
   handleEdgeClick,
   handleEdgeHover,
   handleEdgeUnHover,
+  graphRef
 }) => {
-  let graph: IGraph;
+  const props = {
+    data,
+    className,
+    style,
+    width,
+    height,
+    nodeType,
+    edgeType,
+    behaviors,
+    nodeSize,
+    nodeLabelCfg,
+    edgeLabelCfg,
+    nodeAnchorPoints,
+    layout,
+    minimapCfg,
+    nodeStyle,
+    edgeStyle,
+    nodeStateStyles,
+    edgeStateStyles,
+    handleEdgeClick,
+    handleEdgeHover,
+    handleEdgeUnHover,
+    graphRef
+  };
   const container = React.useRef(null);
+  
+  useGraph(graph, props, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    if (!graph) {
+    if (!graph || graph.destroyed) {
       graph = new G6.Graph({
         container: container.current as any,
         width: graphSize[0],
@@ -102,6 +129,9 @@ const DagreGraph: React.SFC<RelationGraph> = ({
         edgeStateStyles,
         layout,
       });
+      if (graphRef) {
+        graphRef!.current = graph;
+      }
     }
 
     processMinimap(minimapCfg, graph);
@@ -133,8 +163,11 @@ const DagreGraph: React.SFC<RelationGraph> = ({
       }
     })
 
+
     return () => graph.destroy()
   }, []);
+
+
   return (
     <ErrorBoundary>
       <div className={className} style={style} ref={container} />

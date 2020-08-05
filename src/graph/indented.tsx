@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import G6 from '@antv/g6';
-import { ITreeGraph } from '@antv/g6/lib/interface/graph';
+import G6, { TreeGraph } from '@antv/g6/es';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import './customItems';
 import { processMinimap, getGraphSize } from './util';
+import useGraph from '../hooks/useGraph';
 
 
 const defaultStateStyles = {
@@ -50,6 +50,8 @@ const defaultLabelCfg = {
   }
 }
 
+let graph: TreeGraph;
+
 const IndentedTree: React.SFC<RelationGraph> = ({
   data,
   className,
@@ -69,13 +71,37 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   nodeStateStyles = defaultStateStyles,
   edgeStateStyles = defaultStateStyles,
   collapseExpand = true,
+  graphRef
 }) => {
-  let graph: ITreeGraph;
   const container = React.useRef(null);
+
+  const props = {
+    data,
+    className,
+    style,
+    width,
+    height,
+    nodeType,
+    edgeType,
+    behaviors,
+    nodeSize,
+    nodeLabelCfg,
+    nodeAnchorPoints,
+    layout,
+    minimapCfg,
+    nodeStyle,
+    edgeStyle,
+    nodeStateStyles,
+    edgeStateStyles,
+    collapseExpand,
+    graphRef
+  }
+  
+  useGraph(graph, props, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    if (!graph) {
+    if (!graph || graph.destroyed) {
       graph = new G6.TreeGraph({
         container: container.current as any,
         width: graphSize[0],
@@ -98,6 +124,9 @@ const IndentedTree: React.SFC<RelationGraph> = ({
         edgeStateStyles,
         layout,
       });
+      if (graphRef) {
+        graphRef!.current = graph;
+      }
     }
 
     processMinimap(minimapCfg, graph);

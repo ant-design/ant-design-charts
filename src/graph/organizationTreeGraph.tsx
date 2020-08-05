@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import G6 from '@antv/g6';
-import { ITreeGraph } from '@antv/g6/lib/interface/graph';
-import { INode, IEdge } from '@antv/g6/lib/interface/item';
-import { TreeGraphData, NodeConfig, IG6GraphEvent } from '@antv/g6/lib/types';
+import G6, { TreeGraph } from '@antv/g6/es';
+import { INode, IEdge } from '@antv/g6/es/interface/item';
+import { TreeGraphData, NodeConfig, IG6GraphEvent } from '@antv/g6/es/types';
 import { ErrorBoundary } from '../base';
 import { customIconNode } from './customItems';
 import { getGraphSize, processMinimap } from './util'
 import { RelationGraph } from './types';
+import useGraph from '../hooks/useGraph';
 
 const defaultStateStyles = {
   hover: {
@@ -57,6 +57,8 @@ const defaultLabelCfg = {
   }
 }
 
+let graph: TreeGraph;
+
 const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   data,
   className,
@@ -81,16 +83,46 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   handleNodeHover,
   handleNodeUnHover,
   handleEdgeHover,
-  handleEdgeUnHover
+  handleEdgeUnHover,
+  graphRef
 }) => {
-  let graph: ITreeGraph;
+  const props = {
+    data,
+    className,
+    style,
+    width,
+    height,
+    nodeType,
+    edgeType,
+    collapseExpand,
+    nodeSize,
+    nodeLabelCfg,
+    edgeLabelCfg,
+    layout,
+    enableEdit,
+    minimapCfg,
+    nodeStyle,
+    edgeStyle,
+    nodeStateStyles,
+    edgeStateStyles,
+    handleNodeClick,
+    handleEdgeClick,
+    handleNodeHover,
+    handleNodeUnHover,
+    handleEdgeHover,
+    handleEdgeUnHover,
+    graphRef
+  };
+
   const container = React.useRef(null);
+
+  useGraph(graph, props, container);
 
   useEffect(() => {
 
     const graphSize = getGraphSize(width, height, container);
 
-    if (!graph) {
+    if (!graph || graph.destroyed) {
       if (nodeType === 'icon-node') {
         customIconNode({  enableEdit });
       }
@@ -120,6 +152,9 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
         edgeStateStyles,
         layout
       });
+      if (graphRef) {
+        graphRef!.current = graph;
+      }
     }
 
     processMinimap(minimapCfg, graph);
