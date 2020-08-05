@@ -80,10 +80,14 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
       // @ts-ignore
       config.statistic.htmlContent = (...arg: any[]) => {
         const statisticDom = statisticHtmlContent(...arg);
-        if (utils.isType(statisticDom, 'HTMLDivElement')) {
-          return statisticDom.innerHTML;
+        if (
+          utils.isType(statisticDom, 'String') ||
+          utils.isType(statisticDom, 'Number') ||
+          utils.isType(statisticDom, 'HTMLDivElement')
+        ) {
+          return statisticDom;
         }
-        return createNode(statisticDom, true);
+        return createNode(statisticDom);
       };
     }
 
