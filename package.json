@@ -49,7 +49,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
-    "escodegen": "^1.14.1",
+    "escodegen": "^2.0.0",
     "esprima": "^4.0.1",
     "estraverse": "^5.1.0",
     "father-build": "^1.17.2",
