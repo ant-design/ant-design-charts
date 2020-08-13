@@ -15,7 +15,6 @@ G6.registerNode(
       let style = (cfg && cfg.style) ? cfg.style : {};
       style = Object.assign({ radius: 2, fill: '#fff' }, style);
       color = style.stroke || '#5B8FF9';
-      console.log('drawing card node', cfg)
       const r = style.radius || 0;
       const shape = group!.addShape('rect', {
         attrs: {
