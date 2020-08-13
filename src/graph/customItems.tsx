@@ -1,8 +1,6 @@
 
 import { NodeConfig, EdgeConfig, IPoint } from '@antv/g6/es/types';
 import G6 from '@antv/g6/es';
-import { INode } from '@antv/g6/es/interface/item';
-
 
 
 G6.registerNode(
@@ -114,14 +112,9 @@ G6.registerNode(
       }
       return shape;
     },
-    setState: (name: string, value: boolean, item: INode) => {
-      if (name === 'collapsed') {
-        const marker = item.getContainer().find(e => e.get('name') === 'collapse-icon');
-        marker && marker.attr('symbol', value ? G6.Marker.expand : G6.Marker.collapse)
-      }
-    },
     update: undefined
-  }
+  },
+  'single-node'
 );
 
 G6.registerNode(
@@ -345,11 +338,13 @@ G6.registerEdge('fund-polyline', {
       ];
     }
 
+    const { style } = cfg || {}
+
     const line = group!.addShape('path', {
       attrs: {
         path,
-        stroke: (cfg.colorMap && (cfg.colorMap as Object)[cfg.dataType as string]) ? (cfg.colorMap as Object)[cfg.dataType as string] : '#5B8FF9',
-        lineWidth: 1.2,
+        stroke: style!.stroke || (cfg.colorMap && (cfg.colorMap as Object)[cfg.dataType as string]) ? (cfg.colorMap as Object)[cfg.dataType as string] : '#5B8FF9',
+        lineWidth: style!.lineWidth || 1.2,
         endArrow: false,
       },
       name: 'path-shape',
@@ -408,7 +403,8 @@ G6.registerEdge('fund-polyline', {
     }
     return line;
   },
-});
+  update: undefined
+}, 'single-edge');
 
 
 G6.registerEdge('flow-line', {

@@ -32,6 +32,10 @@ OrganizationTreeGraph 支持以下配置项：
 | handleNodeUnHover | (item: INode, graph: IGraph) => void | null | 鼠标从节点上移开的回调函数 |
 | handleEdgeHover | (item: IEdge, graph: IGraph) => void | null | 鼠标 hover 到边上的回调函数 |
 | handleEdgeUnHover | (item: IEdge, graph: IGraph) => void | null | 鼠标从边上移开的回调函数 |
+| handleNodeClick | Object | false | undefined | 点击点的响应函数 |
+| handleNodeHover | Object | false | undefined | hover 点的响应函数 |
+| handleNodeUnHover | Object | false | undefined | unhover 点的响应函数 |
+| handleCanvasClick | Object | false | undefined | 点击画布空白区域的响应函数 |
 
 
 ### 基础组织架构树图
@@ -140,10 +144,34 @@ const DemoOrganizationGraph: React.FC = () => {
     }
     return true
   })
+  
+  const nodeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3
+    }
+  }
+  const handleNodeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true)
+  }
+  const handleCanvasClick = (graph) => {
+    const selectedEdges = graph.findAllByState('edge', 'selected');
+    selectedEdges.forEach(edge => {
+      graph.setItemState(edge, 'selected', false)
+    })
+    const selectedNodes = graph.findAllByState('node', 'selected');
+    selectedNodes.forEach(node => {
+      graph.setItemState(node, 'selected', false)
+    })
+  }
 
   return <OrganizationTreeGraph 
     data={data}
-    nodeType='rect' />;
+    nodeType='rect' nodeStateStyles={nodeStateStyles} handleNodeClick={handleNodeClick} handleCanvasClick={handleCanvasClick} />;
 };
 
 export default DemoOrganizationGraph;

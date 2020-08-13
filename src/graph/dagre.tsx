@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import G6, { Graph } from '@antv/g6/es';
-import { IEdge } from '@antv/g6/es/interface/item';
+import { IEdge, INode } from '@antv/g6/es/interface/item';
 import { IG6GraphEvent } from '@antv/g6/es/types';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
@@ -73,6 +73,10 @@ const DagreGraph: React.SFC<RelationGraph> = ({
   handleEdgeClick,
   handleEdgeHover,
   handleEdgeUnHover,
+  handleNodeClick,
+  handleNodeHover,
+  handleNodeUnHover,
+  handleCanvasClick,
   graphRef
 }) => {
   const props = {
@@ -97,6 +101,10 @@ const DagreGraph: React.SFC<RelationGraph> = ({
     handleEdgeClick,
     handleEdgeHover,
     handleEdgeUnHover,
+    handleNodeClick,
+    handleNodeHover,
+    handleNodeUnHover,
+    handleCanvasClick,
     graphRef
   };
   const container = React.useRef(null);
@@ -147,6 +155,13 @@ const DagreGraph: React.SFC<RelationGraph> = ({
         handleEdgeHover(item, graph)
       }
     })
+    graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
+      const item = evt.item as INode
+      graph.setItemState(item, 'hover', false)
+      if (handleNodeHover) {
+        handleNodeHover(item, graph)
+      }
+    })
 
     graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
       const item = evt.item as IEdge
@@ -155,12 +170,30 @@ const DagreGraph: React.SFC<RelationGraph> = ({
         handleEdgeUnHover(item, graph)
       }
     })
+    graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
+      const item = evt.item as INode
+      graph.setItemState(item, 'hover', false)
+      if (handleNodeUnHover) {
+        handleNodeUnHover(item, graph)
+      }
+    })
 
     graph.on('edge:click', (evt: IG6GraphEvent) => {
       const item = evt.item as IEdge
       if (handleEdgeClick) {
         handleEdgeClick(item, graph)
       }
+    })
+
+    graph.on('node:click', (evt: IG6GraphEvent) => {
+      const item = evt.item as INode
+      if (handleNodeClick) {
+        handleNodeClick(item, graph)
+      }
+    })
+
+    graph.on('canvas:click', (evt: IG6GraphEvent) => {
+      handleCanvasClick && handleCanvasClick(graph);
     })
 
 
