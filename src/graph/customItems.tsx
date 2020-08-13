@@ -1,8 +1,6 @@
 
 import { NodeConfig, EdgeConfig, IPoint } from '@antv/g6/es/types';
 import G6 from '@antv/g6/es';
-import { INode } from '@antv/g6/es/interface/item';
-
 
 
 G6.registerNode(
