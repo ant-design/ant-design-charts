@@ -28,6 +28,10 @@ order: 90
 | handleEdgeClick | Object | false | undefined | 点击边的响应函数 |
 | handleEdgeHover | Object | false | undefined | hover 边的响应函数 |
 | handleEdgeUnHover | Object | false | undefined | unhover 边的响应函数 |
+| handleNodeClick | Object | false | undefined | 点击点的响应函数 |
+| handleNodeHover | Object | false | undefined | hover 点的响应函数 |
+| handleNodeUnHover | Object | false | undefined | unhover 点的响应函数 |
+| handleCanvasClick | Object | false | undefined | 点击画布空白区域的响应函数 |
 
 
 ### 数据说明
@@ -289,7 +293,45 @@ const DemoDagreGraph: React.FC = () => {
     }
   }
 
-  return (<div><button type="button" onClick={downloadImage} style={{ marginRight: 8 }}>导出图片</button><button type="button" onClick={changeData} style={{ marginRight: 8 }}>切换数据</button><button type="button" onClick={updateNodeStyle} style={{ marginRight: 8 }}>切换节点样式</button><button type="button" onClick={changeSize} style={{ marginRight: 8 }}>{size && size[0] === 300 ? '扩大画布' : '缩小画布'}</button><button type="button" onClick={updateLayout} style={{ marginRight: 8 }}>切换布局方向</button><button type="button" onClick={updateMinimap} style={{ marginRight: 8 }}>{minimapCfg.show ? '关闭 minimap' : '打开 minimap'}</button><button type="button" onClick={updateBehaviors} style={{ marginRight: 8 }}>{behaviors.indexOf('drag-node') !== -1 ? '关闭拖拽节点' : '打开拖拽节点'}</button><button type="button" onClick={destroyGraph} style={{ marginRight: 8 }}>销毁图</button><DagreGraph nodeStyle={nodeStyle} width={size ? size[0] : undefined} height={size ? size[1] : undefined} layout={layoutCfg} nodeAnchorPoints={anchorPoints} nodeType={nodeType} nodeLabelCfg={nodeLabelCfg} minimapCfg={minimapCfg} behaviors={behaviors} data={data} graphRef={ref} /></div>);
+  const handleEdgeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true)
+  }
+  const handleNodeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true)
+  }
+
+  const handleCanvasClick = (graph) => {
+    const selectedEdges = graph.findAllByState('edge', 'selected');
+    selectedEdges.forEach(edge => {
+      graph.setItemState(edge, 'selected', false)
+    })
+    const selectedNodes = graph.findAllByState('node', 'selected');
+    selectedNodes.forEach(node => {
+      graph.setItemState(node, 'selected', false)
+    })
+  }
+  const edgeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3
+    }
+  }
+  const nodeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3
+    }
+  }
+
+  return (<div><button type="button" onClick={downloadImage} style={{ marginRight: 8 }}>导出图片</button><button type="button" onClick={changeData} style={{ marginRight: 8 }}>切换数据</button><button type="button" onClick={updateNodeStyle} style={{ marginRight: 8 }}>切换节点样式</button><button type="button" onClick={changeSize} style={{ marginRight: 8 }}>{size && size[0] === 300 ? '扩大画布' : '缩小画布'}</button><button type="button" onClick={updateLayout} style={{ marginRight: 8 }}>切换布局方向</button><button type="button" onClick={updateMinimap} style={{ marginRight: 8 }}>{minimapCfg.show ? '关闭 minimap' : '打开 minimap'}</button><button type="button" onClick={updateBehaviors} style={{ marginRight: 8 }}>{behaviors.indexOf('drag-node') !== -1 ? '关闭拖拽节点' : '打开拖拽节点'}</button><button type="button" onClick={destroyGraph} style={{ marginRight: 8 }}>销毁图</button><DagreGraph nodeStyle={nodeStyle} width={size ? size[0] : undefined} height={size ? size[1] : undefined} layout={layoutCfg} nodeAnchorPoints={anchorPoints} nodeType={nodeType} nodeLabelCfg={nodeLabelCfg} minimapCfg={minimapCfg} behaviors={behaviors} data={data} graphRef={ref} handleEdgeClick={handleEdgeClick} handleCanvasClick={handleCanvasClick} edgeStateStyles={edgeStateStyles} nodeStateStyles={nodeStateStyles} handleNodeClick={handleNodeClick}/></div>);
   
 };
 

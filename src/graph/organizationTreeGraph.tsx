@@ -84,6 +84,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   handleNodeUnHover,
   handleEdgeHover,
   handleEdgeUnHover,
+  handleCanvasClick,
   graphRef
 }) => {
   const props = {
@@ -111,6 +112,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     handleNodeUnHover,
     handleEdgeHover,
     handleEdgeUnHover,
+    handleCanvasClick,
     graphRef
   };
 
@@ -242,6 +244,10 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
       if (handleEdgeClick) {
         handleEdgeClick(item, graph)
       }
+    })
+    
+    graph.on('canvas:click', (evt: IG6GraphEvent) => {
+      handleCanvasClick && handleCanvasClick(graph);
     })
 
     return () => graph.destroy()

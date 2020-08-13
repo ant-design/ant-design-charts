@@ -28,6 +28,10 @@ order: 91
 | handleEdgeClick | Object | false | undefined | 点击边的响应函数 |
 | handleEdgeHover | Object | false | undefined | hover 边的响应函数 |
 | handleEdgeUnHover | Object | false | undefined | unhover 边的响应函数 |
+| handleNodeClick | Object | false | undefined | 点击点的响应函数 |
+| handleNodeHover | Object | false | undefined | hover 点的响应函数 |
+| handleNodeUnHover | Object | false | undefined | unhover 点的响应函数 |
+| handleCanvasClick | Object | false | undefined | 点击画布空白区域的响应函数 |
 
 
 ### 数据说明
@@ -238,7 +242,45 @@ const DemoDagreFundFlowGraph: React.FC = () => {
     });
   }
 
-  return (<div><button type="button" onClick={downloadImage} style={{ marginRight: 24 }}>导出图片</button><button type="button" onClick={changeData} style={{ marginRight: 24 }}>切换数据</button><DagreFundFlowGraph nodeStyle {...config} graphRef={ref} /></div>);
+  const handleEdgeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true)
+  }
+  const handleNodeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true)
+  }
+
+  const handleCanvasClick = (graph) => {
+    const selectedEdges = graph.findAllByState('edge', 'selected');
+    selectedEdges.forEach(edge => {
+      graph.setItemState(edge, 'selected', false)
+    })
+    const selectedNodes = graph.findAllByState('node', 'selected');
+    selectedNodes.forEach(node => {
+      graph.setItemState(node, 'selected', false)
+    })
+  }
+  const edgeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3
+    }
+  }
+  const nodeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3
+    }
+  }
+
+  return (<div><button type="button" onClick={downloadImage} style={{ marginRight: 24 }}>导出图片</button><button type="button" onClick={changeData} style={{ marginRight: 24 }}>切换数据</button><DagreFundFlowGraph nodeStyle {...config} graphRef={ref} handleEdgeClick={handleEdgeClick} handleCanvasClick={handleCanvasClick} edgeStateStyles={edgeStateStyles} nodeStateStyles={nodeStateStyles} handleNodeClick={handleNodeClick}/></div>);
 };
 
 export default DemoDagreFundFlowGraph;

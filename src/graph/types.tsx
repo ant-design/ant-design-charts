@@ -51,6 +51,7 @@ export interface RelationGraph {
   handleNodeUnHover?: (item: INode, graph: IGraph) => void;
   handleEdgeHover?: (item: IEdge, graph: IGraph) => void;
   handleEdgeUnHover?: (item: IEdge, graph: IGraph) => void;
+  handleCanvasClick?: (graph: IGraph) => void;
   collapseExpand?: boolean;
   colorMap?: Object;
   graphRef?: React.MutableRefObject<IGraph | undefined>;
