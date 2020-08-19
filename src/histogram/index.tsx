@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Histogram as G2plotHistogram, HistogramConfig as G2plotProps } from '@antv/g2plot';
-import useChart from '../hooks/useChart';
+import { Histogram as G2plotHistogram, HistogramOptions as G2plotProps } from '@antv/g2plot';
+import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 
 export interface HistogramConfig extends Omit<G2plotProps, 'tooltip'> {
@@ -29,6 +29,6 @@ const HistogramChart = forwardRef((props: HistogramConfig, ref) => {
   );
 });
 
-HistogramChart.defaultProps = G2plotHistogram.getDefaultOptions();
+// HistogramChart.defaultProps = G2plotHistogram.getDefaultOptions();
 
 export default HistogramChart;

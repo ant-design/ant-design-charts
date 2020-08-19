@@ -7,6 +7,7 @@ export default defineConfig({
   publicPath: '/',
   exportStatic: {},
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+  styles: ['.__dumi-default-previewer-demo>div { min-height: 400px; }'],
   navs: [
     null,
     {

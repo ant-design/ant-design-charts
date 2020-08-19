@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Bar as G2plotBar, BarConfig as G2plotProps } from '@antv/g2plot';
-import useChart from '../hooks/useChart';
+import { Bar as G2plotBar, BarOptions as G2plotProps } from '@antv/g2plot';
+import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 
 export interface BarConfig extends Omit<G2plotProps, 'tooltip'> {
@@ -28,6 +28,6 @@ const BarChart = forwardRef((props: BarConfig, ref) => {
   );
 });
 
-BarChart.defaultProps = G2plotBar.getDefaultOptions();
+// BarChart.defaultProps = G2plotBar.getDefaultOptions();
 
 export default BarChart;

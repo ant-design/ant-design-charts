@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Pie as G2plotPie, PieConfig as G2plotProps } from '@antv/g2plot';
-import useChart from '../hooks/useChart';
+import { Pie as G2plotPie, PieOptions as G2plotProps } from '@antv/g2plot';
+import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 
 export interface PieConfig extends Omit<G2plotProps, 'tooltip'> {
@@ -29,6 +29,6 @@ const PieChart = forwardRef((props: PieConfig, ref) => {
   );
 });
 
-PieChart.defaultProps = G2plotPie.getDefaultOptions();
+// PieChart.defaultProps = G2plotPie.getDefaultOptions();
 
 export default PieChart;

@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Column as G2plotColumn, ColumnConfig as G2plotProps } from '@antv/g2plot';
-import useChart from '../hooks/useChart';
+import { Column as G2plotColumn, ColumnOptions as G2plotProps } from '@antv/g2plot';
+import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 
 export interface ColumnConfig extends Omit<G2plotProps, 'tooltip'> {
@@ -29,6 +29,6 @@ const ColumnChart = forwardRef((props: ColumnConfig, ref) => {
   );
 });
 
-ColumnChart.defaultProps = G2plotColumn.getDefaultOptions();
+// ColumnChart.defaultProps = G2plotColumn.getDefaultOptions();
 
 export default ColumnChart;

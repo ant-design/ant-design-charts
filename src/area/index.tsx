@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Area as G2plotArea, AreaConfig as G2plotProps } from '@antv/g2plot';
-import useChart from '../hooks/useChart';
+import { Area as G2plotArea, AreaOptions as G2plotProps } from '@antv/g2plot';
+import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 
 export interface AreaConfig extends Omit<G2plotProps, 'tooltip'> {
@@ -27,6 +27,6 @@ const AreaChart = forwardRef((props: AreaConfig, ref) => {
   );
 });
 
-AreaChart.defaultProps = G2plotArea.getDefaultOptions();
+// AreaChart.defaultProps = G2plotArea.getDefaultOptions();
 
 export default AreaChart;

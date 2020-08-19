@@ -7,13 +7,10 @@ import Calendar from './calendar';
 import Column from './column';
 import ColumnLine from './columnLine';
 import DensityHeatmap from './densityHeatmap';
-import Donut from './donut';
 import DualLine from './dualLine';
 import FanGauge from './fanGauge';
 import Funnel from './funnel';
 import Gauge from './gauge';
-import GroupedBar from './groupedBar';
-import GroupedColumn from './groupedColumn';
 import GroupedColumnLine from './groupedColumnLine';
 import GroupedRose from './groupedRose';
 import Heatmap from './heatmap';
@@ -32,9 +29,6 @@ import RangeColumn from './rangeColumn';
 import RingProgress from './ringProgress';
 import Rose from './rose';
 import Scatter from './scatter';
-import StackedArea from './stackedArea';
-import StackedBar from './stackedBar';
-import StackedColumn from './stackedColumn';
 import StackedColumnLine from './stackedColumnLine';
 import StackedRose from './stackedRose';
 import StepLine from './stepLine';
@@ -56,13 +50,10 @@ export {
   Column,
   ColumnLine,
   DensityHeatmap,
-  Donut,
   DualLine,
   FanGauge,
   Funnel,
   Gauge,
-  GroupedBar,
-  GroupedColumn,
   GroupedColumnLine,
   GroupedRose,
   Heatmap,
@@ -81,9 +72,6 @@ export {
   RingProgress,
   Rose,
   Scatter,
-  StackedArea,
-  StackedBar,
-  StackedColumn,
   StackedColumnLine,
   StackedRose,
   StepLine,
@@ -109,13 +97,10 @@ export default {
   Column,
   ColumnLine,
   DensityHeatmap,
-  Donut,
   DualLine,
   FanGauge,
   Funnel,
   Gauge,
-  GroupedBar,
-  GroupedColumn,
   GroupedColumnLine,
   GroupedRose,
   Heatmap,
@@ -134,9 +119,6 @@ export default {
   RingProgress,
   Rose,
   Scatter,
-  StackedArea,
-  StackedBar,
-  StackedColumn,
   StackedColumnLine,
   StackedRose,
   StepLine,

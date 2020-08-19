@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Scatter as G2plotScatter, ScatterConfig as G2plotProps } from '@antv/g2plot';
-import useChart from '../hooks/useChart';
+import { Scatter as G2plotScatter, ScatterOptions as G2plotProps } from '@antv/g2plot';
+import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 
 export interface ScatterConfig extends Omit<G2plotProps, 'tooltip'> {
@@ -28,7 +28,5 @@ const ScatterChart = forwardRef((props: ScatterConfig, ref) => {
     </ErrorBoundary>
   );
 });
-
-ScatterChart.defaultProps = G2plotScatter.getDefaultOptions();
 
 export default ScatterChart;
