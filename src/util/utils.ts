@@ -24,3 +24,14 @@ export const isType = (value: any, type: string) => {
   const toString = {}.toString;
   return toString.call(value) === '[object ' + type + ']';
 };
+
+export const clone = (source: Object) => {
+  if (!source) {
+    return source;
+  }
+  const target = {};
+  for (let k in source) {
+    target[k] = source[k];
+  }
+  return target;
+};

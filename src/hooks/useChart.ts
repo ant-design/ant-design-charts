@@ -7,7 +7,6 @@ import {
   CustomTooltipConfig,
 } from '@antv/g2plot';
 import createNode from '../util/createNode';
-
 export interface Tooltip extends Omit<G2PlotTooltip, 'custom'> {
   custom?: {
     container?: ReactNode;
@@ -118,6 +117,7 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
         chart.current.render();
       }
     }
+    // 比对方法已更新，请查看 v2 分支
   }, [config?.memoData ? config.memoData : JSON.stringify(config)]);
 
   useEffect(() => {
@@ -128,7 +128,6 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
     const chartInstance: T = new (ChartClass as any)(container.current, {
       ...config,
     });
-    chart.current = chartInstance;
     chartInstance.__proto__.toDataURL = (type: string, encoderOptions?: number) => {
       return toDataURL(type, encoderOptions);
     };
@@ -140,6 +139,7 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
       return downloadImage(name, type, encoderOptions);
     };
     chartInstance.render();
+    chart.current = utils.clone(chartInstance) as T;
     return () => chartInstance.destroy();
   }, []);
 
