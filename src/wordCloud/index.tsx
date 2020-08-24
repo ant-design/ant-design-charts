@@ -7,6 +7,7 @@ export interface WordCloudConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotWordCloud | undefined>;
   style?: React.CSSProperties;
   className?: string;
+  tooltip?: any;
 }
 
 const WordCloudChart = forwardRef((props: WordCloudConfig, ref) => {
