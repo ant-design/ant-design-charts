@@ -5,6 +5,7 @@ import {
   PlotConfig as G2PlotPlotConfig,
   Tooltip as G2PlotTooltip,
   CustomTooltipConfig,
+  TooltipCfg,
 } from '@antv/g2plot';
 import createNode from '../util/createNode';
 export interface Tooltip extends Omit<G2PlotTooltip, 'custom'> {
@@ -15,9 +16,13 @@ export interface Tooltip extends Omit<G2PlotTooltip, 'custom'> {
   };
 }
 
+export type SpecialTooltip = {
+  visible: boolean;
+} & TooltipCfg;
+
 export interface PlotConfig extends G2PlotPlotConfig {
   memoData?: string | number | any[];
-  tooltip?: Tooltip;
+  tooltip?: Tooltip | SpecialTooltip;
   data?: any;
   onlyChangeData?: boolean;
 }
