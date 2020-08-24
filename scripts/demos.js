@@ -1,6 +1,6 @@
 /**
  * 扫描所有demo文件，生成demo文档
- * eg: node scripts/demo.js
+ * eg: node scripts/demos.js
  */
 
 const fs = require('fs');

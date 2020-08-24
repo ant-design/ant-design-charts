@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 0
 title: 所有图表
 nav:
   order: 2

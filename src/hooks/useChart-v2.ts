@@ -1,7 +1,7 @@
 import { ReactNode, useRef, useEffect } from 'react';
 import { isEqual } from '@antv/util';
 import { utils } from '../util';
-import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip } from '@antv/g2plot';
+import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip } from 'g2plot-v2';
 import createNode from '../util/createNode';
 
 export interface Tooltip extends Omit<G2PlotTooltip, 'customContent'> {
@@ -127,7 +127,6 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       ...config,
     });
 
-    chart.current = chartInstance;
     chartInstance.__proto__.toDataURL = (type: string, encoderOptions?: number) => {
       return toDataURL(type, encoderOptions);
     };
@@ -139,6 +138,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       return downloadImage(name, type, encoderOptions);
     };
     chartInstance.render();
+    chart.current = utils.clone(chartInstance) as T;
     return () => chartInstance.destroy();
   }, []);
 

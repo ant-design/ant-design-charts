@@ -2,7 +2,7 @@ const fs = require('fs');
 const esprima = require('esprima');
 const estraverse = require('estraverse');
 const escodegen = require('escodegen');
-const { get } = require('loadsh');
+const { get, find } = require('loadsh');
 const { dataUrl } = require('./constants');
 
 let blcokBody = '';
@@ -184,16 +184,25 @@ const generateFile = (ast) => {
   });
 };
 
+const getMetaInfo = (filePath) => {
+  const pathArray = filePath.split('/');
+  const fileName = pathArray.pop();
+  const metaJsonCode = fs.readFileSync(`${pathArray.join('/')}/meta.json`, 'utf-8');
+  const demos = JSON.parse(metaJsonCode).demos;
+  const metaInfo = find(demos, (item) => item.filename === fileName);
+  return metaInfo;
+};
+
 const parseFile = (filePath) => {
   init();
+  const metaInfo = getMetaInfo(filePath);
   const jsCode = fs.readFileSync(filePath, 'utf-8');
   const parseCode = esprima.parseModule(jsCode, { loc: true, tokens: true });
   getOptions(parseCode);
   generateFile(parseCode);
-
   return {
     code: escodegen.generate(parseCode),
-    title: title,
+    title: get(metaInfo, 'title.zh'),
   };
 };
 

@@ -1,12 +1,12 @@
 /**
  * 扫描指定目录下的所有demo文件，生成demo文档
- * eg: node scripts/singledemo.js Bar 条形图
+ * eg: `node scripts/singledemo.js Bar 条形图`
  */
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
 const { groupBy } = require('loadsh');
-const { chartOrder } = require('./constants');
+const { chartNames } = require('./constants');
 const { toHump, upperCase, lowerCase, toLine } = require('./util.js');
 const parseFile = require('./parse.js');
 
@@ -21,7 +21,7 @@ const fp = path.resolve('../', `G2Plot/examples/${toLineName}`);
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateDemoPath = path.join(__dirname, '../template/doc/demo.ejs');
 const templateTitlePath = path.join(__dirname, '../template/doc/title.ejs');
-const filePath = `${DOC_PATH}/testDemos/${lowerCaseFileName}.md`;
+const filePath = `${DOC_PATH}/demos/${lowerCaseFileName}.md`;
 
 // 存储所有的meta文件
 let result = [];
@@ -52,12 +52,12 @@ const scanFiles = (foldPath, dir) => {
       if (stats.isDirectory()) {
         scanFiles(director, dir ? `${dir}.${fileName}` : fileName);
       }
-      if (stats.isFile() && /.js$/.test(fileName) && dir.indexOf('demo') !== -1) {
-        const fileInfo = dir.split('.');
-        let chartName = arg[0];
-        if (fileInfo[0] !== 'basic') {
-          chartName = toHump(upperCase(fileInfo[0] + arg[0]));
-        }
+      if (stats.isFile() && /.ts$/.test(fileName) && dir.indexOf('demo') !== -1) {
+        // const fileInfo = dir.split('.');
+        const chartName = arg[0];
+        // if (fileInfo[0] !== 'basic') {
+        //   chartName = toHump(upperCase(fileInfo[0] + arg[0]));
+        // }
         result.push({
           path: director,
           chartName,
@@ -75,7 +75,8 @@ const scanFiles = (foldPath, dir) => {
 const writeTitle = () => {
   return new Promise((resolve, reject) => {
     try {
-      let order = chartOrder.findIndex((item) => item === arg[0]);
+      // let order = chartOrder.findIndex((item) => item === arg[0]);
+      let order = Object.keys(chartNames).findIndex((item) => item === arg[0]);
       if (order < 0) {
         console.warn(`${arg[0]} 图表不在scripts/constants chartOrder中，请先配置`);
       }
@@ -83,7 +84,7 @@ const writeTitle = () => {
         templateTitlePath,
         {
           chartTitle: arg[1] || '无标题',
-          order: chartOrder.length - order,
+          order: order + 1,
         }, // 渲染的数据key: 对应到了ejs中的index
         (err, data) => {
           if (err) {
@@ -111,7 +112,7 @@ const writeTitle = () => {
  */
 const writeFile = async () => {
   await writeTitle();
-  console.log(result);
+  console.log('扫描结果:', result);
   result.forEach((group) => {
     fs.appendFileSync(filePath, `## ${group[0].chartName}\n`);
     group.forEach((item) => {

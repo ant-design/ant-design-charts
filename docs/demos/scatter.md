@@ -1,15 +1,13 @@
 ---
 title: 散点图
-order: 17
+order: 33
 ---
 
 # 散点图
 
 ## Scatter
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
+### 基础散点图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -29,13 +27,18 @@ const DemoScatter: React.FC = () => {
       });
   };
   const config = {
+    appendPadding: 10,
     data,
     xField: 'Revenue (Millions)',
     yField: 'Rating',
+    shape: 'circle',
+    yAxis: { grid: {} },
     xAxis: {
-      visible: true,
-      min: -5,
+      min: -100,
+      nice: true,
+      grid: { line: { style: { stroke: '#eee' } } },
     },
+    pointStyle: { stroke: '#fff' },
   };
   return <Scatter {...config} />;
 };
@@ -43,9 +46,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
+### 散点图颜色映射
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -57,7 +58,7 @@ const DemoScatter: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/basement_prod/7a78a36d-c97c-459d-9090-9e664cd17167.json')
+    fetch('https://gw.alipayobjects.com/os/antfincdn/aao6XnO5pW/IMDB.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -65,26 +66,20 @@ const DemoScatter: React.FC = () => {
       });
   };
   const config = {
+    appendPadding: 10,
     data,
     xField: 'Revenue (Millions)',
     yField: 'Rating',
+    shape: 'circle',
     colorField: 'Genre',
-    color: [
-      '#d62728',
-      '#2ca02c',
-      '#000000',
-      '#9467bd',
-      '#ffd500',
-      '#1f77b4',
-      '#00518a',
-      '#ffbc69',
-      '#9bd646',
-    ],
-    pointStyle: { fillOpacity: 1 },
+    sizeField: 'Rating',
+    size: [2, 5],
+    yAxis: { nice: true },
     xAxis: {
-      visible: true,
-      min: -5,
+      min: -100,
+      grid: { line: { style: { stroke: '#eee' } } },
     },
+    pointStyle: { stroke: '#fff' },
   };
   return <Scatter {...config} />;
 };
@@ -92,9 +87,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
+### 散点图图形标签
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -106,7 +99,7 @@ const DemoScatter: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/antfincdn/P%242UXb08CS/roma.json')
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/3e4db10a-9da1-4b44-80d8-c128f42764a8.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -114,18 +107,17 @@ const DemoScatter: React.FC = () => {
       });
   };
   const config = {
+    appendPadding: 30,
     data,
     xField: 'xG conceded',
     yField: 'Shot conceded',
     colorField: 'Result',
     color: ['#c71e1d', '#ffca76', '#09bb9f'],
-    pointSize: 5,
+    size: 5,
+    shape: 'circle',
     pointStyle: { fillOpacity: 1 },
-    yAxis: {
-      visible: true,
-      min: 0,
-    },
-    label: { visible: true },
+    xAxis: { grid: { line: { style: { stroke: '#eee' } } } },
+    label: {},
   };
   return <Scatter {...config} />;
 };
@@ -133,155 +125,92 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
+### 散点形状色映射
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Scatter } from '@ant-design/charts';
 
 const DemoScatter: React.FC = () => {
-  const data = [
-    {
-      x: 1,
-      y: 4.181,
-    },
-    {
-      x: 2,
-      y: 4.665,
-    },
-    {
-      x: 3,
-      y: 5.296,
-    },
-    {
-      x: 4,
-      y: 5.365,
-    },
-    {
-      x: 5,
-      y: 5.448,
-    },
-    {
-      x: 6,
-      y: 5.744,
-    },
-    {
-      x: 7,
-      y: 5.653,
-    },
-    {
-      x: 8,
-      y: 5.844,
-    },
-    {
-      x: 9,
-      y: 6.362,
-    },
-    {
-      x: 10,
-      y: 6.38,
-    },
-    {
-      x: 11,
-      y: 6.311,
-    },
-    {
-      x: 12,
-      y: 6.457,
-    },
-    {
-      x: 13,
-      y: 6.479,
-    },
-    {
-      x: 14,
-      y: 6.59,
-    },
-    {
-      x: 15,
-      y: 6.74,
-    },
-    {
-      x: 16,
-      y: 6.58,
-    },
-    {
-      x: 17,
-      y: 6.852,
-    },
-    {
-      x: 18,
-      y: 6.531,
-    },
-    {
-      x: 19,
-      y: 6.682,
-    },
-    {
-      x: 20,
-      y: 7.013,
-    },
-    {
-      x: 21,
-      y: 6.82,
-    },
-    {
-      x: 22,
-      y: 6.647,
-    },
-    {
-      x: 23,
-      y: 6.951,
-    },
-    {
-      x: 24,
-      y: 7.121,
-    },
-    {
-      x: 25,
-      y: 7.143,
-    },
-    {
-      x: 26,
-      y: 6.914,
-    },
-    {
-      x: 27,
-      y: 6.941,
-    },
-    {
-      x: 28,
-      y: 7.226,
-    },
-    {
-      x: 29,
-      y: 6.898,
-    },
-    {
-      x: 30,
-      y: 7.392,
-    },
-    {
-      x: 31,
-      y: 6.938,
-    },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/aao6XnO5pW/IMDB.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
   const config = {
-    padding: 'auto',
-    data: data,
-    xField: 'x',
-    yField: 'y',
-    pointSize: 5,
-    pointStyle: {
-      stroke: '#777777',
-      lineWidth: 1,
+    appendPadding: 10,
+    data,
+    xField: 'Revenue (Millions)',
+    yField: 'Rating',
+    shapeField: 'Genre',
+    shape: [
+      'circle',
+      'square',
+      'bowtie',
+      'diamond',
+      'hexagon',
+      'triangle',
+      'hyphen',
+      'line',
+      'cross',
+    ],
+    colorField: 'Genre',
+    size: 6,
+    yAxis: { nice: true },
+    xAxis: {
+      min: -100,
+      nice: true,
+      grid: { line: { style: { stroke: '#eee' } } },
     },
-    trendline: {
-      visible: true,
-      type: 'quad',
-      showConfidence: true,
+    pointStyle: { stroke: '#fff' },
+  };
+  return <Scatter {...config} />;
+};
+
+export default DemoScatter;
+```
+
+### 散点图-气泡
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Scatter } from '@ant-design/charts';
+
+const DemoScatter: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/0b37279d-1674-42b4-b285-29683747ad9a.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const config = {
+    appendPadding: 30,
+    data,
+    xField: 'change in female rate',
+    yField: 'change in male rate',
+    sizeField: 'pop',
+    colorField: 'continent',
+    color: ['#ffd500', '#82cab2', '#193442', '#d18768', '#7e827a'],
+    size: [4, 30],
+    shape: 'circle',
+    pointStyle: { fillOpacity: 0.8 },
+    xAxis: {
+      min: -25,
+      max: 5,
+      grid: { line: { style: { stroke: '#eee' } } },
     },
   };
   return <Scatter {...config} />;

@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Pie as G2plotPie, PieOptions as G2plotProps } from '@antv/g2plot';
+import { Pie as G2plotPie, PieOptions as G2plotProps } from 'g2plot-v2';
 import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 

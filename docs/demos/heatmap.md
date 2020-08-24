@@ -565,19 +565,34 @@ const DemoHeatmap: React.FC = () => {
     color: ['#0d5fbb', '#7eadfc', '#fd8b6f', '#aa3523'],
   };
   const chartRef = useRef();
-  window.setTimeout(() => {
-    chartRef.current.mappingSize('value');
-  }, 2000);
-  window.setTimeout(() => {
-    chartRef.current.changeShape('rect');
-  }, 3000);
-  window.setTimeout(() => {
-    chartRef.current.disableMappingSize();
-  }, 4000);
-  window.setTimeout(() => {
-    chartRef.current.mappingSize('value');
-  }, 5000);
-  return <Heatmap {...config} chartRef={chartRef} />;
+  return (
+    <div>
+      <Heatmap {...config} chartRef={chartRef} />
+      <div style={{ marginTop: 20 }}>
+        <button
+          onClick={() => {
+            chartRef.current.mappingSize('value');
+          }}
+        >
+          开启大小映射
+        </button>
+        <button
+          onClick={() => {
+            chartRef.current.disableMappingSize();
+          }}
+        >
+          关闭大小映射
+        </button>
+        <button
+          onClick={() => {
+            chartRef.current.changeShape('rect');
+          }}
+        >
+          切换形状(rect)
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default DemoHeatmap;
