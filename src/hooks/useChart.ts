@@ -10,7 +10,7 @@ import createNode from '../util/createNode';
 export interface Tooltip extends Omit<G2PlotTooltip, 'custom'> {
   custom?: {
     container?: ReactNode;
-    customContent?: (title: string, data: any[]) => ReactNode;
+    customContent?: (title: string, data: any[]) => ReactNode | string | void;
     onChange?: (tooltipDom: HTMLElement, cfg: CustomTooltipConfig) => void;
   };
 }
@@ -98,7 +98,7 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
     if (config.tooltip?.custom?.customContent) {
       const customContent = config.tooltip.custom.customContent;
       config.tooltip.custom.customContent = (title: string, items: any[]) => {
-        const tooltipDom = customContent(title, items);
+        const tooltipDom = customContent(title, items) || '';
         if (utils.isType(tooltipDom, 'HTMLDivElement')) {
           return tooltipDom;
         }

@@ -3,7 +3,7 @@ import { FanGauge as G2plotFanGauge, FanGaugeConfig as G2plotProps } from '@antv
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface FanGaugeConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface FanGaugeConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotFanGauge | undefined>;
   style?: React.CSSProperties;
   className?: string;

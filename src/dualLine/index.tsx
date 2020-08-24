@@ -3,7 +3,7 @@ import { DualLine as G2plotDualLine, DualLineConfig as G2plotProps } from '@antv
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface DualLineConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface DualLineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotDualLine | undefined>;
   style?: React.CSSProperties;
   className?: string;

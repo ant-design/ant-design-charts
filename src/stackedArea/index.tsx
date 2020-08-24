@@ -3,7 +3,7 @@ import { StackedArea as G2plotStackedArea, StackedAreaConfig as G2plotProps } fr
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface StackedAreaConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface StackedAreaConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotStackedArea | undefined>;
   style?: React.CSSProperties;
   className?: string;
