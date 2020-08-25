@@ -169,9 +169,7 @@ const DemoOrganizationGraph: React.FC = () => {
     })
   }
 
-  return <OrganizationTreeGraph 
-    data={data}
-    nodeType='rect' nodeStateStyles={nodeStateStyles} handleNodeClick={handleNodeClick} handleCanvasClick={handleCanvasClick} />;
+  return <OrganizationTreeGraph data={data} nodeType='rect' nodeStateStyles={nodeStateStyles} handleNodeClick={handleNodeClick} handleCanvasClick={handleCanvasClick} />;
 };
 
 export default DemoOrganizationGraph;
@@ -284,10 +282,7 @@ const DemoOrganizationGraph: React.FC = () => {
     return true
   })
 
-  return <OrganizationTreeGraph 
-    data={data}
-    nodeType='icon-node'
-    enableEdit={false} />;
+  return <OrganizationTreeGraph data={data} nodeType='icon-node' enableEdit={false} />;
 };
 
 export default DemoOrganizationGraph;
@@ -401,10 +396,7 @@ const DemoOrganizationGraph: React.FC = () => {
     return true
   })
 
-  return <OrganizationTreeGraph 
-    data={data}
-    nodeType='icon-node'
-    enableEdit={true} />;
+  return <OrganizationTreeGraph data={data} nodeType='icon-node' enableEdit={true} />;
 };
 
 export default DemoOrganizationGraph;
@@ -418,7 +410,7 @@ export default DemoOrganizationGraph;
 import React, { useState, useEffect } from 'react';
 import { OrganizationTreeGraph } from '@ant-design/charts';
 
-const DemoOrganizationGraph: React.FC = () => {
+const DemoOrganizationGraph1: React.FC = () => {
   const data = {
     id: 'root',
     label: 'root',
@@ -517,13 +509,8 @@ const DemoOrganizationGraph: React.FC = () => {
     return true
   })
 
-  return <OrganizationTreeGraph 
-    data={data}
-    nodeType='icon-node'
-    enableEdit={true}
-    minimapCfg = {{ show: true}}
-    />;
+  return <OrganizationTreeGraph  data={data} nodeType='icon-node'  enableEdit={true} minimapCfg = {{ show: true}} />;
 };
 
-export default DemoOrganizationGraph;
+export default DemoOrganizationGraph1;
 ```

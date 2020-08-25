@@ -56,9 +56,6 @@ const defaultLabelCfg = {
     fontSize: 12
   }
 }
-
-let graph: TreeGraph;
-
 const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   data,
   className,
@@ -115,6 +112,8 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     handleCanvasClick,
     graphRef
   };
+
+  let graph: TreeGraph;
 
   const container = React.useRef(null);
 
