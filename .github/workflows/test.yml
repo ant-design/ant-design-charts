@@ -8,8 +8,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
 
-      - name: install
-        run: npm install
+      - name: update
+        run: npm update
 
       - name: test
         run: npm run test
