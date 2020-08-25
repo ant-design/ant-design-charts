@@ -6,7 +6,7 @@ import {
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface GroupedColumnLineConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface GroupedColumnLineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotGroupedColumnLine | undefined>;
   style?: React.CSSProperties;
   className?: string;

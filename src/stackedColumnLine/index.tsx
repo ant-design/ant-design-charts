@@ -6,7 +6,7 @@ import {
 import useChart from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 
-export interface StackedColumnLineConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface StackedColumnLineConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotStackedColumnLine | undefined>;
   style?: React.CSSProperties;
   className?: string;
