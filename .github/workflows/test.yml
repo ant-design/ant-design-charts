@@ -7,9 +7,12 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@master
+      
+      - name: uninstall
+        run: npm uninstall
 
-      - name: update
-        run: npm update
+      - name: install
+        run: npm install
 
       - name: test
         run: npm run test
