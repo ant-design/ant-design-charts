@@ -7,6 +7,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@master
+      
+      - name: uninstall
+        run: npm uninstall
 
       - name: install
         run: npm install
