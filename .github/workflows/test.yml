@@ -8,8 +8,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
       
-      - name: uninstall
-        run: npm uninstall
+      - name: remove node_modules
+        run: rm -rf node_modules/
 
       - name: install
         run: npm install
