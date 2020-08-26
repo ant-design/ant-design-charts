@@ -3,7 +3,7 @@ import { Scatter as G2plotScatter, ScatterOptions as G2plotProps } from 'g2plot-
 import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 
-export interface ScatterConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface ScatterConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotScatter | undefined>;
   style?: React.CSSProperties;
   className?: string;

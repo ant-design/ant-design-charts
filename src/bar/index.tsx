@@ -3,7 +3,7 @@ import { Bar as G2plotBar, BarOptions as G2plotProps } from 'g2plot-v2';
 import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 
-export interface BarConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface BarConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotBar | undefined>;
   style?: React.CSSProperties;
   className?: string;
