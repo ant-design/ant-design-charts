@@ -56,17 +56,11 @@ const DemoLine: React.FC = () => {
   ];
 
   const config = {
-    title: {
-      visible: true,
-      text: '配置折线数据点样式',
-    },
-    padding: 'auto',
-    forceFit: true,
     data,
+    height: 300,
     xField: 'year',
     yField: 'value',
     point: {
-      visible: true,
       size: 5,
       shape: 'diamond',
       style: {
@@ -152,10 +146,8 @@ const DemoLine: React.FC = () => {
 
   const config = {
     data,
-    padding: 'auto',
-    forceFit: true,
-    xField: 'year',
     yField: 'value',
+    xField: 'year',
     tooltip: {
       custom: {
         customContent: (title, items) => {
@@ -170,7 +162,6 @@ const DemoLine: React.FC = () => {
       },
     },
     point: {
-      visible: true,
       size: 5,
       shape: 'diamond',
       style: {
@@ -251,25 +242,10 @@ const DemoLine: React.FC = () => {
   ]);
 
   const config = {
-    title: {
-      visible: true,
-      text: '配置折线数据点样式',
-    },
-    description: {
-      visible: true,
-      text: '自定义配置趋势线上数据点的样式',
-    },
-    padding: 'auto',
-    forceFit: true,
     data,
     xField: 'year',
     yField: 'value',
-    label: {
-      visible: true,
-      type: 'point',
-    },
     point: {
-      visible: true,
       size: 5,
       shape: 'diamond',
       style: {
@@ -341,10 +317,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Line } from '@ant-design/charts';
 
 const DemoLine: React.FC = () => {
-  const [title, setTitle] = useState({
-    visible: true,
-    text: '配置折线数据点样式',
-  });
   const [data, setData] = useState([
     {
       year: '1995',
@@ -369,22 +341,10 @@ const DemoLine: React.FC = () => {
   ]);
 
   const config = {
-    title,
-    description: {
-      visible: true,
-      text: '自定义配置趋势线上数据点的样式',
-    },
-    padding: 'auto',
-    forceFit: true,
     data,
     xField: 'year',
     yField: 'value',
-    label: {
-      visible: true,
-      type: 'point',
-    },
     point: {
-      visible: true,
       size: 5,
       shape: 'diamond',
       style: {
@@ -436,25 +396,12 @@ const DemoLine: React.FC = () => {
     ]);
   };
 
-  const updateTitle = () => {
-    console.log(
-      '我不会被更新, 如果需要更新，请设置 memoData={[data.length, JSON.stringify(title)]}',
-    );
-    setTitle({
-      visible: true,
-      text: '新标题',
-    });
-  };
-
   return (
     <div>
       <button type="button" onClick={updateData} style={{ marginRight: 24 }}>
         更新数据
       </button>
-      <button type="button" onClick={updateTitle}>
-        更新标题
-      </button>
-      <Line {...config} memoData={data.length} />
+      <Line {...config} />
     </div>
   );
 };
@@ -512,12 +459,10 @@ const DemoLine: React.FC = () => {
 
   const config = {
     data,
-    padding: 'auto',
-    forceFit: true,
     xField: 'year',
     yField: 'value',
+    label: {},
     point: {
-      visible: true,
       size: 5,
       shape: 'diamond',
       style: {
@@ -526,14 +471,20 @@ const DemoLine: React.FC = () => {
         lineWidth: 2,
       },
     },
-    events: {
-      onPlotClick: (cfg) => {
-        console.log(cfg);
-      },
-    },
   };
 
-  return <Line {...config} />;
+  const ref = useRef();
+
+  useEffect(() => {
+    if (ref.current) {
+      // 点击 point
+      ref.current.on('element:click', (...args) => {
+        console.log(...args);
+      });
+    }
+  }, []);
+
+  return <Line {...config} chartRef={ref} />;
 };
 
 export default DemoLine;
@@ -549,12 +500,7 @@ import { Line } from '@ant-design/charts';
 
 const Page: React.FC = () => {
   const data = [];
-  const config = {
-    data,
-    xField: 'year',
-    yField: 'value',
-  };
-
+  const config = {};
   // chart实例
   const ref = React.useRef();
   React.useEffect(() => {
@@ -576,7 +522,6 @@ import { Bar } from '@ant-design/charts';
 const Page: React.FC = () => {
   const data = [];
   const config = {};
-
   const ref = React.useRef();
   React.useEffect(() => {
     console.log(ref.current.getChart());
