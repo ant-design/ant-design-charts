@@ -113,21 +113,23 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     graphRef
   };
 
-  let graph: TreeGraph;
+  // let graph: TreeGraph;
+
+  if (!graphRef) graphRef = React.useRef();
 
   const container = React.useRef(null);
 
-  useGraph(graph, props, container);
+  useGraph(graphRef!.current, props, container);
 
   useEffect(() => {
 
     const graphSize = getGraphSize(width, height, container);
 
-    if (!graph || graph.destroyed) {
+    if (!graphRef!.current || graphRef!.current.destroyed) {
       if (nodeType === 'icon-node') {
         customIconNode({  enableEdit });
       }
-      graph = new G6.TreeGraph({
+      graphRef!.current = new G6.TreeGraph({
         container: container.current as any,
         width: graphSize[0],
         height: graphSize[1],
@@ -153,19 +155,19 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
         edgeStateStyles,
         layout
       });
-      if (graphRef) {
-        graphRef!.current = graph;
-      }
+      // if (graphRef) {
+      //   graphRef!.current = graph;
+      // }
     }
 
-    processMinimap(minimapCfg, graph);
+    processMinimap(minimapCfg, graphRef!.current);
 
-    graph.data(data);
-    graph.render();
-    graph.fitView();
+    graphRef!.current.data(data);
+    graphRef!.current.render();
+    graphRef!.current.fitView();
 
     if (collapseExpand) {
-      graph.addBehaviors({
+      graphRef!.current.addBehaviors({
         type: 'collapse-expand',
         onChange: function onChange(item, collapsed) {
           if (!item) {
@@ -178,23 +180,23 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
       }, 'default')
     }
 
-    graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
+    graphRef!.current.on('node:mouseenter', (evt: IG6GraphEvent) => {
       const item = evt.item as INode
-      graph.setItemState(item, 'hover', true)
+      graphRef!.current!.setItemState(item, 'hover', true)
       if (handleNodeHover) {
-        handleNodeHover(item, graph)
+        handleNodeHover(item, graphRef!.current!)
       }
     })
 
-    graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
+    graphRef!.current.on('node:mouseleave', (evt: IG6GraphEvent) => {
       const item = evt.item as INode
-      graph.setItemState(item, 'hover', false)
+      graphRef!.current!.setItemState(item, 'hover', false)
       if (handleNodeUnHover) {
-        handleNodeUnHover(item, graph)
+        handleNodeUnHover(item, graphRef!.current!)
       }
     })
 
-    graph.on('node:click', (evt: IG6GraphEvent) => {
+    graphRef!.current.on('node:click', (evt: IG6GraphEvent) => {
       const { item, target } = evt
       const targetType = target.get('type')
       const name = target.get('name')
@@ -210,46 +212,46 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
           model.children.push({
             id: tmpId,
             label: tmpId
-          })
-          graph.updateChild(model, model.id)
+          });
+          (graphRef!.current! as TreeGraph).updateChild(model, model.id)
         } else if (name === 'remove-item') {
-          graph.removeChild(model.id)
+          (graphRef!.current! as TreeGraph).removeChild(model.id)
         }
       } else {
         if (handleNodeClick) {
-          handleNodeClick(item as INode, graph)
+          handleNodeClick(item as INode, graphRef!.current!)
         }
       }
     })
 
-    graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
+    graphRef!.current.on('edge:mouseenter', (evt: IG6GraphEvent) => {
       const item = evt.item as IEdge
-      graph.setItemState(item, 'hover', true)
+      graphRef!.current!.setItemState(item, 'hover', true)
       if (handleEdgeHover) {
-        handleEdgeHover(item, graph)
+        handleEdgeHover(item, graphRef!.current!)
       }
     })
 
-    graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
+    graphRef!.current.on('edge:mouseleave', (evt: IG6GraphEvent) => {
       const item = evt.item as IEdge
-      graph.setItemState(item, 'hover', false)
+      graphRef!.current!.setItemState(item, 'hover', false)
       if (handleEdgeUnHover) {
-        handleEdgeUnHover(item, graph)
+        handleEdgeUnHover(item, graphRef!.current!)
       }
     })
 
-    graph.on('edge:click', (evt: IG6GraphEvent) => {
+    graphRef!.current.on('edge:click', (evt: IG6GraphEvent) => {
       const item = evt.item as IEdge
       if (handleEdgeClick) {
-        handleEdgeClick(item, graph)
+        handleEdgeClick(item, graphRef!.current!)
       }
     })
     
-    graph.on('canvas:click', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
+    graphRef!.current.on('canvas:click', (evt: IG6GraphEvent) => {
+      handleCanvasClick && handleCanvasClick(graphRef!.current!);
     })
 
-    return () => graph.destroy()
+    return () => graphRef!.current!.destroy()
   }, []);
   return (
     <ErrorBoundary>

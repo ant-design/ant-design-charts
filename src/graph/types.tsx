@@ -1,6 +1,8 @@
 
 import { TreeGraphData, GraphData, StateStyles, ShapeStyle } from '@antv/g6/es/types';
 import { IGraph } from '@antv/g6/es/interface/graph';
+import Graph from '@antv/g6/es/graph/graph';
+import TreeGraph from '@antv/g6/es/graph/tree-graph';
 import { INode, IEdge } from '@antv/g6/es/interface/item';
 
 
@@ -54,5 +56,5 @@ export interface RelationGraph {
   handleCanvasClick?: (graph: IGraph) => void;
   collapseExpand?: boolean;
   colorMap?: Object;
-  graphRef?: React.MutableRefObject<IGraph | undefined>;
+  graphRef?: React.MutableRefObject<Graph | TreeGraph | undefined>;
 }
