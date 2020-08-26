@@ -38,10 +38,6 @@ class Page extends Component {
 
     const config = {
       data,
-      title: {
-        visible: true,
-        text: '带数据点的折线图',
-      },
       xField: 'year',
       yField: 'value',
     };
@@ -72,10 +68,6 @@ const Page: React.FC = () => {
 
   const config = {
     data,
-    title: {
-      visible: true,
-      text: '带数据点的折线图',
-    },
     xField: 'year',
     yField: 'value',
   };
@@ -105,10 +97,6 @@ const Page: React.FC = () => {
 
   const config = {
     data,
-    title: {
-      visible: true,
-      text: '带数据点的折线图',
-    },
     xField: 'year',
     yField: 'value',
   };
@@ -116,7 +104,3 @@ const Page: React.FC = () => {
 };
 export default Page;
 ```
-
-### 代码查看
-
-在图表演示中点击代码图表可以查看代码 <img src="https://gw.alipayobjects.com/zos/antfincdn/HSJ5yd13zD/5be57c98-089d-4b67-adfa-e9a2914fdc81.png" width="600">

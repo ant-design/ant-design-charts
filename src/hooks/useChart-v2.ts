@@ -5,14 +5,13 @@ import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip } from 'g2plot-
 import createNode from '../util/createNode';
 
 export interface Tooltip extends Omit<G2PlotTooltip, 'customContent'> {
-  customContent?: (title: string, data: any[]) => ReactNode;
+  customContent?: (title: string, data: any[]) => ReactNode | string | void;
   container?: ReactNode;
 }
 
 export interface Options extends Omit<G2PlotConfig, 'tooltip'> {
-  memoData?: string | number | any[];
-  tooltip?: Tooltip;
-  onlyChangeData?: boolean;
+  tooltip?: boolean | Tooltip;
+  [key: string]: any;
 }
 
 export interface Base extends Plot<any> {
@@ -83,31 +82,44 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       };
     }
 
-    if (config.tooltip?.container) {
-      config.tooltip.container = createNode(config.tooltip.container);
-    }
+    if (typeof config.tooltip === 'object') {
+      if (config.tooltip?.container) {
+        config.tooltip.container = createNode(config.tooltip.container);
+      }
 
-    if (config.tooltip?.customContent) {
-      const customContent = config.tooltip.customContent;
-      config.tooltip.customContent = (title: string, items: any[]) => {
-        const tooltipDom = customContent(title, items);
-        if (utils.isType(tooltipDom, 'HTMLDivElement')) {
-          return tooltipDom;
-        }
-        return createNode(tooltipDom);
-      };
+      if (config.tooltip?.customContent) {
+        const customContent = config.tooltip.customContent;
+        config.tooltip.customContent = (title: string, items: any[]) => {
+          const tooltipDom = customContent(title, items) || '';
+          if (utils.isType(tooltipDom, 'HTMLDivElement')) {
+            return tooltipDom;
+          }
+          return createNode(tooltipDom);
+        };
+      }
     }
   };
 
   useEffect(() => {
     if (chart.current && !isEqual(chartOptions.current, config)) {
-      let onlyChangeData = config.onlyChangeData;
-      if (!onlyChangeData && chartOptions.current) {
-        const { data: cuurentData, ...currentConfig } = chartOptions.current;
-        const { data: inputData, ...inputConfig } = config;
-        onlyChangeData = isEqual(currentConfig, inputConfig);
+      let changeData = false;
+      if (chartOptions.current) {
+        // 从 options 里面取出 data 、value 、 percent 进行比对，判断是否仅数值发生改变
+        const {
+          data: cuurentData,
+          value: cuurentValue,
+          percent: cuurentPercent,
+          ...currentConfig
+        } = chartOptions.current;
+        const {
+          data: inputData,
+          value: inputValue,
+          percent: inputPercent,
+          ...inputConfig
+        } = config;
+        changeData = isEqual(currentConfig, inputConfig);
       }
-      if (onlyChangeData) {
+      if (changeData) {
         chart.current.changeData(config?.data || []);
       } else {
         processConfig();

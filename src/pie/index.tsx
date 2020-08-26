@@ -3,7 +3,7 @@ import { Pie as G2plotPie, PieOptions as G2plotProps } from 'g2plot-v2';
 import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 
-export interface PieConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface PieConfig extends G2plotProps {
   chartRef?: React.MutableRefObject<G2plotPie | undefined>;
   style?: React.CSSProperties;
   className?: string;
