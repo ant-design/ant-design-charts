@@ -29,12 +29,21 @@ $ npm install @ant-design/charts
 ## 使用
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Line } from '@ant-design/charts';
 
 const Page: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+  const data = [
+    { year1: '1991', value1: 3 },
+    { year: '1992', value: 4 },
+    { year: '1993', value: 3.5 },
+    { year: '1994', value: 5 },
+    { year: '1995', value: 4.9 },
+    { year: '1996', value: 6 },
+    { year: '1997', value: 7 },
+    { year: '1998', value: 9 },
+    { year: '1999', value: 13 },
+  ];
 
   const config = {
     data,
@@ -49,28 +58,11 @@ const Page: React.FC = () => {
     label: {},
     loading,
   };
-  useEffect(() => {
-    setTimeout(() => {
-      setData([
-        { year1: '1991', value1: 3 },
-        { year: '1992', value: 4 },
-        { year: '1993', value: 3.5 },
-        { year: '1994', value: 5 },
-        { year: '1995', value: 4.9 },
-        { year: '1996', value: 6 },
-        { year: '1997', value: 7 },
-        { year: '1998', value: 9 },
-        { year: '1999', value: 13 },
-      ]);
-      setLoading(false);
-    }, 2000);
-  }, []);
   return <Line {...config} />;
 };
 export default Page;
 ```
 
-<!--
 最终结果：
 
 ```tsx
@@ -107,6 +99,6 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-## 反馈 -->
+## 反馈
 
 请访问 [GitHub](https://github.com/ant-design/ant-design-charts)
