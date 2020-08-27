@@ -29,56 +29,36 @@ $ npm install @ant-design/charts
 ## 使用
 
 ```tsx
-import React, { useRef, useEffect, useState } from 'react';
-import { Scatter } from '@ant-design/charts';
+import React from 'react';
+import { Line } from '@ant-design/charts';
 
 const Page: React.FC = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-  const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/antfincdn/aao6XnO5pW/IMDB.json')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('fetch data failed', error);
-      });
-  };
+  const data = [
+    { year1: '1991', value1: 3 },
+    { year: '1992', value: 4 },
+    { year: '1993', value: 3.5 },
+    { year: '1994', value: 5 },
+    { year: '1995', value: 4.9 },
+    { year: '1996', value: 6 },
+    { year: '1997', value: 7 },
+    { year: '1998', value: 9 },
+    { year: '1999', value: 13 },
+  ];
+
   const config = {
-    appendPadding: 10,
     data,
-    autoFit: false,
-    xField: 'Revenue (Millions)',
-    yField: 'Rating',
-    shape: 'circle',
-    yAxis: {
-      grid: {},
-    },
+    padding: 'auto',
+    xField: 'year',
+    yField: 'value',
     xAxis: {
-      min: -100,
-      nice: true,
-      grid: {
-        line: {
-          style: {
-            stroke: '#eee',
-          },
-        },
-      },
+      type: 'dateTime',
+      tickCount: 5,
     },
-    tooltip: {
-      customContent: (title, items) => {
-        return (
-          <div style={{ padding: '16px 8px' }}>
-            <h5>提示</h5>
-            <p>年份：{title}</p>
-            <p style={{ margin: 0 }}>值：{items[0] && items[0].value}</p>
-          </div>
-        );
-      },
-    },
+    point: {},
+    label: {},
+    loading,
   };
-  return <Scatter {...config} />;
+  return <Line {...config} />;
 };
 export default Page;
 ```
