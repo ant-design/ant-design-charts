@@ -24,10 +24,15 @@ class ErrorBoundary extends React.Component<any> {
   };
 
   renderError = (e: Error) => {
+    const { errorTemplate } = this.props;
     switch (e) {
       default:
         // fallback
-        return <h5>组件出错了，请核查后重试： {e.message}</h5>;
+        return errorTemplate && typeof errorTemplate === 'function' ? (
+          errorTemplate(e)
+        ) : (
+          <h5>组件出错了，请核查后重试： {e.message}</h5>
+        );
     }
   };
 
@@ -35,7 +40,7 @@ class ErrorBoundary extends React.Component<any> {
     if (this.state.hasError) {
       return this.renderError(this.state.error!);
     }
-    return this.props.children;
+    return <div style={{ position: 'relative', height: '100%' }}>{this.props.children}</div>;
   }
 }
 

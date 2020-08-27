@@ -1,16 +1,30 @@
 import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
-import { <%= chartName %> as G2Plot<%= chartName %>, <%= chartName %>Config as G2plotProps } from '@antv/g2plot';
-import useChart from '../hooks/useChart';
+import { <%= chartName %> as G2Plot<%= chartName %>, <%= chartName %>Options as G2plotProps } from '@antv/g2plot';
+import useChart from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
+import ChartLoading from '../util/createLoading';
 
-export interface <%= chartName %>Config extends Omit<G2plotProps, 'tooltip'> {
+export interface <%= chartName %>Config extends G2plotProps {
   chartRef?: React.MutableRefObject<G2Plot<%= chartName %> | undefined>;
   style?: React.CSSProperties;
   className?: string;
+  loading?: boolean;
+  loadingTemplate?: React.ReactElement;
+  errorTemplate?: (e: Error) => React.ReactNode;
 }
 
 const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) => {
-  const { chartRef, style = {}, className, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: '100%',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2Plot<%= chartName %>, <%= chartName %>Config>(G2Plot<%= chartName %>, rest);
   useEffect(() => {
     if (chartRef) {
@@ -21,12 +35,11 @@ const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) =>
     getChart: () => chart.current,
   }));
   return (
-    <ErrorBoundary>
+    <ErrorBoundary errorTemplate={errorTemplate}>
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });
-
-<%= chartName %>Chart.defaultProps = G2Plot<%= chartName %>.getDefaultOptions();
 
 export default <%= chartName %>Chart;

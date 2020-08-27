@@ -150,6 +150,9 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       return downloadImage(name, type, encoderOptions);
     };
     chartInstance.render();
+    if (!chartOptions.current) {
+      chartOptions.current = config;
+    }
     chart.current = utils.clone(chartInstance) as T;
     return () => chartInstance.destroy();
   }, []);
@@ -157,7 +160,5 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
   return {
     chart,
     container,
-    toDataURL,
-    downloadImage,
   };
 }
