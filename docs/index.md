@@ -28,7 +28,7 @@ $ npm install @ant-design/charts
 
 ## 使用
 
-```tsx
+```tsx | pure
 import React from 'react';
 import { Line } from '@ant-design/charts';
 
@@ -56,7 +56,6 @@ const Page: React.FC = () => {
     },
     point: {},
     label: {},
-    loading,
   };
   return <Line {...config} />;
 };
