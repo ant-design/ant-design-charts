@@ -1,16 +1,11 @@
 import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
 import { <%= chartName %> as G2Plot<%= chartName %>, <%= chartName %>Options as G2plotProps } from '@antv/g2plot';
-import useChart from '../hooks/useChart-v2';
+import useChart, { ContainerProps } from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface <%= chartName %>Config extends G2plotProps {
+export interface <%= chartName %>Config extends G2plotProps, ContainerProps {
   chartRef?: React.MutableRefObject<G2Plot<%= chartName %> | undefined>;
-  style?: React.CSSProperties;
-  className?: string;
-  loading?: boolean;
-  loadingTemplate?: React.ReactElement;
-  errorTemplate?: (e: Error) => React.ReactNode;
 }
 
 const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) => {
