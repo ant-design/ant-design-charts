@@ -1,16 +1,11 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Scatter as G2plotScatter, ScatterOptions as G2plotProps } from 'g2plot-v2';
-import useChart from '../hooks/useChart-v2';
+import useChart, { ContainerProps } from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface ScatterConfig extends G2plotProps {
+export interface ScatterConfig extends G2plotProps, ContainerProps {
   chartRef?: React.MutableRefObject<G2plotScatter | undefined>;
-  style?: React.CSSProperties;
-  className?: string;
-  loading?: boolean;
-  loadingTemplate?: React.ReactElement;
-  errorTemplate?: (e: Error) => React.ReactNode;
 }
 
 const ScatterChart = forwardRef((props: ScatterConfig, ref) => {

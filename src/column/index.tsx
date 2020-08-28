@@ -1,16 +1,11 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Column as G2plotColumn, ColumnOptions as G2plotProps } from 'g2plot-v2';
-import useChart from '../hooks/useChart-v2';
+import useChart, { ContainerProps } from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface ColumnConfig extends G2plotProps {
+export interface ColumnConfig extends G2plotProps, ContainerProps {
   chartRef?: React.MutableRefObject<G2plotColumn | undefined>;
-  style?: React.CSSProperties;
-  className?: string;
-  loading?: boolean;
-  loadingTemplate?: React.ReactElement;
-  errorTemplate?: (e: Error) => React.ReactNode;
 }
 
 const ColumnChart = forwardRef((props: ColumnConfig, ref) => {

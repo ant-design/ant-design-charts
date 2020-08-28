@@ -1,16 +1,11 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Pie as G2plotPie, PieOptions as G2plotProps } from 'g2plot-v2';
-import useChart from '../hooks/useChart-v2';
+import useChart, { ContainerProps } from '../hooks/useChart-v2';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface PieConfig extends G2plotProps {
+export interface PieConfig extends G2plotProps, ContainerProps {
   chartRef?: React.MutableRefObject<G2plotPie | undefined>;
-  style?: React.CSSProperties;
-  className?: string;
-  loading?: boolean;
-  loadingTemplate?: React.ReactElement;
-  errorTemplate?: (e: Error) => React.ReactNode;
 }
 
 const PieChart = forwardRef((props: PieConfig, ref) => {

@@ -4,6 +4,13 @@ import { utils } from '../util';
 import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip } from 'g2plot-v2';
 import createNode from '../util/createNode';
 
+export interface ContainerProps {
+  style?: React.CSSProperties;
+  className?: string;
+  loading?: boolean;
+  loadingTemplate?: React.ReactElement;
+  errorTemplate?: (e: Error) => React.ReactNode;
+}
 export interface Tooltip extends Omit<G2PlotTooltip, 'customContent'> {
   customContent?: (title: string, data: any[]) => ReactNode | string | void;
   container?: ReactNode;
