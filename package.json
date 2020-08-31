@@ -25,6 +25,7 @@
     "docs:build": "dumi build",
     "test:coverage": "umi-test --coverage",
     "build": "father-build",
+    "ci": "npm run build && npm run test:coverage",
     "pub": "npm run build && np",
     "addChart": "node ./scripts/addChart.js",
     "entry": "node ./scripts/entry.js",

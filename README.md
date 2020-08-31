@@ -3,6 +3,12 @@
 A React chart library, based on [G2Plot](https://antv-g2plot.gitee.io/zh)
 
 <div align="center">
+
+![npm](https://img.shields.io/npm/dm/@ant-design/charts) ![npm](https://img.shields.io/npm/v/@ant-design/charts) [![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers) ![Test CI](https://github.com/ant-design/ant-design-charts/workflows/Test%20CI/badge.svg)
+
+</div>
+
+<div align="center">
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800"/>
 </div>
 
@@ -181,7 +187,7 @@ Charts is available under the License MIT.
 
 ### start
 
-```bash  | pure
+```bash | pure
 # 安装依赖
 $ npm install
 
