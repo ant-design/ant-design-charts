@@ -34,5 +34,8 @@
     "tslint-config-prettier",
     "example",
     "_test_"
-  ]
+  ],
+  "paths": {
+    "@@/*": ["src/.umi/*"]
+  }
 }
