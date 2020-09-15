@@ -1,0 +1,29 @@
+@import (reference) '~dumi-theme-default/src/style/variables.less';
+
+a.__antd-charts-theme-tab-item {
+  position: relative;
+  margin-right: 32px;
+  display: inline-block;
+  color: #333;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 500;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    left: -2px;
+    right: -2px;
+    bottom: -5px;
+    height: 8px;
+    background-image: linear-gradient(45deg, fadeOut(@c-primary, 10%),fadeOut(@c-primary, 30%));
+    transition: all 0.3s cubic-bezier(0.68, 0, 0.25, 1.5);
+    transform-origin: top center;
+  }
+
+  &:not([data-active])::after {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
