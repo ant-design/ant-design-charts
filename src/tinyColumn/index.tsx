@@ -1,19 +1,26 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { TinyColumn as G2plotTinyColumn, TinyColumnConfig as G2plotProps } from '@antv/g2plot';
-import useChart from '../hooks/useChart';
+import { TinyColumn as G2plotTinyColumn, TinyColumnOptions as G2plotProps } from '@antv/g2plot';
+import useChart, { ContainerProps } from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
+import ChartLoading from '../util/createLoading';
 
-export interface TinyColumnConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface TinyColumnConfig extends G2plotProps, ContainerProps {
   chartRef?: React.MutableRefObject<G2plotTinyColumn | undefined>;
-  style?: React.CSSProperties;
-  className?: string;
 }
 
 const TinyColumnChart = forwardRef((props: TinyColumnConfig, ref) => {
-  const { chartRef, style = {}, className, ...rest } = props;
-
+  const {
+    chartRef,
+    style = {
+      height: '100%',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2plotTinyColumn, TinyColumnConfig>(G2plotTinyColumn, rest);
-
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
@@ -23,12 +30,11 @@ const TinyColumnChart = forwardRef((props: TinyColumnConfig, ref) => {
     getChart: () => chart.current,
   }));
   return (
-    <ErrorBoundary>
+    <ErrorBoundary errorTemplate={errorTemplate}>
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });
-
-TinyColumnChart.defaultProps = G2plotTinyColumn.getDefaultOptions();
 
 export default TinyColumnChart;
