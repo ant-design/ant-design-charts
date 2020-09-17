@@ -1,6 +1,6 @@
 ---
 title: 雷达图
-order: 21
+order: 29
 ---
 
 # 雷达图
@@ -9,70 +9,82 @@ order: 21
 
 ### 基础雷达图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/radar/basic/API" target="_blank">配置</a>
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Radar } from '@ant-design/charts';
+
+const DemoRadar: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/a104a693-2dd0-4a71-a190-39ec88f7307c.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const config = {
+    data,
+    xField: 'item',
+    yField: 'score',
+    meta: { score: { alias: '分数' } },
+    xAxis: {
+      line: null,
+      tickLine: null,
+      grid: { line: { style: { lineDash: null } } },
+    },
+    point: {},
+  };
+  return <Radar {...config} />;
+};
+
+export default DemoRadar;
+```
+
+### 雷达图-自定义 axis grid
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Radar } from '@ant-design/charts';
 
 const DemoRadar: React.FC = () => {
-  const data = [
-    {
-      item: 'Design',
-      score: 70,
-    },
-    {
-      item: 'Development',
-      score: 60,
-    },
-    {
-      item: 'Marketing',
-      score: 60,
-    },
-    {
-      item: 'Users',
-      score: 40,
-    },
-    {
-      item: 'Test',
-      score: 60,
-    },
-    {
-      item: 'Language',
-      score: 70,
-    },
-    {
-      item: 'Technology',
-      score: 50,
-    },
-    {
-      item: 'Support',
-      score: 30,
-    },
-    {
-      item: 'Sales',
-      score: 60,
-    },
-    {
-      item: 'UX',
-      score: 50,
-    },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/a104a693-2dd0-4a71-a190-39ec88f7307c.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
   const config = {
-    title: {
-      visible: true,
-      text: '基础雷达图',
-    },
     data,
-    angleField: 'item',
-    radiusField: 'score',
-    radiusAxis: {
+    xField: 'item',
+    yField: 'score',
+    meta: { score: { alias: '分数' } },
+    xAxis: {
+      line: null,
+      tickLine: null,
+      grid: { line: { style: { lineDash: null } } },
+    },
+    yAxis: {
+      line: null,
+      tickLine: null,
       grid: {
-        alternateColor: ['rgba(0, 0, 0, 0.04)', null],
+        line: {
+          type: 'line',
+          style: { lineDash: null },
+        },
+        alternateColor: 'rgba(0, 0, 0, 0.04)',
       },
     },
-    area: { visible: false },
-    point: { visible: true },
+    point: {},
   };
   return <Radar {...config} />;
 };
@@ -82,134 +94,36 @@ export default DemoRadar;
 
 ### 多组雷达图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/radar/basic/API" target="_blank">配置</a>
-
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Radar } from '@ant-design/charts';
 
 const DemoRadar: React.FC = () => {
-  const data = [
-    {
-      item: 'Design',
-      user: 'a',
-      score: 70,
-    },
-    {
-      item: 'Design',
-      user: 'b',
-      score: 30,
-    },
-    {
-      item: 'Development',
-      user: 'a',
-      score: 60,
-    },
-    {
-      item: 'Development',
-      user: 'b',
-      score: 70,
-    },
-    {
-      item: 'Marketing',
-      user: 'a',
-      score: 60,
-    },
-    {
-      item: 'Marketing',
-      user: 'b',
-      score: 50,
-    },
-    {
-      item: 'Users',
-      user: 'a',
-      score: 40,
-    },
-    {
-      item: 'Users',
-      user: 'b',
-      score: 50,
-    },
-    {
-      item: 'Test',
-      user: 'a',
-      score: 60,
-    },
-    {
-      item: 'Test',
-      user: 'b',
-      score: 70,
-    },
-    {
-      item: 'Language',
-      user: 'a',
-      score: 70,
-    },
-    {
-      item: 'Language',
-      user: 'b',
-      score: 50,
-    },
-    {
-      item: 'Technology',
-      user: 'a',
-      score: 50,
-    },
-    {
-      item: 'Technology',
-      user: 'b',
-      score: 40,
-    },
-    {
-      item: 'Support',
-      user: 'a',
-      score: 30,
-    },
-    {
-      item: 'Support',
-      user: 'b',
-      score: 40,
-    },
-    {
-      item: 'Sales',
-      user: 'a',
-      score: 60,
-    },
-    {
-      item: 'Sales',
-      user: 'b',
-      score: 40,
-    },
-    {
-      item: 'UX',
-      user: 'a',
-      score: 50,
-    },
-    {
-      item: 'UX',
-      user: 'b',
-      score: 60,
-    },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/5c41aa9b-9c8a-425f-9f4d-934b889bb75d.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
   const config = {
-    title: {
-      visible: true,
-      text: '多组雷达图',
-    },
     data,
-    angleField: 'item',
-    radiusField: 'score',
+    xField: 'item',
+    yField: 'score',
     seriesField: 'user',
-    radiusAxis: { grid: { line: { type: 'line' } } },
-    line: { visible: true },
-    point: {
-      visible: true,
-      shape: 'circle',
+    xAxis: {
+      label: { offset: 15 },
+      grid: { line: { type: 'line' } },
     },
-    legend: {
-      visible: true,
-      position: 'bottom-center',
-    },
+    yAxis: { grid: { line: { type: 'circle' } } },
+    point: { shape: 'circle' },
+    area: {},
+    legend: { position: 'bottom' },
   };
   return <Radar {...config} />;
 };

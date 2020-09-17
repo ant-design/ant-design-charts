@@ -1,6 +1,6 @@
 ---
 title: 水波图
-order: 27
+order: 23
 ---
 
 # 水波图
@@ -9,31 +9,19 @@ order: 27
 
 ### 水波图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/liquid/basic/API" target="_blank">配置</a>
-
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Liquid } from '@ant-design/charts';
 
 const DemoLiquid: React.FC = () => {
-  const config = {
-    title: {
-      visible: true,
-      text: '水波图',
-    },
-    min: 0,
-    max: 10000,
-    value: 5639,
-  };
+  const config = { percent: 0.75 };
   return <Liquid {...config} />;
 };
 
 export default DemoLiquid;
 ```
 
-### 水波图
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/liquid/basic/API" target="_blank">配置</a>
+### 样式自定义的水波图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -41,18 +29,21 @@ import { Liquid } from '@ant-design/charts';
 
 const DemoLiquid: React.FC = () => {
   const config = {
-    title: {
-      visible: true,
-      text: '水波图',
+    width: 600,
+    height: 300,
+    autoFit: false,
+    percent: 0.75,
+    statistic: {
+      content: {
+        formatter: ({ percent }) => {
+          return `占比${percent * 100}%`;
+        },
+      },
     },
-    description: {
-      visible: true,
-      text: '水波图 - 百分比显示',
+    liquidStyle: ({ percent }) => {
+      return { fill: percent > 0.75 ? 'red' : '#acc9ff' };
     },
-    min: 0,
-    max: 10000,
-    value: 5639,
-    statistic: { formatter: (value) => ((100 * value) / 10000).toFixed(1) + '%' },
+    color: () => '#acc9ff',
   };
   return <Liquid {...config} />;
 };
