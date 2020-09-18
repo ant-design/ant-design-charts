@@ -8,6 +8,7 @@ const { dataUrl } = require('./constants');
 let blcokBody = '';
 let fetchUrl = '';
 let title = '';
+let chartName = '';
 const filterParams = ['then'];
 
 /**
@@ -63,18 +64,15 @@ const getUrl = (url) => {
   return res.filePath;
 };
 
-/**
- * 状态重置
- */
-const init = () => {
+// 状态重置
+const reset = () => {
   blcokBody = '';
   fetchUrl = '';
   title = '';
+  chartName = '';
 };
 
-/**
- * 提取核心信息
- */
+// 提取核心信息
 const getOptions = (ast) => {
   estraverse.replace(ast, {
     enter: (node, parent) => {
@@ -89,6 +87,7 @@ const getOptions = (ast) => {
         return estraverse.VisitorOption.Remove;
       }
       if (isNewExpression(node)) {
+        chartName = get(node, 'init.callee.name');
         node.id.name = 'config';
         node.init = node.init.arguments[1];
       }
@@ -96,9 +95,7 @@ const getOptions = (ast) => {
   });
 };
 
-/**
- * 独立处理body
- */
+// 独立处理body
 const generateBody = (body) => {
   const bodyCode = esprima.parseModule(body, { loc: true, tokens: true });
   estraverse.replace(bodyCode, {
@@ -123,9 +120,7 @@ const generateBody = (body) => {
   return escodegen.generate(bodyCode);
 };
 
-/**
- * 过滤多余信息
- */
+// 过滤多余信息
 const generateFile = (ast) => {
   estraverse.replace(ast, {
     enter: (node, parent) => {
@@ -193,16 +188,23 @@ const getMetaInfo = (filePath) => {
   return metaInfo;
 };
 
-const parseFile = (filePath) => {
-  init();
-  const metaInfo = getMetaInfo(filePath);
-  const jsCode = fs.readFileSync(filePath, 'utf-8');
+const parseFile = (params, type) => {
+  reset();
+  let jsCode = '';
+  let metaInfo = {};
+  if (type === 'code') {
+    jsCode = params;
+  } else {
+    jsCode = fs.readFileSync(params, 'utf-8');
+    metaInfo = getMetaInfo(params);
+  }
   const parseCode = esprima.parseModule(jsCode, { loc: true, tokens: true });
   getOptions(parseCode);
   generateFile(parseCode);
   return {
     code: escodegen.generate(parseCode),
     title: get(metaInfo, 'title.zh'),
+    chartName,
   };
 };
 

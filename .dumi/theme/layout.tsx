@@ -5,14 +5,14 @@ import Layout from 'dumi-theme-default/src/layout';
 
 import './layout.less';
 
-const importer = require.context('../../docs/.g2-plot-api', false, /\.md$/);
-const docs = importer
-  .keys()
-  .reduce((result, name) => ({
+const importer = require.context('../../docs/.g2plot-plot-api', false, /\.md$/);
+const docs = importer.keys().reduce(
+  (result, name) => ({
     ...result,
     [name.replace(/^(\.\/)|\.md$/g, '')]: name,
-  }), {});
-
+  }),
+  {},
+);
 
 export default ({ children, ...props }: IRouteComponentProps) => {
   const { meta } = useContext(context);
@@ -23,21 +23,25 @@ export default ({ children, ...props }: IRouteComponentProps) => {
     <Layout {...props}>
       <>
         {docs[name] && (
-          <div>
+          <div className="__tab-box">
             <Link
               className="__antd-charts-theme-tab-item"
               to={props.location.pathname}
               data-active={!isShowApi || undefined}
-            >Demo</Link>
+            >
+              Demos
+            </Link>
             <Link
               className="__antd-charts-theme-tab-item"
               to={`${props.location.pathname}?type=api`}
               data-active={isShowApi || undefined}
-            >API</Link>
+            >
+              API
+            </Link>
           </div>
         )}
         {isShowApi ? importer(docs[name]).default() : children}
       </>
     </Layout>
   );
-}
+};

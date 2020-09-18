@@ -1,5 +1,14 @@
 @import (reference) '~dumi-theme-default/src/style/variables.less';
 
+.__tab-box {
+  position: fixed;
+  width: 100%;
+  top: 64px;
+  padding: 16px 0;
+  background: #fff;
+  z-index: 66;
+}
+
 a.__antd-charts-theme-tab-item {
   position: relative;
   margin-right: 32px;
@@ -15,9 +24,9 @@ a.__antd-charts-theme-tab-item {
     display: inline-block;
     left: -2px;
     right: -2px;
-    bottom: -5px;
-    height: 8px;
-    background-image: linear-gradient(45deg, fadeOut(@c-primary, 10%),fadeOut(@c-primary, 30%));
+    bottom: -10px;
+    height: 5px;
+    background-image: linear-gradient(45deg, fadeOut(@c-primary, 10%), fadeOut(@c-primary, 30%));
     transition: all 0.3s cubic-bezier(0.68, 0, 0.25, 1.5);
     transform-origin: top center;
   }
