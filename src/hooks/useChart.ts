@@ -131,8 +131,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
         chart.current.changeData(config?.data || []);
       } else {
         processConfig();
-        chart.current.update(config as G2PlotConfig);
-        chart.current.render();
+        chart.current.update({ ...chart.current.options, ...config });
       }
       chartOptions.current = config;
     }
@@ -162,7 +161,9 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       chartOptions.current = config;
     }
     chart.current = utils.clone(chartInstance) as T;
-    return () => chartInstance.destroy();
+    return () => {
+      chartInstance.destroy();
+    };
   }, []);
 
   return {

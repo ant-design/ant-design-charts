@@ -21,7 +21,7 @@ const fp = path.resolve('../', `G2Plot/examples/${toLineName}`);
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateDemoPath = path.join(__dirname, '../template/doc/demo.ejs');
 const templateTitlePath = path.join(__dirname, '../template/doc/title.ejs');
-const filePath = `${DOC_PATH}/demos/${lowerCaseFileName}.md`;
+const filePath = `${DOC_PATH}/demos/${toLineName}.md`;
 
 // 存储所有的meta文件
 let result = [];
@@ -53,11 +53,7 @@ const scanFiles = (foldPath, dir) => {
         scanFiles(director, dir ? `${dir}.${fileName}` : fileName);
       }
       if (stats.isFile() && /.ts$/.test(fileName) && dir.indexOf('demo') !== -1) {
-        // const fileInfo = dir.split('.');
         const chartName = arg[0];
-        // if (fileInfo[0] !== 'basic') {
-        //   chartName = toHump(upperCase(fileInfo[0] + arg[0]));
-        // }
         result.push({
           path: director,
           chartName,
@@ -140,12 +136,8 @@ const writeFile = async () => {
 };
 
 const start = async () => {
-  console.info('记得更新同级目录的G2plot噢');
-  console.info('文档扫描中....');
   scanFiles(fp);
-  console.info('文档组合中....');
   sortAndCombineCharts();
-  console.info('文档生成中....');
   writeFile();
 };
 

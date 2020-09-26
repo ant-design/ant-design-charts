@@ -108,9 +108,9 @@ const DemoBar: React.FC = () => {
     data,
     xField: 'sales',
     yField: 'type',
-    colorField: 'type',
-    color: (val) => {
-      return val === '美容洗护' ? 'red' : 'green';
+    seriesField: 'type',
+    color: ({ type }) => {
+      return type === '美容洗护' ? 'red' : 'green';
     },
     legend: false,
     meta: {
@@ -169,7 +169,10 @@ const DemoBar: React.FC = () => {
     data,
     xField: 'sales',
     yField: 'type',
-    label: { position: 'middle' },
+    label: {
+      position: 'middle',
+      style: { fill: '#fff' },
+    },
     meta: {
       type: { alias: '类别' },
       sales: { alias: '销售额' },
@@ -226,7 +229,11 @@ const DemoBar: React.FC = () => {
     data,
     xField: 'sales',
     yField: 'type',
-    label: {},
+    label: {
+      position: 'left',
+      offsetX: 10,
+      style: { fill: '#fff' },
+    },
     meta: {
       type: { alias: '类别' },
       sales: { alias: '销售额' },
@@ -399,7 +406,7 @@ const DemoBar: React.FC = () => {
     isGroup: true,
     xField: 'value',
     yField: 'year',
-    groupField: 'type',
+    seriesField: 'type',
   };
   return <Bar {...config} />;
 };
@@ -511,7 +518,7 @@ const DemoBar: React.FC = () => {
     isGroup: true,
     xField: 'value',
     yField: 'year',
-    groupField: 'type',
+    seriesField: 'type',
     label: { position: 'middle' },
   };
   return <Bar {...config} />;
@@ -624,7 +631,7 @@ const DemoBar: React.FC = () => {
     isGroup: true,
     xField: 'value',
     yField: 'year',
-    groupField: 'type',
+    seriesField: 'type',
     label: {},
   };
   return <Bar {...config} />;
@@ -737,7 +744,7 @@ const DemoBar: React.FC = () => {
     isGroup: true,
     xField: 'value',
     yField: 'year',
-    groupField: 'type',
+    seriesField: 'type',
     marginRatio: 1 / 32,
   };
   return <Bar {...config} />;
@@ -850,7 +857,7 @@ const DemoBar: React.FC = () => {
     isStack: true,
     xField: 'value',
     yField: 'year',
-    stackField: 'type',
+    seriesField: 'type',
   };
   return <Bar {...config} />;
 };
@@ -962,7 +969,7 @@ const DemoBar: React.FC = () => {
     isStack: true,
     xField: 'value',
     yField: 'year',
-    stackField: 'type',
+    seriesField: 'type',
     label: { position: 'middle' },
   };
   return <Bar {...config} />;
@@ -1075,7 +1082,7 @@ const DemoBar: React.FC = () => {
     isStack: true,
     xField: 'value',
     yField: 'year',
-    stackField: 'type',
+    seriesField: 'type',
     label: {},
   };
   return <Bar {...config} />;

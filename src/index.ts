@@ -15,8 +15,10 @@ import Rose from './rose';
 import Scatter from './scatter';
 import TinyArea from './tinyArea';
 import TinyColumn from './tinyColumn';
+import DualAxes from './dualAxes';
 import TinyLine from './tinyLine';
 import WordCloud from './wordCloud';
+import Sunburst from './sunburst';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
 import { G2 } from '@antv/g2plot';
 
@@ -39,6 +41,8 @@ export {
   TinyColumn,
   TinyLine,
   WordCloud,
+  Sunburst,
+  DualAxes,
   OrganizationTreeGraph,
   DagreGraph,
   IndentedTree,
@@ -65,6 +69,8 @@ export default {
   TinyColumn,
   TinyLine,
   WordCloud,
+  Sunburst,
+  DualAxes,
   OrganizationTreeGraph,
   DagreGraph,
   IndentedTree,

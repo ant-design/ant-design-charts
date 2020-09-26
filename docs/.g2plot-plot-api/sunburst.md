@@ -57,70 +57,87 @@
 
 ### 数据映射
 
-#### percent 📌
+#### data 📌
 
-**必选**, _number_
+**必选**, _object_
 
-功能描述： 指标比例
+功能描述： 设置图表数据源
 
 默认配置： 无
 
-#### radius
+#### meta
 
-**可选**, _number_
+**可选**, _object_
 
-功能描述： 水波的外半径， 0 ~ 1 。
+功能描述： 全局化配置图表数据元信息，以字段为单位进行配置。在 meta 上的配置将同时影响所有组件的文本信息。
 
-默认配置： `0.9`
+默认配置： 无
+
+| 细分配置项名称   | 类型          | 功能描述                       |
+| --------- | ----------- | -------------------------- |
+| alias     | _string_    | 字段的别名                      |
+| formatter | _function_  | callback 方法，对该字段所有值进行格式化处理 |
+| values    | _string\[]_ | 枚举该字段下所有值                  |
+| range     | _number\[]_ | 字段的数据映射区间，默认为[0,1]         |
+
+
+#### type
+
+**可选**, _partition | treemap_;
+
+功能描述： 布局类型，更多类型探索中。
+
+默认配置： `partition`
+
+#### seriesField
+
+**可选**, _string_;
+
+功能描述： 分组字段，即要映射的数值字段。
+
+默认配置： 无
+
+#### reflect
+
+**可选**, _x | y_;
+
+功能描述： 径向类型，非特殊情况不建议使用。
+
+默认配置： 无
+
+#### hierarchyConfig
+
+**可选**, _object_;
+
+功能描述： 层级布局配置，例如 `size`、`padding` 等，详细配置参考[d3-hierarchy](https://github.com/d3/d3-hierarchy#treemap)。
+
+默认配置： 无
 
 ### 图形样式
 
-#### liquidStyle
+#### radius
 
-**可选**, _StyleAttr | Function_
+**可选**, _string_
 
-功能描述： 水波图的样式 。
+功能描述: 半径， 0 ~ 1。
+
+默认配置： `1`
+
+#### innerRadius
+
+**可选**, _number_;
+
+功能描述： 内径，0 ~ 1。
+
+默认配置： `0`
+
+#### colorField
+
+**可选**, _string_;
+
+功能描述： 颜色映射字段。
 
 默认配置： 无
-
-<!--图形样式-->
-
-| 属性名           | 类型              | 介绍                                                            |
-| ------------- | --------------- | ------------------------------------------------------------- |
-| fill          | string          | 图形的填充色                                                        |
-| fillOpacity   | number          | 图形的填充透明度                                                      |
-| stroke        | string          | 图形的描边                                                         |
-| lineWidth     | number          | 图形描边的宽度                                                       |
-| lineDash      | [number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| lineOpacity   | number          | 描边透明度                                                         |
-| opacity       | number          | 图形的整体透明度                                                      |
-| shadowColor   | string          | 图形阴影颜色                                                        |
-| strokeOpacity | number          | 图形边框透明度                                                       |
-| shadowBlur    | number          | 图形阴影的高斯模糊系数                                                   |
-| shadowOffsetX | number          | 设置阴影距图形的水平距离                                                  |
-| shadowOffsetY | number          | 设置阴影距图形的垂直距离                                                  |
-| cursor        | string          | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                |
-
-示例代码：
-
-```ts
-{
-  style: {
-    fill: 'red',
-    fillOpacity: 0.5,
-    stroke: 'black',
-    lineWidth: 1,
-    lineDash: [4, 5],
-    strokeOpacity: 0.7,
-    shadowColor: 'black',
-    shadowBlur: 10,
-    shadowOffsetX: 5,
-    shadowOffsetY: 5,
-    cursor: 'pointer'
-  }
-}
-```
-
 
 #### color
 
@@ -154,29 +171,54 @@
 ```
 
 
-#### statistic
+#### sunburstStyle ✨
 
 **可选**, _object_
 
-功能描述： 指标文本组件 。
+功能描述： 旭日图形样式。pointStyle 中的`fill`会覆盖 `color` 的配置。sunburstStyle 可以直接指定，也可以通过 callback 的方式，根据数据指定单独的样式。
 
-默认配置： 无
+默认配置：
 
-| 配置项     | 类型                     | 描述   |
-| ------- | ---------------------- | ---- |
-| title   | false \| StatisticText | 标题   |
-| content | false \| StatisticText | 主体内容 |
+| 细分配置          | 类型     | 功能描述  |
+| ------------- | ------ | ----- |
+| fill          | string | 填充颜色  |
+| stroke        | string | 描边颜色  |
+| lineWidth     | number | 线宽    |
+| lineDash      | number | 虚线显示  |
+| opacity       | number | 透明度   |
+| fillOpacity   | number | 填充透明度 |
+| strokeOpacity | number | 描边透明度 |
 
-StatisticText
+```ts
+// 直接指定
+{
+  sunburstStyle: {
+    fill: 'red',
+    stroke: 'yellow',
+    opacity: 0.8
+  },
+}
+// Function
+{
+  sunburstStyle: (value, item) => {
+    if (value === 0.5) {
+      return {
+        fill: 'green',
+        stroke: 'yellow',
+        opacity: 0.8,
+      }
+    }
+    // TODO
+    return {
+      fill: 'red',
+      stroke: 'yellow',
+      opacity: 0.8,
+    }
+  }
+}
+```
 
-| 配置项       | 类型       | 描述         |
-| --------- | -------- | ---------- |
-| style     | object   | 统计文本的样式    |
-| formatter | Function | 主体文本的格式化内容 |
-| rotate    | number   | 旋转角度       |
-| offsetX   | number   | X 偏移值      |
-| offsetY   | number   | Y 偏移值      |
-
+## 图表组件
 
 ### 图表组件
 
@@ -481,297 +523,6 @@ StatisticText
   }
 }
 ```
-
-
-#### label ✨
-
-功能描述： 标签文本
-
-<!--label样式-->
-
-| 属性名          | 类型                                                         | 介绍                                                      |
-| ------------ | ---------------------------------------------------------- | ------------------------------------------------------- |
-| type         | string                                                     | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染 |
-| offset       | number                                                     | label 的偏移量                                              |
-| offsetX      | number                                                     | label 相对于数据点在 X 方向的偏移距离                                 |
-| offsetY      | number                                                     | label 相对于数据点在 Y 方向的偏移距离                                 |
-| content      | string \| IGroup \| IShape \| GeometryLabelContentCallback | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示                         |
-| style        | object                                                     | label 文本图形属性样式                                          |
-| autoRotate   | string                                                     | 是否自动旋转，默认 true                                          |
-| rotate       | number                                                     | 文本旋转角度                                                  |
-| labelLine    | null \| boolean \|object                                   | 用于设置文本连接线的样式属性，null 表示不展示。                              |
-| labelEmit    | boolean                                                    | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭      |
-| layout       | 'overlap' \| 'fixedOverlap' \| 'limitInShape'              | 文本布局类型，支持多种布局函数组合使用。                                    |
-| position     | 'top' \| 'bottom' \| 'middle' \| 'left' \| 'right'         | 指定当前 label 与当前图形的相对位置                                   |
-| animate      | boolean \| AnimateOption                                   | 动画配置。                                                   |
-| formatter    | Function                                                   | 格式化函数                                                   |
-| autoHide     | boolean                                                    | 是否自动隐藏，默认 false                                         |
-| autoEllipsis | boolean                                                    | 是否自动省略，默认 false                                         |
-
-示例代码：
-
-```ts
-{
-  label: {
-    style: {
-      fill: 'red',
-      opacity: 0.6,
-      fontSize: 24
-    },
-    rotate: true
-  }
-}
-```
-
-
-#### legend
-
-配置图例有两种方式
-第一种，传入 `boolean` 设置是否显示图例。
-
-```ts
-lengend: false; // 关闭图例
-```
-
-第二种，传入 _LegendCfg_ 对图例进行整体配置。
-
-```ts
-lengend: {
-  layout: 'horizontal',
-  position: 'right';
-}
-```
-
-#### layout
-
-<description>**可选** _horizontal | vertical_ </description>
-
-功能描述：布局方式
-
-#### position
-
-<description>**可选** _top | top-left | top-right | right | right-top | right-bottom | left | left-top | left-bottom | bottom | bottom-left | bottom-right_ </description>
-
-功能描述：图例的位置。
-
-#### background
-
-<description>**可选** _LegendBackgroundCfg_ </description>
-
-功能描述：背景框配置项。_LegendBackgroundCfg_ 配置如下：
-
-| 参数名     | 类型                  | 是否必选 | 默认值 | 描述      |
-| ------- | ------------------- | ---- | --- | ------- |
-| padding | number \| number\[] |      | -   | 背景的留白   |
-| style   | object 参考绘图属性       |      | -   | 背景样式配置项 |
-
-#### flipPage
-
-<description>**可选** _boolean_ </description>
-
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，当图例项过多时是否进行分页。
-
-#### handler
-
-<description>**可选** _ContinueLegendHandlerCfg_ </description>
-功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，滑块的配置项。_ContinueLegendHandlerCfg_ 配置如下：
-
-| 参数名   | 类型            | 是否必选 | 默认值 | 描述      |
-| ----- | ------------- | ---- | --- | ------- |
-| size  | number        |      | -   | 滑块的大小   |
-| style | object 参考绘图属性 |      | -   | 滑块的样式设置 |
-
-#### itemHeight
-
-<description>**可选** _number_ </description>
-
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例的高度，默认为 null。
-
-#### itemWidth
-
-<description>**可选** _number_ </description>
-
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项的宽度, 默认为 null，自动计算。
-
-#### itemName
-
-<description>**可选** _LegendItemNameCfg_ </description>
-
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项 name 文本的配置。_LegendItemNameCfg_ 配置如下：
-
-| 参数名       | 类型                                                      | 是否必选 | 默认值 | 描述                      |
-| --------- | ------------------------------------------------------- | ---- | --- | ----------------------- |
-| style     | object 参考绘图属性                                           |      | -   | 文本样式配置项                 |
-| spacing   | number                                                  |      | -   | 图例项 marker 同后面 name 的间距 |
-| formatter | `(text: string, item: ListItem, index: number) => any;` |      |     | 格式化函数                   |
-
-#### itemSpacing
-
-<description>**可选** _number_ </description>
-
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，控制图例项水平方向的间距。
-
-#### itemValue
-
-<description>**可选** _LegendItemValueCfg_ </description>
-
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项 value 附加值的配置项。_LegendItemValueCfg_ 配置如下：
-
-| 参数名        | 类型                                                      | 是否必选 | 默认值     | 描述                           |
-| ---------- | ------------------------------------------------------- | ---- | ------- | ---------------------------- |
-| style      | object 参考绘图属性                                           |      | -       | 文本样式配置项                      |
-| alignRight | boolean                                                 |      | `false` | 是否右对齐，默认为 false，仅当设置图例项宽度时生效 |
-| formatter  | `(text: string, item: ListItem, index: number) => any;` |      |         | 格式化函数                        |
-
-#### animate
-
-<description>**可选** _boolean_ </description>
-
-功能描述：是否开启动画开关。
-
-#### animateOption
-
-<description>**可选** _ComponentAnimateOption_ </description>
-
-功能描述：动画参数配置，当且仅当 animate 属性为 true，即动画开启时生效。动画配置详情点击 [ComponentAnimateOption](animate-option) 查看。
-
-#### label
-
-<description>**可选** _ContinueLegendLabelCfg_ </description>
-
-功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，文本的配置项。_ContinueLegendLabelCfg_ 配置如下：
-
-| 参数名     | 类型            | 是否必选 | 默认值 | 描述                                                                                                   |
-| ------- | ------------- | ---- | --- | ---------------------------------------------------------------------------------------------------- |
-| align   | string        |      | -   | 文本同滑轨的对齐方式 <br/> - rail ： 同滑轨对齐，在滑轨的两端 <br/> - top, bottom: 图例水平布局时有效 <br/> - left, right: 图例垂直布局时有效 |
-| style   | object 参考绘图属性 |      | -   | 文本样式配置项                                                                                              |
-| spacing | number        |      | -   | 文本同滑轨的距离                                                                                             |
-
-#### maker
-
-<description>**可选** _MarkerCfg_ </description>
-
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项的 marker 图标的配置。
-
-| 参数名     | 类型                           | 是否必选 | 默认值 | 描述                      |
-| ------- | ---------------------------- | ---- | --- | ----------------------- |
-| symbol  | _Marker_ \| _MarkerCallback_ |      | -   | 配置图例 marker 的 symbol 形状 |
-| style   | ShapeAttrs                   |      | -   | 图例项 marker 的配置项         |
-| spacing | number                       |      | -   | 图例项 marker 同后面 name 的间距 |
-
-_Marker_ 为支持的标记类型有： _circle | square | line | diamond | triangle | triangleDown | hexagon | bowtie | cross | tick | plus | hyphen_；
-_MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
-
-
-#### min
-
-<description>**可选** _number_ </description>
-
-功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，选择范围的最小值。
-
-#### max
-
-<description>**可选** _number_ </description>
-
-功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，选择范围的最大值。
-
-#### maxWidth
-
-<description>**可选** _number_ </description>
-功能描述：
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项最大宽度设置。
-
-#### maxHeight
-
-<description>**可选** _number_ </description>
-功能描述：
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项最大高度设置。
-
-#### offsetX
-
-<description>**可选** _number_ </description>
-
-功能描述：图例 x 方向的偏移。
-
-#### offsetY
-
-<description>**可选** _number_ </description>
-
-功能描述：图例 y 方向的偏移。
-
-#### rail
-
-<description>**可选** _ContinueLegendRailCfg_ </description>
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例滑轨（背景）的样式配置项。_ContinueLegendRailCfg_ 配置如下：
-
-| 参数名           | 类型            | 是否必选 | 默认值 | 描述                                                 |
-| ------------- | ------------- | ---- | --- | -------------------------------------------------- |
-| type          | string        |      | -   | rail 的类型，color, size                               |
-| size          | number        |      | -   | 滑轨的宽度                                              |
-| defaultLength | number        |      | -   | 滑轨的默认长度，，当限制了 maxWidth,maxHeight 时，不会使用这个属性会自动计算长度 |
-| style         | object 参考绘图属性 |      | -   | 滑轨的样式                                              |
-
-#### reversed
-
-<description>**可选** _boolean_ </description>
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，是否将图例项逆序展示。
-
-#### slidable
-
-<description>**可选** _boolean_ </description>
-功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，滑块是否可以滑动。
-
-#### title
-
-<description>**可选** _G2LegendTitleCfg_ </description>
-
-功能描述：图例标题配置，默认不展示。_G2LegendTitleCfg_ 配置如下：
-
-| 参数名     | 类型            | 是否必选 | 默认值 | 描述        |
-| ------- | ------------- | ---- | --- | --------- |
-| spacing | number        |      | -   | 标题同图例项的间距 |
-| style   | object 参考绘图属性 |      | -   | 文本样式配置项   |
-
-#### track
-
-<description>**可选** _ContinueLegendTrackCfg_ </description>
-功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，选择范围的色块样式配置项。_ContinueLegendTrackCfg_ 配置如下：
-
-| 参数名   | 类型            | 是否必选 | 默认值 | 描述      |
-| ----- | ------------- | ---- | --- | ------- |
-| style | object 参考绘图属性 |      | -   | 选定范围的样式 |
-
-#### values
-
-<description>**可选** _number\[]_ </description>
-功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，选择的值。
-
-#### custom
-
-<description>**可选** _boolean_ </description>
-
-是否为自定义图例，当该属性为 true 时，需要声明 items 属性。
-
-#### items
-
-<description>**可选** _LegendItem\[]_ </description>
-功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，用户自己配置图例项的内容。_LegendItem_ 配置如下：
-
-| 参数名    | 类型          | 是否必选     | 默认值 | 描述           |
-| ------ | ----------- | -------- | --- | ------------ |
-| id     | string      |          | -   | 唯一值，用于动画或者查找 |
-| name   | string      | required | -   | 名称           |
-| value  | any         | required | -   | 值            |
-| marker | _MarkerCfg_ |          | -   | 图形标记         |
-
-| 参数名     | 类型                           | 是否必选 | 默认值 | 描述                      |
-| ------- | ---------------------------- | ---- | --- | ----------------------- |
-| symbol  | _Marker_ \| _MarkerCallback_ |      | -   | 配置图例 marker 的 symbol 形状 |
-| style   | ShapeAttrs                   |      | -   | 图例项 marker 的配置项         |
-| spacing | number                       |      | -   | 图例项 marker 同后面 name 的间距 |
-
-_Marker_ 为支持的标记类型有： _circle | square | line | diamond | triangle | triangleDown | hexagon | bowtie | cross | tick | plus | hyphen_；
-_MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
 
 
 #### theme

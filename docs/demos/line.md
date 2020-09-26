@@ -7,6 +7,55 @@ order: 1
 
 ## Line
 
+### 折线图辅助线
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Line } from '@ant-design/charts';
+
+const DemoLine: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const config = {
+    data,
+    padding: 'auto',
+    xField: 'Date',
+    yField: 'scales',
+    annotations: [
+      {
+        type: 'text',
+        position: ['min', 'median'],
+        content: '中位数',
+        offsetY: -4,
+        style: { textBaseline: 'bottom' },
+      },
+      {
+        type: 'line',
+        start: ['min', 'median'],
+        end: ['max', 'median'],
+        style: {
+          stroke: 'red',
+          lineDash: [2, 2],
+        },
+      },
+    ],
+  };
+  return <Line {...config} />;
+};
+
+export default DemoLine;
+```
+
 ### 配置折线数据点样式
 
 ```tsx
@@ -65,6 +114,45 @@ const DemoLine: React.FC = () => {
         stroke: '#2593fc',
         lineWidth: 2,
       },
+    },
+  };
+  return <Line {...config} />;
+};
+
+export default DemoLine;
+```
+
+### 带缩略轴的折线
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Line } from '@ant-design/charts';
+
+const DemoLine: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const config = {
+    data,
+    padding: 'auto',
+    xField: 'Date',
+    yField: 'scales',
+    xAxis: {
+      type: 'dateTime',
+      tickCount: 5,
+    },
+    slider: {
+      start: 0.1,
+      end: 0.5,
     },
   };
   return <Line {...config} />;
@@ -250,7 +338,7 @@ const DemoLine: React.FC = () => {
     yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
     legend: { position: 'right-top' },
     seriesField: 'type',
-    color: (type) => {
+    color: ({ type }) => {
       return type === 'register' ? '#93D072' : '#2D71E7';
     },
   };
@@ -422,7 +510,7 @@ const DemoLine: React.FC = () => {
     legend: { position: 'right-top' },
     seriesField: 'type',
     color: ['#1979C9', '#D62A0D', '#FAA219'],
-    lineStyle: (x, y, type) => {
+    lineStyle: ({ type }) => {
       if (type === 'register') {
         return {
           lineDash: [2, 2],
@@ -469,7 +557,6 @@ const DemoLine: React.FC = () => {
     '#269A99',
     '#FF99C3',
   ];
-
   const config = {
     data,
     xField: 'year',
@@ -479,13 +566,217 @@ const DemoLine: React.FC = () => {
     legend: { position: 'right-top' },
     color: COLOR_PLATE_10,
     point: {
-      shape: (x, y, category) => {
+      shape: ({ category }) => {
         return category === 'Gas fuel' ? 'square' : 'circle';
       },
-      style: (x, y, category) => {
-        return { r: Number(x) % 4 ? 0 : 3 };
+      style: ({ year }) => {
+        return { r: Number(year) % 4 ? 0 : 3 };
       },
     },
+  };
+  return <Line {...config} />;
+};
+
+export default DemoLine;
+```
+
+### 多阶梯折线图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Line } from '@ant-design/charts';
+
+const DemoLine: React.FC = () => {
+  const data = [
+    {
+      month: 'Jan',
+      key: 'series1',
+      value: 125,
+    },
+    {
+      month: 'Jan',
+      key: 'series2',
+      value: 51,
+    },
+    {
+      month: 'Feb',
+      key: 'series1',
+      value: 132,
+    },
+    {
+      month: 'Feb',
+      key: 'series2',
+      value: 91,
+    },
+    {
+      month: 'Mar',
+      key: 'series1',
+      value: 141,
+    },
+    {
+      month: 'Mar',
+      key: 'series2',
+      value: 34,
+    },
+    {
+      month: 'Apr',
+      key: 'series1',
+      value: 158,
+    },
+    {
+      month: 'Apr',
+      key: 'series2',
+      value: 47,
+    },
+    {
+      month: 'May',
+      key: 'series1',
+      value: 133,
+    },
+    {
+      month: 'May',
+      key: 'series2',
+      value: 63,
+    },
+    {
+      month: 'June',
+      key: 'series1',
+      value: 143,
+    },
+    {
+      month: 'June',
+      key: 'series2',
+      value: 58,
+    },
+    {
+      month: 'July',
+      key: 'series1',
+      value: 176,
+    },
+    {
+      month: 'July',
+      key: 'series2',
+      value: 56,
+    },
+    {
+      month: 'Aug',
+      key: 'series1',
+      value: 194,
+    },
+    {
+      month: 'Aug',
+      key: 'series2',
+      value: 77,
+    },
+    {
+      month: 'Sep',
+      key: 'series1',
+      value: 115,
+    },
+    {
+      month: 'Sep',
+      key: 'series2',
+      value: 99,
+    },
+    {
+      month: 'Oct',
+      key: 'series1',
+      value: 134,
+    },
+    {
+      month: 'Oct',
+      key: 'series2',
+      value: 106,
+    },
+    {
+      month: 'Nov',
+      key: 'series1',
+      value: 110,
+    },
+    {
+      month: 'Nov',
+      key: 'series2',
+      value: 88,
+    },
+    {
+      month: 'Dec',
+      key: 'series1',
+      value: 91,
+    },
+    {
+      month: 'Dec',
+      key: 'series2',
+      value: 56,
+    },
+  ];
+  const config = {
+    data,
+    xField: 'month',
+    yField: 'value',
+    legend: false,
+    seriesField: 'key',
+    stepType: 'hvh',
+  };
+  return <Line {...config} />;
+};
+
+export default DemoLine;
+```
+
+### 阶梯折线图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Line } from '@ant-design/charts';
+
+const DemoLine: React.FC = () => {
+  const data = [
+    {
+      year: '1991',
+      value: 3,
+    },
+    {
+      year: '1992',
+      value: 4,
+    },
+    {
+      year: '1993',
+      value: 3.5,
+    },
+    {
+      year: '1994',
+      value: 5,
+    },
+    {
+      year: '1995',
+      value: 4.9,
+    },
+    {
+      year: '1996',
+      value: 6,
+    },
+    {
+      year: '1997',
+      value: 7,
+    },
+    {
+      year: '1998',
+      value: 9,
+    },
+    {
+      year: '1999',
+      value: 13,
+    },
+    {
+      year: '1999',
+      value: 8,
+    },
+  ];
+  const config = {
+    data,
+    xField: 'year',
+    yField: 'value',
+    stepType: 'vh',
   };
   return <Line {...config} />;
 };

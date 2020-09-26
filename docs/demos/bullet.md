@@ -1,6 +1,6 @@
 ---
 title: 子弹图
-order: 15
+order: 14
 ---
 
 # 子弹图
@@ -28,7 +28,7 @@ const DemoBullet: React.FC = () => {
     rangeField: 'ranges',
     targetField: 'target',
     xField: 'title',
-    bulletStyle: {
+    style: {
       range: { color: '#5B8FF9' },
       measure: { color: '#5B8FF9' },
       target: { color: '#5B8FF9' },
@@ -91,12 +91,10 @@ const DemoBullet: React.FC = () => {
     rangeField: 'ranges',
     targetField: 'target',
     xField: 'title',
-    bulletStyle: {
-      range: {
-        color: ['#FFB1AC', '#FFDBA2', '#B4EBBF'],
-      },
-      measure: { color: '#5B8FF9' },
-      target: { color: '#5B8FF9' },
+    color: {
+      range: ['#FFB1AC', '#FFDBA2', '#B4EBBF'],
+      measure: '#5B8FF9',
+      target: '#5B8FF9',
     },
     xAxis: { line: null },
     yAxis: false,
@@ -207,16 +205,16 @@ const DemoBullet: React.FC = () => {
     rangeField: 'ranges',
     targetField: 'target',
     xField: 'title',
-    bulletStyle: {
-      range: {
-        color: ['#FFB1AC', '#FFDBA2', '#B4EBBF'],
-      },
-      measure: { color: ['#5B8FF9'] },
-      target: { color: '#5B8FF9' },
+    color: {
+      range: ['#FFB1AC', '#FFDBA2', '#B4EBBF'],
+      measure: '#5B8FF9',
+      target: '#5B8FF9',
     },
     label: {
-      position: 'middle',
-      style: { fill: '#fff' },
+      measure: {
+        position: 'middle',
+        style: { fill: '#fff' },
+      },
     },
     xAxis: { line: null },
     yAxis: false,
@@ -309,17 +307,19 @@ const DemoBullet: React.FC = () => {
     rangeField: 'ranges',
     targetField: 'target',
     xField: 'title',
-    bulletStyle: {
-      range: { color: '#5B8FF9' },
-      measure: { color: '#5B8FF9' },
-      target: { color: '#5B8FF9' },
+    color: {
+      range: '#5B8FF9',
+      measure: '#5B8FF9',
+      target: '#5B8FF9',
     },
     xAxis: { line: null },
     yAxis: false,
     layout: 'vertical',
-    label: {
-      position: 'middle',
-      style: { fill: '#fff' },
+    bulletLabel: {
+      measure: {
+        position: 'middle',
+        style: { fill: '#fff' },
+      },
     },
     legend: {
       custom: true,
@@ -377,18 +377,16 @@ const DemoBullet: React.FC = () => {
     rangeField: 'ranges',
     targetField: 'target',
     xField: 'title',
-    bulletStyle: {
-      range: {
-        color: ['#FFB1AC', '#FFDBA2', '#B4EBBF'],
-      },
-      measure: {
-        color: ['#5B8FF9', '#5AD8A6'],
-      },
-      target: { color: '#5B8FF9' },
+    color: {
+      range: ['#FFB1AC', '#FFDBA2', '#B4EBBF'],
+      measure: ['#5B8FF9', '#5AD8A6'],
+      target: '#5B8FF9',
     },
     label: {
-      position: 'middle',
-      style: { fill: '#fff' },
+      measure: {
+        position: 'middle',
+        style: { fill: '#fff' },
+      },
     },
     xAxis: { line: null },
     yAxis: false,

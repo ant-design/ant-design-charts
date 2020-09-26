@@ -84,30 +84,6 @@
 默认配置： 无
 
 
-#### seriesField
-
-**可选**, _string_
-
-功能描述： 拆分字段，在分组柱状图下同 groupField、colorField，在堆积柱状图下同 stackField、colorField 。
-
-默认配置： 无
-
-#### isGroup
-
-**可选**, _boolean_
-
-功能描述： 是否分组柱形图 。
-
-默认配置： 无
-
-#### isStack
-
-**可选**, _boolean_
-
-功能描述： 是否堆积柱状图 。
-
-默认配置： 无
-
 #### meta
 
 **可选**, _object_
@@ -124,70 +100,77 @@
 | range     | _number\[]_ | 字段的数据映射区间，默认为[0,1]         |
 
 
-### 图形样式
-
-#### columnWidthRatio
-
-**可选**, _number_
-
-功能描述： 柱状图宽度占比 [0-1] 。
-
-默认配置： 无
-
-#### marginRatio
-
-**可选**, _number_
-
-功能描述： 分组中柱子之间的间距 [0-1]，仅对分组柱状图适用 。
-
-默认配置： 无
-
-#### columnStyle
-
-**可选**, _StyleAttr | Function_
-
-功能描述： 柱子样式配置 。
-
-默认配置： 无
-
-<!--图形样式-->
-
-| 属性名           | 类型              | 介绍                                                            |
-| ------------- | --------------- | ------------------------------------------------------------- |
-| fill          | string          | 图形的填充色                                                        |
-| fillOpacity   | number          | 图形的填充透明度                                                      |
-| stroke        | string          | 图形的描边                                                         |
-| lineWidth     | number          | 图形描边的宽度                                                       |
-| lineDash      | [number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| lineOpacity   | number          | 描边透明度                                                         |
-| opacity       | number          | 图形的整体透明度                                                      |
-| shadowColor   | string          | 图形阴影颜色                                                        |
-| strokeOpacity | number          | 图形边框透明度                                                       |
-| shadowBlur    | number          | 图形阴影的高斯模糊系数                                                   |
-| shadowOffsetX | number          | 设置阴影距图形的水平距离                                                  |
-| shadowOffsetY | number          | 设置阴影距图形的垂直距离                                                  |
-| cursor        | string          | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                |
-
-示例代码：
-
 ```ts
-{
-  style: {
-    fill: 'red',
-    fillOpacity: 0.5,
-    stroke: 'black',
-    lineWidth: 1,
-    lineDash: [4, 5],
-    strokeOpacity: 0.7,
-    shadowColor: 'black',
-    shadowBlur: 10,
-    shadowOffsetX: 5,
-    shadowOffsetY: 5,
-    cursor: 'pointer'
-  }
-}
+import React, { useState, useEffect } from 'react';
+import { Scatter } from '@ant-design/charts';
+
+const DemoScatter: React.FC = () => {
+  const data = [
+    {
+        country: 'Asia',
+        year: '1750',
+        value: 502
+    },
+    {
+        country: 'Asia',
+        year: '1800',
+        value: 635
+    },
+    {
+        country: 'Europe',
+        year: '1750',
+        value: 163
+    },
+    {
+        country: 'Europe',
+        year: '1800',
+        value: 203
+    }
+];
+const config = {
+    data,
+    meta: {
+        year: {
+            alias: '年份',
+            range: [
+                0,
+                1
+            ]
+        },
+        value: {
+            alias: '数量',
+            formatter: v => {
+                return `${ v }个`;
+            }
+        }
+    },
+    xField: 'year',
+    yField: 'value',
+    colorField: 'country'
+};
+  return <Scatter {...config} />;
+};
+
+export default DemoScatter;
+
+
 ```
 
+#### type
+
+**可选**, _jitter | stack | symmetric | dodge_;
+
+功能描述： 数据调整类型，不建议修改。
+
+默认配置： `jitter`
+
+#### colorField
+
+**可选**, _string_
+
+功能描述: 点颜色映射对应的数据字段名。
+
+### 图形样式
 
 #### color
 
@@ -220,6 +203,130 @@
 }
 ```
 
+
+#### sizeField
+
+**可选**, _string_
+
+功能描述: 点大小映射对应的数据字段名。
+
+#### size ✨
+
+[**DEMO1**](../../scatter/basic#color-mapping)
+
+**可选**, \_number | [number, number] | Function\_
+
+功能描述： 指定点的大小。如没有配置 sizeField，指定一个即可。对 sizeFiled 进行了配置的情况下，可以指定大小数组 `[minSize, maxSize]`， 也可以通过回调函数的方法根据对应数值进行设置。
+
+```ts
+// 设置单一大小
+{
+  size: 10
+}
+// 大小区间
+{
+  sizeField: 'weight',
+  size: [2, 10],
+}
+// Function
+{
+  sizeField: 'weight',
+  size: (weight) => {
+    // TODO
+    return Math.floor(weight / 100);
+  }
+}
+```
+
+#### shapeField
+
+**可选**, _string_
+
+功能描述: 点形状映射对应的数据字段名。
+
+#### shape ✨
+
+[**DEMO2**](../../scatter/basic#shape-mapping)
+
+**可选**, \_string | string\[] | Function\_
+
+功能描述： 指定点的形状。如没有配置 shapeField ，指定一个即可。对 shapeField 进行了配置的情况下，可以指定形状数组 `['cicle', 'square']`， 也可以通过回调函数的方法根据对应数值进行设置。
+
+内置图形：circle, square, bowtie, diamond, hexagon, triangle,triangle-down, hollow-circle, hollow-square, hollow-bowtie,hollow-diamond, hollow-hexagon, hollow-triangle, hollow-triangle-down, cross, tick, plus, hyphen, line.
+
+```ts
+// 设置单一大小
+{
+  shape: 'square'
+}
+// 大小区间
+{
+  shapeField: 'gender',
+  shape: ['circle', 'square'],
+}
+// Function
+{
+  shapeField: 'gender',
+  shape: (gender) => {
+    if(type === 'male'){
+      return 'circle';
+    }
+    // TODO
+    return 'square';
+  },
+}
+```
+
+#### pointStyle ✨
+
+**可选**, _object_
+
+[**DEMO**](../../scatter/basic#color-mapping)
+
+功能描述： 设置折线样式。pointStyle 中的`fill`会覆盖 `color` 的配置。pointStyle 可以直接指定，也可以通过 callback 的方式，根据数据指定单独的样式。
+
+默认配置：
+
+| 细分配置          | 类型     | 功能描述  |
+| ------------- | ------ | ----- |
+| fill          | string | 填充颜色  |
+| stroke        | string | 描边颜色  |
+| lineWidth     | number | 线宽    |
+| lineDash      | number | 虚线显示  |
+| opacity       | number | 透明度   |
+| fillOpacity   | number | 填充透明度 |
+| strokeOpacity | number | 描边透明度 |
+
+```ts
+// 直接指定
+{
+  pointStyle: {
+    fill: 'red',
+    stroke: 'yellow',
+    opacity: 0.8
+  },
+}
+// Function
+{
+  pointStyle: (x, y, colorField) => {
+    if (colorField === 'male') {
+      return {
+        fill: 'green',
+        stroke: 'yellow',
+        opacity: 0.8,
+      }
+    }
+    // TODO
+    return {
+      fill: 'red',
+      stroke: 'yellow',
+      opacity: 0.8,
+    }
+  }
+}
+```
+
+## 图表组件
 
 ### 图表组件
 

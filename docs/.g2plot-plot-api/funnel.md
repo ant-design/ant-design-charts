@@ -512,7 +512,7 @@
 
 #### axis
 
-xAxis、yAxis 配置相同。
+xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组类型）。
 
 #### nice
 

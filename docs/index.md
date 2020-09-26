@@ -90,8 +90,15 @@ const Page: React.FC = () => {
       type: 'dateTime',
       tickCount: 5,
     },
-    point: {},
-    label: {},
+    point: {
+      size: 5,
+      shape: 'diamond',
+    },
+    label: {
+      style: {
+        fill: '#aaa',
+      },
+    },
   };
   return <Line {...config} />;
 };

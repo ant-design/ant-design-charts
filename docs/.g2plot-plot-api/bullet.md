@@ -143,27 +143,19 @@ export default DemoBullet;
 
 ### 图形样式
 
-#### bulletStyle ✨
+#### style ✨
 
 **可选**, _object_
 
-功能描述： 设置子弹图样式。
+功能描述： 设置子弹图各图形 style 属性。
 
 默认配置： 无
 
-| 细分配置    | 类型           | 功能描述   |
-| ------- | ------------ | ------ |
-| range   | _BasicStyle_ | 区间背景样式 |
-| measure | _BasicStyle_ | 实际值样式  |
-| target  | _BasicStyle_ | 目标值样式  |
-
-```ts
-type BasicStyle = {
-  color?: string | string[] | ((...args: any[]) => string);
-  style?: ShapeAttrs;
-  size?: number;
-};
-```
+| 细分配置    | 类型          | 功能描述   | 默认配置                 |
+| ------- | ----------- | ------ | -------------------- |
+| range   | _StyleAttr_ | 区间背景样式 | { fillOpacity: 0.5 } |
+| measure | _StyleAttr_ | 实际值样式  | 无                    |
+| target  | _StyleAttr_ | 目标值样式  | 无                    |
 
 <!--图形样式-->
 
@@ -203,6 +195,71 @@ type BasicStyle = {
 }
 ```
 
+
+### color ✨
+
+**可选**, _object_
+
+功能描述： 设置子弹图各图形 color 属性。
+
+默认配置： 无
+
+| 细分配置    | 类型          | 功能描述   | 默认配置 |
+| ------- | ----------- | ------ | ---- |
+| range   | _colorAttr_ | 区间背景颜色 | 无    |
+| measure | _colorAttr_ | 实际值颜色  | 无    |
+| target  | _colorAttr_ | 目标值颜色  | 无    |
+
+#### color
+
+**可选**, _string | string\[] | Function_
+
+功能描述： 指定点的颜色。如没有配置 colorField，指定一个单值即可。对 colorFiled 进行了配置的情况下，即可以指定一系列色值，也可以通过回调函数的方法根据对应数值进行设置。
+
+默认配置：采用 theme 中的色板。
+
+```ts
+// 设置单一颜色
+{
+  color: '#a8ddb5'
+}
+// 设置多色
+{
+  colorField: 'type', // 部分图表使用 seriesField
+  color: ['#d62728', '#2ca02c', '#000000'],
+}
+// Function
+{
+  colorField: 'type', // 部分图表使用 seriesField
+  color: (type) => {
+    if(type === 'male'){
+      return 'red';
+    }
+    // TODO
+    return 'yellow';
+  }
+}
+```
+
+
+### size ✨
+
+**可选**, _object_
+
+功能描述： 设置子弹图各图形 size 属性。
+
+默认配置： 无
+
+| 细分配置    | 类型         | 功能描述   | 默认配置 |
+| ------- | ---------- | ------ | ---- |
+| range   | _SizeAttr_ | 区间背景样式 | 30   |
+| measure | _SizeAttr_ | 实际值样式  | 20   |
+| target  | _SizeAttr_ | 目标值样式  | 20   |
+
+```plain
+type SizeAttr = number | [number, number] | ((datum: Datum) => number);
+
+```
 
 ### 图表组件
 
@@ -550,7 +607,7 @@ type BasicStyle = {
 
 #### axis
 
-xAxis、yAxis 配置相同。
+xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组类型）。
 
 #### nice
 

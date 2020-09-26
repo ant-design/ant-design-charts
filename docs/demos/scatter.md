@@ -1,6 +1,6 @@
 ---
 title: 散点图
-order: 33
+order: 25
 ---
 
 # 散点图
@@ -32,11 +32,12 @@ const DemoScatter: React.FC = () => {
     xField: 'Revenue (Millions)',
     yField: 'Rating',
     shape: 'circle',
-    yAxis: { grid: {} },
+    yAxis: { line: { style: { stroke: '#aaa' } } },
     xAxis: {
       min: -100,
       nice: true,
       grid: { line: { style: { stroke: '#eee' } } },
+      line: { style: { stroke: '#aaa' } },
     },
     pointStyle: { stroke: '#fff' },
   };
@@ -72,12 +73,26 @@ const DemoScatter: React.FC = () => {
     yField: 'Rating',
     shape: 'circle',
     colorField: 'Genre',
-    sizeField: 'Rating',
-    size: [2, 5],
-    yAxis: { nice: true },
+    color: [
+      '#d62728',
+      '#2ca02c',
+      '#000000',
+      '#9467bd',
+      '#ffd500',
+      '#1f77b4',
+      '#00518a',
+      '#ffbc69',
+      '#9bd646',
+    ],
+    size: 4,
+    yAxis: {
+      nice: true,
+      line: { style: { stroke: '#aaa' } },
+    },
     xAxis: {
       min: -100,
       grid: { line: { style: { stroke: '#eee' } } },
+      line: { style: { stroke: '#aaa' } },
     },
     pointStyle: { stroke: '#fff' },
   };
@@ -116,7 +131,14 @@ const DemoScatter: React.FC = () => {
     size: 5,
     shape: 'circle',
     pointStyle: { fillOpacity: 1 },
-    xAxis: { grid: { line: { style: { stroke: '#eee' } } } },
+    yAxis: {
+      nice: true,
+      line: { style: { stroke: '#aaa' } },
+    },
+    xAxis: {
+      grid: { line: { style: { stroke: '#eee' } } },
+      line: { style: { stroke: '#aaa' } },
+    },
     label: {},
   };
   return <Scatter {...config} />;
@@ -125,7 +147,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点形状色映射
+### 散点图-气泡四象限
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -137,7 +159,7 @@ const DemoScatter: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/antfincdn/aao6XnO5pW/IMDB.json')
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/0b37279d-1674-42b4-b285-29683747ad9a.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -145,31 +167,36 @@ const DemoScatter: React.FC = () => {
       });
   };
   const config = {
-    appendPadding: 10,
+    appendPadding: 30,
     data,
-    xField: 'Revenue (Millions)',
-    yField: 'Rating',
-    shapeField: 'Genre',
-    shape: [
-      'circle',
-      'square',
-      'bowtie',
-      'diamond',
-      'hexagon',
-      'triangle',
-      'hyphen',
-      'line',
-      'cross',
-    ],
-    colorField: 'Genre',
-    size: 6,
-    yAxis: { nice: true },
-    xAxis: {
-      min: -100,
-      nice: true,
-      grid: { line: { style: { stroke: '#eee' } } },
+    xField: 'change in female rate',
+    yField: 'change in male rate',
+    sizeField: 'pop',
+    colorField: 'continent',
+    color: ['#ffd500', '#82cab2', '#193442', '#d18768', '#7e827a'],
+    size: [4, 30],
+    shape: 'circle',
+    pointStyle: {
+      fillOpacity: 0.8,
+      stroke: '#bbb',
     },
-    pointStyle: { stroke: '#fff' },
+    xAxis: {
+      min: -25,
+      max: 5,
+      grid: { line: { style: { stroke: '#eee' } } },
+      line: { style: { stroke: '#aaa' } },
+    },
+    yAxis: { line: { style: { stroke: '#aaa' } } },
+    quadrant: {
+      xBaseline: 0,
+      yBaseline: 0,
+      labels: [
+        { content: 'Male decrease,\nfemale increase' },
+        { content: 'Female decrease,\nmale increase' },
+        { content: 'Female & male decrease' },
+        { content: 'Female &\n male increase' },
+      ],
+    },
   };
   return <Scatter {...config} />;
 };
@@ -206,12 +233,17 @@ const DemoScatter: React.FC = () => {
     color: ['#ffd500', '#82cab2', '#193442', '#d18768', '#7e827a'],
     size: [4, 30],
     shape: 'circle',
-    pointStyle: { fillOpacity: 0.8 },
+    pointStyle: {
+      fillOpacity: 0.8,
+      stroke: '#bbb',
+    },
     xAxis: {
       min: -25,
       max: 5,
       grid: { line: { style: { stroke: '#eee' } } },
+      line: { style: { stroke: '#aaa' } },
     },
+    yAxis: { line: { style: { stroke: '#aaa' } } },
   };
   return <Scatter {...config} />;
 };

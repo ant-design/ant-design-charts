@@ -16,7 +16,6 @@ $ npm install @ant-design/charts
 
 ## 使用
 
-
 ```tsx | pure
 import React, { Component } from 'react';
 import { Line } from '@ant-design/charts';
@@ -46,7 +45,6 @@ class Page extends Component {
 export default Page;
 ```
 
-
 最终效果：
 
 ```tsx
@@ -70,6 +68,10 @@ const Page: React.FC = () => {
     data,
     xField: 'year',
     yField: 'value',
+    point: {
+      size: 5,
+      shape: 'diamond',
+    },
   };
   return <Line {...config} />;
 };

@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
 const { chartNames, filterTitle } = require('./constants');
-const { toHump, upperCase, updateG2plot } = require('./util.js');
+const { toHump, upperCase } = require('./util.js');
 
 const fp = path.resolve('../', 'G2Plot/examples');
 const DOC_PATH = path.join(__dirname, '../docs');
@@ -141,15 +141,10 @@ const writeFile = async () => {
   console.log('gallery.md 追加完成');
 };
 
-const start = async () => {
-  const update = await updateG2plot();
-  if (update === 'updated') {
-    scanFiles(fp);
-    sortAndCombineCharts();
-    writeFile();
-  } else {
-    console.log(update);
-  }
+const start = () => {
+  scanFiles(fp);
+  sortAndCombineCharts();
+  writeFile();
 };
 
 start();
