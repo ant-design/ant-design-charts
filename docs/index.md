@@ -34,7 +34,7 @@ import { Line } from '@ant-design/charts';
 
 const Page: React.FC = () => {
   const data = [
-    { year1: '1991', value1: 3 },
+    { year: '1991', value1: 3 },
     { year: '1992', value: 4 },
     { year: '1993', value: 3.5 },
     { year: '1994', value: 5 },
@@ -47,15 +47,17 @@ const Page: React.FC = () => {
 
   const config = {
     data,
-    padding: 'auto',
     xField: 'year',
     yField: 'value',
-    xAxis: {
-      type: 'dateTime',
-      tickCount: 5,
+    point: {
+      size: 5,
+      shape: 'diamond',
     },
-    point: {},
-    label: {},
+    label: {
+      style: {
+        fill: '#aaa',
+      },
+    },
   };
   return <Line {...config} />;
 };
@@ -83,13 +85,8 @@ const Page: React.FC = () => {
 
   const config = {
     data,
-    padding: 'auto',
     xField: 'year',
     yField: 'value',
-    xAxis: {
-      type: 'dateTime',
-      tickCount: 5,
-    },
     point: {
       size: 5,
       shape: 'diamond',

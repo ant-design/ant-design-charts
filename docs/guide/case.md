@@ -1,5 +1,5 @@
 ---
-title: 典型API
+title: 典型案例
 order: 3
 nav:
   title: 使用文档
