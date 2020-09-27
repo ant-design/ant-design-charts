@@ -12,7 +12,7 @@ const filterFileFolder = [
 ];
 
 const filterTitle = ['基础', '分组', '堆叠', '密度'];
-const exampleBaseUrl = 'https://antv-g2plot.gitee.io';
+const exampleBaseUrl = 'https://antv-g2plot-v1.gitee.io';
 const chartNames = {
   Line: '折线图',
   Bar: '条形图',

@@ -9,7 +9,7 @@ order: 2
 
 ### 配置折线数据点样式
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -91,7 +91,7 @@ export default DemoLine;
 
 ### 为折线添加缩略轴交互
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -148,7 +148,7 @@ export default DemoLine;
 
 ### 曲线折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -217,7 +217,7 @@ export default DemoLine;
 
 ### 带数据点的折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -290,7 +290,7 @@ export default DemoLine;
 
 ### 单折线图的基础用法
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -338,7 +338,7 @@ export default DemoLine;
 
 ### 标注最大值（带动画）
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -447,7 +447,7 @@ export default DemoLine;
 
 ### 带标注点的折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -547,7 +547,7 @@ export default DemoLine;
 
 ### 使用 image 定义标注点
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -657,7 +657,7 @@ export default DemoLine;
 
 ### 自定义标注点 symbol
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -790,7 +790,7 @@ export default DemoLine;
 
 ### 多种类型标注点
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/marker/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -910,7 +910,7 @@ export default DemoLine;
 
 ### 多折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1174,7 +1174,7 @@ export default DemoLine;
 
 ### 多折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1436,7 +1436,7 @@ export default DemoLine;
 
 ### 2000 ~ 2018 年各国家 GDP 趋势对比
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1495,7 +1495,7 @@ export default DemoLine;
 
 ### The causes of CO2 emissions
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1537,7 +1537,7 @@ export default DemoLine;
 
 ### 多折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1798,7 +1798,7 @@ export default DemoLine;
 
 ### 多折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/line/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';

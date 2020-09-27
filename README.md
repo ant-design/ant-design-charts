@@ -1,6 +1,6 @@
 # @ant-design/charts
 
-A React chart library, based on [G2Plot](https://antv-g2plot.gitee.io/zh)
+A React chart library, based on [G2Plot](https://antv-g2plot-v1.gitee.io/zh)
 
 <div align="center">
 
@@ -156,7 +156,7 @@ result：
 
 ### API
 
-Direct [G2Plot](https://antv-g2plot.gitee.io/zh)
+Direct [G2Plot](https://antv-g2plot-v1.gitee.io/zh)
 
 Extra props:
 
@@ -187,7 +187,7 @@ Charts is available under the License MIT.
 
 ### start
 
-```bash  | pure
+```bash | pure
 # 安装依赖
 $ npm install
 

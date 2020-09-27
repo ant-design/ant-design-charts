@@ -9,7 +9,7 @@ order: 2
 
 ### 基础条形图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -61,7 +61,7 @@ export default DemoBar;
 
 ### 基础条形图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -116,7 +116,7 @@ export default DemoBar;
 
 ### 基础条形图 - 图形标签颜色自适应
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -180,7 +180,7 @@ export default DemoBar;
 
 ### 基础条形图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -236,7 +236,7 @@ export default DemoBar;
 
 ### 基础条形图 - 滚动条
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -290,7 +290,7 @@ export default DemoBar;
 
 ### 为区间条形图配置 label 样式
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/range/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/range/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -360,7 +360,7 @@ export default DemoRangeBar;
 
 ### 区间条形图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/range/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/range/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -420,7 +420,7 @@ export default DemoRangeBar;
 
 ### 分组条形图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/grouped/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/grouped/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -501,7 +501,7 @@ export default DemoGroupedBar;
 
 ### 堆叠条形图：label 自动隐藏
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -722,7 +722,7 @@ export default DemoStackedBar;
 
 ### 百分比堆叠条形图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -816,7 +816,7 @@ export default DemoStackedBar;
 
 ### 百分比堆叠条形图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bar/percent-stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bar/percent-stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';

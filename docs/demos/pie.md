@@ -9,7 +9,7 @@ order: 2
 
 ### 多色饼图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/pie/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/pie/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -70,7 +70,7 @@ export default DemoPie;
 
 ### 饼图-外部圆形图形标签(outer-center label)
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/pie/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/pie/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -113,7 +113,7 @@ export default DemoPie;
 
 ### 饼图-外部图形标签(outer label)
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/pie/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/pie/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -175,7 +175,7 @@ export default DemoPie;
 
 ### 饼图-图形标签蜘蛛布局
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/pie/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/pie/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -238,7 +238,7 @@ export default DemoPie;
 
 ###
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/pie/donut/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/pie/donut/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -303,7 +303,7 @@ export default DemoDonut;
 
 ### 环图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/pie/donut/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/pie/donut/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -360,7 +360,7 @@ export default DemoDonut;
 
 ### 环图-指标卡
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/pie/donut/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/pie/donut/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
