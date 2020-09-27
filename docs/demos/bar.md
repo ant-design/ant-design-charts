@@ -753,6 +753,254 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
+### 百分百条形图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bar } from '@ant-design/charts';
+
+const DemoBar: React.FC = () => {
+  const data = [
+    {
+      country: 'Asia',
+      year: '1750',
+      value: 502,
+    },
+    {
+      country: 'Asia',
+      year: '1800',
+      value: 635,
+    },
+    {
+      country: 'Asia',
+      year: '1850',
+      value: 809,
+    },
+    {
+      country: 'Asia',
+      year: '1900',
+      value: 947,
+    },
+    {
+      country: 'Asia',
+      year: '1950',
+      value: 1402,
+    },
+    {
+      country: 'Asia',
+      year: '1999',
+      value: 3634,
+    },
+    {
+      country: 'Asia',
+      year: '2050',
+      value: 5268,
+    },
+    {
+      country: 'Africa',
+      year: '1750',
+      value: 106,
+    },
+    {
+      country: 'Africa',
+      year: '1800',
+      value: 107,
+    },
+    {
+      country: 'Africa',
+      year: '1850',
+      value: 111,
+    },
+    {
+      country: 'Africa',
+      year: '1900',
+      value: 133,
+    },
+    {
+      country: 'Africa',
+      year: '1950',
+      value: 221,
+    },
+    {
+      country: 'Africa',
+      year: '1999',
+      value: 767,
+    },
+    {
+      country: 'Africa',
+      year: '2050',
+      value: 1766,
+    },
+    {
+      country: 'Europe',
+      year: '1750',
+      value: 163,
+    },
+    {
+      country: 'Europe',
+      year: '1800',
+      value: 203,
+    },
+    {
+      country: 'Europe',
+      year: '1850',
+      value: 276,
+    },
+    {
+      country: 'Europe',
+      year: '1900',
+      value: 408,
+    },
+    {
+      country: 'Europe',
+      year: '1950',
+      value: 547,
+    },
+    {
+      country: 'Europe',
+      year: '1999',
+      value: 729,
+    },
+    {
+      country: 'Europe',
+      year: '2050',
+      value: 628,
+    },
+  ];
+  const config = {
+    data,
+    xField: 'value',
+    yField: 'year',
+    seriesField: 'country',
+    isPercent: true,
+    isStack: true,
+    color: ['#2582a1', '#f88c24', '#c52125', '#87f4d0'],
+    label: {
+      position: 'middle',
+      content: (item) => {
+        return item.value.toFixed(2);
+      },
+      style: { fill: '#fff' },
+    },
+  };
+  return <Bar {...config} />;
+};
+
+export default DemoBar;
+```
+
+### 区间条形图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bar } from '@ant-design/charts';
+
+const DemoBar: React.FC = () => {
+  const data = [
+    {
+      type: '分类一',
+      values: [76, 100],
+    },
+    {
+      type: '分类二',
+      values: [56, 108],
+    },
+    {
+      type: '分类三',
+      values: [38, 129],
+    },
+    {
+      type: '分类四',
+      values: [58, 155],
+    },
+    {
+      type: '分类五',
+      values: [45, 120],
+    },
+    {
+      type: '分类六',
+      values: [23, 99],
+    },
+    {
+      type: '分类七',
+      values: [18, 56],
+    },
+    {
+      type: '分类八',
+      values: [18, 34],
+    },
+  ];
+  const config = {
+    data: data.reverse(),
+    xField: 'values',
+    yField: 'type',
+    isRange: true,
+  };
+  return <Bar {...config} />;
+};
+
+export default DemoBar;
+```
+
+### 区间条形图-label 样式
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bar } from '@ant-design/charts';
+
+const DemoBar: React.FC = () => {
+  const data = [
+    {
+      type: '分类一',
+      values: [76, 100],
+    },
+    {
+      type: '分类二',
+      values: [56, 108],
+    },
+    {
+      type: '分类三',
+      values: [38, 129],
+    },
+    {
+      type: '分类四',
+      values: [58, 155],
+    },
+    {
+      type: '分类五',
+      values: [45, 120],
+    },
+    {
+      type: '分类六',
+      values: [23, 99],
+    },
+    {
+      type: '分类七',
+      values: [18, 56],
+    },
+    {
+      type: '分类八',
+      values: [18, 34],
+    },
+  ];
+  const config = {
+    data: data.reverse(),
+    xField: 'values',
+    yField: 'type',
+    color: 'l(0) 0:#3e5bdb 1:#dd3121',
+    isRange: true,
+    barStyle: { fillOpacity: 0.8 },
+    label: {
+      position: 'middle',
+      style: { fill: '#fff' },
+    },
+  };
+  return <Bar {...config} />;
+};
+
+export default DemoBar;
+```
+
 ### 堆叠条形图
 
 ```tsx

@@ -107,7 +107,7 @@ Common props:
 
 | Property | Description | Type | defaultValue |
 | --- | --- | --- | --- |
-| chartRef | chart ref | (React.MutableRefObject&lt;Line&gt;)=> void | - |
+| chartRef | chart ref | (React.MutableRefObject&lt;Chart&gt;)=> void | - |
 | loading | loading status | boolean | - |
 | loadingTemplate | loading template | React.ReactElement | - |
 | errorTemplate | custom error template | (e: Error) => React.ReactNode | - |
