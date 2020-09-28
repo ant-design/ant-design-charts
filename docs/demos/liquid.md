@@ -29,9 +29,6 @@ import { Liquid } from '@ant-design/charts';
 
 const DemoLiquid: React.FC = () => {
   const config = {
-    width: 600,
-    height: 300,
-    autoFit: false,
     percent: 0.75,
     statistic: {
       content: {

@@ -15,7 +15,6 @@ export const getGraphSize = (width: number | undefined, height: number | undefin
       CANVAS_WIDTH = container.current.offsetWidth;
       CANVAS_HEIGHT = container.current.offsetHeight || 500;
     }
-    console.log('graph size', CANVAS_WIDTH, CANVAS_HEIGHT, height, width, container, container.current);
     if ((!width && !CANVAS_WIDTH) || (!height && !CANVAS_HEIGHT)) {
       console.warn('请为 Graph 指定 width 与 height！否则将使用默认值 500 * 500');
       return [500, 500];

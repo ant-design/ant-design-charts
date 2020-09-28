@@ -6,6 +6,7 @@ import Column from './column';
 import Funnel from './funnel';
 import Histogram from './histogram';
 import Line from './line';
+import Box from './box';
 import Liquid from './liquid';
 import Pie from './pie';
 import Gauge from './gauge';
@@ -27,6 +28,7 @@ import { G2 } from '@antv/g2plot';
 export {
   Area,
   Bar,
+  Box,
   Bullet,
   Column,
   Funnel,
@@ -57,6 +59,7 @@ export {
 export default {
   Area,
   Bar,
+  Box,
   Bullet,
   Column,
   Funnel,

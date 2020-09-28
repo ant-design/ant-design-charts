@@ -138,7 +138,7 @@ const writeFile = async () => {
       );
     }
   });
-  console.log('gallery.md 追加完成');
+  console.log('global.md 追加完成');
 };
 
 const start = () => {

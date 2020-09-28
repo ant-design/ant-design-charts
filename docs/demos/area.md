@@ -195,6 +195,7 @@ const DemoArea: React.FC = () => {
       mask: 'YYYY',
     },
     yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
+    legend: { position: 'top' },
   };
   return <Area {...config} />;
 };
@@ -261,6 +262,7 @@ const DemoArea: React.FC = () => {
     xField: 'date',
     yField: 'value',
     seriesField: 'country',
+    legend: { position: 'right-top' },
   };
   return <Area {...config} />;
 };
