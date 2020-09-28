@@ -9,10 +9,9 @@ export default defineConfig({
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   styles: ['.__dumi-default-previewer-demo > div > div { min-height: 400px; }'],
   navs: [
-    null,
     {
-      title: '通用配置/高级',
-      path: 'https://g2plot.antv.vision/zh/examples/general/title-description',
+      title: '0.x',
+      path: 'https://charts-v0.ant.design',
     },
     { title: 'GitHub', path: 'https://github.com/ant-design/ant-design-charts' },
   ],

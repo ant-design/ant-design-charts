@@ -32,7 +32,7 @@
     "mockTest": "node ./scripts/mockTest.js"
   },
   "dependencies": {
-    "@antv/g2plot": "^2.0.0-beta.2",
+    "@antv/g2plot": "^2.0.0",
     "@antv/g6": "^3.6.0",
     "@antv/util": "^2.0.9",
     "react-content-loader": "^5.0.4"
