@@ -7,6 +7,61 @@ order: 1
 
 ## Line
 
+### 折线图线条颜色变化
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Line } from '@ant-design/charts';
+
+const DemoLine: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const config = {
+    data,
+    padding: 'auto',
+    xField: 'Date',
+    yField: 'scales',
+    annotations: [
+      {
+        type: 'regionFilter',
+        start: ['min', 'median'],
+        end: ['max', '0'],
+        color: 'red',
+      },
+      {
+        type: 'text',
+        position: ['min', 'median'],
+        content: '中位数',
+        offsetY: -4,
+        style: { textBaseline: 'bottom' },
+      },
+      {
+        type: 'line',
+        start: ['min', 'median'],
+        end: ['max', 'median'],
+        style: {
+          stroke: 'red',
+          lineDash: [2, 2],
+        },
+      },
+    ],
+  };
+  return <Line {...config} />;
+};
+
+export default DemoLine;
+```
+
 ### 折线图辅助线
 
 ```tsx
@@ -219,64 +274,6 @@ const DemoLine: React.FC = () => {
 export default DemoLine;
 ```
 
-### 带数据点的折线图
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Line } from '@ant-design/charts';
-
-const DemoLine: React.FC = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-    },
-    {
-      year: '1992',
-      value: 4,
-    },
-    {
-      year: '1993',
-      value: 3.5,
-    },
-    {
-      year: '1994',
-      value: 5,
-    },
-    {
-      year: '1995',
-      value: 4.9,
-    },
-    {
-      year: '1996',
-      value: 6,
-    },
-    {
-      year: '1997',
-      value: 7,
-    },
-    {
-      year: '1998',
-      value: 9,
-    },
-    {
-      year: '1999',
-      value: 13,
-    },
-  ];
-  const config = {
-    data,
-    xField: 'year',
-    yField: 'value',
-    point: {},
-    label: {},
-  };
-  return <Line {...config} />;
-};
-
-export default DemoLine;
-```
-
 ### 基础折线图
 
 ```tsx
@@ -360,7 +357,7 @@ const DemoLine: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/c48dbbb1-fccf-4a46-b68f-a3ddb4908b68.json')
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/55424a73-7cb8-4f79-b60d-3ab627ac5698.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -369,11 +366,11 @@ const DemoLine: React.FC = () => {
   };
   const config = {
     data,
-    xField: 'date',
+    xField: 'year',
     yField: 'value',
+    seriesField: 'category',
     yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
     legend: { position: 'right-top' },
-    seriesField: 'type',
     color: ['#1979C9', '#D62A0D', '#FAA219'],
   };
   return <Line {...config} />;
@@ -557,6 +554,7 @@ const DemoLine: React.FC = () => {
     '#269A99',
     '#FF99C3',
   ];
+  const markerSize = 6;
   const config = {
     data,
     xField: 'year',

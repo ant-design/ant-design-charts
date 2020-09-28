@@ -1,9 +1,9 @@
 ---
-title: 蜡烛图
-order: 45
+title: 股票图
+order: 21
 ---
 
-# 蜡烛图
+# 股票图
 
 ## Stock
 

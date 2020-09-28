@@ -124,63 +124,6 @@ const DemoColumn: React.FC = () => {
 export default DemoColumn;
 ```
 
-### 基础柱状图-图形标签位置
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Column } from '@ant-design/charts';
-
-const DemoColumn: React.FC = () => {
-  const data = [
-    {
-      type: '家具家电',
-      sales: 38,
-    },
-    {
-      type: '粮油副食',
-      sales: 52,
-    },
-    {
-      type: '生鲜水果',
-      sales: 61,
-    },
-    {
-      type: '美容洗护',
-      sales: 145,
-    },
-    {
-      type: '母婴用品',
-      sales: 48,
-    },
-    {
-      type: '进口食品',
-      sales: 38,
-    },
-    {
-      type: '食品饮料',
-      sales: 38,
-    },
-    {
-      type: '家庭清洁',
-      sales: 38,
-    },
-  ];
-  const config = {
-    data,
-    xField: 'type',
-    yField: 'sales',
-    label: { position: 'middle' },
-    meta: {
-      type: { alias: '类别' },
-      sales: { alias: '销售额' },
-    },
-  };
-  return <Column {...config} />;
-};
-
-export default DemoColumn;
-```
-
 ### 基础柱状图-图形标签
 
 ```tsx
@@ -226,7 +169,13 @@ const DemoColumn: React.FC = () => {
     data,
     xField: 'type',
     yField: 'sales',
-    label: {},
+    label: {
+      position: 'middle',
+      style: {
+        fill: '#0D0E68',
+        opacity: 0.6,
+      },
+    },
     meta: {
       type: { alias: '类别' },
       sales: { alias: '销售额' },
@@ -391,328 +340,97 @@ import { Column } from '@ant-design/charts';
 const DemoColumn: React.FC = () => {
   const data = [
     {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Jan.',
+      月均降雨量: 18.9,
     },
     {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Feb.',
+      月均降雨量: 28.8,
     },
     {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Mar.',
+      月均降雨量: 39.3,
     },
     {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Apr.',
+      月均降雨量: 81.4,
     },
     {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
+      name: 'London',
+      月份: 'May',
+      月均降雨量: 47,
     },
     {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Jun.',
+      月均降雨量: 20.3,
     },
     {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Jul.',
+      月均降雨量: 24,
     },
     {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Aug.',
+      月均降雨量: 35.6,
     },
     {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
+      name: 'Berlin',
+      月份: 'Jan.',
+      月均降雨量: 12.4,
     },
     {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Feb.',
+      月均降雨量: 23.2,
     },
     {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Mar.',
+      月均降雨量: 34.5,
     },
     {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Apr.',
+      月均降雨量: 99.7,
     },
     {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'May',
+      月均降雨量: 52.6,
     },
     {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Jun.',
+      月均降雨量: 35.5,
     },
     {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Jul.',
+      月均降雨量: 37.4,
     },
     {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Aug.',
+      月均降雨量: 42.4,
     },
   ];
   const config = {
     data,
     isGroup: true,
-    xField: 'year',
-    yField: 'value',
-    seriesField: 'type',
-  };
-  return <Column {...config} />;
-};
-
-export default DemoColumn;
-```
-
-### 分组柱状图 - 数据标签位置
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Column } from '@ant-design/charts';
-
-const DemoColumn: React.FC = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
+    xField: '月份',
+    yField: '月均降雨量',
+    seriesField: 'name',
+    color: ['#1ca9e6', '#f88c24'],
+    label: {
+      position: 'middle',
+      layout: [{ type: 'interval-adjust-position' }, { type: 'adjust-color' }],
     },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
-    },
-    {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
-    },
-  ];
-  const config = {
-    data,
-    isGroup: true,
-    xField: 'year',
-    yField: 'value',
-    seriesField: 'type',
-    label: { position: 'middle' },
-  };
-  return <Column {...config} />;
-};
-
-export default DemoColumn;
-```
-
-### 分组柱状图 - 数据标签
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Column } from '@ant-design/charts';
-
-const DemoColumn: React.FC = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
-    },
-    {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
-    },
-  ];
-  const config = {
-    data,
-    isGroup: true,
-    xField: 'year',
-    yField: 'value',
-    seriesField: 'type',
-    label: {},
   };
   return <Column {...config} />;
 };
@@ -729,103 +447,94 @@ import { Column } from '@ant-design/charts';
 const DemoColumn: React.FC = () => {
   const data = [
     {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Jan.',
+      月均降雨量: 18.9,
     },
     {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Feb.',
+      月均降雨量: 28.8,
     },
     {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Mar.',
+      月均降雨量: 39.3,
     },
     {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Apr.',
+      月均降雨量: 81.4,
     },
     {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
+      name: 'London',
+      月份: 'May',
+      月均降雨量: 47,
     },
     {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Jun.',
+      月均降雨量: 20.3,
     },
     {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Jul.',
+      月均降雨量: 24,
     },
     {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
+      name: 'London',
+      月份: 'Aug.',
+      月均降雨量: 35.6,
     },
     {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
+      name: 'Berlin',
+      月份: 'Jan.',
+      月均降雨量: 12.4,
     },
     {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Feb.',
+      月均降雨量: 23.2,
     },
     {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Mar.',
+      月均降雨量: 34.5,
     },
     {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Apr.',
+      月均降雨量: 99.7,
     },
     {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'May',
+      月均降雨量: 52.6,
     },
     {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Jun.',
+      月均降雨量: 35.5,
     },
     {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Jul.',
+      月均降雨量: 37.4,
     },
     {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
+      name: 'Berlin',
+      月份: 'Aug.',
+      月均降雨量: 42.4,
     },
   ];
   const config = {
     data,
     isGroup: true,
-    xField: 'year',
-    yField: 'value',
-    seriesField: 'type',
-    marginRatio: 1 / 32,
+    xField: '月份',
+    yField: '月均降雨量',
+    seriesField: 'name',
+    color: ['#1ca9e6', '#f88c24'],
+    marginRatio: 0,
   };
   return <Column {...config} />;
 };
@@ -1186,6 +895,7 @@ const DemoColumn: React.FC = () => {
     xField: 'year',
     yField: 'value',
     seriesField: 'type',
+    color: ['#1ca9e6', '#f88c24'],
   };
   return <Column {...config} />;
 };
@@ -1298,120 +1008,11 @@ const DemoColumn: React.FC = () => {
     xField: 'year',
     yField: 'value',
     seriesField: 'type',
-    label: { position: 'middle' },
-  };
-  return <Column {...config} />;
-};
-
-export default DemoColumn;
-```
-
-### 堆叠柱状图 - 数据标签
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Column } from '@ant-design/charts';
-
-const DemoColumn: React.FC = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
+    color: ['#ae331b', '#1a6179'],
+    label: {
+      position: 'middle',
+      layout: [{ type: 'interval-adjust-position' }, { type: 'adjust-color' }],
     },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
-    },
-    {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
-    },
-  ];
-  const config = {
-    data,
-    isStack: true,
-    xField: 'year',
-    yField: 'value',
-    seriesField: 'type',
-    label: {},
   };
   return <Column {...config} />;
 };

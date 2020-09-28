@@ -46,6 +46,7 @@ const DemoRose: React.FC = () => {
     yField: 'value',
     seriesField: 'type',
     radius: 0.9,
+    legend: { position: 'bottom' },
   };
   return <Rose {...config} />;
 };
@@ -139,6 +140,7 @@ const DemoRose: React.FC = () => {
     yField: 'value',
     seriesField: 'type',
     radius: 0.9,
+    legend: { position: 'bottom' },
     interactions: [{ type: 'element-active' }],
   };
   return <Rose {...config} />;
@@ -194,6 +196,7 @@ const DemoRose: React.FC = () => {
         },
       },
     },
+    legend: { position: 'bottom' },
     interactions: [{ type: 'element-active' }],
   };
   return <Rose {...config} />;

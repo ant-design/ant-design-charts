@@ -8,12 +8,32 @@ const readline = require('readline');
 // 改操作比较危险，不建议直接扫描
 const demos = [
   {
+    name: '折线图',
+    chart: 'Line',
+  },
+  {
+    name: '柱状图',
+    chart: 'Column',
+  },
+  {
+    name: '条形图',
+    chart: 'Bar',
+  },
+  {
     name: '漏斗图',
     chart: 'Funnel',
   },
   {
     name: '子弹图',
     chart: 'Bullet',
+  },
+  {
+    name: '进度环图',
+    chart: 'RingProgress',
+  },
+  {
+    name: '进度条图',
+    chart: 'Progress',
   },
   {
     name: '直方图',
@@ -28,12 +48,24 @@ const demos = [
     chart: 'Radar',
   },
   {
+    name: '仪表盘',
+    chart: 'Gauge',
+  },
+  {
+    name: '箱线图',
+    chart: 'Box',
+  },
+  {
     name: '散点图',
     chart: 'Scatter',
   },
   {
     name: '玫瑰图',
     chart: 'Rose',
+  },
+  {
+    name: '面积图',
+    chart: 'Area',
   },
   {
     name: '迷你面积图',
@@ -50,6 +82,10 @@ const demos = [
   {
     name: '词云图',
     chart: 'WordCloud',
+  },
+  {
+    name: '股票图',
+    chart: 'Stock',
   },
 ];
 

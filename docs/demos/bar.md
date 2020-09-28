@@ -124,66 +124,6 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图-图形标签位置
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Bar } from '@ant-design/charts';
-
-const DemoBar: React.FC = () => {
-  const data = [
-    {
-      type: '家具家电',
-      sales: 38,
-    },
-    {
-      type: '粮油副食',
-      sales: 52,
-    },
-    {
-      type: '生鲜水果',
-      sales: 61,
-    },
-    {
-      type: '美容洗护',
-      sales: 145,
-    },
-    {
-      type: '母婴用品',
-      sales: 48,
-    },
-    {
-      type: '进口食品',
-      sales: 38,
-    },
-    {
-      type: '食品饮料',
-      sales: 38,
-    },
-    {
-      type: '家庭清洁',
-      sales: 38,
-    },
-  ];
-  const config = {
-    data,
-    xField: 'sales',
-    yField: 'type',
-    label: {
-      position: 'middle',
-      style: { fill: '#fff' },
-    },
-    meta: {
-      type: { alias: '类别' },
-      sales: { alias: '销售额' },
-    },
-  };
-  return <Bar {...config} />;
-};
-
-export default DemoBar;
-```
-
 ### 基础条形图-图形标签
 
 ```tsx
@@ -231,8 +171,10 @@ const DemoBar: React.FC = () => {
     yField: 'type',
     label: {
       position: 'left',
-      offsetX: 10,
-      style: { fill: '#fff' },
+      style: {
+        fill: '#0D0E68',
+        opacity: 0.6,
+      },
     },
     meta: {
       type: { alias: '类别' },
@@ -311,441 +253,68 @@ import { Bar } from '@ant-design/charts';
 const DemoBar: React.FC = () => {
   const data = [
     {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
+      label: 'Mon.',
+      type: 'series1',
+      value: 2800,
     },
     {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
+      label: 'Mon.',
+      type: 'series2',
+      value: 2260,
     },
     {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
+      label: 'Tues.',
+      type: 'series1',
+      value: 1800,
     },
     {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
+      label: 'Tues.',
+      type: 'series2',
+      value: 1300,
     },
     {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
+      label: 'Wed.',
+      type: 'series1',
+      value: 950,
     },
     {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
+      label: 'Wed.',
+      type: 'series2',
+      value: 900,
     },
     {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
+      label: 'Thur.',
+      type: 'series1',
+      value: 500,
     },
     {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
+      label: 'Thur.',
+      type: 'series2',
+      value: 390,
     },
     {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
+      label: 'Fri.',
+      type: 'series1',
+      value: 170,
     },
     {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
+      label: 'Fri.',
+      type: 'series2',
+      value: 100,
     },
   ];
   const config = {
     data,
     isGroup: true,
     xField: 'value',
-    yField: 'year',
+    yField: 'label',
+    color: ['#1383ab', '#c52125'],
     seriesField: 'type',
-  };
-  return <Bar {...config} />;
-};
-
-export default DemoBar;
-```
-
-### 分组条形图 - 数据标签位置
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Bar } from '@ant-design/charts';
-
-const DemoBar: React.FC = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
+    marginRatio: 0,
+    label: {
+      position: 'middle',
+      layout: [{ type: 'interval-adjust-position' }, { type: 'adjust-color' }],
     },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
-    },
-    {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
-    },
-  ];
-  const config = {
-    data,
-    isGroup: true,
-    xField: 'value',
-    yField: 'year',
-    seriesField: 'type',
-    label: { position: 'middle' },
-  };
-  return <Bar {...config} />;
-};
-
-export default DemoBar;
-```
-
-### 分组条形图 - 数据标签
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Bar } from '@ant-design/charts';
-
-const DemoBar: React.FC = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
-    },
-    {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
-    },
-  ];
-  const config = {
-    data,
-    isGroup: true,
-    xField: 'value',
-    yField: 'year',
-    seriesField: 'type',
-    label: {},
-  };
-  return <Bar {...config} />;
-};
-
-export default DemoBar;
-```
-
-### 分组条形图 - 分组间距
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Bar } from '@ant-design/charts';
-
-const DemoBar: React.FC = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
-    },
-    {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
-    },
-  ];
-  const config = {
-    data,
-    isGroup: true,
-    xField: 'value',
-    yField: 'year',
-    seriesField: 'type',
-    marginRatio: 1 / 32,
   };
   return <Bar {...config} />;
 };
@@ -1101,237 +670,15 @@ const DemoBar: React.FC = () => {
     },
   ];
   const config = {
-    data,
+    data: data.reverse(),
     isStack: true,
     xField: 'value',
     yField: 'year',
     seriesField: 'type',
-  };
-  return <Bar {...config} />;
-};
-
-export default DemoBar;
-```
-
-### 堆叠条形图 - 数据标签
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Bar } from '@ant-design/charts';
-
-const DemoBar: React.FC = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
+    label: {
+      position: 'middle',
+      layout: [{ type: 'interval-adjust-position' }, { type: 'adjust-color' }],
     },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
-    },
-    {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
-    },
-  ];
-  const config = {
-    data,
-    isStack: true,
-    xField: 'value',
-    yField: 'year',
-    seriesField: 'type',
-    label: { position: 'middle' },
-  };
-  return <Bar {...config} />;
-};
-
-export default DemoBar;
-```
-
-### 堆叠条形图 - 数据标签
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Bar } from '@ant-design/charts';
-
-const DemoBar: React.FC = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
-    },
-    {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
-    },
-  ];
-  const config = {
-    data,
-    isStack: true,
-    xField: 'value',
-    yField: 'year',
-    seriesField: 'type',
-    label: {},
   };
   return <Bar {...config} />;
 };
