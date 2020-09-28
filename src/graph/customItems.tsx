@@ -204,7 +204,7 @@ export const customIconNode = (params: {
       fill: '#91d5ff'
     },
     draw(cfg: NodeConfig, group) {
-      const styles = this.getShapeStyle(cfg)
+      const styles = (this as any).getShapeStyle(cfg)
       const { labelCfg = {} } = cfg
       
       const keyShape = group!.addShape('rect', {
