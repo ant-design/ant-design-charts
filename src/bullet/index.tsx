@@ -4,7 +4,7 @@ import useChart, { ContainerProps } from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface BulletConfig extends G2plotProps, ContainerProps {
+export interface BulletConfig extends Omit<G2plotProps, 'color' | 'label' | 'style'>, ContainerProps {
   chartRef?: React.MutableRefObject<G2plotBullet | undefined>;
 }
 

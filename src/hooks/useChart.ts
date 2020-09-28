@@ -16,9 +16,10 @@ export interface Tooltip extends Omit<G2PlotTooltip, 'customContent'> {
   container?: ReactNode;
 }
 
-export interface Options extends Omit<G2PlotConfig, 'tooltip' | 'data'> {
+export interface Options extends Omit<G2PlotConfig, 'tooltip' | 'data' | 'yAxis'> {
   tooltip?: boolean | Tooltip;
   data?: any;
+  yAxis?: G2PlotConfig['yAxis'] | G2PlotConfig['yAxis'][];
   [key: string]: any;
 }
 
