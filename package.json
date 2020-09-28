@@ -62,7 +62,7 @@
     "np": "*",
     "prettier": "^2.0.2",
     "shelljs": "^0.8.3",
-    "typescript": "^3.7.4",
+    "typescript": "^4.0.3",
     "whatwg-fetch": "^3.0.0"
   },
   "peerDependencies": {
