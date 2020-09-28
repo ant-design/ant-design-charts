@@ -1,3 +1,9 @@
+### v: 1.0.0
+
+- 底层依赖架构全新升级
+- 新增全量 API
+- 持续迭代
+
 ### v: 0.9.6
 
 - 新增 onlyChangeData props 用于控制 changeData 。
