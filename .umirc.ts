@@ -12,7 +12,7 @@ export default defineConfig({
     null,
     {
       title: '0.x',
-      path: 'https://charts-v0.ant.design',
+      path: 'https://v0-charts.ant.design',
     },
     { title: 'GitHub', path: 'https://github.com/ant-design/ant-design-charts' },
   ],
