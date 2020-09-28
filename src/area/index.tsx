@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Area as G2plotArea, AreaOptions as G2plotProps } from 'g2plot-v2';
-import useChart, { ContainerProps } from '../hooks/useChart-v2';
+import { Area as G2plotArea, AreaOptions as G2plotProps } from '@antv/g2plot';
+import useChart, { ContainerProps } from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 

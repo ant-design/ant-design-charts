@@ -1,35 +1,35 @@
 import { ReactNode, useRef, useEffect } from 'react';
+import { isEqual } from '@antv/util';
 import { utils } from '../util';
-import {
-  Base as G2PlotBase,
-  PlotConfig as G2PlotPlotConfig,
-  Tooltip as G2PlotTooltip,
-  CustomTooltipConfig,
-} from '@antv/g2plot';
+import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip } from '@antv/g2plot';
 import createNode from '../util/createNode';
 
-export interface Tooltip extends Omit<G2PlotTooltip, 'custom'> {
-  custom?: {
-    container?: ReactNode;
-    customContent?: (title: string, data: any[]) => ReactNode;
-    onChange?: (tooltipDom: HTMLElement, cfg: CustomTooltipConfig) => void;
-  };
+export interface ContainerProps {
+  style?: React.CSSProperties;
+  className?: string;
+  loading?: boolean;
+  loadingTemplate?: React.ReactElement;
+  errorTemplate?: (e: Error) => React.ReactNode;
+}
+export interface Tooltip extends Omit<G2PlotTooltip, 'customContent'> {
+  customContent?: (title: string, data: any[]) => ReactNode | string | void;
+  container?: ReactNode;
 }
 
-export interface PlotConfig extends G2PlotPlotConfig {
-  memoData?: string | number | any[];
-  tooltip?: Tooltip;
+export interface Options extends Omit<G2PlotConfig, 'tooltip' | 'data' | 'yAxis'> {
+  tooltip?: boolean | Tooltip;
   data?: any;
-  onlyChangeData?: boolean;
+  yAxis?: G2PlotConfig['yAxis'] | G2PlotConfig['yAxis'][];
+  [key: string]: any;
 }
 
-export interface Base extends G2PlotBase {
+export interface Base extends Plot<any> {
   __proto__?: any;
 }
 
-export default function useInit<T extends Base, U extends PlotConfig>(ChartClass: any, config: U) {
+export default function useInit<T extends Base, U extends Options>(ChartClass: any, config: U) {
   const chart = useRef<T>();
-
+  const chartOptions = useRef<U>();
   const container = useRef<HTMLDivElement>(null);
 
   /**
@@ -38,7 +38,7 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
    * @param {number} encoderOptions A Number between 0 and 1 indicating the image quality
    */
   const toDataURL = (type = 'image/png', encoderOptions?: number) => {
-    return chart.current?.canvas.cfg.el.toDataURL(type, encoderOptions);
+    return chart.current?.chart.canvas.cfg.el.toDataURL(type, encoderOptions);
   };
 
   /**
@@ -59,7 +59,7 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
         // 默认值：图表 title -> 图表类型
         imageName = `${_config?.title?.text || ChartClass?.name}.png`;
       }
-      const base64 = chart.current?.canvas.cfg.el.toDataURL(type, encoderOptions);
+      const base64 = chart.current?.chart.canvas.cfg.el.toDataURL(type, encoderOptions);
       let a: HTMLAnchorElement | null = document.createElement('a');
       a.href = base64;
       a.download = imageName;
@@ -91,34 +91,52 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
       };
     }
 
-    /* tooltip 支持 ReactNode, 1.0 版本会改用 createPortal  */
-    if (config.tooltip?.custom?.container) {
-      config.tooltip.custom.container = createNode(config.tooltip.custom.container);
-    }
+    if (typeof config.tooltip === 'object') {
+      if (config.tooltip?.container) {
+        config.tooltip.container = createNode(config.tooltip.container);
+      }
 
-    if (config.tooltip?.custom?.customContent) {
-      const customContent = config.tooltip.custom.customContent;
-      config.tooltip.custom.customContent = (title: string, items: any[]) => {
-        const tooltipDom = customContent(title, items);
-        if (utils.isType(tooltipDom, 'HTMLDivElement')) {
-          return tooltipDom;
-        }
-        return createNode(tooltipDom);
-      };
+      if (config.tooltip?.customContent) {
+        const customContent = config.tooltip.customContent;
+        config.tooltip.customContent = (title: string, items: any[]) => {
+          const tooltipDom = customContent(title, items) || '';
+          if (utils.isType(tooltipDom, 'HTMLDivElement')) {
+            return tooltipDom;
+          }
+          return createNode(tooltipDom);
+        };
+      }
     }
   };
 
   useEffect(() => {
-    if (chart.current) {
-      if (config.onlyChangeData) {
+    if (chart.current && !isEqual(chartOptions.current, config)) {
+      let changeData = false;
+      if (chartOptions.current) {
+        // 从 options 里面取出 data 、value 、 percent 进行比对，判断是否仅数值发生改变
+        const {
+          data: cuurentData,
+          value: cuurentValue,
+          percent: cuurentPercent,
+          ...currentConfig
+        } = chartOptions.current;
+        const {
+          data: inputData,
+          value: inputValue,
+          percent: inputPercent,
+          ...inputConfig
+        } = config;
+        changeData = isEqual(currentConfig, inputConfig);
+      }
+      if (changeData) {
         chart.current.changeData(config?.data || []);
       } else {
         processConfig();
-        chart.current.updateConfig(config);
-        chart.current.render();
+        chart.current.update({ ...chart.current.options, ...config });
       }
+      chartOptions.current = config;
     }
-  }, [config?.memoData ? config.memoData : JSON.stringify(config)]);
+  }, [config]);
 
   useEffect(() => {
     if (!container.current) {
@@ -128,7 +146,7 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
     const chartInstance: T = new (ChartClass as any)(container.current, {
       ...config,
     });
-    chart.current = chartInstance;
+
     chartInstance.__proto__.toDataURL = (type: string, encoderOptions?: number) => {
       return toDataURL(type, encoderOptions);
     };
@@ -140,13 +158,17 @@ export default function useInit<T extends Base, U extends PlotConfig>(ChartClass
       return downloadImage(name, type, encoderOptions);
     };
     chartInstance.render();
-    return () => chartInstance.destroy();
+    if (!chartOptions.current) {
+      chartOptions.current = config;
+    }
+    chart.current = utils.clone(chartInstance) as T;
+    return () => {
+      chartInstance.destroy();
+    };
   }, []);
 
   return {
     chart,
     container,
-    toDataURL,
-    downloadImage,
   };
 }

@@ -1,15 +1,13 @@
 ---
 title: 漏斗图
-order: 36
+order: 13
 ---
 
 # 漏斗图
 
 ## Funnel
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/funnel/basic/API" target="_blank">配置</a>
+### 基础漏斗图-转置
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -39,6 +37,7 @@ const DemoFunnel: React.FC = () => {
     },
   ];
   const config = {
+    padding: [0, 100],
     data: data,
     xField: 'action',
     yField: 'pv',
@@ -50,9 +49,7 @@ const DemoFunnel: React.FC = () => {
 export default DemoFunnel;
 ```
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/funnel/basic/API" target="_blank">配置</a>
+### 基础漏斗图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -82,6 +79,7 @@ const DemoFunnel: React.FC = () => {
     },
   ];
   const config = {
+    padding: [30, 60],
     data: data,
     xField: 'action',
     yField: 'pv',
@@ -92,9 +90,7 @@ const DemoFunnel: React.FC = () => {
 export default DemoFunnel;
 ```
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/funnel/basic/API" target="_blank">配置</a>
+### 对比漏斗图-转置
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -154,6 +150,7 @@ const DemoFunnel: React.FC = () => {
     },
   ];
   const config = {
+    padding: [30, 60],
     data,
     xField: 'action',
     yField: 'pv',
@@ -166,9 +163,7 @@ const DemoFunnel: React.FC = () => {
 export default DemoFunnel;
 ```
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/funnel/basic/API" target="_blank">配置</a>
+### 对比漏斗图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -228,6 +223,7 @@ const DemoFunnel: React.FC = () => {
     },
   ];
   const config = {
+    padding: [30, 60],
     data,
     xField: 'action',
     yField: 'pv',
@@ -239,9 +235,7 @@ const DemoFunnel: React.FC = () => {
 export default DemoFunnel;
 ```
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/funnel/basic/API" target="_blank">配置</a>
+### 动态高度漏斗图-转置
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -271,7 +265,8 @@ const DemoFunnel: React.FC = () => {
     },
   ];
   const config = {
-    data,
+    padding: [0, 100],
+    data: data,
     xField: 'action',
     yField: 'pv',
     dynamicHeight: true,
@@ -283,9 +278,7 @@ const DemoFunnel: React.FC = () => {
 export default DemoFunnel;
 ```
 
-###
-
-<a href="https://antv-g2plot.gitee.io/zh/examples/funnel/basic/API" target="_blank">配置</a>
+### 动态高度漏斗图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -315,7 +308,8 @@ const DemoFunnel: React.FC = () => {
     },
   ];
   const config = {
-    data,
+    padding: [0, 100],
+    data: data,
     xField: 'action',
     yField: 'pv',
     dynamicHeight: true,

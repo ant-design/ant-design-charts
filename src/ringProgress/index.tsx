@@ -1,25 +1,32 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import {
   RingProgress as G2plotRingProgress,
-  RingProgressConfig as G2plotProps,
+  RingProgressOptions as G2plotProps,
 } from '@antv/g2plot';
-import useChart from '../hooks/useChart';
+import useChart, { ContainerProps } from '../hooks/useChart';
 import { ErrorBoundary } from '../base';
+import ChartLoading from '../util/createLoading';
 
-export interface RingProgressConfig extends Omit<G2plotProps, 'tooltip'> {
+export interface RingProgressConfig extends G2plotProps, ContainerProps {
   chartRef?: React.MutableRefObject<G2plotRingProgress | undefined>;
-  style?: React.CSSProperties;
-  className?: string;
 }
 
 const RingProgressChart = forwardRef((props: RingProgressConfig, ref) => {
-  const { chartRef, style = {}, className, ...rest } = props;
-
+  const {
+    chartRef,
+    style = {
+      height: '100%',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2plotRingProgress, RingProgressConfig>(
     G2plotRingProgress,
     rest,
   );
-
   useEffect(() => {
     if (chartRef) {
       chartRef.current = chart.current;
@@ -29,12 +36,11 @@ const RingProgressChart = forwardRef((props: RingProgressConfig, ref) => {
     getChart: () => chart.current,
   }));
   return (
-    <ErrorBoundary>
+    <ErrorBoundary errorTemplate={errorTemplate}>
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
 });
-
-RingProgressChart.defaultProps = G2plotRingProgress.getDefaultOptions();
 
 export default RingProgressChart;

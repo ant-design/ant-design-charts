@@ -1,5 +1,5 @@
 ---
-title: 典型API
+title: 典型案例
 order: 3
 nav:
   title: 使用文档
@@ -174,39 +174,6 @@ const DemoLine: React.FC = () => {
 };
 
 export default DemoLine;
-```
-
-### 自定义 Statistic
-
-```tsx
-import React, { Fragment } from 'react';
-import { Liquid } from '@ant-design/charts';
-
-const DemoLiquid: React.FC = () => {
-  const config = {
-    title: {
-      visible: false,
-      text: '水波图',
-    },
-    min: 0,
-    max: 10000,
-    value: 5639,
-    statistic: {
-      htmlContent: (value: string) => {
-        return (
-          <Fragment>
-            <p style={{ margin: 0, fontSize: 16, lineHeight: 1 }}>水波图</p>
-            <b>{value}</b>
-          </Fragment>
-        );
-      },
-    },
-  };
-
-  return <Liquid {...config} />;
-};
-
-export default DemoLiquid;
 ```
 
 ### 事件绑定
