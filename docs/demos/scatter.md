@@ -9,7 +9,7 @@ order: 17
 
 ###
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -45,7 +45,7 @@ export default DemoScatter;
 
 ###
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -94,7 +94,7 @@ export default DemoScatter;
 
 ###
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -135,7 +135,7 @@ export default DemoScatter;
 
 ###
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/scatter/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';

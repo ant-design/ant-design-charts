@@ -9,7 +9,7 @@ order: 2
 
 ### 基础面积图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/area/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/area/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -49,7 +49,7 @@ export default DemoArea;
 
 ### 基础面积图 - 缩略轴
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/area/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/area/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -108,7 +108,7 @@ export default DemoArea;
 
 ### 堆叠面积图-areaLabel
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/area/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/area/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -165,7 +165,7 @@ export default DemoStackedArea;
 
 ### The causes of CO2 emissions
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/area/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/area/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -210,7 +210,7 @@ export default DemoStackedArea;
 
 ### 堆叠面积图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/area/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/area/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -257,7 +257,7 @@ export default DemoStackedArea;
 
 ### 堆叠面积图 - lineLabel
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/area/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/area/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -311,7 +311,7 @@ export default DemoStackedArea;
 
 ### 百分比堆叠面积图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/area/percent-stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/area/percent-stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';

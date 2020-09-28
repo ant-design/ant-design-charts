@@ -9,7 +9,7 @@ order: 3
 
 ### 双折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/dual-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/dual-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -113,7 +113,7 @@ export default DemoDualLine;
 
 ### 双折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/dual-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/dual-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -232,7 +232,7 @@ export default DemoDualLine;
 
 ### 统一双折线度量
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/dual-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/dual-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -342,7 +342,7 @@ export default DemoDualLine;
 
 ### 柱线混合图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/column-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/column-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -414,7 +414,7 @@ export default DemoColumnLine;
 
 ### 柱线混合图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/column-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/column-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -492,7 +492,7 @@ export default DemoColumnLine;
 
 ### 柱线混合图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/column-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/column-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -568,7 +568,7 @@ export default DemoColumnLine;
 
 ### 柱线混合图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/column-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/column-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -700,7 +700,7 @@ export default DemoColumnLine;
 
 ### 分组柱+折线混合图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/groupedColumn-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/groupedColumn-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -805,7 +805,7 @@ export default DemoGroupedColumnLine;
 
 ### 分组柱+折线混合图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/groupedColumn-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/groupedColumn-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -968,7 +968,7 @@ export default DemoGroupedColumnLine;
 
 ### 堆叠柱+折线混合图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/stackedColumn-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/stackedColumn-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1073,7 +1073,7 @@ export default DemoStackedColumnLine;
 
 ### 分组柱+折线混合图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/combo/stackedColumn-line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/combo/stackedColumn-line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';

@@ -9,7 +9,7 @@ order: 11
 
 ### 配置折线数据点样式
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/step/line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/step/line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -91,7 +91,7 @@ export default DemoStepLine;
 
 ### 为阶梯图添加缩略轴交互
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/step/line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/step/line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -150,7 +150,7 @@ export default DemoStepLine;
 
 ### 带数据点的折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/step/line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/step/line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -224,7 +224,7 @@ export default DemoStepLine;
 
 ### 单阶梯折线的基础用法
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/step/line/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/step/line/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -272,7 +272,7 @@ export default DemoStepLine;
 
 ### 2000 ~ 2018 年各国家 GDP 趋势对比
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/step-line/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/step-line/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -329,7 +329,7 @@ export default DemoStepLine;
 
 ### 多阶梯折线图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/step-line/multiple/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/step-line/multiple/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';

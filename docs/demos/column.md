@@ -9,7 +9,7 @@ order: 2
 
 ### 基础柱状图-转化率组件
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -62,7 +62,7 @@ export default DemoColumn;
 
 ### 基础柱状图 label 颜色自动调整
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -138,7 +138,7 @@ export default DemoColumn;
 
 ### 基础柱状图-图形标签位置
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -211,7 +211,7 @@ export default DemoColumn;
 
 ### 基础柱状图-图形标签
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -288,7 +288,7 @@ export default DemoColumn;
 
 ### 基础柱状图-滚动条
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -342,7 +342,7 @@ export default DemoColumn;
 
 ### 基础柱状图-缩略轴
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -404,7 +404,7 @@ export default DemoColumn;
 
 ### 基础柱状图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -470,7 +470,7 @@ export default DemoColumn;
 
 ### 为区间柱状图配置 label 样式
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/range/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/range/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -540,7 +540,7 @@ export default DemoRangeColumn;
 
 ### 区间柱状图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/range/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/range/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -600,7 +600,7 @@ export default DemoRangeColumn;
 
 ### 分组柱状图-缩略轴
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/grouped/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/grouped/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -659,7 +659,7 @@ export default DemoGroupedColumn;
 
 ### 分组柱状图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/grouped/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/grouped/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -772,7 +772,7 @@ export default DemoGroupedColumn;
 
 ### 联通区域组件交互
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -993,7 +993,7 @@ export default DemoStackedColumn;
 
 ### 配置联通区域组件样式
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1217,7 +1217,7 @@ export default DemoStackedColumn;
 
 ### 区域联通组件
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1437,7 +1437,7 @@ export default DemoStackedColumn;
 
 ### 堆叠柱状图：label 自动隐藏
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1611,7 +1611,7 @@ export default DemoStackedColumn;
 
 ### 堆叠柱状图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1734,7 +1734,7 @@ export default DemoStackedColumn;
 
 ### 直方图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/colunm/histogram/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/colunm/histogram/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1821,7 +1821,7 @@ export default DemoHistogram;
 
 ### 直方图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/colunm/histogram/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/colunm/histogram/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1910,7 +1910,7 @@ export default DemoHistogram;
 
 ### 每月收支情况（瀑布图）
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/waterfall/column/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/waterfall/column/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1972,7 +1972,7 @@ export default DemoWaterfall;
 
 ### 百分比堆叠柱状图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/column/percent-stacked/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/column/percent-stacked/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';

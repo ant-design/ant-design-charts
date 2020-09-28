@@ -7,7 +7,7 @@ order: 2
 
 ## 每月收支情况（瀑布图）
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/waterfall/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/waterfall/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React from 'react';

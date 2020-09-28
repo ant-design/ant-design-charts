@@ -9,7 +9,7 @@ order: 35
 
 ### 基础子弹图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -43,7 +43,7 @@ export default DemoBullet;
 
 ### 基础子弹图-带多颜色范围区间
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -118,7 +118,7 @@ export default DemoBullet;
 
 ### 分组子弹图-带颜色范围区间
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -207,7 +207,7 @@ export default DemoBullet;
 
 ### 分组子弹图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -255,7 +255,7 @@ export default DemoBullet;
 
 ### 基础子弹图-多目标值
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -316,7 +316,7 @@ export default DemoBullet;
 
 ### 基础子弹图-超出目标
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -395,7 +395,7 @@ export default DemoBullet;
 
 ### 堆叠子弹图
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/bullet/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';

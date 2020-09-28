@@ -9,7 +9,7 @@ order: 29
 
 ###
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/heatmap/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/heatmap/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -48,7 +48,7 @@ export default DemoHeatmap;
 
 ### 热力图模式切换
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/heatmap/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/heatmap/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect, useRef } from 'react';
@@ -585,7 +585,7 @@ export default DemoHeatmap;
 
 ### 指定色块热力图形状
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/heatmap/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/heatmap/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1114,7 +1114,7 @@ export default DemoHeatmap;
 
 ### 热力图形状大小映射
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/heatmap/basic/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/heatmap/basic/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1640,7 +1640,7 @@ export default DemoHeatmap;
 
 ###
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/heatmap/density/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/heatmap/density/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1686,7 +1686,7 @@ export default DemoDensityHeatmap;
 
 ###
 
-<a href="https://antv-g2plot.gitee.io/zh/examples/heatmap/density/API" target="_blank">配置</a>
+<a href="https://antv-g2plot-v1.gitee.io/zh/examples/heatmap/density/API" target="_blank">配置</a>
 
 ```tsx
 import React, { useState, useEffect } from 'react';
