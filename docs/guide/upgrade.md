@@ -8,7 +8,7 @@ nav:
 
 ## 概述
 
-由于 0.x 版本底层库架构不统一，bug 修复成本较高，1.0 我们对底层架构进行了重构，功能和 [G2Plot](https://g2plot.antv.vision/zh) 保持同步。
+0.x 版本由于底层库架构不统一，BUG 修复成本较高，1.0 我们对底层架构进行了重构，功能和 [G2Plot 2.0](https://g2plot.antv.vision/zh) 保持同步。
 
 ## 图表变更
 
