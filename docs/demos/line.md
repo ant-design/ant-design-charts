@@ -201,10 +201,7 @@ const DemoLine: React.FC = () => {
     padding: 'auto',
     xField: 'Date',
     yField: 'scales',
-    xAxis: {
-      type: 'dateTime',
-      tickCount: 5,
-    },
+    xAxis: { tickCount: 5 },
     slider: {
       start: 0.1,
       end: 0.5,
@@ -299,7 +296,7 @@ const DemoLine: React.FC = () => {
     xField: 'Date',
     yField: 'scales',
     xAxis: {
-      type: 'dateTime',
+      type: 'timeCat',
       tickCount: 5,
     },
   };
@@ -406,6 +403,12 @@ const DemoLine: React.FC = () => {
     yAxis: { label: { formatter: (v) => `${(v / 1000000000).toFixed(1)} B` } },
     legend: { position: 'top' },
     smooth: true,
+    animation: {
+      appear: {
+        animation: 'path-in',
+        duration: 5000,
+      },
+    },
   };
   return <Line {...config} />;
 };
@@ -447,7 +450,7 @@ const DemoLine: React.FC = () => {
 export default DemoLine;
 ```
 
-### 多折线图
+###
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -554,7 +557,6 @@ const DemoLine: React.FC = () => {
     '#269A99',
     '#FF99C3',
   ];
-  const markerSize = 6;
   const config = {
     data,
     xField: 'year',
