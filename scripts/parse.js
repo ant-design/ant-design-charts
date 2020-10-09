@@ -1,9 +1,12 @@
 const fs = require('fs');
 const esprima = require('esprima');
 const estraverse = require('estraverse');
+const babelCore = require('@babel/core');
 const escodegen = require('escodegen');
+const chalk = require('chalk');
 const { get, find } = require('loadsh');
 const { dataUrl } = require('./constants');
+const log = console.log;
 
 let blcokBody = '';
 let fetchUrl = '';
@@ -81,7 +84,8 @@ const getOptions = (ast) => {
       }
       if (
         node.type === 'ArrowFunctionExpression' &&
-        ['data', 'fetchData'].includes(get(node, ['params', 0, 'name']))
+        ['data', 'fetchData'].includes(get(node, ['params', 0, 'name'])) &&
+        get(node, ['body', 'type']) === 'BlockStatement'
       ) {
         dataKey = get(node, ['params', 0, 'name']);
         const block = get(node, 'body.body', []);
@@ -184,6 +188,14 @@ const parseFile = (params, type) => {
     } else {
       jsCode = fs.readFileSync(params, 'utf-8');
       metaInfo = getMetaInfo(params);
+      if (params.indexOf('.ts') !== -1) {
+        const { code } = babelCore.transformSync(jsCode, {
+          presets: ['@babel/preset-typescript'],
+          filename: params.split('/')[params.split('/').length - 1],
+          code: true,
+        });
+        jsCode = code;
+      }
     }
     const parseCode = esprima.parseModule(jsCode, { loc: true, tokens: true });
     getOptions(parseCode);
@@ -194,8 +206,8 @@ const parseFile = (params, type) => {
       chartName,
     };
   } catch (err) {
-    console.error(`解析出错：params: ${params}; type: ${type}`);
-    console.error(`出错信息：${err}`);
+    log(chalk.red(`解析出错：params: ${params}; type: ${type}`));
+    log(chalk.red(`出错信息：${err}`));
     return {
       code: params,
       title: '',
