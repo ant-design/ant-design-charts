@@ -78,10 +78,7 @@ const DemoArea: React.FC = () => {
     data,
     xField: 'Date',
     yField: 'scales',
-    xAxis: {
-      type: 'dateTime',
-      tickCount: 5,
-    },
+    xAxis: { tickCount: 5 },
     areaStyle: () => {
       return { fill: 'l(270) 0:#ffffff 0.5:#7ec2f3 1:#1890ff' };
     },
@@ -115,10 +112,7 @@ const DemoArea: React.FC = () => {
     data,
     xField: 'Date',
     yField: 'scales',
-    xAxis: {
-      type: 'dateTime',
-      tickCount: 5,
-    },
+    xAxis: { tickCount: 5 },
     slider: {
       start: 0.1,
       end: 0.9,
@@ -154,10 +148,7 @@ const DemoArea: React.FC = () => {
     data,
     xField: 'Date',
     yField: 'scales',
-    xAxis: {
-      type: 'dateTime',
-      tickCount: 5,
-    },
+    xAxis: { tickCount: 5 },
   };
   return <Area {...config} />;
 };

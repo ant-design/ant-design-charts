@@ -535,7 +535,6 @@ const DemoGeneral: React.FC = () => {
     xField: 'Date',
     yField: 'scales',
     xAxis: {
-      type: 'dateTime',
       tickCount: 5,
     },
   };
