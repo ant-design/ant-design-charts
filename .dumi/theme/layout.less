@@ -50,23 +50,39 @@ a.__antd-charts-theme-tab-item {
   box-shadow: 0 0 16px 16px #fff;
   box-sizing: content-box;
   overflow: auto;
-  border-left: 2px solid #ebedf1;
 
   > li {
     position: relative;
     margin: 0;
-    padding: 4px 0 4px 6px;
-    text-indent: 12px;
-    font-size: 13px;
-    line-height: 1.4;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    color: #454d64;
-    cursor: pointer;
+    border-left: 2px solid #ebedf1;
+
+    > span {
+      display: block;
+      width: 100%;
+      padding: 4px 0 4px 6px;
+      text-indent: 12px;
+      font-size: 13px;
+      line-height: 1.4;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: #454d64;
+      cursor: pointer;
+    }
 
     &:hover {
-      color: rgb(74, 74, 226);
+      color: #4569d4;
+    }
+  }
+  li.active {
+    &::after {
+      content: '';
+      width: 2px;
+      height: 100%;
+      position: absolute;
+      left: -2px;
+      top: 0;
+      background-color: #4569d4;
     }
   }
 }
