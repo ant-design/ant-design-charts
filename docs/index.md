@@ -47,6 +47,7 @@ const Page: React.FC = () => {
 
   const config = {
     data,
+    height: 400,
     xField: 'year',
     yField: 'value',
     point: {

@@ -180,7 +180,7 @@
 
 #### tooltip
 
-#### follow
+##### follow
 
 <description>**可选** _boolean_</description>
 
@@ -188,7 +188,7 @@
 
 默认配置：`true`
 
-#### enterable
+##### enterable
 
 <description>**可选** _boolean_</description>
 
@@ -196,7 +196,7 @@
 
 默认配置：`false`
 
-#### showTitle
+##### showTitle
 
 <description>**可选** _boolean_</description>
 
@@ -204,7 +204,7 @@
 
 默认配置：`false`
 
-#### title
+##### title
 
 <description>**可选** _string_</description>
 
@@ -212,7 +212,7 @@
 
 默认配置：`无`
 
-#### position
+##### position
 
 <description>**可选** _`top` \| `bottom` \| `left` \| `right`_</description>
 
@@ -220,29 +220,27 @@
 
 默认配置：`无`
 
-#### shared
+##### shared
 
 <description>**可选** _boolean_</description>
 
 功能描述：true 表示合并当前点对应的所有数据并展示，false 表示只展示离当前点最逼近的数据内容。
 
-默认配置：`true`
+默认配置：`无`
 
-#### showCrosshairs
+##### showCrosshairs
 
 <description>**可选** _boolean_</description>
 
 功能描述：是否展示 crosshairs。
 
-默认配置：`true`
+默认配置：`false`
 
-#### crosshairs
+##### crosshairs
 
 <description>**可选** _object_</description>
 
 功能描述：配置 tooltip 的 crosshairs，当且仅当 `showCrosshairs` 为 true 时生效。
-
-默认配置：`type: x`
 
 | 细分配置项名称        | 类型                     | 功能描述                                            |
 | -------------- | ---------------------- | ----------------------------------------------- |
@@ -252,7 +250,7 @@
 | textBackground | _textBackgroundStyle_  | 辅助线文本背景配置                                       |
 | follow         | _boolean_              | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点                   |
 
-##### lineStyle
+**_lineStyle_**
 
 <!--线条样式-->
 
@@ -293,7 +291,7 @@
 ```
 
 
-##### textStyle
+**__textStyle__**
 
 <!--文本样式-->
 
@@ -335,14 +333,14 @@
 ```
 
 
-##### textBackgroundStyle
+**_textBackgroundStyle_**
 
 | 细分配置项名称 | 类型                  | 功能描述      |
 | ------- | ------------------- | --------- |
 | padding | number \| number\[] | 文本背景周围的留白 |
 | style   | _shapeStyle_        | 线的配置项     |
 
-##### shapeStyle
+**_shapeStyle_**
 
 <!--图形样式-->
 
@@ -383,7 +381,7 @@
 ```
 
 
-#### showMarkers
+##### showMarkers
 
 <description>**可选** _boolean_</description>
 
@@ -391,7 +389,7 @@
 
 默认配置：`true`
 
-#### marker
+##### marker
 
 <description>**可选** _object_</description>
 
@@ -399,7 +397,7 @@
 
 默认配置：`无`
 
-#### showContent
+##### showContent
 
 <description>**可选** _boolean_</description>
 
@@ -407,7 +405,7 @@
 
 默认配置：`false`
 
-#### container
+##### container
 
 <description>**可选** _string|HTMLElement_</description>
 
@@ -415,7 +413,7 @@
 
 默认配置：`无`
 
-#### containerTpl
+##### containerTpl
 
 <description>**可选** _string_</description>
 
@@ -423,7 +421,7 @@
 
 默认配置：`无`
 
-#### itemTpl
+##### itemTpl
 
 <description>**可选** _string_</description>
 
@@ -431,9 +429,9 @@
 
 默认配置：`无`
 
-#### domStyles
+##### domStyles
 
-<description>**可选** _object_</description>
+<description>**可选** _TooltipDomStyles_</description>
 
 功能描述：传入各个 dom 的样式。
 
@@ -454,7 +452,7 @@
 }
 ```
 
-#### offset
+##### offset
 
 <description>**可选** _number_</description>
 
@@ -462,7 +460,7 @@
 
 默认配置：`无`
 
-#### customContent
+##### customContent
 
 <description>**可选** _Function_</description>
 
@@ -524,7 +522,7 @@
 
 xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组类型）。
 
-#### nice
+##### nice
 
 <description>**可选** _boolean_</description>
 
@@ -532,15 +530,15 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 
 默认配置：`true`
 
-#### min
+##### min
 
 <description>**可选** _number_</description>
 
 功能描述：坐标轴最小值。
 
-默认配置：`无`
+默认配置：`0`
 
-#### max
+##### max
 
 <description>**可选** _number_</description>
 
@@ -548,7 +546,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 
 默认配置：`无`
 
-#### minLimit
+##### minLimit
 
 <description>**可选** _number_</description>
 
@@ -556,7 +554,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 
 默认配置：`无`
 
-#### maxLimit
+##### maxLimit
 
 <description>**可选** _number_</description>
 
@@ -564,15 +562,15 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 
 默认配置：`无`
 
-#### tickCount
+##### tickCount
 
 <description>**可选** _number_</description>
 
 功能描述：期望的坐标轴刻度数量，非最终结果。
 
-默认配置：`无`
+默认配置：\`无
 
-#### tickInterval
+##### tickInterval
 
 <description>**可选** _number_</description>
 
@@ -580,15 +578,15 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 
 默认配置：`无`
 
-#### tickMethod
+##### tickMethod
 
-<description>**可选** _Function_</description>
+<description>**可选** _string | Function_</description>
 
-功能描述：自定义计算 tick 的方法。
+功能描述：指定 tick 计算方法，或自定义计算 tick 的方法，内置 tick 计算方法包括 `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`
 
-默认配置：`无`
+默认配置：`false`
 
-#### position
+##### position
 
 <description>**可选** _`top` \| `bottom` \| `left` \| `right`_</description>
 
@@ -596,7 +594,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 
 默认配置：`无`
 
-#### line
+##### line
 
 <description>**可选** _object_</description>
 
@@ -643,7 +641,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 ```
 
 
-#### tickLine
+##### tickLine
 
 <description>**可选** _object_</description>
 
@@ -690,7 +688,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 ```
 
 
-#### subTickLine
+##### subTickLine
 
 <description>**可选** _object_</description>
 
@@ -737,7 +735,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 ```
 
 
-#### title
+##### title
 
 <description>**可选** _object_</description>
 
@@ -752,7 +750,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 | style      | _shapeStyle_ | 标题文本配置项      |
 | autoRotate | _boolean_    | 是否自动旋转       |
 
-##### shapeStyle
+**_shapeStyle_**
 
 <!--图形样式-->
 
@@ -793,7 +791,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 ```
 
 
-##### label
+**_label_**
 
 <description>**可选** _object_</description>
 
@@ -838,7 +836,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 ```
 
 
-#### grid
+##### grid
 
 <description>**可选** _object_</description>
 
@@ -853,7 +851,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 | closed         | _boolean_           | 对于 circle 是否关闭 grid             |
 | alignTick      | _boolean_           | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
 
-##### lineStyle
+**_lineStyle_**
 
 <!--线条样式-->
 
@@ -894,7 +892,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 ```
 
 
-#### animate
+##### animate
 
 <description>**可选** _boolean_</description>
 
@@ -902,7 +900,7 @@ xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组�
 
 默认配置：`true`
 
-#### animateOption
+##### animateOption
 
 <description>**可选** _object_</description>
 
@@ -930,7 +928,7 @@ interface ComponentAnimateCfg {
 }
 ```
 
-#### verticalFactor
+##### verticalFactor
 
 <description>**可选** _number_</description>
 
@@ -938,7 +936,7 @@ interface ComponentAnimateCfg {
 
 默认配置：`无`
 
-#### verticalLimitLength
+##### verticalLimitLength
 
 <description>**可选** _number_</description>
 
@@ -965,19 +963,19 @@ lengend: {
 }
 ```
 
-#### layout
+##### layout
 
 <description>**可选** _horizontal | vertical_ </description>
 
 功能描述：布局方式
 
-#### position
+##### position
 
 <description>**可选** _top | top-left | top-right | right | right-top | right-bottom | left | left-top | left-bottom | bottom | bottom-left | bottom-right_ </description>
 
 功能描述：图例的位置。
 
-#### background
+##### background
 
 <description>**可选** _LegendBackgroundCfg_ </description>
 
@@ -988,13 +986,13 @@ lengend: {
 | padding | number \| number\[] |      | -   | 背景的留白   |
 | style   | object 参考绘图属性       |      | -   | 背景样式配置项 |
 
-#### flipPage
+##### flipPage
 
 <description>**可选** _boolean_ </description>
 
 功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，当图例项过多时是否进行分页。
 
-#### handler
+##### handler
 
 <description>**可选** _ContinueLegendHandlerCfg_ </description>
 功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，滑块的配置项。_ContinueLegendHandlerCfg_ 配置如下：
@@ -1004,19 +1002,19 @@ lengend: {
 | size  | number        |      | -   | 滑块的大小   |
 | style | object 参考绘图属性 |      | -   | 滑块的样式设置 |
 
-#### itemHeight
+##### itemHeight
 
 <description>**可选** _number_ </description>
 
 功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例的高度，默认为 null。
 
-#### itemWidth
+##### itemWidth
 
 <description>**可选** _number_ </description>
 
 功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项的宽度, 默认为 null，自动计算。
 
-#### itemName
+##### itemName
 
 <description>**可选** _LegendItemNameCfg_ </description>
 
@@ -1028,13 +1026,13 @@ lengend: {
 | spacing   | number                                                  |      | -   | 图例项 marker 同后面 name 的间距 |
 | formatter | `(text: string, item: ListItem, index: number) => any;` |      |     | 格式化函数                   |
 
-#### itemSpacing
+##### itemSpacing
 
 <description>**可选** _number_ </description>
 
 功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，控制图例项水平方向的间距。
 
-#### itemValue
+##### itemValue
 
 <description>**可选** _LegendItemValueCfg_ </description>
 
@@ -1046,19 +1044,19 @@ lengend: {
 | alignRight | boolean                                                 |      | `false` | 是否右对齐，默认为 false，仅当设置图例项宽度时生效 |
 | formatter  | `(text: string, item: ListItem, index: number) => any;` |      |         | 格式化函数                        |
 
-#### animate
+##### animate
 
 <description>**可选** _boolean_ </description>
 
 功能描述：是否开启动画开关。
 
-#### animateOption
+##### animateOption
 
 <description>**可选** _ComponentAnimateOption_ </description>
 
 功能描述：动画参数配置，当且仅当 animate 属性为 true，即动画开启时生效。动画配置详情点击 [ComponentAnimateOption](animate-option) 查看。
 
-#### label
+##### label
 
 <description>**可选** _ContinueLegendLabelCfg_ </description>
 
@@ -1070,7 +1068,7 @@ lengend: {
 | style   | object 参考绘图属性 |      | -   | 文本样式配置项                                                                                              |
 | spacing | number        |      | -   | 文本同滑轨的距离                                                                                             |
 
-#### maker
+##### maker
 
 <description>**可选** _MarkerCfg_ </description>
 
@@ -1086,43 +1084,43 @@ _Marker_ 为支持的标记类型有： _circle | square | line | diamond | tria
 _MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
 
 
-#### min
+##### min
 
 <description>**可选** _number_ </description>
 
 功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，选择范围的最小值。
 
-#### max
+##### max
 
 <description>**可选** _number_ </description>
 
 功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，选择范围的最大值。
 
-#### maxWidth
+##### maxWidth
 
 <description>**可选** _number_ </description>
 功能描述：
 功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项最大宽度设置。
 
-#### maxHeight
+##### maxHeight
 
 <description>**可选** _number_ </description>
 功能描述：
 功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项最大高度设置。
 
-#### offsetX
+##### offsetX
 
 <description>**可选** _number_ </description>
 
 功能描述：图例 x 方向的偏移。
 
-#### offsetY
+##### offsetY
 
 <description>**可选** _number_ </description>
 
 功能描述：图例 y 方向的偏移。
 
-#### rail
+##### rail
 
 <description>**可选** _ContinueLegendRailCfg_ </description>
 功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，图例滑轨（背景）的样式配置项。_ContinueLegendRailCfg_ 配置如下：
@@ -1134,17 +1132,17 @@ _MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
 | defaultLength | number        |      | -   | 滑轨的默认长度，，当限制了 maxWidth,maxHeight 时，不会使用这个属性会自动计算长度 |
 | style         | object 参考绘图属性 |      | -   | 滑轨的样式                                              |
 
-#### reversed
+##### reversed
 
 <description>**可选** _boolean_ </description>
 功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，是否将图例项逆序展示。
 
-#### slidable
+##### slidable
 
 <description>**可选** _boolean_ </description>
 功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，滑块是否可以滑动。
 
-#### title
+##### title
 
 <description>**可选** _G2LegendTitleCfg_ </description>
 
@@ -1155,7 +1153,7 @@ _MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
 | spacing | number        |      | -   | 标题同图例项的间距 |
 | style   | object 参考绘图属性 |      | -   | 文本样式配置项   |
 
-#### track
+##### track
 
 <description>**可选** _ContinueLegendTrackCfg_ </description>
 功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，选择范围的色块样式配置项。_ContinueLegendTrackCfg_ 配置如下：
@@ -1164,18 +1162,18 @@ _MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
 | ----- | ------------- | ---- | --- | ------- |
 | style | object 参考绘图属性 |      | -   | 选定范围的样式 |
 
-#### values
+##### values
 
 <description>**可选** _number\[]_ </description>
 功能描述：适用于 <tag color="cyan" text="连续图例">连续图例</tag>，选择的值。
 
-#### custom
+##### custom
 
 <description>**可选** _boolean_ </description>
 
 是否为自定义图例，当该属性为 true 时，需要声明 items 属性。
 
-#### items
+##### items
 
 <description>**可选** _LegendItem\[]_ </description>
 功能描述：适用于 <tag color="green" text="分类图例">分类图例</tag>，用户自己配置图例项的内容。_LegendItem_ 配置如下：
@@ -1195,6 +1193,36 @@ _MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
 
 _Marker_ 为支持的标记类型有： _circle | square | line | diamond | triangle | triangleDown | hexagon | bowtie | cross | tick | plus | hyphen_；
 _MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
+
+
+#### slider
+
+object 类型的请参考[绘图属性](../../docs/manual/graphic-style)
+
+| 配置项             | 类型       | 功能描述      |
+| --------------- | -------- | --------- |
+| start           | number   | 默认起始位置    |
+| end             | number   | 默认结束位置    |
+| height          | number   | 缩略轴高度     |
+| trendCfg        | trendCfg | 背景趋势的配置   |
+| backgroundStyle | object   | 背景配置      |
+| foregroundStyle | object   | 背景配置      |
+| handlerStyle    | object   | handle 配置 |
+| textStyle       | object   | 文本配置      |
+| minLimit        | number   | 允许滑动位置下限  |
+| maxLimit        | number   | 允许滑动位置上限  |
+| formatter       | Function | 滑块文本格式化函数 |
+
+trendCfg
+
+| 配置项             | 类型        | 功能描述      |
+| --------------- | --------- | --------- |
+| data            | number\[] | 统计文本的样式   |
+| smooth          | boolean   | 是否平滑      |
+| isArea          | boolean   | 是否面积图     |
+| backgroundStyle | object    | 背景样式配置    |
+| lineStyle       | object    | line 样式配置 |
+| areaStyle       | object    | area 样式配置 |
 
 
 #### theme
@@ -1673,51 +1701,56 @@ chart.off('eventName', callback);
 
 #### eventName
 
-组成方式：element + ':' + events 。
+组成方式：element + ':' + es 。
 
 element 指要绑定的元素类型，例如 `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` 等。
 
-events 对应 DOM 常见事件，例如 `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` 等，同时支持几个移动端事件：`touchstart`、`touchmove`、`touchend`
+es 对应 DOM 常见事件，例如 `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` 等，同时支持几个移动端事件：`touchstart`、`touchmove`、`touchend`
 
 ```ts
 // plot添加点击事件,整个图表区域
-chart.on('plot:click', (...args) => {
-  console.log(...args);
+chart.on('plot:click', (e) => {
+  console.log(e);
 });
 
 // element 添加点击事件， element 代指 label|point 等
-chart.on('element:click', (...args) => {
-  console.log(...args);
+chart.on('element:click', (e) => {
+  console.log(e);
 });
 
 // 图例添加点击事件
-chart.on('legend-item:click', (...args) => {
-  console.log(...args);
+chart.on('legend-item:click', (e) => {
+  console.log(e);
 });
 
 // 图例名称添加点击事件
-chart.on('legend-item-name:click', (...args) => {
-  console.log(...args);
+chart.on('legend-item-name:click', (e) => {
+  console.log(e);
 });
 
 // label 添加点击事件
-chart.on('label:click', (...args) => {
-  console.log(...args);
+chart.on('label:click', (e) => {
+  console.log(e);
 });
 
 // mask 添加点击事件
-chart.on('mask:click', (...args) => {
-  console.log(...args);
+chart.on('mask:click', (e) => {
+  console.log(e);
 });
 
 // axis-label 添加点击事件
-chart.on('axis-label:click', (...args) => {
-  console.log(...args);
+chart.on('axis-label:click', (e) => {
+  console.log(e);
 });
 
 // 给 annotation 添加点击事件
-chart.on('annotation:click', (...args) => {
-  console.log(...args);
+chart.on('annotation:click', (e) => {
+  console.log(e);
+});
+
+// 给 slider 添加点击事件
+chart.on('slider:valuechanged', (e) => {
+  console.log(e);
 });
 ```
 

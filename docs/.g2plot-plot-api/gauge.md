@@ -54,6 +54,7 @@
 
 默认配置： `window.devicePixelRatio`
 
+
 ### 数据映射
 
 #### percent 📌
@@ -104,10 +105,10 @@
 
 功能描述： 仪表盘辅助圆弧的样式。
 
-| 配置项 | 类型      | 描述                                 |
-| ------ | --------- | ------------------------------------ |
-| ticks  | number\[] | 辅助圆弧显示数字数组                 |
-| color  | string\[] | 辅助圆弧的颜色色板，按照色板顺序取值 |
+| 配置项   | 类型        | 描述                 |
+| ----- | --------- | ------------------ |
+| ticks | number\[] | 辅助圆弧显示数字数组         |
+| color | string\[] | 辅助圆弧的颜色色板，按照色板顺序取值 |
 
 #### indicator
 
@@ -115,12 +116,12 @@
 
 功能描述： 仪表盘指示器样式配置。按照组件分成为：
 
-- `pointer`：指示器中的指针样式配置
-- `pin`：指示器中的圆盘样式配置
+-   `pointer`：指示器中的指针样式配置
+-   `pin`：指示器中的圆盘样式配置
 
-| 配置项 | 类型   | 描述         |
-| ------ | ------ | ------------ |
-| style  | object | 组件样式配置 |
+| 配置项   | 类型     | 描述     |
+| ----- | ------ | ------ |
+| style | object | 组件样式配置 |
 
 #### statistic
 
@@ -130,20 +131,21 @@
 
 默认配置： 无
 
-| 配置项  | 类型                   | 描述     |
-| ------- | ---------------------- | -------- |
-| title   | false \| StatisticText | 标题     |
+| 配置项     | 类型                     | 描述   |
+| ------- | ---------------------- | ---- |
+| title   | false \| StatisticText | 标题   |
 | content | false \| StatisticText | 主体内容 |
 
 StatisticText
 
-| 配置项    | 类型     | 描述                 |
-| --------- | -------- | -------------------- |
-| style     | object   | 统计文本的样式       |
+| 配置项       | 类型       | 描述         |
+| --------- | -------- | ---------- |
+| style     | object   | 统计文本的样式    |
 | formatter | Function | 主体文本的格式化内容 |
-| rotate    | number   | 旋转角度             |
-| offsetX   | number   | X 偏移值             |
-| offsetY   | number   | Y 偏移值             |
+| rotate    | number   | 旋转角度       |
+| offsetX   | number   | X 偏移值      |
+| offsetY   | number   | Y 偏移值      |
+
 
 #### axis
 
@@ -153,7 +155,7 @@ StatisticText
 
 默认配置： 无
 
-#### nice
+##### nice
 
 <description>**可选** _boolean_</description>
 
@@ -161,15 +163,15 @@ StatisticText
 
 默认配置：`true`
 
-#### min
+##### min
 
 <description>**可选** _number_</description>
 
 功能描述：坐标轴最小值。
 
-默认配置：`无`
+默认配置：`0`
 
-#### max
+##### max
 
 <description>**可选** _number_</description>
 
@@ -177,7 +179,7 @@ StatisticText
 
 默认配置：`无`
 
-#### minLimit
+##### minLimit
 
 <description>**可选** _number_</description>
 
@@ -185,7 +187,7 @@ StatisticText
 
 默认配置：`无`
 
-#### maxLimit
+##### maxLimit
 
 <description>**可选** _number_</description>
 
@@ -193,15 +195,15 @@ StatisticText
 
 默认配置：`无`
 
-#### tickCount
+##### tickCount
 
 <description>**可选** _number_</description>
 
 功能描述：期望的坐标轴刻度数量，非最终结果。
 
-默认配置：`无`
+默认配置：\`无
 
-#### tickInterval
+##### tickInterval
 
 <description>**可选** _number_</description>
 
@@ -209,15 +211,15 @@ StatisticText
 
 默认配置：`无`
 
-#### tickMethod
+##### tickMethod
 
-<description>**可选** _Function_</description>
+<description>**可选** _string | Function_</description>
 
-功能描述：自定义计算 tick 的方法。
+功能描述：指定 tick 计算方法，或自定义计算 tick 的方法，内置 tick 计算方法包括 `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`
 
-默认配置：`无`
+默认配置：`false`
 
-#### position
+##### position
 
 <description>**可选** _`top` \| `bottom` \| `left` \| `right`_</description>
 
@@ -225,7 +227,7 @@ StatisticText
 
 默认配置：`无`
 
-#### line
+##### line
 
 <description>**可选** _object_</description>
 
@@ -235,17 +237,17 @@ StatisticText
 
 <!--线条样式-->
 
-| 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
-| stroke | string | 线的颜色 |
-| lineWidth | number | 线宽 |
-| lineDash | [number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| opacity | number | 透明度 |
-| shadowColor | string | 阴影颜色 |
-| shadowBlur | number | 高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| 属性名           | 类型              | 介绍                                                         |
+| ------------- | --------------- | ---------------------------------------------------------- |
+| stroke        | string          | 线的颜色                                                       |
+| lineWidth     | number          | 线宽                                                         |
+| lineDash      | [number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
+| opacity       | number          | 透明度                                                        |
+| shadowColor   | string          | 阴影颜色                                                       |
+| shadowBlur    | number          | 高斯模糊系数                                                     |
+| shadowOffsetX | number          | 设置阴影距图形的水平距离                                               |
+| shadowOffsetY | number          | 设置阴影距图形的垂直距离                                               |
+| cursor        | string          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                             |
 
 示例代码：
 
@@ -271,7 +273,8 @@ StatisticText
 }
 ```
 
-#### tickLine
+
+##### tickLine
 
 <description>**可选** _object_</description>
 
@@ -281,17 +284,17 @@ StatisticText
 
 <!--线条样式-->
 
-| 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
-| stroke | string | 线的颜色 |
-| lineWidth | number | 线宽 |
-| lineDash | [number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| opacity | number | 透明度 |
-| shadowColor | string | 阴影颜色 |
-| shadowBlur | number | 高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| 属性名           | 类型              | 介绍                                                         |
+| ------------- | --------------- | ---------------------------------------------------------- |
+| stroke        | string          | 线的颜色                                                       |
+| lineWidth     | number          | 线宽                                                         |
+| lineDash      | [number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
+| opacity       | number          | 透明度                                                        |
+| shadowColor   | string          | 阴影颜色                                                       |
+| shadowBlur    | number          | 高斯模糊系数                                                     |
+| shadowOffsetX | number          | 设置阴影距图形的水平距离                                               |
+| shadowOffsetY | number          | 设置阴影距图形的垂直距离                                               |
+| cursor        | string          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                             |
 
 示例代码：
 
@@ -317,7 +320,8 @@ StatisticText
 }
 ```
 
-#### subTickLine
+
+##### subTickLine
 
 <description>**可选** _object_</description>
 
@@ -327,17 +331,17 @@ StatisticText
 
 <!--线条样式-->
 
-| 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
-| stroke | string | 线的颜色 |
-| lineWidth | number | 线宽 |
-| lineDash | [number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| opacity | number | 透明度 |
-| shadowColor | string | 阴影颜色 |
-| shadowBlur | number | 高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| 属性名           | 类型              | 介绍                                                         |
+| ------------- | --------------- | ---------------------------------------------------------- |
+| stroke        | string          | 线的颜色                                                       |
+| lineWidth     | number          | 线宽                                                         |
+| lineDash      | [number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
+| opacity       | number          | 透明度                                                        |
+| shadowColor   | string          | 阴影颜色                                                       |
+| shadowBlur    | number          | 高斯模糊系数                                                     |
+| shadowOffsetX | number          | 设置阴影距图形的水平距离                                               |
+| shadowOffsetY | number          | 设置阴影距图形的垂直距离                                               |
+| cursor        | string          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                             |
 
 示例代码：
 
@@ -363,7 +367,8 @@ StatisticText
 }
 ```
 
-#### title
+
+##### title
 
 <description>**可选** _object_</description>
 
@@ -371,32 +376,32 @@ StatisticText
 
 默认配置：`无`
 
-| 细分配置项名称 | 类型         | 功能描述                 |
-| -------------- | ------------ | ------------------------ |
-| offset         | _number_     | 标题距离坐标轴的距离     |
-| spacing        | _lineStyle_  | 标题距离坐标轴文本的距离 |
-| style          | _shapeStyle_ | 标题文本配置项           |
-| autoRotate     | _boolean_    | 是否自动旋转             |
+| 细分配置项名称    | 类型           | 功能描述         |
+| ---------- | ------------ | ------------ |
+| offset     | _number_     | 标题距离坐标轴的距离   |
+| spacing    | _lineStyle_  | 标题距离坐标轴文本的距离 |
+| style      | _shapeStyle_ | 标题文本配置项      |
+| autoRotate | _boolean_    | 是否自动旋转       |
 
-##### shapeStyle
+**_shapeStyle_**
 
 <!--图形样式-->
 
-| 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
-| fill | string | 图形的填充色 |
-| fillOpacity | number | 图形的填充透明度 |
-| stroke | string | 图形的描边 |
-| lineWidth | number | 图形描边的宽度 |
-| lineDash | [number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| lineOpacity | number | 描边透明度 |
-| opacity | number | 图形的整体透明度 |
-| shadowColor | string | 图形阴影颜色 |
-| strokeOpacity | number | 图形边框透明度 |
-| shadowBlur | number | 图形阴影的高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
+| 属性名           | 类型              | 介绍                                                            |
+| ------------- | --------------- | ------------------------------------------------------------- |
+| fill          | string          | 图形的填充色                                                        |
+| fillOpacity   | number          | 图形的填充透明度                                                      |
+| stroke        | string          | 图形的描边                                                         |
+| lineWidth     | number          | 图形描边的宽度                                                       |
+| lineDash      | [number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
+| lineOpacity   | number          | 描边透明度                                                         |
+| opacity       | number          | 图形的整体透明度                                                      |
+| shadowColor   | string          | 图形阴影颜色                                                        |
+| strokeOpacity | number          | 图形边框透明度                                                       |
+| shadowBlur    | number          | 图形阴影的高斯模糊系数                                                   |
+| shadowOffsetX | number          | 设置阴影距图形的水平距离                                                  |
+| shadowOffsetY | number          | 设置阴影距图形的垂直距离                                                  |
+| cursor        | string          | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                |
 
 示例代码：
 
@@ -418,7 +423,8 @@ StatisticText
 }
 ```
 
-##### label
+
+**_label_**
 
 <description>**可选** _object_</description>
 
@@ -428,24 +434,24 @@ StatisticText
 
 <!--label样式-->
 
-| 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
-| type | string | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染 |
-| offset | number | label 的偏移量 |
-| offsetX | number | label 相对于数据点在 X 方向的偏移距离 |
-| offsetY | number | label 相对于数据点在 Y 方向的偏移距离 |
-| content | string \| IGroup \| IShape \| GeometryLabelContentCallback | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
-| style | object | label 文本图形属性样式 |
-| autoRotate | string | 是否自动旋转，默认 true |
-| rotate | number | 文本旋转角度 |
-| labelLine | null \| boolean \|object | 用于设置文本连接线的样式属性，null 表示不展示。 |
-| labelEmit | boolean | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭 |
-| layout | 'overlap' \| 'fixedOverlap' \| 'limitInShape' | 文本布局类型，支持多种布局函数组合使用。 |
-| position | 'top' \| 'bottom' \| 'middle' \| 'left' \| 'right' | 指定当前 label 与当前图形的相对位置 |
-| animate | boolean \| AnimateOption | 动画配置。 |
-| formatter | Function | 格式化函数 |
-| autoHide | boolean | 是否自动隐藏，默认 false |
-| autoEllipsis | boolean | 是否自动省略，默认 false |
+| 属性名          | 类型                                                         | 介绍                                                      |
+| ------------ | ---------------------------------------------------------- | ------------------------------------------------------- |
+| type         | string                                                     | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染 |
+| offset       | number                                                     | label 的偏移量                                              |
+| offsetX      | number                                                     | label 相对于数据点在 X 方向的偏移距离                                 |
+| offsetY      | number                                                     | label 相对于数据点在 Y 方向的偏移距离                                 |
+| content      | string \| IGroup \| IShape \| GeometryLabelContentCallback | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示                         |
+| style        | object                                                     | label 文本图形属性样式                                          |
+| autoRotate   | string                                                     | 是否自动旋转，默认 true                                          |
+| rotate       | number                                                     | 文本旋转角度                                                  |
+| labelLine    | null \| boolean \|object                                   | 用于设置文本连接线的样式属性，null 表示不展示。                              |
+| labelEmit    | boolean                                                    | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭      |
+| layout       | 'overlap' \| 'fixedOverlap' \| 'limitInShape'              | 文本布局类型，支持多种布局函数组合使用。                                    |
+| position     | 'top' \| 'bottom' \| 'middle' \| 'left' \| 'right'         | 指定当前 label 与当前图形的相对位置                                   |
+| animate      | boolean \| AnimateOption                                   | 动画配置。                                                   |
+| formatter    | Function                                                   | 格式化函数                                                   |
+| autoHide     | boolean                                                    | 是否自动隐藏，默认 false                                         |
+| autoEllipsis | boolean                                                    | 是否自动省略，默认 false                                         |
 
 示例代码：
 
@@ -462,7 +468,8 @@ StatisticText
 }
 ```
 
-#### grid
+
+##### grid
 
 <description>**可选** _object_</description>
 
@@ -470,28 +477,28 @@ StatisticText
 
 默认配置：`无`
 
-| 细分配置项名称 | 类型                | 功能描述                                                 |
-| -------------- | ------------------- | -------------------------------------------------------- |
-| line           | _lineStyle_         | 线的样式                                                 |
-| alternateColor | _string\|string\[]_ | 两个栅格线间的填充色                                     |
-| closed         | _boolean_           | 对于 circle 是否关闭 grid                                |
+| 细分配置项名称        | 类型                  | 功能描述                            |
+| -------------- | ------------------- | ------------------------------- |
+| line           | _lineStyle_         | 线的样式                            |
+| alternateColor | _string\|string\[]_ | 两个栅格线间的填充色                      |
+| closed         | _boolean_           | 对于 circle 是否关闭 grid             |
 | alignTick      | _boolean_           | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
 
-##### lineStyle
+**_lineStyle_**
 
 <!--线条样式-->
 
-| 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
-| stroke | string | 线的颜色 |
-| lineWidth | number | 线宽 |
-| lineDash | [number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| opacity | number | 透明度 |
-| shadowColor | string | 阴影颜色 |
-| shadowBlur | number | 高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| 属性名           | 类型              | 介绍                                                         |
+| ------------- | --------------- | ---------------------------------------------------------- |
+| stroke        | string          | 线的颜色                                                       |
+| lineWidth     | number          | 线宽                                                         |
+| lineDash      | [number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
+| opacity       | number          | 透明度                                                        |
+| shadowColor   | string          | 阴影颜色                                                       |
+| shadowBlur    | number          | 高斯模糊系数                                                     |
+| shadowOffsetX | number          | 设置阴影距图形的水平距离                                               |
+| shadowOffsetY | number          | 设置阴影距图形的垂直距离                                               |
+| cursor        | string          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                             |
 
 示例代码：
 
@@ -517,7 +524,8 @@ StatisticText
 }
 ```
 
-#### animate
+
+##### animate
 
 <description>**可选** _boolean_</description>
 
@@ -525,7 +533,7 @@ StatisticText
 
 默认配置：`true`
 
-#### animateOption
+##### animateOption
 
 <description>**可选** _object_</description>
 
@@ -553,7 +561,7 @@ interface ComponentAnimateCfg {
 }
 ```
 
-#### verticalFactor
+##### verticalFactor
 
 <description>**可选** _number_</description>
 
@@ -561,7 +569,7 @@ interface ComponentAnimateCfg {
 
 默认配置：`无`
 
-#### verticalLimitLength
+##### verticalLimitLength
 
 <description>**可选** _number_</description>
 
