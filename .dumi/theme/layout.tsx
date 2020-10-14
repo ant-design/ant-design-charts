@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { IRouteComponentProps } from 'dumi';
 import { Link, context } from 'dumi/theme';
@@ -20,7 +20,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
   const name = meta.filePath?.match(/([\w-]+)\.md$/i)?.[1] || '';
   const isShowApi = location.href.indexOf('type=api') !== -1;
 
-  setTimeout(() => {
+  useEffect(() => {
     const layoutToc = document.getElementsByClassName('__dumi-default-layout-toc');
     if (layoutToc && layoutToc.length) {
       // @ts-ignore
@@ -43,7 +43,6 @@ export default ({ children, ...props }: IRouteComponentProps) => {
       });
       const renderElements = (
         <ul
-          id="__dumi-default-layout-toc-api"
           className="__layout-toc-api"
           onClick={(e) => {
             // @ts-ignore
@@ -63,13 +62,15 @@ export default ({ children, ...props }: IRouteComponentProps) => {
           })}
         </ul>
       );
-      // @ts-ignore
-      parentElement.appendChild(ReactDOM.render(renderElements, document.createElement('div')));
+      const apiLinks = document.createElement('div');
+      apiLinks.id = '__dumi-default-layout-toc-api';
+      ReactDOM.render(renderElements, apiLinks);
+      parentElement.appendChild(apiLinks);
     } else {
       const apiElement = document.getElementById('__dumi-default-layout-toc-api');
       if (apiElement) parentElement.removeChild(apiElement);
     }
-  }, 10);
+  }, [location.href]);
 
   return (
     <Layout {...props}>
