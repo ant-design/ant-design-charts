@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { IRouteComponentProps } from 'dumi';
 import { Link, context } from 'dumi/theme';
@@ -16,6 +16,7 @@ const docs = importer.keys().reduce(
 );
 
 export default ({ children, ...props }: IRouteComponentProps) => {
+  const ref = useRef();
   const { meta } = useContext(context);
   const name = meta.filePath?.match(/([\w-]+)\.md$/i)?.[1] || '';
   const isShowApi = location.href.indexOf('type=api') !== -1;
@@ -26,7 +27,6 @@ export default ({ children, ...props }: IRouteComponentProps) => {
       // @ts-ignore
       layoutToc[0].style.display = isShowApi ? 'none' : 'block';
     }
-    const parentElement = document.getElementsByClassName('__dumi-default-layout')[0];
     if (isShowApi) {
       const tagParent = document.getElementsByClassName('markdown')[0];
       const tags = tagParent.getElementsByTagName('h4');
@@ -34,11 +34,10 @@ export default ({ children, ...props }: IRouteComponentProps) => {
       // @ts-ignore
       tags.forEach((ele) => {
         const a = ele.getElementsByTagName('a')[0];
-        const eleId = ele.getAttribute('id');
         tagElements.push({
           name: ele.innerText,
           href: a.getAttribute('href') + '?type=api',
-          eleId,
+          eleId: ele.getAttribute('id'),
         });
       });
       const renderElements = (
@@ -62,13 +61,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
           })}
         </ul>
       );
-      const apiLinks = document.createElement('div');
-      apiLinks.id = '__dumi-default-layout-toc-api';
-      ReactDOM.render(renderElements, apiLinks);
-      parentElement.appendChild(apiLinks);
-    } else {
-      const apiElement = document.getElementById('__dumi-default-layout-toc-api');
-      if (apiElement) parentElement.removeChild(apiElement);
+      ReactDOM.render(renderElements, ref.current);
     }
   }, [location.href]);
 
@@ -94,6 +87,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
           </div>
         )}
         {isShowApi ? importer(docs[name])?.default() || <div>文档丢失</div> : children}
+        {isShowApi && <div ref={ref} />}
       </>
     </Layout>
   );
