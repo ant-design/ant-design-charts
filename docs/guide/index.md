@@ -8,7 +8,7 @@ nav:
 
 ### 简介
 
-[Ant Design Charts](https://github.com/ant-design/ant-design-charts) 是 [G2Plot](https://antv-g2plot.gitee.io/zh/examples/gallery) 的 React 版本，基于 React、TypeScript 封装了所有的 G2Plot 图表，继承了 G2Plot 的所有配置，对 React 技术栈的同学更加友好。
+[Ant Design Charts](https://github.com/ant-design/ant-design-charts) 是 [G2Plot](https://antv-g2plot.gitee.io/zh/examples/gallery) 的 React 版本，基于 React、TypeScript 封装了所有的 G2Plot 图表，继承了 G2Plot 的所有配置，对 React 技术栈的同学更加友好，<b>同一团队开发</b>。
 
 - 开箱即用：默认呈现高质量图表，将对开发体验及用户体验的研究沉淀入图表的默认配置项
 

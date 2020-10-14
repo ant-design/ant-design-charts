@@ -98,7 +98,7 @@ toc: content
   </a>
 
   <a href="/demos/bar#基础条形图 - 自定义颜色" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IfUNT5Mhz_IAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*CMWuQIAd0MkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">基础条形图 - 自定义颜色</p>
   </a>
 
@@ -190,7 +190,7 @@ toc: content
   </a>
 
   <a href="/demos/column#基础柱状图 - 自定义颜色" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*j-JZQYbuNS8AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wXaiTqWGOxYAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">基础柱状图 - 自定义颜色</p>
   </a>
 
@@ -202,6 +202,16 @@ toc: content
   <a href="/demos/column#带辅助框标注的基础柱状图" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*FOmATLFeuxkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">带辅助框标注的基础柱状图</p>
+  </a>
+
+  <a href="/demos/column#基础柱状图 - 缩略轴" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*7yF2SruPvM0AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">基础柱状图 - 缩略轴</p>
+  </a>
+
+  <a href="/demos/column#基础柱状图 - 滚动条" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IkdWTaXf4vAAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">基础柱状图 - 滚动条</p>
   </a>
 
   <a href="/demos/column#分组柱状图" style="display: block;margin: 8px">
@@ -761,6 +771,27 @@ toc: content
   <a href="/demos/tiny-line#迷你折线图比例尺" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OEi9QLuVNUcAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">迷你折线图比例尺</p>
+  </a>
+
+</div>
+
+## 瀑布图 - 每月收支情况
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  
+  <a href="/demos/waterfall#基础瀑布图 - 每月收支情况" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*mjApRblunm4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">基础瀑布图 - 每月收支情况</p>
+  </a>
+
+  <a href="/demos/waterfall#变化瀑布图 - 销售量一年的变化情况" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*vRbXTpFGp0QAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">变化瀑布图 - 销售量一年的变化情况</p>
+  </a>
+
+  <a href="/demos/waterfall#瀑布图 - 数值标签展示绝对值" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*uKKQQ4Xc3GMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">瀑布图 - 数值标签展示绝对值</p>
   </a>
 
 </div>

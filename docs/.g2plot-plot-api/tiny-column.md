@@ -174,7 +174,7 @@
 
 #### tooltip
 
-#### follow
+##### follow
 
 <description>**可选** _boolean_</description>
 
@@ -182,7 +182,7 @@
 
 默认配置：`true`
 
-#### enterable
+##### enterable
 
 <description>**可选** _boolean_</description>
 
@@ -190,7 +190,7 @@
 
 默认配置：`false`
 
-#### showTitle
+##### showTitle
 
 <description>**可选** _boolean_</description>
 
@@ -198,7 +198,7 @@
 
 默认配置：`false`
 
-#### title
+##### title
 
 <description>**可选** _string_</description>
 
@@ -206,7 +206,7 @@
 
 默认配置：`无`
 
-#### position
+##### position
 
 <description>**可选** _`top` \| `bottom` \| `left` \| `right`_</description>
 
@@ -214,29 +214,27 @@
 
 默认配置：`无`
 
-#### shared
+##### shared
 
 <description>**可选** _boolean_</description>
 
 功能描述：true 表示合并当前点对应的所有数据并展示，false 表示只展示离当前点最逼近的数据内容。
 
-默认配置：`true`
+默认配置：`无`
 
-#### showCrosshairs
+##### showCrosshairs
 
 <description>**可选** _boolean_</description>
 
 功能描述：是否展示 crosshairs。
 
-默认配置：`true`
+默认配置：`false`
 
-#### crosshairs
+##### crosshairs
 
 <description>**可选** _object_</description>
 
 功能描述：配置 tooltip 的 crosshairs，当且仅当 `showCrosshairs` 为 true 时生效。
-
-默认配置：`type: x`
 
 | 细分配置项名称        | 类型                     | 功能描述                                            |
 | -------------- | ---------------------- | ----------------------------------------------- |
@@ -246,7 +244,7 @@
 | textBackground | _textBackgroundStyle_  | 辅助线文本背景配置                                       |
 | follow         | _boolean_              | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点                   |
 
-##### lineStyle
+**_lineStyle_**
 
 <!--线条样式-->
 
@@ -287,7 +285,7 @@
 ```
 
 
-##### textStyle
+**__textStyle__**
 
 <!--文本样式-->
 
@@ -329,14 +327,14 @@
 ```
 
 
-##### textBackgroundStyle
+**_textBackgroundStyle_**
 
 | 细分配置项名称 | 类型                  | 功能描述      |
 | ------- | ------------------- | --------- |
 | padding | number \| number\[] | 文本背景周围的留白 |
 | style   | _shapeStyle_        | 线的配置项     |
 
-##### shapeStyle
+**_shapeStyle_**
 
 <!--图形样式-->
 
@@ -377,7 +375,7 @@
 ```
 
 
-#### showMarkers
+##### showMarkers
 
 <description>**可选** _boolean_</description>
 
@@ -385,7 +383,7 @@
 
 默认配置：`true`
 
-#### marker
+##### marker
 
 <description>**可选** _object_</description>
 
@@ -393,7 +391,7 @@
 
 默认配置：`无`
 
-#### showContent
+##### showContent
 
 <description>**可选** _boolean_</description>
 
@@ -401,7 +399,7 @@
 
 默认配置：`false`
 
-#### container
+##### container
 
 <description>**可选** _string|HTMLElement_</description>
 
@@ -409,7 +407,7 @@
 
 默认配置：`无`
 
-#### containerTpl
+##### containerTpl
 
 <description>**可选** _string_</description>
 
@@ -417,7 +415,7 @@
 
 默认配置：`无`
 
-#### itemTpl
+##### itemTpl
 
 <description>**可选** _string_</description>
 
@@ -425,9 +423,9 @@
 
 默认配置：`无`
 
-#### domStyles
+##### domStyles
 
-<description>**可选** _object_</description>
+<description>**可选** _TooltipDomStyles_</description>
 
 功能描述：传入各个 dom 的样式。
 
@@ -448,7 +446,7 @@
 }
 ```
 
-#### offset
+##### offset
 
 <description>**可选** _number_</description>
 
@@ -456,7 +454,7 @@
 
 默认配置：`无`
 
-#### customContent
+##### customContent
 
 <description>**可选** _Function_</description>
 
@@ -479,7 +477,7 @@
 
 xAxis、yAxis 配置相同。
 
-#### nice
+##### nice
 
 <description>**可选** _boolean_</description>
 
@@ -487,15 +485,15 @@ xAxis、yAxis 配置相同。
 
 默认配置：`true`
 
-#### min
+##### min
 
 <description>**可选** _number_</description>
 
 功能描述：坐标轴最小值。
 
-默认配置：`无`
+默认配置：`0`
 
-#### max
+##### max
 
 <description>**可选** _number_</description>
 
@@ -503,7 +501,7 @@ xAxis、yAxis 配置相同。
 
 默认配置：`无`
 
-#### minLimit
+##### minLimit
 
 <description>**可选** _number_</description>
 
@@ -511,7 +509,7 @@ xAxis、yAxis 配置相同。
 
 默认配置：`无`
 
-#### maxLimit
+##### maxLimit
 
 <description>**可选** _number_</description>
 
@@ -519,15 +517,15 @@ xAxis、yAxis 配置相同。
 
 默认配置：`无`
 
-#### tickCount
+##### tickCount
 
 <description>**可选** _number_</description>
 
 功能描述：期望的坐标轴刻度数量，非最终结果。
 
-默认配置：`无`
+默认配置：\`无
 
-#### tickInterval
+##### tickInterval
 
 <description>**可选** _number_</description>
 
@@ -535,15 +533,15 @@ xAxis、yAxis 配置相同。
 
 默认配置：`无`
 
-#### tickMethod
+##### tickMethod
 
-<description>**可选** _Function_</description>
+<description>**可选** _string | Function_</description>
 
-功能描述：自定义计算 tick 的方法。
+功能描述：指定 tick 计算方法，或自定义计算 tick 的方法，内置 tick 计算方法包括 `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`
 
-默认配置：`无`
+默认配置：`false`
 
-#### position
+##### position
 
 <description>**可选** _`top` \| `bottom` \| `left` \| `right`_</description>
 
@@ -551,7 +549,7 @@ xAxis、yAxis 配置相同。
 
 默认配置：`无`
 
-#### line
+##### line
 
 <description>**可选** _object_</description>
 
@@ -598,7 +596,7 @@ xAxis、yAxis 配置相同。
 ```
 
 
-#### tickLine
+##### tickLine
 
 <description>**可选** _object_</description>
 
@@ -645,7 +643,7 @@ xAxis、yAxis 配置相同。
 ```
 
 
-#### subTickLine
+##### subTickLine
 
 <description>**可选** _object_</description>
 
@@ -692,7 +690,7 @@ xAxis、yAxis 配置相同。
 ```
 
 
-#### title
+##### title
 
 <description>**可选** _object_</description>
 
@@ -707,7 +705,7 @@ xAxis、yAxis 配置相同。
 | style      | _shapeStyle_ | 标题文本配置项      |
 | autoRotate | _boolean_    | 是否自动旋转       |
 
-##### shapeStyle
+**_shapeStyle_**
 
 <!--图形样式-->
 
@@ -748,7 +746,7 @@ xAxis、yAxis 配置相同。
 ```
 
 
-##### label
+**_label_**
 
 <description>**可选** _object_</description>
 
@@ -793,7 +791,7 @@ xAxis、yAxis 配置相同。
 ```
 
 
-#### grid
+##### grid
 
 <description>**可选** _object_</description>
 
@@ -808,7 +806,7 @@ xAxis、yAxis 配置相同。
 | closed         | _boolean_           | 对于 circle 是否关闭 grid             |
 | alignTick      | _boolean_           | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
 
-##### lineStyle
+**_lineStyle_**
 
 <!--线条样式-->
 
@@ -849,7 +847,7 @@ xAxis、yAxis 配置相同。
 ```
 
 
-#### animate
+##### animate
 
 <description>**可选** _boolean_</description>
 
@@ -857,7 +855,7 @@ xAxis、yAxis 配置相同。
 
 默认配置：`true`
 
-#### animateOption
+##### animateOption
 
 <description>**可选** _object_</description>
 
@@ -885,7 +883,7 @@ interface ComponentAnimateCfg {
 }
 ```
 
-#### verticalFactor
+##### verticalFactor
 
 <description>**可选** _number_</description>
 
@@ -893,7 +891,7 @@ interface ComponentAnimateCfg {
 
 默认配置：`无`
 
-#### verticalLimitLength
+##### verticalLimitLength
 
 <description>**可选** _number_</description>
 
@@ -1378,51 +1376,56 @@ chart.off('eventName', callback);
 
 #### eventName
 
-组成方式：element + ':' + events 。
+组成方式：element + ':' + es 。
 
 element 指要绑定的元素类型，例如 `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` 等。
 
-events 对应 DOM 常见事件，例如 `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` 等，同时支持几个移动端事件：`touchstart`、`touchmove`、`touchend`
+es 对应 DOM 常见事件，例如 `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` 等，同时支持几个移动端事件：`touchstart`、`touchmove`、`touchend`
 
 ```ts
 // plot添加点击事件,整个图表区域
-chart.on('plot:click', (...args) => {
-  console.log(...args);
+chart.on('plot:click', (e) => {
+  console.log(e);
 });
 
 // element 添加点击事件， element 代指 label|point 等
-chart.on('element:click', (...args) => {
-  console.log(...args);
+chart.on('element:click', (e) => {
+  console.log(e);
 });
 
 // 图例添加点击事件
-chart.on('legend-item:click', (...args) => {
-  console.log(...args);
+chart.on('legend-item:click', (e) => {
+  console.log(e);
 });
 
 // 图例名称添加点击事件
-chart.on('legend-item-name:click', (...args) => {
-  console.log(...args);
+chart.on('legend-item-name:click', (e) => {
+  console.log(e);
 });
 
 // label 添加点击事件
-chart.on('label:click', (...args) => {
-  console.log(...args);
+chart.on('label:click', (e) => {
+  console.log(e);
 });
 
 // mask 添加点击事件
-chart.on('mask:click', (...args) => {
-  console.log(...args);
+chart.on('mask:click', (e) => {
+  console.log(e);
 });
 
 // axis-label 添加点击事件
-chart.on('axis-label:click', (...args) => {
-  console.log(...args);
+chart.on('axis-label:click', (e) => {
+  console.log(e);
 });
 
 // 给 annotation 添加点击事件
-chart.on('annotation:click', (...args) => {
-  console.log(...args);
+chart.on('annotation:click', (e) => {
+  console.log(e);
+});
+
+// 给 slider 添加点击事件
+chart.on('slider:valuechanged', (e) => {
+  console.log(e);
 });
 ```
 

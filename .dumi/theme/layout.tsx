@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import ReactDOM from 'react-dom';
 import { IRouteComponentProps } from 'dumi';
 import { Link, context } from 'dumi/theme';
 import Layout from 'dumi-theme-default/src/layout';
@@ -17,7 +18,58 @@ const docs = importer.keys().reduce(
 export default ({ children, ...props }: IRouteComponentProps) => {
   const { meta } = useContext(context);
   const name = meta.filePath?.match(/([\w-]+)\.md$/i)?.[1] || '';
-  const isShowApi = (props.location.query as any).type === 'api' && docs[name];
+  const isShowApi = location.href.indexOf('type=api') !== -1;
+
+  setTimeout(() => {
+    const layoutToc = document.getElementsByClassName('__dumi-default-layout-toc');
+    if (layoutToc && layoutToc.length) {
+      // @ts-ignore
+      layoutToc[0].style.display = isShowApi ? 'none' : 'block';
+    }
+    const parentElement = document.getElementsByClassName('__dumi-default-layout')[0];
+    if (isShowApi) {
+      const tagParent = document.getElementsByClassName('markdown')[0];
+      const tags = tagParent.getElementsByTagName('h4');
+      const tagElements = [];
+      // @ts-ignore
+      tags.forEach((ele) => {
+        const a = ele.getElementsByTagName('a')[0];
+        const eleId = ele.getAttribute('id');
+        tagElements.push({
+          name: ele.innerText,
+          href: a.getAttribute('href') + '?type=api',
+          eleId,
+        });
+      });
+      const renderElements = (
+        <ul
+          id="__dumi-default-layout-toc-api"
+          className="__layout-toc-api"
+          onClick={(e) => {
+            // @ts-ignore
+            const currentElementId = e.target.getAttribute('data-id');
+            if (currentElementId) {
+              const currentEle = document.getElementById(currentElementId);
+              window.scrollTo(0, currentEle.offsetTop - 124);
+            }
+          }}
+        >
+          {tagElements.map((item) => {
+            return (
+              <li key={item.name} data-id={item.eleId}>
+                {item.name}
+              </li>
+            );
+          })}
+        </ul>
+      );
+      // @ts-ignore
+      parentElement.appendChild(ReactDOM.render(renderElements, document.createElement('div')));
+    } else {
+      const apiElement = document.getElementById('__dumi-default-layout-toc-api');
+      if (apiElement) parentElement.removeChild(apiElement);
+    }
+  }, 10);
 
   return (
     <Layout {...props}>
@@ -40,7 +92,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
             </Link>
           </div>
         )}
-        {isShowApi ? importer(docs[name]).default() : children}
+        {isShowApi ? importer(docs[name])?.default() || <div>文档丢失</div> : children}
       </>
     </Layout>
   );

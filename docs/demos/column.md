@@ -233,29 +233,23 @@ const DemoColumn: React.FC = () => {
     xField: 'type',
     yField: 'sales',
     meta: {
-      type: {
-        alias: '类别',
-      },
-      sales: {
-        alias: '销售额',
-      },
+      type: { alias: '类别' },
+      sales: { alias: '销售额' },
     },
     annotations: [
       {
         type: 'region',
-        start: (xScale: any) => {
+        start: (xScale) => {
           const ratio = xScale.ticks ? 1 / xScale.ticks.length : 1;
           const x = xScale.scale('美容洗护') - ratio / 2;
           return [`${x * 100}%`, '0%'];
         },
-        end: (xScale: any) => {
+        end: (xScale) => {
           const ratio = xScale.ticks ? 1 / xScale.ticks.length : 1;
           const x = xScale.scale('美容洗护') + ratio / 2;
           return [`${x * 100}%`, '100%'];
         },
-        style: {
-          fill: 'rgb(255,0,0)',
-        },
+        style: { fill: 'rgb(255,0,0)' },
       },
       {
         type: 'text',
@@ -267,6 +261,73 @@ const DemoColumn: React.FC = () => {
         },
       },
     ],
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
+### 基础柱状图 - 滚动条
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/be63e0a2-d2be-4c45-97fd-c00f752a66d4.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const config = {
+    data,
+    xField: '城市',
+    yField: '销售额',
+    xAxis: { label: { autoRotate: false } },
+    scrollbar: { type: 'horizontal' },
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
+### 基础柱状图 - 缩略轴
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/be63e0a2-d2be-4c45-97fd-c00f752a66d4.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const config = {
+    data,
+    xField: '城市',
+    yField: '销售额',
+    xAxis: { label: { autoRotate: false } },
+    slider: {
+      start: 0.1,
+      end: 0.2,
+    },
   };
   return <Column {...config} />;
 };
@@ -895,7 +956,7 @@ const DemoColumn: React.FC = () => {
     xField: 'year',
     yField: 'value',
     seriesField: 'type',
-    color: ['#1ca9e6', '#f88c24'],
+    color: ['#ae331b', '#1a6179'],
   };
   return <Column {...config} />;
 };

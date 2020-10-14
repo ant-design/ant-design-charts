@@ -16,6 +16,8 @@ $ npm install @ant-design/charts
 
 ## 使用
 
+大部分 demos 使用了父容器宽高，请确保父容器宽高或者手动设置图表宽高。
+
 ```tsx | pure
 import React, { Component } from 'react';
 import { Line } from '@ant-design/charts';
@@ -36,8 +38,13 @@ class Page extends Component {
 
     const config = {
       data,
+      height: 400,
       xField: 'year',
       yField: 'value',
+      point: {
+        size: 5,
+        shape: 'diamond',
+      },
     };
     return <Line {...config} />;
   }
