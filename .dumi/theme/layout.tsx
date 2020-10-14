@@ -80,17 +80,18 @@ export default ({ children, ...props }: IRouteComponentProps) => {
               if (currentElementId) {
                 setActiveTag(currentElementId);
                 const currentEle = document.getElementById(currentElementId);
-                window.scrollTo(0, currentEle.offsetTop - 124);
+                window.scrollTo({
+                  top: currentEle.offsetTop - 124,
+                  behavior: 'smooth',
+                });
               }
             }}
           >
-            {tagElements.map((item) => {
-              return (
-                <li key={item.name} className={item.eleId === activeTag ? 'active' : ''}>
-                  <span data-id={item.eleId}>{item.name}</span>
-                </li>
-              );
-            })}
+            {tagElements.map((item) => (
+              <li key={item.name} className={item.eleId === activeTag ? 'active' : ''}>
+                <span data-id={item.eleId}>{item.name}</span>
+              </li>
+            ))}
           </ul>
         )}
       </>
