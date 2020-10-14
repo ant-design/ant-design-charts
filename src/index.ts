@@ -19,6 +19,7 @@ import TinyArea from './tinyArea';
 import TinyColumn from './tinyColumn';
 import DualAxes from './dualAxes';
 import TinyLine from './tinyLine';
+import Waterfall from './waterfall';
 import WordCloud from './wordCloud';
 import Sunburst from './sunburst';
 import Stock from './stock';
@@ -44,6 +45,7 @@ export {
   TinyArea,
   TinyColumn,
   TinyLine,
+  Waterfall,
   WordCloud,
   Sunburst,
   DualAxes,
@@ -75,6 +77,7 @@ export default {
   TinyArea,
   TinyColumn,
   TinyLine,
+  Waterfall,
   WordCloud,
   Sunburst,
   DualAxes,

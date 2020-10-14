@@ -36,3 +36,37 @@ a.__antd-charts-theme-tab-item {
     opacity: 0;
   }
 }
+.__layout-toc-api {
+  list-style: none;
+  position: fixed;
+  width: 136px;
+  max-height: calc(90vh - 80px);
+  z-index: 99;
+  top: 114px;
+  right: 0;
+  margin: 0;
+  padding: 0 24px 0 0;
+  background-color: #fff;
+  box-shadow: 0 0 16px 16px #fff;
+  box-sizing: content-box;
+  overflow: auto;
+  border-left: 2px solid #ebedf1;
+
+  > li {
+    position: relative;
+    margin: 0;
+    padding: 4px 0 4px 6px;
+    text-indent: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #454d64;
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(74, 74, 226);
+    }
+  }
+}
