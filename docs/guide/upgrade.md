@@ -1,6 +1,10 @@
 ---
-
-title: 升级指南 order: 4 nav: title: 使用文档 order: 1
+title: 升级指南
+order: 4
+nav:
+  title: 使用文档
+  order: 1
+---
 
 ## 概述
 
