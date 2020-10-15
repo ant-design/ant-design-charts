@@ -15,7 +15,7 @@ const docs = importer.keys().reduce(
 export default ({ children, ...props }: IRouteComponentProps) => {
   const [tagElements, setTagElements] = useState([]);
   const [activeTag, setActiveTag] = useState('');
-  const pathName = props.location.pathname?.split('/');
+  const pathName = props.location.pathname?.split('/').filter((pathname) => pathname);
   const name = pathName[pathName.length - 1];
   const isShowApi = location.href.indexOf('type=api') !== -1;
 
