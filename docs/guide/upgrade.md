@@ -18,83 +18,83 @@ nav:
 
 **Bubble**:
 
-- 改用 Scatter 实现， 修改图表名称即可， 详细参考 [Scatter](../demos/scatter)。
+- 改用 Scatter 实现， 修改图表名称即可， 详细参考 [Scatter](/demos/scatter)。
 
 **StackedColumn**:
 
 - 改用 Column 实现。
-- 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true` ， 详细参考 [Column](../demos/column)。
+- 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true` ， 详细参考 [Column](/demos/column)。
 
 **GroupedColumn**:
 
 - 改用 Column 实现。
-- 删除 groupField 配置，改为 seriesField，需要指定 `isGroup: true` ， 详细参考 [Column](../demos/column)。
+- 删除 groupField 配置，改为 seriesField，需要指定 `isGroup: true` ， 详细参考 [Column](/demos/column)。
 
 **PercentStackedColumn**:
 
 - 改用 Column 实现。
-- 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true`、`isGroup: true` ， 详细参考 [Column](../demos/column)。
+- 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true`、`isGroup: true` ， 详细参考 [Column](/demos/column)。
 
 **RangeColumn**:
 
 - 改用 Column 实现。
-- 删除 stackField 配置，改为 seriesField，需要指定 `isRange: true` ， 详细参考 [Column](../demos/column)。
-- label 不再支持 topStyle、bottomStyle，详细配置请参考 [API](../demos/column?type=api) 文档。
+- 删除 stackField 配置，改为 seriesField，需要指定 `isRange: true` ， 详细参考 [Column](/demos/column)。
+- label 不再支持 topStyle、bottomStyle，详细配置请参考 [API](/demos/column?type=api) 文档。
 
 **StackedBar**:
 
 - 改用 Bar 实现。
-- 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true` ， 详细参考 [Bar](../demos/bar)。
+- 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true` ， 详细参考 [Bar](/demos/bar)。
 
 **GroupedBar**:
 
 - 改用 Bar 实现。
-- 删除 groupField 配置，改为 seriesField，需要指定 `isGroup: true` ， 详细参考 [Bar](../demos/bar)。
+- 删除 groupField 配置，改为 seriesField，需要指定 `isGroup: true` ， 详细参考 [Bar](/demos/bar)。
 
 **PercentStackedBar**:
 
 - 改用 Bar 实现。
-- 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true`、`isGroup: true` ， 详细参考 [Bar](../demos/bar)。
+- 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true`、`isGroup: true` ， 详细参考 [Bar](/demos/bar)。
 
 **RangeBar**:
 
 - 改用 Bar 实现。
-- 删除 stackField 配置，改为 seriesField，需要指定 `isRange: true` ， 详细参考 [Bar](../demos/bar)。
-- label 不再支持 topStyle、bottomStyle，详细配置请参考 [API](../demos/bar?type=api) 文档
+- 删除 stackField 配置，改为 seriesField，需要指定 `isRange: true` ， 详细参考 [Bar](/demos/bar)。
+- label 不再支持 topStyle、bottomStyle，详细配置请参考 [API](/demos/bar?type=api) 文档
 
 **Donut**:
 
-- 改用 Pie 实现，修改图表名称即可 ， 详细参考 [Pie](../demos/pie)。
+- 改用 Pie 实现，修改图表名称即可 ， 详细参考 [Pie](/demos/pie)。
 
 **DualLine**:
 
-- 改用 DualAxes 实现，详细参考 [DualAxes](../demos/dual-axes) 。
+- 改用 DualAxes 实现，详细参考 [DualAxes](/demos/dual-axes) 。
 
 **ColumnLine**:
 
-- 改用 DualAxes 实现，详细参考 [DualAxes](../demos/dual-axes) 。
+- 改用 DualAxes 实现，详细参考 [DualAxes](/demos/dual-axes) 。
 
 **StackedColumnLine**:
 
-- 改用 DualAxes 实现，详细参考 [DualAxes](../demos/dual-axes) 。
+- 改用 DualAxes 实现，详细参考 [DualAxes](/demos/dual-axes) 。
 
 **GroupedColumnLine**:
 
-- 改用 DualAxes 实现，详细参考 [DualAxes](../demos/dual-axes) 。
+- 改用 DualAxes 实现，详细参考 [DualAxes](/demos/dual-axes) 。
 
 **StackedArea**:
 
-- 改用 Area 实现，详细参考 [Area](../demos/area) 。
+- 改用 Area 实现，详细参考 [Area](/demos/area) 。
 - 去掉 stackField ，改用 seriesField 。
 
 **PercentStackedArea**:
 
-- 改用 Area 实现，详细参考 [Area](../demos/area) 。
+- 改用 Area 实现，详细参考 [Area](/demos/area) 。
 - 去掉 stackField ，改用 seriesField ，需要指定 `isStack: true` 。
 
 **StepLine**:
 
-- 改用 Line 实现，需要指定 stepType，详细参考 [Line](../demos/line#阶梯折线图)。
+- 改用 Line 实现，需要指定 stepType，详细参考 [Line](/demos/line#阶梯折线图)。
 
 ```ts
 // 变更前
@@ -122,7 +122,7 @@ Ant Design Charts 1.0 兼容大部分的 0.x 版本图表功能和配置项，�
 
 **responsive**：不再支持，内置。
 
-**guideLine**：不再支持，改用 [anniotations](../demos/general) 实现。
+**guideLine**：不再支持，改用 [anniotations](/demos/general) 实现。
 
 **label**：label.type 会有兼容性问题，如果报错修改 type 配置或者去掉 。
 
@@ -223,7 +223,7 @@ animation: {
 
 **Bullet**:
 
-- 改动较大，详细参考 [Bullet](../demos/bullet)
+- 改动较大，详细参考 [Bullet](/demos/bullet)
 
 **WordCloud**:
 
@@ -240,7 +240,7 @@ animation: {
 - 删除 color 、 min 、 max。
 - 删除 value , 改用 percent 。
 - 删除 pivot 改用 indicator。
-- 更新 range ，详细参考[Gauge](../demos/gauge)
+- 更新 range ，详细参考[Gauge](/demos/gauge)
 
 ```ts
 // 变更前

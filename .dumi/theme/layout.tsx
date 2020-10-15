@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IRouteComponentProps } from 'dumi';
-import { Link, context } from 'dumi/theme';
+import { Link } from 'dumi/theme';
 import Layout from 'dumi-theme-default/src/layout';
-
 import './layout.less';
 
 const importer = require.context('../../docs/.g2plot-plot-api', false, /\.md$/);
@@ -13,13 +12,11 @@ const docs = importer.keys().reduce(
   }),
   {},
 );
-
 export default ({ children, ...props }: IRouteComponentProps) => {
   const [tagElements, setTagElements] = useState([]);
   const [activeTag, setActiveTag] = useState('');
-  const ref = useRef();
-  const { meta } = useContext(context);
-  const name = meta.filePath?.match(/([\w-]+)\.md$/i)?.[1] || '';
+  const pathName = props.location.pathname?.split('/');
+  const name = pathName[pathName.length - 1];
   const isShowApi = location.href.indexOf('type=api') !== -1;
 
   const crateApiTags = () => {
@@ -30,7 +27,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
     }
     if (isShowApi) {
       const tagParent = document.getElementsByClassName('markdown')[0];
-      const tags = tagParent.getElementsByTagName('h4');
+      const tags = tagParent?.getElementsByTagName('h4') || [];
       const tagElements = [];
       // @ts-ignore
       tags.forEach((ele) => {
@@ -70,7 +67,9 @@ export default ({ children, ...props }: IRouteComponentProps) => {
             </Link>
           </div>
         )}
-        {isShowApi ? importer(docs[name])?.default() || <div>文档丢失</div> : children}
+        {isShowApi
+          ? importer(docs[name])?.default() || <div style={{ marginTop: 24 }}>文档丢失</div>
+          : children}
         {isShowApi && (
           <ul
             className="__layout-toc-api"
