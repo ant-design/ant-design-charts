@@ -121,9 +121,11 @@ Common props:
 
 ### [FAQ](https://github.com/ant-design/ant-design-charts/issues)
 
-### How to Contribute
+### Communication Group
 
-We welcome all contributions.
+They are DingTalk groups.
+
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*g8nmS4bI33EAAAAAAAAAAAAAARQnAQ"  alt="DingTalk">
 
 ### License
 
