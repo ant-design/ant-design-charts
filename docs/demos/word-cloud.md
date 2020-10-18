@@ -30,6 +30,7 @@ const DemoWordCloud: React.FC = () => {
     data,
     width: 600,
     height: 500,
+    autoFit: false,
     wordField: 'x',
     weightField: 'value',
     color: '#6262ff',
@@ -67,6 +68,7 @@ const DemoWordCloud: React.FC = () => {
     data,
     width: 600,
     height: 400,
+    autoFit: false,
     wordField: 'name',
     weightField: 'value',
     imageMask:
@@ -105,6 +107,7 @@ const DemoWordCloud: React.FC = () => {
     data,
     width: 600,
     height: 400,
+    autoFit: false,
     wordField: 'name',
     weightField: 'value',
     imageMask:
@@ -144,6 +147,7 @@ const DemoWordCloud: React.FC = () => {
     width: 600,
     height: 500,
     wordField: 'x',
+    autoFit: false,
     weightField: 'value',
     color: '#6262ff',
     wordStyle: {
