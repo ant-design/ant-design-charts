@@ -125,7 +125,7 @@ Common props:
 
 They are DingTalk groups.
 
-<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*g8nmS4bI33EAAAAAAAAAAAAAARQnAQ"  alt="DingTalk">
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*g8nmS4bI33EAAAAAAAAAAAAAARQnAQ" width="200" alt="DingTalk">
 
 ### License
 
