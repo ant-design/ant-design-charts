@@ -129,7 +129,11 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
         changeData = isEqual(currentConfig, inputConfig);
       }
       if (changeData) {
-        chart.current.changeData(config?.data || []);
+        if (isEqual(chartOptions.current?.data, config.data)) {
+          chart.current.update(deepMix(chart.current.options, config));
+        } else {
+          chart.current.changeData(config?.data || []);
+        }
       } else {
         processConfig();
         chart.current.update(deepMix(chart.current.options, config));
