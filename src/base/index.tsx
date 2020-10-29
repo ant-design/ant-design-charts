@@ -1,6 +1,6 @@
-import { ConfigContext } from '../context';
+// import { ConfigContext } from '../context';
 import ErrorBoundary from '../errorBoundary';
 
-const ConfigProvider = ConfigContext.Provider;
+// const ConfigProvider = ConfigContext.Provider;
 
-export { ErrorBoundary, ConfigProvider };
+export { ErrorBoundary };
