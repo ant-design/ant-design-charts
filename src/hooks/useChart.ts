@@ -129,7 +129,15 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
         changeData = isEqual(currentConfig, inputConfig);
       }
       if (changeData) {
-        chart.current.changeData(config?.data || []);
+        let changeType = 'data';
+        const typeMaps = ['percent', 'value'];
+        const currentKeys = Object.keys(config);
+        typeMaps.forEach((type: string) => {
+          if (currentKeys.includes(type)) {
+            changeType = type;
+          }
+        });
+        chart.current.changeData(config?.[changeType] || []);
       } else {
         processConfig();
         chart.current.update(deepMix(chart.current.options, config));
