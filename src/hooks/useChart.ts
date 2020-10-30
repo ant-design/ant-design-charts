@@ -115,9 +115,9 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       if (chartOptions.current) {
         // 从 options 里面取出 data 、value 、 percent 进行比对，判断是否仅数值发生改变
         const {
-          data: cuurentData,
-          value: cuurentValue,
-          percent: cuurentPercent,
+          data: currentData,
+          value: currentValue,
+          percent: currentPercent,
           ...currentConfig
         } = chartOptions.current;
         const {
