@@ -10,8 +10,33 @@ nav:
 
 ## 安装
 
+### npm
+
 ```bash
 $ npm install @ant-design/charts
+```
+
+### CDN
+
+既可以通过将脚本下载到本地也可以直接引入在线资源。
+
+```ts
+// 引入在线资源
+<script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts.min.js"></script>
+```
+
+由于 @ant-design/charts 里面 externals 了 `react` 和 `react-dom`，该方式使用时需要在项目里面做同样的操作，通过 CDN 的方式在 `charts.min.js` 之前引入 `react` 和 `react-dom`。
+
+```ts
+// webpack.config.js
+externals: {
+  react: 'React',
+  'react-dom': 'ReactDOM',
+}
+// public/index.html
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/@ant-design/charts@1.0.3/dist/charts.min.js"></script>
 ```
 
 ## 使用
