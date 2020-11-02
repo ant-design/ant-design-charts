@@ -4,7 +4,8 @@
   "description": "React translate g2plot",
   "files": [
     "/lib",
-    "/es"
+    "/es",
+    "/dist"
   ],
   "repository": {
     "type": "git",
@@ -16,6 +17,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
+  "unpkg": "dist/charts.min.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "dumi dev",
@@ -24,12 +26,15 @@
     "deploy": "gh-pages -d dist",
     "docs:build": "dumi build",
     "test:coverage": "umi-test --coverage",
-    "build": "father-build",
+    "build": "run-s clean lib dist",
+    "clean": "rimraf lib es dist",
+    "lib": "run-p lib:*",
+    "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
+    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
     "ci": "npm run build && npm run test:coverage",
     "pub": "npm run build && np",
-    "addChart": "node ./scripts/addChart.js",
     "entry": "node ./scripts/entry.js",
-    "mockTest": "node ./scripts/mockTest.js"
+    "dist": "webpack --config webpack.config.js --mode production"
   },
   "dependencies": {
     "@antv/g2plot": "^2.0.0",
@@ -39,6 +44,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.10.4",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^11.1.0",
@@ -58,14 +65,22 @@
     "escodegen": "^2.0.0",
     "esprima": "^4.0.1",
     "estraverse": "^5.1.0",
-    "father-build": "^1.17.2",
+    "fork-ts-checker-webpack-plugin": "^5.2.1",
     "gh-pages": "^3.0.0",
     "jest-canvas-mock": "^2.2.0",
     "loadsh": "^0.0.4",
     "np": "*",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.0.2",
+    "react-dev-utils": "^11.0.0",
+    "rimraf": "^3.0.2",
     "shelljs": "^0.8.3",
+    "ts-loader": "^8.0.7",
     "typescript": "^4.0.3",
+    "webpack": "^5.3.0",
+    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-cli": "^4.1.0",
+    "webpack-dev-server": "^3.11.0",
     "whatwg-fetch": "^3.0.0"
   },
   "peerDependencies": {
@@ -78,5 +93,17 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

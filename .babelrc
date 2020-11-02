@@ -1,0 +1,20 @@
+{
+  "presets": [
+      "@babel/react",
+      [
+          "@babel/env",
+          {
+            "targets": "> 0.25%, not dead"
+          }
+      ]
+  ],
+  "plugins": [
+    [
+      "@babel/transform-runtime",
+      {
+        "helpers": false,
+        "regenerator": true
+      }
+    ]
+  ]
+}
