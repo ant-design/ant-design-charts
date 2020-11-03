@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from '@ant-design/charts';
 
 const DemoBar: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '家具家电',
       sales: 38,
@@ -48,10 +48,17 @@ const DemoBar: React.FC = () => {
       sales: 38,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'sales',
     yField: 'type',
+    label: {
+      position: 'left',
+      style: {
+        fill: '#FFFFFF',
+        opacity: 0.6,
+      },
+    },
     meta: {
       type: { alias: '类别' },
       sales: { alias: '销售额' },
@@ -70,7 +77,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from '@ant-design/charts';
 
 const DemoBar: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '家具家电',
       sales: 38,
@@ -104,13 +111,14 @@ const DemoBar: React.FC = () => {
       sales: 38,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'sales',
     yField: 'type',
     seriesField: 'type',
-    color: ({ type }) => {
-      return type === '美容洗护' ? 'red' : 'green';
+    color: function color(_ref) {
+      var type = _ref.type;
+      return type === '美容洗护' ? '#FAAD14' : '#5B8FF9';
     },
     legend: false,
     meta: {
@@ -124,62 +132,72 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图-图形标签
+### 基础条形图 - 转化率
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Bar } from '@ant-design/charts';
 
 const DemoBar: React.FC = () => {
-  const data = [
+  var data = [
     {
-      type: '家具家电',
-      sales: 38,
+      action: '完成交易',
+      pv: 8500,
     },
     {
-      type: '粮油副食',
-      sales: 52,
+      action: '支付订单',
+      pv: 15000,
     },
     {
-      type: '生鲜水果',
-      sales: 61,
+      action: '生成订单',
+      pv: 25000,
     },
     {
-      type: '美容洗护',
-      sales: 145,
+      action: '放入购物车',
+      pv: 35000,
     },
     {
-      type: '母婴用品',
-      sales: 48,
-    },
-    {
-      type: '进口食品',
-      sales: 38,
-    },
-    {
-      type: '食品饮料',
-      sales: 38,
-    },
-    {
-      type: '家庭清洁',
-      sales: 38,
+      action: '浏览网站',
+      pv: 50000,
     },
   ];
-  const config = {
-    data,
-    xField: 'sales',
-    yField: 'type',
-    label: {
-      position: 'left',
-      style: {
-        fill: '#0D0E68',
-        opacity: 0.6,
-      },
-    },
-    meta: {
-      type: { alias: '类别' },
-      sales: { alias: '销售额' },
-    },
+  var config = {
+    data: data,
+    xField: 'pv',
+    yField: 'action',
+    conversionTag: {},
+  };
+  return <Bar {...config} />;
+};
+
+export default DemoBar;
+```
+
+### 基础条形图 - 滚动条
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bar } from '@ant-design/charts';
+
+const DemoBar: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/be63e0a2-d2be-4c45-97fd-c00f752a66d4.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    yField: '城市',
+    xField: '销售额',
+    yAxis: { label: { autoRotate: false } },
+    scrollbar: { type: 'vertical' },
   };
   return <Bar {...config} />;
 };
@@ -194,7 +212,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from '@ant-design/charts';
 
 const DemoBar: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '家具家电',
       sales: 38,
@@ -228,11 +246,11 @@ const DemoBar: React.FC = () => {
       sales: 38,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'sales',
     yField: 'type',
-    barWidthRatio: 0.618,
+    barWidthRatio: 0.8,
     meta: {
       type: { alias: '类别' },
       sales: { alias: '销售额' },
@@ -251,7 +269,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from '@ant-design/charts';
 
 const DemoBar: React.FC = () => {
-  const data = [
+  var data = [
     {
       label: 'Mon.',
       type: 'series1',
@@ -303,12 +321,11 @@ const DemoBar: React.FC = () => {
       value: 100,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     isGroup: true,
     xField: 'value',
     yField: 'label',
-    color: ['#1383ab', '#c52125'],
     seriesField: 'type',
     marginRatio: 0,
     label: {
@@ -329,7 +346,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from '@ant-design/charts';
 
 const DemoBar: React.FC = () => {
-  const data = [
+  var data = [
     {
       country: 'Asia',
       year: '1750',
@@ -436,17 +453,16 @@ const DemoBar: React.FC = () => {
       value: 628,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'value',
     yField: 'year',
     seriesField: 'country',
     isPercent: true,
     isStack: true,
-    color: ['#2582a1', '#f88c24', '#c52125', '#87f4d0'],
     label: {
       position: 'middle',
-      content: (item) => {
+      content: function content(item) {
         return item.value.toFixed(2);
       },
       style: { fill: '#fff' },
@@ -465,7 +481,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from '@ant-design/charts';
 
 const DemoBar: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       values: [76, 100],
@@ -499,69 +515,14 @@ const DemoBar: React.FC = () => {
       values: [18, 34],
     },
   ];
-  const config = {
+  var config = {
     data: data.reverse(),
     xField: 'values',
     yField: 'type',
     isRange: true,
-  };
-  return <Bar {...config} />;
-};
-
-export default DemoBar;
-```
-
-### 区间条形图-label 样式
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Bar } from '@ant-design/charts';
-
-const DemoBar: React.FC = () => {
-  const data = [
-    {
-      type: '分类一',
-      values: [76, 100],
-    },
-    {
-      type: '分类二',
-      values: [56, 108],
-    },
-    {
-      type: '分类三',
-      values: [38, 129],
-    },
-    {
-      type: '分类四',
-      values: [58, 155],
-    },
-    {
-      type: '分类五',
-      values: [45, 120],
-    },
-    {
-      type: '分类六',
-      values: [23, 99],
-    },
-    {
-      type: '分类七',
-      values: [18, 56],
-    },
-    {
-      type: '分类八',
-      values: [18, 34],
-    },
-  ];
-  const config = {
-    data: data.reverse(),
-    xField: 'values',
-    yField: 'type',
-    color: 'l(0) 0:#3e5bdb 1:#dd3121',
-    isRange: true,
-    barStyle: { fillOpacity: 0.8 },
     label: {
       position: 'middle',
-      style: { fill: '#fff' },
+      layout: [{ type: 'adjust-color' }],
     },
   };
   return <Bar {...config} />;
@@ -577,7 +538,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from '@ant-design/charts';
 
 const DemoBar: React.FC = () => {
-  const data = [
+  var data = [
     {
       year: '1991',
       value: 3,
@@ -669,7 +630,7 @@ const DemoBar: React.FC = () => {
       type: 'Bor',
     },
   ];
-  const config = {
+  var config = {
     data: data.reverse(),
     isStack: true,
     xField: 'value',

@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react';
 import { Stock } from '@ant-design/charts';
 
 const DemoStock: React.FC = () => {
-  const data = [
+  var data = [
     {
       ts_code: '000001.SH',
       trade_date: '2020-03-13',
@@ -236,7 +236,7 @@ const DemoStock: React.FC = () => {
       amount: 334526327.4,
     },
   ];
-  const config = {
+  var config = {
     width: 400,
     height: 500,
     data: data,

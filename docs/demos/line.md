@@ -26,8 +26,8 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     padding: 'auto',
     xField: 'Date',
     yField: 'scales',
@@ -36,7 +36,7 @@ const DemoLine: React.FC = () => {
         type: 'regionFilter',
         start: ['min', 'median'],
         end: ['max', '0'],
-        color: 'red',
+        color: '#F4664A',
       },
       {
         type: 'text',
@@ -50,7 +50,7 @@ const DemoLine: React.FC = () => {
         start: ['min', 'median'],
         end: ['max', 'median'],
         style: {
-          stroke: 'red',
+          stroke: '#F4664A',
           lineDash: [2, 2],
         },
       },
@@ -81,8 +81,8 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     padding: 'auto',
     xField: 'Date',
     yField: 'scales',
@@ -118,7 +118,7 @@ import React, { useState, useEffect } from 'react';
 import { Line } from '@ant-design/charts';
 
 const DemoLine: React.FC = () => {
-  const data = [
+  var data = [
     {
       year: '1991',
       value: 3,
@@ -156,8 +156,8 @@ const DemoLine: React.FC = () => {
       value: 13,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'year',
     yField: 'value',
     label: {},
@@ -196,8 +196,8 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     padding: 'auto',
     xField: 'Date',
     yField: 'scales',
@@ -220,7 +220,7 @@ import React, { useState, useEffect } from 'react';
 import { Line } from '@ant-design/charts';
 
 const DemoLine: React.FC = () => {
-  const data = [
+  var data = [
     {
       year: '1991',
       value: 3,
@@ -258,8 +258,8 @@ const DemoLine: React.FC = () => {
       value: 13,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'year',
     yField: 'value',
     smooth: true,
@@ -290,8 +290,8 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     padding: 'auto',
     xField: 'Date',
     yField: 'scales',
@@ -325,15 +325,23 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'date',
     yField: 'value',
-    yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
-    legend: { position: 'right-top' },
+    yAxis: {
+      label: {
+        formatter: function formatter(v) {
+          return ''.concat(v).replace(/\d{1,3}(?=(\d{3})+$)/g, function (s) {
+            return ''.concat(s, ',');
+          });
+        },
+      },
+    },
     seriesField: 'type',
-    color: ({ type }) => {
-      return type === 'register' ? '#93D072' : '#2D71E7';
+    color: function color(_ref) {
+      var type = _ref.type;
+      return type === 'register' ? '#2498D1' : type === 'download' ? '#BBBDE6' : '#4045B2';
     },
   };
   return <Line {...config} />;
@@ -361,13 +369,20 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'year',
     yField: 'value',
     seriesField: 'category',
-    yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
-    legend: { position: 'right-top' },
+    yAxis: {
+      label: {
+        formatter: function formatter(v) {
+          return ''.concat(v).replace(/\d{1,3}(?=(\d{3})+$)/g, function (s) {
+            return ''.concat(s, ',');
+          });
+        },
+      },
+    },
     color: ['#1979C9', '#D62A0D', '#FAA219'],
   };
   return <Line {...config} />;
@@ -395,12 +410,18 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'year',
     yField: 'gdp',
     seriesField: 'name',
-    yAxis: { label: { formatter: (v) => `${(v / 1000000000).toFixed(1)} B` } },
+    yAxis: {
+      label: {
+        formatter: function formatter(v) {
+          return ''.concat((v / 1000000000).toFixed(1), ' B');
+        },
+      },
+    },
     legend: { position: 'top' },
     smooth: true,
     animation: {
@@ -435,47 +456,21 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'year',
     yField: 'value',
     seriesField: 'category',
     xAxis: { type: 'time' },
-    legend: { position: 'top' },
-    yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
-  };
-  return <Line {...config} />;
-};
-
-export default DemoLine;
-```
-
-###
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Line } from '@ant-design/charts';
-
-const DemoLine: React.FC = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-  const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/c48dbbb1-fccf-4a46-b68f-a3ddb4908b68.json')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('fetch data failed', error);
-      });
-  };
-  const config = {
-    data,
-    xField: 'date',
-    yField: 'value',
-    yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
-    legend: { position: 'right-top' },
-    seriesField: 'type',
+    yAxis: {
+      label: {
+        formatter: function formatter(v) {
+          return ''.concat(v).replace(/\d{1,3}(?=(\d{3})+$)/g, function (s) {
+            return ''.concat(s, ',');
+          });
+        },
+      },
+    },
   };
   return <Line {...config} />;
 };
@@ -502,15 +497,23 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'date',
     yField: 'value',
-    yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
-    legend: { position: 'right-top' },
+    yAxis: {
+      label: {
+        formatter: function formatter(v) {
+          return ''.concat(v).replace(/\d{1,3}(?=(\d{3})+$)/g, function (s) {
+            return ''.concat(s, ',');
+          });
+        },
+      },
+    },
     seriesField: 'type',
     color: ['#1979C9', '#D62A0D', '#FAA219'],
-    lineStyle: ({ type }) => {
+    lineStyle: function lineStyle(_ref) {
+      var type = _ref.type;
       if (type === 'register') {
         return {
           lineDash: [2, 2],
@@ -545,7 +548,7 @@ const DemoLine: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const COLOR_PLATE_10 = [
+  var COLOR_PLATE_10 = [
     '#5B8FF9',
     '#5AD8A6',
     '#5D7092',
@@ -557,19 +560,29 @@ const DemoLine: React.FC = () => {
     '#269A99',
     '#FF99C3',
   ];
-  const config = {
-    data,
+  var container = document.getElementById('container');
+  var config = {
+    data: data,
     xField: 'year',
     yField: 'value',
     seriesField: 'category',
-    yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
-    legend: { position: 'right-top' },
+    yAxis: {
+      label: {
+        formatter: function formatter(v) {
+          return ''.concat(v).replace(/\d{1,3}(?=(\d{3})+$)/g, function (s) {
+            return ''.concat(s, ',');
+          });
+        },
+      },
+    },
     color: COLOR_PLATE_10,
     point: {
-      shape: ({ category }) => {
+      shape: function shape(_ref) {
+        var category = _ref.category;
         return category === 'Gas fuel' ? 'square' : 'circle';
       },
-      style: ({ year }) => {
+      style: function style(_ref2) {
+        var year = _ref2.year;
         return { r: Number(year) % 4 ? 0 : 3 };
       },
     },
@@ -587,7 +600,7 @@ import React, { useState, useEffect } from 'react';
 import { Line } from '@ant-design/charts';
 
 const DemoLine: React.FC = () => {
-  const data = [
+  var data = [
     {
       month: 'Jan',
       key: 'series1',
@@ -709,8 +722,8 @@ const DemoLine: React.FC = () => {
       value: 56,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'month',
     yField: 'value',
     legend: false,
@@ -730,7 +743,7 @@ import React, { useState, useEffect } from 'react';
 import { Line } from '@ant-design/charts';
 
 const DemoLine: React.FC = () => {
-  const data = [
+  var data = [
     {
       year: '1991',
       value: 3,
@@ -772,8 +785,8 @@ const DemoLine: React.FC = () => {
       value: 8,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'year',
     yField: 'value',
     stepType: 'vh',

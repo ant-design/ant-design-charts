@@ -74,7 +74,8 @@ const reset = () => {
   chartName = '';
   dataKey = '';
 };
-
+const FunctionTypes = ['FunctionExpression', 'ArrowFunctionExpression'];
+const excludeFunctionNames = ['formatter']
 // 提取核心信息
 const getOptions = (ast) => {
   estraverse.replace(ast, {
@@ -83,9 +84,9 @@ const getOptions = (ast) => {
         fetchUrl = node.object.arguments[0].value;
       }
       if (
-        node.type === 'ArrowFunctionExpression' &&
+        FunctionTypes.includes(node.type) &&
         ['data', 'fetchData'].includes(get(node, ['params', 0, 'name'])) &&
-        get(node, ['body', 'type']) === 'BlockStatement'
+        get(node, ['body', 'type']) === 'BlockStatement' && !excludeFunctionNames.includes(get(node, ['id', 'name']))
       ) {
         dataKey = get(node, ['params', 0, 'name']);
         const block = get(node, 'body.body', []);
@@ -201,7 +202,7 @@ const parseFile = (params, type) => {
     getOptions(parseCode);
     generateFile(parseCode);
     return {
-      code: escodegen.generate(parseCode),
+      code: escodegen.generate(parseCode).replace("'use strict';", '').replace("var _g2plot = require('@antv/g2plot');", ''),
       title: get(metaInfo, 'title.zh'),
       chartName,
     };

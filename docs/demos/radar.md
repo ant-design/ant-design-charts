@@ -14,29 +14,38 @@ import React, { useState, useEffect } from 'react';
 import { Radar } from '@ant-design/charts';
 
 const DemoRadar: React.FC = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-  const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/a104a693-2dd0-4a71-a190-39ec88f7307c.json')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('fetch data failed', error);
-      });
-  };
+  const data = [
+    { name: 'G2', star: 10178 },
+    { name: 'G6', star: 7077 },
+    { name: 'F2', star: 7345 },
+    { name: 'L7', star: 2029 },
+    { name: 'X6', star: 298 },
+    { name: 'AVA', star: 806 },
+  ];
   const config = {
-    data,
-    xField: 'item',
-    yField: 'score',
-    meta: { score: { alias: '分数' } },
+    data: data.map((d) => ({ ...d, star: Math.log(d.star).toFixed(2) })),
+    xField: 'name',
+    yField: 'star',
+    meta: {
+      star: {
+        alias: '分数',
+        min: 0,
+        nice: true,
+      },
+    },
     xAxis: {
       line: null,
       tickLine: null,
-      grid: { line: { style: { lineDash: null } } },
     },
+    yAxis: {
+      label: false,
+      grid: {
+        alternateColor: 'rgba(0, 0, 0, 0.04)',
+      },
+    },
+    // 开启辅助点
     point: {},
+    area: {},
   };
   return <Radar {...config} />;
 };
@@ -44,11 +53,12 @@ const DemoRadar: React.FC = () => {
 export default DemoRadar;
 ```
 
-### 雷达图-自定义 axis grid
+### 基础雷达图（带底色）
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Radar } from '@ant-design/charts';
+import { DataSet } from '@antv/data-set';
 
 const DemoRadar: React.FC = () => {
   const [data, setData] = useState([]);
@@ -56,22 +66,44 @@ const DemoRadar: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/a104a693-2dd0-4a71-a190-39ec88f7307c.json')
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/bda695a8-cd9f-4b78-a423-3d6d547c10c3.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
+  const { DataView } = DataSet;
+  const dv = new DataView().source(data);
+  dv.transform({
+    type: 'fold',
+    fields: ['a', 'b'], // 展开字段集
+    key: 'user', // key字段
+    value: 'score', // value字段
+  });
+
   const config = {
-    data,
+    data: dv.rows,
     xField: 'item',
     yField: 'score',
-    meta: { score: { alias: '分数' } },
+    seriesField: 'user',
+    meta: {
+      score: {
+        alias: '分数',
+        min: 0,
+        max: 80,
+      },
+    },
     xAxis: {
       line: null,
       tickLine: null,
-      grid: { line: { style: { lineDash: null } } },
+      grid: {
+        line: {
+          style: {
+            lineDash: null,
+          },
+        },
+      },
     },
     yAxis: {
       line: null,
@@ -79,24 +111,29 @@ const DemoRadar: React.FC = () => {
       grid: {
         line: {
           type: 'line',
-          style: { lineDash: null },
+          style: {
+            lineDash: null,
+          },
         },
         alternateColor: 'rgba(0, 0, 0, 0.04)',
       },
     },
+    // 开启辅助点
     point: {},
   };
+
   return <Radar {...config} />;
 };
 
 export default DemoRadar;
 ```
 
-### 多组雷达图
+### 基础雷达图(带网格)
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Radar } from '@ant-design/charts';
+import { DataSet } from '@antv/data-set';
 
 const DemoRadar: React.FC = () => {
   const [data, setData] = useState([]);
@@ -104,27 +141,125 @@ const DemoRadar: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/5c41aa9b-9c8a-425f-9f4d-934b889bb75d.json')
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/bda695a8-cd9f-4b78-a423-3d6d547c10c3.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
+  const { DataView } = DataSet;
+  const dv = new DataView().source(data);
+  dv.transform({
+    type: 'fold',
+    fields: ['a', 'b'], // 展开字段集
+    key: 'user', // key字段
+    value: 'score', // value字段
+  });
+
   const config = {
-    data,
+    data: dv.rows,
     xField: 'item',
     yField: 'score',
     seriesField: 'user',
-    xAxis: {
-      label: { offset: 15 },
-      grid: { line: { type: 'line' } },
+    meta: {
+      score: {
+        alias: '分数',
+        min: 0,
+        max: 80,
+      },
     },
-    yAxis: { grid: { line: { type: 'circle' } } },
-    point: { shape: 'circle' },
-    area: {},
-    legend: { position: 'bottom' },
+    xAxis: {
+      line: null,
+      tickLine: null,
+      grid: {
+        line: {
+          style: {
+            lineDash: null,
+          },
+        },
+      },
+    },
+    // 开启辅助点
+    point: {},
   };
+
+  return <Radar {...config} />;
+};
+
+export default DemoRadar;
+```
+
+### 雷达图（面-带底色）
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Radar } from '@ant-design/charts';
+import { DataSet } from '@antv/data-set';
+
+const DemoRadar: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/bda695a8-cd9f-4b78-a423-3d6d547c10c3.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const { DataView } = DataSet;
+  const dv = new DataView().source(data);
+  dv.transform({
+    type: 'fold',
+    fields: ['a', 'b'], // 展开字段集
+    key: 'user', // key字段
+    value: 'score', // value字段
+  });
+
+  const config = {
+    data: dv.rows,
+    xField: 'item',
+    yField: 'score',
+    seriesField: 'user',
+    meta: {
+      score: {
+        alias: '分数',
+        min: 0,
+        max: 80,
+      },
+    },
+    xAxis: {
+      line: null,
+      tickLine: null,
+      grid: {
+        line: {
+          style: {
+            lineDash: null,
+          },
+        },
+      },
+    },
+    yAxis: {
+      line: null,
+      tickLine: null,
+      grid: {
+        line: {
+          type: 'line',
+          style: {
+            lineDash: null,
+          },
+        },
+      },
+    },
+    // 开启面积
+    area: {},
+    // 开启辅助点
+    point: {},
+  };
+
   return <Radar {...config} />;
 };
 

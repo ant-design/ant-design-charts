@@ -36,6 +36,7 @@ const chartNames = {
   Radar: '雷达图',
   Stock: '蜡烛图',
   Box: '箱线图',
+  RadialBar: '玉环图',
   RingProgress: '环形进度条',
   Scatter: '散点图',
   Sunburst: '旭日图',

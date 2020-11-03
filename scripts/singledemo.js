@@ -10,6 +10,7 @@ const { chartNames } = require('./constants');
 const { lowerCase, toLine } = require('./util.js');
 const parseFile = require('./parse.js');
 
+const tniyPath = ['RingProgress','Progress','TinyArea', 'TinyColumn', 'TinyLine'];
 const arg = process.argv.splice(2);
 if (!arg.length) {
   console.log('请指定扫描目录，例如: "node scripts/singledemo.js Bar 条形图" ');
@@ -17,7 +18,9 @@ if (!arg.length) {
 }
 const lowerCaseFileName = lowerCase(arg[0]);
 const toLineName = toLine(lowerCaseFileName);
-const fp = path.resolve('../', `G2Plot/examples/${toLineName}`);
+const tiny = tniyPath.includes(arg[0]) ? '/tiny' : '';
+const fp = path.resolve('../', `G2Plot/examples${tiny}/${toLineName}`);
+// const fp = path.resolve('./test.ts');
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateDemoPath = path.join(__dirname, '../template/doc/demo.ejs');
 const templateTitlePath = path.join(__dirname, '../template/doc/title.ejs');
@@ -54,6 +57,7 @@ const scanFiles = (foldPath, dir) => {
       }
       if (stats.isFile() && /.ts$/.test(fileName) && dir.indexOf('demo') !== -1) {
         const chartName = arg[0];
+        console.log(director);
         result.push({
           path: director,
           chartName,

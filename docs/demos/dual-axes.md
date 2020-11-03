@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const data = [
+  var data = [
     {
       time: '2019-03',
       value: 350,
@@ -41,17 +41,21 @@ const DemoDualAxes: React.FC = () => {
       count: 220,
     },
   ];
-  const config = {
+  var config = {
     data: [data, data],
     xField: 'time',
     yField: ['value', 'count'],
     geometryOptions: [
-      { geometry: 'column' },
+      {
+        geometry: 'column',
+        color: '#5B8FF9',
+      },
       {
         geometry: 'line',
+        color: '#5AD8A6',
         lineStyle: {
           lineWidth: 2,
-          stroke: '#29cae4',
+          stroke: '#5AD8A6',
         },
       },
     ],
@@ -69,7 +73,29 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const transformData = [
+  var uvData = [
+    {
+      time: '2019-03',
+      value: 35,
+    },
+    {
+      time: '2019-04',
+      value: 90,
+    },
+    {
+      time: '2019-05',
+      value: 30,
+    },
+    {
+      time: '2019-06',
+      value: 45,
+    },
+    {
+      time: '2019-07',
+      value: 47,
+    },
+  ];
+  var transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -146,52 +172,20 @@ const DemoDualAxes: React.FC = () => {
       name: 'c',
     },
   ];
-  const uvData = [
-    {
-      time: '2019-03',
-      value: 35,
-    },
-    {
-      time: '2019-04',
-      value: 90,
-    },
-    {
-      time: '2019-05',
-      value: 30,
-    },
-    {
-      time: '2019-06',
-      value: 45,
-    },
-    {
-      time: '2019-07',
-      value: 47,
-    },
-  ];
-  const config = {
-    data: [transformData, uvData],
+  var config = {
+    data: [uvData, transformData],
     xField: 'time',
-    yField: ['count', 'value'],
+    yField: ['value', 'count'],
     geometryOptions: [
+      {
+        geometry: 'column',
+        color: '#5B8FF9',
+        columnWidthRatio: 0.4,
+      },
       {
         geometry: 'line',
         seriesField: 'name',
-        color: ['#93D072', '#D62A0D', '#FAA219'],
-        lineStyle: ({ name }) => {
-          if (name === 'a') {
-            return {
-              lineDash: [2, 2],
-              opacity: 1,
-            };
-          }
-          return { opacity: 0.5 };
-        },
-      },
-      {
-        geometry: 'column',
-        color: '#586bce',
-        columnWidthRatio: 0.4,
-        columnStyle: { opacity: 0.4 },
+        color: ['#CDDDFD', '#CDF3E4', '#CED4DE'],
       },
     ],
   };
@@ -208,7 +202,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const data = [
+  var data = [
     {
       time: '2019-03',
       value: 350,
@@ -235,28 +229,32 @@ const DemoDualAxes: React.FC = () => {
       count: 220,
     },
   ];
-  const config = {
+  var config = {
     data: [data, data],
     xField: 'time',
     yField: ['value', 'count'],
     yAxis: [
       {
         min: 0,
-        label: { formatter: (val) => `${val}个` },
+        label: {
+          formatter: function formatter(val) {
+            return ''.concat(val, '个');
+          },
+        },
       },
       false,
     ],
     geometryOptions: [
       {
         geometry: 'column',
-        color: '#586bce',
+        color: '#5B8FF9',
         columnWidthRatio: 0.4,
         columnStyle: { opacity: 0.4 },
         label: { position: 'middle' },
       },
       {
         geometry: 'line',
-        color: '#29cae4',
+        color: '#5AD8A6',
       },
     ],
     interactions: [{ type: 'element-highlight' }, { type: 'active-region' }],
@@ -274,7 +272,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const data = [
+  var data = [
     {
       time: '2020-08-20',
       consumeTime: 10868,
@@ -426,20 +424,20 @@ const DemoDualAxes: React.FC = () => {
       completeTime: 753.583,
     },
   ];
-  const config = {
+  var config = {
     data: [data, data],
     xField: 'time',
     yField: ['consumeTime', 'completeTime'],
     meta: {
       consumeTime: {
         alias: '产出耗时',
-        formatter: (v) => {
+        formatter: function formatter(v) {
           return Number((v / 60).toFixed(2));
         },
       },
       completeTime: {
         alias: '完成时间',
-        formatter: (v) => {
+        formatter: function formatter(v) {
           return Number((v / 100).toFixed(1));
         },
       },
@@ -465,26 +463,86 @@ const DemoDualAxes: React.FC = () => {
     yAxis: [
       {
         label: {
-          formatter: (v) => {
-            return `${v}分`;
+          formatter: function formatter(v) {
+            return ''.concat(v, '分');
           },
         },
       },
       {
         label: {
-          formatter: (v) => {
-            return `${v}`;
+          formatter: function formatter(v) {
+            return ''.concat(v);
           },
         },
       },
     ],
     legend: {
       itemName: {
-        formatter: (text, item) => {
+        formatter: function formatter(text, item) {
           return item.value === 'consumeTime' ? '产出耗时(分)' : '完成时间(分)';
         },
       },
     },
+  };
+  return <DualAxes {...config} />;
+};
+
+export default DemoDualAxes;
+```
+
+### 柱线混合图表-区间柱
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { DualAxes } from '@ant-design/charts';
+
+const DemoDualAxes: React.FC = () => {
+  var data = [
+    {
+      time: '2019-03',
+      value: [200, 350],
+      count: 800,
+    },
+    {
+      time: '2019-04',
+      value: [400, 650],
+      count: 600,
+    },
+    {
+      time: '2019-05',
+      value: [150, 350],
+      count: 400,
+    },
+    {
+      time: '2019-06',
+      value: [100, 450],
+      count: 380,
+    },
+    {
+      time: '2019-07',
+      value: [500, 550],
+      count: 220,
+    },
+  ];
+  var config = {
+    data: [data, data],
+    xField: 'time',
+    yField: ['value', 'count'],
+    geometryOptions: [
+      {
+        geometry: 'column',
+        color: '#5B8FF9',
+        isRange: true,
+      },
+      {
+        geometry: 'line',
+        color: '#5AD8A6',
+        lineStyle: {
+          lineWidth: 2,
+          stroke: '#5AD8A6',
+        },
+      },
+    ],
   };
   return <DualAxes {...config} />;
 };
@@ -499,7 +557,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const data = [
+  var data = [
     {
       year: '1991',
       value: 3,
@@ -546,7 +604,7 @@ const DemoDualAxes: React.FC = () => {
       count: 20,
     },
   ];
-  const config = {
+  var config = {
     data: [data, data],
     xField: 'year',
     yField: ['value', 'count'],
@@ -554,7 +612,7 @@ const DemoDualAxes: React.FC = () => {
       {
         geometry: 'line',
         smooth: false,
-        color: '#29cae4',
+        color: '#5B8FF9',
         lineStyle: {
           lineWidth: 3,
           lineDash: [5, 5],
@@ -563,7 +621,7 @@ const DemoDualAxes: React.FC = () => {
       {
         geometry: 'line',
         smooth: true,
-        color: '#586bce',
+        color: '#5AD8A6',
         lineStyle: {
           lineWidth: 4,
           opacity: 0.5,
@@ -574,7 +632,7 @@ const DemoDualAxes: React.FC = () => {
           size: 4,
           style: {
             opacity: 0.5,
-            stroke: '#586bce',
+            stroke: '#5AD8A6',
             fill: '#fff',
           },
         },
@@ -594,7 +652,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const data = [
+  var data = [
     {
       year: '1991',
       value: 3,
@@ -641,10 +699,20 @@ const DemoDualAxes: React.FC = () => {
       count: 20,
     },
   ];
-  const config = {
+  var config = {
     data: [data, data],
     xField: 'year',
     yField: ['value', 'count'],
+    geometryOptions: [
+      {
+        geometry: 'line',
+        color: '#5B8FF9',
+      },
+      {
+        geometry: 'line',
+        color: '#5AD8A6',
+      },
+    ],
   };
   return <DualAxes {...config} />;
 };
@@ -659,7 +727,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const uvBillData = [
+  var uvBillData = [
     {
       time: '2019-03',
       value: 350,
@@ -711,7 +779,7 @@ const DemoDualAxes: React.FC = () => {
       type: 'bill',
     },
   ];
-  const transformData = [
+  var transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -788,7 +856,7 @@ const DemoDualAxes: React.FC = () => {
       name: 'c',
     },
   ];
-  const config = {
+  var config = {
     data: [uvBillData, transformData],
     xField: 'time',
     yField: ['value', 'count'],
@@ -796,7 +864,7 @@ const DemoDualAxes: React.FC = () => {
       {
         geometry: 'line',
         seriesField: 'type',
-        color: '#29cae4',
+        color: ['#5B8FF9', '#5AD8A6'],
         lineStyle: {
           lineWidth: 3,
           lineDash: [5, 5],
@@ -806,12 +874,93 @@ const DemoDualAxes: React.FC = () => {
       {
         geometry: 'line',
         seriesField: 'name',
-        color: ({ name }) => {
+        color: function color(_ref) {
+          var name = _ref.name;
           if (name === 'a') {
-            return '#93D072';
+            return '#CDDDFD';
+          } else if (name === 'b') {
+            return '#CDF3E4';
           }
-          return '#FAA219';
+          return '#CED4DE';
         },
+      },
+    ],
+  };
+  return <DualAxes {...config} />;
+};
+
+export default DemoDualAxes;
+```
+
+### 双折线图 - 阶梯折线
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { DualAxes } from '@ant-design/charts';
+
+const DemoDualAxes: React.FC = () => {
+  var data = [
+    {
+      year: '1991',
+      value: 3,
+      count: 10,
+    },
+    {
+      year: '1992',
+      value: 4,
+      count: 4,
+    },
+    {
+      year: '1993',
+      value: 3.5,
+      count: 5,
+    },
+    {
+      year: '1994',
+      value: 5,
+      count: 5,
+    },
+    {
+      year: '1995',
+      value: 4.9,
+      count: 4.9,
+    },
+    {
+      year: '1996',
+      value: 6,
+      count: 35,
+    },
+    {
+      year: '1997',
+      value: 7,
+      count: 7,
+    },
+    {
+      year: '1998',
+      value: 9,
+      count: 1,
+    },
+    {
+      year: '1999',
+      value: 13,
+      count: 20,
+    },
+  ];
+  var config = {
+    data: [data, data],
+    xField: 'year',
+    yField: ['value', 'count'],
+    geometryOptions: [
+      {
+        geometry: 'line',
+        smooth: false,
+        color: '#29cae4',
+        stepType: 'vh',
+      },
+      {
+        geometry: 'line',
+        color: '#586bce',
+        smooth: true,
       },
     ],
   };
@@ -828,7 +977,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const uvBillData = [
+  var uvBillData = [
     {
       time: '2019-03',
       value: 350,
@@ -880,7 +1029,7 @@ const DemoDualAxes: React.FC = () => {
       type: 'bill',
     },
   ];
-  const transformData = [
+  var transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -902,7 +1051,7 @@ const DemoDualAxes: React.FC = () => {
       count: 220,
     },
   ];
-  const config = {
+  var config = {
     data: [uvBillData, transformData],
     xField: 'time',
     yField: ['value', 'count'],
@@ -913,12 +1062,52 @@ const DemoDualAxes: React.FC = () => {
         seriesField: 'type',
         columnWidthRatio: 0.4,
         label: {},
+        color: ['#5B8FF9', '#5D7092'],
       },
       {
         geometry: 'line',
-        color: '#FAA219',
+        color: '#5AD8A6',
       },
     ],
+    legend: {
+      custom: true,
+      position: 'bottom',
+      items: [
+        {
+          value: 'uv',
+          name: 'uv',
+          marker: {
+            symbol: 'square',
+            style: {
+              fill: '#5B8FF9',
+              r: 5,
+            },
+          },
+        },
+        {
+          value: 'bill',
+          name: '账单',
+          marker: {
+            symbol: 'square',
+            style: {
+              fill: '#5D7092',
+              r: 5,
+            },
+          },
+        },
+        {
+          value: 'count',
+          name: '数值',
+          marker: {
+            symbol: 'square',
+            style: {
+              fill: '#5AD8A6',
+              r: 5,
+            },
+          },
+        },
+      ],
+    },
   };
   return <DualAxes {...config} />;
 };
@@ -933,7 +1122,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const uvBillData = [
+  var uvBillData = [
     {
       time: '2019-03',
       value: 350,
@@ -985,7 +1174,7 @@ const DemoDualAxes: React.FC = () => {
       type: 'bill',
     },
   ];
-  const transformData = [
+  var transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -1007,7 +1196,7 @@ const DemoDualAxes: React.FC = () => {
       count: 220,
     },
   ];
-  const config = {
+  var config = {
     data: [uvBillData, transformData],
     xField: 'time',
     yField: ['value', 'count'],
@@ -1016,13 +1205,12 @@ const DemoDualAxes: React.FC = () => {
         geometry: 'column',
         isGroup: true,
         seriesField: 'type',
+        color: ['#5B8FF9', '#5D7092'],
       },
       {
         geometry: 'line',
-        lineStyle: {
-          lineWidth: 2,
-          stroke: '#FAA219',
-        },
+        lineStyle: { lineWidth: 2 },
+        color: '#5AD8A6',
       },
     ],
   };
@@ -1039,7 +1227,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const uvBillData = [
+  var uvBillData = [
     {
       time: '2019-03',
       value: 350,
@@ -1091,7 +1279,7 @@ const DemoDualAxes: React.FC = () => {
       type: 'bill',
     },
   ];
-  const transformData = [
+  var transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -1168,7 +1356,7 @@ const DemoDualAxes: React.FC = () => {
       name: 'c',
     },
   ];
-  const config = {
+  var config = {
     data: [uvBillData, transformData],
     xField: 'time',
     yField: ['value', 'count'],
@@ -1178,12 +1366,14 @@ const DemoDualAxes: React.FC = () => {
         isGroup: true,
         seriesField: 'type',
         columnWidthRatio: 0.4,
+        color: ['#5B8FF9', '#5AD8A6'],
       },
       {
         geometry: 'line',
         seriesField: 'name',
-        color: ['#93D072', '#D62A0D', '#FAA219'],
-        lineStyle: ({ name }) => {
+        color: ['#CDDDFD', '#CDF3E4', '#CED4DE'],
+        lineStyle: function lineStyle(_ref) {
+          var name = _ref.name;
           if (name === 'a') {
             return {
               lineDash: [2, 2],
@@ -1208,12 +1398,12 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes, G2 } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const { registerTheme } = G2;
+  var registerTheme = G2.registerTheme;
   registerTheme('custom-theme', {
     colors10: ['#FACDAA', '#F4A49E', '#EE7B91', '#E85285', '#BE408C', '#BE408C'],
     colors20: ['#FACDAA', '#F4A49E', '#EE7B91', '#E85285', '#BE408C', '#BE408C', '#942D93'],
   });
-  const uvBillData = [
+  var uvBillData = [
     {
       time: '2019-03',
       value: 350,
@@ -1265,7 +1455,7 @@ const DemoDualAxes: React.FC = () => {
       type: 'bill',
     },
   ];
-  const transformData = [
+  var transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -1287,7 +1477,7 @@ const DemoDualAxes: React.FC = () => {
       count: 220,
     },
   ];
-  const config = {
+  var config = {
     data: [uvBillData, transformData],
     xField: 'time',
     yField: ['value', 'count'],
@@ -1297,11 +1487,12 @@ const DemoDualAxes: React.FC = () => {
         isStack: true,
         seriesField: 'type',
         columnWidthRatio: 0.4,
+        color: ['#5B8FF9', '#5D7092'],
         label: {},
       },
       {
         geometry: 'line',
-        color: '#FAA219',
+        color: '#5AD8A6',
       },
     ],
     legend: {
@@ -1310,12 +1501,18 @@ const DemoDualAxes: React.FC = () => {
         style: {
           lineWidth: 2,
           r: 6,
-          stroke: '#FAA219',
+          stroke: '#5AD8A6',
           fill: '#fff',
         },
       },
       layout: 'vertical',
       position: 'right',
+      itemName: {
+        formatter: function formatter(val) {
+          return '@'.concat(val);
+        },
+        style: { fill: '#333' },
+      },
     },
     interactions: [{ type: 'element-highlight' }, { type: 'active-region' }],
     animation: false,
@@ -1334,7 +1531,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const uvBillData = [
+  var uvBillData = [
     {
       time: '2019-03',
       value: 350,
@@ -1386,7 +1583,7 @@ const DemoDualAxes: React.FC = () => {
       type: 'bill',
     },
   ];
-  const transformData = [
+  var transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -1408,7 +1605,7 @@ const DemoDualAxes: React.FC = () => {
       count: 220,
     },
   ];
-  const config = {
+  var config = {
     data: [uvBillData, transformData],
     xField: 'time',
     yField: ['value', 'count'],
@@ -1417,8 +1614,12 @@ const DemoDualAxes: React.FC = () => {
         geometry: 'column',
         isStack: true,
         seriesField: 'type',
+        color: ['#5B8FF9', '#5D7092'],
       },
-      { geometry: 'line' },
+      {
+        geometry: 'line',
+        color: '#5AD8A6',
+      },
     ],
   };
   return <DualAxes {...config} />;
@@ -1434,7 +1635,7 @@ import React, { useState, useEffect } from 'react';
 import { DualAxes } from '@ant-design/charts';
 
 const DemoDualAxes: React.FC = () => {
-  const uvBillData = [
+  var uvBillData = [
     {
       time: '2019-03',
       value: 350,
@@ -1486,7 +1687,7 @@ const DemoDualAxes: React.FC = () => {
       type: 'bill',
     },
   ];
-  const transformData = [
+  var transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -1563,7 +1764,7 @@ const DemoDualAxes: React.FC = () => {
       name: 'c',
     },
   ];
-  const config = {
+  var config = {
     data: [uvBillData, transformData],
     xField: 'time',
     yField: ['value', 'count'],
@@ -1573,12 +1774,14 @@ const DemoDualAxes: React.FC = () => {
         isStack: true,
         seriesField: 'type',
         columnWidthRatio: 0.4,
+        color: ['#5B8FF9', '#5AD8A6'],
       },
       {
         geometry: 'line',
         seriesField: 'name',
-        color: ['#93D072', '#D62A0D', '#FAA219'],
-        lineStyle: ({ name }) => {
+        color: ['#CDDDFD', '#CDF3E4', '#CED4DE'],
+        lineStyle: function lineStyle(_ref) {
+          var name = _ref.name;
           if (name === 'a') {
             return {
               lineDash: [2, 2],
@@ -1587,6 +1790,110 @@ const DemoDualAxes: React.FC = () => {
           }
           return { opacity: 0.5 };
         },
+      },
+    ],
+  };
+  return <DualAxes {...config} />;
+};
+
+export default DemoDualAxes;
+```
+
+### 百分比堆叠柱线图表-显示多折线
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { DualAxes } from '@ant-design/charts';
+
+const DemoDualAxes: React.FC = () => {
+  var uvBillData = [
+    {
+      time: '2019-03',
+      value: 350,
+      type: 'uv',
+    },
+    {
+      time: '2019-04',
+      value: 900,
+      type: 'uv',
+    },
+    {
+      time: '2019-05',
+      value: 300,
+      type: 'uv',
+    },
+    {
+      time: '2019-06',
+      value: 450,
+      type: 'uv',
+    },
+    {
+      time: '2019-07',
+      value: 470,
+      type: 'uv',
+    },
+    {
+      time: '2019-03',
+      value: 220,
+      type: 'bill',
+    },
+    {
+      time: '2019-04',
+      value: 300,
+      type: 'bill',
+    },
+    {
+      time: '2019-05',
+      value: 250,
+      type: 'bill',
+    },
+    {
+      time: '2019-06',
+      value: 220,
+      type: 'bill',
+    },
+    {
+      time: '2019-07',
+      value: 362,
+      type: 'bill',
+    },
+  ];
+  var transformData = [
+    {
+      time: '2019-03',
+      count: 800,
+    },
+    {
+      time: '2019-04',
+      count: 600,
+    },
+    {
+      time: '2019-05',
+      count: 400,
+    },
+    {
+      time: '2019-06',
+      count: 380,
+    },
+    {
+      time: '2019-07',
+      count: 220,
+    },
+  ];
+  var config = {
+    data: [uvBillData, transformData],
+    xField: 'time',
+    yField: ['value', 'count'],
+    geometryOptions: [
+      {
+        geometry: 'column',
+        isStack: true,
+        isPercent: true,
+        seriesField: 'type',
+      },
+      {
+        geometry: 'line',
+        color: '#FAA219',
       },
     ],
   };

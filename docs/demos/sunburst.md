@@ -1,13 +1,13 @@
 ---
 title: 旭日图
-order: 24
+order: 26
 ---
 
 # 旭日图
 
 ## Sunburst
 
-###
+### 基础旭日图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -15,11 +15,9 @@ import { Sunburst } from '@ant-design/charts';
 
 const DemoSunburst: React.FC = () => {
   const [data, setData] = useState([]);
-
   useEffect(() => {
     asyncFetch();
   }, []);
-
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/sunburst.json')
       .then((response) => response.json())
@@ -28,20 +26,13 @@ const DemoSunburst: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-
   const config = {
     data,
+    width: 600,
+    height: 400,
     seriesField: 'sum',
-    colorField: 'value',
-    color: ['#BAE7FF', '#1890FF', '#0050B3'],
+    colorField: 'label',
     innerRadius: 0.3,
-    tooltip: {
-      customContent: (_, item) => {
-        const mappingData = item?.[0]?.mappingData;
-        const originData = mappingData?._origin?.data;
-        return `<div>${originData?.label} - ${originData?.sum}</div>`;
-      },
-    },
     interactions: [{ type: 'element-active' }],
   };
   return <Sunburst {...config} />;
@@ -50,7 +41,7 @@ const DemoSunburst: React.FC = () => {
 export default DemoSunburst;
 ```
 
-###
+### 指定径向类型
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -69,22 +60,28 @@ const DemoSunburst: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  fetchData.forEach((mobile) => {
+  fetchData.forEach(function (mobile) {
     mobile.value = null;
   });
-  const data = {
+  var data = {
     name: 'root',
     children: fetchData,
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     type: 'treemap',
     seriesField: 'value',
     reflect: 'y',
     colorField: 'brand',
+    hierarchyConfig: {
+      size: [1, 0.1],
+    },
     sunburstStyle: {
       lineWidth: 1,
       stroke: '#fff',
+    },
+    tooltip: {
+      fields: ['name', 'value'],
     },
     interactions: [{ type: 'element-active' }],
   };

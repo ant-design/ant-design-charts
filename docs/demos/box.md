@@ -1,6 +1,6 @@
 ---
 title: 箱线图
-order: 20
+order: 22
 ---
 
 # 箱线图
@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react';
 import { Box } from '@ant-design/charts';
 
 const DemoBox: React.FC = () => {
-  const data = [
+  var data = [
     {
       x: 'Oceania',
       low: 1,
@@ -80,7 +80,7 @@ const DemoBox: React.FC = () => {
       high: 16,
     },
   ];
-  const config = {
+  var config = {
     width: 400,
     height: 500,
     data: data,
@@ -106,7 +106,7 @@ import React, { useState, useEffect } from 'react';
 import { Box } from '@ant-design/charts';
 
 const DemoBox: React.FC = () => {
-  const data = [
+  var data = [
     {
       Species: 'I. setosa',
       type: 'SepalLength',
@@ -180,8 +180,8 @@ const DemoBox: React.FC = () => {
       _bin: [1.4, 1.8, 2, 2.3, 2.5],
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'type',
     yField: '_bin',
     groupField: 'Species',
@@ -199,7 +199,7 @@ import React, { useState, useEffect } from 'react';
 import { Box } from '@ant-design/charts';
 
 const DemoBox: React.FC = () => {
-  const data = [
+  var data = [
     {
       x: '职业 A',
       low: 20000,
@@ -273,8 +273,8 @@ const DemoBox: React.FC = () => {
       outliers: [57000, 54000],
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'x',
     yField: ['low', 'q1', 'median', 'q3', 'high'],
     outliersField: 'outliers',

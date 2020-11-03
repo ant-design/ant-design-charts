@@ -14,9 +14,24 @@ import React, { useState, useEffect } from 'react';
 import { Gauge } from '@ant-design/charts';
 
 const DemoGauge: React.FC = () => {
-  const config = {
-    percent: 0.65,
-    range: { color: ['l(0) 0:#5d7cef 1:#e35767'] },
+  var config = {
+    percent: 0.75,
+    startAngle: Math.PI,
+    endAngle: 2 * Math.PI,
+    range: { color: ['l(0) 0:#bde8ff 1:#7eabff'] },
+    indicator: {
+      pin: false,
+      pointer: false,
+    },
+    statistic: {
+      content: {
+        style: {
+          fontSize: 48,
+          textBaseline: 'bottom',
+        },
+        offsetY: -60,
+      },
+    },
   };
   return <Gauge {...config} />;
 };
@@ -31,38 +46,32 @@ import React, { useState, useEffect } from 'react';
 import { Gauge } from '@ant-design/charts';
 
 const DemoGauge: React.FC = () => {
-  const config = {
+  var config = {
     percent: 0.75,
     range: {
       ticks: [0, 0.2, 0.4, 0.75, 1],
-      color: ['red', 'yellow', 'green'],
+      color: ['#9EDCA6', '#BFE8C3', '#EFF3DE', '#FFE9B8', '#FFDE94'],
     },
     indicator: {
-      pointer: {
-        style: {
-          stroke: 'pink',
-        },
-      },
-      pin: {
-        style: {
-          stroke: 'blue',
-        },
-      },
+      pointer: { style: { stroke: '#D0D0D0' } },
+      pin: { style: { stroke: '#D0D0D0' } },
     },
     axis: {
       label: {
-        formatter(v: string) {
+        formatter: function formatter(v) {
           return Number(v) * 100;
         },
       },
-      subTickLine: {
-        count: 3,
-      },
+      subTickLine: { count: 3 },
     },
     statistic: {
       content: {
-        formatter: ({ percent }) => `分数：${percent * 100}`,
+        formatter: function formatter(_ref) {
+          var percent = _ref.percent;
+          return 'Rate: '.concat(percent * 100, '%');
+        },
       },
+      style: { fontSize: 60 },
     },
   };
   return <Gauge {...config} />;

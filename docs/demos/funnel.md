@@ -14,34 +14,33 @@ import React, { useState, useEffect } from 'react';
 import { Funnel } from '@ant-design/charts';
 
 const DemoFunnel: React.FC = () => {
-  const data = [
+  var data = [
     {
-      action: '浏览网站',
-      pv: 50000,
+      stage: '简历筛选',
+      number: 253,
     },
     {
-      action: '放入购物车',
-      pv: 35000,
+      stage: '初试人数',
+      number: 151,
     },
     {
-      action: '生成订单',
-      pv: 25000,
+      stage: '复试人数',
+      number: 113,
     },
     {
-      action: '支付',
-      pv: 15000,
+      stage: '录取人数',
+      number: 87,
     },
     {
-      action: '成交',
-      pv: 8500,
+      stage: '入职人数',
+      number: 59,
     },
   ];
-  const config = {
-    padding: [0, 100],
+  var config = {
     data: data,
-    xField: 'action',
-    yField: 'pv',
-    transpose: true,
+    xField: 'stage',
+    yField: 'number',
+    isTransposed: true,
   };
   return <Funnel {...config} />;
 };
@@ -56,33 +55,33 @@ import React, { useState, useEffect } from 'react';
 import { Funnel } from '@ant-design/charts';
 
 const DemoFunnel: React.FC = () => {
-  const data = [
+  var data = [
     {
-      action: '浏览网站',
-      pv: 50000,
+      stage: '简历筛选',
+      number: 253,
     },
     {
-      action: '放入购物车',
-      pv: 35000,
+      stage: '初试人数',
+      number: 151,
     },
     {
-      action: '生成订单',
-      pv: 25000,
+      stage: '复试人数',
+      number: 113,
     },
     {
-      action: '支付',
-      pv: 15000,
+      stage: '录取人数',
+      number: 87,
     },
     {
-      action: '成交',
-      pv: 8500,
+      stage: '入职人数',
+      number: 59,
     },
   ];
-  const config = {
-    padding: [30, 60],
+  var config = {
     data: data,
-    xField: 'action',
-    yField: 'pv',
+    xField: 'stage',
+    yField: 'number',
+    legend: false,
   };
   return <Funnel {...config} />;
 };
@@ -97,65 +96,64 @@ import React, { useState, useEffect } from 'react';
 import { Funnel } from '@ant-design/charts';
 
 const DemoFunnel: React.FC = () => {
-  const data = [
+  var data = [
     {
-      action: '浏览网站',
-      pv: 50000,
-      quarter: '2020Q1',
+      stage: '简历筛选',
+      number: 253,
+      company: 'A公司',
     },
     {
-      action: '放入购物车',
-      pv: 35000,
-      quarter: '2020Q1',
+      stage: '初试人数',
+      number: 151,
+      company: 'A公司',
     },
     {
-      action: '生成订单',
-      pv: 25000,
-      quarter: '2020Q1',
+      stage: '复试人数',
+      number: 113,
+      company: 'A公司',
     },
     {
-      action: '支付订单',
-      pv: 15000,
-      quarter: '2020Q1',
+      stage: '录取人数',
+      number: 87,
+      company: 'A公司',
     },
     {
-      action: '完成交易',
-      pv: 11500,
-      quarter: '2020Q1',
+      stage: '入职人数',
+      number: 59,
+      company: 'A公司',
     },
     {
-      action: '浏览网站',
-      pv: 80000,
-      quarter: '2020Q2',
+      stage: '简历筛选',
+      number: 303,
+      company: 'B公司',
     },
     {
-      action: '放入购物车',
-      pv: 63000,
-      quarter: '2020Q2',
+      stage: '初试人数',
+      number: 251,
+      company: 'B公司',
     },
     {
-      action: '生成订单',
-      pv: 47000,
-      quarter: '2020Q2',
+      stage: '复试人数',
+      number: 153,
+      company: 'B公司',
     },
     {
-      action: '支付订单',
-      pv: 24000,
-      quarter: '2020Q2',
+      stage: '录取人数',
+      number: 117,
+      company: 'B公司',
     },
     {
-      action: '完成交易',
-      pv: 17500,
-      quarter: '2020Q2',
+      stage: '入职人数',
+      number: 79,
+      company: 'B公司',
     },
   ];
-  const config = {
-    padding: [30, 60],
-    data,
-    xField: 'action',
-    yField: 'pv',
-    compareField: 'quarter',
-    transpose: true,
+  var config = {
+    data: data,
+    xField: 'stage',
+    yField: 'number',
+    compareField: 'company',
+    isTransposed: true,
   };
   return <Funnel {...config} />;
 };
@@ -170,64 +168,84 @@ import React, { useState, useEffect } from 'react';
 import { Funnel } from '@ant-design/charts';
 
 const DemoFunnel: React.FC = () => {
-  const data = [
+  var data = [
     {
-      action: '浏览网站',
-      pv: 50000,
-      quarter: '2020Q1',
+      stage: '简历筛选',
+      number: 253,
+      company: 'A公司',
     },
     {
-      action: '放入购物车',
-      pv: 35000,
-      quarter: '2020Q1',
+      stage: '初试人数',
+      number: 151,
+      company: 'A公司',
     },
     {
-      action: '生成订单',
-      pv: 25000,
-      quarter: '2020Q1',
+      stage: '复试人数',
+      number: 113,
+      company: 'A公司',
     },
     {
-      action: '支付订单',
-      pv: 15000,
-      quarter: '2020Q1',
+      stage: '录取人数',
+      number: 87,
+      company: 'A公司',
     },
     {
-      action: '完成交易',
-      pv: 11500,
-      quarter: '2020Q1',
+      stage: '入职人数',
+      number: 59,
+      company: 'A公司',
     },
     {
-      action: '浏览网站',
-      pv: 80000,
-      quarter: '2020Q2',
+      stage: '简历筛选',
+      number: 303,
+      company: 'B公司',
     },
     {
-      action: '放入购物车',
-      pv: 63000,
-      quarter: '2020Q2',
+      stage: '初试人数',
+      number: 251,
+      company: 'B公司',
     },
     {
-      action: '生成订单',
-      pv: 47000,
-      quarter: '2020Q2',
+      stage: '复试人数',
+      number: 153,
+      company: 'B公司',
     },
     {
-      action: '支付订单',
-      pv: 24000,
-      quarter: '2020Q2',
+      stage: '录取人数',
+      number: 117,
+      company: 'B公司',
     },
     {
-      action: '完成交易',
-      pv: 17500,
-      quarter: '2020Q2',
+      stage: '入职人数',
+      number: 79,
+      company: 'B公司',
     },
   ];
-  const config = {
-    padding: [30, 60],
-    data,
-    xField: 'action',
-    yField: 'pv',
-    compareField: 'quarter',
+  var config = {
+    data: data,
+    xField: 'stage',
+    yField: 'number',
+    compareField: 'company',
+    meta: {
+      stage: { alias: '行为' },
+      pv: {
+        alias: '人数',
+        formatter: function formatter(v) {
+          return ''.concat(v, '次');
+        },
+      },
+    },
+    conversionTag: {
+      offsetX: 10,
+      offsetY: 0,
+      style: {
+        fill: '#666',
+        fontSize: 12,
+      },
+      formatter: function formatter(data) {
+        return '转化率'.concat((data.$$percentage$$ * 100).toFixed(2), '%');
+      },
+    },
+    legend: false,
   };
   return <Funnel {...config} />;
 };
@@ -242,35 +260,34 @@ import React, { useState, useEffect } from 'react';
 import { Funnel } from '@ant-design/charts';
 
 const DemoFunnel: React.FC = () => {
-  const data = [
+  var data = [
     {
-      action: '浏览网站',
-      pv: 50000,
+      stage: '简历筛选',
+      number: 253,
     },
     {
-      action: '放入购物车',
-      pv: 35000,
+      stage: '初试人数',
+      number: 151,
     },
     {
-      action: '生成订单',
-      pv: 25000,
+      stage: '复试人数',
+      number: 113,
     },
     {
-      action: '支付',
-      pv: 15000,
+      stage: '录取人数',
+      number: 87,
     },
     {
-      action: '成交',
-      pv: 8500,
+      stage: '入职人数',
+      number: 59,
     },
   ];
-  const config = {
-    padding: [0, 100],
+  var config = {
     data: data,
-    xField: 'action',
-    yField: 'pv',
+    xField: 'stage',
+    yField: 'number',
     dynamicHeight: true,
-    transpose: true,
+    isTransposed: true,
   };
   return <Funnel {...config} />;
 };
@@ -285,34 +302,34 @@ import React, { useState, useEffect } from 'react';
 import { Funnel } from '@ant-design/charts';
 
 const DemoFunnel: React.FC = () => {
-  const data = [
+  var data = [
     {
-      action: '浏览网站',
-      pv: 50000,
+      stage: '简历筛选',
+      number: 253,
     },
     {
-      action: '放入购物车',
-      pv: 35000,
+      stage: '初试人数',
+      number: 151,
     },
     {
-      action: '生成订单',
-      pv: 25000,
+      stage: '复试人数',
+      number: 113,
     },
     {
-      action: '支付',
-      pv: 15000,
+      stage: '录取人数',
+      number: 87,
     },
     {
-      action: '成交',
-      pv: 8500,
+      stage: '入职人数',
+      number: 59,
     },
   ];
-  const config = {
-    padding: [0, 100],
+  var config = {
     data: data,
-    xField: 'action',
-    yField: 'pv',
+    xField: 'stage',
+    yField: 'number',
     dynamicHeight: true,
+    legend: false,
   };
   return <Funnel {...config} />;
 };

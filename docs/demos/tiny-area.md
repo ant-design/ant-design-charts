@@ -1,60 +1,84 @@
 ---
 title: 迷你面积图
-order: 26
+order: 27
 ---
 
 # 迷你面积图
 
 ## TinyArea
 
-### 迷你面积图样式
+### 带辅助信息的迷你面积图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { TinyArea } from '@ant-design/charts';
 
 const DemoTinyArea: React.FC = () => {
-  const config = {
+  var data = [
+    264,
+    417,
+    438,
+    887,
+    309,
+    397,
+    550,
+    575,
+    563,
+    430,
+    525,
+    592,
+    492,
+    467,
+    513,
+    546,
+    983,
+    340,
+    539,
+    243,
+    226,
+    192,
+  ];
+  var config = {
     height: 60,
     width: 300,
     autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
+    data: data,
     smooth: true,
-    lineStyle: {
-      lineDash: [2, 2],
-      stroke: 'l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff',
-    },
-    areaStyle: { fill: 'l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff' },
-  };
-  return <TinyArea {...config} />;
-};
-
-export default DemoTinyArea;
-```
-
-### 迷你面积图比例尺
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { TinyArea } from '@ant-design/charts';
-
-const DemoTinyArea: React.FC = () => {
-  const config = {
-    height: 60,
-    width: 300,
-    autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
-    smooth: true,
-    tooltip: {
-      showCrosshairs: true,
-      showMarkers: true,
-    },
-    meta: {
-      y: {
-        max: 150,
-        min: -50,
+    tooltip: false,
+    annotations: [
+      {
+        type: 'line',
+        start: ['min', 'mean'],
+        end: ['max', 'mean'],
+        text: {
+          content: '平均值',
+          offsetY: -2,
+          style: {
+            textAlign: 'left',
+            fontSize: 10,
+            fill: 'rgba(44, 53, 66, 0.45)',
+            textBaseline: 'bottom',
+          },
+        },
+        style: { stroke: 'rgba(0, 0, 0, 0.25)' },
       },
-    },
+      {
+        type: 'line',
+        start: ['min', 800],
+        end: ['max', 800],
+        text: {
+          content: '目标值',
+          offsetY: -2,
+          style: {
+            textAlign: 'left',
+            fontSize: 10,
+            fill: 'rgba(44, 53, 66, 0.45)',
+            textBaseline: 'bottom',
+          },
+        },
+        style: { stroke: 'rgba(0, 0, 0, 0.55)' },
+      },
+    ],
   };
   return <TinyArea {...config} />;
 };
@@ -69,13 +93,81 @@ import React, { useState, useEffect } from 'react';
 import { TinyArea } from '@ant-design/charts';
 
 const DemoTinyArea: React.FC = () => {
-  const config = {
+  var data = [
+    264,
+    417,
+    438,
+    887,
+    309,
+    397,
+    550,
+    575,
+    563,
+    430,
+    525,
+    592,
+    492,
+    467,
+    513,
+    546,
+    983,
+    340,
+    539,
+    243,
+    226,
+    192,
+  ];
+  var config = {
     height: 60,
     width: 300,
     autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
+    data: data,
     smooth: true,
-    tooltip: { formatter: (x, y) => `NO.${x}: ${y.toFixed(2)}` },
+  };
+  return <TinyArea {...config} />;
+};
+
+export default DemoTinyArea;
+```
+
+### 平铺填充迷你面积图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { TinyArea } from '@ant-design/charts';
+
+const DemoTinyArea: React.FC = () => {
+  var data = [
+    264,
+    417,
+    438,
+    887,
+    309,
+    397,
+    550,
+    575,
+    563,
+    430,
+    525,
+    592,
+    492,
+    467,
+    513,
+    546,
+    983,
+    340,
+    539,
+    243,
+    226,
+    192,
+  ];
+  var config = {
+    height: 60,
+    width: 300,
+    autoFit: false,
+    data: data,
+    smooth: true,
+    areaStyle: { fill: '#d6e3fd' },
   };
   return <TinyArea {...config} />;
 };
