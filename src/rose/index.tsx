@@ -1,11 +1,13 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Rose as G2plotRose, RoseOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
+import { getChart } from '../util';
+import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
 export interface RoseConfig extends G2plotProps, ContainerProps {
-  chartRef?: React.MutableRefObject<G2plotRose | undefined>;
+  chartRef?: ChartRefOptions;
 }
 
 const RoseChart = forwardRef((props: RoseConfig, ref) => {
@@ -22,9 +24,7 @@ const RoseChart = forwardRef((props: RoseConfig, ref) => {
   } = props;
   const { chart, container } = useChart<G2plotRose, RoseConfig>(G2plotRose, rest);
   useEffect(() => {
-    if (chartRef) {
-      chartRef.current = chart.current;
-    }
+    getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,

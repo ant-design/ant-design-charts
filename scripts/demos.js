@@ -114,7 +114,7 @@ const demos = [
 
 
 const start = () => {
-  console.info('文档s生成中....');
+  console.info('文档生成中....');
   demos.forEach((item) => {
     shelljs.exec(`node scripts/singledemo.js ${item.chart} ${item.name}`);
   });

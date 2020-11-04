@@ -1,11 +1,15 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Bullet as G2plotBullet, BulletOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
+import { getChart } from '../util';
+import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface BulletConfig extends Omit<G2plotProps, 'color' | 'label' | 'style'>, ContainerProps {
-  chartRef?: React.MutableRefObject<G2plotBullet | undefined>;
+export interface BulletConfig
+  extends Omit<G2plotProps, 'color' | 'label' | 'style'>,
+    ContainerProps {
+  chartRef?: ChartRefOptions;
 }
 
 const BulletChart = forwardRef((props: BulletConfig, ref) => {
@@ -22,9 +26,7 @@ const BulletChart = forwardRef((props: BulletConfig, ref) => {
   } = props;
   const { chart, container } = useChart<G2plotBullet, BulletConfig>(G2plotBullet, rest);
   useEffect(() => {
-    if (chartRef) {
-      chartRef.current = chart.current;
-    }
+    getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,

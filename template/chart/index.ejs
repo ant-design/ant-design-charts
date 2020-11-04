@@ -1,6 +1,8 @@
 import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
 import { <%= chartName %> as G2Plot<%= chartName %>, <%= chartName %>Options as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
+import { getChart } from '../util';
+import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
@@ -22,9 +24,7 @@ const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) =>
   } = props;
   const { chart, container } = useChart<G2Plot<%= chartName %>, <%= chartName %>Config>(G2Plot<%= chartName %>, rest);
   useEffect(() => {
-    if (chartRef) {
-      chartRef.current = chart.current;
-    }
+     getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,

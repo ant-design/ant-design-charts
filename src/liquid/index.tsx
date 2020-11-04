@@ -1,11 +1,13 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Liquid as G2plotLiquid, LiquidOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
+import { getChart } from '../util';
+import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
 export interface LiquidConfig extends G2plotProps, ContainerProps {
-  chartRef?: React.MutableRefObject<G2plotLiquid | undefined>;
+  chartRef?: ChartRefOptions;
 }
 
 const LiquidChart = forwardRef((props: LiquidConfig, ref) => {
@@ -22,9 +24,7 @@ const LiquidChart = forwardRef((props: LiquidConfig, ref) => {
   } = props;
   const { chart, container } = useChart<G2plotLiquid, LiquidConfig>(G2plotLiquid, rest);
   useEffect(() => {
-    if (chartRef) {
-      chartRef.current = chart.current;
-    }
+    getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,

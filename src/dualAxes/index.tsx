@@ -1,11 +1,13 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { DualAxes as G2plotDualAxes, DualAxesOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
+import { getChart } from '../util';
+import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
 export interface DualAxesConfig extends G2plotProps, ContainerProps {
-  chartRef?: React.MutableRefObject<G2plotDualAxes | undefined>;
+  chartRef?: ChartRefOptions;
 }
 
 const DualAxesChart = forwardRef((props: DualAxesConfig, ref) => {
@@ -22,9 +24,7 @@ const DualAxesChart = forwardRef((props: DualAxesConfig, ref) => {
   } = props;
   const { chart, container } = useChart<G2plotDualAxes, DualAxesConfig>(G2plotDualAxes, rest);
   useEffect(() => {
-    if (chartRef) {
-      chartRef.current = chart.current;
-    }
+    getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
