@@ -1,77 +1,67 @@
-## 配置属性
+
+
+title: 旭日图
+
+## order: 17
 
 ### 图表容器
 
 #### width
 
-<description>**可选** _number_</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
-功能描述：设置图表宽度。
-
-默认配置：`400`
+设置图表宽度。
 
 #### height
 
-<description>**可选** _number_</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
-功能描述：设置图表高度。
-
-默认配置：`400`
+设置图表高度。
 
 #### autoFit
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-功能描述：图表是否自适应容器宽高。当 `autoFit` 设置为 true 时，`width` 和 `height` 的设置将失效。
-
-默认配置：`true`
+图表是否自适应容器宽高。当 `autoFit` 设置为 true 时，`width` 和 `height` 的设置将失效。
 
 #### padding
 
-<description>**可选** _number\[] | number | 'auto'_</description>
+<description>**optional** _number\[] | number | 'auto'_</description>
 
-功能描述： 画布的 `padding` 值，或者开启 `auto`。
+画布的 `padding` 值，或者开启 `auto`。
 
 #### appendPadding
 
-<description>**可选** _number\[] | number_</description>
+<description>**optional** _number\[] | number_</description>
 
-功能描述： 额外增加的 `appendPadding` 值。
+额外增加的 `appendPadding` 值。
 
 #### renderer
 
-<description>**可选** _string_</description>
+<description>**optional** _string_ _default:_ `canvas`</description>
 
-功能描述: 设置图表渲染方式为 `canvas` 或 `svg`。
-
-默认配置： `canvas`
+设置图表渲染方式为 `canvas` 或 `svg`。
 
 #### pixelRatio
 
-<description>**可选** _number_</description>
+<description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
 
-功能描述: 设置图表渲染的像素比。
-
-默认配置： `window.devicePixelRatio`
+设置图表渲染的像素比。
 
 
 ### 数据映射
 
-#### data 📌
+#### data
 
-**必选**, _object_
+<description>**required** _object_</description>
 
-功能描述： 设置图表数据源
-
-默认配置： 无
+设置图表数据源。
 
 #### meta
 
-**可选**, _object_
+<description>**optional** _object_</description>
 
-功能描述： 全局化配置图表数据元信息，以字段为单位进行配置。在 meta 上的配置将同时影响所有组件的文本信息。
-
-默认配置： 无
+全局化配置图表数据元信息，以字段为单位进行配置。在 meta 上的配置将同时影响所有组件的文本信息。
 
 | 细分配置项名称   | 类型          | 功能描述                       |
 | --------- | ----------- | -------------------------- |
@@ -83,67 +73,53 @@
 
 #### type
 
-**可选**, _partition | treemap_;
+<description>**optional** _partition | treemap_ _default:_ `partition`</description>
 
-功能描述： 布局类型，更多类型探索中。
-
-默认配置： `partition`
+布局类型，更多类型探索中。
 
 #### seriesField
 
-**可选**, _string_;
+<description>**optional** _string_</description>
 
-功能描述： 分组字段，即要映射的数值字段。
-
-默认配置： 无
+分组字段，即要映射的数值字段。
 
 #### reflect
 
-**可选**, _x | y_;
+<description>**optional** _x | y_</description>
 
-功能描述： 径向类型，非特殊情况不建议使用。
-
-默认配置： 无
+径向类型，非特殊情况不建议使用。
 
 #### hierarchyConfig
 
-**可选**, _object_;
+<description>**optional** _object_</description>
 
-功能描述： 层级布局配置，例如 `size`、`padding` 等，详细配置参考[d3-hierarchy](https://github.com/d3/d3-hierarchy#treemap)。
-
-默认配置： 无
+层级布局配置，例如 `size`、`padding` 等，详细配置参考[d3-hierarchy](https://github.com/d3/d3-hierarchy#treemap)。
 
 ### 图形样式
 
 #### radius
 
-**可选**, _string_
+<description>**optional** _string_ _default:_ `1`</description>
 
-功能描述: 半径， 0 ~ 1。
-
-默认配置： `1`
+半径，0 ~ 1。
 
 #### innerRadius
 
-**可选**, _number_;
+<description>**optional** _number_ _default:_ `0`</description>
 
-功能描述： 内径，0 ~ 1。
-
-默认配置： `0`
+内径，0 ~ 1。
 
 #### colorField
 
-**可选**, _string_;
+<description>**optional** _string_</description>
 
-功能描述： 颜色映射字段。
-
-默认配置： 无
+颜色映射字段。
 
 #### color
 
-**可选**, _string | string\[] | Function_
+<description>**optional** _string | string\[] | Function_</description>
 
-功能描述： 指定点的颜色。如没有配置 colorField，指定一个单值即可。对 colorFiled 进行了配置的情况下，即可以指定一系列色值，也可以通过回调函数的方法根据对应数值进行设置。
+指定点的颜色。如没有配置 colorField，指定一个单值即可。对 colorFiled 进行了配置的情况下，即可以指定一系列色值，也可以通过回调函数的方法根据对应数值进行设置。
 
 默认配置：采用 theme 中的色板。
 
@@ -171,11 +147,11 @@
 ```
 
 
-#### sunburstStyle ✨
+#### sunburstStyle
 
-**可选**, _object_
+<description>**optional** _object_</description>
 
-功能描述： 旭日图形样式。pointStyle 中的`fill`会覆盖 `color` 的配置。sunburstStyle 可以直接指定，也可以通过 callback 的方式，根据数据指定单独的样式。
+旭日图形样式。pointStyle 中的`fill`会覆盖 `color` 的配置。sunburstStyle 可以直接指定，也可以通过 callback 的方式，根据数据指定单独的样式。
 
 默认配置：
 
@@ -218,73 +194,83 @@
 }
 ```
 
-## 图表组件
-
 ### 图表组件
 
 #### tooltip
 
+##### fields
+
+<description>**optional** _string\[]_</description>
+
+指定 tooltip 中显示的字段，默认不同图表有不同的默认字段列表。配合 `formatter` 配置一起使用，效果更加。
+
+```ts
+tooltip: {
+  fields: ['x', 'y'],
+}
+```
+
+##### formatter
+
+<description>**optional** _Function_</description>
+
+格式化 tooltip item 内容。
+
+```ts
+tooltip: {
+  formatter: (datum: Datum) => {
+    return { name: datum.x, value: datum.y + '% };
+  },
+}
+```
+
 ##### follow
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-功能描述：设置 tooltip 内容框是否跟随鼠标移动。
-
-默认配置：`true`
+设置 tooltip 内容框是否跟随鼠标移动。
 
 ##### enterable
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-功能描述：tooltip 是否允许鼠标滑入。
-
-默认配置：`false`
+tooltip 是否允许鼠标滑入。
 
 ##### showTitle
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-功能描述：是否展示 tooltip 标题。
-
-默认配置：`false`
+是否展示 tooltip 标题。
 
 ##### title
 
-<description>**可选** _string_</description>
+<description>**optional** _string_</description>
 
-功能描述：设置 tooltip 的标题内容：如果值为数据字段名，则会展示数据中对应该字段的数值，如果数据中不存在该字段，则直接展示 title 值。
-
-默认配置：`无`
+设置 tooltip 的标题内容：如果值为数据字段名，则会展示数据中对应该字段的数值，如果数据中不存在该字段，则直接展示 title 值。
 
 ##### position
 
-<description>**可选** _`top` \| `bottom` \| `left` \| `right`_</description>
+<description>**optional** _`top` \| `bottom` \| `left` \| `right`_</description>
 
-功能描述：设置 tooltip 的固定展示位置，相对于数据点。
-
-默认配置：`无`
+设置 tooltip 的固定展示位置，相对于数据点。
 
 ##### shared
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_</description>
 
-功能描述：true 表示合并当前点对应的所有数据并展示，false 表示只展示离当前点最逼近的数据内容。
-
-默认配置：`无`
+true 表示合并当前点对应的所有数据并展示，false 表示只展示离当前点最逼近的数据内容。
 
 ##### showCrosshairs
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-功能描述：是否展示 crosshairs。
-
-默认配置：`false`
+是否展示 crosshairs。
 
 ##### crosshairs
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-功能描述：配置 tooltip 的 crosshairs，当且仅当 `showCrosshairs` 为 true 时生效。
+配置 tooltip 的 crosshairs，当且仅当 `showCrosshairs` 为 true 时生效。
 
 | 细分配置项名称        | 类型                     | 功能描述                                            |
 | -------------- | ---------------------- | ----------------------------------------------- |
@@ -427,59 +413,45 @@
 
 ##### showMarkers
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-功能描述：是否渲染 tooltipMarkers。
-
-默认配置：`true`
+是否渲染 tooltipMarkers。
 
 ##### marker
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-功能描述：tooltipMarker 的样式配置。
-
-默认配置：`无`
+tooltipMarker 的样式配置。
 
 ##### showContent
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-功能描述：是否展示 tooltip 内容框。
-
-默认配置：`false`
+是否展示 tooltip 内容框。
 
 ##### container
 
-<description>**可选** _string|HTMLElement_</description>
+<description>**optional** _string|HTMLElement_</description>
 
-功能描述：自定义 tooltip 的容器。
-
-默认配置：`无`
+自定义 tooltip 的容器。
 
 ##### containerTpl
 
-<description>**可选** _string_</description>
+<description>**optional** _string_</description>
 
-功能描述：用于指定图例容器的模板，自定义模板时必须包含各个 dom 节点的 class。
-
-默认配置：`无`
+用于指定图例容器的模板，自定义模板时必须包含各个 dom 节点的 class。
 
 ##### itemTpl
 
-<description>**可选** _string_</description>
+<description>**optional** _string_</description>
 
-功能描述：每项记录的默认模板，自定义模板时必须包含各个 dom 节点的 class。
-
-默认配置：`无`
+每项记录的默认模板，自定义模板时必须包含各个 dom 节点的 class。
 
 ##### domStyles
 
-<description>**可选** _TooltipDomStyles_</description>
+<description>**optional** _TooltipDomStyles_</description>
 
-功能描述：传入各个 dom 的样式。
-
-默认配置： `无`
+传入各个 dom 的样式。
 
 ```ts
 /** Tooltip 内容框的 css 样式定义 */
@@ -498,19 +470,15 @@
 
 ##### offset
 
-<description>**可选** _number_</description>
+<description>**optional** _number_</description>
 
-功能描述：tooltip 偏移量。
-
-默认配置：`无`
+tooltip 偏移量。
 
 ##### customContent
 
-<description>**可选** _Function_</description>
+<description>**optional** _Function_</description>
 
-功能描述：支持自定义模板。
-
-默认配置：`无`
+支持自定义模板。
 
 ```ts
 {
@@ -521,6 +489,207 @@
   }
 }
 ```
+
+
+#### annotations
+
+标注是数组类型，可以设置多个。
+
+```ts
+annotations: [
+  {
+    type: 'text',
+    position: ['median', 'median'],
+    content: '辅助文本',
+    style: {
+      fill: 'red',
+    },
+  },
+];
+```
+
+##### type
+
+<description>**required** _string_ </description>
+
+标注类型, text | line | image | region | dataMarker | dataRegion | regionFilter | shape | html.
+
+##### position
+
+<description>**required** _object_ </description>
+
+标注位置。
+
+-   第一种，object 使用图表 x, y 对应的原始数据例如：{ time: '2010-01-01', value: 200 };
+-   第二种，数组来配置位置 [ x, y ]，根据数组中的值的存在以下几种形式：
+    1、对应数据源中的原始数据；
+    2、关键字：'min'、'max'、'median'、'start'、'end' 分别代表数据的最大值、最小值、中间值以及坐标系区间的起始和结束；
+    3、x, y 都是百分比的形式，如 30%，在绘图区域定位(即坐标系内)。
+    1 和 2 两种类型的数据可以混用，但是使用百分比形式时 x 和 y 必须都是百分比形式。
+-   第三种，回调函数，可以动态得确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景。
+
+##### top
+
+<description>**optional** _boolean_ _default:_ `false`</description>
+
+是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层。
+
+##### animate
+
+<description>**optional** _boolean_ </description>
+
+是否进行动画。
+
+##### offsetX
+
+<description>**optional** _number_ </description>
+
+x 方向的偏移量。
+
+##### offsetY
+
+<description>**optional** _number_ </description>
+
+y 方向的偏移量。
+
+##### start
+
+<description>**optional** _Array_ </description>
+
+起始位置，一般用于 line、region 等。
+
+##### end
+
+<description>**optional** _Array_ </description>
+
+结束位置，一般用于 line、region 等。
+
+```ts
+{
+  type: 'line',
+  start: ['min', 'median'],
+  end: ['max', 'median'],
+},
+```
+
+##### style
+
+<description>**optional** _object_ </description>
+
+图形样式属性，参考绘图属性。
+
+##### src
+
+<description>**optional** _string_ </description>
+
+图片路径，用于 image 中。
+
+##### content
+
+<description>**optional** _string_ </description>
+
+文本内容，用于 text 中。
+
+##### rotate
+
+<description>**optional** _number_ </description>
+
+文本的旋转角度，弧度制。
+
+##### maxLength
+
+<description>**optional** _number_ </description>
+
+文文本的最大长度。
+
+##### autoEllipsis
+
+<description>**optional** _boolean_ </description>
+
+超出 maxLength 是否自动省略。
+
+##### ellipsisPosition
+
+<description>**optional** _head | middle | tail _ </description>
+
+文本截断的位置。
+
+##### isVertical
+
+<description>**optional** _boolean_ </description>
+
+文本在二维坐标系的显示位置，是沿着 x 轴显示 还是沿着 y 轴显示。
+
+##### background
+
+<description>**optional** _object_ </description>
+
+文字包围盒样式设置。
+
+| 参数名     | 类型                  | 是否必选 | 默认值 | 描述        |
+| ------- | ------------------- | ---- | --- | --------- |
+| style   | object 参考绘图属性       |      | -   | 文本背景的样式   |
+| padding | number \| number\[] |      | -   | 文本背景周围的留白 |
+
+##### color
+
+<description>**optional** _string_ </description>
+
+染色色值，一般用于 regionFilter。
+
+##### apply
+
+<description>**optional** _string\[]_ </description>
+
+设定 regionFilter 只对特定 geometry 类型起作用，如 apply: ['area']，一般用于 regionFilter。
+
+##### autoAdjust
+
+<description>**optional** _boolean_ </description>
+
+文本超出绘制区域时，是否自动调节文本方向。
+
+##### direction
+
+<description>**optional** _upward | downward_ </description>
+
+朝向。
+
+##### lineLength
+
+<description>**optional** _number_ </description>
+
+line 长度，用于 dataRegion。
+
+##### render
+
+<description>**optional** _string_ </description>
+
+自定义标记的绘制 render 函数，其他 container 为标记绘制的父容器, view 为图形实例, helpers 为辅助函数，其他 parserPosition 可以用来计算数据点对应的坐标位置，用于 shape。
+
+##### container
+
+<description>**optional** _string | HTMLElement_ </description>
+
+自定义 HTML 图形标记的容器元素，用于 html
+
+##### container
+
+<description>**optional** _string | HTMLElement_ </description>
+
+自定义的图形标记的 HTML 元素，可为 HTML DOM 字符串，或 HTML 元素，或 html 回调函数，用于 html
+
+##### alignX
+
+<description>**optional** _left' | 'middle' | 'right'_ </description>
+
+DOM 元素在 X 方向的对齐方式，用于 html
+
+##### alignY
+
+<description>**optional** _left' | 'middle' | 'right'_ </description>
+
+DOM 元素在 Y 方向的对齐方式，用于 html
 
 
 #### theme
@@ -999,7 +1168,7 @@ chart.off('eventName', callback);
 
 #### eventName
 
-组成方式：element + ':' + es 。
+组成方式：element + ':' + es。
 
 element 指要绑定的元素类型，例如 `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` 等。
 
@@ -1055,21 +1224,13 @@ chart.on('slider:valuechanged', (e) => {
 
 ### 图表方法
 
-#### render() 📌
+#### render()
 
-<description>**必选** </description>
-
-功能描述：渲染图表。
-
-默认配置：`无`
+渲染图表。
 
 #### update()
 
-<description>**可选** </description>
-
-功能描述：更新图表配置项，配置覆盖，不会做差异比对。
-
-默认配置：`无`
+更新图表配置项，配置覆盖，不会做差异比对。
 
 使用示例：
 
@@ -1082,9 +1243,9 @@ plot.update({
 
 <!-- #### changeData()
 
-<description>**可选** </description>
+<description>**optional** </description>
 
-功能描述：更新图表数据。`update()`方法会导致图形区域销毁并重建，如果只进行数据更新，而不涉及其他配置项更新，推荐使用本方法。。
+更新图表数据。`update()`方法会导致图形区域销毁并重建，如果只进行数据更新，而不涉及其他配置项更新，推荐使用本方法。。
 
 默认配置：`无`
 

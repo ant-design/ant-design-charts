@@ -1,91 +1,11 @@
 ---
 title: 迷你折线图
-order: 28
+order: 29
 ---
 
 # 迷你折线图
 
 ## TinyLine
-
-### 迷你折线图回调样式
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { TinyLine } from '@ant-design/charts';
-
-const DemoTinyLine: React.FC = () => {
-  const config = {
-    height: 60,
-    width: 300,
-    autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
-    smooth: true,
-    tooltip: false,
-    lineStyle: () => {
-      return {
-        stroke: 'green',
-        lineWidth: 1,
-      };
-    },
-  };
-  return <TinyLine {...config} />;
-};
-
-export default DemoTinyLine;
-```
-
-### 迷你折线图样式
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { TinyLine } from '@ant-design/charts';
-
-const DemoTinyLine: React.FC = () => {
-  const config = {
-    height: 60,
-    width: 300,
-    autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
-    smooth: true,
-    lineStyle: {
-      lineDash: [2, 2],
-    },
-  };
-  return <TinyLine {...config} />;
-};
-
-export default DemoTinyLine;
-```
-
-### 迷你折线图比例尺
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { TinyLine } from '@ant-design/charts';
-
-const DemoTinyLine: React.FC = () => {
-  const config = {
-    height: 60,
-    width: 300,
-    autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
-    smooth: true,
-    tooltip: {
-      showCrosshairs: true,
-      showMarkers: true,
-    },
-    meta: {
-      y: {
-        max: 150,
-        min: -50,
-      },
-    },
-  };
-  return <TinyLine {...config} />;
-};
-
-export default DemoTinyLine;
-```
 
 ### 基础迷你折线图
 
@@ -94,13 +14,115 @@ import React, { useState, useEffect } from 'react';
 import { TinyLine } from '@ant-design/charts';
 
 const DemoTinyLine: React.FC = () => {
-  const config = {
+  var data = [
+    264,
+    417,
+    438,
+    887,
+    309,
+    397,
+    550,
+    575,
+    563,
+    430,
+    525,
+    592,
+    492,
+    467,
+    513,
+    546,
+    983,
+    340,
+    539,
+    243,
+    226,
+    192,
+  ];
+  var config = {
     height: 60,
     width: 300,
     autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
+    data: data,
     smooth: true,
-    tooltip: { formatter: ({ x, y }) => `NO.${x}: ${y.toFixed(2)}` },
+  };
+  return <TinyLine {...config} />;
+};
+
+export default DemoTinyLine;
+```
+
+### 带辅助线的迷你折线图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { TinyLine } from '@ant-design/charts';
+
+const DemoTinyLine: React.FC = () => {
+  var data = [
+    264,
+    417,
+    438,
+    887,
+    309,
+    397,
+    550,
+    575,
+    563,
+    430,
+    525,
+    592,
+    492,
+    467,
+    513,
+    546,
+    983,
+    340,
+    539,
+    243,
+    226,
+    192,
+  ];
+  var config = {
+    height: 60,
+    width: 300,
+    autoFit: false,
+    data: data,
+    smooth: true,
+    tooltip: false,
+    annotations: [
+      {
+        type: 'line',
+        start: ['min', 'mean'],
+        end: ['max', 'mean'],
+        text: {
+          content: '平均值',
+          offsetY: -2,
+          style: {
+            textAlign: 'left',
+            fontSize: 10,
+            fill: 'rgba(44, 53, 66, 0.45)',
+            textBaseline: 'bottom',
+          },
+        },
+        style: { stroke: 'rgba(0, 0, 0, 0.25)' },
+      },
+      {
+        type: 'line',
+        start: ['min', 800],
+        end: ['max', 800],
+        text: {
+          content: '目标值',
+          offsetY: -2,
+          style: {
+            textAlign: 'left',
+            fontSize: 10,
+            fill: 'rgba(44, 53, 66, 0.45)',
+            textBaseline: 'bottom',
+          },
+        },
+        style: { stroke: 'rgba(0, 0, 0, 0.55)' },
+      },
+    ],
   };
   return <TinyLine {...config} />;
 };

@@ -259,7 +259,22 @@ export default DemoLine;
 
 ### 获取 chart 实例
 
-方案 1: 挂载到 chartRef 上
+方案 1: chartRef 回调
+
+```typescript
+import React from 'react';
+import { Line } from '@ant-design/charts';
+
+const Page: React.FC = () => {
+  const data = [];
+  const config = {};
+  return <Line {...config} chartRef={(chart) => console.log(chart)} />;
+};
+
+export default Page;
+```
+
+方案 2: 挂载到 chartRef 上
 
 ```typescript
 import React from 'react';
@@ -280,7 +295,7 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-方案 2: 挂载到 ref 上
+方案 3: 挂载到 ref 上
 
 ```typescript
 import React from 'react';

@@ -10,11 +10,11 @@ order: 5
 ### 饼图
 
 ```tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 
 const DemoPie: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -40,9 +40,9 @@ const DemoPie: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
+  var config = {
     appendPadding: 10,
-    data,
+    data: data,
     angleField: 'value',
     colorField: 'type',
     radius: 0.8,
@@ -56,6 +56,7 @@ const DemoPie: React.FC = () => {
         textAlign: 'center',
       },
     },
+    interactions: [{ type: 'element-active' }],
   };
   return <Pie {...config} />;
 };
@@ -66,11 +67,11 @@ export default DemoPie;
 ### 饼图-图例交互
 
 ```tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 
 const DemoPie: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -96,9 +97,9 @@ const DemoPie: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
+  var config = {
     appendPadding: 10,
-    data,
+    data: data,
     angleField: 'value',
     colorField: 'type',
     radius: 0.8,
@@ -106,7 +107,7 @@ const DemoPie: React.FC = () => {
       type: 'outer',
       content: '{name} {percentage}',
     },
-    interactions: [{ type: 'pie-legend-active' }],
+    interactions: [{ type: 'pie-legend-active' }, { type: 'element-active' }],
   };
   return <Pie {...config} />;
 };
@@ -117,11 +118,11 @@ export default DemoPie;
 ### 饼图-外部图形标签
 
 ```tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 
 const DemoPie: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -147,13 +148,14 @@ const DemoPie: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
+  var config = {
     appendPadding: 10,
-    data,
+    data: data,
     angleField: 'value',
     colorField: 'type',
     radius: 0.8,
     label: { type: 'outer' },
+    interactions: [{ type: 'element-active' }],
   };
   return <Pie {...config} />;
 };
@@ -169,7 +171,7 @@ import { Pie } from '@ant-design/charts';
 
 const DemoPie: React.FC = () => {
   const ref = useRef();
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -195,9 +197,9 @@ const DemoPie: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
+  var config = {
     appendPadding: 10,
-    data,
+    data: data,
     angleField: 'value',
     colorField: 'type',
     radius: 0.8,
@@ -221,14 +223,12 @@ const DemoPie: React.FC = () => {
     },
     interactions: [{ type: 'element-selected' }, { type: 'element-active' }],
   };
-
   useEffect(() => {
     if (ref.current) {
       ref.current.setState('active', (data) => data.type === '分类一');
       ref.current.setState('selected', (data) => data.type === '分类一' || data.type === '分类二');
     }
   }, []);
-
   return <Pie {...config} chartRef={ref} />;
 };
 
@@ -238,11 +238,11 @@ export default DemoPie;
 ### 饼图-带纹理
 
 ```tsx
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 
 const DemoPie: React.FC = () => {
-  const data = [
+  var data = [
     {
       sex: '男',
       sold: 0.45,
@@ -252,9 +252,9 @@ const DemoPie: React.FC = () => {
       sold: 0.55,
     },
   ];
-  const config = {
+  var config = {
     appendPadding: 10,
-    data,
+    data: data,
     angleField: 'sold',
     colorField: 'sex',
     radius: 0.8,
@@ -268,7 +268,8 @@ const DemoPie: React.FC = () => {
         textAlign: 'center',
       },
     },
-    pieStyle: ({ sex }) => {
+    pieStyle: function pieStyle(_ref) {
+      var sex = _ref.sex;
       if (sex === '男') {
         return { fill: 'p(a)https://gw.alipayobjects.com/zos/rmsportal/nASTPWDPJDMgkDRlAUmw.jpeg' };
       }
@@ -284,11 +285,11 @@ export default DemoPie;
 ### 饼图-蜘蛛布局标签
 
 ```tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 
 const DemoPie: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -314,9 +315,9 @@ const DemoPie: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
+  var config = {
     appendPadding: 10,
-    data,
+    data: data,
     angleField: 'value',
     colorField: 'type',
     radius: 0.8,
@@ -324,6 +325,7 @@ const DemoPie: React.FC = () => {
       type: 'spider',
       content: '{name}\n{percentage}',
     },
+    interactions: [{ type: 'element-selected' }, { type: 'element-active' }],
   };
   return <Pie {...config} />;
 };
@@ -334,11 +336,11 @@ export default DemoPie;
 ### 环图
 
 ```tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 
 const DemoPie: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -364,9 +366,9 @@ const DemoPie: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
+  var config = {
     appendPadding: 10,
-    data,
+    data: data,
     angleField: 'value',
     colorField: 'type',
     radius: 0.8,
@@ -381,9 +383,15 @@ const DemoPie: React.FC = () => {
         textAlign: 'center',
       },
     },
+    interactions: [{ type: 'element-selected' }, { type: 'element-active' }],
     statistic: {
       title: false,
-      content: { formatter: () => 'AntV\nG2Plot' },
+      content: {
+        style: { fontSize: 44 },
+        formatter: function formatter() {
+          return 'AntV\nG2Plot';
+        },
+      },
     },
   };
   return <Pie {...config} />;
@@ -395,11 +403,24 @@ export default DemoPie;
 ### 环图 - 带统计指标卡
 
 ```tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 
 const DemoPie: React.FC = () => {
-  const data = [
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -425,27 +446,52 @@ const DemoPie: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
-    appendPadding: 10,
-    data,
-    angleField: 'value',
-    colorField: 'type',
-    radius: 0.8,
-    innerRadius: 0.64,
-    label: {
-      type: 'inner',
-      offset: -35,
-      autoRotate: false,
-      content: '{value}',
-      style: {
-        fill: '#333',
-        stroke: '#fff',
-        strokeWidth: 1,
+  var config = _defineProperty(
+    {
+      appendPadding: 10,
+      data: data,
+      angleField: 'value',
+      colorField: 'type',
+      radius: 0.8,
+      innerRadius: 0.64,
+      label: {
+        type: 'inner',
+        offset: -35,
+        autoRotate: false,
+        content: '{value}',
+        style: {
+          fill: '#333',
+          stroke: '#fff',
+          strokeWidth: 1,
+        },
+      },
+      interactions: [{ type: 'element-selected' }, { type: 'element-active' }],
+      statistic: {
+        title: {
+          offsetY: -20,
+          style: { fontSize: 44 },
+          formatter: function formatter(datum) {
+            return datum ? datum.type : '总计';
+          },
+        },
+        content: {
+          offsetY: 30,
+          style: { fontSize: 44 },
+          formatter: function formatter(datum, data) {
+            return datum
+              ? '\xA5 '.concat(datum.value)
+              : '\xA5 '.concat(
+                  data.reduce(function (r, d) {
+                    return r + d.value;
+                  }, 0),
+                );
+          },
+        },
       },
     },
-    statistic: { title: { formatter: () => '总计' } },
-    interactions: [{ type: 'pie-statistic-active' }],
-  };
+    'interactions',
+    [{ type: 'pie-statistic-active' }],
+  );
   return <Pie {...config} />;
 };
 

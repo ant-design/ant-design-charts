@@ -1,71 +1,37 @@
 ---
 title: 迷你柱状图
-order: 27
+order: 28
 ---
 
 # 迷你柱状图
 
 ## TinyColumn
 
-### 迷你柱形图回调样式
+### 基础迷你柱形图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { TinyColumn } from '@ant-design/charts';
 
 const DemoTinyColumn: React.FC = () => {
-  const config = {
-    height: 60,
-    width: 300,
+  var data = [274, 337, 81, 497, 666, 219, 269];
+  var config = {
+    height: 64,
+    width: 240,
     autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
-    columnStyle: ({ x, y }) => {
-      return { fill: y > 80 ? 'red' : 'green' };
-    },
-  };
-  return <TinyColumn {...config} />;
-};
-
-export default DemoTinyColumn;
-```
-
-### 迷你柱形图样式
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { TinyColumn } from '@ant-design/charts';
-
-const DemoTinyColumn: React.FC = () => {
-  const config = {
-    height: 60,
-    width: 300,
-    autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
-    columnStyle: { fill: '#222' },
-  };
-  return <TinyColumn {...config} />;
-};
-
-export default DemoTinyColumn;
-```
-
-###
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { TinyColumn } from '@ant-design/charts';
-
-const DemoTinyColumn: React.FC = () => {
-  const config = {
-    height: 60,
-    width: 300,
-    autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
-    columnWidthRatio: 0.9,
-    meta: {
-      y: {
-        max: 150,
-        min: -50,
+    data: data,
+    tooltip: {
+      customContent: function customContent(x, data) {
+        var _data$, _data$$data;
+        return 'NO.'
+          .concat(x, ': ')
+          .concat(
+            (_data$ = data[0]) === null || _data$ === void 0
+              ? void 0
+              : (_data$$data = _data$.data) === null || _data$$data === void 0
+              ? void 0
+              : _data$$data.y.toFixed(2),
+          );
       },
     },
   };
@@ -75,19 +41,38 @@ const DemoTinyColumn: React.FC = () => {
 export default DemoTinyColumn;
 ```
 
-### 基础迷你柱形图
+### 带辅助线的迷你柱形图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { TinyColumn } from '@ant-design/charts';
 
 const DemoTinyColumn: React.FC = () => {
-  const config = {
-    height: 60,
-    width: 300,
+  var data = [274, 337, 81, 497, 666, 219, 269];
+  var config = {
+    height: 64,
+    width: 240,
     autoFit: false,
-    data: new Array(100).fill(0).map(() => Math.random() * 100),
-    tooltip: { formatter: ({ x, y }) => `NO.${x}: ${y.toFixed(2)}` },
+    data: data,
+    tooltip: false,
+    annotations: [
+      {
+        type: 'line',
+        start: ['min', 'mean'],
+        end: ['max', 'mean'],
+        text: {
+          content: '平均值',
+          offsetY: -2,
+          style: {
+            textAlign: 'left',
+            fontSize: 10,
+            fill: 'rgba(44, 53, 66, 0.45)',
+            textBaseline: 'bottom',
+          },
+        },
+        style: { stroke: 'rgba(0, 0, 0, 0.25)' },
+      },
+    ],
   };
   return <TinyColumn {...config} />;
 };

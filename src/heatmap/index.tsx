@@ -1,16 +1,16 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Box as G2plotBox, BoxOptions as G2plotProps } from '@antv/g2plot';
+import { Heatmap as G2plotHeatmap, HeatmapOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface BoxConfig extends G2plotProps, ContainerProps {
+export interface HeatmapConfig extends G2plotProps, ContainerProps {
   chartRef?: ChartRefOptions;
 }
 
-const BoxChart = forwardRef((props: BoxConfig, ref) => {
+const HeatmapChart = forwardRef((props: HeatmapConfig, ref) => {
   const {
     chartRef,
     style = {
@@ -22,7 +22,7 @@ const BoxChart = forwardRef((props: BoxConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2plotBox, BoxConfig>(G2plotBox, rest);
+  const { chart, container } = useChart<G2plotHeatmap, HeatmapConfig>(G2plotHeatmap, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);
@@ -37,4 +37,4 @@ const BoxChart = forwardRef((props: BoxConfig, ref) => {
   );
 });
 
-export default BoxChart;
+export default HeatmapChart;

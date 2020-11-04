@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react';
 import { Bullet } from '@ant-design/charts';
 
 const DemoBullet: React.FC = () => {
-  const data = [
+  var data = [
     {
       title: '满意度',
       ranges: [100],
@@ -22,16 +22,16 @@ const DemoBullet: React.FC = () => {
       target: 85,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     measureField: 'measures',
     rangeField: 'ranges',
     targetField: 'target',
     xField: 'title',
-    style: {
-      range: { color: '#5B8FF9' },
-      measure: { color: '#5B8FF9' },
-      target: { color: '#5B8FF9' },
+    color: {
+      range: '#5B8FF9',
+      measure: '#5B8FF9',
+      target: '#5B8FF9',
     },
     xAxis: { line: null },
     yAxis: false,
@@ -77,7 +77,7 @@ import React, { useState, useEffect } from 'react';
 import { Bullet } from '@ant-design/charts';
 
 const DemoBullet: React.FC = () => {
-  const data = [
+  var data = [
     {
       title: '满意度',
       ranges: [40, 70, 100],
@@ -85,8 +85,8 @@ const DemoBullet: React.FC = () => {
       target: 85,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     measureField: 'measures',
     rangeField: 'ranges',
     targetField: 'target',
@@ -98,6 +98,7 @@ const DemoBullet: React.FC = () => {
     },
     xAxis: { line: null },
     yAxis: false,
+    label: { target: true },
     legend: {
       custom: true,
       position: 'bottom',
@@ -173,7 +174,7 @@ import React, { useState, useEffect } from 'react';
 import { Bullet } from '@ant-design/charts';
 
 const DemoBullet: React.FC = () => {
-  const data = [
+  var data = [
     {
       title: '重庆',
       ranges: [30, 90, 120],
@@ -199,8 +200,8 @@ const DemoBullet: React.FC = () => {
       target: 100,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     measureField: 'measures',
     rangeField: 'ranges',
     targetField: 'target',
@@ -293,7 +294,7 @@ import React, { useState, useEffect } from 'react';
 import { Bullet } from '@ant-design/charts';
 
 const DemoBullet: React.FC = () => {
-  const data = [
+  var data = [
     {
       title: '满意度',
       ranges: [100],
@@ -301,8 +302,8 @@ const DemoBullet: React.FC = () => {
       target: 85,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     measureField: 'measures',
     rangeField: 'ranges',
     targetField: 'target',
@@ -315,7 +316,7 @@ const DemoBullet: React.FC = () => {
     xAxis: { line: null },
     yAxis: false,
     layout: 'vertical',
-    bulletLabel: {
+    label: {
       measure: {
         position: 'middle',
         style: { fill: '#fff' },
@@ -363,7 +364,7 @@ import React, { useState, useEffect } from 'react';
 import { Bullet } from '@ant-design/charts';
 
 const DemoBullet: React.FC = () => {
-  const data = [
+  var data = [
     {
       title: '满意度',
       ranges: [40, 70, 100],
@@ -371,8 +372,8 @@ const DemoBullet: React.FC = () => {
       target: 85,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     measureField: 'measures',
     rangeField: 'ranges',
     targetField: 'target',

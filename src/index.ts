@@ -8,6 +8,7 @@ import Histogram from './histogram';
 import Line from './line';
 import Box from './box';
 import Liquid from './liquid';
+import Heatmap from './heatmap';
 import Pie from './pie';
 import Gauge from './gauge';
 import Progress from './progress';
@@ -23,6 +24,7 @@ import Waterfall from './waterfall';
 import WordCloud from './wordCloud';
 import Sunburst from './sunburst';
 import Stock from './stock';
+import RadialBar from './radialBar';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
 import { G2 } from '@antv/g2plot';
 
@@ -36,6 +38,7 @@ export {
   Histogram,
   Line,
   Liquid,
+  Heatmap,
   Pie,
   Progress,
   Radar,
@@ -50,6 +53,7 @@ export {
   Sunburst,
   DualAxes,
   Stock,
+  RadialBar,
   Gauge,
   OrganizationTreeGraph,
   DagreGraph,
@@ -68,6 +72,7 @@ export default {
   Histogram,
   Line,
   Liquid,
+  Heatmap,
   Pie,
   Progress,
   Radar,
@@ -82,6 +87,7 @@ export default {
   Sunburst,
   DualAxes,
   Stock,
+  RadialBar,
   Gauge,
   OrganizationTreeGraph,
   DagreGraph,

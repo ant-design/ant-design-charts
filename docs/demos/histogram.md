@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react';
 import { Histogram } from '@ant-design/charts';
 
 const DemoHistogram: React.FC = () => {
-  const data = [
+  var data = [
     { value: 1.2 },
     { value: 3.4 },
     { value: 3.7 },
@@ -70,8 +70,8 @@ const DemoHistogram: React.FC = () => {
     { value: 21 },
     { value: 23.4 },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     binField: 'value',
     binWidth: 2,
   };
@@ -88,7 +88,7 @@ import React, { useState, useEffect } from 'react';
 import { Histogram } from '@ant-design/charts';
 
 const DemoHistogram: React.FC = () => {
-  const data = [
+  var data = [
     { value: 1.2 },
     { value: 3.4 },
     { value: 3.7 },
@@ -144,8 +144,8 @@ const DemoHistogram: React.FC = () => {
     { value: 21 },
     { value: 23.4 },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     binField: 'value',
     binWidth: 4,
     tooltip: {
@@ -189,8 +189,8 @@ const DemoHistogram: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     binField: 'depth',
     binWidth: 2,
     stackField: 'cut',

@@ -26,8 +26,8 @@ const DemoArea: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'Date',
     yField: 'scales',
     annotations: [
@@ -74,12 +74,12 @@ const DemoArea: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'Date',
     yField: 'scales',
     xAxis: { tickCount: 5 },
-    areaStyle: () => {
+    areaStyle: function areaStyle() {
       return { fill: 'l(270) 0:#ffffff 0.5:#7ec2f3 1:#1890ff' };
     },
   };
@@ -108,8 +108,8 @@ const DemoArea: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'Date',
     yField: 'scales',
     xAxis: { tickCount: 5 },
@@ -144,8 +144,8 @@ const DemoArea: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'Date',
     yField: 'scales',
     xAxis: { tickCount: 5 },
@@ -175,8 +175,8 @@ const DemoArea: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'year',
     yField: 'value',
     seriesField: 'category',
@@ -185,7 +185,15 @@ const DemoArea: React.FC = () => {
       type: 'time',
       mask: 'YYYY',
     },
-    yAxis: { label: { formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`) } },
+    yAxis: {
+      label: {
+        formatter: function formatter(v) {
+          return ''.concat(v).replace(/\d{1,3}(?=(\d{3})+$)/g, function (s) {
+            return ''.concat(s, ',');
+          });
+        },
+      },
+    },
     legend: { position: 'top' },
   };
   return <Area {...config} />;
@@ -213,8 +221,8 @@ const DemoArea: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'date',
     yField: 'value',
     seriesField: 'country',
@@ -248,12 +256,11 @@ const DemoArea: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'date',
     yField: 'value',
     seriesField: 'country',
-    legend: { position: 'right-top' },
   };
   return <Area {...config} />;
 };

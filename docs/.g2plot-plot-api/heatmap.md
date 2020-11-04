@@ -1,8 +1,8 @@
 
 
-title: 直方图
+title: 热力图
 
-## order: 11
+## order: 23
 
 ### 图表容器
 
@@ -57,29 +57,18 @@ title: 直方图
 
 设置图表数据源。数据源为对象集合，例如：`[{ time: '1991'，value: 20 }, { time: '1992'，value: 20 }]`。
 
-#### binField
+#### xField
 
 <description>**required** _string_</description>
 
-设置直方图绘制 (进行分箱) 的字段。
+点形状在 x 方向位置映射对应的数据字段名，一般对应一个连续字段。
 
-#### binWidth
+#### yField
 
-<description>**optional** _string_</description>
+<description>**required** _string_</description>
 
-设置直方图的分箱宽度，binWidth 影响直方图分成多少箱, 不能与 binNumber 一起使用。
+点形状在 y 方向位置映射所对应的数据字段名，一般对应一个连续字段。
 
-#### binNumber
-
-<description>**optional** _number_</description>
-
-设置直方图的分箱数量，binNumber 影响直方图分箱后每个柱子的宽度。
-
-#### stackField
-
-<description>**optional** _number_</description>
-
-指定层叠字段，通过该字段的值，柱子将会被分割为多个部分，通过颜色进行区分。
 
 #### meta
 
@@ -95,52 +84,31 @@ title: 直方图
 | range     | _number\[]_ | 字段的数据映射区间，默认为[0,1]         |
 
 
+#### type
+
+<description>**optional** _polygon | density_ _default:_ `polygon`</description>
+
+密度热力图需要指定为 density。
+
+#### colorField
+
+<description>**optional** _string_</description>
+
+颜色映射字段名。
+
+#### sizeField
+
+<description>**optional** _string_</description>
+
+点大小映射对应的数据字段名。
+
+#### reflect
+
+<description>**optional** _x | y_</description>
+
+坐标轴映射。
+
 ### 图形样式
-
-#### columnStyle
-
-<description>**optional** _StyleAttr | Function_</description>
-
-柱子样式配置。
-
-<!--图形样式-->
-
-| 属性名           | 类型              | 介绍                                                            |
-| ------------- | --------------- | ------------------------------------------------------------- |
-| fill          | string          | 图形的填充色                                                        |
-| fillOpacity   | number          | 图形的填充透明度                                                      |
-| stroke        | string          | 图形的描边                                                         |
-| lineWidth     | number          | 图形描边的宽度                                                       |
-| lineDash      | [number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| lineOpacity   | number          | 描边透明度                                                         |
-| opacity       | number          | 图形的整体透明度                                                      |
-| shadowColor   | string          | 图形阴影颜色                                                        |
-| strokeOpacity | number          | 图形边框透明度                                                       |
-| shadowBlur    | number          | 图形阴影的高斯模糊系数                                                   |
-| shadowOffsetX | number          | 设置阴影距图形的水平距离                                                  |
-| shadowOffsetY | number          | 设置阴影距图形的垂直距离                                                  |
-| cursor        | string          | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                |
-
-示例代码：
-
-```ts
-{
-  style: {
-    fill: 'red',
-    fillOpacity: 0.5,
-    stroke: 'black',
-    lineWidth: 1,
-    lineDash: [4, 5],
-    strokeOpacity: 0.7,
-    shadowColor: 'black',
-    shadowBlur: 10,
-    shadowOffsetX: 5,
-    shadowOffsetY: 5,
-    cursor: 'pointer'
-  }
-}
-```
-
 
 #### color
 
@@ -173,6 +141,53 @@ title: 直方图
 }
 ```
 
+
+#### shape
+
+<description>**optional** _rect | square | circle_</description>
+
+热力格子中的形状，密度热力图不用指定。
+
+#### sizeRatio
+
+<description>**optional** _number_</description>
+
+热力格子中图形的尺寸比例，可选，只有当 shape 和 sizeField 至少指定一项后才生效。
+
+#### heatmapStyle
+
+<description>**optional** _object_</description>
+
+热力图样式。 heatmapStyle 中的`fill`会覆盖 `color` heatmapStyle 可以直接指定，也可以通过 callback 的方式，根据数据指定单独的样式。
+
+默认配置：
+
+| 细分配置          | 类型     | 功能描述  |
+| ------------- | ------ | ----- |
+| fill          | string | 填充颜色  |
+| stroke        | string | 描边颜色  |
+| lineWidth     | number | 线宽    |
+| lineDash      | number | 虚线显示  |
+| opacity       | number | 透明度   |
+| fillOpacity   | number | 填充透明度 |
+| strokeOpacity | number | 描边透明度 |
+
+```ts
+// 直接指定
+{
+  heatmapStyle: {
+    fill: 'red',
+    stroke: 'yellow',
+    opacity: 0.8
+  },
+}
+// Function
+{
+  heatmapStyle: (item) => ({fill: 'red'})
+}
+```
+
+## 图表组件
 
 ### 图表组件
 

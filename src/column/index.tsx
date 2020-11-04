@@ -1,11 +1,13 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Column as G2plotColumn, ColumnOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
+import { getChart } from '../util';
+import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
 export interface ColumnConfig extends G2plotProps, ContainerProps {
-  chartRef?: React.MutableRefObject<G2plotColumn | undefined>;
+  chartRef?: ChartRefOptions;
 }
 
 const ColumnChart = forwardRef((props: ColumnConfig, ref) => {
@@ -23,9 +25,7 @@ const ColumnChart = forwardRef((props: ColumnConfig, ref) => {
   const { chart, container } = useChart<G2plotColumn, ColumnConfig>(G2plotColumn, rest);
 
   useEffect(() => {
-    if (chartRef) {
-      chartRef.current = chart.current;
-    }
+    getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,

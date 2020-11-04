@@ -1,11 +1,13 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Stock as G2plotStock, StockOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
+import { getChart } from '../util';
+import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
 export interface StockConfig extends G2plotProps, ContainerProps {
-  chartRef?: React.MutableRefObject<G2plotStock | undefined>;
+  chartRef?: ChartRefOptions;
 }
 
 const StockChart = forwardRef((props: StockConfig, ref) => {
@@ -23,9 +25,7 @@ const StockChart = forwardRef((props: StockConfig, ref) => {
   const { chart, container } = useChart<G2plotStock, StockConfig>(G2plotStock, rest);
 
   useEffect(() => {
-    if (chartRef) {
-      chartRef.current = chart.current;
-    }
+    getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,

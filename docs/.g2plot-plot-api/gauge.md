@@ -1,109 +1,93 @@
-## 配置属性
+
+
+title: 仪表盘
+
+## order: 22
 
 ### 图表容器
 
 #### width
 
-<description>**可选** _number_</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
-功能描述：设置图表宽度。
-
-默认配置：`400`
+设置图表宽度。
 
 #### height
 
-<description>**可选** _number_</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
-功能描述：设置图表高度。
-
-默认配置：`400`
+设置图表高度。
 
 #### autoFit
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-功能描述：图表是否自适应容器宽高。当 `autoFit` 设置为 true 时，`width` 和 `height` 的设置将失效。
-
-默认配置：`true`
+图表是否自适应容器宽高。当 `autoFit` 设置为 true 时，`width` 和 `height` 的设置将失效。
 
 #### padding
 
-<description>**可选** _number\[] | number | 'auto'_</description>
+<description>**optional** _number\[] | number | 'auto'_</description>
 
-功能描述： 画布的 `padding` 值，或者开启 `auto`。
+画布的 `padding` 值，或者开启 `auto`。
 
 #### appendPadding
 
-<description>**可选** _number\[] | number_</description>
+<description>**optional** _number\[] | number_</description>
 
-功能描述： 额外增加的 `appendPadding` 值。
+额外增加的 `appendPadding` 值。
 
 #### renderer
 
-<description>**可选** _string_</description>
+<description>**optional** _string_ _default:_ `canvas`</description>
 
-功能描述: 设置图表渲染方式为 `canvas` 或 `svg`。
-
-默认配置： `canvas`
+设置图表渲染方式为 `canvas` 或 `svg`。
 
 #### pixelRatio
 
-<description>**可选** _number_</description>
+<description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
 
-功能描述: 设置图表渲染的像素比。
-
-默认配置： `window.devicePixelRatio`
+设置图表渲染的像素比。
 
 
 ### 数据映射
 
-#### percent 📌
+#### percent
 
-**必选**, _number_
+<description>**required** _number_</description>
 
-功能描述： 指标比例
-
-默认配置： 无
+指标比例。
 
 #### radius
 
-**可选**, _number_
+<description>**optional** _number_ _default:_ `0.95`</description>
 
-功能描述： 圆盘的外半径， 0 ~ 1 。
-
-默认配置： `0.95`
+圆盘的外半径，0 ~ 1。 
 
 #### innerRadius
 
-**可选**, _number_
+<description>**optional** _number_ _default:_ `0.9`</description>
 
-功能描述： 圆盘的内半径， 0 ~ 1 。
-
-默认配置： `0.9`
+圆盘的内半径，0 ~ 1。
 
 #### startAngle
 
-**可选**, _number_
+<description>**optional** _number_ _default:_ `(-7 / 6) * Math.PI`</description>
 
-功能描述： 圆盘的起始角度。
-
-默认配置： `(-7 / 6) * Math.PI`
+圆盘的起始角度。
 
 #### endAngle
 
-**可选**, _number_
+<description>**optional** _number_ _default:_ `(1 / 6) * Math.PI`</description>
 
-功能描述： 圆盘的终止角度。
-
-默认配置： `(1 / 6) * Math.PI`
+圆盘的终止角度。
 
 ### 图形样式
 
 #### range
 
-**可选**, _object_
+<description>**optional** _object_</description>
 
-功能描述： 仪表盘辅助圆弧的样式。
+仪表盘辅助圆弧的样式。
 
 | 配置项   | 类型        | 描述                 |
 | ----- | --------- | ------------------ |
@@ -112,9 +96,9 @@
 
 #### indicator
 
-**可选**, _object_
+<description>**optional** _object_</description>
 
-功能描述： 仪表盘指示器样式配置。按照组件分成为：
+仪表盘指示器样式配置。按照组件分成为：
 
 -   `pointer`：指示器中的指针样式配置
 -   `pin`：指示器中的圆盘样式配置
@@ -125,11 +109,9 @@
 
 #### statistic
 
-**可选**, _object_
+<description>**optional** _object_</description>
 
-功能描述： 指标文本组件 。
-
-默认配置： 无
+指标文本组件。
 
 | 配置项     | 类型                     | 描述   |
 | ------- | ---------------------- | ---- |
@@ -149,91 +131,69 @@ StatisticText
 
 #### axis
 
-**可选**, _object_
+<description>**optional** _object_</description>
 
-功能描述： 指标辅助轴样式 。
-
-默认配置： 无
+指标辅助轴样式。
 
 ##### nice
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-功能描述：是否美化。
-
-默认配置：`true`
+是否美化。
 
 ##### min
 
-<description>**可选** _number_</description>
+<description>**optional** _number_ _default:_ `0`</description>
 
-功能描述：坐标轴最小值。
-
-默认配置：`0`
+坐标轴最小值。
 
 ##### max
 
-<description>**可选** _number_</description>
+<description>**optional** _number_</description>
 
-功能描述：坐标轴最大值。
-
-默认配置：`无`
+坐标轴最大值。
 
 ##### minLimit
 
-<description>**可选** _number_</description>
+<description>**optional** _number_</description>
 
-功能描述：最小值限定。
-
-默认配置：`无`
+最小值限定。
 
 ##### maxLimit
 
-<description>**可选** _number_</description>
+<description>**optional** _number_</description>
 
-功能描述：最大值限定。
-
-默认配置：`无`
+最大值限定。
 
 ##### tickCount
 
-<description>**可选** _number_</description>
+<description>**optional** _number_</description>
 
-功能描述：期望的坐标轴刻度数量，非最终结果。
-
-默认配置：\`无
+期望的坐标轴刻度数量，非最终结果。
 
 ##### tickInterval
 
-<description>**可选** _number_</description>
+<description>**optional** _number_</description>
 
-功能描述：坐标轴刻度间隔。
-
-默认配置：`无`
+坐标轴刻度间隔。
 
 ##### tickMethod
 
-<description>**可选** _string | Function_</description>
+<description>**optional** _string | Function_ _default:_ `false`</description>
 
-功能描述：指定 tick 计算方法，或自定义计算 tick 的方法，内置 tick 计算方法包括 `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`
-
-默认配置：`false`
+指定 tick 计算方法，或自定义计算 tick 的方法，内置 tick 计算方法包括 `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`。
 
 ##### position
 
-<description>**可选** _`top` \| `bottom` \| `left` \| `right`_</description>
+<description>**optional** _`top` \| `bottom` \| `left` \| `right`_</description>
 
-功能描述：适用于直角坐标系，设置坐标轴的位置。
-
-默认配置：`无`
+适用于直角坐标系，设置坐标轴的位置。
 
 ##### line
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-功能描述：坐标轴线的配置项，null 表示不展示。
-
-默认配置：`无`
+坐标轴线的配置项，null 表示不展示。
 
 <!--线条样式-->
 
@@ -276,11 +236,9 @@ StatisticText
 
 ##### tickLine
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-功能描述：坐标轴刻度线线的配置项，null 表示不展示。
-
-默认配置：`无`
+坐标轴刻度线线的配置项，null 表示不展示。
 
 <!--线条样式-->
 
@@ -323,11 +281,9 @@ StatisticText
 
 ##### subTickLine
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-功能描述：坐标轴子刻度线的配置项，null 表示不展示。
-
-默认配置：`无`
+坐标轴子刻度线的配置项，null 表示不展示。
 
 <!--线条样式-->
 
@@ -370,11 +326,9 @@ StatisticText
 
 ##### title
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-功能描述：标题的配置项，null 表示不展示。
-
-默认配置：`无`
+标题的配置项，null 表示不展示。
 
 | 细分配置项名称    | 类型           | 功能描述         |
 | ---------- | ------------ | ------------ |
@@ -426,11 +380,9 @@ StatisticText
 
 **_label_**
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-功能描述：文本标签的配置项，null 表示不展示。
-
-默认配置：`无`
+文本标签的配置项，null 表示不展示。
 
 <!--label样式-->
 
@@ -471,11 +423,9 @@ StatisticText
 
 ##### grid
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-功能描述：坐标轴网格线的配置项，null 表示不展示。
-
-默认配置：`无`
+坐标轴网格线的配置项，null 表示不展示。
 
 | 细分配置项名称        | 类型                  | 功能描述                            |
 | -------------- | ------------------- | ------------------------------- |
@@ -527,19 +477,15 @@ StatisticText
 
 ##### animate
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-功能描述：动画开关，默认开启。
-
-默认配置：`true`
+动画开关，默认开启。
 
 ##### animateOption
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-功能描述：动画参数配置。
-
-默认配置： `无`
+动画参数配置。
 
 ```ts
 interface ComponentAnimateCfg {
@@ -563,16 +509,12 @@ interface ComponentAnimateCfg {
 
 ##### verticalFactor
 
-<description>**可选** _number_</description>
+<description>**optional** _number_</description>
 
-功能描述：标记坐标轴 label 的方向，左侧为 1，右侧为 -1。
-
-默认配置：`无`
+标记坐标轴 label 的方向，左侧为 1，右侧为 -1。
 
 ##### verticalLimitLength
 
-<description>**可选** _number_</description>
+<description>**optional** _number_</description>
 
-功能描述：配置坐标轴垂直方向的最大限制长度，对文本自适应有很大影响。
-
-默认配置：`无`
+配置坐标轴垂直方向的最大限制长度，对文本自适应有很大影响。

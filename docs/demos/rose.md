@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react';
 import { Rose } from '@ant-design/charts';
 
 const DemoRose: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -40,8 +40,8 @@ const DemoRose: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'type',
     yField: 'value',
     seriesField: 'type',
@@ -61,7 +61,7 @@ import React, { useState, useEffect } from 'react';
 import { Rose } from '@ant-design/charts';
 
 const DemoRose: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -87,8 +87,8 @@ const DemoRose: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'type',
     yField: 'value',
     seriesField: 'type',
@@ -108,7 +108,7 @@ import React, { useState, useEffect } from 'react';
 import { Rose } from '@ant-design/charts';
 
 const DemoRose: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -134,8 +134,8 @@ const DemoRose: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'type',
     yField: 'value',
     seriesField: 'type',
@@ -156,7 +156,7 @@ import React, { useState, useEffect } from 'react';
 import { Rose } from '@ant-design/charts';
 
 const DemoRose: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -182,8 +182,8 @@ const DemoRose: React.FC = () => {
       value: 5,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'type',
     yField: 'value',
     seriesField: 'type',
@@ -212,7 +212,7 @@ import React, { useState, useEffect } from 'react';
 import { Rose } from '@ant-design/charts';
 
 const DemoRose: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -274,14 +274,13 @@ const DemoRose: React.FC = () => {
       user: '用户二',
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'type',
     yField: 'value',
     isGroup: true,
     seriesField: 'user',
     radius: 0.9,
-    xAxis: { line: { style: { lineWidth: 0 } } },
     label: { offset: -15 },
     interactions: [{ type: 'element-active' }],
   };
@@ -298,7 +297,7 @@ import React, { useState, useEffect } from 'react';
 import { Rose } from '@ant-design/charts';
 
 const DemoRose: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '分类一',
       value: 27,
@@ -360,14 +359,13 @@ const DemoRose: React.FC = () => {
       user: '用户二',
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'type',
     yField: 'value',
     isStack: true,
     seriesField: 'user',
     radius: 0.9,
-    xAxis: { line: { style: { lineWidth: 0 } } },
     label: { offset: -15 },
     interactions: [{ type: 'element-active' }],
   };

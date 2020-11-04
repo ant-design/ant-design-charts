@@ -1,11 +1,10 @@
 /**
  * 扫描所有demo文件，生成demo文档
  */
-
 const shelljs = require('shelljs');
 const readline = require('readline');
 
-// 改操作比较危险，不建议直接扫描
+// 该操作比较危险，不建议直接扫描
 const demos = [
   {
     name: '折线图',
@@ -44,10 +43,6 @@ const demos = [
     chart: 'Liquid',
   },
   {
-    name: '雷达图',
-    chart: 'Radar',
-  },
-  {
     name: '仪表盘',
     chart: 'Gauge',
   },
@@ -62,6 +57,10 @@ const demos = [
   {
     name: '玫瑰图',
     chart: 'Rose',
+  },
+  {
+    name: '热力图',
+    chart: 'Heatmap',
   },
   {
     name: '面积图',
@@ -87,10 +86,35 @@ const demos = [
     name: '股票图',
     chart: 'Stock',
   },
+  {
+    name: '饼图',
+    chart: 'Pie',
+  },
+  {
+    name: '混合图',
+    chart: 'DualAxes',
+  },
+  {
+    name: '雷达图',
+    chart: 'Radar',
+  },
+  {
+    name: '旭日图',
+    chart: 'Sunburst',
+  },
+  {
+    name: '瀑布图',
+    chart: 'Waterfall',
+  },
+  {
+    name: '玉珏图',
+    chart: 'RadialBar',
+  },
 ];
 
+
 const start = () => {
-  console.info('文档s生成中....');
+  console.info('文档生成中....');
   demos.forEach((item) => {
     shelljs.exec(`node scripts/singledemo.js ${item.chart} ${item.name}`);
   });
