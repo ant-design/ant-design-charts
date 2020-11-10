@@ -9,11 +9,12 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 module.exports = {
   entry: {
     // charts: ['@babel/polyfill', './src/index.ts'],
-    'charts': './src/index.ts',
+    'charts': './src/index.charts.ts',
+    'charts_g6': './src/index.g6.ts',
   },
   output: {
     filename: '[name].min.js',
-    library: 'Charts',
+    library: '[name]',
     libraryTarget: 'umd',
     path: resolveApp('dist/'),
   },
