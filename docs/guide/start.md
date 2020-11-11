@@ -18,11 +18,13 @@ $ npm install @ant-design/charts
 
 ### CDN
 
-既可以通过将脚本下载到本地也可以直接引入在线资源。
+推荐使用 npm 的方式，<b>CDN 模式下由于底层依赖不一样，为了降低包体积，从 1.0.5 版本开始，组织架构图、流程图、资金流向图、缩进树图被打包到 charts_g6.min.js 里，其它图表打包到 charts.min.js 里</b>，使用时按需引入即可。
 
 ```ts
 // 引入在线资源
 <script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts.min.js"></script>
+// G6 相关的图表
+<script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts_g6.min.js"></script>
 ```
 
 由于 @ant-design/charts 里面 externals 了 `react` 和 `react-dom`，该方式使用时需要在项目里面做同样的操作，通过 CDN 的方式在 `charts.min.js` 之前引入 `react` 和 `react-dom`。
@@ -36,7 +38,18 @@ externals: {
 // public/index.html
 <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/@ant-design/charts@1.0.3/dist/charts.min.js"></script>
+// 按需引入
+<script crossorigin src="https://unpkg.com/@ant-design/charts@1.0.5/dist/charts.min.js"></script>
+<script crossorigin src="https://unpkg.com/@ant-design/charts@1.0.5/dist/charts_g6.min.js"></script>
+```
+
+使用方式
+
+```ts
+// 折线图，其它图表类似
+const { Line } = window.charts;
+// 组织架构图
+const { OrganizationTreeGraph } = window.charts_g6;
 ```
 
 ## 使用
