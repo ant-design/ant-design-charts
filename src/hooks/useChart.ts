@@ -1,5 +1,5 @@
 import { ReactNode, useRef, useEffect } from 'react';
-import { isEqual, deepMix } from '@antv/util';
+import { isEqual } from '@antv/util';
 import { utils } from '../util';
 import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip } from '@antv/g2plot';
 import createNode from '../util/createNode';
@@ -140,7 +140,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
         chart.current.changeData(config?.[changeType] || []);
       } else {
         processConfig();
-        chart.current.update(deepMix(chart.current.options, config));
+        chart.current.update(config);
       }
       chartOptions.current = config;
     }
