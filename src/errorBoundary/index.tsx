@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 class ErrorBoundary extends React.Component<any> {
   static getDerivedStateFromError(error: Error) {
@@ -40,7 +40,7 @@ class ErrorBoundary extends React.Component<any> {
     if (this.state.hasError) {
       return this.renderError(this.state.error!);
     }
-    return <div style={{ position: 'relative', height: '100%' }}>{this.props.children}</div>;
+    return <Fragment>{this.props.children}</Fragment>;
   }
 }
 
