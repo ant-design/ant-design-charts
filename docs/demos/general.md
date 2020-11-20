@@ -49,8 +49,8 @@ const DemoGeneral: React.FC = () => {
     innerRadius: 0.64,
     label: {
       type: 'inner',
-      offset: '-0.68',
-      content: '{percentage}',
+      offset: '-50%',
+      content: ({ percent }) => `${percent * 100}%`,
       style: {
         fill: '#fff',
         fontSize: 14,
@@ -63,13 +63,17 @@ const DemoGeneral: React.FC = () => {
         type: 'image',
         src:
           'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ELYbTIVCgPoAAAAAAAAAAABkARQnAQ',
+        /** 位置 */
         position: ['50%', '50%'],
+        /** 图形样式属性 */
         style: {
-          width: 100,
-          height: 100,
+          width: 50,
+          height: 50,
         },
-        offsetX: -50,
-        offsetY: 70,
+        /** x 方向的偏移量 */
+        offsetX: -25,
+        /** y 方向的偏移量 */
+        offsetY: 40,
       },
     ],
   };
@@ -165,25 +169,25 @@ export default DemoGeneral;
 ### 辅助线标注（精确定位）
 
 ```tsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Line } from '@ant-design/charts';
 
 const DemoGeneral: React.FC = () => {
   const [data, setData] = useState([]);
   const [annotations, setAnnotations] = useState([]);
-  const ref = useRef();
+  let ref;
   useEffect(() => {
     asyncFetch();
   }, []);
+
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/89729b32-1592-44ae-ba96-1e296638f5f7.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
-
   const config = {
     data,
     padding: 'auto',
@@ -191,7 +195,7 @@ const DemoGeneral: React.FC = () => {
     yField: 'value',
     meta: {
       date: {
-        formatter: (v) => (v && v.split(' ') ? v?.split(' ')[1] : ''),
+        formatter: (v) => (v.split(' ') ? v.split(' ')[1] : ''),
       },
       value: {
         min: 0,
@@ -203,44 +207,41 @@ const DemoGeneral: React.FC = () => {
     lineStyle: {
       lineCap: 'round',
     },
+    interactions: [{ type: 'brush' }],
     annotations,
   };
 
   useEffect(() => {
-    if (ref.current && data.length) {
-      const line = ref.current;
-      const yScale = line.chart.getScaleByField('value');
-      const coordinate = line.chart.getCoordinate();
+    if (ref && data.length) {
+      const yScale = ref.chart.getScaleByField('value');
+      const coordinate = ref.chart.getCoordinate();
       const getDimYPosition = (value) => coordinate.convertDim(yScale.scale(value), 'y');
-      line.update({
-        ...line.options,
-        annotations: [
-          {
-            type: 'line',
-            start: { date: 'January 1991', value: 2549000 },
-            end: ['August 1990', 3850000],
-            text: {
-              // 旅游萧条 标注
-              content: 'The UK recession of 1991',
-              rotate: 0,
-              autoRotate: false,
-              offsetY: getDimYPosition(3850000) - getDimYPosition(2549000) - 10,
-              style: {
-                textAlign: 'center',
-                textBaseline: 'bottom',
-              },
-            },
+      setAnnotations([
+        {
+          type: 'line',
+          start: { date: 'January 1991', value: 2549000 },
+          end: ['August 1990', 3850000],
+          text: {
+            // 旅游萧条 标注
+            content: 'The UK recession of 1991',
+            rotate: 0,
+            autoRotate: false,
+            offsetY: getDimYPosition(3850000) - getDimYPosition(2549000) - 10,
             style: {
-              stroke: '#000',
-              lineDash: [2, 4],
+              textAlign: 'center',
+              textBaseline: 'bottom',
             },
           },
-        ],
-      });
+          style: {
+            stroke: '#000',
+            lineDash: [2, 4],
+          },
+        },
+      ]);
     }
   }, [data]);
 
-  return <Line {...config} chartRef={ref} />;
+  return <Line {...config} chartRef={(chartRef) => (ref = chartRef)} />;
 };
 
 export default DemoGeneral;

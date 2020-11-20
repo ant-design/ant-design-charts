@@ -25,6 +25,7 @@ import WordCloud from './wordCloud';
 import Sunburst from './sunburst';
 import Stock from './stock';
 import RadialBar from './radialBar';
+import BidirectionalBar from './bidirectionalBar';
 import { G2 } from '@antv/g2plot';
 
 export {
@@ -54,5 +55,6 @@ export {
   Stock,
   RadialBar,
   Gauge,
+  BidirectionalBar,
   G2,
 };

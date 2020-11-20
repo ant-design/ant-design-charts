@@ -1,6 +1,6 @@
 ---
 title: 散点图
-order: 24
+order: 25
 ---
 
 # 散点图
@@ -154,6 +154,116 @@ const DemoScatter: React.FC = () => {
       grid: { line: { style: { stroke: '#eee' } } },
       line: { style: { stroke: '#aaa' } },
     },
+  };
+  return <Scatter {...config} />;
+};
+
+export default DemoScatter;
+```
+
+### 散点图-自定义图形
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Scatter, G2 } from '@ant-design/charts';
+
+const DemoScatter: React.FC = () => {
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly)
+        symbols = symbols.filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+      keys.push.apply(keys, symbols);
+    }
+    return keys;
+  }
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+    return target;
+  }
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  G2.registerShape('point', 'custom-shape', {
+    draw: function draw(cfg, group) {
+      var cx = cfg.x;
+      var cy = cfg.y;
+      var radius = cfg.size || 5;
+      var polygon = group.addShape('path', {
+        attrs: _objectSpread(
+          _objectSpread(
+            {
+              path: [
+                ['M', cx - radius, cy - radius],
+                ['L', cx + radius, cy - radius],
+                ['L', cx, cy + radius],
+                ['Z'],
+              ],
+            },
+            cfg.defaultStyle,
+          ),
+          cfg.style,
+        ),
+      });
+      return polygon;
+    },
+  });
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/3e4db10a-9da1-4b44-80d8-c128f42764a8.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    appendPadding: 30,
+    data: data,
+    xField: 'xG conceded',
+    yField: 'Shot conceded',
+    shape: 'custom-shape',
+    pointStyle: { lineWidth: 2 },
+    size: 6,
+    yAxis: {
+      nice: true,
+      line: { style: { stroke: '#aaa' } },
+    },
+    tooltip: { showMarkers: false },
+    xAxis: {
+      grid: { line: { style: { stroke: '#eee' } } },
+      line: { style: { stroke: '#aaa' } },
+    },
+    label: {},
   };
   return <Scatter {...config} />;
 };
@@ -350,6 +460,352 @@ const DemoScatter: React.FC = () => {
       fill: '#5B8FF9',
     },
     regressionLine: { type: 'quad' },
+  };
+  return <Scatter {...config} />;
+};
+
+export default DemoScatter;
+```
+
+### 散点图-自定义 tooltip
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Scatter } from '@ant-design/charts';
+
+const DemoScatter: React.FC = () => {
+  var data = [
+    {
+      city: '上海',
+      搜索UV: 1.5,
+      端DAU: 6,
+      搜索DAU渗透率: 3,
+    },
+    {
+      city: '台北',
+      搜索UV: 2,
+      端DAU: 5,
+      搜索DAU渗透率: 13,
+    },
+    {
+      city: '北京',
+      搜索UV: 7,
+      端DAU: 3.6,
+      搜索DAU渗透率: 16,
+    },
+    {
+      city: '济南',
+      搜索UV: 5,
+      端DAU: 5,
+      搜索DAU渗透率: 16,
+    },
+    {
+      city: '青岛',
+      搜索UV: 2,
+      端DAU: 1,
+      搜索DAU渗透率: 19,
+    },
+    {
+      city: '杭州',
+      搜索UV: 7,
+      端DAU: 2,
+      搜索DAU渗透率: 90,
+    },
+    {
+      city: '广东',
+      搜索UV: 7.4,
+      端DAU: 1.5,
+      搜索DAU渗透率: 30,
+    },
+    {
+      city: '无锡',
+      搜索UV: 1,
+      端DAU: 1,
+      搜索DAU渗透率: 34,
+    },
+    {
+      city: '重庆',
+      搜索UV: 7,
+      端DAU: 5,
+      搜索DAU渗透率: 46,
+    },
+    {
+      city: '成都',
+      搜索UV: 3.4,
+      端DAU: 2.3,
+      搜索DAU渗透率: 49,
+    },
+    {
+      city: '哈尔滨',
+      搜索UV: 0.5,
+      端DAU: 6.5,
+      搜索DAU渗透率: 51,
+    },
+    {
+      city: '内蒙古',
+      搜索UV: 2.5,
+      端DAU: 5,
+      搜索DAU渗透率: 51,
+    },
+    {
+      city: '云南',
+      搜索UV: 1,
+      端DAU: 5,
+      搜索DAU渗透率: 53,
+    },
+    {
+      city: '河北',
+      搜索UV: 6,
+      端DAU: 5,
+      搜索DAU渗透率: 57,
+    },
+    {
+      city: '陕西',
+      搜索UV: 2,
+      端DAU: 3,
+      搜索DAU渗透率: 57,
+    },
+    {
+      city: '苏州',
+      搜索UV: 3,
+      端DAU: 4.6,
+      搜索DAU渗透率: 65,
+    },
+    {
+      city: '四川',
+      搜索UV: 6,
+      端DAU: 7,
+      搜索DAU渗透率: 68,
+    },
+    {
+      city: '贵阳',
+      搜索UV: 5,
+      端DAU: 3.4,
+      搜索DAU渗透率: 68,
+    },
+    {
+      city: '台湾',
+      搜索UV: 5,
+      端DAU: 2,
+      搜索DAU渗透率: 69,
+    },
+    {
+      city: '哈尔滨',
+      搜索UV: 2,
+      端DAU: 7,
+      搜索DAU渗透率: 78,
+    },
+    {
+      city: '天津',
+      搜索UV: 4.4,
+      端DAU: 5,
+      搜索DAU渗透率: 45,
+    },
+    {
+      city: '长沙',
+      搜索UV: 3.4,
+      端DAU: 7,
+      搜索DAU渗透率: 29,
+    },
+    {
+      city: '沧州',
+      搜索UV: 3,
+      端DAU: 1,
+      搜索DAU渗透率: 94,
+    },
+    {
+      city: '宁波',
+      搜索UV: 6,
+      端DAU: 3,
+      搜索DAU渗透率: 99,
+    },
+  ];
+  var config = {
+    width: 800,
+    height: 400,
+    autoFit: false,
+    appendPadding: 16,
+    data: data,
+    xField: '搜索UV',
+    yField: '端DAU',
+    sizeField: '搜索DAU渗透率',
+    size: [12, 30],
+    shape: 'circle',
+    pointStyle: {
+      fill: '#D6E3FD',
+      fillOpacity: 0.6,
+      stroke: '#6d9bf9',
+    },
+    tooltip: {
+      showTitle: true,
+      showMarkers: false,
+      fields: ['搜索UV', '端DAU', '搜索DAU渗透率'],
+      customContent: function customContent(title, items) {
+        var _field$data;
+        var field = items === null || items === void 0 ? void 0 : items[0];
+        var formatterInfo = {
+          搜索UV: function UV(value) {
+            return value + '万';
+          },
+          端DAU: function DAU(value) {
+            return value + '万';
+          },
+          搜索DAU渗透率: function DAU() {
+            return '%';
+          },
+        };
+        var htmlStr = '<div style="margin:10px 0;font-weight:700;">'.concat(
+          field === null || field === void 0
+            ? void 0
+            : (_field$data = field.data) === null || _field$data === void 0
+            ? void 0
+            : _field$data.city,
+          '</div><div class="g2-tooltip-items">',
+        );
+        items.forEach(function (item) {
+          htmlStr += '<div class="g2-tooltip-item" style="margin-bottom:8px;display:flex;justify-content:space-between;">\n                <span class="g2-tooltip-item-label" style="margin-right: 12px;">'
+            .concat(item.name, '</span>\n                <span class="g2-tooltip-item-value">')
+            .concat(
+              item.value + formatterInfo[item.name](item.value),
+              '</span>\n              </div>',
+            );
+        });
+        htmlStr += '</div>';
+        return htmlStr;
+      },
+    },
+    xAxis: {
+      grid: { line: { style: { stroke: '#eee' } } },
+      label: {
+        formatter: function formatter(v) {
+          return v !== '0' ? v + '%' : v;
+        },
+      },
+      line: null,
+    },
+    label: {
+      formatter: function formatter(item) {
+        return item.city;
+      },
+      offsetY: 12,
+      style: {
+        fontSize: 12,
+        fill: 'rgba(0,0,0,0.85)',
+      },
+    },
+    yAxis: {
+      min: 0,
+      line: null,
+      label: {
+        formatter: function formatter(v) {
+          return v !== '0' ? v + '%' : v;
+        },
+      },
+    },
+    annotations: [
+      {
+        type: 'text',
+        position: [4, 8],
+        content: '搜索DAU渗透率',
+        offsetY: -8,
+        style: {
+          fontSize: 12,
+          textAlign: 'center',
+        },
+      },
+      {
+        type: 'text',
+        position: [8, 4],
+        content: '搜索DAU渗透率',
+        rotate: Math.PI / 2,
+        offsetY: -40,
+        offsetX: 8,
+        style: { fontSize: 12 },
+      },
+      {
+        type: 'region',
+        start: [7, 7],
+        end: [7.8, 7.8],
+        top: true,
+        style: {
+          fill: '#fff',
+          fillOpacity: 0.5,
+          opacity: 1,
+        },
+      },
+      {
+        type: 'region',
+        start: [0.2, 7],
+        end: [1, 7.8],
+        top: true,
+        style: {
+          fill: '#fff',
+          fillOpacity: 0.5,
+          opacity: 1,
+        },
+      },
+      {
+        type: 'region',
+        start: [7, 0.2],
+        end: [7.8, 1],
+        top: true,
+        style: {
+          fill: '#fff',
+          fillOpacity: 0.5,
+          opacity: 1,
+        },
+      },
+    ],
+    quadrant: {
+      xBaseline: 4,
+      yBaseline: 4,
+      lineStyle: {
+        lineDash: [4, 2],
+        lineWidth: 2,
+      },
+      regionStyle: [
+        {
+          fill: '#5bd8a6',
+          fillOpacity: 0.1,
+        },
+        {
+          fill: '#667796',
+          fillOpacity: 0.1,
+        },
+        { fill: '#fff' },
+        {
+          fill: '#f7664e',
+          fillOpacity: 0.1,
+        },
+      ],
+      labels: [
+        {
+          content: '热门市场',
+          position: [7.2, 7],
+          style: {
+            fill: 'rgba(0,0,0, 0.85)',
+            textAlign: 'start',
+          },
+        },
+        {
+          content: '潜力市场',
+          position: [0.2, 7],
+          style: {
+            fill: 'rgba(0,0,0, 0.85)',
+            textAlign: 'start',
+          },
+        },
+        { content: '' },
+        {
+          content: '提频市场',
+          position: [7.2, 1],
+          style: {
+            fill: 'rgba(0,0,0, 0.85)',
+            textAlign: 'start',
+          },
+        },
+      ],
+    },
   };
   return <Scatter {...config} />;
 };

@@ -35,3 +35,33 @@ export const clone = (source: Object) => {
   }
   return target;
 };
+
+/**
+ * 存在时返回路径值，不存在时返回 undefined
+ */
+export const hasPath = (source: any, path: string[]) => {
+  let current = source;
+  for (let i = 0; i < path.length; i++) {
+    if (current[path[i]]) {
+      current = current[path[i]];
+    } else {
+      current = undefined;
+      break;
+    }
+  }
+  return current;
+};
+
+// 路径设置，不考虑复杂情况
+export const setPath = (source: any, path: string[], value: any) => {
+  let o = source;
+  path.forEach((key: string, idx: number) => {
+    // 不是最后一个
+    if (idx < path.length - 1) {
+      o = o[key];
+    } else {
+      o[key] = value;
+    }
+  });
+  return source;
+};

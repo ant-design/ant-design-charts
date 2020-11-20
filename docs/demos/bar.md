@@ -16,53 +16,32 @@ import { Bar } from '@ant-design/charts';
 const DemoBar: React.FC = () => {
   var data = [
     {
-      type: '家具家电',
-      sales: 38,
+      year: '1951 年',
+      value: 38,
     },
     {
-      type: '粮油副食',
-      sales: 52,
+      year: '1952 年',
+      value: 52,
     },
     {
-      type: '生鲜水果',
-      sales: 61,
+      year: '1956 年',
+      value: 61,
     },
     {
-      type: '美容洗护',
-      sales: 145,
+      year: '1957 年',
+      value: 145,
     },
     {
-      type: '母婴用品',
-      sales: 48,
-    },
-    {
-      type: '进口食品',
-      sales: 38,
-    },
-    {
-      type: '食品饮料',
-      sales: 38,
-    },
-    {
-      type: '家庭清洁',
-      sales: 38,
+      year: '1958 年',
+      value: 48,
     },
   ];
   var config = {
     data: data,
-    xField: 'sales',
-    yField: 'type',
-    label: {
-      position: 'left',
-      style: {
-        fill: '#FFFFFF',
-        opacity: 0.6,
-      },
-    },
-    meta: {
-      type: { alias: '类别' },
-      sales: { alias: '销售额' },
-    },
+    xField: 'value',
+    yField: 'year',
+    seriesField: 'year',
+    legend: { position: 'top-left' },
   };
   return <Bar {...config} />;
 };
@@ -141,24 +120,24 @@ import { Bar } from '@ant-design/charts';
 const DemoBar: React.FC = () => {
   var data = [
     {
-      action: '完成交易',
-      pv: 8500,
-    },
-    {
-      action: '支付订单',
-      pv: 15000,
-    },
-    {
-      action: '生成订单',
-      pv: 25000,
+      action: '浏览网站',
+      pv: 50000,
     },
     {
       action: '放入购物车',
       pv: 35000,
     },
     {
-      action: '浏览网站',
-      pv: 50000,
+      action: '生成订单',
+      pv: 25000,
+    },
+    {
+      action: '支付订单',
+      pv: 15000,
+    },
+    {
+      action: '完成交易',
+      pv: 8500,
     },
   ];
   var config = {
@@ -330,7 +309,11 @@ const DemoBar: React.FC = () => {
     marginRatio: 0,
     label: {
       position: 'middle',
-      layout: [{ type: 'interval-adjust-position' }, { type: 'adjust-color' }],
+      layout: [
+        { type: 'interval-adjust-position' },
+        { type: 'interval-hide-overlap' },
+        { type: 'adjust-color' },
+      ],
     },
   };
   return <Bar {...config} />;
@@ -638,7 +621,11 @@ const DemoBar: React.FC = () => {
     seriesField: 'type',
     label: {
       position: 'middle',
-      layout: [{ type: 'interval-adjust-position' }, { type: 'adjust-color' }],
+      layout: [
+        { type: 'interval-adjust-position' },
+        { type: 'interval-hide-overlap' },
+        { type: 'adjust-color' },
+      ],
     },
   };
   return <Bar {...config} />;

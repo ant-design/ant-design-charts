@@ -95,9 +95,13 @@ const demos = [
     chart: 'DualAxes',
   },
   {
-    name: '雷达图',
-    chart: 'Radar',
+    name: '对称条形图',
+    chart: 'BidirectionalBar'
   },
+  // {
+  //   name: '雷达图',
+  //   chart: 'Radar',
+  // },
   {
     name: '旭日图',
     chart: 'Sunburst',

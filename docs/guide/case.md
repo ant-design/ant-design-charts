@@ -362,6 +362,10 @@ const DemoScatter: React.FC = () => {
       nice: true,
       line: { style: { stroke: '#aaa' } },
     },
+    tooltip: {
+      showMarkers: false,
+      fields: ['xG conceded', 'Shot conceded'],
+    },
     xAxis: {
       grid: { line: { style: { stroke: '#eee' } } },
       line: { style: { stroke: '#aaa' } },

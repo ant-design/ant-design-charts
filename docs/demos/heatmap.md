@@ -188,7 +188,6 @@ const DemoHeatmap: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
-  console.log(data);
   var config = {
     data: data,
     xField: 'name',

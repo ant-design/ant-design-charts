@@ -19,10 +19,10 @@ nav:
 | Bubble | 改用 Scatter 实现， 修改图表名称即可。 | [Scatter](/demos/scatter) |
 | StackedColumn | 改用 Column 实现。<br/> 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true` 。 | [Column](/demos/column) |
 | GroupedColumn | 改用 Column 实现。<br/>删除 groupField 配置，改为 seriesField，需要指定 `isGroup: true` 。 | [Column](/demos/column) |
-| PercentStackedColumn | 改用 Column 实现。<br/> 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true`、`isGroup: true` 。 | [Column](/demos/column) |
+| PercentStackedColumn | 改用 Column 实现。<br/> 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true`、`isPercent: true` 。 | [Column](/demos/column) |
 | RangeColumn | 改用 Column 实现。 <br/> 删除 stackField 配置，改为 seriesField，需要指定 `isRange: true` 。 <br/> label 不再支持 topStyle、bottomStyle，详细配置请参考 [API](/demos/column?type=api) 文档。 | [Column](/demos/column) |
-| StackedBar | 改用 Bar 实现。<br/>删除 groupField 配置，改为 seriesField，需要指定 `isGroup: true` 。 | [Bar](/demos/bar) |
-| PercentStackedBar | 改用 Bar 实现。<br/> 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true`、`isGroup: true` 。 | [Bar](/demos/bar) |
+| StackedBar | 改用 Bar 实现。<br/>删除 groupField 配置，改为 seriesField，需要指定 `isStack: true` 。 | [Bar](/demos/bar) |
+| PercentStackedBar | 改用 Bar 实现。<br/> 删除 stackField 配置，改为 seriesField，需要指定 `isStack: true`、`isPercent: true` 。 | [Bar](/demos/bar) |
 | RangeBar | 改用 Bar 实现。 <br/>删除 stackField 配置，改为 seriesField，需要指定 `isRange: true` 。 <br/> label 不再支持 topStyle、bottomStyle，详细配置请参考 [API](/demos/bar?type=api) 文档 | [Bar](/demos/bar) |
 | Donut | 改用 Pie 实现，修改图表名称即可 。 | [Pie](/demos/pie/donut) |
 | DualLine | 改用 DualAxes 实现。 | [Demos](/demos/dual-axes/dual-line) |
@@ -30,7 +30,7 @@ nav:
 | StackedColumnLine | 改用 DualAxes 实现。 | [Demos](/demos/dual-axes-column-line) |
 | GroupedColumnLine | 改用 DualAxes 实现 。 | [Demos](/demos/dual-axes-column-line) |
 | StackedArea | 改用 Area 实现。 <br/>去掉 stackField ，改用 seriesField 。 | [Area](/demos/area) |
-| PercentStackedArea | 改用 Area 实现。去掉 stackField ，改用 seriesField ，需要指定 `isStack: true` 。 | - |
+| PercentStackedArea | 改用 Area 实现。去掉 stackField ，改用 seriesField ，需要指定 `isPercent: true` 。 | [Area](/demos/area) |
 | StepLine | 改用 Line 实现，需要指定 stepType。<br/>1.0 版版本可以使用默认 step ，2.0 版本必须手动指定 stepType（hv, vh, hvh, vhv）， | [Line](/demos/line) |
 
 ### 配置变更

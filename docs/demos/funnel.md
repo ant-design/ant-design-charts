@@ -41,6 +41,24 @@ const DemoFunnel: React.FC = () => {
     xField: 'stage',
     yField: 'number',
     isTransposed: true,
+    label: {
+      formatter: function formatter(datum) {
+        return ''.concat(datum.stage, ':').concat(datum.number);
+      },
+    },
+    conversionTag: {
+      formatter: function formatter(datum) {
+        return datum.$$conversion$$.toFixed(2);
+      },
+    },
+    tooltip: {
+      formatter: function formatter(datum) {
+        return {
+          name: datum.stage,
+          value: ''.concat(datum.number, '个'),
+        };
+      },
+    },
   };
   return <Funnel {...config} />;
 };
@@ -154,6 +172,17 @@ const DemoFunnel: React.FC = () => {
     yField: 'number',
     compareField: 'company',
     isTransposed: true,
+    conversionTag: {
+      offsetX: 10,
+      style: {
+        fill: '#666',
+        fontSize: 12,
+      },
+      formatter: function formatter(data) {
+        return '占比'.concat((data.$$percentage$$ * 100).toFixed(2), '%');
+      },
+    },
+    legend: false,
   };
   return <Funnel {...config} />;
 };
@@ -234,17 +263,6 @@ const DemoFunnel: React.FC = () => {
         },
       },
     },
-    conversionTag: {
-      offsetX: 10,
-      offsetY: 0,
-      style: {
-        fill: '#666',
-        fontSize: 12,
-      },
-      formatter: function formatter(data) {
-        return '转化率'.concat((data.$$percentage$$ * 100).toFixed(2), '%');
-      },
-    },
     legend: false,
   };
   return <Funnel {...config} />;
@@ -288,6 +306,7 @@ const DemoFunnel: React.FC = () => {
     yField: 'number',
     dynamicHeight: true,
     isTransposed: true,
+    legend: false,
   };
   return <Funnel {...config} />;
 };

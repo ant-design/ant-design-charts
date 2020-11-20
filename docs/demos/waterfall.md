@@ -1,6 +1,6 @@
 ---
 title: 瀑布图
-order: 31
+order: 32
 ---
 
 # 瀑布图
@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react';
 import { Waterfall } from '@ant-design/charts';
 
 const DemoWaterfall: React.FC = () => {
-  const data = [
+  var data = [
     {
       month: '一月',
       value: 6200000,
@@ -64,8 +64,8 @@ const DemoWaterfall: React.FC = () => {
       value: 5100000,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     padding: 'auto',
     appendPadding: [20, 0, 0, 0],
     xField: 'month',
@@ -74,7 +74,9 @@ const DemoWaterfall: React.FC = () => {
       month: { alias: '月份' },
       value: {
         alias: '销售量',
-        formatter: (v) => `${v / 10000000} 亿`,
+        formatter: function formatter(v) {
+          return ''.concat(v / 10000000, ' 亿');
+        },
       },
     },
     total: {
@@ -87,12 +89,87 @@ const DemoWaterfall: React.FC = () => {
       background: {
         style: {
           fill: '#f6f6f6',
-          stroke: '#e6e6e6',
-          radius: 2,
+          radius: 1,
         },
         padding: 1.5,
       },
     },
+  };
+  return <Waterfall {...config} />;
+};
+
+export default DemoWaterfall;
+```
+
+### 瀑布图 - 添加标注
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Waterfall } from '@ant-design/charts';
+
+const DemoWaterfall: React.FC = () => {
+  var data = [
+    {
+      quarter: '第一季度',
+      value: 6200000,
+    },
+    {
+      quarter: '第二季度',
+      value: -2600000,
+    },
+    {
+      quarter: '第三季度',
+      value: 4100000,
+    },
+    {
+      quarter: '第四季度',
+      value: 3700000,
+    },
+  ];
+  var formatter = function formatter(v) {
+    return ''.concat(v / 10000000, ' 亿');
+  };
+  var annotations = [];
+  data.reduce(function (v, d) {
+    annotations.push({
+      type: 'text',
+      position: function position() {
+        var y = v + d.value / 2;
+        return [d.quarter, y];
+      },
+      content: formatter(d.value),
+      style: {
+        fontSize: 14,
+        stroke: '#666',
+        fill: '#fff',
+        lineWidth: 1,
+        textAlign: 'center',
+        verticalAlign: 'middle',
+      },
+    });
+    return v + d.value;
+  }, 0);
+  var config = {
+    data: data,
+    padding: 'auto',
+    appendPadding: [20, 0, 0, 0],
+    xField: 'quarter',
+    yField: 'value',
+    meta: {
+      quarter: { alias: '月份' },
+      value: {
+        alias: '销售量',
+        min: 0,
+        formatter: formatter,
+      },
+    },
+    total: {
+      label: '总计',
+      style: { fill: '#96a6a6' },
+    },
+    labelMode: 'absolute',
+    label: { style: { fontSize: 12 } },
+    annotations: annotations,
   };
   return <Waterfall {...config} />;
 };
@@ -107,7 +184,7 @@ import React, { useState, useEffect } from 'react';
 import { Waterfall } from '@ant-design/charts';
 
 const DemoWaterfall: React.FC = () => {
-  const data = [
+  var data = [
     {
       type: '日用品',
       money: 120,
@@ -137,8 +214,8 @@ const DemoWaterfall: React.FC = () => {
       money: -2000,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     xField: 'type',
     yField: 'money',
     appendPadding: [15, 0, 0, 0],
@@ -146,7 +223,9 @@ const DemoWaterfall: React.FC = () => {
       type: { alias: '类别' },
       money: {
         alias: '收支',
-        formatter: (v) => `${v} 元`,
+        formatter: function formatter(v) {
+          return ''.concat(v, ' 元');
+        },
       },
     },
     label: {
@@ -174,7 +253,7 @@ import React, { useState, useEffect } from 'react';
 import { Waterfall } from '@ant-design/charts';
 
 const DemoWaterfall: React.FC = () => {
-  const data = [
+  var data = [
     {
       month: '2019',
       value: 23000000,
@@ -228,8 +307,8 @@ const DemoWaterfall: React.FC = () => {
       value: 5100000,
     },
   ];
-  const config = {
-    data,
+  var config = {
+    data: data,
     padding: 'auto',
     appendPadding: [20, 0, 0, 0],
     xField: 'month',
@@ -238,11 +317,15 @@ const DemoWaterfall: React.FC = () => {
       month: { alias: '月份' },
       value: {
         alias: '销售量',
-        formatter: (v) => `${v / 10000000} 亿`,
+        formatter: function formatter(v) {
+          return ''.concat(v / 10000000, ' 亿');
+        },
       },
     },
     total: { label: '2020' },
-    color: ({ month, value }) => {
+    color: function color(_ref) {
+      var month = _ref.month,
+        value = _ref.value;
       if (month === '2019' || month === '2020') {
         return '#96a6a6';
       }
@@ -299,12 +382,8 @@ const DemoWaterfall: React.FC = () => {
         padding: 1.5,
       },
     },
-    waterfallStyle: ({ month, value }) => {
-      return {
-        fillOpacity: 0.85,
-        stroke:
-          month === '2019' || month === '2020' ? '#697474' : value < 0 ? '#0ba156' : '#f84825',
-      };
+    waterfallStyle: function waterfallStyle() {
+      return { fillOpacity: 0.85 };
     },
   };
   return <Waterfall {...config} />;
