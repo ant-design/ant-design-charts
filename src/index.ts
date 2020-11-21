@@ -25,6 +25,7 @@ import WordCloud from './wordCloud';
 import Sunburst from './sunburst';
 import Stock from './stock';
 import RadialBar from './radialBar';
+import BidirectionalBar from './bidirectionalBar';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
 import { G2 } from '@antv/g2plot';
 
@@ -55,6 +56,7 @@ export {
   Stock,
   RadialBar,
   Gauge,
+  BidirectionalBar,
   OrganizationTreeGraph,
   DagreGraph,
   IndentedTree,
@@ -89,6 +91,7 @@ export default {
   Stock,
   RadialBar,
   Gauge,
+  BidirectionalBar,
   OrganizationTreeGraph,
   DagreGraph,
   IndentedTree,

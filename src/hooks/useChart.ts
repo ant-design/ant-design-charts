@@ -72,39 +72,38 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
     }
   };
 
-  const processConfig = () => {
-    // @ts-ignore 该属性只有 Liquid 和 Dount 存在且配置不一致，类型定义先忽略
-    if (config.statistic?.htmlContent) {
-      // @ts-ignore
-      const statisticHtmlContent = config.statistic.htmlContent;
-      // @ts-ignore
-      config.statistic.htmlContent = (...arg: any[]) => {
-        const statisticDom = statisticHtmlContent(...arg);
-        if (
-          utils.isType(statisticDom, 'String') ||
-          utils.isType(statisticDom, 'Number') ||
-          utils.isType(statisticDom, 'HTMLDivElement')
-        ) {
-          return statisticDom;
-        }
-        return createNode(statisticDom);
-      };
-    }
+  const reactDomToString = (source: U, path: string[]) => {
+    const { hasPath, setPath } = utils;
+    const statisticCustomHtml = hasPath(source, path);
+    setPath(source, path, (...arg: any[]) => {
+      const statisticDom = statisticCustomHtml(...arg);
+      if (
+        utils.isType(statisticDom, 'String') ||
+        utils.isType(statisticDom, 'Number') ||
+        utils.isType(statisticDom, 'HTMLDivElement')
+      ) {
+        return statisticDom;
+      }
+      return createNode(statisticDom);
+    });
+  };
 
+  const processConfig = () => {
+    const { hasPath } = utils;
+    // statistic
+    if (hasPath(config, ['statistic', 'content', 'customHtml'])) {
+      reactDomToString(config, ['statistic', 'content', 'customHtml']);
+    }
+    if (hasPath(config, ['statistic', 'title', 'customHtml'])) {
+      reactDomToString(config, ['statistic', 'title', 'customHtml']);
+    }
+    // tooltip
     if (typeof config.tooltip === 'object') {
       if (config.tooltip?.container) {
         config.tooltip.container = createNode(config.tooltip.container);
       }
-
-      if (config.tooltip?.customContent) {
-        const customContent = config.tooltip.customContent;
-        config.tooltip.customContent = (title: string, items: any[]) => {
-          const tooltipDom = customContent(title, items) || '';
-          if (utils.isType(tooltipDom, 'HTMLDivElement')) {
-            return tooltipDom;
-          }
-          return createNode(tooltipDom);
-        };
+      if (hasPath(config, ['tooltip', 'customContent'])) {
+        reactDomToString(config, ['tooltip', 'customContent']);
       }
     }
   };

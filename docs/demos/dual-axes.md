@@ -46,17 +46,10 @@ const DemoDualAxes: React.FC = () => {
     xField: 'time',
     yField: ['value', 'count'],
     geometryOptions: [
-      {
-        geometry: 'column',
-        color: '#5B8FF9',
-      },
+      { geometry: 'column' },
       {
         geometry: 'line',
-        color: '#5AD8A6',
-        lineStyle: {
-          lineWidth: 2,
-          stroke: '#5AD8A6',
-        },
+        lineStyle: { lineWidth: 2 },
       },
     ],
   };
@@ -179,13 +172,11 @@ const DemoDualAxes: React.FC = () => {
     geometryOptions: [
       {
         geometry: 'column',
-        color: '#5B8FF9',
         columnWidthRatio: 0.4,
       },
       {
         geometry: 'line',
         seriesField: 'name',
-        color: ['#CDDDFD', '#CDF3E4', '#CED4DE'],
       },
     ],
   };
@@ -233,8 +224,8 @@ const DemoDualAxes: React.FC = () => {
     data: [data, data],
     xField: 'time',
     yField: ['value', 'count'],
-    yAxis: [
-      {
+    yAxis: {
+      value: {
         min: 0,
         label: {
           formatter: function formatter(val) {
@@ -242,18 +233,18 @@ const DemoDualAxes: React.FC = () => {
           },
         },
       },
-      false,
-    ],
+      count: false,
+    },
     geometryOptions: [
       {
         geometry: 'column',
         color: '#5B8FF9',
         columnWidthRatio: 0.4,
-        columnStyle: { opacity: 0.4 },
         label: { position: 'middle' },
       },
       {
         geometry: 'line',
+        smooth: true,
         color: '#5AD8A6',
       },
     ],
@@ -460,22 +451,22 @@ const DemoDualAxes: React.FC = () => {
       },
       tickCount: data.length / 2,
     },
-    yAxis: [
-      {
+    yAxis: {
+      consumeTime: {
         label: {
           formatter: function formatter(v) {
             return ''.concat(v, '分');
           },
         },
       },
-      {
+      completeTime: {
         label: {
           formatter: function formatter(v) {
             return ''.concat(v);
           },
         },
       },
-    ],
+    },
     legend: {
       itemName: {
         formatter: function formatter(text, item) {
@@ -645,7 +636,7 @@ const DemoDualAxes: React.FC = () => {
 export default DemoDualAxes;
 ```
 
-### 双折线混合图表
+### 双折线图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -720,7 +711,7 @@ const DemoDualAxes: React.FC = () => {
 export default DemoDualAxes;
 ```
 
-### 多折线混合图表
+### 双折线图 - 多折线
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -864,7 +855,6 @@ const DemoDualAxes: React.FC = () => {
       {
         geometry: 'line',
         seriesField: 'type',
-        color: ['#5B8FF9', '#5AD8A6'],
         lineStyle: {
           lineWidth: 3,
           lineDash: [5, 5],
@@ -874,15 +864,7 @@ const DemoDualAxes: React.FC = () => {
       {
         geometry: 'line',
         seriesField: 'name',
-        color: function color(_ref) {
-          var name = _ref.name;
-          if (name === 'a') {
-            return '#CDDDFD';
-          } else if (name === 'b') {
-            return '#CDF3E4';
-          }
-          return '#CED4DE';
-        },
+        point: {},
       },
     ],
   };
@@ -1205,12 +1187,10 @@ const DemoDualAxes: React.FC = () => {
         geometry: 'column',
         isGroup: true,
         seriesField: 'type',
-        color: ['#5B8FF9', '#5D7092'],
       },
       {
         geometry: 'line',
         lineStyle: { lineWidth: 2 },
-        color: '#5AD8A6',
       },
     ],
   };
@@ -1366,17 +1346,15 @@ const DemoDualAxes: React.FC = () => {
         isGroup: true,
         seriesField: 'type',
         columnWidthRatio: 0.4,
-        color: ['#5B8FF9', '#5AD8A6'],
       },
       {
         geometry: 'line',
         seriesField: 'name',
-        color: ['#CDDDFD', '#CDF3E4', '#CED4DE'],
         lineStyle: function lineStyle(_ref) {
           var name = _ref.name;
           if (name === 'a') {
             return {
-              lineDash: [2, 2],
+              lineDash: [1, 4],
               opacity: 1,
             };
           }
@@ -1384,6 +1362,200 @@ const DemoDualAxes: React.FC = () => {
         },
       },
     ],
+  };
+  return <DualAxes {...config} />;
+};
+
+export default DemoDualAxes;
+```
+
+### 堆叠分组柱状图-折线图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { DualAxes } from '@ant-design/charts';
+
+const DemoDualAxes: React.FC = () => {
+  var columnData = [
+    {
+      name: 'London',
+      month: 'Jan.',
+      value: 12.9,
+      type: '语文',
+    },
+    {
+      name: 'London',
+      month: 'Jan.',
+      value: 10.9,
+      type: '数学',
+    },
+    {
+      name: 'London',
+      month: 'Jan.',
+      value: 120.9,
+      type: '英语',
+    },
+    {
+      name: 'Berlin',
+      month: 'Jan.',
+      value: 12.4,
+      type: '美术',
+    },
+    {
+      name: 'Berlin',
+      month: 'Jan.',
+      value: 12.4,
+      type: '线性代数',
+    },
+    {
+      name: 'beijing',
+      month: 'Jan.',
+      value: 12.4,
+      type: '高数',
+    },
+    {
+      name: 'London',
+      month: 'Feb.',
+      value: 2.9,
+      type: '语文',
+    },
+    {
+      name: 'London',
+      month: 'Feb.',
+      value: 5.9,
+      type: '数学',
+    },
+    {
+      name: 'London',
+      month: 'Feb.',
+      value: 10.9,
+      type: '英语',
+    },
+    {
+      name: 'Berlin',
+      month: 'Feb.',
+      value: 22.4,
+      type: '美术',
+    },
+    {
+      name: 'Berlin',
+      month: 'Feb.',
+      value: 32.4,
+      type: '线性代数',
+    },
+    {
+      name: 'beijing',
+      month: 'Feb.',
+      value: 42.4,
+      type: '高数',
+    },
+    {
+      name: 'London',
+      month: 'Mar.',
+      value: 2.9,
+      type: '语文',
+    },
+    {
+      name: 'London',
+      month: 'Mar.',
+      value: 5.9,
+      type: '数学',
+    },
+    {
+      name: 'Berlin',
+      month: 'Mar.',
+      value: 22.4,
+      type: '美术',
+    },
+    {
+      name: 'Berlin',
+      month: 'Mar.',
+      value: 32.4,
+      type: '线性代数',
+    },
+    {
+      name: 'beijing',
+      month: 'Mar.',
+      value: 42.4,
+      type: '高数',
+    },
+  ];
+  var lineData = [
+    {
+      name: '福老师',
+      month: 'Jan.',
+      value: 12.9,
+      type: '美术',
+    },
+    {
+      name: '逍老师',
+      month: 'Jan.',
+      value: 1.4,
+      type: '线性代数',
+    },
+    {
+      name: '新老师',
+      month: 'Jan.',
+      value: 2.4,
+      type: '高数',
+    },
+    {
+      name: '福老师',
+      month: 'Feb.',
+      value: 18.9,
+      type: '美术',
+    },
+    {
+      name: '逍老师',
+      month: 'Feb.',
+      value: 13.4,
+      type: '线性代数',
+    },
+    {
+      name: '新老师',
+      month: 'Feb.',
+      value: 15.4,
+      type: '高数',
+    },
+    {
+      name: '福老师',
+      month: 'Mar.',
+      value: 8.9,
+      type: '美术',
+    },
+    {
+      name: '逍老师',
+      month: 'Mar.',
+      value: 6.4,
+      type: '线性代数',
+    },
+    {
+      name: '新老师',
+      month: 'Mar.',
+      value: 5.4,
+      type: '高数',
+    },
+  ];
+  var config = {
+    data: [columnData, lineData],
+    xField: 'month',
+    yField: ['value', 'value'],
+    geometryOptions: [
+      {
+        geometry: 'column',
+        isGroup: true,
+        isStack: true,
+        seriesField: 'type',
+        groupField: 'name',
+      },
+      {
+        geometry: 'line',
+        seriesField: 'name',
+        isStack: true,
+        smooth: true,
+      },
+    ],
+    tooltip: false,
   };
   return <DualAxes {...config} />;
 };
@@ -1487,13 +1659,9 @@ const DemoDualAxes: React.FC = () => {
         isStack: true,
         seriesField: 'type',
         columnWidthRatio: 0.4,
-        color: ['#5B8FF9', '#5D7092'],
         label: {},
       },
-      {
-        geometry: 'line',
-        color: '#5AD8A6',
-      },
+      { geometry: 'line' },
     ],
     legend: {
       marker: {
@@ -1614,12 +1782,8 @@ const DemoDualAxes: React.FC = () => {
         geometry: 'column',
         isStack: true,
         seriesField: 'type',
-        color: ['#5B8FF9', '#5D7092'],
       },
-      {
-        geometry: 'line',
-        color: '#5AD8A6',
-      },
+      { geometry: 'line' },
     ],
   };
   return <DualAxes {...config} />;
@@ -1774,17 +1938,15 @@ const DemoDualAxes: React.FC = () => {
         isStack: true,
         seriesField: 'type',
         columnWidthRatio: 0.4,
-        color: ['#5B8FF9', '#5AD8A6'],
       },
       {
         geometry: 'line',
         seriesField: 'name',
-        color: ['#CDDDFD', '#CDF3E4', '#CED4DE'],
         lineStyle: function lineStyle(_ref) {
           var name = _ref.name;
           if (name === 'a') {
             return {
-              lineDash: [2, 2],
+              lineDash: [1, 4],
               opacity: 1,
             };
           }
@@ -1799,7 +1961,7 @@ const DemoDualAxes: React.FC = () => {
 export default DemoDualAxes;
 ```
 
-### 百分比堆叠柱线图表-显示多折线
+### 百分比堆叠柱线图表
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -1891,10 +2053,7 @@ const DemoDualAxes: React.FC = () => {
         isPercent: true,
         seriesField: 'type',
       },
-      {
-        geometry: 'line',
-        color: '#FAA219',
-      },
+      { geometry: 'line' },
     ],
   };
   return <DualAxes {...config} />;

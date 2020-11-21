@@ -46,25 +46,41 @@
 
 #### data
 
-<description>**required** _Array\<Record\<string, any>\[]>_</description>
+<description>**required** _array object_</description>
 
-设置图表数据源。数据源为二维数组，形式为\[左轴图形对象集合，右轴图形对象集合]，例如：
+设置图表数据源。数据源为对象集合，例如：
 
-```ts
-const data = [[{ time: '1991'，value: 20 }], [{ time: '1992', count: 20 }]];
+```js
+[
+  { country: '乌拉圭', '2016年耕地总面积': 13.4, '2016年转基因种植面积': 12.3 },
+  { country: '巴拉圭', '2016年耕地总面积': 14.4, '2016年转基因种植面积': 6.3 }
+]
+
 ```
 
 #### xField
 
 <description>**required** _string_</description>
 
-点形状在 x 方向位置映射对应的数据字段名，一般对应一个连续字段。例如`{xField: 'time'}`。
+设置 x 轴字段。
 
 #### yField
 
-<description>**required** _string\[]_</description>
+<description>**required** _\[string,string]_</description>
 
-点形状在 y 方向位置映射所对应的数据字段名数组, 形式为\[左轴图形数据字段名，右轴图形数据字段名]，例如 `{yField: ['value', 'count']}`。
+设置 y 轴映射字段。
+
+#### yAxis
+
+<description>**optional** object</description>
+
+yAxis 为多个 key 为 yField 里面的 2 个字段。
+
+#### layout
+
+<description>**optional** _'horizontal' | 'vertical'_ _default:_ 'horizontal'</description>
+
+表示对称条形图方向。
 
 #### meta
 
@@ -81,44 +97,51 @@ const data = [[{ time: '1991'，value: 20 }], [{ time: '1992', count: 20 }]];
 
 ### 图形样式
 
-#### geometryOptions
+#### barStyle
 
-<description>**optional** _array object_</description>
+<description>**optional** _StyleAttr | Function_</description>
 
-指定了双轴各自对应的图形配置，形式为\[左轴图形配置，右轴图形配置]。每一个配置应为 Line 或 Column 类型的 Config。通过指定双轴对应图形，来实现混合图表功能:
+柱子样式配置。
 
-- 双轴折线图: \[Line, Line], 参考 [DEMO](../../../examples/dual-axes/dual-line)
-- 柱线混合图: \[Column, Line], 参考 [DEMO](http://localhost:8080/zh/examples/dual-axes/column-line)
+<!--图形样式-->
 
-你还可以通过配置 Line 或 Column 的相关配置（见下文），形成双轴多折线图([DEMO](../../../examples/dual-axes/dual-line#dual-multi-line)), 堆叠柱+折线图([DEMO](../../../examples/dual-axes/stacked-column-line)), 分组柱+折线图([DEMO](../../../examples/dual-axes/grouped-column-line))
+| 属性名 | 类型 | 介绍 |
+| --- | --- | --- |
+| fill | string | 图形的填充色 |
+| fillOpacity | number | 图形的填充透明度 |
+| stroke | string | 图形的描边 |
+| lineWidth | number | 图形描边的宽度 |
+| lineDash | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
+| lineOpacity | number | 描边透明度 |
+| opacity | number | 图形的整体透明度 |
+| shadowColor | string | 图形阴影颜色 |
+| strokeOpacity | number | 图形边框透明度 |
+| shadowBlur | number | 图形阴影的高斯模糊系数 |
+| shadowOffsetX | number | 设置阴影距图形的水平距离 |
+| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
+| cursor | string | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
 
-折线对应的图形配置为：
+示例代码：
 
-| 细分配置项名称 | 类型 | 功能描述 | 默认值 |
-| --- | --- | --- | --- |
-| geometry | _string_ | 图形类型，指定为'line' | 'line' |
-| seriesField | _string_ | 拆分字段, 若存在则为多折线，具体用法同[折线图 seriesfield](./line#seriesfield) |
-| smooth | _boolean_ | 是否平滑，具体用法同[折线图 smooth](./line#smooth) | false |
-| connectNulls | _boolean_ | 是否连接空数据，具体用法同[折线图 connectnulls](./line#connectnulls) | true |
-| lineStyle | \*StyleAttr | Function\* | 折线图形样式，具体用法同[折线图 lineStyle](./line#linestyle) |  |
-| point | _pointStyle_ | 线数据点图形样式，具体用法同[折线图 point](./line#point) |  |
-| label | _ContinueLegendLabelCfg_ | 折线图 label,具体用法同[折线图 label](./line#label) |
-| color | \*string | string\[] | Function\* | 指定点的颜色。具体用法同[折线图 color](./line#color) |
+```ts
+{
+  style: {
+    fill: 'red',
+    fillOpacity: 0.5,
+    stroke: 'black',
+    lineWidth: 1,
+    lineDash: [4, 5],
+    strokeOpacity: 0.7,
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffsetX: 5,
+    shadowOffsetY: 5,
+    cursor: 'pointer'
+  }
+}
+```
 
-柱形对应的图形配置为：
-
-| 细分配置项名称 | 类型 | 功能描述 | 默认值 |
-| --- | --- | --- | --- |
-| geometry | _string_ | 图形类型，应指定为'column' |  |
-| seriesField | _string_ | 拆分字段, 在分组柱状图下同 groupField、colorField，在堆积柱状图下同 stackField、colorField ，具体参考[柱形图 seriesfield](./column#seriesfield) |
-| isGroup | _boolean_ | 是否分组柱形图，具体用法同[柱形图 isGroup](./column#isgroup) | false |
-| isStack | _boolean_ | 是否堆积柱状图，具体用法同[柱形图 isStack](./column#isstack) | false |
-| columnWidthRatio | _number_ | 柱状图宽度占比 \[0-1] ，具体用法同[柱形图 columnWidthRatio](./column#columnwidthratio) |  |
-| marginRatio | _number_ | 分组中柱子之间的间距 \[0-1]，仅对分组柱状图适用，具体用法同[柱形图 marginRatio](./column#marginratio) |  |
-| columnStyle | \*StyleAttr | Function\* | 柱子样式配置，具体用法同[柱形图 columnStyle](./column#columnstyle) |  |
-| label | _ContinueLegendLabelCfg_ | 柱形图 label,具体用法同[柱线图 label](./column#label) |
-| color | \*string | string\[] | Function\* | 指定点的颜色。具体用法同[折线图 color](./column#color) |
-| groupField | _string_ | 拆分字段，用于堆叠+分组柱图，拆分优先级高于 seriesField，isGroup: true 时会根据 groupField 进行分组。 | - |
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/guide/graphic-style)。
 
 ### 图表组件
 
@@ -415,23 +438,47 @@ tooltip 偏移量。
 }
 ```
 
-#### axis
+#### label
 
-xAxis、yAxis 配置相同，由于 DualAxes 是双轴， yAxis 类型是对象类型，形式为{左轴字段: 左轴配置，右轴字段: 右轴配置}。例如
+<!--label样式-->
+
+| 属性名 | 类型 | 介绍 |
+| --- | --- | --- |
+| type | string | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner | outer | spider`） |
+| offset | number | label 的偏移量 |
+| offsetX | number | label 相对于数据点在 X 方向的偏移距离 |
+| offsetY | number | label 相对于数据点在 Y 方向的偏移距离 |
+| content | string | IGroup | IShape | GeometryLabelContentCallback | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
+| style | object | label 文本图形属性样式 |
+| autoRotate | string | 是否自动旋转，默认 true |
+| rotate | number | 文本旋转角度 |
+| labelLine | null | boolean | object | 用于设置文本连接线的样式属性，null 表示不展示。 |
+| labelEmit | boolean | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭 |
+| layout | 'overlap' | 'fixedOverlap' | 'limitInShape' | 文本布局类型，支持多种布局函数组合使用。 |
+| position | 'top' | 'bottom' | 'middle' | 'left' | 'right' | 指定当前 label 与当前图形的相对位置 |
+| animate | boolean | AnimateOption | 动画配置。 |
+| formatter | Function | 格式化函数 |
+| autoHide | boolean | 是否自动隐藏，默认 false |
+| autoEllipsis | boolean | 是否自动省略，默认 false |
+
+示例代码：
 
 ```ts
 {
-  yField: ['pv', 'uv'],
-  yAxis: {
-    pv: {
-      tickCount: 5
+  label: {
+    style: {
+      fill: 'red',
+      opacity: 0.6,
+      fontSize: 24
     },
-    uv: {
-      tickCount: 5
-    }
+    rotate: true
   }
 }
 ```
+
+#### axis
+
+xAxis、yAxis 配置相同（由于 DualAxes 是双轴， yAxis 类型是数组类型）。
 
 ##### nice
 
@@ -1051,6 +1098,268 @@ _Marker_ 为支持的标记类型有： _circle | square | line | diamond | tria
 
 _Marker_ 为支持的标记类型有： _circle | square | line | diamond | triangle | triangleDown | hexagon | bowtie | cross | tick | plus | hyphen_； _MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
 
+#### annotations
+
+标注是数组类型，可以设置多个。
+
+```ts
+annotations: [
+  {
+    type: 'text',
+    position: ['median', 'median'],
+    content: '辅助文本',
+    style: {
+      fill: 'red',
+    },
+  },
+];
+```
+
+##### type
+
+<description>**required** _string_ </description>
+
+标注类型, text | line | image | region | dataMarker | dataRegion | regionFilter | shape | html.
+
+##### position
+
+<description>**required** _object_ </description>
+
+标注位置。
+
+- 第一种，object 使用图表 x, y 对应的原始数据例如：{ time: '2010-01-01', value: 200 };
+- 第二种，数组来配置位置 \[ x, y ]，根据数组中的值的存在以下几种形式： 1、对应数据源中的原始数据； 2、关键字：'min'、'max'、'median'、'start'、'end' 分别代表数据的最大值、最小值、中间值以及坐标系区间的起始和结束； 3、x, y 都是百分比的形式，如 30%，在绘图区域定位(即坐标系内)。 1 和 2 两种类型的数据可以混用，但是使用百分比形式时 x 和 y 必须都是百分比形式。
+- 第三种，回调函数，可以动态得确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景。
+
+##### top
+
+<description>**optional** _boolean_ _default:_ `false`</description>
+
+是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层。
+
+##### animate
+
+<description>**optional** _boolean_ </description>
+
+是否进行动画。
+
+##### offsetX
+
+<description>**optional** _number_ </description>
+
+x 方向的偏移量。
+
+##### offsetY
+
+<description>**optional** _number_ </description>
+
+y 方向的偏移量。
+
+##### start
+
+<description>**optional** _Array_ </description>
+
+起始位置，一般用于 line、region 等。
+
+##### end
+
+<description>**optional** _Array_ </description>
+
+结束位置，一般用于 line、region 等。
+
+```ts
+{
+  type: 'line',
+  start: ['min', 'median'],
+  end: ['max', 'median'],
+},
+```
+
+##### style
+
+<description>**optional** _object_ </description>
+
+图形样式属性，参考绘图属性。
+
+##### src
+
+<description>**optional** _string_ </description>
+
+图片路径，用于 image 中。
+
+##### content
+
+<description>**optional** _string_ </description>
+
+文本内容，用于 text 中。
+
+##### rotate
+
+<description>**optional** _number_ </description>
+
+文本的旋转角度，弧度制。
+
+##### maxLength
+
+<description>**optional** _number_ </description>
+
+文文本的最大长度。
+
+##### autoEllipsis
+
+<description>**optional** _boolean_ </description>
+
+超出 maxLength 是否自动省略。
+
+##### ellipsisPosition
+
+<description>**optional** \_head | middle | tail \_ </description>
+
+文本截断的位置。
+
+##### isVertical
+
+<description>**optional** _boolean_ </description>
+
+文本在二维坐标系的显示位置，是沿着 x 轴显示 还是沿着 y 轴显示。
+
+##### background
+
+<description>**optional** _object_ </description>
+
+文字包围盒样式设置。
+
+| 参数名  | 类型                | 是否必选  | 默认值 | 描述           |
+| ------- | ------------------- | --------- | ------ | -------------- |
+| style   | object 参考绘图属性 |           | -      | 文本背景的样式 |
+| padding | number              | number\[] |        | -              | 文本背景周围的留白 |
+
+##### color
+
+<description>**optional** _string_ </description>
+
+染色色值，一般用于 regionFilter。
+
+##### apply
+
+<description>**optional** _string\[]_ </description>
+
+设定 regionFilter 只对特定 geometry 类型起作用，如 apply: \['area']，一般用于 regionFilter。
+
+##### autoAdjust
+
+<description>**optional** _boolean_ </description>
+
+文本超出绘制区域时，是否自动调节文本方向。
+
+##### direction
+
+<description>**optional** _upward | downward_ </description>
+
+朝向。
+
+##### lineLength
+
+<description>**optional** _number_ </description>
+
+line 长度，用于 dataRegion。
+
+##### render
+
+<description>**optional** _string_ </description>
+
+自定义标记的绘制 render 函数，其他 container 为标记绘制的父容器, view 为图形实例, helpers 为辅助函数，其他 parserPosition 可以用来计算数据点对应的坐标位置，用于 shape。
+
+##### container
+
+<description>**optional** _string | HTMLElement_ </description>
+
+自定义 HTML 图形标记的容器元素，用于 html
+
+##### container
+
+<description>**optional** _string | HTMLElement_ </description>
+
+自定义的图形标记的 HTML 元素，可为 HTML DOM 字符串，或 HTML 元素，或 html 回调函数，用于 html
+
+##### alignX
+
+<description>**optional** _left' | 'middle' | 'right'_ </description>
+
+DOM 元素在 X 方向的对齐方式，用于 html
+
+##### alignY
+
+<description>**optional** _left' | 'middle' | 'right'_ </description>
+
+DOM 元素在 Y 方向的对齐方式，用于 html
+
+### 事件
+
+在 Chart 和 View 上通过 on 绑定事件、off 移除绑定事件。
+
+```ts
+// 绑定事件
+chart.on('eventName', callback);
+// 移除事件
+chart.off('eventName', callback);
+```
+
+#### eventName
+
+组成方式：element + ':' + es。
+
+element 指要绑定的元素类型，例如 `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` 等。
+
+es 对应 DOM 常见事件，例如 `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` 等，同时支持几个移动端事件：`touchstart`、`touchmove`、`touchend`
+
+```ts
+// plot添加点击事件,整个图表区域
+chart.on('plot:click', (e) => {
+  console.log(e);
+});
+
+// element 添加点击事件， element 代指 label|point 等
+chart.on('element:click', (e) => {
+  console.log(e);
+});
+
+// 图例添加点击事件
+chart.on('legend-item:click', (e) => {
+  console.log(e);
+});
+
+// 图例名称添加点击事件
+chart.on('legend-item-name:click', (e) => {
+  console.log(e);
+});
+
+// label 添加点击事件
+chart.on('label:click', (e) => {
+  console.log(e);
+});
+
+// mask 添加点击事件
+chart.on('mask:click', (e) => {
+  console.log(e);
+});
+
+// axis-label 添加点击事件
+chart.on('axis-label:click', (e) => {
+  console.log(e);
+});
+
+// 给 annotation 添加点击事件
+chart.on('annotation:click', (e) => {
+  console.log(e);
+});
+
+// 给 slider 添加点击事件
+chart.on('slider:valuechanged', (e) => {
+  console.log(e);
+});
+```
+
 ### 图表主题
 
 #### 内置主题
@@ -1147,70 +1456,4 @@ const config = {
 export default DemoPie;
 
 
-```
-
-### 事件
-
-在 Chart 和 View 上通过 on 绑定事件、off 移除绑定事件。
-
-```ts
-// 绑定事件
-chart.on('eventName', callback);
-// 移除事件
-chart.off('eventName', callback);
-```
-
-#### eventName
-
-组成方式：element + ':' + es。
-
-element 指要绑定的元素类型，例如 `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` 等。
-
-es 对应 DOM 常见事件，例如 `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` 等，同时支持几个移动端事件：`touchstart`、`touchmove`、`touchend`
-
-```ts
-// plot添加点击事件,整个图表区域
-chart.on('plot:click', (e) => {
-  console.log(e);
-});
-
-// element 添加点击事件， element 代指 label|point 等
-chart.on('element:click', (e) => {
-  console.log(e);
-});
-
-// 图例添加点击事件
-chart.on('legend-item:click', (e) => {
-  console.log(e);
-});
-
-// 图例名称添加点击事件
-chart.on('legend-item-name:click', (e) => {
-  console.log(e);
-});
-
-// label 添加点击事件
-chart.on('label:click', (e) => {
-  console.log(e);
-});
-
-// mask 添加点击事件
-chart.on('mask:click', (e) => {
-  console.log(e);
-});
-
-// axis-label 添加点击事件
-chart.on('axis-label:click', (e) => {
-  console.log(e);
-});
-
-// 给 annotation 添加点击事件
-chart.on('annotation:click', (e) => {
-  console.log(e);
-});
-
-// 给 slider 添加点击事件
-chart.on('slider:valuechanged', (e) => {
-  console.log(e);
-});
 ```

@@ -156,6 +156,48 @@ const DemoArea: React.FC = () => {
 export default DemoArea;
 ```
 
+### 百分百面积图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Area } from '@ant-design/charts';
+
+const DemoArea: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/67ef5751-b228-417c-810a-962f978af3e7.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    xField: 'year',
+    yField: 'value',
+    seriesField: 'country',
+    color: ['#82d1de', '#cb302d', '#e3ca8c'],
+    areaStyle: { fillOpacity: 0.7 },
+    appendPadding: 10,
+    isPercent: true,
+    yAxis: {
+      label: {
+        formatter: function formatter(value) {
+          return value * 100;
+        },
+      },
+    },
+  };
+  return <Area {...config} />;
+};
+
+export default DemoArea;
+```
+
 ### 二氧化碳排放量来源
 
 ```tsx
