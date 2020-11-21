@@ -22,6 +22,7 @@ const DualAxesChart = forwardRef((props: DualAxesConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
+  // @ts-ignore annotations 类型特殊
   const { chart, container } = useChart<G2plotDualAxes, DualAxesConfig>(G2plotDualAxes, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

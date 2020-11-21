@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/charts",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "React translate g2plot",
   "files": [
     "/lib",
@@ -37,7 +37,7 @@
     "dist": "webpack --config webpack.config.js --mode production"
   },
   "dependencies": {
-    "@antv/g2plot": "^2.0.0",
+    "@antv/g2plot": "^2.2.11",
     "@antv/g6": "^3.6.0",
     "@antv/util": "^2.0.9",
     "react-content-loader": "^5.0.4"
