@@ -152,7 +152,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
     graph.fitView();
 
     if (collapseExpand) {
-      graph.on('node:click', (e: IG6GraphEvent) => {
+      const onClick = (e: IG6GraphEvent) => { 
         const item = e.item as INode
         if (e.target.get('name') === 'collapse-icon') {
           graph.updateItem(item, {
@@ -164,6 +164,12 @@ const IndentedTree: React.SFC<RelationGraph> = ({
             handleNodeClick(item, graph)
           }
         }
+      }
+      graph.on('node:click', (e: IG6GraphEvent) =>  {
+        onClick(e);
+      })
+      graph.on('node:touchstart', (e: IG6GraphEvent) => {
+        onClick(e);
       })
     }
     graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
@@ -186,7 +192,12 @@ const IndentedTree: React.SFC<RelationGraph> = ({
         handleEdgeClick(item, graph)
       }
     })
-
+    graph.on('edge:touchstart', (evt: IG6GraphEvent) => {
+      const item = evt.item as IEdge
+      if (handleEdgeClick) {
+        handleEdgeClick(item, graph)
+      }
+    })
     graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
       const item = evt.item as INode
       graph.setItemState(item, 'hover', false)
@@ -203,6 +214,10 @@ const IndentedTree: React.SFC<RelationGraph> = ({
     })
 
     graph.on('canvas:click', (evt: IG6GraphEvent) => {
+      handleCanvasClick && handleCanvasClick(graph);
+    })
+
+    graph.on('canvas:touchstart', (evt: IG6GraphEvent) => {
       handleCanvasClick && handleCanvasClick(graph);
     })
 
