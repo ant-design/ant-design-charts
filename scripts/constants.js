@@ -40,6 +40,7 @@ const chartNames = {
   RingProgress: '环形进度条',
   Scatter: '散点图',
   Sunburst: '旭日图',
+  Sankey: '桑基图',
   WordCloud: '词云图',
   TinyArea: '迷你图',
   TinyColumn: '迷你图',
