@@ -1,16 +1,23 @@
-// 一键同步 G2Plot v2 API 文档
+/**
+ * 一键同步 G2Plot v2 API 文档
+ * eg: 
+ * -全量同步：`node scripts/api.js`
+ * -单一同步：`node scripts/api.js Bar`
+ */
 const fs = require('fs');
 const path = require('path');
 const remark = require('remark');
 const { mdprima } = require('./mdprima.js');
-const fp = path.resolve('../', `G2Plot/examples`);
 const api_path = '../docs/.g2plot-plot-api';
 const excludeFiles = ['gallery']; // 不处理的路径
-
+const arg = process.argv.splice(2);
+const fp = arg.length ? path.resolve('../', `G2Plot/examples/${arg[0]}`)
+  : path.resolve('../', `G2Plot/examples`);
 const apiGenerator = (filePath, chartName) => {
   // 文件路径，上层自动扫描
   const res = remark().use(mdprima).processSync(fs.readFileSync(filePath));
-  fs.writeFileSync(path.resolve(__dirname, api_path, `${chartName}.md`), res.contents);
+  // replace 去掉 title
+  fs.writeFileSync(path.resolve(__dirname, api_path, `${chartName}.md`), res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, ''));
 };
 
 /**
@@ -35,6 +42,7 @@ const scanFiles = (foldPath, dir) => {
             dir.split('.').join('/'),
             fileName,
           );
+          console.log(apiPath, fileName);
           apiGenerator(apiPath, chartName);
         }
       }
@@ -44,4 +52,4 @@ const scanFiles = (foldPath, dir) => {
   }
 };
 
-scanFiles(fp);
+scanFiles(fp, arg[0]);
