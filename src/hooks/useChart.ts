@@ -1,4 +1,5 @@
 import { ReactNode, useRef, useEffect } from 'react';
+import DOMPurify from 'dompurify';
 import { isEqual } from '@antv/util';
 import { utils } from '../util';
 import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip } from '@antv/g2plot';
@@ -90,6 +91,13 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
 
   const processConfig = () => {
     const { hasPath } = utils;
+    // Sanitize XSS input
+    const dataKeys = Object.keys(config.data[0]);
+    config.data.forEach((data: any) => {
+      dataKeys.forEach((key) => {
+        data[key] = DOMPurify.sanitize(data[key])
+      })
+    });
     // statistic
     if (hasPath(config, ['statistic', 'content', 'customHtml'])) {
       reactDomToString(config, ['statistic', 'content', 'customHtml']);
