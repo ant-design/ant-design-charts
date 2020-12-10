@@ -151,11 +151,30 @@ const DemoLine: React.FC = () => {
     tooltip: {
       customContent: (title, items) => {
         return (
-          <div style={{ padding: '16px 8px' }}>
-            <h5>提示</h5>
-            <p>年份：{title}</p>
-            <p style={{ margin: 0 }}>值：{items[0] && items[0].data.value}</p>
-          </div>
+          <>
+            <h5>{title}</h5>
+            <ul className="g2-tooltip">
+              {items?.map((item, index) => {
+                const { name, value, color } = item;
+                return (
+                  <li
+                    key={item.year}
+                    className="g2-tooltip-list-item"
+                    data-index={index}
+                    style={{ marginBottom: 4, display: 'flex', alignItems: 'center' }}
+                  >
+                    <span className="g2-tooltip-marker" style={{ backgroundColor: color }}></span>
+                    <span
+                      style={{ display: 'inline-flex', flex: 1, justifyContent: 'space-between' }}
+                    >
+                      <span style={{ margiRight: 16 }}>{name}:</span>
+                      <span className="g2-tooltip-list-item-value">{value}</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
         );
       },
     },
