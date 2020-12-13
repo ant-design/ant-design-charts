@@ -3,22 +3,15 @@ import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Area from '../../src/area';
+import TinyColumn from '../../src/tinyColumn';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Area render', () => { 
+describe('TinyColumn render', () => { 
   let container;
-  const data = [{
-    "date": "2010-01",
-    "scales": 1998
-  },
-  {
-    "date": "2010-02",
-    "scales": 1850
-  }];
+  const data = [274, 337, 81, 497, 666, 219, 269];
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -36,7 +29,7 @@ describe('Area render', () => {
       className: 'container',
       loading: true,
     };
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<TinyColumn {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered[0].nodeType).toBe('component');
@@ -51,7 +44,7 @@ describe('Area render', () => {
 
   it('classname * loading * style with default', () => {
     const props =  {};
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<TinyColumn {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered.nodeType).toBe('host');
@@ -74,13 +67,11 @@ describe('Area render', () => {
     };
     const chartProps = {
       data: [],
-      xField: 'date',
-      yField: 'scales',
       autoFit: false,
       width: '200',
       height: '160'
     }
-    const testRenderer = create(<Area {...props} {...chartProps} />);
+    const testRenderer = create(<TinyColumn {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
   });
@@ -95,20 +86,28 @@ describe('Area render', () => {
     };
     const chartProps = {
       data,
-      xField: 'date',
-      yField: 'scales',
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<TinyColumn {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.getData()).toEqual(data);
+    expect(chartRef.chart.getData()).toEqual(
+      [
+        { x: '0', y: 274 },
+        { x: '1', y: 337 },
+        { x: '2', y: 81 },
+        { x: '3', y: 497 },
+        { x: '4', y: 666 },
+        { x: '5', y: 219 },
+        { x: '6', y: 269 }
+      ]
+    );
   });
 
   it('chartRef with createRef', () => {
@@ -119,16 +118,24 @@ describe('Area render', () => {
     };
     const chartProps = {
       data,
-      xField: 'date',
-      yField: 'scales',
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<TinyColumn {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.getData()).toEqual(data);
+    expect(chartRef.current.chart.getData()).toEqual(
+      [
+        { x: '0', y: 274 },
+        { x: '1', y: 337 },
+        { x: '2', y: 81 },
+        { x: '3', y: 497 },
+        { x: '4', y: 666 },
+        { x: '5', y: 219 },
+        { x: '6', y: 269 }
+      ]
+    );
   });
 
   it('chartRef with useRef', () => {
@@ -137,15 +144,23 @@ describe('Area render', () => {
     };
     const chartProps = {
       data,
-      xField: 'date',
-      yField: 'scales',
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<TinyColumn {...props} {...chartProps} ref={ refs } />, container);
     });
-    expect(refs.current.getChart().chart.getData()).toEqual(data);
+    expect(refs.current.getChart().chart.getData()).toEqual(
+      [
+        { x: '0', y: 274 },
+        { x: '1', y: 337 },
+        { x: '2', y: 81 },
+        { x: '3', y: 497 },
+        { x: '4', y: 666 },
+        { x: '5', y: 219 },
+        { x: '6', y: 269 }
+      ]
+    );
   });
 })

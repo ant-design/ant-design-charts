@@ -47,29 +47,24 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
    * @param {string} type A DOMString indicating the image format. The default format type is image/png.
    * @param {number} encoderOptions A Number between 0 and 1 indicating the image quality
    */
-  const downloadImage = (name: string, type = 'image/png', encoderOptions?: number) => {
-    try {
-      // default png
-      if (name && name.indexOf('.') === -1) {
-        name = `${name}.png`;
-      }
-      let imageName = name;
-      if (!imageName) {
-        const _config = config as any;
-        // 默认值：图表 title -> 图表类型
-        imageName = `${_config?.title?.text || ChartClass?.name}.png`;
-      }
-      const base64 = chart.current?.chart.canvas.cfg.el.toDataURL(type, encoderOptions);
-      let a: HTMLAnchorElement | null = document.createElement('a');
-      a.href = base64;
-      a.download = imageName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      a = null;
-    } catch (err) {
-      console.log(err);
+  const downloadImage = (
+    name = 'download',
+    type = 'image/png',
+    encoderOptions?: number,
+  ): string => {
+    let imageName = name;
+    if (name.indexOf('.') === -1) {
+      imageName = `${name}.${type.split('/')[1]}`;
     }
+    const base64 = chart.current?.chart.canvas.cfg.el.toDataURL(type, encoderOptions);
+    let a: HTMLAnchorElement | null = document.createElement('a');
+    a.href = base64;
+    a.download = imageName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    a = null;
+    return imageName;
   };
 
   const reactDomToString = (source: U, path: string[], type?: string) => {
@@ -160,7 +155,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       return toDataURL(type, encoderOptions);
     };
     chartInstance.__proto__.downloadImage = (
-      name: string,
+      name?: string,
       type?: string,
       encoderOptions?: number,
     ) => {

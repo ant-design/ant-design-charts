@@ -3,22 +3,58 @@ import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Area from '../../src/area';
+import Sunburst from '../../src/sunburst';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Area render', () => { 
+describe('Sunburst render', () => {
   let container;
-  const data = [{
-    "date": "2010-01",
-    "scales": 1998
-  },
-  {
-    "date": "2010-02",
-    "scales": 1850
-  }];
+  const data = {
+    label: 'root',
+    children: [
+      {
+        label: '类别 1',
+        children: [
+          {
+            label: '类别 1.1',
+            children: [
+              {
+                label: '类别 1.1.1',
+                children: [
+                  {
+                    label: '类别 1.1.1.1',
+                    children: [
+                      {
+                        label: '类别 1.1.1.1.1',
+                        children: null,
+                        uv: 1,
+                        sum: 1,
+                        count: 0,
+                      },
+                    ],
+                    uv: 0,
+                    sum: 1,
+                    count: 0,
+                  },
+                ],
+                uv: 0,
+                sum: 1,
+                count: 0,
+              },
+            ],
+            uv: 0,
+            sum: 1,
+            count: 0,
+          },
+        ],
+        uv: 0,
+        sum: 1,
+        count: 0,
+      },
+    ],
+  };
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -29,20 +65,20 @@ describe('Area render', () => {
   });
 
   it('classname * loading * style', () => {
-    const props =  {
-      style:  {
+    const props = {
+      style: {
         height: '80%',
       },
       className: 'container',
       loading: true,
     };
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<Sunburst {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
     expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%'
+      height: '80%',
     });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
@@ -50,8 +86,8 @@ describe('Area render', () => {
   });
 
   it('classname * loading * style with default', () => {
-    const props =  {};
-    const testRenderer = create(<Area {...props} />);
+    const props = {};
+    const testRenderer = create(<Sunburst {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered.nodeType).toBe('host');
@@ -59,16 +95,16 @@ describe('Area render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%'
+      height: '100%',
     });
   });
-  
+
   it('error template', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error">custom error</span>,
     };
@@ -78,9 +114,9 @@ describe('Area render', () => {
       yField: 'scales',
       autoFit: false,
       width: '200',
-      height: '160'
-    }
-    const testRenderer = create(<Area {...props} {...chartProps} />);
+      height: '160',
+    };
+    const testRenderer = create(<Sunburst {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
   });
@@ -89,7 +125,7 @@ describe('Area render', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
-      chartRef: (ref) => { 
+      chartRef: (ref) => {
         chartRef = ref;
       },
     };
@@ -99,16 +135,16 @@ describe('Area render', () => {
       yField: 'scales',
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Sunburst {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.getData()).toEqual(data);
+    expect(chartRef.chart.getData().length).toBe(5);
   });
 
   it('chartRef with createRef', () => {
@@ -123,12 +159,12 @@ describe('Area render', () => {
       yField: 'scales',
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Sunburst {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.getData()).toEqual(data);
+    expect(chartRef.current.chart.getData().length).toBe(5);
   });
 
   it('chartRef with useRef', () => {
@@ -141,11 +177,11 @@ describe('Area render', () => {
       yField: 'scales',
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Sunburst {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.getData()).toEqual(data);
+    expect(refs.current.getChart().chart.getData().length).toBe(5);
   });
-})
+});

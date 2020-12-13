@@ -3,22 +3,14 @@ import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Area from '../../src/area';
+import Gauge from '../../src/gauge';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Area render', () => { 
+describe('Gauge render', () => { 
   let container;
-  const data = [{
-    "date": "2010-01",
-    "scales": 1998
-  },
-  {
-    "date": "2010-02",
-    "scales": 1850
-  }];
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -36,7 +28,7 @@ describe('Area render', () => {
       className: 'container',
       loading: true,
     };
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<Gauge {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered[0].nodeType).toBe('component');
@@ -51,7 +43,7 @@ describe('Area render', () => {
 
   it('classname * loading * style with default', () => {
     const props =  {};
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<Gauge {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered.nodeType).toBe('host');
@@ -80,7 +72,7 @@ describe('Area render', () => {
       width: '200',
       height: '160'
     }
-    const testRenderer = create(<Area {...props} {...chartProps} />);
+    const testRenderer = create(<Gauge {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
   });
@@ -94,21 +86,23 @@ describe('Area render', () => {
       },
     };
     const chartProps = {
-      data,
-      xField: 'date',
-      yField: 'scales',
+      percent: 0.75,
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Gauge {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.getData()).toEqual(data);
+    expect(chartRef.chart.views[0].getData()).toEqual(
+      [
+        {percent: 0.75}
+      ]
+    );
   });
 
   it('chartRef with createRef', () => {
@@ -118,17 +112,19 @@ describe('Area render', () => {
       chartRef,
     };
     const chartProps = {
-      data,
-      xField: 'date',
-      yField: 'scales',
+     percent: 0.75,
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Gauge {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.getData()).toEqual(data);
+    expect(chartRef.current.chart.views[0].getData()).toEqual(
+      [
+        {percent: 0.75}
+      ]
+    );
   });
 
   it('chartRef with useRef', () => {
@@ -136,16 +132,18 @@ describe('Area render', () => {
       className: 'container',
     };
     const chartProps = {
-      data,
-      xField: 'date',
-      yField: 'scales',
+      percent: 0.75,
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Gauge {...props} {...chartProps} ref={ refs } />, container);
     });
-    expect(refs.current.getChart().chart.getData()).toEqual(data);
+    expect(refs.current.getChart().chart.views[0].getData()).toEqual(
+      [
+        {percent: 0.75}
+      ]
+    );
   });
 })

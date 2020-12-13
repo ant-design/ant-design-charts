@@ -3,22 +3,18 @@ import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Area from '../../src/area';
+import Pie from '../../src/pie';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Area render', () => { 
+describe('Pie render', () => { 
   let container;
-  const data = [{
-    "date": "2010-01",
-    "scales": 1998
-  },
-  {
-    "date": "2010-02",
-    "scales": 1850
-  }];
+  const data = [
+    { type: '分类一', value: 27 },
+    { type: '分类二', value: 25 },
+  ];
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -36,7 +32,7 @@ describe('Area render', () => {
       className: 'container',
       loading: true,
     };
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<Pie {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered[0].nodeType).toBe('component');
@@ -51,7 +47,7 @@ describe('Area render', () => {
 
   it('classname * loading * style with default', () => {
     const props =  {};
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<Pie {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered.nodeType).toBe('host');
@@ -74,13 +70,13 @@ describe('Area render', () => {
     };
     const chartProps = {
       data: [],
-      xField: 'date',
-      yField: 'scales',
+      angleField: 'value',
+      colorField: 'type',
       autoFit: false,
       width: '200',
       height: '160'
     }
-    const testRenderer = create(<Area {...props} {...chartProps} />);
+    const testRenderer = create(<Pie {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
   });
@@ -95,14 +91,14 @@ describe('Area render', () => {
     };
     const chartProps = {
       data,
-      xField: 'date',
-      yField: 'scales',
+      angleField: 'value',
+      colorField: 'type',
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Pie {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -119,14 +115,14 @@ describe('Area render', () => {
     };
     const chartProps = {
       data,
-      xField: 'date',
-      yField: 'scales',
+      angleField: 'value',
+      colorField: 'type',
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Pie {...props} {...chartProps} />, container);
     });
     expect(chartRef.current.chart.getData()).toEqual(data);
   });
@@ -137,14 +133,14 @@ describe('Area render', () => {
     };
     const chartProps = {
       data,
-      xField: 'date',
-      yField: 'scales',
+      angleField: 'value',
+      colorField: 'type',
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Pie {...props} {...chartProps} ref={ refs } />, container);
     });
     expect(refs.current.getChart().chart.getData()).toEqual(data);
   });

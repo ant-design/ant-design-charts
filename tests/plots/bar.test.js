@@ -3,13 +3,13 @@ import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Area from '../../src/area';
+import Bar from '../../src/bar';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Area render', () => { 
+describe('Bar render', () => { 
   let container;
   const data = [{
     "date": "2010-01",
@@ -36,7 +36,7 @@ describe('Area render', () => {
       className: 'container',
       loading: true,
     };
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<Bar {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered[0].nodeType).toBe('component');
@@ -51,7 +51,7 @@ describe('Area render', () => {
 
   it('classname * loading * style with default', () => {
     const props =  {};
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<Bar {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered.nodeType).toBe('host');
@@ -80,7 +80,7 @@ describe('Area render', () => {
       width: '200',
       height: '160'
     }
-    const testRenderer = create(<Area {...props} {...chartProps} />);
+    const testRenderer = create(<Bar {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
   });
@@ -102,13 +102,13 @@ describe('Area render', () => {
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Bar {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.getData()).toEqual(data);
+    expect(chartRef.chart.getData()).toEqual(data.reverse());
   });
 
   it('chartRef with createRef', () => {
@@ -126,9 +126,9 @@ describe('Area render', () => {
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Bar {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.getData()).toEqual(data);
+    expect(chartRef.current.chart.getData()).toEqual(data.reverse());
   });
 
   it('chartRef with useRef', () => {
@@ -144,8 +144,8 @@ describe('Area render', () => {
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Bar {...props} {...chartProps} ref={ refs } />, container);
     });
-    expect(refs.current.getChart().chart.getData()).toEqual(data);
+    expect(refs.current.getChart().chart.getData()).toEqual(data.reverse());
   });
 })

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { create } from 'react-test-renderer';
 import { isFunction } from 'lodash';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
@@ -61,6 +62,25 @@ describe('use chart', () => {
     expect(regPng.test(imgDataDefaultArg)).toBeTruthy();
     expect(regJpeg.test(imgDataWithCustomArg)).toBeTruthy();
     expect(isFunction(chartRef.downloadImage)).toBeTruthy();
+    expect(chartRef.downloadImage()).toBe('download.png');
+    expect(chartRef.downloadImage('test')).toBe('test.png');
+    expect(chartRef.downloadImage('test.jpeg')).toBe('test.jpeg');
+    expect(chartRef.downloadImage('test', 'image/jpeg')).toBe('test.jpeg');
+  });
+
+  it('chart destroy', () => {
+    let chartRef = undefined;
+    const props = {
+      data,
+      angleField: 'value',
+      colorField: 'type',
+      chartRef: (ref) => {
+        chartRef = ref;
+      },
+    };
+    const wrapper = mount(<Pie {...props} />);
+    wrapper.unmount();
+    expect(chartRef.chart.destroyed).toBeTruthy();
   });
 
   it('chart change data with normal chart', () => {

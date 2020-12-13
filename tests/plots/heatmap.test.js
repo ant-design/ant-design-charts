@@ -3,22 +3,26 @@ import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Area from '../../src/area';
+import Heatmap from '../../src/heatmap';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Area render', () => { 
+describe('Heatmap render', () => { 
   let container;
-  const data = [{
-    "date": "2010-01",
-    "scales": 1998
-  },
-  {
-    "date": "2010-02",
-    "scales": 1850
-  }];
+  const data = [
+    {
+      "Month of Year": 201601,
+      "District": "Central/Western",
+      "AQHI": 3.341
+    },
+    {
+      "Month of Year": 201601,
+      "District": "Eastern",
+      "AQHI": 3.266
+    }
+  ];
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -36,7 +40,7 @@ describe('Area render', () => {
       className: 'container',
       loading: true,
     };
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<Heatmap {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered[0].nodeType).toBe('component');
@@ -51,7 +55,7 @@ describe('Area render', () => {
 
   it('classname * loading * style with default', () => {
     const props =  {};
-    const testRenderer = create(<Area {...props} />);
+    const testRenderer = create(<Heatmap {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered.nodeType).toBe('host');
@@ -74,13 +78,20 @@ describe('Area render', () => {
     };
     const chartProps = {
       data: [],
-      xField: 'date',
-      yField: 'scales',
+      xField: 'Month of Year',
+      yField: 'District',
+      colorField: 'AQHI',
+      color: ['#174c83', '#7eb6d4', '#efefeb', '#efa759', '#9b4d16'],
+      meta: {
+        'Month of Year': {
+          type: 'cat',
+        },
+      },
       autoFit: false,
       width: '200',
       height: '160'
     }
-    const testRenderer = create(<Area {...props} {...chartProps} />);
+    const testRenderer = create(<Heatmap {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
   });
@@ -95,14 +106,21 @@ describe('Area render', () => {
     };
     const chartProps = {
       data,
-      xField: 'date',
-      yField: 'scales',
+      xField: 'Month of Year',
+      yField: 'District',
+      colorField: 'AQHI',
+      color: ['#174c83', '#7eb6d4', '#efefeb', '#efa759', '#9b4d16'],
+      meta: {
+        'Month of Year': {
+          type: 'cat',
+        },
+      },
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Heatmap {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -119,14 +137,21 @@ describe('Area render', () => {
     };
     const chartProps = {
       data,
-      xField: 'date',
-      yField: 'scales',
+      xField: 'Month of Year',
+      yField: 'District',
+      colorField: 'AQHI',
+      color: ['#174c83', '#7eb6d4', '#efefeb', '#efa759', '#9b4d16'],
+      meta: {
+        'Month of Year': {
+          type: 'cat',
+        },
+      },
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      ReactDOM.render(<Heatmap {...props} {...chartProps} />, container);
     });
     expect(chartRef.current.chart.getData()).toEqual(data);
   });
@@ -137,14 +162,21 @@ describe('Area render', () => {
     };
     const chartProps = {
       data,
-      xField: 'date',
-      yField: 'scales',
+      xField: 'Month of Year',
+      yField: 'District',
+      colorField: 'AQHI',
+      color: ['#174c83', '#7eb6d4', '#efefeb', '#efa759', '#9b4d16'],
+      meta: {
+        'Month of Year': {
+          type: 'cat',
+        },
+      },
       autoFit: false,
       width: 200,
       height: 160
     }
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Heatmap {...props} {...chartProps} ref={ refs } />, container);
     });
     expect(refs.current.getChart().chart.getData()).toEqual(data);
   });
