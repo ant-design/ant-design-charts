@@ -22,7 +22,7 @@
     "start": "npm run dev",
     "dev": "dumi dev",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "test": "umi-test ./tests/utils/base.test.js",
+    "test": "umi-test",
     "deploy": "gh-pages -d dist",
     "docs:build": "dumi build",
     "test:coverage": "umi-test --coverage",
