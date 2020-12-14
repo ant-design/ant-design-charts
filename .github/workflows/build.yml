@@ -1,6 +1,6 @@
 name: build
 
-on: ['push', 'pull_request']
+on: [push, pull_request]
 
 jobs:
   build:
@@ -22,4 +22,4 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
