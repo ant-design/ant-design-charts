@@ -47,36 +47,33 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
    * @param {string} type A DOMString indicating the image format. The default format type is image/png.
    * @param {number} encoderOptions A Number between 0 and 1 indicating the image quality
    */
-  const downloadImage = (name: string, type = 'image/png', encoderOptions?: number) => {
-    try {
-      // default png
-      if (name && name.indexOf('.') === -1) {
-        name = `${name}.png`;
-      }
-      let imageName = name;
-      if (!imageName) {
-        const _config = config as any;
-        // 默认值：图表 title -> 图表类型
-        imageName = `${_config?.title?.text || ChartClass?.name}.png`;
-      }
-      const base64 = chart.current?.chart.canvas.cfg.el.toDataURL(type, encoderOptions);
-      let a: HTMLAnchorElement | null = document.createElement('a');
-      a.href = base64;
-      a.download = imageName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      a = null;
-    } catch (err) {
-      console.log(err);
+  const downloadImage = (
+    name = 'download',
+    type = 'image/png',
+    encoderOptions?: number,
+  ): string => {
+    let imageName = name;
+    if (name.indexOf('.') === -1) {
+      imageName = `${name}.${type.split('/')[1]}`;
     }
+    const base64 = chart.current?.chart.canvas.cfg.el.toDataURL(type, encoderOptions);
+    let a: HTMLAnchorElement | null = document.createElement('a');
+    a.href = base64;
+    a.download = imageName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    a = null;
+    return imageName;
   };
 
-  const reactDomToString = (source: U, path: string[]) => {
+  const reactDomToString = (source: U, path: string[], type?: string) => {
     const { hasPath, setPath } = utils;
     const statisticCustomHtml = hasPath(source, path);
     setPath(source, path, (...arg: any[]) => {
-      const statisticDom = statisticCustomHtml(...arg);
+      const statisticDom = utils.isType(statisticCustomHtml, 'Function')
+        ? statisticCustomHtml(...arg)
+        : statisticCustomHtml;
       if (
         utils.isType(statisticDom, 'String') ||
         utils.isType(statisticDom, 'Number') ||
@@ -84,7 +81,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       ) {
         return statisticDom;
       }
-      return createNode(statisticDom);
+      return createNode(statisticDom, type);
     });
   };
 
@@ -99,11 +96,11 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
     }
     // tooltip
     if (typeof config.tooltip === 'object') {
-      if (config.tooltip?.container) {
-        config.tooltip.container = createNode(config.tooltip.container);
+      if (hasPath(config, ['tooltip', 'container'])) {
+        reactDomToString(config, ['tooltip', 'container'], 'tooltip');
       }
       if (hasPath(config, ['tooltip', 'customContent'])) {
-        reactDomToString(config, ['tooltip', 'customContent']);
+        reactDomToString(config, ['tooltip', 'customContent'], 'tooltip');
       }
     }
   };
@@ -129,7 +126,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       }
       if (changeData) {
         let changeType = 'data';
-        const typeMaps = ['percent', 'value'];
+        const typeMaps = ['percent']; // 特殊类型的图表 data 字段，例如 RingProgress
         const currentKeys = Object.keys(config);
         typeMaps.forEach((type: string) => {
           if (currentKeys.includes(type)) {
@@ -154,12 +151,12 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       ...config,
     });
 
-    chartInstance.__proto__.toDataURL = (type: string, encoderOptions?: number) => {
+    chartInstance.__proto__.toDataURL = (type?: string, encoderOptions?: number) => {
       return toDataURL(type, encoderOptions);
     };
     chartInstance.__proto__.downloadImage = (
-      name: string,
-      type: string,
+      name?: string,
+      type?: string,
       encoderOptions?: number,
     ) => {
       return downloadImage(name, type, encoderOptions);

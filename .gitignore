@@ -20,3 +20,4 @@
 .umi-test
 /.env.local
 .docz
+/coverage
