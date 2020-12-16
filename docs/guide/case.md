@@ -152,8 +152,8 @@ const DemoLine: React.FC = () => {
       customContent: (title, items) => {
         return (
           <>
-            <h5>{title}</h5>
-            <ul className="g2-tooltip">
+            <h5 style={{ marginTop: 16 }}>{title}</h5>
+            <ul style={{ paddingLeft: 0 }}>
               {items?.map((item, index) => {
                 const { name, value, color } = item;
                 return (
