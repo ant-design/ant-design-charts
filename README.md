@@ -110,12 +110,14 @@ Common props:
 
 | Property | Description | Type | defaultValue |
 | --- | --- | --- | --- |
-| chartRef | chart ref | (React.MutableRefObject&lt;Chart&gt;)=> void | - |
+| onReady | 图表加载回调 | (chart)=> void | - |
+| onEvent | 图表事件绑定 | (chart, event)=> void | - |
 | loading | loading status | boolean | - |
 | loadingTemplate | loading template | React.ReactElement | - |
 | errorTemplate | custom error template | (e: Error) => React.ReactNode | - |
 | className | container class | string | - |
 | style | container style | React.CSSProperties | - |
+| chartRef | chart ref | (React.MutableRefObject&lt;Chart&gt;)=> void | - |
 
 [More usage](https://charts.ant.design/guide/case)
 

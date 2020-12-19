@@ -68,6 +68,29 @@ describe('use chart', () => {
     expect(chartRef.downloadImage('test', 'image/jpeg')).toBe('test.jpeg');
   });
 
+  it('chart init with onReady & onEvent', () => {
+    let readyChart = undefined;
+    let events = undefined;
+    const props = {
+      data,
+      angleField: 'value',
+      colorField: 'type',
+      onReady: (chart) => {
+        readyChart = chart;
+      },
+      onEvent: (chart, event) => {
+        events = event;
+      }
+    };
+    act(() => {
+      ReactDOM.render(<Pie {...props} />, container);
+    });
+    expect(readyChart).not.toBeUndefined();
+    readyChart.chart.showTooltip({ x: 10, y: 10 });
+    readyChart.chart.hideTooltip();
+    expect(events.type).toBe('tooltip:hide');
+  });
+
   it('chart destroy', () => {
     let chartRef = undefined;
     const props = {
