@@ -1,15 +1,18 @@
 import { ReactNode, useRef, useEffect } from 'react';
 import { isEqual } from '@antv/util';
 import { utils } from '../util';
-import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip } from '@antv/g2plot';
+import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip, G2 } from '@antv/g2plot';
 import createNode from '../util/createNode';
-
 export interface ContainerProps {
   style?: React.CSSProperties;
   className?: string;
   loading?: boolean;
   loadingTemplate?: React.ReactElement;
   errorTemplate?: (e: Error) => React.ReactNode;
+  /** 图表渲染完成回调 */
+  onReady?: (chart: G2PlotConfig) => void;
+  /** 任何其他的图形事件 */
+  onEvent?: (chart: G2PlotConfig, event: G2.Event) => void;
 }
 export interface Tooltip extends Omit<G2PlotTooltip, 'customContent'> {
   customContent?: (title: string, data: any[]) => ReactNode | string | void;
@@ -31,6 +34,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
   const chart = useRef<T>();
   const chartOptions = useRef<U>();
   const container = useRef<HTMLDivElement>(null);
+  const { onReady, onEvent } = config;
 
   /**
    * Get data base64
@@ -166,8 +170,23 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       chartOptions.current = config;
     }
     chart.current = utils.clone(chartInstance) as T;
+    if (onReady) {
+      onReady(chartInstance);
+    }
+    const handler = (event: G2.Event) => {
+      if (onEvent) {
+        onEvent(chartInstance, event);
+      }
+    };
+    chartInstance.on('*', handler);
+
+    // 组件销毁时销毁图表
     return () => {
-      chartInstance.destroy();
+      if (chart.current) {
+        chart.current.destroy();
+        chart.current.off('*', handler);
+        chart.current = undefined;
+      }
     };
   }, []);
 
