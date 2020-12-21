@@ -110,8 +110,8 @@ Common props:
 
 | Property | Description | Type | defaultValue |
 | --- | --- | --- | --- |
-| onReady | 图表加载回调 | (chart)=> void | - |
-| onEvent | 图表事件绑定 | (chart, event)=> void | - |
+| onReady | chart loaded callback | (chart)=> void | - |
+| onEvent | chart events | (chart, event)=> void | - |
 | loading | loading status | boolean | - |
 | loadingTemplate | loading template | React.ReactElement | - |
 | errorTemplate | custom error template | (e: Error) => React.ReactNode | - |
