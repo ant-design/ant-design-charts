@@ -125,6 +125,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     const graphSize = getGraphSize(width, height, container);
 
     if (!graph || graph.destroyed) {
+
       if (nodeType === 'icon-node') {
         customIconNode({  enableEdit });
       }
@@ -168,14 +169,6 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     if (collapseExpand) {
       graph.addBehaviors({
         type: 'collapse-expand',
-        onChange: function onChange(item, collapsed) {
-          if (!item) {
-            return false
-          }
-          const data = item.get('model').data;
-          data.collapsed = collapsed;
-          return true;
-        },
       }, 'default')
     }
 
@@ -216,10 +209,9 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
         } else if (name === 'remove-item') {
           graph.removeChild(model.id)
         }
-      } else {
-        if (handleNodeClick) {
-          handleNodeClick(item as INode, graph)
-        }
+      }
+      if (handleNodeClick) {
+        handleNodeClick(item as INode, graph)
       }
     })
 
