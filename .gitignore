@@ -21,3 +21,6 @@
 /.env.local
 .docz
 /coverage
+
+#ide
+.idea/
