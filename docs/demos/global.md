@@ -7,6 +7,27 @@ nav:
 toc: content
 ---
 
+## 树图、流程图
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+
+  <a href="/demos/organization-tree-graph#基础组织架构树图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Quv4RoUwgf4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">基础组织架构树图</p>
+  </a>
+
+  <a href="/demos/indented-tree#演示结果" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C5XCQapXDpwAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">缩进树图</p>
+  </a>
+
+   <a href="/demos/dagre-graph#演示结果" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gZwPSoxN-NUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">流程图</p>
+  </a>
+  
+</div>
+
 ## 折线图
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
