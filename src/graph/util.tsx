@@ -1,6 +1,5 @@
-import G6, { Graph } from '@antv/g6/es';
+import G6, { Graph } from '@antv/g6';
 import { MiniMapConfig } from './types';
-import MiniMap from '@antv/g6/es/plugins/minimap';
 
 
 const defaultMinimapCfg = {
@@ -22,7 +21,7 @@ export const getGraphSize = (width: number | undefined, height: number | undefin
     return [width || CANVAS_WIDTH || 500, height || CANVAS_HEIGHT || 500];
 }
 
-export const processMinimap = (cfg: MiniMapConfig | undefined, graph: Graph): MiniMap | undefined => {
+export const processMinimap = (cfg: MiniMapConfig | undefined, graph: Graph) => {
   if (!graph || graph.destroyed) return;
   if (cfg && cfg.show) {
     const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import G6, { Graph } from '@antv/g6/es';
-import { IEdge, INode } from '@antv/g6/es/interface/item';
-import { IG6GraphEvent } from '@antv/g6/es/types';
+import G6, { IEdge, INode, IG6GraphEvent } from '@antv/g6';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import { processMinimap, getGraphSize } from './util';
@@ -46,7 +44,7 @@ const defaultLabelCfg = {
   }
 }
 
-let graph: Graph;
+let graph: any;
 
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,
@@ -150,6 +148,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
 
     // modify the node color according to the in edge
     const edges = graph.getEdges();
+    // @ts-ignore
     edges.forEach(function (edge) {
       const line = edge.getKeyShape();
       const stroke = line.attr('stroke');

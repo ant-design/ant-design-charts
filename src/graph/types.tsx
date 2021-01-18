@@ -1,9 +1,4 @@
-
-import { TreeGraphData, GraphData, StateStyles, ShapeStyle } from '@antv/g6/es/types';
-import { IGraph } from '@antv/g6/es/interface/graph';
-import { INode, IEdge } from '@antv/g6/es/interface/item';
-
-
+import { TreeGraphData, GraphData, StateStyles, ShapeStyle, INode, IEdge, IGraph } from '@antv/g6';
 
 export interface MiniMapConfig{
   show?: boolean;

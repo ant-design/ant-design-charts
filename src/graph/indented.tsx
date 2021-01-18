@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
-import G6, { TreeGraph } from '@antv/g6/es';
+import G6,  { IEdge, INode, IG6GraphEvent } from '@antv/g6';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import './customItems';
 import { processMinimap, getGraphSize } from './util';
 import useGraph from '../hooks/useGraph';
-import { IEdge, INode } from '@antv/g6/es/interface/item';
-import { IG6GraphEvent } from '@antv/g6/es/types';
-
 
 const defaultStateStyles = {
   hover: {
@@ -52,7 +49,7 @@ const defaultLabelCfg = {
   }
 }
 
-let graph: TreeGraph;
+let graph: any;
 
 const IndentedTree: React.SFC<RelationGraph> = ({
   data,

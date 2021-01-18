@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import G6, { TreeGraph } from '@antv/g6/es';
-import { INode, IEdge } from '@antv/g6/es/interface/item';
-import { TreeGraphData, NodeConfig, IG6GraphEvent } from '@antv/g6/es/types';
+import G6, {  INode, IEdge, TreeGraphData, NodeConfig, IG6GraphEvent } from '@antv/g6';
 import { ErrorBoundary } from '../base';
 import { customIconNode } from './customItems';
 import { getGraphSize, processMinimap } from './util'
@@ -57,7 +55,7 @@ const defaultLabelCfg = {
   }
 }
 
-let graph: TreeGraph;
+let graph: any;
 
 const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   data,
