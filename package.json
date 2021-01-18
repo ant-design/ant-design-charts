@@ -38,8 +38,11 @@
   },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
-    "@antv/g6": "^4.1.1",
+    "@antv/g6": "^4.0.3",
+    "@antv/layout": "^0.0.16",
     "@antv/util": "^2.0.9",
+    "@antv/x6": "^1.12.1",
+    "@antv/x6-react-shape": "^1.2.3",
     "react-content-loader": "^5.0.4"
   },
   "devDependencies": {
