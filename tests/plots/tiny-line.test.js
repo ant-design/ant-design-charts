@@ -106,12 +106,12 @@ describe('TinyLine render', () => {
     expect(canvas.height).toBe(160);
     expect(chartRef.chart.getData()).toEqual(
       [
-        { x: 0, y: 264 },
-        { x: 1, y: 417 },
-        { x: 2, y: 438 },
-        { x: 3, y: 887 },
-        { x: 4, y: 309 },
-        { x: 5, y: 397 }
+        { x: '0', y: 264 },
+        { x: '1', y: 417 },
+        { x: '2', y: 438 },
+        { x: '3', y: 887 },
+        { x: '4', y: 309 },
+        { x: '5', y: 397 }
       ]
     );
   });
@@ -133,12 +133,12 @@ describe('TinyLine render', () => {
     });
     expect(chartRef.current.chart.getData()).toEqual(
       [
-        { x: 0, y: 264 },
-        { x: 1, y: 417 },
-        { x: 2, y: 438 },
-        { x: 3, y: 887 },
-        { x: 4, y: 309 },
-        { x: 5, y: 397 }
+        { x: '0', y: 264 },
+        { x: '1', y: 417 },
+        { x: '2', y: 438 },
+        { x: '3', y: 887 },
+        { x: '4', y: 309 },
+        { x: '5', y: 397 }
       ]
     );
   });
@@ -158,12 +158,12 @@ describe('TinyLine render', () => {
     });
     expect(refs.current.getChart().chart.getData()).toEqual(
       [
-        { x: 0, y: 264 },
-        { x: 1, y: 417 },
-        { x: 2, y: 438 },
-        { x: 3, y: 887 },
-        { x: 4, y: 309 },
-        { x: 5, y: 397 }
+        { x: '0', y: 264 },
+        { x: '1', y: 417 },
+        { x: '2', y: 438 },
+        { x: '3', y: 887 },
+        { x: '4', y: 309 },
+        { x: '5', y: 397 }
       ]
     );
   });

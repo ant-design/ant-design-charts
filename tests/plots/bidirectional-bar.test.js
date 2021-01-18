@@ -113,8 +113,8 @@ describe('BidirectionalBar render', () => {
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
     expect(chartRef.chart.views[0].getData()).toEqual([
-      { country: '乌拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 13.4 },
-      { country: '巴拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 14.4 }
+      { country: '巴拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 14.4 },
+      { country: '乌拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 13.4 }
     ]);
   });
 
@@ -137,8 +137,8 @@ describe('BidirectionalBar render', () => {
     });
     expect(chartRef.current.chart.views[0].getData()).toEqual(
       [
-        { country: '乌拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 13.4 },
-        { country: '巴拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 14.4 }
+        { country: '巴拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 14.4 },
+        { country: '乌拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 13.4 }
       ]
     );
   });
@@ -160,8 +160,8 @@ describe('BidirectionalBar render', () => {
     });
     expect(refs.current.getChart().chart.views[0].getData()).toEqual(
       [
+        { country: '巴拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 14.4 },
         { country: '乌拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 13.4 },
-        { country: '巴拉圭', type: '2016年耕地总面积', '2016年耕地总面积': 14.4 }
       ]
     );
   });

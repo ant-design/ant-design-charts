@@ -19,7 +19,10 @@ if (!arg.length) {
 const lowerCaseFileName = lowerCase(arg[0]);
 const toLineName = toLine(lowerCaseFileName);
 const tiny = tniyPath.includes(arg[0]) ? '/tiny' : '';
-const fp = path.resolve('../', `G2Plot/examples${tiny}/${toLineName}`);
+// const fp = path.resolve('../', `G2Plot/examples${tiny}/${toLineName}`);
+// G2Plot 修改导航层级，后续走输入逻辑的逻辑，待完善。  `node scripts/singledemo.js Funnel 漏斗图 /more-plots`
+const chartPath = arg[2];
+const fp = path.resolve('../', `G2Plot/examples${chartPath}/${toLineName}`);
 // const fp = path.resolve('./test.ts');
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateDemoPath = path.join(__dirname, '../template/doc/demo.ejs');

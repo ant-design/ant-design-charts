@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import G6, { Graph } from '@antv/g6/es';
-import { IEdge, INode } from '@antv/g6/es/interface/item';
-import { IG6GraphEvent } from '@antv/g6/es/types';
+import G6, { IEdge, INode, IG6GraphEvent  } from '@antv/g6';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import { getGraphSize, processMinimap } from './util';
@@ -49,7 +47,7 @@ const defaultLabelCfg = {
   }
 }
 
-let graph: Graph;
+let graph: any;
 
 const DagreGraph: React.SFC<RelationGraph> = ({
   data,

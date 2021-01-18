@@ -1,9 +1,7 @@
 import { useRef, useEffect } from 'react';
-import { Graph, TreeGraph } from '@antv/g6/es';
+import { Graph, TreeGraph, ModeType, INode, IEdge  } from '@antv/g6';
 import { getGraphSize, processMinimap } from '../graph/util';
 import { isObject, isString } from '@antv/util';
-import { ModeType } from '@antv/g6/es/types';
-import { INode, IEdge } from '@antv/g6/es/interface/item';
 
 export interface Base extends Graph{
   current?: Graph

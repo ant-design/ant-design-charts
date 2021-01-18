@@ -1,10 +1,9 @@
-import { NodeConfig, EdgeConfig, IPoint } from '@antv/g6/es/types';
-import G6 from '@antv/g6/es';
+import G6, { ModelConfig, IPoint } from '@antv/g6';
 
 G6.registerNode(
   'card-node',
   {
-    draw: (cfg: NodeConfig, group) => {
+    draw: (cfg: ModelConfig | undefined, group) => {
       let color = cfg && cfg.color ? cfg.color : '#5B8FF9';
       let size = cfg && cfg.size ? cfg.size : [100, 30];
       if (typeof size === 'number') size = [size, size];
@@ -26,7 +25,7 @@ G6.registerNode(
       });
 
       // title text
-      const title = cfg.title || cfg.label;
+      const title = cfg?.title || cfg?.label;
       let titleTextShape;
       let labelStyle = cfg && cfg.labelCfg && cfg.labelCfg.style ? cfg.labelCfg.style : {};
       if (title) {
@@ -64,7 +63,7 @@ G6.registerNode(
 
       // marker
       let markerShape;
-      if (cfg.children) {
+      if (cfg?.children) {
         markerShape = group!.addShape('marker', {
           attrs: {
             x: size[0] / 2,
@@ -117,7 +116,7 @@ G6.registerNode(
 G6.registerNode(
   'round-rect',
   {
-    drawShape: (cfg: NodeConfig, group) => {
+    drawShape: (cfg: ModelConfig | undefined, group) => {
       let color = cfg && cfg.color ? cfg.color : '#5B8FF9';
       let size = cfg && cfg.size ? cfg.size : [100, 30];
       if (typeof size === 'number') size = [size, size];
@@ -201,10 +200,10 @@ export const customIconNode = (params: { enableEdit?: boolean; options?: any }) 
         stroke: '#91d5ff',
         fill: '#91d5ff',
       },
-      draw(cfg: NodeConfig, group) {
+      draw(cfg: ModelConfig | undefined, group) {
         // @ts-ignore
         const styles = this.getShapeStyle(cfg);
-        const { labelCfg = {} } = cfg;
+        const { labelCfg = {} } = cfg || {};
 
         const keyShape = group!.addShape('rect', {
           attrs: {
@@ -226,7 +225,7 @@ export const customIconNode = (params: { enableEdit?: boolean; options?: any }) 
         };
         let img =
           'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png';
-        if (cfg.leftIcon) {
+        if (cfg?.leftIcon) {
           style = Object.assign({}, style, (cfg.leftIcon as any).style);
           img = (cfg.leftIcon as any).img;
         }
@@ -277,7 +276,7 @@ export const customIconNode = (params: { enableEdit?: boolean; options?: any }) 
           });
         }
 
-        if (cfg.label) {
+        if (cfg?.label) {
           group!.addShape('text', {
             attrs: {
               ...labelCfg.style,
@@ -298,9 +297,9 @@ export const customIconNode = (params: { enableEdit?: boolean; options?: any }) 
 G6.registerEdge(
   'fund-polyline',
   {
-    draw: function draw(cfg: EdgeConfig, group) {
-      const startPoint = cfg.startPoint as IPoint;
-      const endPoint = cfg.endPoint as IPoint;
+    draw: function draw(cfg: ModelConfig | undefined, group) {
+      const startPoint = cfg?.startPoint as IPoint;
+      const endPoint = cfg?.endPoint as IPoint;
 
       const Ydiff = endPoint.y - startPoint.y;
 
@@ -347,8 +346,8 @@ G6.registerEdge(
         attrs: {
           path,
           stroke:
-            style!.stroke || (cfg.colorMap && (cfg.colorMap as Object)[cfg.dataType as string])
-              ? (cfg.colorMap as Object)[cfg.dataType as string]
+            style!.stroke || (cfg?.colorMap && (cfg.colorMap as Object)[cfg.dataType as string])
+              ? (cfg?.colorMap as Object)[cfg?.dataType as string]
               : '#5B8FF9',
           lineWidth: style!.lineWidth || 1.2,
           endArrow: false,
@@ -361,7 +360,7 @@ G6.registerEdge(
 
       // label
       let labelTextShape;
-      if (cfg.label) {
+      if (cfg?.label) {
         labelTextShape = group!.addShape('text', {
           attrs: {
             text: cfg.label,
@@ -376,7 +375,7 @@ G6.registerEdge(
         });
       }
       // dataType
-      if (cfg.dataType) {
+      if (cfg?.dataType) {
         const labelTextShapeBBox = labelTextShape ? labelTextShape.getBBox() : { height: 0 };
         group!.addShape('text', {
           attrs: {
@@ -392,7 +391,7 @@ G6.registerEdge(
         });
       }
       // subLabel
-      if (cfg.subLabel) {
+      if (cfg?.subLabel) {
         group!.addShape('text', {
           attrs: {
             text: cfg.subLabel,
@@ -415,11 +414,11 @@ G6.registerEdge(
 );
 
 G6.registerEdge('flow-line', {
-  draw(cfg: EdgeConfig, group) {
-    const startPoint = cfg.startPoint;
-    const endPoint = cfg.endPoint;
+  draw(cfg: ModelConfig | undefined, group) {
+    const startPoint = cfg?.startPoint;
+    const endPoint = cfg?.endPoint;
 
-    const { style = {} } = cfg;
+    const { style = {} } = cfg || {};
     const shape = group!.addShape('path', {
       attrs: {
         stroke: style.stroke,
