@@ -876,6 +876,22 @@ toc: content
 
 </div>
 
+## 矩形树图
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  
+  <a href="/demos/treemap#基础矩形树图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*Ob1jSbCUl8cAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">基础矩形树图</p>
+  </a>
+
+  <a href="/demos/treemap#嵌套矩形树图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*UwprToL8UjcAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">嵌套矩形树图</p>
+  </a>
+
+</div>
+
 ## 迷你进度条图样式
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">

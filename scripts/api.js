@@ -1,8 +1,9 @@
 /**
  * 一键同步 G2Plot v2 API 文档
  * eg: 
- * -全量同步：`node scripts/api.js`
- * -单一同步：`node scripts/api.js Bar`
+ * - 全量同步：`node scripts/api.js`
+ * - 单一同步：`node scripts/api.js Bar`
+ * - 指定路径：适配 g2plot 新目录结构，`node scripts/api.js more-plots/treemap` 
  */
 const fs = require('fs');
 const path = require('path');
@@ -16,8 +17,9 @@ const fp = arg.length ? path.resolve('../', `G2Plot/examples/${arg[0]}`)
 const apiGenerator = (filePath, chartName) => {
   // 文件路径，上层自动扫描
   const res = remark().use(mdprima).processSync(fs.readFileSync(filePath));
+  const splitChartName = chartName.split('/'); // 输入路径时需要打平
   // replace 去掉 title
-  fs.writeFileSync(path.resolve(__dirname, api_path, `${chartName}.md`), res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, ''));
+  fs.writeFileSync(path.resolve(__dirname, api_path, `${splitChartName.pop()}.md`), res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, ''));
 };
 
 /**
