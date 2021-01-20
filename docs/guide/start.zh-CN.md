@@ -2,7 +2,7 @@
 title: 快速开始
 order: 2
 nav:
-  title: Docs
+  title: 使用文档
   order: 1
 ---
 

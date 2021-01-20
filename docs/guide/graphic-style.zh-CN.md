@@ -1,16 +1,18 @@
 ---
-title: Graphic Style
+title: 绘图属性
 order: 3
 nav:
-  title: Docs
+  title: 使用文档
   order: 1
 ---
 
-Ant Design Charts uses [G](https://github.com/antvis/g) as the drawing engine. Some graphic styles, such as the lineStyle of Line, the columnStyle of Column, and the style configuration of some components, such as label.style, axis.line.style, are all transmitted transparently through the drawing properties of G.
+Ant Design Charts 使用 [G](https://github.com/antvis/g) 作为绘图引擎，一些图形的样式配置，如折线图的`lineStyle`，柱状图的`columnStyle`等，还有部分组件的样式配置，如`label.style`， `axis.line.style`等，都是直接透传 G 的绘图属性。
 
-## Configure graphic styles
+为了方便用户使用，在这里对 Ant Design Charts 常用的绘图属性进行简单的介绍：
 
-| Attributes | Type | Description |
+## 配置图形样式
+
+| 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
 | fill | string | 图形的填充色 |
 | fillOpacity | number | 图形的填充透明度 |
@@ -43,13 +45,13 @@ Ant Design Charts uses [G](https://github.com/antvis/g) as the drawing engine. S
   }
 ```
 
-Result:
+效果：
 
-<img alt="load error" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*PKH0QoRSb0QAAAAAAAAAAAAAARQnAQ" width="400">
+<img alt="加载失败" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*PKH0QoRSb0QAAAAAAAAAAAAAARQnAQ" width="400">
 
-## Configure line styles
+## 配置线的样式
 
-| Attributes | Type | Description |
+| 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
 | stroke | string | 线的颜色 |
 | lineWidth | number | 线宽 |
@@ -83,7 +85,7 @@ lineStyle: {
 
 ## 配置文字样式
 
-| Attributes | Type | Description |
+| 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
 | fontSize | number | 文字大小 |
 | fontFamily | string | 文字字体 |

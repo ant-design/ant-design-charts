@@ -2,7 +2,7 @@
 title: 介绍
 order: 1
 nav:
-  title: Docs
+  title: 使用文档
   order: 1
 ---
 

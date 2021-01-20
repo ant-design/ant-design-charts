@@ -2,7 +2,7 @@
 title: 升级指南
 order: 4
 nav:
-  title: Docs
+  title: 使用文档
   order: 1
 ---
 
