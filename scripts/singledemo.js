@@ -1,6 +1,7 @@
 /**
  * 扫描指定目录下的所有demo文件，生成demo文档
  * eg: `node scripts/singledemo.js Bar 条形图`
+ * 指定路径：`node scripts/singledemo.js Funnel 漏斗图 /more-plots`
  */
 const fs = require('fs');
 const path = require('path');
