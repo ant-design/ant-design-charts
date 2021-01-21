@@ -892,6 +892,32 @@ toc: content
 
 </div>
 
+## 多图层图表
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  
+  <a href="/demos/multi-view#区间面积图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/LSyrzQnPWL/ad65dd9d-ced8-42ca-a756-8fe4593157e6.png" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">区间面积图</p>
+  </a>
+
+ <a href="/demos/multi-view#刷选联动" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*19AdR6-BjRgAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">刷选联动</p>
+  </a>
+
+  <a href="/demos/multi-view#drinks" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*S4CuR5J89jsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">drinks</p>
+  </a>
+
+  <a href="/demos/multi-view#条形图的变种" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Xr_fTpVCRv4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">条形图的变种</p>
+  </a>
+
+</div>
+
 ## 迷你进度条图样式
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">

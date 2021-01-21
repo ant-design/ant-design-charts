@@ -46,6 +46,7 @@ const chartNames = {
   TinyColumn: '迷你图',
   TinyLine: '迷你图',
   Treemap: '矩形树图',
+  MultiView: '多图层图表',
   BidirectionalBar: '对称条形图',
   Waterfall: '瀑布图',
   Advanced: '高级用法',
