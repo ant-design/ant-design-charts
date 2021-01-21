@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/charts",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "React translate g2plot",
   "files": [
     "/lib",
