@@ -31,7 +31,7 @@ $ npm install @ant-design/charts
 ## Usage
 
 ```tsx | pure
-import React, { useRef } from 'react';
+import React from 'react';
 import { Line } from '@ant-design/charts';
 
 const Page: React.FC = () => {
@@ -65,16 +65,16 @@ const Page: React.FC = () => {
     },
   };
 
-  const ref = useRef();
+  let chart;
 
   // 导出图片
   const downloadImage = () => {
-    ref.current?.downloadImage();
+    chart?.downloadImage();
   };
 
   // 获取图表 base64 数据
   const toDataURL = () => {
-    console.log(ref.current?.toDataURL());
+    console.log(chart?.toDataURL());
   };
 
   return (
@@ -85,7 +85,7 @@ const Page: React.FC = () => {
       <button type="button" onClick={toDataURL}>
         获取图表信息
       </button>
-      <Line {...config} chartRef={ref} />
+      <Line {...config} onReady={chartInstance => chart = chartInstance} />
     </div>
   );
 };
