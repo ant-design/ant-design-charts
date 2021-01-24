@@ -7,7 +7,7 @@ nav:
 toc: content
 ---
 
-## 树图、流程图
+## Tree Diagram And Flow Chart
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
 
@@ -28,7 +28,7 @@ toc: content
   
 </div>
 
-## 折线图
+## Line
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -89,7 +89,7 @@ toc: content
 
 </div>
 
-## 条形图
+## Bar
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -140,7 +140,7 @@ toc: content
 
 </div>
 
-## 面积图
+## Area
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -186,7 +186,7 @@ toc: content
 
 </div>
 
-## 柱状图
+## Column
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -252,7 +252,7 @@ toc: content
 
 </div>
 
-## 饼图
+## Pie
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -303,7 +303,7 @@ toc: content
 
 </div>
 
-## 玫瑰图
+## Rose
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -339,7 +339,7 @@ toc: content
 
 </div>
 
-## 柱线混合图表
+## Dual Axes
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -430,7 +430,7 @@ toc: content
 
 </div>
 
-## 漏斗图
+## Funnel
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -466,7 +466,7 @@ toc: content
 
 </div>
 
-## 水平方向子弹图
+## Bullet
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -497,7 +497,7 @@ toc: content
 
 </div>
 
-## 仪表盘
+## Gauage
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -523,7 +523,7 @@ toc: content
 
 </div>
 
-## 热力图
+## Heatmap
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -554,7 +554,7 @@ toc: content
 
 </div>
 
-## 直方图
+## Histogram
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -575,7 +575,7 @@ toc: content
 
 </div>
 
-## 水波图
+## Liquid
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -591,7 +591,7 @@ toc: content
 
 </div>
 
-## 雷达图
+## Radar
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -632,7 +632,7 @@ toc: content
 
 </div>
 
-## 蜡烛图
+## Stock
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -643,7 +643,7 @@ toc: content
 
 </div>
 
-## 箱型图
+## Box
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -664,7 +664,7 @@ toc: content
 
 </div>
 
-## 玉珏图
+## Radial Bar
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -685,7 +685,7 @@ toc: content
 
 </div>
 
-## 散点图颜色映射
+## Scatter
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -726,7 +726,7 @@ toc: content
 
 </div>
 
-## 旭日图
+## Sunburst
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -742,7 +742,7 @@ toc: content
 
 </div>
 
-## 词云图
+## Word Cloud
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -778,7 +778,7 @@ toc: content
 
 </div>
 
-## 瀑布图 - 每月收支情况
+## Waterfall
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -804,7 +804,7 @@ toc: content
 
 </div>
 
-## 辅助线标注
+## Annotations
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -860,7 +860,7 @@ toc: content
 
 </div>
 
-## 水平方对称条形图
+## Bidirection Bar
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
@@ -876,7 +876,49 @@ toc: content
 
 </div>
 
-## 迷你进度条图样式
+## Treemap
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  
+  <a href="/demos/treemap#基础矩形树图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*Ob1jSbCUl8cAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">基础矩形树图</p>
+  </a>
+
+  <a href="/demos/treemap#嵌套矩形树图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*UwprToL8UjcAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">嵌套矩形树图</p>
+  </a>
+
+</div>
+
+## Multi View
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  
+  <a href="/demos/multi-view#区间面积图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/LSyrzQnPWL/ad65dd9d-ced8-42ca-a756-8fe4593157e6.png" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">区间面积图</p>
+  </a>
+
+ <a href="/demos/multi-view#刷选联动" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*19AdR6-BjRgAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">刷选联动</p>
+  </a>
+
+  <a href="/demos/multi-view#drinks" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*S4CuR5J89jsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">drinks</p>
+  </a>
+
+  <a href="/demos/multi-view#条形图的变种" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Xr_fTpVCRv4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">条形图的变种</p>
+  </a>
+
+</div>
+
+## Tiny Chart
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   

@@ -5,7 +5,6 @@ const babelCore = require('@babel/core');
 const escodegen = require('escodegen');
 const chalk = require('chalk');
 const { get, find } = require('loadsh');
-const { dataUrl } = require('./constants');
 const log = console.log;
 
 let blcokBody = '';
@@ -54,18 +53,6 @@ const isNewExpression = (node) => {
   return node.type === 'VariableDeclarator' && get(node, 'init.type') === 'NewExpression';
 };
 
-/**
- * 生成fetchUrl
- */
-const getUrl = (url) => {
-  const RegExp = /^(http|https)/;
-  if (RegExp.test(url)) {
-    return url;
-  }
-  const jsonName = url.split('/');
-  const res = dataUrl.find((item) => item.fileName === jsonName[jsonName.length - 1]);
-  return res.filePath;
-};
 
 // 状态重置
 const reset = () => {
@@ -145,7 +132,7 @@ const generateFile = (ast) => {
         }, []);
 
         const asyncFetch = () => {
-          fetch("${getUrl(fetchUrl)}")
+          fetch("${fetchUrl}")
             .then((response) => response.json())
             .then((json) => setData(json))
             .catch((error) => {
@@ -205,6 +192,7 @@ const parseFile = (params, type) => {
       code: escodegen.generate(parseCode).replace("'use strict';", '').replace("var _g2plot = require('@antv/g2plot');", ''),
       title: get(metaInfo, 'title.zh'),
       chartName,
+      hasError: false
     };
   } catch (err) {
     log(chalk.red(`解析出错：params: ${params}; type: ${type}`));
@@ -213,6 +201,7 @@ const parseFile = (params, type) => {
       code: params,
       title: '',
       chartName,
+      hasError: true
     };
   }
 };

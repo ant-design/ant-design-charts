@@ -1,5 +1,6 @@
 /**
  * 一键同步 G2Plot v2 API 文档
+ * 默认路径为 G2Plot/examples 下的一级目录
  * eg: 
  * -全量同步：`node scripts/api.js en`
  * -单一同步：`node scripts/api.js zh Bar`
@@ -7,18 +8,24 @@
 const fs = require('fs');
 const path = require('path');
 const remark = require('remark');
+const { lowerCase, upperCase, toHump, toLine } = require('./util.js');
+const { ChartsLevel } = require('./constants');
 const { mdprima } = require('./mdprima.js');
 const api_path = '../docs/.g2plot-plot-api';
-const excludeFiles = ['gallery']; // 不处理的路径
+const excludeFiles = ['gallery', 'dynamic-plots', 'case', 'plugin', 'general']; // 不处理的路径
 const arg = process.argv.splice(2);
-const fp = arg.length > 1 ? path.resolve('../', `G2Plot/examples/${arg[1]}`)
+const extralPath = ChartsLevel[arg[1]] ? `${ChartsLevel[arg[1]]}` : '';
+const fp = arg.length > 1 ? path.resolve('../', `G2Plot/examples${extralPath}/${toLine(lowerCase(arg[1]))}`)
   : path.resolve('../', `G2Plot/examples`);
+
 const apiGenerator = (filePath, chartName) => {
   // 文件路径，上层自动扫描
   const res = remark().use(mdprima).processSync(fs.readFileSync(filePath));
   const language = arg[0] === 'zh' ? '.zh-CN' : '';
+  const contents = arg[0] === 'zh' ? res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, '')
+    : res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, '');
   // replace 去掉 title
-  fs.writeFileSync(path.resolve(__dirname, api_path, `${chartName}${language}.md`), res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, ''));
+  fs.writeFileSync(path.resolve(__dirname, api_path, `${chartName}${language}.md`), contents);
 };
 
 /**
@@ -40,12 +47,15 @@ const scanFiles = (foldPath, dir) => {
         if (!excludeFiles.includes(chartName)) {
           const apiPath = path.resolve(
             __dirname,
-            '../../G2Plot/examples',
+            `../../G2Plot/examples${extralPath}`,
             dir.split('.').join('/'),
             fileName,
           );
-          console.log(apiPath, fileName);
-          apiGenerator(apiPath, chartName);
+          if (ChartsLevel[toHump(upperCase(dir.split('.')[1]))]) {
+            apiGenerator(apiPath, dir.split('.')[1]);
+          } else { 
+            apiGenerator(apiPath, chartName);
+          }
         }
       }
     });
@@ -54,4 +64,4 @@ const scanFiles = (foldPath, dir) => {
   }
 };
 
-scanFiles(fp, arg[1]);
+scanFiles(fp, toLine(lowerCase(arg[1])));

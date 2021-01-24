@@ -61,19 +61,6 @@
 
 设置图表数据源。数据源为对象集合，例如：`[{ time: '1991'，value: 20 }, { time: '1992'，value: 20 }]`。
 
-#### xField
-
-<description>**required** *string*</description>
-
-图形在 x 方向对应的数据字段名，一般是横向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么班级字段就是对应的 xField。
-
-#### yField
-
-<description>**required** *string*</description>
-
-图形在 y 方向对应的数据字段名，一般是纵向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么人数字段就是对应的 yField。
-
-
 #### meta
 
 <description>**optional** *object*</description>
@@ -90,31 +77,77 @@
 关于 `meta` 的更多配置项，请查看 [Meta Options](/zh/docs/api/options/meta)
 
 
-#### type
+```ts
+import React, { useState, useEffect } from 'react';
+import { Radar } from '@ant-design/charts';
 
-<description>**optional** *polygon | density* *default:* `polygon`</description>
+const DemoRadar: React.FC = () => {
+  const data = [
+    {
+        item: 'Design',
+        score: 70
+    },
+    {
+        item: 'Development',
+        score: 60
+    },
+    {
+        item: 'Marketing',
+        score: 40
+    },
+    {
+        item: 'Technology',
+        score: 30
+    }
+];
+const config = {
+    data,
+    xField: 'item',
+    yField: 'score',
+    meta: { score: { alias: '分数' } },
+    yAxis: {
+        grid: {
+            alternateColor: [
+                'rgba(0, 0, 0, 0.04)',
+                null
+            ]
+        }
+    },
+    point: {}
+};
+  return <Radar {...config} />;
+};
 
-密度热力图需要指定为 density。
+export default DemoRadar;
 
-#### colorField
 
-<description>**optional** *string*</description>
+```
 
-颜色映射字段名。
+#### xField
 
-#### sizeField
+<description>**required** *string*</description>
 
-<description>**optional** *string*</description>
+雷达图映射到圆周角度所对应的字段，一般为一个分类字段。
 
-点大小映射对应的数据字段名。
+#### yField
 
-#### reflect
+<description>**required** *string*</description>
 
-<description>**optional** *x | y*</description>
+雷达图映射到半径所对应的字段，一般为一个连续字段。
 
-坐标轴映射。
+#### seriesField
+
+<description>**required** *string*</description>
+
+对雷达图进行分组的字段，一般对应一个分类字段。通过该字段的值，雷达图将会被分为多个组，通过颜色进行区分，并上下重叠。
 
 ### 图形样式
+
+#### radius
+
+<description>**optional** *number*</description>
+
+雷达图的半径，原点为绘图区域中心（不包含图表组件区域）。配置值域为 (0,1]，1 代表撑满绘图区域。
 
 #### color
 
@@ -147,54 +180,115 @@
 ```
 
 
-#### shape
+#### smooth
 
-<description>**optional** *rect | square | circle*</description>
+<description>**optional** *boolean* *default:* `false`</description>
 
-热力格子中的形状，密度热力图不用指定。
+是否以曲线的形态绘制 (spline)。
 
-#### sizeRatio
+#### lineStyle
 
-<description>**optional** *number*</description>
+<description>**optional** *object ｜ Function*</description>
 
-热力格子中图形的尺寸比例，可选，只有当 shape 和 sizeField 至少指定一项后才生效。
+配置雷达图上的折线样式，也可以通过回调函数的方法根据对应的数据进行设置，返回参数是通用的 ShapeStyle 对象
 
-#### heatmapStyle
+<!--图形样式-->
 
-<description>**optional** *object*</description>
+| 属性名        | 类型            | 介绍                                                                                                         |
+| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
+| fill          | *string*         | 图形的填充色                                                                                                 |
+| fillOpacity   | *number*         | 图形的填充透明度                                                                                             |
+| stroke        | *string*         | 图形的描边                                                                                                   |
+| lineWidth     | *number*         | 图形描边的宽度                                                                                               |
+| lineDash      | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
+| lineOpacity   | *number*         | 描边透明度                                                                                                   |
+| opacity       | *number*         | 图形的整体透明度                                                                                             |
+| shadowColor   | *string*         | 图形阴影颜色                                                                                                 |
+| strokeOpacity | *number*         | 图形边框透明度                                                                                               |
+| shadowBlur    | *number*         | 图形阴影的高斯模糊系数                                                                                       |
+| shadowOffsetX | *number*         | 设置阴影距图形的水平距离                                                                                     |
+| shadowOffsetY | *number*         | 设置阴影距图形的垂直距离                                                                                     |
+| cursor        | *string*         | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                                                |
 
-热力图样式。 heatmapStyle 中的`fill`会覆盖 `color` heatmapStyle 可以直接指定，也可以通过 callback 的方式，根据数据指定单独的样式。
-
-默认配置：
-
-| 细分配置      | 类型   | 功能描述   |
-| ------------- | ------ | ---------- |
-| fill          | string | 填充颜色   |
-| stroke        | string | 描边颜色   |
-| lineWidth     | number | 线宽       |
-| lineDash      | number | 虚线显示   |
-| opacity       | number | 透明度     |
-| fillOpacity   | number | 填充透明度 |
-| strokeOpacity | number | 描边透明度 |
+示例代码：
 
 ```ts
-// 直接指定
 {
-  heatmapStyle: {
+  style: {
     fill: 'red',
-    stroke: 'yellow',
-    opacity: 0.8
-  },
-}
-// Function
-{
-  heatmapStyle: (item) => ({fill: 'red'})
+    fillOpacity: 0.5,
+    stroke: 'black',
+    lineWidth: 1,
+    lineDash: [4, 5],
+    strokeOpacity: 0.7,
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffsetX: 5,
+    shadowOffsetY: 5,
+    cursor: 'pointer'
+  }
 }
 ```
 
-## 图表组件
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh/docs/api/graphic-style)。
+
+
+使用示例：
+
+```ts
+{
+  lineStyle: (x, y, series) => {
+    return {
+      stroke: series === 'a' ? 'red' : 'yellow',
+      lineWidth: 3,
+    };
+  };
+}
+```
+
+#### point
+
+<description>**optional** *object*</description>
+
+配置雷达图上的点
+
+| 细分配置 | 类型     | 功能描述   |
+| -------- | -------- | ---------- |
+| color    | *string | string\[]  | Function* | 数据点颜色，也可以支持回调的方式设置，回调参数为 `color: (x, y, series) => string` |
+| shape    | *string | Function* | 数据点形状，也可以支持回调的方式设置，回调参数为 `shape: (x, y, series) => string` |
+| size     | *number | Function* | 数据点大小，也可以支持回调的方式设置，回调参数为 `size: (x, y, series) => number` |
+| style    | *object | Function* | 数据点样式，也可以支持回调的方式设置，回调参数为 `style: (x, y, series) => object` |
+
+
+#### area
+
+<description>**optional** *object*</description>
+
+配置雷达图上的面积填充
+
+| 细分配置 | 类型      | 功能描述   |
+| -------- | --------- | ---------- |
+| smooth   | *boolean* | 是否平滑   |
+| color    | *string | string\[] | Function* | 填充面积颜色，也可以支持回调的方式设置，回调参数为 `color: (x, y, series) => string` |
+| style    | *object | Function* | 填充面积样式，也可以支持回调的方式设置，回调参数为 `style: (x, y, series) => object` |
+
+使用示例：
+
+```ts
+{
+  area: {
+    style: (x, y, series) => {
+      return {
+        fill: series === 'a' ? 'red' : 'yellow'
+      }
+    },
+  },
+}
+```
 
 ### 图表组件
+
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*KnguSICzqXEAAAAAAAAAAAAAARQnAQ" alt="雷达图 图表组件" width="600">
 
 #### tooltip
 

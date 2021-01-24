@@ -1,81 +1,76 @@
-
-
-
-
 ### Plot Container
 
 #### width
 
-<description>**optional** *number* *default:* `400`</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
 Set the width of the chart.
 
 #### height
 
-<description>**optional** *number* *default:* `400`</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
 Set the height of the chart.
 
 #### autoFit
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
 Whether the chart automatically adjusts to fit the container. If it is set to `true`, `width` and `height` configuration would fail.
 
 #### padding
 
-<description>**optional** *number\[] | number | 'auto'*</description>
+<description>**optional** _number\[] | number | 'auto'_</description>
 
 Set `padding` value of the canvas. You can also use `auto`.
 
 #### appendPadding
 
-<description>**optional** *number\[] | number*</description>
+<description>**optional** _number\[] | number_</description>
 
 Extra `appendPadding` value.
 
 #### renderer
 
-<description>**optional** *string* *default:* `canvas`</description>
+<description>**optional** _string_ _default:_ `canvas`</description>
 
 Set the render way to `canvas` or `svg`.
 
 #### pixelRatio
 
-<description>**optional** *number* *default:* `window.devicePixelRatio`</description>
+<description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
 
 Set the pixel ratio of the chart.
 
 #### limitInPlot
 
-<description>**optional** *boolean*</description>
+<description>**optional** _boolean_</description>
 
 Whether clip the Geometry beyond the coordinate system。
-
 
 ### Data Mapping
 
 #### data
 
-<description>**required** *array object*</description>
+<description>**required** _array object_</description>
 
 设置图表数据源。数据源为对象集合，例如：`[{ source: '支付宝首页', target: '花呗', value: 20 }, ...]`。
 
 #### sourceField
 
-<description>**required** *string*</description>
+<description>**required** _string_</description>
 
 设置桑基图的来源节点数据字段。比如针对上述数据，就是： `source`。
 
 #### targetField
 
-<description>**required** *string*</description>
+<description>**required** _string_</description>
 
 设置桑基图的目标节点数据字段。比如针对上述数据，就是： `target`。
 
 #### weightField
 
-<description>**required** *string*</description>
+<description>**required** _string_</description>
 
 设置节点之间关系的权重字段信息，数据越大，边越大。比如针对上述数据，就是： `value`。
 
@@ -83,19 +78,19 @@ Whether clip the Geometry beyond the coordinate system。
 
 #### nodeStyle
 
-<description>**optional** *StyleAttr | Function*</description>
+<description>**optional** _StyleAttr | Function_</description>
 
 桑基图节点样式的配置。
 
 #### edgeStyle
 
-<description>**optional** *StyleAttr | Function*</description>
+<description>**optional** _StyleAttr | Function_</description>
 
 桑基图变样式的配置。
 
 #### color
 
-<description>**optional** *string | string\[] | Function*</description>
+<description>**optional** _string | string\[] | Function_</description>
 
 Configure the color. If there is no colorField configured, set one single color. Otherwise you can set a series of colors, or you can use callback function.
 
@@ -123,22 +118,21 @@ Default: The color board of the theme.
 }
 ```
 
-
 #### nodeWidthRatio
 
-<description>**optional** *number*</description>
+<description>**optional** _number_</description>
 
 桑基图节点的宽度配置，0 ~ 1，参考画布的宽度，默认为 `0.008`。
 
 #### nodeWidthPadding
 
-<description>**optional** *number*</description>
+<description>**optional** _number_</description>
 
 桑基图节点的之间垂直方向的间距，0 ~ 1，参考画布的高度，默认为 `0.01`。
 
 #### nodeAlign
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 桑基图节点的布局方向，默认为 `justify`，可以选择 'left' | 'right' | 'center' | 'justify' 四种方式。
 
@@ -203,7 +197,6 @@ chart.on('annotation:click', (...args) => {
 });
 ```
 
-
 ### Plot Method
 
 #### render()
@@ -240,7 +233,6 @@ plot.update({
 plot.changeData(newData);
 ``` -->
 
-
 ### Plot Theme
 
 #### 内置主题
@@ -259,23 +251,23 @@ plot.changeData(newData);
 
 下表列出了组成主题的大配置项上的具体属性：
 
-| 主题属性 | 类型 |	描述 |
-| --- | --- | ---|
+| 主题属性 | 类型 | 描述 |
+| --- | --- | --- |
 | defaultColor | string | 主题色 |
-| padding |	number |	number\[] |
-| fontFamily |	string |	图表字体 |
-| colors10 | string\[] |	分类颜色色板，分类个数小于 10 时使用 |
-| colors20 |	string\[] |	分类颜色色板，分类个数大于 10 时使用 |
-| columnWidthRatio |	number |	一般柱状图宽度占比，0 - 1 范围数值
-| maxColumnWidth |	number |	柱状图最大宽度，像素值 |
-| minColumnWidth|	number |	柱状图最小宽度，像素值 |
-| roseWidthRatio |	number |	玫瑰图占比，0 - 1 范围数值 |
-| multiplePieWidthRatio	| number | 多层饼图/环图占比，0 - 1 范围数值 |
-| geometries | object |	配置每个 Geometry 下每个 shape 的样式，包括默认样式以及各个状态下的样式 |
-| components | object |	配置坐标轴，图例，tooltip, annotation 的主题样式 |
-| labels | object |	配置 Geometry 下 label 的主题样式 |
-| innerLabels	| object  | 配置 Geometry 下展示在图形内部的 labels 的主题样式 |
-| pieLabels	| object | 配置饼图 labels 的主题样式 |
+| padding | number | number\[] |
+| fontFamily | string | 图表字体 |
+| colors10 | string\[] | 分类颜色色板，分类个数小于 10 时使用 |
+| colors20 | string\[] | 分类颜色色板，分类个数大于 10 时使用 |
+| columnWidthRatio | number | 一般柱状图宽度占比，0 - 1 范围数值 |
+| maxColumnWidth | number | 柱状图最大宽度，像素值 |
+| minColumnWidth | number | 柱状图最小宽度，像素值 |
+| roseWidthRatio | number | 玫瑰图占比，0 - 1 范围数值 |
+| multiplePieWidthRatio | number | 多层饼图/环图占比，0 - 1 范围数值 |
+| geometries | object | 配置每个 Geometry 下每个 shape 的样式，包括默认样式以及各个状态下的样式 |
+| components | object | 配置坐标轴，图例，tooltip, annotation 的主题样式 |
+| labels | object | 配置 Geometry 下 label 的主题样式 |
+| innerLabels | object | 配置 Geometry 下展示在图形内部的 labels 的主题样式 |
+| pieLabels | object | 配置饼图 labels 的主题样式 |
 
 使用方式：
 

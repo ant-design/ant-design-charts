@@ -59,22 +59,29 @@
 
 <description>**required** *array object*</description>
 
-设置图表数据源。数据源为对象集合，例如：`[{ time: '1991'，value: 20 }, { time: '1992'，value: 20 }]`。
+设置图表数据源。数据源为对象集合，例如：
+
+```js
+[
+  { country: '乌拉圭', '2016年耕地总面积': 13.4, '2016年转基因种植面积': 12.3 },
+  { country: '巴拉圭', '2016年耕地总面积': 14.4, '2016年转基因种植面积': 6.3 }
+]
+
+```
 
 #### xField
 
 <description>**required** *string*</description>
 
-图形在 x 方向对应的数据字段名，一般是横向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么班级字段就是对应的 xField。
+设置 x 轴字段。
 
 #### yField
 
-<description>**required** *string*</description>
+<description>**required** *\[string,string]*</description>
 
-图形在 y 方向对应的数据字段名，一般是纵向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么人数字段就是对应的 yField。
+设置 y 轴映射字段。
 
-
-#### meta
+<!-- Meta options START -->
 
 <description>**optional** *object*</description>
 
@@ -90,109 +97,78 @@
 关于 `meta` 的更多配置项，请查看 [Meta Options](/zh/docs/api/options/meta)
 
 
-#### type
-
-<description>**optional** *polygon | density* *default:* `polygon`</description>
-
-密度热力图需要指定为 density。
-
-#### colorField
-
-<description>**optional** *string*</description>
-
-颜色映射字段名。
-
-#### sizeField
-
-<description>**optional** *string*</description>
-
-点大小映射对应的数据字段名。
-
-#### reflect
-
-<description>**optional** *x | y*</description>
-
-坐标轴映射。
-
-### 图形样式
-
-#### color
-
-<description>**optional** *string | string\[] | Function*</description>
-
-指定点的颜色。如没有配置 colorField，指定一个单值即可。对 colorFiled 进行了配置的情况下，即可以指定一系列色值，也可以通过回调函数的方法根据对应数值进行设置。
-
-默认配置：采用 theme 中的色板。
+Example:
 
 ```ts
-// 设置单一颜色
 {
-  color: '#a8ddb5'
-}
-// 设置多色
-{
-  colorField: 'type', // 部分图表使用 seriesField
-  color: ['#d62728', '#2ca02c', '#000000'],
-}
-// Function
-{
-  colorField: 'type', // 部分图表使用 seriesField
-  color: ({ type }) => {
-    if(type === 'male'){
-      return 'red';
-    }
-    return 'yellow';
+  meta: {
+    '2016年耕地总面积': { alias: '耕地总面积' }
   }
 }
 ```
 
+<!-- Meta options END -->
 
-#### shape
+### 图形样式
 
-<description>**optional** *rect | square | circle*</description>
+#### layout
 
-热力格子中的形状，密度热力图不用指定。
+<description>**optional** *'horizontal' | 'vertical'* *default:* 'horizontal'</description>
 
-#### sizeRatio
+表示对称条形图方向。
 
-<description>**optional** *number*</description>
+#### barStyle
 
-热力格子中图形的尺寸比例，可选，只有当 shape 和 sizeField 至少指定一项后才生效。
+<description>**optional** *StyleAttr | Function*</description>
 
-#### heatmapStyle
+柱子样式配置。
 
-<description>**optional** *object*</description>
+<!--图形样式-->
 
-热力图样式。 heatmapStyle 中的`fill`会覆盖 `color` heatmapStyle 可以直接指定，也可以通过 callback 的方式，根据数据指定单独的样式。
+| 属性名        | 类型            | 介绍                                                                                                         |
+| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
+| fill          | *string*         | 图形的填充色                                                                                                 |
+| fillOpacity   | *number*         | 图形的填充透明度                                                                                             |
+| stroke        | *string*         | 图形的描边                                                                                                   |
+| lineWidth     | *number*         | 图形描边的宽度                                                                                               |
+| lineDash      | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
+| lineOpacity   | *number*         | 描边透明度                                                                                                   |
+| opacity       | *number*         | 图形的整体透明度                                                                                             |
+| shadowColor   | *string*         | 图形阴影颜色                                                                                                 |
+| strokeOpacity | *number*         | 图形边框透明度                                                                                               |
+| shadowBlur    | *number*         | 图形阴影的高斯模糊系数                                                                                       |
+| shadowOffsetX | *number*         | 设置阴影距图形的水平距离                                                                                     |
+| shadowOffsetY | *number*         | 设置阴影距图形的垂直距离                                                                                     |
+| cursor        | *string*         | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                                                |
 
-默认配置：
-
-| 细分配置      | 类型   | 功能描述   |
-| ------------- | ------ | ---------- |
-| fill          | string | 填充颜色   |
-| stroke        | string | 描边颜色   |
-| lineWidth     | number | 线宽       |
-| lineDash      | number | 虚线显示   |
-| opacity       | number | 透明度     |
-| fillOpacity   | number | 填充透明度 |
-| strokeOpacity | number | 描边透明度 |
+示例代码：
 
 ```ts
-// 直接指定
 {
-  heatmapStyle: {
+  style: {
     fill: 'red',
-    stroke: 'yellow',
-    opacity: 0.8
-  },
-}
-// Function
-{
-  heatmapStyle: (item) => ({fill: 'red'})
+    fillOpacity: 0.5,
+    stroke: 'black',
+    lineWidth: 1,
+    lineDash: [4, 5],
+    strokeOpacity: 0.7,
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffsetX: 5,
+    shadowOffsetY: 5,
+    cursor: 'pointer'
+  }
 }
 ```
 
-## 图表组件
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh/docs/api/graphic-style)。
+
+
+#### yAxis
+
+<description>**optional** object</description>
+
+yAxis 为多个 key 为 yField 里面的 2 个字段。
 
 ### 图表组件
 

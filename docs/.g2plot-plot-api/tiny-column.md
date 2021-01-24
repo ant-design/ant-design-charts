@@ -1,7 +1,3 @@
-
-
-## title: Word Cloud&#xD;&#xA;order: 8
-
 ### Plot Container
 
 #### width
@@ -57,64 +53,9 @@ Whether clip the Geometry beyond the coordinate system。
 
 #### data
 
-<description>**required** *array object*</description>
+<description>**required** *number\[]*</description>
 
-Configure the data source. The data source is a collection of objects. For example:`[{ time: '1991'，value: 20 }, { time: '1992'，value: 20 }]`。
-
-#### wordField
-
-<description>**required** *string*</description>
-
-The name of the field in the data that the word content corresponds to.
-
-#### weightField
-
-<description>**required** *string*</description>
-
-The name of the field in the data that the weight of the word corresponds to.
-
-#### colorField
-
-<description>**optional** *string*</description>
-
-Color mapping is performed according to this field.
-
-#### random
-
-<description>**optional** *number | function*</description>
-
-The value of a random function can be a value in the interval \[0, 1] or a function that returns the value. When the value is a fixed value, the layout coordinates of each word corresponding to the word cloud of the same data will be the same every time the word cloud of the same data is rendered.
-
-Default configuration: By default, the browser's built-in 'Math.random' is used, which means that each rendering will change the position of the word.
-
-#### spiral
-
-<description>**optional** *'archimedean' | 'rectangular'* *default:* `'archimedean'`</description>
-
-When set to 'Archimedean', the whole lexical cloud map is close to the shape of 'ellipse', and when set to 'rectangular', the whole lexical cloud map is close to the shape of 'rectangle'.
-
-#### placementStrategy
-
-<description>**optional** *function*</description>
-
-Customize the coordinates of each word, the return value must contain the x and y attributes, the rest are optional. It can also be set in the options in 'wordStyle'.
-
-The return value is of the following type:
-
-| Properties | Type               | Description                                |
-| ---------- | ------------------ | ------------------------------------------ |
-| x          | *number*           | Horizontal coordinates of the current text |
-| y          | *number*           | Vertical coordinates of the current text   |
-| font       | *string*           | Font of text                               |
-| weight     | *number | string* | Text weight                                |
-| size       | *numberg*          | The font size of the text                  |
-| rotate     | *numberg*          | The rotation Angle of the text             |
-
-#### timeInterval
-
-<description>**optional** *number* *default:* `2000`</description>
-
-Sets the maximum execution time of the drawing program in milliseconds. If the time is set too short, it may draw only part of the words.
+Configure the chart data source. The MINI bar chart uses an array of numbers directly to represent the trend of a metric, without the need to set X-axis fields.
 
 #### meta
 
@@ -132,47 +73,60 @@ Configure the meta of each data field of the chart in global, to define the type
 See also the [Meta Options](/en/docs/api/options/meta) to learn more about configuration of `meta`.
 
 
-### Geometry Style
+### Plot Style
 
-#### imageMask
+#### columnWidthRatio
 
-<description>**optional** *HTMLImageElement | string*</description>
+<description>**optional** *number* *default:* `0.5`</description>
 
-Configure an image, and then the diagram can be rendered based on the shape of the image, either as an image element instance or as a URL address and base64.
+Width ratio of histogram \[0-1].
 
-Note: words are only rendered in the dark parts of the image, light parts (such as white) are not rendered words. When using the URL address of the image, the size of the image should not be too large, otherwise the image load time will be too long.
+#### columnStyle
 
-#### wordStyle
+<description>**optional** *StyleAttr | Function*</description>
 
-<description>**optional** *object*</description>
+Bar chart graphic styles.
 
-Set the style of each word.
+<!--shape style-->
 
-| Properties    | Type                             | Default   | Description                                                                                                  |
-| ------------- | -------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------ |
-| fontFamily    | *string | function*             | 'Verdana' | Word cloud font                                                                                              |
-| fontWeight    | *string | number | function*   | 'normal'  | Sets the size of the font                                                                                    |
-| padding       | *number | function*             | 1         | The padding of the box for each word, default to 1. The bigger the words, the bigger the space between them. |
-| fontSize      | *number\[] | number | function* | \[20, 60]  | The range of font sizes, such as \[10, 20], means that the minimum font is 10 and the maximum font is 20      |
-| rotation      | *number\[] | number | function* | \[0, 90]   | Rotation minimum and maximum angles by default \[0, 90]                                                       |
-| rotationSteps | *number*                         | 2         | Rotate the actual number of steps, the larger the rotation Angle may be smaller, default is 2                |
+| Properties    | Type            | Description                                                                                                                                                                              |
+| ------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| fill          | *string*        | Fill color of the shape                                                                                                                                                                  |
+| fillOpacity   | *number*        | Fill opacity of the shape                                                                                                                                                                |
+| stroke        | *string*        | Stroke color of the shape                                                                                                                                                                |
+| lineWidth     | *number*        | The width of the stroke of the shape                                                                                                                                                     |
+| lineDash      | \[number,number] | Configure dashed line stroke. The first parameter is the length of each segment, and the second parameter is the gap between segment. When lineDash is set to \[0,0], there is no effect. |
+| lineOpacity   | *number*        | Opacity of the stroke                                                                                                                                                                    |
+| opacity       | *number*        | Opacity of the shape                                                                                                                                                                     |
+| shadowColor   | *string*        | Shadow color of the shape                                                                                                                                                                |
+| strokeOpacity | *number*        | Stroke opacity of the shape                                                                                                                                                              |
+| shadowBlur    | *number*        | Gaussian blur coefficient of the shadow                                                                                                                                                  |
+| shadowOffsetX | *number*        | Configure horizontal distance between shadow and shape                                                                                                                                   |
+| shadowOffsetY | *number*        | Configure vertical distance between shadow and shape                                                                                                                                     |
+| cursor        | *string*        | Mouse style, same as the mouse style of CSS, default value : 'default'                                                                                                                   |
 
-Above, some properties can be set to a function that takes the following parameters:
+Example：
 
-| Properties | Type     | Description                                                  |
-| ---------- | -------- | ------------------------------------------------------------ |
-| word       | *Word*   | Data objects for each text                                   |
-| index      | *number* | The index value of the current text object in the total data |
-| words      | *Word\[]* | The total text data, is an array                             |
+```ts
+{
+  style: {
+    fill: 'red',
+    fillOpacity: 0.5,
+    stroke: 'black',
+    lineWidth: 1,
+    lineDash: [4, 5],
+    strokeOpacity: 0.7,
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffsetX: 5,
+    shadowOffsetY: 5,
+    cursor: 'pointer'
+  }
+}
+```
 
-类型`Word`的配置如下：
+More documents about `ShapeStyle`, see [Graphic Style](/en/docs/api/graphic-style).
 
-| Properties | Type     | Description                                    |
-| ---------- | -------- | ---------------------------------------------- |
-| text       | *string* | The text content                               |
-| value      | *number* | The text weight                                |
-| color      | *any*    | Value for color mapping                        |
-| datum      | *object* | The original data corresponding to the storage |
 
 #### color
 
@@ -205,7 +159,7 @@ Default: The color board of the theme.
 ```
 
 
-### Plot Components
+### Plot Component
 
 #### tooltip
 
@@ -499,45 +453,6 @@ Support for custom templates.
     customContent: (title, data) => {
       return `<div>${title}</div>`;
     };
-  }
-}
-```
-
-
-#### label
-
-<!--label样式-->
-
-| Properties | Type                                                         | Description                                                                                                                                                      |
-| ---------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | --------- |
-| type       | *string*                                                     | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
-| offset     | *number*                                                     | label offset                                                                                                                                                     |
-| offsetX    | *number*                                                     | The offset distance of the label from the data point in the X direction                                                                                          |
-| offsetY    | *number*                                                     | The offset distance of the label from the data point in the Y direction                                                                                          |
-| content    | *string | IGroup | IShape | GeometryLabelContentCallback* | Text content that is displayed, if not declared, is displayed according to the value of the first field participating in the mapping                             |
-| style      | object                                                       | Label text graphic property style                                                                                                                                |
-| autoRotate | *string*                                                     | Whether to rotate automatically, default true                                                                                                                    |
-| rotate     | *number*                                                     | Text rotation Angle                                                                                                                                              |
-| labelLine  | *null | \_boolean* |object\_                               | Used to set the style property of the text connector. NULL indicates that it is not displayed.                                                                   |
-| labelEmit  | *boolean*                                                    | Only applies to text in polar coordinates, indicating whether the text is radially displayed according to the Angle. True means on and false means off           |
-| layout     | *'overlap' | 'fixedOverlap' | 'limitInShape'*              | Text layout type, support a variety of layout function combination.                                                                                              |
-| position   | *'top' | 'bottom' | 'middle' | 'left' | 'right'*         | Specifies the position of the current Label relative to the current graphic                                                                                      |
-| animate    | *boolean | AnimateOption*                                   | Animation configuration.                                                                                                                                         |
-| formatter  | *Function*                                                   | Format function                                                                                                                                                  |
-| autoHide   | *boolean*                                                    | Whether to hide it automatically, default to false                                                                                                               |
-|            |
-
-Example code:
-
-```ts
-{
-  label: {
-    style: {
-      fill: 'red',
-      opacity: 0.6,
-      fontSize: 24
-    },
-    rotate: true
   }
 }
 ```
@@ -934,317 +849,6 @@ Mark the direction of the label on the axis, with 1 to the left and -1 to the ri
 Configuring the maximum limit length in the vertical direction of the coordinate axis has a significant impact on text adaptation.
 
 
-#### legend
-
-There are two ways to configure legends
-
-Method 1, pass in 'Boolean' to set whether to display a legend.
-
-```ts
-legend: false; // close legend
-```
-
-Method 2, pass in *LegendCfg* to configure the legend as a whole.
-
-```ts
-legend: {
-  layout: 'horizontal',
-  position: 'right'
-}
-```
-
-##### layout
-
-<description>**optional** *horizontal | vertical* </description>
-
-Layout
-
-##### position
-
-<description>**optional** *string* </description>
-
-The position of legend is optional:
-
-*   `top`
-*   `top-left`
-*   `top-right`
-*   `right`
-*   `right-top`
-*   `right-bottom`
-*   `left`
-*   `left-top`
-*   `left-bottom`
-*   `bottom`
-*   `bottom-left`
-*   `bottom-right`
-
-##### background
-
-<description>**optional** *LegendBackgroundCfg* </description>
-
-Background box configuration item. *LegendBackgroundCFG* is configured as follows:
-
-| Properties | Type               | Default | Description                                             |
-| ---------- | ------------------ | ------- | ------------------------------------------------------- |
-| padding    | number | number\[] | -       | White space in the background                           |
-| style      | object             | -       | Background style configuration, Reference Graphic Style |
-
-##### flipPage
-
-<description>**optional** *boolean* </description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>,whether to page when there are too many legend items.
-
-##### handler
-
-<description>**optional** *ContinueLegendHandlerCfg* </description>
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, configuration items for slider *ContinueLegendHandlerCfg* is configured as follows:
-
-| Properties | Type     | Default | Description                                                                 |
-| ---------- | -------- | ------- | --------------------------------------------------------------------------- |
-| size       | *number* | -       | Slider size                                                                 |
-| style      | *object* | -       | Slider configuration, reference [Graphic Style](/zh/docs/api/graphic-style) |
-
-##### itemHeight
-
-<description>**optional** *number* *default:* `null`</description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, lengend item height, default null。
-
-##### itemWidth
-
-<description>**optional** *number* *default:* `null`</description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, legend item width, default null, automatic calculation.
-
-##### itemName
-
-<description>**optional** *LegendItemNameCfg* </description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, configure the legend item name text. *LegendItemNameCfg* is configured as follows：
-
-| Properties | Type       | Default | Description                                                                      |
-| ---------- | ---------- | ------- | -------------------------------------------------------------------------------- |
-| style      | *object*   | -       | Text style configuration, referecnce [Graphic Style](/zh/docs/api/graphic-style) |
-| spacing    | *number*   | `false` | The spacing between legend item marker and the following name                    |
-| formatter  | *function* | -       | Format function, `(text: string, item: ListItem, index: number) => any;`         |
-
-##### itemSpacing
-
-<description>**optional** *number* </description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, control the horizontal spacing of legend items.
-
-##### itemValue
-
-<description>**optional** *LegendItemValueCfg* </description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, configuration item of legend item Value added value. *LegendItemValueCfg* Configuration is as follows:
-
-| Properties | Type       | Default | Description                                                                          |
-| ---------- | ---------- | ------- | ------------------------------------------------------------------------------------ |
-| style      | *object*   | -       | Text style configuration item, reference [Graphic Style](/zh/docs/api/graphic-style) |
-| alignRight | *boolean*  | `false` | Right-align, false by default, only when setting legend item width.                  |
-| formatter  | *function* | -       | Format function, `(text: string, item: ListItem, index: number) => any;`             |
-
-##### animate
-
-<description>**optional** *boolean* </description>
-
-Whether to turn on the animation switch.
-
-##### animateOption
-
-<description>**optional** *ComponentAnimateOption* </description>
-
-Animation parameter configuration, which takes effect if and only if the animate property is true, that is, when the animation is turned on. Animation configuration details are as follows:
-
-<div class='custom-api-docs'>
-
-*ComponentAnimateOption* is configured for each component animation type. Where 'easing' passes in the name of the animation function, the built-in default animation function is shown in the table below, and you can also customize the animation function through 'registerAnimation'.
-
-```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  interface ComponentAnimateOption {
-  appear?: ComponentAnimateCfg; // The entry animation when the chart first loads
-  enter?: ComponentAnimateCfg; // After the chart is drawn and updated, the incoming animation of the new graph is generated
-  update?: ComponentAnimateCfg; // After the chart is drawn and the data has changed, the updated animation of the graph with the state changed
-  leave?: ComponentAnimateCfg; // After the chart is drawn and the data is changed, the destruction animation of the graph is destroyed
-}
-
-interface ComponentAnimateCfg {
-  duration?: number; // Duration of the first animation
-  easing?: string; // Easing method used for the first animation.
-  delay?: number; // Delay before updating the animation
-}
-  return < {...config} />;
-};
-
-export default Demo;
-
-
-```
-
-| Animation         | Effect                                                                                                                                                                                                         | Description                                                      |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| 'fade-in'         | ![fade-in.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*LTRRRL8JwfQAAAAAAAAAAABkARQnAQ)                                                                                                          | 渐现动画。                                                       |
-| 'fade-out'        | ![fade-out.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*s4Y4S5JJ6WEAAAAAAAAAAABkARQnAQ)                                                                                                         | 渐隐动画。                                                       |
-| 'grow-in-x'       | ![grow-in-x.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*vhRVSLxDqU8AAAAAAAAAAABkARQnAQ)                                                                                                        | 容器沿着 x 方向放大的矩阵动画，多用于 G.Group 容器类进行动画。   |
-| 'grow-in-y'       | ![grow-in-y.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*L6mkQa3aG64AAAAAAAAAAABkARQnAQ)                                                                                                        | 容器沿着 y 方向放大的矩阵动画，多用于 G.Group 容器类进行动画。   |
-| 'grow-in-xy'      | ![grow-in-xy.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*LfPrQouGwYIAAAAAAAAAAABkARQnAQ)                                                                                                       | 容器沿着 x,y 方向放大的矩阵动画，多用于 G.Group 容器类进行动画。 |
-| 'scale-in-x'      | ![scale-in-x.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*oiaGTLx-dNcAAAAAAAAAAABkARQnAQ)                                                                                                       | 单个图形沿着 x 方向的生长动画。                                  |
-| 'scale-in-y'      | ![scale-in-y.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*T6mLTY3o9OoAAAAAAAAAAABkARQnAQ)                                                                                                       | 单个图形沿着 y 方向的生长动画。                                  |
-| 'wave-in'         | ![wave-in-p.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*W5CdQIWw-M4AAAAAAAAAAABkARQnAQ)![wave-in-r.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*z9jjQY-lHcwAAAAAAAAAAABkARQnAQ) | 划入入场动画效果，不同坐标系下效果不同。                         |
-| 'zoom-in'         | ![zoom-in.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*wc4dQp4E6vkAAAAAAAAAAABkARQnAQ)                                                                                                          | 沿着图形中心点的放大动画。                                       |
-| 'zoom-out'        | ![zoom-out.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*PZ2gTrkV29YAAAAAAAAAAABkARQnAQ)                                                                                                         | 沿着图形中心点的缩小动画。                                       |
-| 'path-in'         | ![path-in.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*gxZ1RIIMtdIAAAAAAAAAAABkARQnAQ)                                                                                                          | path 路径入场动画。                                              |
-| 'position-update' |                                                                                                                                                                                                                | 图形位置移动动画。                                               |
-
-</div>
-
-
-##### label
-
-<description>**optional** *ContinueLegendLabelCfg* </description>
-
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, a configuration item for the text, *ContinueLegendLabelCfg* Configuration is as follows:
-
-| Properties | Type     | Default | Description                                                                                                                                                                                                                                      |
-| ---------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| align      | *string* | -       | The alignment of text with the slider <br/> - rail : Align with the slide rail, at both ends of the slide rail <br/> - top, bottom: Legends are valid when laid out horizontally <br/> - left, right: Legends are valid when laid out vertically |
-| style      | *object* | -       | Text style configuration item, reference [Graphic Style](/zh/docs/api/graphic-style)                                                                                                                                                             |
-| spacing    | *number* | -       | The distance between the text and the slide                                                                                                                                                                                                      |
-
-##### marker
-
-<description>**optional** *MarkerCfg* </description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the configuration of the Marker icon of the legend item.
-
-| Properties | Type                         | Default | Description                                                   |
-| ---------- | ---------------------------- | ------- | ------------------------------------------------------------- |
-| symbol     | *Marker* | *MarkerCallback* | -       | The symbol shape of a legend marker is configured             |
-| style      | ShapeAttrs                   | -       | The configuration item of legend item Marker                  |
-| spacing    | number                       | -       | The spacing between legend item marker and the following name |
-
-*Marker* The supported tag types are： *circle | square | line | diamond | triangle | triangle-down | hexagon | bowtie | cross | tick | plus | hyphen*；
-*MarkerCallback* is `(x: number, y: number, r: number) => PathCommand`；
-
-
-##### min
-
-<description>**optional** *number* </description>
-
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, select the minimum value of the range.
-
-##### max
-
-<description>**optional** *number* </description>
-
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, select the maximum value of the range.
-
-##### maxWidth
-
-<description>**optional** *number* </description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the maximum width of the legend item.
-
-##### maxHeight
-
-<description>**optional** *number* </description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the maximum height of the legend item.
-
-##### offsetX
-
-<description>**optional** *number* </description>
-
-Legends offset in the x direction.
-
-##### offsetY
-
-<description>**optional** *number* </description>
-
-Legends offset in the y direction.
-
-##### rail
-
-<description>**optional** *ContinueLegendRailCfg* </description>
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, a style configuration item for the legend slider (background).*ContinueLegendRailCfg* Configuration is as follows:
-
-| Properties    | Type     | Default | Description                                                                                                                                |
-| ------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| type          | *string* | -       | rail type: color and size                                                                                                                  |
-| size          | *number* | -       | The width of the slide rail                                                                                                                |
-| defaultLength | *number* | -       | The default length of the slider. When maxWidth,maxHeight is limited, this property is not used and the length is automatically calculated |
-| style         | *object* | -       | Slide rail style, refer to [Graphic Style](/zh/docs/api/graphic-style)                                                                     |
-
-##### reversed
-
-<description>**optional** *boolean* </description>
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, whether to display legend items in reverse order.
-
-##### slidable
-
-<description>**optional** *boolean* </description>
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, whether the slider can slide.
-
-##### title
-
-<description>**optional** *G2LegendTitleCfg* </description>
-
-Legend title configuration is not displayed by default. *G2LegendTitleCfg* Configuration is as follows:
-
-| Properties | Type     | Default | Description                                                                         |
-| ---------- | -------- | ------- | ----------------------------------------------------------------------------------- |
-| spacing    | *number* | -       | The spacing between the title and the legend item                                   |
-| style      | *object* | -       | Text style configuration item, refer to [Graphic Style](/zh/docs/api/graphic-style) |
-
-##### track
-
-<description>**optional** *ContinueLegendTrackCfg* </description>
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, select the color block style configuration item for the range. *ContinueLegendTrackCfg* Configuration is as follows:
-
-| Properties | Type     | Default | Description                                                                     |
-| ---------- | -------- | ------- | ------------------------------------------------------------------------------- |
-| style      | *object* | -       | Selected range of styles, reference [Graphic Style](/zh/docs/api/graphic-style) |
-
-##### values
-
-<description>**optional** *number\[]* </description>
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, selected value.
-
-##### custom
-
-<description>**optional** *boolean* </description>
-
-If it is a custom legend, the items property needs to be declared when this property is true.
-
-##### items
-
-<description>**optional** *LegendItem\[]* </description>
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the user configures the content of the legend item. *LegendItem* Configuration is as follows:
-
-| Properties | Type        | Required | Description                          |
-| ---------- | ----------- | -------- | ------------------------------------ |
-| id         | *string*    |          | Unique value for animation or lookup |
-| name       | *string*    | required | name                                 |
-| value      | any         | required | value                                |
-| marker     | *MarkerCfg* |          | marker                               |
-
-| Properties | Type                         | Default | Description                                                   |
-| ---------- | ---------------------------- | ------- | ------------------------------------------------------------- |
-| symbol     | *Marker* | *MarkerCallback* | -       | The symbol shape of a legend marker is configured             |
-| style      | ShapeAttrs                   | -       | The configuration item of legend item Marker                  |
-| spacing    | number                       | -       | The spacing between legend item marker and the following name |
-
-*Marker* The supported tag types are： *circle | square | line | diamond | triangle | triangle-down | hexagon | bowtie | cross | tick | plus | hyphen*；
-*MarkerCallback* is `(x: number, y: number, r: number) => PathCommand`；
-
-
 #### annotations
 
 Annotations are array types and can be set multiple times.
@@ -1446,105 +1050,6 @@ Alignment of DOM elements in the X direction for HTML
 Alignment of DOM elements in the Y direction for HTML
 
 
-### Event
-
-On Plot, binding events are removed by ON and OFF.
-
-```ts
-// Bind event
-plot.on('eventName', callback);
-// Remove event
-plot.off('eventName', callback);
-```
-
-#### eventName
-
-Composition: element + ':' + events。
-
-Element refers to the type of element to bind to, for example `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` etc.
-
-Events correspond to DOM common events, for example `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` etc. And support mobile events: `touchstart`、`touchmove`、`touchend`
-
-```ts
-// Plot adds click events to the entire chart area
-plot.on('plot:click', (...args) => {
-  console.log(...args);
-});
-
-// Element to add a click event, element represents the graphic elements, graphical elements, please see: https://g2.antv.vision/en/docs/manual/concepts/element
-plot.on('element:click', (...args) => {
-  console.log(...args);
-});
-
-// Legend adds click events
-plot.on('legend-item:click', (...args) => {
-  console.log(...args);
-});
-
-// Legend name adds click event
-plot.on('legend-item-name:click', (...args) => {
-  console.log(...args);
-});
-
-// Label adds click events
-plot.on('label:click', (...args) => {
-  console.log(...args);
-});
-
-// Mask adds click events
-plot.on('mask:click', (...args) => {
-  console.log(...args);
-});
-
-// Axis-label adds click events
-plot.on('axis-label:click', (...args) => {
-  console.log(...args);
-});
-
-// Add click events to the annotation
-plot.on('annotation:click', (...args) => {
-  console.log(...args);
-});
-```
-
-
-### Plot Method
-
-#### render()
-
-Render the chart.
-
-#### update()
-
-<description>**optional** </description>
-
-Update chart configuration and overwrite it without comparing difference.
-
-Example：
-
-```ts
-plot.update({
-  ...currentConfig,
-  legend: false,
-});
-```
-
-<!--
-#### changeData()
-
-<description>**optional** </description>
-
-更新图表数据。`update()`方法会导致图形区域销毁并重建，如果只进行数据更新，而不涉及其他配置项更新，推荐使用本方法。。
-
-Default configuration:`无`
-
-使用示例：
-
-```ts
-plot.changeData(newData);
-``` -->
-
-
 ### Plot Theme
 
 #### Theme
@@ -1677,39 +1182,100 @@ export default DemoPie;
 ```
 
 
-### Plot Interactions
+### Event
 
-#### Introduction
-
-Interaction is an important API in G2, and it is a way to load G2's built-in interactions or custom Interaction interactions based on the Interaction syntax form. G2 4.0 has made a big change in terms of interaction. All interaction code is intrusive and is organized through interaction syntax. The way to use the interaction is also very simple, you just need to set the name of the interaction.
-
-In G2Plot, G2's interaction syntax is passed through, as well as some built-in interactions with specific plot bindings.
-
-Usage:
+On Plot, binding events are removed by ON and OFF.
 
 ```ts
-// Enable the Active interaction when the mouse moves over a chart element (bar in a bar, dot in a dot, etc.)
-interactions: [{ type: 'element-active' }];
-
-// Enable multiple interactions
-interactions: [{ type: 'element-active' }, { type: 'brush' }];
+// Bind event
+plot.on('eventName', callback);
+// Remove event
+plot.off('eventName', callback);
 ```
 
-#### Remove the interaction
+#### eventName
+
+Composition: element + ':' + events。
+
+Element refers to the type of element to bind to, for example `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` etc.
+
+Events correspond to DOM common events, for example `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` etc. And support mobile events: `touchstart`、`touchmove`、`touchend`
 
 ```ts
-plot.chart.removeInteraction('interaction-type');
+// Plot adds click events to the entire chart area
+plot.on('plot:click', (...args) => {
+  console.log(...args);
+});
+
+// Element to add a click event, element represents the graphic elements, graphical elements, please see: https://g2.antv.vision/en/docs/manual/concepts/element
+plot.on('element:click', (...args) => {
+  console.log(...args);
+});
+
+// Legend adds click events
+plot.on('legend-item:click', (...args) => {
+  console.log(...args);
+});
+
+// Legend name adds click event
+plot.on('legend-item-name:click', (...args) => {
+  console.log(...args);
+});
+
+// Label adds click events
+plot.on('label:click', (...args) => {
+  console.log(...args);
+});
+
+// Mask adds click events
+plot.on('mask:click', (...args) => {
+  console.log(...args);
+});
+
+// Axis-label adds click events
+plot.on('axis-label:click', (...args) => {
+  console.log(...args);
+});
+
+// Add click events to the annotation
+plot.on('annotation:click', (...args) => {
+  console.log(...args);
+});
 ```
 
-Usage:
+
+### Plot Method
+
+#### render()
+
+Render the chart.
+
+#### update()
+
+<description>**optional** </description>
+
+Update chart configuration and overwrite it without comparing difference.
+
+Example：
 
 ```ts
-// Removes legend filtering interaction
-plot.chart.removeInteraction('legend-filter');
+plot.update({
+  ...currentConfig,
+  legend: false,
+});
 ```
 
-#### More
+<!--
+#### changeData()
 
-More instructions about interaction, see \[G2 document] (https://g2.antv.vision/en/docs/api/general/interaction)
+<description>**optional** </description>
 
-The list of built-in supported interactions and interactions with specific plot bindings will be added later.
+更新图表数据。`update()`方法会导致图形区域销毁并重建，如果只进行数据更新，而不涉及其他配置项更新，推荐使用本方法。。
+
+Default configuration:`无`
+
+使用示例：
+
+```ts
+plot.changeData(newData);
+``` -->

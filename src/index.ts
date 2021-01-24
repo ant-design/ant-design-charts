@@ -26,6 +26,8 @@ import Sunburst from './sunburst';
 import Stock from './stock';
 import RadialBar from './radialBar';
 import Sankey from './sankey';
+import Treemap from './treemap';
+import MultiView from './multiView';
 import BidirectionalBar from './bidirectionalBar';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
 import { G2 } from '@antv/g2plot';
@@ -58,6 +60,8 @@ export {
   RadialBar,
   Gauge,
   Sankey,
+  Treemap,
+  MultiView,
   BidirectionalBar,
   OrganizationTreeGraph,
   DagreGraph,
@@ -94,6 +98,8 @@ export default {
   RadialBar,
   Gauge,
   Sankey,
+  Treemap,
+  MultiView,
   BidirectionalBar,
   OrganizationTreeGraph,
   DagreGraph,

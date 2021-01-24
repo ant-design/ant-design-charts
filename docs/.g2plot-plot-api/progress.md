@@ -2,7 +2,7 @@
 
 
 
-### Plot Container
+### 图表容器
 
 #### width
 
@@ -53,7 +53,7 @@
 是否对超出坐标系范围的 Geometry 进行剪切。
 
 
-### Data Mapping
+### 数据映射
 
 #### percent
 
@@ -61,19 +61,13 @@
 
 设置百分比数值 \[0-1]，表示进度条图的进度情况。
 
-### Plot Style
+### 图形样式
 
-#### radius
+#### barWidthRatio
 
-<description>**optional** *number*</description>
+<description>**optional** *number* *default:* `0.5`</description>
 
-外环的半径 \[0-1]，相对于画布宽高的最小值来计算的。
-
-#### innerRadius
-
-<description>**optional** *number*</description>
-
-内环的半径 \[0-1]，相对于内半径 radius 来计算的。
+条形图宽度占比 \[0-1]。
 
 #### progressStyle
 
@@ -153,7 +147,7 @@
 ```
 
 
-### Plot Component
+### 图表组件
 
 #### tooltip
 
@@ -772,26 +766,3 @@ export default DemoPie;
 
 
 ```
-
-
-#### statistic
-
-<description>**optional** *object*</description>
-
-统计内容组件，主要包含 title、content 来部分内容。
-
-| 配置项  | 类型                   | 描述     |
-| ------- | ---------------------- | -------- |
-| title   | false | StatisticText | 标题     |
-| content | false | StatisticText | 主体内容 |
-
-StatisticText
-
-| 配置项    | 类型     | 描述                 |
-| --------- | -------- | -------------------- |
-| style     | CSSStyleDeclaration | 统计文本的样式 (css 样式)      |
-| customHtml | `(container: HTMLElement, view: View, datum: object, data: object[]) => string;` | 自定义主体文本的 html，优先级高于 formatter |
-| formatter | Function | 主体文本的格式化内容 |
-| rotate    | number   | 旋转角度             |
-| offsetX   | number   | X 偏移值             |
-| offsetY   | number   | Y 偏移值             |

@@ -26,6 +26,7 @@ import Sunburst from './sunburst';
 import Stock from './stock';
 import RadialBar from './radialBar';
 import Sankey from './sankey';
+import MultiView from './multiView';
 import BidirectionalBar from './bidirectionalBar';
 import { G2 } from '@antv/g2plot';
 
@@ -58,5 +59,6 @@ export {
   Gauge,
   BidirectionalBar,
   Sankey,
+  MultiView,
   G2,
 };

@@ -1,28 +1,41 @@
-import React, { useRef, createRef } from 'react';
+import React from 'react';
 import { create } from 'react-test-renderer';
-import { renderHook } from '@testing-library/react-hooks';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import BidirectionalBar from '../../src/bidirectionalBar';
+import MultiView from '../../src/multiView';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 
-const refs = renderHook(() => useRef());
-
-describe('BidirectionalBar render', () => { 
+describe('MultiView render', () => { 
   let container;
-  const data = [
-    {
-      country: '乌拉圭',
-      '2016年耕地总面积': 13.4,
-      '2016年转基因种植面积': 12.3,
-    },
-    {
-      country: '巴拉圭',
-      '2016年耕地总面积': 14.4,
-      '2016年转基因种植面积': 6.3,
-    },
-  ];
+  const data = {
+    area: [
+      {
+        "time": 1246406400000,
+        "temperature": [
+          14.3,
+          27.7
+        ]
+      },
+      {
+        "time": 1246492800000,
+        "temperature": [
+          14.5,
+          27.8
+        ]
+      },
+    ],
+    line: [
+      {
+        "time": 1246406400000,
+        "temperature": 21.5
+      },
+      {
+        "time": 1246492800000,
+        "temperature": 22.1
+      },
+    ]
+  };
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -40,7 +53,7 @@ describe('BidirectionalBar render', () => {
       className: 'container',
       loading: true,
     };
-    const testRenderer = create(<BidirectionalBar {...props} />);
+    const testRenderer = create(<MultiView {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered[0].nodeType).toBe('component');
@@ -55,7 +68,7 @@ describe('BidirectionalBar render', () => {
 
   it('classname * loading * style with default', () => {
     const props =  {};
-    const testRenderer = create(<BidirectionalBar {...props} />);
+    const testRenderer = create(<MultiView {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered.nodeType).toBe('host');
@@ -77,14 +90,36 @@ describe('BidirectionalBar render', () => {
       errorTemplate: () => <span id="error">custom error</span>,
     };
     const chartProps = {
-      data: [],
-      xField: 'country',
-      yField: ['2016年耕地总面积', '2016年转基因种植面积'],
+      
       autoFit: false,
       width: '200',
-      height: '160'
+      height: '160',
+      views: [
+        {
+          data: data.area,
+          geometries: [
+            {
+              type: 'area',
+              xField: 'time',
+              yField: 'temperature',
+              mapping: {},
+            },
+          ],
+        },
+        {
+          data: data.line,
+          geometries: [
+            {
+              type: 'line',
+              xField: 'time',
+              yField: 'temperature',
+              mapping: {},
+            },
+          ],
+        },
+      ]
     }
-    const testRenderer = create(<BidirectionalBar {...props} {...chartProps} />);
+    const testRenderer = create(<MultiView {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
   });
@@ -98,58 +133,41 @@ describe('BidirectionalBar render', () => {
       },
     };
     const chartProps = {
-      data,
-      xField: 'country',
-      yField: ['2016年耕地总面积', '2016年转基因种植面积'],
-      autoFit: false,
       width: 200,
-      height: 160
+      height: 160,
+      views: [
+        {
+          data: data.area,
+          geometries: [
+            {
+              type: 'area',
+              xField: 'time',
+              yField: 'temperature',
+              mapping: {},
+            },
+          ],
+        },
+        {
+          data: data.line,
+          geometries: [
+            {
+              type: 'line',
+              xField: 'time',
+              yField: 'temperature',
+              mapping: {},
+            },
+          ],
+        },
+      ]
     }
     act(() => {
-      ReactDOM.render(<BidirectionalBar {...props} {...chartProps} />, container);
+      ReactDOM.render(<MultiView {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.views[0].getData().length).toEqual(data.length);
-  });
-
-  it('chartRef with createRef', () => {
-    const chartRef = createRef();
-    const props = {
-      className: 'container',
-      chartRef,
-    };
-    const chartProps = {
-      data,
-      xField: 'country',
-      yField: ['2016年耕地总面积', '2016年转基因种植面积'],
-      autoFit: false,
-      width: 200,
-      height: 160
-    }
-    act(() => {
-      ReactDOM.render(<BidirectionalBar {...props} {...chartProps} />, container);
-    });
-    expect(chartRef.current.chart.views[0].getData().length).toEqual(data.length);;
-  });
-
-  it('chartRef with useRef', () => {
-    const props = {
-      className: 'container',
-    };
-    const chartProps = {
-      data,
-      xField: 'country',
-      yField: ['2016年耕地总面积', '2016年转基因种植面积'],
-      autoFit: false,
-      width: 200,
-      height: 160
-    }
-    act(() => {
-      ReactDOM.render(<BidirectionalBar {...props} {...chartProps} ref={ refs } />, container);
-    });
-    expect(refs.current.getChart().chart.views[0].getData().length).toEqual(data.length);;
+    expect(chartRef.chart.views[0].getData()).toEqual(data.area);
+    expect(chartRef.chart.views[1].getData()).toEqual(data.line);
   });
 })

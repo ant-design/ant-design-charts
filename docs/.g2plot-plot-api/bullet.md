@@ -59,20 +59,7 @@
 
 <description>**required** *array object*</description>
 
-设置图表数据源。数据源为对象集合，例如：`[{ time: '1991'，value: 20 }, { time: '1992'，value: 20 }]`。
-
-#### xField
-
-<description>**required** *string*</description>
-
-图形在 x 方向对应的数据字段名，一般是横向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么班级字段就是对应的 xField。
-
-#### yField
-
-<description>**required** *string*</description>
-
-图形在 y 方向对应的数据字段名，一般是纵向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么人数字段就是对应的 yField。
-
+设置图表数据源。数据源为对象集合，例如：`[{title: '满意度', ranges: [50,100], measures: [80], target: 85}]`。
 
 #### meta
 
@@ -90,111 +77,175 @@
 关于 `meta` 的更多配置项，请查看 [Meta Options](/zh/docs/api/options/meta)
 
 
-#### type
+#### measureField
 
-<description>**optional** *polygon | density* *default:* `polygon`</description>
+<description>**required** *string*</description>
 
-密度热力图需要指定为 density。
+使用数据条的长度，实际数值的设置字段，表示实际数值。
 
-#### colorField
+#### rangeField
+
+<description>**required** *string*</description>
+
+使用背景色条的长度的设置字段，表示区间范围。
+
+#### targetField
+
+<description>**required** *string*</description>
+
+使用测量标记的刻度轴位置的设置字段，表示目标值。
+
+#### xField
 
 <description>**optional** *string*</description>
 
-颜色映射字段名。
-
-#### sizeField
-
-<description>**optional** *string*</description>
-
-点大小映射对应的数据字段名。
-
-#### reflect
-
-<description>**optional** *x | y*</description>
-
-坐标轴映射。
+用于区分不同的类型，适用于分组子弹图。
 
 ### 图形样式
 
+#### layout
+
+<description>**optional** *'horizontal' | 'vertical'* *default:* 'horizontal'</description>
+
+表示子弹图方向。
+
 #### color
 
-<description>**optional** *string | string\[] | Function*</description>
+<description>**optional** *object*</description>
 
-指定点的颜色。如没有配置 colorField，指定一个单值即可。对 colorFiled 进行了配置的情况下，即可以指定一系列色值，也可以通过回调函数的方法根据对应数值进行设置。
+设置子弹图各图形 color 属性。
 
-默认配置：采用 theme 中的色板。
+| 细分配置 | 类型        | 功能描述     | 默认配置 |
+| -------- | ----------- | ------------ | -------- |
+| range    | *string|string\[]* | 区间背景颜色 | 无       |
+| measure  | *string|string\[]* | 实际值颜色   | 无       |
+| target   | *string|string\[]* | 目标值颜色   | 无       |
+
+#### size
+
+<description>**optional** *object*</description>
+
+设置子弹图各图形 size 属性。
+
+| 细分配置 | 类型       | 功能描述     | 默认配置 |
+| -------- | ---------- | ------------ | -------- |
+| range    | *SizeAttr* | 区间背景样式 | 30       |
+| measure  | *SizeAttr* | 实际值样式   | 20       |
+| target   | *SizeAttr* | 目标值样式   | 20       |
+
+```plain
+type SizeAttr = number | [number, number] | ((datum: Datum) => number);
+```
+
+#### bulletStyle
+
+<description>**optional** *object*</description>
+
+设置子弹图各图形 style 属性。
+
+| 细分配置 | 类型        | 功能描述     | 默认配置             |
+| -------- | ----------- | ------------ | -------------------- |
+| range    | *StyleAttr* | 区间背景样式 | { fillOpacity: 0.5 } |
+| measure  | *StyleAttr* | 实际值样式   | 无                   |
+| target   | *StyleAttr* | 目标值样式   | 无                   |
+
+```plain
+type StyleAttr = ShapeStyle | ((datum: object) => ShapeStyle);
+```
+
+`ShapeStyle` 结构可以参考：
+
+<!--图形样式-->
+
+| 属性名        | 类型            | 介绍                                                                                                         |
+| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
+| fill          | *string*         | 图形的填充色                                                                                                 |
+| fillOpacity   | *number*         | 图形的填充透明度                                                                                             |
+| stroke        | *string*         | 图形的描边                                                                                                   |
+| lineWidth     | *number*         | 图形描边的宽度                                                                                               |
+| lineDash      | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
+| lineOpacity   | *number*         | 描边透明度                                                                                                   |
+| opacity       | *number*         | 图形的整体透明度                                                                                             |
+| shadowColor   | *string*         | 图形阴影颜色                                                                                                 |
+| strokeOpacity | *number*         | 图形边框透明度                                                                                               |
+| shadowBlur    | *number*         | 图形阴影的高斯模糊系数                                                                                       |
+| shadowOffsetX | *number*         | 设置阴影距图形的水平距离                                                                                     |
+| shadowOffsetY | *number*         | 设置阴影距图形的垂直距离                                                                                     |
+| cursor        | *string*         | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                                                |
+
+示例代码：
 
 ```ts
-// 设置单一颜色
 {
-  color: '#a8ddb5'
-}
-// 设置多色
-{
-  colorField: 'type', // 部分图表使用 seriesField
-  color: ['#d62728', '#2ca02c', '#000000'],
-}
-// Function
-{
-  colorField: 'type', // 部分图表使用 seriesField
-  color: ({ type }) => {
-    if(type === 'male'){
-      return 'red';
-    }
-    return 'yellow';
+  style: {
+    fill: 'red',
+    fillOpacity: 0.5,
+    stroke: 'black',
+    lineWidth: 1,
+    lineDash: [4, 5],
+    strokeOpacity: 0.7,
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffsetX: 5,
+    shadowOffsetY: 5,
+    cursor: 'pointer'
   }
 }
 ```
 
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh/docs/api/graphic-style)。
 
-#### shape
 
-<description>**optional** *rect | square | circle*</description>
+### 图表组件
 
-热力格子中的形状，密度热力图不用指定。
-
-#### sizeRatio
-
-<description>**optional** *number*</description>
-
-热力格子中图形的尺寸比例，可选，只有当 shape 和 sizeField 至少指定一项后才生效。
-
-#### heatmapStyle
+#### label
 
 <description>**optional** *object*</description>
 
-热力图样式。 heatmapStyle 中的`fill`会覆盖 `color` heatmapStyle 可以直接指定，也可以通过 callback 的方式，根据数据指定单独的样式。
+设置子弹图各图形 label 属性。
 
-默认配置：
+| 细分配置 | 类型                | 功能描述            | 默认配置 |
+| -------- | ------------------- | ------------------- | -------- |
+| range    | *GeometryLabelAttr* | 区间的 label 属性   | 无       |
+| measure  | *GeometryLabelAttr* | 实际值的 label 属性 | true     |
+| target   | *GeometryLabelAttr* | 目标值的 label 属性 | 无       |
 
-| 细分配置      | 类型   | 功能描述   |
-| ------------- | ------ | ---------- |
-| fill          | string | 填充颜色   |
-| stroke        | string | 描边颜色   |
-| lineWidth     | number | 线宽       |
-| lineDash      | number | 虚线显示   |
-| opacity       | number | 透明度     |
-| fillOpacity   | number | 填充透明度 |
-| strokeOpacity | number | 描边透明度 |
+<!--label样式-->
+
+| 属性名       | 类型                                                       | 介绍                                                                                       |
+| ------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| type         | *string*                                                     | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner|outer|spider`）|
+| offset       | *number*                                                     | label 的偏移量                                                                             |
+| offsetX      | *number*                                                     | label 相对于数据点在 X 方向的偏移距离                                                      |
+| offsetY      | *number*                                                     | label 相对于数据点在 Y 方向的偏移距离                                                      |
+| content      | *string | IGroup | IShape | GeometryLabelContentCallback* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示                             |
+| style        | object                                                     | label 文本图形属性样式                                                                     |
+| autoRotate   | *string*                                                     | 是否自动旋转，默认 true                                                                    |
+| rotate       | *number*                                                     | 文本旋转角度                                                                               |
+| labelLine    | *null | *boolean* |object*                                   | 用于设置文本连接线的样式属性，null 表示不展示。                                            |
+| labelEmit    | *boolean*                                                    | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭  |
+| layout       | *'overlap' | 'fixedOverlap' | 'limitInShape'*              | 文本布局类型，支持多种布局函数组合使用。                                                   |
+| position     | *'top' | 'bottom' | 'middle' | 'left' | 'right'*         | 指定当前 label 与当前图形的相对位置                                                        |
+| animate      | *boolean | AnimateOption*                                   | 动画配置。                                                                                 |
+| formatter    | *Function*                                                   | 格式化函数                                                                                 |
+| autoHide     | *boolean*                                                    | 是否自动隐藏，默认 false                                                                   |
+|
+
+示例代码：
 
 ```ts
-// 直接指定
 {
-  heatmapStyle: {
-    fill: 'red',
-    stroke: 'yellow',
-    opacity: 0.8
-  },
-}
-// Function
-{
-  heatmapStyle: (item) => ({fill: 'red'})
+  label: {
+    style: {
+      fill: 'red',
+      opacity: 0.6,
+      fontSize: 24
+    },
+    rotate: true
+  }
 }
 ```
 
-## 图表组件
-
-### 图表组件
 
 #### tooltip
 
@@ -488,45 +539,6 @@ tooltip 偏移量。
     customContent: (title, data) => {
       return `<div>${title}</div>`;
     };
-  }
-}
-```
-
-
-#### label
-
-<!--label样式-->
-
-| 属性名       | 类型                                                       | 介绍                                                                                       |
-| ------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| type         | *string*                                                     | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner|outer|spider`）|
-| offset       | *number*                                                     | label 的偏移量                                                                             |
-| offsetX      | *number*                                                     | label 相对于数据点在 X 方向的偏移距离                                                      |
-| offsetY      | *number*                                                     | label 相对于数据点在 Y 方向的偏移距离                                                      |
-| content      | *string | IGroup | IShape | GeometryLabelContentCallback* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示                             |
-| style        | object                                                     | label 文本图形属性样式                                                                     |
-| autoRotate   | *string*                                                     | 是否自动旋转，默认 true                                                                    |
-| rotate       | *number*                                                     | 文本旋转角度                                                                               |
-| labelLine    | *null | *boolean* |object*                                   | 用于设置文本连接线的样式属性，null 表示不展示。                                            |
-| labelEmit    | *boolean*                                                    | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭  |
-| layout       | *'overlap' | 'fixedOverlap' | 'limitInShape'*              | 文本布局类型，支持多种布局函数组合使用。                                                   |
-| position     | *'top' | 'bottom' | 'middle' | 'left' | 'right'*         | 指定当前 label 与当前图形的相对位置                                                        |
-| animate      | *boolean | AnimateOption*                                   | 动画配置。                                                                                 |
-| formatter    | *Function*                                                   | 格式化函数                                                                                 |
-| autoHide     | *boolean*                                                    | 是否自动隐藏，默认 false                                                                   |
-|
-
-示例代码：
-
-```ts
-{
-  label: {
-    style: {
-      fill: 'red',
-      opacity: 0.6,
-      fontSize: 24
-    },
-    rotate: true
   }
 }
 ```
@@ -1237,207 +1249,6 @@ interface ComponentAnimateCfg {
 
 *Marker* 为支持的标记类型有： *circle | square | line | diamond | triangle | triangle-down | hexagon | bowtie | cross | tick | plus | hyphen*；
 *MarkerCallback* 为 `(x: number, y: number, r: number) => PathCommand`；
-
-
-#### annotations
-
-标注是数组类型，可以设置多个。
-
-```ts
-annotations: [
-  {
-    type: 'text',
-    position: ['median', 'median'],
-    content: '辅助文本',
-    style: {
-      fill: 'red',
-    },
-  },
-];
-```
-
-##### type
-
-<description>**required** *string* </description>
-
-标注类型, text | line | image | region | dataMarker | dataRegion | regionFilter | shape | html.
-
-##### position
-
-<description>**required** *object* </description>
-
-标注位置。
-
-*   第一种，object 使用图表 x, y 对应的原始数据例如：{ time: '2010-01-01', value: 200 };
-*   第二种，数组来配置位置 \[ x, y ]，根据数组中的值的存在以下几种形式：
-    1、对应数据源中的原始数据；
-    2、关键字：'min'、'max'、'median'、'start'、'end' 分别代表数据的最大值、最小值、中间值以及坐标系区间的起始和结束；
-    3、x, y 都是百分比的形式，如 30%，在绘图区域定位(即坐标系内)。
-    1 和 2 两种类型的数据可以混用，但是使用百分比形式时 x 和 y 必须都是百分比形式。
-*   第三种，回调函数，可以动态得确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景。
-
-##### top
-
-<description>**optional** *boolean* *default:* `false`</description>
-
-是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层。
-
-##### animate
-
-<description>**optional** *boolean* </description>
-
-是否进行动画。
-
-##### offsetX
-
-<description>**optional** *number* </description>
-
-x 方向的偏移量。
-
-##### offsetY
-
-<description>**optional** *number* </description>
-
-y 方向的偏移量。
-
-##### start
-
-<description>**optional** *Array* </description>
-
-起始位置，一般用于 line、region 等。
-
-##### end
-
-<description>**optional** *Array* </description>
-
-结束位置，一般用于 line、region 等。
-
-```ts
-{
-  type: 'line',
-  start: ['min', 'median'],
-  end: ['max', 'median'],
-},
-```
-
-##### style
-
-<description>**optional** *object* </description>
-
-图形样式属性，参考绘图属性。
-
-##### src
-
-<description>**optional** *string* </description>
-
-图片路径，用于 image 中。
-
-##### content
-
-<description>**optional** *string* </description>
-
-文本内容，用于 text 中。
-
-##### rotate
-
-<description>**optional** *number* </description>
-
-文本的旋转角度，弧度制。
-
-##### maxLength
-
-<description>**optional** *number* </description>
-
-文文本的最大长度。
-
-##### autoEllipsis
-
-<description>**optional** *boolean* </description>
-
-超出 maxLength 是否自动省略。
-
-##### ellipsisPosition
-
-<description>**optional** \_head | middle | tail \_ </description>
-
-文本截断的位置。
-
-##### isVertical
-
-<description>**optional** *boolean* </description>
-
-文本在二维坐标系的显示位置，是沿着 x 轴显示 还是沿着 y 轴显示。
-
-##### background
-
-<description>**optional** *object* </description>
-
-文字包围盒样式设置。
-
-| 参数名  | 类型                | 默认值 | 描述               |
-| ------- | ------------------- | -------- | ------ | ------------------ |
-| style   | *object* | -      | 文本背景的样式, 参考[绘图属性](/en/docs/api/graphic-style)     |
-| padding | *number | number\[]* | -      | 文本背景周围的留白 |
-
-##### color
-
-<description>**optional** *string* </description>
-
-染色色值，一般用于 regionFilter。
-
-##### apply
-
-<description>**optional** *string\[]* </description>
-
-设定 regionFilter 只对特定 geometry 类型起作用，如 apply: \['area']，一般用于 regionFilter。
-
-##### autoAdjust
-
-<description>**optional** *boolean* </description>
-
-文本超出绘制区域时，是否自动调节文本方向。
-
-##### direction
-
-<description>**optional** *upward | downward* </description>
-
-朝向。
-
-##### lineLength
-
-<description>**optional** *number* </description>
-
-line 长度，用于 dataRegion。
-
-##### render
-
-<description>**optional** *string* </description>
-
-自定义标记的绘制 render 函数，其他 container 为标记绘制的父容器, view 为图形实例, helpers 为辅助函数，其他 parserPosition 可以用来计算数据点对应的坐标位置，用于 shape。
-
-##### container
-
-<description>**optional** *string | HTMLElement* </description>
-
-自定义 HTML 图形标记的容器元素，用于 html
-
-##### container
-
-<description>**optional** *string | HTMLElement* </description>
-
-自定义的图形标记的 HTML 元素，可为 HTML DOM 字符串，或 HTML 元素，或 html 回调函数，用于 html
-
-##### alignX
-
-<description>**optional** *left' | 'middle' | 'right'* </description>
-
-DOM 元素在 X 方向的对齐方式，用于 html
-
-##### alignY
-
-<description>**optional** *left' | 'middle' | 'right'* </description>
-
-DOM 元素在 Y 方向的对齐方式，用于 html
 
 
 ### 事件

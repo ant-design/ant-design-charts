@@ -343,7 +343,7 @@
 <!--label样式-->
 
 | 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- |
 | type | string | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner | outer | spider`） |
 | offset | number | label 的偏移量 |
 | offsetX | number | label 相对于数据点在 X 方向的偏移距离 |
@@ -383,7 +383,7 @@
 坐标轴网格线的配置项，null 表示不展示。
 
 | 细分配置项名称 | 类型        | 功能描述                                                 |
-| -------------- | ----------- | -------------------------------------------------------- |
+| -------------- | ----------- | -------------------------------------------------------- | -------------------- |
 | line           | _lineStyle_ | 线的样式                                                 |
 | alternateColor | \*string    | string\[]\*                                              | 两个栅格线间的填充色 |
 | closed         | _boolean_   | 对于 circle 是否关闭 grid                                |
@@ -535,8 +535,8 @@ interface ComponentAnimateCfg {
 指标中心文本组件。
 
 | 配置项  | 类型  | 描述          |
-| ------- | ----- | ------------- |
-| title   | false | StatisticText | 标题 |
+| ------- | ----- | ------------- | -------- |
+| title   | false | StatisticText | 标题     |
 | content | false | StatisticText | 主体内容 |
 
 StatisticText

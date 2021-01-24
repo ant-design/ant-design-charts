@@ -74,6 +74,18 @@
 图形在 y 方向对应的数据字段名，一般是纵向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么人数字段就是对应的 yField。
 
 
+#### groupField
+
+<description>**optional** *string*</description>
+
+分组拆分字段，默认是分组情况，颜色作为视觉通道。
+
+#### outliersField
+
+<description>**optional** *string*</description>
+
+异常值字段。
+
 #### meta
 
 <description>**optional** *object*</description>
@@ -90,31 +102,60 @@
 关于 `meta` 的更多配置项，请查看 [Meta Options](/zh/docs/api/options/meta)
 
 
-#### type
-
-<description>**optional** *polygon | density* *default:* `polygon`</description>
-
-密度热力图需要指定为 density。
-
-#### colorField
-
-<description>**optional** *string*</description>
-
-颜色映射字段名。
-
-#### sizeField
-
-<description>**optional** *string*</description>
-
-点大小映射对应的数据字段名。
-
-#### reflect
-
-<description>**optional** *x | y*</description>
-
-坐标轴映射。
-
 ### 图形样式
+
+#### boxStyle
+
+<description>**optional** *StyleAttr | Function*</description>
+
+柱子样式配置。
+
+<!--图形样式-->
+
+| 属性名        | 类型            | 介绍                                                                                                         |
+| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
+| fill          | *string*         | 图形的填充色                                                                                                 |
+| fillOpacity   | *number*         | 图形的填充透明度                                                                                             |
+| stroke        | *string*         | 图形的描边                                                                                                   |
+| lineWidth     | *number*         | 图形描边的宽度                                                                                               |
+| lineDash      | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
+| lineOpacity   | *number*         | 描边透明度                                                                                                   |
+| opacity       | *number*         | 图形的整体透明度                                                                                             |
+| shadowColor   | *string*         | 图形阴影颜色                                                                                                 |
+| strokeOpacity | *number*         | 图形边框透明度                                                                                               |
+| shadowBlur    | *number*         | 图形阴影的高斯模糊系数                                                                                       |
+| shadowOffsetX | *number*         | 设置阴影距图形的水平距离                                                                                     |
+| shadowOffsetY | *number*         | 设置阴影距图形的垂直距离                                                                                     |
+| cursor        | *string*         | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                                                |
+
+示例代码：
+
+```ts
+{
+  style: {
+    fill: 'red',
+    fillOpacity: 0.5,
+    stroke: 'black',
+    lineWidth: 1,
+    lineDash: [4, 5],
+    strokeOpacity: 0.7,
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffsetX: 5,
+    shadowOffsetY: 5,
+    cursor: 'pointer'
+  }
+}
+```
+
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh/docs/api/graphic-style)。
+
+
+#### outliersStyle
+
+<description>**optional** *StyleAttr | Function*</description>
+
+柱子样式配置，配置同 boxStyle。
 
 #### color
 
@@ -146,53 +187,6 @@
 }
 ```
 
-
-#### shape
-
-<description>**optional** *rect | square | circle*</description>
-
-热力格子中的形状，密度热力图不用指定。
-
-#### sizeRatio
-
-<description>**optional** *number*</description>
-
-热力格子中图形的尺寸比例，可选，只有当 shape 和 sizeField 至少指定一项后才生效。
-
-#### heatmapStyle
-
-<description>**optional** *object*</description>
-
-热力图样式。 heatmapStyle 中的`fill`会覆盖 `color` heatmapStyle 可以直接指定，也可以通过 callback 的方式，根据数据指定单独的样式。
-
-默认配置：
-
-| 细分配置      | 类型   | 功能描述   |
-| ------------- | ------ | ---------- |
-| fill          | string | 填充颜色   |
-| stroke        | string | 描边颜色   |
-| lineWidth     | number | 线宽       |
-| lineDash      | number | 虚线显示   |
-| opacity       | number | 透明度     |
-| fillOpacity   | number | 填充透明度 |
-| strokeOpacity | number | 描边透明度 |
-
-```ts
-// 直接指定
-{
-  heatmapStyle: {
-    fill: 'red',
-    stroke: 'yellow',
-    opacity: 0.8
-  },
-}
-// Function
-{
-  heatmapStyle: (item) => ({fill: 'red'})
-}
-```
-
-## 图表组件
 
 ### 图表组件
 
