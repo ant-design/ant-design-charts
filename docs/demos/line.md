@@ -1,9 +1,9 @@
 ---
-title: 折线图
+title: Line
 order: 1
 ---
 
-# 折线图
+# Line
 
 ## Line
 

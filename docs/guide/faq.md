@@ -2,28 +2,28 @@
 title: FAQ
 order: 5
 nav:
-  title: 使用文档
+  title: Docs
   order: 1
 ---
 
 ## FAQ
 
-以下整理了一些 Ant Design Charts 社区常见的问题和官方答复。
+Here is a roundup of some common questions and official responses from the Ant Design Charts community.
 
-### 1、 G2、G2Plot、Ant Design Charts 什么关系？
+### 1、 What is the relationship between G2, G2Plot and Ant Design Charts?
 
-- 同一团队开发。
-- G2 是 G2Plot 的底层依赖，使用了图形语法，使用成本相对较高，功能强大。
-- G2Plot 是 G2 的上层封装，把图形语法装换成了配置项。
-- Ant Design Charts 是 G2Plot 的 React 版本，功能和 G2Plot 同步，并内置了一些图相关的图表，例如流程图、组织架构图等。
-- 其它一些图表是其它团队的同学基于 G2 或 G2Plot 实现。
+- Same team development.
+- G2Plot based on G2, which uses grammar of graphics and is relatively expensive to use and powerful.
+- G2Plot is an overlay wrapper over G2, replacing the graph syntax with configuration items.
+- Ant Design Charts is the React version of G2Plot, which synchronizes functionality with G2Plot and has built-in graph-related Charts such as flowcharts, organizational Charts, etc
+- Some of the other charts were implemented by students on other teams based on G2 or G2Plot
 
 ### 2、Object(...) is not a function
 
-<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GnrEQZUVa5AAAAAAAAAAAAAAARQnAQ" alt="示例" />
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GnrEQZUVa5AAAAAAAAAAAAAAARQnAQ" alt="example" />
 
-该问题一般是因为 React 版本过低，不支持 hooks 引起的，升级到 16 最新版本即可。
+The React version is too low and does not support hooks. Updated to version 16.
 
-### 更多问题
+### More problems
 
-请到 [GitHub issues](https://github.com/ant-design/ant-design-charts/issues) 进行反馈，搜索是否有类似问题。我们会尽快响应和相应改进这篇文档。
+Please go to [GitHub Issues](https://github.com/ant-design/ant-design-charts/issues) to find out if there are similar problems. We will respond and improve this document as soon as possible.

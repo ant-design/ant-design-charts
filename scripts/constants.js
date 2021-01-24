@@ -53,83 +53,33 @@ const chartNames = {
   General: '图表通用配置',
 };
 
-const dataUrl = [
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/%24KjfUOgRYa/GDP.json',
-    fileName: 'GDP.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/aao6XnO5pW/IMDB.json',
-    fileName: 'IMDB.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/EMHYwMXxar/average_across_years.json',
-    fileName: 'average_across_years.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/vIirZPDIu%26/contributions.json',
-    fileName: 'contributions.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/oSZa1qh9tB/emissions.json',
-    fileName: 'emissions.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/YdLK%24VvSkW/fireworks-sales.json',
-    fileName: 'fireworks-sales.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/xS1FM7kNuj/global-temp.json',
-    fileName: 'global-temp.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/9BQqVeIBPH/heatmap.json',
-    fileName: 'heatmap.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/EuuT6Kl6qb/income.json',
-    fileName: 'income.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/025J4QwaAP/jobpaying.json',
-    fileName: 'jobpaying.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/t3t9L%26nZ5p/life-expectancy.json',
-    fileName: 'life-expectancy.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/A%26Bp9uKRb2/oil.json',
-    fileName: 'oil.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/71YajFg3XZ/revenue.json',
-    fileName: 'revenue.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/P%242UXb08CS/roma.json',
-    fileName: 'roma.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/qRZUAgaEYC/sales.json',
-    fileName: 'sales.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/XMCQ4qsuPa/smoking-rate.json',
-    fileName: 'smoking-rate.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/NXH9bWd4MU/subsales.json',
-    fileName: 'subsales.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/HVFdmAaR67/weather.json',
-    fileName: 'weather.json',
-  },
-  {
-    filePath: 'https://gw.alipayobjects.com/os/antfincdn/fLPUlSQCRI/word-cloud.json',
-    fileName: 'word-cloud.json',
-  },
-];
+// 维护 G2Plot examples 特殊 层级关系
+const ChartsLevel = {
+  BidirectionalBar: '/more-plots',
+  Box: '/more-plots',
+  Funnel: '/more-plots',
+  Histogram: '/more-plots',
+  Radar: '/more-plots',
+  RadialBar: '/more-plots',
+  Stock: '/more-plots',
+  Sunburst: '/more-plots',
+  Treemap: '/more-plots',
+  Waterfall: '/more-plots',
+  WordCloud: '/more-plots',
+  Progress: '/tiny',
+  RingProgress: '/tiny',
+  TinyArea: '/tiny',
+  TinyLine: '/tiny',
+  TinyColumn: '/tiny',
+  Bullet: '/progress-plots',
+  Gauge: '/progress-plots',
+  Liquid: '/progress-plots',
+  Chord: '/relation-plots',
+  Sankey: '/relation-plots',
+  Bullet: '/progress-plots',
+  Gauge: '/progress-plots',
+  Liquid: '/progress-plots',
+  MultiView: '/plugin'
+}
 
-module.exports = { filterFileFolder, filterTitle, exampleBaseUrl, chartNames, dataUrl };
+module.exports = { filterFileFolder, filterTitle, exampleBaseUrl, chartNames, ChartsLevel };

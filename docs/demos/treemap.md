@@ -1,9 +1,9 @@
 ---
-title: 矩形树图
+title: Treemap
 order: 32
 ---
 
-# 矩形树图
+# Treemap
 
 ## Treemap
 

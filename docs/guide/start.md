@@ -1,14 +1,14 @@
 ---
-title: 快速开始
+title: Quick start
 order: 2
 nav:
-  title: 使用文档
+  title: Docs
   order: 1
 ---
 
-## 快速上手
+## Quick start
 
-## 安装
+## Installation
 
 ### npm
 
@@ -18,16 +18,16 @@ $ npm install @ant-design/charts
 
 ### CDN
 
-推荐使用 npm 的方式，<b>CDN 模式下由于底层依赖不一样，为了降低包体积，从 1.0.5 版本开始，组织架构图、流程图、资金流向图、缩进树图被打包到 charts_g6.min.js 里，其它图表打包到 charts.min.js 里</b>，使用时按需引入即可。
+The NPM is recommended, <b>Due to the different underlying dependencies in CDN mode, in order to reduce the package volume, from version 1.0.5 on, the organization chart, flow chart, fund flow chart and indent tree chart were packaged into charts_g6.min.js, and other charts were packaged into Charts.min.js</b>, it can be imported as needed.
 
 ```ts
-// 引入在线资源
+// Introducing Online Resources
 <script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts.min.js"></script>
-// G6 相关的图表
+// G6 related charts
 <script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts_g6.min.js"></script>
 ```
 
-由于 @ant-design/charts 里面 externals 了 `react` 和 `react-dom`，该方式使用时需要在项目里面做同样的操作，通过 CDN 的方式在 `charts.min.js` 之前引入 `react` 和 `react-dom`。
+Because the @ant-design/ Charts page externals 'react' and 'react-dom', you need to do the same thing in your project when using this method. By using CDN, introduce 'react' and 'react-dom' before 'Charts.min.js'.
 
 ```ts
 // webpack.config.js
@@ -38,23 +38,23 @@ externals: {
 // public/index.html
 <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-// 按需引入
+// According to the need to use
 <script crossorigin src="https://unpkg.com/@ant-design/charts@1.0.5/dist/charts.min.js"></script>
 <script crossorigin src="https://unpkg.com/@ant-design/charts@1.0.5/dist/charts_g6.min.js"></script>
 ```
 
-使用方式
+Usage:
 
 ```ts
-// 折线图，其它图表类似
+// Line chart, other charts are similar
 const { Line } = window.charts;
-// 组织架构图
+// Organization Chart
 const { OrganizationTreeGraph } = window.charts_g6;
 ```
 
-## 使用
+## Usage
 
-大部分 demos 使用了父容器宽高，请确保父容器宽高或者手动设置图表宽高。
+Most demos use the parent container width and height. Make sure the parent container width and height are either set manually.
 
 ```tsx | pure
 import React, { Component } from 'react';
@@ -90,7 +90,7 @@ class Page extends Component {
 export default Page;
 ```
 
-最终效果：
+Result:
 
 ```tsx
 import React from 'react';

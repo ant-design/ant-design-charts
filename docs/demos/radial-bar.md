@@ -1,55 +1,54 @@
 ---
-title: 玉珏图
+title: Radial Bar
 order: 23
 ---
 
-# 玉珏图
+# Radial Bar
 
 ## RadialBar
-### 玉珏图
+
+### Radial Bar
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { RadialBar } from '@ant-design/charts';
 
 const DemoRadialBar: React.FC = () => {
-  
-
-var data = [
+  var data = [
     {
-        name: 'X6',
-        star: 297
+      name: 'X6',
+      star: 297,
     },
     {
-        name: 'G',
-        star: 506
+      name: 'G',
+      star: 506,
     },
     {
-        name: 'AVA',
-        star: 805
+      name: 'AVA',
+      star: 805,
     },
     {
-        name: 'G2Plot',
-        star: 1478
+      name: 'G2Plot',
+      star: 1478,
     },
     {
-        name: 'L7',
-        star: 2029
+      name: 'L7',
+      star: 2029,
     },
     {
-        name: 'G6',
-        star: 7100
+      name: 'G6',
+      star: 7100,
     },
     {
-        name: 'F2',
-        star: 7346
+      name: 'F2',
+      star: 7346,
     },
     {
-        name: 'G2',
-        star: 10178
-    }
-];
-var config = {
+      name: 'G2',
+      star: 10178,
+    },
+  ];
+  var config = {
     width: 400,
     height: 300,
     data: data,
@@ -58,64 +57,62 @@ var config = {
     radius: 0.8,
     innerRadius: 0.2,
     tooltip: {
-        formatter: function formatter(datum) {
-            return {
-                name: 'star数',
-                value: datum.star
-            };
-        }
-    }
-};
+      formatter: function formatter(datum) {
+        return {
+          name: 'star数',
+          value: datum.star,
+        };
+      },
+    },
+  };
   return <RadialBar {...config} />;
 };
 
 export default DemoRadialBar;
 ```
 
-### 玉珏图 - 自定义颜色
+### Radial Bar - 自定义颜色
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { RadialBar } from '@ant-design/charts';
 
 const DemoRadialBar: React.FC = () => {
-  
-
-var data = [
+  var data = [
     {
-        name: 'X6',
-        star: 297
+      name: 'X6',
+      star: 297,
     },
     {
-        name: 'G',
-        star: 506
+      name: 'G',
+      star: 506,
     },
     {
-        name: 'AVA',
-        star: 805
+      name: 'AVA',
+      star: 805,
     },
     {
-        name: 'G2Plot',
-        star: 1478
+      name: 'G2Plot',
+      star: 1478,
     },
     {
-        name: 'L7',
-        star: 2029
+      name: 'L7',
+      star: 2029,
     },
     {
-        name: 'G6',
-        star: 7100
+      name: 'G6',
+      star: 7100,
     },
     {
-        name: 'F2',
-        star: 7346
+      name: 'F2',
+      star: 7346,
     },
     {
-        name: 'G2',
-        star: 10178
-    }
-];
-var config = {
+      name: 'G2',
+      star: 10178,
+    },
+  ];
+  var config = {
     width: 400,
     height: 300,
     data: data,
@@ -125,24 +122,24 @@ var config = {
     radius: 0.8,
     innerRadius: 0.2,
     tooltip: {
-        formatter: function formatter(datum) {
-            return {
-                name: 'star数',
-                value: datum.star
-            };
-        }
+      formatter: function formatter(datum) {
+        return {
+          name: 'star数',
+          value: datum.star,
+        };
+      },
     },
     colorField: 'star',
     color: function color(_ref) {
-        var star = _ref.star;
-        if (star > 10000) {
-            return 'red';
-        } else if (star > 1000) {
-            return 'orange';
-        }
-        return 'green';
-    }
-};
+      var star = _ref.star;
+      if (star > 10000) {
+        return 'red';
+      } else if (star > 1000) {
+        return 'orange';
+      }
+      return 'green';
+    },
+  };
   return <RadialBar {...config} />;
 };
 
@@ -156,51 +153,49 @@ import React, { useState, useEffect } from 'react';
 import { RadialBar } from '@ant-design/charts';
 
 const DemoRadialBar: React.FC = () => {
-  
-
-var data = [
+  var data = [
     {
-        term: 'Zombieland',
-        count: 9
+      term: 'Zombieland',
+      count: 9,
     },
     {
-        term: 'Wieners',
-        count: 8
+      term: 'Wieners',
+      count: 8,
     },
     {
-        term: 'Toy Story',
-        count: 8
+      term: 'Toy Story',
+      count: 8,
     },
     {
-        term: 'trashkannon',
-        count: 7
+      term: 'trashkannon',
+      count: 7,
     },
     {
-        term: 'the GROWLERS',
-        count: 6
+      term: 'the GROWLERS',
+      count: 6,
     },
     {
-        term: 'mudweiser',
-        count: 6
+      term: 'mudweiser',
+      count: 6,
     },
     {
-        term: 'ThunderCats',
-        count: 4
+      term: 'ThunderCats',
+      count: 4,
     },
     {
-        term: 'The Taqwacores - Motion Picture',
-        count: 4
+      term: 'The Taqwacores - Motion Picture',
+      count: 4,
     },
     {
-        term: 'The Shawshank Redemption',
-        count: 2
+      term: 'The Shawshank Redemption',
+      count: 2,
     },
     {
-        term: 'The Olivia Experiment',
-        count: 1
-    }
-];
-var config = {
+      term: 'The Olivia Experiment',
+      count: 1,
+    },
+  ];
+  var config = {
     width: 400,
     height: 300,
     data: data,
@@ -210,22 +205,20 @@ var config = {
     innerRadius: 0.2,
     tooltip: { showMarkers: true },
     type: 'line',
-    annotations: [{
-            type: 'text',
-            position: [
-                '50%',
-                '50%'
-            ],
-            content: 'Music',
-            style: {
-                textAlign: 'center',
-                fontSize: 24
-            }
-        }]
-};
+    annotations: [
+      {
+        type: 'text',
+        position: ['50%', '50%'],
+        content: 'Music',
+        style: {
+          textAlign: 'center',
+          fontSize: 24,
+        },
+      },
+    ],
+  };
   return <RadialBar {...config} />;
 };
 
 export default DemoRadialBar;
 ```
-

@@ -1,9 +1,9 @@
 ---
-title: 直方图
+title: Histogram
 order: 17
 ---
 
-# 直方图
+# Histogram
 
 ## Histogram
 

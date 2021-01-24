@@ -1,8 +1,8 @@
 ---
-title: 升级指南
+title: Upgrade guide
 order: 4
 nav:
-  title: 使用文档
+  title: Docs
   order: 1
 ---
 

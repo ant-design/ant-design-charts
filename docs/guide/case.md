@@ -1,27 +1,27 @@
 ---
-title: 典型案例
+title: Typical cases
 order: 3
 nav:
-  title: 使用文档
+  title: Docs
   order: 1
 ---
 
-### 图表下载
+### Download chart
 
-#### 方法
+#### Function
 
 toDataURL([type, encoderOptions])
 
-#### 参数
+#### Params
 
 - type(string): A DOMString indicating the image format. The default format type is image/png.
 - encoderOptions(number): A Number between 0 and 1 indicating the image quality.
 
-#### 方法
+#### Function
 
 downloadImage(name, [type,encoderOptions])
 
-#### 参数
+#### Params
 
 - name(name): A name of image, eg: `a.png`
 - type(string): A DOMString indicating the image format. The default format type is image/png.
@@ -72,12 +72,12 @@ const DemoLine: React.FC = () => {
   };
   const ref = useRef();
 
-  // 导出图片
+  // export image
   const downloadImage = () => {
     ref.current?.downloadImage();
   };
 
-  // 获取图表 base64 数据
+  // get base64 data
   const toDataURL = () => {
     console.log(ref.current?.toDataURL());
   };
@@ -85,10 +85,10 @@ const DemoLine: React.FC = () => {
   return (
     <div>
       <button type="button" onClick={downloadImage} style={{ marginRight: 24 }}>
-        导出图片
+        Export image
       </button>
       <button type="button" onClick={toDataURL}>
-        获取图表信息
+        Get base64
       </button>
       <Line {...config} chartRef={ref} />
     </div>
@@ -98,7 +98,7 @@ const DemoLine: React.FC = () => {
 export default DemoLine;
 ```
 
-### 自定义 Tooltip
+### Custom Tooltip
 
 ```tsx
 import React, { useState, useEffect, useRef } from 'react';
@@ -195,9 +195,9 @@ const DemoLine: React.FC = () => {
 export default DemoLine;
 ```
 
-### 事件绑定
+### Bind events
 
-请打开控制台点击图表区域。
+Please open the console and click on the chart area.
 
 ```tsx
 import React, { useState, useEffect, useRef } from 'react';
@@ -263,7 +263,7 @@ const DemoLine: React.FC = () => {
 
   useEffect(() => {
     if (ref.current) {
-      // 点击 point
+      // click point
       ref.current.on('element:click', (...args) => {
         console.log(...args);
       });
@@ -276,9 +276,24 @@ const DemoLine: React.FC = () => {
 export default DemoLine;
 ```
 
-### 获取 chart 实例
+### Get Chart instance
 
-方案 1: chartRef 回调
+Plan 1: onReady callback
+
+```typescript
+import React from 'react';
+import { Line } from '@ant-design/charts';
+
+const Page: React.FC = () => {
+  const data = [];
+  const config = {};
+  return <Line {...config} onReady={(chart) => console.log(chart)} />;
+};
+
+export default Page;
+```
+
+Plan 2: chartRef callback
 
 ```typescript
 import React from 'react';
@@ -293,28 +308,7 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-方案 2: 挂载到 chartRef 上
-
-```typescript
-import React from 'react';
-import { Line } from '@ant-design/charts';
-
-const Page: React.FC = () => {
-  const data = [];
-  const config = {};
-  // chart实例
-  const ref = React.useRef();
-  React.useEffect(() => {
-    console.log(ref.current);
-  }, []);
-
-  return <Line {...config} chartRef={ref} />;
-};
-
-export default Page;
-```
-
-方案 3: 挂载到 ref 上
+plan 3: Mount it on ref
 
 ```typescript
 import React from 'react';
@@ -334,13 +328,12 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-### 自定义 shape
+### Custom shape
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Scatter, G2 } from '@ant-design/charts';
-
-// 注册主体有 point | interval | polygon | line 等，详细参考 G2: https://g2.antv.vision/
+// Subjects of registered point | interval | polygon | line , etc., detailed reference G2: https://g2.antv.vision/
 G2.registerShape('point', 'custom-shape', {
   draw(cfg, group) {
     const cx = cfg.x;

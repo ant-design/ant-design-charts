@@ -1,9 +1,9 @@
 ---
-title: 迷你柱状图
+title: Tiny Column
 order: 29
 ---
 
-# 迷你柱状图
+# Tiny Column
 
 ## TinyColumn
 

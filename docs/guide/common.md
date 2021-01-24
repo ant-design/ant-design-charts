@@ -1,20 +1,227 @@
 ---
-title: 通用配置
+title: Common configuration
 order: 3
 nav:
-  title: 使用文档
+  title: Docs
   order: 1
 ---
 
-### 通用配置
+## Common Props
 
-| 配置项 | 描述 | 类型 | 默认值 |
+| Configuration items | describe | type | default |
 | --- | --- | --- | --- |
-| onReady | 图表加载回调 | (chart)=> void | - |
-| onEvent | 图表事件绑定 | (chart, event)=> void | - |
-| loading | 是否显示加载状态，异步获取数据时使用 | boolean | false |
-| loadingTemplate | 自定义 loading 组件 | React.ReactElement | - |
-| errorTemplate | 图表加载出错时呈现的模板 | (e: Error) => React.ReactNode | - |
-| className | 图表容器 class | string | - |
-| style | 图表容器 style | React.CSSProperties | - |
-| chartRef | 图表实例引用 | (React.MutableRefObject&lt;Chart&gt;)=> void | - |
+| onReady | Chart load callback | (chart)=> void | - |
+| onEvent | Bind events | (chart, event)=> void | - |
+| loading | Load state, used when asynchronously fetching data | boolean | false |
+| loadingTemplate | Custom Loading component | React.ReactElement | - |
+| errorTemplate | Template rendered when the chart load error occurs | (e: Error) => React.ReactNode | - |
+| className | The chart container class | string | - |
+| style | The chart container style | React.CSSProperties | - |
+| chartRef | Chart instance | (React.MutableRefObject&lt;Chart&gt;)=> void | - |
+
+## Meta Configuration
+
+Pass in a configuration with field name key, _MetaOption_ as value, and set meta information for multiple fields at the same time.
+
+```sign
+{
+  meta: {
+    [field: string]: MetaOption
+  }
+}
+```
+
+Example:
+
+```ts
+{
+  meta: {
+    sale: {
+      min: 0,
+      max: 100,
+    },
+  }
+}
+```
+
+_MetaOption_ The configuration is as follows:
+
+### MetaOption.type
+
+<description> _string_ **optional**</description>
+
+Declare the measurement type:
+
+| Measure type | Description |
+| --- | --- |
+| Classification measurement | - cat: Classification measurement <br /> - timeCat: Time classification measurement |
+| Continuous measurement | - linear: Linear measurement <br /> - time：Continuous time measurement <br /> - log: Log measurement <br /> - pow: Pow measurement<br /> - quantize：Segmentation measurement, where users can specify non-uniform segments <br /> - quantile: Equal measurement, according to the distribution of data automatically calculate segmentation <br /> |
+| Constant measurement | - identity: Constant measurement |
+
+### MetaOption.alias
+
+<description> _string_ **optional**</description>
+
+Data field display alias, scale is not internal awareness, external injection.
+
+### MetaOption.values
+
+<description> _any[]_ **optional**</description>
+
+Input field, definition field.
+
+### MetaOption.formatter
+
+<description> _(v: any, k?: number) => any_ **optional**</description>
+
+The tick formatting function affects the display of data on Axis, Legend, and Tooltip.
+
+### MetaOption.range
+
+<description> _[number, number]_ **optional** _default:_ `[0, 1]`</description>
+
+Output field and value field represent the range available for drawing within the drawing range.
+
+### MetaOption.sync
+
+<description> _boolean | string_ **optional**</description>
+
+```ts
+{
+  meta: {
+    {
+      x: { sync: true },
+      y: { sync: true },
+      x1: { sync: 'x1' },
+      x2: { sync: 'x1' },
+    }
+  }
+}
+```
+
+Synchronous scale. sync: `boolean` is sync: \[key\], The above case `x: { sync: true }` is equivalent to `x: { sync: 'x' }`，`y: { sync: true }` is equivalent to `y: { sync: 'y' }`，Therefore, with the above configuration, the measurement operation will be synchronized for fields X and Y and fields X1 and X2 respectively.
+
+### MetaOption.min
+
+<description> _any_ **optional**</description>
+
+Domain minimum value, d3 is the domain, ggplot2 is the limits, not valid under type.
+
+### MetaOption.max
+
+<description> _any_ **optional**</description>
+
+The maximum value of the domain. Invalid under type.
+
+### MetaOption.minLimit
+
+<description> _any_ **optional**</description>
+
+The smallest value of the domain in strict mode. Set to force ticks to start at the smallest.
+
+### MetaOption.maxLimit
+
+<description> _any_ **optional**</description>
+
+The maximum value of the domain in strict mode, which forces the ticks to end at the maximum.
+
+### MetaOption.base
+
+<description> _number_ **optional**</description>
+
+Log is valid. Base.
+
+### MetaOption.exponent
+
+<description> _number_ **optional**</description>
+
+Pow valid, exponent.
+
+### MetaOption.nice
+
+<description> _boolean_ **optional**</description>
+
+Automatically adjust min and Max.
+
+### MetaOption.ticks
+
+<description> _any[]_ **optional**</description>
+
+Use to specify tick, with the highest priority.
+
+### MetaOption.tickInterval
+
+<description> _number_ **optional**</description>
+
+Tick interval, only for type and time type, takes precedence over tickCount.
+
+### MetaOption.minTickInterval
+
+<description> _number_ **optional**</description>
+
+The tick interval is minimal and applies only to linear.
+
+### MetaOption.tickCount
+
+<description> _number_ **optional** _default:_ `5`</description>
+
+The number of tick.
+
+### MetaOption.maxTickCount
+
+<description> _number_ **optional** _default:_ `10`</description>
+
+Ticks maximum.
+
+### MetaOption.tickMethod
+
+<description> _string | TickMethod_ **optional**</description>
+
+Algorithms for calculating ticks.
+
+### MetaOption.showLast
+
+<description> _boolean_ **optional**</description>
+
+Only applies to scale of type: 'time', forcing the last date tick to be displayed.
+
+### MetaOption.mask
+
+<description> _string_ **optional**</description>
+
+Time measures Time and is valid when TIMECAT. The underlying use [fecha] (https://github.com/taylorhakes/fecha#formatting-tokens) for the date format, so for the mask strings can directly refer to their wording.
+
+## Interaction
+
+Interaction is an important API in G2, and it is a way to load G2's built-in interactions or custom Interaction interactions based on the Interaction syntax form. G2 4.0 has made a big change in terms of interaction. All interaction code is intrusive and is organized through interaction syntax. The way to use the interaction is also very simple, you just need to set the name of the interaction.
+
+In G2Plot, G2's interaction syntax is passed through, as well as some built-in interactions with specific plot bindings.
+
+Usage:
+
+```ts
+// Enable the Active interaction when the mouse moves over a chart element (bar in a bar, dot in a dot, etc.)
+interactions: [{ type: 'element-active' }];
+
+// Enable multiple interactions
+interactions: [{ type: 'element-active' }, { type: 'brush' }];
+```
+
+#### Remove the interaction
+
+```ts
+plot.chart.removeInteraction('interaction-type');
+```
+
+Usage:
+
+```ts
+// Removes legend filtering interaction
+plot.chart.removeInteraction('legend-filter');
+```
+
+#### More
+
+More instructions about interaction, see [G2 document] (/guide/common#interaction)
+
+The list of built-in supported interactions and interactions with specific plot bindings will be added later.

@@ -1,9 +1,9 @@
 ---
-title: 混合图
+title: Dual Axes
 order: 9
 ---
 
-# 混合图
+# Dual Axes
 
 ## DualAxes
 

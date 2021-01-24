@@ -1,9 +1,9 @@
 ---
-title: 漏斗图
+title: Funnel
 order: 13
 ---
 
-# 漏斗图
+# Funnel
 
 ## Funnel
 

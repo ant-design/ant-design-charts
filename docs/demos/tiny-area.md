@@ -1,9 +1,9 @@
 ---
-title: 迷你面积图
+title: Tiny Area
 order: 28
 ---
 
-# 迷你面积图
+# Tiny Area
 
 ## TinyArea
 

@@ -1,37 +1,35 @@
 ---
-title: 介绍
+title: Introduction
 order: 1
 nav:
-  title: 使用文档
+  title: Docs
   order: 1
 ---
 
-### 简介
+### Ant Design Charts
 
-[Ant Design Charts](https://github.com/ant-design/ant-design-charts) 是 [G2Plot](https://antv-g2plot.gitee.io/zh/examples/gallery) 的 React 版本，基于 React、TypeScript 封装了所有的 G2Plot 图表，继承了 G2Plot 的所有配置，对 React 技术栈的同学更加友好，<b>同一团队开发</b>。
+[Ant Design Charts](https://github.com/ant-design/ant-design-charts) is the React version of [G2Plot](https://antv-g2plot.gitee.io/zh/examples/gallery), based on React, TypeScript encapsulates all G2Plot graphs, inherits all configuration of G2Plot, and is more friendly to students of the React technology stack<b>Same team development</b>.
 
-- 开箱即用：默认呈现高质量图表，将对开发体验及用户体验的研究沉淀入图表的默认配置项
+- Out of the box: Presents high quality charts by default, and precipitates research into the development experience and user experience into the default configuration of the charts
 
-- 易于配置：用户能够根据具体业务需要较为轻松的调整图表细节
+- Easy configuration: users can easily adjust chart details according to specific business needs
 
-- 体验良好：视觉和交互体验聚焦于如何能够**展示和发现信息**"这一图表本源的职能上
+- Experience well: Visual and interactive experiences focus on how to display and discover information at the root of the chart function
 
-<br /> 像使用组件一样生成图表，开箱即用，你甚至不需要修改任何配置项就可以满足需求，真正的默认好用，有没有心动想试试的感觉。
+<br /> Just like using components to generate charts, out of the box, you don't even need to modify any configuration items can meet the requirements, the true default is easy to use, there is no feeling tempted to try.
 
 <br />![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/208487/1586836312040-340d7971-1ac7-4ee6-af81-e2cae2b05963.png#align=left&display=inline&height=951&name=image.png&originHeight=1901&originWidth=2000&size=968667&status=done&style=none&width=1000)
 
-### 为什么？
+### Why?
 
-也许你会问，为什么我不直接使用 G2Plot ？<br />当然，你可以选择 G2Plot ，因为我们就是基于 G2Plot 进行开发的，但如果你的技术栈是基于 React 的话，我们会有如下优点。
+You might ask, why don't I just use G2Plot? <br /> Of course, you could choose G2Plot, because that's what we're building on, but if your tech stack is based on React, we have the following advantages.
 
-- G2Plot 的所有图表，都有，新增的图表，几乎可以做到同步更新。
+- All the charts in G2Plot are available, and the new charts can be updated almost synchronously.
 
-- 你无需感知 G2Plot 里面的一堆函数，例如 `destroy()`、`changeData()`、`updateConfig()` 等，你只需要关心 data 和 config 即可，所有操作都在 Ant Design Charts 封装，降低了学习成本。
+- You don't need to be aware of a bunch of functions in G2Plot, such as 'destroy()', 'changeData()', 'updateConfig()', etc. Instead, you only need to care about data and config. All the operations are encapsulated in Ant Design Charts, reducing the learning cost.
 
-- Tooltip 支持 ReactNode 。
+- Tooltip support ReactNode.
 
-- 提供额外 API , `downloadImage()`、`toDataURL()` 。
+- Provide additional APIs, such as: `downloadImage()`、`toDataURL()` .
 
-- 自定义 memoData 功能，按需控制图表 rerender ，# 按需使用。
-
-- 如果实在有不满足你需求的，我们可以给你返回 chart 实例，你可以直接操作。
+- If there are any that do not meet your requirements, we can return chart instance to you, you can operate directly.

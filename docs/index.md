@@ -1,32 +1,32 @@
 ---
-title: Ant Design Charts - 简单好用的 React 图表库
+title: Ant Design Charts - Easy to use chart library
 order: 10
 hero:
   title: Ant Design Charts
-  desc: 简单好用的 React 图表库
+  desc: Simple and easy to use React chart library
   actions:
-    - text: 快速上手
+    - text: Getting Started
       link: /guide/start
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/881dc458-f20b-407b-947a-95104b5ec82b/k79dm8ih_w144_h144.png
-    title: 开箱即用
-    desc: React组件的方式使用图表，一个简单的配置就能呈现优雅、标准的图表
+    title: Easy to use
+    desc: The React component uses diagrams in a simple configuration that renders elegant, standard diagrams
   - icon: https://gw.alipayobjects.com/zos/antfincdn/oyqsrPh0Kg/houyuan.png
-    title: 后援强大
-    desc: AntV团队支持，基于 G2Plot 实现，简单方便、专业可靠、无限可能
+    title: Antv support
+    desc: AnTV team support, based on G2Plot implementation, simple, professional and reliable
   - icon: https://gw.alipayobjects.com/zos/antfincdn/aKCFl7vDAB/tubiao.png
-    title: 图表完善
-    desc: 支持全量的 G2Plot 图表，几乎做到同步升级更新
+    title: Rich Features
+    desc: Support for a full range of G2Plot charts with nearly simultaneous updates
 footer: Open-source MIT Licensed | Copyright © 2019-present
 ---
 
-## 安装
+## Installation
 
 ```bash
 $ npm install @ant-design/charts
 ```
 
-## 使用
+## Usage
 
 ```tsx | pure
 import React from 'react';
@@ -65,7 +65,7 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-最终结果：
+Result：
 
 ```tsx
 import React from 'react';
@@ -103,6 +103,6 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-## 反馈
+## ISSUES
 
-请访问 [GitHub](https://github.com/ant-design/ant-design-charts)
+Please visit the [GitHub](https://github.com/ant-design/ant-design-charts)

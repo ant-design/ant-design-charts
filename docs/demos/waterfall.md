@@ -1,13 +1,13 @@
 ---
-title: 瀑布图
+title: Waterfall
 order: 32
 ---
 
-# 瀑布图
+# Waterfall
 
 ## Waterfall
 
-### 瀑布图 - 数值标签展示绝对值
+### Waterfall - 数值标签展示绝对值
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -101,7 +101,7 @@ const DemoWaterfall: React.FC = () => {
 export default DemoWaterfall;
 ```
 
-### 瀑布图 - 添加标注
+### Waterfall - 添加标注
 
 ```tsx
 import React, { useState, useEffect } from 'react';

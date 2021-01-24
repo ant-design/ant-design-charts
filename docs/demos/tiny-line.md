@@ -1,9 +1,9 @@
 ---
-title: 迷你折线图
+title: Tiny Line
 order: 30
 ---
 
-# 迷你折线图
+# Tiny Line
 
 ## TinyLine
 

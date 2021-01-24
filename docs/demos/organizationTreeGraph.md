@@ -1,5 +1,5 @@
 ---
-title: 组织架构树图
+title: Organization Tree Graph
 order: 1
 ---
 
