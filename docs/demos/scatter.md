@@ -1,13 +1,13 @@
 ---
-title: 散点图
+title: Scatter
 order: 25
 ---
 
-# 散点图
+# Scatter
 
 ## Scatter
 
-### 散点图-右侧坐标轴
+### Scatter-右侧坐标轴
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -161,7 +161,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-自定义图形
+### Scatter-自定义图形
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -316,7 +316,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-回归线
+### Scatter-回归线
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -467,7 +467,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-自定义 tooltip
+### Scatter-自定义 tooltip
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -813,7 +813,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-气泡四象限
+### Scatter-气泡四象限
 
 ```tsx
 import React, { useState, useEffect } from 'react';

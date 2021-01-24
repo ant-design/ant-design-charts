@@ -1,13 +1,13 @@
 ---
-title: 饼图
+title: Pie
 order: 5
 ---
 
-# 饼图
+# Pie
 
 ## Pie
 
-### 饼图
+### Pie
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -66,7 +66,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### 饼图-图例交互
+### Pie-图例交互
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -117,7 +117,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### 饼图-外部图形标签
+### Pie-外部图形标签
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -165,7 +165,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### 饼图-设置条件状态
+### Pie-设置条件状态
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -237,7 +237,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### 饼图-带纹理
+### Pie-带纹理
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -284,7 +284,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### 饼图-蜘蛛布局标签
+### Pie-蜘蛛布局标签
 
 ```tsx
 import React, { useState, useEffect } from 'react';

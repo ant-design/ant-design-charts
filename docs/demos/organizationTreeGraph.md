@@ -1,5 +1,5 @@
 ---
-title: 组织架构树图
+title: Organization Tree Graph
 order: 1
 ---
 
@@ -506,7 +506,7 @@ export default DemoOrganizationGraph;
 OrganizationTreeGraph 支持以下配置项：
 
 | 名称 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | data | TreeGraphData | null | 关系图的数据，必填字段 |
 | className | string | null | 容器的 class 名称 |
 | style | React.CSSProperties | null | 容器样式 |

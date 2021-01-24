@@ -1,8 +1,8 @@
 /**
  * 一键同步 G2Plot v2 API 文档
  * eg: 
- * -全量同步：`node scripts/api.js`
- * -单一同步：`node scripts/api.js Bar`
+ * -全量同步：`node scripts/api.js en`
+ * -单一同步：`node scripts/api.js zh Bar`
  */
 const fs = require('fs');
 const path = require('path');
@@ -11,13 +11,14 @@ const { mdprima } = require('./mdprima.js');
 const api_path = '../docs/.g2plot-plot-api';
 const excludeFiles = ['gallery']; // 不处理的路径
 const arg = process.argv.splice(2);
-const fp = arg.length ? path.resolve('../', `G2Plot/examples/${arg[0]}`)
+const fp = arg.length > 1 ? path.resolve('../', `G2Plot/examples/${arg[1]}`)
   : path.resolve('../', `G2Plot/examples`);
 const apiGenerator = (filePath, chartName) => {
   // 文件路径，上层自动扫描
   const res = remark().use(mdprima).processSync(fs.readFileSync(filePath));
+  const language = arg[0] === 'zh' ? '.zh-CN' : '';
   // replace 去掉 title
-  fs.writeFileSync(path.resolve(__dirname, api_path, `${chartName}.md`), res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, ''));
+  fs.writeFileSync(path.resolve(__dirname, api_path, `${chartName}${language}.md`), res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, ''));
 };
 
 /**
@@ -33,7 +34,8 @@ const scanFiles = (foldPath, dir) => {
       if (stats.isDirectory()) {
         scanFiles(director, dir ? `${dir}.${fileName}` : fileName);
       }
-      if (stats.isFile() && fileName === 'API.zh.md') {
+      const language = arg[0] === 'en' ? 'API.en.md' : 'API.zh.md';
+      if (stats.isFile() && fileName === language) {
         const chartName = dir.split('.')[0];
         if (!excludeFiles.includes(chartName)) {
           const apiPath = path.resolve(
@@ -52,4 +54,4 @@ const scanFiles = (foldPath, dir) => {
   }
 };
 
-scanFiles(fp, arg[0]);
+scanFiles(fp, arg[1]);

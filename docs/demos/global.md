@@ -1,9 +1,9 @@
 ---
 order: 1
-title: 所有图表
+title: All Charts
 nav:
   order: 2
-  title: 图表概览
+  title: Examples
 toc: content
 ---
 

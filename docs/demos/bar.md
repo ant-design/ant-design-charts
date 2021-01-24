@@ -1,9 +1,9 @@
 ---
-title: 条形图
+title: Bar
 order: 2
 ---
 
-# 条形图
+# Bar
 
 ## Bar
 

@@ -1,13 +1,13 @@
 ---
-title: 仪表盘
+title: Gauge
 order: 15
 ---
 
-# 仪表盘
+# Gauge
 
 ## Gauge
 
-### 仪表盘
+### Gauge
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -139,7 +139,7 @@ const DemoGauge: React.FC = () => {
 export default DemoGauge;
 ```
 
-### 仪表盘(多色)
+### Gauge(多色)
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -171,7 +171,7 @@ const DemoGauge: React.FC = () => {
 export default DemoGauge;
 ```
 
-### 仪表盘(单色渐变)
+### Gauge(单色渐变)
 
 ```tsx
 import React, { useState, useEffect } from 'react';

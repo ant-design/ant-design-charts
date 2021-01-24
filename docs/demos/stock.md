@@ -1,9 +1,9 @@
 ---
-title: 股票图
+title: Stock
 order: 21
 ---
 
-# 股票图
+# Stock
 
 ## Stock
 

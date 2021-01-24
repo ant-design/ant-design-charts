@@ -1,13 +1,13 @@
 ---
-title: 水波图
+title: Liquid
 order: 18
 ---
 
-# 水波图
+# Liquid
 
 ## Liquid
 
-### 水波图
+### Liquid
 
 ```tsx
 import React, { useState, useEffect } from 'react';

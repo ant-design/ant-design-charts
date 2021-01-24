@@ -1,9 +1,9 @@
 ---
-title: 雷达图
+title: Radar
 order: 20
 ---
 
-# 雷达图
+# Radar
 
 ## Radar
 
