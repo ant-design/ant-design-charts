@@ -224,13 +224,13 @@ true 表示合并当前点对应的所有数据并展示，false 表示只展示
 
 配置 tooltip 的 crosshairs，当且仅当 `showCrosshairs` 为 true 时生效。
 
-| 细分配置项名称 | 类型                  | 功能描述                                             |
-| -------------- | --------------------- | ---------------------------------------------------- | ------ | ------------------------------------------------------------------- |
-| type           | \*`x`                 | `y`                                                  | `xy`\* | crosshairs 的类型: `x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项 |
-| line           | _lineStyle_           | 线的配置项                                           |
-| text           | _textStyle_           | 辅助线文本配置，支持回调                             |
-| textBackground | _textBackgroundStyle_ | 辅助线文本背景配置                                   |
-| follow         | _boolean_             | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点 |
+| 细分配置项名称 | 类型 | 功能描述 |
+| --- | --- | --- |
+| type | \*`x` \| `y` \| `xy`\* | crosshairs 的类型: `x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项 |
+| line | _lineStyle_ | 线的配置项 |
+| text | _textStyle_ | 辅助线文本配置，支持回调 |
+| textBackground | _textBackgroundStyle_ | 辅助线文本背景配置 |
+| follow | _boolean_ | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点 |
 
 **_lineStyle_**
 
@@ -277,12 +277,12 @@ true 表示合并当前点对应的所有数据并展示，false 表示只展示
 <!--文本样式-->
 
 | 属性名 | 类型 | 介绍 |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- |
 | fontSize | _number_ | 文字大小 |
 | fontFamily | _string_ | 文字字体 |
 | fontWeight | _number_ | 字体粗细 |
 | lineHeight | _number_ | 文字的行高 |
-| textAlign | _string_ | 设置文本内容的当前对齐方式, 支持的属性：`center` | `end` | `left` | `right` | `start`，默认值为`start` |
+| textAlign | _string_ | 设置文本内容的当前对齐方式, 支持的属性：`center` \| `end` \| `left` \| `right` \| `start`，默认值为`start` |
 | fill | _string_ | 文字的填充色 |
 | fillOpacity | _number_ | 文字的填充透明度 |
 | stroke | _string_ | 文字的描边 |
@@ -315,10 +315,10 @@ true 表示合并当前点对应的所有数据并展示，false 表示只展示
 
 **_textBackgroundStyle_**
 
-| 细分配置项名称 | 类型         | 功能描述    |
-| -------------- | ------------ | ----------- | ------------------ |
-| padding        | \*number     | number\[]\* | 文本背景周围的留白 |
-| style          | _shapeStyle_ | 线的配置项  |
+| 细分配置项名称 | 类型                    | 功能描述           |
+| -------------- | ----------------------- | ------------------ |
+| padding        | \*number \| number\[]\* | 文本背景周围的留白 |
+| style          | _shapeStyle_            | 线的配置项         |
 
 **_shapeStyle_**
 
@@ -572,10 +572,10 @@ y 方向的偏移量。
 
 文字包围盒样式设置。
 
-| 参数名  | 类型     | 默认值      | 描述                                                 |
-| ------- | -------- | ----------- | ---------------------------------------------------- | ------------------ |
-| style   | _object_ | -           | 文本背景的样式, 参考[绘图属性](/guide/graphic-style) |
-| padding | \*number | number\[]\* | -                                                    | 文本背景周围的留白 |
+| 参数名 | 类型 | 默认值 | 描述 |
+| --- | --- | --- | --- |
+| style | _object_ | - | 文本背景的样式, 参考[绘图属性](/guide/graphic-style) |
+| padding | \*number \| number\[]\* | - | 文本背景周围的留白 |
 
 ##### color
 

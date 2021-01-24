@@ -234,8 +234,8 @@ Whether show crosshairs。
 Configure tooltip crosshairs to work if and only if 'showCrosshairs' is true.
 
 | Properties | Type | Description |
-| --- | --- | --- | --- | --- |
-| type | \_`x` | `y` | `xy`\_ | Crosshairs Type: 'X' represents the auxiliary line on the X axis, 'Y' on the Y axis |
+| --- | --- | --- |
+| type | \_`x` \| `y` \| `xy`\_ | Crosshairs Type: 'X' represents the auxiliary line on the X axis, 'Y' on the Y axis |
 | line | _lineStyle_ | The configuration item for line |
 | text | _textStyle_ | Guideline text configuration, support callback |
 | textBackground | _textBackgroundStyle_ | Guideline text background configuration |
@@ -286,12 +286,12 @@ Example：
 <!--文本样式-->
 
 | Properties | Type | Description |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- |
 | fontSize | _number_ | Font size |
 | fontFamily | _string_ | Font family |
 | fontWeight | _number_ | Font weight |
 | lineHeight | _number_ | Line height |
-| textAlign | _string_ | Text align, supported `center` | `end` | `left` | `right` | `start`, default `start` |
+| textAlign | _string_ | Text align, supported `center` \| `end` \| `left` \| `right` \| `start`, default `start` |
 | fill | _string_ | Fill color for text |
 | fillOpacity | _number_ | Fill transparency for text |
 | stroke | _string_ | Stroke text |
@@ -324,10 +324,10 @@ Example code, using label.style configuration:
 
 **_textBackgroundStyle_**
 
-| Properties | Type         | Description                     |
-| ---------- | ------------ | ------------------------------- | ------------------------------------------- |
-| padding    | \*number     | number\[]\*                     | White space around the background of a text |
-| style      | _shapeStyle_ | The configuration item for line |
+| Properties | Type                    | Description                                 |
+| ---------- | ----------------------- | ------------------------------------------- |
+| padding    | \*number \| number\[]\* | White space around the background of a text |
+| style      | _shapeStyle_            | The configuration item for line             |
 
 **_shapeStyle_**
 
@@ -704,20 +704,20 @@ A configuration item for the text label. NULL indicates that it is not displayed
 <!--label样式-->
 
 | Properties | Type | Description |
-| --- | --- | --- | --- | --- | --- | --- |
-| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
+| --- | --- | --- |
+| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner \| outer \| spiders`) |
 | offset | _number_ | label offset |
 | offsetX | _number_ | The offset distance of the label from the data point in the X direction |
 | offsetY | _number_ | The offset distance of the label from the data point in the Y direction |
-| content | \*string | IGroup | IShape | GeometryLabelContentCallback\* | Text content that is displayed, if not declared, is displayed according to the value of the first field participating in the mapping |
+| content | \*string \| IGroup \| IShape \| GeometryLabelContentCallback\* | Text content that is displayed, if not declared, is displayed according to the value of the first field participating in the mapping |
 | style | object | Label text graphic property style |
 | autoRotate | _string_ | Whether to rotate automatically, default true |
 | rotate | _number_ | Text rotation Angle |
-| labelLine | \*null | \_boolean\* | object\_ | Used to set the style property of the text connector. NULL indicates that it is not displayed. |
+| labelLine | \*null \| \_boolean\* \| object\_ | Used to set the style property of the text connector. NULL indicates that it is not displayed. |
 | labelEmit | _boolean_ | Only applies to text in polar coordinates, indicating whether the text is radially displayed according to the Angle. True means on and false means off |
-| layout | \*'overlap' | 'fixedOverlap' | 'limitInShape'\* | Text layout type, support a variety of layout function combination. |
-| position | \*'top' | 'bottom' | 'middle' | 'left' | 'right'\* | Specifies the position of the current Label relative to the current graphic |
-| animate | \*boolean | AnimateOption\* | Animation configuration. |
+| layout | \*'overlap' \| 'fixedOverlap' \| 'limitInShape'\* | Text layout type, support a variety of layout function combination. |
+| position | \*'top' \| 'bottom' \| 'middle' \| 'left' \| 'right'\* | Specifies the position of the current Label relative to the current graphic |
+| animate | \*boolean \| AnimateOption\* | Animation configuration. |
 | formatter | _Function_ | Format function |
 | autoHide | _boolean_ | Whether to hide it automatically, default to false |
 |  |
@@ -744,9 +744,9 @@ Example code:
 Axis grid line configuration item. NULL means not shown.
 
 | Properties | Type | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | line | _lineStyle_ | The style of the line |
-| alternateColor | \*string | string\[]\* | The fill color between two grid lines |
+| alternateColor | \*string \| string\[]\* | The fill color between two grid lines |
 | closed | _boolean_ | Whether to close the grid for circle |
 | alignTick | _boolean_ | If the value is false, it will be displayed between the two scales |
 
@@ -966,9 +966,9 @@ The display position of the text in a two-dimensional coordinate system, whether
 Text wrap box style Settings.
 
 | Properties | Type | Default | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | style | _object_ | - | Text background style, reference[Graphic Style](/guide/graphic-style) |
-| padding | \*number | number\[]\* | - | White space around the background of a text |
+| padding | \*number \| number\[]\* | - | White space around the background of a text |
 
 ##### color
 

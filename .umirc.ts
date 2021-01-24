@@ -11,6 +11,7 @@ export default defineConfig({
     '.__dumi-default-previewer-demo > div > div { min-height: 100px; }',
     '.__dumi-default-layout-content {overflow: hidden; overflow-x: auto;}',
     '.markdown > h4 { color: #1890ff !important}',
+    '.custom-api-docs img {max-height: 100px}',
   ],
   navs: [
     null,

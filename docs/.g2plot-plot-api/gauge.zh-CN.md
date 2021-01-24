@@ -88,10 +88,10 @@
 
 仪表盘辅助圆弧的样式。
 
-| 配置项 | 类型        | 描述                 |
-| ------ | ----------- | -------------------- | ------------------------------------------------------------------------------- |
-| ticks  | _number\[]_ | 辅助圆弧显示数字数组 |
-| color  | \*string    | string\[]\*          | 辅助圆弧的颜色色板，按照色板顺序取值; 当设置 ticks 时，color 无法使用回调的方式 |
+| 配置项 | 类型 | 描述 |
+| --- | --- | --- |
+| ticks | _number\[]_ | 辅助圆弧显示数字数组 |
+| color | \*string \| string\[]\* | 辅助圆弧的颜色色板，按照色板顺序取值; 当设置 ticks 时，color 无法使用回调的方式 |
 
 <playground rid="gauge" path="progress-plots/gauge/demo/basic.ts"></playground>
 
@@ -367,20 +367,20 @@
 <!--label样式-->
 
 | 属性名 | 类型 | 介绍 |
-| --- | --- | --- | --- | --- | --- | --- |
-| type | _string_ | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner | outer | spider`） |
+| --- | --- | --- |
+| type | _string_ | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner \| outer \| spider`） |
 | offset | _number_ | label 的偏移量 |
 | offsetX | _number_ | label 相对于数据点在 X 方向的偏移距离 |
 | offsetY | _number_ | label 相对于数据点在 Y 方向的偏移距离 |
-| content | \*string | IGroup | IShape | GeometryLabelContentCallback\* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
+| content | \*string \| IGroup \| IShape \| GeometryLabelContentCallback\* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
 | style | object | label 文本图形属性样式 |
 | autoRotate | _string_ | 是否自动旋转，默认 true |
 | rotate | _number_ | 文本旋转角度 |
-| labelLine | \*null | _boolean_ | object\* | 用于设置文本连接线的样式属性，null 表示不展示。 |
+| labelLine | \*null \| _boolean_ \| object\* | 用于设置文本连接线的样式属性，null 表示不展示。 |
 | labelEmit | _boolean_ | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭 |
-| layout | \*'overlap' | 'fixedOverlap' | 'limitInShape'\* | 文本布局类型，支持多种布局函数组合使用。 |
-| position | \*'top' | 'bottom' | 'middle' | 'left' | 'right'\* | 指定当前 label 与当前图形的相对位置 |
-| animate | \*boolean | AnimateOption\* | 动画配置。 |
+| layout | \*'overlap' \| 'fixedOverlap' \| 'limitInShape'\* | 文本布局类型，支持多种布局函数组合使用。 |
+| position | \*'top' \| 'bottom' \| 'middle' \| 'left' \| 'right'\* | 指定当前 label 与当前图形的相对位置 |
+| animate | \*boolean \| AnimateOption\* | 动画配置。 |
 | formatter | _Function_ | 格式化函数 |
 | autoHide | _boolean_ | 是否自动隐藏，默认 false |
 
@@ -407,12 +407,12 @@
 
 坐标轴网格线的配置项，null 表示不展示。
 
-| 细分配置项名称 | 类型        | 功能描述                                                 |
-| -------------- | ----------- | -------------------------------------------------------- | -------------------- |
-| line           | _lineStyle_ | 线的样式                                                 |
-| alternateColor | \*string    | string\[]\*                                              | 两个栅格线间的填充色 |
-| closed         | _boolean_   | 对于 circle 是否关闭 grid                                |
-| alignTick      | _boolean_   | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
+| 细分配置项名称 | 类型 | 功能描述 |
+| --- | --- | --- |
+| line | _lineStyle_ | 线的样式 |
+| alternateColor | \*string \| string\[]\* | 两个栅格线间的填充色 |
+| closed | _boolean_ | 对于 circle 是否关闭 grid |
+| alignTick | _boolean_ | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
 
 **_lineStyle_**
 
