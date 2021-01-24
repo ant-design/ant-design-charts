@@ -1,17 +1,9 @@
 ---
-<<<<<<< HEAD
 title: Multi View
 order: 33
 ---
 
 # Multi View
-=======
-title: 多图层图表
-order: 33
----
-
-# 多图层图表
->>>>>>> master
 
 ## MultiView
 
