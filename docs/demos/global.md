@@ -922,62 +922,62 @@ toc: content
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
   
-  <a href="/demos/tiny#迷你进度条图样式" style="display: block;margin: 8px">
+   <a href="/demos/progress#迷你进度条图样式" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xjbxRJTD2wUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">迷你进度条图样式</p>
   </a>
 
-  <a href="/demos/tiny#迷你进度条图回调样式" style="display: block;margin: 8px">
+  <a href="/demos/progress#迷你进度条图回调样式" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wKUaS7xLrYgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">迷你进度条图回调样式</p>
   </a>
 
-  <a href="/demos/tiny#迷你进度条图大小" style="display: block;margin: 8px">
+  <a href="/demos/progress#迷你进度条图大小" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*qseORomBj9sAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">迷你进度条图大小</p>
   </a>
 
-  <a href="/demos/tiny#迷你进度环图" style="display: block;margin: 8px">
+  <a href="/demos/ring-progress#迷你进度环图" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dP0sQrvPsDsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">迷你进度环图</p>
   </a>
 
-  <a href="/demos/tiny#迷你进度环图样式" style="display: block;margin: 8px">
+  <a href="/demos/ring-progress#迷你进度环图样式" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*pvZvSb-gJwEAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">迷你进度环图样式</p>
   </a>
 
-  <a href="/demos/tiny#基础迷你面积图" style="display: block;margin: 8px">
+  <a href="/demos/tiny-area#基础迷你面积图" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*8Qf7Q45ubMMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">基础迷你面积图</p>
   </a>
 
-  <a href="/demos/tiny#带辅助信息的迷你面积图" style="display: block;margin: 8px">
+  <a href="/demos/tiny-area#带辅助信息的迷你面积图" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RVNgQ641-xoAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">带辅助信息的迷你面积图</p>
   </a>
 
-  <a href="/demos/tiny#平铺填充迷你面积图" style="display: block;margin: 8px">
+  <a href="/demos/tiny-area#平铺填充迷你面积图" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RVNgQ641-xoAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">平铺填充迷你面积图</p>
   </a>
 
-  <a href="/demos/tiny#基础迷你柱形图" style="display: block;margin: 8px">
+  <a href="/demos/tiny-column#基础迷你柱形图" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*lJWoS5D2OC0AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">基础迷你柱形图</p>
   </a>
 
-  <a href="/demos/tiny#带辅助线的迷你柱形图" style="display: block;margin: 8px">
+  <a href="/demos/tiny-column#带辅助线的迷你柱形图" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xIFLRY4wT4EAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">带辅助线的迷你柱形图</p>
   </a>
 
-  <a href="/demos/tiny#基础迷你折线图" style="display: block;margin: 8px">
+  <a href="/demos/tiny-line#基础迷你折线图" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*v0_RR7osTYsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">基础迷你折线图</p>
   </a>
 
-  <a href="/demos/tiny#带辅助线的迷你折线图" style="display: block;margin: 8px">
+  <a href="/demos/tiny-line#带辅助线的迷你折线图" style="display: block;margin: 8px">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*XmW4RbbtsdoAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
     <p style="text-align: center; color: #293c55">带辅助线的迷你折线图</p>
   </a>

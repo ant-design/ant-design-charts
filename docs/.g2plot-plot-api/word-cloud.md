@@ -124,7 +124,7 @@ Configure the meta of each data field of the chart in global, to define the type
 | values     | _string\[]_ | enumerate all the values of the data field               |
 | range      | _number\[]_ | mapping range of the data field, default: \[0,1]         |
 
-See also the [Meta Options](/en/docs/api/options/meta) to learn more about configuration of `meta`.
+See also the [Meta Options](/guide/common#meta-configuration) to learn more about configuration of `meta`.
 
 ### Geometry Style
 
@@ -412,7 +412,7 @@ Example：
 }
 ```
 
-More documents about `ShapeStyle`, see [Graphic Style](/en/docs/api/graphic-style).
+More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
 
 ##### showMarkers
 
@@ -774,7 +774,7 @@ Example：
 }
 ```
 
-More documents about `ShapeStyle`, see [Graphic Style](/en/docs/api/graphic-style).
+More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
 
 **_label_**
 
@@ -983,7 +983,7 @@ Apply to <tag color="green" text="Classification legend">Classification legend</
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
 | size | _number_ | - | Slider size |
-| style | _object_ | - | Slider configuration, reference [Graphic Style](/zh/docs/api/graphic-style) |
+| style | _object_ | - | Slider configuration, reference [Graphic Style](/zh-CN/guide/graphic-style) |
 
 ##### itemHeight
 
@@ -1005,7 +1005,7 @@ Apply to <tag color="green" text="Classification legend">Classification legend</
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
-| style | _object_ | - | Text style configuration, referecnce [Graphic Style](/zh/docs/api/graphic-style) |
+| style | _object_ | - | Text style configuration, referecnce [Graphic Style](/zh-CN/guide/graphic-style) |
 | spacing | _number_ | `false` | The spacing between legend item marker and the following name |
 | formatter | _function_ | - | Format function, `(text: string, item: ListItem, index: number) => any;` |
 
@@ -1023,7 +1023,7 @@ Apply to <tag color="green" text="Classification legend">Classification legend</
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
-| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh/docs/api/graphic-style) |
+| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh-CN/guide/graphic-style) |
 | alignRight | _boolean_ | `false` | Right-align, false by default, only when setting legend item width. |
 | formatter | _function_ | - | Format function, `(text: string, item: ListItem, index: number) => any;` |
 
@@ -1084,7 +1084,7 @@ Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, a c
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
 | align | _string_ | - | The alignment of text with the slider <br/> - rail : Align with the slide rail, at both ends of the slide rail <br/> - top, bottom: Legends are valid when laid out horizontally <br/> - left, right: Legends are valid when laid out vertically |
-| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh/docs/api/graphic-style) |
+| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh-CN/guide/graphic-style) |
 | spacing | _number_ | - | The distance between the text and the slide |
 
 ##### marker
@@ -1146,7 +1146,7 @@ Legends offset in the y direction.
 | type | _string_ | - | rail type: color and size |
 | size | _number_ | - | The width of the slide rail |
 | defaultLength | _number_ | - | The default length of the slider. When maxWidth,maxHeight is limited, this property is not used and the length is automatically calculated |
-| style | _object_ | - | Slide rail style, refer to [Graphic Style](/zh/docs/api/graphic-style) |
+| style | _object_ | - | Slide rail style, refer to [Graphic Style](/zh-CN/guide/graphic-style) |
 
 ##### reversed
 
@@ -1165,7 +1165,7 @@ Legend title configuration is not displayed by default. _G2LegendTitleCfg_ Confi
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
 | spacing | _number_ | - | The spacing between the title and the legend item |
-| style | _object_ | - | Text style configuration item, refer to [Graphic Style](/zh/docs/api/graphic-style) |
+| style | _object_ | - | Text style configuration item, refer to [Graphic Style](/zh-CN/guide/graphic-style) |
 
 ##### track
 
@@ -1173,7 +1173,7 @@ Legend title configuration is not displayed by default. _G2LegendTitleCfg_ Confi
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
-| style | _object_ | - | Selected range of styles, reference [Graphic Style](/zh/docs/api/graphic-style) |
+| style | _object_ | - | Selected range of styles, reference [Graphic Style](/zh-CN/guide/graphic-style) |
 
 ##### values
 
@@ -1337,7 +1337,7 @@ Text wrap box style Settings.
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| style | _object_ | - | Text background style, reference[Graphic Style](/en/docs/api/graphic-style) |
+| style | _object_ | - | Text background style, reference[Graphic Style](/guide/graphic-style) |
 | padding | \*number | number\[]\* | - | White space around the background of a text |
 
 ##### color
@@ -1659,6 +1659,6 @@ plot.chart.removeInteraction('legend-filter');
 
 #### More
 
-More instructions about interaction, see \[G2 document] (https://g2.antv.vision/en/docs/api/general/interaction)
+More instructions about interaction, see \[G2 document] (/guide/common#interaction)
 
 The list of built-in supported interactions and interactions with specific plot bindings will be added later.

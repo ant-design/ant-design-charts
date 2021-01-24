@@ -138,61 +138,61 @@ Default: The color board of the theme.
 
 ### Event
 
-在 Chart 和 View 上通过 on 绑定事件、off 移除绑定事件。
+On Plot, binding events are removed by ON and OFF.
 
 ```ts
-// 绑定事件
-chart.on('eventName', callback);
-// 移除事件
-chart.off('eventName', callback);
+// Bind event
+plot.on('eventName', callback);
+// Remove event
+plot.off('eventName', callback);
 ```
 
 #### eventName
 
-组成方式：element + ':' + events。
+Composition: element + ':' + events。
 
-element 指要绑定的元素类型，例如 `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` 等。
+Element refers to the type of element to bind to, for example `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` etc.
 
-events 对应 DOM 常见事件，例如 `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` 等，同时支持几个移动端事件：`touchstart`、`touchmove`、`touchend`
+Events correspond to DOM common events, for example `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` etc. And support mobile events: `touchstart`、`touchmove`、`touchend`
 
 ```ts
-// plot添加点击事件,整个图表区域
-chart.on('plot:click', (...args) => {
+// Plot adds click events to the entire chart area
+plot.on('plot:click', (...args) => {
   console.log(...args);
 });
 
-// element 添加点击事件， element 代指 label|point 等
-chart.on('element:click', (...args) => {
+// Element to add a click event, element represents the graphic elements, graphical elements, please see: https://g2.antv.vision/en/docs/manual/concepts/element
+plot.on('element:click', (...args) => {
   console.log(...args);
 });
 
-// 图例添加点击事件
-chart.on('legend-item:click', (...args) => {
+// Legend adds click events
+plot.on('legend-item:click', (...args) => {
   console.log(...args);
 });
 
-// 图例名称添加点击事件
-chart.on('legend-item-name:click', (...args) => {
+// Legend name adds click event
+plot.on('legend-item-name:click', (...args) => {
   console.log(...args);
 });
 
-// label 添加点击事件
-chart.on('label:click', (...args) => {
+// Label adds click events
+plot.on('label:click', (...args) => {
   console.log(...args);
 });
 
-// mask 添加点击事件
-chart.on('mask:click', (...args) => {
+// Mask adds click events
+plot.on('mask:click', (...args) => {
   console.log(...args);
 });
 
-// axis-label 添加点击事件
-chart.on('axis-label:click', (...args) => {
+// Axis-label adds click events
+plot.on('axis-label:click', (...args) => {
   console.log(...args);
 });
 
-// 给 annotation 添加点击事件
-chart.on('annotation:click', (...args) => {
+// Add click events to the annotation
+plot.on('annotation:click', (...args) => {
   console.log(...args);
 });
 ```
@@ -225,7 +225,7 @@ plot.update({
 
 更新图表数据。`update()`方法会导致图形区域销毁并重建，如果只进行数据更新，而不涉及其他配置项更新，推荐使用本方法。。
 
-默认配置：`无`
+Default configuration:`无`
 
 使用示例：
 
@@ -235,67 +235,78 @@ plot.changeData(newData);
 
 ### Plot Theme
 
-#### 内置主题
+#### Theme
 
-目前默认的内置主要要两套：`default` 和 `dark`
+Built-in defaults: 'default' and 'dark'
 
-```plain
+```ts
 {
   theme: 'default', // 'dark',
 }
 ```
 
-#### 主题属性
+#### Theme attributes
 
-除了使用内置的 `default` 和 `dark` 主题之外，还可以通过设置主题属性来修改部分主题内容：
+In addition to using the built-in 'default' and 'dark' themes, you can also modify some of the theme content by setting the theme properties.
 
-下表列出了组成主题的大配置项上的具体属性：
+The following table lists the specific properties on the configuration items that make up the topic:
 
-| 主题属性 | 类型 | 描述 |
+| Properties | Type | Description |
 | --- | --- | --- |
-| defaultColor | string | 主题色 |
-| padding | number | number\[] |
-| fontFamily | string | 图表字体 |
-| colors10 | string\[] | 分类颜色色板，分类个数小于 10 时使用 |
-| colors20 | string\[] | 分类颜色色板，分类个数大于 10 时使用 |
-| columnWidthRatio | number | 一般柱状图宽度占比，0 - 1 范围数值 |
-| maxColumnWidth | number | 柱状图最大宽度，像素值 |
-| minColumnWidth | number | 柱状图最小宽度，像素值 |
-| roseWidthRatio | number | 玫瑰图占比，0 - 1 范围数值 |
-| multiplePieWidthRatio | number | 多层饼图/环图占比，0 - 1 范围数值 |
-| geometries | object | 配置每个 Geometry 下每个 shape 的样式，包括默认样式以及各个状态下的样式 |
-| components | object | 配置坐标轴，图例，tooltip, annotation 的主题样式 |
-| labels | object | 配置 Geometry 下 label 的主题样式 |
-| innerLabels | object | 配置 Geometry 下展示在图形内部的 labels 的主题样式 |
-| pieLabels | object | 配置饼图 labels 的主题样式 |
+| defaultColor | _string_ | Theme color |
+| padding | _number_ | number\[] |
+| fontFamily | _string_ | Chart font |
+| colors10 | _string\[]_ | Category color palette, used when the number of categories is less than 10 |
+| colors20 | _string\[]_ | Category color palette, used when the number of categories is greater than 10 |
+| columnWidthRatio | _number_ | General histogram width ratio, 0-1 range of values |
+| maxColumnWidth | _number_ | Maximum width of histogram, pixel value |
+| minColumnWidth | _number_ | Minimum width of histogram, pixel value |
+| roseWidthRatio | _number_ | Rose width ratio, 0-1 range of value |
+| multiplePieWidthRatio | number | Multilayer pie and loop ratio, 0-1 range values |
+| geometries | _object_ | Configure the style of each shape for each Geometry, including the default style and the style for each state |
+| components | _object_ | Configure theme samples for axes, legends, tooltips, and annotations |
+| labels | _object_ | Configure the theme style of the label under Geometry |
+| innerLabels | _object_ | Configure Geometry to display the Labels theme style inside the graph |
+| pieLabels | _object_ | Configure the theme style of pie chart labels |
 
-使用方式：
+usage:
 
-```plain
+```ts
 {
   theme: {
-    colors10: ['#FF6B3B', '#626681', '#FFC100', '#9FB40F', '#76523B', '#DAD5B5', '#0E8E89', '#E19348', '#F383A2', '#247FEA']
+    colors10: [
+      '#FF6B3B',
+      '#626681',
+      '#FFC100',
+      '#9FB40F',
+      '#76523B',
+      '#DAD5B5',
+      '#0E8E89',
+      '#E19348',
+      '#F383A2',
+      '#247FEA',
+    ];
   }
 }
 ```
 
-#### 更新主题
+#### Update theme
 
-使用方式：
+usage：
 
-```plain
-// 示例1:
+```ts
+// example 1:
 plot.update({ theme: 'dark' });
 
-// 示例2:
-plot.update({ theme: { defaultColor: '#FF6B3B' } })
+// example 2:
+plot.update({ theme: { defaultColor: '#FF6B3B' } });
 ```
 
-#### 自定义注册主题
+#### Custom theme
 
-另外，还可以通过 G2 提供了自定义主题机制来定义全新的主题结构，以允许用户切换、定义图表主题。
+In addition, G2 provides a custom topic mechanism to define a new topic structure, allowing users to switch and define chart topics.
 
-```plain
+```ts
 import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/charts';
 
@@ -303,52 +314,50 @@ const DemoPie: React.FC = () => {
   G2.registerTheme('new-theme', {
     defaultColor: '#FF6B3B',
     colors10: [
-        '#FF6B3B',
-        '#626681',
-        '#FFC100',
-        '#9FB40F',
-        '#76523B',
-        '#DAD5B5',
-        '#0E8E89',
-        '#E19348',
-        '#F383A2',
-        '#247FEA'
+      '#FF6B3B',
+      '#626681',
+      '#FFC100',
+      '#9FB40F',
+      '#76523B',
+      '#DAD5B5',
+      '#0E8E89',
+      '#E19348',
+      '#F383A2',
+      '#247FEA',
     ],
     colors20: [
-        '#FF6B3B',
-        '#626681',
-        '#FFC100',
-        '#9FB40F',
-        '#76523B',
-        '#DAD5B5',
-        '#0E8E89',
-        '#E19348',
-        '#F383A2',
-        '#247FEA',
-        '#2BCB95',
-        '#B1ABF4',
-        '#1D42C2',
-        '#1D9ED1',
-        '#D64BC0',
-        '#255634',
-        '#8C8C47',
-        '#8CDAE5',
-        '#8E283B',
-        '#791DC9'
-    ]
-});
-const config = {
+      '#FF6B3B',
+      '#626681',
+      '#FFC100',
+      '#9FB40F',
+      '#76523B',
+      '#DAD5B5',
+      '#0E8E89',
+      '#E19348',
+      '#F383A2',
+      '#247FEA',
+      '#2BCB95',
+      '#B1ABF4',
+      '#1D42C2',
+      '#1D9ED1',
+      '#D64BC0',
+      '#255634',
+      '#8C8C47',
+      '#8CDAE5',
+      '#8E283B',
+      '#791DC9',
+    ],
+  });
+  const config = {
     appendPadding: 10,
     data,
     angleField: 'value',
     colorField: 'type',
     radius: 0.8,
-    theme: 'new-theme'
-};
+    theme: 'new-theme',
+  };
   return <Pie {...config} />;
 };
 
 export default DemoPie;
-
-
 ```

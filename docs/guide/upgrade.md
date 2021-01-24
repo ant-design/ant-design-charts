@@ -1,5 +1,5 @@
 ---
-title: 升级指南
+title: Upgrade guide
 order: 4
 nav:
   title: Docs

@@ -1,9 +1,9 @@
 ---
-title: 多图层图表
+title: Multi View
 order: 33
 ---
 
-# 多图层图表
+# Multi View
 
 ## MultiView
 

@@ -42,6 +42,12 @@
 
 设置图表渲染的像素比，和底层的 devicePixelRatio 含义一致，一般不用设置，除非在页面有整体 scale 的情况下，可以自定义。
 
+#### limitInPlot
+
+<description>**optional** _boolean_</description>
+
+是否对超出坐标系范围的 Geometry 进行剪切。
+
 ### 数据映射
 
 #### percent
@@ -82,16 +88,40 @@
 
 仪表盘辅助圆弧的样式。
 
-| 配置项 | 类型      | 描述                                 |
-| ------ | --------- | ------------------------------------ |
-| ticks  | number\[] | 辅助圆弧显示数字数组                 |
-| color  | string\[] | 辅助圆弧的颜色色板，按照色板顺序取值 |
+| 配置项 | 类型        | 描述                 |
+| ------ | ----------- | -------------------- | ------------------------------------------------------------------------------- |
+| ticks  | _number\[]_ | 辅助圆弧显示数字数组 |
+| color  | \*string    | string\[]\*          | 辅助圆弧的颜色色板，按照色板顺序取值; 当设置 ticks 时，color 无法使用回调的方式 |
+
+<playground rid="gauge" path="progress-plots/gauge/demo/basic.ts"></playground>
 
 #### axis
 
 <description>**optional** _object_</description>
 
 指标辅助轴样式。
+
+##### position
+
+<description>**optional** _`top` | `bottom` | `left` | `right`_</description>
+
+适用于直角坐标系，设置坐标轴的位置。
+
+#### label
+
+<description> _AxisLabelCfg | null_ **optional** </description>
+
+文本标签的配置项，null 表示不展示。_AxisLabelCfg_ 配置如下：
+
+| 参数名 | 类型 | 是否必选 | 默认值 | 描述 |
+| --- | --- | --- | --- | --- |
+| style | [ShapeAttrs](/zh/docs/api/shape/shape-attrs) |  | - | 坐标轴刻度线的样式配置项 |
+| offset | number |  | - | label 的偏移量 |
+| rotate | number |  | - | 文本旋转角度 |
+| autoRotate | boolean |  | `true` | 是否自动旋转 |
+| autoHide | boolean |  | `false` | 是否自动隐藏 |
+| autoEllipsis | boolean |  | `false` | 是否自动省略 |
+| formatter | `(text: string, item: ListItem, index: number) => any` |  | `false` | 格式化函数 |
 
 ##### nice
 
@@ -141,12 +171,6 @@
 
 指定 tick 计算方法，或自定义计算 tick 的方法，内置 tick 计算方法包括 `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`。
 
-##### position
-
-<description>**optional** _`top` | `bottom` | `left` | `right`_</description>
-
-适用于直角坐标系，设置坐标轴的位置。
-
 ##### line
 
 <description>**optional** _object_</description>
@@ -157,15 +181,15 @@
 
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
-| stroke | string | 线的颜色 |
-| lineWidth | number | 线宽 |
+| stroke | _string_ | 线的颜色 |
+| lineWidth | _number_ | 线宽 |
 | lineDash | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity | number | 透明度 |
-| shadowColor | string | 阴影颜色 |
-| shadowBlur | number | 高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| opacity | _number_ | 透明度 |
+| shadowColor | _string_ | 阴影颜色 |
+| shadowBlur | _number_ | 高斯模糊系数 |
+| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
+| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
+| cursor | _string_ | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
 
 示例代码：
 
@@ -201,15 +225,15 @@
 
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
-| stroke | string | 线的颜色 |
-| lineWidth | number | 线宽 |
+| stroke | _string_ | 线的颜色 |
+| lineWidth | _number_ | 线宽 |
 | lineDash | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity | number | 透明度 |
-| shadowColor | string | 阴影颜色 |
-| shadowBlur | number | 高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| opacity | _number_ | 透明度 |
+| shadowColor | _string_ | 阴影颜色 |
+| shadowBlur | _number_ | 高斯模糊系数 |
+| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
+| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
+| cursor | _string_ | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
 
 示例代码：
 
@@ -245,15 +269,15 @@
 
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
-| stroke | string | 线的颜色 |
-| lineWidth | number | 线宽 |
+| stroke | _string_ | 线的颜色 |
+| lineWidth | _number_ | 线宽 |
 | lineDash | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity | number | 透明度 |
-| shadowColor | string | 阴影颜色 |
-| shadowBlur | number | 高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| opacity | _number_ | 透明度 |
+| shadowColor | _string_ | 阴影颜色 |
+| shadowBlur | _number_ | 高斯模糊系数 |
+| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
+| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
+| cursor | _string_ | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
 
 示例代码：
 
@@ -298,19 +322,19 @@
 
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
-| fill | string | 图形的填充色 |
-| fillOpacity | number | 图形的填充透明度 |
-| stroke | string | 图形的描边 |
-| lineWidth | number | 图形描边的宽度 |
+| fill | _string_ | 图形的填充色 |
+| fillOpacity | _number_ | 图形的填充透明度 |
+| stroke | _string_ | 图形的描边 |
+| lineWidth | _number_ | 图形描边的宽度 |
 | lineDash | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| lineOpacity | number | 描边透明度 |
-| opacity | number | 图形的整体透明度 |
-| shadowColor | string | 图形阴影颜色 |
-| strokeOpacity | number | 图形边框透明度 |
-| shadowBlur | number | 图形阴影的高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
+| lineOpacity | _number_ | 描边透明度 |
+| opacity | _number_ | 图形的整体透明度 |
+| shadowColor | _string_ | 图形阴影颜色 |
+| strokeOpacity | _number_ | 图形边框透明度 |
+| shadowBlur | _number_ | 图形阴影的高斯模糊系数 |
+| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
+| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
+| cursor | _string_ | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
 
 示例代码：
 
@@ -332,7 +356,7 @@
 }
 ```
 
-关于 ShapeStyle 更加详细的文档参考 [绘图属性](/guide/graphic-style)。
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
 
 **_label_**
 
@@ -344,22 +368,23 @@
 
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- | --- | --- | --- | --- |
-| type | string | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner | outer | spider`） |
-| offset | number | label 的偏移量 |
-| offsetX | number | label 相对于数据点在 X 方向的偏移距离 |
-| offsetY | number | label 相对于数据点在 Y 方向的偏移距离 |
-| content | string | IGroup | IShape | GeometryLabelContentCallback | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
+| type | _string_ | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner | outer | spider`） |
+| offset | _number_ | label 的偏移量 |
+| offsetX | _number_ | label 相对于数据点在 X 方向的偏移距离 |
+| offsetY | _number_ | label 相对于数据点在 Y 方向的偏移距离 |
+| content | \*string | IGroup | IShape | GeometryLabelContentCallback\* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
 | style | object | label 文本图形属性样式 |
-| autoRotate | string | 是否自动旋转，默认 true |
-| rotate | number | 文本旋转角度 |
-| labelLine | null | boolean | object | 用于设置文本连接线的样式属性，null 表示不展示。 |
-| labelEmit | boolean | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭 |
-| layout | 'overlap' | 'fixedOverlap' | 'limitInShape' | 文本布局类型，支持多种布局函数组合使用。 |
-| position | 'top' | 'bottom' | 'middle' | 'left' | 'right' | 指定当前 label 与当前图形的相对位置 |
-| animate | boolean | AnimateOption | 动画配置。 |
-| formatter | Function | 格式化函数 |
-| autoHide | boolean | 是否自动隐藏，默认 false |
-| autoEllipsis | boolean | 是否自动省略，默认 false |
+| autoRotate | _string_ | 是否自动旋转，默认 true |
+| rotate | _number_ | 文本旋转角度 |
+| labelLine | \*null | _boolean_ | object\* | 用于设置文本连接线的样式属性，null 表示不展示。 |
+| labelEmit | _boolean_ | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭 |
+| layout | \*'overlap' | 'fixedOverlap' | 'limitInShape'\* | 文本布局类型，支持多种布局函数组合使用。 |
+| position | \*'top' | 'bottom' | 'middle' | 'left' | 'right'\* | 指定当前 label 与当前图形的相对位置 |
+| animate | \*boolean | AnimateOption\* | 动画配置。 |
+| formatter | _Function_ | 格式化函数 |
+| autoHide | _boolean_ | 是否自动隐藏，默认 false |
+
+|
 
 示例代码：
 
@@ -395,15 +420,15 @@
 
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
-| stroke | string | 线的颜色 |
-| lineWidth | number | 线宽 |
+| stroke | _string_ | 线的颜色 |
+| lineWidth | _number_ | 线宽 |
 | lineDash | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity | number | 透明度 |
-| shadowColor | string | 阴影颜色 |
-| shadowBlur | number | 高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| opacity | _number_ | 透明度 |
+| shadowColor | _string_ | 阴影颜色 |
+| shadowBlur | _number_ | 高斯模糊系数 |
+| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
+| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
+| cursor | _string_ | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
 
 示例代码：
 
@@ -492,19 +517,19 @@ interface ComponentAnimateCfg {
 
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
-| fill | string | 图形的填充色 |
-| fillOpacity | number | 图形的填充透明度 |
-| stroke | string | 图形的描边 |
-| lineWidth | number | 图形描边的宽度 |
+| fill | _string_ | 图形的填充色 |
+| fillOpacity | _number_ | 图形的填充透明度 |
+| stroke | _string_ | 图形的描边 |
+| lineWidth | _number_ | 图形描边的宽度 |
 | lineDash | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| lineOpacity | number | 描边透明度 |
-| opacity | number | 图形的整体透明度 |
-| shadowColor | string | 图形阴影颜色 |
-| strokeOpacity | number | 图形边框透明度 |
-| shadowBlur | number | 图形阴影的高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
+| lineOpacity | _number_ | 描边透明度 |
+| opacity | _number_ | 图形的整体透明度 |
+| shadowColor | _string_ | 图形阴影颜色 |
+| strokeOpacity | _number_ | 图形边框透明度 |
+| shadowBlur | _number_ | 图形阴影的高斯模糊系数 |
+| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
+| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
+| cursor | _string_ | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
 
 示例代码：
 
@@ -526,7 +551,7 @@ interface ComponentAnimateCfg {
 }
 ```
 
-关于 ShapeStyle 更加详细的文档参考 [绘图属性](/guide/graphic-style)。
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
 
 #### statistic
 

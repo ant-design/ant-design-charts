@@ -69,7 +69,7 @@ Configure the meta of each data field of the chart in global, to define the type
 | values     | _string\[]_ | enumerate all the values of the data field               |
 | range      | _number\[]_ | mapping range of the data field, default: \[0,1]         |
 
-See also the [Meta Options](/en/docs/api/options/meta) to learn more about configuration of `meta`.
+See also the [Meta Options](/guide/common#meta-configuration) to learn more about configuration of `meta`.
 
 ### Plot Style
 
@@ -129,7 +129,7 @@ Example：
 }
 ```
 
-More documents about `ShapeStyle`, see [Graphic Style](/en/docs/api/graphic-style).
+More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
 
 #### point
 
@@ -388,7 +388,7 @@ Example：
 }
 ```
 
-More documents about `ShapeStyle`, see [Graphic Style](/en/docs/api/graphic-style).
+More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
 
 ##### showMarkers
 
@@ -712,7 +712,7 @@ Example：
 }
 ```
 
-More documents about `ShapeStyle`, see [Graphic Style](/en/docs/api/graphic-style).
+More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
 
 **_label_**
 
@@ -986,7 +986,7 @@ Text wrap box style Settings.
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| style | _object_ | - | Text background style, reference[Graphic Style](/en/docs/api/graphic-style) |
+| style | _object_ | - | Text background style, reference[Graphic Style](/guide/graphic-style) |
 | padding | \*number | number\[]\* | - | White space around the background of a text |
 
 ##### color

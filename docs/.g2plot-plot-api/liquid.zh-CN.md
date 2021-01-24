@@ -42,6 +42,12 @@
 
 设置图表渲染的像素比，和底层的 devicePixelRatio 含义一致，一般不用设置，除非在页面有整体 scale 的情况下，可以自定义。
 
+#### limitInPlot
+
+<description>**optional** _boolean_</description>
+
+是否对超出坐标系范围的 Geometry 进行剪切。
+
 ### 数据映射
 
 #### percent
@@ -62,25 +68,25 @@
 
 <description>**optional** _StyleAttr | Function_</description>
 
-水波图的样式。
+水波图的配色样式。
 
 <!--图形样式-->
 
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
-| fill | string | 图形的填充色 |
-| fillOpacity | number | 图形的填充透明度 |
-| stroke | string | 图形的描边 |
-| lineWidth | number | 图形描边的宽度 |
+| fill | _string_ | 图形的填充色 |
+| fillOpacity | _number_ | 图形的填充透明度 |
+| stroke | _string_ | 图形的描边 |
+| lineWidth | _number_ | 图形描边的宽度 |
 | lineDash | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| lineOpacity | number | 描边透明度 |
-| opacity | number | 图形的整体透明度 |
-| shadowColor | string | 图形阴影颜色 |
-| strokeOpacity | number | 图形边框透明度 |
-| shadowBlur | number | 图形阴影的高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
+| lineOpacity | _number_ | 描边透明度 |
+| opacity | _number_ | 图形的整体透明度 |
+| shadowColor | _string_ | 图形阴影颜色 |
+| strokeOpacity | _number_ | 图形边框透明度 |
+| shadowBlur | _number_ | 图形阴影的高斯模糊系数 |
+| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
+| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
+| cursor | _string_ | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
 
 示例代码：
 
@@ -102,7 +108,7 @@
 }
 ```
 
-关于 ShapeStyle 更加详细的文档参考 [绘图属性](/guide/graphic-style)。
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
 
 #### color
 
@@ -134,6 +140,28 @@
 }
 ```
 
+#### outline
+
+<description>**optional** _Outline_</description>
+
+水波图的外框容器配置。主要包含以下内容：
+
+| 属性名   | 类型   | 介绍                                    |
+| -------- | ------ | --------------------------------------- |
+| border   | number | 外框容器的 border 宽度，默认为 2 像素   |
+| distance | number | 外框容器和内部波形的间距，默认为 0 像素 |
+
+#### wave
+
+<description>**optional** _Wave_</description>
+
+水波图的波形配置。主要包含以下内容：
+
+| 属性名 | 类型   | 介绍                          |
+| ------ | ------ | ----------------------------- |
+| count  | number | 水波的个数，默认为 3 个       |
+| length | number | 水波的波长度，默认为 192 像素 |
+
 ### 图表组件
 
 #### statistic ✨
@@ -143,8 +171,8 @@
 指标中心文本组件。
 
 | 配置项  | 类型  | 描述          |
-| ------- | ----- | ------------- |
-| title   | false | StatisticText | 标题 |
+| ------- | ----- | ------------- | -------- |
+| title   | false | StatisticText | 标题     |
 | content | false | StatisticText | 主体内容 |
 
 StatisticText

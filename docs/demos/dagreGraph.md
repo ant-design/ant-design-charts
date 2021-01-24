@@ -1,5 +1,5 @@
 ---
-title: DagreGraph
+title: Dagre Graph
 order: 3
 ---
 
@@ -352,7 +352,7 @@ export default DemoDagreGraph;
 ### 配置项
 
 | 配置项 | 类型 | 是否必须 | 默认值 | 说明 |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | className | String | false | undefined | 容器组件的 className |
 | style | Object | false | undefined | 容器组件的 CSS 样式 |
 | data | Object | true | 无 | 图数据，基本格式遵循 [G6 数据格式](https://g6.antv.vision/zh/docs/manual/getting-started#step-2-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87)，各个类型图表可能有额外字段 |

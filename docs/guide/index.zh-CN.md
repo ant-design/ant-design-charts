@@ -32,6 +32,4 @@ nav:
 
 - 提供额外 API , `downloadImage()`、`toDataURL()` 。
 
-- 自定义 memoData 功能，按需控制图表 rerender ，# 按需使用。
-
 - 如果实在有不满足你需求的，我们可以给你返回 chart 实例，你可以直接操作。

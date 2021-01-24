@@ -372,7 +372,7 @@ Example：
 }
 ```
 
-More documents about `ShapeStyle`, see [Graphic Style](/en/docs/api/graphic-style).
+More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
 
 ##### showMarkers
 
@@ -586,7 +586,7 @@ Text wrap box style Settings.
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| style | _object_ | - | Text background style, reference[Graphic Style](/en/docs/api/graphic-style) |
+| style | _object_ | - | Text background style, reference[Graphic Style](/guide/graphic-style) |
 | padding | \*number | number\[]\* | - | White space around the background of a text |
 
 ##### color
@@ -1134,6 +1134,6 @@ plot.chart.removeInteraction('legend-filter');
 
 #### More
 
-More instructions about interaction, see \[G2 document] (https://g2.antv.vision/en/docs/api/general/interaction)
+More instructions about interaction, see \[G2 document] (/guide/common#interaction)
 
 The list of built-in supported interactions and interactions with specific plot bindings will be added later.
