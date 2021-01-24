@@ -16,7 +16,9 @@ export default ({ children, ...props }: IRouteComponentProps) => {
   const [tagElements, setTagElements] = useState([]);
   const [activeTag, setActiveTag] = useState('');
   const pathName = props.location.pathname?.split('/').filter((pathname) => pathname);
-  const name = pathName[pathName.length - 1];
+  const name = `${pathName[pathName.length - 1]}${
+    props.location.pathname.indexOf('zh-CN') !== -1 ? '.zh-CN' : ''
+  }`;
   const isShowApi = location.href.indexOf('type=api') !== -1;
 
   const crateApiTags = () => {

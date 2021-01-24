@@ -1,33 +1,31 @@
 ---
-title: 绘图属性
+title: Graphic Style
 order: 3
 nav:
-  title: 使用文档
+  title: Docs
   order: 1
 ---
 
-Ant Design Charts 使用 [G](https://github.com/antvis/g) 作为绘图引擎，一些图形的样式配置，如折线图的`lineStyle`，柱状图的`columnStyle`等，还有部分组件的样式配置，如`label.style`， `axis.line.style`等，都是直接透传 G 的绘图属性。
+Ant Design Charts uses [G](https://github.com/antvis/g) as the drawing engine. Some graphic styles, such as the lineStyle of Line, the columnStyle of Column, and the style configuration of some components, such as label.style, axis.line.style, are all transmitted transparently through the drawing properties of G.
 
-为了方便用户使用，在这里对 Ant Design Charts 常用的绘图属性进行简单的介绍：
+## Configure graphic styles
 
-## 配置图形样式
-
-| 属性名 | 类型 | 介绍 |
+| Properties | Type | Description |
 | --- | --- | --- |
-| fill | string | 图形的填充色 |
-| fillOpacity | number | 图形的填充透明度 |
-| stroke | string | 图形的描边 |
-| lineWidth | number | 图形描边的宽度 |
-| lineDash | [number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| lineOpacity | number | 描边透明度 |
-| opacity | number | 图形的整体透明度 |
-| shadowColor | string | 图形阴影颜色 |
-| shadowBlur | number | 图形阴影的高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
+| fill | string | The fill color of the shape |
+| fillOpacity | number | The fill transparency of the shape |
+| stroke | string | Stroke of the shape |
+| lineWidth | number | The width of the shape stroke |
+| lineDash | [number,number] | For the dashed line configuration of the stroke, the first value is the length of each segment of the dashed line, and the second value is the distance between segments. LineDash sets [0,0] to no stroke. |
+| lineOpacity | number | Stroke transparency |
+| opacity | number | The overall transparency of the shape |
+| shadowColor | string | Shape shadow color |
+| shadowBlur | number | The Gaussian blur factor of the shadow of the shape |
+| shadowOffsetX | number | Sets the horizontal distance between the shadow and the shape |
+| shadowOffsetY | number | Sets the vertical distance of the shadow from the shape |
+| cursor | string | Mouse style. With CSS mouse styles, default 'default'. |
 
-示例代码，使用全量图形样式配置 Column (基础柱状图) 的柱形图形样式 `ColumnStyle`：
+Use the full graphic style `columnStyle` to configure the Column graphic style. Example:
 
 ```ts
   columnStyle: {
@@ -45,25 +43,25 @@ Ant Design Charts 使用 [G](https://github.com/antvis/g) 作为绘图引擎，�
   }
 ```
 
-效果：
+Result:
 
-<img alt="加载失败" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*PKH0QoRSb0QAAAAAAAAAAAAAARQnAQ" width="400">
+<img alt="Load failed" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*PKH0QoRSb0QAAAAAAAAAAAAAARQnAQ" width="400">
 
-## 配置线的样式
+## Configure line styles
 
-| 属性名 | 类型 | 介绍 |
+| Properties | Type | Description |
 | --- | --- | --- |
-| stroke | string | 线的颜色 |
-| lineWidth | number | 线宽 |
-| lineDash | [number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| opacity | number | 透明度 |
-| shadowColor | string | 阴影颜色 |
-| shadowBlur | number | 高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距图形的水平距离 |
-| shadowOffsetY | number | 设置阴影距图形的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| stroke | string | The color of the line |
+| lineWidth | number | Line width |
+| lineDash | [number,number] | With dotted line configuration, the first value is the length of each segment of the dotted line, and the second value is the distance between segments. LineDash sets [0,0] to no stroke. |
+| opacity | number | Transparency |
+| shadowColor | string | Shadow color |
+| shadowBlur | number | Gaussian blur coefficient |
+| shadowOffsetX | number | Sets the horizontal distance between the shadow and the shape |
+| shadowOffsetY | number | Sets the vertical distance of the shadow from the shape |
+| cursor | string | Mouse style. Mouse styles with CSS, default 'default'。 |
 
-示例代码，使用全量图形样式配置 Line (基础折线图) 的折线图形样式 `LineStyle`：
+Use the full graphic style `lineStyle` to configure the Line graphic style. Example:
 
 ```ts
 lineStyle: {
@@ -79,34 +77,34 @@ lineStyle: {
 }
 ```
 
-效果：
+Result:
 
-<img alt="加载失败" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*X8fHTagDDOIAAAAAAAAAAABkARQnAQ" width="400">
+<img alt="Load failed" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*X8fHTagDDOIAAAAAAAAAAABkARQnAQ" width="400">
 
-## 配置文字样式
+## Configure text styles
 
-| 属性名 | 类型 | 介绍 |
+| Properties | Type | Description |
 | --- | --- | --- |
-| fontSize | number | 文字大小 |
-| fontFamily | string | 文字字体 |
-| fontWeight | number | 字体粗细 |
-| lineHeight | number | 文字的行高 |
-| textAlign | string | 设置文本内容的当前对齐方式, 支持的属性：`center` | `end` | `left` | `right` | `start`，默认值为`start` |
-| textBaseline | string | 设置在绘制文本时使用的当前文本基线, 支持的属性:`top` | `middle` | `bottom` | `alphabetic` | `hanging`。默认值为`bottom` |
-| fill | string | 文字的填充色 |
-| fillOpacity | number | 文字的填充透明度 |
-| stroke | string | 文字的描边 |
-| lineWidth | number | 文字描边的宽度 |
-| lineDash | [number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| lineOpacity | number | 描边透明度 |
-| opacity | number | 文字的整体透明度 |
-| shadowColor | string | 文字阴影颜色 |
-| shadowBlur | number | 文字阴影的高斯模糊系数 |
-| shadowOffsetX | number | 设置阴影距文字的水平距离 |
-| shadowOffsetY | number | 设置阴影距文字的垂直距离 |
-| cursor | string | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
+| fontSize | number | Font size |
+| fontFamily | string | Font family |
+| fontWeight | number | Font weight |
+| lineHeight | number | Line height |
+| textAlign | string | Sets the current alignment of text content. Supported property: 'center' \| `end` \| `left` \| `right` \| `start`, default `start` |
+| textBaseline | string | Sets the current text baseline to be used when drawing text. Supported property: 'top' \| `middle` \| `bottom` \| `alphabetic` \| `hanging`. default `bottom` |
+| fill | string | Fill color for text |
+| fillOpacity | number | Fill transparency of text |
+| stroke | string | Stroke of text |
+| lineWidth | number | The width of the text stroke |
+| lineDash | [number,number] | For the dashed line configuration of the stroke, the first value is the length of each segment of the dashed line, and the second value is the distance between segments. LineDash sets [0,0] to no stroke. |
+| lineOpacity | number | Stroke transparency |
+| opacity | number | Overall transparency of the text |
+| shadowColor | string | Text shadow color |
+| shadowBlur | number | The Gaussian blur coefficient of the text shadow |
+| shadowOffsetX | number | Sets the horizontal distance between the shadow and the text |
+| shadowOffsetY | number | Sets the vertical distance between the shadow and the text |
+| cursor | string | Mouse style. Mouse styles with CSS, default 'default'。 |
 
-示例代码，以 Liquid （水波图) 的 statistic.style 配置为例：
+Take the `statistic.style` of Liquid for example:
 
 ```ts
 statistic: {
@@ -121,26 +119,26 @@ statistic: {
 }
 ```
 
-效果：
+Result:
 
-<img alt="加载失败" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gjR3Q6aIFSMAAAAAAAAAAABkARQnAQ" width ="300">
+<img alt="Load failed" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gjR3Q6aIFSMAAAAAAAAAAABkARQnAQ" width ="300">
 
-## 配置渐变色
+## Gradient
 
-提供线性渐变，环形渐变两种形式。
+G2Plot provides support for linear gradients and circular gradients by default.
 
-### 线性渐变
+### Linear gradient
 
-<img alt="加载失败" src="https://gw.alipayobjects.com/zos/rmsportal/ieWkhtoHOijxweuNFWdz.png" width="600">
+<img alt="Load failed" src="https://gw.alipayobjects.com/zos/rmsportal/ieWkhtoHOijxweuNFWdz.png" width="600">
 
-> 说明：`l`  表示使用线性渐变，绿色的字体为可变量，由用户自己填写。
+> Note: `l` indicates the use of linear gradient, the green font is variable, filled by the user, separated by a blank.
 
 ```ts
-// 使用渐变色描边，渐变角度为 0，渐变的起始点颜色 #ffffff，中点的渐变色为 #7ec2f3，结束的渐变色为 #1890ff
+// Use gradient color stroke, gradient angle is 0, gradient starting point color #ffffff, midpoint gradient color #7ec2f3, ending gradient color #1890ff
 stroke: 'l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff';
 ```
 
-示例代码(1)，通过 Area（面积图) 的 `areaStyle`，配置带渐变色的面积图。
+Example (1): Use `areaStyle` of Area to configure the Area with gradient color.
 
 ```ts
 areaStyle: {
@@ -148,11 +146,11 @@ areaStyle: {
 }
 ```
 
-效果：
+Result:
 
-<img alt="加载失败" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*f0EOS5Ay8noAAAAAAAAAAAAAARQnAQ" width="400">
+<img alt="Load failed" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*f0EOS5Ay8noAAAAAAAAAAAAAARQnAQ" width="400">
 
-示例代码（2)，通过 Bar (条形图) 的 `barStyle`, 配置带渐变色的条形图。
+Example (2): Use `barStyle` of Bar to configure the Bar with gradient color.
 
 ```ts
 barStyle: {
@@ -160,36 +158,36 @@ barStyle: {
 }
 ```
 
-效果：
+Result:
 
-<img alt="加载失败" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MexsR7O4GPwAAAAAAAAAAAAAARQnAQ" width="400">
+<img alt="Load failed" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MexsR7O4GPwAAAAAAAAAAAAAARQnAQ" width="400">
 
-### 环形渐变
+### Circular gradient
 
-<img alt="加载失败" src="https://gw.alipayobjects.com/zos/rmsportal/qnvmbtSBGxQlcuVOWkdu.png" width="600">
+<img alt="Load failed" src="https://gw.alipayobjects.com/zos/rmsportal/qnvmbtSBGxQlcuVOWkdu.png" width="600">
 
-> 说明：`r`  表示使用放射状渐变，绿色的字体为可变量，由用户自己填写，开始圆的 x y r 值均为相对值，0 至 1 范围。
+> Note: `r` indicates the use of a radial gradient, the green font is variable, which is filled in by the user. The xyr values ​​of the starting circle are all relative values, ranging from 0 to 1.
 
 ```ts
 // example
-// 使用渐变色填充，渐变起始圆的圆心坐标为被填充物体的包围盒中心点，半径为(包围盒对角线长度 / 2) 的 0.1 倍，渐变的起始点颜色 #ffffff，中点的渐变色为 #7ec2f3，结束的渐变色为 #1890ff
+// Use gradient color to fill, the center coordinate of the starting circle of the gradient is the center point of the bounding box of the filled object, the radius is 0.1 times (the diagonal length of the bounding box / 2), the color of the starting point of the gradient #ffffff , The gradient color at the midpoint is #7ec2f3, and the gradient color at the end is #1890ff
 fill: 'r(0.5, 0.5, 0.1) 0:#ffffff 1:#1890ff';
 ```
 
-## 纹理
+## Texture
 
-用特定的纹理填充图形。纹理内容可以直接是图片或者  Data URLs。
+Fill the shape with a specific texture. Texture can be images or data URLs.
 
-<img alt="加载失败" src="https://gw.alipayobjects.com/zos/rmsportal/NjtjUimlJtmvXljsETAJ.png" width="600">
+<img alt="Load failed" src="https://gw.alipayobjects.com/zos/rmsportal/NjtjUimlJtmvXljsETAJ.png" width="600">
 
-> 说明：`p`  表示使用纹理，绿色的字体为可变量，由用户自己填写。
+> Note: `p` indicates the use of texture. The green font is variable, filled by the user.
 
-- `a`: 该模式在水平和垂直方向重复；<br />
-- `x`: 该模式只在水平方向重复；<br />
-- `y`: 该模式只在垂直方向重复；<br />
-- `n`: 该模式只显示一次（不重复）。<br />
+- `a`: The pattern repeats horizontally and vertically;<br />
+- `x`: This pattern is repeated only horizontally;<br />
+- `y`: This pattern is repeated only vertically;<br />
+- `n`: This pattern is only displayed once (not repeated).<br />
 
-示例代码，以 Column（柱状图) 的 `columnStyle` 为例：
+Take the `columnStyle` of Column for example:
 
 ```ts
 columnStyle: {
@@ -197,6 +195,6 @@ columnStyle: {
 }
 ```
 
-效果：
+Result:
 
-<img alt="加载失败" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*CKQ7R4F8ClEAAAAAAAAAAAAAARQnAQ" width="400">
+<img alt="Load failed" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*CKQ7R4F8ClEAAAAAAAAAAAAAARQnAQ" width="400">

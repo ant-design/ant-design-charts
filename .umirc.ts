@@ -8,7 +8,7 @@ export default defineConfig({
   exportStatic: {},
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   styles: [
-    '.__dumi-default-previewer-demo > div > div { min-height: 400px; }',
+    '.__dumi-default-previewer-demo > div > div { min-height: 100px; }',
     '.__dumi-default-layout-content {overflow: hidden; overflow-x: auto;}',
     '.markdown > h4 { color: #1890ff !important}',
   ],

@@ -16,20 +16,24 @@ const mdprima = () => {
     // 示例代码转为 React 语法
     if (tree.type === 'code' && tree.value.indexOf('new ') !== -1) {
       const fileInfo = parseFile(tree.value, 'code');
-      ejs.renderFile(
-        path.resolve(__dirname, '../template/doc/api.ejs'),
-        {
-          chartName: fileInfo.chartName,
-          chartContent: fileInfo.code,
-        }, // 渲染的数据key: 对应到了ejs中的index
-        (err, data) => {
-          if (err) {
-            console.log('模版文件读取失败： ', err);
-            return;
-          }
-          tree.value = data;
-        },
-      );
+      if (fileInfo.hasError) {
+        tree.value = fileInfo.code;
+      } else { 
+        ejs.renderFile(
+          path.resolve(__dirname, '../template/doc/api.ejs'),
+          {
+            chartName: fileInfo.chartName,
+            chartContent: fileInfo.code,
+          }, // 渲染的数据key: 对应到了ejs中的index
+          (err, data) => {
+            if (err) {
+              console.log('模版文件读取失败： ', err);
+              return;
+            }
+            tree.value = data;
+          },
+        );
+      }
     }
 
     // 解析套娃路径

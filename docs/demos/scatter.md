@@ -1,13 +1,13 @@
 ---
-title: 散点图
+title: Scatter
 order: 25
 ---
 
-# 散点图
+# Scatter
 
 ## Scatter
 
-### 散点图-右侧坐标轴
+### Scatter-右侧坐标轴
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -161,75 +161,29 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-自定义图形
+### Scatter-自定义图形
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Scatter, G2 } from '@ant-design/charts';
 
 const DemoScatter: React.FC = () => {
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function (sym) {
-          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        });
-      keys.push.apply(keys, symbols);
-    }
-    return keys;
-  }
-  function _objectSpread(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-      }
-    }
-    return target;
-  }
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true,
-      });
-    } else {
-      obj[key] = value;
-    }
-    return obj;
-  }
   G2.registerShape('point', 'custom-shape', {
-    draw: function draw(cfg, group) {
-      var cx = cfg.x;
-      var cy = cfg.y;
-      var radius = cfg.size || 5;
-      var polygon = group.addShape('path', {
-        attrs: _objectSpread(
-          _objectSpread(
-            {
-              path: [
-                ['M', cx - radius, cy - radius],
-                ['L', cx + radius, cy - radius],
-                ['L', cx, cy + radius],
-                ['Z'],
-              ],
-            },
-            cfg.defaultStyle,
-          ),
-          cfg.style,
-        ),
+    draw(cfg, group) {
+      const cx = cfg.x;
+      const cy = cfg.y;
+      const radius = cfg.size || 5;
+      const polygon = group.addShape('path', {
+        attrs: {
+          path: [
+            ['M', cx - radius, cy - radius],
+            ['L', cx + radius, cy - radius],
+            ['L', cx, cy + radius],
+            ['Z'],
+          ],
+          ...cfg.defaultStyle,
+          ...cfg.style,
+        },
       });
       return polygon;
     },
@@ -316,7 +270,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-回归线
+### Scatter-回归线
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -467,7 +421,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-自定义 tooltip
+### Scatter-自定义 tooltip
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -813,7 +767,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-气泡四象限
+### Scatter-气泡四象限
 
 ```tsx
 import React, { useState, useEffect } from 'react';

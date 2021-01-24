@@ -1,9 +1,9 @@
 ---
-title: 进度条图
+title: Progress
 order: 19
 ---
 
-# 进度条图
+# Progress
 
 ## Progress
 

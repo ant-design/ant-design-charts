@@ -1,9 +1,9 @@
 ---
-title: 面积图
+title: Area
 order: 3
 ---
 
-# 面积图
+# Area
 
 ## Area
 

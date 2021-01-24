@@ -1,9 +1,9 @@
 ---
-title: 桑基图
+title: Sankey
 order: 20
 ---
 
-# 桑基图
+# Sankey
 
 ## Sankey
 

@@ -1,9 +1,9 @@
 ---
-title: 对称条形图
+title: Bidirectional Bar
 order: 20
 ---
 
-# 对称条形图
+# Bidirectional Bar
 
 ## BidirectionalBar
 

@@ -1,13 +1,13 @@
 ---
-title: 热力图
+title: Heatmap
 order: 16
 ---
 
-# 热力图
+# Heatmap
 
 ## Heatmap
 
-### 热力图
+### Heatmap
 
 ```tsx
 import React, { useState, useEffect } from 'react';
