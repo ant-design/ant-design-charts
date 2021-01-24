@@ -241,13 +241,13 @@ true 表示合并当前点对应的所有数据并展示，false 表示只展示
 
 配置 tooltip 的 crosshairs，当且仅当 `showCrosshairs` 为 true 时生效。
 
-| 细分配置项名称 | 类型                  | 功能描述                                             |
-| -------------- | --------------------- | ---------------------------------------------------- | ------ | ------------------------------------------------------------------- |
-| type           | \*`x`                 | `y`                                                  | `xy`\* | crosshairs 的类型: `x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项 |
-| line           | _lineStyle_           | 线的配置项                                           |
-| text           | _textStyle_           | 辅助线文本配置，支持回调                             |
-| textBackground | _textBackgroundStyle_ | 辅助线文本背景配置                                   |
-| follow         | _boolean_             | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点 |
+| 细分配置项名称 | 类型 | 功能描述 |
+| --- | --- | --- |
+| type | \*`x` \| `y` \| `xy`\* | crosshairs 的类型: `x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项 |
+| line | _lineStyle_ | 线的配置项 |
+| text | _textStyle_ | 辅助线文本配置，支持回调 |
+| textBackground | _textBackgroundStyle_ | 辅助线文本背景配置 |
+| follow | _boolean_ | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点 |
 
 **_lineStyle_**
 
@@ -294,12 +294,12 @@ true 表示合并当前点对应的所有数据并展示，false 表示只展示
 <!--文本样式-->
 
 | 属性名 | 类型 | 介绍 |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- |
 | fontSize | _number_ | 文字大小 |
 | fontFamily | _string_ | 文字字体 |
 | fontWeight | _number_ | 字体粗细 |
 | lineHeight | _number_ | 文字的行高 |
-| textAlign | _string_ | 设置文本内容的当前对齐方式, 支持的属性：`center` | `end` | `left` | `right` | `start`，默认值为`start` |
+| textAlign | _string_ | 设置文本内容的当前对齐方式, 支持的属性：`center` \| `end` \| `left` \| `right` \| `start`，默认值为`start` |
 | fill | _string_ | 文字的填充色 |
 | fillOpacity | _number_ | 文字的填充透明度 |
 | stroke | _string_ | 文字的描边 |
@@ -332,10 +332,10 @@ true 表示合并当前点对应的所有数据并展示，false 表示只展示
 
 **_textBackgroundStyle_**
 
-| 细分配置项名称 | 类型         | 功能描述    |
-| -------------- | ------------ | ----------- | ------------------ |
-| padding        | \*number     | number\[]\* | 文本背景周围的留白 |
-| style          | _shapeStyle_ | 线的配置项  |
+| 细分配置项名称 | 类型                    | 功能描述           |
+| -------------- | ----------------------- | ------------------ |
+| padding        | \*number \| number\[]\* | 文本背景周围的留白 |
+| style          | _shapeStyle_            | 线的配置项         |
 
 **_shapeStyle_**
 
@@ -463,20 +463,20 @@ tooltip 偏移量。
 <!--label样式-->
 
 | 属性名 | 类型 | 介绍 |
-| --- | --- | --- | --- | --- | --- | --- |
-| type | _string_ | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner | outer | spider`） |
+| --- | --- | --- |
+| type | _string_ | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner \| outer \| spider`） |
 | offset | _number_ | label 的偏移量 |
 | offsetX | _number_ | label 相对于数据点在 X 方向的偏移距离 |
 | offsetY | _number_ | label 相对于数据点在 Y 方向的偏移距离 |
-| content | \*string | IGroup | IShape | GeometryLabelContentCallback\* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
+| content | \*string \| IGroup \| IShape \| GeometryLabelContentCallback\* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
 | style | object | label 文本图形属性样式 |
 | autoRotate | _string_ | 是否自动旋转，默认 true |
 | rotate | _number_ | 文本旋转角度 |
-| labelLine | \*null | _boolean_ | object\* | 用于设置文本连接线的样式属性，null 表示不展示。 |
+| labelLine | \*null \| _boolean_ \| object\* | 用于设置文本连接线的样式属性，null 表示不展示。 |
 | labelEmit | _boolean_ | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭 |
-| layout | \*'overlap' | 'fixedOverlap' | 'limitInShape'\* | 文本布局类型，支持多种布局函数组合使用。 |
-| position | \*'top' | 'bottom' | 'middle' | 'left' | 'right'\* | 指定当前 label 与当前图形的相对位置 |
-| animate | \*boolean | AnimateOption\* | 动画配置。 |
+| layout | \*'overlap' \| 'fixedOverlap' \| 'limitInShape'\* | 文本布局类型，支持多种布局函数组合使用。 |
+| position | \*'top' \| 'bottom' \| 'middle' \| 'left' \| 'right'\* | 指定当前 label 与当前图形的相对位置 |
+| animate | \*boolean \| AnimateOption\* | 动画配置。 |
 | formatter | _Function_ | 格式化函数 |
 | autoHide | _boolean_ | 是否自动隐藏，默认 false |
 
@@ -545,10 +545,10 @@ legend: {
 
 背景框配置项。_LegendBackgroundCfg_ 配置如下：
 
-| 参数名  | 类型                | 默认值    | 描述           |
-| ------- | ------------------- | --------- | -------------- | ---------- |
-| padding | number              | number\[] | -              | 背景的留白 |
-| style   | object 参考绘图属性 | -         | 背景样式配置项 |
+| 参数名  | 类型                | 默认值 | 描述           |
+| ------- | ------------------- | ------ | -------------- |
+| padding | number \| number\[] | -      | 背景的留白     |
+| style   | object 参考绘图属性 | -      | 背景样式配置项 |
 
 ##### flipPage
 
@@ -673,11 +673,11 @@ interface ComponentAnimateCfg {
 
 适用于 <tag color="green" text="分类图例">分类图例</tag>，图例项的 marker 图标的配置。
 
-| 参数名  | 类型       | 默认值           | 描述                             |
-| ------- | ---------- | ---------------- | -------------------------------- | ------------------------------ |
-| symbol  | _Marker_   | _MarkerCallback_ | -                                | 配置图例 marker 的 symbol 形状 |
-| style   | ShapeAttrs | -                | 图例项 marker 的配置项           |
-| spacing | number     | -                | 图例项 marker 同后面 name 的间距 |
+| 参数名  | 类型                         | 默认值 | 描述                             |
+| ------- | ---------------------------- | ------ | -------------------------------- |
+| symbol  | _Marker_ \| _MarkerCallback_ | -      | 配置图例 marker 的 symbol 形状   |
+| style   | ShapeAttrs                   | -      | 图例项 marker 的配置项           |
+| spacing | number                       | -      | 图例项 marker 同后面 name 的间距 |
 
 _Marker_ 为支持的标记类型有： _circle | square | line | diamond | triangle | triangle-down | hexagon | bowtie | cross | tick | plus | hyphen_； _MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
 
@@ -776,11 +776,11 @@ _Marker_ 为支持的标记类型有： _circle | square | line | diamond | tria
 | value  | any         | required | 值                       |
 | marker | _MarkerCfg_ |          | 图形标记                 |
 
-| 参数名  | 类型       | 默认值           | 描述                             |
-| ------- | ---------- | ---------------- | -------------------------------- | ------------------------------ |
-| symbol  | _Marker_   | _MarkerCallback_ | -                                | 配置图例 marker 的 symbol 形状 |
-| style   | ShapeAttrs | -                | 图例项 marker 的配置项           |
-| spacing | number     | -                | 图例项 marker 同后面 name 的间距 |
+| 参数名  | 类型                         | 默认值 | 描述                             |
+| ------- | ---------------------------- | ------ | -------------------------------- |
+| symbol  | _Marker_ \| _MarkerCallback_ | -      | 配置图例 marker 的 symbol 形状   |
+| style   | ShapeAttrs                   | -      | 图例项 marker 的配置项           |
+| spacing | number                       | -      | 图例项 marker 同后面 name 的间距 |
 
 _Marker_ 为支持的标记类型有： _circle | square | line | diamond | triangle | triangle-down | hexagon | bowtie | cross | tick | plus | hyphen_； _MarkerCallback_ 为 `(x: number, y: number, r: number) => PathCommand`；
 
@@ -915,10 +915,10 @@ y 方向的偏移量。
 
 文字包围盒样式设置。
 
-| 参数名  | 类型     | 默认值      | 描述                                                 |
-| ------- | -------- | ----------- | ---------------------------------------------------- | ------------------ |
-| style   | _object_ | -           | 文本背景的样式, 参考[绘图属性](/guide/graphic-style) |
-| padding | \*number | number\[]\* | -                                                    | 文本背景周围的留白 |
+| 参数名 | 类型 | 默认值 | 描述 |
+| --- | --- | --- | --- |
+| style | _object_ | - | 文本背景的样式, 参考[绘图属性](/guide/graphic-style) |
+| padding | \*number \| number\[]\* | - | 文本背景周围的留白 |
 
 ##### color
 
