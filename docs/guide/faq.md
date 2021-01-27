@@ -24,9 +24,21 @@ Here is a roundup of some common questions and official responses from the Ant D
 
 The React version is too low and does not support hooks. Updated to version 16.
 
+### 3、How to binding event and get current data.
+
+```tsx | pure
+<Bar onReady={(plot)=>{
+  plot.chart.on('plot:click', (evt)=>{
+    const { x, y } = evt;
+    console.log(plot.chart.getTooltipItems({ x, y }));
+  })
+}} />
+```
+
 ### More problems
 
 Please go to [GitHub Issues](https://github.com/ant-design/ant-design-charts/issues) to find out if there are similar problems. We will respond and improve this document as soon as possible.
+
 
 
 - DingTalk Group Number: 30233731
