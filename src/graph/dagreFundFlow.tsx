@@ -44,8 +44,6 @@ const defaultLabelCfg = {
   }
 }
 
-let graph: any;
-
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,
   className,
@@ -75,6 +73,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   handleCanvasClick,
   graphRef
 }) => {
+  let graph: any;
   const container = React.useRef(null);
 
   const props = {
