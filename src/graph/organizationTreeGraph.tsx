@@ -55,7 +55,6 @@ const defaultLabelCfg = {
   }
 }
 
-let graph: any;
 
 const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   data,
@@ -85,6 +84,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   handleCanvasClick,
   graphRef
 }) => {
+  let graph: any;
   const props = {
     data,
     className,

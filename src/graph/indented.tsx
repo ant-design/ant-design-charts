@@ -49,8 +49,6 @@ const defaultLabelCfg = {
   }
 }
 
-let graph: any;
-
 const IndentedTree: React.SFC<RelationGraph> = ({
   data,
   className,
@@ -79,6 +77,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   handleCanvasClick,
   graphRef
 }) => {
+  let graph: any;
   const container = React.useRef(null);
 
   const props = {
