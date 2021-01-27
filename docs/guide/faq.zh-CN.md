@@ -27,3 +27,8 @@ nav:
 ### 更多问题
 
 请到 [GitHub issues](https://github.com/ant-design/ant-design-charts/issues) 进行反馈，搜索是否有类似问题。我们会尽快响应和相应改进这篇文档。
+
+
+- 钉钉群组号码: 30233731
+
+<img src="https://gw.alipayobjects.com/zos/antfincdn/9sHnl5k%26u4/dingdingqun.png" width="200" height="266" />
