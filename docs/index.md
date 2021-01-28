@@ -106,3 +106,9 @@ export default Page;
 ## ISSUES
 
 Please visit the [GitHub](https://github.com/ant-design/ant-design-charts)
+
+## Contact Us
+
+- DingTalk Group Number: 30233731
+
+<img src="https://gw.alipayobjects.com/zos/antfincdn/9sHnl5k%26u4/dingdingqun.png" width="200" height="266" />
