@@ -39,8 +39,3 @@ The React version is too low and does not support hooks. Updated to version 16.
 
 Please go to [GitHub Issues](https://github.com/ant-design/ant-design-charts/issues) to find out if there are similar problems. We will respond and improve this document as soon as possible.
 
-
-
-- DingTalk Group Number: 30233731
-
-<img src="https://gw.alipayobjects.com/zos/antfincdn/9sHnl5k%26u4/dingdingqun.png" width="200" height="266" />
