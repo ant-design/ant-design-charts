@@ -5,6 +5,7 @@ import { ErrorBoundary } from '../base';
 import './customItems';
 import { processMinimap, getGraphSize } from './util';
 import useGraph from '../hooks/useGraph';
+import { deepClone } from '../util/utils';
 
 const defaultStateStyles = {
   hover: {
@@ -143,7 +144,8 @@ const IndentedTree: React.SFC<RelationGraph> = ({
 
     processMinimap(minimapCfg, graph);
 
-    graph.data(data);
+    const originData = deepClone(data)
+    graph.data(originData);
     graph.render();
     graph.fitView();
 

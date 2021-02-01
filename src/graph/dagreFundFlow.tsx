@@ -4,6 +4,7 @@ import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import { processMinimap, getGraphSize } from './util';
 import useGraph from '../hooks/useGraph';
+import { deepClone } from '../util/utils';
 
 
 const defaultStateStyles = {
@@ -141,8 +142,8 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     }
 
     processMinimap(minimapCfg, graph);
-
-    graph.data(data);
+    const originData = deepClone(data)
+    graph.data(originData);
     graph.render();
 
     // modify the node color according to the in edge

@@ -3,6 +3,7 @@ import G6, { IEdge, INode, IG6GraphEvent  } from '@antv/g6';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import { getGraphSize, processMinimap } from './util';
+import { deepClone } from '../util/utils'
 import useGraph from '../hooks/useGraph';
 
 const defaultStateStyles = {
@@ -141,7 +142,8 @@ const DagreGraph: React.SFC<RelationGraph> = ({
 
     processMinimap(minimapCfg, graph);
 
-    graph.data(data);
+    const originData = deepClone(data)
+    graph.data(originData);
     graph.render();
     graph.fitView();
 

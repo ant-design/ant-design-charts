@@ -5,6 +5,7 @@ import { customIconNode } from './customItems';
 import { getGraphSize, processMinimap } from './util'
 import { RelationGraph } from './types';
 import useGraph from '../hooks/useGraph';
+import { deepClone } from '../util/utils';
 
 const defaultStateStyles = {
   hover: {
@@ -160,7 +161,8 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
 
     processMinimap(minimapCfg, graph);
 
-    graph.data(data);
+    const originData = deepClone(data)
+    graph.data(originData);
     graph.render();
     graph.fitView();
 
