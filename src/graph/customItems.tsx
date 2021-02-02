@@ -1,5 +1,4 @@
-import { ModelConfig, IPoint } from '@antv/g6/es';
-import G6 from '@antv/g6/es';
+import G6, { ModelConfig, IPoint } from '@antv/g6/es';
 
 G6.registerNode(
   'card-node',
