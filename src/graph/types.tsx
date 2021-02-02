@@ -1,6 +1,8 @@
-import { TreeGraphData, GraphData, StateStyles, ShapeStyle, INode, IEdge, IGraph } from '@antv/g6';
+import { TreeGraphData, GraphData, StateStyles, ShapeStyle } from '@antv/g6/es';
+import { IGraph } from '@antv/g6/es';
+import { INode, IEdge } from '@antv/g6/es';
 
-export interface MiniMapConfig{
+export interface MiniMapConfig {
   show?: boolean;
   viewportClassName?: string;
   type?: 'default' | 'keyShape' | 'delegate';
@@ -27,13 +29,13 @@ export interface RelationGraph {
     style: {
       stroke?: string;
       fontSize?: number;
-    }
+    };
   };
   edgeLabelCfg?: {
     style: {
       stroke?: string;
       fontSize?: number;
-    }
+    };
   };
   nodeAnchorPoints?: number[][];
   behaviors?: string[];
