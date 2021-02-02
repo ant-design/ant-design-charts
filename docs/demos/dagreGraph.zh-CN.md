@@ -1,5 +1,5 @@
 ---
-title: 流程图
+title: Dagre Graph
 order: 3
 ---
 
@@ -8,6 +8,197 @@ order: 3
 本图表中，data 的基本格式遵循[通用配置项](#通用配置项)。
 
 ### 演示结果
+
+```tsx
+import React, { useState, useEffect, useRef } from 'react';
+import { DagreGraph } from '@ant-design/charts';
+import { each } from '@antv/util';
+
+const DemoDagreGraph: React.FC = () => {
+  const sourceData = {
+    nodes: [
+      {
+        id: '0',
+        label: '0',
+      },
+      {
+        id: '1',
+        label: '1',
+      },
+      {
+        id: '2',
+        label: '2',
+      },
+      {
+        id: '3',
+        label: '3',
+      },
+      {
+        id: '4',
+        label: '4',
+      },
+      {
+        id: '5',
+        label: '5',
+      },
+      {
+        id: '6',
+        label: '6',
+      },
+      {
+        id: '7',
+        label: '7',
+      },
+      {
+        id: '8',
+        label: '8',
+      },
+      {
+        id: '9',
+        label: '9',
+      },
+    ],
+    edges: [
+      {
+        source: '0',
+        target: '1',
+      },
+      {
+        source: '0',
+        target: '2',
+      },
+      {
+        source: '1',
+        target: '4',
+      },
+      {
+        source: '0',
+        target: '3',
+      },
+      {
+        source: '3',
+        target: '4',
+      },
+      {
+        source: '4',
+        target: '5',
+      },
+      {
+        source: '4',
+        target: '6',
+      },
+      {
+        source: '5',
+        target: '7',
+      },
+      {
+        source: '5',
+        target: '8',
+      },
+      {
+        source: '8',
+        target: '9',
+      },
+      {
+        source: '2',
+        target: '9',
+      },
+      {
+        source: '3',
+        target: '9',
+      },
+    ],
+  };
+
+  const [data, setData] = useState(sourceData);
+
+  const [nodeStyle, setNodeStyle] = useState();
+  const [edgeStyle, setEdgeStyle] = useState();
+  const [layoutCfg, setLayoutCfg] = useState();
+  const [anchorPoints, setAnchorPoints] = useState();
+  const [nodeType, setNodeType] = useState();
+  const [minimapCfg, setMinimapCfg] = useState({
+    show: true,
+  });
+  const [behaviors, setBehaviors] = useState(['drag-canvas', 'zoom-canvas']);
+  const [nodeLabelCfg, setNodeLabelCfg] = useState();
+
+  const ref = useRef();
+
+  const destroyGraph = () => {
+    ref.current.destroy();
+  };
+
+  const updateBehaviors = () => {
+    if (behaviors.indexOf('drag-node') !== -1) {
+      setBehaviors(['drag-canvas', 'zoom-canvas']);
+    } else {
+      setBehaviors(['drag-canvas', 'zoom-canvas', 'drag-node']);
+    }
+  };
+
+  const handleEdgeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true);
+  };
+  const handleNodeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true);
+  };
+
+  const handleCanvasClick = graph => {
+    const selectedEdges = graph.findAllByState('edge', 'selected');
+    selectedEdges.forEach(edge => {
+      graph.setItemState(edge, 'selected', false);
+    });
+    const selectedNodes = graph.findAllByState('node', 'selected');
+    selectedNodes.forEach(node => {
+      graph.setItemState(node, 'selected', false);
+    });
+  };
+  const edgeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2,
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3,
+    },
+  };
+  const nodeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2,
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3,
+    },
+  };
+
+  return (
+    <DagreGraph
+      nodeStyle={nodeStyle}
+      layout={layoutCfg}
+      nodeAnchorPoints={anchorPoints}
+      nodeType={nodeType}
+      nodeLabelCfg={nodeLabelCfg}
+      minimapCfg={minimapCfg}
+      behaviors={behaviors}
+      data={data}
+      graphRef={ref}
+      handleEdgeClick={handleEdgeClick}
+      handleCanvasClick={handleCanvasClick}
+      edgeStateStyles={edgeStateStyles}
+      nodeStateStyles={nodeStateStyles}
+      handleNodeClick={handleNodeClick}
+    />
+  );
+};
+
+export default DemoDagreGraph;
+```
+
+### 演示结果-可操作
 
 ```tsx
 import React, { useState, useEffect, useRef } from 'react';
