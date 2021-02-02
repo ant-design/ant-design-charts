@@ -239,8 +239,6 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     graph.on('canvas:click', (evt: IG6GraphEvent) => {
       handleCanvasClick && handleCanvasClick(graph);
     });
-
-    return () => graph.destroy();
   }, []);
 
   return (
