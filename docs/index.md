@@ -197,10 +197,10 @@ const Page: React.FC = () => {
       value: null,
     },
   ];
-
+  const colors = ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'];
   const config = {
     data,
-    type: 'province',
+    type: 'country',
     mapConfig: {
       center: [116.2825, 39.9],
       pitch: 0,
@@ -209,10 +209,70 @@ const Page: React.FC = () => {
       minZoom: 0,
       maxZoom: 10,
     },
+    layerConfig: {
+      joinBy: ['NAME_CHN', 'name'],
+      pitch: 0,
+      fill: {
+        color: {
+          field: 'NAME_CHN',
+          values: colors,
+        },
+        activeColor: 'yellow',
+      },
+      bubble: {
+        enable: true,
+        size: {
+          field: 'value',
+          values: [3, 20],
+        },
+        color: {
+          field: 'NAME_CHN',
+          values: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603'],
+        },
+      },
+    },
     style: {
+      position: 'realative',
       height: 800,
     },
     option: {},
+    attachMap: {
+      data: [],
+      type: 'country',
+      style: {
+        position: 'absolute',
+        width: '98px',
+        height: '125px',
+        right: '50px',
+        bottom: '25px',
+        border: '1px solid #333',
+      },
+      mapConfig: {
+        center: [113.60540108435657, 12.833692637803168],
+        pitch: 0,
+        style: 'blank',
+        zoom: 1.93,
+        minZoom: 0,
+        maxZoom: 3,
+        interactive: false,
+      },
+      layerConfig: {
+        // label: {
+        //   enable: false,
+        // },
+        // popup: {
+        //   enable: false,
+        // },
+        // autoFit: false,
+        depth: 1,
+        // fill: {
+        //   color: {
+        //     field: 'NAME_CHN',
+        //     values: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603'],
+        //   },
+        // },
+      },
+    },
   };
   return (
     <div style={{ height: 800 }}>

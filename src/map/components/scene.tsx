@@ -8,17 +8,23 @@ interface IMapSceneConig {
   map: Partial<IMapConfig>;
   option?: Partial<ISceneConfig>;
   children?: React.ReactNode;
-  onSceneLoaded?: (scene: Scene) => void;
+  parentBox?: HTMLElement;
+  onSceneLoaded?: (scene: Scene, container?: HTMLElement | null) => void;
   [key: string]: any;
 }
 
 const MapScene = React.memo((props: IMapSceneConig) => {
-  const { style, className, map, option, onSceneLoaded, children } = props;
+  const { style, className, map, option, onSceneLoaded, parentBox, children } = props;
   const container = useRef<HTMLDivElement>(null);
   const [scene, setScene] = useState<Scene>();
 
   // 地图初始
   useEffect(() => {
+    console.log(props);
+
+    if (parentBox) {
+      parentBox.appendChild(container.current as HTMLElement);
+    }
     const sceneInstance = new Scene({
       id: container.current!,
       ...option,
@@ -27,7 +33,7 @@ const MapScene = React.memo((props: IMapSceneConig) => {
     sceneInstance.on('loaded', () => {
       setScene(sceneInstance);
       if (onSceneLoaded) {
-        onSceneLoaded(sceneInstance);
+        onSceneLoaded(sceneInstance, container.current);
       }
     });
     return () => {

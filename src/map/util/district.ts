@@ -17,25 +17,9 @@ const DistrictMap = {
 };
 
 export const CreateDistrict = (props: IMapDistrictConig) => {
-  const { type = 'world', scene, data } = props;
+  const { type = 'world', scene, data, layerConfig } = props;
   return new DistrictMap[type](scene, {
     data,
-    joinBy: ['NAME_CHN', 'name'],
-    depth: 1,
-    provinceStroke: '#fff',
-    cityStroke: '#EBCCB4',
-    cityStrokeWidth: 1,
-    fill: {
-      color: {
-        field: 'NAME_CHN',
-        values: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
-      },
-    },
-    popup: {
-      enable: true,
-      Html: (props) => {
-        return `<span>${props.NAME_CHN}</span>`;
-      },
-    },
+    ...layerConfig,
   });
 };
