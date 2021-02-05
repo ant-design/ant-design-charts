@@ -21,25 +21,11 @@ interface IMapSceneConig {
   onSceneLoaded?: (scene: Scene) => void;
 }
 
-const ATTACHMAPBOX = 'attachContainer';
-
 const Map = (props: IMapSceneConig) => {
   const { mapConfig, option, attachMap } = props;
   const [scene, setScene] = useState<Scene>();
   const [attachContainer, setAttachContainer] = useState<HTMLElement | null>();
-  useEffect(() => {
-    if (attachContainer && attachMap) {
-      // const { style } = attachMap;
-      // CreateAttachContainer(attachContainer, ATTACHMAPBOX, {
-      //   position: 'absolute',
-      //   width: '98px',
-      //   height: '125px',
-      //   right: '50px',
-      //   bottom: '25px',
-      //   border: '1px solid #333',
-      // });
-    }
-  }, [attachContainer]);
+
   return (
     <SceneContext.Provider value={scene}>
       <SceneComponent
@@ -54,21 +40,22 @@ const Map = (props: IMapSceneConig) => {
           setAttachContainer(container);
           CreateDistrict({ ...props, scene });
         }}
-      />
-      {attachContainer && attachMap && (
-        <SceneComponent
-          {...attachMap}
-          option={{
-            logoVisible: false,
-            ...attachMap.option,
-          }}
-          map={CreateMapBox(attachMap.mapConfig)}
-          parentBox={attachContainer}
-          onSceneLoaded={(scene) => {
-            CreateDistrict({ ...attachMap, scene });
-          }}
-        />
-      )}
+      >
+        {attachMap && (
+          <SceneComponent
+            {...attachMap}
+            option={{
+              logoVisible: false,
+              ...attachMap.option,
+            }}
+            map={CreateMapBox(attachMap.mapConfig)}
+            parentBox={attachContainer}
+            onSceneLoaded={(scene) => {
+              CreateDistrict({ ...attachMap, scene });
+            }}
+          />
+        )}
+      </SceneComponent>
     </SceneContext.Provider>
   );
 };

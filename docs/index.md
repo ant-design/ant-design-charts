@@ -248,7 +248,8 @@ const Page: React.FC = () => {
         border: '1px solid #333',
       },
       mapConfig: {
-        center: [113.60540108435657, 12.833692637803168],
+        // center: [113.60540108435657, 12.833692637803168],
+        center: [116.2825, 39.9],
         pitch: 0,
         style: 'blank',
         zoom: 1.93,
@@ -257,20 +258,20 @@ const Page: React.FC = () => {
         interactive: false,
       },
       layerConfig: {
-        // label: {
-        //   enable: false,
-        // },
-        // popup: {
-        //   enable: false,
-        // },
-        // autoFit: false,
+        label: {
+          enable: false,
+        },
+        popup: {
+          enable: false,
+        },
+        autoFit: false,
         depth: 1,
-        // fill: {
-        //   color: {
-        //     field: 'NAME_CHN',
-        //     values: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603'],
-        //   },
-        // },
+        fill: {
+          color: {
+            field: 'NAME_CHN',
+            values: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603'],
+          },
+        },
       },
     },
   };

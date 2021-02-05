@@ -30,7 +30,7 @@ import Treemap from './treemap';
 import MultiView from './multiView';
 import BidirectionalBar from './bidirectionalBar';
 // import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
-import { Map } from './map';
+import { Map } from './maps';
 import { G2 } from '@antv/g2plot';
 
 export {
