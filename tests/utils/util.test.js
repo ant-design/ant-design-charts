@@ -1,4 +1,4 @@
-import { utils } from '../../src/util'
+import { utils } from '../../src/util';
 
 const { hasPath, clone, isType, setPath } = utils;
 
@@ -17,11 +17,11 @@ describe('utils', () => {
     const config = {
       statistic: {
         content: {
-          customHtml: 'html'
+          customHtml: 'html',
         },
-        title: {}
-      }
-    }
+        title: {},
+      },
+    };
     expect(hasPath(undefined, ['noPath'])).toBeUndefined();
     expect(hasPath(config, ['statistic', 'content', 'customHtml'])).toBe('html');
     expect(hasPath(config, ['statistic', 'title', 'customHtml'])).toBeUndefined();
@@ -32,48 +32,44 @@ describe('utils', () => {
     const config = {
       statistic: {
         content: {
-          customHtml: 'html'
+          customHtml: 'html',
         },
-        title: {}
-      }
-    }
+        title: {},
+      },
+    };
     expect(setPath(undefined, ['noPath'])).toBeUndefined();
     expect(setPath(config, [])).toEqual(config);
-    expect(setPath(config, ['statistic', 'title', 'customHtml'], 'title')).toEqual(
-      {
-        statistic: {
-          content: {
-            customHtml: 'html'
-          },
-          title: {
-            customHtml: 'title'
-          }
-        }
-      }
-    );
-  })
+    expect(setPath(config, ['statistic', 'title', 'customHtml'], 'title')).toEqual({
+      statistic: {
+        content: {
+          customHtml: 'html',
+        },
+        title: {
+          customHtml: 'title',
+        },
+      },
+    });
+  });
   it('clone', () => {
     const config = {
       statistic: {
         content: {
-          customHtml: 'html'
+          customHtml: 'html',
         },
-        title: {}
-      }
-    }
+        title: {},
+      },
+    };
     expect(clone(undefined)).toBeUndefined();
     expect(clone(config)).toEqual(config);
     config.__proto__.name = 'fj';
-    expect(clone(config)).toEqual(
-      {
-        statistic: {
-          content: {
-            customHtml: 'html'
-          },
-          title: {}
+    expect(clone(config)).toEqual({
+      statistic: {
+        content: {
+          customHtml: 'html',
         },
-        name: 'fj'
-      }
-    );
-  })
+        title: {},
+      },
+      name: 'fj',
+    });
+  });
 });

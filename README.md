@@ -85,7 +85,7 @@ const Page: React.FC = () => {
       <button type="button" onClick={toDataURL}>
         获取图表信息
       </button>
-      <Line {...config} onReady={chartInstance => chart = chartInstance} />
+      <Line {...config} onReady={(chartInstance) => (chart = chartInstance)} />
     </div>
   );
 };

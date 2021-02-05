@@ -2,39 +2,50 @@
   "name": "@ant-design/charts",
   "version": "1.0.17",
   "description": "React translate g2plot",
+  "bugs": {
+    "url": "https://github.com/ant-design/ant-design-charts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ant-design/ant-design-charts.git"
+  },
+  "main": "lib/index.js",
+  "unpkg": "dist/charts.min.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
   "files": [
     "/lib",
     "/es",
     "/dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ant-design/ant-design-charts.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ant-design/ant-design-charts/issues"
-  },
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "types": "es/index.d.ts",
-  "unpkg": "dist/charts.min.js",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "dumi dev",
-    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "test": "umi-test",
-    "deploy": "gh-pages -d dist",
-    "docs:build": "dumi build",
-    "test:coverage": "umi-test --coverage",
     "build": "run-s clean lib dist",
+    "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
+    "deploy": "gh-pages -d dist",
+    "dev": "dumi dev",
+    "dist": "webpack --config webpack.config.js --mode production",
+    "docs:build": "dumi build",
+    "entry": "node ./scripts/entry.js",
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
-    "ci": "npm run build && npm run test:coverage",
     "pub": "npm run build && np",
-    "entry": "node ./scripts/entry.js",
-    "dist": "webpack --config webpack.config.js --mode production"
+    "start": "npm run dev",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
@@ -91,23 +102,11 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   },
-  "np": {
-    "yarn": false,
-    "contents": "dist"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "np": {
+    "yarn": false,
+    "contents": "dist"
   }
 }

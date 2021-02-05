@@ -9,7 +9,7 @@ import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Gauge render', () => { 
+describe('Gauge render', () => {
   let container;
   beforeEach(() => {
     container = document.createElement('div');
@@ -21,8 +21,8 @@ describe('Gauge render', () => {
   });
 
   it('classname * loading * style', () => {
-    const props =  {
-      style:  {
+    const props = {
+      style: {
         height: '80%',
       },
       className: 'container',
@@ -34,7 +34,7 @@ describe('Gauge render', () => {
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
     expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%'
+      height: '80%',
     });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
@@ -42,7 +42,7 @@ describe('Gauge render', () => {
   });
 
   it('classname * loading * style with default', () => {
-    const props =  {};
+    const props = {};
     const testRenderer = create(<Gauge {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
@@ -51,16 +51,16 @@ describe('Gauge render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%'
+      height: '100%',
     });
   });
-  
+
   it('error template', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error">custom error</span>,
     };
@@ -70,8 +70,8 @@ describe('Gauge render', () => {
       yField: 'scales',
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<Gauge {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
@@ -81,7 +81,7 @@ describe('Gauge render', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
-      chartRef: (ref) => { 
+      chartRef: (ref) => {
         chartRef = ref;
       },
     };
@@ -89,8 +89,8 @@ describe('Gauge render', () => {
       percent: 0.75,
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Gauge {...props} {...chartProps} />, container);
     });
@@ -98,11 +98,7 @@ describe('Gauge render', () => {
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.views[0].getData()).toEqual(
-      [
-        {percent: 0.75}
-      ]
-    );
+    expect(chartRef.chart.views[0].getData()).toEqual([{ percent: 0.75 }]);
   });
 
   it('chartRef with createRef', () => {
@@ -112,19 +108,15 @@ describe('Gauge render', () => {
       chartRef,
     };
     const chartProps = {
-     percent: 0.75,
+      percent: 0.75,
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Gauge {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.views[0].getData()).toEqual(
-      [
-        {percent: 0.75}
-      ]
-    );
+    expect(chartRef.current.chart.views[0].getData()).toEqual([{ percent: 0.75 }]);
   });
 
   it('chartRef with useRef', () => {
@@ -135,15 +127,11 @@ describe('Gauge render', () => {
       percent: 0.75,
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<Gauge {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Gauge {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.views[0].getData()).toEqual(
-      [
-        {percent: 0.75}
-      ]
-    );
+    expect(refs.current.getChart().chart.views[0].getData()).toEqual([{ percent: 0.75 }]);
   });
-})
+});

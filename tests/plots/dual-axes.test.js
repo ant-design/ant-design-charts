@@ -9,7 +9,7 @@ import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('DualAxes render', () => { 
+describe('DualAxes render', () => {
   let container;
   const data = [
     {
@@ -21,7 +21,7 @@ describe('DualAxes render', () => {
       time: '2019-04',
       value: 900,
       count: 600,
-    }
+    },
   ];
   beforeEach(() => {
     container = document.createElement('div');
@@ -33,8 +33,8 @@ describe('DualAxes render', () => {
   });
 
   it('classname * loading * style', () => {
-    const props =  {
-      style:  {
+    const props = {
+      style: {
         height: '80%',
       },
       className: 'container',
@@ -46,7 +46,7 @@ describe('DualAxes render', () => {
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
     expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%'
+      height: '80%',
     });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
@@ -54,7 +54,7 @@ describe('DualAxes render', () => {
   });
 
   it('classname * loading * style with default', () => {
-    const props =  {};
+    const props = {};
     const testRenderer = create(<DualAxes {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
@@ -63,16 +63,16 @@ describe('DualAxes render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%'
+      height: '100%',
     });
   });
-  
+
   it('error template', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error">custom error</span>,
     };
@@ -89,8 +89,8 @@ describe('DualAxes render', () => {
       ],
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<DualAxes {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
@@ -100,7 +100,7 @@ describe('DualAxes render', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
-      chartRef: (ref) => { 
+      chartRef: (ref) => {
         chartRef = ref;
       },
     };
@@ -117,8 +117,8 @@ describe('DualAxes render', () => {
       ],
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<DualAxes {...props} {...chartProps} />, container);
     });
@@ -126,9 +126,7 @@ describe('DualAxes render', () => {
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.views[0].getData()).toEqual(
-      { time: '2019-03', value: 350, count: 800 }
-    );
+    expect(chartRef.chart.views[0].getData()).toEqual({ time: '2019-03', value: 350, count: 800 });
   });
 
   it('chartRef with createRef', () => {
@@ -150,14 +148,16 @@ describe('DualAxes render', () => {
       ],
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<DualAxes {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.views[0].getData()).toEqual(
-      { time: '2019-03', value: 350, count: 800 }
-    );
+    expect(chartRef.current.chart.views[0].getData()).toEqual({
+      time: '2019-03',
+      value: 350,
+      count: 800,
+    });
   });
 
   it('chartRef with useRef', () => {
@@ -177,13 +177,15 @@ describe('DualAxes render', () => {
       ],
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<DualAxes {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<DualAxes {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.views[0].getData()).toEqual(
-      { time: '2019-03', value: 350, count: 800 }
-    );
+    expect(refs.current.getChart().chart.views[0].getData()).toEqual({
+      time: '2019-03',
+      value: 350,
+      count: 800,
+    });
   });
-})
+});

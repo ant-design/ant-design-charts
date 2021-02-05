@@ -80,7 +80,7 @@ describe('use chart', () => {
       },
       onEvent: (chart, event) => {
         events = event;
-      }
+      },
     };
     act(() => {
       ReactDOM.render(<Pie {...props} />, container);

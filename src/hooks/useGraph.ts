@@ -1,13 +1,17 @@
 import { useRef, useEffect } from 'react';
-import { Graph, TreeGraph, ModeType, INode, IEdge  } from '@antv/g6';
+import { Graph, TreeGraph, ModeType, INode, IEdge } from '@antv/g6';
 import { getGraphSize, processMinimap } from '../graph/util';
 import { isObject, isString } from '@antv/util';
 
-export interface Base extends Graph{
-  current?: Graph
+export interface Base extends Graph {
+  current?: Graph;
 }
 
-export default function useInit(graphInstance: Graph | TreeGraph | undefined, config: any, container: React.MutableRefObject<null>) {
+export default function useInit(
+  graphInstance: Graph | TreeGraph | undefined,
+  config: any,
+  container: React.MutableRefObject<null>,
+) {
   const graphHook = useRef<Base>();
   const {
     data,
@@ -22,10 +26,10 @@ export default function useInit(graphInstance: Graph | TreeGraph | undefined, co
     minimapCfg,
     behaviors,
     nodeLabelCfg,
-    edgeLabelCfg
-   } = config;
+    edgeLabelCfg,
+  } = config;
 
-   let minimap;
+  let minimap;
 
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
@@ -41,7 +45,7 @@ export default function useInit(graphInstance: Graph | TreeGraph | undefined, co
           type: nodeType,
           style: nodeStyle,
           anchorPoints: nodeAnchorPoints,
-          labelCfg: nodeLabelCfg
+          labelCfg: nodeLabelCfg,
         });
       });
     }
@@ -53,7 +57,7 @@ export default function useInit(graphInstance: Graph | TreeGraph | undefined, co
         graphInstance!.updateItem(edge, {
           type: edgeType,
           style: edgeStyle,
-          labelCfg: edgeLabelCfg
+          labelCfg: edgeLabelCfg,
         });
       });
     }
@@ -64,13 +68,13 @@ export default function useInit(graphInstance: Graph | TreeGraph | undefined, co
       const graphSize = getGraphSize(width, height, container);
       graphInstance.changeSize(graphSize[0], graphSize[1]);
     }
-  }, [container, width, height])
+  }, [container, width, height]);
 
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
       graphInstance.updateLayout(layout);
     }
-  }, [layout])
+  }, [layout]);
 
   useEffect(() => {
     if (!minimapCfg || !graphInstance || graphInstance.destroyed) {
@@ -83,7 +87,7 @@ export default function useInit(graphInstance: Graph | TreeGraph | undefined, co
       const minimap = graphInstance.get('plugins')[0];
       minimap && graphInstance.removePlugin(minimap);
     }
-  }, [minimapCfg])
+  }, [minimapCfg]);
 
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
@@ -107,7 +111,7 @@ export default function useInit(graphInstance: Graph | TreeGraph | undefined, co
       return () => {
         graphInstance!.destroy();
         graphInstance = undefined;
-      }
+      };
     }
     return;
   }, []);
