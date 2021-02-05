@@ -169,6 +169,14 @@ const DemoDualAxes: React.FC = () => {
     data: [uvData, transformData],
     xField: 'time',
     yField: ['value', 'count'],
+    slider: {},
+    limitInPlot: false,
+    padding: [20, 20, 50, 20],
+    meta: {
+      time: {
+        sync: false,
+      },
+    },
     geometryOptions: [
       {
         geometry: 'column',
