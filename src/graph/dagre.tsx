@@ -34,12 +34,8 @@ const defaultEdgeStyle = {
 const defaultLayout = {
   type: 'dagre',
   rankdir: 'TB',
-  nodesepFunc: (d: any) => {
-    return 0;
-  },
-  ranksepFunc: (d: any) => {
-    return 0;
-  },
+  nodesepFunc: () => 0,
+  ranksepFunc: () => 0,
   controlPoints: true,
 };
 
@@ -192,8 +188,8 @@ const DagreGraph: React.SFC<RelationGraph> = ({
       }
     });
 
-    graph.on('canvas:click', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
+    graph.on('canvas:click', () => {
+      handleCanvasClick?.(graph);
     });
 
     return () => graph.destroy();

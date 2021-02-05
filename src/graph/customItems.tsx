@@ -8,7 +8,7 @@ G6.registerNode(
       let size = cfg && cfg.size ? cfg.size : [100, 30];
       if (typeof size === 'number') size = [size, size];
       let style = cfg && cfg.style ? cfg.style : {};
-      style = Object.assign({ radius: 2, fill: '#fff' }, style);
+      style = { radius: 2, fill: '#fff', ...style };
       color = style.stroke || '#5B8FF9';
       const r = style.radius || 0;
       const shape = group!.addShape('rect', {
@@ -27,9 +27,9 @@ G6.registerNode(
       // title text
       const title = cfg?.title || cfg?.label;
       let titleTextShape;
-      let labelStyle = cfg && cfg.labelCfg && cfg.labelCfg.style ? cfg.labelCfg.style : {};
+      const labelStyle = cfg && cfg.labelCfg && cfg.labelCfg.style ? cfg.labelCfg.style : {};
       if (title) {
-        const titleStyle = Object.assign({ fill: '#fff' }, labelStyle);
+        const titleStyle = { fill: '#fff', ...labelStyle };
         titleTextShape = group!.addShape('text', {
           attrs: {
             textBaseline: 'top',
@@ -59,7 +59,7 @@ G6.registerNode(
         draggable: true,
       });
 
-      titleTextShape && titleTextShape.toFront();
+      titleTextShape?.toFront();
 
       // marker
       let markerShape;
@@ -122,18 +122,16 @@ G6.registerNode(
       if (typeof size === 'number') size = [size, size];
       let style = cfg && cfg.style ? cfg.style : {};
       if (style.stroke) color = style.stroke;
-      let fill = style && style.fill ? style.fill : '#fff';
-      style = Object.assign(
-        {
-          width: size[0],
-          height: size[1],
-          radius: size[1] / 2,
-          fill,
-          lineWidth: 1.2,
-          stroke: color,
-        },
-        style,
-      );
+      const fill = style && style.fill ? style.fill : '#fff';
+      style = {
+        width: size[0],
+        height: size[1],
+        radius: size[1] / 2,
+        fill,
+        lineWidth: 1.2,
+        stroke: color,
+        ...style,
+      };
 
       const rect = group!.addShape('rect', {
         attrs: {
@@ -226,7 +224,7 @@ export const customIconNode = (params: { enableEdit?: boolean; options?: any }) 
         let img =
           'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png';
         if (cfg?.leftIcon) {
-          style = Object.assign({}, style, (cfg.leftIcon as any).style);
+          style = { ...style, ...(cfg.leftIcon as any).style };
           img = (cfg.leftIcon as any).img;
         }
         group!.addShape('rect', {
@@ -245,7 +243,7 @@ export const customIconNode = (params: { enableEdit?: boolean; options?: any }) 
             y: 8,
             width: 24,
             height: 24,
-            img: img,
+            img,
           },
           name: 'image-shape',
         });

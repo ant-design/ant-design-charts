@@ -12,7 +12,8 @@ export const getGraphSize = (
   height: number | undefined,
   container: React.RefObject<HTMLDivElement>,
 ): number[] => {
-  let CANVAS_WIDTH, CANVAS_HEIGHT;
+  let CANVAS_WIDTH;
+  let CANVAS_HEIGHT;
   if (container && container.current) {
     CANVAS_WIDTH = container.current.offsetWidth;
     CANVAS_HEIGHT = container.current.offsetHeight || 500;
@@ -35,5 +36,4 @@ export const processMinimap = (cfg: MiniMapConfig | undefined, graph: Graph) => 
     graph.addPlugin(minimap);
     return minimap;
   }
-  return;
 };

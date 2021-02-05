@@ -40,7 +40,7 @@ const defaultLayout = {
   getHeight: () => {
     return 60;
   },
-  getWidth: (d: any) => {
+  getWidth: () => {
     return 100;
   },
 };
@@ -158,10 +158,8 @@ const IndentedTree: React.SFC<RelationGraph> = ({
             collapsed: !item.getModel().collapsed,
           });
           graph.layout();
-        } else {
-          if (handleNodeClick) {
-            handleNodeClick(item, graph);
-          }
+        } else if (handleNodeClick) {
+          handleNodeClick(item, graph);
         }
       };
       graph.on('node:click', (e: IG6GraphEvent) => {
@@ -212,12 +210,12 @@ const IndentedTree: React.SFC<RelationGraph> = ({
       }
     });
 
-    graph.on('canvas:click', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
+    graph.on('canvas:click', () => {
+      handleCanvasClick?.(graph);
     });
 
-    graph.on('canvas:touchstart', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
+    graph.on('canvas:touchstart', () => {
+      handleCanvasClick?.(graph);
     });
 
     return () => graph.destroy();

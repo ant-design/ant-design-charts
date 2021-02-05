@@ -3,6 +3,7 @@ import { isEqual } from '@antv/util';
 import { utils } from '../util';
 import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip, G2 } from '@antv/g2plot';
 import createNode from '../util/createNode';
+
 export interface ContainerProps {
   style?: React.CSSProperties;
   className?: string;

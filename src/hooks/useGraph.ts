@@ -82,10 +82,12 @@ export default function useInit(
     }
     if (minimapCfg.show) {
       minimap = processMinimap(minimapCfg, graphInstance);
-      minimap && minimap.updateCanvas();
+      minimap?.updateCanvas();
     } else {
-      const minimap = graphInstance.get('plugins')[0];
-      minimap && graphInstance.removePlugin(minimap);
+      const [pluginMinimap] = graphInstance.get('plugins');
+      if (pluginMinimap) {
+        graphInstance.removePlugin(pluginMinimap);
+      }
     }
   }, [minimapCfg]);
 
@@ -113,7 +115,6 @@ export default function useInit(
         graphInstance = undefined;
       };
     }
-    return;
   }, []);
 
   return {
