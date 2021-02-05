@@ -13,7 +13,7 @@ import { DistrictMap } from '@ant-design/charts';
 
 const Page: React.FC = () => {
   const config = {
-    type: 'world',
+    type: 'WorldLayer',
     mapConfig: {
       center: [116.2825, 39.9],
       pitch: 0,
@@ -239,7 +239,7 @@ const Page: React.FC = () => {
   ];
   const colors = ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'];
   const config = {
-    type: 'country',
+    type: 'CountryLayer',
     mapConfig: {
       center: [116.2825, 39.9],
       pitch: 0,
@@ -469,7 +469,7 @@ const Page: React.FC = () => {
   ];
   const colors = ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'];
   const config = {
-    type: 'country',
+    type: 'CountryLayer',
     mapConfig: {
       center: [116.2825, 39.9],
       pitch: 0,
@@ -542,7 +542,7 @@ const Page: React.FC = () => {
       });
   };
   const config = {
-    type: 'province',
+    type: 'ProvinceLayer',
     mapConfig: {
       center: [116.2825, 39.9],
       pitch: 0,

@@ -1,4 +1,4 @@
-import { Scene, ILayerOptions } from '@antv/l7';
+import { Scene, ILayerOptions, Layers } from '@antv/l7';
 import {
   WorldLayer,
   CountryLayer,
@@ -8,9 +8,16 @@ import {
   DrillDownLayer,
 } from '@antv/l7-district';
 import { utils } from '../../util';
-import { DistrictType } from '../districtMap';
 
-export type LayerOption =
+export type DistrictType =
+  | 'WorldLayer'
+  | 'CountryLayer'
+  | 'ProvinceLayer'
+  | 'CityLayer'
+  | 'CountyLayer'
+  | 'DrillDownLayer';
+
+export type LayerOptions =
   | WorldLayer
   | CountryLayer
   | ProvinceLayer
@@ -25,16 +32,16 @@ interface IMapDistrictConig {
 }
 
 const DistrictMap = {
-  world: WorldLayer, // 全世界
-  country: CountryLayer, // 中国
-  province: ProvinceLayer, // 省
-  city: CityLayer, // 市
-  county: CountyLayer, // 县
-  drillDown: DrillDownLayer, // 下钻地图
+  WorldLayer: WorldLayer, // 全世界
+  CountryLayer: CountryLayer, // 中国
+  ProvinceLayer: ProvinceLayer, // 省
+  CityLayer: CityLayer, // 市
+  CountyLayer: CountyLayer, // 县
+  DrillDownLayer: DrillDownLayer, // 下钻地图
 };
 
 export const CreateDistrict = (props: IMapDistrictConig) => {
-  const { type = 'world', scene, layerConfig } = props;
+  const { type = 'WorldLayer', scene, layerConfig } = props;
   const processConfig = () => {
     const { hasPath } = utils;
     // statistic

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Scene, ISceneConfig, IMapOptions, ILayerOptions } from '@antv/l7';
 import SceneComponent from './components/scene';
-import { CreateDistrict, CreateMapBox, LayerOption } from './util';
+import { CreateDistrict, CreateMapBox, LayerOptions, DistrictType } from './util';
 import { DefaultAttachConfig } from './contants';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 import { CommonProps } from '../interface';
 
-export type DistrictType = 'world' | 'country' | 'province' | 'city' | 'county' | 'drillDown';
-
-export interface IMapSceneConig extends CommonProps {
+interface IMapSceneConig extends CommonProps {
   children?: React.ReactNode;
   sceneOption?: Partial<ISceneConfig>;
   mapConfig: IMapOptions;
@@ -17,7 +15,7 @@ export interface IMapSceneConig extends CommonProps {
   attachMap?: Omit<IMapSceneConig, 'attachMap'>;
   type?: DistrictType;
   /** 图表渲染完成回调 */
-  onReady?: (scene: Scene, layer: LayerOption) => void;
+  onReady?: (scene: Scene, layer: LayerOptions) => void;
 }
 
 const DistrictMap = (props: IMapSceneConig) => {
@@ -33,11 +31,18 @@ const DistrictMap = (props: IMapSceneConig) => {
     type,
   } = props;
   const [scene, setScene] = useState<Scene>();
-  const [layer, setLayer] = useState<LayerOption>();
+  const [layer, setLayer] = useState<LayerOptions>();
+  const [attachScene, setAttachScene] = useState<Scene>();
+  const [attachLayer, setAttachLayer] = useState<LayerOptions>();
   useEffect(() => {
     return () => {
       if (layer) {
+        scene?.destroy();
         layer.destroy();
+      }
+      if (attachLayer) {
+        attachScene?.destroy();
+        attachLayer.destroy();
       }
     };
   }, []);
@@ -78,16 +83,19 @@ const DistrictMap = (props: IMapSceneConig) => {
             }}
             map={CreateMapBox({ ...DefaultAttachConfig.mapConfig, ...attachMap.mapConfig })}
             onSceneLoaded={(attachScene) => {
-              CreateDistrict({
-                scene: attachScene,
-                type: attachMap.type || type,
-                layerConfig: {
-                  ...DefaultAttachConfig.layerConfig,
-                  ...attachMap.layerConfig,
-                },
-              });
+              setAttachScene(attachScene);
+              setAttachLayer(
+                CreateDistrict({
+                  scene: attachScene,
+                  type: attachMap.type || type,
+                  layerConfig: {
+                    ...DefaultAttachConfig.layerConfig,
+                    ...attachMap.layerConfig,
+                  },
+                }),
+              );
               if (onReady) {
-                onReady(scene as Scene, layer as LayerOption);
+                onReady(scene as Scene, layer as LayerOptions);
               }
             }}
           />
