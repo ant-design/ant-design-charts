@@ -1,1 +1,1 @@
-export { default as Map } from './map';
+export { default as DistrictMap } from './districtMap';

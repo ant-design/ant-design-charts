@@ -8,8 +8,7 @@ interface IMapSceneConig {
   map: Partial<IMapConfig>;
   option?: Partial<ISceneConfig>;
   children?: React.ReactNode;
-  onSceneLoaded?: (scene: Scene, container?: HTMLElement | null) => void;
-  [key: string]: any;
+  onSceneLoaded?: (scene: Scene) => void;
 }
 
 const MapScene = React.memo((props: IMapSceneConig) => {
@@ -27,7 +26,7 @@ const MapScene = React.memo((props: IMapSceneConig) => {
     sceneInstance.on('loaded', () => {
       setScene(sceneInstance);
       if (onSceneLoaded) {
-        onSceneLoaded(sceneInstance, container.current);
+        onSceneLoaded(sceneInstance);
       }
     });
     return () => {

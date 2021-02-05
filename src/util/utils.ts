@@ -1,3 +1,5 @@
+import createNode from './createNode';
+
 // 类型检测
 export const isType = (value: any, type: string): boolean => {
   const toString = {}.toString;
@@ -48,4 +50,21 @@ export const setPath = (source: object, path: string[], value: any) => {
     }
   });
   return source;
+};
+
+export const reactDomToString = (source: object, path: string[], type?: string) => {
+  const statisticCustomHtml = hasPath(source, path);
+  setPath(source, path, (...arg: any[]) => {
+    const statisticDom = isType(statisticCustomHtml, 'Function')
+      ? statisticCustomHtml(...arg)
+      : statisticCustomHtml;
+    if (
+      isType(statisticDom, 'String') ||
+      isType(statisticDom, 'Number') ||
+      isType(statisticDom, 'HTMLDivElement')
+    ) {
+      return statisticDom;
+    }
+    return createNode(statisticDom, type);
+  });
 };

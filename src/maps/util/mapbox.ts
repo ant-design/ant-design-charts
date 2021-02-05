@@ -1,10 +1,6 @@
-import { Mapbox } from '@antv/l7-maps';
+import { Mapbox, IMapOptions } from '@antv/l7-maps';
 
-interface IMapDistrictConig {
-  [key: string]: any;
-}
-
-export const CreateMapBox = (props: IMapDistrictConig) => {
+export const CreateMapBox = (props: IMapOptions) => {
   const { mapCinfig } = props;
   return new Mapbox({
     mapCinfig,
