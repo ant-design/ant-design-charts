@@ -27,6 +27,7 @@
     "dist": "webpack --config webpack.config.js --mode production",
     "docs:build": "dumi build",
     "entry": "node ./scripts/entry.js",
+    "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
@@ -47,6 +48,9 @@
       "last 1 safari version"
     ]
   },
+  "gitHooks": {
+    "pre-commit": "pretty-quick --staged"
+  },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
     "@antv/g6": "^4.1.1",
@@ -57,6 +61,8 @@
     "@antv/data-set": "^0.11.7",
     "@babel/core": "^7.11.6",
     "@babel/polyfill": "^7.12.1",
+    "pretty-quick": "^3.0.1",
+    "yorkie": "^2.0.0",
     "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.10.4",
     "@testing-library/jest-dom": "^5.5.0",
