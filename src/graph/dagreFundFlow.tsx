@@ -6,7 +6,6 @@ import { processMinimap, getGraphSize } from './util';
 import useGraph from '../hooks/useGraph';
 import { deepClone } from '../util/utils';
 
-
 const defaultStateStyles = {
   hover: {
     stroke: '#1890ff',
@@ -151,7 +150,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     // modify the node color according to the in edge
     const edges = graph.getEdges();
     // @ts-ignore
-    edges.forEach(function(edge) {
+    edges.forEach(function (edge) {
       const line = edge.getKeyShape();
       const stroke = line.attr('stroke');
       const targetNode = edge.getTarget();
@@ -209,7 +208,6 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     graph.on('canvas:click', () => {
       handleCanvasClick?.(graph);
     });
-
   }, []);
 
   return (

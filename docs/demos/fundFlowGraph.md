@@ -201,13 +201,13 @@ const DemoDagreFundFlowGraph: React.FC = () => {
     graph.setItemState(item, 'selected', true);
   };
 
-  const handleCanvasClick = graph => {
+  const handleCanvasClick = (graph) => {
     const selectedEdges = graph.findAllByState('edge', 'selected');
-    selectedEdges.forEach(edge => {
+    selectedEdges.forEach((edge) => {
       graph.setItemState(edge, 'selected', false);
     });
     const selectedNodes = graph.findAllByState('node', 'selected');
-    selectedNodes.forEach(node => {
+    selectedNodes.forEach((node) => {
       graph.setItemState(node, 'selected', false);
     });
   };

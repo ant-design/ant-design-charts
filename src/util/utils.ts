@@ -27,19 +27,22 @@ export const deepClone = (source: Object) => {
   }
 
   // @ts-ignore
-  const target = new source.constructor
+  const target = new source.constructor();
   const getType = (n: Object) => {
-    return Object.prototype.toString.call(n).slice(8, -1)
-  }
+    return Object.prototype.toString.call(n).slice(8, -1);
+  };
 
-  for(let key in source) {
+  for (let key in source) {
     if (source.hasOwnProperty(key)) {
-      target[key] = getType(source[key]) === 'Object' || getType(source[key]) === 'Array' ? deepClone(source[key]) : source[key]
+      target[key] =
+        getType(source[key]) === 'Object' || getType(source[key]) === 'Array'
+          ? deepClone(source[key])
+          : source[key];
     }
   }
 
-  return target
-}
+  return target;
+};
 
 /**
  * 存在时返回路径值，不存在时返回 undefined

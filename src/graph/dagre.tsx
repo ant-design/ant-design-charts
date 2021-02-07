@@ -35,12 +35,8 @@ const defaultEdgeStyle = {
 const defaultLayout = {
   type: 'dagre',
   rankdir: 'TB',
-  nodesepFunc: (d: any) => {
-    return 0;
-  },
-  ranksepFunc: (d: any) => {
-    return 0;
-  },
+  nodesepFunc: () => 0,
+  ranksepFunc: () => 0,
   controlPoints: true,
 };
 
