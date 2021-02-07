@@ -71,6 +71,7 @@
     "@umijs/fabric": "^2.0.7",
     "@umijs/preset-react": "^1.4.8",
     "@umijs/test": "^3.0.16",
+    "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
     "dumi": "^1.1.0-beta.18",
     "dumi-theme-default": "^1.0.0-beta.5",
