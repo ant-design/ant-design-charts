@@ -7,7 +7,7 @@ import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 import { CommonProps } from '../interface';
 
-interface IMapSceneConig extends CommonProps {
+export interface IMapSceneConig extends CommonProps {
   children?: React.ReactNode;
   sceneOption?: Partial<ISceneConfig>;
   mapConfig: IMapOptions;
