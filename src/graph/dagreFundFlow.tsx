@@ -4,21 +4,21 @@ import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import { processMinimap, getGraphSize } from './util';
 import useGraph from '../hooks/useGraph';
-
+import { deepClone } from '../util/utils';
 
 const defaultStateStyles = {
   hover: {
     stroke: '#1890ff',
-    lineWidth: 2
-  }
-}
+    lineWidth: 2,
+  },
+};
 
 const defaultNodeSize = [150, 30];
 
 const defaultNodeStyle = {
   stroke: '#72CC4A',
-  fill: '#f00'
-}
+  fill: '#f00',
+};
 
 const defaultNodeAnchorPoints = [[0.5, 0], [0.5, 1]];
 
@@ -27,22 +27,23 @@ const defaultEdgeStyle = {
   endArrow: {
     path: G6.Arrow.vee(10, 10),
     fill: '#91d5ff',
-  }
-}
+  },
+};
 
 const defaultLayout = {
   type: 'dagre',
   rankdir: 'LR',
   nodesep: 30,
   ranksep: 50,
-}
+};
 
 const defaultLabelCfg = {
   style: {
     fill: '#000000A6',
     fontSize: 10,
-  }
-}
+  },
+};
+let graph: any;
 
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,
@@ -71,9 +72,8 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   handleNodeHover,
   handleNodeUnHover,
   handleCanvasClick,
-  graphRef
+  graphRef,
 }) => {
-  let graph: any;
   const container = React.useRef(null);
 
   const props = {
@@ -103,52 +103,50 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     handleNodeHover,
     handleNodeUnHover,
     handleCanvasClick,
-    graphRef
+    graphRef,
   };
 
   useGraph(graph, props, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    if (!graph || graph.destroyed) {
-      graph = new G6.Graph({
-        container: container.current as any,
-        width: graphSize[0],
-        height: graphSize[1],
-        modes: {
-          default: behaviors,
-        },
-        defaultNode: {
-          type: nodeType,
-          size: nodeSize,
-          style: nodeStyle,
-          anchorPoints: nodeAnchorPoints,
-          labelCfg: nodeLabelCfg,
-        },
-        defaultEdge: {
-          type: edgeType,
-          style: edgeStyle,
-          colorMap,
-          labelCfg: edgeLabelCfg,
-        },
-        nodeStateStyles,
-        edgeStateStyles,
-        layout,
-      });
-      if (graphRef) {
-        graphRef!.current = graph;
-      }
+    graph = new G6.Graph({
+      container: container.current as any,
+      width: graphSize[0],
+      height: graphSize[1],
+      modes: {
+        default: behaviors,
+      },
+      defaultNode: {
+        type: nodeType,
+        size: nodeSize,
+        style: nodeStyle,
+        anchorPoints: nodeAnchorPoints,
+        labelCfg: nodeLabelCfg,
+      },
+      defaultEdge: {
+        type: edgeType,
+        style: edgeStyle,
+        colorMap,
+        labelCfg: edgeLabelCfg,
+      },
+      nodeStateStyles,
+      edgeStateStyles,
+      layout,
+    });
+    if (graphRef) {
+      graphRef!.current = graph;
     }
 
     processMinimap(minimapCfg, graph);
-
-    graph.data(data);
+    const originData = deepClone(data);
+    graph.data(originData);
     graph.render();
 
     // modify the node color according to the in edge
     const edges = graph.getEdges();
     // @ts-ignore
-    edges.forEach(function (edge) {
+    edges.forEach(function(edge) {
       const line = edge.getKeyShape();
       const stroke = line.attr('stroke');
       const targetNode = edge.getTarget();
@@ -162,54 +160,52 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     graph.fitView();
 
     graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge
-      graph.setItemState(item, 'hover', true)
+      const item = evt.item as IEdge;
+      graph.setItemState(item, 'hover', true);
       if (handleEdgeHover) {
-        handleEdgeHover(item, graph)
+        handleEdgeHover(item, graph);
       }
-    })
+    });
     graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge
-      graph.setItemState(item, 'hover', false)
+      const item = evt.item as IEdge;
+      graph.setItemState(item, 'hover', false);
       if (handleEdgeUnHover) {
-        handleEdgeUnHover(item, graph)
+        handleEdgeUnHover(item, graph);
       }
-    })
+    });
     graph.on('edge:click', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge
+      const item = evt.item as IEdge;
       if (handleEdgeClick) {
-        handleEdgeClick(item, graph)
+        handleEdgeClick(item, graph);
       }
-    })
+    });
 
     graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode
-      graph.setItemState(item, 'hover', false)
+      const item = evt.item as INode;
+      graph.setItemState(item, 'hover', false);
       if (handleNodeHover) {
-        handleNodeHover(item, graph)
+        handleNodeHover(item, graph);
       }
-    })
+    });
     graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode
-      graph.setItemState(item, 'hover', false)
+      const item = evt.item as INode;
+      graph.setItemState(item, 'hover', false);
       if (handleNodeUnHover) {
-        handleNodeUnHover(item, graph)
+        handleNodeUnHover(item, graph);
       }
-    })
+    });
     graph.on('node:click', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode
+      const item = evt.item as INode;
       if (handleNodeClick) {
-        handleNodeClick(item, graph)
+        handleNodeClick(item, graph);
       }
-    })
+    });
 
     graph.on('canvas:click', (evt: IG6GraphEvent) => {
       handleCanvasClick && handleCanvasClick(graph);
-    })
-
-    return () => graph.destroy()
+    });
   }, []);
-  
+
   return (
     <ErrorBoundary>
       <div className={className} style={style} ref={container} />
