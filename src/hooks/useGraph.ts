@@ -109,12 +109,12 @@ export default function useInit(
 
   useEffect(() => {
     graphHook.current = graphInstance;
-    if (graphInstance && !graphInstance.destroyed) {
-      return () => {
+    return () => {
+      if (graphInstance && !graphInstance.destroyed) {
         graphInstance!.destroy();
         graphInstance = undefined;
-      };
-    }
+      }
+    };
   }, []);
 
   return {
