@@ -194,6 +194,236 @@ const DemoDagreFundFlowGraph: React.FC = () => {
 
   const ref = useRef();
 
+  const handleEdgeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true);
+  };
+  const handleNodeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true);
+  };
+
+  const handleCanvasClick = graph => {
+    const selectedEdges = graph.findAllByState('edge', 'selected');
+    selectedEdges.forEach(edge => {
+      graph.setItemState(edge, 'selected', false);
+    });
+    const selectedNodes = graph.findAllByState('node', 'selected');
+    selectedNodes.forEach(node => {
+      graph.setItemState(node, 'selected', false);
+    });
+  };
+  const edgeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2,
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3,
+    },
+  };
+  const nodeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2,
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3,
+    },
+  };
+
+  return (
+    <DagreFundFlowGraph
+      nodeStyle
+      {...config}
+      graphRef={ref}
+      handleEdgeClick={handleEdgeClick}
+      handleCanvasClick={handleCanvasClick}
+      edgeStateStyles={edgeStateStyles}
+      nodeStateStyles={nodeStateStyles}
+      handleNodeClick={handleNodeClick}
+    />
+  );
+};
+
+export default DemoDagreFundFlowGraph;
+```
+
+### 演示结果-可操作
+
+```tsx
+import React, { useState, useEffect, useRef } from 'react';
+import { DagreFundFlowGraph } from '@ant-design/charts';
+import { each } from '@antv/util';
+
+const DemoDagreFundFlowGraph: React.FC = () => {
+  const data = {
+    nodes: [
+      {
+        id: '1',
+        label: 'Company1',
+      },
+      {
+        id: '2',
+        label: 'Company2',
+      },
+      {
+        id: '3',
+        label: 'Company3',
+      },
+      {
+        id: '4',
+        label: 'Company4',
+      },
+      {
+        id: '5',
+        label: 'Company5',
+      },
+      {
+        id: '6',
+        label: 'Company6',
+      },
+      {
+        id: '7',
+        label: 'Company7',
+      },
+      {
+        id: '8',
+        label: 'Company8',
+      },
+      {
+        id: '9',
+        label: 'Company9',
+      },
+    ],
+    edges: [
+      {
+        source: '1',
+        target: '2',
+        dataType: 'A',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '1',
+        target: '3',
+        dataType: 'B',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '2',
+        target: '5',
+        dataType: 'C',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '5',
+        target: '6',
+        dataType: 'B',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '3',
+        target: '4',
+        dataType: 'C',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '4',
+        target: '7',
+        dataType: 'B',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '1',
+        target: '8',
+        dataType: 'B',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '1',
+        target: '9',
+        dataType: 'C',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+    ],
+  };
+
+  const data2 = {
+    nodes: [
+      {
+        id: '1',
+        label: 'Company1',
+      },
+      {
+        id: '2',
+        label: 'Company2',
+      },
+      {
+        id: '5',
+        label: 'Company5',
+      },
+      {
+        id: '6',
+        label: 'Company6',
+      },
+      {
+        id: '9',
+        label: 'Company9',
+      },
+    ],
+    edges: [
+      {
+        source: '1',
+        target: '2',
+        dataType: 'A',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '2',
+        target: '5',
+        dataType: 'C',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '5',
+        target: '6',
+        dataType: 'B',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+      {
+        source: '1',
+        target: '9',
+        dataType: 'C',
+        label: '100,000 Yuan',
+        subLabel: '2019-08-03',
+      },
+    ],
+  };
+  const [config, setConfig] = useState({
+    data,
+    colorMap: {
+      A: '#72CC4A',
+      B: '#1A91FF',
+      C: '#FFAA15',
+    },
+    behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+  });
+
+  const [nodeStyle, setNodeStyle] = useState();
+
+  const ref = useRef();
+
   // 导出图片
   const downloadImage = () => {
     ref.current?.downloadImage();

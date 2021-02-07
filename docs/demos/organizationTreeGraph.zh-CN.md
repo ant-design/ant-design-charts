@@ -1,9 +1,13 @@
 ---
-title: 组织架构树图
+title: Organization Tree Graph
 order: 1
 ---
 
 ### 基础组织架构树图
+
+<!-- // 以下代码在页面离开时会出错 -->
+
+### 个性化定制-不可编辑
 
 <a href="#配置项">配置</a>
 
@@ -110,157 +114,7 @@ const DemoOrganizationGraph: React.FC = () => {
     return true;
   });
 
-  const nodeStateStyles = {
-    hover: {
-      stroke: '#1890ff',
-      lineWidth: 2,
-    },
-    selected: {
-      stroke: '#f00',
-      lineWidth: 3,
-    },
-  };
-  const handleNodeClick = (item, graph) => {
-    graph.setItemState(item, 'selected', true);
-  };
-  const handleCanvasClick = (graph) => {
-    const selectedEdges = graph.findAllByState('edge', 'selected');
-    selectedEdges.forEach((edge) => {
-      graph.setItemState(edge, 'selected', false);
-    });
-    const selectedNodes = graph.findAllByState('node', 'selected');
-    selectedNodes.forEach((node) => {
-      graph.setItemState(node, 'selected', false);
-    });
-  };
-
-  return (
-    <OrganizationTreeGraph
-      data={data}
-      nodeType="rect"
-      nodeStateStyles={nodeStateStyles}
-      handleNodeClick={handleNodeClick}
-      handleCanvasClick={handleCanvasClick}
-    />
-  );
-};
-
-export default DemoOrganizationGraph;
-```
-
-<!-- // 以下代码在页面离开时会出错 -->
-
-<!-- ### 个性化定制-不可编辑
-
-<a href="#配置项">配置</a>
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { OrganizationTreeGraph } from '@ant-design/charts';
-
-const DemoOrganizationGraph: React.FC = () => {
-  const data = {
-    id: 'root',
-    label: 'root',
-    children: [
-      {
-        id: 'c1',
-        label: 'c1',
-        children: [
-          {
-            id: 'c1-1',
-            label: 'c1-1',
-          },
-          {
-            id: 'c1-2',
-            label: 'c1-2',
-            children: [
-              {
-                id: 'c1-2-1',
-                label: 'c1-2-1'
-              },
-              {
-                id: 'c1-2-2',
-                label: 'c1-2-2'
-              },
-            ]
-          },
-        ]
-      },
-      {
-        id: 'c2',
-        label: 'c2'
-      },
-      {
-        id: 'c3',
-        label: 'c3',
-        children: [
-          {
-            id: 'c3-1',
-            label: 'c3-1'
-          },
-          {
-            id: 'c3-2',
-            label: 'c3-2',
-            children: [
-              {
-                id: 'c3-2-1',
-                label: 'c3-2-1'
-              },
-              {
-                id: 'c3-2-2',
-                label: 'c3-2-2'
-              },
-              {
-                id: 'c3-2-3',
-                label: 'c3-2-3'
-              },
-            ]
-          },
-          {
-            id: 'c3-3',
-            label: 'c3-3'
-          },
-        ]
-      }
-    ]
-  }
-
-  /**
-   * 遍历树的方法，仅作为演示 demo 中使用，实际使用中根据具体需求而定
-  */
-  const traverseTree = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
-    if (typeof fn !== 'function') {
-      return;
-    }
-
-    if (fn(data) === false) {
-      return false;
-    }
-
-    if (data && data.children) {
-      for (let i = data.children.length - 1; i >= 0; i--) {
-        if (!traverseTree(data.children[i], fn)) return false;
-      }
-    }
-    return true;
-  };
-
-  traverseTree((data as any), (d: any) => {
-    d.leftIcon = {
-      style: {
-        fill: '#e6fffb',
-        stroke: '#e6fffb'
-      },
-      img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ'
-    }
-    return true
-  })
-
-  return <OrganizationTreeGraph
-    data={data}
-    nodeType='icon-node'
-    enableEdit={false} />;
+  return <OrganizationTreeGraph data={data} nodeType="icon-node" enableEdit={false} />;
 };
 
 export default DemoOrganizationGraph;
@@ -272,7 +126,6 @@ export default DemoOrganizationGraph;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import G6 from '@antv/g6/es'
 import { OrganizationTreeGraph } from '@ant-design/charts';
 
 const DemoOrganizationGraph: React.FC = () => {
@@ -294,19 +147,19 @@ const DemoOrganizationGraph: React.FC = () => {
             children: [
               {
                 id: 'c1-2-1',
-                label: 'c1-2-1'
+                label: 'c1-2-1',
               },
               {
                 id: 'c1-2-2',
-                label: 'c1-2-2'
+                label: 'c1-2-2',
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         id: 'c2',
-        label: 'c2'
+        label: 'c2',
       },
       {
         id: 'c3',
@@ -314,7 +167,7 @@ const DemoOrganizationGraph: React.FC = () => {
         children: [
           {
             id: 'c3-1',
-            label: 'c3-1'
+            label: 'c3-1',
           },
           {
             id: 'c3-2',
@@ -322,30 +175,30 @@ const DemoOrganizationGraph: React.FC = () => {
             children: [
               {
                 id: 'c3-2-1',
-                label: 'c3-2-1'
+                label: 'c3-2-1',
               },
               {
                 id: 'c3-2-2',
-                label: 'c3-2-2'
+                label: 'c3-2-2',
               },
               {
                 id: 'c3-2-3',
-                label: 'c3-2-3'
+                label: 'c3-2-3',
               },
-            ]
+            ],
           },
           {
             id: 'c3-3',
-            label: 'c3-3'
+            label: 'c3-3',
           },
-        ]
-      }
-    ]
-  }
+        ],
+      },
+    ],
+  };
 
   /**
    * 遍历树的方法，仅作为演示 demo 中使用，实际使用中根据具体需求而定
-  */
+   */
   const traverseTree = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
     if (typeof fn !== 'function') {
       return;
@@ -363,143 +216,29 @@ const DemoOrganizationGraph: React.FC = () => {
     return true;
   };
 
-  traverseTree((data as any), (d: any) => {
+  traverseTree(data as any, (d: any) => {
     d.leftIcon = {
       style: {
         fill: '#e6fffb',
-        stroke: '#e6fffb'
+        stroke: '#e6fffb',
       },
-      img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ'
-    }
-    return true
-  })
+      img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ',
+    };
+    return true;
+  });
 
-  return <OrganizationTreeGraph
-    data={data}
-    nodeType='icon-node'
-    enableEdit={true} />;
+  return (
+    <OrganizationTreeGraph
+      data={data}
+      nodeType="icon-node"
+      enableEdit={true}
+      minimapCfg={{ show: true }}
+    />
+  );
 };
 
 export default DemoOrganizationGraph;
 ```
-
-### 显示 Minimap
-
-<a href="#配置项">配置</a>
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { OrganizationTreeGraph } from '@ant-design/charts';
-
-const DemoOrganizationGraph: React.FC = () => {
-  const data = {
-    id: 'root',
-    label: 'root',
-    children: [
-      {
-        id: 'c1',
-        label: 'c1',
-        children: [
-          {
-            id: 'c1-1',
-            label: 'c1-1',
-          },
-          {
-            id: 'c1-2',
-            label: 'c1-2',
-            children: [
-              {
-                id: 'c1-2-1',
-                label: 'c1-2-1'
-              },
-              {
-                id: 'c1-2-2',
-                label: 'c1-2-2'
-              },
-            ]
-          },
-        ]
-      },
-      {
-        id: 'c2',
-        label: 'c2'
-      },
-      {
-        id: 'c3',
-        label: 'c3',
-        children: [
-          {
-            id: 'c3-1',
-            label: 'c3-1'
-          },
-          {
-            id: 'c3-2',
-            label: 'c3-2',
-            children: [
-              {
-                id: 'c3-2-1',
-                label: 'c3-2-1'
-              },
-              {
-                id: 'c3-2-2',
-                label: 'c3-2-2'
-              },
-              {
-                id: 'c3-2-3',
-                label: 'c3-2-3'
-              },
-            ]
-          },
-          {
-            id: 'c3-3',
-            label: 'c3-3'
-          },
-        ]
-      }
-    ]
-  }
-
-  /**
-   * 遍历树的方法，仅作为演示 demo 中使用，实际使用中根据具体需求而定
-  */
-  const traverseTree = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
-    if (typeof fn !== 'function') {
-      return;
-    }
-
-    if (fn(data) === false) {
-      return false;
-    }
-
-    if (data && data.children) {
-      for (let i = data.children.length - 1; i >= 0; i--) {
-        if (!traverseTree(data.children[i], fn)) return false;
-      }
-    }
-    return true;
-  };
-
-  traverseTree((data as any), (d: any) => {
-    d.leftIcon = {
-      style: {
-        fill: '#e6fffb',
-        stroke: '#e6fffb'
-      },
-      img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ'
-    }
-    return true
-  })
-
-  return <OrganizationTreeGraph
-    data={data}
-    nodeType='icon-node'
-    enableEdit={true}
-    minimapCfg = {{ show: true}}
-    />;
-};
-
-export default DemoOrganizationGraph;
-``` -->
 
 ### 配置项
 

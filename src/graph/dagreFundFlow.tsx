@@ -4,6 +4,10 @@ import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import { processMinimap, getGraphSize } from './util';
 import useGraph from '../hooks/useGraph';
+<<<<<<< HEAD
+=======
+import { deepClone } from '../util/utils';
+>>>>>>> master
 
 const defaultStateStyles = {
   hover: {
@@ -45,6 +49,10 @@ const defaultLabelCfg = {
     fontSize: 10,
   },
 };
+<<<<<<< HEAD
+=======
+let graph: any;
+>>>>>>> master
 
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,
@@ -75,7 +83,6 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   handleCanvasClick,
   graphRef,
 }) => {
-  let graph: any;
   const container = React.useRef(null);
 
   const props = {
@@ -112,45 +119,43 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    if (!graph || graph.destroyed) {
-      graph = new G6.Graph({
-        container: container.current as any,
-        width: graphSize[0],
-        height: graphSize[1],
-        modes: {
-          default: behaviors,
-        },
-        defaultNode: {
-          type: nodeType,
-          size: nodeSize,
-          style: nodeStyle,
-          anchorPoints: nodeAnchorPoints,
-          labelCfg: nodeLabelCfg,
-        },
-        defaultEdge: {
-          type: edgeType,
-          style: edgeStyle,
-          colorMap,
-          labelCfg: edgeLabelCfg,
-        },
-        nodeStateStyles,
-        edgeStateStyles,
-        layout,
-      });
-      if (graphRef) {
-        graphRef!.current = graph;
-      }
+    graph = new G6.Graph({
+      container: container.current as any,
+      width: graphSize[0],
+      height: graphSize[1],
+      modes: {
+        default: behaviors,
+      },
+      defaultNode: {
+        type: nodeType,
+        size: nodeSize,
+        style: nodeStyle,
+        anchorPoints: nodeAnchorPoints,
+        labelCfg: nodeLabelCfg,
+      },
+      defaultEdge: {
+        type: edgeType,
+        style: edgeStyle,
+        colorMap,
+        labelCfg: edgeLabelCfg,
+      },
+      nodeStateStyles,
+      edgeStateStyles,
+      layout,
+    });
+    if (graphRef) {
+      graphRef!.current = graph;
     }
 
     processMinimap(minimapCfg, graph);
-
-    graph.data(data);
+    const originData = deepClone(data);
+    graph.data(originData);
     graph.render();
 
     // modify the node color according to the in edge
     const edges = graph.getEdges();
     // @ts-ignore
-    edges.forEach(function (edge) {
+    edges.forEach(function(edge) {
       const line = edge.getKeyShape();
       const stroke = line.attr('stroke');
       const targetNode = edge.getTarget();
@@ -205,11 +210,17 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
       }
     });
 
+<<<<<<< HEAD
     graph.on('canvas:click', () => {
       handleCanvasClick?.(graph);
     });
 
     return () => graph.destroy();
+=======
+    graph.on('canvas:click', (evt: IG6GraphEvent) => {
+      handleCanvasClick && handleCanvasClick(graph);
+    });
+>>>>>>> master
   }, []);
 
   return (

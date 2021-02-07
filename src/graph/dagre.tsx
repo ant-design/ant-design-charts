@@ -3,6 +3,7 @@ import G6, { IEdge, INode, IG6GraphEvent } from '@antv/g6';
 import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import { getGraphSize, processMinimap } from './util';
+import { deepClone } from '../util/utils';
 import useGraph from '../hooks/useGraph';
 
 const defaultStateStyles = {
@@ -34,8 +35,12 @@ const defaultEdgeStyle = {
 const defaultLayout = {
   type: 'dagre',
   rankdir: 'TB',
-  nodesepFunc: () => 0,
-  ranksepFunc: () => 0,
+  nodesepFunc: (d: any) => {
+    return 0;
+  },
+  ranksepFunc: (d: any) => {
+    return 0;
+  },
   controlPoints: true,
 };
 
@@ -45,6 +50,7 @@ const defaultLabelCfg = {
     fontSize: 12,
   },
 };
+let graph: any;
 
 const DagreGraph: React.SFC<RelationGraph> = ({
   data,
@@ -74,7 +80,6 @@ const DagreGraph: React.SFC<RelationGraph> = ({
   handleCanvasClick,
   graphRef,
 }) => {
-  let graph: any;
   const props = {
     data,
     className,
@@ -109,38 +114,37 @@ const DagreGraph: React.SFC<RelationGraph> = ({
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    if (!graph || graph.destroyed) {
-      graph = new G6.Graph({
-        container: container.current as any,
-        width: graphSize[0],
-        height: graphSize[1],
-        modes: {
-          default: behaviors,
-        },
-        defaultNode: {
-          type: nodeType,
-          size: nodeSize,
-          style: nodeStyle,
-          anchorPoints: nodeAnchorPoints,
-          labelCfg: nodeLabelCfg,
-        },
-        defaultEdge: {
-          type: edgeType,
-          style: edgeStyle,
-          labelCfg: edgeLabelCfg,
-        },
-        nodeStateStyles,
-        edgeStateStyles,
-        layout,
-      });
-      if (graphRef) {
-        graphRef!.current = graph;
-      }
+    graph = new G6.Graph({
+      container: container.current as any,
+      width: graphSize[0],
+      height: graphSize[1],
+      modes: {
+        default: behaviors,
+      },
+      defaultNode: {
+        type: nodeType,
+        size: nodeSize,
+        style: nodeStyle,
+        anchorPoints: nodeAnchorPoints,
+        labelCfg: nodeLabelCfg,
+      },
+      defaultEdge: {
+        type: edgeType,
+        style: edgeStyle,
+        labelCfg: edgeLabelCfg,
+      },
+      nodeStateStyles,
+      edgeStateStyles,
+      layout,
+    });
+    if (graphRef) {
+      graphRef!.current = graph;
     }
 
     processMinimap(minimapCfg, graph);
 
-    graph.data(data);
+    const originData = deepClone(data);
+    graph.data(originData);
     graph.render();
     graph.fitView();
 
@@ -188,11 +192,9 @@ const DagreGraph: React.SFC<RelationGraph> = ({
       }
     });
 
-    graph.on('canvas:click', () => {
-      handleCanvasClick?.(graph);
+    graph.on('canvas:click', (evt: IG6GraphEvent) => {
+      handleCanvasClick && handleCanvasClick(graph);
     });
-
-    return () => graph.destroy();
   }, []);
 
   return (
