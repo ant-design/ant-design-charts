@@ -160,10 +160,8 @@ const IndentedTree: React.SFC<RelationGraph> = ({
               collapsed: !item.getModel().collapsed,
             });
             graph.layout();
-          } else {
-            if (handleNodeClick) {
-              handleNodeClick(item, graph);
-            }
+          } else if (handleNodeClick) {
+            handleNodeClick(item, graph);
           }
         };
         graph.on('node:click', (e: IG6GraphEvent) => {

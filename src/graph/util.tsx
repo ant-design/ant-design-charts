@@ -36,5 +36,4 @@ export const processMinimap = (cfg: MiniMapConfig | undefined, graph: Graph) => 
     graph.addPlugin(minimap);
     return minimap;
   }
-  return;
 };

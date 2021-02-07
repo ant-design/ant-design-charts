@@ -188,8 +188,10 @@ const DagreGraph: React.SFC<RelationGraph> = ({
       }
     });
 
-    graph.on('canvas:click', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
+    graph.on('canvas:click', () => {
+      if (handleCanvasClick) {
+        handleCanvasClick(graph);
+      }
     });
   }, []);
 

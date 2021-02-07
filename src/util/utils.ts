@@ -32,7 +32,7 @@ export const deepClone = (source: Object) => {
     return Object.prototype.toString.call(n).slice(8, -1);
   };
 
-  for (let key in source) {
+  for (const key in source) {
     if (source.hasOwnProperty(key)) {
       target[key] =
         getType(source[key]) === 'Object' || getType(source[key]) === 'Array'
