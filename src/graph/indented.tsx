@@ -52,11 +52,8 @@ const defaultLabelCfg = {
     fontSize: 12,
   },
 };
-<<<<<<< HEAD
-=======
 
 let graph: any;
->>>>>>> master
 
 const IndentedTree: React.SFC<RelationGraph> = ({
   data,
@@ -121,7 +118,6 @@ const IndentedTree: React.SFC<RelationGraph> = ({
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-<<<<<<< HEAD
     if (!graph || graph.destroyed) {
       graph = new G6.TreeGraph({
         container: container.current as any,
@@ -148,33 +144,6 @@ const IndentedTree: React.SFC<RelationGraph> = ({
       if (graphRef) {
         graphRef!.current = graph;
       }
-=======
-    graph = new G6.TreeGraph({
-      container: container.current as any,
-      width: graphSize[0],
-      height: graphSize[1],
-      modes: {
-        default: behaviors,
-      },
-      defaultNode: {
-        type: nodeType,
-        size: nodeSize,
-        style: nodeStyle,
-        anchorPoints: nodeAnchorPoints,
-        labelCfg: nodeLabelCfg,
-      },
-      defaultEdge: {
-        type: edgeType,
-        style: edgeStyle,
-      },
-      nodeStateStyles,
-      edgeStateStyles,
-      layout,
-    });
-    if (graphRef) {
-      graphRef!.current = graph;
->>>>>>> master
-    }
 
     processMinimap(minimapCfg, graph);
 
@@ -191,15 +160,10 @@ const IndentedTree: React.SFC<RelationGraph> = ({
             collapsed: !item.getModel().collapsed,
           });
           graph.layout();
-<<<<<<< HEAD
-        } else if (handleNodeClick) {
-          handleNodeClick(item, graph);
-=======
         } else {
           if (handleNodeClick) {
             handleNodeClick(item, graph);
           }
->>>>>>> master
         }
       };
       graph.on('node:click', (e: IG6GraphEvent) => {
@@ -250,7 +214,6 @@ const IndentedTree: React.SFC<RelationGraph> = ({
       }
     });
 
-<<<<<<< HEAD
     graph.on('canvas:click', () => {
       handleCanvasClick?.(graph);
     });
@@ -259,16 +222,6 @@ const IndentedTree: React.SFC<RelationGraph> = ({
       handleCanvasClick?.(graph);
     });
 
-    return () => graph.destroy();
-=======
-    graph.on('canvas:click', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
-    });
-
-    graph.on('canvas:touchstart', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
-    });
->>>>>>> master
   }, []);
   return (
     <ErrorBoundary>

@@ -120,38 +120,6 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
 
-<<<<<<< HEAD
-    if (!graph || graph.destroyed) {
-      if (nodeType === 'icon-node') {
-        customIconNode({ enableEdit });
-      }
-      graph = new G6.TreeGraph({
-        container: container.current as any,
-        width: graphSize[0],
-        height: graphSize[1],
-        linkCenter: true,
-        modes: {
-          default: ['drag-canvas', 'zoom-canvas'],
-        },
-        defaultNode: {
-          type: nodeType,
-          size: nodeSize,
-          style: nodeStyle,
-          labelCfg: nodeLabelCfg,
-        },
-        defaultEdge: {
-          type: edgeType,
-          style: edgeStyle,
-          labelCfg: edgeLabelCfg,
-        },
-        nodeStateStyles,
-        edgeStateStyles,
-        layout,
-      });
-      if (graphRef) {
-        graphRef!.current = graph;
-      }
-=======
     if (nodeType === 'icon-node') {
       customIconNode({ enableEdit });
     }
@@ -182,7 +150,6 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
 
     if (graphRef) {
       graphRef!.current = graph;
->>>>>>> master
     }
 
     processMinimap(minimapCfg, graph);
@@ -229,13 +196,8 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
           if (!model.children) {
             model.children = [];
           }
-<<<<<<< HEAD
+
           const tmpId = Math.random().toString(36).slice(-8);
-=======
-          const tmpId = Math.random()
-            .toString(36)
-            .slice(-8);
->>>>>>> master
           model.children.push({
             id: tmpId,
             label: tmpId,
@@ -273,17 +235,9 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
       }
     });
 
-<<<<<<< HEAD
     graph.on('canvas:click', () => {
       handleCanvasClick?.(graph);
     });
-
-    return () => graph.destroy();
-=======
-    graph.on('canvas:click', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
-    });
->>>>>>> master
   }, []);
 
   return (

@@ -4,10 +4,8 @@ import { RelationGraph } from './types';
 import { ErrorBoundary } from '../base';
 import { processMinimap, getGraphSize } from './util';
 import useGraph from '../hooks/useGraph';
-<<<<<<< HEAD
-=======
 import { deepClone } from '../util/utils';
->>>>>>> master
+
 
 const defaultStateStyles = {
   hover: {
@@ -49,10 +47,8 @@ const defaultLabelCfg = {
     fontSize: 10,
   },
 };
-<<<<<<< HEAD
-=======
+
 let graph: any;
->>>>>>> master
 
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,
@@ -210,17 +206,10 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
       }
     });
 
-<<<<<<< HEAD
     graph.on('canvas:click', () => {
       handleCanvasClick?.(graph);
     });
 
-    return () => graph.destroy();
-=======
-    graph.on('canvas:click', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
-    });
->>>>>>> master
   }, []);
 
   return (
