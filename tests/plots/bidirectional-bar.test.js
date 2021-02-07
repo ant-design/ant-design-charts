@@ -9,7 +9,7 @@ import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('BidirectionalBar render', () => { 
+describe('BidirectionalBar render', () => {
   let container;
   const data = [
     {
@@ -33,8 +33,8 @@ describe('BidirectionalBar render', () => {
   });
 
   it('classname * loading * style', () => {
-    const props =  {
-      style:  {
+    const props = {
+      style: {
         height: '80%',
       },
       className: 'container',
@@ -46,7 +46,7 @@ describe('BidirectionalBar render', () => {
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
     expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%'
+      height: '80%',
     });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
@@ -54,7 +54,7 @@ describe('BidirectionalBar render', () => {
   });
 
   it('classname * loading * style with default', () => {
-    const props =  {};
+    const props = {};
     const testRenderer = create(<BidirectionalBar {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
@@ -63,16 +63,16 @@ describe('BidirectionalBar render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%'
+      height: '100%',
     });
   });
-  
+
   it('error template', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error">custom error</span>,
     };
@@ -82,8 +82,8 @@ describe('BidirectionalBar render', () => {
       yField: ['2016年耕地总面积', '2016年转基因种植面积'],
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<BidirectionalBar {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
@@ -93,7 +93,7 @@ describe('BidirectionalBar render', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
-      chartRef: (ref) => { 
+      chartRef: (ref) => {
         chartRef = ref;
       },
     };
@@ -103,8 +103,8 @@ describe('BidirectionalBar render', () => {
       yField: ['2016年耕地总面积', '2016年转基因种植面积'],
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<BidirectionalBar {...props} {...chartProps} />, container);
     });
@@ -127,12 +127,12 @@ describe('BidirectionalBar render', () => {
       yField: ['2016年耕地总面积', '2016年转基因种植面积'],
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<BidirectionalBar {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.views[0].getData().length).toEqual(data.length);;
+    expect(chartRef.current.chart.views[0].getData().length).toEqual(data.length);
   });
 
   it('chartRef with useRef', () => {
@@ -145,11 +145,11 @@ describe('BidirectionalBar render', () => {
       yField: ['2016年耕地总面积', '2016年转基因种植面积'],
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<BidirectionalBar {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<BidirectionalBar {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.views[0].getData().length).toEqual(data.length);;
+    expect(refs.current.getChart().chart.views[0].getData().length).toEqual(data.length);
   });
-})
+});

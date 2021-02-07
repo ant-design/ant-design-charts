@@ -2,33 +2,33 @@
 
 .__tab-box {
   position: fixed;
-  width: 100%;
   top: 64px;
+  z-index: 66;
+  width: 100%;
   padding: 16px 0;
   background: #fff;
-  z-index: 66;
 }
 
 a.__antd-charts-theme-tab-item {
   position: relative;
-  margin-right: 32px;
   display: inline-block;
+  margin-right: 32px;
   color: #333;
+  font-weight: 500;
   font-size: 24px;
   line-height: 1;
-  font-weight: 500;
 
   &::after {
-    content: '';
     position: absolute;
-    display: inline-block;
-    left: -2px;
     right: -2px;
     bottom: -10px;
+    left: -2px;
+    display: inline-block;
     height: 5px;
     background-image: linear-gradient(45deg, fadeOut(@c-primary, 10%), fadeOut(@c-primary, 30%));
-    transition: all 0.3s cubic-bezier(0.68, 0, 0.25, 1.5);
     transform-origin: top center;
+    transition: all 0.3s cubic-bezier(0.68, 0, 0.25, 1.5);
+    content: '';
   }
 
   &:not([data-active])::after {
@@ -37,19 +37,19 @@ a.__antd-charts-theme-tab-item {
   }
 }
 .__layout-toc-api {
-  list-style: none;
   position: fixed;
-  width: 136px;
-  max-height: calc(90vh - 80px);
-  z-index: 99;
   top: 114px;
   right: 0;
+  z-index: 99;
+  box-sizing: content-box;
+  width: 136px;
+  max-height: calc(90vh - 80px);
   margin: 0;
   padding: 0 24px 0 0;
+  overflow: auto;
+  list-style: none;
   background-color: #fff;
   box-shadow: 0 0 16px 16px #fff;
-  box-sizing: content-box;
-  overflow: auto;
 
   > li {
     position: relative;
@@ -60,13 +60,13 @@ a.__antd-charts-theme-tab-item {
       display: block;
       width: 100%;
       padding: 4px 0 4px 6px;
-      text-indent: 12px;
+      overflow: hidden;
+      color: #454d64;
       font-size: 13px;
       line-height: 1.4;
       white-space: nowrap;
+      text-indent: 12px;
       text-overflow: ellipsis;
-      overflow: hidden;
-      color: #454d64;
       cursor: pointer;
     }
 
@@ -76,13 +76,13 @@ a.__antd-charts-theme-tab-item {
   }
   li.active {
     &::after {
-      content: '';
+      position: absolute;
+      top: 0;
+      left: -2px;
       width: 2px;
       height: 100%;
-      position: absolute;
-      left: -2px;
-      top: 0;
       background-color: #4569d4;
+      content: '';
     }
   }
 }

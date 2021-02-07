@@ -79,7 +79,7 @@ const ChartsLevel = {
   Bullet: '/progress-plots',
   Gauge: '/progress-plots',
   Liquid: '/progress-plots',
-  MultiView: '/plugin'
-}
+  MultiView: '/plugin',
+};
 
 module.exports = { filterFileFolder, filterTitle, exampleBaseUrl, chartNames, ChartsLevel };

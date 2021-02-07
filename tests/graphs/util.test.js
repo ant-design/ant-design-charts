@@ -7,7 +7,6 @@ import { processMinimap, getGraphSize } from '../../src/graph/util';
 
 const refs = renderHook(() => useRef());
 
-
 describe('Dagre Graph', () => {
   let container;
   beforeEach(() => {

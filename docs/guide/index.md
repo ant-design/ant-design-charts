@@ -18,7 +18,7 @@ nav:
 
 <br /> Just like using components to generate charts, out of the box, you don't even need to modify any configuration items can meet the requirements, the true default is easy to use, there is no feeling tempted to try.
 
-<br />![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/208487/1586836312040-340d7971-1ac7-4ee6-af81-e2cae2b05963.png#align=left&display=inline&height=951&name=image.png&originHeight=1901&originWidth=2000&size=968667&status=done&style=none&width=1000)
+<br />![image.png](https://gw.alipayobjects.com/zos/antfincdn/TcUwTMuNxI/0a9ac684-e862-4889-b783-e0a75a0e3138.png#align=left&display=inline&height=951&name=image.png&originHeight=1901&originWidth=2000&size=968667&status=done&style=none&width=1000)
 
 ### Why?
 

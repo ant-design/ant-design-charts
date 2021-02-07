@@ -4,13 +4,13 @@ const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 module.exports = {
   entry: {
     // charts: ['@babel/polyfill', './src/index.ts'],
-    'charts': './src/index.charts.ts',
-    'charts_g6': './src/index.g6.ts',
+    charts: './src/index.charts.ts',
+    charts_g6: './src/index.g6.ts',
   },
   output: {
     filename: '[name].min.js',
@@ -21,7 +21,7 @@ module.exports = {
   resolve: {
     mainFields: ['module', 'main'],
     extensions: ['.ts', '.tsx', '.js', '.less'],
-    modules: ['node_modules']
+    modules: ['node_modules'],
   },
   externals: {
     react: 'React',
@@ -43,18 +43,19 @@ module.exports = {
               transpileOnly: true,
             },
           },
-        ]
+        ],
       },
-     
     ],
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new ForkTsCheckerWebpackPlugin({
-      eslint: undefined
+      eslint: undefined,
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
-    ...(process.env.MODE === 'ANALYZER' ? [new BundleAnalyzerPlugin({ analyzerMode: 'static' })] : []),
+    ...(process.env.MODE === 'ANALYZER'
+      ? [new BundleAnalyzerPlugin({ analyzerMode: 'static' })]
+      : []),
   ],
   performance: {
     hints: false,

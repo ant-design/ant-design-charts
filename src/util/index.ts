@@ -1,4 +1,4 @@
-import { isType, clone, hasPath, setPath, reactDomToString } from './utils';
+import { isType, clone, hasPath, setPath, reactDomToString, deepClone } from './utils';
 import { getChart } from './getChart';
 
 const utils = {
@@ -7,6 +7,7 @@ const utils = {
   hasPath,
   setPath,
   reactDomToString,
+  deepClone,
 };
 
 export { utils, getChart };

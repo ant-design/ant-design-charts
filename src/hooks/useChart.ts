@@ -3,6 +3,7 @@ import { isEqual } from '@antv/util';
 import { utils } from '../util';
 import { CommonProps } from '../interface';
 import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip, G2 } from '@antv/g2plot';
+
 export interface ContainerProps extends CommonProps {
   /** 图表渲染完成回调 */
   onReady?: (chart: G2PlotConfig) => void;

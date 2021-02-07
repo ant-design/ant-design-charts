@@ -111,4 +111,4 @@ export default Page;
 
 - 钉钉群组号码: 30233731
 
-<img src="https://gw.alipayobjects.com/zos/antfincdn/9sHnl5k%26u4/dingdingqun.png" width="200" height="266" />
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*g8nmS4bI33EAAAAAAAAAAAAAARQnAQ" width="200" alt="DingTalk">
