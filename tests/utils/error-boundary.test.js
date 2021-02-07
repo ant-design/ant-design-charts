@@ -1,9 +1,9 @@
-import React  from 'react';
+import React from 'react';
 import { create } from 'react-test-renderer';
 import Area from '../../src/area';
 import { ErrorBoundary } from '../../src/base';
 
-describe('Area render', () => { 
+describe('Area render', () => {
   let container;
   beforeEach(() => {
     container = document.createElement('div');
@@ -19,7 +19,7 @@ describe('Area render', () => {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: <span id="error">custom error</span>,
     };
@@ -29,11 +29,13 @@ describe('Area render', () => {
       yField: 'scales',
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<Area {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
-    expect(testInstance.findByType(ErrorBoundary).children[0].children[0].indexOf('') !== -1).toBeTruthy();
+    expect(
+      testInstance.findByType(ErrorBoundary).children[0].children[0].indexOf('') !== -1,
+    ).toBeTruthy();
   });
 
   it('error template with callback', () => {
@@ -41,7 +43,7 @@ describe('Area render', () => {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error-callback">custom error with callback</span>,
     };
@@ -51,10 +53,12 @@ describe('Area render', () => {
       yField: 'scales',
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<Area {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
-    expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error with callback']);
+    expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual([
+      'custom error with callback',
+    ]);
   });
-})
+});

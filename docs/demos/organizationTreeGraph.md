@@ -264,13 +264,13 @@ OrganizationTreeGraph 支持以下配置项：
 | enableEdit | boolean | false | 是否开启编辑功能，默认为 false，设置为 true 后，可以动态增加或删除节点 |
 | minimapCfg | Object | {show: false, size: [150, 100], type: 'keyShape'} | 控制是否显示缩略图以及缩略图配置，若 minimapCfg.show 设置为 true，则显示 Minimap，其他配置参见 [G6 Minimap](https://g6.antv.vision/zh/docs/api/Plugins/#minimap) |
 | collapseExpand | boolean | false | 是否允许点击节点收起或展示子节点，默认为 false，设置为 true 后，可以通过点击节点收起或展示子节点，当 enableEdit 设置为 true 时，建议将该值设置为 false |
-| handleNodeClick | (item: INode, graph: IGraph) => void | null | 点击节点的回调函数 |
-| handleEdgeClick | (item: IEdge, graph: IGraph) => void | null | 点击边的回调函数 |
-| handleNodeHover | (item: INode, graph: IGraph) => void | null | 鼠标 hover 到节点上的回调函数 |
-| handleNodeUnHover | (item: INode, graph: IGraph) => void | null | 鼠标从节点上移开的回调函数 |
-| handleEdgeHover | (item: IEdge, graph: IGraph) => void | null | 鼠标 hover 到边上的回调函数 |
-| handleEdgeUnHover | (item: IEdge, graph: IGraph) => void | null | 鼠标从边上移开的回调函数 |
-| handleNodeClick | Object | false | undefined | 点击点的响应函数 |
-| handleNodeHover | Object | false | undefined | hover 点的响应函数 |
-| handleNodeUnHover | Object | false | undefined | unhover 点的响应函数 |
-| handleCanvasClick | Object | false | undefined | 点击画布空白区域的响应函数 |
+| handleNodeClick | `(item: INode, graph: IGraph) => void` \| `null` | 点击节点的回调函数 |
+| handleEdgeClick | `(item: IEdge, graph: IGraph) => void` \| `null` | 点击边的回调函数 |
+| handleNodeHover | `(item: INode, graph: IGraph) => void` \| `null` | 鼠标 hover 到节点上的回调函数 |
+| handleNodeUnHover | `(item: INode, graph: IGraph) => void` \|`null` | 鼠标从节点上移开的回调函数 |
+| handleEdgeHover | `(item: IEdge, graph: IGraph) => void` \| `null` | 鼠标 hover 到边上的回调函数 |
+| handleEdgeUnHover | `(item: IEdge, graph: IGraph) => void` \| `null` | 鼠标从边上移开的回调函数 |
+| handleNodeClick | `Object` \| `false` | undefined | 点击点的响应函数 |
+| handleNodeHover | `Object` \| `false` | undefined | hover 点的响应函数 |
+| handleNodeUnHover | `Object` \| `false` | undefined | unhover 点的响应函数 |
+| handleCanvasClick | `Object` \| `false` | undefined | 点击画布空白区域的响应函数 |

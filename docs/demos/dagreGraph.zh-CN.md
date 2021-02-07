@@ -144,13 +144,13 @@ const DemoDagreGraph: React.FC = () => {
     graph.setItemState(item, 'selected', true);
   };
 
-  const handleCanvasClick = graph => {
+  const handleCanvasClick = (graph) => {
     const selectedEdges = graph.findAllByState('edge', 'selected');
-    selectedEdges.forEach(edge => {
+    selectedEdges.forEach((edge) => {
       graph.setItemState(edge, 'selected', false);
     });
     const selectedNodes = graph.findAllByState('node', 'selected');
-    selectedNodes.forEach(node => {
+    selectedNodes.forEach((node) => {
       graph.setItemState(node, 'selected', false);
     });
   };
@@ -559,7 +559,7 @@ export default DemoDagreGraph;
 | nodeLabelCfg | Object | false | {style: { fill: '#000', fontSize: 12 }} | [节点文本配置](https://g6.antv.vision/zh/docs/manual/middle/elements/nodes/defaultNode#%E6%A0%87%E7%AD%BE%E6%96%87%E6%9C%AC-label-%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE-labelcfg) |
 | edgeLabelCfg | Object | false | {style: { fill: '#000', fontSize: 12 }} | [边文本配置](https://g6.antv.vision/zh/docs/manual/middle/elements/edges/defaultEdge#%E6%A0%87%E7%AD%BE%E6%96%87%E6%9C%AC-label-%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE-labelcfg) |
 | nodeAnchorPoints | Number[][] | false | [[0, 0.5], [1, 0.5]] | [节点相关边的连入位置](https://g6.antv.vision/zh/docs/manual/middle/elements/anchorpoint) |
-| behaviors | string[] | false | 默认 udnefined，示例：['drag-canvas', 'zoom-canvas'] | ['drag-canvas', 'zoom-canvas'] | 默认的[内置交互](https://g6.antv.vision/zh/docs/manual/middle/states/defaultBehavior) |
+| behaviors | string[] | false | 默认 udnefined，示例：`['drag-canvas', 'zoom-canvas']` \| `['drag-canvas', 'zoom-canvas']` | 默认的[内置交互](https://g6.antv.vision/zh/docs/manual/middle/states/defaultBehavior) |
 | layout | Object | false | {type: 'dagre', rankdir: 'TB', nodesepFunc: (d: any) => 0, ranksepFunc: (d: any) => 0, controlPoints: true } | 布局配置项 |
 | minimapCfg | Object | {show: false, size: [150, 100], type: 'keyShape'} | 控制是否显示缩略图以及缩略图配置，若 minimapCfg.show 设置为 true，则显示 Minimap，其他配置参见 [G6 Minimap](https://g6.antv.vision/zh/docs/api/Plugins/#minimap) |
 | handleEdgeClick | Object | false | undefined | 点击边的响应函数 |

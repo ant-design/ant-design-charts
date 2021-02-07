@@ -20,7 +20,10 @@ const defaultNodeStyle = {
   fill: '#f00',
 };
 
-const defaultNodeAnchorPoints = [[0.5, 0], [0.5, 1]];
+const defaultNodeAnchorPoints = [
+  [0.5, 0],
+  [0.5, 1],
+];
 
 const defaultEdgeStyle = {
   stroke: '#91d5ff',
@@ -43,6 +46,7 @@ const defaultLabelCfg = {
     fontSize: 10,
   },
 };
+
 let graph: any;
 
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
@@ -146,7 +150,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     // modify the node color according to the in edge
     const edges = graph.getEdges();
     // @ts-ignore
-    edges.forEach(function(edge) {
+    edges.forEach(function (edge) {
       const line = edge.getKeyShape();
       const stroke = line.attr('stroke');
       const targetNode = edge.getTarget();
@@ -201,8 +205,8 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
       }
     });
 
-    graph.on('canvas:click', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
+    graph.on('canvas:click', () => {
+      handleCanvasClick?.(graph);
     });
   }, []);
 

@@ -18,7 +18,7 @@ const mdprima = () => {
       const fileInfo = parseFile(tree.value, 'code');
       if (fileInfo.hasError) {
         tree.value = fileInfo.code;
-      } else { 
+      } else {
         ejs.renderFile(
           path.resolve(__dirname, '../template/doc/api.ejs'),
           {

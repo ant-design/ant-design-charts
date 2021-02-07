@@ -1,9 +1,0 @@
-{
-  "extends": "@umijs/fabric/dist/eslint",
-  "rules": {
-    "import/no-unresolved": 0,
-    "import/no-extraneous-dependencies": 0,
-    "no-use-before-define": 0,
-    "import/no-dynamic-require": 0
-  }
-}

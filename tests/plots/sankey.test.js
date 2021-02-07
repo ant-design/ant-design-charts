@@ -9,7 +9,7 @@ import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Sankey render', () => { 
+describe('Sankey render', () => {
   let container;
   const data = [
     {
@@ -21,7 +21,7 @@ describe('Sankey render', () => {
       source: '结果页',
       target: '首页 UV',
       value: 40,
-    }
+    },
   ];
   beforeEach(() => {
     container = document.createElement('div');
@@ -33,8 +33,8 @@ describe('Sankey render', () => {
   });
 
   it('classname * loading * style', () => {
-    const props =  {
-      style:  {
+    const props = {
+      style: {
         height: '80%',
       },
       className: 'container',
@@ -46,7 +46,7 @@ describe('Sankey render', () => {
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
     expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%'
+      height: '80%',
     });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
@@ -54,7 +54,7 @@ describe('Sankey render', () => {
   });
 
   it('classname * loading * style with default', () => {
-    const props =  {};
+    const props = {};
     const testRenderer = create(<Sankey {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
@@ -63,28 +63,28 @@ describe('Sankey render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%'
+      height: '100%',
     });
   });
-  
+
   it('error template', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error">custom error</span>,
     };
     const chartProps = {
       data: [],
-     sourceField: 'source',
-    targetField: 'target',
-    weightField: 'value',
+      sourceField: 'source',
+      targetField: 'target',
+      weightField: 'value',
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<Sankey {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
@@ -94,7 +94,7 @@ describe('Sankey render', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
-      chartRef: (ref) => { 
+      chartRef: (ref) => {
         chartRef = ref;
       },
     };
@@ -105,8 +105,8 @@ describe('Sankey render', () => {
       weightField: 'value',
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Sankey {...props} {...chartProps} />, container);
     });
@@ -114,7 +114,7 @@ describe('Sankey render', () => {
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.views[0].getData().length).toBe(3);
+    expect(chartRef.chart.views[0].getData().length).toBe(2);
   });
 
   it('chartRef with createRef', () => {
@@ -130,12 +130,12 @@ describe('Sankey render', () => {
       weightField: 'value',
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Sankey {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.views[0].getData().length).toBe(3);
+    expect(chartRef.current.chart.views[0].getData().length).toBe(2);
   });
 
   it('chartRef with useRef', () => {
@@ -149,11 +149,11 @@ describe('Sankey render', () => {
       weightField: 'value',
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<Sankey {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Sankey {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.views[0].getData().length).toBe(3);
+    expect(refs.current.getChart().chart.views[0].getData().length).toBe(2);
   });
-})
+});

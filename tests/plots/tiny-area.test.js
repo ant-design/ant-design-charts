@@ -9,16 +9,9 @@ import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('TinyArea render', () => { 
+describe('TinyArea render', () => {
   let container;
-  const data = [
-    264,
-    417,
-    438,
-    887,
-    309,
-    397,
-  ];
+  const data = [264, 417, 438, 887, 309, 397];
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -29,8 +22,8 @@ describe('TinyArea render', () => {
   });
 
   it('classname * loading * style', () => {
-    const props =  {
-      style:  {
+    const props = {
+      style: {
         height: '80%',
       },
       className: 'container',
@@ -42,7 +35,7 @@ describe('TinyArea render', () => {
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
     expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%'
+      height: '80%',
     });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
@@ -50,7 +43,7 @@ describe('TinyArea render', () => {
   });
 
   it('classname * loading * style with default', () => {
-    const props =  {};
+    const props = {};
     const testRenderer = create(<TinyArea {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
@@ -59,16 +52,16 @@ describe('TinyArea render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%'
+      height: '100%',
     });
   });
-  
+
   it('error template', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error">custom error</span>,
     };
@@ -76,8 +69,8 @@ describe('TinyArea render', () => {
       data: [],
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<TinyArea {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
@@ -87,7 +80,7 @@ describe('TinyArea render', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
-      chartRef: (ref) => { 
+      chartRef: (ref) => {
         chartRef = ref;
       },
     };
@@ -95,8 +88,8 @@ describe('TinyArea render', () => {
       data,
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<TinyArea {...props} {...chartProps} />, container);
     });
@@ -104,16 +97,14 @@ describe('TinyArea render', () => {
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.getData()).toEqual(
-      [
-        { x: '0', y: 264 },
-        { x: '1', y: 417 },
-        { x: '2', y: 438 },
-        { x: '3', y: 887 },
-        { x: '4', y: 309 },
-        { x: '5', y: 397 }
-      ]
-    );
+    expect(chartRef.chart.getData()).toEqual([
+      { x: '0', y: 264 },
+      { x: '1', y: 417 },
+      { x: '2', y: 438 },
+      { x: '3', y: 887 },
+      { x: '4', y: 309 },
+      { x: '5', y: 397 },
+    ]);
   });
 
   it('chartRef with createRef', () => {
@@ -126,21 +117,19 @@ describe('TinyArea render', () => {
       data,
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<TinyArea {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.getData()).toEqual(
-      [
-        { x: '0', y: 264 },
-        { x: '1', y: 417 },
-        { x: '2', y: 438 },
-        { x: '3', y: 887 },
-        { x: '4', y: 309 },
-        { x: '5', y: 397 }
-      ]
-    );
+    expect(chartRef.current.chart.getData()).toEqual([
+      { x: '0', y: 264 },
+      { x: '1', y: 417 },
+      { x: '2', y: 438 },
+      { x: '3', y: 887 },
+      { x: '4', y: 309 },
+      { x: '5', y: 397 },
+    ]);
   });
 
   it('chartRef with useRef', () => {
@@ -151,20 +140,18 @@ describe('TinyArea render', () => {
       data,
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<TinyArea {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<TinyArea {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.getData()).toEqual(
-      [
-        { x: '0', y: 264 },
-        { x: '1', y: 417 },
-        { x: '2', y: 438 },
-        { x: '3', y: 887 },
-        { x: '4', y: 309 },
-        { x: '5', y: 397 }
-      ]
-    );
+    expect(refs.current.getChart().chart.getData()).toEqual([
+      { x: '0', y: 264 },
+      { x: '1', y: 417 },
+      { x: '2', y: 438 },
+      { x: '3', y: 887 },
+      { x: '4', y: 309 },
+      { x: '5', y: 397 },
+    ]);
   });
-})
+});

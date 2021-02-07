@@ -9,13 +9,9 @@ import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Histogram render', () => { 
+describe('Histogram render', () => {
   let container;
-  const data = [
-    { value: 2 },
-    { value: 2 },
-    { value: 5 },
-  ];
+  const data = [{ value: 2 }, { value: 2 }, { value: 5 }];
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -26,8 +22,8 @@ describe('Histogram render', () => {
   });
 
   it('classname * loading * style', () => {
-    const props =  {
-      style:  {
+    const props = {
+      style: {
         height: '80%',
       },
       className: 'container',
@@ -39,7 +35,7 @@ describe('Histogram render', () => {
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
     expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%'
+      height: '80%',
     });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
@@ -47,7 +43,7 @@ describe('Histogram render', () => {
   });
 
   it('classname * loading * style with default', () => {
-    const props =  {};
+    const props = {};
     const testRenderer = create(<Histogram {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
@@ -56,16 +52,16 @@ describe('Histogram render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%'
+      height: '100%',
     });
   });
-  
+
   it('error template', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error">custom error</span>,
     };
@@ -74,8 +70,8 @@ describe('Histogram render', () => {
       binField: 'value',
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<Histogram {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
@@ -85,7 +81,7 @@ describe('Histogram render', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
-      chartRef: (ref) => { 
+      chartRef: (ref) => {
         chartRef = ref;
       },
     };
@@ -94,8 +90,8 @@ describe('Histogram render', () => {
       binField: 'value',
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Histogram {...props} {...chartProps} />, container);
     });
@@ -103,9 +99,10 @@ describe('Histogram render', () => {
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.getData()).toEqual(
-      [ { range: [ 1.5, 3 ], count: 2 }, { range: [ 4.5, 6 ], count: 1 } ]
-    );
+    expect(chartRef.chart.getData()).toEqual([
+      { range: [1.5, 3], count: 2 },
+      { range: [4.5, 6], count: 1 },
+    ]);
   });
 
   it('chartRef with createRef', () => {
@@ -119,14 +116,15 @@ describe('Histogram render', () => {
       binField: 'value',
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Histogram {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.getData()).toEqual(
-      [ { range: [ 1.5, 3 ], count: 2 }, { range: [ 4.5, 6 ], count: 1 } ]
-    );
+    expect(chartRef.current.chart.getData()).toEqual([
+      { range: [1.5, 3], count: 2 },
+      { range: [4.5, 6], count: 1 },
+    ]);
   });
 
   it('chartRef with useRef', () => {
@@ -138,13 +136,14 @@ describe('Histogram render', () => {
       binField: 'value',
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<Histogram {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Histogram {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.getData()).toEqual(
-      [ { range: [ 1.5, 3 ], count: 2 }, { range: [ 4.5, 6 ], count: 1 } ]
-    );
+    expect(refs.current.getChart().chart.getData()).toEqual([
+      { range: [1.5, 3], count: 2 },
+      { range: [4.5, 6], count: 1 },
+    ]);
   });
-})
+});

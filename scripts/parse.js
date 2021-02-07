@@ -53,7 +53,6 @@ const isNewExpression = (node) => {
   return node.type === 'VariableDeclarator' && get(node, 'init.type') === 'NewExpression';
 };
 
-
 // 状态重置
 const reset = () => {
   blcokBody = '';
@@ -62,7 +61,7 @@ const reset = () => {
   dataKey = '';
 };
 const FunctionTypes = ['FunctionExpression', 'ArrowFunctionExpression'];
-const excludeFunctionNames = ['formatter']
+const excludeFunctionNames = ['formatter'];
 // 提取核心信息
 const getOptions = (ast) => {
   estraverse.replace(ast, {
@@ -73,7 +72,8 @@ const getOptions = (ast) => {
       if (
         FunctionTypes.includes(node.type) &&
         ['data', 'fetchData'].includes(get(node, ['params', 0, 'name'])) &&
-        get(node, ['body', 'type']) === 'BlockStatement' && !excludeFunctionNames.includes(get(node, ['id', 'name']))
+        get(node, ['body', 'type']) === 'BlockStatement' &&
+        !excludeFunctionNames.includes(get(node, ['id', 'name']))
       ) {
         dataKey = get(node, ['params', 0, 'name']);
         const block = get(node, 'body.body', []);
@@ -189,10 +189,13 @@ const parseFile = (params, type) => {
     getOptions(parseCode);
     generateFile(parseCode);
     return {
-      code: escodegen.generate(parseCode).replace("'use strict';", '').replace("var _g2plot = require('@antv/g2plot');", ''),
+      code: escodegen
+        .generate(parseCode)
+        .replace("'use strict';", '')
+        .replace("var _g2plot = require('@antv/g2plot');", ''),
       title: get(metaInfo, 'title.zh'),
       chartName,
-      hasError: false
+      hasError: false,
     };
   } catch (err) {
     log(chalk.red(`解析出错：params: ${params}; type: ${type}`));
@@ -201,7 +204,7 @@ const parseFile = (params, type) => {
       code: params,
       title: '',
       chartName,
-      hasError: true
+      hasError: true,
     };
   }
 };

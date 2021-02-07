@@ -6,7 +6,6 @@ import { IndentedTree } from '../../src/graph';
 
 const refs = renderHook(() => useRef());
 
-
 describe('IndentedTree', () => {
   let container;
   beforeEach(() => {
@@ -84,30 +83,47 @@ describe('IndentedTree', () => {
     ],
   };
   it('鼠标事件', () => {
-
-    let edgeClicked = false, edgeHovered = false, edgeUnhovered = false,
-    nodeClicked = false, nodeHovered = false, nodeUnhovered = false,
-    canvasClicked = false;
+    let edgeClicked = false,
+      edgeHovered = false,
+      edgeUnhovered = false,
+      nodeClicked = false,
+      nodeHovered = false,
+      nodeUnhovered = false,
+      canvasClicked = false;
 
     const config = {
       width: 650,
       height: 500,
       data,
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
-      handleEdgeClick: () => {edgeClicked = true},
-      handleEdgeHover: () => {edgeHovered = true},
-      handleEdgeUnHover: () => {edgeUnhovered = true},
-      handleNodeClick: () => {nodeClicked = true},
-      handleNodeHover: () => {nodeHovered = true},
-      handleNodeUnHover: () => {nodeUnhovered = true},
-      handleCanvasClick: () => {canvasClicked = true},
+      handleEdgeClick: () => {
+        edgeClicked = true;
+      },
+      handleEdgeHover: () => {
+        edgeHovered = true;
+      },
+      handleEdgeUnHover: () => {
+        edgeUnhovered = true;
+      },
+      handleNodeClick: () => {
+        nodeClicked = true;
+      },
+      handleNodeHover: () => {
+        nodeHovered = true;
+      },
+      handleNodeUnHover: () => {
+        nodeUnhovered = true;
+      },
+      handleCanvasClick: () => {
+        canvasClicked = true;
+      },
       collapseExpand: true,
       enableEdit: true,
       nodeType: 'card-node',
       minimapCfg: {
-        show: true
+        show: true,
       },
-      graphRef: refs
+      graphRef: refs,
     };
 
     act(() => {
@@ -117,18 +133,18 @@ describe('IndentedTree', () => {
     const node = refs.current.getNodes()[0];
     const edge = refs.current.getEdges()[0];
 
-    const collapseIcon = node.getContainer().find(e => e.get('name') === 'collapse-icon')
+    const collapseIcon = node.getContainer().find((e) => e.get('name') === 'collapse-icon');
 
-    refs.current.emit('edge:mouseenter', { item: edge })
-    refs.current.emit('node:mouseenter', { item: node })
-    refs.current.emit('edge:mouseleave', { item: edge })
-    refs.current.emit('node:mouseleave', { item: node })
-    refs.current.emit('edge:click', { item: edge })
-    refs.current.emit('node:click', { item: node, target: collapseIcon })
-    refs.current.emit('canvas:click', {})
-    refs.current.emit('node:touchstart', { item: node, target: collapseIcon })
-    refs.current.emit('edge:touchstart', { item: edge })
-    refs.current.emit('canvas:touchstart', {})
+    refs.current.emit('edge:mouseenter', { item: edge });
+    refs.current.emit('node:mouseenter', { item: node });
+    refs.current.emit('edge:mouseleave', { item: edge });
+    refs.current.emit('node:mouseleave', { item: node });
+    refs.current.emit('edge:click', { item: edge });
+    refs.current.emit('node:click', { item: node, target: collapseIcon });
+    refs.current.emit('canvas:click', {});
+    refs.current.emit('node:touchstart', { item: node, target: collapseIcon });
+    refs.current.emit('edge:touchstart', { item: edge });
+    refs.current.emit('canvas:touchstart', {});
 
     expect(edgeClicked).toBe(true);
     expect(edgeHovered).toBe(true);

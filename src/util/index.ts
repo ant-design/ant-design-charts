@@ -6,7 +6,7 @@ const utils = {
   clone,
   hasPath,
   setPath,
-  deepClone
+  deepClone,
 };
 
 export { utils, getChart };
