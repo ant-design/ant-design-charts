@@ -9,7 +9,7 @@ const DefaultAttachConfig = {
     border: '1px solid #ddd',
   },
   mapConfig: {
-    center: [113.60540108435657, 12.833692637803168],
+    center: [113.60540108435657, 12.833692637803168] as [number, number],
     pitch: 0,
     style: 'blank',
     zoom: 1.93,

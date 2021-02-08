@@ -81,7 +81,7 @@ export const setPath = (source: object, path: string[], value: any) => {
   return source;
 };
 
-export const reactDomToString = (source: object, path: string[], type?: string) => {
+export const reactDomToString = (source: any, path: string[], type?: string) => {
   const statisticCustomHtml = hasPath(source, path);
   setPath(source, path, (...arg: any[]) => {
     const statisticDom = isType(statisticCustomHtml, 'Function')

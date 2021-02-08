@@ -1,4 +1,3 @@
-export * from './district';
 import { CreateDistrict } from './district';
 import { CreateMapBox } from './mapbox';
 

@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Scene, ISceneConfig, IMapOptions, ILayerOptions } from '@antv/l7';
-import SceneComponent from './components/scene';
-import { CreateDistrict, CreateMapBox, LayerOptions, DistrictType } from './util';
-import { DefaultAttachConfig } from './contants';
+import { Scene } from '@antv/l7';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
-import { CommonProps } from '../interface';
-
-export interface IMapSceneConig extends CommonProps {
-  children?: React.ReactNode;
-  sceneOption?: Partial<ISceneConfig>;
-  mapConfig: IMapOptions;
-  layerConfig?: ILayerOptions;
-  attachMap?: Omit<IMapSceneConig, 'attachMap'>;
-  type?: DistrictType;
-  /** 图表渲染完成回调 */
-  onReady?: (scene: Scene, layer: LayerOptions) => void;
-}
+import SceneComponent from './components/scene';
+import { CreateDistrict, CreateMapBox } from './util';
+import { DefaultAttachConfig } from './contants';
+import { IMapSceneConig, LayerOptions } from './index.d';
 
 const DistrictMap = (props: IMapSceneConig) => {
   const {
@@ -52,7 +41,7 @@ const DistrictMap = (props: IMapSceneConig) => {
       // @ts-ignore
       layer.updateData(layerConfig.data);
     }
-  }, [layerConfig.data]);
+  }, [layerConfig?.data]);
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
@@ -95,7 +84,7 @@ const DistrictMap = (props: IMapSceneConig) => {
                 }),
               );
               if (onReady) {
-                onReady(scene as Scene, layer as LayerOptions);
+                onReady(scene as Scene, layer);
               }
             }}
           />

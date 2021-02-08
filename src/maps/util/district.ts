@@ -1,4 +1,3 @@
-import { Scene, ILayerOptions, Layers } from '@antv/l7';
 import {
   WorldLayer,
   CountryLayer,
@@ -8,28 +7,7 @@ import {
   DrillDownLayer,
 } from '@antv/l7-district';
 import { utils } from '../../util';
-
-export type DistrictType =
-  | 'WorldLayer'
-  | 'CountryLayer'
-  | 'ProvinceLayer'
-  | 'CityLayer'
-  | 'CountyLayer'
-  | 'DrillDownLayer';
-
-export type LayerOptions =
-  | WorldLayer
-  | CountryLayer
-  | ProvinceLayer
-  | CityLayer
-  | CountyLayer
-  | DrillDownLayer;
-
-interface IMapDistrictConig {
-  scene: Scene;
-  type?: DistrictType;
-  layerConfig?: ILayerOptions;
-}
+import { IMapDistrictConig } from '../index.d';
 
 const DistrictMap = {
   WorldLayer: WorldLayer, // 全世界
