@@ -21,6 +21,7 @@ const DemoLiquid: React.FC = () => {
         style: {
           fontSize: 60,
           fill: 'black',
+          lineHeight: 1,
         },
       },
     },
