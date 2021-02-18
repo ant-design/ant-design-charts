@@ -111,7 +111,7 @@ const DagreGraph: React.SFC<RelationGraph> = ({
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
     let graph = graphs[graphId];
-    if (graph) {
+    if (!graph) {
       graph = new G6.Graph({
         container: container.current as any,
         width: graphSize[0],
@@ -135,6 +135,8 @@ const DagreGraph: React.SFC<RelationGraph> = ({
         edgeStateStyles,
         layout,
       });
+
+      graphs[graphId] = graph;
     }
 
     processMinimap(minimapCfg, graph);

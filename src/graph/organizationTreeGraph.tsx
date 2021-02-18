@@ -56,7 +56,7 @@ const defaultLabelCfg = {
   },
 };
 
-let graph: any;
+let graphs: any = {};
 const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   data,
   className,
@@ -83,7 +83,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   handleEdgeHover,
   handleEdgeUnHover,
   handleCanvasClick,
-  graphRef,
+  graphId = 'defaultOrganizationTreeGraph',
 }) => {
   const props = {
     data,
@@ -111,11 +111,11 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     handleEdgeHover,
     handleEdgeUnHover,
     handleCanvasClick,
-    graphRef,
+    graphId,
   };
   const container = React.useRef(null);
 
-  useGraph(graph, props, container);
+  useGraph(graphs[graphId], props, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
@@ -124,32 +124,33 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
       customIconNode({ enableEdit });
     }
 
-    graph = new G6.TreeGraph({
-      container: container.current as any,
-      width: graphSize[0],
-      height: graphSize[1],
-      linkCenter: true,
-      modes: {
-        default: ['drag-canvas', 'zoom-canvas'],
-      },
-      defaultNode: {
-        type: nodeType,
-        size: nodeSize,
-        style: nodeStyle,
-        labelCfg: nodeLabelCfg,
-      },
-      defaultEdge: {
-        type: edgeType,
-        style: edgeStyle,
-        labelCfg: edgeLabelCfg,
-      },
-      nodeStateStyles,
-      edgeStateStyles,
-      layout,
-    });
+    let graph = graphs[graphId];
+    if (!graph) {
+      graph = new G6.TreeGraph({
+        container: container.current as any,
+        width: graphSize[0],
+        height: graphSize[1],
+        linkCenter: true,
+        modes: {
+          default: ['drag-canvas', 'zoom-canvas'],
+        },
+        defaultNode: {
+          type: nodeType,
+          size: nodeSize,
+          style: nodeStyle,
+          labelCfg: nodeLabelCfg,
+        },
+        defaultEdge: {
+          type: edgeType,
+          style: edgeStyle,
+          labelCfg: edgeLabelCfg,
+        },
+        nodeStateStyles,
+        edgeStateStyles,
+        layout,
+      });
 
-    if (graphRef) {
-      graphRef!.current = graph;
+      graphs[graphId] = graph;
     }
 
     processMinimap(minimapCfg, graph);
@@ -238,6 +239,13 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     graph.on('canvas:click', () => {
       handleCanvasClick?.(graph);
     });
+
+    return () => {
+      if (graphs[graphId]) {
+        graphs[graphId].destroy();
+        delete graphs[graphId];
+      }
+    };
   }, []);
 
   return (
