@@ -66,8 +66,8 @@ const DemoLiquid: React.FC = () => {
     liquidStyle: function liquidStyle(_ref4) {
       var percent = _ref4.percent;
       return {
-        fill: percent > 0.75 ? '#5B8FF9' : '#FAAD14',
-        stroke: percent > 0.75 ? '#5B8FF9' : '#FAAD14',
+        fill: percent > 0.75 ? '#5B8FF9' : '#64B1BB',
+        stroke: percent > 0.75 ? '#5B8FF9' : '#64B1BB',
       };
     },
     color: function color() {
