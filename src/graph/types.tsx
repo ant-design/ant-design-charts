@@ -49,5 +49,5 @@ export interface RelationGraph {
   handleCanvasClick?: (graph: IGraph) => void;
   collapseExpand?: boolean;
   colorMap?: Object;
-  graphRef?: React.MutableRefObject<IGraph | undefined>;
+  graphId?: string;
 }

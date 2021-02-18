@@ -53,7 +53,7 @@ const defaultLabelCfg = {
   },
 };
 
-let graph: any;
+let graphs: any = {};
 
 const IndentedTree: React.SFC<RelationGraph> = ({
   data,
@@ -81,7 +81,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   handleNodeHover,
   handleNodeUnHover,
   handleCanvasClick,
-  graphRef,
+  graphId = 'defaultIndentedTreeGraph',
 }) => {
   const container = React.useRef(null);
 
@@ -111,14 +111,14 @@ const IndentedTree: React.SFC<RelationGraph> = ({
     handleNodeHover,
     handleNodeUnHover,
     handleCanvasClick,
-    graphRef,
   };
 
-  useGraph(graph, props, container);
+  useGraph(graphs[graphId], props, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    if (!graph || graph.destroyed) {
+    let graph = graphs[graphId];
+    if (!graph) {
       graph = new G6.TreeGraph({
         container: container.current as any,
         width: graphSize[0],
@@ -141,9 +141,9 @@ const IndentedTree: React.SFC<RelationGraph> = ({
         edgeStateStyles,
         layout,
       });
-      if (graphRef) {
-        graphRef!.current = graph;
-      }
+
+      graphs[graphId] = graph;
+    }
 
       processMinimap(minimapCfg, graph);
 
@@ -216,11 +216,18 @@ const IndentedTree: React.SFC<RelationGraph> = ({
         handleCanvasClick?.(graph);
       });
 
-      graph.on('canvas:touchstart', () => {
-        handleCanvasClick?.(graph);
-      });
-    }
+    graph.on('canvas:touchstart', (evt: IG6GraphEvent) => {
+      handleCanvasClick && handleCanvasClick(graph);
+    });
+
+    // return () => {
+    //   if (graphs[graphId] && graphs[graphId].graph) {
+    //     graphs[graphId].graph.destroy();
+    //     delete graphs.graphId;
+    //   }
+    // };
   }, []);
+
   return (
     <ErrorBoundary>
       <div className={className} style={style} ref={container} />
