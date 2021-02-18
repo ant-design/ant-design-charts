@@ -46,7 +46,7 @@ const defaultLabelCfg = {
     fontSize: 12,
   },
 };
-let graph: any;
+let graphs: any = {};
 
 const DagreGraph: React.SFC<RelationGraph> = ({
   data,
@@ -74,7 +74,7 @@ const DagreGraph: React.SFC<RelationGraph> = ({
   handleNodeHover,
   handleNodeUnHover,
   handleCanvasClick,
-  graphRef,
+  graphId = 'defaultDagreGraph',
 }) => {
   const props = {
     data,
@@ -102,39 +102,39 @@ const DagreGraph: React.SFC<RelationGraph> = ({
     handleNodeHover,
     handleNodeUnHover,
     handleCanvasClick,
-    graphRef,
+    graphId,
   };
   const container = React.useRef(null);
 
-  useGraph(graph, props, container);
+  useGraph(graphs[graphId], props, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    graph = new G6.Graph({
-      container: container.current as any,
-      width: graphSize[0],
-      height: graphSize[1],
-      modes: {
-        default: behaviors,
-      },
-      defaultNode: {
-        type: nodeType,
-        size: nodeSize,
-        style: nodeStyle,
-        anchorPoints: nodeAnchorPoints,
-        labelCfg: nodeLabelCfg,
-      },
-      defaultEdge: {
-        type: edgeType,
-        style: edgeStyle,
-        labelCfg: edgeLabelCfg,
-      },
-      nodeStateStyles,
-      edgeStateStyles,
-      layout,
-    });
-    if (graphRef) {
-      graphRef!.current = graph;
+    let graph = graphs[graphId];
+    if (graph) {
+      graph = new G6.Graph({
+        container: container.current as any,
+        width: graphSize[0],
+        height: graphSize[1],
+        modes: {
+          default: behaviors,
+        },
+        defaultNode: {
+          type: nodeType,
+          size: nodeSize,
+          style: nodeStyle,
+          anchorPoints: nodeAnchorPoints,
+          labelCfg: nodeLabelCfg,
+        },
+        defaultEdge: {
+          type: edgeType,
+          style: edgeStyle,
+          labelCfg: edgeLabelCfg,
+        },
+        nodeStateStyles,
+        edgeStateStyles,
+        layout,
+      });
     }
 
     processMinimap(minimapCfg, graph);
@@ -193,6 +193,13 @@ const DagreGraph: React.SFC<RelationGraph> = ({
         handleCanvasClick(graph);
       }
     });
+
+    return () => {
+      if (graphs[graphId]) {
+        graphs[graphId].destroy();
+        delete graphs[graphId];
+      }
+    };
   }, []);
 
   return (
