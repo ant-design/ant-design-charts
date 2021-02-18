@@ -46,12 +46,7 @@ const defaultLabelCfg = {
     fontSize: 10,
   },
 };
-<<<<<<< HEAD
-
-let graph: any;
-=======
 let graphs: any = {};
->>>>>>> fix: dagreFundFlow graph support multiple graph instance
 
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,
