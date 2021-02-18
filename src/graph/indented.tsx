@@ -111,6 +111,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
     handleNodeHover,
     handleNodeUnHover,
     handleCanvasClick,
+    graphId,
   };
 
   useGraph(graphs[graphId], props, container);
@@ -220,12 +221,12 @@ const IndentedTree: React.SFC<RelationGraph> = ({
       handleCanvasClick && handleCanvasClick(graph);
     });
 
-    // return () => {
-    //   if (graphs[graphId] && graphs[graphId].graph) {
-    //     graphs[graphId].graph.destroy();
-    //     delete graphs.graphId;
-    //   }
-    // };
+    return () => {
+      if (graphs[graphId]) {
+        graphs[graphId].destroy();
+        delete graphs[graphId];
+      }
+    };
   }, []);
 
   return (
