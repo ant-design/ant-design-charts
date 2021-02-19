@@ -83,6 +83,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   handleEdgeHover,
   handleEdgeUnHover,
   handleCanvasClick,
+  graphRef,
   graphId = 'defaultOrganizationTreeGraph',
 }) => {
   const props = {
@@ -111,6 +112,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     handleEdgeHover,
     handleEdgeUnHover,
     handleCanvasClick,
+    graphRef,
     graphId,
   };
   const container = React.useRef(null);
@@ -151,6 +153,10 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
       });
 
       graphs[graphId] = graph;
+    }
+
+    if (graphRef) {
+      graphRef!.current = graph;
     }
 
     processMinimap(minimapCfg, graph);

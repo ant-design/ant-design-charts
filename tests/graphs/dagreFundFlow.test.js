@@ -124,6 +124,7 @@ describe('Dagre Fund Flow', () => {
       data,
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
       graphRef: refs,
+      graphId: 'initGraph',
     };
     mount(<DagreFundFlowGraph {...config} />);
     refs.current.destroy();
@@ -164,6 +165,7 @@ describe('Dagre Fund Flow', () => {
         canvasClicked = true;
       },
       graphRef: refs,
+      graphId: 'mouseEventGraph',
     };
 
     act(() => {

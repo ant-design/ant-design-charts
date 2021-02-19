@@ -75,6 +75,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   handleNodeHover,
   handleNodeUnHover,
   handleCanvasClick,
+  graphRef,
   graphId = 'defaultDagreFundFlowGraph',
 }) => {
   const container = React.useRef(null);
@@ -106,6 +107,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     handleNodeHover,
     handleNodeUnHover,
     handleCanvasClick,
+    graphRef,
     graphId,
   };
 
@@ -141,6 +143,10 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
       });
 
       graphs[graphId] = graph;
+    }
+
+    if (graphRef) {
+      graphRef!.current = graph;
     }
 
     processMinimap(minimapCfg, graph);

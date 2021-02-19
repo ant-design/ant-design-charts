@@ -118,6 +118,7 @@ describe('Dagre Graph', () => {
       data,
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
       graphRef: refs,
+      graphId: 'initGraph',
     };
     mount(<DagreGraph {...config} />);
     refs.current.destroy();
@@ -158,6 +159,7 @@ describe('Dagre Graph', () => {
         canvasClicked = true;
       },
       graphRef: refs,
+      graphId: 'mouseEventGraph',
     };
 
     act(() => {

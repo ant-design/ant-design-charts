@@ -81,6 +81,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   handleNodeHover,
   handleNodeUnHover,
   handleCanvasClick,
+  graphRef,
   graphId = 'defaultIndentedTreeGraph',
 }) => {
   const container = React.useRef(null);
@@ -111,6 +112,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
     handleNodeHover,
     handleNodeUnHover,
     handleCanvasClick,
+    graphRef,
     graphId,
   };
 
@@ -144,6 +146,10 @@ const IndentedTree: React.SFC<RelationGraph> = ({
       });
 
       graphs[graphId] = graph;
+    }
+
+    if (graphRef) {
+      graphRef!.current = graph;
     }
 
     processMinimap(minimapCfg, graph);

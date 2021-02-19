@@ -19,10 +19,7 @@ const defaultNodeStyle = {
   stroke: '#40a9ff',
 };
 
-const defaultNodeAnchorPoints = [
-  [0.5, 0],
-  [0.5, 1],
-];
+const defaultNodeAnchorPoints = [[0.5, 0], [0.5, 1]];
 
 const defaultEdgeStyle = {
   stroke: '#91d5ff',
@@ -74,6 +71,7 @@ const DagreGraph: React.SFC<RelationGraph> = ({
   handleNodeHover,
   handleNodeUnHover,
   handleCanvasClick,
+  graphRef,
   graphId = 'defaultDagreGraph',
 }) => {
   const props = {
@@ -102,6 +100,7 @@ const DagreGraph: React.SFC<RelationGraph> = ({
     handleNodeHover,
     handleNodeUnHover,
     handleCanvasClick,
+    graphRef,
     graphId,
   };
   const container = React.useRef(null);
@@ -137,6 +136,10 @@ const DagreGraph: React.SFC<RelationGraph> = ({
       });
 
       graphs[graphId] = graph;
+    }
+
+    if (graphRef) {
+      graphRef!.current = graph;
     }
 
     processMinimap(minimapCfg, graph);
