@@ -531,7 +531,7 @@ const DemoDagreGraph: React.FC = () => {
         edgeStateStyles={edgeStateStyles}
         nodeStateStyles={nodeStateStyles}
         handleNodeClick={handleNodeClick}
-        graphId='dagreSecond'
+        graphId="dagreSecond"
       />
     </div>
   );

@@ -46,7 +46,7 @@ const defaultLabelCfg = {
     fontSize: 10,
   },
 };
-let graphs: any = {};
+const graphs: any = {};
 
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,

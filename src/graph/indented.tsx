@@ -53,7 +53,7 @@ const defaultLabelCfg = {
   },
 };
 
-let graphs: any = {};
+const graphs: any = {};
 
 const IndentedTree: React.SFC<RelationGraph> = ({
   data,
@@ -146,79 +146,79 @@ const IndentedTree: React.SFC<RelationGraph> = ({
       graphs[graphId] = graph;
     }
 
-      processMinimap(minimapCfg, graph);
+    processMinimap(minimapCfg, graph);
 
-      const originData = deepClone(data);
-      graph.data(originData);
-      graph.render();
-      graph.fitView();
+    const originData = deepClone(data);
+    graph.data(originData);
+    graph.render();
+    graph.fitView();
 
-      if (collapseExpand) {
-        const onClick = (e: IG6GraphEvent) => {
-          const item = e.item as INode;
-          if (e.target.get('name') === 'collapse-icon') {
-            graph.updateItem(item, {
-              collapsed: !item.getModel().collapsed,
-            });
-            graph.layout();
-          } else if (handleNodeClick) {
-            handleNodeClick(item, graph);
-          }
-        };
-        graph.on('node:click', (e: IG6GraphEvent) => {
-          onClick(e);
-        });
-        graph.on('node:touchstart', (e: IG6GraphEvent) => {
-          onClick(e);
-        });
+    if (collapseExpand) {
+      const onClick = (e: IG6GraphEvent) => {
+        const item = e.item as INode;
+        if (e.target.get('name') === 'collapse-icon') {
+          graph.updateItem(item, {
+            collapsed: !item.getModel().collapsed,
+          });
+          graph.layout();
+        } else if (handleNodeClick) {
+          handleNodeClick(item, graph);
+        }
+      };
+      graph.on('node:click', (e: IG6GraphEvent) => {
+        onClick(e);
+      });
+      graph.on('node:touchstart', (e: IG6GraphEvent) => {
+        onClick(e);
+      });
+    }
+    graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
+      const item = evt.item as IEdge;
+      graph.setItemState(item, 'hover', true);
+      if (handleEdgeHover) {
+        handleEdgeHover(item, graph);
       }
-      graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
-        const item = evt.item as IEdge;
-        graph.setItemState(item, 'hover', true);
-        if (handleEdgeHover) {
-          handleEdgeHover(item, graph);
-        }
-      });
-      graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
-        const item = evt.item as IEdge;
-        graph.setItemState(item, 'hover', false);
-        if (handleEdgeUnHover) {
-          handleEdgeUnHover(item, graph);
-        }
-      });
-      graph.on('edge:click', (evt: IG6GraphEvent) => {
-        const item = evt.item as IEdge;
-        if (handleEdgeClick) {
-          handleEdgeClick(item, graph);
-        }
-      });
-      graph.on('edge:touchstart', (evt: IG6GraphEvent) => {
-        const item = evt.item as IEdge;
-        if (handleEdgeClick) {
-          handleEdgeClick(item, graph);
-        }
-      });
-      graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
-        graph.setItemState(item, 'hover', false);
-        if (handleNodeHover) {
-          handleNodeHover(item, graph);
-        }
-      });
-      graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
-        graph.setItemState(item, 'hover', false);
-        if (handleNodeUnHover) {
-          handleNodeUnHover(item, graph);
-        }
-      });
+    });
+    graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
+      const item = evt.item as IEdge;
+      graph.setItemState(item, 'hover', false);
+      if (handleEdgeUnHover) {
+        handleEdgeUnHover(item, graph);
+      }
+    });
+    graph.on('edge:click', (evt: IG6GraphEvent) => {
+      const item = evt.item as IEdge;
+      if (handleEdgeClick) {
+        handleEdgeClick(item, graph);
+      }
+    });
+    graph.on('edge:touchstart', (evt: IG6GraphEvent) => {
+      const item = evt.item as IEdge;
+      if (handleEdgeClick) {
+        handleEdgeClick(item, graph);
+      }
+    });
+    graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
+      const item = evt.item as INode;
+      graph.setItemState(item, 'hover', false);
+      if (handleNodeHover) {
+        handleNodeHover(item, graph);
+      }
+    });
+    graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
+      const item = evt.item as INode;
+      graph.setItemState(item, 'hover', false);
+      if (handleNodeUnHover) {
+        handleNodeUnHover(item, graph);
+      }
+    });
 
-      graph.on('canvas:click', () => {
-        handleCanvasClick?.(graph);
-      });
+    graph.on('canvas:click', () => {
+      handleCanvasClick?.(graph);
+    });
 
-    graph.on('canvas:touchstart', (evt: IG6GraphEvent) => {
-      handleCanvasClick && handleCanvasClick(graph);
+    graph.on('canvas:touchstart', () => {
+      handleCanvasClick?.(graph);
     });
 
     return () => {

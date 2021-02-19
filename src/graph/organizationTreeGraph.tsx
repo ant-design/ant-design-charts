@@ -56,7 +56,7 @@ const defaultLabelCfg = {
   },
 };
 
-let graphs: any = {};
+const graphs: any = {};
 const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   data,
   className,
