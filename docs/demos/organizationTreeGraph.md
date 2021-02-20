@@ -233,6 +233,7 @@ const DemoOrganizationGraph: React.FC = () => {
       nodeType="icon-node"
       enableEdit={true}
       minimapCfg={{ show: true }}
+      graphId="editorGraph"
     />
   );
 };

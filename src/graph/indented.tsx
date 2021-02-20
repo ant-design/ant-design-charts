@@ -53,7 +53,7 @@ const defaultLabelCfg = {
   },
 };
 
-let graph: any;
+const graphs: any = {};
 
 const IndentedTree: React.SFC<RelationGraph> = ({
   data,
@@ -82,6 +82,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   handleNodeUnHover,
   handleCanvasClick,
   graphRef,
+  graphId = 'defaultIndentedTreeGraph',
 }) => {
   const container = React.useRef(null);
 
@@ -112,13 +113,15 @@ const IndentedTree: React.SFC<RelationGraph> = ({
     handleNodeUnHover,
     handleCanvasClick,
     graphRef,
+    graphId,
   };
 
-  useGraph(graph, props, container);
+  useGraph(graphs[graphId], props, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    if (!graph || graph.destroyed) {
+    let graph = graphs[graphId];
+    if (!graph) {
       graph = new G6.TreeGraph({
         container: container.current as any,
         width: graphSize[0],
@@ -141,86 +144,97 @@ const IndentedTree: React.SFC<RelationGraph> = ({
         edgeStateStyles,
         layout,
       });
-      if (graphRef) {
-        graphRef!.current = graph;
-      }
 
-      processMinimap(minimapCfg, graph);
+      graphs[graphId] = graph;
+    }
 
-      const originData = deepClone(data);
-      graph.data(originData);
-      graph.render();
-      graph.fitView();
+    if (graphRef) {
+      graphRef!.current = graph;
+    }
 
-      if (collapseExpand) {
-        const onClick = (e: IG6GraphEvent) => {
-          const item = e.item as INode;
-          if (e.target.get('name') === 'collapse-icon') {
-            graph.updateItem(item, {
-              collapsed: !item.getModel().collapsed,
-            });
-            graph.layout();
-          } else if (handleNodeClick) {
-            handleNodeClick(item, graph);
-          }
-        };
-        graph.on('node:click', (e: IG6GraphEvent) => {
-          onClick(e);
-        });
-        graph.on('node:touchstart', (e: IG6GraphEvent) => {
-          onClick(e);
-        });
-      }
-      graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
-        const item = evt.item as IEdge;
-        graph.setItemState(item, 'hover', true);
-        if (handleEdgeHover) {
-          handleEdgeHover(item, graph);
-        }
-      });
-      graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
-        const item = evt.item as IEdge;
-        graph.setItemState(item, 'hover', false);
-        if (handleEdgeUnHover) {
-          handleEdgeUnHover(item, graph);
-        }
-      });
-      graph.on('edge:click', (evt: IG6GraphEvent) => {
-        const item = evt.item as IEdge;
-        if (handleEdgeClick) {
-          handleEdgeClick(item, graph);
-        }
-      });
-      graph.on('edge:touchstart', (evt: IG6GraphEvent) => {
-        const item = evt.item as IEdge;
-        if (handleEdgeClick) {
-          handleEdgeClick(item, graph);
-        }
-      });
-      graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
-        graph.setItemState(item, 'hover', false);
-        if (handleNodeHover) {
-          handleNodeHover(item, graph);
-        }
-      });
-      graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
-        graph.setItemState(item, 'hover', false);
-        if (handleNodeUnHover) {
-          handleNodeUnHover(item, graph);
-        }
-      });
+    processMinimap(minimapCfg, graph);
 
-      graph.on('canvas:click', () => {
-        handleCanvasClick?.(graph);
-      });
+    const originData = deepClone(data);
+    graph.data(originData);
+    graph.render();
+    graph.fitView();
 
-      graph.on('canvas:touchstart', () => {
-        handleCanvasClick?.(graph);
+    if (collapseExpand) {
+      const onClick = (e: IG6GraphEvent) => {
+        const item = e.item as INode;
+        if (e.target.get('name') === 'collapse-icon') {
+          graph.updateItem(item, {
+            collapsed: !item.getModel().collapsed,
+          });
+          graph.layout();
+        } else if (handleNodeClick) {
+          handleNodeClick(item, graph);
+        }
+      };
+      graph.on('node:click', (e: IG6GraphEvent) => {
+        onClick(e);
+      });
+      graph.on('node:touchstart', (e: IG6GraphEvent) => {
+        onClick(e);
       });
     }
+    graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
+      const item = evt.item as IEdge;
+      graph.setItemState(item, 'hover', true);
+      if (handleEdgeHover) {
+        handleEdgeHover(item, graph);
+      }
+    });
+    graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
+      const item = evt.item as IEdge;
+      graph.setItemState(item, 'hover', false);
+      if (handleEdgeUnHover) {
+        handleEdgeUnHover(item, graph);
+      }
+    });
+    graph.on('edge:click', (evt: IG6GraphEvent) => {
+      const item = evt.item as IEdge;
+      if (handleEdgeClick) {
+        handleEdgeClick(item, graph);
+      }
+    });
+    graph.on('edge:touchstart', (evt: IG6GraphEvent) => {
+      const item = evt.item as IEdge;
+      if (handleEdgeClick) {
+        handleEdgeClick(item, graph);
+      }
+    });
+    graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
+      const item = evt.item as INode;
+      graph.setItemState(item, 'hover', false);
+      if (handleNodeHover) {
+        handleNodeHover(item, graph);
+      }
+    });
+    graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
+      const item = evt.item as INode;
+      graph.setItemState(item, 'hover', false);
+      if (handleNodeUnHover) {
+        handleNodeUnHover(item, graph);
+      }
+    });
+
+    graph.on('canvas:click', () => {
+      handleCanvasClick?.(graph);
+    });
+
+    graph.on('canvas:touchstart', () => {
+      handleCanvasClick?.(graph);
+    });
+
+    return () => {
+      if (graphs[graphId]) {
+        graphs[graphId].destroy();
+        delete graphs[graphId];
+      }
+    };
   }, []);
+
   return (
     <ErrorBoundary>
       <div className={className} style={style} ref={container} />

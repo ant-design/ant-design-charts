@@ -236,7 +236,7 @@ const DemoDagreFundFlowGraph: React.FC = () => {
     <DagreFundFlowGraph
       nodeStyle
       {...config}
-      graphRef={ref}
+      graphId="firstDagreGraph"
       handleEdgeClick={handleEdgeClick}
       handleCanvasClick={handleCanvasClick}
       edgeStateStyles={edgeStateStyles}
@@ -490,7 +490,7 @@ const DemoDagreFundFlowGraph: React.FC = () => {
       <DagreFundFlowGraph
         nodeStyle
         {...config}
-        graphRef={ref}
+        graphId="customDagreGraph"
         handleEdgeClick={handleEdgeClick}
         handleCanvasClick={handleCanvasClick}
         edgeStateStyles={edgeStateStyles}

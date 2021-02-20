@@ -185,12 +185,12 @@ const DemoDagreGraph: React.FC = () => {
       minimapCfg={minimapCfg}
       behaviors={behaviors}
       data={data}
-      graphRef={ref}
       handleEdgeClick={handleEdgeClick}
       handleCanvasClick={handleCanvasClick}
       edgeStateStyles={edgeStateStyles}
       nodeStateStyles={nodeStateStyles}
       handleNodeClick={handleNodeClick}
+      graphId="dagreFirst"
     />
   );
 };
@@ -526,12 +526,12 @@ const DemoDagreGraph: React.FC = () => {
         minimapCfg={minimapCfg}
         behaviors={behaviors}
         data={data}
-        graphRef={ref}
         handleEdgeClick={handleEdgeClick}
         handleCanvasClick={handleCanvasClick}
         edgeStateStyles={edgeStateStyles}
         nodeStateStyles={nodeStateStyles}
         handleNodeClick={handleNodeClick}
+        graphId="dagreSecond"
       />
     </div>
   );

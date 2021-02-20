@@ -132,9 +132,9 @@ describe('OrganizationTreeGraph', () => {
     const edge = refs.current.getEdges()[0];
     const nodeNoChild = refs.current.findById('c3-3');
 
-    const addTarget = node.getContainer().find((e) => e.get('name') === 'add-item');
-    const removeTarget = node.getContainer().find((e) => e.get('name') === 'remove-item');
-    const addTarget2 = nodeNoChild.getContainer().find((e) => e.get('name') === 'remove-item');
+    const addTarget = node.getContainer().find(e => e.get('name') === 'add-item');
+    const removeTarget = node.getContainer().find(e => e.get('name') === 'remove-item');
+    const addTarget2 = nodeNoChild.getContainer().find(e => e.get('name') === 'remove-item');
 
     refs.current.emit('edge:mouseenter', { item: edge });
     refs.current.emit('node:mouseenter', { item: node });

@@ -46,8 +46,7 @@ const defaultLabelCfg = {
     fontSize: 10,
   },
 };
-
-let graph: any;
+const graphs: any = {};
 
 const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   data,
@@ -77,6 +76,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   handleNodeUnHover,
   handleCanvasClick,
   graphRef,
+  graphId = 'defaultDagreFundFlowGraph',
 }) => {
   const container = React.useRef(null);
 
@@ -108,36 +108,43 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     handleNodeUnHover,
     handleCanvasClick,
     graphRef,
+    graphId,
   };
 
-  useGraph(graph, props, container);
+  useGraph(graphs[graphId], props, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    graph = new G6.Graph({
-      container: container.current as any,
-      width: graphSize[0],
-      height: graphSize[1],
-      modes: {
-        default: behaviors,
-      },
-      defaultNode: {
-        type: nodeType,
-        size: nodeSize,
-        style: nodeStyle,
-        anchorPoints: nodeAnchorPoints,
-        labelCfg: nodeLabelCfg,
-      },
-      defaultEdge: {
-        type: edgeType,
-        style: edgeStyle,
-        colorMap,
-        labelCfg: edgeLabelCfg,
-      },
-      nodeStateStyles,
-      edgeStateStyles,
-      layout,
-    });
+    let graph = graphs[graphId];
+    if (!graph) {
+      graph = new G6.Graph({
+        container: container.current as any,
+        width: graphSize[0],
+        height: graphSize[1],
+        modes: {
+          default: behaviors,
+        },
+        defaultNode: {
+          type: nodeType,
+          size: nodeSize,
+          style: nodeStyle,
+          anchorPoints: nodeAnchorPoints,
+          labelCfg: nodeLabelCfg,
+        },
+        defaultEdge: {
+          type: edgeType,
+          style: edgeStyle,
+          colorMap,
+          labelCfg: edgeLabelCfg,
+        },
+        nodeStateStyles,
+        edgeStateStyles,
+        layout,
+      });
+
+      graphs[graphId] = graph;
+    }
+
     if (graphRef) {
       graphRef!.current = graph;
     }
@@ -208,6 +215,13 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     graph.on('canvas:click', () => {
       handleCanvasClick?.(graph);
     });
+
+    return () => {
+      if (graphs[graphId]) {
+        graphs[graphId].destroy();
+        delete graphs[graphId];
+      }
+    };
   }, []);
 
   return (

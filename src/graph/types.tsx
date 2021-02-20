@@ -50,4 +50,5 @@ export interface RelationGraph {
   collapseExpand?: boolean;
   colorMap?: Object;
   graphRef?: React.MutableRefObject<IGraph | undefined>;
+  graphId?: string;
 }

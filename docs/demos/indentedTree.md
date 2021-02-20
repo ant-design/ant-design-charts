@@ -15,9 +15,9 @@ import { IndentedTree } from '@ant-design/charts';
 import { each } from '@antv/util';
 
 const DemoIndentedTree: React.FC = () => {
-  const data = {
+  const originData = {
     id: 'A',
-    label: 'A',
+    label: 'SDA',
     description: 'node Anode Anode Anode a',
     children: [
       {
@@ -54,6 +54,22 @@ const DemoIndentedTree: React.FC = () => {
       },
     ],
   };
+
+  const [data, setData] = useState(originData);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setData({
+        id: 'AFG',
+        label: 'BAI',
+        description: 'node Anode Anode Anode a',
+      });
+    }, 2000);
+
+    setTimeout(() => {
+      setData(originData);
+    }, 6000);
+  }, []);
 
   const config = {
     data,
@@ -101,6 +117,126 @@ const DemoIndentedTree: React.FC = () => {
   return (
     <IndentedTree
       {...config}
+      graphId="first-graph"
+      handleEdgeClick={handleEdgeClick}
+      handleCanvasClick={handleCanvasClick}
+      edgeStateStyles={edgeStateStyles}
+      nodeStateStyles={nodeStateStyles}
+      handleNodeClick={handleNodeClick}
+    />
+  );
+};
+
+export default DemoIndentedTree;
+```
+
+### 演示结果 01
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { IndentedTree } from '@ant-design/charts';
+import { each } from '@antv/util';
+
+const DemoIndentedTree: React.FC = () => {
+  const originData = {
+    id: 'A',
+    label: 'SDA',
+    description: 'node Anode Anode Anode a',
+    children: [
+      {
+        id: 'A1',
+        label: 'A1',
+        description: 'node A1',
+        children: [
+          { id: 'A11', label: 'A11', description: 'node A11\nnode A11\nnode A11' },
+          { id: 'A12', label: 'A12', description: 'node A12' },
+          { id: 'A13', label: 'A13', description: 'node A13' },
+          { id: 'A14', label: 'A14', description: 'node A14' },
+        ],
+      },
+      {
+        id: 'A2',
+        label: 'A2',
+        description: 'node A2\nnode A2\nnode A2\nnode A2\nnode A2',
+        children: [
+          {
+            id: 'A21',
+            label: 'A21',
+            description: 'node A21',
+            children: [
+              { id: 'A211', label: 'A211', description: 'node A211' },
+              { id: 'A212', label: 'A212', description: 'node A212' },
+            ],
+          },
+          {
+            id: 'A22',
+            label: 'A22',
+            description: 'node A22',
+          },
+        ],
+      },
+    ],
+  };
+
+  const [data, setData] = useState(originData);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setData({
+        id: 'AFG',
+        label: 'BAI',
+        description: 'node Anode Anode Anode a',
+      });
+    }, 4000);
+  }, []);
+
+  const config = {
+    data,
+    collasable: true,
+    behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+  };
+
+  const handleEdgeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true);
+  };
+  const handleNodeClick = (item, graph) => {
+    graph.setItemState(item, 'selected', true);
+  };
+
+  const handleCanvasClick = (graph) => {
+    const selectedEdges = graph.findAllByState('edge', 'selected');
+    selectedEdges.forEach((edge) => {
+      graph.setItemState(edge, 'selected', false);
+    });
+    const selectedNodes = graph.findAllByState('node', 'selected');
+    selectedNodes.forEach((node) => {
+      graph.setItemState(node, 'selected', false);
+    });
+  };
+  const edgeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2,
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3,
+    },
+  };
+  const nodeStateStyles = {
+    hover: {
+      stroke: '#1890ff',
+      lineWidth: 2,
+    },
+    selected: {
+      stroke: '#f00',
+      lineWidth: 3,
+    },
+  };
+  return (
+    <IndentedTree
+      {...config}
+      graphId="two-graph"
       handleEdgeClick={handleEdgeClick}
       handleCanvasClick={handleCanvasClick}
       edgeStateStyles={edgeStateStyles}
