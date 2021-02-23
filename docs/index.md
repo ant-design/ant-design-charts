@@ -12,8 +12,8 @@ features:
     title: Easy to use
     desc: The React component uses diagrams in a simple configuration that renders elegant, standard diagrams
   - icon: https://gw.alipayobjects.com/zos/antfincdn/oyqsrPh0Kg/houyuan.png
-    title: Antv support
-    desc: AnTV team support, based on G2Plot implementation, simple, professional and reliable
+    title: AntV support
+    desc: AntV team support, based on G2Plot implementation, simple, professional and reliable
   - icon: https://gw.alipayobjects.com/zos/antfincdn/aKCFl7vDAB/tubiao.png
     title: Rich Features
     desc: Support for a full range of G2Plot charts with nearly simultaneous updates
@@ -106,3 +106,9 @@ export default Page;
 ## ISSUES
 
 Please visit the [GitHub](https://github.com/ant-design/ant-design-charts)
+
+## Contact Us
+
+- DingTalk Group Number: 30233731
+
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*g8nmS4bI33EAAAAAAAAAAAAAARQnAQ" width="200" alt="DingTalk">

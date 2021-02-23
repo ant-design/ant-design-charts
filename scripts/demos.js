@@ -96,7 +96,7 @@ const demos = [
   },
   {
     name: '对称条形图',
-    chart: 'BidirectionalBar'
+    chart: 'BidirectionalBar',
   },
   // {
   //   name: '雷达图',
@@ -115,7 +115,6 @@ const demos = [
     chart: 'RadialBar',
   },
 ];
-
 
 const start = () => {
   console.info('文档生成中....');

@@ -9,7 +9,7 @@ import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Liquid render', () => { 
+describe('Liquid render', () => {
   let container;
   beforeEach(() => {
     container = document.createElement('div');
@@ -21,8 +21,8 @@ describe('Liquid render', () => {
   });
 
   it('classname * loading * style', () => {
-    const props =  {
-      style:  {
+    const props = {
+      style: {
         height: '80%',
       },
       className: 'container',
@@ -34,7 +34,7 @@ describe('Liquid render', () => {
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
     expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%'
+      height: '80%',
     });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
@@ -42,7 +42,7 @@ describe('Liquid render', () => {
   });
 
   it('classname * loading * style with default', () => {
-    const props =  {};
+    const props = {};
     const testRenderer = create(<Liquid {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
@@ -51,16 +51,16 @@ describe('Liquid render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%'
+      height: '100%',
     });
   });
-  
+
   it('error template', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error">custom error</span>,
     };
@@ -68,8 +68,8 @@ describe('Liquid render', () => {
       percent: 0.25,
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<Liquid {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
@@ -79,7 +79,7 @@ describe('Liquid render', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
-      chartRef: (ref) => { 
+      chartRef: (ref) => {
         chartRef = ref;
       },
     };
@@ -87,8 +87,8 @@ describe('Liquid render', () => {
       percent: 0.25,
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Liquid {...props} {...chartProps} />, container);
     });
@@ -96,9 +96,7 @@ describe('Liquid render', () => {
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.getData()).toEqual(
-      [{percent: 0.25, type: "liquid"}]
-    );
+    expect(chartRef.chart.getData()).toEqual([{ percent: 0.25, type: 'liquid' }]);
   });
 
   it('chartRef with createRef', () => {
@@ -111,14 +109,12 @@ describe('Liquid render', () => {
       percent: 0.25,
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Liquid {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.getData()).toEqual(
-      [{percent: 0.25, type: "liquid"}]
-    );
+    expect(chartRef.current.chart.getData()).toEqual([{ percent: 0.25, type: 'liquid' }]);
   });
 
   it('chartRef with useRef', () => {
@@ -129,13 +125,11 @@ describe('Liquid render', () => {
       percent: 0.25,
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<Liquid {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Liquid {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.getData()).toEqual(
-      [{percent: 0.25, type: "liquid"}]
-    );
+    expect(refs.current.getChart().chart.getData()).toEqual([{ percent: 0.25, type: 'liquid' }]);
   });
-})
+});

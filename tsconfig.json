@@ -35,6 +35,17 @@
     "example",
     "_test_"
   ],
+  "include": [
+    "**/src/**/*",
+    "**/docs/**/*",
+    "scripts/**/*",
+    "**/demos",
+    ".eslintrc.js",
+    "tests",
+    "jest.config.js",
+    "**/fixtures",
+    "./tests/no-duplicated.ts"
+  ],
   "paths": {
     "@@/*": ["src/.umi/*"]
   }

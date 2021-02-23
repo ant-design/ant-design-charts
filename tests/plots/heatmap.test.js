@@ -9,19 +9,19 @@ import { ErrorBoundary } from '../../src/base';
 
 const refs = renderHook(() => useRef());
 
-describe('Heatmap render', () => { 
+describe('Heatmap render', () => {
   let container;
   const data = [
     {
-      "Month of Year": 201601,
-      "District": "Central/Western",
-      "AQHI": 3.341
+      'Month of Year': 201601,
+      District: 'Central/Western',
+      AQHI: 3.341,
     },
     {
-      "Month of Year": 201601,
-      "District": "Eastern",
-      "AQHI": 3.266
-    }
+      'Month of Year': 201601,
+      District: 'Eastern',
+      AQHI: 3.266,
+    },
   ];
   beforeEach(() => {
     container = document.createElement('div');
@@ -33,8 +33,8 @@ describe('Heatmap render', () => {
   });
 
   it('classname * loading * style', () => {
-    const props =  {
-      style:  {
+    const props = {
+      style: {
         height: '80%',
       },
       className: 'container',
@@ -46,7 +46,7 @@ describe('Heatmap render', () => {
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
     expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%'
+      height: '80%',
     });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
@@ -54,7 +54,7 @@ describe('Heatmap render', () => {
   });
 
   it('classname * loading * style with default', () => {
-    const props =  {};
+    const props = {};
     const testRenderer = create(<Heatmap {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
@@ -63,16 +63,16 @@ describe('Heatmap render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%'
+      height: '100%',
     });
   });
-  
+
   it('error template', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
       loadingTemplate: {
-        triggleError: true
+        triggleError: true,
       },
       errorTemplate: () => <span id="error">custom error</span>,
     };
@@ -89,8 +89,8 @@ describe('Heatmap render', () => {
       },
       autoFit: false,
       width: '200',
-      height: '160'
-    }
+      height: '160',
+    };
     const testRenderer = create(<Heatmap {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
@@ -100,7 +100,7 @@ describe('Heatmap render', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
-      chartRef: (ref) => { 
+      chartRef: (ref) => {
         chartRef = ref;
       },
     };
@@ -117,8 +117,8 @@ describe('Heatmap render', () => {
       },
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Heatmap {...props} {...chartProps} />, container);
     });
@@ -148,8 +148,8 @@ describe('Heatmap render', () => {
       },
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
       ReactDOM.render(<Heatmap {...props} {...chartProps} />, container);
     });
@@ -173,11 +173,11 @@ describe('Heatmap render', () => {
       },
       autoFit: false,
       width: 200,
-      height: 160
-    }
+      height: 160,
+    };
     act(() => {
-      ReactDOM.render(<Heatmap {...props} {...chartProps} ref={ refs } />, container);
+      ReactDOM.render(<Heatmap {...props} {...chartProps} ref={refs} />, container);
     });
     expect(refs.current.getChart().chart.getData()).toEqual(data);
   });
-})
+});

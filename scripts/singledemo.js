@@ -11,7 +11,7 @@ const { chartNames } = require('./constants');
 const { lowerCase, toLine } = require('./util.js');
 const parseFile = require('./parse.js');
 
-const tniyPath = ['RingProgress','Progress','TinyArea', 'TinyColumn', 'TinyLine'];
+const tniyPath = ['RingProgress', 'Progress', 'TinyArea', 'TinyColumn', 'TinyLine'];
 const arg = process.argv.splice(2);
 if (!arg.length) {
   console.log('请指定扫描目录，例如: "node scripts/singledemo.js Bar 条形图" ');

@@ -106,3 +106,9 @@ export default Page;
 ## 反馈
 
 请访问 [GitHub](https://github.com/ant-design/ant-design-charts)
+
+## 联系我们
+
+- 钉钉群组号码: 30233731
+
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*g8nmS4bI33EAAAAAAAAAAAAAARQnAQ" width="200" alt="DingTalk">

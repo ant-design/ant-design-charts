@@ -1,7 +1,8 @@
+/* eslint-disable no-restricted-syntax */
 // 类型检测
 export const isType = (value: any, type: string): boolean => {
-  const toString = {}.toString;
-  return toString.call(value) === '[object ' + type + ']';
+  const { toString } = {};
+  return toString.call(value) === `[object ${type}]`;
 };
 
 export const clone = (source: Object) => {
@@ -9,9 +10,37 @@ export const clone = (source: Object) => {
     return source;
   }
   const target = {};
-  for (let k in source) {
+  // eslint-disable-next-line guard-for-in
+  for (const k in source) {
     target[k] = source[k];
   }
+  return target;
+};
+
+/**
+ * 深克隆
+ * @param source 要深克隆的目标对象
+ */
+export const deepClone = (source: Object) => {
+  if (!source) {
+    return source;
+  }
+
+  // @ts-ignore
+  const target = new source.constructor();
+  const getType = (n: Object) => {
+    return Object.prototype.toString.call(n).slice(8, -1);
+  };
+
+  for (const key in source) {
+    if (source.hasOwnProperty(key)) {
+      target[key] =
+        getType(source[key]) === 'Object' || getType(source[key]) === 'Array'
+          ? deepClone(source[key])
+          : source[key];
+    }
+  }
+
   return target;
 };
 
@@ -20,7 +49,7 @@ export const clone = (source: Object) => {
  */
 export const hasPath = (source: any, path: string[]) => {
   let current = source;
-  for (let i = 0; i < path.length; i++) {
+  for (let i = 0; i < path.length; i += 1) {
     if (current?.[path[i]]) {
       current = current[path[i]];
     } else {
