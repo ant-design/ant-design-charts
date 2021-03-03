@@ -51,9 +51,6 @@ describe('TinyColumn render', () => {
     expect(renderTree.rendered.type).toBe('div');
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
-    expect(renderTree.rendered.props.style).toEqual({
-      height: '100%',
-    });
   });
 
   it('error template', () => {
