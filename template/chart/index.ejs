@@ -7,15 +7,13 @@ import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
 export interface <%= chartName %>Config extends G2plotProps, ContainerProps {
-  chartRef?: React.MutableRefObject<G2Plot<%= chartName %> | undefined>;
+  chartRef?: ChartRefOptions;
 }
 
 const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) => {
   const {
     chartRef,
-    style = {
-      height: '100%',
-    },
+    style,
     className,
     loading,
     loadingTemplate,
@@ -30,10 +28,10 @@ const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) =>
     getChart: () => chart.current,
   }));
   return (
-    <ErrorBoundary errorTemplate={errorTemplate}>
-      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
-      <div className={className} style={style} ref={container} />
-    </ErrorBoundary>
+      <ErrorBoundary errorTemplate={errorTemplate}>
+        {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
+        <div className={className} style={style} ref={container} />
+      </ErrorBoundary>
   );
 });
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Area as G2plotArea, AreaOptions as G2plotProps } from '@antv/g2plot';
+import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Area as G2PlotArea, AreaOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -13,27 +13,25 @@ export interface AreaConfig extends G2plotProps, ContainerProps {
 const AreaChart = forwardRef((props: AreaConfig, ref) => {
   const {
     chartRef,
-    style = {
-      height: '100%',
-    },
+    style,
     className,
     loading,
     loadingTemplate,
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2plotArea, AreaConfig>(G2plotArea, rest);
+  const { chart, container } = useChart<G2PlotArea, AreaConfig>(G2PlotArea, rest);
   useEffect(() => {
-    getChart(chartRef, chart.current);
+     getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
   }));
   return (
-    <ErrorBoundary errorTemplate={errorTemplate}>
-      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
-      <div className={className} style={style} ref={container} />
-    </ErrorBoundary>
+      <ErrorBoundary errorTemplate={errorTemplate}>
+        {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
+        <div className={className} style={style} ref={container} />
+      </ErrorBoundary>
   );
 });
 

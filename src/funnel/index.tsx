@@ -1,5 +1,5 @@
-import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Funnel as G2plotFunnel, FunnelOptions as G2plotProps } from '@antv/g2plot';
+import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
+import { Funnel as G2PlotFunnel, FunnelOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -13,27 +13,25 @@ export interface FunnelConfig extends G2plotProps, ContainerProps {
 const FunnelChart = forwardRef((props: FunnelConfig, ref) => {
   const {
     chartRef,
-    style = {
-      height: '100%',
-    },
+    style,
     className,
     loading,
     loadingTemplate,
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2plotFunnel, FunnelConfig>(G2plotFunnel, rest);
+  const { chart, container } = useChart<G2PlotFunnel, FunnelConfig>(G2PlotFunnel, rest);
   useEffect(() => {
-    getChart(chartRef, chart.current);
+     getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
   }));
   return (
-    <ErrorBoundary errorTemplate={errorTemplate}>
-      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
-      <div className={className} style={style} ref={container} />
-    </ErrorBoundary>
+      <ErrorBoundary errorTemplate={errorTemplate}>
+        {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
+        <div className={className} style={style} ref={container} />
+      </ErrorBoundary>
   );
 });
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { DualAxes as G2plotDualAxes, DualAxesOptions as G2plotProps } from '@antv/g2plot';
+import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
+import { DualAxes as G2PlotDualAxes, DualAxesOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -13,28 +13,25 @@ export interface DualAxesConfig extends G2plotProps, ContainerProps {
 const DualAxesChart = forwardRef((props: DualAxesConfig, ref) => {
   const {
     chartRef,
-    style = {
-      height: '100%',
-    },
+    style,
     className,
     loading,
     loadingTemplate,
     errorTemplate,
     ...rest
   } = props;
-  // @ts-ignore annotations 类型特殊
-  const { chart, container } = useChart<G2plotDualAxes, DualAxesConfig>(G2plotDualAxes, rest);
+  const { chart, container } = useChart<G2PlotDualAxes, DualAxesConfig>(G2PlotDualAxes, rest);
   useEffect(() => {
-    getChart(chartRef, chart.current);
+     getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
   }));
   return (
-    <ErrorBoundary errorTemplate={errorTemplate}>
-      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
-      <div className={className} style={style} ref={container} />
-    </ErrorBoundary>
+      <ErrorBoundary errorTemplate={errorTemplate}>
+        {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
+        <div className={className} style={style} ref={container} />
+      </ErrorBoundary>
   );
 });
 
