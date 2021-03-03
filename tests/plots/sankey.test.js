@@ -62,6 +62,9 @@ describe('Sankey render', () => {
     expect(renderTree.rendered.type).toBe('div');
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
+    expect(renderTree.rendered.props.style).toEqual({
+      height: '100%',
+    });
   });
 
   it('error template', () => {
@@ -111,7 +114,7 @@ describe('Sankey render', () => {
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.views[0].getData().length).toBe(3);
+    expect(chartRef.chart.views[0].getData().length).toBe(2);
   });
 
   it('chartRef with createRef', () => {
@@ -132,7 +135,7 @@ describe('Sankey render', () => {
     act(() => {
       ReactDOM.render(<Sankey {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.views[0].getData().length).toBe(3);
+    expect(chartRef.current.chart.views[0].getData().length).toBe(2);
   });
 
   it('chartRef with useRef', () => {
@@ -151,6 +154,6 @@ describe('Sankey render', () => {
     act(() => {
       ReactDOM.render(<Sankey {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.views[0].getData().length).toBe(3);
+    expect(refs.current.getChart().chart.views[0].getData().length).toBe(2);
   });
 });
