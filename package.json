@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/charts",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "React translate g2plot",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -38,18 +38,6 @@
     "test": "umi-test",
     "test:coverage": "umi-test --coverage"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
     "@antv/g6": "^4.1.7",
@@ -60,6 +48,7 @@
     "@antv/data-set": "^0.11.7",
     "@babel/core": "^7.11.6",
     "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.13.9",
     "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.10.4",
     "@testing-library/jest-dom": "^5.5.0",
@@ -72,6 +61,8 @@
     "@umijs/preset-react": "^1.4.8",
     "@umijs/test": "^3.0.16",
     "babel-loader": "^8.2.2",
+    "babel-plugin-named-asset-import": "^0.3.7",
+    "babel-preset-react-app": "^10.0.0",
     "chalk": "^4.1.0",
     "dumi": "^1.1.0-beta.18",
     "dumi-theme-default": "^1.0.0-beta.5",

@@ -156,10 +156,10 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       ...config,
     });
 
-    chartInstance.__proto__.toDataURL = (type?: string, encoderOptions?: number) => {
+    ChartClass.prototype.toDataURL = (type?: string, encoderOptions?: number) => {
       return toDataURL(type, encoderOptions);
     };
-    chartInstance.__proto__.downloadImage = (
+    ChartClass.prototype.downloadImage = (
       name?: string,
       type?: string,
       encoderOptions?: number,
