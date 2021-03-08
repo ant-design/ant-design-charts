@@ -37,6 +37,65 @@ The React version is too low and does not support hooks. Updated to version 16.
 />
 ```
 
+### 4、How do I set the horizontal axis to start at 0
+
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*NAvlTZ66qzMAAAAAAAAAAAAAARQnAQ" alt="faq">
+
+Horizontal axis is configurable, which can be configured in meta. The optional range is 0~1.
+
+```ts
+meta: {
+  [xField]: {
+    range: [0, 1]
+  }
+}
+```
+
+### 5、How to share a Y axis in DaulAxes plot
+
+You can use `scale.sync` and hide one of the y-axis.
+
+```ts
+// 适用于 DualAxes plot
+{
+  yFields: ['y1', 'y2'],
+  meta: {
+    y1: { sync: 'y2' },
+    y2: { sync: true },
+  },
+  yAxis: {
+    y2: false
+  }
+}
+```
+
+### 6、Package file is too large, how to load on demand
+
+Import from lib or use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import).
+
+- Import from lib
+
+```ts
+import Line from '@ant-design/charts/lib/line';
+```
+
+- Use babel-plugin-import
+
+```ts
+  // install
+  npm install babel-plugin-import -D
+
+  // config .babelrc file
+  {
+    "plugins": [
+      ["import", {
+        "libraryName": "@ant-design/charts",
+        "libraryDirectory": "lib"
+      }]
+    ]
+  }
+```
+
 ### More problems
 
 Please go to [GitHub Issues](https://github.com/ant-design/ant-design-charts/issues) to find out if there are similar problems. We will respond and improve this document as soon as possible.

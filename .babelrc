@@ -1,19 +1,11 @@
 {
   "presets": [
-    "@babel/react",
     [
-      "@babel/env",
+      "@babel/preset-env",
       {
-        "targets": "> 0.25%, not dead"
-      }
-    ]
-  ],
-  "plugins": [
-    [
-      "@babel/transform-runtime",
-      {
-        "helpers": false,
-        "regenerator": true
+        "targets": {
+          "browsers": ["last 1 version", "> 1%", "IE 9"]
+        }
       }
     ]
   ]

@@ -37,6 +37,65 @@ nav:
 />
 ```
 
+### 4、怎么设置横轴从 0 开始
+
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*NAvlTZ66qzMAAAAAAAAAAAAAARQnAQ" alt="faq">
+
+横轴的范范是可配置的，在 meta 里面配置即可，range 可选范围是 0~1。
+
+```ts
+meta: {
+  [xField]: {
+    range: [0, 1]
+  }
+}
+```
+
+### 5、双轴图如何共用一个 Y 轴
+
+可以通过开启 scale 同步， 然后隐藏其中一个 y 轴坐标。
+
+```ts
+// 适用于 DualAxes plot
+{
+  yFields: ['y1', 'y2'],
+  meta: {
+    y1: { sync: 'y2' },
+    y2: { sync: true },
+  },
+  yAxis: {
+    y2: false
+  }
+}
+```
+
+### 6、打包文件过大，如何按需加载
+
+按需加载可以通过从 lib 中引入依赖，也可以通过 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 实现。
+
+- 从 lib 引入
+
+```ts
+import Line from '@ant-design/charts/lib/line';
+```
+
+- 使用 babel-plugin-import
+
+```ts
+  // 安装依赖
+  npm install babel-plugin-import -D
+
+  // 配置 .babelrc 文件
+  {
+    "plugins": [
+      ["import", {
+        "libraryName": "@ant-design/charts",
+        "libraryDirectory": "lib"
+      }]
+    ]
+  }
+```
+
 ### 更多问题
 
 请到 [GitHub issues](https://github.com/ant-design/ant-design-charts/issues) 进行反馈，搜索是否有类似问题。我们会尽快响应和相应改进这篇文档。
