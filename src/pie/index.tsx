@@ -11,7 +11,17 @@ export interface PieConfig extends G2plotProps, ContainerProps {
 }
 
 const PieChart = forwardRef((props: PieConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotPie, PieConfig>(G2PlotPie, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

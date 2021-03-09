@@ -11,7 +11,17 @@ export interface MultiViewConfig extends G2plotProps, ContainerProps {
 }
 
 const MultiViewChart = forwardRef((props: MultiViewConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotMultiView, MultiViewConfig>(G2PlotMultiView, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

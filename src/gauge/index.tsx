@@ -11,7 +11,17 @@ export interface GaugeConfig extends G2plotProps, ContainerProps {
 }
 
 const GaugeChart = forwardRef((props: GaugeConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotGauge, GaugeConfig>(G2PlotGauge, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

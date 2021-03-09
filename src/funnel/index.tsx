@@ -11,7 +11,17 @@ export interface FunnelConfig extends G2plotProps, ContainerProps {
 }
 
 const FunnelChart = forwardRef((props: FunnelConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotFunnel, FunnelConfig>(G2PlotFunnel, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

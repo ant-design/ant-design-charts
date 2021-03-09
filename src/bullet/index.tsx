@@ -13,7 +13,17 @@ export interface BulletConfig
 }
 
 const BulletChart = forwardRef((props: BulletConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotBullet, BulletConfig>(G2PlotBullet, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

@@ -11,7 +11,17 @@ export interface TinyLineConfig extends G2plotProps, ContainerProps {
 }
 
 const TinyLineChart = forwardRef((props: TinyLineConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotTinyLine, TinyLineConfig>(G2PlotTinyLine, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

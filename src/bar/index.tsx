@@ -11,7 +11,17 @@ export interface BarConfig extends G2plotProps, ContainerProps {
 }
 
 const BarChart = forwardRef((props: BarConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotBar, BarConfig>(G2PlotBar, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

@@ -11,7 +11,17 @@ export interface DualAxesConfig extends G2plotProps, ContainerProps {
 }
 
 const DualAxesChart = forwardRef((props: DualAxesConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   // @ts-ignore annotations 类型特殊
   const { chart, container } = useChart<G2PlotDualAxes, DualAxesConfig>(G2PlotDualAxes, rest);
   useEffect(() => {

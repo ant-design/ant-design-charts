@@ -11,7 +11,17 @@ export interface TinyAreaConfig extends G2plotProps, ContainerProps {
 }
 
 const TinyAreaChart = forwardRef((props: TinyAreaConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotTinyArea, TinyAreaConfig>(G2PlotTinyArea, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

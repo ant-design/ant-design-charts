@@ -11,7 +11,17 @@ export interface WaterfallConfig extends G2plotProps, ContainerProps {
 }
 
 const WaterfallChart = forwardRef((props: WaterfallConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotWaterfall, WaterfallConfig>(G2PlotWaterfall, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

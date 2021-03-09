@@ -11,7 +11,17 @@ export interface LineConfig extends G2plotProps, ContainerProps {
 }
 
 const LineChart = forwardRef((props: LineConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotLine, LineConfig>(G2PlotLine, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

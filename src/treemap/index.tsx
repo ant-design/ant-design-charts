@@ -11,7 +11,17 @@ export interface TreemapConfig extends G2plotProps, ContainerProps {
 }
 
 const TreemapChart = forwardRef((props: TreemapConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotTreemap, TreemapConfig>(G2PlotTreemap, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

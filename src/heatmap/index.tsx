@@ -11,7 +11,17 @@ export interface HeatmapConfig extends G2plotProps, ContainerProps {
 }
 
 const HeatmapChart = forwardRef((props: HeatmapConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotHeatmap, HeatmapConfig>(G2PlotHeatmap, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

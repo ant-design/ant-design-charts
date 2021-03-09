@@ -11,7 +11,17 @@ export interface LiquidConfig extends G2plotProps, ContainerProps {
 }
 
 const LiquidChart = forwardRef((props: LiquidConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotLiquid, LiquidConfig>(G2PlotLiquid, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

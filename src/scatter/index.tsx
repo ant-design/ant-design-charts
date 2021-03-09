@@ -11,7 +11,17 @@ export interface ScatterConfig extends G2plotProps, ContainerProps {
 }
 
 const ScatterChart = forwardRef((props: ScatterConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotScatter, ScatterConfig>(G2PlotScatter, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

@@ -11,7 +11,17 @@ export interface ProgressConfig extends G2plotProps, ContainerProps {
 }
 
 const ProgressChart = forwardRef((props: ProgressConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotProgress, ProgressConfig>(G2PlotProgress, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

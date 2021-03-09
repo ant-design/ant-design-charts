@@ -11,7 +11,17 @@ export interface SunburstConfig extends G2plotProps, ContainerProps {
 }
 
 const SunburstChart = forwardRef((props: SunburstConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotSunburst, SunburstConfig>(G2PlotSunburst, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

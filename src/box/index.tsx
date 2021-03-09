@@ -11,7 +11,17 @@ export interface BoxConfig extends G2plotProps, ContainerProps {
 }
 
 const BoxChart = forwardRef((props: BoxConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotBox, BoxConfig>(G2PlotBox, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

@@ -14,7 +14,17 @@ export interface RingProgressConfig extends G2plotProps, ContainerProps {
 }
 
 const RingProgressChart = forwardRef((props: RingProgressConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotRingProgress, RingProgressConfig>(
     G2PlotRingProgress,
     rest,

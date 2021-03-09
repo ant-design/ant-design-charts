@@ -14,7 +14,17 @@ export interface BidirectionalBarConfig extends G2plotProps, ContainerProps {
 }
 
 const BidirectionalBarChart = forwardRef((props: BidirectionalBarConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotBidirectionalBar, BidirectionalBarConfig>(
     G2PlotBidirectionalBar,
     rest,

@@ -13,7 +13,9 @@ export interface <%= chartName %>Config extends G2plotProps, ContainerProps {
 const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) => {
   const {
     chartRef,
-    style,
+    style = {
+      height: 'inherit'
+    },
     className,
     loading,
     loadingTemplate,

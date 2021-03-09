@@ -11,7 +11,17 @@ export interface RadarConfig extends G2plotProps, ContainerProps {
 }
 
 const RadarChart = forwardRef((props: RadarConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotRadar, RadarConfig>(G2PlotRadar, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

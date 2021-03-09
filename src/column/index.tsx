@@ -11,7 +11,17 @@ export interface ColumnConfig extends G2plotProps, ContainerProps {
 }
 
 const ColumnChart = forwardRef((props: ColumnConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotColumn, ColumnConfig>(G2PlotColumn, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

@@ -11,7 +11,17 @@ export interface TinyColumnConfig extends G2plotProps, ContainerProps {
 }
 
 const TinyColumnChart = forwardRef((props: TinyColumnConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotTinyColumn, TinyColumnConfig>(G2PlotTinyColumn, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

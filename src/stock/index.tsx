@@ -11,7 +11,17 @@ export interface StockConfig extends G2plotProps, ContainerProps {
 }
 
 const StockChart = forwardRef((props: StockConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotStock, StockConfig>(G2PlotStock, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

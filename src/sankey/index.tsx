@@ -11,7 +11,17 @@ export interface SankeyConfig extends G2plotProps, ContainerProps {
 }
 
 const SankeyChart = forwardRef((props: SankeyConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotSankey, SankeyConfig>(G2PlotSankey, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);

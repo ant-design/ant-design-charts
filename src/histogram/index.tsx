@@ -11,7 +11,17 @@ export interface HistogramConfig extends G2plotProps, ContainerProps {
 }
 
 const HistogramChart = forwardRef((props: HistogramConfig, ref) => {
-  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
+  const {
+    chartRef,
+    style = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...rest
+  } = props;
   const { chart, container } = useChart<G2PlotHistogram, HistogramConfig>(G2PlotHistogram, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
