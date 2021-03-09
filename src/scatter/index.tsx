@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Scatter as G2PlotScatter, ScatterOptions as G2plotProps } from '@antv/g2plot';
+import { Scatter as G2plotScatter, ScatterOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const ScatterChart = forwardRef((props: ScatterConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotScatter, ScatterConfig>(G2PlotScatter, rest);
+  const { chart, container } = useChart<G2plotScatter, ScatterConfig>(G2plotScatter, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Column as G2PlotColumn, ColumnOptions as G2plotProps } from '@antv/g2plot';
+import { Column as G2plotColumn, ColumnOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const ColumnChart = forwardRef((props: ColumnConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotColumn, ColumnConfig>(G2PlotColumn, rest);
+  const { chart, container } = useChart<G2plotColumn, ColumnConfig>(G2plotColumn, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

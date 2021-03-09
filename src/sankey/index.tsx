@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Sankey as G2PlotSankey, SankeyOptions as G2plotProps } from '@antv/g2plot';
+import { Sankey as G2plotSankey, SankeyOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const SankeyChart = forwardRef((props: SankeyConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotSankey, SankeyConfig>(G2PlotSankey, rest);
+  const { chart, container } = useChart<G2plotSankey, SankeyConfig>(G2plotSankey, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

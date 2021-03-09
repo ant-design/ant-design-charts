@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { TinyArea as G2PlotTinyArea, TinyAreaOptions as G2plotProps } from '@antv/g2plot';
+import { TinyArea as G2plotTinyArea, TinyAreaOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const TinyAreaChart = forwardRef((props: TinyAreaConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotTinyArea, TinyAreaConfig>(G2PlotTinyArea, rest);
+  const { chart, container } = useChart<G2plotTinyArea, TinyAreaConfig>(G2plotTinyArea, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { WordCloud as G2PlotWordCloud, WordCloudOptions as G2plotProps } from '@antv/g2plot';
+import { WordCloud as G2plotWordCloud, WordCloudOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const WordCloudChart = forwardRef((props: WordCloudConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotWordCloud, WordCloudConfig>(G2PlotWordCloud, rest);
+  const { chart, container } = useChart<G2plotWordCloud, WordCloudConfig>(G2plotWordCloud, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

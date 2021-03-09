@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Gauge as G2PlotGauge, GaugeOptions as G2plotProps } from '@antv/g2plot';
+import { Gauge as G2plotGauge, GaugeOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const GaugeChart = forwardRef((props: GaugeConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotGauge, GaugeConfig>(G2PlotGauge, rest);
+  const { chart, container } = useChart<G2plotGauge, GaugeConfig>(G2plotGauge, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

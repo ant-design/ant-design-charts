@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Pie as G2PlotPie, PieOptions as G2plotProps } from '@antv/g2plot';
+import { Pie as G2plotPie, PieOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const PieChart = forwardRef((props: PieConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotPie, PieConfig>(G2PlotPie, rest);
+  const { chart, container } = useChart<G2plotPie, PieConfig>(G2plotPie, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

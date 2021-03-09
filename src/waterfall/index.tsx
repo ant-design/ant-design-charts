@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Waterfall as G2PlotWaterfall, WaterfallOptions as G2plotProps } from '@antv/g2plot';
+import { Waterfall as G2plotWaterfall, WaterfallOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const WaterfallChart = forwardRef((props: WaterfallConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotWaterfall, WaterfallConfig>(G2PlotWaterfall, rest);
+  const { chart, container } = useChart<G2plotWaterfall, WaterfallConfig>(G2plotWaterfall, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

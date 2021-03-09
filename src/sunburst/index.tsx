@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Sunburst as G2PlotSunburst, SunburstOptions as G2plotProps } from '@antv/g2plot';
+import { Sunburst as G2plotSunburst, SunburstOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const SunburstChart = forwardRef((props: SunburstConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotSunburst, SunburstConfig>(G2PlotSunburst, rest);
+  const { chart, container } = useChart<G2plotSunburst, SunburstConfig>(G2plotSunburst, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

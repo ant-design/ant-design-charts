@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import {
-  BidirectionalBar as G2PlotBidirectionalBar,
+  BidirectionalBar as G2plotBidirectionalBar,
   BidirectionalBarOptions as G2plotProps,
 } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
@@ -25,8 +25,8 @@ const BidirectionalBarChart = forwardRef((props: BidirectionalBarConfig, ref) =>
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotBidirectionalBar, BidirectionalBarConfig>(
-    G2PlotBidirectionalBar,
+  const { chart, container } = useChart<G2plotBidirectionalBar, BidirectionalBarConfig>(
+    G2plotBidirectionalBar,
     rest,
   );
   useEffect(() => {

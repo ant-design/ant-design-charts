@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Treemap as G2PlotTreemap, TreemapOptions as G2plotProps } from '@antv/g2plot';
+import { Treemap as G2plotTreemap, TreemapOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const TreemapChart = forwardRef((props: TreemapConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotTreemap, TreemapConfig>(G2PlotTreemap, rest);
+  const { chart, container } = useChart<G2plotTreemap, TreemapConfig>(G2plotTreemap, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

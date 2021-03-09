@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Funnel as G2PlotFunnel, FunnelOptions as G2plotProps } from '@antv/g2plot';
+import { Funnel as G2plotFunnel, FunnelOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const FunnelChart = forwardRef((props: FunnelConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotFunnel, FunnelConfig>(G2PlotFunnel, rest);
+  const { chart, container } = useChart<G2plotFunnel, FunnelConfig>(G2plotFunnel, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Rose as G2PlotRose, RoseOptions as G2plotProps } from '@antv/g2plot';
+import { Rose as G2plotRose, RoseOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const RoseChart = forwardRef((props: RoseConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotRose, RoseConfig>(G2PlotRose, rest);
+  const { chart, container } = useChart<G2plotRose, RoseConfig>(G2plotRose, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

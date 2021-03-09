@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Histogram as G2PlotHistogram, HistogramOptions as G2plotProps } from '@antv/g2plot';
+import { Histogram as G2plotHistogram, HistogramOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const HistogramChart = forwardRef((props: HistogramConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotHistogram, HistogramConfig>(G2PlotHistogram, rest);
+  const { chart, container } = useChart<G2plotHistogram, HistogramConfig>(G2plotHistogram, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

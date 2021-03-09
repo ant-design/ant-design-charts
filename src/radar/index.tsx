@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Radar as G2PlotRadar, RadarOptions as G2plotProps } from '@antv/g2plot';
+import { Radar as G2plotRadar, RadarOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const RadarChart = forwardRef((props: RadarConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotRadar, RadarConfig>(G2PlotRadar, rest);
+  const { chart, container } = useChart<G2plotRadar, RadarConfig>(G2plotRadar, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Stock as G2PlotStock, StockOptions as G2plotProps } from '@antv/g2plot';
+import { Stock as G2plotStock, StockOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const StockChart = forwardRef((props: StockConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotStock, StockConfig>(G2PlotStock, rest);
+  const { chart, container } = useChart<G2plotStock, StockConfig>(G2plotStock, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

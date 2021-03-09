@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Progress as G2PlotProgress, ProgressOptions as G2plotProps } from '@antv/g2plot';
+import { Progress as G2plotProgress, ProgressOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const ProgressChart = forwardRef((props: ProgressConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotProgress, ProgressConfig>(G2PlotProgress, rest);
+  const { chart, container } = useChart<G2plotProgress, ProgressConfig>(G2plotProgress, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

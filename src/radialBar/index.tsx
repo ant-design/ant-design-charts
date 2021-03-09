@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { RadialBar as G2PlotRadialBar, RadialBarOptions as G2plotProps } from '@antv/g2plot';
+import { RadialBar as G2plotRadialBar, RadialBarOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const RadialBarChart = forwardRef((props: RadialBarConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotRadialBar, RadialBarConfig>(G2PlotRadialBar, rest);
+  const { chart, container } = useChart<G2plotRadialBar, RadialBarConfig>(G2plotRadialBar, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

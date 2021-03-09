@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Heatmap as G2PlotHeatmap, HeatmapOptions as G2plotProps } from '@antv/g2plot';
+import { Heatmap as G2plotHeatmap, HeatmapOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -22,7 +22,7 @@ const HeatmapChart = forwardRef((props: HeatmapConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2PlotHeatmap, HeatmapConfig>(G2PlotHeatmap, rest);
+  const { chart, container } = useChart<G2plotHeatmap, HeatmapConfig>(G2plotHeatmap, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

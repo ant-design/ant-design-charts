@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { DualAxes as G2PlotDualAxes, DualAxesOptions as G2plotProps } from '@antv/g2plot';
+import { DualAxes as G2plotDualAxes, DualAxesOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -23,7 +23,7 @@ const DualAxesChart = forwardRef((props: DualAxesConfig, ref) => {
     ...rest
   } = props;
   // @ts-ignore annotations 类型特殊
-  const { chart, container } = useChart<G2PlotDualAxes, DualAxesConfig>(G2PlotDualAxes, rest);
+  const { chart, container } = useChart<G2plotDualAxes, DualAxesConfig>(G2plotDualAxes, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);
