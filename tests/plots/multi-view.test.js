@@ -69,6 +69,9 @@ describe('MultiView render', () => {
     expect(renderTree.rendered.type).toBe('div');
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
+    expect(renderTree.rendered.props.style).toEqual({
+      height: 'inherit',
+    });
   });
 
   it('error template', () => {
