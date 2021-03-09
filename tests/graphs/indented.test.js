@@ -133,7 +133,7 @@ describe('IndentedTree', () => {
     const node = refs.current.getNodes()[0];
     const edge = refs.current.getEdges()[0];
 
-    const collapseIcon = node.getContainer().find(e => e.get('name') === 'collapse-icon');
+    const collapseIcon = node.getContainer().find((e) => e.get('name') === 'collapse-icon');
 
     refs.current.emit('edge:mouseenter', { item: edge });
     refs.current.emit('node:mouseenter', { item: node });

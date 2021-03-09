@@ -1,4 +1,4 @@
-import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { MultiView as G2PlotMultiView, MultiViewOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
@@ -11,27 +11,19 @@ export interface MultiViewConfig extends G2plotProps, ContainerProps {
 }
 
 const MultiViewChart = forwardRef((props: MultiViewConfig, ref) => {
-  const {
-    chartRef,
-    style,
-    className,
-    loading,
-    loadingTemplate,
-    errorTemplate,
-    ...rest
-  } = props;
+  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
   const { chart, container } = useChart<G2PlotMultiView, MultiViewConfig>(G2PlotMultiView, rest);
   useEffect(() => {
-     getChart(chartRef, chart.current);
+    getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
   }));
   return (
-      <ErrorBoundary errorTemplate={errorTemplate}>
-        {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
-        <div className={className} style={style} ref={container} />
-      </ErrorBoundary>
+    <ErrorBoundary errorTemplate={errorTemplate}>
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
+      <div className={className} style={style} ref={container} />
+    </ErrorBoundary>
   );
 });
 

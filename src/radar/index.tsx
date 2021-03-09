@@ -1,4 +1,4 @@
-import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Radar as G2PlotRadar, RadarOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
@@ -11,27 +11,19 @@ export interface RadarConfig extends G2plotProps, ContainerProps {
 }
 
 const RadarChart = forwardRef((props: RadarConfig, ref) => {
-  const {
-    chartRef,
-    style,
-    className,
-    loading,
-    loadingTemplate,
-    errorTemplate,
-    ...rest
-  } = props;
+  const { chartRef, style, className, loading, loadingTemplate, errorTemplate, ...rest } = props;
   const { chart, container } = useChart<G2PlotRadar, RadarConfig>(G2PlotRadar, rest);
   useEffect(() => {
-     getChart(chartRef, chart.current);
+    getChart(chartRef, chart.current);
   }, [chart.current]);
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
   }));
   return (
-      <ErrorBoundary errorTemplate={errorTemplate}>
-        {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
-        <div className={className} style={style} ref={container} />
-      </ErrorBoundary>
+    <ErrorBoundary errorTemplate={errorTemplate}>
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
+      <div className={className} style={style} ref={container} />
+    </ErrorBoundary>
   );
 });
 

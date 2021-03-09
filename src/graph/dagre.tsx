@@ -19,7 +19,10 @@ const defaultNodeStyle = {
   stroke: '#40a9ff',
 };
 
-const defaultNodeAnchorPoints = [[0.5, 0], [0.5, 1]];
+const defaultNodeAnchorPoints = [
+  [0.5, 0],
+  [0.5, 1],
+];
 
 const defaultEdgeStyle = {
   stroke: '#91d5ff',
