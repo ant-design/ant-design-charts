@@ -14,7 +14,7 @@ const RoseChart = forwardRef((props: RoseConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

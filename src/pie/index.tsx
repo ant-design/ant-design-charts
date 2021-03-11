@@ -14,7 +14,7 @@ const PieChart = forwardRef((props: PieConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,
@@ -23,7 +23,6 @@ const PieChart = forwardRef((props: PieConfig, ref) => {
     ...rest
   } = props;
   const { chart, container } = useChart<G2plotPie, PieConfig>(G2plotPie, rest);
-
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

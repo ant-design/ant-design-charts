@@ -14,7 +14,7 @@ const ScatterChart = forwardRef((props: ScatterConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,
@@ -23,7 +23,6 @@ const ScatterChart = forwardRef((props: ScatterConfig, ref) => {
     ...rest
   } = props;
   const { chart, container } = useChart<G2plotScatter, ScatterConfig>(G2plotScatter, rest);
-
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

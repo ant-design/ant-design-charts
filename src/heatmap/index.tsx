@@ -14,7 +14,7 @@ const HeatmapChart = forwardRef((props: HeatmapConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

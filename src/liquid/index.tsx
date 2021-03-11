@@ -14,7 +14,7 @@ const LiquidChart = forwardRef((props: LiquidConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

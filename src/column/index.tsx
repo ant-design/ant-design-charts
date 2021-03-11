@@ -14,7 +14,7 @@ const ColumnChart = forwardRef((props: ColumnConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,
@@ -23,7 +23,6 @@ const ColumnChart = forwardRef((props: ColumnConfig, ref) => {
     ...rest
   } = props;
   const { chart, container } = useChart<G2plotColumn, ColumnConfig>(G2plotColumn, rest);
-
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

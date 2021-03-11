@@ -14,7 +14,7 @@ const AreaChart = forwardRef((props: AreaConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

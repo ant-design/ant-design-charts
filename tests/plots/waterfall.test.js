@@ -43,9 +43,7 @@ describe('Waterfall render', () => {
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered[0].nodeType).toBe('component');
     expect(renderTree.rendered[1].props.className).toBe('container');
-    expect(renderTree.rendered[1].props.style).toEqual({
-      height: '80%',
-    });
+    expect(renderTree.rendered[1].props.style).toEqual({ height: '80%' });
     expect(renderTree.rendered[1].nodeType).toBe('host');
     expect(renderTree.rendered[1].type).toBe('div');
     expect(testInstance.findAllByType(ChartLoading).length).toBe(1);
@@ -61,7 +59,7 @@ describe('Waterfall render', () => {
     expect(renderTree.rendered.props.className).toBeUndefined();
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
-      height: '100%',
+      height: 'inherit',
     });
   });
 

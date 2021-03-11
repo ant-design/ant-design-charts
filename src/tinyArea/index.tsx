@@ -14,7 +14,7 @@ const TinyAreaChart = forwardRef((props: TinyAreaConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

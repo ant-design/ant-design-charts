@@ -22,6 +22,7 @@
     "build": "run-s clean lib dist",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
+    "chart": "node ./scripts/chart.js",
     "deploy": "gh-pages -d dist",
     "dev": "dumi dev",
     "dist": "webpack --config webpack.config.js --mode production",

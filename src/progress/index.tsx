@@ -14,7 +14,7 @@ const ProgressChart = forwardRef((props: ProgressConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

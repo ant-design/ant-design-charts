@@ -14,7 +14,7 @@ const TinyColumnChart = forwardRef((props: TinyColumnConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

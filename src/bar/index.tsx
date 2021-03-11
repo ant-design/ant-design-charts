@@ -14,7 +14,7 @@ const BarChart = forwardRef((props: BarConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

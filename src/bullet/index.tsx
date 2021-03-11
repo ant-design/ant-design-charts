@@ -16,7 +16,7 @@ const BulletChart = forwardRef((props: BulletConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

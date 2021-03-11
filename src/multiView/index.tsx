@@ -15,7 +15,7 @@ const MultiViewChart = forwardRef((props: MultiViewConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,
@@ -24,7 +24,6 @@ const MultiViewChart = forwardRef((props: MultiViewConfig, ref) => {
     ...rest
   } = props;
   const { chart, container } = useChart<G2plotMultiView, MultiViewConfig>(G2plotMultiView, rest);
-
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

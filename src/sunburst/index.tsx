@@ -14,7 +14,7 @@ const SunburstChart = forwardRef((props: SunburstConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,
@@ -23,7 +23,6 @@ const SunburstChart = forwardRef((props: SunburstConfig, ref) => {
     ...rest
   } = props;
   const { chart, container } = useChart<G2plotSunburst, SunburstConfig>(G2plotSunburst, rest);
-
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

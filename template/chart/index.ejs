@@ -1,5 +1,5 @@
 import React, {  useEffect, useImperativeHandle, forwardRef } from 'react';
-import { <%= chartName %> as G2Plot<%= chartName %>, <%= chartName %>Options as G2plotProps } from '@antv/g2plot';
+import { <%= chartName %> as G2plot<%= chartName %>, <%= chartName %>Options as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -7,14 +7,14 @@ import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
 export interface <%= chartName %>Config extends G2plotProps, ContainerProps {
-  chartRef?: React.MutableRefObject<G2Plot<%= chartName %> | undefined>;
+  chartRef?: ChartRefOptions;
 }
 
 const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit'
     },
     className,
     loading,
@@ -22,7 +22,7 @@ const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) =>
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2Plot<%= chartName %>, <%= chartName %>Config>(G2Plot<%= chartName %>, rest);
+  const { chart, container } = useChart<G2plot<%= chartName %>, <%= chartName %>Config>(G2plot<%= chartName %>, rest);
   useEffect(() => {
      getChart(chartRef, chart.current);
   }, [chart.current]);
@@ -30,10 +30,10 @@ const <%= chartName %>Chart = forwardRef((props: <%= chartName %>Config, ref) =>
     getChart: () => chart.current,
   }));
   return (
-    <ErrorBoundary errorTemplate={errorTemplate}>
-      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
-      <div className={className} style={style} ref={container} />
-    </ErrorBoundary>
+      <ErrorBoundary errorTemplate={errorTemplate}>
+        {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
+        <div className={className} style={style} ref={container} />
+      </ErrorBoundary>
   );
 });
 

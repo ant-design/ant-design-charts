@@ -14,7 +14,7 @@ const TinyLineChart = forwardRef((props: TinyLineConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

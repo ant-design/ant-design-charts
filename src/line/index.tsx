@@ -14,7 +14,7 @@ const LineChart = forwardRef((props: LineConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,
@@ -23,15 +23,12 @@ const LineChart = forwardRef((props: LineConfig, ref) => {
     ...rest
   } = props;
   const { chart, container } = useChart<G2plotLine, LineConfig>(G2plotLine, rest);
-
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);
-
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
   }));
-
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
       {loading && <ChartLoading loadingTemplate={loadingTemplate} />}

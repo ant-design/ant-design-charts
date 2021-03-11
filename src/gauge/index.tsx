@@ -14,7 +14,7 @@ const GaugeChart = forwardRef((props: GaugeConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

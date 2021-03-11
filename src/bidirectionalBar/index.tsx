@@ -17,7 +17,7 @@ const BidirectionalBarChart = forwardRef((props: BidirectionalBarConfig, ref) =>
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,

@@ -14,7 +14,7 @@ const StockChart = forwardRef((props: StockConfig, ref) => {
   const {
     chartRef,
     style = {
-      height: '100%',
+      height: 'inherit',
     },
     className,
     loading,
@@ -23,7 +23,6 @@ const StockChart = forwardRef((props: StockConfig, ref) => {
     ...rest
   } = props;
   const { chart, container } = useChart<G2plotStock, StockConfig>(G2plotStock, rest);
-
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);
