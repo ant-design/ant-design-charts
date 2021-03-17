@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-ignore
 import ReactDOM from 'react-dom';
 
 const createNode = (children: React.ReactNode, type?: string) => {

@@ -13,8 +13,8 @@ G6.registerNode(
       const r = style.radius || 0;
       const shape = group!.addShape('rect', {
         attrs: {
-          x: -size[0] / 2,
-          y: -size[1] / 2,
+          x: 0,
+          y: 0,
           width: size[0],
           height: size[1],
           stroke: color,
@@ -33,8 +33,8 @@ G6.registerNode(
         titleTextShape = group!.addShape('text', {
           attrs: {
             textBaseline: 'top',
-            x: -size[0] / 2 + 8,
-            y: -size[1] / 2 + 2,
+            x: 8,
+            y: 2,
             // lineHeight: 20,
             text: title,
             ...titleStyle,
@@ -48,8 +48,8 @@ G6.registerNode(
       // title rect
       const titleRectShape = group!.addShape('rect', {
         attrs: {
-          x: -size[0] / 2,
-          y: -size[1] / 2,
+          x: 0,
+          y: 0,
           width: size[0],
           height: titleBox.height + 4,
           fill: color,
@@ -87,8 +87,8 @@ G6.registerNode(
         descriptionTextShape = group!.addShape('text', {
           attrs: {
             textBaseline: 'top',
-            x: -size[0] / 2 + 8,
-            y: -size[1] / 2 + titleRectBox.height + 8,
+            x: 8,
+            y: titleRectBox.height + 8,
             text: description,
             ...labelStyle,
           },
@@ -102,8 +102,8 @@ G6.registerNode(
         shape.attr({ width, height });
         titleRectShape?.attr('width', width);
         markerShape?.attr({
-          x: width - size[0] / 2,
-          y: height / 2 - size[1] / 2,
+          x: width,
+          y: height / 2,
         });
       }
       return shape;
