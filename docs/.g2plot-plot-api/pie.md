@@ -264,7 +264,7 @@ Formats the contents of the Tooltip Item.
 ```ts
 tooltip: {
   formatter: (datum: Datum) => {
-    return { name: datum.x, value: datum.y + '% };
+    return { name: datum.x, value: datum.y + '%' };
   },
 }
 ```

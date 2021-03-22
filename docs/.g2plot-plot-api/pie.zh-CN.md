@@ -288,7 +288,7 @@ tooltip: {
 ```ts
 tooltip: {
   formatter: (datum: Datum) => {
-    return { name: datum.x, value: datum.y + '% };
+    return { name: datum.x, value: datum.y + '%' };
   },
 }
 ```
