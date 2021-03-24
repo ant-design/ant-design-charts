@@ -1,4 +1,4 @@
-### 图表容器
+### Plot Container
 
 #### width
 
@@ -48,7 +48,7 @@
 
 是否对超出坐标系范围的 Geometry 进行剪切。
 
-### 数据映射
+### Data Mapping
 
 #### percent
 
@@ -56,7 +56,7 @@
 
 设置百分比数值 \[0-1]，表示进度条图的进度情况。
 
-### 图形样式
+### Plot Style
 
 #### barWidthRatio
 
@@ -141,7 +141,7 @@
 }
 ```
 
-### 图表组件
+### Plot Component
 
 #### tooltip
 
@@ -643,4 +643,4 @@ plot.update({ theme: { defaultColor: '#FF6B3B' } });
 
 <playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
-前往 [DEMO](/zh-CN/demos/general#自定义样式)
+前往 [DEMO](/zh/examples/general/theme#register-theme)

@@ -1682,7 +1682,7 @@ plot.update({ theme: { defaultColor: '#FF6B3B' } });
 
 <playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
-前往 [DEMO](/zh-CN/demos/general#自定义样式)
+前往 [DEMO](/zh/examples/general/theme#register-theme)
 
 ### 图表交互
 

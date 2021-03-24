@@ -352,4 +352,4 @@ In addition, G2 provides a custom topic mechanism to define a new topic structur
 
 <playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
-Go [DEMO](/demos/general#自定义样式)
+Go [DEMO](/en/examples/general/theme#register-theme)

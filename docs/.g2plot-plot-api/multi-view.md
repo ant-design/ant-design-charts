@@ -1,76 +1,78 @@
-## title: 多图层图表&#xA;order: 8
+## title: Multi-View Plot&#xA;order: 0
 
-### 图表容器
+## title: Multi View Plot&#xA;order: 8
+
+### Plot Container
 
 #### width
 
 <description>**optional** _number_ _default:_ `400`</description>
 
-设置图表宽度。
+Set the width of the chart.
 
 #### height
 
 <description>**optional** _number_ _default:_ `400`</description>
 
-设置图表高度。
+Set the height of the chart.
 
 #### autoFit
 
 <description>**optional** _boolean_ _default:_ `true`</description>
 
-图表是否自适应容器宽高。当 `autoFit` 设置为 true 时，`width` 和 `height` 的设置将失效。
+Whether the chart automatically adjusts to fit the container. If it is set to `true`, `width` and `height` configuration would fail.
 
 #### padding
 
 <description>**optional** _number\[] | number | 'auto'_</description>
 
-画布的 `padding` 值，代表图表在上右下左的间距，可以为单个数字 `16`，或者数组 `[16, 8, 16, 8]` 代表四个方向，或者开启 `auto`，由底层自动计算间距。
+Set `padding` value of the canvas. You can also use `auto`.
 
 #### appendPadding
 
 <description>**optional** _number\[] | number_</description>
 
-额外增加的 `appendPadding` 值，在 `padding` 的基础上，设置额外的 padding 数值，可以是单个数字 `16`，或者数组 `[16, 8, 16, 8]` 代表四个方向。
+Extra `appendPadding` value.
 
 #### renderer
 
 <description>**optional** _string_ _default:_ `canvas`</description>
 
-设置图表渲染方式为 `canvas` 或 `svg`。
+Set the render way to `canvas` or `svg`.
 
 #### pixelRatio
 
 <description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
 
-设置图表渲染的像素比，和底层的 devicePixelRatio 含义一致，一般不用设置，除非在页面有整体 scale 的情况下，可以自定义。
+Set the pixel ratio of the chart.
 
 #### limitInPlot
 
 <description>**optional** _boolean_</description>
 
-是否对超出坐标系范围的 Geometry 进行剪切。
+Whether clip the Geometry beyond the coordinate system。
 
-### 图层配置
+### View
 
 #### syncViewPadding ✨
 
-<description>**可选** _boolean_</description>
+<description>**optional** _boolean_</description>
 
 是否同步子 view 的 padding 配置。传入 boolean 值，含义是：是否需要将子 View 的 padding 同步，如果设置同步，那么可以保证子 View 在 auto padding 的情况下，所有子 View 的图形能够完全重合，避免显示上的错位。
 
 #### views
 
-<description>**可选** _IView\[]_</description>
+<description>**optional** _IView\[]_</description>
 
-每一个图层的配置，每个图层都包含自己的：数据、图形、图形配置。具体见 [IView](#iview)
+Configuration of `views` is an array. Every view has its own data, geometries and geometry configuration. see more: [IView](#iview)
 
 #### plots
 
 <description>**可选** _IPlot\[]_</description>
 
-每一个图层的配置，每一个 plot 也是一个图层，都包含自己的：数据、图形、图形配置。
+每一个图层的配置，每一个 plot 也是一个图层，都包含自己的：数据、图形、图形配置.
 
-在 2.4.0 版本之后，我们提供了 `plots` 的配置项，你可以使用 plots 来代替 views 或者联合使用。
+在 2.4.0 版本之后，我们提供了 `plots` 的配置项，你可以使用 plots 来代替 views 或者联合使用.
 
 <playground path="plugin/multi-view/demo/series-columns.ts" rid="multi-views-plots"></playground>
 
@@ -78,14 +80,14 @@
 
 #### IView.region
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-view 的布局范围，默认是占满全部。
+The region of view, default is full of region.
 
 Example:
 
 ```ts
-// 设置 view 的布局位置在上半部分
+// Set the region of view in the upper part
 region: {
   start: { x: 0, y: 0 },
   end: { x: 1, y: 0.5 },
@@ -96,7 +98,7 @@ region: {
 
 <description>**required** _array object_</description>
 
-设置图表数据源。数据源为对象集合，例如：
+Configure the data source. The data source is a collection of objects. For example:
 
 ```ts
 const data = [
@@ -109,26 +111,26 @@ const data = [
 
 <description>**optional** _object_</description>
 
-全局化配置图表数据元信息，以字段为单位进行配置，来定义数据的类型和展示方式。在 meta 上的配置将同时影响所有组件的文本信息。
+Configure the meta of each data field of the chart in global, to define the type and presentation of data. Configuration of the meta will affect the text content of all components.
 
-| 细分配置项名称 | 类型        | 功能描述                                    |
-| -------------- | ----------- | ------------------------------------------- |
-| alias          | _string_    | 字段的别名                                  |
-| formatter      | _function_  | callback 方法，对该字段所有值进行格式化处理 |
-| values         | _string\[]_ | 枚举该字段下所有值                          |
-| range          | _number\[]_ | 字段的数据映射区间，默认为\[0,1]            |
+| Properties | Type        | Description                                              |
+| ---------- | ----------- | -------------------------------------------------------- |
+| alias      | _string_    | alias of the data field                                  |
+| formatter  | _function_  | callback function to format all values of the data field |
+| values     | _string\[]_ | enumerate all the values of the data field               |
+| range      | _number\[]_ | mapping range of the data field, default: \[0,1]         |
 
-关于 `meta` 的更多配置项，请查看 [Meta Options](/zh-CN/guide/common#meta)
+See also the [Meta Options](/guide/common#meta) to learn more about configuration of `meta`.
 
 #### IView.coordinate
 
-坐标系的配置，每一个 view 具有自己的坐标系。同一个 view 下的 geometries 共用一个坐标系。
+Configuration of coordinate, every view has its own coordinate. The geometries of the same view share the same coordinate system.
 
-| 参数名 | 类型 | 可选值 ｜ |
+| Properties | Type | Description |
 | --- | --- | --- | --- | --- | --- | --- |
 | type | _string_ | `'polar' | 'theta' | 'rect' | 'cartesian' | 'helix'` |
 | cfg | _CoordinateCfg_ | CoordinateCfg 坐标系配置项，目前常用于极坐标 |
-| actions | _array object_ | 坐标系的变换配置，具体可以见 G2 坐标系[文档](https://g2.antv.vision/zh/docs/api/general/coordinate) |
+| actions | _array object_ | 坐标系的变换配置，具体可以见 G2 坐标系[文档](https://g2.antv.vision/en/docs/api/general/coordinate) |
 
 <div class="sign">
 
@@ -149,15 +151,15 @@ type CoordinateCfg = {
 
 #### IView.geometries
 
-<description>**可选** _array object_</description>
+<description>**optional** _array object_</description>
 
-view 上的图形 geometry 及映射配置，具体见[图层图形](#图层图形)
+view 上的图形 geometry 及映射配置，具体见[Geometry Configuration](#geometryconfiguration)
 
 #### IView.axes
 
-<description>**可选** _object | false_</description>
+<description>**optional** _object | false_</description>
 
-view 上的图形坐标轴配置，key 值对应 `xField` 和 `yField`， value 具体配置见：[Axis API](/zh/docs/api/components/axis)
+view 上的图形坐标轴配置，key 值对应 `xField` 和 `yField`， value 具体配置见：[Axis API](/en/docs/api/components/axis)
 
 <div class="sign">
 
@@ -171,29 +173,31 @@ view 上的图形坐标轴配置，key 值对应 `xField` 和 `yField`， value 
 
 #### IView.annotations
 
-<description>**可选** _object\[]_ </description>
+<description>**optional** _object\[]_ </description>
 
-view 上的几何图形的图形标注配置。具体见：[Annotations API](/zh/docs/api/components/annotations)
+Annotations of geometry in view, see more: [Annotations API](/en/docs/api/components/annotations)
 
 #### IView.interactions
 
-<description>**可选** _object\[]_ </description>
+<description>**optional** _object\[]_ </description>
 
-view 上的交互配置。具体见：[Interactions API](/zh/docs/api/options/interactions)
+Interactions of view, see more: [Interactions API](/en/docs/api/options/interactions)
 
-### 图层图形
+### Geometry Configuration
 
 #### IGeometry.type
 
 <description>**required** _string_</description>
 
-几何图形 geometry 类型。可选值: `'line' | 'interval' | 'point' | 'area' | 'polygon'`。
+Type of geometry, includes: `'line' | 'interval' | 'point' | 'area' | 'polygon'`。
 
 #### IGeometry.mapping ✨
 
 <description>**required** _object_</description>
 
-图形配置规则。在图形语法中，数据可以通过 `color`, `shape`, `size` 等视觉属性映射到图形上，另外 G2/G2Plot 还提供了 `style` 和 `tooltip`，让图形展示更多的信息。具体类型定义见下：（其中：ShapeStyle 具体见[绘图属性](/zh-CN/guide/graphic-style))
+Mapping rules of geometry.
+
+在图形语法中，数据可以通过 `color`, `shape`, `size` 等视觉属性映射到图形上，另外 G2/G2Plot 还提供了 `style` 和 `tooltip`，让图形展示更多的信息。具体类型定义见下：（其中：ShapeStyle 具体见[绘图属性](/guide/graphic-style))
 
 <div class="sign">
 
@@ -227,57 +231,59 @@ type TooltipAttr = (datum: Datum) => { name: string; value: string | number };
 
 #### IGeometry.xField
 
-<description>**可选** _string_</description>
+<description>**optional** _string_</description>
 
 对应 x 轴字段。数据映射到几何图形 geometry 上时，最重要的通道是 `position` 通道。笛卡尔坐标系上的几何图形，通常是一维或二维的，对应位置视觉通道需要 `x`, `y` 两个（或一个）字段的值。
 
 #### IGeometry.yField
 
-<description>**可选** _string_</description>
+<description>**optional** _string_</description>
 
 对应 y 轴字段。数据映射到几何图形 geometry 上时，最重要的通道是 `position` 通道。笛卡尔坐标系上的几何图形，通常是一维或二维的，对应位置视觉通道需要 `x`, `y` 两个（或一个）字段的值。
 
 #### IGeometry.colorField
 
-<description>**可选** _string_</description>
+<description>**optional** _string_</description>
 
-对应颜色(color)映射字段。通过颜色视觉通道对数据进行分组。
+The mapping field of `color`. 通过颜色视觉通道对数据进行分组。
 
 #### IGeometry.shapeField
 
-<description>**可选** _string_</description>
+<description>**optional** _string_</description>
 
-对应形状(shape)映射字段。通过不同的形状对数据进行分组。
+The mapping field of `shape`. 通过不同的形状对数据进行分组。
 
 #### IGeometry.sizeField
 
-<description>**可选** _string_</description>
+<description>**optional** _string_</description>
 
-对应大小(size)映射字段。通过 size 字段，可以将数据按照 `sizeField` 对应的数据进行不同的大小映射。
+The mapping field of `size`. 通过 size 字段，可以将数据按照 `sizeField` 对应的数据进行不同的大小映射。
 
 #### IGeometry.styleField
 
-<description>**可选** _string_</description>
+<description>**optional** _string_</description>
 
-style 映射字段。
+The mapping field of `style`,
 
 #### IGeometry.tooltipFields
 
-<description>**可选** _string\[] | false_</description>
+<description>**optional** _string\[] | false_</description>
 
-tooltip 映射字段。
+The mapping fields of `tooltip`,
 
 #### IGeometry.label
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-label 映射通道，具体见 [Label API](/zh/docs/api/components/label)
+The mapping of `label`, see more: [Label API](/en/docs/api/components/label)
 
 #### IGeometry.adjust
 
-数据调整配置项。调整数据的目的是为了使得图形不互相遮挡，对数据的认识更加清晰，但是必须保证对数据的正确理解，更多信息可以查看 [数据调整 | G2](https://g2.antv.vision/zh/docs/manual/concepts/adjust)
+Adjust of data.
 
-| 参数名 | 类型 | 描述 |
+The purpose of adjusting data is to make the graphics not obscure each other and to have a clearer understanding of the data, but the correct understanding of the data must be ensured. See more: [Adjust | G2](https://g2.antv.vision/en/docs/manual/concepts/adjust)
+
+| Properties | Type | Description |
 | --- | --- | --- | --- | --- | --- |
 | type | 'stack' | 'dodge' | 'jitter' | 'symmetric' | 数据调整类型 |
 | marginRatio | number | 只对 'dodge' 生效，取 0 到 1 范围的值（相对于每个柱子宽度），用于控制一个分组中柱子之间的间距 |
@@ -286,15 +292,15 @@ label 映射通道，具体见 [Label API](/zh/docs/api/components/label)
 
 #### IGeometry.state
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
-不同状态的样式
+Style of different state.
 
 ### IPlot
 
 #### IPlot.type
 
-<description>**必选** _string_</description>
+<description>**required** _string_</description>
 
 plot 类型，通过传入指定 type 的 plot，可以在图层上渲染 G2Plot 内置的图表。
 
@@ -305,7 +311,7 @@ plot 类型，通过传入指定 type 的 plot，可以在图层上渲染 G2Plot
 
 #### IPlot.region
 
-<description>**可选** _object_</description>
+<description>**optional** _object_</description>
 
 plot 所在图层(view)的布局范围，默认是占满全部。
 
@@ -319,11 +325,11 @@ region: {
 
 #### IPlot.options
 
-<description>**必选** _object\[]_</description>
+<description>**required** _object\[]_</description>
 
 plot 的具体配置项。每个 plot 都有自己的图层容器设置（不包括：width, height）以及数据、字段、样式等配置。
 
-具体配置项见指定 plot 的 API 文档。如：type='column'时，options 对应 ColumnOptions，见文档: [Column API](/zh/docs/api/plots/column)
+具体配置项见指定 plot 的 API 文档. 如：type='column'时，options 对应 ColumnOptions，见文档: [Column API](/en/docs/api/plots/column)
 
 <div class="sign">
 
@@ -378,15 +384,3 @@ plots: [
   },
 ];
 ```
-
-### 其他
-
-#### tooltip
-
-顶层 tooltip 配置(在 chart 层配置)。可以让所有图层共享一个 tooltip。
-
-当你设置子图层的 tooltip 时，建议关闭顶层 tooltip。
-
-#### legend
-
-顶层 legend 配置(统一在 chart 层配置)。

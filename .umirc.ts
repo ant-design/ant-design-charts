@@ -103,6 +103,7 @@ export default defineConfig({
           // 菜单子项（可选）
           'demos/radar.zh-CN.md',
           'demos/treemap.zh-CN.md',
+          'demos/funnel.zh-CN.md',
           'demos/waterfall.zh-CN.md',
           'demos/word-cloud.zh-CN.md',
           'demos/histogram.zh-CN.md',
@@ -111,6 +112,8 @@ export default defineConfig({
           'demos/radial-bar.zh-CN.md',
           'demos/box.zh-CN.md',
           'demos/stock.zh-CN.md',
+          'demos/multi-view.zh-CN.md',
+          'demos/general.zh-CN.md',
         ],
       },
     ],
@@ -190,6 +193,7 @@ export default defineConfig({
           // 菜单子项（可选）
           'demos/radar.md',
           'demos/treemap.md',
+          'demos/funnel.md',
           'demos/waterfall.md',
           'demos/word-cloud.md',
           'demos/histogram.md',
@@ -198,6 +202,8 @@ export default defineConfig({
           'demos/radial-bar.md',
           'demos/box.md',
           'demos/stock.md',
+          'demos/multi-view.md',
+          'demos/general.md',
         ],
       },
     ],
