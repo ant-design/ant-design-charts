@@ -3,10 +3,6 @@ title: Bidirectional Bar
 order: 20
 ---
 
-# Bidirectional Bar
-
-## BidirectionalBar
-
 ### 基础水平方对称条形图
 
 ```tsx

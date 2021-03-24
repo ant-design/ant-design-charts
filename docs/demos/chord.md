@@ -3,10 +3,6 @@ title: Chord
 order: 7
 ---
 
-# Chord
-
-## Chord
-
 ### 人口流动弦图
 
 ```tsx

@@ -31,7 +31,7 @@ import Treemap from './treemap';
 import MultiView from './multiView';
 import BidirectionalBar from './bidirectionalBar';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
-import { G2 } from '@antv/g2plot';
+import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';
 
 export {
   Area,
@@ -70,6 +70,10 @@ export {
   IndentedTree,
   DagreFundFlowGraph,
   G2,
+  // 直接导出 G2Plot 相关方法
+  flow,
+  measureTextWidth,
+  adaptors,
 };
 
 export default {
@@ -109,4 +113,7 @@ export default {
   IndentedTree,
   DagreFundFlowGraph,
   G2,
+  flow,
+  measureTextWidth,
+  adaptors,
 };

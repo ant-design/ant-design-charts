@@ -3,10 +3,6 @@ title: Multi View
 order: 33
 ---
 
-# Multi View
-
-## MultiView
-
 ### 区间面积图
 
 ```tsx

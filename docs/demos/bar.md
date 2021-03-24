@@ -3,10 +3,6 @@ title: Bar
 order: 2
 ---
 
-# Bar
-
-## Bar
-
 ### 基础条形图
 
 ```tsx

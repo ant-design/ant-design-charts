@@ -118,7 +118,6 @@ const writeFile = async () => {
   await writeTitle();
   console.log('扫描结果:', result);
   result.forEach((group) => {
-    fs.appendFileSync(filePath, `## ${group[0].chartName}\n`);
     group.forEach((item) => {
       const chartContent = parseFile(item.path);
       // 生成文件

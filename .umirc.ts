@@ -26,41 +26,181 @@ export default defineConfig({
   analytics: {
     ga: 'UA-72788897-12',
   },
-  // menus: {
-  //   // 需要自定义侧边菜单的路径，没有配置的路径还是会使用自动生成的配置
-  //   '/guide': [
-  //     {
-  //       title: '菜单项',
-  //       path: '菜单路由（可选）',
-  //       children: [
-  //         // 菜单子项（可选）
-  //         'guide/start.md', // 对应的 Markdown 文件，路径是相对于 resolve.includes 目录识别的
-  //         'guide/faq.md',
-  //       ],
-  //     },
-  //   ],
-  //   // 如果该路径有其他语言，需在前面加上语言前缀，需与 locales 配置中的路径一致
-  //   '/zh-CN/guide': [
-  //     // 省略，配置同上
-  //   ],
-  //   '/demos': [
-  //     {
-  //       title: '折线图',
-  //       path: '/demos/line',
-  //       children: [
-  //         // 菜单子项（可选）
-  //         'demos/line.md', // 对应的 Markdown 文件，路径是相对于 resolve.includes 目录识别的
-  //       ],
-  //     },
-  //     {
-  //       title: '面积图',
-  //       path: '/demos/area',
-  //       children: [
-  //         // 菜单子项（可选）
-  //         'demos/area.md',
-  //       ],
-  //     },
-  //   ],
-  // },
+  menus: {
+    '/zh-CN/demos': [
+      {
+        title: '概览',
+        path: '/zh-CN/demos/global',
+      },
+      {
+        title: '折线图',
+        path: '/zh-CN/demos/line',
+      },
+      {
+        title: '面积图',
+        path: '/zh-CN/demos/area',
+      },
+      {
+        title: '柱形图',
+        path: '/zh-CN/demos/column',
+      },
+      {
+        title: '条形图',
+        path: '/zh-CN/demos/bar',
+      },
+      {
+        title: '饼图',
+        path: '/zh-CN/demos/pie',
+      },
+      {
+        title: '双轴图',
+        path: '/zh-CN/demos/dual-axes',
+      },
+      {
+        title: '进度图',
+        path: '/zh-CN/demos/gauge',
+        children: ['demos/gauge.zh-CN.md', 'demos/liquid.zh-CN.md', 'demos/bullet.zh-CN.md'],
+      },
+      {
+        title: '散点气泡图',
+        path: '/zh-CN/demos/scatter',
+      },
+      {
+        title: '玫瑰图',
+        path: '/zh-CN/demos/rose',
+      },
+      {
+        title: '关系图',
+        path: '/zh-CN/demos/sankey',
+        children: [
+          '/demos/organizationTreeGraph.zh-CN.md',
+          '/demos/indentedTree.zh-CN.md',
+          '/demos/dagreGraph.zh-CN.md',
+          '/demos/dagreFundFlowGraph.zh-CN.md',
+          'demos/sankey.zh-CN.md',
+          'demos/chord.zh-CN.md',
+        ],
+      },
+      {
+        title: '热力图',
+        path: '/zh-CN/demos/heatmap',
+      },
+      {
+        title: '迷你图',
+        path: '/zh-CN/demos/tiny-line',
+        children: [
+          'demos/tiny-line.zh-CN.md',
+          'demos/tiny-area.zh-CN.md',
+          'demos/tiny-column.zh-CN.md',
+          'demos/progress.zh-CN.md',
+          'demos/ring-progress.zh-CN.md',
+        ],
+      },
+      {
+        title: '更多图表',
+        path: '/zh-CN/demos/radar',
+        children: [
+          // 菜单子项（可选）
+          'demos/radar.zh-CN.md',
+          'demos/treemap.zh-CN.md',
+          'demos/waterfall.zh-CN.md',
+          'demos/word-cloud.zh-CN.md',
+          'demos/histogram.zh-CN.md',
+          'demos/sunburst.zh-CN.md',
+          'demos/bidirectional-bar.zh-CN.md',
+          'demos/radial-bar.zh-CN.md',
+          'demos/box.zh-CN.md',
+          'demos/stock.zh-CN.md',
+        ],
+      },
+    ],
+    '/demos': [
+      {
+        title: 'Gallery',
+        path: '/demos/global',
+      },
+      {
+        title: 'Line',
+        path: '/demos/line',
+      },
+      {
+        title: 'Area',
+        path: '/demos/area',
+      },
+      {
+        title: 'Column',
+        path: '/demos/column',
+      },
+      {
+        title: 'Bar',
+        path: '/demos/bar',
+      },
+      {
+        title: 'Pie',
+        path: '/demos/pie',
+      },
+      {
+        title: 'DualAxes',
+        path: '/demos/dual-axes',
+      },
+      {
+        title: 'Progress',
+        path: '/demos/gauge',
+        children: ['demos/gauge.md', 'demos/liquid.md', 'demos/bullet.md'],
+      },
+      {
+        title: 'Scatter',
+        path: '/demos/scatter',
+      },
+      {
+        title: 'Rose',
+        path: '/demos/rose',
+      },
+      {
+        title: 'Relation',
+        path: '/demos/sankey',
+        children: [
+          '/demos/organizationTreeGraph.md',
+          '/demos/indentedTree.md',
+          '/demos/dagreGraph.md',
+          '/demos/dagreFundFlowGraph.md',
+          'demos/sankey.md',
+          'demos/chord.md',
+        ],
+      },
+      {
+        title: 'Heatmap',
+        path: '/demos/heatmap',
+      },
+      {
+        title: 'Tiny',
+        path: '/demos/tiny-line',
+        children: [
+          'demos/tiny-line.md',
+          'demos/tiny-area.md',
+          'demos/tiny-column.md',
+          'demos/progress.md',
+          'demos/ring-progress.md',
+        ],
+      },
+      {
+        title: 'More Charts',
+        path: '/demos/radar',
+        children: [
+          // 菜单子项（可选）
+          'demos/radar.md',
+          'demos/treemap.md',
+          'demos/waterfall.md',
+          'demos/word-cloud.md',
+          'demos/histogram.md',
+          'demos/sunburst.md',
+          'demos/bidirectional-bar.md',
+          'demos/radial-bar.md',
+          'demos/box.md',
+          'demos/stock.md',
+        ],
+      },
+    ],
+  },
   // more config: https://d.umijs.org/config
 });

@@ -3,10 +3,6 @@ title: WordCloud
 order: 27
 ---
 
-# WordCloud
-
-## WordCloud
-
 ### WordCloud
 
 ```tsx

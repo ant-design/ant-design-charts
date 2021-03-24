@@ -3,10 +3,6 @@ title: Radar
 order: 20
 ---
 
-# Radar
-
-## Radar
-
 ### 基础雷达图
 
 ```tsx

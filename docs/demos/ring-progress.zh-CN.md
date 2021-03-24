@@ -3,10 +3,6 @@ title: 进度环图
 order: 24
 ---
 
-# 进度环图
-
-## RingProgress
-
 ### 迷你进度环图样式
 
 ```tsx
