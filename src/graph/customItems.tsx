@@ -301,9 +301,9 @@ G6.registerEdge(
 
       const Ydiff = endPoint.y - startPoint.y;
 
-      const slope = Ydiff !== 0 ? 500 / Math.abs(Ydiff) : 0;
+      const slope = Ydiff !== 0 ? Math.min(500 / Math.abs(Ydiff), 20) : 0;
 
-      const cpOffset = 16;
+      const cpOffset = slope > 15 ? 0 : 16;
       const offset = Ydiff < 0 ? cpOffset : -cpOffset;
 
       const line1EndPoint = {
@@ -331,7 +331,7 @@ G6.registerEdge(
         ['L', endPoint.x, endPoint.y],
       ];
 
-      if (Ydiff === 0) {
+      if (Math.abs(Ydiff) <= 5) {
         path = [
           ['M', startPoint.x, startPoint.y],
           ['L', endPoint.x, endPoint.y],
@@ -358,11 +358,12 @@ G6.registerEdge(
 
       // label
       let labelTextShape;
+      const textBeginX =  line2StartPoint.x + labelLeftOffset;
       if (cfg?.label) {
         labelTextShape = group!.addShape('text', {
           attrs: {
             text: cfg.label,
-            x: line2StartPoint.x + labelLeftOffset,
+            x: textBeginX,
             y: endPoint.y - labelTopOffset - 2,
             fontSize: 14,
             textAlign: 'left',
@@ -378,7 +379,7 @@ G6.registerEdge(
         group!.addShape('text', {
           attrs: {
             text: cfg.dataType,
-            x: line2StartPoint.x + labelLeftOffset,
+            x: textBeginX,
             y: endPoint.y - labelTopOffset - labelTextShapeBBox.height - 2,
             fontSize: 10,
             textAlign: 'left',
@@ -393,7 +394,7 @@ G6.registerEdge(
         group!.addShape('text', {
           attrs: {
             text: cfg.subLabel,
-            x: line2StartPoint.x + labelLeftOffset,
+            x: textBeginX,
             y: endPoint.y + labelTopOffset + 4,
             fontSize: 12,
             fontWeight: 300,
