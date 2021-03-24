@@ -409,6 +409,7 @@ const DemoDagreGraph: React.FC = () => {
       setSize([300, 500]);
     }
     setTimeout(() => {
+      if (!ref.current) return;
       ref.current.fitView();
     }, 16);
   };
@@ -532,6 +533,7 @@ const DemoDagreGraph: React.FC = () => {
         nodeStateStyles={nodeStateStyles}
         handleNodeClick={handleNodeClick}
         graphId="dagreSecond"
+        graphRef={ref}
       />
     </div>
   );

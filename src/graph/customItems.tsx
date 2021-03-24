@@ -1,4 +1,5 @@
 import G6, { ModelConfig, IPoint } from '@antv/g6';
+import { isObject } from '@antv/util';
 
 G6.registerNode(
   'card-node',
@@ -340,15 +341,19 @@ G6.registerEdge(
 
       const { style } = cfg || {};
 
+      const stroke =
+        style!.stroke || (cfg?.colorMap && (cfg.colorMap as Object)[cfg.dataType as string])
+          ? (cfg?.colorMap as Object)[cfg?.dataType as string]
+          : '#5B8FF9';
+      const endArrow = cfg?.style && cfg.style.endArrow ? cfg.style.endArrow : false;
+      if (isObject(endArrow)) endArrow.fill = stroke;
+
       const line = group!.addShape('path', {
         attrs: {
           path,
-          stroke:
-            style!.stroke || (cfg?.colorMap && (cfg.colorMap as Object)[cfg.dataType as string])
-              ? (cfg?.colorMap as Object)[cfg?.dataType as string]
-              : '#5B8FF9',
+          stroke,
           lineWidth: style!.lineWidth || 1.2,
-          endArrow: false,
+          endArrow,
         },
         name: 'path-shape',
       });
@@ -358,7 +363,7 @@ G6.registerEdge(
 
       // label
       let labelTextShape;
-      const textBeginX =  line2StartPoint.x + labelLeftOffset;
+      const textBeginX = line2StartPoint.x + labelLeftOffset;
       if (cfg?.label) {
         labelTextShape = group!.addShape('text', {
           attrs: {

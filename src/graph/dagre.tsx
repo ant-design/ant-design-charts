@@ -28,7 +28,6 @@ const defaultEdgeStyle = {
   stroke: '#91d5ff',
   endArrow: {
     path: G6.Arrow.vee(10, 10),
-    fill: '#91d5ff',
   },
 };
 
@@ -136,6 +135,7 @@ const DagreGraph: React.SFC<RelationGraph> = ({
         nodeStateStyles,
         edgeStateStyles,
         layout,
+        fitView: true,
       });
 
       graphs[graphId] = graph;
@@ -161,7 +161,7 @@ const DagreGraph: React.SFC<RelationGraph> = ({
     });
     graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
       const item = evt.item as INode;
-      graph.setItemState(item, 'hover', false);
+      graph.setItemState(item, 'hover', true);
       if (handleNodeHover) {
         handleNodeHover(item, graph);
       }

@@ -16,6 +16,7 @@ export interface RelationGraph {
   data: TreeGraphData | GraphData;
   width?: number;
   height?: number;
+  pixelRatio?: number;
   nodeType?: string;
   edgeType?: string;
   nodeStyle?: ShapeStyle;
