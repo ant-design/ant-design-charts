@@ -200,7 +200,7 @@ export default DemoLine;
 请打开控制台点击图表区域。
 
 ```tsx
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Line } from '@ant-design/charts';
 
 const DemoLine: React.FC = () => {
@@ -259,18 +259,16 @@ const DemoLine: React.FC = () => {
     },
   };
 
-  const ref = useRef();
-
-  useEffect(() => {
-    if (ref.current) {
-      // 点击 point
-      ref.current.on('element:click', (...args) => {
-        console.log(...args);
-      });
-    }
-  }, []);
-
-  return <Line {...config} chartRef={ref} />;
+  return (
+    <Line
+      {...config}
+      onReady={(plot) => {
+        plot.on('element:click', (...args) => {
+          console.log(...args);
+        });
+      }}
+    />
+  );
 };
 
 export default DemoLine;
@@ -278,7 +276,7 @@ export default DemoLine;
 
 ### 获取 chart 实例
 
-方案 1: chartRef 回调
+方案 1: onReady 回调
 
 ```typescript
 import React from 'react';
@@ -287,7 +285,7 @@ import { Line } from '@ant-design/charts';
 const Page: React.FC = () => {
   const data = [];
   const config = {};
-  return <Line {...config} chartRef={(chart) => console.log(chart)} />;
+  return <Line {...config} onReady={(chart) => console.log(chart)} />;
 };
 
 export default Page;

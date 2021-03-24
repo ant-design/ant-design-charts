@@ -75,6 +75,7 @@
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
 | fill | _string_ | 图形的填充色 |
+| r | _number_ | 用于 `point`, 代表图形的半径大小 |
 | fillOpacity | _number_ | 图形的填充透明度 |
 | stroke | _string_ | 图形的描边 |
 | lineWidth | _number_ | 图形描边的宽度 |
@@ -109,6 +110,35 @@
 ```
 
 关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
+
+#### shape
+
+<description>**optional** _String | Function_ default: `circle`</description>
+
+水波图有五种内置形状：`circle | diamond | triangle | pin | rect`。同时也支持自定义图形，这个时候需要传入一个构建 Path 的回调函数。
+
+示例代码如下：
+
+```ts
+/**
+ * @param x the x for bounding rectangle
+ * @param y the y for bounding rectangle
+ * @param width the width for bounding rectangle
+ * @param height the height for bounding rectangle
+ * @return PathCommand[]
+ */
+function shape(x: number, y: number, width: number, height: number) {
+  const h = height / 2;
+  const w = width / 2;
+  return [
+    ['M', x - x / 3, y - h],
+    ['L', x + w, y - y / 3],
+    ['L', x + x / 3, y + h],
+    ['L', x - w, y + y / 3],
+    ['Z'],
+  ];
+}
+```
 
 #### color
 
@@ -170,18 +200,18 @@
 
 指标中心文本组件。
 
-| 配置项  | 类型  | 描述          |
-| ------- | ----- | ------------- | -------- |
-| title   | false | StatisticText | 标题     |
-| content | false | StatisticText | 主体内容 |
+| 配置项  | 类型    | 描述            |
+| ------- | ------- | --------------- | -------- |
+| title   | \*false | StatisticText\* | 标题     |
+| content | \*false | StatisticText\* | 主体内容 |
 
 StatisticText
 
 | 配置项 | 类型 | 描述 |
 | --- | --- | --- |
-| style | CSSStyleDeclaration | 统计文本的样式 (css 样式) |
+| style | _CSSStyleDeclaration_ | 统计文本的样式 (css 样式) |
 | customHtml | `(container: HTMLElement, view: View, datum: object, data: object[]) => string;` | 自定义主体文本的 html，优先级高于 formatter |
-| formatter | Function | 主体文本的格式化内容 |
-| rotate | number | 旋转角度 |
-| offsetX | number | X 偏移值 |
-| offsetY | number | Y 偏移值 |
+| formatter | _Function_ | 主体文本的格式化内容 |
+| rotate | _number_ | 旋转角度 |
+| offsetX | _number_ | X 偏移值 |
+| offsetY | _number_ | Y 偏移值 |

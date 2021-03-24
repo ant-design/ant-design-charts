@@ -89,11 +89,80 @@
 仪表盘辅助圆弧的样式。
 
 | 配置项 | 类型 | 描述 |
-| --- | --- | --- |
+| --- | --- | --- | --- |
 | ticks | _number\[]_ | 辅助圆弧显示数字数组 |
-| color | \*string \| string\[]\* | 辅助圆弧的颜色色板，按照色板顺序取值; 当设置 ticks 时，color 无法使用回调的方式 |
+| color | \*string | string\[]\* | 辅助圆弧的颜色色板，按照色板顺序取值; 当设置 ticks 时，color 无法使用回调的方式 |
+| width | _number_ | 对辅助圆弧的宽度进行像素级别的设置。默认通过 radius，innerRadius 来计算辅助圆弧的宽度。 |
 
-<playground rid="gauge" path="progress-plots/gauge/demo/basic.ts"></playground>
+<playground rid="gauge" path="progress-plots/gauge/demo/custom-color.ts"></playground>
+
+#### type ✨
+
+<description>**optional** _string_ _default_: `undefined`</description>
+
+仪表盘的展示类型。可选项为：`meter`，默认为空
+
+#### meter ✨
+
+<description>**optional** _object_</description>
+
+当 `type = 'meter'` 时生效，具体配置属性如下。
+
+| 配置项 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| steps | _number_ | 总步数 | 50 |
+| stepRatio | _number_ | \[0, 1] 范围。代表着 step 和 gap 的比例关系，当 `stepRatio` 为 1 时，gap 为 0 | 0.5，即默认 step 等于 gap 宽度 |
+
+<img src="https://gw.alipayobjects.com/zos/antfincdn/WBhwhNUzkg/image.png" width="400" align="center" style="display:flex;margin:0 auto;" alt="gauge">
+
+#### gaugeStyle
+
+<description>**optional** _StyleAttr | Function_</description>
+
+仪表盘的样式设置。
+
+<!--图形样式-->
+
+| 属性名 | 类型 | 介绍 |
+| --- | --- | --- |
+| fill | _string_ | 图形的填充色 |
+| r | _number_ | 用于 `point`, 代表图形的半径大小 |
+| fillOpacity | _number_ | 图形的填充透明度 |
+| stroke | _string_ | 图形的描边 |
+| lineWidth | _number_ | 图形描边的宽度 |
+| lineDash | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
+| lineOpacity | _number_ | 描边透明度 |
+| opacity | _number_ | 图形的整体透明度 |
+| shadowColor | _string_ | 图形阴影颜色 |
+| strokeOpacity | _number_ | 图形边框透明度 |
+| shadowBlur | _number_ | 图形阴影的高斯模糊系数 |
+| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
+| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
+| cursor | _string_ | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
+
+示例代码：
+
+```ts
+{
+  style: {
+    fill: 'red',
+    fillOpacity: 0.5,
+    stroke: 'black',
+    lineWidth: 1,
+    lineDash: [4, 5],
+    strokeOpacity: 0.7,
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffsetX: 5,
+    shadowOffsetY: 5,
+    cursor: 'pointer'
+  }
+}
+```
+
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
+
+### 图表组件
 
 #### axis
 
@@ -101,27 +170,42 @@
 
 指标辅助轴样式。
 
+- 💡 在仪表盘中，axis 组件可以使用的配置有：`label`, `tickLine`, `subTickLine`, 其他配置项不建议在仪表盘中使用。
+- 💡 关于 `tick` 的设置, 可以直接在 `range.ticks` 中进行配置。
+
 ##### position
 
 <description>**optional** _`top` | `bottom` | `left` | `right`_</description>
 
 适用于直角坐标系，设置坐标轴的位置。
 
-#### label
+##### label
 
 <description> _AxisLabelCfg | null_ **optional** </description>
 
 文本标签的配置项，null 表示不展示。_AxisLabelCfg_ 配置如下：
 
-| 参数名 | 类型 | 是否必选 | 默认值 | 描述 |
-| --- | --- | --- | --- | --- |
-| style | [ShapeAttrs](/zh/docs/api/shape/shape-attrs) |  | - | 坐标轴刻度线的样式配置项 |
-| offset | number |  | - | label 的偏移量 |
-| rotate | number |  | - | 文本旋转角度 |
-| autoRotate | boolean |  | `true` | 是否自动旋转 |
-| autoHide | boolean |  | `false` | 是否自动隐藏 |
-| autoEllipsis | boolean |  | `false` | 是否自动省略 |
-| formatter | `(text: string, item: ListItem, index: number) => any` |  | `false` | 格式化函数 |
+| 参数名 | 类型 | 默认值 | 描述 |
+| --- | --- | --- | --- |
+| style | _[ShapeAttrs](/zh-CN/guide/graphic-style)_ | - | 坐标轴刻度线的样式配置项 |
+| offset | _number_ | - | label 的偏移量 |
+| rotate | _number_ | - | 文本旋转角度 |
+| autoRotate | _boolean_ | `true` | 是否自动旋转 |
+| autoHide | _boolean_ | `false` | 是否自动隐藏 |
+| autoEllipsis | _boolean_ | `false` | 是否自动省略 |
+| formatter | _`(text: string, item: ListItem, index: number) => any`_ | `false` | 格式化函数 |
+
+##### verticalFactor
+
+<description>**optional** _number_</description>
+
+标记坐标轴 label 的方向，左侧为 1，右侧为 -1（仅适用于垂直方向的坐标轴）
+
+##### verticalLimitLength
+
+<description>**optional** _number_</description>
+
+配置坐标轴垂直方向的最大限制长度，对文本自适应有很大影响。
 
 ##### nice
 
@@ -311,6 +395,7 @@
 
 | 细分配置项名称 | 类型         | 功能描述                 |
 | -------------- | ------------ | ------------------------ |
+| text           | _string_     | 坐标轴标题               |
 | offset         | _number_     | 标题距离坐标轴的距离     |
 | spacing        | _lineStyle_  | 标题距离坐标轴文本的距离 |
 | style          | _shapeStyle_ | 标题文本配置项           |
@@ -323,6 +408,7 @@
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
 | fill | _string_ | 图形的填充色 |
+| r | _number_ | 用于 `point`, 代表图形的半径大小 |
 | fillOpacity | _number_ | 图形的填充透明度 |
 | stroke | _string_ | 图形的描边 |
 | lineWidth | _number_ | 图形描边的宽度 |
@@ -367,24 +453,30 @@
 <!--label样式-->
 
 | 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
-| type | _string_ | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner \| outer \| spider`） |
+| --- | --- | --- | --- | --- | --- | --- |
+| type | _string_ | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner | outer | spider`） |
 | offset | _number_ | label 的偏移量 |
 | offsetX | _number_ | label 相对于数据点在 X 方向的偏移距离 |
 | offsetY | _number_ | label 相对于数据点在 Y 方向的偏移距离 |
-| content | \*string \| IGroup \| IShape \| GeometryLabelContentCallback\* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
-| style | object | label 文本图形属性样式 |
+| content | \*string | IGroup | IShape | GeometryLabelContentCallback\* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示 |
+| style | _ShapeAttrs_ | label 文本图形属性样式 |
 | autoRotate | _string_ | 是否自动旋转，默认 true |
 | rotate | _number_ | 文本旋转角度 |
-| labelLine | \*null \| _boolean_ \| object\* | 用于设置文本连接线的样式属性，null 表示不展示。 |
+| labelLine | _null_ | _boolean_ | _LabelLineCfg_ | 用于设置文本连接线的样式属性，null 表示不展示。 |
 | labelEmit | _boolean_ | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭 |
-| layout | \*'overlap' \| 'fixedOverlap' \| 'limitInShape'\* | 文本布局类型，支持多种布局函数组合使用。 |
-| position | \*'top' \| 'bottom' \| 'middle' \| 'left' \| 'right'\* | 指定当前 label 与当前图形的相对位置 |
-| animate | \*boolean \| AnimateOption\* | 动画配置。 |
+| layout | \*'overlap' | 'fixedOverlap' | 'limitInShape'\* | 文本布局类型，支持多种布局函数组合使用。 |
+| position | \*'top' | 'bottom' | 'middle' | 'left' | 'right'\* | 指定当前 label 与当前图形的相对位置 |
+| animate | \*boolean | AnimateOption\* | 动画配置。 |
 | formatter | _Function_ | 格式化函数 |
 | autoHide | _boolean_ | 是否自动隐藏，默认 false |
 
-|
+**_LabelLineCfg_** 类型定义如下：（关于 _ShapeAttrs_ 详细查看 [ShapeAttrs](/zh-CN/guide/graphic-style) 文档）
+
+```plain
+type LabelLineCfg = {
+  style?: ShapeAttrs;
+}
+```
 
 示例代码：
 
@@ -407,14 +499,14 @@
 
 坐标轴网格线的配置项，null 表示不展示。
 
-| 细分配置项名称 | 类型 | 功能描述 |
-| --- | --- | --- |
-| line | _lineStyle_ | 线的样式 |
-| alternateColor | \*string \| string\[]\* | 两个栅格线间的填充色 |
-| closed | _boolean_ | 对于 circle 是否关闭 grid |
-| alignTick | _boolean_ | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
+| 细分配置项名称 | 类型        | 功能描述                                                 |
+| -------------- | ----------- | -------------------------------------------------------- | -------------------- |
+| line.style     | _lineStyle_ | 线的样式,                                                |
+| alternateColor | \*string    | string\[]\*                                              | 两个栅格线间的填充色 |
+| closed         | _boolean_   | 对于 circle 是否关闭 grid                                |
+| alignTick      | _boolean_   | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
 
-**_lineStyle_**
+\*\*_lineStyle_\*\*的配置如下：
 
 <!--线条样式-->
 
@@ -486,26 +578,14 @@ interface ComponentAnimateCfg {
 }
 ```
 
-##### verticalFactor
-
-<description>**optional** _number_</description>
-
-标记坐标轴 label 的方向，左侧为 1，右侧为 -1。
-
-##### verticalLimitLength
-
-<description>**optional** _number_</description>
-
-配置坐标轴垂直方向的最大限制长度，对文本自适应有很大影响。
-
 #### indicator
 
 <description>**optional** _object_</description>
 
-仪表盘指示器样式配置。按照组件分成为：
+仪表盘**指示器**样式配置。按照组件分成为：
 
-- `pointer`：指示器中的指针样式配置
-- `pin`：指示器中的圆盘样式配置
+- `pointer`：指示器中的**指针**样式配置
+- `pin`：指示器中的**圆盘**样式配置
 
 他们都有以下配置项：
 
@@ -518,6 +598,7 @@ interface ComponentAnimateCfg {
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
 | fill | _string_ | 图形的填充色 |
+| r | _number_ | 用于 `point`, 代表图形的半径大小 |
 | fillOpacity | _number_ | 图形的填充透明度 |
 | stroke | _string_ | 图形的描边 |
 | lineWidth | _number_ | 图形描边的宽度 |
@@ -559,18 +640,18 @@ interface ComponentAnimateCfg {
 
 指标中心文本组件。
 
-| 配置项  | 类型  | 描述          |
-| ------- | ----- | ------------- | -------- |
-| title   | false | StatisticText | 标题     |
-| content | false | StatisticText | 主体内容 |
+| 配置项  | 类型    | 描述            |
+| ------- | ------- | --------------- | -------- |
+| title   | \*false | StatisticText\* | 标题     |
+| content | \*false | StatisticText\* | 主体内容 |
 
 StatisticText
 
 | 配置项 | 类型 | 描述 |
 | --- | --- | --- |
-| style | CSSStyleDeclaration | 统计文本的样式 (css 样式) |
+| style | _CSSStyleDeclaration_ | 统计文本的样式 (css 样式) |
 | customHtml | `(container: HTMLElement, view: View, datum: object, data: object[]) => string;` | 自定义主体文本的 html，优先级高于 formatter |
-| formatter | Function | 主体文本的格式化内容 |
-| rotate | number | 旋转角度 |
-| offsetX | number | X 偏移值 |
-| offsetY | number | Y 偏移值 |
+| formatter | _Function_ | 主体文本的格式化内容 |
+| rotate | _number_ | 旋转角度 |
+| offsetX | _number_ | X 偏移值 |
+| offsetY | _number_ | Y 偏移值 |

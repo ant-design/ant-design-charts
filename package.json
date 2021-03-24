@@ -27,7 +27,6 @@
     "dev": "dumi dev",
     "dist": "webpack --config webpack.config.js --mode production",
     "docs:build": "dumi build",
-    "entry": "node ./scripts/entry.js",
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",

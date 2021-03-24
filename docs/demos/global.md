@@ -860,6 +860,27 @@ toc: content
 
 </div>
 
+## Chord
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+  
+  <a href="/demos/chord#人口流动弦图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*LjN9Sqfo6nsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">人口流动弦图</p>
+  </a>
+
+  <a href="/demos/sankey#支付宝流量桑基图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*bLulSLk-VskAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">支付宝流量桑基图</p>
+  </a>
+
+  <a href="/demos/sankey#能量关系桑基图" style="display: block;margin: 8px">
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W-V0QYiLLbgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
+    <p style="text-align: center; color: #293c55">能量关系桑基图</p>
+  </a>
+
+</div>
+
 ## Bidirection Bar
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">

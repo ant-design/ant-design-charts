@@ -114,6 +114,10 @@ const demos = [
     name: '玉珏图',
     chart: 'RadialBar',
   },
+  {
+    name: '弦图',
+    chart: 'Chord',
+  },
 ];
 
 const start = () => {

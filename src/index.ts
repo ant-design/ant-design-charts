@@ -15,6 +15,7 @@ import Progress from './progress';
 import Radar from './radar';
 import RingProgress from './ringProgress';
 import Rose from './rose';
+import Chord from './chord';
 import Scatter from './scatter';
 import TinyArea from './tinyArea';
 import TinyColumn from './tinyColumn';
@@ -48,6 +49,7 @@ export {
   Radar,
   RingProgress,
   Rose,
+  Chord,
   Scatter,
   TinyArea,
   TinyColumn,
@@ -86,6 +88,7 @@ export default {
   Radar,
   RingProgress,
   Rose,
+  Chord,
   Scatter,
   TinyArea,
   TinyColumn,

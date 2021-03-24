@@ -20,6 +20,7 @@ const chartNames = {
   Column: '柱状图',
   Pie: '饼图',
   Rose: '玫瑰图',
+  Chord: '弦图',
   Bubble: '气泡图',
   Calendar: '日历图',
   DualAxes: '混合图',

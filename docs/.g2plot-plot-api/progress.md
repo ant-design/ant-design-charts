@@ -1,4 +1,4 @@
-### Plot Container
+### 图表容器
 
 #### width
 
@@ -48,7 +48,7 @@
 
 是否对超出坐标系范围的 Geometry 进行剪切。
 
-### Data Mapping
+### 数据映射
 
 #### percent
 
@@ -56,7 +56,7 @@
 
 设置百分比数值 \[0-1]，表示进度条图的进度情况。
 
-### Plot Style
+### 图形样式
 
 #### barWidthRatio
 
@@ -75,6 +75,7 @@
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
 | fill | _string_ | 图形的填充色 |
+| r | _number_ | 用于 `point`, 代表图形的半径大小 |
 | fillOpacity | _number_ | 图形的填充透明度 |
 | stroke | _string_ | 图形的描边 |
 | lineWidth | _number_ | 图形描边的宽度 |
@@ -140,15 +141,15 @@
 }
 ```
 
-### Plot Component
+### 图表组件
 
 #### tooltip
 
 ##### fields
 
-<description>**optional** _string\[]_</description>
+<description>**可选** _string\[]_</description>
 
-指定 tooltip 中显示的字段，默认不同图表有不同的默认字段列表。配合 `formatter` 配置一起使用，效果更加。
+指定 tooltip 中显示的字段，默认不同图表有不同的默认字段列表。配合 `formatter` 配置一起使用，效果更佳。
 
 ```ts
 tooltip: {
@@ -158,125 +159,85 @@ tooltip: {
 
 ##### formatter
 
-<description>**optional** _Function_</description>
+<description>**可选** _Function_</description>
 
-格式化 tooltip item 内容。
+格式化 tooltip item 内容（暂时不支持多 tooltipItems 的格式化，可以使用 `customContent` 处理）
 
 ```ts
 tooltip: {
   formatter: (datum: Datum) => {
-    return { name: datum.x, value: datum.y + '% };
+    return { name: datum.x, value: datum.y + '%' };
   },
 }
 ```
 
 ##### follow
 
-<description>**optional** _boolean_ _default:_ `true`</description>
+<description>**可选** _boolean_ _default:_ `true`</description>
 
 设置 tooltip 内容框是否跟随鼠标移动。
 
 ##### enterable
 
-<description>**optional** _boolean_ _default:_ `false`</description>
+<description>**可选** _boolean_ _default:_ `false`</description>
 
 tooltip 是否允许鼠标滑入。
 
 ##### showTitle
 
-<description>**optional** _boolean_ _default:_ `false`</description>
+<description>**可选** _boolean_ _default:_ `false`</description>
 
 是否展示 tooltip 标题。
 
 ##### title
 
-<description>**optional** _string_</description>
+<description>**可选** _string_</description>
 
 设置 tooltip 的标题内容：如果值为数据字段名，则会展示数据中对应该字段的数值，如果数据中不存在该字段，则直接展示 title 值。
 
 ##### position
 
-<description>**optional** _`top` | `bottom` | `left` | `right`_</description>
+<description>**可选** _`top` | `bottom` | `left` | `right`_</description>
 
 设置 tooltip 的固定展示位置，相对于数据点。
 
 ##### shared
 
-<description>**optional** _boolean_</description>
+<description>**可选** _boolean_</description>
 
 true 表示合并当前点对应的所有数据并展示，false 表示只展示离当前点最逼近的数据内容。
 
 ##### showCrosshairs
 
-<description>**optional** _boolean_ _default:_ `false`</description>
+<description>**可选** _boolean_ _default:_ `false`</description>
 
 是否展示 crosshairs。
 
 ##### crosshairs
 
-<description>**optional** _object_</description>
+<description>**可选** _object_</description>
 
 配置 tooltip 的 crosshairs，当且仅当 `showCrosshairs` 为 true 时生效。
 
 | 细分配置项名称 | 类型 | 功能描述 |
-| --- | --- | --- |
-| type | \*`x` \| `y` \| `xy`\* | crosshairs 的类型: `x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项 |
-| line | _lineStyle_ | 线的配置项 |
+| --- | --- | --- | --- | --- |
+| type | \*`x` | `y` | `xy`\* | crosshairs 的类型: `x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项 |
+| line | _lineStyle_ | 线的配置项，详细可见 [_ShapeAttrs_](/zh-CN/guide/graphic-style) |
 | text | _textStyle_ | 辅助线文本配置，支持回调 |
 | textBackground | _textBackgroundStyle_ | 辅助线文本背景配置 |
 | follow | _boolean_ | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点 |
-
-**_lineStyle_**
-
-<!--线条样式-->
-
-| 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
-| stroke | _string_ | 线的颜色 |
-| lineWidth | _number_ | 线宽 |
-| lineDash | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity | _number_ | 透明度 |
-| shadowColor | _string_ | 阴影颜色 |
-| shadowBlur | _number_ | 高斯模糊系数 |
-| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
-| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
-| cursor | _string_ | 鼠标样式。同 css 的鼠标样式,默认 'default'。 |
-
-示例代码：
-
-```ts
-{
-  xAxis: {
-    grid: {
-      line: {
-        style: {
-          stroke: 'black',
-          lineWidth: 2,
-          lineDash: [4, 5],
-          strokeOpacity: 0.7,
-          shadowColor: 'black',
-          shadowBlur: 10,
-          shadowOffsetX: 5,
-          shadowOffsetY: 5,
-          cursor: 'pointer'
-        }
-      }
-    }
-  }
-}
-```
 
 \***\*textStyle\*\***
 
 <!--文本样式-->
 
 | 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- |
 | fontSize | _number_ | 文字大小 |
 | fontFamily | _string_ | 文字字体 |
 | fontWeight | _number_ | 字体粗细 |
 | lineHeight | _number_ | 文字的行高 |
-| textAlign | _string_ | 设置文本内容的当前对齐方式, 支持的属性：`center` \| `end` \| `left` \| `right` \| `start`，默认值为`start` |
+| textAlign | _string_ | 设置文本内容的当前对齐方式, 支持的属性：`center` | `end` | `left` | `right` | `start`，默认值为`start` |
 | fill | _string_ | 文字的填充色 |
 | fillOpacity | _number_ | 文字的填充透明度 |
 | stroke | _string_ | 文字的描边 |
@@ -309,94 +270,56 @@ true 表示合并当前点对应的所有数据并展示，false 表示只展示
 
 **_textBackgroundStyle_**
 
-| 细分配置项名称 | 类型                    | 功能描述           |
-| -------------- | ----------------------- | ------------------ |
-| padding        | \*number \| number\[]\* | 文本背景周围的留白 |
-| style          | _shapeStyle_            | 线的配置项         |
-
-**_shapeStyle_**
-
-<!--图形样式-->
-
-| 属性名 | 类型 | 介绍 |
-| --- | --- | --- |
-| fill | _string_ | 图形的填充色 |
-| fillOpacity | _number_ | 图形的填充透明度 |
-| stroke | _string_ | 图形的描边 |
-| lineWidth | _number_ | 图形描边的宽度 |
-| lineDash | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| lineOpacity | _number_ | 描边透明度 |
-| opacity | _number_ | 图形的整体透明度 |
-| shadowColor | _string_ | 图形阴影颜色 |
-| strokeOpacity | _number_ | 图形边框透明度 |
-| shadowBlur | _number_ | 图形阴影的高斯模糊系数 |
-| shadowOffsetX | _number_ | 设置阴影距图形的水平距离 |
-| shadowOffsetY | _number_ | 设置阴影距图形的垂直距离 |
-| cursor | _string_ | 鼠标样式。同 css 的鼠标样式，默认 'default'。 |
-
-示例代码：
-
-```ts
-{
-  style: {
-    fill: 'red',
-    fillOpacity: 0.5,
-    stroke: 'black',
-    lineWidth: 1,
-    lineDash: [4, 5],
-    strokeOpacity: 0.7,
-    shadowColor: 'black',
-    shadowBlur: 10,
-    shadowOffsetX: 5,
-    shadowOffsetY: 5,
-    cursor: 'pointer'
-  }
-}
-```
-
-关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
+| 细分配置项名称 | 类型         | 功能描述                                                        |
+| -------------- | ------------ | --------------------------------------------------------------- | ------------------ |
+| padding        | \*number     | number\[]\*                                                     | 文本背景周围的留白 |
+| style          | _shapeStyle_ | 线的配置项, 详细可见 [_ShapeAttrs_](/zh-CN/guide/graphic-style) |
 
 ##### showMarkers
 
-<description>**optional** _boolean_ _default:_ `true`</description>
+<description>**可选** _boolean_ _default:_ `true`</description>
 
 是否渲染 tooltipMarkers。
 
 ##### marker
 
-<description>**optional** _object_</description>
+<description>**可选** _ShapeAttrs_</description>
 
 tooltipMarker 的样式配置。
 
+样式配置类型，详细可见: [ShapeAttrs](/zh-CN/guide/graphic-style)
+
 ##### showContent
 
-<description>**optional** _boolean_ _default:_ `false`</description>
+<description>**可选** _boolean_ _default:_ `false`</description>
 
 是否展示 tooltip 内容框。
 
 ##### container
 
-<description>**optional** _string|HTMLElement_</description>
+<description>**可选** _string|HTMLElement_</description>
 
 自定义 tooltip 的容器。
 
 ##### containerTpl
 
-<description>**optional** _string_</description>
+<description>**可选** _string_</description>
 
 用于指定图例容器的模板，自定义模板时必须包含各个 dom 节点的 class。
 
 ##### itemTpl
 
-<description>**optional** _string_</description>
+<description>**可选** _string_</description>
 
 每项记录的默认模板，自定义模板时必须包含各个 dom 节点的 class。
 
 ##### domStyles
 
-<description>**optional** _TooltipDomStyles_</description>
+<description>**可选** _TooltipDomStyles_</description>
 
 传入各个 dom 的样式。
+
+<img src="https://gw.alipayobjects.com/zos/antfincdn/pKDA06iIeQ/tooltip.png" class="img-400" alt="dom-styles" />
 
 ```ts
 /** Tooltip 内容框的 css 样式定义 */
@@ -415,13 +338,13 @@ tooltipMarker 的样式配置。
 
 ##### offset
 
-<description>**optional** _number_</description>
+<description>**可选** _number_</description>
 
 tooltip 偏移量。
 
 ##### customContent
 
-<description>**optional** _Function_</description>
+<description>**可选** _Function_</description>
 
 支持自定义模板。
 
@@ -436,21 +359,6 @@ tooltip 偏移量。
 ```
 
 #### annotations
-
-标注是数组类型，可以设置多个。
-
-```ts
-annotations: [
-  {
-    type: 'text',
-    position: ['median', 'median'],
-    content: '辅助文本',
-    style: {
-      fill: 'red',
-    },
-  },
-];
-```
 
 ##### type
 
@@ -566,10 +474,10 @@ y 方向的偏移量。
 
 文字包围盒样式设置。
 
-| 参数名 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- |
-| style | _object_ | - | 文本背景的样式, 参考[绘图属性](/guide/graphic-style) |
-| padding | \*number \| number\[]\* | - | 文本背景周围的留白 |
+| 参数名  | 类型     | 默认值      | 描述                                                 |
+| ------- | -------- | ----------- | ---------------------------------------------------- | ------------------ |
+| style   | _object_ | -           | 文本背景的样式, 参考[绘图属性](/guide/graphic-style) |
+| padding | \*number | number\[]\* | -                                                    | 文本背景周围的留白 |
 
 ##### color
 
@@ -621,7 +529,7 @@ line 长度，用于 dataRegion。
 
 ##### alignX
 
-<description>**optional** _left' | 'middle' | 'right'_ </description>
+<description>**optional** _'left' | 'middle' | 'right'_ </description>
 
 DOM 元素在 X 方向的对齐方式，用于 html
 
@@ -660,7 +568,7 @@ DOM 元素在 Y 方向的对齐方式，用于 html
 | maxColumnWidth | _number_ | 柱状图最大宽度，像素值 |
 | minColumnWidth | _number_ | 柱状图最小宽度，像素值 |
 | roseWidthRatio | _number_ | 玫瑰图占比，0 - 1 范围数值 |
-| multiplePieWidthRatio | number | 多层饼图/环图占比，0 - 1 范围数值 |
+| multiplePieWidthRatio | _number_ | 多层饼图/环图占比，0 - 1 范围数值 |
 | geometries | _object_ | 配置每个 Geometry 下每个 shape 的样式，包括默认样式以及各个状态下的样式 |
 | components | _object_ | 配置坐标轴，图例，tooltip, annotation 的主题样式 |
 | labels | _object_ | 配置 Geometry 下 label 的主题样式 |
@@ -688,6 +596,35 @@ DOM 元素在 Y 方向的对齐方式，用于 html
 }
 ```
 
+#### 主题属性（主题样式表）
+
+除了以上介绍的主题属性之外，还可以传入主题样式表来自定义主题。如果你需要对全局主题进行配置的话，对样式风格进行切换，比如更改颜色、字体大小、边框粗细等
+
+使用方式:
+
+```ts
+{
+  theme: {
+    styleSheet: {
+      fontFamily: 'Avenir';
+    }
+  }
+}
+```
+
+支持的样式表属性：
+
+| **属性**                | **类型** | **描述**                                     |
+| ----------------------- | -------- | -------------------------------------------- |
+| `backgroundColor`       | _string_ | 背景色                                       |
+| `brandColor`            | _string_ | 主题色，默认取 10 色分类颜色色板的第一个颜色 |
+| `paletteQualitative10`  | _string_ | 分类颜色色板，分类个数小于 10 时使用         |
+| `paletteQualitative20`  | _string_ | 分类颜色色板，分类个数大于 10 时使用         |
+| `paletteSemanticRed`    | _string_ | 语义红色                                     |
+| `paletteSemanticGreen`  | _string_ | 语义绿色                                     |
+| `paletteSemanticYellow` | _string_ | 语义黄色                                     |
+| `fontFamily`            | _string_ | 字体                                         |
+
 #### 更新主题
 
 使用方式：
@@ -702,60 +639,8 @@ plot.update({ theme: { defaultColor: '#FF6B3B' } });
 
 #### 自定义注册主题
 
-另外，还可以通过 G2 提供了自定义主题机制来定义全新的主题结构，以允许用户切换、定义图表主题。
+另外，还可以通过 G2 提供了自定义主题机制来定义全新的主题结构，以允许用户切换、定义图表主题。前往 [G2 | 自定义主题](https://g2.antv.vision/zh/docs/api/advanced/register-theme) 查看详情。
 
-```ts
-import React, { useState, useEffect } from 'react';
-import { Pie } from '@ant-design/charts';
+<playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
-const DemoPie: React.FC = () => {
-  G2.registerTheme('new-theme', {
-    defaultColor: '#FF6B3B',
-    colors10: [
-      '#FF6B3B',
-      '#626681',
-      '#FFC100',
-      '#9FB40F',
-      '#76523B',
-      '#DAD5B5',
-      '#0E8E89',
-      '#E19348',
-      '#F383A2',
-      '#247FEA',
-    ],
-    colors20: [
-      '#FF6B3B',
-      '#626681',
-      '#FFC100',
-      '#9FB40F',
-      '#76523B',
-      '#DAD5B5',
-      '#0E8E89',
-      '#E19348',
-      '#F383A2',
-      '#247FEA',
-      '#2BCB95',
-      '#B1ABF4',
-      '#1D42C2',
-      '#1D9ED1',
-      '#D64BC0',
-      '#255634',
-      '#8C8C47',
-      '#8CDAE5',
-      '#8E283B',
-      '#791DC9',
-    ],
-  });
-  const config = {
-    appendPadding: 10,
-    data,
-    angleField: 'value',
-    colorField: 'type',
-    radius: 0.8,
-    theme: 'new-theme',
-  };
-  return <Pie {...config} />;
-};
-
-export default DemoPie;
-```
+前往 [DEMO](/zh-CN/demos/general#自定义样式)
