@@ -2,7 +2,7 @@
 
 
 
-### Plot Container
+### 图表容器
 
 #### width
 
@@ -53,7 +53,7 @@
 是否对超出坐标系范围的 Geometry 进行剪切。
 
 
-### Data Mapping
+### 数据映射
 
 #### percent
 
@@ -61,7 +61,7 @@
 
 设置百分比数值 \[0-1]，表示进度条图的进度情况。
 
-### Plot Style
+### 图形样式
 
 #### barWidthRatio
 
@@ -148,7 +148,7 @@
 ```
 
 
-### Plot Component
+### 图表组件
 
 #### tooltip
 

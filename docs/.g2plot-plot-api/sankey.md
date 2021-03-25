@@ -1,6 +1,6 @@
 
 
-## title: Sankey&#xA;order: 27
+
 
 ### Plot Container
 
@@ -59,25 +59,25 @@ Whether clip the Geometry beyond the coordinate system。
 
 <description>**required** *array object*</description>
 
-Configure the chart data source. The data source is a collection of objects, for example：`[{ source: '支付宝首页', target: '花呗', value: 20 }, ...]`。
+设置图表数据源。数据源为对象集合，例如：`[{ source: '支付宝首页', target: '花呗', value: 20 }, ...]`。
 
 #### sourceField
 
 <description>**required** *string*</description>
 
-Sets the source node data field of the Sankey diagram. For example, for the above data, it is: 'source'.
+设置桑基图的来源节点数据字段。比如针对上述数据，就是： `source`。
 
 #### targetField
 
 <description>**required** *string*</description>
 
-Sets the target node data field of Sankey diagram. For the above data, for example, it is: 'target'.
+设置桑基图的目标节点数据字段。比如针对上述数据，就是： `target`。
 
 #### weightField
 
 <description>**required** *string*</description>
 
-Set the weight field information of the relationship between nodes. The larger the data, the larger the edge. For example, for the above data, it is: 'value'.
+设置节点之间关系的权重字段信息，数据越大，边越大。比如针对上述数据，就是： `value`。
 
 ### Geometry Style
 
@@ -85,13 +85,13 @@ Set the weight field information of the relationship between nodes. The larger t
 
 <description>**optional** *StyleAttr | Function*</description>
 
-Sankey diagram node style configuration.
+桑基图节点样式的配置。
 
 #### edgeStyle
 
 <description>**optional** *StyleAttr | Function*</description>
 
-Sankey diagram variable style configuration.
+桑基图变样式的配置。
 
 #### color
 
@@ -128,25 +128,25 @@ Default: The color board of the theme.
 
 <description>**optional** *number*</description>
 
-Sankey diagram node width configuration, 0 ~ 1, refer to the width of the canvas, the default is' 0.008 '.
+桑基图节点的宽度配置，0 ~ 1，参考画布的宽度，默认为 `0.008`。
 
 #### nodeWidthPadding
 
 <description>**optional** *number*</description>
 
-The vertical spacing between nodes in Sankey diagram, 0 ~ 1, referring to the height of the canvas, default is' 0.01 '.
+桑基图节点的之间垂直方向的间距，0 ~ 1，参考画布的高度，默认为 `0.01`。
 
 #### nodeAlign
 
 <description>**optional** *string*</description>
 
-The sankey diagram node layout direction, the default is `the justify`, can choose the 'left' | 'right' | 'center' | 'the justify' four ways.
+桑基图节点的布局方向，默认为 `justify`，可以选择 'left' | 'right' | 'center' | 'justify' 四种方式。
 
 #### nodeDepth
 
 <description>**optional** *Function*</description>
 
-The sankey diagram node `depth` configure, use function to return the depth value, started from zero, and we need to ensure contains node in every depth level.
+桑基图节点的深度配置，使用回调进行自定义，返回 depth 数值，从 0 开始，并且返回值需要保证所有的层级都有节点。
 
 ```ts
 {
