@@ -2,7 +2,7 @@
 
 
 
-### 图表容器
+### Plot Container
 
 #### width
 
@@ -53,7 +53,7 @@
 是否对超出坐标系范围的 Geometry 进行剪切。
 
 
-### 数据映射
+### Data Mapping
 
 #### percent
 
@@ -61,7 +61,7 @@
 
 设置百分比数值 \[0-1]，表示进度条图的进度情况。
 
-### 图形样式
+### Plot Style
 
 #### radius
 
@@ -154,7 +154,7 @@
 ```
 
 
-### 图表组件
+### Plot Component
 
 #### tooltip
 
@@ -235,12 +235,12 @@ true 表示合并当前点对应的所有数据并展示，false 表示只展示
 | 细分配置项名称 | 类型                  | 功能描述                                                            |
 | -------------- | --------------------- | ------------------------------------------------------------------- |
 | type           | *`x` | `y` | `xy`*  | crosshairs 的类型: `x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项 |
-| line           | *lineStyle*           | 线的配置项，详细可见 [*ShapeAttrs*](/zh-CN/guide/graphic-style)                                                         |
+| line           | *lineStyle*           | 线的配置项，详细可见 [*ShapeAttrs*](/zh-CN/guide/graphic-style#configure-line-styles)                          |
 | text           | *textStyle*           | 辅助线文本配置，支持回调                                            |
 | textBackground | *textBackgroundStyle* | 辅助线文本背景配置                                                  |
 | follow         | *boolean*             | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点                |
 
-****textStyle****
+***textStyle***
 
 <!--文本样式-->
 
@@ -494,7 +494,7 @@ y 方向的偏移量。
 文字包围盒样式设置。
 
 | 参数名  | 类型                | 默认值 | 描述               |
-| ------- | ------------------- | -------- | ------ | ------------------ |
+| ------- | ------------------- | -------- | ------ |
 | style   | *object* | -      | 文本背景的样式, 参考[绘图属性](/guide/graphic-style)     |
 | padding | *number | number\[]* | -      | 文本背景周围的留白 |
 

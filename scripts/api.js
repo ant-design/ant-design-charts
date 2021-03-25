@@ -11,6 +11,7 @@ const remark = require('remark');
 const { lowerCase, upperCase, toHump, toLine } = require('./util.js');
 const { ChartsLevel } = require('./constants');
 const { mdprima } = require('./mdprima.js');
+const { log } = require('console');
 const api_path = '../docs/.g2plot-plot-api';
 const excludeFiles = ['gallery', 'dynamic-plots', 'case', 'general']; // 不处理的路径
 const arg = process.argv.splice(2);
@@ -23,6 +24,7 @@ const fp =
 const apiGenerator = (filePath, chartName) => {
   // 文件路径，上层自动扫描
   const res = remark().use(mdprima).processSync(fs.readFileSync(filePath));
+  // 替换文档路径
   const reWriteContents = res.contents
     .replace(/\/zh\/docs\/api\/options\/meta/g, '/zh-CN/guide/common#meta')
     .replace(/\/en\/docs\/api\/options\/meta/g, '/guide/common#meta')
@@ -31,10 +33,10 @@ const apiGenerator = (filePath, chartName) => {
     .replace(/\/zh\/docs\/api\/shape\/shape\-attrs/g, '/zh-CN/guide/graphic-style')
     .replace(/\/en\/docs\/api\/shape\/shape\-attrs/g, '/guide/graphic-style');
   const language = arg[0] === 'zh' ? '.zh-CN' : '';
-  const contents =
-    arg[0] === 'zh'
-      ? reWriteContents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, '')
-      : reWriteContents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, '');
+
+  console.log(reWriteContents.substr(0, 500));
+  // 删除文档二级标题
+  const contents = reWriteContents.replace(/##\s+title:(\s+\S+){1,2}/ig, '')
   // replace 去掉 title
   fs.writeFileSync(path.resolve(__dirname, api_path, `${chartName}${language}.md`), contents);
 };

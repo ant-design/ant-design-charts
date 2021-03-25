@@ -392,12 +392,12 @@ true 表示合并当前点对应的所有数据并展示，false 表示只展示
 | 细分配置项名称 | 类型                  | 功能描述                                                            |
 | -------------- | --------------------- | ------------------------------------------------------------------- |
 | type           | *`x` | `y` | `xy`*  | crosshairs 的类型: `x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项 |
-| line           | *lineStyle*           | 线的配置项，详细可见 [*ShapeAttrs*](/zh-CN/guide/graphic-style)                                                         |
+| line           | *lineStyle*           | 线的配置项，详细可见 [*ShapeAttrs*](/zh-CN/guide/graphic-style#configure-line-styles)                          |
 | text           | *textStyle*           | 辅助线文本配置，支持回调                                            |
 | textBackground | *textBackgroundStyle* | 辅助线文本背景配置                                                  |
 | follow         | *boolean*             | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点                |
 
-****textStyle****
+***textStyle***
 
 <!--文本样式-->
 
@@ -592,12 +592,12 @@ xAxis、yAxis 配置相同。**注意**：由于 DualAxes(双轴图) 和 Bidirec
 
 文本标签的配置项，null 表示不展示。*AxisLabelCfg* 配置如下：
 
-| 参数名       | 类型                                                   | 默认值  | 描述                     |
-| ------------ | -----------------------------------------------------| ------- | ------------------------ |
-| style        | *[ShapeAttrs](/zh-CN/guide/graphic-style)*        | -       | 坐标轴刻度线的样式配置项 |
-| offset       | *number*                                                | -       | label 的偏移量           |
-| rotate       | *number*                                                | -       | 文本旋转角度             |
-| autoRotate   | *boolean*                                               | `true`  | 是否自动旋转             |
+| 参数名       | 类型                                                     | 默认值  | 描述                     |
+| ------------ | -------------------------------------------------------- | ------- | ------------------------ |
+| style        | *[ShapeAttrs](/zh-CN/guide/graphic-style)*               | -       | 坐标轴刻度线的样式配置项 |
+| offset       | *number*                                                 | -       | label 的偏移量           |
+| rotate       | *number*                                                 | -       | 文本旋转角度             |
+| autoRotate   | *boolean*                                                | `true`  | 是否自动旋转             |
 | autoHide     | *boolean*                                                | `false` | 是否自动隐藏             |
 | autoEllipsis | *boolean*                                                | `false` | 是否自动省略             |
 | formatter    | *`(text: string, item: ListItem, index: number) => any`* | `false` | 格式化函数               |
@@ -670,11 +670,13 @@ xAxis、yAxis 配置相同。**注意**：由于 DualAxes(双轴图) 和 Bidirec
 
 <!--线条样式-->
 
-| 属性名        | 类型            | 介绍                                                                                                   |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
+> **注意:** 线条样式的完整配置是 `{ style: { stroke: '#ddd', ... } }`, 如果配置线条样式不生效的时候，请检查一下。
+
+| 属性名        | 类型              | 介绍                                                                                                   |
+| ------------- | ----------------- | ------------------------------------------------------------------------------------------------------ |
 | stroke        | *string*          | 线的颜色                                                                                               |
 | lineWidth     | *number*          | 线宽                                                                                                   |
-| lineDash      | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
+| lineDash      | *\[number,number]* | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
 | opacity       | *number*          | 透明度                                                                                                 |
 | shadowColor   | *string*          | 阴影颜色                                                                                               |
 | shadowBlur    | *number*          | 高斯模糊系数                                                                                           |
@@ -682,7 +684,7 @@ xAxis、yAxis 配置相同。**注意**：由于 DualAxes(双轴图) 和 Bidirec
 | shadowOffsetY | *number*          | 设置阴影距图形的垂直距离                                                                               |
 | cursor        | *string*          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                                                           |
 
-示例代码：
+示例（设置 x 轴的 grid 网格线条样式）：
 
 ```ts
 {
@@ -711,46 +713,19 @@ xAxis、yAxis 配置相同。**注意**：由于 DualAxes(双轴图) 和 Bidirec
 
 <description>**optional** *object*</description>
 
-坐标轴刻度线线的配置项，null 表示不展示。
+坐标轴刻度线的配置项，null 表示不展示。
 
-<!--线条样式-->
+| 细分配置项名称 | 类型                               | 功能描述                     |
+| -------------- | ---------------------------------- | ---------------------------- |
+| style          | *ShapeAttrs | ShapeAttrsCallback* | 坐标轴刻度线的样式。         |
+| alignTick      | *boolean*                          | 坐标轴刻度线是否同 tick 对齐 |
+| length         | *number*                           | 坐标轴刻度线长度             |
 
-| 属性名        | 类型            | 介绍                                                                                                   |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
-| stroke        | *string*          | 线的颜色                                                                                               |
-| lineWidth     | *number*          | 线宽                                                                                                   |
-| lineDash      | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity       | *number*          | 透明度                                                                                                 |
-| shadowColor   | *string*          | 阴影颜色                                                                                               |
-| shadowBlur    | *number*          | 高斯模糊系数                                                                                           |
-| shadowOffsetX | *number*          | 设置阴影距图形的水平距离                                                                               |
-| shadowOffsetY | *number*          | 设置阴影距图形的垂直距离                                                                               |
-| cursor        | *string*          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                                                           |
-
-示例代码：
+关于 *ShapeAttrs* 详细查看 [ShapeAttrs](/zh-CN/guide/graphic-style) 文档。*ShapeAttrsCallback* 回调参数如下：
 
 ```ts
-{
-  xAxis: {
-    grid: {
-      line: {
-        style: {
-          stroke: 'black',
-          lineWidth: 2,
-          lineDash: [4, 5],
-          strokeOpacity: 0.7,
-          shadowColor: 'black',
-          shadowBlur: 10,
-          shadowOffsetX: 5,
-          shadowOffsetY: 5,
-          cursor: 'pointer'
-        }
-      }
-    }
-  }
-}
+type ShapeAttrsCallback = (item: any, index: number, items: any[]) => ShapeAttrs;
 ```
-
 
 ##### subTickLine
 
@@ -758,44 +733,17 @@ xAxis、yAxis 配置相同。**注意**：由于 DualAxes(双轴图) 和 Bidirec
 
 坐标轴子刻度线的配置项，null 表示不展示。
 
-<!--线条样式-->
+| 细分配置项名称 | 类型                               | 功能描述             |
+| -------------- | ---------------------------------- | -------------------- |
+| style          | *ShapeAttrs | ShapeAttrsCallback* | 坐标轴子刻度线的样式。 |
+| count          | *number*                           | 子刻度个数           |
+| length         | *number*                           | 坐标轴子刻度线长度     |
 
-| 属性名        | 类型            | 介绍                                                                                                   |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
-| stroke        | *string*          | 线的颜色                                                                                               |
-| lineWidth     | *number*          | 线宽                                                                                                   |
-| lineDash      | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity       | *number*          | 透明度                                                                                                 |
-| shadowColor   | *string*          | 阴影颜色                                                                                               |
-| shadowBlur    | *number*          | 高斯模糊系数                                                                                           |
-| shadowOffsetX | *number*          | 设置阴影距图形的水平距离                                                                               |
-| shadowOffsetY | *number*          | 设置阴影距图形的垂直距离                                                                               |
-| cursor        | *string*          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                                                           |
-
-示例代码：
+关于 *ShapeAttrs* 详细查看 [ShapeAttrs](/zh-CN/guide/graphic-style) 文档。*ShapeAttrsCallback* 回调参数如下：
 
 ```ts
-{
-  xAxis: {
-    grid: {
-      line: {
-        style: {
-          stroke: 'black',
-          lineWidth: 2,
-          lineDash: [4, 5],
-          strokeOpacity: 0.7,
-          shadowColor: 'black',
-          shadowBlur: 10,
-          shadowOffsetX: 5,
-          shadowOffsetY: 5,
-          cursor: 'pointer'
-        }
-      }
-    }
-  }
-}
+type ShapeAttrsCallback = (item: any, index: number, items: any[]) => ShapeAttrs;
 ```
-
 
 ##### title
 
@@ -803,13 +751,14 @@ xAxis、yAxis 配置相同。**注意**：由于 DualAxes(双轴图) 和 Bidirec
 
 标题的配置项，null 表示不展示。
 
-| 细分配置项名称 | 类型         | 功能描述                 |
-| -------------- | ------------ | ------------------------ |
-| text         | *string*     | 坐标轴标题     |
-| offset         | *number*     | 标题距离坐标轴的距离     |
-| spacing        | *lineStyle*  | 标题距离坐标轴文本的距离 |
-| style          | *shapeStyle* | 标题文本配置项           |
-| autoRotate     | *boolean*    | 是否自动旋转             |
+| 细分配置项名称 | 类型         | 功能描述                                                  |
+| -------------- | ------------ | --------------------------------------------------------- |
+| text           | *string*     | 坐标轴标题                                                |
+| position       | *string*     | 轴标题的位置，默认：'center'。可选项： start, center, end |
+| offset         | *number*     | 标题距离坐标轴的距离                                      |
+| spacing        | *number*     | 标题距离坐标轴文本的距离                                  |
+| style          | *shapeStyle* | 标题文本配置项                                            |
+| autoRotate     | *boolean*    | 是否自动旋转                                              |
 
 ***shapeStyle***
 
@@ -913,51 +862,12 @@ type LabelLineCfg = {
 
 | 细分配置项名称 | 类型               | 功能描述                                                 |
 | -------------- | ------------------ | -------------------------------------------------------- |
-| line.style           | *lineStyle*        | 线的样式,                                               |
+| line           | *lineStyle*        | 线的样式,                                                |
 | alternateColor | *string|string\[]* | 两个栅格线间的填充色                                     |
 | closed         | *boolean*          | 对于 circle 是否关闭 grid                                |
 | alignTick      | *boolean*          | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
 
-\*\**lineStyle*\*\*的配置如下：
-
-<!--线条样式-->
-
-| 属性名        | 类型            | 介绍                                                                                                   |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
-| stroke        | *string*          | 线的颜色                                                                                               |
-| lineWidth     | *number*          | 线宽                                                                                                   |
-| lineDash      | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity       | *number*          | 透明度                                                                                                 |
-| shadowColor   | *string*          | 阴影颜色                                                                                               |
-| shadowBlur    | *number*          | 高斯模糊系数                                                                                           |
-| shadowOffsetX | *number*          | 设置阴影距图形的水平距离                                                                               |
-| shadowOffsetY | *number*          | 设置阴影距图形的垂直距离                                                                               |
-| cursor        | *string*          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                                                           |
-
-示例代码：
-
-```ts
-{
-  xAxis: {
-    grid: {
-      line: {
-        style: {
-          stroke: 'black',
-          lineWidth: 2,
-          lineDash: [4, 5],
-          strokeOpacity: 0.7,
-          shadowColor: 'black',
-          shadowBlur: 10,
-          shadowOffsetX: 5,
-          shadowOffsetY: 5,
-          cursor: 'pointer'
-        }
-      }
-    }
-  }
-}
-```
-
+网格线条样式的配置与 [line](#line) 是一致的。
 
 ##### animate
 
@@ -1500,8 +1410,8 @@ y 方向的偏移量。
 文字包围盒样式设置。
 
 | 参数名  | 类型                | 默认值 | 描述               |
-| ------- | ------------------- | -------- | ------ | ------------------ |
-| style   | *object* | -      | 文本背景的样式, 参考[绘图属性](/guide/graphic-style)     |
+| ------- | ------------------- | -------- | ------ |
+| style   | *object* | -      | 文本背景的样式, 参考[绘图属性](/zh-CN/guide/graphic-style)     |
 | padding | *number | number\[]* | -      | 文本背景周围的留白 |
 
 ##### color
@@ -1567,7 +1477,7 @@ DOM 元素在 Y 方向的对齐方式，用于 html
 
 #### quadrant
 
-[**DEMO**](../../../examples/scatter/bubble#quadrant)
+[**DEMO**](/zh/examples/scatter/bubble#quadrant)
 
 <description>**optional** *object*</description>
 
@@ -1583,7 +1493,7 @@ DOM 元素在 Y 方向的对齐方式，用于 html
 
 #### regressionLine
 
-[**DEMO**](../../../examples/scatter/scatter#line)
+[**DEMO**](/zh/examples/scatter/scatter#line)
 
 <description>**optional** *object*</description>
 

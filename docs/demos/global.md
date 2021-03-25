@@ -9,998 +9,996 @@ toc: content
 
 ## Tree Diagram And Flow Chart
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
 
-  <a href="/demos/organization-tree-graph#基础组织架构树图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Quv4RoUwgf4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础组织架构树图</p>
+  <a href="/demos/organization-tree-graph#基础组织架构树图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Quv4RoUwgf4AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础组织架构树图</p>
   </a>
 
-  <a href="/demos/indented-tree#演示结果" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C5XCQapXDpwAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">缩进树图</p>
+  <a href="/demos/indented-tree#演示结果" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C5XCQapXDpwAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">缩进树图</p>
   </a>
 
-   <a href="/demos/dagre-graph#演示结果" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gZwPSoxN-NUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">流程图</p>
+  <a href="/demos/dagre-graph#演示结果" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gZwPSoxN-NUAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">流程图</p>
+  </a>
+
+  <a href="/demos/dagre-fund-flow-graph#演示结果" >
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/a60JQyDs9O/378700df-a0b9-41c6-af4c-03952c0f0355.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">资金流向图</p>
   </a>
   
 </div>
 
 ## Line
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/line#基础折线图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ASuIQr9C7Q4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础折线图</p>
+  <a href="/demos/line#基础折线图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ASuIQr9C7Q4AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础折线图</p>
   </a>
 
-  <a href="/demos/line#配置折线数据点样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*tnfLTbhoBvcAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">配置折线数据点样式</p>
+  <a href="/demos/line#配置折线数据点样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*tnfLTbhoBvcAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">配置折线数据点样式</p>
   </a>
 
-  <a href="/demos/line#带缩略轴的折线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*T0pISJhToPEAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">带缩略轴的折线</p>
+  <a href="/demos/line#带缩略轴的折线" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*T0pISJhToPEAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">带缩略轴的折线</p>
   </a>
 
-  <a href="/demos/line#折线图带图表标注" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ElDbQ4yz14kAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">折线图带图表标注</p>
+  <a href="/demos/line#折线图带图表标注" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ElDbQ4yz14kAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">折线图带图表标注</p>
   </a>
 
-  <a href="/demos/line#二氧化碳排放量来源" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IZ9nRq-a6fIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">二氧化碳排放量来源</p>
+  <a href="/demos/line#二氧化碳排放量来源" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IZ9nRq-a6fIAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">二氧化碳排放量来源</p>
   </a>
 
-  <a href="/demos/line#多折线动画" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*3HyPSaIxw0gAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">多折线动画</p>
+  <a href="/demos/line#多折线动画" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*3HyPSaIxw0gAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">多折线动画</p>
   </a>
 
-  <a href="/demos/line#指定折线颜色" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IZ9nRq-a6fIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">指定折线颜色</p>
+  <a href="/demos/line#指定折线颜色" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IZ9nRq-a6fIAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">指定折线颜色</p>
   </a>
 
-  <a href="/demos/line#通过回调函数指定折线样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*iHQDSZ9g2fQAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">通过回调函数指定折线样式</p>
+  <a href="/demos/line#通过回调函数指定折线样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*iHQDSZ9g2fQAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">通过回调函数指定折线样式</p>
   </a>
 
-  <a href="/demos/line#指定 point marker 激活的样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MZvDRY7LH-sAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">指定 point marker 激活的样式</p>
+  <a href="/demos/line#指定 point marker 激活的样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MZvDRY7LH-sAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">指定 point marker 激活的样式</p>
   </a>
 
-  <a href="/demos/line#阶梯折线图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*lOdVRrYL7UIAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">阶梯折线图</p>
+  <a href="/demos/line#阶梯折线图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*lOdVRrYL7UIAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">阶梯折线图</p>
   </a>
 
-  <a href="/demos/line#多阶梯折线图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*qpizTrPVB-IAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">多阶梯折线图</p>
+  <a href="/demos/line#多阶梯折线图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*qpizTrPVB-IAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">多阶梯折线图</p>
   </a>
 
 </div>
 
 ## Bar
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/bar#基础条形图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cnRsQo-Yqg0AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础条形图</p>
+  <a href="/demos/bar#基础条形图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cnRsQo-Yqg0AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图</p>
   </a>
 
-  <a href="/demos/bar#基础条形图 - 自定义颜色" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*U-D1S4w5HNsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础条形图 - 自定义颜色</p>
+  <a href="/demos/bar#基础条形图 - 自定义颜色" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*U-D1S4w5HNsAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图 - 自定义颜色</p>
   </a>
 
-  <a href="/demos/bar#基础条形图 - 柱子宽度" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*uqtcQJ-N-qUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础条形图 - 柱子宽度</p>
+  <a href="/demos/bar#基础条形图 - 柱子宽度" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*uqtcQJ-N-qUAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图 - 柱子宽度</p>
   </a>
 
-  <a href="/demos/bar#基础条形图 - 滚动条" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*01-mRqASP78AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础条形图 - 滚动条</p>
+  <a href="/demos/bar#基础条形图 - 滚动条" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*01-mRqASP78AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图 - 滚动条</p>
   </a>
 
-  <a href="/demos/bar#基础条形图 - 转化率" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*-9CLRItZrPMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础条形图 - 转化率</p>
+  <a href="/demos/bar#基础条形图 - 转化率" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*-9CLRItZrPMAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图 - 转化率</p>
   </a>
 
-  <a href="/demos/bar#分组条形图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Yda9RZwgU1AAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组条形图</p>
+  <a href="/demos/bar#分组条形图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Yda9RZwgU1AAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组条形图</p>
   </a>
 
-  <a href="/demos/bar#百分百条形图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*l8JuSrkrOIkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">百分百条形图</p>
+  <a href="/demos/bar#百分百条形图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*l8JuSrkrOIkAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">百分百条形图</p>
   </a>
 
-  <a href="/demos/bar#区间条形图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*1is6RbXnUI4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">区间条形图</p>
+  <a href="/demos/bar#区间条形图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*1is6RbXnUI4AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">区间条形图</p>
   </a>
 
-  <a href="/demos/bar#堆叠条形图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BHyQS6T_qucAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠条形图</p>
+  <a href="/demos/bar#堆叠条形图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BHyQS6T_qucAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠条形图</p>
   </a>
 
 </div>
 
 ## Area
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/area#基础面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*AE2CTr-Uz3QAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础面积图</p>
+  <a href="/demos/area#基础面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*AE2CTr-Uz3QAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础面积图</p>
   </a>
 
-  <a href="/demos/area#渐变色面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*4dnrSbNeOGQAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">渐变色面积图</p>
+  <a href="/demos/area#渐变色面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*4dnrSbNeOGQAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">渐变色面积图</p>
   </a>
 
-  <a href="/demos/area#缩略轴面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xXtxRLa2CHoAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">缩略轴面积图</p>
+  <a href="/demos/area#缩略轴面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xXtxRLa2CHoAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">缩略轴面积图</p>
   </a>
 
-  <a href="/demos/area#带中位线标注的基础面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*7dkjRqqCukoAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">带中位线标注的基础面积图</p>
+  <a href="/demos/area#带中位线标注的基础面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*7dkjRqqCukoAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">带中位线标注的基础面积图</p>
   </a>
 
-  <a href="/demos/area#百分百面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*vr8gQJiyNmQAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">百分百面积图</p>
+  <a href="/demos/area#百分百面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*vr8gQJiyNmQAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">百分百面积图</p>
   </a>
 
-  <a href="/demos/area#堆叠面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*YYfSRoiOS_EAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠面积图</p>
+  <a href="/demos/area#堆叠面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*YYfSRoiOS_EAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠面积图</p>
   </a>
 
-  <a href="/demos/area#二氧化碳排放量来源" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*u6u1RqMG9coAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">二氧化碳排放量来源</p>
+  <a href="/demos/area#二氧化碳排放量来源" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*u6u1RqMG9coAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">二氧化碳排放量来源</p>
   </a>
 
-  <a href="/demos/area#带缩略轴堆叠面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*LGuMQ4uO_0EAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">带缩略轴堆叠面积图</p>
+  <a href="/demos/area#带缩略轴堆叠面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*LGuMQ4uO_0EAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">带缩略轴堆叠面积图</p>
   </a>
 
 </div>
 
 ## Column
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/column#基础柱状图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*KAg2TY-oYRUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础柱状图</p>
+  <a href="/demos/column#基础柱状图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*KAg2TY-oYRUAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础柱状图</p>
   </a>
 
-  <a href="/demos/column#基础柱状图 - 自定义颜色" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dr27SafKNzIAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础柱状图 - 自定义颜色</p>
+  <a href="/demos/column#基础柱状图 - 自定义颜色" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dr27SafKNzIAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础柱状图 - 自定义颜色</p>
   </a>
 
-  <a href="/demos/column#基础柱状图 - 柱子宽度" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*92VnSrkQLeAAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础柱状图 - 柱子宽度</p>
+  <a href="/demos/column#基础柱状图 - 柱子宽度" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*92VnSrkQLeAAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础柱状图 - 柱子宽度</p>
   </a>
 
-  <a href="/demos/column#带辅助框标注的基础柱状图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*FOmATLFeuxkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">带辅助框标注的基础柱状图</p>
+  <a href="/demos/column#带辅助框标注的基础柱状图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*FOmATLFeuxkAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">带辅助框标注的基础柱状图</p>
   </a>
 
-  <a href="/demos/column#基础柱状图 - 缩略轴" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*QhoHQ4QIts0AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础柱状图 - 缩略轴</p>
+  <a href="/demos/column#基础柱状图 - 缩略轴" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*QhoHQ4QIts0AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础柱状图 - 缩略轴</p>
   </a>
 
-  <a href="/demos/column#基础柱状图 - 滚动条" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IkdWTaXf4vAAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础柱状图 - 滚动条</p>
+  <a href="/demos/column#基础柱状图 - 滚动条" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IkdWTaXf4vAAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础柱状图 - 滚动条</p>
   </a>
 
-  <a href="/demos/column#基础柱状图 - 转化率" style="display: block;margin: 8px">
-    <img src="https://gw.alicdn.com/tfs/TB1u3.cvUY1gK0jSZFMXXaWcVXa-1638-1228.png" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础柱状图 - 转化率</p>
+  <a href="/demos/column#基础柱状图 - 转化率" >
+    <img src="https://gw.alicdn.com/tfs/TB1u3.cvUY1gK0jSZFMXXaWcVXa-1638-1228.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础柱状图 - 转化率</p>
   </a>
 
-  <a href="/demos/column#分组柱状图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cE7xSYYgqCcAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组柱状图</p>
+  <a href="/demos/column#分组柱状图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cE7xSYYgqCcAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组柱状图</p>
   </a>
 
-  <a href="/demos/column#堆叠分组柱状图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*x6zHR4G3ydsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠分组柱状图</p>
+  <a href="/demos/column#堆叠分组柱状图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*x6zHR4G3ydsAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠分组柱状图</p>
   </a>
 
-  <a href="/demos/column#百分百柱状图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*fFEqTrpsNQQAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">百分百柱状图</p>
+  <a href="/demos/column#百分百柱状图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*fFEqTrpsNQQAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">百分百柱状图</p>
   </a>
 
-  <a href="/demos/column#区间柱状图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Il5JQZkHxiIAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">区间柱状图</p>
+  <a href="/demos/column#区间柱状图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Il5JQZkHxiIAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">区间柱状图</p>
   </a>
 
-  <a href="/demos/column#堆叠柱状图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*brGIQoaiUVMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠柱状图</p>
+  <a href="/demos/column#堆叠柱状图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*brGIQoaiUVMAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠柱状图</p>
   </a>
 
 </div>
 
 ## Pie
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/pie#饼图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wmldRZZj9lIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">饼图</p>
+  <a href="/demos/pie#饼图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wmldRZZj9lIAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图</p>
   </a>
 
-  <a href="/demos/pie#饼图-外部图形标签" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ZztJQa4RLwoAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">饼图-外部图形标签</p>
+  <a href="/demos/pie#饼图-外部图形标签" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ZztJQa4RLwoAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-外部图形标签</p>
   </a>
 
-  <a href="/demos/pie#饼图-外部图形标签" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ZztJQa4RLwoAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">饼图-外部图形标签</p>
+  <a href="/demos/pie#饼图-蜘蛛布局标签" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*QyXPRK-URmUAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-蜘蛛布局标签</p>
   </a>
 
-  <a href="/demos/pie#饼图-蜘蛛布局标签" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*QyXPRK-URmUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">饼图-蜘蛛布局标签</p>
+  <a href="/demos/pie#饼图-设置条件状态" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*y8zjS5DZib8AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-设置条件状态</p>
   </a>
 
-  <a href="/demos/pie#饼图-设置条件状态" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*y8zjS5DZib8AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">饼图-设置条件状态</p>
+  <a href="/demos/pie#饼图-图例交互" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xZtSQocP4kYAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-图例交互</p>
   </a>
 
-  <a href="/demos/pie#饼图-图例交互" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xZtSQocP4kYAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">饼图-图例交互</p>
+  <a href="/demos/pie#饼图-带纹理" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*6DhLR77aZloAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-带纹理</p>
   </a>
 
-  <a href="/demos/pie#饼图-带纹理" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*6DhLR77aZloAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">饼图-带纹理</p>
+  <a href="/demos/pie#环图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*65WIQK5T4c8AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">环图</p>
   </a>
 
-  <a href="/demos/pie#环图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*65WIQK5T4c8AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">环图</p>
-  </a>
-
-  <a href="/demos/pie#环图统计指标卡" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*5f9ESplug4IAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">环图统计指标卡</p>
+  <a href="/demos/pie#环图统计指标卡" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*5f9ESplug4IAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">环图统计指标卡</p>
   </a>
 
 </div>
 
 ## Rose
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/rose#玫瑰图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OgVJR7IIQiMAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">玫瑰图</p>
+  <a href="/demos/rose#玫瑰图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OgVJR7IIQiMAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">玫瑰图</p>
   </a>
 
-  <a href="/demos/rose#玫瑰图-内部图形标签" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*nCcjT7v3dbYAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">玫瑰图-内部图形标签</p>
+  <a href="/demos/rose#玫瑰图-内部图形标签" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*nCcjT7v3dbYAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">玫瑰图-内部图形标签</p>
   </a>
 
-  <a href="/demos/rose#玫瑰图-设置条件状态" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OgVJR7IIQiMAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">玫瑰图-设置条件状态</p>
+  <a href="/demos/rose#玫瑰图-设置条件状态" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OgVJR7IIQiMAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">玫瑰图-设置条件状态</p>
   </a>
 
-  <a href="/demos/rose#玫瑰图-元素交互" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OgVJR7IIQiMAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">玫瑰图-元素交互</p>
+  <a href="/demos/rose#玫瑰图-元素交互" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OgVJR7IIQiMAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">玫瑰图-元素交互</p>
   </a>
 
-  <a href="/demos/rose#分组玫瑰图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*EUesQ4eJ1fcAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组玫瑰图</p>
+  <a href="/demos/rose#分组玫瑰图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*EUesQ4eJ1fcAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组玫瑰图</p>
   </a>
 
-  <a href="/demos/rose#堆叠玫瑰图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*4_9_Q63oXWgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠玫瑰图</p>
+  <a href="/demos/rose#堆叠玫瑰图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*4_9_Q63oXWgAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠玫瑰图</p>
   </a>
 
 </div>
 
 ## Dual Axes
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/dual-axes#柱线混合图表" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*M4ldTo75WeEAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">柱线混合图表</p>
+  <a href="/demos/dual-axes#柱线混合图表" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*M4ldTo75WeEAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">柱线混合图表</p>
   </a>
 
-  <a href="/demos/dual-axes#柱线混合图表-自定义样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*vTPGSLODwLEAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">柱线混合图表-自定义样式</p>
+  <a href="/demos/dual-axes#柱线混合图表-自定义样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*vTPGSLODwLEAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">柱线混合图表-自定义样式</p>
   </a>
 
-  <a href="/demos/dual-axes#柱线混合图表-区间柱" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MEdZR5UQzosAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">柱线混合图表-区间柱</p>
+  <a href="/demos/dual-axes#柱线混合图表-区间柱" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MEdZR5UQzosAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">柱线混合图表-区间柱</p>
   </a>
 
-  <a href="/demos/dual-axes#柱线混合图表-显示多折线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*FfmvR5_sLAEAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">柱线混合图表-显示多折线</p>
+  <a href="/demos/dual-axes#柱线混合图表-显示多折线" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*FfmvR5_sLAEAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">柱线混合图表-显示多折线</p>
   </a>
 
-  <a href="/demos/dual-axes#柱线混合图表-更多示例" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*_-QESLpPhPcAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">柱线混合图表-更多示例</p>
+  <a href="/demos/dual-axes#柱线混合图表-更多示例" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*_-QESLpPhPcAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">柱线混合图表-更多示例</p>
   </a>
 
-  <a href="/demos/dual-axes#双折线图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*HS5DT4j34XEAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">双折线图</p>
+  <a href="/demos/dual-axes#双折线图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*HS5DT4j34XEAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">双折线图</p>
   </a>
 
-  <a href="/demos/dual-axes#双折线图 - 自定义折线样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*FtUXRLU3mUgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">双折线图 - 自定义折线样式</p>
+  <a href="/demos/dual-axes#双折线图 - 自定义折线样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*FtUXRLU3mUgAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">双折线图 - 自定义折线样式</p>
   </a>
 
-  <a href="/demos/dual-axes#双折线图 - 阶梯折线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*5qvZTIy44UIAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">双折线图 - 阶梯折线</p>
+  <a href="/demos/dual-axes#双折线图 - 阶梯折线" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*5qvZTIy44UIAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">双折线图 - 阶梯折线</p>
   </a>
 
-  <a href="/demos/dual-axes#双折线图 - 多折线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BzyZQapC7ucAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">双折线图 - 多折线</p>
+  <a href="/demos/dual-axes#双折线图 - 多折线" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BzyZQapC7ucAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">双折线图 - 多折线</p>
   </a>
 
-  <a href="/demos/dual-axes#分组柱线图表" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ydQDSpPe9B0AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组柱线图表</p>
+  <a href="/demos/dual-axes#分组柱线图表" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ydQDSpPe9B0AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组柱线图表</p>
   </a>
 
-  <a href="/demos/dual-axes#分组柱线图表-自定义样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Ogg7R6trDvgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组柱线图表-自定义样式</p>
+  <a href="/demos/dual-axes#分组柱线图表-自定义样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Ogg7R6trDvgAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组柱线图表-自定义样式</p>
   </a>
 
-  <a href="/demos/dual-axes#分组柱线图表-显示多折线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xzh4RYzYTFcAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组柱线图表-显示多折线</p>
+  <a href="/demos/dual-axes#分组柱线图表-显示多折线" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xzh4RYzYTFcAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组柱线图表-显示多折线</p>
   </a>
 
-  <a href="/demos/dual-axes#堆叠分组柱状图-折线图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*9Pl8SrMreqkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠分组柱状图-折线图</p>
+  <a href="/demos/dual-axes#堆叠分组柱状图-折线图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*9Pl8SrMreqkAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠分组柱状图-折线图</p>
   </a>
 
-  <a href="/demos/dual-axes#堆叠柱线图表" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*R2j7SIpYvDsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠柱线图表</p>
+  <a href="/demos/dual-axes#堆叠柱线图表" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*R2j7SIpYvDsAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠柱线图表</p>
   </a>
 
-  <a href="/demos/dual-axes#堆叠柱线图表-自定义样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RCl4Tr-4TqwAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠柱线图表-自定义样式</p>
+  <a href="/demos/dual-axes#堆叠柱线图表-自定义样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RCl4Tr-4TqwAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠柱线图表-自定义样式</p>
   </a>
 
-  <a href="/demos/dual-axes#百分比堆叠柱线图表" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*w_VfQ5sDvS0AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">百分比堆叠柱线图表</p>
+  <a href="/demos/dual-axes#百分比堆叠柱线图表" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*w_VfQ5sDvS0AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">百分比堆叠柱线图表</p>
   </a>
 
-  <a href="/demos/dual-axes#堆叠柱线图表-显示多折线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*I_bmR6CZJScAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠柱线图表-显示多折线</p>
+  <a href="/demos/dual-axes#堆叠柱线图表-显示多折线" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*I_bmR6CZJScAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠柱线图表-显示多折线</p>
   </a>
 
 </div>
 
 ## Funnel
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/funnel#基础漏斗图" style="display: block;margin: 8px">
-    <img src="https://gw.alicdn.com/tfs/TB158FxuAT2gK0jSZPcXXcKkpXa-646-500.png" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础漏斗图</p>
+  <a href="/demos/funnel#基础漏斗图" >
+    <img src="https://gw.alicdn.com/tfs/TB158FxuAT2gK0jSZPcXXcKkpXa-646-500.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础漏斗图</p>
   </a>
 
-  <a href="/demos/funnel#动态高度漏斗图" style="display: block;margin: 8px">
-    <img src="https://gw.alicdn.com/tfs/TB1Tgtyurj1gK0jSZFOXXc7GpXa-786-503.png" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">动态高度漏斗图</p>
+  <a href="/demos/funnel#动态高度漏斗图" >
+    <img src="https://gw.alicdn.com/tfs/TB1Tgtyurj1gK0jSZFOXXc7GpXa-786-503.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">动态高度漏斗图</p>
   </a>
 
-  <a href="/demos/funnel#对比漏斗图" style="display: block;margin: 8px">
-    <img src="https://gw.alicdn.com/tfs/TB1Y7dtuAL0gK0jSZFtXXXQCXXa-709-495.png" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">对比漏斗图</p>
+  <a href="/demos/funnel#对比漏斗图" >
+    <img src="https://gw.alicdn.com/tfs/TB1Y7dtuAL0gK0jSZFtXXXQCXXa-709-495.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">对比漏斗图</p>
   </a>
 
-  <a href="/demos/funnel#基础漏斗图-转置" style="display: block;margin: 8px">
-    <img src="https://gw.alicdn.com/tfs/TB1EgtsuuT2gK0jSZFvXXXnFXXa-958-591.png" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础漏斗图-转置</p>
+  <a href="/demos/funnel#基础漏斗图-转置" >
+    <img src="https://gw.alicdn.com/tfs/TB1EgtsuuT2gK0jSZFvXXXnFXXa-958-591.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础漏斗图-转置</p>
   </a>
 
-  <a href="/demos/funnel#动态高度漏斗图-转置" style="display: block;margin: 8px">
-    <img src="https://gw.alicdn.com/tfs/TB1OzRyuq61gK0jSZFlXXXDKFXa-1108-556.png" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">动态高度漏斗图-转置</p>
+  <a href="/demos/funnel#动态高度漏斗图-转置" >
+    <img src="https://gw.alicdn.com/tfs/TB1OzRyuq61gK0jSZFlXXXDKFXa-1108-556.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">动态高度漏斗图-转置</p>
   </a>
 
-  <a href="/demos/funnel#对比漏斗图-转置" style="display: block;margin: 8px">
-    <img src="https://gw.alicdn.com/tfs/TB1Hkluurr1gK0jSZR0XXbP8XXa-1095-565.png" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">对比漏斗图-转置</p>
+  <a href="/demos/funnel#对比漏斗图-转置" >
+    <img src="https://gw.alicdn.com/tfs/TB1Hkluurr1gK0jSZR0XXbP8XXa-1095-565.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">对比漏斗图-转置</p>
   </a>
 
 </div>
 
 ## Bullet
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/bullet#基础水平方向子弹图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Vk43S5pvUJcAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础水平方向子弹图</p>
+  <a href="/demos/bullet#基础水平方向子弹图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Vk43S5pvUJcAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础水平方向子弹图</p>
   </a>
 
-  <a href="/demos/bullet#基础垂直方向子弹图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BSeHR45zAxEAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础垂直方向子弹图</p>
+  <a href="/demos/bullet#基础垂直方向子弹图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BSeHR45zAxEAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础垂直方向子弹图</p>
   </a>
 
-  <a href="/demos/bullet#基础子弹图-带多颜色范围区间" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dL-9TKrcJcEAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础子弹图-带多颜色范围区间</p>
+  <a href="/demos/bullet#基础子弹图-带多颜色范围区间" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dL-9TKrcJcEAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础子弹图-带多颜色范围区间</p>
   </a>
 
-  <a href="/demos/bullet#堆叠子弹图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*qdtlRpVAwlMAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">堆叠子弹图</p>
+  <a href="/demos/bullet#堆叠子弹图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*qdtlRpVAwlMAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠子弹图</p>
   </a>
 
-  <a href="/demos/bullet#分组子弹图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*m78MS5pgqrkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组子弹图</p>
+  <a href="/demos/bullet#分组子弹图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*m78MS5pgqrkAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组子弹图</p>
   </a>
 
 </div>
 
 ## Gauage
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/gauge#仪表盘" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*O2aDSImbWDgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">仪表盘</p>
+  <a href="/demos/gauge#仪表盘" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*O2aDSImbWDgAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">仪表盘</p>
   </a>
 
-  <a href="/demos/gauge#仪表盘(单色渐变)" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GpkSQJ2OqrEAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">仪表盘(单色渐变)</p>
+  <a href="/demos/gauge#仪表盘(单色渐变)" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GpkSQJ2OqrEAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">仪表盘(单色渐变)</p>
   </a>
 
-  <a href="/demos/gauge#仪表盘(多色)" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*2pQHSJvYqwwAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">仪表盘(多色)</p>
+  <a href="/demos/gauge#仪表盘(多色)" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*2pQHSJvYqwwAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">仪表盘(多色)</p>
   </a>
 
-  <a href="/demos/gauge#自定义配置的仪表盘" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*YD-cS6ppbhkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">自定义配置的仪表盘</p>
+  <a href="/demos/gauge#自定义配置的仪表盘" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*YD-cS6ppbhkAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义配置的仪表盘</p>
   </a>
 
 </div>
 
 ## Heatmap
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/heatmap#热力图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*55KOQI2EhVUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">热力图</p>
+  <a href="/demos/heatmap#热力图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*55KOQI2EhVUAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">热力图</p>
   </a>
 
-  <a href="/demos/heatmap#热力形状图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ZG36SowgMVYAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">热力形状图</p>
+  <a href="/demos/heatmap#热力形状图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ZG36SowgMVYAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">热力形状图</p>
   </a>
 
-  <a href="/demos/heatmap#热力形状大小映射" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*H1vrQbPFskMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">热力形状大小映射</p>
+  <a href="/demos/heatmap#热力形状大小映射" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*H1vrQbPFskMAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">热力形状大小映射</p>
   </a>
 
-  <a href="/demos/heatmap#日历热力图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*aLbWR5ioU2UAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">日历热力图</p>
+  <a href="/demos/heatmap#日历热力图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*aLbWR5ioU2UAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">日历热力图</p>
   </a>
 
-  <a href="/demos/heatmap#密度热力图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*jr1PQaJMbuQAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">密度热力图</p>
+  <a href="/demos/heatmap#密度热力图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*jr1PQaJMbuQAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">密度热力图</p>
   </a>
 
 </div>
 
 ## Histogram
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/histogram#基础直方图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cZELRpyp7N4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础直方图</p>
+  <a href="/demos/histogram#基础直方图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cZELRpyp7N4AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础直方图</p>
   </a>
 
-  <a href="/demos/histogram#直方图范围刻度" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*WTP6S6bzkpsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">直方图范围刻度</p>
+  <a href="/demos/histogram#直方图范围刻度" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*WTP6S6bzkpsAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">直方图范围刻度</p>
   </a>
 
-  <a href="/demos/histogram#层叠直方图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C4SlQ4FeJBkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">层叠直方图</p>
+  <a href="/demos/histogram#层叠直方图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C4SlQ4FeJBkAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">层叠直方图</p>
   </a>
 
 </div>
 
 ## Liquid
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/liquid#水波图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*JshoQZ91ixQAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">水波图</p>
+  <a href="/demos/liquid#水波图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*JshoQZ91ixQAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">水波图</p>
   </a>
 
-  <a href="/demos/liquid#样式自定义的水波图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*i03VQIF9G2UAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">样式自定义的水波图</p>
+  <a href="/demos/liquid#样式自定义的水波图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*i03VQIF9G2UAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">样式自定义的水波图</p>
   </a>
 
 </div>
 
 ## Radar
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/radar#基础雷达图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W-b2QoNhip0AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础雷达图</p>
+  <a href="/demos/radar#基础雷达图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W-b2QoNhip0AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础雷达图</p>
   </a>
 
-  <a href="/demos/radar#基础雷达图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*exgfQbvqKlMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础雷达图</p>
+  <a href="/demos/radar#基础雷达图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*exgfQbvqKlMAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础雷达图</p>
   </a>
 
-  <a href="/demos/radar#基础雷达图(带网格)" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*E70qQpBJ2kMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础雷达图(带网格)</p>
+  <a href="/demos/radar#基础雷达图(带网格)" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*E70qQpBJ2kMAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础雷达图(带网格)</p>
   </a>
 
-  <a href="/demos/radar#基础雷达图(带底色)" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gexzT7Y8X0oAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础雷达图(带底色)</p>
+  <a href="/demos/radar#基础雷达图(带底色)" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gexzT7Y8X0oAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础雷达图(带底色)</p>
   </a>
 
-  <a href="/demos/radar#雷达图(面)" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*O0wxQawDULkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">雷达图(面)</p>
+  <a href="/demos/radar#雷达图(面)" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*O0wxQawDULkAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">雷达图(面)</p>
   </a>
 
-  <a href="/demos/radar#雷达图(带网格)" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*AJOVQaiILQoAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">雷达图(带网格)</p>
+  <a href="/demos/radar#雷达图(带网格)" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*AJOVQaiILQoAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">雷达图(带网格)</p>
   </a>
 
-  <a href="/demos/radar#雷达图(面-带底色)" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*XL8YQJmbIEIAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">雷达图(面-带底色)</p>
+  <a href="/demos/radar#雷达图(面-带底色)" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*XL8YQJmbIEIAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">雷达图(面-带底色)</p>
   </a>
 
 </div>
 
 ## Stock
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/stock#基础蜡烛图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*-HIwQbCnfFUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础蜡烛图</p>
+  <a href="/demos/stock#基础蜡烛图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*-HIwQbCnfFUAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础蜡烛图</p>
   </a>
 
 </div>
 
 ## Box
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/box#基础箱型图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*hL2WSrRh9K0AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础箱型图</p>
+  <a href="/demos/box#基础箱型图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*hL2WSrRh9K0AAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础箱型图</p>
   </a>
 
-  <a href="/demos/box#分组箱型图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*bZZ8SLkfTZUAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">分组箱型图</p>
+  <a href="/demos/box#分组箱型图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*bZZ8SLkfTZUAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组箱型图</p>
   </a>
 
-  <a href="/demos/box#基础箱型图（有异常值）" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cE6vR461omUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础箱型图（有异常值）</p>
+  <a href="/demos/box#基础箱型图（有异常值）" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cE6vR461omUAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础箱型图（有异常值）</p>
   </a>
 
 </div>
 
 ## Radial Bar
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/radial-bar#玉珏图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*GTDCRYkg6V4AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">玉珏图</p>
+  <a href="/demos/radial-bar#玉珏图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*GTDCRYkg6V4AAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">玉珏图</p>
   </a>
 
-  <a href="/demos/radial-bar#玉珏图 - 自定义颜色" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*GTDCRYkg6V4AAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">玉珏图 - 自定义颜色</p>
+  <a href="/demos/radial-bar#玉珏图 - 自定义颜色" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*GTDCRYkg6V4AAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">玉珏图 - 自定义颜色</p>
   </a>
 
-  <a href="/demos/radial-bar#线形玉珏图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*GC6wT4GQ-oMAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">线形玉珏图</p>
+  <a href="/demos/radial-bar#线形玉珏图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*GC6wT4GQ-oMAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">线形玉珏图</p>
   </a>
 
 </div>
 
 ## Scatter
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/scatter#散点图颜色映射" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/kRFIJ2OlFs/FE726B54-2352-47F5-AAF9-B17D281CE513.png" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">散点图颜色映射</p>
+  <a href="/demos/scatter#散点图颜色映射" >
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/kRFIJ2OlFs/FE726B54-2352-47F5-AAF9-B17D281CE513.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">散点图颜色映射</p>
   </a>
 
-  <a href="/demos/scatter#散点图图形标签" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*XlOeS4YAHbYAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">散点图图形标签</p>
+  <a href="/demos/scatter#散点图图形标签" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*XlOeS4YAHbYAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">散点图图形标签</p>
   </a>
 
-  <a href="/demos/scatter#散点图-气泡四象限" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*tdedT4uaPaYAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">散点图-气泡四象限</p>
+  <a href="/demos/scatter#散点图-气泡四象限" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*tdedT4uaPaYAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">散点图-气泡四象限</p>
   </a>
 
-  <a href="/demos/scatter#散点图-回归线" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*JWiDQIYm09AAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">散点图-回归线</p>
+  <a href="/demos/scatter#散点图-回归线" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*JWiDQIYm09AAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">散点图-回归线</p>
   </a>
 
-  <a href="/demos/scatter#散点图-右侧坐标轴" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*0luHTJODdMUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">散点图-右侧坐标轴</p>
+  <a href="/demos/scatter#散点图-右侧坐标轴" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*0luHTJODdMUAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">散点图-右侧坐标轴</p>
   </a>
 
-  <a href="/demos/scatter#散点图-自定义图形" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*zfwOTZE7KwcAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">散点图-自定义图形</p>
+  <a href="/demos/scatter#散点图-自定义图形" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*zfwOTZE7KwcAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">散点图-自定义图形</p>
   </a>
 
-  <a href="/demos/scatter#散点图-自定义tooltip" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*CvOyT6MoUAQAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">散点图-自定义tooltip</p>
+  <a href="/demos/scatter#散点图-自定义tooltip" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*CvOyT6MoUAQAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">散点图-自定义tooltip</p>
   </a>
 
 </div>
 
 ## Sunburst
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/sunburst#基础旭日图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*UbXJTZ9weikAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础旭日图</p>
+  <a href="/demos/sunburst#基础旭日图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*UbXJTZ9weikAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础旭日图</p>
   </a>
 
-  <a href="/demos/sunburst#指定径向类型" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*VXhvSYH8YowAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">指定径向类型</p>
+  <a href="/demos/sunburst#指定径向类型" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*VXhvSYH8YowAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">指定径向类型</p>
   </a>
 
 </div>
 
 ## Word Cloud
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/word-cloud#词云图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MBDPS6YX7y0AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">词云图</p>
+  <a href="/demos/word-cloud#词云图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MBDPS6YX7y0AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">词云图</p>
   </a>
 
-  <a href="/demos/word-cloud#词云图-图片遮罩" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*id4CSZIMCtsAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">词云图-图片遮罩</p>
+  <a href="/demos/word-cloud#词云图-图片遮罩" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*id4CSZIMCtsAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">词云图-图片遮罩</p>
   </a>
 
-  <a href="/demos/word-cloud#词云图-图片遮罩-base64" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*qkYyQqFTU4YAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">词云图-图片遮罩-base64</p>
+  <a href="/demos/word-cloud#词云图-图片遮罩-base64" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*qkYyQqFTU4YAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">词云图-图片遮罩-base64</p>
   </a>
 
-  <a href="/demos/word-cloud#词云图-colorField" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*id4CSZIMCtsAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">词云图-colorField</p>
+  <a href="/demos/word-cloud#词云图-colorField" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*id4CSZIMCtsAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">词云图-colorField</p>
   </a>
 
-  <a href="/demos/word-cloud#词云图-每次渲染保持位置不变" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*CDgnRaN9iXkAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">词云图-每次渲染保持位置不变</p>
+  <a href="/demos/word-cloud#词云图-每次渲染保持位置不变" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*CDgnRaN9iXkAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">词云图-每次渲染保持位置不变</p>
   </a>
 
-  <a href="/demos/word-cloud#词云图-自定义每个词语位置" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BV6DQYM6KFMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">词云图-自定义每个词语位置</p>
+  <a href="/demos/word-cloud#词云图-自定义每个词语位置" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BV6DQYM6KFMAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">词云图-自定义每个词语位置</p>
   </a>
 
 </div>
 
 ## Waterfall
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/waterfall#基础瀑布图 - 每月收支情况" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*85VYTJy5J3gAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础瀑布图 - 每月收支情况</p>
+  <a href="/demos/waterfall#基础瀑布图 - 每月收支情况" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*85VYTJy5J3gAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础瀑布图 - 每月收支情况</p>
   </a>
 
-  <a href="/demos/waterfall#变化瀑布图 - 销售量一年的变化情况" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*vRbXTpFGp0QAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">变化瀑布图 - 销售量一年的变化情况</p>
+  <a href="/demos/waterfall#变化瀑布图 - 销售量一年的变化情况" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*vRbXTpFGp0QAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">变化瀑布图 - 销售量一年的变化情况</p>
   </a>
 
-  <a href="/demos/waterfall#瀑布图 - 数值标签展示绝对值" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*uKKQQ4Xc3GMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">瀑布图 - 数值标签展示绝对值</p>
+  <a href="/demos/waterfall#瀑布图 - 数值标签展示绝对值" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*uKKQQ4Xc3GMAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">瀑布图 - 数值标签展示绝对值</p>
   </a>
 
-  <a href="/demos/waterfall#瀑布图 - 添加标注" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xOfKT5qr9R4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">瀑布图 - 添加标注</p>
+  <a href="/demos/waterfall#瀑布图 - 添加标注" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xOfKT5qr9R4AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">瀑布图 - 添加标注</p>
   </a>
 
 </div>
 
 ## Annotations
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/general#辅助线标注" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*d8s-RrJb-xcAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">辅助线标注</p>
+  <a href="/demos/general#辅助线标注" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*d8s-RrJb-xcAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">辅助线标注</p>
   </a>
 
-  <a href="/demos/general#辅助线标注（精确定位）" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W7VdTZsmINgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">辅助线标注（精确定位）</p>
+  <a href="/demos/general#辅助线标注（精确定位）" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W7VdTZsmINgAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">辅助线标注（精确定位）</p>
   </a>
 
-  <a href="/demos/general#图片标注" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Wq83RaOoWxgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">图片标注</p>
+  <a href="/demos/general#图片标注" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Wq83RaOoWxgAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">图片标注</p>
   </a>
 
-  <a href="/demos/general#辅助框标注 和 数据点标记" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sHEVT7y_JZgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">辅助框标注 和 数据点标记</p>
+  <a href="/demos/general#辅助框标注 和 数据点标记" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sHEVT7y_JZgAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">辅助框标注 和 数据点标记</p>
   </a>
 
-  <a href="/demos/general#辅助框标注" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*_MLfT47OxekAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">辅助框标注</p>
+  <a href="/demos/general#辅助框标注" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*_MLfT47OxekAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">辅助框标注</p>
   </a>
 
-  <a href="/demos/general#自定义设置状态样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wmldRZZj9lIAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">自定义设置状态样式</p>
+  <a href="/demos/general#自定义设置状态样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wmldRZZj9lIAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义设置状态样式</p>
   </a>
 
-  <a href="/demos/general#设置状态" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*y8zjS5DZib8AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">设置状态</p>
+  <a href="/demos/general#设置状态" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*y8zjS5DZib8AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">设置状态</p>
   </a>
 
-  <a href="/demos/general#暗黑主题" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*D-ThTo5H-1kAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">暗黑主题</p>
+  <a href="/demos/general#暗黑主题" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*D-ThTo5H-1kAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">暗黑主题</p>
   </a>
 
-  <a href="/demos/general#自定义主题" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*YPRMRI-lcIwAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">自定义主题</p>
+  <a href="/demos/general#自定义主题" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*YPRMRI-lcIwAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义主题</p>
   </a>
 
-  <a href="/demos/general#注册主题" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*YPRMRI-lcIwAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">注册主题</p>
+  <a href="/demos/general#注册主题" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*YPRMRI-lcIwAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">注册主题</p>
   </a>
 
 </div>
 
 ## Chord
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/chord#人口流动弦图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*LjN9Sqfo6nsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">人口流动弦图</p>
+  <a href="/demos/chord#人口流动弦图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*LjN9Sqfo6nsAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">人口流动弦图</p>
   </a>
 
-  <a href="/demos/sankey#支付宝流量桑基图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*bLulSLk-VskAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">支付宝流量桑基图</p>
+  <a href="/demos/sankey#支付宝流量桑基图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*bLulSLk-VskAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">支付宝流量桑基图</p>
   </a>
 
-  <a href="/demos/sankey#能量关系桑基图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W-V0QYiLLbgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">能量关系桑基图</p>
+  <a href="/demos/sankey#能量关系桑基图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W-V0QYiLLbgAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">能量关系桑基图</p>
   </a>
 
 </div>
 
 ## Bidirection Bar
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/bidirectional-bar#基础水平方对称条形图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*FhaLRItZu-oAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础水平方对称条形图</p>
+  <a href="/demos/bidirectional-bar#基础水平方对称条形图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*FhaLRItZu-oAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础水平方对称条形图</p>
   </a>
 
-  <a href="/demos/bidirectional-bar#基础垂直方向对称条形图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*FhaLRItZu-oAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础垂直方向对称条形图</p>
+  <a href="/demos/bidirectional-bar#基础垂直方向对称条形图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dpEiSZht_1AAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础垂直方向对称条形图</p>
   </a>
 
 </div>
 
 ## Treemap
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/treemap#基础矩形树图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*Ob1jSbCUl8cAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础矩形树图</p>
+  <a href="/demos/treemap#基础矩形树图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*Ob1jSbCUl8cAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础矩形树图</p>
   </a>
 
-  <a href="/demos/treemap#嵌套矩形树图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*UwprToL8UjcAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">嵌套矩形树图</p>
+  <a href="/demos/treemap#嵌套矩形树图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*UwprToL8UjcAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">嵌套矩形树图</p>
   </a>
 
 </div>
 
 ## Multi View
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-  <a href="/demos/multi-view#区间面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/LSyrzQnPWL/ad65dd9d-ced8-42ca-a756-8fe4593157e6.png" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">区间面积图</p>
+  <a href="/demos/multi-view#区间面积图" >
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/LSyrzQnPWL/ad65dd9d-ced8-42ca-a756-8fe4593157e6.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">区间面积图</p>
   </a>
 
- <a href="/demos/multi-view#刷选联动" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*19AdR6-BjRgAAAAAAAAAAABkARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">刷选联动</p>
+ <a href="/demos/multi-view#刷选联动" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*19AdR6-BjRgAAAAAAAAAAABkARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">刷选联动</p>
   </a>
 
-  <a href="/demos/multi-view#drinks" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*S4CuR5J89jsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">drinks</p>
+  <a href="/demos/multi-view#drinks" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*S4CuR5J89jsAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">drinks</p>
   </a>
 
-  <a href="/demos/multi-view#条形图的变种" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Xr_fTpVCRv4AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">条形图的变种</p>
+  <a href="/demos/multi-view#条形图的变种" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Xr_fTpVCRv4AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">条形图的变种</p>
   </a>
 
 </div>
 
 ## Tiny Chart
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div class="gallery-item-box">
   
-   <a href="/demos/progress#迷你进度条图样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xjbxRJTD2wUAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">迷你进度条图样式</p>
+   <a href="/demos/progress#迷你进度条图样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xjbxRJTD2wUAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">迷你进度条图样式</p>
   </a>
 
-  <a href="/demos/progress#迷你进度条图回调样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wKUaS7xLrYgAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">迷你进度条图回调样式</p>
+  <a href="/demos/progress#迷你进度条图回调样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wKUaS7xLrYgAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">迷你进度条图回调样式</p>
   </a>
 
-  <a href="/demos/progress#迷你进度条图大小" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*qseORomBj9sAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">迷你进度条图大小</p>
+  <a href="/demos/progress#迷你进度条图大小" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*qseORomBj9sAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">迷你进度条图大小</p>
   </a>
 
-  <a href="/demos/ring-progress#迷你进度环图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dP0sQrvPsDsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">迷你进度环图</p>
+  <a href="/demos/tiny-area#基础迷你面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*8Qf7Q45ubMMAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础迷你面积图</p>
   </a>
 
-  <a href="/demos/ring-progress#迷你进度环图样式" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*pvZvSb-gJwEAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">迷你进度环图样式</p>
+  <a href="/demos/tiny-area#带辅助信息的迷你面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RVNgQ641-xoAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">带辅助信息的迷你面积图</p>
   </a>
 
-  <a href="/demos/tiny-area#基础迷你面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*8Qf7Q45ubMMAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础迷你面积图</p>
+  <a href="/demos/tiny-area#平铺填充迷你面积图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RVNgQ641-xoAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">平铺填充迷你面积图</p>
   </a>
 
-  <a href="/demos/tiny-area#带辅助信息的迷你面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RVNgQ641-xoAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">带辅助信息的迷你面积图</p>
+  <a href="/demos/tiny-column#基础迷你柱形图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*lJWoS5D2OC0AAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础迷你柱形图</p>
   </a>
 
-  <a href="/demos/tiny-area#平铺填充迷你面积图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RVNgQ641-xoAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">平铺填充迷你面积图</p>
+  <a href="/demos/tiny-column#带辅助线的迷你柱形图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xIFLRY4wT4EAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">带辅助线的迷你柱形图</p>
   </a>
 
-  <a href="/demos/tiny-column#基础迷你柱形图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*lJWoS5D2OC0AAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础迷你柱形图</p>
+  <a href="/demos/tiny-line#基础迷你折线图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*v0_RR7osTYsAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础迷你折线图</p>
   </a>
 
-  <a href="/demos/tiny-column#带辅助线的迷你柱形图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xIFLRY4wT4EAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">带辅助线的迷你柱形图</p>
+  <a href="/demos/tiny-line#带辅助线的迷你折线图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*XmW4RbbtsdoAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">带辅助线的迷你折线图</p>
+  </a>
+  <a href="/demos/ring-progress#迷你进度环图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dP0sQrvPsDsAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">迷你进度环图</p>
   </a>
 
-  <a href="/demos/tiny-line#基础迷你折线图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*v0_RR7osTYsAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">基础迷你折线图</p>
-  </a>
-
-  <a href="/demos/tiny-line#带辅助线的迷你折线图" style="display: block;margin: 8px">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*XmW4RbbtsdoAAAAAAAAAAAAAARQnAQ" width="300" height="auto" />
-    <p style="text-align: center; color: #293c55">带辅助线的迷你折线图</p>
-  </a>
-
+  <a href="/demos/ring-progress#迷你进度环图样式" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*pvZvSb-gJwEAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">迷你进度环图样式</p>
+  </a>  
 </div>
