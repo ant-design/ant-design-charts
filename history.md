@@ -1,3 +1,14 @@
+### v: 1.1.0
+
+- 文档更新 [#545](https://github.com/ant-design/ant-design-charts/pull/545)
+- feat: 新增弦图(Chord) [#545](https://github.com/ant-design/ant-design-charts/pull/545)
+- fix: fund flow graph with large slope edges [#540](https://github.com/ant-design/ant-design-charts/pull/540)
+- fix: 兼容 React17 [#542](https://github.com/ant-design/ant-design-charts/pull/542)
+- 导出 G2Plot 相关 function [#545](https://github.com/ant-design/ant-design-charts/pull/545)
+  - flow
+  - measureTextWidth
+  - adaptors
+
 ### v: 1.0.1
 
 - 新增瀑布图
