@@ -8,12 +8,22 @@ export default defineConfig({
   exportStatic: {},
   dynamicImport: {},
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+  theme: {
+    '@s-site-menu-width': '262px',
+  },
   styles: [
     '.__dumi-default-previewer-demo > div > div { min-height: 100px; }',
     '.__dumi-default-layout-content {overflow: hidden; overflow-x: auto;}',
+    '.__dumi-default-layout-content h2 {margin: 32px 0 18px;}',
+    '.__dumi-default-layout-content .gallery-item-box {display: grid;grid-gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 0.25fr));}',
+    '.__dumi-default-layout-content .gallery-item-box a {display: block; padding: 12px; border: 1px solid #f0f0f0; border-radius: 4px;text-align: center;overflow: hidden;}',
+    '.__dumi-default-layout-content .gallery-item-box a:hover {opacity: 1; border-color: #1890ff;}',
     '.markdown > h4 { color: #1890ff !important}',
     '.custom-api-docs img {max-height: 100px}',
+    '.__dumi-default-layout-content .markdown > img {max-height: 450px; width: auto;}',
     '.__dumi-default-layout-hero button { background: #0170fe !important; border: 1px solid #0170fe !important}',
+    '.__dumi-default-menu[data-mode="site"] .__dumi-default-menu-list > li > a {padding-left: 40px !important;}',
+    '.__dumi-default-menu[data-mode="site"] .__dumi-default-menu-list > li > a ~ ul {padding-left: 24px !important;margin-left: 28px !important;}'
   ],
   navs: [
     null,

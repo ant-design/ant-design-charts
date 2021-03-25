@@ -290,7 +290,8 @@ In addition to using the built-in 'default' and 'dark' themes, you can also modi
 
 The following table lists the specific properties on the configuration items that make up the topic:
 
-| **Properties**            | **Type**       | **Description**    || --------------------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
+| **Properties**        | **Type**   | **Description**                                                                                               |
+| --------------------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
 | defaultColor          | *string*   | Theme color                                                                                                   |
 | padding               | *number*   | number\[]                                                                                                      |
 | fontFamily            | *string*   | Chart font                                                                                                    |
@@ -300,7 +301,7 @@ The following table lists the specific properties on the configuration items tha
 | maxColumnWidth        | *number*   | Maximum width of histogram, pixel value                                                                       |
 | minColumnWidth        | *number*   | Minimum width of histogram, pixel value                                                                       |
 | roseWidthRatio        | *number*   | Rose width ratio, 0-1 range of value                                                                          |
-| multiplePieWidthRatio | *number*     | Multilayer pie and loop ratio, 0-1 range values                                                               |
+| multiplePieWidthRatio | *number*   | Multilayer pie and loop ratio, 0-1 range values                                                               |
 | geometries            | *object*   | Configure the style of each shape for each Geometry, including the default style and the style for each state |
 | components            | *object*   | Configure theme samples for axes, legends, tooltips, and annotations                                          |
 | labels                | *object*   | Configure the theme style of the label under Geometry                                                         |
@@ -338,7 +339,7 @@ usage:
 {
   theme: {
     styleSheet: {
-      fontFamily: 'Avenir'
+      fontFamily: 'Avenir';
     }
   }
 }
@@ -346,16 +347,16 @@ usage:
 
 支持的样式表属性：
 
-| **Properties**            | **Type**       | **Description**    |
-| ----------------------- | -------- | ------------- |
-| `backgroundColor`       | *string* | Background color        |
+| **Properties**          | **Type** | **Description**                                   |
+| ----------------------- | -------- | ------------------------------------------------- |
+| `backgroundColor`       | *string* | Background color                                  |
 | `brandColor`            | *string* | Brand color，默认取 10 色分类颜色色板的第一个颜色 |
-| `paletteQualitative10`  | *string* | Qualitative palette，分类个数小于 10 时使用 |
-| `paletteQualitative20`  | *string* | Qualitative palette，分类个数大于 10 时使用 |
-| `paletteSemanticRed`    | *string* | Semantic red      |
-| `paletteSemanticGreen`  | *string* | Semantic green      |
-| `paletteSemanticYellow` | *string* | Semantic yellow      |
-| `fontFamily`            | *string* | fontFamily          |
+| `paletteQualitative10`  | *string* | Qualitative palette，分类个数小于 10 时使用       |
+| `paletteQualitative20`  | *string* | Qualitative palette，分类个数大于 10 时使用       |
+| `paletteSemanticRed`    | *string* | Semantic red                                      |
+| `paletteSemanticGreen`  | *string* | Semantic green                                    |
+| `paletteSemanticYellow` | *string* | Semantic yellow                                   |
+| `fontFamily`            | *string* | fontFamily                                        |
 
 #### Update theme
 
