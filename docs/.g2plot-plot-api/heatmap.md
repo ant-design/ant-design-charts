@@ -318,7 +318,7 @@ Configure tooltip crosshairs to work if and only if 'showCrosshairs' is true.
 | Properties | Type | Description |
 | --- | --- | --- | --- | --- |
 | type | \_`x` | `y` | `xy`\_ | Crosshairs Type: 'X' represents the auxiliary line on the X axis, 'Y' on the Y axis |
-| line | _lineStyle_ | The configuration item for line, see more [_ShapeAttrs_](/guide/graphic-style) |
+| line | _lineStyle_ | The configuration item for line, see more [_ShapeAttrs_](/en/docs/api/shape/shape-attrs) |
 | text | _textStyle_ | Guideline text configuration, support callback |
 | textBackground | _textBackgroundStyle_ | Guideline text background configuration |
 | follow | _boolean_ | Whether the guide line follows the mouse. Default is false, that is, to locate the data point |
@@ -369,7 +369,7 @@ Example code, using label.style configuration:
 | Properties | Type | Description |
 | --- | --- | --- | --- |
 | padding | \*number | number\[]\* | White space around the background of a text |
-| style | _shapeStyle_ | The configuration item for line, see more [_ShapeAttrs_](/guide/graphic-style) |
+| style | _shapeStyle_ | The configuration item for line, see more [_ShapeAttrs_](/en/docs/api/shape/shape-attrs) |
 
 ##### showMarkers
 
@@ -383,7 +383,7 @@ Whether to render TooltipMarkers.
 
 TooltipMarker style configuration.
 
-Please refer to the style configuration [ShapeAttrs](/guide/graphic-style)
+Please refer to the style configuration [ShapeAttrs](/en/docs/api/graphic-style)
 
 ##### showContent
 
@@ -476,7 +476,7 @@ Support for custom templates.
 | formatter | _Function_ | Format function |
 | autoHide | _boolean_ | Whether to hide it automatically, default to false |
 
-Types of **_LabelLineCfg_** are as follow: (Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_)
+Types of **_LabelLineCfg_** are as follow: (Go [ShapeAttrs](/zh/docs/api/shape/shape-attrs) see more details about _ShapeAttrs_)
 
 ```plain
 type LabelLineCfg = {
@@ -517,7 +517,7 @@ Configurations related to axis label. Set this to `null` to prevent the axis lab
 
 | Properties   | Type                                                     |         |
 | ------------ | -------------------------------------------------------- | ------- | --------------------------------------------------------- |
-| style        | _[ShapeAttrs](/zh-CN/guide/graphic-style)_               | -       | Axis label text graphic property style                    |
+| style        | _[ShapeAttrs](/zh/docs/api/shape/shape-attrs)_           | -       | Axis label text graphic property style                    |
 | offset       | _number_                                                 | -       | Axis label offset\                                        |
 | rotate       | _number_                                                 | -       | Axis label text rotation Angle                            |
 | autoRotate   | _boolean_                                                | `true`  | Whether to rotate automatically, default true             |
@@ -772,7 +772,7 @@ Example：
 }
 ```
 
-More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
+More documents about `ShapeStyle`, see [Graphic Style](/en/docs/api/graphic-style).
 
 **_label_**
 
@@ -800,7 +800,7 @@ A configuration item for the text label. NULL indicates that it is not displayed
 | formatter | _Function_ | Format function |
 | autoHide | _boolean_ | Whether to hide it automatically, default to false |
 
-Types of **_LabelLineCfg_** are as follow: (Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_)
+Types of **_LabelLineCfg_** are as follow: (Go [ShapeAttrs](/zh/docs/api/shape/shape-attrs) see more details about _ShapeAttrs_)
 
 ```plain
 type LabelLineCfg = {
@@ -1028,7 +1028,7 @@ pageNavigator: {
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
 | size | _number_ | - | Slider size |
-| style | _object_ | - | Slider configuration, reference [Graphic Style](/zh-CN/guide/graphic-style) |
+| style | _object_ | - | Slider configuration, reference [Graphic Style](/zh/docs/api/graphic-style) |
 
 ##### itemHeight
 
@@ -1050,7 +1050,7 @@ Apply to <tag color="green" text="Classification legend">Classification legend</
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
-| style | _object_ | - | Text style configuration, referecnce [Graphic Style](/zh-CN/guide/graphic-style) |
+| style | _object_ | - | Text style configuration, referecnce [Graphic Style](/zh/docs/api/graphic-style) |
 | spacing | _number_ | `false` | The spacing between legend item marker and the following name |
 | formatter | _function_ | - | Format function, `(text: string, item: ListItem, index: number) => any;` |
 
@@ -1068,7 +1068,7 @@ Apply to <tag color="green" text="Classification legend">Classification legend</
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
-| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh-CN/guide/graphic-style) |
+| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh/docs/api/graphic-style) |
 | alignRight | _boolean_ | `false` | Right-align, false by default, only when setting legend item width. |
 | formatter | _function_ | - | Format function, `(text: string, item: ListItem, index: number) => any;` |
 
@@ -1133,7 +1133,7 @@ Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, a c
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
 | align | _string_ | - | The alignment of text with the slider <br/> - rail : Align with the slide rail, at both ends of the slide rail <br/> - top, bottom: Legends are valid when laid out horizontally <br/> - left, right: Legends are valid when laid out vertically |
-| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh-CN/guide/graphic-style) |
+| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh/docs/api/graphic-style) |
 | spacing | _number_ | - | The distance between the text and the slide |
 
 ##### marker
@@ -1195,7 +1195,7 @@ Legends offset in the y direction.
 | type | _string_ | - | rail type: color and size |
 | size | _number_ | - | The width of the slide rail |
 | defaultLength | _number_ | - | The default length of the slider. When maxWidth,maxHeight is limited, this property is not used and the length is automatically calculated |
-| style | _object_ | - | Slide rail style, refer to [Graphic Style](/zh-CN/guide/graphic-style) |
+| style | _object_ | - | Slide rail style, refer to [Graphic Style](/zh/docs/api/graphic-style) |
 
 ##### reversed
 
@@ -1214,7 +1214,7 @@ Legend title configuration is not displayed by default. _G2LegendTitleCfg_ Confi
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
 | spacing | _number_ | - | The spacing between the title and the legend item |
-| style | _object_ | - | Text style configuration item, refer to [Graphic Style](/zh-CN/guide/graphic-style) |
+| style | _object_ | - | Text style configuration item, refer to [Graphic Style](/zh/docs/api/graphic-style) |
 
 ##### track
 
@@ -1222,7 +1222,7 @@ Legend title configuration is not displayed by default. _G2LegendTitleCfg_ Confi
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- |
-| style | _object_ | - | Selected range of styles, reference [Graphic Style](/zh-CN/guide/graphic-style) |
+| style | _object_ | - | Selected range of styles, reference [Graphic Style](/zh/docs/api/graphic-style) |
 
 ##### values
 
@@ -1386,7 +1386,7 @@ Text wrap box style Settings.
 
 | Properties | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| style | _object_ | - | Text background style, reference[Graphic Style](/guide/graphic-style) |
+| style | _object_ | - | Text background style, reference[Graphic Style](/en/docs/api/graphic-style) |
 | padding | \*number | number\[]\* | - | White space around the background of a text |
 
 ##### color
