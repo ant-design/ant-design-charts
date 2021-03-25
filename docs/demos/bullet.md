@@ -3,10 +3,6 @@ title: Bullet
 order: 14
 ---
 
-# Bullet
-
-## Bullet
-
 ### 基础水平方向子弹图
 
 ```tsx

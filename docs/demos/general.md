@@ -3,10 +3,6 @@ title: Annotations
 order: 20
 ---
 
-# Annotations
-
-## General
-
 ### 图片标注
 
 ```tsx

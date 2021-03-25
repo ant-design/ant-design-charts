@@ -3,10 +3,6 @@ title: 对称条形图
 order: 20
 ---
 
-# 对称条形图
-
-## BidirectionalBar
-
 ### 基础水平方对称条形图
 
 ```tsx

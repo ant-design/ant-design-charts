@@ -23,11 +23,18 @@ const fp =
 const apiGenerator = (filePath, chartName) => {
   // 文件路径，上层自动扫描
   const res = remark().use(mdprima).processSync(fs.readFileSync(filePath));
+  const reWriteContents = res.contents
+    .replace(/\/zh\/docs\/api\/options\/meta/g, '/zh-CN/guide/common#meta')
+    .replace(/\/en\/docs\/api\/options\/meta/g, '/guide/common#meta')
+    .replace(/\/zh\/docs\/api\/graphic\-style/g, '/zh-CN/guide/graphic-style')
+    .replace(/\/en\/docs\/api\/graphic\-style/g, '/guide/graphic-style')
+    .replace(/\/zh\/docs\/api\/shape\/shape\-attrs/g, '/zh-CN/guide/graphic-style')
+    .replace(/\/en\/docs\/api\/shape\/shape\-attrs/g, '/guide/graphic-style');
   const language = arg[0] === 'zh' ? '.zh-CN' : '';
   const contents =
     arg[0] === 'zh'
-      ? res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, '')
-      : res.contents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, '');
+      ? reWriteContents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, '')
+      : reWriteContents.replace(/##\W*\S*\W*xA;\S*\W*\S*/, '');
   // replace 去掉 title
   fs.writeFileSync(path.resolve(__dirname, api_path, `${chartName}${language}.md`), contents);
 };

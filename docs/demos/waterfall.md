@@ -3,10 +3,6 @@ title: Waterfall
 order: 32
 ---
 
-# Waterfall
-
-## Waterfall
-
 ### Waterfall - 数值标签展示绝对值
 
 ```tsx

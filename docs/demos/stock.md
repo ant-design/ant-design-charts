@@ -3,10 +3,6 @@ title: Stock
 order: 21
 ---
 
-# Stock
-
-## Stock
-
 ### 基础蜡烛图
 
 ```tsx

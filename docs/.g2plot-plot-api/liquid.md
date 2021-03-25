@@ -1,94 +1,100 @@
-### Plot Container
+
+
+
+
+### 图表容器
 
 #### width
 
-<description>**optional** _number_ _default:_ `400`</description>
+<description>**optional** *number* *default:* `400`</description>
 
-Set the width of the chart.
+设置图表宽度。
 
 #### height
 
-<description>**optional** _number_ _default:_ `400`</description>
+<description>**optional** *number* *default:* `400`</description>
 
-Set the height of the chart.
+设置图表高度。
 
 #### autoFit
 
-<description>**optional** _boolean_ _default:_ `true`</description>
+<description>**optional** *boolean* *default:* `true`</description>
 
-Whether the chart automatically adjusts to fit the container. If it is set to `true`, `width` and `height` configuration would fail.
+图表是否自适应容器宽高。当 `autoFit` 设置为 true 时，`width` 和 `height` 的设置将失效。
 
 #### padding
 
-<description>**optional** _number\[] | number | 'auto'_</description>
+<description>**optional** *number\[] | number | 'auto'*</description>
 
-Set `padding` value of the canvas. You can also use `auto`.
+画布的 `padding` 值，代表图表在上右下左的间距，可以为单个数字 `16`，或者数组 `[16, 8, 16, 8]` 代表四个方向，或者开启 `auto`，由底层自动计算间距。
 
 #### appendPadding
 
-<description>**optional** _number\[] | number_</description>
+<description>**optional** *number\[] | number*</description>
 
-Extra `appendPadding` value.
+额外增加的 `appendPadding` 值，在 `padding` 的基础上，设置额外的 padding 数值，可以是单个数字 `16`，或者数组 `[16, 8, 16, 8]` 代表四个方向。
 
 #### renderer
 
-<description>**optional** _string_ _default:_ `canvas`</description>
+<description>**optional** *string* *default:* `canvas`</description>
 
-Set the render way to `canvas` or `svg`.
+设置图表渲染方式为 `canvas` 或 `svg`。
 
 #### pixelRatio
 
-<description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
+<description>**optional** *number* *default:* `window.devicePixelRatio`</description>
 
-Set the pixel ratio of the chart.
+设置图表渲染的像素比，和底层的 devicePixelRatio 含义一致，一般不用设置，除非在页面有整体 scale 的情况下，可以自定义。
 
 #### limitInPlot
 
-<description>**optional** _boolean_</description>
+<description>**optional** *boolean*</description>
 
-Whether clip the Geometry beyond the coordinate system。
+是否对超出坐标系范围的 Geometry 进行剪切。
 
-### Data Mapping
+
+### 数据映射
 
 #### percent
 
-<description>**required** _number_</description>
+<description>**required** *number*</description>
 
-Ratio data( Range:\[0-1] ).
+指标比例数据 \[0-1]。
 
 #### radius
 
-<description>**optional** _number_ _default:_ `0.9`</description>
+<description>**optional** *number* *default:* `0.9`</description>
 
-Radius of outer ring( Range:\[0-1] ).
+外环的半径 \[0-1]，相对于画布宽高的最小值来计算的。
 
-### Graphic Style
+### 图形样式
 
 #### liquidStyle
 
-<description>**optional** _StyleAttr | Function_</description>
+<description>**optional** *StyleAttr | Function*</description>
 
-Liguid graphic style.
+水波图的配色样式。
 
-<!--shape style-->
+<!--图形样式-->
 
-| Properties | Type | Description |
-| --- | --- | --- |
-| fill | _string_ | Fill color of the shape |
-| fillOpacity | _number_ | Fill opacity of the shape |
-| stroke | _string_ | Stroke color of the shape |
-| lineWidth | _number_ | The width of the stroke of the shape |
-| lineDash | \[number,number] | Configure dashed line stroke. The first parameter is the length of each segment, and the second parameter is the gap between segment. When lineDash is set to \[0,0], there is no effect. |
-| lineOpacity | _number_ | Opacity of the stroke |
-| opacity | _number_ | Opacity of the shape |
-| shadowColor | _string_ | Shadow color of the shape |
-| strokeOpacity | _number_ | Stroke opacity of the shape |
-| shadowBlur | _number_ | Gaussian blur coefficient of the shadow |
-| shadowOffsetX | _number_ | Configure horizontal distance between shadow and shape |
-| shadowOffsetY | _number_ | Configure vertical distance between shadow and shape |
-| cursor | _string_ | Mouse style, same as the mouse style of CSS, default value : 'default' |
+| 属性名        | 类型            | 介绍                                                                                                         |
+| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
+| fill          | *string*         | 图形的填充色                                                                                                 |
+| r          | *number*         | 用于 `point`, 代表图形的半径大小 |
+| fillOpacity   | *number*         | 图形的填充透明度                                                                                             |
+| stroke        | *string*         | 图形的描边                                                                                                   |
+| lineWidth     | *number*         | 图形描边的宽度                                                                                               |
+| lineDash      | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
+| lineOpacity   | *number*         | 描边透明度                                                                                                   |
+| opacity       | *number*         | 图形的整体透明度                                                                                             |
+| shadowColor   | *string*         | 图形阴影颜色                                                                                                 |
+| strokeOpacity | *number*         | 图形边框透明度                                                                                               |
+| shadowBlur    | *number*         | 图形阴影的高斯模糊系数                                                                                       |
+| shadowOffsetX | *number*         | 设置阴影距图形的水平距离                                                                                     |
+| shadowOffsetY | *number*         | 设置阴影距图形的垂直距离                                                                                     |
+| cursor        | *string*         | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                                                |
 
-Example：
+示例代码：
 
 ```ts
 {
@@ -108,29 +114,59 @@ Example：
 }
 ```
 
-More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
+关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
+
+
+#### shape
+
+<description>**optional** *String | Function* default: `circle`</description>
+
+水波图有五种内置形状：`circle | diamond | triangle | pin | rect`。同时也支持自定义图形，这个时候需要传入一个构建 Path 的回调函数。
+
+示例代码如下：
+
+```ts
+/**
+ * @param x the x for bounding rectangle
+ * @param y the y for bounding rectangle
+ * @param width the width for bounding rectangle
+ * @param height the height for bounding rectangle
+ * @return PathCommand[]
+ */
+function shape(x: number, y: number, width: number, height: number) {
+  const h = height / 2;
+  const w = width / 2;
+  return [
+    ['M', x - x / 3, y - h],
+    ['L', x + w, y - y / 3],
+    ['L', x + x / 3, y + h],
+    ['L', x - w, y + y / 3],
+    ['Z'],
+  ];
+}
+```
 
 #### color
 
-<description>**optional** _string | string\[] | Function_</description>
+<description>**optional** *string | string\[] | Function*</description>
 
-Configure the color. If there is no colorField configured, set one single color. Otherwise you can set a series of colors, or you can use callback function.
+指定点的颜色。如没有配置 colorField，指定一个单值即可。对 colorFiled 进行了配置的情况下，即可以指定一系列色值，也可以通过回调函数的方法根据对应数值进行设置。
 
-Default: The color board of the theme.
+默认配置：采用 theme 中的色板。
 
 ```ts
-// set one single color
+// 设置单一颜色
 {
   color: '#a8ddb5'
 }
-// set a series of colors
+// 设置多色
 {
-  colorField: 'type', // or seriesField in some cases
+  colorField: 'type', // 部分图表使用 seriesField
   color: ['#d62728', '#2ca02c', '#000000'],
 }
 // Function
 {
-  colorField: 'type', // or seriesField in some cases
+  colorField: 'type', // 部分图表使用 seriesField
   color: ({ type }) => {
     if(type === 'male'){
       return 'red';
@@ -140,47 +176,49 @@ Default: The color board of the theme.
 }
 ```
 
+
 #### outline
 
-<description>**optional** _Outline_</description>
+<description>**optional** *Outline*</description>
 
-The ouline configure for liquid plot, includes:
+水波图的外框容器配置。主要包含以下内容：
 
-| Properties | Type   | Desc                                          |
-| ---------- | ------ | --------------------------------------------- |
-| border     | number | border width of ouline, default 2px           |
-| distance   | number | distance between ouline and wave, default 0px |
+| 属性名        | 类型            | 介绍                                         |
+| ------------ | -------------- | -------------------------------------------- |
+| border       | number         | 外框容器的 border 宽度，默认为 2 像素             |
+| distance     | number         | 外框容器和内部波形的间距，默认为 0 像素             |
 
 #### wave
 
-<description>**optional** _Wave_</description>
+<description>**optional** *Wave*</description>
 
-The wave configure for liquid plot, includes:
+水波图的波形配置。主要包含以下内容：
 
-| Properties | Type   | Desc                          |
-| ---------- | ------ | ----------------------------- |
-| count      | number | wave count, default 3         |
-| length     | number | wave length, default is 192px |
+| 属性名        | 类型            | 介绍                                         |
+| ------------ | -------------- | -------------------------------------------- |
+| count        | number         | 水波的个数，默认为 3 个                          |
+| length       | number         | 水波的波长度，默认为 192 像素                     |
 
-### Plot Components
+### 图表组件
 
-#### statistic
+#### statistic ✨
 
-<description>**optional** _object_</description>
+<description>**optional** *object*</description>
 
-Text component.
+指标中心文本组件。
 
-| Properties | Type  | Description   |
-| ---------- | ----- | ------------- | ------- |
-| title      | false | StatisticText | title   |
-| content    | false | StatisticText | content |
+| 配置项  | 类型                   | 描述     |
+| ------- | ---------------------- | -------- |
+| title   | *false | StatisticText* | 标题     |
+| content | *false | StatisticText* | 主体内容 |
 
 StatisticText
 
-| Properties | Type     | Description                       |
-| ---------- | -------- | --------------------------------- |
-| style      | object   | Styles for statistical text       |
-| formatter  | Function | The formatted content of the text |
-| rotate     | number   | Rotation Angle                    |
-| offsetX    | number   | X offset                          |
-| offsetY    | number   | Y offset                          |
+| 配置项    | 类型     | 描述                 |
+| --------- | -------- | -------------------- |
+| style     | *CSSStyleDeclaration* | 统计文本的样式 (css 样式)      |
+| customHtml | `(container: HTMLElement, view: View, datum: object, data: object[]) => string;` | 自定义主体文本的 html，优先级高于 formatter |
+| formatter | *Function* | 主体文本的格式化内容 |
+| rotate    | *number*   | 旋转角度             |
+| offsetX   | *number*   | X 偏移值             |
+| offsetY   | *number*   | Y 偏移值             |

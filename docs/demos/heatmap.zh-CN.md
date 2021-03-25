@@ -3,10 +3,6 @@ title: 热力图
 order: 16
 ---
 
-# 热力图
-
-## Heatmap
-
 ### 热力图
 
 ```tsx

@@ -3,10 +3,6 @@ title: Tiny Line
 order: 30
 ---
 
-# Tiny Line
-
-## TinyLine
-
 ### 基础迷你折线图
 
 ```tsx

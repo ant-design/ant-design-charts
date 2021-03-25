@@ -3,10 +3,6 @@ title: Ring Progress
 order: 24
 ---
 
-# Ring Progress
-
-## RingProgress
-
 ### 迷你进度环图样式
 
 ```tsx

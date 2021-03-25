@@ -3,10 +3,6 @@ title: 词云图
 order: 27
 ---
 
-# 词云图
-
-## WordCloud
-
 ### 词云图
 
 ```tsx

@@ -3,10 +3,6 @@ title: 直方图
 order: 17
 ---
 
-# 直方图
-
-## Histogram
-
 ### 基础直方图
 
 ```tsx

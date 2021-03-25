@@ -1,96 +1,101 @@
+
+
+
+
 ### Plot Container
 
 #### width
 
-<description>**optional** _number_ _default:_ `400`</description>
+<description>**optional** *number* *default:* `400`</description>
 
 Set the width of the chart.
 
 #### height
 
-<description>**optional** _number_ _default:_ `400`</description>
+<description>**optional** *number* *default:* `400`</description>
 
 Set the height of the chart.
 
 #### autoFit
 
-<description>**optional** _boolean_ _default:_ `true`</description>
+<description>**optional** *boolean* *default:* `true`</description>
 
 Whether the chart automatically adjusts to fit the container. If it is set to `true`, `width` and `height` configuration would fail.
 
 #### padding
 
-<description>**optional** _number\[] | number | 'auto'_</description>
+<description>**optional** *number\[] | number | 'auto'*</description>
 
 Set `padding` value of the canvas. You can also use `auto`.
 
 #### appendPadding
 
-<description>**optional** _number\[] | number_</description>
+<description>**optional** *number\[] | number*</description>
 
 Extra `appendPadding` value.
 
 #### renderer
 
-<description>**optional** _string_ _default:_ `canvas`</description>
+<description>**optional** *string* *default:* `canvas`</description>
 
 Set the render way to `canvas` or `svg`.
 
 #### pixelRatio
 
-<description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
+<description>**optional** *number* *default:* `window.devicePixelRatio`</description>
 
 Set the pixel ratio of the chart.
 
 #### limitInPlot
 
-<description>**optional** _boolean_</description>
+<description>**optional** *boolean*</description>
 
 Whether clip the Geometry beyond the coordinate system。
+
 
 ### Data Mapping
 
 #### data
 
-<description>**required** _array object_</description>
+<description>**required** *array object*</description>
 
-Configure the chart data source. The data source is a collection of objects, for example：`[{ source: '支付宝首页', target: '花呗', value: 20 }, ...]`。
+设置图表数据源。数据源为对象集合，例如：`[{ source: '支付宝首页', target: '花呗', value: 20 }, ...]`。
 
 #### sourceField
 
-<description>**required** _string_</description>
+<description>**required** *string*</description>
 
-Sets the source node data field of the Sankey diagram. For example, for the above data, it is: 'source'.
+设置桑基图的来源节点数据字段。比如针对上述数据，就是： `source`。
 
 #### targetField
 
-<description>**required** _string_</description>
+<description>**required** *string*</description>
 
-Sets the target node data field of Sankey diagram. For the above data, for example, it is: 'target'.
+设置桑基图的目标节点数据字段。比如针对上述数据，就是： `target`。
 
 #### weightField
 
-<description>**required** _string_</description>
+<description>**required** *string*</description>
 
-Set the weight field information of the relationship between nodes. The larger the data, the larger the edge. For example, for the above data, it is: 'value'.
+设置节点之间关系的权重字段信息，数据越大，边越大。比如针对上述数据，就是： `value`。
 
 ### Geometry Style
 
 #### nodeStyle
 
-<description>**optional** _StyleAttr | Function_</description>
+<description>**optional** *StyleAttr | Function*</description>
 
-Sankey diagram node style configuration.
+桑基图节点样式的配置。
 
 #### edgeStyle
 
-<description>**optional** _StyleAttr | Function_</description>
+<description>**optional** *StyleAttr | Function*</description>
 
-Sankey diagram variable style configuration.
+桑基图变样式的配置。
 
 #### color
 
-<description>**optional** _string | string\[] | Function_</description>
+<description>**optional** *string | string\[] | Function*</description>
 
 Configure the color. If there is no colorField configured, set one single color. Otherwise you can set a series of colors, or you can use callback function.
 
@@ -118,38 +123,57 @@ Default: The color board of the theme.
 }
 ```
 
+
 #### nodeWidthRatio
 
-<description>**optional** _number_</description>
+<description>**optional** *number*</description>
 
-Sankey diagram node width configuration, 0 ~ 1, refer to the width of the canvas, the default is' 0.008 '.
+桑基图节点的宽度配置，0 ~ 1，参考画布的宽度，默认为 `0.008`。
 
 #### nodeWidthPadding
 
-<description>**optional** _number_</description>
+<description>**optional** *number*</description>
 
-The vertical spacing between nodes in Sankey diagram, 0 ~ 1, referring to the height of the canvas, default is' 0.01 '.
+桑基图节点的之间垂直方向的间距，0 ~ 1，参考画布的高度，默认为 `0.01`。
 
 #### nodeAlign
 
-<description>**optional** _string_</description>
+<description>**optional** *string*</description>
 
-The sankey diagram node layout direction, the default is `the justify`, can choose the 'left' | 'right' | 'center' | 'the justify' four ways.
+桑基图节点的布局方向，默认为 `justify`，可以选择 'left' | 'right' | 'center' | 'justify' 四种方式。
 
-### Event
+#### nodeDepth
 
-On Plot, binding events are removed by ON and OFF.
+<description>**optional** *Function*</description>
+
+桑基图节点的深度配置，使用回调进行自定义，返回 depth 数值，从 0 开始，并且返回值需要保证所有的层级都有节点。
+
+```ts
+{
+  nodeDepth: (datum, maxDepth) => {
+    const { name } = datum;
+    if (name === 'node1') {
+      return 0;
+    }
+    return 1;
+  }
+}
+```
+
+### Plot Event
+
+On Plot, binding events are removed by `ON` and `OFF` method.
 
 ```ts
 // Bind event
 plot.on('eventName', callback);
+// Bind event, only trigger one time
+plot.once('eventName', callback);
 // Remove event
 plot.off('eventName', callback);
 ```
 
-#### eventName
-
-Composition: element + ':' + events。
+Composition: `${componentName}:${eventName}`
 
 Element refers to the type of element to bind to, for example `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` etc.
 
@@ -176,6 +200,19 @@ plot.on('legend-item-name:click', (...args) => {
   console.log(...args);
 });
 
+// 给 tooltip 添加点击事件
+plot.on('tooltip:show', (...args) => {
+  console.log(...args);
+});
+
+plot.on('tooltip:hide', (...args) => {
+  console.log(...args);
+});
+
+plot.on('tooltip:change', (...args) => {
+  console.log(...args);
+});
+
 // Label adds click events
 plot.on('label:click', (...args) => {
   console.log(...args);
@@ -196,6 +233,7 @@ plot.on('annotation:click', (...args) => {
   console.log(...args);
 });
 ```
+
 
 ### Plot Method
 
@@ -233,9 +271,10 @@ Default configuration:`无`
 plot.changeData(newData);
 ``` -->
 
+
 ### Plot Theme
 
-#### Theme
+#### Built-in Theme
 
 Built-in defaults: 'default' and 'dark'
 
@@ -251,23 +290,22 @@ In addition to using the built-in 'default' and 'dark' themes, you can also modi
 
 The following table lists the specific properties on the configuration items that make up the topic:
 
-| Properties | Type | Description |
-| --- | --- | --- |
-| defaultColor | _string_ | Theme color |
-| padding | _number_ | number\[] |
-| fontFamily | _string_ | Chart font |
-| colors10 | _string\[]_ | Category color palette, used when the number of categories is less than 10 |
-| colors20 | _string\[]_ | Category color palette, used when the number of categories is greater than 10 |
-| columnWidthRatio | _number_ | General histogram width ratio, 0-1 range of values |
-| maxColumnWidth | _number_ | Maximum width of histogram, pixel value |
-| minColumnWidth | _number_ | Minimum width of histogram, pixel value |
-| roseWidthRatio | _number_ | Rose width ratio, 0-1 range of value |
-| multiplePieWidthRatio | number | Multilayer pie and loop ratio, 0-1 range values |
-| geometries | _object_ | Configure the style of each shape for each Geometry, including the default style and the style for each state |
-| components | _object_ | Configure theme samples for axes, legends, tooltips, and annotations |
-| labels | _object_ | Configure the theme style of the label under Geometry |
-| innerLabels | _object_ | Configure Geometry to display the Labels theme style inside the graph |
-| pieLabels | _object_ | Configure the theme style of pie chart labels |
+| **Properties**            | **Type**       | **Description**    || --------------------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
+| defaultColor          | *string*   | Theme color                                                                                                   |
+| padding               | *number*   | number\[]                                                                                                      |
+| fontFamily            | *string*   | Chart font                                                                                                    |
+| colors10              | *string\[]* | Category color palette, used when the number of categories is less than 10                                    |
+| colors20              | *string\[]* | Category color palette, used when the number of categories is greater than 10                                 |
+| columnWidthRatio      | *number*   | General histogram width ratio, 0-1 range of values                                                            |
+| maxColumnWidth        | *number*   | Maximum width of histogram, pixel value                                                                       |
+| minColumnWidth        | *number*   | Minimum width of histogram, pixel value                                                                       |
+| roseWidthRatio        | *number*   | Rose width ratio, 0-1 range of value                                                                          |
+| multiplePieWidthRatio | *number*     | Multilayer pie and loop ratio, 0-1 range values                                                               |
+| geometries            | *object*   | Configure the style of each shape for each Geometry, including the default style and the style for each state |
+| components            | *object*   | Configure theme samples for axes, legends, tooltips, and annotations                                          |
+| labels                | *object*   | Configure the theme style of the label under Geometry                                                         |
+| innerLabels           | *object*   | Configure Geometry to display the Labels theme style inside the graph                                         |
+| pieLabels             | *object*   | Configure the theme style of pie chart labels                                                                 |
 
 usage:
 
@@ -290,6 +328,35 @@ usage:
 }
 ```
 
+#### Theme attributes (StyleSheet)
+
+除了以上介绍的主题属性之外，还可以传入主题样式表来自定义主题。如果你需要对全局主题进行配置的话，对样式风格进行切换，比如更改颜色、字体大小、边框粗细等
+
+usage:
+
+```ts
+{
+  theme: {
+    styleSheet: {
+      fontFamily: 'Avenir'
+    }
+  }
+}
+```
+
+支持的样式表属性：
+
+| **Properties**            | **Type**       | **Description**    |
+| ----------------------- | -------- | ------------- |
+| `backgroundColor`       | *string* | Background color        |
+| `brandColor`            | *string* | Brand color，默认取 10 色分类颜色色板的第一个颜色 |
+| `paletteQualitative10`  | *string* | Qualitative palette，分类个数小于 10 时使用 |
+| `paletteQualitative20`  | *string* | Qualitative palette，分类个数大于 10 时使用 |
+| `paletteSemanticRed`    | *string* | Semantic red      |
+| `paletteSemanticGreen`  | *string* | Semantic green      |
+| `paletteSemanticYellow` | *string* | Semantic yellow      |
+| `fontFamily`            | *string* | fontFamily          |
+
 #### Update theme
 
 usage：
@@ -304,60 +371,8 @@ plot.update({ theme: { defaultColor: '#FF6B3B' } });
 
 #### Custom theme
 
-In addition, G2 provides a custom topic mechanism to define a new topic structure, allowing users to switch and define chart topics.
+In addition, G2 provides a custom topic mechanism to define a new topic structure, allowing users to switch and define chart topics. Go [G2 | Custom theme](https://g2.antv.vision/en/docs/api/advanced/register-theme) for more details.
 
-```ts
-import React, { useState, useEffect } from 'react';
-import { Pie } from '@ant-design/charts';
+<playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
-const DemoPie: React.FC = () => {
-  G2.registerTheme('new-theme', {
-    defaultColor: '#FF6B3B',
-    colors10: [
-      '#FF6B3B',
-      '#626681',
-      '#FFC100',
-      '#9FB40F',
-      '#76523B',
-      '#DAD5B5',
-      '#0E8E89',
-      '#E19348',
-      '#F383A2',
-      '#247FEA',
-    ],
-    colors20: [
-      '#FF6B3B',
-      '#626681',
-      '#FFC100',
-      '#9FB40F',
-      '#76523B',
-      '#DAD5B5',
-      '#0E8E89',
-      '#E19348',
-      '#F383A2',
-      '#247FEA',
-      '#2BCB95',
-      '#B1ABF4',
-      '#1D42C2',
-      '#1D9ED1',
-      '#D64BC0',
-      '#255634',
-      '#8C8C47',
-      '#8CDAE5',
-      '#8E283B',
-      '#791DC9',
-    ],
-  });
-  const config = {
-    appendPadding: 10,
-    data,
-    angleField: 'value',
-    colorField: 'type',
-    radius: 0.8,
-    theme: 'new-theme',
-  };
-  return <Pie {...config} />;
-};
-
-export default DemoPie;
-```
+Go [DEMO](/en/examples/general/theme#register-theme)

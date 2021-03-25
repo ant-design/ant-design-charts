@@ -3,10 +3,6 @@ title: 柱状图
 order: 4
 ---
 
-# 柱状图
-
-## Column
-
 ### 基础柱状图
 
 ```tsx

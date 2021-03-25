@@ -3,10 +3,6 @@ title: Progress
 order: 19
 ---
 
-# Progress
-
-## Progress
-
 ### 迷你进度条图样式
 
 ```tsx

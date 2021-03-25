@@ -3,10 +3,6 @@ title: Scatter
 order: 25
 ---
 
-# Scatter
-
-## Scatter
-
 ### Scatter-右侧坐标轴
 
 ```tsx

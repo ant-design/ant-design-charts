@@ -3,10 +3,6 @@ title: Radial Bar
 order: 23
 ---
 
-# Radial Bar
-
-## RadialBar
-
 ### Radial Bar
 
 ```tsx

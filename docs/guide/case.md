@@ -200,7 +200,7 @@ export default DemoLine;
 Please open the console and click on the chart area.
 
 ```tsx
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Line } from '@ant-design/charts';
 
 const DemoLine: React.FC = () => {
@@ -259,18 +259,16 @@ const DemoLine: React.FC = () => {
     },
   };
 
-  const ref = useRef();
-
-  useEffect(() => {
-    if (ref.current) {
-      // click point
-      ref.current.on('element:click', (...args) => {
-        console.log(...args);
-      });
-    }
-  }, []);
-
-  return <Line {...config} chartRef={ref} />;
+  return (
+    <Line
+      {...config}
+      onReady={(plot) => {
+        plot.on('element:click', (...args) => {
+          console.log(...args);
+        });
+      }}
+    />
+  );
 };
 
 export default DemoLine;
