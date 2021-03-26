@@ -1,3 +1,8 @@
+### v: 1.1.1
+
+- remname: history -> CHANGELOG
+- fix: graph layout and changeData error
+
 ### v: 1.1.0
 
 - 文档更新 [#545](https://github.com/ant-design/ant-design-charts/pull/545)
