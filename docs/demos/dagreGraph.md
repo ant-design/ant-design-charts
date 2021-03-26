@@ -371,8 +371,10 @@ const DemoDagreGraph: React.FC = () => {
 
   const changeData = () => {
     if (!data || data.nodes.length !== sourceData2.nodes.length) {
+      // ref.current?.changeData(sourceData2)
       setData(sourceData2);
     } else {
+      // ref.current?.changeData(sourceData)
       setData(sourceData);
     }
   };
