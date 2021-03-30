@@ -23,7 +23,9 @@ export default defineConfig({
     '.__dumi-default-layout-content .markdown > img {max-height: 450px; width: auto;}',
     '.__dumi-default-layout-hero button { background: #0170fe !important; border: 1px solid #0170fe !important}',
     '.__dumi-default-menu[data-mode="site"] .__dumi-default-menu-list > li > a {padding-left: 40px !important;}',
-    '.__dumi-default-menu[data-mode="site"] .__dumi-default-menu-list > li > a ~ ul {padding-left: 24px !important;margin-left: 28px !important;}'
+    '.__dumi-default-menu[data-mode="site"] .__dumi-default-menu-list > li > a ~ ul {padding-left: 24px !important;margin-left: 28px !important;}',
+    'ul[role="slug-list"] li[data-depth="3"] > a > span {color: #717484 !important}',
+    '.__dumi-default-layout[data-site-mode="true"] .__dumi-default-layout-toc {top: 120px !important; max-height: calc(95vh - 120px) !important;}',
   ],
   navs: [
     null,
