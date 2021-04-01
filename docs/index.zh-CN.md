@@ -6,7 +6,7 @@ hero:
   desc: 简单好用的 React 图表库
   actions:
     - text: 快速上手
-      link: /guide/start
+      link: /zh-CN/guide/start
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/881dc458-f20b-407b-947a-95104b5ec82b/k79dm8ih_w144_h144.png
     title: 开箱即用
