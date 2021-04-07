@@ -80,7 +80,7 @@ The name of the data field corresponding to the graph in the y direction, usuall
 
 Grouping field. It is the same meaning as groupField、colorField in Grouped Bar, and the same as stackField、colorField in Stacked Bar.
 
-To avoid issues related to stacked bars order, make sure each `yField` gets a bar defined for each possible value of `seriesField`, even if value is 0.
+To avoid issues related to stacked bars order, make sure each `yField` gets a bar defined for each possible value of `seriesField`, even if `xField` is 0.
 
 Example：
 
