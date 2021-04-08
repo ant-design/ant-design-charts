@@ -3,10 +3,6 @@ title: Box
 order: 22
 ---
 
-# Box
-
-## Box
-
 ### 基础箱型图
 
 ```tsx

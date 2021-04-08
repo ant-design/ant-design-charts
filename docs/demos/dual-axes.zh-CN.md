@@ -3,10 +3,6 @@ title: 混合图
 order: 9
 ---
 
-# 混合图
-
-## DualAxes
-
 ### 柱线混合图表
 
 ```tsx

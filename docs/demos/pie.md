@@ -3,10 +3,6 @@ title: Pie
 order: 5
 ---
 
-# Pie
-
-## Pie
-
 ### Pie
 
 ```tsx

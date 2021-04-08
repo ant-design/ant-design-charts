@@ -3,10 +3,6 @@ title: Treemap
 order: 32
 ---
 
-# Treemap
-
-## Treemap
-
 ### 基础矩形树图
 
 ```tsx

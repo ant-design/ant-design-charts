@@ -3,10 +3,6 @@ title: 多图层图表
 order: 33
 ---
 
-# Multi View
-
-## MultiView
-
 ### 区间面积图
 
 ```tsx

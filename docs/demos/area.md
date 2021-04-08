@@ -3,10 +3,6 @@ title: Area
 order: 3
 ---
 
-# Area
-
-## Area
-
 ### 带中位线标注的基础面积图
 
 ```tsx

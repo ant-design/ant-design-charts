@@ -34,7 +34,6 @@ export default function useInit(
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
       graphInstance.changeData(data);
-      graphInstance.layout();
     }
   }, [data]);
 

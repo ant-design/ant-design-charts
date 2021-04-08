@@ -86,7 +86,7 @@ lineStyle: {
 ## 配置文字样式
 
 | 属性名 | 类型 | 介绍 |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | 
 | fontSize | number | 文字大小 |
 | fontFamily | string | 文字字体 |
 | fontWeight | number | 字体粗细 |

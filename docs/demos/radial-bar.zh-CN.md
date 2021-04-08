@@ -3,10 +3,6 @@ title: 玉珏图
 order: 23
 ---
 
-# 玉珏图
-
-## RadialBar
-
 ### 玉珏图
 
 ```tsx

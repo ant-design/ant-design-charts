@@ -3,10 +3,6 @@ title: Funnel
 order: 13
 ---
 
-# Funnel
-
-## Funnel
-
 ### 基础漏斗图-转置
 
 ```tsx

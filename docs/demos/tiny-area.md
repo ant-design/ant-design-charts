@@ -3,10 +3,6 @@ title: Tiny Area
 order: 28
 ---
 
-# Tiny Area
-
-## TinyArea
-
 ### 带辅助信息的迷你面积图
 
 ```tsx

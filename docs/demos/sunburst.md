@@ -3,10 +3,6 @@ title: Sunburst
 order: 26
 ---
 
-# Sunburst
-
-## Sunburst
-
 ### 基础旭日图
 
 ```tsx

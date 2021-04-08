@@ -3,10 +3,6 @@ title: Rose
 order: 6
 ---
 
-# Rose
-
-## Rose
-
 ### Rose
 
 ```tsx

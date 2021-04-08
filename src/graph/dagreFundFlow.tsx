@@ -29,7 +29,6 @@ const defaultEdgeStyle = {
   stroke: '#91d5ff',
   endArrow: {
     path: G6.Arrow.vee(10, 10),
-    fill: '#91d5ff',
   },
 };
 
@@ -140,6 +139,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
         nodeStateStyles,
         edgeStateStyles,
         layout,
+        fitView: true,
       });
 
       graphs[graphId] = graph;

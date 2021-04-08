@@ -3,10 +3,6 @@ title: Sankey
 order: 20
 ---
 
-# Sankey
-
-## Sankey
-
 ### 支付宝流量桑基图
 
 ```tsx

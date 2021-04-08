@@ -3,10 +3,6 @@ title: Line
 order: 1
 ---
 
-# Line
-
-## Line
-
 ### 折线图带图表标注
 
 ```tsx

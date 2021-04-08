@@ -3,10 +3,6 @@ title: Gauge
 order: 15
 ---
 
-# Gauge
-
-## Gauge
-
 ### Gauge
 
 ```tsx

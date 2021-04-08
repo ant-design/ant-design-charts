@@ -3,10 +3,6 @@ title: 辅助标记
 order: 20
 ---
 
-# 辅助标记
-
-## General
-
 ### 图片标注
 
 ```tsx

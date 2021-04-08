@@ -1,72 +1,88 @@
+
+
+
+
 ### Plot Container
 
 #### width
 
-<description>**optional** _number_ _default:_ `400`</description>
+<description>**optional** *number* *default:* `400`</description>
 
 Set the width of the chart.
 
 #### height
 
-<description>**optional** _number_ _default:_ `400`</description>
+<description>**optional** *number* *default:* `400`</description>
 
 Set the height of the chart.
 
 #### autoFit
 
-<description>**optional** _boolean_ _default:_ `true`</description>
+<description>**optional** *boolean* *default:* `true`</description>
 
 Whether the chart automatically adjusts to fit the container. If it is set to `true`, `width` and `height` configuration would fail.
 
 #### padding
 
-<description>**optional** _number\[] | number | 'auto'_</description>
+<description>**optional** *number\[] | number | 'auto'*</description>
 
 Set `padding` value of the canvas. You can also use `auto`.
 
 #### appendPadding
 
-<description>**optional** _number\[] | number_</description>
+<description>**optional** *number\[] | number*</description>
 
 Extra `appendPadding` value.
 
 #### renderer
 
-<description>**optional** _string_ _default:_ `canvas`</description>
+<description>**optional** *string* *default:* `canvas`</description>
 
 Set the render way to `canvas` or `svg`.
 
 #### pixelRatio
 
-<description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
+<description>**optional** *number* *default:* `window.devicePixelRatio`</description>
 
 Set the pixel ratio of the chart.
 
 #### limitInPlot
 
-<description>**optional** _boolean_</description>
+<description>**optional** *boolean*</description>
 
 Whether clip the Geometry beyond the coordinate system。
 
+
 ### View
-
-#### views
-
-<description>**required** _IView\[]_</description>
-
-Configuration of `views` is an array. Every view has its own data, geometries and geometry configuration. see more: [View Configuration](#viewconfiguration)
 
 #### syncViewPadding ✨
 
-<description>**optional** _boolean_</description>
+<description>**optional** *boolean*</description>
 
 是否同步子 view 的 padding 配置。传入 boolean 值，含义是：是否需要将子 View 的 padding 同步，如果设置同步，那么可以保证子 View 在 auto padding 的情况下，所有子 View 的图形能够完全重合，避免显示上的错位。
 
-### View Configuration
+#### views
+
+<description>**optional** *IView\[]*</description>
+
+Configuration of `views` is an array. Every view has its own data, geometries and geometry configuration.
+see more: [IView](#iview)
+
+#### plots
+
+<description>**可选** *IPlot\[]*</description>
+
+每一个图层的配置，每一个 plot 也是一个图层，都包含自己的：数据、图形、图形配置.
+
+在 2.4.0 版本之后，我们提供了 `plots` 的配置项，你可以使用 plots 来代替 views 或者联合使用.
+
+<playground path="plugin/multi-view/demo/series-columns.ts" rid="multi-views-plots"></playground>
+
+### IView
 
 #### IView.region
 
-<description>**optional** _object_</description>
+<description>**optional** *object*</description>
 
 The region of view, default is full of region.
 
@@ -82,7 +98,7 @@ region: {
 
 #### IView.data
 
-<description>**required** _array object_</description>
+<description>**required** *array object*</description>
 
 Configure the data source. The data source is a collection of objects. For example:
 
@@ -93,30 +109,32 @@ const data = [
 ];
 ```
 
+
 #### IView.meta
 
-<description>**optional** _object_</description>
+<description>**optional** *object*</description>
 
 Configure the meta of each data field of the chart in global, to define the type and presentation of data. Configuration of the meta will affect the text content of all components.
 
-| Properties | Type        | Description                                              |
-| ---------- | ----------- | -------------------------------------------------------- |
-| alias      | _string_    | alias of the data field                                  |
-| formatter  | _function_  | callback function to format all values of the data field |
-| values     | _string\[]_ | enumerate all the values of the data field               |
-| range      | _number\[]_ | mapping range of the data field, default: \[0,1]         |
+| Properties | Type       | Description                                              |
+| ---------- | ---------- | -------------------------------------------------------- |
+| alias      | *string*   | alias of the data field                                  |
+| formatter  | *function* | callback function to format all values of the data field |
+| values     | *string\[]* | enumerate all the values of the data field               |
+| range      | *number\[]* | mapping range of the data field, default: \[0,1]          |
 
-See also the [Meta Options](/guide/common#meta-configuration) to learn more about configuration of `meta`.
+See also the [Meta Options](/guide/common#meta) to learn more about configuration of `meta`.
+
 
 #### IView.coordinate
 
 Configuration of coordinate, every view has its own coordinate. The geometries of the same view share the same coordinate system.
 
-| Properties | Type | Description |
-| --- | --- | --- |
-| type | _string_ | `'polar' \| 'theta' \| 'rect' \| 'cartesian' \| 'helix'` |
-| cfg | _CoordinateCfg_ | CoordinateCfg 坐标系配置项，目前常用于极坐标 |
-| actions | _array object_ | 坐标系的变换配置，具体可以见 G2 坐标系[文档](https://g2.antv.vision/en/docs/api/general/coordinate) |
+| Properties  | Type     | Description      |
+| ------- | --------------- | -------------------------------------------------------- |
+| type    | *string*        | `'polar' | 'theta' | 'rect' | 'cartesian' | 'helix'` |
+| cfg     | *CoordinateCfg* |   CoordinateCfg 坐标系配置项，目前常用于极坐标    |
+| actions | *array object*  | 坐标系的变换配置，具体可以见 G2 坐标系[文档](https://g2.antv.vision/en/docs/api/general/coordinate)
 
 <div class="sign">
 
@@ -137,13 +155,13 @@ type CoordinateCfg = {
 
 #### IView.geometries
 
-<description>**optional** _array object_</description>
+<description>**optional** *array object*</description>
 
 view 上的图形 geometry 及映射配置，具体见[Geometry Configuration](#geometryconfiguration)
 
 #### IView.axes
 
-<description>**optional** _object | false_</description>
+<description>**optional** *object | false*</description>
 
 view 上的图形坐标轴配置，key 值对应 `xField` 和 `yField`， value 具体配置见：[Axis API](/en/docs/api/components/axis)
 
@@ -159,13 +177,13 @@ view 上的图形坐标轴配置，key 值对应 `xField` 和 `yField`， value 
 
 #### IView.annotations
 
-<description>**optional** _object\[]_ </description>
+<description>**optional** *object\[]* </description>
 
 Annotations of geometry in view, see more: [Annotations API](/en/docs/api/components/annotations)
 
 #### IView.interactions
 
-<description>**optional** _object\[]_ </description>
+<description>**optional** *object\[]* </description>
 
 Interactions of view, see more: [Interactions API](/en/docs/api/options/interactions)
 
@@ -173,13 +191,13 @@ Interactions of view, see more: [Interactions API](/en/docs/api/options/interact
 
 #### IGeometry.type
 
-<description>**required** _string_</description>
+<description>**required** *string*</description>
 
 Type of geometry, includes: `'line' | 'interval' | 'point' | 'area' | 'polygon'`。
 
 #### IGeometry.mapping ✨
 
-<description>**required** _object_</description>
+<description>**required** *object*</description>
 
 Mapping rules of geometry.
 
@@ -199,7 +217,7 @@ type MappingOptions = {
   readonly style?: StyleAttr;
   /** tooltip 映射 */
   readonly tooltip?: TooltipAttr;
-};
+}
 
 /** 颜色映射 */
 type ColorAttr = string | string[] | ((datum: Datum) => string);
@@ -217,49 +235,49 @@ type TooltipAttr = (datum: Datum) => { name: string; value: string | number };
 
 #### IGeometry.xField
 
-<description>**optional** _string_</description>
+<description>**optional** *string*</description>
 
 对应 x 轴字段。数据映射到几何图形 geometry 上时，最重要的通道是 `position` 通道。笛卡尔坐标系上的几何图形，通常是一维或二维的，对应位置视觉通道需要 `x`, `y` 两个（或一个）字段的值。
 
 #### IGeometry.yField
 
-<description>**optional** _string_</description>
+<description>**optional** *string*</description>
 
 对应 y 轴字段。数据映射到几何图形 geometry 上时，最重要的通道是 `position` 通道。笛卡尔坐标系上的几何图形，通常是一维或二维的，对应位置视觉通道需要 `x`, `y` 两个（或一个）字段的值。
 
 #### IGeometry.colorField
 
-<description>**optional** _string_</description>
+<description>**optional** *string*</description>
 
 The mapping field of `color`. 通过颜色视觉通道对数据进行分组。
 
 #### IGeometry.shapeField
 
-<description>**optional** _string_</description>
+<description>**optional** *string*</description>
 
 The mapping field of `shape`. 通过不同的形状对数据进行分组。
 
 #### IGeometry.sizeField
 
-<description>**optional** _string_</description>
+<description>**optional** *string*</description>
 
 The mapping field of `size`. 通过 size 字段，可以将数据按照 `sizeField` 对应的数据进行不同的大小映射。
 
 #### IGeometry.styleField
 
-<description>**optional** _string_</description>
+<description>**optional** *string*</description>
 
 The mapping field of `style`,
 
 #### IGeometry.tooltipFields
 
-<description>**optional** _string\[] | false_</description>
+<description>**optional** *string\[] | false*</description>
 
 The mapping fields of `tooltip`,
 
 #### IGeometry.label
 
-<description>**optional** _object_</description>
+<description>**optional** *object*</description>
 
 The mapping of `label`, see more: [Label API](/en/docs/api/components/label)
 
@@ -267,17 +285,95 @@ The mapping of `label`, see more: [Label API](/en/docs/api/components/label)
 
 Adjust of data.
 
-The purpose of adjusting data is to make the graphics not obscure each other and to have a clearer understanding of the data, but the correct understanding of the data must be ensured. See more: [Adjust | G2](https://g2.antv.vision/en/docs/manual/concepts/adjust)
+The purpose of adjusting data is to make the graphics not obscure each other and to have a clearer understanding of the data, but the correct understanding of the data must be ensured. See more:  [Adjust | G2](https://g2.antv.vision/en/docs/manual/concepts/adjust)
 
-| Properties | Type | Description |
-| --- | --- | --- |
-| type | 'stack' \| 'dodge' \| 'jitter' \| 'symmetric' | 数据调整类型 |
-| marginRatio | number | 只对 'dodge' 生效，取 0 到 1 范围的值（相对于每个柱子宽度），用于控制一个分组中柱子之间的间距 |
-| dodgeBy | string | 只对 'dodge' 生效，声明以哪个数据字段为分组依据 |
-| reverseOrder | boolean | 只对 'stack' 生效，用于控制是否对数据进行反序操作 |
+| Properties  | Type     | Description      |
+| ------------ | ----------- | -------- |
+| type         | 'stack' | 'dodge' | 'jitter' | 'symmetric' | 数据调整类型    |
+| marginRatio  | number                                        | 只对 'dodge' 生效，取 0 到 1 范围的值（相对于每个柱子宽度），用于控制一个分组中柱子之间的间距 |
+| dodgeBy      | string                                        | 只对 'dodge' 生效，声明以哪个数据字段为分组依据                                               |
+| reverseOrder | boolean                                       | 只对 'stack' 生效，用于控制是否对数据进行反序操作                                             |
 
 #### IGeometry.state
 
-<description>**optional** _object_</description>
+<description>**optional** *object*</description>
 
 Style of different state.
+
+### IPlot
+
+#### IPlot.type
+
+<description>**required** *string*</description>
+
+plot 类型，通过传入指定 type 的 plot，可以在图层上渲染 G2Plot 内置的图表。
+
+目前开放的图表类型有以下类型：
+
+*   **基础图表**：`'line' | 'pie' | 'column' | 'bar' | 'area' | 'gauge'`
+*   **迷你图表**：`'tiny-line' | 'tiny-column' | 'tiny-area' | 'progress' | 'ring-progress'`
+
+#### IPlot.region
+
+<description>**optional** *object*</description>
+
+plot 所在图层(view)的布局范围，默认是占满全部。
+
+```ts
+// 示例：设置 plot 所在图层(view)的布局位置在上半部分
+region: {
+  start: { x: 0, y: 0 },
+  end: { x: 1, y: 0.5 },
+}
+```
+
+#### IPlot.options
+
+<description>**required** *object\[]*</description>
+
+plot 的具体配置项。每个 plot 都有自己的图层容器设置（不包括：width, height）以及数据、字段、样式等配置。
+
+具体配置项见指定 plot 的 API 文档. 如：type='column'时，options 对应 ColumnOptions，见文档: [Column API](/en/docs/api/plots/column)
+
+<div class="sign">
+
+```ts
+type IPlot = {
+   type: 'line';
+   options: Omit<LineOptions, 'width' | 'height'>;
+} | {
+  type: 'pie',
+  options: Omit<PieOptions, 'width' | 'height'>;
+} | {
+  // ... 等等
+}
+```
+
+</div>
+
+**示例**：添加一个图层，引入 column plot 和 bar plot
+
+```ts
+plots: [
+  {
+    type: 'column',
+    region: { start: { x: 0, y: 0 }, end: { x: 0.48, y: 1 }},
+    options: {
+      data: [{ city: '广州', sales: 1024 }, { city: '杭州', sales: 724 }, { city: '深圳', sales: 1256 }],
+      xField: 'city',
+      yField: 'sales',
+      seriesField: 'city',
+    }
+  },
+  {
+    type: 'bar',
+    region: { start: { x: 0.52, y: 0 }, end: { x: 1, y: 1 }},
+    options: {
+      data: [{ city: '广州', sales: 1024 }, { city: '杭州', sales: 724 }, { city: '深圳', sales: 1256 }],
+      yField: 'city',
+      xField: 'sales',
+      seriesField: 'city',
+    }
+  }
+]
+```

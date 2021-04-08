@@ -15,6 +15,7 @@ import Progress from './progress';
 import Radar from './radar';
 import RingProgress from './ringProgress';
 import Rose from './rose';
+import Chord from './chord';
 import Scatter from './scatter';
 import TinyArea from './tinyArea';
 import TinyColumn from './tinyColumn';
@@ -30,7 +31,7 @@ import Treemap from './treemap';
 import MultiView from './multiView';
 import BidirectionalBar from './bidirectionalBar';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
-import { G2 } from '@antv/g2plot';
+import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';
 
 export {
   Area,
@@ -48,6 +49,7 @@ export {
   Radar,
   RingProgress,
   Rose,
+  Chord,
   Scatter,
   TinyArea,
   TinyColumn,
@@ -68,6 +70,10 @@ export {
   IndentedTree,
   DagreFundFlowGraph,
   G2,
+  // 直接导出 G2Plot 相关方法
+  flow,
+  measureTextWidth,
+  adaptors,
 };
 
 export default {
@@ -86,6 +92,7 @@ export default {
   Radar,
   RingProgress,
   Rose,
+  Chord,
   Scatter,
   TinyArea,
   TinyColumn,
@@ -106,4 +113,7 @@ export default {
   IndentedTree,
   DagreFundFlowGraph,
   G2,
+  flow,
+  measureTextWidth,
+  adaptors,
 };

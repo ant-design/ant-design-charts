@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/charts",
-  "version": "1.0.21",
+  "version": "1.1.1",
   "description": "React translate g2plot",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -27,7 +27,6 @@
     "dev": "dumi dev",
     "dist": "webpack --config webpack.config.js --mode production",
     "docs:build": "dumi build",
-    "entry": "node ./scripts/entry.js",
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
@@ -41,7 +40,7 @@
   },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
-    "@antv/g6": "^4.1.7",
+    "@antv/g6": "^4.2.4",
     "@antv/util": "^2.0.9",
     "react-content-loader": "^5.0.4"
   },
@@ -97,8 +96,8 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react": ">=16.8.4",
+    "react-dom": ">=16.8.4"
   },
   "publishConfig": {
     "access": "public"

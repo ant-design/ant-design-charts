@@ -3,10 +3,6 @@ title: Heatmap
 order: 16
 ---
 
-# Heatmap
-
-## Heatmap
-
 ### Heatmap
 
 ```tsx

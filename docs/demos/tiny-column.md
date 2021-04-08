@@ -3,10 +3,6 @@ title: Tiny Column
 order: 29
 ---
 
-# Tiny Column
-
-## TinyColumn
-
 ### 基础迷你柱形图
 
 ```tsx

@@ -13,7 +13,7 @@ const fp = path.resolve('../', 'G2Plot/examples');
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateGalleryPath = path.join(__dirname, '../template/doc/gallery.ejs');
 const templateNavPath = path.join(__dirname, '../template/doc/nav.ejs');
-const filePath = `${DOC_PATH}/demos/global.md`;
+const filePath = `${DOC_PATH}/demos/global.zh-CN.md`;
 
 // 存储所有的meta文件
 let result = [];
@@ -91,7 +91,7 @@ const writeNav = () => {
         templateNavPath,
         {
           menuTitle: '所有图表',
-          navTitle: '图表概览',
+          navTitle: '图表示例',
         }, // 渲染的数据key: 对应到了ejs中的index
         (err, data) => {
           if (err) {
