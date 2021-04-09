@@ -1,3 +1,7 @@
+### v: 1.1.2
+
+- fix: 修复更新逻辑，config immutable 避免底层修改 config 后出现重复更新。
+
 ### v: 1.1.1
 
 - remname: history -> CHANGELOG
