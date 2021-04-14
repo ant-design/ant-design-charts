@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { create } from 'react-test-renderer';
+import ReactDOM, { unmountComponentAtNode } from 'react-dom';
 import { isFunction } from 'lodash';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
@@ -35,6 +34,7 @@ describe('use chart', () => {
     document.body.appendChild(container);
   });
   afterEach(() => {
+    unmountComponentAtNode(container);
     document.body.removeChild(container);
     container = null;
   });
@@ -107,7 +107,7 @@ describe('use chart', () => {
   });
 
   it('chart change data with normal chart', () => {
-    let chartRef = undefined;
+    let chartRef;
     const props = {
       data: [],
       xField: 'date',
@@ -117,24 +117,16 @@ describe('use chart', () => {
       },
     };
     const wrapper = mount(<Area {...props} />);
-    const updateData = [
-      {
-        date: '2010-01',
-        scales: 1998,
-      },
-      {
-        date: '2010-02',
-        scales: 1850,
-      },
-    ];
+    chartRef.update = jest.fn();
     wrapper.setProps({
       data: areaData,
     });
+    expect(chartRef.update).not.toHaveBeenCalled();
     expect(chartRef.chart.getData()).toEqual(areaData);
   });
 
   it('update config with normal chart', () => {
-    let chartRef = undefined;
+    let chartRef;
     const props = {
       data: areaData,
       xField: 'date',
@@ -144,16 +136,18 @@ describe('use chart', () => {
       },
     };
     const wrapper = mount(<Area {...props} />);
+    chartRef.changeData = jest.fn();
     wrapper.setProps({
       point: {
         size: 5,
       },
     });
+    expect(chartRef.changeData).not.toHaveBeenCalled();
     expect(chartRef.options.point).toEqual({ size: 5 });
   });
 
   it('change data with special chart', () => {
-    let chartRef = undefined;
+    let chartRef;
     const props = {
       percent: 0.2,
       xField: 'date',
@@ -163,6 +157,7 @@ describe('use chart', () => {
       },
     };
     const wrapper = mount(<RingProgress {...props} />);
+    chartRef.update = jest.fn();
     wrapper.setProps({
       percent: 0.5,
     });

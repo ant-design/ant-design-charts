@@ -143,7 +143,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
         processConfig();
         chart.current.update(config);
       }
-      chartOptions.current = config;
+      chartOptions.current = { ...config };
     }
   }, [config]);
 
@@ -168,7 +168,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
     };
     chartInstance.render();
     if (!chartOptions.current) {
-      chartOptions.current = config;
+      chartOptions.current = { ...config };
     }
     chart.current = utils.clone(chartInstance) as T;
     if (onReady) {
