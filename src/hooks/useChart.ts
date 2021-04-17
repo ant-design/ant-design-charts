@@ -16,7 +16,7 @@ export interface ContainerProps {
   onEvent?: (chart: G2PlotConfig, event: G2.Event) => void;
 }
 export interface Tooltip extends Omit<G2PlotTooltip, 'customContent'> {
-  customContent?: (title: string, data: any[]) => ReactNode | string | void;
+  customContent?: (title: string, data: any[]) => ReactNode | string | unknown;
   container?: ReactNode;
 }
 
