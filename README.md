@@ -130,7 +130,6 @@ See chart API for details. Common props:
 
 Your contributions are always welcome! Please Do have a look at the [issues](https://github.com/antvis/g2plot/issues) first.
 
-To become a contributor, please follow our [contributing guide](https://github.com/antvis/g2plot/blob/master/CONTRIBUTING.md).
 
 ## 📧 Contact us
 
