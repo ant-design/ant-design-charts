@@ -6,7 +6,7 @@ export default defineConfig({
   base: '/',
   publicPath: '/',
   exportStatic: {},
-  dynamicImport: {},
+  hash: true,
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   theme: {
     '@s-site-menu-width': '262px',
