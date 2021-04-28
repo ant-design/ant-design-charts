@@ -1,13 +1,14 @@
 # @ant-design/charts
 
-A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot).
-
 <div align="center">
 
-![npm](https://img.shields.io/npm/dm/@ant-design/charts)
-![npm](https://img.shields.io/npm/v/@ant-design/charts)
-[![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers)
+A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), G6, X6, L7.
+
 ![build](https://github.com/ant-design/ant-design-charts/workflows/build/badge.svg)
+![npm](https://img.shields.io/npm/v/@ant-design/charts)
+![npm](https://img.shields.io/npm/dm/@ant-design/charts)
+[![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers)
+[![npm License](https://img.shields.io/npm/l/@ant-design/charts.svg)](https://www.npmjs.com/package/@ant-design/charts)
 
 <p align="center">
   <a href="https://charts.ant.design/">Website</a> •

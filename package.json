@@ -109,5 +109,6 @@
     "yarn": false,
     "contents": "dist"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "license": "MIT"
 }
