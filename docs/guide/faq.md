@@ -71,7 +71,7 @@ You can use `scale.sync` and hide one of the y-axis.
 
 ### 6、Package file is too large, how to load on demand
 
-Method 2： Use sideEffects
+Method 1： Use sideEffects
 
 Enable webpack sideEffcets configuration, webpack 4+ should be enabled by default.
 
