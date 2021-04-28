@@ -201,77 +201,77 @@ Please open the console and click on the chart area.
 
 ```tsx
 import React from 'react';
-import { Line } from '@ant-design/charts';
+import { Column } from '@ant-design/charts';
 
-const DemoLine: React.FC = () => {
+const DemoColumn: React.FC = () => {
   const data = [
     {
-      year: '1991',
-      value: 3,
+      type: '家具家电',
+      sales: 38,
     },
     {
-      year: '1992',
-      value: 4,
+      type: '粮油副食',
+      sales: 52,
     },
     {
-      year: '1993',
-      value: 3.5,
+      type: '生鲜水果',
+      sales: 0,
     },
     {
-      year: '1994',
-      value: 5,
+      type: '美容洗护',
+      sales: 145,
     },
     {
-      year: '1995',
-      value: 4.9,
+      type: '母婴用品',
+      sales: 48,
     },
     {
-      year: '1996',
-      value: 6,
+      type: '进口食品',
+      sales: 38,
     },
     {
-      year: '1997',
-      value: 7,
+      type: '食品饮料',
+      sales: 38,
     },
     {
-      year: '1998',
-      value: 9,
-    },
-    {
-      year: '1999',
-      value: 13,
+      type: '家庭清洁',
+      sales: 38,
     },
   ];
 
   const config = {
     data,
-    xField: 'year',
-    yField: 'value',
-    label: {},
-    point: {
-      size: 5,
-      shape: 'diamond',
+    xField: 'type',
+    yField: 'sales',
+    label: {
+      position: 'middle',
       style: {
-        fill: 'white',
-        stroke: '#2593fc',
-        lineWidth: 2,
+        fill: '#FFFFFF',
+        opacity: 0.6,
       },
+    },
+    meta: {
+      type: { alias: '类别' },
+      sales: { alias: '销售额' },
     },
   };
 
   return (
-    <Line
+    <Column
       {...config}
       onReady={(plot) => {
-        plot.on('element:click', (...args) => {
-          console.log(...args);
+        plot.on('plot:click', (evt) => {
+          const { x, y } = evt;
+          const { xField } = plot.options;
+          const tooltipData = plot.chart.getTooltipItems({ x, y });
+          console.log(tooltipData);
         });
       }}
     />
   );
 };
 
-export default DemoLine;
+export default DemoColumn;
 ```
 
 ### Get Chart instance
