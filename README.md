@@ -110,7 +110,7 @@ Preview
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xTY6QIQsWcwAAAAAAAAAAAAAARQnAQ" width="600">
 
 
-## Document & API
+## 📜 Document & API
 
 See chart API for details. Common props:
 
