@@ -1,10 +1,22 @@
 # @ant-design/charts
 
-A React chart library, based on [G2Plot](https://antv-g2plot.gitee.io/zh)
-
 <div align="center">
 
-![npm](https://img.shields.io/npm/dm/@ant-design/charts) ![npm](https://img.shields.io/npm/v/@ant-design/charts) [![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers) ![Test CI](https://github.com/ant-design/ant-design-charts/workflows/Test%20CI/badge.svg)
+A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), G6, X6, L7.
+
+![build](https://github.com/ant-design/ant-design-charts/workflows/build/badge.svg)
+![npm](https://img.shields.io/npm/v/@ant-design/charts)
+![npm](https://img.shields.io/npm/dm/@ant-design/charts)
+[![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers)
+[![npm License](https://img.shields.io/npm/l/@ant-design/charts.svg)](https://www.npmjs.com/package/@ant-design/charts)
+
+<p align="center">
+  <a href="https://charts.ant.design/">Website</a> •
+  <a href="https://charts.ant.design/guide/start">Quick Start</a> •
+  <a href="https://charts.ant.design/demos/global">Gallery</a> •
+  <a href="https://charts.ant.design/guide/faq">FAQ</a> •
+  <a href="https://www.yuque.com/antv/g2plot">Blog</a>
+</p>
 
 </div>
 
@@ -12,7 +24,8 @@ A React chart library, based on [G2Plot](https://antv-g2plot.gitee.io/zh)
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800"/>
 </div>
 
-## Features
+
+## ✨ Features
 
 - Easy to use
 - TypeScript
@@ -20,15 +33,15 @@ A React chart library, based on [G2Plot](https://antv-g2plot.gitee.io/zh)
 - Responsive
 - Storytelling
 
-## Installation
 
-### npm
+## 📦 Installation
 
 ```bash | pure
 $ npm install @ant-design/charts
 ```
 
-## Usage
+
+## 🔨 Usage
 
 ```tsx | pure
 import React from 'react';
@@ -92,21 +105,14 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-result：
+Preview
 
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xTY6QIQsWcwAAAAAAAAAAAAAARQnAQ" width="600">
 
-## Gallery
 
-[gallery](https://charts.ant.design/demos/global)
+## 📜 Document & API
 
-## Document
-
-### API
-
-See chart API for details.
-
-Common props:
+See chart API for details. Common props:
 
 | Property | Description | Type | defaultValue |
 | --- | --- | --- | --- |
@@ -119,32 +125,19 @@ Common props:
 | style | container style | React.CSSProperties | - |
 | chartRef | chart ref | (React.MutableRefObject&lt;Chart&gt;)=> void | - |
 
-[More usage](https://charts.ant.design/guide/case)
 
-### [FAQ](https://github.com/ant-design/ant-design-charts/issues)
+## 🤝 How to Contribute
 
-### Communication Group
+Your contributions are always welcome! Please Do have a look at the [issues](https://github.com/antvis/g2plot/issues) first.
 
-They are DingTalk groups.
 
-<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*g8nmS4bI33EAAAAAAAAAAAAAARQnAQ" width="200" alt="DingTalk">
+## 📧 Contact us
 
-### License
+DingTalk group number: `30233731`.
 
-Charts is available under the License MIT.
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*g8nmS4bI33EAAAAAAAAAAAAAARQnAQ" width="200" height="266" />
 
-## develop
 
-### depend
+## License
 
-- install [nodejs](https://nodejs.org/en/)
-
-### start
-
-```bash | pure
-# 安装依赖
-$ npm install
-
-# 开发 library
-$ npm run dev
-```
+MIT
