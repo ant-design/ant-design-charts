@@ -19,6 +19,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
   const name = `${pathName[pathName.length - 1]}${
     props.location.pathname.indexOf('zh-CN') !== -1 ? '.zh-CN' : ''
   }`;
+  const API = importer(docs[name])?.default || (() => <div style={{ marginTop: 24 }}>文档丢失</div>);
   const isShowApi = location.href.indexOf('type=api') !== -1;
 
   const crateApiTags = () => {
@@ -70,7 +71,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
           </div>
         )}
         {isShowApi
-          ? importer(docs[name])?.default() || <div style={{ marginTop: 24 }}>文档丢失</div>
+          ? <API />
           : children}
         {isShowApi && (
           <ul
