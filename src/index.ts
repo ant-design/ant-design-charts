@@ -31,6 +31,7 @@ import Treemap from './treemap';
 import MultiView from './multiView';
 import BidirectionalBar from './bidirectionalBar';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
+import { DistrictMap } from './maps';
 import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';
 
 export {
@@ -65,6 +66,7 @@ export {
   Treemap,
   MultiView,
   BidirectionalBar,
+  DistrictMap,
   OrganizationTreeGraph,
   DagreGraph,
   IndentedTree,
@@ -112,6 +114,7 @@ export default {
   DagreGraph,
   IndentedTree,
   DagreFundFlowGraph,
+  DistrictMap,
   G2,
   flow,
   measureTextWidth,

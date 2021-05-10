@@ -8,6 +8,9 @@ const createNode = (children: React.ReactNode, type?: string) => {
     mountPoint.className = 'g2-tooltip';
   }
   ReactDOM.render(children as React.ReactElement, mountPoint);
+  if (type === 'htmlString') {
+    return mountPoint.innerHTML;
+  }
   return mountPoint;
 };
 
