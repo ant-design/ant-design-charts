@@ -109,8 +109,6 @@
     "yarn": false,
     "contents": "dist"
   },
-  "sideEffects": [
-    ".dumi/theme/*.less"
-  ],
+  "sideEffects": false,
   "license": "MIT"
 }
