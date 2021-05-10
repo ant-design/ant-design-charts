@@ -72,7 +72,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
             </Link>
           </div>
         )}
-        {isShowApi ? <API /> : children}
+        {isShowApi ? <API {...props} /> : children}
         {isShowApi && (
           <ul
             className="__layout-toc-api"
