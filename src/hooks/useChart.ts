@@ -1,6 +1,6 @@
 import { ReactNode, useRef, useEffect } from 'react';
 import { isEqual } from '@antv/util';
-import { utils } from '../util';
+import { reactDomToString, hasPath, clone } from '../util';
 import { CommonProps } from '../interface';
 import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip, G2 } from '@antv/g2plot';
 
@@ -68,21 +68,19 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
   };
 
   const processConfig = () => {
-    const { hasPath } = utils;
-    // statistic
     if (hasPath(config, ['statistic', 'content', 'customHtml'])) {
-      utils.reactDomToString(config, ['statistic', 'content', 'customHtml']);
+      reactDomToString(config, ['statistic', 'content', 'customHtml']);
     }
     if (hasPath(config, ['statistic', 'title', 'customHtml'])) {
-      utils.reactDomToString(config, ['statistic', 'title', 'customHtml']);
+      reactDomToString(config, ['statistic', 'title', 'customHtml']);
     }
     // tooltip
     if (typeof config.tooltip === 'object') {
       if (hasPath(config, ['tooltip', 'container'])) {
-        utils.reactDomToString(config, ['tooltip', 'container'], 'tooltip');
+        reactDomToString(config, ['tooltip', 'container'], 'tooltip');
       }
       if (hasPath(config, ['tooltip', 'customContent'])) {
-        utils.reactDomToString(config, ['tooltip', 'customContent'], 'tooltip');
+        reactDomToString(config, ['tooltip', 'customContent'], 'tooltip');
       }
     }
   };
@@ -147,7 +145,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
     if (!chartOptions.current) {
       chartOptions.current = { ...config };
     }
-    chart.current = utils.clone(chartInstance) as T;
+    chart.current = clone(chartInstance) as T;
     if (onReady) {
       onReady(chartInstance);
     }

@@ -3,8 +3,6 @@ title: 地图
 order: 1
 ---
 
-# DistrictMap
-
 ### 中国地图气泡图
 
 ```tsx
@@ -223,9 +221,6 @@ const Page: React.FC = () => {
       },
     },
     attach: {},
-    style: {
-      height: 400,
-    },
   };
   return (
     <div style={{ height: 400 }}>
@@ -447,9 +442,6 @@ const Page: React.FC = () => {
         },
       },
     },
-    style: {
-      height: 400,
-    },
   };
   return (
     <div style={{ height: 400 }}>
@@ -527,9 +519,6 @@ const Page: React.FC = () => {
         },
       },
     },
-    style: {
-      height: 400,
-    },
   };
 
   // 临时方案
@@ -585,9 +574,6 @@ const Page: React.FC = () => {
           return <span>{props.NAME_CHN}</span>;
         },
       },
-    },
-    style: {
-      height: 400,
     },
   };
   return (

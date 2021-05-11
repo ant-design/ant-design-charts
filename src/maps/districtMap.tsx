@@ -3,8 +3,7 @@ import { Scene } from '@antv/l7';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 import { MapScene } from './components';
-import { createDistrict } from './util';
-import { DefaultAttachConfig } from './contants';
+import { createDistrict, getAttachConfig } from './util';
 import { IMapSceneConig, LayerOptions } from './index.d';
 
 const DistrictMap = (props: IMapSceneConig) => {
@@ -25,6 +24,7 @@ const DistrictMap = (props: IMapSceneConig) => {
   const [layer, setLayer] = useState<LayerOptions>();
   const [attachScene, setAttachScene] = useState<Scene>();
   const [attachLayer, setAttachLayer] = useState<LayerOptions>();
+  const defaultAttachConfig = getAttachConfig(layerConfig);
 
   useEffect(() => {
     return () => {
@@ -78,12 +78,12 @@ const DistrictMap = (props: IMapSceneConig) => {
         {attach && (
           <MapScene
             {...attach}
-            style={{ ...DefaultAttachConfig.style, ...attach.style }}
+            style={{ ...defaultAttachConfig.style, ...attach.style }}
             className={attach.className}
             option={{
               logoVisible: false,
             }}
-            mapConfig={{ ...DefaultAttachConfig.mapConfig, ...attach.mapConfig }}
+            mapConfig={{ ...defaultAttachConfig.mapConfig, ...attach.mapConfig }}
             onSceneLoaded={(attachScene) => {
               setAttachScene(attachScene);
               setAttachLayer(
@@ -91,7 +91,7 @@ const DistrictMap = (props: IMapSceneConig) => {
                   scene: attachScene,
                   type: attach.type || type,
                   layerConfig: {
-                    ...DefaultAttachConfig.layerConfig,
+                    ...defaultAttachConfig.layerConfig,
                     ...attach.layerConfig,
                   },
                 }),

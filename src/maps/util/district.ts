@@ -6,7 +6,7 @@ import {
   CountyLayer,
   DrillDownLayer,
 } from '@antv/l7-district';
-import { utils } from '../../util';
+import { reactDomToString, hasPath } from '../../util';
 import { IMapDistrictConig } from '../index.d';
 
 const DistrictMap = {
@@ -19,16 +19,15 @@ const DistrictMap = {
 };
 
 export const createDistrict = (props: IMapDistrictConig) => {
-  const { type = 'WorldLayer', scene, layerConfig } = props;
+  const { type = 'CountryLayer', scene, layerConfig } = props;
   if (!DistrictMap[type]) {
     console.error(`${type} is not supported`);
     return;
   }
   const processConfig = () => {
-    const { hasPath } = utils;
     // statistic
     if (hasPath(layerConfig, ['popup', 'Html'])) {
-      utils.reactDomToString(layerConfig, ['popup', 'Html'], 'htmlString');
+      reactDomToString(layerConfig, ['popup', 'Html'], 'htmlString');
     }
   };
   processConfig();

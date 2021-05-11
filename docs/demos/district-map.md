@@ -3,8 +3,6 @@ title: Map
 order: 1
 ---
 
-# DistrictMap
-
 ### Bubble Map of the China
 
 ```tsx
@@ -223,9 +221,6 @@ const Page: React.FC = () => {
       },
     },
     attach: {},
-    style: {
-      height: 400,
-    },
   };
   return (
     <div style={{ height: 400 }}>
@@ -447,9 +442,6 @@ const Page: React.FC = () => {
         },
       },
     },
-    style: {
-      height: 400,
-    },
   };
   return (
     <div style={{ height: 400 }}>
@@ -527,9 +519,6 @@ const Page: React.FC = () => {
         },
       },
     },
-    style: {
-      height: 400,
-    },
   };
   // temporary plan
   if (!data?.length) {
@@ -583,9 +572,6 @@ const Page: React.FC = () => {
           return <span>{props.NAME_CHN}</span>;
         },
       },
-    },
-    style: {
-      height: 400,
     },
   };
   return (
