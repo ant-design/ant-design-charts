@@ -28,13 +28,16 @@ export type LayerOptions =
   | DrillDownLayer;
 
 export interface ILayerConfig extends L7ILayerConfig {
+  /** 图层类型 */
+  type?: DistrictType;
+  /** 图层数据 */
   data: Datum;
 }
 
 export interface IMapDistrictConig {
   scene: Scene;
   type?: DistrictType;
-  layerConfig?: ILayerConfig;
+  layerConfig: ILayerConfig;
 }
 
 export interface IMapSceneConig extends CommonProps {
@@ -44,8 +47,7 @@ export interface IMapSceneConig extends CommonProps {
   layerConfig: ILayerConfig;
   /** 附图 */
   attach?: Omit<IMapSceneConig, 'attachMap'>;
-  /** 地图类型 */
-  type?: DistrictType;
+
   /** 图表渲染完成回调 */
   onReady?: (scene: Scene, layer: LayerOptions | undefined) => void;
   style?: React.CSSProperties;

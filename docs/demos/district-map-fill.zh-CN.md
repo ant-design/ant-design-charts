@@ -1,9 +1,9 @@
 ---
-title: Map
+title: 填充地图
 order: 1
 ---
 
-### Bubble Map of the China
+### 中国地图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -184,7 +184,6 @@ const Page: React.FC = () => {
   ];
   const colors = ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'];
   const config = {
-    type: 'CountryLayer',
     mapConfig: {
       center: [116.2825, 39.9],
       pitch: 0,
@@ -195,234 +194,7 @@ const Page: React.FC = () => {
     },
     layerConfig: {
       data,
-      joinBy: ['NAME_CHN', 'name'],
-      depth: 1,
-      fill: {
-        color: '#ccc',
-        activeColor: 'yellow',
-      },
-      bubble: {
-        enable: true,
-        size: {
-          field: 'value',
-          values: [3, 20],
-        },
-      },
-      popup: {
-        enable: true,
-        Html: (props) => {
-          return (
-            <>
-              <span>{props.NAME_CHN}:</span>
-              <span>{props.value}</span>
-            </>
-          );
-        },
-      },
-    },
-    attach: {},
-  };
-  return (
-    <div style={{ height: 400 }}>
-      <DistrictMap {...config} />
-    </div>
-  );
-};
-export default Page;
-```
-
-### Fill Map of the World
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { DistrictMap } from '@ant-design/charts';
-
-const Page: React.FC = () => {
-  const data = [
-    {
-      name: '云南省',
-      code: 530000,
-      value: 17881.12,
-    },
-    {
-      name: '黑龙江省',
-      code: 230000,
-      value: 16361.62,
-    },
-    {
-      name: '贵州省',
-      code: 520000,
-      value: 14806.45,
-    },
-    {
-      name: '北京市',
-      code: 110000,
-      value: 30319.98,
-    },
-    {
-      name: '河北省',
-      code: 130000,
-      value: 36010.27,
-    },
-    {
-      name: '山西省',
-      code: 140000,
-      value: 16818.11,
-    },
-    {
-      name: '吉林省',
-      code: 220000,
-      value: 15074,
-    },
-    {
-      name: '宁夏回族自治区',
-      code: 640000,
-      value: 3705.18,
-    },
-    {
-      name: '辽宁省',
-      code: 210000,
-      value: 25315.35,
-    },
-    {
-      name: '海南省',
-      code: 460000,
-      value: 4832.05,
-    },
-    {
-      name: '内蒙古自治区',
-      code: 150000,
-      value: 17289.22,
-    },
-    {
-      name: '天津市',
-      code: 120000,
-      value: 18809.64,
-    },
-    {
-      name: '新疆维吾尔自治区',
-      code: 650000,
-      value: 12199.08,
-    },
-    {
-      name: '上海市',
-      code: 310000,
-      value: 32679.87,
-    },
-    {
-      name: '陕西省',
-      code: 610000,
-      value: 24438.32,
-    },
-    {
-      name: '甘肃省',
-      code: 620000,
-      value: 8246.07,
-    },
-    {
-      name: '安徽省',
-      code: 340000,
-      value: 30006.82,
-    },
-    {
-      name: '香港特别行政区',
-      code: 810000,
-      value: 0,
-    },
-    {
-      name: '广东省',
-      code: 440000,
-      value: 97277.77,
-    },
-    {
-      name: '河南省',
-      code: 410000,
-      value: 48055.86,
-    },
-    {
-      name: '湖南省',
-      code: 430000,
-      value: 36425.78,
-    },
-    {
-      name: '江西省',
-      code: 360000,
-      value: 21984.78,
-    },
-    {
-      name: '四川省',
-      code: 510000,
-      value: 40678.13,
-    },
-    {
-      name: '广西壮族自治区',
-      code: 450000,
-      value: 20353.51,
-    },
-    {
-      name: '江苏省',
-      code: 320000,
-      value: 92595.4,
-    },
-    {
-      name: '澳门特别行政区',
-      code: 820000,
-      value: null,
-    },
-    {
-      name: '浙江省',
-      code: 330000,
-      value: 56197.15,
-    },
-    {
-      name: '山东省',
-      code: 370000,
-      value: 76469.67,
-    },
-    {
-      name: '青海省',
-      code: 630000,
-      value: 2865.23,
-    },
-    {
-      name: '重庆市',
-      code: 500000,
-      value: 20363.19,
-    },
-    {
-      name: '福建省',
-      code: 350000,
-      value: 35804.04,
-    },
-    {
-      name: '湖北省',
-      code: 420000,
-      value: 39366.55,
-    },
-    {
-      name: '西藏自治区',
-      code: 540000,
-      value: 1477.63,
-    },
-    {
-      name: '台湾省',
-      code: 710000,
-      value: null,
-    },
-  ];
-  const colors = ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'];
-  const config = {
-    type: 'CountryLayer',
-    mapConfig: {
-      center: [116.2825, 39.9],
-      pitch: 0,
-      style: 'blank',
-      zoom: 3,
-      minZoom: 0,
-      maxZoom: 10,
-    },
-    layerConfig: {
-      data,
+      type: 'CountryLayer',
       joinBy: ['NAME_CHN', 'name'],
       depth: 1,
       provinceStroke: '#fff',
@@ -452,7 +224,7 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-### Bubble Map of Province
+### 中国市地图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -481,8 +253,8 @@ const Page: React.FC = () => {
         console.log('fetch data failed', error);
       });
   };
+  const colors = ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'];
   const config = {
-    type: 'ProvinceLayer',
     mapConfig: {
       center: [116.2825, 39.9],
       pitch: 0,
@@ -493,35 +265,27 @@ const Page: React.FC = () => {
     },
     layerConfig: {
       data,
+      type: 'CityLayer',
       joinBy: ['adcode', 'code'],
-      adcode: ['330000'],
+      adcode: ['330000', '330100'],
       depth: 3,
       label: {
         field: 'NAME_CHN',
         textAllowOverlap: false,
       },
-      bubble: {
-        enable: true,
-        color: {
-          field: 'pop',
-          values: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603'],
-        },
+      fill: {
+        color: { field: 'pop', values: colors },
       },
       popup: {
         enable: true,
         Html: (props) => {
-          return (
-            <>
-              <span>{props.NAME_CHN}:</span>
-              <span>{props.pop}</span>
-            </>
-          );
+          return `<span>${props.NAME_CHN}:</span><span>${props.pop}</span>`;
         },
       },
     },
   };
-  // temporary plan
-  if (!data?.length) {
+  // 临时方案
+  if (!data.length) {
     return <div> loading</div>;
   }
   return (
@@ -533,7 +297,7 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-### Bubble Map of the World
+### 海南省地图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -541,35 +305,111 @@ import { DistrictMap } from '@ant-design/charts';
 
 const Page: React.FC = () => {
   const config = {
-    type: 'WorldLayer',
     mapConfig: {
-      center: [116.2825, 39.9],
+      center: [109.803, 19.347],
       pitch: 0,
       style: 'blank',
-      zoom: 2,
+      zoom: 7,
+      minZoom: 6,
+      maxZoom: 11,
     },
     layerConfig: {
+      type: 'ProvinceLayer',
       data: [],
-      bubble: {
-        enable: true,
-        color: {
-          field: 'NAME_CHN',
-          values: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603'],
-        },
+      geoDataLevel: 1,
+      autoFit: false,
+      joinBy: ['adcode', 'code'],
+      adcode: ['460000'],
+      depth: 2,
+      stroke: '#aaa',
+      label: {
+        enable: false,
+        field: 'NAME_CHN',
+        textAllowOverlap: false,
       },
       fill: {
-        activeColor: 'yellow',
-      },
-      stroke: '#ccc',
-      label: {
-        enable: true,
-        textAllowOverlap: false,
-        field: 'NAME_CHN',
+        color: '#A3d7FF',
       },
       popup: {
         enable: false,
         Html: (props) => {
-          return <span>{props.NAME_CHN}</span>;
+          return `<span>${props.NAME_CHN}:</span><span>${props.pop}</span>`;
+        },
+      },
+    },
+    attach: {
+      type: 'CountryLayer',
+      mapConfig: {
+        center: [113.60540108435657, 12.833692637803168],
+        pitch: 0,
+        style: 'blank',
+        zoom: 1.93,
+        minZoom: 0,
+        maxZoom: 3,
+        interactive: false,
+      },
+      layerConfig: {
+        data: [],
+        label: {
+          enable: false,
+        },
+        popup: {
+          enable: false,
+        },
+        autoFit: false,
+        provinceStroke: '#aaa',
+        depth: 1,
+        fill: {
+          color: '#A3d7FF',
+        },
+      },
+    },
+  };
+
+  return (
+    <div style={{ height: 400 }}>
+      <DistrictMap {...config} />
+    </div>
+  );
+};
+export default Page;
+```
+
+### 中国县地图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { DistrictMap } from '@ant-design/charts';
+
+const Page: React.FC = () => {
+  const colors = ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'];
+  const config = {
+    mapConfig: {
+      center: [116.2825, 39.9],
+      pitch: 0,
+      style: 'blank',
+      zoom: 3,
+      minZoom: 3,
+      maxZoom: 10,
+    },
+    layerConfig: {
+      type: 'CountyLayer',
+      data: [],
+      adcode: ['110101', '110102', '110106'],
+      depth: 3,
+      label: {
+        field: 'NAME_CHN',
+      },
+      fill: {
+        color: {
+          field: 'NAME_CHN',
+          values: colors,
+        },
+      },
+      popup: {
+        enable: true,
+        Html: (props) => {
+          return `<span>${props.NAME_CHN}</span>`;
         },
       },
     },

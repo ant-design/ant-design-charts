@@ -15,7 +15,6 @@ const DistrictMap = (props: IMapSceneConig) => {
     errorTemplate,
     onReady,
     layerConfig,
-    type,
     style,
     className,
   } = props;
@@ -44,7 +43,7 @@ const DistrictMap = (props: IMapSceneConig) => {
       // @ts-ignore
       layer.updateData(mapConfig.data);
     }
-  }, [mapConfig.data]);
+  }, [mapConfig?.data]);
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
@@ -65,7 +64,7 @@ const DistrictMap = (props: IMapSceneConig) => {
           }}
           mapConfig={mapConfig}
           onSceneLoaded={(upScene: Scene) => {
-            const layer = createDistrict({ type, scene: upScene, layerConfig });
+            const layer = createDistrict({ scene: upScene, layerConfig });
             if (layer) {
               setLayer(layer);
               setScene(upScene);
@@ -89,7 +88,6 @@ const DistrictMap = (props: IMapSceneConig) => {
               setAttachLayer(
                 createDistrict({
                   scene: attachScene,
-                  type: attach.type || type,
                   layerConfig: {
                     ...defaultAttachConfig.layerConfig,
                     ...attach.layerConfig,

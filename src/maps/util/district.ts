@@ -19,7 +19,9 @@ const DistrictMap = {
 };
 
 export const createDistrict = (props: IMapDistrictConig) => {
-  const { type = 'CountryLayer', scene, layerConfig } = props;
+  const { scene, layerConfig } = props;
+  const { type = 'CountryLayer' } = layerConfig;
+
   if (!DistrictMap[type]) {
     console.error(`${type} is not supported`);
     return;

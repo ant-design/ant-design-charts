@@ -12,6 +12,7 @@ export default defineConfig({
     '@s-site-menu-width': '262px',
   },
   styles: [
+    '.__dumi-default-previewer-demo: {padding: 24px}',
     '.__dumi-default-previewer-demo > div > div { min-height: 100px; }',
     '.__dumi-default-layout-content {overflow: hidden; overflow-x: auto;}',
     '.__dumi-default-layout-content h2 {margin: 32px 0 18px;}',
@@ -43,6 +44,11 @@ export default defineConfig({
       {
         title: '概览',
         path: '/zh-CN/demos/global',
+      },
+      {
+        title: '地图',
+        path: '/zh-CN/demos/fill',
+        children: ['demos/district-map-fill.zh-CN.md', 'demos/district-map-bubble.zh-CN.md'],
       },
       {
         title: '折线图',
@@ -133,6 +139,11 @@ export default defineConfig({
       {
         title: 'Gallery',
         path: '/demos/global',
+      },
+      {
+        title: 'Maps',
+        path: '/demos/fill',
+        children: ['demos/district-map-fill.md', 'demos/district-map-bubble.md'],
       },
       {
         title: 'Line',

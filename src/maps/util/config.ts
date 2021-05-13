@@ -4,7 +4,8 @@ import { ILayerConfig } from '../index.d';
  * 附图默认配置
  * 默认使用主图的 color
  */
-export const getAttachConfig = (layerConfig: ILayerConfig) => {
+// @ts-ignore
+export const getAttachConfig = (layerConfig: ILayerConfig = {}) => {
   // @ts-ignore
   const { fill } = layerConfig;
   return {

@@ -1,6 +1,8 @@
-## 简介
+## 配置项 - layerConfig
 
-District Map 支持下面几种图，通过 type 类型指定
+#### type
+
+地图类型
 
 - WorldLayer 世界地图
 - CountryLayer 国家地图，目前只支持中国
@@ -8,8 +10,6 @@ District Map 支持下面几种图，通过 type 类型指定
 - CityLayer 市级地图
 - CountyLayer 县级地图
 - DrillDownLayer 下钻地图
-
-## 配置项 - layerConfig
 
 #### zIndex
 
