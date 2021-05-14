@@ -37,7 +37,8 @@
     "pub": "npm run build && np",
     "start": "npm run dev",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+    "test:coverage": "umi-test --coverage",
+    "increase-memory-limit": "cross-env LIMIT=2048 increase-memory-limit"
   },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
@@ -68,6 +69,7 @@
     "babel-plugin-named-asset-import": "^0.3.7",
     "babel-preset-react-app": "^10.0.0",
     "chalk": "^4.1.0",
+    "cross-env": "^7.0.3",
     "dumi": "^1.1.14",
     "dumi-theme-default": "^1.0.14",
     "ejs": "^3.0.2",
@@ -79,6 +81,7 @@
     "estraverse": "^5.1.0",
     "fork-ts-checker-webpack-plugin": "^5.2.1",
     "gh-pages": "^3.0.0",
+    "increase-memory-limit": "^1.0.7",
     "jest-canvas-mock": "^2.2.0",
     "lodash": "^4.17.20",
     "np": "*",

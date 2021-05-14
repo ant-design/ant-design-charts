@@ -14,6 +14,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           build: |
             npm install
+            npm run increase-memory-limit
             npm run docs:build
           dist: dist
       - name: Get the preview_url
