@@ -20,6 +20,9 @@ export default ({ children, ...props }: IRouteComponentProps) => {
     props.location.pathname.indexOf('zh-CN') !== -1 ? '.zh-CN' : ''
   }`;
   const isShowApi = location.href.indexOf('type=api') !== -1;
+  const API =
+    (isShowApi && importer(docs[name])?.default) ||
+    (() => <div style={{ marginTop: 24 }}>文档丢失</div>);
 
   const crateApiTags = () => {
     const layoutToc = document.getElementsByClassName('__dumi-default-layout-toc');
@@ -69,9 +72,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
             </Link>
           </div>
         )}
-        {isShowApi
-          ? importer(docs[name])?.default() || <div style={{ marginTop: 24 }}>文档丢失</div>
-          : children}
+        {isShowApi ? <API {...props} /> : children}
         {isShowApi && (
           <ul
             className="__layout-toc-api"

@@ -71,15 +71,25 @@ meta: {
 
 ### 6、打包文件过大，如何按需加载
 
-按需加载可以通过从 lib 中引入依赖，也可以通过 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 实现。
+方案 1： 开启 sideEffects
 
-- 从 lib 引入
+开启 webpack sideEffcets 配置，webpack 4+ 默认应该是开启的。
 
 ```ts
-import Line from '@ant-design/charts/lib/line';
+{
+  optimization: {
+     sideEffects: true,
+  }
+}
 ```
 
-- 使用 babel-plugin-import
+方案 2：从 es 引入
+
+```ts
+import Line from '@ant-design/charts/es/line';
+```
+
+方案 3： 使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)
 
 ```ts
   // 安装依赖
@@ -90,7 +100,7 @@ import Line from '@ant-design/charts/lib/line';
     "plugins": [
       ["import", {
         "libraryName": "@ant-design/charts",
-        "libraryDirectory": "lib"
+        "libraryDirectory": "es"
       }]
     ]
   }

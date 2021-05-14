@@ -71,15 +71,25 @@ You can use `scale.sync` and hide one of the y-axis.
 
 ### 6、Package file is too large, how to load on demand
 
-Import from lib or use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import).
+Method 1： Use sideEffects
 
-- Import from lib
+Enable webpack sideEffcets configuration, webpack 4+ should be enabled by default.
 
 ```ts
-import Line from '@ant-design/charts/lib/line';
+{
+  optimization: {
+     sideEffects: true,
+  }
+}
 ```
 
-- Use babel-plugin-import
+Method 2: Import from es
+
+```ts
+import Line from '@ant-design/charts/es/line';
+```
+
+Method 3: Use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)
 
 ```ts
   // install
@@ -90,7 +100,7 @@ import Line from '@ant-design/charts/lib/line';
     "plugins": [
       ["import", {
         "libraryName": "@ant-design/charts",
-        "libraryDirectory": "lib"
+        "libraryDirectory": "es"
       }]
     ]
   }
