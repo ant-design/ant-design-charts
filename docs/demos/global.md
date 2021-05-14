@@ -966,7 +966,7 @@ toc: content
 
 </div>
 
-### Multi View
+### Mix
 
 <div class="gallery-item-box">
   

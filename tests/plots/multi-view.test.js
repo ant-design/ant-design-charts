@@ -2,11 +2,11 @@ import React from 'react';
 import { create } from 'react-test-renderer';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import MultiView from '../../src/multiView';
+import Mix from '../../src/Mix';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 
-describe('MultiView render', () => {
+describe('Mix render', () => {
   let container;
   const data = {
     area: [
@@ -47,7 +47,7 @@ describe('MultiView render', () => {
       className: 'container',
       loading: true,
     };
-    const testRenderer = create(<MultiView {...props} />);
+    const testRenderer = create(<Mix {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered[0].nodeType).toBe('component');
@@ -62,7 +62,7 @@ describe('MultiView render', () => {
 
   it('classname * loading * style with default', () => {
     const props = {};
-    const testRenderer = create(<MultiView {...props} />);
+    const testRenderer = create(<Mix {...props} />);
     const testInstance = testRenderer.root;
     const renderTree = testRenderer.toTree();
     expect(renderTree.rendered.nodeType).toBe('host');
@@ -112,7 +112,7 @@ describe('MultiView render', () => {
         },
       ],
     };
-    const testRenderer = create(<MultiView {...props} {...chartProps} />);
+    const testRenderer = create(<Mix {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error']);
   });
@@ -154,7 +154,7 @@ describe('MultiView render', () => {
       ],
     };
     act(() => {
-      ReactDOM.render(<MultiView {...props} {...chartProps} />, container);
+      ReactDOM.render(<Mix {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');

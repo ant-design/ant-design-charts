@@ -41,7 +41,7 @@ const chartNames = {
   Sankey: '桑基图',
   WordCloud: '词云图',
   Treemap: '矩形树图',
-  MultiView: '多图层图表',
+  Mix: '多图层图表',
   BidirectionalBar: '对称条形图',
   Waterfall: '瀑布图',
   Advanced: '高级用法',
@@ -77,7 +77,7 @@ const ChartsLevel = {
   Bullet: '/progress-plots',
   Gauge: '/progress-plots',
   Liquid: '/progress-plots',
-  MultiView: '/plugin',
+  Mix: '/plugin',
 };
 
 module.exports = { filterFileFolder, filterTitle, exampleBaseUrl, chartNames, ChartsLevel };

@@ -7,9 +7,9 @@ order: 33
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { MultiView } from '@ant-design/charts';
+import { Mix } from '@ant-design/charts';
 
-const DemoMultiView: React.FC = () => {
+const DemoMix: React.FC = () => {
   const [data, setData] = useState({});
   useEffect(() => {
     asyncFetch();
@@ -93,19 +93,19 @@ const DemoMultiView: React.FC = () => {
       },
     ],
   };
-  return <MultiView {...config} />;
+  return <Mix {...config} />;
 };
 
-export default DemoMultiView;
+export default DemoMix;
 ```
 
 ### 刷选联动
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { MultiView, G2 } from '@ant-design/charts';
+import { Mix, G2 } from '@ant-design/charts';
 
-const DemoMultiView: React.FC = () => {
+const DemoMix: React.FC = () => {
   G2.registerInteraction('other-visible', {
     showEnable: [
       {
@@ -244,20 +244,20 @@ const DemoMultiView: React.FC = () => {
       },
     ],
   };
-  return <MultiView {...config} />;
+  return <Mix {...config} />;
 };
 
-export default DemoMultiView;
+export default DemoMix;
 ```
 
 ### Drinks
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { MultiView } from '@ant-design/charts';
+import { Mix } from '@ant-design/charts';
 import { DataSet } from '@antv/data-set';
 
-const DemoMultiView: React.FC = () => {
+const DemoMix: React.FC = () => {
   var data = [
     ['Cosmopolitan', 51, 45, 6],
     ['Martini', 67, 39, 28],
@@ -445,19 +445,19 @@ const DemoMultiView: React.FC = () => {
       },
     ],
   };
-  return <MultiView {...config} />;
+  return <Mix {...config} />;
 };
 
-export default DemoMultiView;
+export default DemoMix;
 ```
 
 ### 条形图的变种
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { MultiView } from '@ant-design/charts';
+import { Mix } from '@ant-design/charts';
 
-const DemoMultiView: React.FC = () => {
+const DemoMix: React.FC = () => {
   const [plot, setPlot] = useState(null);
   var data = [
     {
@@ -738,7 +738,7 @@ const DemoMultiView: React.FC = () => {
   }, [plot]);
 
   return (
-    <MultiView
+    <Mix
       {...config}
       onReady={(chart) => {
         setPlot(chart);
@@ -747,5 +747,5 @@ const DemoMultiView: React.FC = () => {
   );
 };
 
-export default DemoMultiView;
+export default DemoMix;
 ```
