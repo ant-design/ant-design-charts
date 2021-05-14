@@ -1,6 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { MultiView as G2plotMultiView } from '@antv/g2plot';
-import { MultiViewOptions as G2plotProps } from '@antv/g2plot/lib/plots/multi-view';
+import { Mix as G2plotMix, MixOptions as G2plotProps } from '@antv/g2plot';
 import useChart, { ContainerProps } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
@@ -23,7 +22,7 @@ const MultiViewChart = forwardRef((props: MultiViewConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2plotMultiView, MultiViewConfig>(G2plotMultiView, rest);
+  const { chart, container } = useChart<G2plotMix, MultiViewConfig>(G2plotMix, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);
