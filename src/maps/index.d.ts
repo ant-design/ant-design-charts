@@ -40,14 +40,26 @@ export interface IMapDistrictConig {
   layerConfig: ILayerConfig;
 }
 
+export interface ISceneConfig {
+  /** 是否显示 logo */
+  logoVisible?: boolean;
+  /** logo 位置 */
+  logoPosition?: 'bottomright' | 'topright' | 'bottomleft' | 'topleft';
+  /** 是否开启抗锯齿 */
+  antialias?: boolean;
+  /** 是否保留缓冲区数据 */
+  preserveDrawingBuffer?: boolean;
+}
+
 export interface IMapSceneConig extends CommonProps {
   /** 地图配置项 */
   mapConfig: IMapConfig;
   /** 图层配置项 */
   layerConfig: ILayerConfig;
+  /** 场景配置 */
+  sceneConfig?: ISceneConfig;
   /** 附图 */
   attach?: Omit<IMapSceneConig, 'attachMap'>;
-
   /** 图表渲染完成回调 */
   onReady?: (scene: Scene, layer: LayerOptions | undefined) => void;
   style?: React.CSSProperties;

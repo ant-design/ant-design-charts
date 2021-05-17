@@ -1,4 +1,4 @@
-## 配置项 - layerConfig
+### 图层配置 - layerConfig
 
 #### type
 
@@ -99,21 +99,57 @@
 
 县级边界宽度 `CountryLayer depth =2时生效`
 
-#### 数据
+#### label
 
-District 提供 polygon 数据需要跟用户的属性数据，通过关系字段进行连接
+文本标注配置项，目前只支持常量配置，不支持数据映射
 
-- [国家名称对照表](https://gw.alipayobjects.com/os/bmw-prod/b6fcd072-72a7-4875-8e05-9652ffc977d9.csv)
+- enable boolean 是否显示标注
+- color 标注字体颜色 常量
+- field 标注字段 常量
+- size 标注大小 常量
+- stroke 文字描边颜色
+- strokeWidth 文字描边宽度
+- textAllowOverlap 是否允许文字压盖
+- opacity 标注透明度
+- spacing: number 文本间隔
+- strokeOpacity number 描边透明度
+- fontWeight string 字体粗细
+- fontFamily string 字号
+- textOffset [number, number] 文本偏移量
 
-- [省级行政名称*adcode*对照表.csv](https://gw.alipayobjects.com/os/bmw-prod/2aa6fb7b-3694-4df3-b601-6f6f9adac496.csv)
+#### fill
 
-- [市级行政区划及编码](https://gw.alipayobjects.com/os/bmw-prod/d2aefd78-f5df-486f-9310-7449cc7f5569.csv)
+填充图样式
 
-- [县级行政区名称级编码](https://gw.alipayobjects.com/os/bmw-prod/fafd299e-0e1e-4fa2-a8ac-10a984c6e983.csv)
+- color 图层填充颜色，支持常量和数据映射 常量：统一设置成一样的颜色 数据映射
+  - field 填充映射字段
+  - values 映射值，同 color 方法第二个参数数组，回调函数
+- filter 图层过滤方法，支持常量和数据映射 同 layer.filter 方法 数据映射 - field 填充映射字段 - values 回调函数 false 返回值将会被过滤掉
+- style 同 polygonLayer 的 style 方法
+- activeColor 鼠标滑过高亮颜色, string | boolean 如果设置为 false 取消高亮
 
-#### 方法
+#### popup
 
-#### updateLayerAttribute
+信息窗口
+
+- enable 是否开启 boolean
+- triggerEvent 触发事件 例如 'mousemove' | 'click';
+- Html popup html 字符串，支持回调函数 (properties: any) => string;
+
+#### bubble
+
+气泡配置项
+
+- enable boolean 是否显示气泡 true
+- shape: AttributeType; 气泡形状支持数据映射
+- size: AttributeType; 气泡大小支持数据映射
+- color: AttributeType; 气泡颜色支持数据映射
+- scale: { // 数字度量 field: string; 度量字段 type: ScaleTypeName; 度量字段 };
+- style: { opacity: number; 透明度 stroke: string; 填充色 strokeWidth: number; 填充宽度 };
+
+#### layer 方法
+
+##### updateLayerAttribute
 
 更新图层渲染样式参数
 
@@ -129,7 +165,7 @@ const config = {
 };
 ```
 
-#### updateDistrict
+##### updateDistrict
 
 根据 adcode 更新 行政区块
 
@@ -143,7 +179,7 @@ const config = {
 citylayer.updateDistrict(['330100', '340100']);
 ```
 
-#### updateData(data, joinBy)
+##### updateData(data, joinBy)
 
 更新显示数据，
 
@@ -152,29 +188,29 @@ citylayer.updateDistrict(['330100', '340100']);
 - data 需要更新的数据
 - joinBy 关联字段 可选，如果不设置保持和初始化一致。
 
-#### getFillData
+##### getFillData
 
 获取填充数据，可用于绘制独立的边界线
 
-#### show
+##### show
 
 显示图层
 
-#### hide
+##### hide
 
 图层隐藏不显示
 
-#### destroy
+##### destroy
 
 移除并销毁图层
 
-#### 事件
+##### 事件
 
 行政区划图事件监听默认添加在 fillLayer 上，你点击填充的色块才能接收到事件响应。
 
 支持的事件类型同
 
-#### on 添加事件
+##### on 添加事件
 
 参数
 
@@ -192,7 +228,7 @@ const config = {
 };
 ```
 
-#### off 移除事件
+##### off 移除事件
 
 参数
 
@@ -200,7 +236,13 @@ const config = {
 - handle
 - layerType 可选 `'fill' | 'line' | 'label' | 'bubble'` 默认值 `fill`
 
-## 地图配置项 - sceneOption
+### 场景配置 - sceneConfig
+
+#### logoVisible logo 是否可见
+
+<description> _bottomleft_ **可选** _default: true_ </description>
+
+是否显示 Logo {boolean} false
 
 #### logoPosition
 
@@ -212,12 +254,6 @@ Logo 的显示位置 默认左下角
 - topright
 - bottomleft,
 - topleft`
-
-#### logoVisible logo 是否可见
-
-<description> _bottomleft_ **可选** _default: true_ </description>
-
-是否显示 Logo {boolean} false
 
 #### antialias 是否开启抗锯齿
 
@@ -231,7 +267,7 @@ Logo 的显示位置 默认左下角
 
 是否保留缓冲区数据 `boolean` `false`
 
-## Map 配置项 - mapConfig
+### Map 配置项 - mapConfig
 
 #### zoom 初始化缩放等级
 
@@ -280,17 +316,7 @@ Logo 的显示位置 默认左下角
 
 地图是否可旋转 {Boolean} default true
 
-## 实验参数
-
-参数可能会废弃
-
-#### offsetCoordinate
-
-{ boolean } default true
-
-高德地图适用,是否关闭偏移坐标系
-
-## 方法
+### 方法
 
 #### getZoom 获取缩放等级
 
@@ -537,7 +563,7 @@ scene 销毁方法，离开页面，已经内置
 scene.destroy();
 ```
 
-## 事件
+### 事件
 
 #### on
 
@@ -593,3 +619,15 @@ scene.on('dragstart', (ev) => {}); //开始拖拽地图时触发
 scene.on('dragging', (ev) => {}); // 拖拽地图过程中触发
 scene.on('dragend', (ev) => {}); //停止拖拽地图时触发。如地图有拖拽缓动效果，则在拽停止，缓动开始前触发
 ```
+
+### 参考数据
+
+District 提供 polygon 数据需要跟用户的属性数据，通过关系字段进行连接
+
+- [国家名称对照表](https://gw.alipayobjects.com/os/bmw-prod/b6fcd072-72a7-4875-8e05-9652ffc977d9.csv)
+
+- [省级行政名称*adcode*对照表.csv](https://gw.alipayobjects.com/os/bmw-prod/2aa6fb7b-3694-4df3-b601-6f6f9adac496.csv)
+
+- [市级行政区划及编码](https://gw.alipayobjects.com/os/bmw-prod/d2aefd78-f5df-486f-9310-7449cc7f5569.csv)
+
+- [县级行政区名称级编码](https://gw.alipayobjects.com/os/bmw-prod/fafd299e-0e1e-4fa2-a8ac-10a984c6e983.csv)

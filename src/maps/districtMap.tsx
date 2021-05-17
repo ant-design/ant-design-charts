@@ -11,6 +11,7 @@ const DistrictMap = (props: IMapSceneConig) => {
     mapConfig,
     attach,
     loading,
+    sceneConfig,
     loadingTemplate,
     errorTemplate,
     onReady,
@@ -61,6 +62,7 @@ const DistrictMap = (props: IMapSceneConig) => {
           {...props}
           option={{
             logoVisible: false,
+            ...sceneConfig,
           }}
           mapConfig={mapConfig}
           onSceneLoaded={(upScene: Scene) => {
@@ -81,6 +83,7 @@ const DistrictMap = (props: IMapSceneConig) => {
             className={attach.className}
             option={{
               logoVisible: false,
+              ...attach.sceneConfig,
             }}
             mapConfig={{ ...defaultAttachConfig.mapConfig, ...attach.mapConfig }}
             onSceneLoaded={(attachScene) => {
