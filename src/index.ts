@@ -28,7 +28,8 @@ import Stock from './stock';
 import RadialBar from './radialBar';
 import Sankey from './sankey';
 import Treemap from './treemap';
-import MultiView from './multiView';
+import MultiView from './mix'; // 和 Mix 相同，底层更名
+import Mix from './mix';
 import BidirectionalBar from './bidirectionalBar';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
 import { DistrictMap } from './maps';
@@ -65,6 +66,7 @@ export {
   Sankey,
   Treemap,
   MultiView,
+  Mix,
   BidirectionalBar,
   DistrictMap,
   OrganizationTreeGraph,
@@ -109,6 +111,7 @@ export default {
   Sankey,
   Treemap,
   MultiView,
+  Mix,
   BidirectionalBar,
   OrganizationTreeGraph,
   DagreGraph,

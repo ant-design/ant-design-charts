@@ -26,7 +26,8 @@ import Sunburst from './sunburst';
 import Stock from './stock';
 import RadialBar from './radialBar';
 import Sankey from './sankey';
-import MultiView from './multiView';
+import MultiView from './mix';
+import Mix from './mix';
 import BidirectionalBar from './bidirectionalBar';
 import { G2 } from '@antv/g2plot';
 
@@ -60,5 +61,6 @@ export {
   BidirectionalBar,
   Sankey,
   MultiView,
+  Mix,
   G2,
 };
