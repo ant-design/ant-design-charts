@@ -1,8 +1,11 @@
 import React, { useRef, useEffect, useState, memo } from 'react';
 import { IMapConfig, ISceneConfig, Scene } from '@antv/l7';
-import { createMapBox } from '../util';
+import { createMap } from './maps';
+import { MapType } from '../interface';
 
 interface IMapSceneConig {
+  /** 地图类型 */
+  type?: MapType;
   style?: React.CSSProperties;
   mapConfig: IMapConfig;
   className?: string;
@@ -11,7 +14,7 @@ interface IMapSceneConig {
 }
 
 const MapScene = React.memo((props: IMapSceneConig) => {
-  const { style, mapConfig, option, onSceneLoaded, className } = props;
+  const { style, mapConfig, option, onSceneLoaded, className, type } = props;
   const container = useRef<HTMLDivElement>(null);
   const [scene, setScene] = useState<Scene>();
 
@@ -20,7 +23,7 @@ const MapScene = React.memo((props: IMapSceneConig) => {
     const sceneInstance = new Scene({
       id: container.current!,
       ...option,
-      map: createMapBox(mapConfig),
+      map: createMap(mapConfig, type),
     });
     sceneInstance.on('loaded', () => {
       setScene(sceneInstance);

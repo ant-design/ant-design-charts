@@ -1,4 +1,4 @@
-import { ILayerConfig } from '../index.d';
+import { ILayerConfig } from '../interface';
 
 /**
  * 附图默认配置

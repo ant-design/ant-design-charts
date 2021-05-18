@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Scene } from '@antv/l7';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
-import { MapScene } from './components';
-import { createDistrict, getAttachConfig } from './util';
-import { IMapSceneConig, LayerOptions } from './index.d';
+import { MapScene, createLayer } from './components';
+import { getAttachConfig } from './util';
+import { IMapSceneConig, LayerOptions } from './interface';
 
 const DistrictMap = (props: IMapSceneConig) => {
   const {
@@ -59,14 +59,14 @@ const DistrictMap = (props: IMapSceneConig) => {
       >
         {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
         <MapScene
-          {...props}
           option={{
             logoVisible: false,
             ...sceneConfig,
           }}
+          type="Mapbox"
           mapConfig={mapConfig}
           onSceneLoaded={(upScene: Scene) => {
-            const layer = createDistrict({ scene: upScene, layerConfig });
+            const layer = createLayer({ scene: upScene, layerConfig });
             if (layer) {
               setLayer(layer);
               setScene(upScene);
@@ -78,7 +78,7 @@ const DistrictMap = (props: IMapSceneConig) => {
         />
         {attach && (
           <MapScene
-            {...attach}
+            type="Mapbox"
             style={{ ...defaultAttachConfig.style, ...attach.style }}
             className={attach.className}
             option={{
@@ -89,7 +89,7 @@ const DistrictMap = (props: IMapSceneConig) => {
             onSceneLoaded={(attachScene) => {
               setAttachScene(attachScene);
               setAttachLayer(
-                createDistrict({
+                createLayer({
                   scene: attachScene,
                   layerConfig: {
                     ...defaultAttachConfig.layerConfig,

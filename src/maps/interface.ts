@@ -1,4 +1,4 @@
-import { Scene, ILayerConfig as L7ILayerConfig, ISceneConfig, IMapConfig } from '@antv/l7';
+import { Scene, ILayerConfig as L7ILayerConfig, IMapConfig } from '@antv/l7';
 import {
   WorldLayer,
   CountryLayer,
@@ -33,6 +33,8 @@ export interface ILayerConfig extends L7ILayerConfig {
   /** 图层数据 */
   data: Datum;
 }
+
+export type MapType = 'Mapbox' | 'GaodeMap';
 
 export interface IMapDistrictConig {
   scene: Scene;

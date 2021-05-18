@@ -7,7 +7,7 @@ import {
   DrillDownLayer,
 } from '@antv/l7-district';
 import { reactDomToString, hasPath } from '../../util';
-import { IMapDistrictConig } from '../index.d';
+import { IMapDistrictConig } from '../interface';
 
 const DistrictMap = {
   WorldLayer: WorldLayer, // 全世界
@@ -18,7 +18,7 @@ const DistrictMap = {
   DrillDownLayer: DrillDownLayer, // 下钻地图
 };
 
-export const createDistrict = (props: IMapDistrictConig) => {
+export const createLayer = (props: IMapDistrictConig) => {
   const { scene, layerConfig } = props;
   const { type = 'CountryLayer' } = layerConfig;
 
