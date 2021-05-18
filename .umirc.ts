@@ -46,7 +46,7 @@ export default defineConfig({
         path: '/zh-CN/demos/global',
       },
       {
-        title: '地图',
+        title: '地图(beta)',
         path: '/zh-CN/demos/fill',
         children: ['demos/district-map-fill.zh-CN.md', 'demos/district-map-bubble.zh-CN.md'],
       },
@@ -141,7 +141,7 @@ export default defineConfig({
         path: '/demos/global',
       },
       {
-        title: 'Maps',
+        title: 'Maps(beta)',
         path: '/demos/fill',
         children: ['demos/district-map-fill.md', 'demos/district-map-bubble.md'],
       },
