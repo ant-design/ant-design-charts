@@ -32,6 +32,7 @@ import MultiView from './mix'; // 和 Mix 相同，底层更名
 import Mix from './mix';
 import BidirectionalBar from './bidirectionalBar';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
+import { DistrictMap } from './maps';
 import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';
 
 export {
@@ -67,6 +68,7 @@ export {
   MultiView,
   Mix,
   BidirectionalBar,
+  DistrictMap,
   OrganizationTreeGraph,
   DagreGraph,
   IndentedTree,
@@ -115,6 +117,7 @@ export default {
   DagreGraph,
   IndentedTree,
   DagreFundFlowGraph,
+  DistrictMap,
   G2,
   flow,
   measureTextWidth,

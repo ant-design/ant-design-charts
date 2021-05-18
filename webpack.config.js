@@ -13,6 +13,7 @@ module.exports = {
     // charts: ['@babel/polyfill', './src/index.ts'],
     charts: './src/index.charts.ts',
     charts_g6: './src/index.g6.ts',
+    charts_l7: './src/index.l7.ts',
   },
   output: {
     filename: '[name].min.js',

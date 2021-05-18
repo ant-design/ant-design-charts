@@ -1,15 +1,10 @@
 import { ReactNode, useRef, useEffect } from 'react';
 import { isEqual } from '@antv/util';
-import { utils } from '../util';
+import { reactDomToString, hasPath, clone } from '../util';
+import { CommonProps } from '../interface';
 import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip, G2 } from '@antv/g2plot';
-import createNode from '../util/createNode';
 
-export interface ContainerProps {
-  style?: React.CSSProperties;
-  className?: string;
-  loading?: boolean;
-  loadingTemplate?: React.ReactElement;
-  errorTemplate?: (e: Error) => React.ReactNode;
+export interface ContainerProps extends CommonProps {
   /** 图表渲染完成回调 */
   onReady?: (chart: G2PlotConfig) => void;
   /** 任何其他的图形事件 */
@@ -72,27 +67,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
     return imageName;
   };
 
-  const reactDomToString = (source: U, path: string[], type?: string) => {
-    const { hasPath, setPath } = utils;
-    const statisticCustomHtml = hasPath(source, path);
-    setPath(source, path, (...arg: any[]) => {
-      const statisticDom = utils.isType(statisticCustomHtml, 'Function')
-        ? statisticCustomHtml(...arg)
-        : statisticCustomHtml;
-      if (
-        utils.isType(statisticDom, 'String') ||
-        utils.isType(statisticDom, 'Number') ||
-        utils.isType(statisticDom, 'HTMLDivElement')
-      ) {
-        return statisticDom;
-      }
-      return createNode(statisticDom, type);
-    });
-  };
-
   const processConfig = () => {
-    const { hasPath } = utils;
-    // statistic
     if (hasPath(config, ['statistic', 'content', 'customHtml'])) {
       reactDomToString(config, ['statistic', 'content', 'customHtml']);
     }
@@ -170,7 +145,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
     if (!chartOptions.current) {
       chartOptions.current = { ...config };
     }
-    chart.current = utils.clone(chartInstance) as T;
+    chart.current = clone(chartInstance) as T;
     if (onReady) {
       onReady(chartInstance);
     }
