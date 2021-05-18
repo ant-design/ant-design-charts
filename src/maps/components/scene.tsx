@@ -15,6 +15,7 @@ interface IMapSceneConig {
 
 const MapScene = React.memo((props: IMapSceneConig) => {
   const { style, mapConfig, option, onSceneLoaded, className, type } = props;
+  const { zoom, center, pitch, rotation, style: mapStyle } = mapConfig;
   const container = useRef<HTMLDivElement>(null);
   const [scene, setScene] = useState<Scene>();
 
@@ -39,34 +40,34 @@ const MapScene = React.memo((props: IMapSceneConig) => {
 
   // 更新地图样式
   useEffect(() => {
-    if (scene && mapConfig.style) {
-      scene.setMapStyle(mapConfig.style);
+    if (scene && mapStyle) {
+      scene.setMapStyle(mapStyle);
     }
-  }, [JSON.stringify(mapConfig.style)]);
+  }, [mapStyle]);
 
   useEffect(() => {
-    if (scene && mapConfig.zoom) {
-      scene.setZoom(mapConfig.zoom);
+    if (scene && zoom) {
+      scene.setZoom(zoom);
     }
-  }, [mapConfig.zoom]);
+  }, [zoom]);
 
   useEffect(() => {
-    if (scene && mapConfig.center) {
-      scene.setCenter(mapConfig.center);
+    if (scene && center) {
+      scene.setCenter(center);
     }
-  }, [JSON.stringify(mapConfig.center)]);
+  }, [center]);
 
   useEffect(() => {
-    if (scene && mapConfig.pitch) {
-      scene.setPitch(mapConfig.pitch);
+    if (scene && pitch) {
+      scene.setPitch(pitch);
     }
-  }, [mapConfig.pitch]);
+  }, [pitch]);
 
   useEffect(() => {
-    if (scene && mapConfig.rotation) {
-      scene.setRotation(mapConfig.rotation);
+    if (scene && rotation) {
+      scene.setRotation(rotation);
     }
-  }, [mapConfig.rotation]);
+  }, [rotation]);
 
   return (
     <div
