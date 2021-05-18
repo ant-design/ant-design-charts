@@ -38,7 +38,7 @@
     "start": "npm run dev",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
-    "increase-memory-limit": "cross-env LIMIT=2048 increase-memory-limit"
+    "increase-memory-limit": "cross-env LIMIT=8192 increase-memory-limit"
   },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
