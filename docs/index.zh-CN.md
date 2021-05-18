@@ -6,7 +6,7 @@ hero:
   desc: 简单好用的 React 图表库
   actions:
     - text: 快速上手
-      link: /zh-CN/guide/start
+      link: /demos/district-map-fill
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/881dc458-f20b-407b-947a-95104b5ec82b/k79dm8ih_w144_h144.png
     title: 开箱即用
@@ -48,44 +48,6 @@ const Page: React.FC = () => {
   const config = {
     data,
     height: 400,
-    xField: 'year',
-    yField: 'value',
-    point: {
-      size: 5,
-      shape: 'diamond',
-    },
-    label: {
-      style: {
-        fill: '#aaa',
-      },
-    },
-  };
-  return <Line {...config} />;
-};
-export default Page;
-```
-
-最终结果：
-
-```tsx
-import React from 'react';
-import { Line } from '@ant-design/charts';
-
-const Page: React.FC = () => {
-  const data = [
-    { year: '1991', value: 3 },
-    { year: '1992', value: 4 },
-    { year: '1993', value: 3.5 },
-    { year: '1994', value: 5 },
-    { year: '1995', value: 4.9 },
-    { year: '1996', value: 6 },
-    { year: '1997', value: 7 },
-    { year: '1998', value: 9 },
-    { year: '1999', value: 13 },
-  ];
-
-  const config = {
-    data,
     xField: 'year',
     yField: 'value',
     point: {
