@@ -34,9 +34,6 @@ jobs:
 #           touch new-file.sh
 #           git add new-file.sh
 #           git commit --message 'Trigger travis actions'
-
-#           echo status
-
 #           git status
 #           git push --set-upstream origin api-version
 
