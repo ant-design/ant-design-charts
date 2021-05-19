@@ -42,7 +42,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
         with:
-          source_file: '.prettierrc'
+          source_file: '.prettierignore'
           destination_repo: 'lxfu1/release-inspection-of-antv'
           destination_folder: 'server'
           user_email: '954055752@qq.com'
