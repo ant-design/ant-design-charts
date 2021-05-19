@@ -20,6 +20,8 @@ jobs:
 
           cd release-inspection-of-antv
           pwd
+          echo ls
+          ls
           git checkout -b api-version
 
           echo config list
