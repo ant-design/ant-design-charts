@@ -6,8 +6,8 @@ jobs:
   copy-file:
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
       # - name: Generate API module
       #   env:
@@ -40,7 +40,7 @@ jobs:
       - name: Pushes a file to release-inspection-of-antv
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.SURGE_TOKEN }}
         with:
           source_file: '.prettierignore'
           destination_repo: 'lxfu1/release-inspection-of-antv'
