@@ -13,13 +13,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          pwd
           git config --global user.name "lxf1"
           git config --global user.email "954055752@qq.com"
-          git clone https://user:$GITHUB_TOKEN@github.com/lxfu1/release-inspection-of-antv.git
+          git clone --single-branch --branch master https://user:$GITHUB_TOKEN@github.com/lxfu1/release-inspection-of-antv.git
 
           cd release-inspection-of-antv
+          pwd
           git checkout -b api-version
-          git remote set-url origin https://user:$GITHUB_TOKEN@github.com/lxfu1/release-inspection-of-antv.git
 
           echo config list
 
@@ -35,8 +36,7 @@ jobs:
           echo status
 
           git status
-          # git push --set-upstream origin api-version
-          git push --set-upstream https://user:$GITHUB_TOKEN@github.com/lxfu1/release-inspection-of-antv.git api-version # This does not work either
+          git push --set-upstream origin api-version
 
 #       - name: Pushes a file to release-inspection-of-antv
 #         uses: dmnemec/copy_file_to_another_repo_action@main
