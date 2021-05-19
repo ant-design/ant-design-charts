@@ -11,7 +11,7 @@ jobs:
 
       - name: Generate API module
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           pwd
           git config --global user.name "lxf1"
