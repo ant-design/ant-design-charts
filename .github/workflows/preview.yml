@@ -7,9 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: afc163/surge-preview@v1
+      - uses: lxfu1/surge-preview@0.0.1
         id: preview_step
         with:
+          project_name: 'G2Plot'
+          project_branch: 'master'
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           build: |
