@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: lxfu1/surge-preview@0.0.1
+      - uses: lxfu1/surge-preview@0.0.2
         id: preview_step
         with:
           project_name: 'G2Plot'
