@@ -85,6 +85,7 @@ export default defineConfig({
         title: '关系图',
         path: '/zh-CN/demos/sankey',
         children: [
+          '/demos/indented-tree-graph.zh-CN.md',
           '/demos/organizationTreeGraph.zh-CN.md',
           '/demos/indentedTree.zh-CN.md',
           '/demos/dagreGraph.zh-CN.md',
@@ -175,6 +176,7 @@ export default defineConfig({
         title: 'Relation',
         path: '/demos/sankey',
         children: [
+          '/demos/indented-tree-graph.md',
           '/demos/organizationTreeGraph.md',
           '/demos/indentedTree.md',
           '/demos/dagreGraph.md',
