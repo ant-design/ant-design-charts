@@ -2,26 +2,26 @@
 title: Indented Tree Graph
 ---
 
-### 基础配置
+### Basic configuration
 
 #### width
 
 <description>**optional** _number_ _default:_ `500`</description>
 
-设置图表宽度。
+Set the width of the graph.
 
 #### height
 
 <description>**optional** _number_ _default:_ `500`</description>
 
-设置图表高度。
+Set the height of the graph.
 
 #### data
 
-数据，详见示例代码，`title`、`body`、`footer` 仅对 nodeType: `card` 生效， 其它 nodeType 类型使用 label。
+Data, see the sample code, `title`、`body`、`footer` only for nodeType: `card`, other nodeType types use label.
 
 ```ts
-// value、valueStyle 仅对 footer 生效
+// value、valueStyle only apply to `footer`.
 interface Items {
   content: string | number;
   value?: string | number;
@@ -31,7 +31,7 @@ interface Items {
 
 type NodeConfig = string | number | Items;
 
-// 具体参考示例代码
+// Refer to the sample code for details.
 interface Data {
   id: string;
   title?: NodeConfig;
@@ -44,36 +44,37 @@ interface Data {
 
 #### edgeType
 
-边类型，默认 'cubic-horizontal'
+Edge type, default `cubic-horizontal`
 
-- line：直线，不支持控制点；
-- polyline：折线，支持多个控制点；
-- arc：圆弧线；
-- quadratic：二阶贝塞尔曲线；
-- cubic：三阶贝塞尔曲线；
-- cubic-vertical：垂直方向的三阶贝塞尔曲线，不考虑用户从外部传入的控制点；
-- cubic-horizontal：水平方向的三阶贝塞尔曲线，不考虑用户从外部传入的控制点；
-- loop：自环。
+- line: straight line without control points;
+- polyline: polyline with one or more control points;
+- arc;
+- quadratic: quadratic bezier curve;
+- cubic: cubic bezier curve;
+- cubic-vertical：vertical cubic bezier curve. The user can not assign the control point for this type of edge;
+- cubic-horizontal: horizontal cubic bezier curve. The user can not assign the control point for this type of edge;
+- loop: self-loop edge.
 
-这些内置边的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*H6Y5SrPstw4AAAAAAAAAAABkARQnAQ' width='750' height='120' alt='img'/>
+<br />
+<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*H6Y5SrPstw4AAAAAAAAAAABkARQnAQ' width='750' height='120' alt='img'/>
 
 #### nodeType
 
 <description>**optional** _`card`_</description>
 
-节点类型，默认 `card`, 内置节点包括 card，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut，这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
+Node type, default `card`, Built-in nodes include `card，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut`. <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
 
 #### nodeSize
 
 <description>**optional** _Number[] | false | [120, 40]_</description>
 
-节点的（最小）大小，部分图表可能会根据节点内容自适应大小。
+The (minimum) size of the node. Some graphs may be adapted to the size of the node content.
 
 #### nodeStyle
 
 <description>**optional** _object | Function_</description>
 
-节点样式。
+Node style
 
 ```ts
 {
@@ -81,7 +82,7 @@ interface Data {
     stroke: '#40a9ff',
   }
 }
-// 回调模式
+// callback
 {
   nodeStyle: (node, graph)=>{
     return {
@@ -95,7 +96,7 @@ interface Data {
 
 <description>**optional** _object_</description>
 
-节点在不同状态下的样式配置项。
+Node style configuration items in different states.
 
 ```ts
 {
@@ -114,7 +115,7 @@ interface Data {
 
 <description>**optional** _object | Function_</description>
 
-节点样式。
+Edge style.
 
 ```ts
 {
@@ -122,13 +123,13 @@ interface Data {
     stroke: '#40a9ff',
   }
 }
-// 回调模式
+// callback
 {
   edgeStyle: (node, graph)=>{
     /**
      * graph.findById(item.target).getModel()
-     * item.source: 获取 source 数据
-     * item.target: 获取 target 数据
+     * item.source: Get source data
+     * item.target: Get target data
      */
     // console.log(graph.findById(item.target).getModel());
     return {
@@ -143,7 +144,7 @@ interface Data {
 
 <description>**optional** _object_</description>
 
-边在不同状态下的样式配置项。
+Side style configuration items in different states.
 
 ```ts
 {
@@ -162,7 +163,7 @@ interface Data {
 
 <description>**optional** _object_</description>
 
-全局 title 样式配置，优先级低于 data 内 style.
+The global title style configuration has a lower priority than the style within data.
 
 ```ts
 {
@@ -176,7 +177,7 @@ interface Data {
 
 <description>**optional** _object_</description>
 
-全局 body 样式配置，优先级低于 data 内 style.
+The global body style configuration takes precedence over the data style.
 
 ```ts
 {
@@ -190,7 +191,7 @@ interface Data {
 
 <description>**optional** _object_</description>
 
-全局 footer 样式配置，优先级低于 data 内 style.
+The global footer style configuration takes precedence over the style within data.
 
 ```ts
 {
@@ -204,56 +205,56 @@ interface Data {
 
 <description>**optional** _Number[]_</description>
 
-节点的连接点 anchorPoint 指的是边连入节点的相对位置，即节点与其相关边的交点位置，默认值 `[[0.5, 0], [0.5, 1]]`。anchorPoints 是一个二维数组，每一项表示一个连接点的位置，在一个[图形 Shape](/zh/docs/manual/middle/elements/shape/shape-keyshape) 中，连接点的位置如下图所示，x 和 y 方向上范围都是 [0, 1]：<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*EJTyR4j9VN4AAAAAAAAAAABkARQnAQ' width='600' height='300' alt='img'/>
+The anchorPoint of a node is the link point where the related edges link to. In other words, it is the intersection of a node and its related edges. anchorPoints is a 2d array, each element represents the position of one anchor point. The positions of the anchor points in a Shape are shown below, the range of each x and y is [0, 1]:<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*EJTyR4j9VN4AAAAAAAAAAABkARQnAQ' width='600' height='300' alt='img'/>
 
 #### behaviors
 
 <description>**optional** _Number[]_</description>
 
-交互模式， 默认值 `['drag-canvas', 'zoom-canvas']`，[详见](https://g6.antv.vision/zh/docs/manual/middle/states/defaultBehavior)。
+Interaction mode, default `['drag-canvas', 'zoom-canvas']`，[Detail](https://g6.antv.vision/en/docs/manual/middle/states/defaultBehavior).
 
 #### collapseExpand
 
 <description>**optional** _Boolean_</description>
 
-是否可折叠，默认值 `true`。
+Collapseable, the default value `true`.
 
 #### showArrow
 
 <description>**optional** _Boolean_</description>
 
-是否展示尾部箭头，默认值 `true`。
+Whether to display tail arrows, default to 'true'.
 
 #### layout
 
 <description>**optional** _object_</description>
 
-布局。
+layout.
 
 ```ts
 {
   getHeight: () => {
-    // 每个节点的高度
+    // The height of each node
     return 60;
   },
   getWidth: () => {
-    // 每个节点的宽度
+    // The width of each node
     return 16;
   },
   getVGap: () => {
-    // 每个节点的垂直间隙
+    // Vertical clearance of each node
     return 16;
   },
   getHGap: () => {
-    // 每个节点的水平间隙
+    // Horizontal clearance of each node
     return 100;
   },
 }
 ```
 
-### 事件
+### Events
 
-事件通过 `on` 统一绑定到 graph 上，通过 `off` 移除，onReady 会返回 graph 实例，事件名[详见](https://g6.antv.vision/zh/docs/api/Event)。
+Events are bound to the Graph by 'on' and removed by 'off'. OnReady returns the Graph instance with the event name [details](https://g6.antv.vision/en/docs/api/Event).
 
 ```ts
 graph.on('type:eventName', callback);

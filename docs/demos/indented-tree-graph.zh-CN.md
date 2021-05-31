@@ -1,5 +1,5 @@
 ---
-title: IndentedTreeGraph
+title: 缩进树图(新)
 ---
 
 ### 基础用法

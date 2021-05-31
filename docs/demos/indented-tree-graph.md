@@ -1,8 +1,8 @@
 ---
-title: IndentedTreeGraph
+title: Indented Tree Graph (New)
 ---
 
-### 基础用法
+### Base
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -48,7 +48,7 @@ const DemoIndentedTree: React.FC = () => {
 export default DemoIndentedTree;
 ```
 
-### 布局调整
+### Layout
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -106,7 +106,7 @@ const DemoIndentedTree: React.FC = () => {
 export default DemoIndentedTree;
 ```
 
-### 自定义节点样式
+### Custom node style
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -207,7 +207,7 @@ const DemoIndentedTree: React.FC = () => {
 export default DemoIndentedTree;
 ```
 
-### 自定义边样式
+### Custom edge style
 
 ```tsx
 import React, { useState, useEffect } from 'react';
