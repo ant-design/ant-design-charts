@@ -18,7 +18,7 @@ interface CardModelConfig extends ModelConfig {
 }
 
 G6.registerNode(
-  'di-card-node',
+  'card',
   {
     draw: (cfg: CardModelConfig | undefined = {}, group: IGroup | undefined) => {
       let size = cfg.size || [100, 30];

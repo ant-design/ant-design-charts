@@ -2,6 +2,8 @@
 title: 缩进树图
 ---
 
+### 基础配置
+
 #### width
 
 <description>**optional** _number_ _default:_ `500`</description>
@@ -16,7 +18,7 @@ title: 缩进树图
 
 #### data
 
-数据，详见示例代码，`title`、`body`、`footer` 仅对 nodeType: `card-node` 生效， 其它 nodeType 类型使用 label。
+数据，详见示例代码，`title`、`body`、`footer` 仅对 nodeType: `card` 生效， 其它 nodeType 类型使用 label。
 
 ```ts
 // value、valueStyle 仅对 footer 生效
@@ -57,9 +59,9 @@ interface Data {
 
 #### nodeType
 
-<description>**optional** _`card-node`_</description>
+<description>**optional** _`card`_</description>
 
-节点类型，默认 `card-node`, 内置节点包括 card-node，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut，这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
+节点类型，默认 `card`, 内置节点包括 card，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut，这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
 
 #### nodeSize
 
@@ -246,5 +248,29 @@ interface Data {
     // 每个节点的水平间隙
     return 100;
   },
+}
+```
+
+### 事件
+
+事件通过 `on` 统一绑定到 graph 上，通过 `off` 移除，onReady 会返回 graph 实例，事件名[详见](https://g6.antv.vision/zh/docs/api/Event)。
+
+```ts
+graph.on('type:eventName', callback);
+graph.off('type:eventName', callback);
+```
+
+```ts
+{
+  onReady: (graph) => {
+    graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
+      const item = evt.item as INode;
+      graph.setItemState(item, 'hover', true);
+    });
+    graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
+      const item = evt.item as INode;
+      graph.setItemState(item, 'hover', false);
+    });
+  };
 }
 ```

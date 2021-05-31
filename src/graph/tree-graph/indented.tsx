@@ -37,7 +37,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
     style,
     width,
     height,
-    nodeType = 'di-card-node',
+    nodeType = 'card',
     edgeType = 'cubic-horizontal',
     behaviors = ['zoom-canvas', 'drag-canvas'],
     nodeAnchorPoints = defaultNodeAnchorPoints,
