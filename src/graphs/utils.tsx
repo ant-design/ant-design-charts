@@ -1,5 +1,24 @@
-import { INode, IG6GraphEvent, IGraph, IGroup } from '@antv/g6';
-import { NodeConfig } from './customItems';
+import { IGraph, IG6GraphEvent, INode, IGroup } from '@antv/g6';
+import { deepClone } from '../util/utils';
+import { CardNodeConfig } from './types';
+
+export const getGraphSize = (
+  width: number | undefined,
+  height: number | undefined,
+  container: React.RefObject<HTMLDivElement>,
+): number[] => {
+  let CANVAS_WIDTH;
+  let CANVAS_HEIGHT;
+  if (container && container.current) {
+    CANVAS_WIDTH = container.current.offsetWidth;
+    CANVAS_HEIGHT = container.current.offsetHeight || 500;
+  }
+  if ((!width && !CANVAS_WIDTH) || (!height && !CANVAS_HEIGHT)) {
+    console.warn('请为 Graph 指定 width 与 height！否则将使用默认值 500 * 500');
+    return [500, 500];
+  }
+  return [width || CANVAS_WIDTH || 500, height || CANVAS_HEIGHT || 500];
+};
 
 // 展开&折叠事件
 export const bindDefaultEvents = (graph: IGraph, collapseExpand?: boolean) => {
@@ -23,7 +42,7 @@ export const bindDefaultEvents = (graph: IGraph, collapseExpand?: boolean) => {
 };
 
 // 统一处理 text&style
-export const getContentAndStyle = (cfg: NodeConfig) => {
+export const getContentAndStyle = (cfg: CardNodeConfig) => {
   if (typeof cfg === 'string' || typeof cfg === 'number') {
     return {
       text: cfg,
@@ -59,4 +78,11 @@ export const getGraphId = (graph: { current?: string }) => {
   }
   graph.current = `IndentedTreeGraph-${uuid()}`;
   return graph.current;
+};
+
+export const renderGraph = (graph: IGraph, data: any) => {
+  const originData = deepClone(data);
+  graph.data(originData);
+  graph.render();
+  graph.fitView();
 };

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import G6, { IEdge, INode } from '@antv/g6';
-import { ErrorBoundary } from '../../base';
-import useGraph from '../../hooks/useGraph';
-import { deepClone } from '../../util/utils';
-import ChartLoading from '../../util/createLoading';
-import { getGraphSize } from '../util';
-import { RelationGraph } from '../types';
-import { bindDefaultEvents, getGraphId } from './utils';
+import { ErrorBoundary } from '../base';
+import useGraph from '../hooks/useGraph';
+import ChartLoading from '../util/createLoading';
+import { getGraphSize, getGraphId } from './utils';
+import { RelationGraph } from './types';
+import { bindDefaultEvents, renderGraph } from './utils';
 import './customItems';
 import {
   defaultNodeAnchorPoints,
@@ -48,7 +47,6 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
     nodeStateStyles,
     edgeStateStyles,
     collapseExpand = true,
-    graphRef,
     titleStyle,
     bodyStyle,
     footerStyle,
@@ -101,8 +99,6 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
       graphs[graphId] = graph;
     }
 
-    const originData = deepClone(data);
-
     graph.node((node: INode) => {
       if (typeof nodeStyle === 'function') {
         return {
@@ -134,13 +130,8 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
     if (collapseExpand) {
       bindDefaultEvents(graph, collapseExpand);
     }
-    graph.data(originData);
-    graph.render();
-    graph.fitView();
+    renderGraph(graph, data);
 
-    if (graphRef) {
-      graphRef!.current = graph;
-    }
     if (onReady) {
       onReady(graph);
     }

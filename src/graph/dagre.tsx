@@ -1,36 +1,21 @@
 import React, { useEffect } from 'react';
-import G6, { IEdge, INode, IG6GraphEvent } from '@antv/g6';
-import { RelationGraph } from './types';
+import G6 from '@antv/g6';
+import ChartLoading from '../util/createLoading';
 import { ErrorBoundary } from '../base';
-import { getGraphSize, processMinimap } from './util';
-import { deepClone } from '../util/utils';
 import useGraph from '../hooks/useGraph';
-
-const defaultStateStyles = {
-  hover: {
-    stroke: '#1890ff',
-    lineWidth: 2,
-  },
-};
-
-const defaultNodeSize = [120, 40];
+import {
+  defaultNodeSize,
+  defaultLabelCfg,
+  defaultNodeAnchorPoints,
+  defaultStateStyles,
+  defaultEdgeStyle,
+} from './contants';
+import { getGraphSize, processMinimap, getGraphId, renderGraph, bindEvents } from './utils';
+import { RelationGraph } from './types';
 
 const defaultNodeStyle = {
   stroke: '#40a9ff',
 };
-
-const defaultNodeAnchorPoints = [
-  [0.5, 0],
-  [0.5, 1],
-];
-
-const defaultEdgeStyle = {
-  stroke: '#91d5ff',
-  endArrow: {
-    path: G6.Arrow.vee(10, 10),
-  },
-};
-
 const defaultLayout = {
   type: 'dagre',
   rankdir: 'TB',
@@ -39,74 +24,37 @@ const defaultLayout = {
   controlPoints: true,
 };
 
-const defaultLabelCfg = {
-  style: {
-    fill: '#000',
-    fontSize: 12,
-  },
-};
 const graphs: any = {};
 
-const DagreGraph: React.SFC<RelationGraph> = ({
-  data,
-  className,
-  style,
-  width,
-  height,
-  nodeType = 'modelRect',
-  edgeType = 'polyline',
-  behaviors = ['zoom-canvas', 'drag-canvas'],
-  nodeSize = defaultNodeSize,
-  nodeLabelCfg = defaultLabelCfg,
-  edgeLabelCfg = defaultLabelCfg,
-  nodeAnchorPoints = defaultNodeAnchorPoints,
-  layout = defaultLayout,
-  minimapCfg,
-  nodeStyle = defaultNodeStyle,
-  edgeStyle = defaultEdgeStyle,
-  nodeStateStyles = defaultStateStyles,
-  edgeStateStyles = defaultStateStyles,
-  handleEdgeClick,
-  handleEdgeHover,
-  handleEdgeUnHover,
-  handleNodeClick,
-  handleNodeHover,
-  handleNodeUnHover,
-  handleCanvasClick,
-  graphRef,
-  graphId = 'defaultDagreGraph',
-}) => {
-  const props = {
+const DagreGraph: React.FC<RelationGraph> = (props) => {
+  const {
     data,
     className,
     style,
     width,
     height,
-    nodeType,
-    edgeType,
-    behaviors,
-    nodeSize,
-    nodeLabelCfg,
-    edgeLabelCfg,
-    nodeAnchorPoints,
-    layout,
+    nodeType = 'modelRect',
+    edgeType = 'polyline',
+    behaviors = ['zoom-canvas', 'drag-canvas'],
+    nodeSize = defaultNodeSize,
+    nodeLabelCfg = defaultLabelCfg,
+    edgeLabelCfg = defaultLabelCfg,
+    nodeAnchorPoints = defaultNodeAnchorPoints,
+    layout = defaultLayout,
     minimapCfg,
-    nodeStyle,
-    edgeStyle,
-    nodeStateStyles,
-    edgeStateStyles,
-    handleEdgeClick,
-    handleEdgeHover,
-    handleEdgeUnHover,
-    handleNodeClick,
-    handleNodeHover,
-    handleNodeUnHover,
-    handleCanvasClick,
+    nodeStyle = defaultNodeStyle,
+    edgeStyle = defaultEdgeStyle,
+    nodeStateStyles = defaultStateStyles,
+    edgeStateStyles = defaultStateStyles,
     graphRef,
-    graphId,
-  };
+    onReady,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+  } = props;
   const container = React.useRef(null);
-
+  const graph = React.useRef(null);
+  const graphId = getGraphId(graph as any);
   useGraph(graphs[graphId], props, container);
 
   useEffect(() => {
@@ -147,61 +95,12 @@ const DagreGraph: React.SFC<RelationGraph> = ({
 
     processMinimap(minimapCfg, graph);
 
-    const originData = deepClone(data);
-    graph.data(originData);
-    graph.render();
-    graph.fitView();
+    renderGraph(graph, data);
 
-    graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      graph.setItemState(item, 'hover', true);
-      if (handleEdgeHover) {
-        handleEdgeHover(item, graph);
-      }
-    });
-    graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      graph.setItemState(item, 'hover', true);
-      if (handleNodeHover) {
-        handleNodeHover(item, graph);
-      }
-    });
-
-    graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      graph.setItemState(item, 'hover', false);
-      if (handleEdgeUnHover) {
-        handleEdgeUnHover(item, graph);
-      }
-    });
-    graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      graph.setItemState(item, 'hover', false);
-      if (handleNodeUnHover) {
-        handleNodeUnHover(item, graph);
-      }
-    });
-
-    graph.on('edge:click', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      if (handleEdgeClick) {
-        handleEdgeClick(item, graph);
-      }
-    });
-
-    graph.on('node:click', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      if (handleNodeClick) {
-        handleNodeClick(item, graph);
-      }
-    });
-
-    graph.on('canvas:click', () => {
-      if (handleCanvasClick) {
-        handleCanvasClick(graph);
-      }
-    });
-
+    if (onReady) {
+      onReady(graph);
+    }
+    bindEvents(graph, props);
     return () => {
       if (graphs[graphId]) {
         graphs[graphId].destroy();
@@ -211,7 +110,8 @@ const DagreGraph: React.SFC<RelationGraph> = ({
   }, []);
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary errorTemplate={errorTemplate}>
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );

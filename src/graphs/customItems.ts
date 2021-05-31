@@ -1,21 +1,7 @@
-import G6, { IGroup, ModelConfig } from '@antv/g6';
+import G6, { IGroup } from '@antv/g6';
 import { defaultLabelCfg, Margin, defaultTitleLabelCfg } from './contants';
 import { getConfig, getContentAndStyle } from './utils';
-
-interface Items {
-  content: string | number;
-  value?: string | number;
-  style?: CSSStyleDeclaration;
-  valueStyle?: CSSStyleDeclaration;
-}
-
-export type NodeConfig = string | number | Items;
-
-interface CardModelConfig extends ModelConfig {
-  title?: NodeConfig;
-  body?: NodeConfig;
-  footer?: NodeConfig;
-}
+import { CardModelConfig } from './types';
 
 G6.registerNode(
   'card',
@@ -167,7 +153,6 @@ G6.registerNode(
           y: (height + 16) / 2,
         });
       }
-
       return shape;
     },
     update: undefined,

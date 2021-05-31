@@ -1,35 +1,18 @@
 import React, { useEffect } from 'react';
-import G6, { IEdge, INode, IG6GraphEvent } from '@antv/g6';
-import { RelationGraph } from './types';
+import G6 from '@antv/g6';
+import ChartLoading from '../util/createLoading';
 import { ErrorBoundary } from '../base';
-import { processMinimap, getGraphSize } from './util';
 import useGraph from '../hooks/useGraph';
 import { deepClone } from '../util/utils';
-
-const defaultStateStyles = {
-  hover: {
-    stroke: '#1890ff',
-    lineWidth: 2,
-  },
-};
+import { defaultNodeAnchorPoints, defaultStateStyles, defaultEdgeStyle } from './contants';
+import { processMinimap, getGraphSize, getGraphId, bindEvents } from './utils';
+import { RelationGraph } from './types';
 
 const defaultNodeSize = [150, 30];
 
 const defaultNodeStyle = {
   stroke: '#72CC4A',
   fill: '#f00',
-};
-
-const defaultNodeAnchorPoints = [
-  [0.5, 0],
-  [0.5, 1],
-];
-
-const defaultEdgeStyle = {
-  stroke: '#91d5ff',
-  endArrow: {
-    path: G6.Arrow.vee(10, 10),
-  },
 };
 
 const defaultLayout = {
@@ -47,69 +30,36 @@ const defaultLabelCfg = {
 };
 const graphs: any = {};
 
-const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
-  data,
-  className,
-  style,
-  width,
-  height,
-  nodeType = 'round-rect',
-  edgeType = 'fund-polyline',
-  behaviors = ['zoom-canvas', 'drag-canvas'],
-  nodeSize = defaultNodeSize,
-  nodeLabelCfg = defaultLabelCfg,
-  edgeLabelCfg = defaultLabelCfg,
-  nodeAnchorPoints = defaultNodeAnchorPoints,
-  layout = defaultLayout,
-  minimapCfg,
-  nodeStyle = defaultNodeStyle,
-  edgeStyle = defaultEdgeStyle,
-  nodeStateStyles = defaultStateStyles,
-  edgeStateStyles = defaultStateStyles,
-  colorMap = {},
-  handleEdgeClick,
-  handleEdgeHover,
-  handleEdgeUnHover,
-  handleNodeClick,
-  handleNodeHover,
-  handleNodeUnHover,
-  handleCanvasClick,
-  graphRef,
-  graphId = 'defaultDagreFundFlowGraph',
-}) => {
-  const container = React.useRef(null);
-
-  const props = {
+const DagreFundFlowGraph: React.FC<RelationGraph> = (props) => {
+  const {
     data,
     className,
     style,
     width,
     height,
-    nodeType,
-    edgeType,
-    behaviors,
-    nodeSize,
-    nodeLabelCfg,
-    edgeLabelCfg,
-    nodeAnchorPoints,
-    layout,
+    nodeType = 'round-rect',
+    edgeType = 'fund-polyline',
+    behaviors = ['zoom-canvas', 'drag-canvas'],
+    nodeSize = defaultNodeSize,
+    nodeLabelCfg = defaultLabelCfg,
+    edgeLabelCfg = defaultLabelCfg,
+    nodeAnchorPoints = defaultNodeAnchorPoints,
+    layout = defaultLayout,
     minimapCfg,
-    nodeStyle,
-    edgeStyle,
-    nodeStateStyles,
-    edgeStateStyles,
-    colorMap,
-    handleEdgeClick,
-    handleEdgeHover,
-    handleEdgeUnHover,
-    handleNodeClick,
-    handleNodeHover,
-    handleNodeUnHover,
-    handleCanvasClick,
+    nodeStyle = defaultNodeStyle,
+    edgeStyle = defaultEdgeStyle,
+    nodeStateStyles = defaultStateStyles,
+    edgeStateStyles = defaultStateStyles,
+    colorMap = {},
     graphRef,
-    graphId,
-  };
-
+    onReady,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+  } = props;
+  const container = React.useRef(null);
+  const graph = React.useRef(null);
+  const graphId = getGraphId(graph as any);
   useGraph(graphs[graphId], props, container);
 
   useEffect(() => {
@@ -153,7 +103,9 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     const originData = deepClone(data);
     graph.data(originData);
     graph.render();
-
+    if (onReady) {
+      onReady(graph);
+    }
     // modify the node color according to the in edge
     const edges = graph.getEdges();
     // @ts-ignore
@@ -169,53 +121,7 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
     });
 
     graph.fitView();
-
-    graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      graph.setItemState(item, 'hover', true);
-      if (handleEdgeHover) {
-        handleEdgeHover(item, graph);
-      }
-    });
-    graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      graph.setItemState(item, 'hover', false);
-      if (handleEdgeUnHover) {
-        handleEdgeUnHover(item, graph);
-      }
-    });
-    graph.on('edge:click', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      if (handleEdgeClick) {
-        handleEdgeClick(item, graph);
-      }
-    });
-
-    graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      graph.setItemState(item, 'hover', false);
-      if (handleNodeHover) {
-        handleNodeHover(item, graph);
-      }
-    });
-    graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      graph.setItemState(item, 'hover', false);
-      if (handleNodeUnHover) {
-        handleNodeUnHover(item, graph);
-      }
-    });
-    graph.on('node:click', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      if (handleNodeClick) {
-        handleNodeClick(item, graph);
-      }
-    });
-
-    graph.on('canvas:click', () => {
-      handleCanvasClick?.(graph);
-    });
-
+    bindEvents(graph, props);
     return () => {
       if (graphs[graphId]) {
         graphs[graphId].destroy();
@@ -225,7 +131,8 @@ const DagreFundFlowGraph: React.SFC<RelationGraph> = ({
   }, []);
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary errorTemplate={errorTemplate}>
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );

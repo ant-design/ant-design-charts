@@ -49,7 +49,6 @@ export interface RelationGraph extends ContainerProps {
   collapseExpand?: boolean;
   colorMap?: Object;
   graphRef?: React.MutableRefObject<IGraph | undefined>;
-  graphId?: string;
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
 }

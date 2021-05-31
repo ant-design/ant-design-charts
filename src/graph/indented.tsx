@@ -1,20 +1,12 @@
 import React, { useEffect } from 'react';
-import G6, { IEdge, INode, IG6GraphEvent } from '@antv/g6';
-import { RelationGraph } from './types';
+import G6, { INode, IG6GraphEvent } from '@antv/g6';
+import ChartLoading from '../util/createLoading';
 import { ErrorBoundary } from '../base';
-import './customItems';
-import { processMinimap, getGraphSize } from './util';
 import useGraph from '../hooks/useGraph';
-import { deepClone } from '../util/utils';
-
-const defaultStateStyles = {
-  hover: {
-    stroke: '#1890ff',
-    lineWidth: 2,
-  },
-};
-
-const defaultNodeSize = [120, 40];
+import { defaultNodeSize, defaultLabelCfg, defaultStateStyles } from './contants';
+import { processMinimap, getGraphSize, getGraphId, renderGraph, bindEvents } from './utils';
+import { RelationGraph } from './types';
+import './customItems';
 
 const defaultNodeStyle = {
   stroke: '#40a9ff',
@@ -46,76 +38,38 @@ const defaultLayout = {
   },
 };
 
-const defaultLabelCfg = {
-  style: {
-    fill: '#000',
-    fontSize: 12,
-  },
-};
-
 const graphs: any = {};
 
-const IndentedTree: React.SFC<RelationGraph> = ({
-  data,
-  className,
-  style,
-  width,
-  height,
-  nodeType = 'card-node',
-  edgeType = 'cubic-horizontal',
-  behaviors = ['zoom-canvas', 'drag-canvas'],
-  nodeSize = defaultNodeSize,
-  nodeLabelCfg = defaultLabelCfg,
-  nodeAnchorPoints = defaultNodeAnchorPoints,
-  layout = defaultLayout,
-  minimapCfg,
-  nodeStyle = defaultNodeStyle,
-  edgeStyle = defaultEdgeStyle,
-  nodeStateStyles = defaultStateStyles,
-  edgeStateStyles = defaultStateStyles,
-  collapseExpand = true,
-  handleEdgeClick,
-  handleEdgeHover,
-  handleEdgeUnHover,
-  handleNodeClick,
-  handleNodeHover,
-  handleNodeUnHover,
-  handleCanvasClick,
-  graphRef,
-  graphId = 'defaultIndentedTreeGraph',
-}) => {
-  const container = React.useRef(null);
-
-  const props = {
+const IndentedTree: React.FC<RelationGraph> = (props) => {
+  const {
     data,
     className,
     style,
     width,
     height,
-    nodeType,
-    edgeType,
-    behaviors,
-    nodeSize,
-    nodeLabelCfg,
-    nodeAnchorPoints,
-    layout,
+    nodeType = 'card-node',
+    edgeType = 'cubic-horizontal',
+    behaviors = ['zoom-canvas', 'drag-canvas'],
+    nodeSize = defaultNodeSize,
+    nodeLabelCfg = defaultLabelCfg,
+    nodeAnchorPoints = defaultNodeAnchorPoints,
+    layout = defaultLayout,
     minimapCfg,
-    nodeStyle,
-    edgeStyle,
-    nodeStateStyles,
-    edgeStateStyles,
-    collapseExpand,
-    handleEdgeClick,
-    handleEdgeHover,
-    handleEdgeUnHover,
+    nodeStyle = defaultNodeStyle,
+    edgeStyle = defaultEdgeStyle,
+    nodeStateStyles = defaultStateStyles,
+    edgeStateStyles = defaultStateStyles,
+    collapseExpand = true,
     handleNodeClick,
-    handleNodeHover,
-    handleNodeUnHover,
-    handleCanvasClick,
     graphRef,
-    graphId,
-  };
-
+    onReady,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+  } = props;
+  const graph = React.useRef(null);
+  const graphId = getGraphId(graph as any);
+  const container = React.useRef(null);
   useGraph(graphs[graphId], props, container);
 
   useEffect(() => {
@@ -154,11 +108,10 @@ const IndentedTree: React.SFC<RelationGraph> = ({
 
     processMinimap(minimapCfg, graph);
 
-    const originData = deepClone(data);
-    graph.data(originData);
-    graph.render();
-    graph.fitView();
-
+    renderGraph(graph, data);
+    if (onReady) {
+      onReady(graph);
+    }
     if (collapseExpand) {
       const onClick = (e: IG6GraphEvent) => {
         const item = e.item as INode;
@@ -178,55 +131,7 @@ const IndentedTree: React.SFC<RelationGraph> = ({
         onClick(e);
       });
     }
-    graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      graph.setItemState(item, 'hover', true);
-      if (handleEdgeHover) {
-        handleEdgeHover(item, graph);
-      }
-    });
-    graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      graph.setItemState(item, 'hover', false);
-      if (handleEdgeUnHover) {
-        handleEdgeUnHover(item, graph);
-      }
-    });
-    graph.on('edge:click', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      if (handleEdgeClick) {
-        handleEdgeClick(item, graph);
-      }
-    });
-    graph.on('edge:touchstart', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      if (handleEdgeClick) {
-        handleEdgeClick(item, graph);
-      }
-    });
-    graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      graph.setItemState(item, 'hover', false);
-      if (handleNodeHover) {
-        handleNodeHover(item, graph);
-      }
-    });
-    graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      graph.setItemState(item, 'hover', false);
-      if (handleNodeUnHover) {
-        handleNodeUnHover(item, graph);
-      }
-    });
-
-    graph.on('canvas:click', () => {
-      handleCanvasClick?.(graph);
-    });
-
-    graph.on('canvas:touchstart', () => {
-      handleCanvasClick?.(graph);
-    });
-
+    bindEvents(graph, props);
     return () => {
       if (graphs[graphId]) {
         graphs[graphId].destroy();
@@ -236,7 +141,8 @@ const IndentedTree: React.SFC<RelationGraph> = ({
   }, []);
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary errorTemplate={errorTemplate}>
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
