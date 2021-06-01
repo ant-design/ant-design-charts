@@ -6,8 +6,9 @@ import useGraph from '../hooks/useGraph';
 import { defaultNodeSize, defaultLabelCfg, defaultStateStyles } from './contants';
 import { processMinimap, getGraphSize, getGraphId, renderGraph, bindEvents } from './utils';
 import { RelationGraph } from './types';
-import './customItems';
+import { registerCustomItems } from './customItems';
 
+registerCustomItems();
 const defaultNodeStyle = {
   stroke: '#40a9ff',
 };

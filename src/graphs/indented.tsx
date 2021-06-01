@@ -6,7 +6,7 @@ import ChartLoading from '../util/createLoading';
 import { getGraphSize, getGraphId } from './utils';
 import { RelationGraph } from './types';
 import { bindDefaultEvents, renderGraph } from './utils';
-import './customItems';
+import { registerNodes } from './customItems';
 import {
   defaultNodeAnchorPoints,
   defaultNodeSize,
@@ -17,7 +17,7 @@ import {
 } from './contants';
 
 const graphs: any = {};
-
+registerNodes();
 export interface IndentedTreeProps extends RelationGraph {
   /** 全局 title 样式 */
   titleStyle?: CSSStyleDeclaration;
