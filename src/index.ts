@@ -1,4 +1,3 @@
-// 此文件在构建时会自动更新，请勿手动修改，详见 package.json 中的 entry script
 import Area from './area';
 import Bar from './bar';
 import Bullet from './bullet';
@@ -32,6 +31,7 @@ import MultiView from './mix'; // 和 Mix 相同，底层更名
 import Mix from './mix';
 import BidirectionalBar from './bidirectionalBar';
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
+import { IndentedTreeGraph } from './graphs';
 import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';
 
 export {
@@ -71,6 +71,7 @@ export {
   DagreGraph,
   IndentedTree,
   DagreFundFlowGraph,
+  IndentedTreeGraph,
   G2,
   // 直接导出 G2Plot 相关方法
   flow,
@@ -115,6 +116,7 @@ export default {
   DagreGraph,
   IndentedTree,
   DagreFundFlowGraph,
+  IndentedTreeGraph,
   G2,
   flow,
   measureTextWidth,

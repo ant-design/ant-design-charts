@@ -522,6 +522,27 @@ toc: content
 
 ## Relation Charts
 
+### Indented Tree Graph
+
+<div class="gallery-item-box">
+  <a href="/zh-CN/demos/indented-tree-graph#base">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/JnTL8NoUXP/7e356fc4-3d85-454f-a705-894292142f5c.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Base</p>
+  </a>
+  <a href="/zh-CN/demos/indented-tree-graph#layout">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/T5pSrfBP3y/cefd761c-8836-4a97-835c-fab2bcc73868.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Layout</p>
+  </a>
+   <a href="/zh-CN/demos/indented-tree-graph#custom-node-style">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/e1neY1VIRH/b4dee2eb-990a-4c75-b9c1-1200b816fa25.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Custom node style</p>
+  </a>
+   <a href="/zh-CN/demos/indented-tree-graph#custom-edge-style">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/NXhX4e2GgF/0a039c9d-6d3e-4051-84b8-fa12c07e5c29.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Custom edge style</p>
+  </a>
+</div>
+
 ### Organization Tree Graph
 
 <div class="gallery-item-box">
@@ -531,14 +552,14 @@ toc: content
   </a>
 </div>
 
-### Indented Tree
+<!-- ### Indented Tree(Old)
 
 <div class="gallery-item-box">
  <a href="/demos/indented-tree#演示结果">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C5XCQapXDpwAAAAAAAAAAAAAARQnAQ" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">缩进树图</p>
   </a>
-</div>
+</div> -->
 
 ### Dagre Graph
 

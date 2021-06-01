@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react';
-import G6, { INode, IEdge, TreeGraphData, NodeConfig, IG6GraphEvent } from '@antv/g6';
+import G6, { INode, TreeGraphData, NodeConfig, IG6GraphEvent } from '@antv/g6';
+import ChartLoading from '../util/createLoading';
 import { ErrorBoundary } from '../base';
-import { customIconNode } from './customItems';
-import { getGraphSize, processMinimap } from './util';
-import { RelationGraph } from './types';
 import useGraph from '../hooks/useGraph';
-import { deepClone } from '../util/utils';
-
-const defaultStateStyles = {
-  hover: {
-    stroke: '#1890ff',
-    lineWidth: 2,
-  },
-};
+import { customIconNode } from './customItems';
+import { defaultLabelCfg, defaultStateStyles } from './contants';
+import { getGraphSize, processMinimap, getGraphId, renderGraph, bindEvents } from './utils';
+import { RelationGraph } from './types';
 
 const defaultNodeStyle = {
   fill: '#91d5ff',
@@ -49,74 +43,37 @@ const defaultLayout = {
   },
 };
 
-const defaultLabelCfg = {
-  style: {
-    fill: '#000',
-    fontSize: 12,
-  },
-};
-
 const graphs: any = {};
-const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
-  data,
-  className,
-  style,
-  width,
-  height,
-  nodeType = 'rect',
-  edgeType = 'flow-line',
-  collapseExpand = false,
-  nodeSize = [120, 40],
-  nodeLabelCfg = defaultLabelCfg,
-  edgeLabelCfg = defaultLabelCfg,
-  layout = defaultLayout,
-  enableEdit = false,
-  minimapCfg,
-  nodeStyle = defaultNodeStyle,
-  edgeStyle = defaultEdgeStyle,
-  nodeStateStyles = defaultStateStyles,
-  edgeStateStyles = defaultStateStyles,
-  handleNodeClick,
-  handleEdgeClick,
-  handleNodeHover,
-  handleNodeUnHover,
-  handleEdgeHover,
-  handleEdgeUnHover,
-  handleCanvasClick,
-  graphRef,
-  graphId = 'defaultOrganizationTreeGraph',
-}) => {
-  const props = {
+const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
+  const {
     data,
     className,
     style,
     width,
     height,
-    nodeType,
-    edgeType,
-    collapseExpand,
-    nodeSize,
-    nodeLabelCfg,
-    edgeLabelCfg,
-    layout,
-    enableEdit,
+    nodeType = 'rect',
+    edgeType = 'flow-line',
+    collapseExpand = false,
+    nodeSize = [120, 40],
+    nodeLabelCfg = defaultLabelCfg,
+    edgeLabelCfg = defaultLabelCfg,
+    layout = defaultLayout,
+    enableEdit = false,
     minimapCfg,
-    nodeStyle,
-    edgeStyle,
-    nodeStateStyles,
-    edgeStateStyles,
+    nodeStyle = defaultNodeStyle,
+    edgeStyle = defaultEdgeStyle,
+    nodeStateStyles = defaultStateStyles,
+    edgeStateStyles = defaultStateStyles,
     handleNodeClick,
-    handleEdgeClick,
-    handleNodeHover,
-    handleNodeUnHover,
-    handleEdgeHover,
-    handleEdgeUnHover,
-    handleCanvasClick,
     graphRef,
-    graphId,
-  };
+    onReady,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+  } = props;
   const container = React.useRef(null);
-
+  const graph = React.useRef(null);
+  const graphId = getGraphId(graph as any);
   useGraph(graphs[graphId], props, container);
 
   useEffect(() => {
@@ -160,12 +117,10 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
     }
 
     processMinimap(minimapCfg, graph);
-
-    const originData = deepClone(data);
-    graph.data(originData);
-    graph.render();
-    graph.fitView();
-
+    renderGraph(graph, data);
+    if (onReady) {
+      onReady(graph);
+    }
     if (collapseExpand) {
       graph.addBehaviors(
         {
@@ -174,22 +129,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
         'default',
       );
     }
-
-    graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      graph.setItemState(item, 'hover', true);
-      if (handleNodeHover) {
-        handleNodeHover(item, graph);
-      }
-    });
-
-    graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      graph.setItemState(item, 'hover', false);
-      if (handleNodeUnHover) {
-        handleNodeUnHover(item, graph);
-      }
-    });
+    bindEvents(graph, props, false);
 
     graph.on('node:click', (evt: IG6GraphEvent) => {
       const { item, target } = evt;
@@ -219,33 +159,6 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
       }
     });
 
-    graph.on('edge:mouseenter', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      graph.setItemState(item, 'hover', true);
-      if (handleEdgeHover) {
-        handleEdgeHover(item, graph);
-      }
-    });
-
-    graph.on('edge:mouseleave', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      graph.setItemState(item, 'hover', false);
-      if (handleEdgeUnHover) {
-        handleEdgeUnHover(item, graph);
-      }
-    });
-
-    graph.on('edge:click', (evt: IG6GraphEvent) => {
-      const item = evt.item as IEdge;
-      if (handleEdgeClick) {
-        handleEdgeClick(item, graph);
-      }
-    });
-
-    graph.on('canvas:click', () => {
-      handleCanvasClick?.(graph);
-    });
-
     return () => {
       if (graphs[graphId]) {
         graphs[graphId].destroy();
@@ -255,7 +168,8 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = ({
   }, []);
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary errorTemplate={errorTemplate}>
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );

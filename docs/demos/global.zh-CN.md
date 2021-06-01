@@ -522,6 +522,27 @@ toc: content
 
 ## 关系图
 
+### 缩进树图
+
+<div class="gallery-item-box">
+  <a href="/zh-CN/demos/indented-tree-graph#基础用法">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/JnTL8NoUXP/7e356fc4-3d85-454f-a705-894292142f5c.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础用法</p>
+  </a>
+  <a href="/zh-CN/demos/indented-tree-graph#布局调整">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/T5pSrfBP3y/cefd761c-8836-4a97-835c-fab2bcc73868.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">布局调整</p>
+  </a>
+   <a href="/zh-CN/demos/indented-tree-graph#自定义节点样式">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/e1neY1VIRH/b4dee2eb-990a-4c75-b9c1-1200b816fa25.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义节点样式</p>
+  </a>
+   <a href="/zh-CN/demos/indented-tree-graph#自定义边样式">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/NXhX4e2GgF/0a039c9d-6d3e-4051-84b8-fa12c07e5c29.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义边样式</p>
+  </a>
+</div>
+
 ### 组织架构树图
 
 <div class="gallery-item-box">
@@ -531,14 +552,14 @@ toc: content
   </a>
 </div>
 
-### 缩进树图
+<!-- ### 缩进树图(旧)
 
 <div class="gallery-item-box">
  <a href="/zh-CN/demos/indented-tree#演示结果">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C5XCQapXDpwAAAAAAAAAAAAAARQnAQ" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">缩进树图</p>
   </a>
-</div>
+</div> -->
 
 ### 流程图
 

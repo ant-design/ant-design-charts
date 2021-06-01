@@ -1,4 +1,5 @@
 import { TreeGraphData, GraphData, StateStyles, ShapeStyle, INode, IEdge, IGraph } from '@antv/g6';
+import { ContainerProps } from '../interface';
 
 export interface MiniMapConfig {
   show?: boolean;
@@ -9,10 +10,7 @@ export interface MiniMapConfig {
   refresh?: boolean;
   padding?: number;
 }
-
-export interface RelationGraph {
-  style?: React.CSSProperties;
-  className?: string;
+export interface RelationGraph extends ContainerProps {
   data: TreeGraphData | GraphData;
   width?: number;
   height?: number;
@@ -51,5 +49,6 @@ export interface RelationGraph {
   collapseExpand?: boolean;
   colorMap?: Object;
   graphRef?: React.MutableRefObject<IGraph | undefined>;
-  graphId?: string;
+  /** 图表渲染完成回调 */
+  onReady?: (graph: IGraph) => void;
 }

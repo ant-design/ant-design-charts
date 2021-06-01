@@ -83,13 +83,13 @@ describe('IndentedTree', () => {
     ],
   };
   it('鼠标事件', () => {
-    let edgeClicked = false,
-      edgeHovered = false,
-      edgeUnhovered = false,
-      nodeClicked = false,
-      nodeHovered = false,
-      nodeUnhovered = false,
-      canvasClicked = false;
+    let edgeClicked = false;
+    let edgeHovered = false;
+    let edgeUnhovered = false;
+    let nodeClicked = false;
+    let nodeHovered = false;
+    let nodeUnhovered = false;
+    let canvasClicked = false;
 
     const config = {
       width: 650,
@@ -142,7 +142,8 @@ describe('IndentedTree', () => {
     refs.current.emit('edge:click', { item: edge });
     refs.current.emit('node:click', { item: node, target: collapseIcon });
     refs.current.emit('canvas:click', {});
-    refs.current.emit('node:touchstart', { item: node, target: collapseIcon });
+    // 并没有 node:touchstart 事件
+    // refs.current.emit('node:touchstart', { item: node, target: collapseIcon });
     refs.current.emit('edge:touchstart', { item: edge });
     refs.current.emit('canvas:touchstart', {});
 
