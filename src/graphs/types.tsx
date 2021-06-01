@@ -1,6 +1,5 @@
 import {
   TreeGraphData,
-  GraphData,
   StateStyles,
   ShapeStyle,
   INode,
