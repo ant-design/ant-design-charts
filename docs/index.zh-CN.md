@@ -34,7 +34,7 @@ import { Line } from '@ant-design/charts';
 
 const Page: React.FC = () => {
   const data = [
-    { year: '1991', value1: 3 },
+    { year: '1991', value: 3 },
     { year: '1992', value: 4 },
     { year: '1993', value: 3.5 },
     { year: '1994', value: 5 },
