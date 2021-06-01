@@ -1,5 +1,5 @@
 ---
-title: Indented Tree Graph (New)
+title: Indented Tree Graph
 ---
 
 ### Base

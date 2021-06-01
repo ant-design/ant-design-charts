@@ -522,7 +522,7 @@ toc: content
 
 ## 关系图
 
-### 缩进树图(新)
+### 缩进树图
 
 <div class="gallery-item-box">
   <a href="/zh-CN/demos/indented-tree-graph#基础用法">
@@ -552,14 +552,14 @@ toc: content
   </a>
 </div>
 
-### 缩进树图(旧)
+<!-- ### 缩进树图(旧)
 
 <div class="gallery-item-box">
  <a href="/zh-CN/demos/indented-tree#演示结果">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C5XCQapXDpwAAAAAAAAAAAAAARQnAQ" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">缩进树图</p>
   </a>
-</div>
+</div> -->
 
 ### 流程图
 

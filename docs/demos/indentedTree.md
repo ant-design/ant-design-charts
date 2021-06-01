@@ -1,5 +1,5 @@
 ---
-title: Indented Tree (Old)
+title: Indented Tree
 order: 2
 ---
 

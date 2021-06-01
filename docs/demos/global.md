@@ -522,7 +522,7 @@ toc: content
 
 ## Relation Charts
 
-### Indented Tree Graph(New)
+### Indented Tree Graph
 
 <div class="gallery-item-box">
   <a href="/zh-CN/demos/indented-tree-graph#base">
@@ -552,14 +552,14 @@ toc: content
   </a>
 </div>
 
-### Indented Tree(Old)
+<!-- ### Indented Tree(Old)
 
 <div class="gallery-item-box">
  <a href="/demos/indented-tree#演示结果">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C5XCQapXDpwAAAAAAAAAAAAAARQnAQ" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">缩进树图</p>
   </a>
-</div>
+</div> -->
 
 ### Dagre Graph
 
