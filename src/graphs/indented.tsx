@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import G6, { IEdge, INode } from '@antv/g6';
+import G6, { IEdge, INode, LabelStyle } from '@antv/g6';
 import { ErrorBoundary } from '../base';
 import useGraph from '../hooks/useGraph';
 import ChartLoading from '../util/createLoading';
@@ -20,11 +20,11 @@ const graphs: any = {};
 registerNodes();
 export interface IndentedTreeProps extends RelationGraph {
   /** 全局 title 样式 */
-  titleStyle?: CSSStyleDeclaration;
+  titleStyle?: LabelStyle;
   /** 全局 body 样式 */
-  bodyStyle?: CSSStyleDeclaration;
+  bodyStyle?: LabelStyle;
   /** 全局 footer 样式 */
-  footerStyle?: CSSStyleDeclaration;
+  footerStyle?: LabelStyle;
   /** 是否展示尾部监听，默认 true */
   showArrow?: boolean;
 }

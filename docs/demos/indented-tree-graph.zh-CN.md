@@ -5,9 +5,8 @@ title: 缩进树图
 ### 基础用法
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IndentedTreeGraph } from '@ant-design/charts';
-import { each } from '@antv/util';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
@@ -51,9 +50,8 @@ export default DemoIndentedTree;
 ### 布局调整
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IndentedTreeGraph } from '@ant-design/charts';
-import { each } from '@antv/util';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
@@ -109,9 +107,8 @@ export default DemoIndentedTree;
 ### 自定义节点样式
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IndentedTreeGraph } from '@ant-design/charts';
-import { each } from '@antv/util';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
@@ -190,12 +187,12 @@ const DemoIndentedTree: React.FC = () => {
     },
     nodeStateStyles,
     onReady: (graph) => {
-      graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
+      graph.on('node:mouseenter', (evt) => {
+        const item = evt.item;
         graph.setItemState(item, 'hover', true);
       });
-      graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
+      graph.on('node:mouseleave', (evt) => {
+        const item = evt.item;
         graph.setItemState(item, 'hover', false);
       });
     },
@@ -210,9 +207,8 @@ export default DemoIndentedTree;
 ### 自定义边样式
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IndentedTreeGraph } from '@ant-design/charts';
-import { each } from '@antv/util';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
@@ -283,12 +279,12 @@ const DemoIndentedTree: React.FC = () => {
     },
     nodeStateStyles,
     onReady: (graph) => {
-      graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
+      graph.on('node:mouseenter', (evt) => {
+        const item = evt.item;
         graph.setItemState(item, 'hover', true);
       });
-      graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
+      graph.on('node:mouseleave', (evt) => {
+        const item = evt.item;
         graph.setItemState(item, 'hover', false);
       });
     },

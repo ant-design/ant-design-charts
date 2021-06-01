@@ -5,9 +5,8 @@ title: Indented Tree Graph
 ### Base
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IndentedTreeGraph } from '@ant-design/charts';
-import { each } from '@antv/util';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
@@ -51,9 +50,8 @@ export default DemoIndentedTree;
 ### Layout
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IndentedTreeGraph } from '@ant-design/charts';
-import { each } from '@antv/util';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
@@ -109,9 +107,8 @@ export default DemoIndentedTree;
 ### Custom node style
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IndentedTreeGraph } from '@ant-design/charts';
-import { each } from '@antv/util';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
@@ -190,12 +187,12 @@ const DemoIndentedTree: React.FC = () => {
     },
     nodeStateStyles,
     onReady: (graph) => {
-      graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
+      graph.on('node:mouseenter', (evt) => {
+        const item = evt.item;
         graph.setItemState(item, 'hover', true);
       });
-      graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
+      graph.on('node:mouseleave', (evt) => {
+        const item = evt.item;
         graph.setItemState(item, 'hover', false);
       });
     },
@@ -210,9 +207,8 @@ export default DemoIndentedTree;
 ### Custom edge style
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IndentedTreeGraph } from '@ant-design/charts';
-import { each } from '@antv/util';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
@@ -283,12 +279,12 @@ const DemoIndentedTree: React.FC = () => {
     },
     nodeStateStyles,
     onReady: (graph) => {
-      graph.on('node:mouseenter', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
+      graph.on('node:mouseenter', (evt) => {
+        const item = evt.item;
         graph.setItemState(item, 'hover', true);
       });
-      graph.on('node:mouseleave', (evt: IG6GraphEvent) => {
-        const item = evt.item as INode;
+      graph.on('node:mouseleave', (evt) => {
+        const item = evt.item;
         graph.setItemState(item, 'hover', false);
       });
     },
@@ -298,7 +294,7 @@ const DemoIndentedTree: React.FC = () => {
        * item.source: 获取 source 数据
        * item.target: 获取 target 数据
        */
-      // console.log(graph.findById(item.target).getModel());
+      // console.log(graph.findById(item.source).getModel());
       return {
         stroke: '#40a9ff',
         lineWidth: Math.random() * 10,
