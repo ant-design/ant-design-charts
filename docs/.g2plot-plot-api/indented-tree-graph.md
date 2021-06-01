@@ -131,7 +131,7 @@ Edge style.
      * item.source: Get source data
      * item.target: Get target data
      */
-    // console.log(graph.findById(item.target).getModel());
+   // console.log(graph.findById(item.source).getModel());
     return {
       stroke: '#40a9ff',
       lineWidth: Math.random() * 10,

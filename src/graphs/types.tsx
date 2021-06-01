@@ -6,6 +6,9 @@ import {
   IEdge,
   IGraph,
   ModelConfig,
+  IG6GraphEvent,
+  IGroup,
+  LabelStyle,
 } from '@antv/g6';
 import { ContainerProps } from '../interface';
 
@@ -13,8 +16,8 @@ import { ContainerProps } from '../interface';
 export interface CardItems {
   content: string | number;
   value?: string | number;
-  style?: CSSStyleDeclaration;
-  valueStyle?: CSSStyleDeclaration;
+  style?: LabelStyle;
+  valueStyle?: LabelStyle;
 }
 
 export type CardNodeConfig = string | number | CardItems;
@@ -46,3 +49,16 @@ export interface RelationGraph extends ContainerProps {
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
 }
+
+export {
+  TreeGraphData,
+  StateStyles,
+  ShapeStyle,
+  INode,
+  IEdge,
+  IGraph,
+  ModelConfig,
+  IG6GraphEvent,
+  IGroup,
+  LabelStyle,
+};

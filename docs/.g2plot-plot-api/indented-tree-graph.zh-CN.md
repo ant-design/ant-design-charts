@@ -130,7 +130,7 @@ interface Data {
      * item.source: 获取 source 数据
      * item.target: 获取 target 数据
      */
-    // console.log(graph.findById(item.target).getModel());
+   // console.log(graph.findById(item.source).getModel());
     return {
       stroke: '#40a9ff',
       lineWidth: Math.random() * 10,
