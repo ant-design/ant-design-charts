@@ -184,49 +184,49 @@ toc: content
 
 <div class="gallery-item-box">
   
-  <a href="/demos/bar#基础条形图">
+  <a href="/demos/bar#basic-bar-chart">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cnRsQo-Yqg0AAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Basic bar chart</p>
   </a>
 
-  <a href="/demos/bar#基础条形图 - 自定义颜色">
+  <a href="/demos/bar#basic-bar-chart---custom-color">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*U-D1S4w5HNsAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图 - 自定义颜色</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Basic bar chart - custom color</p>
   </a>
 
-  <a href="/demos/bar#基础条形图 - 柱子宽度">
+  <a href="/demos/bar#basic-bar-chart---column-width">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*uqtcQJ-N-qUAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图 - 柱子宽度</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Basic bar chart - column width</p>
   </a>
 
-  <a href="/demos/bar#基础条形图 - 滚动条">
+  <a href="/demos/bar#basic-bar-chart---scroll-bar">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*01-mRqASP78AAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图 - 滚动条</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Basic bar chart - scroll bar</p>
   </a>
 
-  <a href="/demos/bar#基础条形图 - 转化率">
+  <a href="/demos/bar#basic-bar-chart---conversion-rate">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*-9CLRItZrPMAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础条形图 - 转化率</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Basic Bar Chart - Conversion Rate</p>
   </a>
 
-  <a href="/demos/bar#分组条形图">
+  <a href="/demos/bar#grouped-bar-chart">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Yda9RZwgU1AAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组条形图</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Grouped bar chart</p>
   </a>
 
-  <a href="/demos/bar#百分百条形图">
+  <a href="/demos/bar#hundred-percent-bar-graph">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*l8JuSrkrOIkAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">百分百条形图</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Hundred Percent Bar Graph</p>
   </a>
 
-  <a href="/demos/bar#区间条形图">
+  <a href="/demos/bar#interval-bar-chart">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*1is6RbXnUI4AAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">区间条形图</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Interval bar chart</p>
   </a>
 
-  <a href="/demos/bar#堆叠条形图">
+  <a href="/demos/bar#stacked-bar-chart">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BHyQS6T_qucAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">堆叠条形图</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Stacked bar chart</p>
   </a>
 
 </div>
