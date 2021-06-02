@@ -3,7 +3,7 @@ title: Pie
 order: 5
 ---
 
-### Pie
+### Pie Chart
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -62,7 +62,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-Legend interaction
+### Pie Chart-Legend interaction
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -113,7 +113,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-External graphic label
+### Pie Chart-External graphic label
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -161,7 +161,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-Set condition status
+### Pie Chart-Set condition status
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -223,7 +223,10 @@ const DemoPie: React.FC = () => {
   useEffect(() => {
     if (ref) {
       ref.setState('active', (data) => data.type === 'Category One');
-      ref.setState('selected', (data) => data.type === 'Category One' || data.type === 'Category Two');
+      ref.setState(
+        'selected',
+        (data) => data.type === 'Category One' || data.type === 'Category Two',
+      );
     }
   }, []);
 
@@ -233,7 +236,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-Textured
+### Pie Chart-Textured
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -280,7 +283,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-Spider layout tags
+### Pie Chart-Spider layout tags
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -402,7 +405,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Ring Chart Statistical Indicator Card
+### Ring Diagram-Statistical Indicator Card
 
 ```tsx
 import React, { useState, useEffect } from 'react';

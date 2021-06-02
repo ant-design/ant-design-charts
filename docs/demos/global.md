@@ -235,44 +235,44 @@ toc: content
 
 <div class="gallery-item-box">
   
-  <a href="/demos/pie#饼图">
+  <a href="/demos/pie#pie-chart">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wmldRZZj9lIAAAAAAAAAAABkARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Pie Chart</p>
   </a>
 
-  <a href="/demos/pie#饼图-外部图形标签">
+  <a href="/demos/pie#pie-chart-external-graphic-label">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ZztJQa4RLwoAAAAAAAAAAABkARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-外部图形标签</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Pie Chart-External graphic label</p>
   </a>
 
-  <a href="/demos/pie#饼图-蜘蛛布局标签">
+  <a href="/demos/pie#pie-chart-spider-layout-tags">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*QyXPRK-URmUAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-蜘蛛布局标签</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Pie Chart-Spider layout tags</p>
   </a>
 
-  <a href="/demos/pie#饼图-设置条件状态">
+  <a href="/demos/pie#pie-chart-set-condition-status">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*y8zjS5DZib8AAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-设置条件状态</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Pie Chart-Set condition status</p>
   </a>
 
-  <a href="/demos/pie#饼图-图例交互">
+  <a href="/demos/pie#pie-chart-legend-interaction">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xZtSQocP4kYAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-图例交互</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Pie Chart-Legend interaction</p>
   </a>
 
-  <a href="/demos/pie#饼图-带纹理">
+  <a href="/demos/pie#pie-chart-textured">
     <img src="https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*6DhLR77aZloAAAAAAAAAAABkARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">饼图-带纹理</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Pie Chart-Textured</p>
   </a>
 
-  <a href="/demos/pie#环图">
+  <a href="/demos/pie#ring-diagram">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*65WIQK5T4c8AAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">环图</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Ring diagram</p>
   </a>
 
-  <a href="/demos/pie#环图统计指标卡">
+  <a href="/demos/pie#ring-diagram-statistical-indicator-card">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*5f9ESplug4IAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">环图统计指标卡</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Ring Diagram-Statistical Indicator Card</p>
   </a>
 
 </div>
