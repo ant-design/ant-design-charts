@@ -200,6 +200,12 @@ interface Data {
 }
 ```
 
+#### footerValueStyle
+
+<description>**optional** _object_</description>
+
+全局 footer value 样式配置，优先级低于 data 内 style.
+
 #### nodeAnchorPoints
 
 <description>**optional** _Number[]_</description>

@@ -201,6 +201,12 @@ The global footer style configuration takes precedence over the style within dat
 }
 ```
 
+#### footerValueStyle
+
+<description>**optional** _object_</description>
+
+The global footer value style configuration takes precedence over the style within data.
+
 #### nodeAnchorPoints
 
 <description>**optional** _Number[]_</description>

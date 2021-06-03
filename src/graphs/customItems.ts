@@ -123,10 +123,11 @@ export const registerNodes = () => {
           const { width, height: contentHeight } = footerTextShape.getBBox();
           let footerValueHeight = 0;
           if (typeof cfg.footer === 'object' && cfg.footer?.value) {
-            const { text: valueText, style: valueStyle = cfg.footerStyle } = getContentAndStyle({
-              content: cfg.footer.value,
-              style: cfg.footer.valueStyle,
-            });
+            const { text: valueText, style: valueStyle = cfg.footerValueStyle || cfg.footerStyle } =
+              getContentAndStyle({
+                content: cfg.footer.value,
+                style: cfg.footer.valueStyle,
+              });
             const valueTextShape = group!.addShape('text', {
               attrs: {
                 textBaseline: 'top',
