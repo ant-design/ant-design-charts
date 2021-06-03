@@ -3,7 +3,7 @@ title: Pie
 order: 5
 ---
 
-### Pie
+### Pie Chart
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -12,27 +12,27 @@ import { Pie } from '@ant-design/charts';
 const DemoPie: React.FC = () => {
   var data = [
     {
-      type: '分类一',
+      type: 'Category One',
       value: 27,
     },
     {
-      type: '分类二',
+      type: 'Category Two',
       value: 25,
     },
     {
-      type: '分类三',
+      type: 'Category Three',
       value: 18,
     },
     {
-      type: '分类四',
+      type: 'Category Four',
       value: 15,
     },
     {
-      type: '分类五',
+      type: 'Category Five',
       value: 10,
     },
     {
-      type: '其他',
+      type: 'other',
       value: 5,
     },
   ];
@@ -62,7 +62,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-图例交互
+### Pie Chart-Legend interaction
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -71,27 +71,27 @@ import { Pie } from '@ant-design/charts';
 const DemoPie: React.FC = () => {
   var data = [
     {
-      type: '分类一',
+      type: 'Category One',
       value: 27,
     },
     {
-      type: '分类二',
+      type: 'Category Two',
       value: 25,
     },
     {
-      type: '分类三',
+      type: 'Category Three',
       value: 18,
     },
     {
-      type: '分类四',
+      type: 'Category Four',
       value: 15,
     },
     {
-      type: '分类五',
+      type: 'Category Five',
       value: 10,
     },
     {
-      type: '其他',
+      type: 'other',
       value: 5,
     },
   ];
@@ -113,7 +113,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-外部图形标签
+### Pie Chart-External graphic label
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -122,27 +122,27 @@ import { Pie } from '@ant-design/charts';
 const DemoPie: React.FC = () => {
   var data = [
     {
-      type: '分类一',
+      type: 'Category One',
       value: 27,
     },
     {
-      type: '分类二',
+      type: 'Category Two',
       value: 25,
     },
     {
-      type: '分类三',
+      type: 'Category Three',
       value: 18,
     },
     {
-      type: '分类四',
+      type: 'Category Four',
       value: 15,
     },
     {
-      type: '分类五',
+      type: 'Category Five',
       value: 10,
     },
     {
-      type: '其他',
+      type: 'other',
       value: 5,
     },
   ];
@@ -161,7 +161,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-设置条件状态
+### Pie Chart-Set condition status
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -171,27 +171,27 @@ const DemoPie: React.FC = () => {
   let ref;
   var data = [
     {
-      type: '分类一',
+      type: 'Category One',
       value: 27,
     },
     {
-      type: '分类二',
+      type: 'Category Two',
       value: 25,
     },
     {
-      type: '分类三',
+      type: 'Category Three',
       value: 18,
     },
     {
-      type: '分类四',
+      type: 'Category Four',
       value: 15,
     },
     {
-      type: '分类五',
+      type: 'Category Five',
       value: 10,
     },
     {
-      type: '其他',
+      type: 'other',
       value: 5,
     },
   ];
@@ -222,8 +222,11 @@ const DemoPie: React.FC = () => {
   };
   useEffect(() => {
     if (ref) {
-      ref.setState('active', (data) => data.type === '分类一');
-      ref.setState('selected', (data) => data.type === '分类一' || data.type === '分类二');
+      ref.setState('active', (data) => data.type === 'Category One');
+      ref.setState(
+        'selected',
+        (data) => data.type === 'Category One' || data.type === 'Category Two',
+      );
     }
   }, []);
 
@@ -233,7 +236,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-带纹理
+### Pie Chart-Textured
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -242,11 +245,11 @@ import { Pie } from '@ant-design/charts';
 const DemoPie: React.FC = () => {
   var data = [
     {
-      sex: '男',
+      sex: 'Male',
       sold: 0.45,
     },
     {
-      sex: '女',
+      sex: 'Female',
       sold: 0.55,
     },
   ];
@@ -268,7 +271,7 @@ const DemoPie: React.FC = () => {
     },
     pieStyle: function pieStyle(_ref) {
       var sex = _ref.sex;
-      if (sex === '男') {
+      if (sex === 'Male') {
         return { fill: 'p(a)https://gw.alipayobjects.com/zos/rmsportal/nASTPWDPJDMgkDRlAUmw.jpeg' };
       }
       return { fill: 'p(a)https://gw.alipayobjects.com/zos/rmsportal/ziMWHpHSTlTzURSzCarw.jpeg' };
@@ -280,7 +283,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### Pie-蜘蛛布局标签
+### Pie Chart-Spider layout tags
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -289,27 +292,27 @@ import { Pie } from '@ant-design/charts';
 const DemoPie: React.FC = () => {
   var data = [
     {
-      type: '分类一',
+      type: 'Category One',
       value: 27,
     },
     {
-      type: '分类二',
+      type: 'Category Two',
       value: 25,
     },
     {
-      type: '分类三',
+      type: 'Category Three',
       value: 18,
     },
     {
-      type: '分类四',
+      type: 'Category Four',
       value: 15,
     },
     {
-      type: '分类五',
+      type: 'Category Five',
       value: 10,
     },
     {
-      type: '其他',
+      type: 'other',
       value: 5,
     },
   ];
@@ -332,7 +335,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### 环图
+### Ring diagram
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -341,27 +344,27 @@ import { Pie } from '@ant-design/charts';
 const DemoPie: React.FC = () => {
   var data = [
     {
-      type: '分类一',
+      type: 'Category One',
       value: 27,
     },
     {
-      type: '分类二',
+      type: 'Category Two',
       value: 25,
     },
     {
-      type: '分类三',
+      type: 'Category Three',
       value: 18,
     },
     {
-      type: '分类四',
+      type: 'Category Four',
       value: 15,
     },
     {
-      type: '分类五',
+      type: 'Category Five',
       value: 10,
     },
     {
-      type: '其他',
+      type: 'other',
       value: 5,
     },
   ];
@@ -402,7 +405,7 @@ const DemoPie: React.FC = () => {
 export default DemoPie;
 ```
 
-### 环图统计指标卡
+### Ring Diagram-Statistical Indicator Card
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -411,27 +414,27 @@ import { Pie } from '@ant-design/charts';
 const DemoPie: React.FC = () => {
   var data = [
     {
-      type: '分类一',
+      type: 'Category One',
       value: 27,
     },
     {
-      type: '分类二',
+      type: 'Category Two',
       value: 25,
     },
     {
-      type: '分类三',
+      type: 'Category Three',
       value: 18,
     },
     {
-      type: '分类四',
+      type: 'Category Four',
       value: 15,
     },
     {
-      type: '分类五',
+      type: 'Category Five',
       value: 10,
     },
     {
-      type: '其他',
+      type: 'other',
       value: 5,
     },
   ];
