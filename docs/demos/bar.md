@@ -3,7 +3,7 @@ title: Bar
 order: 2
 ---
 
-### 基础条形图
+### Basic bar chart
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -12,23 +12,23 @@ import { Bar } from '@ant-design/charts';
 const DemoBar: React.FC = () => {
   var data = [
     {
-      year: '1951 年',
+      year: '1951',
       value: 38,
     },
     {
-      year: '1952 年',
+      year: '1952',
       value: 52,
     },
     {
-      year: '1956 年',
+      year: '1956',
       value: 61,
     },
     {
-      year: '1957 年',
+      year: '1957',
       value: 145,
     },
     {
-      year: '1958 年',
+      year: '1958',
       value: 48,
     },
   ];
@@ -45,7 +45,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图 - 自定义颜色
+### Basic bar chart - custom color
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -54,35 +54,35 @@ import { Bar } from '@ant-design/charts';
 const DemoBar: React.FC = () => {
   var data = [
     {
-      type: '家具家电',
+      type: 'Furniture appliances',
       sales: 38,
     },
     {
-      type: '粮油副食',
+      type: 'Cereals, Oils and Non-staple Food',
       sales: 52,
     },
     {
-      type: '生鲜水果',
+      type: 'Fresh fruit',
       sales: 61,
     },
     {
-      type: '美容洗护',
+      type: 'Beauty care',
       sales: 145,
     },
     {
-      type: '母婴用品',
+      type: 'Baby Products',
       sales: 48,
     },
     {
-      type: '进口食品',
+      type: 'Imported food',
       sales: 38,
     },
     {
-      type: '食品饮料',
+      type: 'Food and drink',
       sales: 38,
     },
     {
-      type: '家庭清洁',
+      type: 'Home cleaning',
       sales: 38,
     },
   ];
@@ -93,12 +93,12 @@ const DemoBar: React.FC = () => {
     seriesField: 'type',
     color: function color(_ref) {
       var type = _ref.type;
-      return type === '美容洗护' ? '#FAAD14' : '#5B8FF9';
+      return type === 'Beauty care' ? '#FAAD14' : '#5B8FF9';
     },
     legend: false,
     meta: {
-      type: { alias: '类别' },
-      sales: { alias: '销售额' },
+      type: { alias: 'Category' },
+      sales: { alias: 'Sales' },
     },
   };
   return <Bar {...config} />;
@@ -107,7 +107,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图 - 转化率
+### Basic Bar Chart - Conversion Rate
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -116,23 +116,23 @@ import { Bar } from '@ant-design/charts';
 const DemoBar: React.FC = () => {
   var data = [
     {
-      action: '浏览网站',
+      action: 'Browse the website',
       pv: 50000,
     },
     {
-      action: '放入购物车',
+      action: 'Add to cart',
       pv: 35000,
     },
     {
-      action: '生成订单',
+      action: 'Generate orders',
       pv: 25000,
     },
     {
-      action: '支付订单',
+      action: 'Pay order',
       pv: 15000,
     },
     {
-      action: '完成交易',
+      action: 'Seal the deal',
       pv: 8500,
     },
   ];
@@ -148,7 +148,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图 - 滚动条
+### Basic bar chart - scroll bar
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -180,7 +180,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图 - 柱子宽度
+### Basic bar chart - column width
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -189,35 +189,35 @@ import { Bar } from '@ant-design/charts';
 const DemoBar: React.FC = () => {
   var data = [
     {
-      type: '家具家电',
+      type: 'Furniture appliances',
       sales: 38,
     },
     {
-      type: '粮油副食',
+      type: 'Cereals, Oils and Non-staple Food',
       sales: 52,
     },
     {
-      type: '生鲜水果',
+      type: 'Fresh fruit',
       sales: 61,
     },
     {
-      type: '美容洗护',
+      type: 'Beauty care',
       sales: 145,
     },
     {
-      type: '母婴用品',
+      type: 'Baby Products',
       sales: 48,
     },
     {
-      type: '进口食品',
+      type: 'Imported food',
       sales: 38,
     },
     {
-      type: '食品饮料',
+      type: 'Food and drink',
       sales: 38,
     },
     {
-      type: '家庭清洁',
+      type: 'Home cleaning',
       sales: 38,
     },
   ];
@@ -227,8 +227,8 @@ const DemoBar: React.FC = () => {
     yField: 'type',
     barWidthRatio: 0.8,
     meta: {
-      type: { alias: '类别' },
-      sales: { alias: '销售额' },
+      type: { alias: 'Category' },
+      sales: { alias: 'Sales' },
     },
   };
   return <Bar {...config} />;
@@ -237,7 +237,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 分组条形图
+### Grouped bar chart
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -318,7 +318,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 百分百条形图
+### Hundred Percent Bar Graph
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -453,7 +453,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 区间条形图
+### Interval bar chart
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -462,35 +462,35 @@ import { Bar } from '@ant-design/charts';
 const DemoBar: React.FC = () => {
   var data = [
     {
-      type: '分类一',
+      type: 'Category One',
       values: [76, 100],
     },
     {
-      type: '分类二',
+      type: 'Category Two',
       values: [56, 108],
     },
     {
-      type: '分类三',
+      type: 'Category Three',
       values: [38, 129],
     },
     {
-      type: '分类四',
+      type: 'Category Four',
       values: [58, 155],
     },
     {
-      type: '分类五',
+      type: 'Category Five',
       values: [45, 120],
     },
     {
-      type: '分类六',
+      type: 'Category Six',
       values: [23, 99],
     },
     {
-      type: '分类七',
+      type: 'Category Seven',
       values: [18, 56],
     },
     {
-      type: '分类八',
+      type: 'Category Eight',
       values: [18, 34],
     },
   ];
@@ -510,7 +510,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 堆叠条形图
+### Stacked bar chart
 
 ```tsx
 import React, { useState, useEffect } from 'react';
