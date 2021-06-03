@@ -25,7 +25,9 @@ export interface IndentedTreeProps extends RelationGraph {
   bodyStyle?: LabelStyle;
   /** 全局 footer 样式 */
   footerStyle?: LabelStyle;
-  /** 是否展示尾部监听，默认 true */
+  /** 全局 footer value 样式 */
+  footerValueStyle?: LabelStyle;
+  /** 是否展示尾部箭头，默认 true */
   showArrow?: boolean;
 }
 
@@ -50,6 +52,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
     titleStyle,
     bodyStyle,
     footerStyle,
+    footerValueStyle,
     showArrow = true,
     onReady,
     loading,
@@ -79,6 +82,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
           titleStyle,
           bodyStyle,
           footerStyle,
+          footerValueStyle,
         },
         defaultEdge: {
           type: edgeType,
