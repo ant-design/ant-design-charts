@@ -321,4 +321,26 @@ describe('use chart', () => {
     expect(chartRef.options.statistic.content.customHtml().innerHTML).toBe('content');
     expect(chartRef.options.statistic.title.customHtml().innerHTML).toBe('title');
   });
+
+  it('deep clone', () => {
+    const title = {
+      text: 'net work',
+    };
+    let chartRef;
+    const props = {
+      percent: 0.2,
+      xField: 'date',
+      yField: 'scales',
+      xAxis: { title },
+      chartRef: (ref) => {
+        chartRef = ref;
+      },
+    };
+    const wrapper = mount(<RingProgress {...props} />);
+    title.text = 'work';
+    wrapper.setProps({
+      xAxis: { title },
+    });
+    expect(chartRef.options.xAxis.title).toEqual({ text: 'work' });
+  });
 });
