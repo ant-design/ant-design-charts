@@ -15,7 +15,7 @@ const DemoWordCloud: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/world-population.json')
+    fetch('https://gw.alipayobjects.com/os/antfincdn/jPKbal7r9r/mock.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
