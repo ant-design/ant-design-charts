@@ -10,21 +10,28 @@ nav:
 
 ## Installation
 
-### npm
+### NPM mode (recommended)
 
 ```bash
 $ npm install @ant-design/charts
 ```
 
-### CDN
+### CDN mode
 
-The NPM is recommended, <b>Due to the different underlying dependencies in CDN mode, in order to reduce the package volume, from version 1.0.5 on, the organization chart, flow chart, fund flow chart and indent tree chart were packaged into charts_g6.min.js, and other charts were packaged into Charts.min.js</b>, it can be imported as needed.
+The NPM is recommended, <b>Due to the different underlying dependencies in CDN mode, in order to reduce the package volume, from version 1.0.5 on, the organization chart, flow chart, fund flow chart and indent tree chart were packaged into graphs.min.js, and other charts were packaged into Charts.min.js</b>, it can be imported as needed.
+
+Graphs contain：
+
+- OrganizationTreeGraph
+- DagreGraph
+- DagreFundFlowGraph
+- IndentedTreeGraph
 
 ```ts
 // Introducing Online Resources
 <script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts.min.js"></script>
-// G6 related charts
-<script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts_g6.min.js"></script>
+// Graphs related charts
+<script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/graphs.min.js"></script>
 ```
 
 Because the @ant-design/ Charts page externals 'react' and 'react-dom', you need to do the same thing in your project when using this method. By using CDN, introduce 'react' and 'react-dom' before 'Charts.min.js'.
@@ -40,7 +47,7 @@ externals: {
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 // According to the need to use
 <script crossorigin src="https://unpkg.com/@ant-design/charts@1.0.5/dist/charts.min.js"></script>
-<script crossorigin src="https://unpkg.com/@ant-design/charts@1.0.5/dist/charts_g6.min.js"></script>
+<script crossorigin src="https://unpkg.com/@ant-design/charts@1.0.5/dist/graphs.min.js"></script>
 ```
 
 Usage:
@@ -49,7 +56,7 @@ Usage:
 // Line chart, other charts are similar
 const { Line } = window.charts;
 // Organization Chart
-const { OrganizationTreeGraph } = window.charts_g6;
+const { OrganizationTreeGraph } = window.graphs;
 ```
 
 ## Usage
