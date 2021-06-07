@@ -25,8 +25,8 @@ Data, see the sample code, `title`、`body`、`footer` only for nodeType: `card`
 interface Items {
   content: string | number;
   value?: string | number;
-  style?: CSSStyleDeclaration;
-  valueStyle?: CSSStyleDeclaration;
+  style?: LabelStyle;
+  valueStyle?: LabelStyle;
 }
 
 type NodeConfig = string | number | Items;
