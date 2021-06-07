@@ -25,8 +25,8 @@ title: 缩进树图
 interface Items {
   content: string | number;
   value?: string | number;
-  style?: CSSStyleDeclaration;
-  valueStyle?: CSSStyleDeclaration;
+  style?: LabelStyle;
+  valueStyle?: LabelStyle;
 }
 
 type NodeConfig = string | number | Items;
