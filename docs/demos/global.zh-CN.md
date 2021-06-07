@@ -541,6 +541,10 @@ toc: content
     <img src="https://gw.alipayobjects.com/zos/antfincdn/NXhX4e2GgF/0a039c9d-6d3e-4051-84b8-fa12c07e5c29.png" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义边样式</p>
   </a>
+  <a href="/zh-CN/demos/indented-tree-graph#无边框">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/OzXeb4FeEY/044b364b-74c8-41eb-8126-b4bc1bb29df9.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">无边框</p>
+  </a>
 </div>
 
 ### 组织架构树图

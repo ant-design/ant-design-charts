@@ -541,6 +541,10 @@ toc: content
     <img src="https://gw.alipayobjects.com/zos/antfincdn/NXhX4e2GgF/0a039c9d-6d3e-4051-84b8-fa12c07e5c29.png" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">Custom edge style</p>
   </a>
+  <a href="/demos/indented-tree-graph#no-stroke-style">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/OzXeb4FeEY/044b364b-74c8-41eb-8126-b4bc1bb29df9.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">No Stroke Style</p>
+  </a>
 </div>
 
 ### Organization Tree Graph

@@ -313,3 +313,85 @@ const DemoIndentedTree: React.FC = () => {
 
 export default DemoIndentedTree;
 ```
+
+### 无边框
+
+```tsx
+import React from 'react';
+import { IndentedTreeGraph } from '@ant-design/charts';
+
+const DemoIndentedTree: React.FC = () => {
+  const data = {
+    id: '青年X高收入',
+    title: '青年X高收入',
+    body: '1,323,945,835',
+    children: [
+      {
+        id: '青年',
+        title: {
+          content: '青年',
+        },
+        body: '89,133,24',
+        footer: {
+          content: '占比',
+          value: '30%',
+          style: {
+            fill: '#aaa',
+          },
+          valueStyle: {
+            fill: '#ff6161',
+          },
+        },
+        children: [
+          { id: 'A11', title: '15~17', body: '89,133,24' },
+          {
+            id: 'A12',
+            title: '17~19',
+            footer: {
+              content: '占比',
+              value: '30%',
+            },
+          },
+          { id: 'A13', title: '19~21', body: '89,133,24' },
+          { id: 'A14', title: '21~24', body: '89,133,24' },
+        ],
+      },
+      {
+        id: 'A2',
+        title: '高收入',
+        body: '761,871,877',
+      },
+    ],
+  };
+  const config = {
+    data,
+    behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+    nodeStyle: {
+      stroke: 'transparent',
+    },
+    titleStyle: {
+      fill: '#aaa',
+    },
+    bodyStyle: {
+      fill: '#000',
+    },
+    edgeStyle: (item, graph) => {
+      /**
+       * graph.findById(item.target).getModel()
+       * item.source: 获取 source 数据
+       * item.target: 获取 target 数据
+       */
+      console.log(graph.findById(item.source).getModel());
+      return {
+        stroke: '#40a9ff',
+        lineWidth: Math.random() * 10 + 1,
+        strokeOpacity: 0.5,
+      };
+    },
+  };
+  // @ts-ignore
+  return <IndentedTreeGraph {...config} />;
+};
+
+export default DemoIndentedTree;
+```
