@@ -11,8 +11,10 @@ process.env.NODE_ENV = 'production';
 module.exports = {
   entry: {
     // charts: ['@babel/polyfill', './src/index.ts'],
-    charts: './src/index.charts.ts',
-    charts_g6: './src/index.g6.ts',
+    charts: './src/index.charts.ts', // G2Plot 相关图表
+    charts_g6: './src/index.g6.ts', // 兼容旧代码
+    graphs: './src/index.g6.ts', // 关系图相关图表
+    charts_all: './src/index.ts', // 全量图表
   },
   output: {
     filename: '[name].min.js',
