@@ -48,6 +48,8 @@ export interface RelationGraph extends ContainerProps {
   collapseExpand?: boolean;
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
+  /** 是否开启动画 */
+  animate?: boolean;
 }
 
 export {

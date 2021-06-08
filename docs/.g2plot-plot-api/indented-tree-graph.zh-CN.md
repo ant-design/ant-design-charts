@@ -235,6 +235,12 @@ interface Data {
 
 是否展示尾部箭头，默认值 `true`。
 
+#### animate
+
+<description>**optional** _Boolean_</description>
+
+是否开启动画，默认值 `true`。
+
 #### layout
 
 <description>**optional** _object_</description>

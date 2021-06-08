@@ -44,6 +44,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
     nodeAnchorPoints = defaultNodeAnchorPoints,
     nodeSize = defaultNodeSize,
     layout,
+    animate = true,
     nodeStyle,
     edgeStyle,
     nodeStateStyles,
@@ -72,6 +73,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
         container: container.current as any,
         width: graphSize[0],
         height: graphSize[1],
+        animate,
         modes: {
           default: behaviors,
         },
