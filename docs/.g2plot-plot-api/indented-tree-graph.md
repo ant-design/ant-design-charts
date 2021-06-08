@@ -236,6 +236,12 @@ Collapseable, the default value `true`.
 
 Whether to display tail arrows, default to 'true'.
 
+#### animate
+
+<description>**optional** _Boolean_</description>
+
+Whether to turn on animation, default to 'true'.
+
 #### layout
 
 <description>**optional** _object_</description>
