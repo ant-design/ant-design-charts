@@ -22,7 +22,10 @@ Here is a roundup of some common questions and official responses from the Ant D
 
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GnrEQZUVa5AAAAAAAAAAAAAAARQnAQ" alt="example" />
 
-The React version is too low and does not support hooks. Updated to version 16.
+Possible reasons:
+
+- React version is too low and does not support hooks. Upgrade to 16.8.4 or the latest version.
+- The 2.x version of Ant-Design-Pro is used, resulting in underlying dependency conflict. It is recommended to upgrade Pro to the latest version.
 
 ### 3、How to binding event and get current data.
 

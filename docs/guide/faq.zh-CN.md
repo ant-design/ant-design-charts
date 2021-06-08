@@ -22,7 +22,10 @@ nav:
 
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GnrEQZUVa5AAAAAAAAAAAAAAARQnAQ" alt="示例" />
 
-该问题一般是因为 React 版本过低，不支持 hooks 引起的，升级到 16 最新版本即可。
+可能原因：
+
+- React 版本过低，不支持 hooks 引起的，升级到 16.8.4 版本或最新版本即可。
+- 使用了 2.x 版本的 ant-design-pro ，导致底层依赖冲突，建议升级 pro 到最新版本。
 
 ### 3、如何监听事件并获取当前值
 
