@@ -1,1 +1,5 @@
-export { default as IndentedTreeGraph } from './indented';
+import IndentedTreeGraph from './IndentedTreeGraph';
+
+export default { IndentedTreeGraph };
+
+export { IndentedTreeGraph };
