@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import G6, { IEdge, INode, LabelStyle } from '@antv/g6';
-import { ErrorBoundary } from '../base';
-import useGraph from '../hooks/useGraph';
-import ChartLoading from '../util/createLoading';
-import { getGraphSize, getGraphId } from './utils';
-import { RelationGraph } from './types';
-import { bindDefaultEvents, renderGraph } from './utils';
-import { registerNodes } from './customItems';
+import { ErrorBoundary } from '../../base';
+import useGraph from '../../hooks/useGraph';
+import ChartLoading from '../../util/createLoading';
+import { getGraphSize, getGraphId } from '../utils';
+import { RelationGraph } from '../types';
+import { bindDefaultEvents, renderGraph } from '../utils';
+import { registerNodes } from '../customItems';
 import {
   defaultNodeAnchorPoints,
   defaultNodeSize,
@@ -14,10 +14,12 @@ import {
   defaultLayout,
   defaultNodeStyle,
   defaultEdgeArrowStyle,
-} from './contants';
+} from '../contants';
 
 const graphs: any = {};
+
 registerNodes();
+
 export interface IndentedTreeProps extends RelationGraph {
   /** 全局 title 样式 */
   titleStyle?: LabelStyle;
