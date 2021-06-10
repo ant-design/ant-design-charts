@@ -14,7 +14,7 @@ import {
   defaultLayout,
   defaultNodeStyle,
   defaultEdgeArrowStyle,
-} from '../contants';
+} from '../constants';
 
 const graphs: any = {};
 

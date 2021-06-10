@@ -9,7 +9,7 @@ import {
   defaultNodeAnchorPoints,
   defaultStateStyles,
   defaultEdgeStyle,
-} from './contants';
+} from './constants';
 import { getGraphSize, processMinimap, getGraphId, renderGraph, bindEvents } from './utils';
 import { RelationGraph } from './types';
 
