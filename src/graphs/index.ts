@@ -1,4 +1,4 @@
-import IndentedTreeGraph from './IndentedTreeGraph';
+import IndentedTreeGraph from './indentedTreeGraph';
 
 export default { IndentedTreeGraph };
 
