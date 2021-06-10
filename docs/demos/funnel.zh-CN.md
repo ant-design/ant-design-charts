@@ -1,6 +1,6 @@
 ---
 title: 漏斗图
-order: 13
+order: 11
 ---
 
 ### 基础漏斗图-转置
@@ -44,6 +44,7 @@ const DemoFunnel: React.FC = () => {
         return ''.concat(datum.stage, ':').concat(datum.number);
       },
     },
+    conversionTag: {},
     tooltip: {
       formatter: function formatter(datum) {
         return {

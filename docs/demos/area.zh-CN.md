@@ -74,7 +74,10 @@ const DemoArea: React.FC = () => {
     data: data,
     xField: 'Date',
     yField: 'scales',
-    xAxis: { tickCount: 5 },
+    xAxis: {
+      range: [0, 1],
+      tickCount: 5,
+    },
     areaStyle: function areaStyle() {
       return { fill: 'l(270) 0:#ffffff 0.5:#7ec2f3 1:#1890ff' };
     },
@@ -85,7 +88,7 @@ const DemoArea: React.FC = () => {
 export default DemoArea;
 ```
 
-### 缩略轴面积图
+### 带缩略轴面积图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -109,6 +112,7 @@ const DemoArea: React.FC = () => {
     xField: 'Date',
     yField: 'scales',
     xAxis: { tickCount: 5 },
+    animation: false,
     slider: {
       start: 0.1,
       end: 0.9,
@@ -133,7 +137,7 @@ const DemoArea: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/360c3eae-0c73-46f0-a982-4746a6095010.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -142,9 +146,11 @@ const DemoArea: React.FC = () => {
   };
   var config = {
     data: data,
-    xField: 'Date',
-    yField: 'scales',
-    xAxis: { tickCount: 5 },
+    xField: 'timePeriod',
+    yField: 'value',
+    xAxis: {
+      range: [0, 1],
+    },
   };
   return <Area {...config} />;
 };
@@ -152,7 +158,7 @@ const DemoArea: React.FC = () => {
 export default DemoArea;
 ```
 
-### 百分百面积图
+### 百分比堆叠面积图
 
 ```tsx
 import React, { useState, useEffect } from 'react';

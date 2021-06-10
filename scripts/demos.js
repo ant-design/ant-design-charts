@@ -1,8 +1,14 @@
 /**
  * 扫描所有demo文件，生成demo文档
+ * eg:
+ *  - `node scripts/demos.js`
+ *  - `node scripts/demos.js en`
  */
 const shelljs = require('shelljs');
 const readline = require('readline');
+const arg = process.argv.splice(2);
+
+const language = arg?.[1] === 'en' ? '' : '.zh-CN';
 
 // 该操作比较危险，不建议直接扫描
 const demos = [
@@ -107,6 +113,14 @@ const demos = [
     chart: 'Sunburst',
   },
   {
+    name: '小提琴图',
+    chart: 'Violin',
+  },
+  {
+    name: '分面图',
+    chart: 'Facet',
+  },
+  {
     name: '瀑布图',
     chart: 'Waterfall',
   },
@@ -123,7 +137,7 @@ const demos = [
 const start = () => {
   console.info('文档生成中....');
   demos.forEach((item) => {
-    shelljs.exec(`node scripts/singledemo.js ${item.chart} ${item.name}`);
+    shelljs.exec(`node scripts/singledemo.js ${item.chart} ${language}`);
   });
 };
 

@@ -49,6 +49,8 @@ const chartNames = {
   TinyArea: '迷你面积图',
   TinyColumn: '迷你柱状图',
   TinyLine: '迷你折线图',
+  Violin: '小提琴图',
+  Facet: '分面图',
 };
 
 // 维护 G2Plot examples 特殊 层级关系
@@ -64,6 +66,8 @@ const ChartsLevel = {
   Treemap: '/more-plots',
   Waterfall: '/more-plots',
   WordCloud: '/more-plots',
+  Violin: '/more-plots',
+  Facet: '/plugin',
   Progress: '/tiny',
   RingProgress: '/tiny',
   TinyArea: '/tiny',

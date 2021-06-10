@@ -13,11 +13,13 @@ import Pie from './pie';
 import Gauge from './gauge';
 import Progress from './progress';
 import Radar from './radar';
+import Facet from './facet';
 import RingProgress from './ringProgress';
 import Rose from './rose';
 import Scatter from './scatter';
 import TinyArea from './tinyArea';
 import TinyColumn from './tinyColumn';
+import Violin from './violin';
 import DualAxes from './dualAxes';
 import TinyLine from './tinyLine';
 import Waterfall from './waterfall';
@@ -45,11 +47,13 @@ export {
   Pie,
   Progress,
   Radar,
+  Facet,
   RingProgress,
   Rose,
   Scatter,
   TinyArea,
   TinyColumn,
+  Violin,
   TinyLine,
   Waterfall,
   WordCloud,

@@ -114,6 +114,8 @@ export default defineConfig({
         path: '/zh-CN/demos/radar',
         children: [
           // 菜单子项（可选）
+          // 'demos/violin.zh-CN.md',
+          // 'demos/facet.zh-CN.md',
           'demos/radar.zh-CN.md',
           'demos/treemap.zh-CN.md',
           'demos/funnel.zh-CN.md',
@@ -205,6 +207,8 @@ export default defineConfig({
         path: '/demos/radar',
         children: [
           // 菜单子项（可选）
+          // 'demos/violin.md',
+          // 'demos/facet.md',
           'demos/radar.md',
           'demos/treemap.md',
           'demos/funnel.md',

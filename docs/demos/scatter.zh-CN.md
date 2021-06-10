@@ -1,9 +1,9 @@
 ---
 title: 散点图
-order: 25
+order: 23
 ---
 
-### 散点图颜色映射
+### 气泡图-右侧坐标轴
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -15,139 +15,98 @@ const DemoScatter: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/antfincdn/aao6XnO5pW/IMDB.json')
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/f950b2f1-038b-47c2-afcc-63001bc8d07c.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
-  var config = {
-    appendPadding: 10,
-    data: data,
-    xField: 'Revenue (Millions)',
-    yField: 'Rating',
-    shape: 'circle',
-    colorField: 'Genre',
-    size: 4,
-    yAxis: {
-      nice: true,
-      line: { style: { stroke: '#aaa' } },
-    },
-    xAxis: {
-      min: -100,
-      grid: { line: { style: { stroke: '#eee' } } },
-      line: { style: { stroke: '#aaa' } },
-    },
-  };
-  return <Scatter {...config} />;
-};
-
-export default DemoScatter;
-```
-
-### 散点图-自定义图形
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Scatter, G2 } from '@ant-design/charts';
-
-const DemoScatter: React.FC = () => {
-  G2.registerShape('point', 'custom-shape', {
-    draw(cfg, group) {
-      const cx = cfg.x;
-      const cy = cfg.y;
-      const radius = cfg.size || 5;
-      const polygon = group.addShape('path', {
-        attrs: {
-          path: [
-            ['M', cx - radius, cy - radius],
-            ['L', cx + radius, cy - radius],
-            ['L', cx, cy + radius],
-            ['Z'],
-          ],
-          ...cfg.defaultStyle,
-          ...cfg.style,
-        },
-      });
-      return polygon;
-    },
+  var processData = data.map(function (item) {
+    item['Average annual wage'] = item['Average annual wage'] * 1;
+    item['probability'] = item['probability'] * 1;
+    item['numbEmployed'] = item['numbEmployed'] * 1;
+    return item;
   });
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-  const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/3e4db10a-9da1-4b44-80d8-c128f42764a8.json')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('fetch data failed', error);
-      });
-  };
+  var labels = ['Airline Pilots, Copilots and Flight Engineers', 'Benefits Managers'];
   var config = {
     appendPadding: 30,
-    data: data,
-    xField: 'xG conceded',
-    yField: 'Shot conceded',
-    shape: 'custom-shape',
-    pointStyle: { lineWidth: 2 },
-    size: 6,
-    yAxis: {
-      nice: true,
-      line: { style: { stroke: '#aaa' } },
-    },
-    tooltip: { showMarkers: false },
-    xAxis: {
-      grid: { line: { style: { stroke: '#eee' } } },
-      line: { style: { stroke: '#aaa' } },
-    },
-    label: {},
-  };
-  return <Scatter {...config} />;
-};
-
-export default DemoScatter;
-```
-
-### 散点图图形标签
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { Scatter } from '@ant-design/charts';
-
-const DemoScatter: React.FC = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-  const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/3e4db10a-9da1-4b44-80d8-c128f42764a8.json')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('fetch data failed', error);
-      });
-  };
-  var config = {
-    appendPadding: 30,
-    data: data,
-    xField: 'xG conceded',
-    yField: 'Shot conceded',
-    colorField: 'Result',
-    color: ['#c71e1d', '#ffca76', '#09bb9f'],
-    size: 5,
+    data: processData,
+    xField: 'probability',
+    yField: 'Average annual wage',
+    colorField: 'education',
+    size: [2, 16],
+    sizeField: 'numbEmployed',
     shape: 'circle',
-    pointStyle: { fillOpacity: 1 },
     yAxis: {
-      nice: true,
-      line: { style: { stroke: '#aaa' } },
-    },
-    xAxis: {
+      nice: false,
+      min: -20000,
+      tickCount: 5,
+      position: 'right',
+      label: {
+        formatter: function formatter(value) {
+          return Math.floor(value / 1000) + 'K';
+        },
+      },
       grid: { line: { style: { stroke: '#eee' } } },
       line: { style: { stroke: '#aaa' } },
     },
-    label: {},
+    tooltip: {
+      fields: ['probability', 'Average annual wage', 'numbEmployed'],
+    },
+    legend: { position: 'top' },
+    xAxis: {
+      min: -0.04,
+      max: 1.04,
+      nice: false,
+      grid: { line: { style: { stroke: '#eee' } } },
+      line: false,
+      label: false,
+    },
+    label: {
+      formatter: function formatter(item) {
+        return labels.includes(item['short occupation']) ? item['short occupation'] : '';
+      },
+      offsetY: -10,
+    },
+    annotations: [
+      {
+        type: 'line',
+        start: [-0.04, 100000],
+        end: [1.04, 30000],
+        style: { stroke: '#aaa' },
+      },
+      {
+        type: 'text',
+        position: ['1.03', 'max'],
+        content: 'Average annual wage',
+        style: {
+          textAlign: 'right',
+          fontWeight: '500',
+          fill: 'rgb(92, 92, 92)',
+        },
+      },
+      {
+        type: 'text',
+        position: ['1.03', 'min'],
+        content: 'Most likely to \nbe automated ',
+        style: {
+          textAlign: 'right',
+          fontWeight: '500',
+          fill: 'rgb(92, 92, 92)',
+        },
+      },
+      {
+        type: 'text',
+        position: ['-0.03', 'min'],
+        content: 'Least likely to \nbe automated ',
+        style: {
+          textAlign: 'left',
+          fontWeight: '500',
+          fill: 'rgb(92, 92, 92)',
+        },
+      },
+    ],
   };
   return <Scatter {...config} />;
 };
@@ -155,150 +114,46 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-回归线
+### 伪 3D 气泡图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { Scatter } from '@ant-design/charts';
 
 const DemoScatter: React.FC = () => {
-  var data = [
-    {
-      x: 1,
-      y: 4.181,
-    },
-    {
-      x: 2,
-      y: 4.665,
-    },
-    {
-      x: 3,
-      y: 5.296,
-    },
-    {
-      x: 4,
-      y: 5.365,
-    },
-    {
-      x: 5,
-      y: 5.448,
-    },
-    {
-      x: 6,
-      y: 5.744,
-    },
-    {
-      x: 7,
-      y: 5.653,
-    },
-    {
-      x: 8,
-      y: 5.844,
-    },
-    {
-      x: 9,
-      y: 6.362,
-    },
-    {
-      x: 10,
-      y: 6.38,
-    },
-    {
-      x: 11,
-      y: 6.311,
-    },
-    {
-      x: 12,
-      y: 6.457,
-    },
-    {
-      x: 13,
-      y: 6.479,
-    },
-    {
-      x: 14,
-      y: 6.59,
-    },
-    {
-      x: 15,
-      y: 6.74,
-    },
-    {
-      x: 16,
-      y: 6.58,
-    },
-    {
-      x: 17,
-      y: 6.852,
-    },
-    {
-      x: 18,
-      y: 6.531,
-    },
-    {
-      x: 19,
-      y: 6.682,
-    },
-    {
-      x: 20,
-      y: 7.013,
-    },
-    {
-      x: 21,
-      y: 6.82,
-    },
-    {
-      x: 22,
-      y: 6.647,
-    },
-    {
-      x: 23,
-      y: 6.951,
-    },
-    {
-      x: 24,
-      y: 7.121,
-    },
-    {
-      x: 25,
-      y: 7.143,
-    },
-    {
-      x: 26,
-      y: 6.914,
-    },
-    {
-      x: 27,
-      y: 6.941,
-    },
-    {
-      x: 28,
-      y: 7.226,
-    },
-    {
-      x: 29,
-      y: 6.898,
-    },
-    {
-      x: 30,
-      y: 7.392,
-    },
-    {
-      x: 31,
-      y: 6.938,
-    },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/t81X1wXdoj/scatter-data.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
   var config = {
+    appendPadding: 30,
     data: data,
     xField: 'x',
     yField: 'y',
-    size: 5,
-    pointStyle: {
-      stroke: '#777777',
-      lineWidth: 1,
-      fill: '#5B8FF9',
+    colorField: 'genre',
+    color: [
+      'r(0.4, 0.3, 0.7) 0:rgba(255,255,255,0.5) 1:#5B8FF9',
+      'r(0.4, 0.4, 0.7) 0:rgba(255,255,255,0.5) 1:#61DDAA',
+    ],
+    sizeField: 'size',
+    size: [5, 20],
+    shape: 'circle',
+    yAxis: {
+      nice: true,
+      line: { style: { stroke: '#eee' } },
     },
-    regressionLine: { type: 'quad' },
+    xAxis: {
+      grid: { line: { style: { stroke: '#eee' } } },
+      line: { style: { stroke: '#eee' } },
+    },
   };
   return <Scatter {...config} />;
 };
@@ -306,7 +161,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-自定义 tooltip
+### 气泡图-自定义 tooltip
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -483,13 +338,13 @@ const DemoScatter: React.FC = () => {
         var _field$data;
         var field = items === null || items === void 0 ? void 0 : items[0];
         var formatterInfo = {
-          搜索UV: function UV(value) {
+          搜索UV: function 搜索UV(value) {
             return value + '万';
           },
-          端DAU: function DAU(value) {
+          端DAU: function 端DAU(value) {
             return value + '万';
           },
-          搜索DAU渗透率: function DAU() {
+          搜索DAU渗透率: function 搜索DAU渗透率() {
             return '%';
           },
         };
@@ -502,12 +357,13 @@ const DemoScatter: React.FC = () => {
           '</div><div class="g2-tooltip-items">',
         );
         items.forEach(function (item) {
-          htmlStr += '<div class="g2-tooltip-item" style="margin-bottom:8px;display:flex;justify-content:space-between;">\n                <span class="g2-tooltip-item-label" style="margin-right: 12px;">'
-            .concat(item.name, '</span>\n                <span class="g2-tooltip-item-value">')
-            .concat(
-              item.value + formatterInfo[item.name](item.value),
-              '</span>\n              </div>',
-            );
+          htmlStr +=
+            '<div class="g2-tooltip-item" style="margin-bottom:8px;display:flex;justify-content:space-between;">\n                <span class="g2-tooltip-item-label" style="margin-right: 12px;">'
+              .concat(item.name, '</span>\n                <span class="g2-tooltip-item-value">')
+              .concat(
+                item.value + formatterInfo[item.name](item.value),
+                '</span>\n              </div>',
+              );
         });
         htmlStr += '</div>';
         return htmlStr;
@@ -652,7 +508,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-气泡四象限
+### 气泡图-四象限
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -709,7 +565,7 @@ const DemoScatter: React.FC = () => {
 export default DemoScatter;
 ```
 
-### 散点图-右侧坐标轴
+### 散点图颜色映射
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -721,98 +577,407 @@ const DemoScatter: React.FC = () => {
     asyncFetch();
   }, []);
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/f950b2f1-038b-47c2-afcc-63001bc8d07c.json')
+    fetch('https://gw.alipayobjects.com/os/antfincdn/aao6XnO5pW/IMDB.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
-  var processData = data.map(function (item) {
-    item['Average annual wage'] = item['Average annual wage'] * 1;
-    item['probability'] = item['probability'] * 1;
-    item['numbEmployed'] = item['numbEmployed'] * 1;
-    return item;
-  });
-  var labels = ['Airline Pilots, Copilots and Flight Engineers', 'Benefits Managers'];
   var config = {
-    appendPadding: 30,
-    data: processData,
-    xField: 'probability',
-    yField: 'Average annual wage',
-    colorField: 'education',
-    size: [2, 16],
-    sizeField: 'numbEmployed',
+    appendPadding: 10,
+    data: data,
+    xField: 'Revenue (Millions)',
+    yField: 'Rating',
     shape: 'circle',
+    colorField: 'Genre',
+    size: 4,
     yAxis: {
-      nice: false,
-      min: -20000,
-      tickCount: 5,
-      position: 'right',
-      label: {
-        formatter: function formatter(value) {
-          return Math.floor(value / 1000) + 'K';
-        },
-      },
+      nice: true,
+      line: { style: { stroke: '#aaa' } },
+    },
+    xAxis: {
+      min: -100,
       grid: { line: { style: { stroke: '#eee' } } },
       line: { style: { stroke: '#aaa' } },
     },
-    tooltip: {
-      fields: ['probability', 'Average annual wage', 'numbEmployed'],
+  };
+  return <Scatter {...config} />;
+};
+
+export default DemoScatter;
+```
+
+### 散点图-自定义图形
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Scatter, G2 } from '@ant-design/charts';
+
+const DemoScatter: React.FC = () => {
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+      }
+      keys.push.apply(keys, symbols);
+    }
+    return keys;
+  }
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+    return target;
+  }
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  G2.registerShape('point', 'custom-shape', {
+    draw: function draw(cfg, group) {
+      var cx = cfg.x;
+      var cy = cfg.y;
+      var radius = cfg.size || 5;
+      var polygon = group.addShape('path', {
+        attrs: _objectSpread(
+          _objectSpread(
+            {
+              path: [
+                ['M', cx - radius, cy - radius],
+                ['L', cx + radius, cy - radius],
+                ['L', cx, cy + radius],
+                ['Z'],
+              ],
+            },
+            cfg.defaultStyle,
+          ),
+          cfg.style,
+        ),
+      });
+      return polygon;
     },
-    legend: { position: 'top' },
+  });
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/3e4db10a-9da1-4b44-80d8-c128f42764a8.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    appendPadding: 30,
+    data: data,
+    xField: 'xG conceded',
+    yField: 'Shot conceded',
+    shape: 'custom-shape',
+    pointStyle: { lineWidth: 2 },
+    size: 6,
+    yAxis: {
+      nice: true,
+      line: { style: { stroke: '#aaa' } },
+    },
+    tooltip: { showMarkers: false },
     xAxis: {
-      min: -0.04,
-      max: 1.04,
-      nice: false,
       grid: { line: { style: { stroke: '#eee' } } },
-      line: false,
-      label: false,
+      line: { style: { stroke: '#aaa' } },
     },
-    label: {
-      formatter: function formatter(item) {
-        return labels.includes(item['short occupation']) ? item['short occupation'] : '';
-      },
-      offsetY: -10,
+    label: {},
+  };
+  return <Scatter {...config} />;
+};
+
+export default DemoScatter;
+```
+
+### 散点图图形标签
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Scatter } from '@ant-design/charts';
+
+const DemoScatter: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/3e4db10a-9da1-4b44-80d8-c128f42764a8.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    appendPadding: 30,
+    data: data,
+    xField: 'xG conceded',
+    yField: 'Shot conceded',
+    colorField: 'Result',
+    size: 5,
+    shape: 'circle',
+    pointStyle: { fillOpacity: 1 },
+    yAxis: {
+      nice: true,
+      line: { style: { stroke: '#aaa' } },
     },
-    annotations: [
-      {
-        type: 'line',
-        start: [-0.04, 100000],
-        end: [1.04, 30000],
-        style: { stroke: '#aaa' },
-      },
-      {
-        type: 'text',
-        position: ['1.03', 'max'],
-        content: 'Average annual wage',
-        style: {
-          textAlign: 'right',
-          fontWeight: '500',
-          fill: 'rgb(92, 92, 92)',
-        },
-      },
-      {
-        type: 'text',
-        position: ['1.03', 'min'],
-        content: 'Most likely to \nbe automated ',
-        style: {
-          textAlign: 'right',
-          fontWeight: '500',
-          fill: 'rgb(92, 92, 92)',
-        },
-      },
-      {
-        type: 'text',
-        position: ['-0.03', 'min'],
-        content: 'Least likely to \nbe automated ',
-        style: {
-          textAlign: 'left',
-          fontWeight: '500',
-          fill: 'rgb(92, 92, 92)',
-        },
-      },
-    ],
+    xAxis: {
+      grid: { line: { style: { stroke: '#eee' } } },
+      line: { style: { stroke: '#aaa' } },
+    },
+    label: {},
+  };
+  return <Scatter {...config} />;
+};
+
+export default DemoScatter;
+```
+
+### 散点图-回归线
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Scatter } from '@ant-design/charts';
+
+const DemoScatter: React.FC = () => {
+  var data = [
+    {
+      x: 1,
+      y: 4.181,
+    },
+    {
+      x: 2,
+      y: 4.665,
+    },
+    {
+      x: 3,
+      y: 5.296,
+    },
+    {
+      x: 4,
+      y: 5.365,
+    },
+    {
+      x: 5,
+      y: 5.448,
+    },
+    {
+      x: 6,
+      y: 5.744,
+    },
+    {
+      x: 7,
+      y: 5.653,
+    },
+    {
+      x: 8,
+      y: 5.844,
+    },
+    {
+      x: 9,
+      y: 6.362,
+    },
+    {
+      x: 10,
+      y: 6.38,
+    },
+    {
+      x: 11,
+      y: 6.311,
+    },
+    {
+      x: 12,
+      y: 6.457,
+    },
+    {
+      x: 13,
+      y: 6.479,
+    },
+    {
+      x: 14,
+      y: 6.59,
+    },
+    {
+      x: 15,
+      y: 6.74,
+    },
+    {
+      x: 16,
+      y: 6.58,
+    },
+    {
+      x: 17,
+      y: 6.852,
+    },
+    {
+      x: 18,
+      y: 6.531,
+    },
+    {
+      x: 19,
+      y: 6.682,
+    },
+    {
+      x: 20,
+      y: 7.013,
+    },
+    {
+      x: 21,
+      y: 6.82,
+    },
+    {
+      x: 22,
+      y: 6.647,
+    },
+    {
+      x: 23,
+      y: 6.951,
+    },
+    {
+      x: 24,
+      y: 7.121,
+    },
+    {
+      x: 25,
+      y: 7.143,
+    },
+    {
+      x: 26,
+      y: 6.914,
+    },
+    {
+      x: 27,
+      y: 6.941,
+    },
+    {
+      x: 28,
+      y: 7.226,
+    },
+    {
+      x: 29,
+      y: 6.898,
+    },
+    {
+      x: 30,
+      y: 7.392,
+    },
+    {
+      x: 31,
+      y: 6.938,
+    },
+  ];
+  var config = {
+    data: data,
+    xField: 'x',
+    yField: 'y',
+    size: 5,
+    pointStyle: {
+      stroke: '#777777',
+      lineWidth: 1,
+      fill: '#5B8FF9',
+    },
+    regressionLine: { type: 'quad' },
+  };
+  return <Scatter {...config} />;
+};
+
+export default DemoScatter;
+```
+
+### 散点图颜色和形状映射
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Scatter } from '@ant-design/charts';
+
+const DemoScatter: React.FC = () => {
+  var _util = require('@antv/util');
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/rc7SYiIq8Z/scatter-color-shape.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    appendPadding: 10,
+    data,
+    xField: 'x',
+    yField: 'y',
+    colorField: 'city',
+    shapeField: 'area',
+    sizeField: 'value',
+    size: [4, 8],
+    color: function color(_ref) {
+      var city = _ref.city;
+      var colors10 = [
+        '#025DF4',
+        '#DB6BCF',
+        '#2498D1',
+        '#BBBDE6',
+        '#4045B2',
+        '#21A97A',
+        '#FF745A',
+        '#007E99',
+        '#FFA8A8',
+        '#2391FF',
+      ];
+      var idx = data
+        .map(function (d) {
+          return d.city;
+        })
+        .indexOf(city);
+      return colors10[idx + 1];
+    },
+    shape: function shape(_ref2) {
+      var area = _ref2.area;
+      var shapes = ['circle', 'square', 'triangle', 'hexagon', 'diamond', 'bowtie'];
+      var idx = (0, _util.uniq)(
+        data.map(function (d) {
+          return d.area;
+        }),
+      ).indexOf(area);
+      return shapes[idx] || 'circle';
+    },
+    yAxis: {
+      nice: true,
+      line: { style: { stroke: '#aaa' } },
+    },
   };
   return <Scatter {...config} />;
 };
