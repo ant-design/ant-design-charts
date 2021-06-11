@@ -76,8 +76,6 @@ export interface RelationGraph extends ContainerProps {
   autoFit?: boolean;
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
-  /** 获取图表 ref */
-  graphRef?: React.MutableRefObject<IGraph | undefined>;
 }
 
 export interface IndentedTreeProps extends RelationGraph {

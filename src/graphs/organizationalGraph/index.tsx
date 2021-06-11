@@ -66,7 +66,6 @@ const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
     markerStyle,
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
-    graphRef,
     onReady,
     loading,
     loadingTemplate,
@@ -143,10 +142,6 @@ const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
         },
       };
     });
-
-    if (graphRef) {
-      graphRef!.current = graph;
-    }
 
     processMinimap(minimapCfg, graph);
     renderGraph(graph, data);
