@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import G6, { INode, TreeGraphData, NodeConfig, IG6GraphEvent } from '@antv/g6';
+import G6, { NodeConfig } from '@antv/g6';
 import ChartLoading from '../util/createLoading';
 import { ErrorBoundary } from '../base';
 import useGraph from '../hooks/useGraph';
@@ -11,7 +11,7 @@ import { RelationGraph } from './types';
 const defaultNodeStyle = {
   fill: '#91d5ff',
   stroke: '#40a9ff',
-  radius: 5,
+  radius: 2,
 };
 
 const defaultEdgeStyle = {
@@ -64,7 +64,6 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
     edgeStyle = defaultEdgeStyle,
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
-    handleNodeClick,
     graphRef,
     onReady,
     loading,
@@ -129,35 +128,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
         'default',
       );
     }
-    bindEvents(graph, props, false);
-
-    graph.on('node:click', (evt: IG6GraphEvent) => {
-      const { item, target } = evt;
-      const targetType = target.get('type');
-      const name = target.get('name');
-
-      // 增加元素
-      if (targetType === 'marker') {
-        const model = (item as INode).getModel() as TreeGraphData;
-        if (name === 'add-item') {
-          if (!model.children) {
-            model.children = [];
-          }
-
-          const tmpId = Math.random().toString(36).slice(-8);
-          model.children.push({
-            id: tmpId,
-            label: tmpId,
-          });
-          graph.updateChild(model, model.id);
-        } else if (name === 'remove-item') {
-          graph.removeChild(model.id);
-        }
-      }
-      if (handleNodeClick) {
-        handleNodeClick(item as INode, graph);
-      }
-    });
+    bindEvents(graph, props);
 
     return () => {
       if (graphs[graphId]) {

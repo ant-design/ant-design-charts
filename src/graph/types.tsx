@@ -51,4 +51,6 @@ export interface RelationGraph extends ContainerProps {
   graphRef?: React.MutableRefObject<IGraph | undefined>;
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
+  /** 更新数据后是否自动调整布局 */
+  autoFit?: boolean;
 }

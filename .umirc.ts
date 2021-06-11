@@ -86,7 +86,7 @@ export default defineConfig({
         path: '/zh-CN/demos/sankey',
         children: [
           '/demos/indented-tree-graph.zh-CN.md',
-          '/demos/organizationTreeGraph.zh-CN.md',
+          '/demos/organizational-graph.zh-CN.md',
           // '/demos/indentedTree.zh-CN.md',
           '/demos/dagreGraph.zh-CN.md',
           '/demos/dagreFundFlowGraph.zh-CN.md',
@@ -177,7 +177,7 @@ export default defineConfig({
         path: '/demos/sankey',
         children: [
           '/demos/indented-tree-graph.md',
-          '/demos/organizationTreeGraph.md',
+          '/demos/organizational-graph.md',
           // '/demos/indentedTree.md',
           '/demos/dagreGraph.md',
           '/demos/dagreFundFlowGraph.md',

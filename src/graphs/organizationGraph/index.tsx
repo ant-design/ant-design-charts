@@ -1,74 +1,78 @@
 import React, { useEffect } from 'react';
-import G6, { IEdge, INode } from '@antv/g6';
+import G6, { NodeConfig, IEdge, INode } from '@antv/g6';
+import ChartLoading from '../../util/createLoading';
 import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
-import ChartLoading from '../../util/createLoading';
-import { getGraphSize, getGraphId } from '../utils';
-import { IndentedTreeProps } from '../types';
-import { bindDefaultEvents, renderGraph } from '../utils';
-import { registerCardNode } from '../customItems';
-import {
-  defaultNodeAnchorPoints,
-  defaultNodeSize,
-  defaultStateStyles,
-  defaultNodeStyle,
-  defaultEdgeArrowStyle,
-} from '../contants';
+import { registerIconNode } from '../customItems';
+import { defaultLabelCfg, defaultStateStyles, defaultNodeSize } from '../contants';
+import { getGraphSize, processMinimap, getGraphId, renderGraph } from '../utils';
+import { OrganizationTreeProps } from '../types';
 
-const graphs: any = {};
+const defaultNodeStyle = {
+  fill: '#91d5ff',
+  stroke: '#40a9ff',
+  radius: 2,
+};
 
-registerCardNode();
-
-const defaultLayout = {
-  type: 'compactBox',
-  direction: 'LR',
-  getId: (d: any) => {
-    return d.id;
-  },
-  getHeight: () => {
-    return 60;
-  },
-  getWidth: () => {
-    return 16;
-  },
-  getVGap: () => {
-    return 16;
-  },
-  getHGap: () => {
-    return 100;
+const defaultEdgeStyle = {
+  stroke: '#91d5ff',
+  endArrow: {
+    path: 'M 0,0 L 12, 6 L 9,0 L 12, -6 Z',
+    fill: '#91d5ff',
+    d: -20,
   },
 };
 
-const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
+const defaultLayout = {
+  type: 'compactBox',
+  direction: 'TB',
+  getId: function getId(d: NodeConfig) {
+    return d.id;
+  },
+  getHeight: function getHeight() {
+    return 16;
+  },
+  getWidth: function getWidth() {
+    return 16;
+  },
+  getVGap: function getVGap() {
+    return 40;
+  },
+  getHGap: function getHGap() {
+    return 70;
+  },
+};
+
+const graphs: any = {};
+const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
   const {
     data,
     className,
     style,
     width,
     height,
-    nodeType = 'card',
-    edgeType = 'cubic-horizontal',
-    behaviors = ['zoom-canvas', 'drag-canvas'],
-    nodeAnchorPoints = defaultNodeAnchorPoints,
-    nodeSize = defaultNodeSize,
-    layout,
     animate = true,
+    nodeType = 'rect',
+    edgeType = 'flow-line',
+    nodeSize = defaultNodeSize,
+    behaviors = ['drag-canvas', 'zoom-canvas'],
+    nodeLabelCfg = defaultLabelCfg,
+    edgeLabelCfg = defaultLabelCfg,
+    layout = defaultLayout,
+    showMarker = false,
+    minimapCfg,
     nodeStyle,
     edgeStyle,
     markerStyle,
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
-    collapseExpand = true,
-    titleStyle,
-    bodyStyle,
-    footerStyle,
-    footerValueStyle,
-    showArrow = true,
+    graphRef,
     onReady,
     loading,
     loadingTemplate,
     errorTemplate,
   } = props;
+
   const container = React.useRef(null);
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
@@ -76,12 +80,16 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
+    if (nodeType === 'icon-node') {
+      registerIconNode();
+    }
     let graph = graphs[graphId];
     if (!graph) {
       graph = new G6.TreeGraph({
         container: container.current as any,
         width: graphSize[0],
         height: graphSize[1],
+        linkCenter: true,
         animate,
         modes: {
           default: behaviors,
@@ -89,15 +97,13 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
         defaultNode: {
           type: nodeType,
           size: nodeSize,
-          anchorPoints: nodeAnchorPoints,
-          titleStyle,
-          bodyStyle,
-          footerStyle,
-          footerValueStyle,
+          labelCfg: nodeLabelCfg,
           markerStyle,
+          showMarker,
         },
         defaultEdge: {
           type: edgeType,
+          labelCfg: edgeLabelCfg,
         },
         nodeStateStyles,
         edgeStateStyles,
@@ -106,6 +112,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
           ...layout,
         },
       });
+
       graphs[graphId] = graph;
     }
 
@@ -122,6 +129,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
         },
       };
     });
+
     graph.edge((edge: IEdge) => {
       if (typeof edgeStyle === 'function') {
         return {
@@ -130,18 +138,18 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
       }
       return {
         style: {
-          stroke: '#ccc',
-          ...(showArrow && defaultEdgeArrowStyle),
+          ...defaultEdgeStyle,
           ...edgeStyle,
         },
       };
     });
 
-    if (collapseExpand) {
-      bindDefaultEvents(graph, collapseExpand);
+    if (graphRef) {
+      graphRef!.current = graph;
     }
-    renderGraph(graph, data);
 
+    processMinimap(minimapCfg, graph);
+    renderGraph(graph, data);
     if (onReady) {
       onReady(graph);
     }
@@ -162,4 +170,4 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
   );
 };
 
-export default IndentedTreeGraph;
+export default OrganizationalGraph;

@@ -1,28 +1,34 @@
 ---
-title: Organization Tree Graph
+title: Organizational Graph
 order: 1
 ---
 
-### 基础组织架构树图
+### Base
 
 <!-- // 以下代码在页面离开时会出错 -->
 
-### 个性化定制-不可编辑
-
-<a href="#配置项">配置</a>
-
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { OrganizationTreeGraph } from '@ant-design/charts';
+import { OrganizationalGraph } from '@ant-design/charts';
 
 const DemoOrganizationGraph: React.FC = () => {
   const data = {
     id: 'root',
     label: 'root',
+    labelStyle: {
+      y: 30,
+      fill: '#fff',
+      fontSize: 20,
+    },
     children: [
       {
         id: 'c1',
         label: 'c1',
+        labelStyle: (group, cfg) => {
+          return {
+            fill: '#fff',
+          };
+        },
         children: [
           {
             id: 'c1-1',
@@ -114,19 +120,19 @@ const DemoOrganizationGraph: React.FC = () => {
     return true;
   });
 
-  return <OrganizationTreeGraph data={data} nodeType="icon-node" enableEdit={false} />;
+  return (
+    <OrganizationalGraph data={data} behaviors={['drag-canvas', 'zoom-canvas', 'drag-node']} />
+  );
 };
 
 export default DemoOrganizationGraph;
 ```
 
-### 个性化定制-可编辑
-
-<a href="#配置项">配置</a>
+### Show Marker
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { OrganizationTreeGraph } from '@ant-design/charts';
+import { OrganizationalGraph } from '@ant-design/charts';
 
 const DemoOrganizationGraph: React.FC = () => {
   const data = {
@@ -228,50 +234,40 @@ const DemoOrganizationGraph: React.FC = () => {
   });
 
   return (
-    <OrganizationTreeGraph
+    <OrganizationalGraph
       data={data}
       nodeType="icon-node"
-      enableEdit={true}
+      showMarker={true}
       minimapCfg={{ show: true }}
-      graphId="editorGraph"
+      onReady={(graph) => {
+        graph.on('node:click', (evt) => {
+          const { item, target } = evt;
+          const targetType = target.get('type');
+          const name = target.get('name');
+
+          // 增加元素
+          if (targetType === 'marker') {
+            const model = item.getModel();
+            if (name === 'add-item') {
+              if (!model.children) {
+                model.children = [];
+              }
+
+              const tmpId = Math.random().toString(36).slice(-8);
+              model.children.push({
+                id: tmpId,
+                label: tmpId,
+              });
+              graph.updateChild(model, model.id);
+            } else if (name === 'remove-item') {
+              graph.removeChild(model.id);
+            }
+          }
+        });
+      }}
     />
   );
 };
 
 export default DemoOrganizationGraph;
 ```
-
-### 配置项
-
-OrganizationTreeGraph 支持以下配置项：
-
-| 名称 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- |
-| data | TreeGraphData | null | 关系图的数据，必填字段 |
-| className | string | null | 容器的 class 名称 |
-| style | React.CSSProperties | null | 容器样式 |
-| width | number | 500 | 容器宽度 |
-| height | number | 500 | 容器高度 |
-| nodeType | string | 'rect' | 节点类型，默认支持 rect、circle、modelRect、icon-node 等 |
-| edgeType | string | 'flow-line' | 边类型，默认为 flow-line，可自定义 |
-| nodeStyle | ShapeStyle | {} | 节点的样式 |
-| edgeStyle | ShapeStyle | {} | 边的样式 |
-| nodeStateStyles | StateStyles | {} | 节点状态样式 |
-| edgeStateStyles | StateStyles | {} | 边状态样式 |
-| nodeSize | number / number[] | [120, 40] | 节点大小 |
-| nodeLabelCfg | object | null | 节点文本样式 |
-| edgeLabelCfg | object | null | 边文本样式 |
-| layout | object | - | 布局配置 |
-| enableEdit | boolean | false | 是否开启编辑功能，默认为 false，设置为 true 后，可以动态增加或删除节点 |
-| minimapCfg | Object | {show: false, size: [150, 100], type: 'keyShape'} | 控制是否显示缩略图以及缩略图配置，若 minimapCfg.show 设置为 true，则显示 Minimap，其他配置参见 [G6 Minimap](https://g6.antv.vision/zh/docs/api/Plugins/#minimap) |
-| collapseExpand | boolean | false | 是否允许点击节点收起或展示子节点，默认为 false，设置为 true 后，可以通过点击节点收起或展示子节点，当 enableEdit 设置为 true 时，建议将该值设置为 false |
-| handleNodeClick | `(item: INode, graph: IGraph) => void` \| `null` | 点击节点的回调函数 |
-| handleEdgeClick | `(item: IEdge, graph: IGraph) => void` \| `null` | 点击边的回调函数 |
-| handleNodeHover | `(item: INode, graph: IGraph) => void` \| `null` | 鼠标 hover 到节点上的回调函数 |
-| handleNodeUnHover | `(item: INode, graph: IGraph) => void` \|`null` | 鼠标从节点上移开的回调函数 |
-| handleEdgeHover | `(item: IEdge, graph: IGraph) => void` \| `null` | 鼠标 hover 到边上的回调函数 |
-| handleEdgeUnHover | `(item: IEdge, graph: IGraph) => void` \| `null` | 鼠标从边上移开的回调函数 |
-| handleNodeClick | `Object` \| `false` | undefined | 点击点的响应函数 |
-| handleNodeHover | `Object` \| `false` | undefined | hover 点的响应函数 |
-| handleNodeUnHover | `Object` \| `false` | undefined | unhover 点的响应函数 |
-| handleCanvasClick | `Object` \| `false` | undefined | 点击画布空白区域的响应函数 |
