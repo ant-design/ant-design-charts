@@ -62,24 +62,7 @@
 
 <description>**required** _array object_</description>
 
-设置图表数据源。数据源为对象集合，例如：
-
-```ts
-[
-  { year: '2001', population: 41.8 },
-  { year: '2002', population: 38 },
-  { year: '2003', population: 33.7 },
-  { year: '2004', population: 30.7 },
-  { year: '2005', population: 25.8 },
-  { year: '2006', population: 31.7 },
-  { year: '2007', population: 33 },
-  { year: '2008', population: 46 },
-  { year: '2009', population: 38.3 },
-  { year: '2010', population: 28 },
-  { year: '2011', population: 42.5 },
-  { year: '2012', population: 30.3 },
-];
-```
+设置图表数据源。数据源为对象集合，例如：`[{ time: '1991'，value: 20 }, { time: '1992'，value: 20 }]`。
 
 #### xField
 
@@ -92,6 +75,33 @@
 <description>**required** _string_</description>
 
 图形在 y 方向对应的数据字段名，一般是纵向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么人数字段就是对应的 yField。
+
+#### seriesField
+
+<description>**optional** _string_</description>
+
+分组拆分字段，默认是分组情况，颜色作为视觉通道。
+
+#### kde
+
+<description>**optional** _object_</description>
+
+计算小提琴轮廓线（核密度估计）的核函数算法配置。目前只支持三角核函数。
+
+```ts
+type KdeOptions = {
+  /** 三角波类型 */
+  type: 'triangular';
+  /** 最小值，默认为数据中的最小值减去一个固定的阈值。 */
+  min?: number;
+  /** 最大值，默认为数据中的最大值加上一个固定的阈值。 */
+  max?: number;
+  /** 采样数量，越大轮廓线越接近真实概率分布函数，默认32。 */
+  sampleSize?: number;
+  /** 核函数的带宽。带宽越大产生的曲线越平滑（越模糊），带宽越小产生的曲线越陡峭。默认3。 */
+  width?: number;
+};
+```
 
 #### meta
 
@@ -108,101 +118,17 @@
 
 关于 `meta` 的更多配置项，请查看 [Meta Options](/zh-CN/guide/common#meta)
 
-```ts
-import React, { useState, useEffect } from 'react';
-import { Rose } from '@ant-design/charts';
+小提琴图内置箱线图配置。箱线图的统计数据分别为：
 
-const DemoRose: React.FC = () => {
-  const data = [
-    {
-      year: '2001',
-      population: 41.8,
-    },
-    {
-      year: '2002',
-      population: 38,
-    },
-    {
-      year: '2003',
-      population: 33.7,
-    },
-    {
-      year: '2004',
-      population: 30.7,
-    },
-    {
-      year: '2005',
-      population: 25.8,
-    },
-    {
-      year: '2006',
-      population: 31.7,
-    },
-  ];
-  const config = {
-    data,
-    xField: 'year',
-    yField: 'population',
-    meta: {
-      year: {
-        alias: '年份',
-        values: ['2001', '2002', '2003'],
-        formatter: (v) => {
-          return `${v}年`;
-        },
-      },
-    },
-    seriesField: 'year',
-  };
-  return <Rose {...config} />;
-};
+- high: 数据中的最大值，作为箱线图的最高点；
+- low: 数据中的最小值，作为箱线图的最低点；
+- q3: 上四分位，即 25% 的数据大于该数，作为箱线图中箱子的高点；
+- q1: 下四分位，即 25% 的数据小于该数，作为箱线图中箱子的低点；
+- median: 数据的中位数，在箱线图中用圆点表示。
 
-export default DemoRose;
-```
+可以通过 `meta` 来设置字段的元信息
 
-#### seriesField
-
-<description>**optional** _string_</description>
-
-用于对数据进行分组的字段，比如想根据某个字段内容的不同显示不同的颜色，就可以把该字段的名字设为`seriesField`的值。
-
-#### isGroup
-
-<description>**optional** _string_ _default:_ `false`</description>
-
-是否分组玫瑰图。
-
-#### isStack
-
-<description>**optional** _string_ _default:_ `false`</description>
-
-是否堆积玫瑰图。
-
-### 图形样式
-
-#### radius
-
-<description>**optional** _number_</description>
-
-玫瑰图的半径，原点为画布中心。配置值域为 (0,1]，1 代表玫瑰图撑满绘图区域。
-
-#### innerRadius
-
-<description>**optional** _number_</description>
-
-玫瑰图内部空心圆的半径，规则与 radius 一致。
-
-#### startAngle
-
-<description>**optional** _number_ _default:_ `(Math.PI * 0) / 180`</description>
-
-配置坐标系的起始角度。
-
-#### endAngle
-
-<description>**optional** _number_ _default:_ `(Math.PI * 180) / 180`</description>
-
-配置坐标系的结束角度。
+<playground path="more-plots/violin/demo/tooltip.ts" rid="tooltip-meta"></playground>
 
 #### color
 
@@ -234,11 +160,30 @@ export default DemoRose;
 }
 ```
 
-#### sectorStyle
+### 图形样式
 
-<description>**optional** _object 、 Function_</description>
+#### box
 
-设置扇形样式。sectorStyle 中的`fill`会覆盖 `color` 的配置。sectorStyle 可以直接指定，也可以通过 callback 的方式，根据数据为每个扇形切片指定单独的样式。
+<description>**optional** _boolean_</description>
+
+是否展示内部箱线图。默认展示，设置为 'false' 关闭箱线图。
+
+#### shape
+
+<description>**optional** _'smooth'|'hollow'|'hollow-smooth'_</description>
+
+小提琴形状。
+
+- 默认: 非平滑、实心
+- smooth: 平滑
+- hollow: 空心
+- hollow-smooth: 平滑、空心
+
+#### violinStyle
+
+<description>**optional** _StyleAttr 、 Function_</description>
+
+小提琴轮廓样式配置。
 
 <!--图形样式-->
 
@@ -280,30 +225,6 @@ export default DemoRose;
 ```
 
 关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
-
-#### state
-
-<description>**可选** _object_</description>
-
-设置对应状态的样式，开放的状态有：`'default' | 'active' | 'inactive' | 'selected'` 四种。
-
-示例：
-
-```ts
-{
-  interactions: [{ type: 'element-active' }],
-  state: {
-    // 设置 active 激活状态的样式
-    active: {
-      animate: { duration: 100, easing: 'easeLinear' },
-      style: {
-        lineWidth: 2,
-        stroke: '#000',
-      },
-    },
-  }
-};
-```
 
 ### 图表组件
 
@@ -1468,48 +1389,6 @@ DOM 元素在 X 方向的对齐方式，用于 html
 
 DOM 元素在 Y 方向的对齐方式，用于 html
 
-#### slider
-
-> 目前只适用于：折线图、面积图、双轴图。
-
-| 配置项          | 类型           | 功能描述                                             |
-| --------------- | -------------- | ---------------------------------------------------- |
-| start           | _number_       | 默认起始位置                                         |
-| end             | _number_       | 默认结束位置                                         |
-| height          | _number_       | 缩略轴高度                                           |
-| trendCfg        | _TrendCfg_     | 背景趋势的配置                                       |
-| backgroundStyle | _object_       | 背景配置，参考[绘图属性](/zh-CN/guide/graphic-style) |
-| foregroundStyle | _object_       | 前景配置，参考[绘图属性](/zh-CN/guide/graphic-style) |
-| handlerStyle    | _HandlerStyle_ | handler 配置                                         |
-| textStyle       | _object_       | 文本配置，参考[绘图属性](/zh-CN/guide/graphic-style) |
-| minLimit        | _number_       | 允许滑动位置下限                                     |
-| maxLimit        | _number_       | 允许滑动位置上限                                     |
-| formatter       | _Function_     | 滑块文本格式化函数                                   |
-
-**_TrendCfg_** 类型如下：
-
-| 配置项          | 类型        | 功能描述                                                  |
-| --------------- | ----------- | --------------------------------------------------------- |
-| data            | _number\[]_ | 统计文本的样式                                            |
-| smooth          | _boolean_   | 是否平滑                                                  |
-| isArea          | _boolean_   | 是否面积图                                                |
-| backgroundStyle | _object_    | 背景样式配置，参考[绘图属性](/zh-CN/guide/graphic-style)  |
-| lineStyle       | _object_    | line 样式配置，参考[绘图属性](/zh-CN/guide/graphic-style) |
-| areaStyle       | _object_    | area 样式配置，参考[绘图属性](/zh-CN/guide/graphic-style) |
-
-**_HandlerStyle_** 类型如下：
-
-| 配置项        | 类型     | 功能描述                           |
-| ------------- | -------- | ---------------------------------- |
-| width         | _number_ | 缩略轴手柄宽度                     |
-| height        | _number_ | 缩略轴手柄高度                     |
-| fill          | _string_ | 缩略轴手柄填充色                   |
-| highLightFill | _string_ | 缩略轴手柄填充高亮色（hover 状态） |
-| stroke        | _string_ | 缩略轴手柄描边色                   |
-| opacity       | _number_ | 缩略轴手柄填充透明度               |
-| radius        | _number_ | 缩略轴手柄背景圆角                 |
-| cursor        | _string_ | 缩略轴手柄鼠标样式 （hover 状态）  |
-
 ### 图表事件
 
 在 Plot 上通过 `on` 绑定事件、`off` 移除绑定事件。
@@ -1720,46 +1599,3 @@ plot.update({ theme: { defaultColor: '#FF6B3B' } });
 <playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
 🌰 自定义主题 [DEMO](/zh/examples/general/theme#register-theme) 示例
-
-### 图表交互
-
-#### 添加交互
-
-```ts
-// 开启「鼠标移入图表元素（柱状图的柱子、点图的点等）时触发 active」的交互
-interactions: [{ type: 'element-active' }];
-
-// 开启多个交互
-interactions: [{ type: 'element-active' }, { type: 'brush' }];
-```
-
-#### 配置交互
-
-通过 `cfg` 可以对交互行为进行配置，详细参考 [G2 | 修改交互的默认交互](https://g2.antv.vision/zh/docs/api/general/interaction/#修改交互的默认交互)
-
-```ts
-// 修改 tooltip 触发事件
-interactions: [
-  {
-    type: 'tooltip',
-    cfg: { start: [{ trigger: 'element:click', action: 'tooltip:show' }] },
-  },
-];
-```
-
-#### 移除交互
-
-```ts
-// 方式1: 关闭 tooltip 交互
-interactions: [{ type: 'tooltip', enable: false }];
-
-// 方式2:
-plot.chart.removeInteraction('interaction-type');
-```
-
-使用示例：
-
-```ts
-// 移除 图例筛选 交互
-plot.chart.removeInteraction('legend-filter');
-```

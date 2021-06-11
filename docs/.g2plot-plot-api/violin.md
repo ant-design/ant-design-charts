@@ -76,17 +76,32 @@ The name of the data field corresponding to the graph in the x direction, usuall
 
 The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.
 
-#### groupField
+#### seriesField
 
 <description>**optional** _string_</description>
 
-Grouping field. It is used for grouping by default, and color is used as visual channel.
+Grouping field. It is used for grouping by default, and color is used as visual channel. Outlier field.
 
-#### outliersField
+#### kde
 
-<description>**optional** _string_</description>
+<description>**optional** _object_</description>
 
-Outlier field.
+Options to generate Kernel Density Estimation. Currently only triangular kernel was supported.
+
+```ts
+type KdeOptions = {
+  /** Triangular kernel */
+  type: 'triangular';
+  /** Min value for the kde's x range. Defaults to smallest value minus some threshold. */
+  min?: number;
+  /** Max value for the kde's x range. Defaults to largest value plus some threshold. */
+  max?: number;
+  /** Number of points to represent the kde. Defaults to 32. */
+  sampleSize?: number;
+  /** Bandwith of the triangular kernel. Defaults to 3. */
+  width?: number;
+};
+```
 
 #### meta
 
@@ -103,13 +118,37 @@ Configure the meta of each data field of the chart in global, to define the type
 
 See also the [Meta Options](/guide/common#meta) to learn more about configuration of `meta`.
 
+小提琴图内置箱线图配置。箱线图的统计数据分别为：
+
+- high: 数据中的最大值，作为箱线图的最高点；
+- low: 数据中的最小值，作为箱线图的最低点；
+- q3: 上四分位，即 25% 的数据大于该数，作为箱线图中箱子的高点；
+- q1: 下四分位，即 25% 的数据小于该数，作为箱线图中箱子的低点；
+- median: 数据的中位数，在箱线图中用圆点表示。
+
+可以通过 `meta` 来设置字段的元信息
+
+<playground path="more-plots/violin/demo/tooltip.ts" rid="tooltip-meta"></playground>
+
 ### Graphic Style
 
-#### boxStyle
+#### box
+
+<description>**optional** _boolean_</description>
+
+Whether to show box plot. Default show box plot, you could hide box plot by setting `box: false`.
+
+#### shape
+
+<description>**optional** _'smooth'|'hollow'|'hollow-smooth'_</description>
+
+The shape of violin geometry. Could be 'smooth', 'hollow' or 'hollow-smooth'. Defaults to rough, solid voilins.
+
+#### violinStyle
 
 <description>**optional** _StyleAttr 、 Function_</description>
 
-Box graphic style.
+Violin graphic style.
 
 <!--shape style-->
 
@@ -151,12 +190,6 @@ Example：
 ```
 
 More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
-
-#### outliersStyle
-
-<description>**optional** _StyleAttr 、 Function_</description>
-
-Outliers graphic style, the same configuration as boxStyle.
 
 #### color
 
@@ -1355,48 +1388,6 @@ Alignment of DOM elements in the X direction for HTML
 <description>**optional** _left' 、 'middle' 、 'right'_ </description>
 
 Alignment of DOM elements in the Y direction for HTML
-
-#### slider
-
-> Only line plot, area plot and dual-axes plot are supported.
-
-| Properties | Type | Description |
-| --- | --- | --- |
-| start | _number_ | Default starting position |
-| end | _number_ | Default ending position |
-| height | _number_ | Slider height |
-| trendCfg | _TrendCfg_ | Configuration of background trends |
-| backgroundStyle | _object_ | Background style, reference[Graphic Style](/guide/graphic-style) |
-| foregroundStyle | _object_ | Foreground style, reference[Graphic Style](/guide/graphic-style) |
-| handlerStyle | _HandlerStyle_ | Handler configuration |
-| textStyle | _object_ | Text style, reference[Graphic Style](/guide/graphic-style) |
-| minLimit | _number_ | Lower limit of sliding position allowed |
-| maxLimit | _number_ | Upper limit of sliding position allowed |
-| formatter | _Function_ | Slider text formatting function |
-
-Types of **_TrendCfg_** are as follow:
-
-| Properties | Type | Description |
-| --- | --- | --- |
-| data | _number\[]_ | Trend data |
-| smooth | _boolean_ | Whether smooth |
-| isArea | _boolean_ | Whether area |
-| backgroundStyle | _object_ | Background style configuration, reference[Graphic Style](/guide/graphic-style) |
-| lineStyle | _object_ | Line style configuration, reference[Graphic Style](/guide/graphic-style) |
-| areaStyle | _object_ | Area style configuration, reference[Graphic Style](/guide/graphic-style) |
-
-Types of **_HandlerStyle_** are as follow:
-
-| Properties    | Type     | Description                                     |
-| ------------- | -------- | ----------------------------------------------- |
-| width         | _number_ | Width of slider handler                         |
-| height        | _number_ | Height of slider handler                        |
-| fill          | _string_ | Fill color of handler                           |
-| highLightFill | _string_ | Highlight fill color of handler (when hovering) |
-| stroke        | _string_ | Stroke color of handler                         |
-| opacity       | _number_ | Fill opacity of handler                         |
-| radius        | _number_ | Radius of handler rect                          |
-| cursor        | _string_ | Style of cursor (when hovering handler)         |
 
 ### Plot Event
 
