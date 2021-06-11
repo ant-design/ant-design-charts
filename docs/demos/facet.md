@@ -1,5 +1,5 @@
 ---
-title: Facet
+title: 分面图
 order: 37
 ---
 

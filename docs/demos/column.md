@@ -1,5 +1,5 @@
 ---
-title: Column
+title: 柱形图
 order: 4
 ---
 
@@ -55,6 +55,12 @@ const DemoColumn: React.FC = () => {
         opacity: 0.6,
       },
     },
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
     meta: {
       type: { alias: '类别' },
       sales: { alias: '销售额' },
@@ -66,7 +72,7 @@ const DemoColumn: React.FC = () => {
 export default DemoColumn;
 ```
 
-### 基础柱状图 - 自定义颜色
+### 自定义柱状图颜色
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -131,9 +137,11 @@ const DemoColumn: React.FC = () => {
       offset: 10,
     },
     legend: false,
-    meta: {
-      type: { alias: '类别' },
-      sales: { alias: '销售额' },
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
     },
   };
   return <Column {...config} />;
@@ -142,7 +150,7 @@ const DemoColumn: React.FC = () => {
 export default DemoColumn;
 ```
 
-### 基础柱状图 - 转化率
+### 带转化率柱状图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -176,6 +184,12 @@ const DemoColumn: React.FC = () => {
     xField: 'action',
     yField: 'pv',
     conversionTag: {},
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
   };
   return <Column {...config} />;
 };
@@ -271,6 +285,12 @@ const DemoColumn: React.FC = () => {
         },
       },
     ],
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
   };
   return <Column {...config} />;
 };
@@ -278,7 +298,7 @@ const DemoColumn: React.FC = () => {
 export default DemoColumn;
 ```
 
-### 基础柱状图 - 滚动条
+### 带滚动条柱状图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -310,7 +330,7 @@ const DemoColumn: React.FC = () => {
 export default DemoColumn;
 ```
 
-### 基础柱状图 - 缩略轴
+### 带缩略轴柱状图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -345,7 +365,7 @@ const DemoColumn: React.FC = () => {
 export default DemoColumn;
 ```
 
-### 基础柱状图 - 柱子宽度
+### 指定柱状图宽度比例
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -391,10 +411,80 @@ const DemoColumn: React.FC = () => {
     xField: 'type',
     yField: 'sales',
     columnWidthRatio: 0.8,
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
     meta: {
       type: { alias: '类别' },
       sales: { alias: '销售额' },
     },
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
+### 指定柱状图最小最大宽度
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  var data = [
+    {
+      type: '家具家电',
+      sales: 38,
+    },
+    {
+      type: '粮油副食',
+      sales: 52,
+    },
+    {
+      type: '生鲜水果',
+      sales: 61,
+    },
+    {
+      type: '美容洗护',
+      sales: 145,
+    },
+    {
+      type: '母婴用品',
+      sales: 48,
+    },
+    {
+      type: '进口食品',
+      sales: 38,
+    },
+    {
+      type: '食品饮料',
+      sales: 38,
+    },
+    {
+      type: '家庭清洁',
+      sales: 38,
+    },
+  ];
+  var config = {
+    data: data,
+    xField: 'type',
+    yField: 'sales',
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
+    meta: {
+      type: { alias: '类别' },
+      sales: { alias: '销售额' },
+    },
+    minColumnWidth: 20,
+    maxColumnWidth: 20,
   };
   return <Column {...config} />;
 };
@@ -512,6 +602,124 @@ const DemoColumn: React.FC = () => {
 export default DemoColumn;
 ```
 
+### 圆角柱状图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/PC3daFYjNw/column-data.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    xField: 'city',
+    yField: 'value',
+    seriesField: 'type',
+    isGroup: 'true',
+    columnStyle: {
+      radius: [20, 20, 0, 0],
+    },
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
+### 分组柱状图像素级组内柱子间距
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/iPY8JFnxdb/dodge-padding.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    isGroup: true,
+    xField: '月份',
+    yField: '月均降雨量',
+    seriesField: 'name',
+    dodgePadding: 2,
+    label: {
+      position: 'middle',
+      layout: [
+        { type: 'interval-adjust-position' },
+        { type: 'interval-hide-overlap' },
+        { type: 'adjust-color' },
+      ],
+    },
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
+### 分组柱状图像素级组间间距
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/iPY8JFnxdb/dodge-padding.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    isGroup: true,
+    xField: '月份',
+    yField: '月均降雨量',
+    seriesField: 'name',
+    dodgePadding: 2,
+    intervalPadding: 20,
+    label: {
+      position: 'middle',
+      layout: [
+        { type: 'interval-adjust-position' },
+        { type: 'interval-hide-overlap' },
+        { type: 'adjust-color' },
+      ],
+    },
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
 ### 堆叠分组柱状图
 
 ```tsx
@@ -519,122 +727,52 @@ import React, { useState, useEffect } from 'react';
 import { Column } from '@ant-design/charts';
 
 const DemoColumn: React.FC = () => {
-  var data = [
-    {
-      name: 'London',
-      month: 'Jan.',
-      value: 12.9,
-      type: '语文',
-    },
-    {
-      name: 'London',
-      month: 'Jan.',
-      value: 10.9,
-      type: '数学',
-    },
-    {
-      name: 'London',
-      month: 'Jan.',
-      value: 120.9,
-      type: '英语',
-    },
-    {
-      name: 'Berlin',
-      month: 'Jan.',
-      value: 12.4,
-      type: '美术',
-    },
-    {
-      name: 'Berlin',
-      month: 'Jan.',
-      value: 12.4,
-      type: '线性代数',
-    },
-    {
-      name: 'beijing',
-      month: 'Jan.',
-      value: 12.4,
-      type: '高数',
-    },
-    {
-      name: 'London',
-      month: 'Feb.',
-      value: 2.9,
-      type: '语文',
-    },
-    {
-      name: 'London',
-      month: 'Feb.',
-      value: 5.9,
-      type: '数学',
-    },
-    {
-      name: 'London',
-      month: 'Feb.',
-      value: 10.9,
-      type: '英语',
-    },
-    {
-      name: 'Berlin',
-      month: 'Feb.',
-      value: 22.4,
-      type: '美术',
-    },
-    {
-      name: 'Berlin',
-      month: 'Feb.',
-      value: 32.4,
-      type: '线性代数',
-    },
-    {
-      name: 'Berlin',
-      month: 'Feb.',
-      value: 62.4,
-      type: '线性代数-上',
-    },
-    {
-      name: 'beijing',
-      month: 'Feb.',
-      value: 42.4,
-      type: '高数',
-    },
-    {
-      name: 'London',
-      month: 'Mar.',
-      value: 2.9,
-      type: '语文',
-    },
-    {
-      name: 'London',
-      month: 'Mar.',
-      value: 5.9,
-      type: '数学',
-    },
-    {
-      name: 'Berlin',
-      month: 'Mar.',
-      value: 22.4,
-      type: '美术',
-    },
-    {
-      name: 'Berlin',
-      month: 'Mar.',
-      value: 32.4,
-      type: '线性代数',
-    },
-    {
-      name: 'beijing',
-      month: 'Mar.',
-      value: 42.4,
-      type: '高数',
-    },
-    {
-      name: 'beijing',
-      month: 'Mar.',
-      value: 42.4,
-      type: '高数-上',
-    },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/mor%26R5yBI9/stack-group-column.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    xField: 'product_type',
+    yField: 'order_amt',
+    isGroup: true,
+    isStack: true,
+    seriesField: 'product_sub_type',
+    groupField: 'sex',
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
+### 堆叠分组柱状图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/cK%24sTxSsah/stack-group-column.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
   var config = {
     data: data,
     xField: 'month',
@@ -650,7 +788,51 @@ const DemoColumn: React.FC = () => {
 export default DemoColumn;
 ```
 
-### 百分百柱状图
+### 对 Tooltip 进行 formatter
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/mor%26R5yBI9/stack-group-column.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    xField: 'product_type',
+    yField: 'order_amt',
+    isGroup: true,
+    isStack: true,
+    seriesField: 'product_sub_type',
+    groupField: 'sex',
+    tooltip: {
+      formatter: function formatter(datum) {
+        return {
+          name: ''
+            .concat(datum.product_sub_type, ' ')
+            .concat(datum.sex === '男' ? '\uD83D\uDC66' : '\uD83D\uDC67'),
+          value: datum.order_amt,
+        };
+      },
+    },
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
+### 百分比柱状图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -785,6 +967,68 @@ const DemoColumn: React.FC = () => {
 export default DemoColumn;
 ```
 
+### 带联动区域的百分比柱状图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column, G2 } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  G2.registerInteraction('element-link', {
+    start: [
+      {
+        trigger: 'interval:mouseenter',
+        action: 'element-link-by-color:link',
+      },
+    ],
+    end: [
+      {
+        trigger: 'interval:mouseleave',
+        action: 'element-link-by-color:unlink',
+      },
+    ],
+  });
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/jSRiL%26YNql/percent-column.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    xField: 'year',
+    yField: 'value',
+    seriesField: 'type',
+    isPercent: true,
+    isStack: true,
+    meta: {
+      value: {
+        min: 0,
+        max: 1,
+      },
+    },
+    label: {
+      position: 'middle',
+      content: function content(item) {
+        return ''.concat((item.value * 100).toFixed(2), '%');
+      },
+      style: { fill: '#fff' },
+    },
+    tooltip: false,
+    interactions: [{ type: 'element-highlight-by-color' }, { type: 'element-link' }],
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
 ### 区间柱状图
 
 ```tsx
@@ -849,98 +1093,18 @@ import React, { useState, useEffect } from 'react';
 import { Column } from '@ant-design/charts';
 
 const DemoColumn: React.FC = () => {
-  var data = [
-    {
-      year: '1991',
-      value: 3,
-      type: 'Lon',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Lon',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Lon',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Lon',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Lon',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Lon',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Lon',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Lon',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Lon',
-    },
-    {
-      year: '1991',
-      value: 3,
-      type: 'Bor',
-    },
-    {
-      year: '1992',
-      value: 4,
-      type: 'Bor',
-    },
-    {
-      year: '1993',
-      value: 3.5,
-      type: 'Bor',
-    },
-    {
-      year: '1994',
-      value: 5,
-      type: 'Bor',
-    },
-    {
-      year: '1995',
-      value: 4.9,
-      type: 'Bor',
-    },
-    {
-      year: '1996',
-      value: 6,
-      type: 'Bor',
-    },
-    {
-      year: '1997',
-      value: 7,
-      type: 'Bor',
-    },
-    {
-      year: '1998',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '1999',
-      value: 13,
-      type: 'Bor',
-    },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/8elHX%26irfq/stack-column-data.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
   var config = {
     data: data,
     isStack: true,
@@ -955,6 +1119,46 @@ const DemoColumn: React.FC = () => {
         { type: 'adjust-color' },
       ],
     },
+  };
+  return <Column {...config} />;
+};
+
+export default DemoColumn;
+```
+
+### 设置柱状图背景色
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Column } from '@ant-design/charts';
+
+const DemoColumn: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/8elHX%26irfq/stack-column-data.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    isStack: true,
+    xField: 'year',
+    yField: 'value',
+    seriesField: 'type',
+    label: { position: 'middle' },
+    interactions: [
+      {
+        type: 'active-region',
+        enable: false,
+      },
+    ],
+    columnBackground: { style: { fill: 'rgba(0,0,0,0.1)' } },
   };
   return <Column {...config} />;
 };

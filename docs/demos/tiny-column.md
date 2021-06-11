@@ -1,6 +1,6 @@
 ---
-title: Tiny Column
-order: 29
+title: 迷你柱状图
+order: 34
 ---
 
 ### 基础迷你柱形图
@@ -13,7 +13,6 @@ const DemoTinyColumn: React.FC = () => {
   var data = [274, 337, 81, 497, 666, 219, 269];
   var config = {
     height: 64,
-    width: 240,
     autoFit: false,
     data: data,
     tooltip: {
@@ -47,7 +46,6 @@ const DemoTinyColumn: React.FC = () => {
   var data = [274, 337, 81, 497, 666, 219, 269];
   var config = {
     height: 64,
-    width: 240,
     autoFit: false,
     data: data,
     tooltip: false,

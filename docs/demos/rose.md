@@ -1,9 +1,9 @@
 ---
-title: Rose
+title: 玫瑰图
 order: 6
 ---
 
-### Rose
+### 玫瑰图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -50,7 +50,7 @@ const DemoRose: React.FC = () => {
 export default DemoRose;
 ```
 
-### Rose-内部图形标签
+### 玫瑰图-内部图形标签
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -97,7 +97,7 @@ const DemoRose: React.FC = () => {
 export default DemoRose;
 ```
 
-### Rose-元素交互
+### 玫瑰图-元素交互
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -145,7 +145,7 @@ const DemoRose: React.FC = () => {
 export default DemoRose;
 ```
 
-### Rose-设置条件状态
+### 玫瑰图-设置条件状态
 
 ```tsx
 import React, { useState, useEffect } from 'react';

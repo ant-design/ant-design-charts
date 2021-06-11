@@ -1,9 +1,9 @@
 ---
-title: Line
+title: 折线图
 order: 1
 ---
 
-### 折线图带图表标注
+### 条件样式折线图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -121,25 +121,9 @@ const DemoLine: React.FC = () => {
     state: {
       active: {
         style: {
-          shadowColor: 'yellow',
           shadowBlur: 4,
-          stroke: 'transparent',
+          stroke: '#000',
           fill: 'red',
-        },
-      },
-    },
-    theme: {
-      geometries: {
-        point: {
-          diamond: {
-            active: {
-              style: {
-                shadowColor: '#FCEBB9',
-                shadowBlur: 2,
-                stroke: '#F6BD16',
-              },
-            },
-          },
         },
       },
     },
@@ -187,6 +171,140 @@ const DemoLine: React.FC = () => {
 export default DemoLine;
 ```
 
+### 带标注点的折线图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Line, G2 } from '@ant-design/charts';
+
+const DemoLine: React.FC = () => {
+  G2.registerShape('point', 'breath-point', {
+    draw: function draw(cfg, container) {
+      var data = cfg.data;
+      var point = {
+        x: cfg.x,
+        y: cfg.y,
+      };
+      var group = container.addGroup();
+      if (data.time === '14.20' && data.date === 'today') {
+        var decorator1 = group.addShape('circle', {
+          attrs: {
+            x: point.x,
+            y: point.y,
+            r: 10,
+            fill: cfg.color,
+            opacity: 0.5,
+          },
+        });
+        var decorator2 = group.addShape('circle', {
+          attrs: {
+            x: point.x,
+            y: point.y,
+            r: 10,
+            fill: cfg.color,
+            opacity: 0.5,
+          },
+        });
+        var decorator3 = group.addShape('circle', {
+          attrs: {
+            x: point.x,
+            y: point.y,
+            r: 10,
+            fill: cfg.color,
+            opacity: 0.5,
+          },
+        });
+        decorator1.animate(
+          {
+            r: 20,
+            opacity: 0,
+          },
+          {
+            duration: 1800,
+            easing: 'easeLinear',
+            repeat: true,
+          },
+        );
+        decorator2.animate(
+          {
+            r: 20,
+            opacity: 0,
+          },
+          {
+            duration: 1800,
+            easing: 'easeLinear',
+            repeat: true,
+            delay: 600,
+          },
+        );
+        decorator3.animate(
+          {
+            r: 20,
+            opacity: 0,
+          },
+          {
+            duration: 1800,
+            easing: 'easeLinear',
+            repeat: true,
+            delay: 1200,
+          },
+        );
+        group.addShape('circle', {
+          attrs: {
+            x: point.x,
+            y: point.y,
+            r: 6,
+            fill: cfg.color,
+            opacity: 0.7,
+          },
+        });
+        group.addShape('circle', {
+          attrs: {
+            x: point.x,
+            y: point.y,
+            r: 1.5,
+            fill: cfg.color,
+          },
+        });
+      }
+      return group;
+    },
+  });
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/cpu-data.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    autoFit: true,
+    height: 500,
+    data: data,
+    meta: {
+      cpu: {
+        time: { type: 'cat' },
+        max: 100,
+        min: 0,
+      },
+    },
+    xField: 'time',
+    yField: 'cpu',
+    seriesField: 'date',
+    tooltip: { showMarkers: false },
+    point: { shape: 'breath-point' },
+  };
+  return <Line {...config} />;
+};
+
+export default DemoLine;
+```
+
 ### 基础折线图
 
 ```tsx
@@ -195,7 +313,6 @@ import { Line } from '@ant-design/charts';
 
 const DemoLine: React.FC = () => {
   const [data, setData] = useState([]);
-  let ref;
   useEffect(() => {
     asyncFetch();
   }, []);
@@ -212,26 +329,42 @@ const DemoLine: React.FC = () => {
     padding: 'auto',
     xField: 'Date',
     yField: 'scales',
-    xAxis: {
-      type: 'timeCat',
-      tickCount: 5,
-    },
+    xAxis: { tickCount: 5 },
   };
-  useEffect(() => {
-    var cnt = 0;
-    var smooth = false;
-    var interval = setInterval(function () {
-      if (cnt < 5) {
-        smooth = !smooth;
-        cnt += 1;
-        ref.update({ smooth: smooth });
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-  }, []);
+  return <Line {...config} />;
+};
 
-  return <Line {...config} chartRef={(chartRef) => (ref = chartRef)} />;
+export default DemoLine;
+```
+
+### 基础曲线图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Line } from '@ant-design/charts';
+
+const DemoLine: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    padding: 'auto',
+    xField: 'Date',
+    yField: 'scales',
+    xAxis: { tickCount: 5 },
+    smooth: true,
+  };
+  return <Line {...config} />;
 };
 
 export default DemoLine;
@@ -271,6 +404,190 @@ const DemoLine: React.FC = () => {
       },
     },
     color: ['#1979C9', '#D62A0D', '#FAA219'],
+  };
+  return <Line {...config} />;
+};
+
+export default DemoLine;
+```
+
+### 网格填充
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Line } from '@ant-design/charts';
+
+const DemoLine: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/55424a73-7cb8-4f79-b60d-3ab627ac5698.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data.slice(data.length - 90, data.length).filter(function (item) {
+      return item.category === 'Gas fuel' || item.category === 'Cement production';
+    }),
+    xField: 'year',
+    yField: 'value',
+    seriesField: 'category',
+    xAxis: {
+      nice: true,
+      label: {
+        rotate: Math.PI / 6,
+        offset: 10,
+        style: {
+          fill: '#aaa',
+          fontSize: 12,
+        },
+        formatter: function formatter(name) {
+          return name;
+        },
+      },
+      title: {
+        text: '年份',
+        style: { fontSize: 16 },
+      },
+      line: { style: { stroke: '#aaa' } },
+      tickLine: {
+        style: {
+          lineWidth: 2,
+          stroke: '#aaa',
+        },
+        length: 5,
+      },
+      grid: {
+        line: {
+          style: {
+            stroke: '#ddd',
+            lineDash: [4, 2],
+          },
+        },
+        alternateColor: 'rgba(0,0,0,0.05)',
+      },
+    },
+    yAxis: {
+      label: {
+        autoRotate: false,
+        style: {
+          fill: '#aaa',
+          fontSize: 12,
+        },
+        formatter: function formatter(v) {
+          return ''.concat(v).replace(/\d{1,3}(?=(\d{3})+$)/g, function (s) {
+            return ''.concat(s, ',');
+          });
+        },
+      },
+      title: {
+        text: '排放量(顿)',
+        style: { fontSize: 16 },
+      },
+      line: { style: { stroke: '#aaa' } },
+      tickLine: {
+        style: {
+          lineWidth: 2,
+          stroke: '#aaa',
+        },
+        length: 5,
+      },
+      grid: {
+        line: {
+          style: {
+            stroke: '#ddd',
+            lineDash: [4, 2],
+          },
+        },
+        alternateColor: 'rgba(0,0,0,0.05)',
+      },
+    },
+    label: {
+      layout: [{ type: 'hide-overlap' }],
+      style: { textAlign: 'right' },
+      formatter: function formatter(item) {
+        return item.value;
+      },
+    },
+    point: {
+      size: 5,
+      style: {
+        lineWidth: 1,
+        fillOpacity: 1,
+      },
+      shape: function shape(item) {
+        if (item.category === 'Cement production') {
+          return 'circle';
+        }
+        return 'diamond';
+      },
+    },
+    annotations: [
+      {
+        type: 'line',
+        start: ['0%', '10%'],
+        end: ['100%', '10%'],
+        top: true,
+        style: {
+          stroke: 'l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff',
+          lineWidth: 2,
+        },
+      },
+      {
+        type: 'region',
+        start: ['0%', '0%'],
+        end: ['20%', '10%'],
+        top: true,
+        style: {
+          fill: '#1890ff',
+          fillOpacity: 1,
+          opacity: 1,
+        },
+      },
+      {
+        type: 'text',
+        position: ['10%', '5%'],
+        content: '二氧化碳排放量来源',
+        style: {
+          fill: '#fff',
+          fontSize: 12,
+          textAlign: 'center',
+          textBaseline: 'middle',
+          shadowColor: '#fff',
+          shadowOffsetX: 12,
+          shadowOffsetY: 12,
+          shadowBlur: 2,
+        },
+      },
+      {
+        type: 'line',
+        start: ['min', 'median'],
+        end: ['max', 'median'],
+        style: {
+          stroke: 'Turquoise',
+          lineDash: [4, 2],
+        },
+      },
+    ],
+    legend: {
+      position: 'top-right',
+      itemName: {
+        style: { fill: '#000' },
+        formatter: function formatter(name) {
+          return name;
+        },
+      },
+    },
+    meta: {
+      year: {
+        range: [0, 1],
+      },
+    },
   };
   return <Line {...config} />;
 };
@@ -365,7 +682,7 @@ const DemoLine: React.FC = () => {
 export default DemoLine;
 ```
 
-### 指定 point marker 激活的样式
+### 通过回调函数指定数据点样式
 
 ```tsx
 import React, { useState, useEffect } from 'react';

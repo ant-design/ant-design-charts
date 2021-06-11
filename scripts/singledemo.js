@@ -18,7 +18,6 @@ if (!arg.length) {
 }
 const chartNameZh = chartNames[arg[0]];
 const language = arg[1] === 'en' ? '' : '.zh-CN';
-console.log(arg, language);
 const lowerCaseFileName = lowerCase(arg[0]);
 const toLineName = toLine(lowerCaseFileName);
 const chartPath = ChartsLevel[arg[0]] || '';

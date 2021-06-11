@@ -8,8 +8,6 @@ const shelljs = require('shelljs');
 const readline = require('readline');
 const arg = process.argv.splice(2);
 
-const language = arg?.[1] === 'en' ? '' : '.zh-CN';
-
 // 该操作比较危险，不建议直接扫描
 const demos = [
   {
@@ -104,10 +102,14 @@ const demos = [
     name: '对称条形图',
     chart: 'BidirectionalBar',
   },
-  // {
-  //   name: '雷达图',
-  //   chart: 'Radar',
-  // },
+  {
+    name: '雷达图',
+    chart: 'Radar',
+  },
+  {
+    name: '矩阵树图',
+    chart: 'Treemap',
+  },
   {
     name: '旭日图',
     chart: 'Sunburst',
@@ -137,7 +139,8 @@ const demos = [
 const start = () => {
   console.info('文档生成中....');
   demos.forEach((item) => {
-    shelljs.exec(`node scripts/singledemo.js ${item.chart} ${language}`);
+    // shelljs.exec(`node scripts/singledemo.js ${item.chart} ${arg?.[0]}`);
+    shelljs.exec(`node scripts/singledemo.js ${item.chart}`);
   });
 };
 

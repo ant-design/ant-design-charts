@@ -1,5 +1,5 @@
 ---
-title: Annotations
+title: 辅助标记
 order: 20
 ---
 
@@ -57,8 +57,7 @@ const DemoGeneral: React.FC = () => {
     annotations: [
       {
         type: 'image',
-        src:
-          'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ELYbTIVCgPoAAAAAAAAAAABkARQnAQ',
+        src: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ELYbTIVCgPoAAAAAAAAAAABkARQnAQ',
         /** 位置 */
         position: ['50%', '50%'],
         /** 图形样式属性 */
