@@ -1,5 +1,5 @@
 import G6, { IGroup, ModelConfig } from '@antv/g6';
-import { defaultLabelCfg, Margin, defaultTitleLabelCfg } from './contants';
+import { defaultLabelCfg, Margin, defaultTitleLabelCfg } from './constants';
 import { getConfig, getContentAndStyle } from './utils';
 import { CardModelConfig } from './types';
 

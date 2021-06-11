@@ -4,7 +4,7 @@ import ChartLoading from '../../util/createLoading';
 import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
 import { registerIconNode } from '../customItems';
-import { defaultLabelCfg, defaultStateStyles, defaultNodeSize } from '../contants';
+import { defaultLabelCfg, defaultStateStyles, defaultNodeSize } from '../constants';
 import { getGraphSize, processMinimap, getGraphId, renderGraph } from '../utils';
 import { OrganizationTreeProps } from '../types';
 

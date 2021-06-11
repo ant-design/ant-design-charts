@@ -3,7 +3,7 @@ import G6, { INode, IG6GraphEvent } from '@antv/g6';
 import ChartLoading from '../util/createLoading';
 import { ErrorBoundary } from '../base';
 import useGraph from '../hooks/useGraph';
-import { defaultNodeSize, defaultLabelCfg, defaultStateStyles } from './contants';
+import { defaultNodeSize, defaultLabelCfg, defaultStateStyles } from './constants';
 import { processMinimap, getGraphSize, getGraphId, renderGraph, bindEvents } from './utils';
 import { RelationGraph } from './types';
 import { registerCustomItems } from './customItems';

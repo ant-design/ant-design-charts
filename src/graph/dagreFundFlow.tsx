@@ -4,7 +4,7 @@ import ChartLoading from '../util/createLoading';
 import { ErrorBoundary } from '../base';
 import useGraph from '../hooks/useGraph';
 import { deepClone } from '../util/utils';
-import { defaultNodeAnchorPoints, defaultStateStyles, defaultEdgeStyle } from './contants';
+import { defaultNodeAnchorPoints, defaultStateStyles, defaultEdgeStyle } from './constants';
 import { processMinimap, getGraphSize, getGraphId, bindEvents } from './utils';
 import { RelationGraph } from './types';
 

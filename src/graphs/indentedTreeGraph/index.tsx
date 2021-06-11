@@ -13,7 +13,7 @@ import {
   defaultStateStyles,
   defaultNodeStyle,
   defaultEdgeArrowStyle,
-} from '../contants';
+} from '../constants';
 
 const graphs: any = {};
 

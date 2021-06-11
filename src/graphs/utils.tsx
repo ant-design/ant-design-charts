@@ -1,7 +1,7 @@
 import G6, { IGraph, IG6GraphEvent, INode, IGroup, Graph } from '@antv/g6';
 import { deepClone } from '../util/utils';
 import { CardNodeConfig, MiniMapConfig, CardModelConfig } from './types';
-import { defaultMinimapCfg } from './contants';
+import { defaultMinimapCfg } from './constants';
 
 export const getGraphSize = (
   width: number | undefined,
