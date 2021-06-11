@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import G6, { NodeConfig } from '@antv/g6';
-import ChartLoading from '../util/createLoading';
-import { ErrorBoundary } from '../base';
-import useGraph from '../hooks/useGraph';
-import { customIconNode } from './customItems';
-import { defaultLabelCfg, defaultStateStyles } from './constants';
-import { getGraphSize, processMinimap, getGraphId, renderGraph, bindEvents } from './utils';
-import { RelationGraph } from './types';
+import G6, { NodeConfig, IEdge, INode } from '@antv/g6';
+import ChartLoading from '../../util/createLoading';
+import { ErrorBoundary } from '../../base';
+import useGraph from '../../hooks/useGraph';
+import { registerIconNode } from '../customItems';
+import { defaultLabelCfg, defaultStateStyles, defaultNodeSize } from '../constants';
+import { getGraphSize, processMinimap, getGraphId, renderGraph } from '../utils';
+import { OrganizationTreeProps } from '../types';
 
 const defaultNodeStyle = {
   fill: '#91d5ff',
@@ -44,32 +44,34 @@ const defaultLayout = {
 };
 
 const graphs: any = {};
-const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
+const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
   const {
     data,
     className,
     style,
     width,
     height,
+    animate = true,
     nodeType = 'rect',
     edgeType = 'flow-line',
-    collapseExpand = false,
-    nodeSize = [120, 40],
+    nodeSize = defaultNodeSize,
+    behaviors = ['drag-canvas', 'zoom-canvas'],
     nodeLabelCfg = defaultLabelCfg,
     edgeLabelCfg = defaultLabelCfg,
     layout = defaultLayout,
-    enableEdit = false,
+    showMarker = false,
     minimapCfg,
-    nodeStyle = defaultNodeStyle,
-    edgeStyle = defaultEdgeStyle,
+    nodeStyle,
+    edgeStyle,
+    markerStyle,
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
-    graphRef,
     onReady,
     loading,
     loadingTemplate,
     errorTemplate,
   } = props;
+
   const container = React.useRef(null);
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
@@ -77,11 +79,9 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-
     if (nodeType === 'icon-node') {
-      customIconNode({ enableEdit });
+      registerIconNode();
     }
-
     let graph = graphs[graphId];
     if (!graph) {
       graph = new G6.TreeGraph({
@@ -89,46 +89,65 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
         width: graphSize[0],
         height: graphSize[1],
         linkCenter: true,
+        animate,
         modes: {
-          default: ['drag-canvas', 'zoom-canvas'],
+          default: behaviors,
         },
         defaultNode: {
           type: nodeType,
           size: nodeSize,
-          style: nodeStyle,
           labelCfg: nodeLabelCfg,
+          markerStyle,
+          showMarker,
         },
         defaultEdge: {
           type: edgeType,
-          style: edgeStyle,
           labelCfg: edgeLabelCfg,
         },
         nodeStateStyles,
         edgeStateStyles,
-        layout,
+        layout: {
+          ...defaultLayout,
+          ...layout,
+        },
       });
 
       graphs[graphId] = graph;
     }
 
-    if (graphRef) {
-      graphRef!.current = graph;
-    }
+    graph.node((node: INode) => {
+      if (typeof nodeStyle === 'function') {
+        return {
+          style: nodeStyle(node, graph),
+        };
+      }
+      return {
+        style: {
+          ...defaultNodeStyle,
+          ...nodeStyle,
+        },
+      };
+    });
+
+    graph.edge((edge: IEdge) => {
+      if (typeof edgeStyle === 'function') {
+        return {
+          style: edgeStyle(edge, graph),
+        };
+      }
+      return {
+        style: {
+          ...defaultEdgeStyle,
+          ...edgeStyle,
+        },
+      };
+    });
 
     processMinimap(minimapCfg, graph);
     renderGraph(graph, data);
     if (onReady) {
       onReady(graph);
     }
-    if (collapseExpand) {
-      graph.addBehaviors(
-        {
-          type: 'collapse-expand',
-        },
-        'default',
-      );
-    }
-    bindEvents(graph, props);
 
     return () => {
       if (graphs[graphId]) {
@@ -146,4 +165,4 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
   );
 };
 
-export default OrganizationTreeGraphComponent;
+export default OrganizationalGraph;

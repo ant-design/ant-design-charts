@@ -1,6 +1,7 @@
-import { IGraph, IG6GraphEvent, INode, IGroup } from '@antv/g6';
+import G6, { IGraph, IG6GraphEvent, INode, IGroup, Graph } from '@antv/g6';
 import { deepClone } from '../util/utils';
-import { CardNodeConfig } from './types';
+import { CardNodeConfig, MiniMapConfig, CardModelConfig } from './types';
+import { defaultMinimapCfg } from './constants';
 
 export const getGraphSize = (
   width: number | undefined,
@@ -56,11 +57,11 @@ export const getContentAndStyle = (cfg: CardNodeConfig) => {
 };
 
 // 统一处理 config，支持回调
-export const getConfig = (cfg: any, item: IGroup | undefined) => {
-  if (typeof cfg === 'function') {
-    return cfg(item);
+export const getConfig = (source: unknown, item: IGroup | undefined, cfg?: CardModelConfig) => {
+  if (typeof source === 'function') {
+    return source(item, cfg);
   }
-  return cfg || {};
+  return source || {};
 };
 
 const uuid = () => {
@@ -85,4 +86,18 @@ export const renderGraph = (graph: IGraph, data: any) => {
   graph.data(originData);
   graph.render();
   graph.fitView();
+};
+
+export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph) => {
+  if (!graph || graph.destroyed) return;
+  if (cfg.show) {
+    const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);
+    const minimap = new G6.Minimap({
+      ...curMminimapCfg,
+    });
+
+    graph.addPlugin(minimap);
+    return minimap;
+  }
+  return null;
 };

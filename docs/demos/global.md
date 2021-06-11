@@ -547,12 +547,12 @@ toc: content
   </a>
 </div>
 
-### Organization Tree Graph
+### Organizational Graph
 
 <div class="gallery-item-box">
-  <a href="/demos/organization-tree-graph#基础组织架构树图">
+  <a href="/demos/organizational-graph#base">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Quv4RoUwgf4AAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础组织架构树图</p>
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Base Organizational Graph</p>
   </a>
 </div>
 

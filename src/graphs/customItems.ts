@@ -1,9 +1,9 @@
-import G6, { IGroup } from '@antv/g6';
+import G6, { IGroup, ModelConfig } from '@antv/g6';
 import { defaultLabelCfg, Margin, defaultTitleLabelCfg } from './constants';
 import { getConfig, getContentAndStyle } from './utils';
 import { CardModelConfig } from './types';
 
-export const registerNodes = () => {
+export const registerCardNode = () => {
   G6.registerNode(
     'card',
     {
@@ -74,6 +74,7 @@ export const registerNodes = () => {
               stroke: color,
               lineWidth: 1,
               fill: '#fff',
+              ...getConfig(cfg.markerStyle, group, { ...cfg, name: 'collapse-icon' }),
             },
             name: 'collapse-icon',
           });
@@ -161,5 +162,101 @@ export const registerNodes = () => {
       update: undefined,
     },
     'single-node',
+  );
+};
+
+export const registerIconNode = () => {
+  G6.registerNode(
+    'icon-node',
+    {
+      options: {
+        size: [60, 20],
+        stroke: '#91d5ff',
+        fill: '#91d5ff',
+      },
+      draw(cfg: ModelConfig | undefined = {}, group: IGroup | undefined) {
+        // @ts-ignore
+        const styles = this.getShapeStyle(cfg);
+        const { labelCfg = {}, labelStyle, label, markerStyle, showMarker } = cfg;
+        const keyShape = group!.addShape('rect', {
+          attrs: {
+            ...styles,
+            x: 0,
+            y: 0,
+          },
+        });
+
+        let style = {
+          fill: '#e6fffb',
+        };
+        let img;
+        if (cfg.leftIcon) {
+          style = { ...style, ...(cfg.leftIcon as any).style };
+          img = (cfg.leftIcon as any).img;
+        }
+        group!.addShape('rect', {
+          attrs: {
+            x: 1,
+            y: 1,
+            width: 38,
+            height: styles.height - 2,
+            ...style,
+          },
+        });
+
+        group!.addShape('image', {
+          attrs: {
+            x: 8,
+            y: 8,
+            width: 24,
+            height: 24,
+            img,
+          },
+          name: 'image-shape',
+        });
+
+        if (showMarker) {
+          group!.addShape('marker', {
+            attrs: {
+              x: styles.width / 3,
+              y: styles.height + 6,
+              r: 6,
+              stroke: '#73d13d',
+              cursor: 'pointer',
+              symbol: G6.Marker.expand,
+              ...getConfig(markerStyle, group, { ...cfg, name: 'add-item' }),
+            },
+            name: 'add-item',
+          });
+
+          group!.addShape('marker', {
+            attrs: {
+              x: (styles.width * 2) / 3,
+              y: styles.height + 6,
+              r: 6,
+              stroke: '#ff4d4f',
+              cursor: 'pointer',
+              symbol: G6.Marker.collapse,
+              ...getConfig(markerStyle, group, { ...cfg, name: 'remove-item' }),
+            },
+            name: 'remove-item',
+          });
+        }
+        if (label) {
+          const textCfg = labelStyle ? getConfig(labelStyle, group, cfg) : labelCfg;
+          group!.addShape('text', {
+            attrs: {
+              text: label,
+              x: styles.width / 2,
+              y: styles.height / 1.5,
+              ...textCfg,
+            },
+          });
+        }
+
+        return keyShape;
+      },
+    },
+    'rect',
   );
 };

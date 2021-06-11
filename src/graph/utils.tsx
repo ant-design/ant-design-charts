@@ -65,7 +65,7 @@ export const renderGraph = (graph: IGraph, data: any) => {
 };
 
 // 事件绑定，兼容历史数据
-export const bindEvents = (graph: IGraph, props: RelationGraph, bindNodeClick: boolean = true) => {
+export const bindEvents = (graph: IGraph, props: RelationGraph) => {
   const {
     handleEdgeClick,
     handleEdgeHover,
@@ -103,12 +103,10 @@ export const bindEvents = (graph: IGraph, props: RelationGraph, bindNodeClick: b
     graph.setItemState(item, 'hover', false);
     handleNodeUnHover?.(item, graph);
   });
-  if (bindNodeClick) {
-    graph.on('node:click', (evt: IG6GraphEvent) => {
-      const item = evt.item as INode;
-      handleNodeClick?.(item, graph);
-    });
-  }
+  graph.on('node:click', (evt: IG6GraphEvent) => {
+    const item = evt.item as INode;
+    handleNodeClick?.(item, graph);
+  });
   graph.on('canvas:click', () => {
     handleCanvasClick?.(graph);
   });

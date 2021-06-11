@@ -1,5 +1,8 @@
 import IndentedTreeGraph from './indentedTreeGraph';
+import OrganizationalGraph from './organizationalGraph';
 
-export default { IndentedTreeGraph };
+export default { IndentedTreeGraph, OrganizationalGraph };
 
-export { IndentedTreeGraph };
+export { IndentedTreeGraph, OrganizationalGraph };
+
+export * from './types';
