@@ -86,7 +86,7 @@ export default defineConfig({
         path: '/zh-CN/demos/sankey',
         children: [
           '/demos/indented-tree-graph.zh-CN.md',
-          '/demos/organizationTreeGraph.zh-CN.md',
+          '/demos/organizational-graph.zh-CN.md',
           // '/demos/indentedTree.zh-CN.md',
           '/demos/dagreGraph.zh-CN.md',
           '/demos/dagreFundFlowGraph.zh-CN.md',
@@ -114,8 +114,8 @@ export default defineConfig({
         path: '/zh-CN/demos/radar',
         children: [
           // 菜单子项（可选）
-          'demos/violin.zh-CN.md',
-          'demos/facet.zh-CN.md',
+          // 'demos/violin.zh-CN.md',
+          // 'demos/facet.zh-CN.md',
           'demos/radar.zh-CN.md',
           'demos/treemap.zh-CN.md',
           'demos/funnel.zh-CN.md',
@@ -179,7 +179,7 @@ export default defineConfig({
         path: '/demos/sankey',
         children: [
           '/demos/indented-tree-graph.md',
-          '/demos/organizationTreeGraph.md',
+          '/demos/organizational-graph.md',
           // '/demos/indentedTree.md',
           '/demos/dagreGraph.md',
           '/demos/dagreFundFlowGraph.md',
@@ -207,8 +207,8 @@ export default defineConfig({
         path: '/demos/radar',
         children: [
           // 菜单子项（可选）
-          'demos/violin.md',
-          'demos/facet.md',
+          // 'demos/violin.md',
+          // 'demos/facet.md',
           'demos/radar.md',
           'demos/treemap.md',
           'demos/funnel.md',

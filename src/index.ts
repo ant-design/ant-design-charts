@@ -32,8 +32,8 @@ import Facet from './facet';
 import MultiView from './mix'; // 和 Mix 相同，底层更名
 import Mix from './mix';
 import BidirectionalBar from './bidirectionalBar';
-import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
-import { IndentedTreeGraph } from './graphs';
+import { DagreGraph, IndentedTree, DagreFundFlowGraph, OrganizationTreeGraph } from './graph'; // 会逐步下掉
+import { IndentedTreeGraph, OrganizationalGraph } from './graphs';
 import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';
 
 export {
@@ -76,6 +76,7 @@ export {
   IndentedTree,
   DagreFundFlowGraph,
   IndentedTreeGraph,
+  OrganizationalGraph,
   G2,
   // 直接导出 G2Plot 相关方法
   flow,
@@ -123,6 +124,7 @@ export default {
   IndentedTree,
   DagreFundFlowGraph,
   IndentedTreeGraph,
+  OrganizationalGraph,
   G2,
   flow,
   measureTextWidth,

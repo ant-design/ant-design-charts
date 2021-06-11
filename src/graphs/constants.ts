@@ -20,26 +20,6 @@ export const defaultEdgeArrowStyle = {
     fill: '#ccc',
   },
 };
-// card 默认布局系数
-export const defaultLayout = {
-  type: 'compactBox',
-  direction: 'LR',
-  getId: (d: any) => {
-    return d.id;
-  },
-  getHeight: () => {
-    return 60;
-  },
-  getWidth: () => {
-    return 16;
-  },
-  getVGap: () => {
-    return 16;
-  },
-  getHGap: () => {
-    return 100;
-  },
-};
 // 默认 anchor 连接点
 export const defaultNodeAnchorPoints = [
   [0, 0.5],
@@ -56,4 +36,9 @@ export const defaultTitleLabelCfg = {
 export const defaultLabelCfg = {
   fill: '#000',
   fontSize: 12,
+};
+export const defaultMinimapCfg = {
+  show: false,
+  size: [150, 100],
+  type: 'keyShape',
 };

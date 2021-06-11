@@ -550,7 +550,7 @@ toc: content
 ### 组织架构树图
 
 <div class="gallery-item-box">
-  <a href="/zh-CN/demos/organization-tree-graph#基础组织架构树图">
+  <a href="/zh-CN/demos/organizational-graph#基础组织架构树图">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Quv4RoUwgf4AAAAAAAAAAAAAARQnAQ" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">基础组织架构树图</p>
   </a>
