@@ -97,9 +97,9 @@
 仪表盘辅助圆弧的样式。
 
 | 配置项 | 类型 | 描述 |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | ticks | _number\[]_ | 辅助圆弧显示数字数组 |
-| color | \*string | string\[]\* | 辅助圆弧的颜色色板，按照色板顺序取值; 当设置 ticks 时，color 无法使用回调的方式 |
+| color | _string 、string\[]_ | 辅助圆弧的颜色色板，按照色板顺序取值; 当设置 ticks 时，color 无法使用回调的方式 |
 | width | _number_ | 对辅助圆弧的宽度进行像素级别的设置。默认通过 radius，innerRadius 来计算辅助圆弧的宽度。 |
 
 <playground rid="gauge" path="progress-plots/gauge/demo/custom-color.ts"></playground>
@@ -261,7 +261,7 @@
 
 | 属性名 | 类型 | 介绍 |
 | --- | --- | --- |
-| type | _string_ | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner\|outer\|spider`） |
+| type | _string_ | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner、outer、spider`） |
 | offset | _number_ | label 的偏移量 |
 | offsetX | _number_ | label 相对于数据点在 X 方向的偏移距离 |
 | offsetY | _number_ | label 相对于数据点在 Y 方向的偏移距离 |
@@ -307,12 +307,12 @@ type LabelLineCfg = {
 文本标签的配置项，null 表示不展示。_AxisLabelCfg_ 配置如下：
 
 | 参数名 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | offset | _number_ | - | label 的偏移量 |
 | rotate | _number_ | - | 文本旋转角度 |
-| autoRotate | \*boolean | avoidCallback\* | `true` | 是否自动旋转 |
-| autoHide | \*boolean | avoidCallback | { type:string,cfg?:AxisLabelAutoHideCfg }\* | `false` | 是否自动隐藏 |
-| autoEllipsis | \*boolean | avoidCallback | string\* | `false` | 是否自动省略 |
+| autoRotate | _boolean 、avoidCallback_ | `true` | 是否自动旋转 |
+| autoHide | _boolean 、avoidCallback 、 { type:string,cfg?:AxisLabelAutoHideCfg }_ | `false` | 是否自动隐藏 |
+| autoEllipsis | _boolean 、avoidCallback 、string_ | `false` | 是否自动省略 |
 | formatter | _`(text: string, item: ListItem, index: number) => any`_ | `false` | 格式化函数 |
 | style | _[ShapeAttrs](/zh-CN/guide/graphic-style)_ | - | 坐标轴刻度线的样式配置项 |
 
@@ -349,12 +349,12 @@ interface AxisLabelAutoHideCfg {
 
 坐标轴网格线的配置项，null 表示不展示。
 
-| 细分配置项名称 | 类型        | 功能描述                                                 |
-| -------------- | ----------- | -------------------------------------------------------- | -------------------- |
-| line           | _lineStyle_ | 线的样式,                                                |
-| alternateColor | \*string    | string\[]\*                                              | 两个栅格线间的填充色 |
-| closed         | _boolean_   | 对于 circle 是否关闭 grid                                |
-| alignTick      | _boolean_   | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
+| 细分配置项名称 | 类型                | 功能描述                                                 |
+| -------------- | ------------------- | -------------------------------------------------------- |
+| line           | _lineStyle_         | 线的样式,                                                |
+| alternateColor | _string、string\[]_ | 两个栅格线间的填充色                                     |
+| closed         | _boolean_           | 对于 circle 是否关闭 grid                                |
+| alignTick      | _boolean_           | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
 
 网格线条样式的配置与 [line](#line) 是一致的。
 

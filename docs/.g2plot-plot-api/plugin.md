@@ -305,8 +305,8 @@ Adjust of data.
 The purpose of adjusting data is to make the graphics not obscure each other and to have a clearer understanding of the data, but the correct understanding of the data must be ensured. See more: [Adjust | G2](https://g2.antv.vision/en/docs/manual/concepts/adjust)
 
 | Properties | Type | Description |
-| --- | --- | --- | --- | --- | --- |
-| type | 'stack' | 'dodge' | 'jitter' | 'symmetric' | 数据调整类型 |
+| --- | --- | --- |
+| type | 'stack' 、 'dodge' 、 'jitter' 、 'symmetric' | 数据调整类型 |
 | marginRatio | number | 只对 'dodge' 生效，取 0 到 1 范围的值（相对于每个柱子宽度），用于控制一个分组中柱子之间的间距 |
 | dodgeBy | string | 只对 'dodge' 生效，声明以哪个数据字段为分组依据 |
 | reverseOrder | boolean | 只对 'stack' 生效，用于控制是否对数据进行反序操作 |

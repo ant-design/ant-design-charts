@@ -140,11 +140,11 @@ More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
 
 The pattern of polylines in the area.
 
-| Properties | Type                              | Description       |
-| ---------- | --------------------------------- | ----------------- | ---------- | ---------- |
-| color      | _string 、 string\[] 、 Function_ | Color mapping     |
-| style      | _ShapeStyle 、 Function_          | Style mapping     |
-| size       | \*number                          | \[number, number] | Function\* | Line width |
+| Properties | Type                                      | Description   |
+| ---------- | ----------------------------------------- | ------------- |
+| color      | _string 、 string\[] 、 Function_         | Color mapping |
+| style      | _ShapeStyle 、 Function_                  | Style mapping |
+| size       | _number 、 \[number, number] 、 Function_ | Line width    |
 
 #### point
 
@@ -153,9 +153,9 @@ The pattern of polylines in the area.
 Area Chart Data Point Graph Style.
 
 | Properties | Type | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | color | _string 、 string\[] 、 Function_ | The color of the data point, support callback way, example: `color: (x, y, series) => string` |
-| shape | \_string | Function\_ | The shape of the data point, support callback way, example: `shape: (x, y, series) => string` |
+| shape | \_string 、 Function\_ | The shape of the data point, support callback way, example: `shape: (x, y, series) => string` |
 | size | _number 、 Function_ | The size of the data point, support callback way, example: `size: (x, y, series) => number` |
 | style | _object 、 Function_ | Data point style, support callback way, example: `style: (x, y, series) => object` |
 | state | _object_ | State styles of point, setting style of specify state。Refer to [_state_](#state) |
@@ -587,15 +587,15 @@ Example code:
 
 Configurations related to axis label. Set this to `null` to prevent the axis label from appearing. The details of \_ AxisLabelCfg\_ are as follows:
 
-| Properties   | Type                                                     |                 |
-| ------------ | -------------------------------------------------------- | --------------- | --------------------------------------------------------- | --------------------------------------------- | -------------------------------------------------- |
-| style        | _[ShapeAttrs](/guide/graphic-style)_                     | -               | Axis label text graphic property style                    |
-| offset       | _number_                                                 | -               | Axis label offset                                         |
-| rotate       | _number_                                                 | -               | Axis label text rotation Angle                            |
-| autoRotate   | \*boolean                                                | avoidCallback\* | `true`                                                    | Whether to rotate automatically, default true |
-| autoHide     | \*boolean                                                | avoidCallback   | { type:string,cfg?:AxisLabelAutoHideCfg }\*               | `false`                                       | Whether to hide it automatically, default to false |
-| autoEllipsis | _boolean_                                                | `false`         | Whether to ellipsis label when overflow, default to false |
-| formatter    | _`(text: string, item: ListItem, index: number) => any`_ | `false`         | Format function                                           |
+| Properties   | Type                                                                   |         |
+| ------------ | ---------------------------------------------------------------------- | ------- | --------------------------------------------------------- |
+| style        | _[ShapeAttrs](/guide/graphic-style)_                                   | -       | Axis label text graphic property style                    |
+| offset       | _number_                                                               | -       | Axis label offset                                         |
+| rotate       | _number_                                                               | -       | Axis label text rotation Angle                            |
+| autoRotate   | _boolean 、avoidCallback_                                              | `true`  | Whether to rotate automatically, default true             |
+| autoHide     | _boolean 、avoidCallback 、 { type:string,cfg?:AxisLabelAutoHideCfg }_ | `false` | Whether to hide it automatically, default to false        |
+| autoEllipsis | _boolean_                                                              | `false` | Whether to ellipsis label when overflow, default to false |
+| formatter    | _`(text: string, item: ListItem, index: number) => any`_               | `false` | Format function                                           |
 
 **_avoidCallback_** 类型定义如下：
 
@@ -631,9 +631,9 @@ Configuring the maximum limit length in the vertical direction of the coordinate
 Axis grid line configuration item. NULL means not shown.
 
 | Properties | Type | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | line | _lineStyle_ | The style of the line |
-| alternateColor | \*string | string\[]\* | The fill color between two grid lines |
+| alternateColor | _string、string\[]_ | The fill color between two grid lines |
 | closed | _boolean_ | Whether to close the grid for circle |
 | alignTick | _boolean_ | If the value is false, it will be displayed between the two scales |
 

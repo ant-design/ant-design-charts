@@ -319,15 +319,15 @@ Example code:
 
 Configurations related to axis label. Set this to `null` to prevent the axis label from appearing. The details of \_ AxisLabelCfg\_ are as follows:
 
-| Properties   | Type                                                     |                 |
-| ------------ | -------------------------------------------------------- | --------------- | --------------------------------------------------------- | --------------------------------------------- | -------------------------------------------------- |
-| style        | _[ShapeAttrs](/guide/graphic-style)_                     | -               | Axis label text graphic property style                    |
-| offset       | _number_                                                 | -               | Axis label offset                                         |
-| rotate       | _number_                                                 | -               | Axis label text rotation Angle                            |
-| autoRotate   | \*boolean                                                | avoidCallback\* | `true`                                                    | Whether to rotate automatically, default true |
-| autoHide     | \*boolean                                                | avoidCallback   | { type:string,cfg?:AxisLabelAutoHideCfg }\*               | `false`                                       | Whether to hide it automatically, default to false |
-| autoEllipsis | _boolean_                                                | `false`         | Whether to ellipsis label when overflow, default to false |
-| formatter    | _`(text: string, item: ListItem, index: number) => any`_ | `false`         | Format function                                           |
+| Properties   | Type                                                                   |         |
+| ------------ | ---------------------------------------------------------------------- | ------- | --------------------------------------------------------- |
+| style        | _[ShapeAttrs](/guide/graphic-style)_                                   | -       | Axis label text graphic property style                    |
+| offset       | _number_                                                               | -       | Axis label offset                                         |
+| rotate       | _number_                                                               | -       | Axis label text rotation Angle                            |
+| autoRotate   | _boolean 、avoidCallback_                                              | `true`  | Whether to rotate automatically, default true             |
+| autoHide     | _boolean 、avoidCallback 、 { type:string,cfg?:AxisLabelAutoHideCfg }_ | `false` | Whether to hide it automatically, default to false        |
+| autoEllipsis | _boolean_                                                              | `false` | Whether to ellipsis label when overflow, default to false |
+| formatter    | _`(text: string, item: ListItem, index: number) => any`_               | `false` | Format function                                           |
 
 **_avoidCallback_** 类型定义如下：
 
@@ -363,9 +363,9 @@ Configuring the maximum limit length in the vertical direction of the coordinate
 Axis grid line configuration item. NULL means not shown.
 
 | Properties | Type | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | line | _lineStyle_ | The style of the line |
-| alternateColor | \*string | string\[]\* | The fill color between two grid lines |
+| alternateColor | _string、string\[]_ | The fill color between two grid lines |
 | closed | _boolean_ | Whether to close the grid for circle |
 | alignTick | _boolean_ | If the value is false, it will be displayed between the two scales |
 

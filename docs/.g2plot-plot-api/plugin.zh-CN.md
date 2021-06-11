@@ -140,7 +140,7 @@ view 上的图形 geometry 及映射配置，具体见[图层图形](#图层图�
 
 | 参数名 | 类型 | 可选值 ｜ |
 | --- | --- | --- |
-| type | _string_ | `'polar' \| 'theta' \| 'rect' \| 'cartesian' \| 'helix'` |
+| type | _string_ | `'polar' 、 'theta' 、 'rect' 、 'cartesian' 、 'helix'` |
 | cfg | _CoordinateCfg_ | CoordinateCfg 坐标系配置项，目前常用于极坐标 |
 | actions | _array object_ | 坐标系的变换配置，具体可以见 G2 坐标系[文档](https://g2.antv.vision/zh/docs/api/general/coordinate) |
 
@@ -302,8 +302,8 @@ label 映射通道，具体见 [Label API](/zh/docs/api/components/label)
 数据调整配置项。调整数据的目的是为了使得图形不互相遮挡，对数据的认识更加清晰，但是必须保证对数据的正确理解，更多信息可以查看 [数据调整 | G2](https://g2.antv.vision/zh/docs/manual/concepts/adjust)
 
 | 参数名 | 类型 | 描述 |
-| --- | --- | --- | --- | --- | --- |
-| type | 'stack' | 'dodge' | 'jitter' | 'symmetric' | 数据调整类型 |
+| --- | --- | --- |
+| type | 'stack' 、 'dodge' 、 'jitter' 、 'symmetric' | 数据调整类型 |
 | marginRatio | number | 只对 'dodge' 生效，取 0 到 1 范围的值（相对于每个柱子宽度），用于控制一个分组中柱子之间的间距 |
 | dodgeBy | string | 只对 'dodge' 生效，声明以哪个数据字段为分组依据 |
 | reverseOrder | boolean | 只对 'stack' 生效，用于控制是否对数据进行反序操作 |
