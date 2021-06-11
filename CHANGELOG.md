@@ -1,3 +1,10 @@
+## 1.1.13
+
+`2021-06-11`
+
+- 🆕 新增 OrganizationalGraph。OrganizationTreeGraph 的升级版，OrganizationTreeGraph 后续不在官网透出。
+- 🐞 修复 OrganizationTreeGraph changeData 布局出错。
+
 ## 1.1.12
 
 `2021-06-10`
