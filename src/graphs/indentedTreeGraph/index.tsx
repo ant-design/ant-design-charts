@@ -5,14 +5,13 @@ import useGraph from '../../hooks/useGraph';
 import ChartLoading from '../../util/createLoading';
 import { getGraphSize, getGraphId } from '../utils';
 import { IndentedTreeProps } from '../types';
-import { bindDefaultEvents, renderGraph } from '../utils';
+import { bindDefaultEvents, renderGraph, getDefaultEdgeArrowCfg } from '../utils';
 import { registerCardNode } from '../customItems';
 import {
   defaultNodeAnchorPoints,
   defaultNodeSize,
   defaultStateStyles,
   defaultNodeStyle,
-  defaultEdgeArrowStyle,
 } from '../constants';
 
 const graphs: any = {};
@@ -55,6 +54,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
     animate = true,
     nodeStyle,
     edgeStyle,
+    edgeCfg,
     markerStyle,
     markerPosition = 'right',
     nodeStateStyles = defaultStateStyles,
@@ -65,6 +65,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
     footerStyle,
     footerValueStyle,
     showArrow = true,
+    arrowType = 'vee',
     onReady,
     loading,
     loadingTemplate,
@@ -126,6 +127,9 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
       };
     });
     graph.edge((edge: IEdge) => {
+      if (edgeCfg) {
+        return typeof edgeCfg === 'function' ? edgeCfg(edge, graph) : edgeCfg;
+      }
       if (typeof edgeStyle === 'function') {
         return {
           style: edgeStyle(edge, graph),
@@ -134,7 +138,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
       return {
         style: {
           stroke: '#ccc',
-          ...(showArrow && defaultEdgeArrowStyle),
+          ...(showArrow && getDefaultEdgeArrowCfg(0, arrowType)),
           ...edgeStyle,
         },
       };

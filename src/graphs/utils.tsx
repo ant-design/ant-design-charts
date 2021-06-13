@@ -42,6 +42,17 @@ export const bindDefaultEvents = (graph: IGraph, collapseExpand?: boolean) => {
   }
 };
 
+// 默认箭头样式
+export const getDefaultEdgeArrowCfg = (d: number = 0, arrowType = 'vee', fill: string = '#ccc') => {
+  return {
+    endArrow: {
+      path: G6.Arrow[arrowType](10, 10, d),
+      fill,
+      d,
+    },
+  };
+};
+
 // 统一处理 text&style
 export const getContentAndStyle = (cfg: CardNodeConfig) => {
   if (typeof cfg === 'string' || typeof cfg === 'number') {

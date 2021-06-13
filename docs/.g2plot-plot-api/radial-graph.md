@@ -1,5 +1,5 @@
 ---
-title: Organizational Graph
+title: Radial Graph
 ---
 
 ### Basic configuration
@@ -25,7 +25,6 @@ Data, see the sample code.
 interface Data {
   id: string;
   label: string;
-  labelStyle?: LabelStyle | (node, cfg)=> LabelStyle
   children?: Data[];
   [key: string]?: unknow
 }
@@ -33,7 +32,7 @@ interface Data {
 
 #### edgeType
 
-Edge type, default `flow-line`
+Edge type, default `line`
 
 - line: straight line without control points;
 - polyline: polyline with one or more control points;
@@ -63,39 +62,35 @@ The (minimum) size of the node. Some graphs may be adapted to the size of the no
 
 <description>**optional** _object | Function_</description>
 
-Node configuration.
+Node Configuration。
 
 ```ts
 {
   nodeCfg: {
+    labelCfg: {
+      style: {
+        fill: '#fff'
+      }
+    },
     style: {
+      fill: '#40a9ff',
       stroke: '#40a9ff',
     }
   }
 }
 // callback
 {
-  nodeStyle: (node, graph)=>{
+  nodeCfg: (node, graph)=>{
     return {
+      labelCfg: {
+        style: {
+          fill: '#fff'
+        }
+      },
       style: {
+        fill: '#40a9ff',
         stroke: '#40a9ff',
       }
-    }
-  }
-}
-```
-
-#### nodeLabelCfg
-
-<description>**optional** _object_</description>
-
-Node label configruation.
-
-```ts
-{
-  nodeLabelCfg: {
-    style: {
-      fill: 'red';
     }
   }
 }
@@ -200,34 +195,6 @@ Interaction mode, default `['drag-canvas', 'zoom-canvas']`.
 - zoom-canvas: Zoom canvas
 - drag-node: Drag node
 
-#### showMarker
-
-<description>**optional** _Boolean_</description>
-
-Show bottom marker, the default value `false`.
-
-#### markerStyle
-
-<description>**optional** _object | Function_</description>
-
-Bottom marker style.
-
-```ts
-{
-  markerStyle: {
-    stroke: '#40a9ff',
-  }
-}
-// callback
-{
-  markerStyle: (node, cfg)=>{
-    return {
-      stroke: '#40a9ff',
-    }
-  }
-}
-```
-
 #### animate
 
 <description>**optional** _Boolean_</description>
@@ -240,48 +207,39 @@ Whether to turn on animation, default to 'true'.
 
 Whether to automatically adjust the layout after updating data. Default value is 'true '.
 
-#### minimapCfg
-
-<description>**optional** _objecr_</description>
-
-Min map configruation.
-
-```ts
-interface MiniMapConfig {
-  show?: boolean;
-  viewportClassName?: string;
-  type?: 'default' | 'keyShape' | 'delegate';
-  size?: number[];
-  delegateStyle?: ShapeStyle;
-  refresh?: boolean;
-  padding?: number;
-}
-```
-
 #### layout
 
 <description>**optional** _object_</description>
 
-layout.
+layout, default value is `dendrogram`.
 
 ```ts
 {
+  type: 'dendrogram',
+  direction: 'LR',
+  nodeSep: 20,
+  rankSep: 100,
+  radial: true,
+}
+{
+  type: 'compactBox',
+  direction: 'RL',
+  getId: function getId(d) {
+    return d.id;
+  },
   getHeight: () => {
-    // The height of each node
-    return 60;
+    return 26;
   },
   getWidth: () => {
-    // The width of each node
-    return 16;
+    return 26;
   },
   getVGap: () => {
-    // Vertical clearance of each node
-    return 16;
+    return 20;
   },
   getHGap: () => {
-    // Horizontal clearance of each node
-    return 100;
+    return 30;
   },
+  radial: true,
 }
 ```
 

@@ -9,6 +9,7 @@ import {
   IG6GraphEvent,
   IGroup,
   LabelStyle,
+  ArrowConfig,
 } from '@antv/g6';
 import { ContainerProps } from '../interface';
 
@@ -29,12 +30,30 @@ export interface CardItems {
   style?: LabelStyle;
   valueStyle?: LabelStyle;
 }
+export interface EdgeCfg {
+  label?: string;
+  labelCfg?: {
+    style: LabelStyle;
+  };
+  style?: {
+    endArrow: ArrowConfig;
+    startArrow: ArrowConfig;
+  } & ShapeStyle;
+}
 
+export interface NodeCfg {
+  labelCfg?: {
+    style: LabelStyle;
+  };
+  style?: ShapeStyle;
+}
 export type CardNodeConfig = string | number | CardItems;
 
 export type INodeStyle = ShapeStyle | ((node: INode, graph: IGraph) => ShapeStyle);
 export type IEdgeStyle = ShapeStyle | ((edge: IEdge, graph: IGraph) => ShapeStyle);
 export type ILabelStyle = LabelStyle | ((item: INode | IEdge, graph: IGraph) => LabelStyle);
+export type IEdgeCfg = EdgeCfg | ((edge: IEdge, graph: IGraph) => EdgeCfg);
+export type INodeCfg = NodeCfg | ((edge: INode, graph: IGraph) => NodeCfg);
 
 export type IMarkerStyle = INodeStyle;
 
@@ -54,21 +73,21 @@ export interface RelationGraph extends ContainerProps {
   pixelRatio?: number;
   nodeType?: string;
   edgeType?: string;
-  nodeStyle?: INodeStyle;
-  edgeStyle?: IEdgeStyle;
+  nodeStyle?: INodeStyle; // 不推荐使用
+  edgeStyle?: IEdgeStyle; // 不推荐使用
+  edgeCfg?: IEdgeCfg;
+  nodeCfg?: INodeCfg;
   markerStyle?: IMarkerStyle;
   nodeStateStyles?: StateStyles;
   edgeStateStyles?: StateStyles;
   nodeSize?: number | number[];
   nodeAnchorPoints?: number[][];
-  nodeLabelCfg?: {
-    style: ILabelStyle;
-  };
-  edgeLabelCfg?: {
-    style: ILabelStyle;
-  };
   minimapCfg?: MiniMapConfig;
   behaviors?: string[];
+  /** 是否展示箭头 */
+  showArrow?: boolean;
+  /** 是否展示箭头 */
+  arrowType?: string;
   layout?: any;
   /** 是否开启动画 */
   animate?: boolean;
@@ -98,6 +117,14 @@ export interface IndentedTreeProps extends RelationGraph {
 export interface OrganizationTreeProps extends RelationGraph {
   /** 是否展示底部 marker，默认 false */
   showMarker?: boolean;
+  nodeLabelCfg?: {
+    style: ILabelStyle;
+  };
+}
+
+export interface RadialProps extends RelationGraph {
+  /** 是否连接节点中心 */
+  linkCenter?: boolean;
 }
 
 export type GraphConfig = IndentedTreeProps & OrganizationTreeProps;
