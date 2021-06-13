@@ -1,6 +1,6 @@
 import G6, { IGroup, ModelConfig } from '@antv/g6';
-import { defaultLabelCfg, Margin, defaultTitleLabelCfg } from './constants';
-import { getConfig, getContentAndStyle } from './utils';
+import { defaultLabelCfg, Margin, defaultTitleLabelCfg, cardTitlePadding } from './constants';
+import { getConfig, getContentAndStyle, getMarkerPosition } from './utils';
 import { CardModelConfig } from './types';
 
 export const registerCardNode = () => {
@@ -8,6 +8,7 @@ export const registerCardNode = () => {
     'card',
     {
       draw: (cfg: CardModelConfig | undefined = {}, group: IGroup | undefined) => {
+        const { title, body, footer, collapseExpand, children, markerPosition } = cfg;
         let size = cfg.size || [100, 30];
         let height = 0; // 统计容器总高度，动态设置
         if (typeof size === 'number') size = [size, size];
@@ -30,13 +31,13 @@ export const registerCardNode = () => {
 
         // node title
         let titleTextShape;
-        if (cfg.title) {
-          const { text, style: titleStyle = cfg.titleStyle } = getContentAndStyle(cfg.title);
+        if (title) {
+          const { text, style: titleStyle = cfg.titleStyle } = getContentAndStyle(title);
           titleTextShape = group!.addShape('text', {
             attrs: {
               textBaseline: 'top',
               x: Margin,
-              y: 2,
+              y: cardTitlePadding,
               text,
               ...defaultTitleLabelCfg,
               ...getConfig(titleStyle, group),
@@ -45,14 +46,17 @@ export const registerCardNode = () => {
           });
         }
 
-        const titleBox = titleTextShape ? titleTextShape.getBBox() : { height: size[1] / 2 };
+        const { height: titleHeight } = titleTextShape
+          ? titleTextShape.getBBox()
+          : { height: size[1] / 2 };
+
         // title rect
         const titleRectShape = group!.addShape('rect', {
           attrs: {
             x: 0,
             y: 0,
             width: size[0],
-            height: titleBox.height + 4,
+            height: titleHeight + 2 * cardTitlePadding,
             fill: color,
             radius: [radius, radius, 0, 0],
           },
@@ -63,11 +67,10 @@ export const registerCardNode = () => {
 
         // collapse marker
         let markerShape;
-        if (cfg?.children) {
+        if (collapseExpand && children) {
           markerShape = group!.addShape('marker', {
             attrs: {
-              x: size[0] / 2,
-              y: 0,
+              ...getMarkerPosition(markerPosition as string, size),
               r: 6,
               cursor: 'pointer',
               symbol: cfg.collapsed ? G6.Marker.expand : G6.Marker.collapse,
@@ -85,8 +88,8 @@ export const registerCardNode = () => {
 
         // body
         let bodyShape;
-        if (cfg.body) {
-          const { text, style: bodyStyle = cfg.bodyStyle } = getContentAndStyle(cfg.body);
+        if (body) {
+          const { text, style: bodyStyle = cfg.bodyStyle } = getContentAndStyle(body);
           bodyShape = group!.addShape('text', {
             attrs: {
               textBaseline: 'top',
@@ -103,13 +106,12 @@ export const registerCardNode = () => {
 
         // footer
         let footerTextShape;
-        if (cfg.footer) {
+        if (footer) {
           if (bodyShape) {
             height += Margin;
           }
-          const { text: labelText, style: labelStyle = cfg.footerStyle } = getContentAndStyle(
-            cfg.footer,
-          );
+          const { text: labelText, style: labelStyle = cfg.footerStyle } =
+            getContentAndStyle(footer);
           footerTextShape = group!.addShape('text', {
             attrs: {
               textBaseline: 'top',
@@ -148,13 +150,17 @@ export const registerCardNode = () => {
         // 调整容器宽高
         if (bodyShape) {
           const desTextShapeBBox = bodyShape.getBBox();
+          console.log(titleHeight);
+
           const width =
             size[0] > desTextShapeBBox.width + 16 ? size[0] : desTextShapeBBox.width + 16;
           shape.attr({ width, height: height + 16 });
           titleRectShape?.attr('width', width);
           markerShape?.attr({
-            x: width,
-            y: (height + 16) / 2,
+            ...getMarkerPosition(markerPosition as string, [
+              width,
+              height + titleHeight + 2 * cardTitlePadding,
+            ]),
           });
         }
         return shape;

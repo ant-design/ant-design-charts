@@ -56,6 +56,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
     nodeStyle,
     edgeStyle,
     markerStyle,
+    markerPosition = 'right',
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
     collapseExpand = true,
@@ -95,6 +96,8 @@ const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
           footerStyle,
           footerValueStyle,
           markerStyle,
+          collapseExpand,
+          markerPosition,
         },
         defaultEdge: {
           type: edgeType,

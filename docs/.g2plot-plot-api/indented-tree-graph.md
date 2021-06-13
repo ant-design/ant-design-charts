@@ -230,6 +230,18 @@ Interaction mode, default `['drag-canvas', 'zoom-canvas']`.
 
 Collapseable, the default value `true`.
 
+#### markerStyle
+
+<description>**optional** _object_</description>
+
+Take effect when collapseExpand is true.
+
+#### markerPosition
+
+<description>**optional** _top | right | bottom | left_</description>
+
+Take effect when collapseExpand is true, and the default value is' Right ', which used with the layout.
+
 #### showArrow
 
 <description>**optional** _Boolean_</description>
@@ -250,6 +262,7 @@ layout.
 
 ```ts
 {
+  direction: 'LR' | 'RL' | 'TB' | 'BT' | 'H' | 'V',
   getHeight: () => {
     // The height of each node
     return 60;
