@@ -91,6 +91,8 @@ export interface IndentedTreeProps extends RelationGraph {
   showArrow?: boolean;
   /** 是否可收缩 */
   collapseExpand?: boolean;
+  /** expand icon 位置 */
+  markerPosition?: 'top' | 'right' | 'bottom' | 'left';
 }
 
 export interface OrganizationTreeProps extends RelationGraph {

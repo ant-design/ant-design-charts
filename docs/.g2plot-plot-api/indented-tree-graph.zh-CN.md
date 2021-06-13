@@ -229,6 +229,18 @@ interface Data {
 
 是否可折叠，默认值 `true`。
 
+#### markerStyle
+
+<description>**optional** _object_</description>
+
+collapseExpand 为 true 时生效。
+
+#### markerPosition
+
+<description>**optional** _top | right | bottom | left_</description>
+
+collapseExpand 为 true 时生效， 默认值 `right`，可配合 layout 使用。
+
 #### showArrow
 
 <description>**optional** _Boolean_</description>
@@ -249,6 +261,7 @@ interface Data {
 
 ```ts
 {
+  direction: 'LR' | 'RL' | 'TB' | 'BT' | 'H' | 'V',
   getHeight: () => {
     // 每个节点的高度
     return 60;

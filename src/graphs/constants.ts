@@ -32,6 +32,7 @@ export const defaultTitleLabelCfg = {
   fill: '#fff',
   fontSize: 12,
 };
+export const cardTitlePadding = 2;
 // card body|footer  默认样式
 export const defaultLabelCfg = {
   fill: '#000',
