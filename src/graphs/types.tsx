@@ -86,7 +86,7 @@ export interface RelationGraph extends ContainerProps {
   behaviors?: string[];
   /** 是否展示箭头 */
   showArrow?: boolean;
-  /** 是否展示箭头 */
+  /** 箭头类型 */
   arrowType?: string;
   layout?: any;
   /** 是否开启动画 */
