@@ -1,5 +1,5 @@
 ---
-title: 组织架构图
+title: 辐射图
 ---
 
 ### 基础配置
@@ -26,7 +26,6 @@ title: 组织架构图
 interface Data {
   id: string;
   label: string;
-  labelStyle?: LabelStyle | (node, cfg)=> LabelStyle
   children?: Data[];
   [key: string]?: unknow
 }
@@ -34,7 +33,7 @@ interface Data {
 
 #### edgeType
 
-边类型，默认 'flow-line'
+边类型，默认 'line'
 
 - line：直线，不支持控制点；
 - polyline：折线，支持多个控制点；
@@ -51,13 +50,13 @@ interface Data {
 
 <description>**optional** _`string`_</description>
 
-节点类型，默认 `rect`, 支持 icon-node，内置节点包括 icon-node ,card，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut，这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
+节点类型，默认 `circle`, 支持 icon-node，内置节点包括 icon-node ,card，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut，这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
 
 #### nodeSize
 
-<description>**optional** _Number[] | false | [120, 40]_</description>
+<description>**optional** _Numbe_</description>
 
-节点的（最小）大小，部分图表可能会根据节点内容自适应大小。
+节点大小，部分图表可能会根据节点内容自适应大小，默认值 30。
 
 #### nodeCfg
 
@@ -68,34 +67,30 @@ interface Data {
 ```ts
 {
   nodeCfg: {
+    labelCfg: {
+      style: {
+        fill: '#fff'
+      }
+    },
     style: {
+      fill: '#40a9ff',
       stroke: '#40a9ff',
     }
   }
 }
 // 回调模式
 {
-  nodeStyle: (node, graph)=>{
+  nodeCfg: (node, graph)=>{
     return {
+      labelCfg: {
+        style: {
+          fill: '#fff'
+        }
+      },
       style: {
+        fill: '#40a9ff',
         stroke: '#40a9ff',
       }
-    }
-  }
-}
-```
-
-#### nodeLabelCfg
-
-<description>**optional** _object_</description>
-
-节点文本样式。
-
-```ts
-{
-  nodeLabelCfg: {
-    style: {
-      fill: 'red';
     }
   }
 }
@@ -142,7 +137,7 @@ interface Data {
 }
 // 回调模式
 {
-  edgeCfg: (item, graph)=>{
+  edgeCfg: (node, graph)=>{
     /**
      * graph.findById(item.target).getModel()
      * item.source: 获取 source 数据
@@ -200,33 +195,17 @@ interface Data {
 - zoom-canvas: 缩放画布
 - drag-node: 拖拽节点
 
-#### showMarker
+#### showArrow
 
 <description>**optional** _Boolean_</description>
 
-是否展示底部 Marker，默认值 `false`。
+是否展示箭头，默认 `false`。
 
-#### markerStyle
+#### 箭头类型
 
-<description>**optional** _object | Function_</description>
+<description>**optional** _triangle|vee_</description>
 
-底部 marker 样式。
-
-```ts
-{
-  markerStyle: {
-    stroke: '#40a9ff',
-  }
-}
-// 回调模式
-{
-  markerStyle: (node, cfg)=>{
-    return {
-      stroke: '#40a9ff',
-    }
-  }
-}
-```
+箭头类型，默认 `vee`。
 
 #### animate
 
@@ -238,50 +217,41 @@ interface Data {
 
 <description>**optional** _Boolean_</description>
 
-更新数据后是否自动调整布局，默认为 true。
-
-#### minimapCfg
-
-<description>**optional** _objecr_</description>
-
-迷你 map 配置。
-
-```ts
-interface MiniMapConfig {
-  show?: boolean;
-  viewportClassName?: string;
-  type?: 'default' | 'keyShape' | 'delegate';
-  size?: number[];
-  delegateStyle?: ShapeStyle;
-  refresh?: boolean;
-  padding?: number;
-}
-```
+更新数据后是否自动调整布局，默认值 `true`。
 
 #### layout
 
 <description>**optional** _object_</description>
 
-布局。
+布局, 默认 `dendrogram`。
 
 ```ts
 {
+  type: 'dendrogram',
+  direction: 'LR',
+  nodeSep: 20,
+  rankSep: 100,
+  radial: true,
+}
+{
+  type: 'compactBox',
+  direction: 'RL',
+  getId: function getId(d) {
+    return d.id;
+  },
   getHeight: () => {
-    // 每个节点的高度
-    return 60;
+    return 26;
   },
   getWidth: () => {
-    // 每个节点的宽度
-    return 16;
+    return 26;
   },
   getVGap: () => {
-    // 每个节点的垂直间隙
-    return 16;
+    return 20;
   },
   getHGap: () => {
-    // 每个节点的水平间隙
-    return 100;
+    return 30;
   },
+  radial: true,
 }
 ```
 

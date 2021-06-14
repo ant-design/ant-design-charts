@@ -87,6 +87,7 @@ export default defineConfig({
         children: [
           '/demos/indented-tree-graph.zh-CN.md',
           '/demos/organizational-graph.zh-CN.md',
+          '/demos/radial-graph.zh-CN.md',
           // '/demos/indentedTree.zh-CN.md',
           '/demos/dagreGraph.zh-CN.md',
           '/demos/dagreFundFlowGraph.zh-CN.md',
@@ -178,6 +179,7 @@ export default defineConfig({
         children: [
           '/demos/indented-tree-graph.md',
           '/demos/organizational-graph.md',
+          '/demos/radial-graph.md',
           // '/demos/indentedTree.md',
           '/demos/dagreGraph.md',
           '/demos/dagreFundFlowGraph.md',

@@ -1,103 +1,72 @@
 import React, { useEffect } from 'react';
-import G6, { NodeConfig, IEdge, INode } from '@antv/g6';
-import ChartLoading from '../../util/createLoading';
+import G6, { IEdge, INode } from '@antv/g6';
 import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
-import { registerIconNode } from '../customItems';
-import { defaultLabelCfg, defaultStateStyles, defaultNodeSize } from '../constants';
-import {
-  getGraphSize,
-  processMinimap,
-  getGraphId,
-  renderGraph,
-  getDefaultEdgeArrowCfg,
-} from '../utils';
-import { OrganizationTreeProps } from '../types';
-
-const defaultNodeStyle = {
-  fill: '#91d5ff',
-  stroke: '#40a9ff',
-  radius: 2,
-};
-
-const defaultLayout = {
-  type: 'compactBox',
-  direction: 'TB',
-  getId: function getId(d: NodeConfig) {
-    return d.id;
-  },
-  getHeight: function getHeight() {
-    return 16;
-  },
-  getWidth: function getWidth() {
-    return 16;
-  },
-  getVGap: function getVGap() {
-    return 40;
-  },
-  getHGap: function getHGap() {
-    return 70;
-  },
-};
+import ChartLoading from '../../util/createLoading';
+import { getGraphSize, getGraphId, getDefaultEdgeArrowCfg } from '../utils';
+import { RadialProps } from '../types';
+import { renderGraph } from '../utils';
+import { defaultNodeAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../constants';
 
 const graphs: any = {};
-const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
+
+const defaultLayout = {
+  type: 'dendrogram',
+  direction: 'LR',
+  nodeSep: 20,
+  rankSep: 100,
+  radial: true,
+};
+
+const RadialGraph: React.FC<RadialProps> = (props) => {
   const {
     data,
     className,
     style,
     width,
     height,
+    nodeType = 'circle',
+    linkCenter = true,
+    edgeType = 'line',
+    behaviors = ['zoom-canvas', 'drag-canvas'],
+    nodeAnchorPoints = defaultNodeAnchorPoints,
+    nodeSize = 30,
+    layout,
     animate = true,
-    nodeType = 'rect',
-    edgeType = 'flow-line',
-    nodeSize = defaultNodeSize,
-    behaviors = ['drag-canvas', 'zoom-canvas'],
-    nodeLabelCfg = defaultLabelCfg,
     nodeCfg,
-    layout = defaultLayout,
-    showMarker = false,
-    showArrow = true,
-    arrowType = 'triangle',
-    minimapCfg,
     edgeCfg,
-    markerStyle,
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
+    showArrow = false,
+    arrowType = 'triangle',
     onReady,
     loading,
     loadingTemplate,
     errorTemplate,
   } = props;
-
   const container = React.useRef(null);
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
   useGraph(graphs[graphId], props, container);
-  const arrowOffset = (Array.isArray(nodeSize) ? nodeSize[1] : nodeSize) / 2;
+  const arrowOffset = (Array.isArray(nodeSize) ? nodeSize[0] : nodeSize) / 2;
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
-    if (nodeType === 'icon-node') {
-      registerIconNode();
-    }
     let graph = graphs[graphId];
     if (!graph) {
       graph = new G6.TreeGraph({
         container: container.current as any,
         width: graphSize[0],
         height: graphSize[1],
-        linkCenter: true,
         animate,
+        linkCenter,
         modes: {
           default: behaviors,
         },
         defaultNode: {
           type: nodeType,
           size: nodeSize,
-          labelCfg: nodeLabelCfg,
-          markerStyle,
-          showMarker,
+          anchorPoints: nodeAnchorPoints,
         },
         defaultEdge: {
           type: edgeType,
@@ -109,7 +78,6 @@ const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
           ...layout,
         },
       });
-
       graphs[graphId] = graph;
     }
 
@@ -118,29 +86,28 @@ const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
         return nodeCfg(node, graph);
       }
       return {
+        ...nodeCfg,
         style: {
           ...defaultNodeStyle,
           ...nodeCfg?.style,
         },
       };
     });
-
     graph.edge((edge: IEdge) => {
       if (typeof edgeCfg === 'function') {
         return edgeCfg(edge, graph);
       }
       return {
-        ...edgeCfg,
         style: {
-          stroke: '#91d5ff',
-          ...(showArrow && getDefaultEdgeArrowCfg(arrowOffset, arrowType, '#91d5ff')),
+          stroke: '#ccc',
+          ...(showArrow && getDefaultEdgeArrowCfg(arrowOffset, arrowType)),
           ...edgeCfg?.style,
         },
       };
     });
 
-    processMinimap(minimapCfg, graph);
     renderGraph(graph, data);
+
     if (onReady) {
       onReady(graph);
     }
@@ -161,4 +128,4 @@ const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
   );
 };
 
-export default OrganizationalGraph;
+export default RadialGraph;

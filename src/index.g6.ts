@@ -1,6 +1,6 @@
 // G6
 import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
-import { IndentedTreeGraph, OrganizationalGraph } from './graphs';
+import { IndentedTreeGraph, OrganizationalGraph, RadialGraph } from './graphs';
 
 export {
   OrganizationTreeGraph,
@@ -9,4 +9,5 @@ export {
   DagreFundFlowGraph,
   IndentedTreeGraph,
   OrganizationalGraph,
+  RadialGraph,
 };
