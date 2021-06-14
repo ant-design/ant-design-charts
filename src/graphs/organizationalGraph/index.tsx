@@ -12,7 +12,9 @@ import {
   renderGraph,
   getDefaultEdgeArrowCfg,
 } from '../utils';
-import { OrganizationTreeProps } from '../types';
+import { OrganizationalGraphConfig } from '../types';
+
+export { OrganizationalGraphConfig };
 
 const defaultNodeStyle = {
   fill: '#91d5ff',
@@ -41,7 +43,7 @@ const defaultLayout = {
 };
 
 const graphs: any = {};
-const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
+const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
   const {
     data,
     className,

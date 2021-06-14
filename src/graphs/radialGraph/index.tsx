@@ -4,9 +4,11 @@ import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
 import ChartLoading from '../../util/createLoading';
 import { getGraphSize, getGraphId, getDefaultEdgeArrowCfg } from '../utils';
-import { RadialProps } from '../types';
+import { RadialGraphConfig } from '../types';
 import { renderGraph } from '../utils';
 import { defaultNodeAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../constants';
+
+export { RadialGraphConfig };
 
 const graphs: any = {};
 
@@ -18,7 +20,7 @@ const defaultLayout = {
   radial: true,
 };
 
-const RadialGraph: React.FC<RadialProps> = (props) => {
+const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
   const {
     data,
     className,
