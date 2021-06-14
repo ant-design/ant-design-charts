@@ -1,15 +1,15 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import {
   RingProgress as G2plotRingProgress,
-  RingProgressOptions as G2plotProps,
+  RingProgressOptions as G2plotConfig,
 } from '@antv/g2plot';
-import useChart, { ContainerProps } from '../hooks/useChart';
+import useChart, { ContainerConfig } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface RingProgressConfig extends G2plotProps, ContainerProps {
+export interface RingProgressConfig extends G2plotConfig, ContainerConfig {
   chartRef?: ChartRefOptions;
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Bullet as G2plotBullet, BulletOptions as G2plotProps } from '@antv/g2plot';
-import useChart, { ContainerProps } from '../hooks/useChart';
+import { Bullet as G2plotBullet, BulletOptions as G2plotConfig } from '@antv/g2plot';
+import useChart, { ContainerConfig } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
@@ -8,7 +8,7 @@ import ChartLoading from '../util/createLoading';
 
 export interface BulletConfig
   extends Omit<G2plotProps, 'color' | 'label' | 'style'>,
-    ContainerProps {
+    ContainerConfig {
   chartRef?: ChartRefOptions;
 }
 

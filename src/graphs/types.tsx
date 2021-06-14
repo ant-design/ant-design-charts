@@ -11,7 +11,7 @@ import {
   LabelStyle,
   ArrowConfig,
 } from '@antv/g6';
-import { ContainerProps } from '../interface';
+import { ContainerConfig } from '../interface';
 
 export interface MiniMapConfig {
   show?: boolean;
@@ -66,7 +66,7 @@ export interface CardModelConfig extends ModelConfig {
 
 export interface Datum extends TreeGraphData {}
 
-export interface CommonConfig extends ContainerProps {
+export interface CommonConfig extends ContainerConfig {
   data: Datum;
   width?: number;
   height?: number;
