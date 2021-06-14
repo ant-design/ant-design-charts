@@ -145,8 +145,8 @@ Edge configuration。
   edgeCfg: (item, graph)=>{
     /**
      * graph.findById(item.target).getModel()
-     * item.source: get source data
-     * item.target: get target daga
+     * item.source: Get source data
+     * item.target: Get target data
      */
    // console.log(graph.findById(item.source).getModel());
     return {
