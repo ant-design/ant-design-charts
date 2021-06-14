@@ -4,7 +4,7 @@ import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
 import ChartLoading from '../../util/createLoading';
 import { getGraphSize, getGraphId } from '../utils';
-import { IndentedTreeProps } from '../types';
+import { IndentedTreeGraphConfig } from '../types';
 import { bindDefaultEvents, renderGraph, getDefaultEdgeArrowCfg } from '../utils';
 import { registerCardNode } from '../customItems';
 import {
@@ -13,6 +13,8 @@ import {
   defaultStateStyles,
   defaultNodeStyle,
 } from '../constants';
+
+export { IndentedTreeGraphConfig };
 
 const graphs: any = {};
 
@@ -38,7 +40,7 @@ const defaultLayout = {
   },
 };
 
-const IndentedTreeGraph: React.FC<IndentedTreeProps> = (props) => {
+const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
   const {
     data,
     className,

@@ -11,7 +11,7 @@ import {
   LabelStyle,
   ArrowConfig,
 } from '@antv/g6';
-import { ContainerProps } from '../interface';
+import { ContainerConfig } from '../interface';
 
 export interface MiniMapConfig {
   show?: boolean;
@@ -66,7 +66,7 @@ export interface CardModelConfig extends ModelConfig {
 
 export interface Datum extends TreeGraphData {}
 
-export interface RelationGraph extends ContainerProps {
+export interface CommonConfig extends ContainerConfig {
   data: Datum;
   width?: number;
   height?: number;
@@ -86,7 +86,7 @@ export interface RelationGraph extends ContainerProps {
   behaviors?: string[];
   /** 是否展示箭头 */
   showArrow?: boolean;
-  /** 是否展示箭头 */
+  /** 箭头类型 */
   arrowType?: string;
   layout?: any;
   /** 是否开启动画 */
@@ -97,7 +97,7 @@ export interface RelationGraph extends ContainerProps {
   onReady?: (graph: IGraph) => void;
 }
 
-export interface IndentedTreeProps extends RelationGraph {
+export interface IndentedTreeGraphConfig extends CommonConfig {
   /** 全局 title 样式 */
   titleStyle?: LabelStyle;
   /** 全局 body 样式 */
@@ -114,7 +114,7 @@ export interface IndentedTreeProps extends RelationGraph {
   markerPosition?: 'top' | 'right' | 'bottom' | 'left';
 }
 
-export interface OrganizationTreeProps extends RelationGraph {
+export interface OrganizationalGraphConfig extends CommonConfig {
   /** 是否展示底部 marker，默认 false */
   showMarker?: boolean;
   nodeLabelCfg?: {
@@ -122,12 +122,12 @@ export interface OrganizationTreeProps extends RelationGraph {
   };
 }
 
-export interface RadialProps extends RelationGraph {
+export interface RadialGraphConfig extends CommonConfig {
   /** 是否连接节点中心 */
   linkCenter?: boolean;
 }
 
-export type GraphConfig = IndentedTreeProps & OrganizationTreeProps;
+export type GraphConfig = IndentedTreeGraphConfig & OrganizationalGraphConfig;
 
 export {
   TreeGraphData,
