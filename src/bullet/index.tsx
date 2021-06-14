@@ -7,7 +7,7 @@ import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
 export interface BulletConfig
-  extends Omit<G2plotProps, 'color' | 'label' | 'style'>,
+  extends Omit<G2plotConfig, 'color' | 'label' | 'style'>,
     ContainerConfig {
   chartRef?: ChartRefOptions;
 }
