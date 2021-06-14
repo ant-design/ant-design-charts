@@ -1,3 +1,11 @@
+## 1.1.14
+
+`2021-06-14`
+
+- 🆕 新增 [RadialGraph](https://charts.ant.design/demos/radial-graph#base)。
+- 🆕 IndentedTreeGraph 新增 markerPosition 功能，配合布局使用。
+- 🐞 修复 OrganizationalGraph 不支持线文本配置。
+
 ## 1.1.13
 
 `2021-06-11`
