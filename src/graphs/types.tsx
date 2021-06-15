@@ -23,16 +23,6 @@ export interface MiniMapConfig {
   padding?: number;
 }
 
-export interface MiniMapConfig {
-  show?: boolean;
-  viewportClassName?: string;
-  type?: 'default' | 'keyShape' | 'delegate';
-  size?: number[];
-  delegateStyle?: ShapeStyle;
-  refresh?: boolean;
-  padding?: number;
-}
-
 // nodeType: `card`
 export interface CardItems {
   content: string | number;
