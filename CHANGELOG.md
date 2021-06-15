@@ -1,3 +1,21 @@
+## 1.1.15
+
+`2021-06-14`
+
+- 🐞 所有图表 ts 类型统一。
+  - ContainerProps to ContainerConfig.
+  - RelationGraph to CommonConfig.
+  - IndentedTreeProps to IndentedTreeGraphConfig.
+  - OrganizationTreeProps to OrganizationalGraphConfig.
+
+## 1.1.14
+
+`2021-06-14`
+
+- 🆕 新增 [RadialGraph](https://charts.ant.design/demos/radial-graph#base)。
+- 🆕 IndentedTreeGraph 新增 markerPosition 功能，配合布局使用。
+- 🐞 修复 OrganizationalGraph 不支持线文本配置。
+
 ## 1.1.13
 
 `2021-06-11`

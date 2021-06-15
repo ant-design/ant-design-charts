@@ -4,7 +4,7 @@ import { utils } from '../util';
 import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip, G2 } from '@antv/g2plot';
 import createNode from '../util/createNode';
 
-export interface ContainerProps {
+export interface ContainerConfig {
   style?: React.CSSProperties;
   className?: string;
   loading?: boolean;

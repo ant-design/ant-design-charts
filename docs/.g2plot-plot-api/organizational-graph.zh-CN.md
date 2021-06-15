@@ -25,7 +25,7 @@ title: 组织架构图
 // 具体参考示例代码
 interface Data {
   id: string;
-  label;: string;
+  label: string;
   labelStyle?: LabelStyle | (node, cfg)=> LabelStyle
   children?: Data[];
   [key: string]?: unknow
@@ -34,7 +34,7 @@ interface Data {
 
 #### edgeType
 
-边类型，默认 'cubic-horizontal'
+边类型，默认 'flow-line'
 
 - line：直线，不支持控制点；
 - polyline：折线，支持多个控制点；
@@ -59,23 +59,27 @@ interface Data {
 
 节点的（最小）大小，部分图表可能会根据节点内容自适应大小。
 
-#### nodeStyle
+#### nodeCfg
 
 <description>**optional** _object | Function_</description>
 
-节点样式。
+节点配置。
 
 ```ts
 {
-  nodeStyle: {
-    stroke: '#40a9ff',
+  nodeCfg: {
+    style: {
+      stroke: '#40a9ff',
+    }
   }
 }
 // 回调模式
 {
   nodeStyle: (node, graph)=>{
     return {
-      stroke: '#40a9ff',
+      style: {
+        stroke: '#40a9ff',
+      }
     }
   }
 }
@@ -116,21 +120,29 @@ interface Data {
 }
 ```
 
-#### edgeStyle
+#### edgeCfg
 
 <description>**optional** _object | Function_</description>
 
-节点样式。
+边配置。
 
 ```ts
 {
-  edgeStyle: {
-    stroke: '#40a9ff',
+  edgeCfg: {
+    lable: 'label', // 边上文本
+    labelCfg: {
+      style: {
+        fill: '#40a9ff'
+      }
+    },
+    style: {
+      stroke: '#40a9ff',
+    }
   }
 }
 // 回调模式
 {
-  edgeStyle: (node, graph)=>{
+  edgeCfg: (item, graph)=>{
     /**
      * graph.findById(item.target).getModel()
      * item.source: 获取 source 数据
@@ -138,24 +150,15 @@ interface Data {
      */
    // console.log(graph.findById(item.source).getModel());
     return {
-      stroke: '#40a9ff',
-      lineWidth: Math.random() * 10,
-    }
-  }
-}
-```
-
-#### edgeLabelCfg
-
-<description>**optional** _object_</description>
-
-边文本样式。
-
-```ts
-{
-  edgeLabelCfg: {
-    style: {
-      fill: 'red';
+      lable: 'label', // 边上文本
+      labelCfg: {
+        style: {
+          fill: '#40a9ff'
+        }
+      },
+      style: {
+        stroke: '#40a9ff',
+      }
     }
   }
 }
@@ -230,6 +233,12 @@ interface Data {
 <description>**optional** _Boolean_</description>
 
 是否开启动画，默认值 `true`。
+
+#### autoFit
+
+<description>**optional** _Boolean_</description>
+
+更新数据后是否自动调整布局，默认为 true。
 
 #### minimapCfg
 

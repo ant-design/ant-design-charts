@@ -1,12 +1,12 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { TinyArea as G2plotTinyArea, TinyAreaOptions as G2plotProps } from '@antv/g2plot';
-import useChart, { ContainerProps } from '../hooks/useChart';
+import { TinyArea as G2plotTinyArea, TinyAreaOptions as G2plotConfig } from '@antv/g2plot';
+import useChart, { ContainerConfig } from '../hooks/useChart';
 import { getChart } from '../util';
 import { ChartRefOptions } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface TinyAreaConfig extends G2plotProps, ContainerProps {
+export interface TinyAreaConfig extends G2plotConfig, ContainerConfig {
   chartRef?: ChartRefOptions;
 }
 

@@ -24,7 +24,7 @@ Data, see the sample code.
 // Refer to the sample code for details.
 interface Data {
   id: string;
-  label;: string;
+  label: string;
   labelStyle?: LabelStyle | (node, cfg)=> LabelStyle
   children?: Data[];
   [key: string]?: unknow
@@ -33,7 +33,7 @@ interface Data {
 
 #### edgeType
 
-Edge type, default `cubic-horizontal`
+Edge type, default `flow-line`
 
 - line: straight line without control points;
 - polyline: polyline with one or more control points;
@@ -59,23 +59,27 @@ Node type, default `rect`, support `icon-node`, Built-in nodes include `circleï¼
 
 The (minimum) size of the node. Some graphs may be adapted to the size of the node content.
 
-#### nodeStyle
+#### nodeCfg
 
 <description>**optional** _object | Function_</description>
 
-Node style
+Node configuration.
 
 ```ts
 {
-  nodeStyle: {
-    stroke: '#40a9ff',
+  nodeCfg: {
+    style: {
+      stroke: '#40a9ff',
+    }
   }
 }
 // callback
 {
   nodeStyle: (node, graph)=>{
     return {
-      stroke: '#40a9ff',
+      style: {
+        stroke: '#40a9ff',
+      }
     }
   }
 }
@@ -116,21 +120,29 @@ Node style configuration items in different states.
 }
 ```
 
-#### edgeStyle
+#### edgeCfg
 
 <description>**optional** _object | Function_</description>
 
-Edge style.
+Edge configurationã€‚
 
 ```ts
 {
-  edgeStyle: {
-    stroke: '#40a9ff',
+  edgeCfg: {
+    lable: 'label', // edge label
+    labelCfg: {
+      style: {
+        fill: '#40a9ff'
+      }
+    },
+    style: {
+      stroke: '#40a9ff',
+    }
   }
 }
 // callback
 {
-  edgeStyle: (node, graph)=>{
+  edgeCfg: (item, graph)=>{
     /**
      * graph.findById(item.target).getModel()
      * item.source: Get source data
@@ -138,24 +150,15 @@ Edge style.
      */
    // console.log(graph.findById(item.source).getModel());
     return {
-      stroke: '#40a9ff',
-      lineWidth: Math.random() * 10,
-    }
-  }
-}
-```
-
-#### edgeLabelCfg
-
-<description>**optional** _object_</description>
-
-Edge label configuration.
-
-```ts
-{
-  edgeLabelCfg: {
-    style: {
-      fill: 'red';
+      lable: 'label', // edge label
+      labelCfg: {
+        style: {
+          fill: '#40a9ff'
+        }
+      },
+      style: {
+        stroke: '#40a9ff',
+      }
     }
   }
 }
@@ -230,6 +233,12 @@ Bottom marker style.
 <description>**optional** _Boolean_</description>
 
 Whether to turn on animation, default to 'true'.
+
+#### autoFit
+
+<description>**optional** _Boolean_</description>
+
+Whether to automatically adjust the layout after updating data. Default value is 'true '.
 
 #### minimapCfg
 

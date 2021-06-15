@@ -1,5 +1,3 @@
-import G6 from '@antv/g6';
-
 // 默认交互状态
 export const defaultStateStyles = {
   hover: {
@@ -13,13 +11,6 @@ export const defaultNodeSize = [120, 40];
 export const defaultNodeStyle = {
   stroke: '#40a9ff',
 };
-// 默认箭头样式
-export const defaultEdgeArrowStyle = {
-  endArrow: {
-    path: G6.Arrow.vee(10, 10),
-    fill: '#ccc',
-  },
-};
 // 默认 anchor 连接点
 export const defaultNodeAnchorPoints = [
   [0, 0.5],
@@ -32,6 +23,7 @@ export const defaultTitleLabelCfg = {
   fill: '#fff',
   fontSize: 12,
 };
+export const cardTitlePadding = 2;
 // card body|footer  默认样式
 export const defaultLabelCfg = {
   fill: '#000',
@@ -41,4 +33,17 @@ export const defaultMinimapCfg = {
   show: false,
   size: [150, 100],
   type: 'keyShape',
+};
+
+export const defaultNodeCfg = {
+  style: {
+    fill: '#000',
+    fontSize: 12,
+  },
+};
+
+export const defaultEdgeCfg = {
+  style: {
+    stroke: '#ccc',
+  },
 };

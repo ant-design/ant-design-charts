@@ -1,5 +1,5 @@
 ---
-title: 缩进树图
+title: 辐射图
 ---
 
 ### 基础配置
@@ -18,25 +18,14 @@ title: 缩进树图
 
 #### data
 
-数据，详见示例代码，`title`、`body`、`footer` 仅对 nodeType: `card` 生效， 其它 nodeType 类型使用 label。
+数据，详见示例代码。
 
 ```ts
-// value、valueStyle 仅对 footer 生效
-interface Items {
-  content: string | number;
-  value?: string | number;
-  style?: LabelStyle;
-  valueStyle?: LabelStyle;
-}
-
-type NodeConfig = string | number | Items;
 
 // 具体参考示例代码
 interface Data {
   id: string;
-  title?: NodeConfig;
-  body?: NodeConfig;
-  footer?: NodeConfig;
+  label: string;
   children?: Data[];
   [key: string]?: unknow
 }
@@ -44,7 +33,7 @@ interface Data {
 
 #### edgeType
 
-边类型，默认 'cubic-horizontal'
+边类型，默认 'line'
 
 - line：直线，不支持控制点；
 - polyline：折线，支持多个控制点；
@@ -59,33 +48,49 @@ interface Data {
 
 #### nodeType
 
-<description>**optional** _`card`_</description>
+<description>**optional** _`string`_</description>
 
-节点类型，默认 `card`, 内置节点包括 card，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut，这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
+节点类型，默认 `circle`, 支持 icon-node，内置节点包括 icon-node ,card，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut，这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
 
 #### nodeSize
 
-<description>**optional** _Number[] | false | [120, 40]_</description>
+<description>**optional** _Numbe_</description>
 
-节点的（最小）大小，部分图表可能会根据节点内容自适应大小。
+节点大小，部分图表可能会根据节点内容自适应大小，默认值 30。
 
-#### nodeStyle
+#### nodeCfg
 
 <description>**optional** _object | Function_</description>
 
-节点样式。
+节点配置。
 
 ```ts
 {
-  nodeStyle: {
-    stroke: '#40a9ff',
+  nodeCfg: {
+    labelCfg: {
+      style: {
+        fill: '#fff'
+      }
+    },
+    style: {
+      fill: '#40a9ff',
+      stroke: '#40a9ff',
+    }
   }
 }
 // 回调模式
 {
-  nodeStyle: (node, graph)=>{
+  nodeCfg: (node, graph)=>{
     return {
-      stroke: '#40a9ff',
+      labelCfg: {
+        style: {
+          fill: '#fff'
+        }
+      },
+      style: {
+        fill: '#40a9ff',
+        stroke: '#40a9ff',
+      }
     }
   }
 }
@@ -110,21 +115,29 @@ interface Data {
 }
 ```
 
-#### edgeStyle
+#### edgeCfg
 
 <description>**optional** _object | Function_</description>
 
-节点样式。
+边配置。
 
 ```ts
 {
-  edgeStyle: {
-    stroke: '#40a9ff',
+  edgeCfg: {
+    lable: 'label', // 边上文本
+    labelCfg: {
+      style: {
+        fill: '#40a9ff'
+      }
+    },
+    style: {
+      stroke: '#40a9ff',
+    }
   }
 }
 // 回调模式
 {
-  edgeStyle: (node, graph)=>{
+  edgeCfg: (node, graph)=>{
     /**
      * graph.findById(item.target).getModel()
      * item.source: 获取 source 数据
@@ -132,8 +145,15 @@ interface Data {
      */
    // console.log(graph.findById(item.source).getModel());
     return {
-      stroke: '#40a9ff',
-      lineWidth: Math.random() * 10,
+      lable: 'label', // 边上文本
+      labelCfg: {
+        style: {
+          fill: '#40a9ff'
+        }
+      },
+      style: {
+        stroke: '#40a9ff',
+      }
     }
   }
 }
@@ -158,54 +178,6 @@ interface Data {
 }
 ```
 
-#### titleStyle
-
-<description>**optional** _object_</description>
-
-全局 title 样式配置，优先级低于 data 内 style.
-
-```ts
-{
-  titleStyle: {
-    fill: '#000';
-  }
-}
-```
-
-#### bodyStyle
-
-<description>**optional** _object_</description>
-
-全局 body 样式配置，优先级低于 data 内 style.
-
-```ts
-{
-  bodyStyle: {
-    fill: '#000';
-  }
-}
-```
-
-#### footerStyle
-
-<description>**optional** _object_</description>
-
-全局 footer 样式配置，优先级低于 data 内 style.
-
-```ts
-{
-  footerStyle: {
-    fill: '#000';
-  }
-}
-```
-
-#### footerValueStyle
-
-<description>**optional** _object_</description>
-
-全局 footer value 样式配置，优先级低于 data 内 style.
-
 #### nodeAnchorPoints
 
 <description>**optional** _Number[]_</description>
@@ -223,29 +195,17 @@ interface Data {
 - zoom-canvas: 缩放画布
 - drag-node: 拖拽节点
 
-#### collapseExpand
-
-<description>**optional** _Boolean_</description>
-
-是否可折叠，默认值 `true`。
-
-#### markerStyle
-
-<description>**optional** _object_</description>
-
-collapseExpand 为 true 时生效。
-
-#### markerPosition
-
-<description>**optional** _top | right | bottom | left_</description>
-
-collapseExpand 为 true 时生效， 默认值 `right`，可配合 layout 使用。
-
 #### showArrow
 
 <description>**optional** _Boolean_</description>
 
-是否展示尾部箭头，默认值 `true`。
+是否展示箭头，默认 `false`。
+
+#### 箭头类型
+
+<description>**optional** _triangle|vee_</description>
+
+箭头类型，默认 `vee`。
 
 #### animate
 
@@ -253,31 +213,45 @@ collapseExpand 为 true 时生效， 默认值 `right`，可配合 layout 使用
 
 是否开启动画，默认值 `true`。
 
+#### autoFit
+
+<description>**optional** _Boolean_</description>
+
+更新数据后是否自动调整布局，默认值 `true`。
+
 #### layout
 
 <description>**optional** _object_</description>
 
-布局。
+布局, 默认 `dendrogram`。
 
 ```ts
 {
-  direction: 'LR' | 'RL' | 'TB' | 'BT' | 'H' | 'V',
+  type: 'dendrogram',
+  direction: 'LR',
+  nodeSep: 20,
+  rankSep: 100,
+  radial: true,
+}
+{
+  type: 'compactBox',
+  direction: 'RL',
+  getId: function getId(d) {
+    return d.id;
+  },
   getHeight: () => {
-    // 每个节点的高度
-    return 60;
+    return 26;
   },
   getWidth: () => {
-    // 每个节点的宽度
-    return 16;
+    return 26;
   },
   getVGap: () => {
-    // 每个节点的垂直间隙
-    return 16;
+    return 20;
   },
   getHGap: () => {
-    // 每个节点的水平间隙
-    return 100;
+    return 30;
   },
+  radial: true,
 }
 ```
 

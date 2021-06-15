@@ -1,5 +1,5 @@
 ---
-title: Indented Tree Graph
+title: Radial Graph
 ---
 
 ### Basic configuration
@@ -18,25 +18,13 @@ Set the height of the graph.
 
 #### data
 
-Data, see the sample code, `title`、`body`、`footer` only for nodeType: `card`, other nodeType types use label.
+Data, see the sample code.
 
 ```ts
-// value、valueStyle only apply to `footer`.
-interface Items {
-  content: string | number;
-  value?: string | number;
-  style?: LabelStyle;
-  valueStyle?: LabelStyle;
-}
-
-type NodeConfig = string | number | Items;
-
 // Refer to the sample code for details.
 interface Data {
   id: string;
-  title?: NodeConfig;
-  body?: NodeConfig;
-  footer?: NodeConfig;
+  label: string;
   children?: Data[];
   [key: string]?: unknow
 }
@@ -44,7 +32,7 @@ interface Data {
 
 #### edgeType
 
-Edge type, default `cubic-horizontal`
+Edge type, default `line`
 
 - line: straight line without control points;
 - polyline: polyline with one or more control points;
@@ -60,9 +48,9 @@ Edge type, default `cubic-horizontal`
 
 #### nodeType
 
-<description>**optional** _`card`_</description>
+<description>**optional** _`string`_</description>
 
-Node type, default `card`, Built-in nodes include `card，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut`. <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
+Node type, default `rect`, support `icon-node`, Built-in nodes include `circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut`. <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
 
 #### nodeSize
 
@@ -70,23 +58,39 @@ Node type, default `card`, Built-in nodes include `card，circle，rect，ellips
 
 The (minimum) size of the node. Some graphs may be adapted to the size of the node content.
 
-#### nodeStyle
+#### nodeCfg
 
 <description>**optional** _object | Function_</description>
 
-Node style
+Node Configuration。
 
 ```ts
 {
-  nodeStyle: {
-    stroke: '#40a9ff',
+  nodeCfg: {
+    labelCfg: {
+      style: {
+        fill: '#fff'
+      }
+    },
+    style: {
+      fill: '#40a9ff',
+      stroke: '#40a9ff',
+    }
   }
 }
 // callback
 {
-  nodeStyle: (node, graph)=>{
+  nodeCfg: (node, graph)=>{
     return {
-      stroke: '#40a9ff',
+      labelCfg: {
+        style: {
+          fill: '#fff'
+        }
+      },
+      style: {
+        fill: '#40a9ff',
+        stroke: '#40a9ff',
+      }
     }
   }
 }
@@ -111,21 +115,29 @@ Node style configuration items in different states.
 }
 ```
 
-#### edgeStyle
+#### edgeCfg
 
 <description>**optional** _object | Function_</description>
 
-Edge style.
+Edge configuration。
 
 ```ts
 {
-  edgeStyle: {
-    stroke: '#40a9ff',
+  edgeCfg: {
+    lable: 'label', // edge label
+    labelCfg: {
+      style: {
+        fill: '#40a9ff'
+      }
+    },
+    style: {
+      stroke: '#40a9ff',
+    }
   }
 }
 // callback
 {
-  edgeStyle: (node, graph)=>{
+  edgeCfg: (item, graph)=>{
     /**
      * graph.findById(item.target).getModel()
      * item.source: Get source data
@@ -133,8 +145,15 @@ Edge style.
      */
    // console.log(graph.findById(item.source).getModel());
     return {
-      stroke: '#40a9ff',
-      lineWidth: Math.random() * 10,
+      lable: 'label', // edge label
+      labelCfg: {
+        style: {
+          fill: '#40a9ff'
+        }
+      },
+      style: {
+        stroke: '#40a9ff',
+      }
     }
   }
 }
@@ -159,54 +178,6 @@ Side style configuration items in different states.
 }
 ```
 
-#### titleStyle
-
-<description>**optional** _object_</description>
-
-The global title style configuration has a lower priority than the style within data.
-
-```ts
-{
-  titleStyle: {
-    fill: '#000';
-  }
-}
-```
-
-#### bodyStyle
-
-<description>**optional** _object_</description>
-
-The global body style configuration takes precedence over the data style.
-
-```ts
-{
-  bodyStyle: {
-    fill: '#000';
-  }
-}
-```
-
-#### footerStyle
-
-<description>**optional** _object_</description>
-
-The global footer style configuration takes precedence over the style within data.
-
-```ts
-{
-  footerStyle: {
-    fill: '#000';
-  }
-}
-```
-
-#### footerValueStyle
-
-<description>**optional** _object_</description>
-
-The global footer value style configuration takes precedence over the style within data.
-
 #### nodeAnchorPoints
 
 <description>**optional** _Number[]_</description>
@@ -224,61 +195,51 @@ Interaction mode, default `['drag-canvas', 'zoom-canvas']`.
 - zoom-canvas: Zoom canvas
 - drag-node: Drag node
 
-#### collapseExpand
-
-<description>**optional** _Boolean_</description>
-
-Collapseable, the default value `true`.
-
-#### markerStyle
-
-<description>**optional** _object_</description>
-
-Take effect when collapseExpand is true.
-
-#### markerPosition
-
-<description>**optional** _top | right | bottom | left_</description>
-
-Take effect when collapseExpand is true, and the default value is' Right ', which used with the layout.
-
-#### showArrow
-
-<description>**optional** _Boolean_</description>
-
-Whether to display tail arrows, default to 'true'.
-
 #### animate
 
 <description>**optional** _Boolean_</description>
 
 Whether to turn on animation, default to 'true'.
 
+#### autoFit
+
+<description>**optional** _Boolean_</description>
+
+Whether to automatically adjust the layout after updating data. Default value is 'true '.
+
 #### layout
 
 <description>**optional** _object_</description>
 
-layout.
+layout, default value is `dendrogram`.
 
 ```ts
 {
-  direction: 'LR' | 'RL' | 'TB' | 'BT' | 'H' | 'V',
+  type: 'dendrogram',
+  direction: 'LR',
+  nodeSep: 20,
+  rankSep: 100,
+  radial: true,
+}
+{
+  type: 'compactBox',
+  direction: 'RL',
+  getId: function getId(d) {
+    return d.id;
+  },
   getHeight: () => {
-    // The height of each node
-    return 60;
+    return 26;
   },
   getWidth: () => {
-    // The width of each node
-    return 16;
+    return 26;
   },
   getVGap: () => {
-    // Vertical clearance of each node
-    return 16;
+    return 20;
   },
   getHGap: () => {
-    // Horizontal clearance of each node
-    return 100;
+    return 30;
   },
+  radial: true,
 }
 ```
 

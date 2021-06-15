@@ -5,22 +5,21 @@ import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
 import { registerIconNode } from '../customItems';
 import { defaultLabelCfg, defaultStateStyles, defaultNodeSize } from '../constants';
-import { getGraphSize, processMinimap, getGraphId, renderGraph } from '../utils';
-import { OrganizationTreeProps } from '../types';
+import {
+  getGraphSize,
+  processMinimap,
+  getGraphId,
+  renderGraph,
+  getDefaultEdgeArrowCfg,
+} from '../utils';
+import { OrganizationalGraphConfig } from '../types';
+
+export { OrganizationalGraphConfig };
 
 const defaultNodeStyle = {
   fill: '#91d5ff',
   stroke: '#40a9ff',
   radius: 2,
-};
-
-const defaultEdgeStyle = {
-  stroke: '#91d5ff',
-  endArrow: {
-    path: 'M 0,0 L 12, 6 L 9,0 L 12, -6 Z',
-    fill: '#91d5ff',
-    d: -20,
-  },
 };
 
 const defaultLayout = {
@@ -44,7 +43,7 @@ const defaultLayout = {
 };
 
 const graphs: any = {};
-const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
+const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
   const {
     data,
     className,
@@ -57,12 +56,13 @@ const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
     nodeSize = defaultNodeSize,
     behaviors = ['drag-canvas', 'zoom-canvas'],
     nodeLabelCfg = defaultLabelCfg,
-    edgeLabelCfg = defaultLabelCfg,
+    nodeCfg,
     layout = defaultLayout,
     showMarker = false,
+    showArrow = true,
+    arrowType = 'triangle',
     minimapCfg,
-    nodeStyle,
-    edgeStyle,
+    edgeCfg,
     markerStyle,
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
@@ -76,6 +76,7 @@ const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
   useGraph(graphs[graphId], props, container);
+  const arrowOffset = (Array.isArray(nodeSize) ? nodeSize[1] : nodeSize) / 2;
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
@@ -102,7 +103,6 @@ const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
         },
         defaultEdge: {
           type: edgeType,
-          labelCfg: edgeLabelCfg,
         },
         nodeStateStyles,
         edgeStateStyles,
@@ -116,29 +116,27 @@ const OrganizationalGraph: React.FC<OrganizationTreeProps> = (props) => {
     }
 
     graph.node((node: INode) => {
-      if (typeof nodeStyle === 'function') {
-        return {
-          style: nodeStyle(node, graph),
-        };
+      if (typeof nodeCfg === 'function') {
+        return nodeCfg(node, graph);
       }
       return {
         style: {
           ...defaultNodeStyle,
-          ...nodeStyle,
+          ...nodeCfg?.style,
         },
       };
     });
 
     graph.edge((edge: IEdge) => {
-      if (typeof edgeStyle === 'function') {
-        return {
-          style: edgeStyle(edge, graph),
-        };
+      if (typeof edgeCfg === 'function') {
+        return edgeCfg(edge, graph);
       }
       return {
+        ...edgeCfg,
         style: {
-          ...defaultEdgeStyle,
-          ...edgeStyle,
+          stroke: '#91d5ff',
+          ...(showArrow && getDefaultEdgeArrowCfg(arrowOffset, arrowType, '#91d5ff')),
+          ...edgeCfg?.style,
         },
       };
     });

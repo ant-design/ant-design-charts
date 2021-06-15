@@ -3,71 +3,44 @@ import G6, { IEdge, INode } from '@antv/g6';
 import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
 import ChartLoading from '../../util/createLoading';
-import { getGraphSize, getGraphId } from '../utils';
-import { IndentedTreeGraphConfig } from '../types';
-import { bindDefaultEvents, renderGraph, getDefaultEdgeArrowCfg } from '../utils';
-import { registerCardNode } from '../customItems';
-import {
-  defaultNodeAnchorPoints,
-  defaultNodeSize,
-  defaultStateStyles,
-  defaultNodeStyle,
-} from '../constants';
+import { getGraphSize, getGraphId, getDefaultEdgeArrowCfg } from '../utils';
+import { RadialGraphConfig } from '../types';
+import { renderGraph } from '../utils';
+import { defaultNodeAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../constants';
 
-export { IndentedTreeGraphConfig };
+export { RadialGraphConfig };
 
 const graphs: any = {};
 
-registerCardNode();
-
 const defaultLayout = {
-  type: 'compactBox',
+  type: 'dendrogram',
   direction: 'LR',
-  getId: (d: any) => {
-    return d.id;
-  },
-  getHeight: () => {
-    return 60;
-  },
-  getWidth: () => {
-    return 16;
-  },
-  getVGap: () => {
-    return 16;
-  },
-  getHGap: () => {
-    return 100;
-  },
+  nodeSep: 20,
+  rankSep: 100,
+  radial: true,
 };
 
-const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
+const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
   const {
     data,
     className,
     style,
     width,
     height,
-    nodeType = 'card',
-    edgeType = 'cubic-horizontal',
+    nodeType = 'circle',
+    linkCenter = true,
+    edgeType = 'line',
     behaviors = ['zoom-canvas', 'drag-canvas'],
     nodeAnchorPoints = defaultNodeAnchorPoints,
-    nodeSize = defaultNodeSize,
+    nodeSize = 30,
     layout,
     animate = true,
-    nodeStyle,
-    edgeStyle,
+    nodeCfg,
     edgeCfg,
-    markerStyle,
-    markerPosition = 'right',
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
-    collapseExpand = true,
-    titleStyle,
-    bodyStyle,
-    footerStyle,
-    footerValueStyle,
-    showArrow = true,
-    arrowType = 'vee',
+    showArrow = false,
+    arrowType = 'triangle',
     onReady,
     loading,
     loadingTemplate,
@@ -77,6 +50,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
   useGraph(graphs[graphId], props, container);
+  const arrowOffset = (Array.isArray(nodeSize) ? nodeSize[0] : nodeSize) / 2;
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
@@ -87,6 +61,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
         width: graphSize[0],
         height: graphSize[1],
         animate,
+        linkCenter,
         modes: {
           default: behaviors,
         },
@@ -94,13 +69,6 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
           type: nodeType,
           size: nodeSize,
           anchorPoints: nodeAnchorPoints,
-          titleStyle,
-          bodyStyle,
-          footerStyle,
-          footerValueStyle,
-          markerStyle,
-          collapseExpand,
-          markerPosition,
         },
         defaultEdge: {
           type: edgeType,
@@ -116,39 +84,30 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
     }
 
     graph.node((node: INode) => {
-      if (typeof nodeStyle === 'function') {
-        return {
-          style: nodeStyle(node, graph),
-        };
+      if (typeof nodeCfg === 'function') {
+        return nodeCfg(node, graph);
       }
       return {
+        ...nodeCfg,
         style: {
           ...defaultNodeStyle,
-          ...nodeStyle,
+          ...nodeCfg?.style,
         },
       };
     });
     graph.edge((edge: IEdge) => {
-      if (edgeCfg) {
-        return typeof edgeCfg === 'function' ? edgeCfg(edge, graph) : edgeCfg;
-      }
-      if (typeof edgeStyle === 'function') {
-        return {
-          style: edgeStyle(edge, graph),
-        };
+      if (typeof edgeCfg === 'function') {
+        return edgeCfg(edge, graph);
       }
       return {
         style: {
           stroke: '#ccc',
-          ...(showArrow && getDefaultEdgeArrowCfg(0, arrowType)),
-          ...edgeStyle,
+          ...(showArrow && getDefaultEdgeArrowCfg(arrowOffset, arrowType)),
+          ...edgeCfg?.style,
         },
       };
     });
 
-    if (collapseExpand) {
-      bindDefaultEvents(graph, collapseExpand);
-    }
     renderGraph(graph, data);
 
     if (onReady) {
@@ -171,4 +130,4 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
   );
 };
 
-export default IndentedTreeGraph;
+export default RadialGraph;

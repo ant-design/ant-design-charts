@@ -9,8 +9,19 @@ import {
   IG6GraphEvent,
   IGroup,
   LabelStyle,
+  ArrowConfig,
 } from '@antv/g6';
-import { ContainerProps } from '../interface';
+import { ContainerConfig } from '../interface';
+
+export interface MiniMapConfig {
+  show?: boolean;
+  viewportClassName?: string;
+  type?: 'default' | 'keyShape' | 'delegate';
+  size?: number[];
+  delegateStyle?: ShapeStyle;
+  refresh?: boolean;
+  padding?: number;
+}
 
 export interface MiniMapConfig {
   show?: boolean;
@@ -29,12 +40,30 @@ export interface CardItems {
   style?: LabelStyle;
   valueStyle?: LabelStyle;
 }
+export interface EdgeCfg {
+  label?: string;
+  labelCfg?: {
+    style: LabelStyle;
+  };
+  style?: {
+    endArrow: ArrowConfig;
+    startArrow: ArrowConfig;
+  } & ShapeStyle;
+}
 
+export interface NodeCfg {
+  labelCfg?: {
+    style: LabelStyle;
+  };
+  style?: ShapeStyle;
+}
 export type CardNodeConfig = string | number | CardItems;
 
 export type INodeStyle = ShapeStyle | ((node: INode, graph: IGraph) => ShapeStyle);
 export type IEdgeStyle = ShapeStyle | ((edge: IEdge, graph: IGraph) => ShapeStyle);
 export type ILabelStyle = LabelStyle | ((item: INode | IEdge, graph: IGraph) => LabelStyle);
+export type IEdgeCfg = EdgeCfg | ((edge: IEdge, graph: IGraph) => EdgeCfg);
+export type INodeCfg = NodeCfg | ((edge: INode, graph: IGraph) => NodeCfg);
 
 export type IMarkerStyle = INodeStyle;
 
@@ -47,28 +76,28 @@ export interface CardModelConfig extends ModelConfig {
 
 export interface Datum extends TreeGraphData {}
 
-export interface RelationGraph extends ContainerProps {
+export interface CommonConfig extends ContainerConfig {
   data: Datum;
   width?: number;
   height?: number;
   pixelRatio?: number;
   nodeType?: string;
   edgeType?: string;
-  nodeStyle?: INodeStyle;
-  edgeStyle?: IEdgeStyle;
+  nodeStyle?: INodeStyle; // 不推荐使用
+  edgeStyle?: IEdgeStyle; // 不推荐使用
+  edgeCfg?: IEdgeCfg;
+  nodeCfg?: INodeCfg;
   markerStyle?: IMarkerStyle;
   nodeStateStyles?: StateStyles;
   edgeStateStyles?: StateStyles;
   nodeSize?: number | number[];
   nodeAnchorPoints?: number[][];
-  nodeLabelCfg?: {
-    style: ILabelStyle;
-  };
-  edgeLabelCfg?: {
-    style: ILabelStyle;
-  };
   minimapCfg?: MiniMapConfig;
   behaviors?: string[];
+  /** 是否展示箭头 */
+  showArrow?: boolean;
+  /** 箭头类型 */
+  arrowType?: string;
   layout?: any;
   /** 是否开启动画 */
   animate?: boolean;
@@ -78,7 +107,7 @@ export interface RelationGraph extends ContainerProps {
   onReady?: (graph: IGraph) => void;
 }
 
-export interface IndentedTreeProps extends RelationGraph {
+export interface IndentedTreeGraphConfig extends CommonConfig {
   /** 全局 title 样式 */
   titleStyle?: LabelStyle;
   /** 全局 body 样式 */
@@ -91,14 +120,24 @@ export interface IndentedTreeProps extends RelationGraph {
   showArrow?: boolean;
   /** 是否可收缩 */
   collapseExpand?: boolean;
+  /** expand icon 位置 */
+  markerPosition?: 'top' | 'right' | 'bottom' | 'left';
 }
 
-export interface OrganizationTreeProps extends RelationGraph {
+export interface OrganizationalGraphConfig extends CommonConfig {
   /** 是否展示底部 marker，默认 false */
   showMarker?: boolean;
+  nodeLabelCfg?: {
+    style: ILabelStyle;
+  };
 }
 
-export type GraphConfig = IndentedTreeProps & OrganizationTreeProps;
+export interface RadialGraphConfig extends CommonConfig {
+  /** 是否连接节点中心 */
+  linkCenter?: boolean;
+}
+
+export type GraphConfig = IndentedTreeGraphConfig & OrganizationalGraphConfig;
 
 export {
   TreeGraphData,

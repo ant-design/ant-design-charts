@@ -42,6 +42,17 @@ export const bindDefaultEvents = (graph: IGraph, collapseExpand?: boolean) => {
   }
 };
 
+// 默认箭头样式
+export const getDefaultEdgeArrowCfg = (d: number = 0, arrowType = 'vee', fill: string = '#ccc') => {
+  return {
+    endArrow: {
+      path: G6.Arrow[arrowType](10, 10, d),
+      fill,
+      d,
+    },
+  };
+};
+
 // 统一处理 text&style
 export const getContentAndStyle = (cfg: CardNodeConfig) => {
   if (typeof cfg === 'string' || typeof cfg === 'number') {
@@ -100,4 +111,33 @@ export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph
     return minimap;
   }
   return null;
+};
+
+/**
+ * min ma
+ */
+export const getMarkerPosition = (direction: string = 'right', size: number[]) => {
+  const [width, height] = size;
+  let x = 0;
+  let y = 0;
+  switch (direction) {
+    case 'top':
+      x = width / 2;
+      y = 0;
+      break;
+    case 'right':
+      x = width;
+      y = height / 2;
+      break;
+    case 'bottom':
+      x = width / 2;
+      y = height;
+      break;
+    case 'left':
+      x = 0;
+      y = height / 2;
+      break;
+  }
+
+  return { x, y };
 };

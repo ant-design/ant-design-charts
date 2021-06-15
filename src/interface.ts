@@ -4,7 +4,7 @@ export type ChartRefOptions =
   | ((chart: any) => void)
   | React.MutableRefObject<G2PlotConfig | undefined>;
 
-export interface ContainerProps {
+export interface ContainerConfig {
   style?: React.CSSProperties;
   className?: string;
   loading?: boolean;
