@@ -753,7 +753,41 @@ toc: content
 
 </div>
 
-## More Charts
+## More Chart
+
+### Facet
+
+<div class="gallery-item-box">
+  <a href="/demos/facet#圆形分面">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/PaADJJDV4V/1f52ab89-c989-4014-bd18-c3f3d36f8a90.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">圆形分面</p>
+  </a>
+   <a href="/demos/facet#column-分面图">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/SAiAwUtFTN/d8350db2-a905-4bd0-9c99-a750a1ee8cb0.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">column-分面图</p>
+  </a>
+
+   <a href="/demos/facet#列表分面">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/8cbQnUoZKq/1e19cd37-55b7-4c56-8476-a64aa5bdb768.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">列表分面</p>
+  </a>
+   <a href="/demos/facet#矩阵分面">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/tx5DXB6xhh/99a19fdb-c428-43a2-8210-49e255d14e8c.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">矩阵分面</p>
+  </a>
+   <a href="/demos/facet#镜像分面">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/lt6RMVMz7I/0623b932-a8dc-402f-87d3-a80d889661bf.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">镜像分面</p>
+  </a>
+   <a href="/demos/facet#二维行列矩形分面">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/%24PP5iO2j2X/3658552c-f0d2-4da5-a236-36509187676c.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">二维行列矩形分面</p>
+  </a>
+   <a href="/demos/facet#树型分面">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/Hq%24sncegPI/3620662f-48f8-45c6-a269-c36168137ea0.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">树型分面</p>
+  </a>
+</div>
 
 ### Radar
 
