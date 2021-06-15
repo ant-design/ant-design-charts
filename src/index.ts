@@ -27,6 +27,8 @@ import Stock from './stock';
 import RadialBar from './radialBar';
 import Sankey from './sankey';
 import Treemap from './treemap';
+import Violin from './violin';
+import Facet from './facet';
 import MultiView from './mix'; // 和 Mix 相同，底层更名
 import Mix from './mix';
 import BidirectionalBar from './bidirectionalBar';
@@ -48,6 +50,7 @@ export {
   Pie,
   Progress,
   Radar,
+  Facet,
   RingProgress,
   Rose,
   Chord,
@@ -64,6 +67,7 @@ export {
   Gauge,
   Sankey,
   Treemap,
+  Violin,
   MultiView,
   Mix,
   BidirectionalBar,
@@ -95,6 +99,7 @@ export default {
   Pie,
   Progress,
   Radar,
+  Facet,
   RingProgress,
   Rose,
   Chord,
@@ -111,6 +116,7 @@ export default {
   Gauge,
   Sankey,
   Treemap,
+  Violin,
   MultiView,
   Mix,
   BidirectionalBar,

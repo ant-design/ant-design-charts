@@ -1,116 +1,118 @@
-
-
-
-
-### 图表容器
+### Plot Container
 
 #### width
 
-<description>**optional** *number* *default:* `400`</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
-设置图表宽度。
+Set the width of the chart.
 
 #### height
 
-<description>**optional** *number* *default:* `400`</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
-设置图表高度。
+Set the height of the chart.
 
 #### autoFit
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-图表是否自适应容器宽高。当 `autoFit` 设置为 true 时，`width` 和 `height` 的设置将失效。
+Whether the chart automatically adjusts to fit the container. If it is set to `true`, `width` and `height` configuration would fail.
 
 #### padding
 
-<description>**optional** *number\[] | number | 'auto'*</description>
+<description>**optional** _number\[] 、 number 、 'auto'_</description>
 
-画布的 `padding` 值，代表图表在上右下左的间距，可以为单个数字 `16`，或者数组 `[16, 8, 16, 8]` 代表四个方向，或者开启 `auto`，由底层自动计算间距。
+Set `padding` value of the canvas. You can also use `auto`.
 
 #### appendPadding
 
-<description>**optional** *number\[] | number*</description>
+<description>**optional** _number\[] 、 number_</description>
 
-额外增加的 `appendPadding` 值，在 `padding` 的基础上，设置额外的 padding 数值，可以是单个数字 `16`，或者数组 `[16, 8, 16, 8]` 代表四个方向。
+Extra `appendPadding` value.
 
 #### renderer
 
-<description>**optional** *string* *default:* `canvas`</description>
+<description>**optional** _string_ _default:_ `canvas`</description>
 
-设置图表渲染方式为 `canvas` 或 `svg`。
+Set the render way to `canvas` or `svg`.
 
 #### pixelRatio
 
-<description>**optional** *number* *default:* `window.devicePixelRatio`</description>
+<description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
 
-设置图表渲染的像素比，和底层的 devicePixelRatio 含义一致，一般不用设置，除非在页面有整体 scale 的情况下，可以自定义。
+Set the pixel ratio of the chart.
 
 #### limitInPlot
 
-<description>**optional** *boolean*</description>
+<description>**optional** _boolean_</description>
 
-是否对超出坐标系范围的 Geometry 进行剪切。
+Whether clip the Geometry beyond the coordinate system。
 
+<!-- 先插入到这里 -->
 
-### 数据映射
+#### locale
+
+<description>**optional** _string_</description>
+
+Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts) to see the format.
+
+### Data Mapping
 
 #### data
 
-<description>**required** *number\[]*</description>
+<description>**required** _number\[]_</description>
 
-设置图表数据源。mini 面积图的数据直接采用一个数字数组，代表一个指标的变化趋势，无需设置 x 轴字段。
+Configure the chart data source. The data of MINI area map directly uses a numeric array to represent the change trend of an indicator, without setting the X-axis field.
 
 #### meta
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
-全局化配置图表数据元信息，以字段为单位进行配置，来定义数据的类型和展示方式。在 meta 上的配置将同时影响所有组件的文本信息。
+Configure the meta of each data field of the chart in global, to define the type and presentation of data. Configuration of the meta will affect the text content of all components.
 
-| 细分配置项名称 | 类型       | 功能描述                                    |
-| -------------- | ---------- | ------------------------------------------- |
-| alias          | *string*   | 字段的别名                                  |
-| formatter      | *function* | callback 方法，对该字段所有值进行格式化处理 |
-| values         | *string\[]* | 枚举该字段下所有值                          |
-| range          | *number\[]* | 字段的数据映射区间，默认为\[0,1]             |
+| Properties | Type        | Description                                              |
+| ---------- | ----------- | -------------------------------------------------------- |
+| alias      | _string_    | alias of the data field                                  |
+| formatter  | _function_  | callback function to format all values of the data field |
+| values     | _string\[]_ | enumerate all the values of the data field               |
+| range      | _number\[]_ | mapping range of the data field, default: \[0,1]         |
 
-关于 `meta` 的更多配置项，请查看 [Meta Options](/zh-CN/guide/common#meta)
+See also the [Meta Options](/guide/common#meta) to learn more about configuration of `meta`.
 
-
-### 图形样式
+### Plot Style
 
 #### smooth
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-是否平滑。
+Whether Smooth.
 
 #### areaStyle
 
-<description>**optional** *StyleAttr | Function*</description>
+<description>**optional** _StyleAttr 、 Function_</description>
 
-面积图形样式。
+Area chart style.
 
-<!--图形样式-->
+<!--shape style-->
 
-| 属性名        | 类型            | 介绍                                                                                                         |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
-| fill          | *string*         | 图形的填充色                                                                                                 |
-| r          | *number*         | 用于 `point`, 代表图形的半径大小 |
-| fillOpacity   | *number*         | 图形的填充透明度                                                                                             |
-| stroke        | *string*         | 图形的描边                                                                                                   |
-| lineWidth     | *number*         | 图形描边的宽度                                                                                               |
-| lineDash      | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| lineOpacity   | *number*         | 描边透明度                                                                                                   |
-| opacity       | *number*         | 图形的整体透明度                                                                                             |
-| shadowColor   | *string*         | 图形阴影颜色                                                                                                 |
-| strokeOpacity | *number*         | 图形边框透明度                                                                                               |
-| shadowBlur    | *number*         | 图形阴影的高斯模糊系数                                                                                       |
-| shadowOffsetX | *number*         | 设置阴影距图形的水平距离                                                                                     |
-| shadowOffsetY | *number*         | 设置阴影距图形的垂直距离                                                                                     |
-| cursor        | *string*         | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                                                |
+| Properties | Type | Description |
+| --- | --- | --- |
+| fill | _string_ | Fill color of the shape |
+| r | _number_ | used in `point`, means the radius of geometry |
+| fillOpacity | _number_ | Fill opacity of the shape |
+| stroke | _string_ | Stroke color of the shape |
+| lineWidth | _number_ | The width of the stroke of the shape |
+| lineDash | \[number,number] | Configure dashed line stroke. The first parameter is the length of each segment, and the second parameter is the gap between segment. When lineDash is set to \[0,0], there is no effect. |
+| lineOpacity | _number_ | Opacity of the stroke |
+| opacity | _number_ | Opacity of the shape |
+| shadowColor | _string_ | Shadow color of the shape |
+| strokeOpacity | _number_ | Stroke opacity of the shape |
+| shadowBlur | _number_ | Gaussian blur coefficient of the shadow |
+| shadowOffsetX | _number_ | Configure horizontal distance between shadow and shape |
+| shadowOffsetY | _number_ | Configure vertical distance between shadow and shape |
+| cursor | _string_ | Mouse style, same as the mouse style of CSS, default value : 'default' |
 
-示例代码：
+Example：
 
 ```ts
 {
@@ -130,57 +132,55 @@
 }
 ```
 
-关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
-
+More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
 
 #### line
 
-<description>**optional** *lineStyle*</description>
+<description>**optional** _object_</description>
 
-面积中折线的样式。
+The pattern of polylines in the area.
 
-| 细分配置项名称 | 类型                                     | 功能描述 |
-| -------------- | ---------------------------------------- | -------- |
-| color          | *string | string\[] | Function*         | 颜色映射 |
-| style          | *ShapeStyle | Function*                 | 样式映射 |
-| size           | *number | \[number, number] | Function* | 折线宽度 |
+| Properties | Type                                      | Description   |
+| ---------- | ----------------------------------------- | ------------- |
+| color      | _string 、 string\[] 、 Function_         | Color mapping |
+| style      | _ShapeStyle 、 Function_                  | Style mapping |
+| size       | _number 、 \[number, number] 、 Function_ | Line width    |
 
 #### point
 
-<description>**optional** *pointStyle*</description>
+<description>**optional** _pointStyle_</description>
 
-面积图数据点图形样式。
+Area Chart Data Point Graph Style.
 
-| 细分配置 | 类型     | 功能描述   |
-| -------- | -------- | ---------- |
-| color    | *string | string\[]  | Function* | 数据点颜色，也可以支持回调的方式设置，回调参数为 `color: (x, y, series) => string` |
-| shape    | *string | Function* | 数据点形状，也可以支持回调的方式设置，回调参数为 `shape: (x, y, series) => string` |
-| size     | *number | Function* | 数据点大小，也可以支持回调的方式设置，回调参数为 `size: (x, y, series) => number` |
-| style    | *object | Function* | 数据点样式，也可以支持回调的方式设置，回调参数为 `style: (x, y, series) => object` |
-| state    | *object* | 数据点状态样式，设置对应状态的样式。详细参考 [*state*](#state)\` |
-
+| Properties | Type | Description |
+| --- | --- | --- |
+| color | _string 、 string\[] 、 Function_ | The color of the data point, support callback way, example: `color: (x, y, series) => string` |
+| shape | \_string 、 Function\_ | The shape of the data point, support callback way, example: `shape: (x, y, series) => string` |
+| size | _number 、 Function_ | The size of the data point, support callback way, example: `size: (x, y, series) => number` |
+| style | _object 、 Function_ | Data point style, support callback way, example: `style: (x, y, series) => object` |
+| state | _object_ | State styles of point, setting style of specify state。Refer to [_state_](#state) |
 
 #### color
 
-<description>**optional** *string | string\[] | Function*</description>
+<description>**optional** _string 、 string\[] 、 Function_</description>
 
-指定点的颜色。如没有配置 colorField，指定一个单值即可。对 colorFiled 进行了配置的情况下，即可以指定一系列色值，也可以通过回调函数的方法根据对应数值进行设置。
+Configure the color. If there is no colorField configured, set one single color. Otherwise you can set a series of colors, or you can use callback function.
 
-默认配置：采用 theme 中的色板。
+Default: The color board of the theme.
 
 ```ts
-// 设置单一颜色
+// set one single color
 {
   color: '#a8ddb5'
 }
-// 设置多色
+// set a series of colors
 {
-  colorField: 'type', // 部分图表使用 seriesField
+  colorField: 'type', // or seriesField in some cases
   color: ['#d62728', '#2ca02c', '#000000'],
 }
 // Function
 {
-  colorField: 'type', // 部分图表使用 seriesField
+  colorField: 'type', // or seriesField in some cases
   color: ({ type }) => {
     if(type === 'male'){
       return 'red';
@@ -190,16 +190,15 @@
 }
 ```
 
-
-### 图表组件
+### Plot Component
 
 #### tooltip
 
 ##### fields
 
-<description>**可选** *string\[]*</description>
+<description>**optional** _string\[]_</description>
 
-指定 tooltip 中显示的字段，默认不同图表有不同的默认字段列表。配合 `formatter` 配置一起使用，效果更佳。
+Specifies the fields to be displayed in the Tooltip. By default, different charts have different default field lists. Use with the 'formatter' configuration for more effect.
 
 ```ts
 tooltip: {
@@ -209,9 +208,9 @@ tooltip: {
 
 ##### formatter
 
-<description>**可选** *Function*</description>
+<description>**optional** _Function_</description>
 
-格式化 tooltip item 内容（暂时不支持多 tooltipItems 的格式化，可以使用 `customContent` 处理）
+Formats the contents of the Tooltip Item (you can use `customContent` when content contains multiple tooltipItems).
 
 ```ts
 tooltip: {
@@ -223,157 +222,174 @@ tooltip: {
 
 ##### follow
 
-<description>**可选** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-设置 tooltip 内容框是否跟随鼠标移动。
+Sets whether the Tooltip content box follows the mouse.
 
 ##### enterable
 
-<description>**可选** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-tooltip 是否允许鼠标滑入。
+Whether the tooltip allows mouse to slide in.
 
 ##### showTitle
 
-<description>**可选** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-是否展示 tooltip 标题。
+Whether show tooltip title.
 
 ##### title
 
-<description>**可选** *string*</description>
+<description>**optional** _string_</description>
 
-设置 tooltip 的标题内容：如果值为数据字段名，则会展示数据中对应该字段的数值，如果数据中不存在该字段，则直接展示 title 值。
+Set the title content of the Tooltip: If the value is the name of the data field, the value for the field in the data is displayed, and if the field does not exist in the data, the title value is displayed directly.
 
 ##### position
 
-<description>**可选** *`top` | `bottom` | `left` | `right`*</description>
+<description>**optional** _`top` | `bottom` | `left` | `right`_</description>
 
-设置 tooltip 的固定展示位置，相对于数据点。
+Sets the fixed display location of the Tooltip relative to the data point.
 
 ##### shared
 
-<description>**可选** *boolean*</description>
+<description>**optional** _boolean_</description>
 
-true 表示合并当前点对应的所有数据并展示，false 表示只展示离当前点最逼近的数据内容。
+True means that all data corresponding to the current point is merged and displayed, while false means that only the data content closest to the current point is displayed.
 
 ##### showCrosshairs
 
-<description>**可选** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-是否展示 crosshairs。
+Whether show crosshairs。
 
 ##### crosshairs
 
-<description>**可选** *object*</description>
+<description>**optional** _object_</description>
 
-配置 tooltip 的 crosshairs，当且仅当 `showCrosshairs` 为 true 时生效。
+Configure tooltip crosshairs to work if and only if 'showCrosshairs' is true.
 
-| 细分配置项名称 | 类型                  | 功能描述                                                            |
-| -------------- | --------------------- | ------------------------------------------------------------------- |
-| type           | *`x` | `y` | `xy`*  | crosshairs 的类型: `x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项 |
-| line           | *lineStyle*           | 线的配置项，详细可见 [*ShapeAttrs*](/zh-CN/guide/graphic-style)                                                         |
-| text           | *textStyle*           | 辅助线文本配置，支持回调                                            |
-| textBackground | *textBackgroundStyle* | 辅助线文本背景配置                                                  |
-| follow         | *boolean*             | 辅助线是否跟随鼠标移动，默认为 false，即定位到数据点                |
+| Properties | Type | Description |
+| --- | --- | --- |
+| type | _'x' 、 'y' 、 'xy'_ | Crosshairs Type: 'X' represents the auxiliary line on the X axis, 'Y' on the Y axis |
+| line | _lineStyle_ | The configuration item for line, see more [_ShapeAttrs_](/guide/graphic-style#configure-line-styles) |
+| text | _TooltipCrosshairsText 、 TooltipCrosshairsTextCallback_ | Text configuration of crosshairs pointer, support callback |
+| textBackground | _textBackgroundStyle_ | Guideline text background configuration |
+| follow | _boolean_ | Whether the guide line follows the mouse. Default is false, that is, to locate the data point |
 
-****textStyle****
+<!-- 类型定义 -->
 
-<!--文本样式-->
-
-| 属性名        | 类型            | 介绍                                                                                                         |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
-| fontSize      | *number*          | 文字大小                                                                                                     |
-| fontFamily    | *string*          | 文字字体                                                                                                     |
-| fontWeight    | *number*          | 字体粗细                                                                                                     |
-| lineHeight    | *number*          | 文字的行高                                                                                                   |
-| textAlign     | *string*          | 设置文本内容的当前对齐方式, 支持的属性：`center` | `end` | `left` | `right` | `start`，默认值为`start`   |
-| fill          | *string*          | 文字的填充色                                                                                                 |
-| fillOpacity   | *number*          | 文字的填充透明度                                                                                             |
-| stroke        | *string*          | 文字的描边                                                                                                   |
-| lineWidth     | *number*          | 文字描边的宽度                                                                                               |
-| lineDash      | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| lineOpacity   | *number*          | 描边透明度                                                                                                   |
-| opacity       | *number*          | 文字的整体透明度                                                                                             |
-| shadowColor   | *string*          | 文字阴影颜色                                                                                                 |
-| shadowBlur    | *number*          | 文字阴影的高斯模糊系数                                                                                       |
-| shadowOffsetX | *number*          | 设置阴影距文字的水平距离                                                                                     |
-| shadowOffsetY | *number*          | 设置阴影距文字的垂直距离                                                                                     |
-| cursor        | *string*          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                                                                 |
-
-示例代码，以 label.style 配置为例：
+**_TooltipCrosshairsText_** 类型定义如下：
 
 ```ts
-{
-  label: {
-    style:{
-      fontSize: 80,
-      fontWeight: 300,
-      textAlign: 'center',
-      textBaseline: 'middle',
-      shadowColor: 'white',
-      shadowBlur: 10,
-    }
-  }
-}
+/** 辅助线文本配置 */
+type TooltipCrosshairsText = {
+  /**
+   * 文本位置，只支持 start， end
+   * @type {string}
+   */
+  position?: string;
+  /**
+   * 文本内容
+   */
+  content?: string;
+  /**
+   * 距离线的距离
+   * @type {number}
+   */
+  offset?: number;
+  /**
+   * 是否自动旋转
+   * @type {boolean}
+   */
+  autoRotate?: boolean;
+  /**
+   * 文本的配置项
+   * @type {ShapeAttrs}
+   */
+  style?: TextStyle;
+};
 ```
 
+其中，**_TextStyle_** 类型定义详见: [通用文本样式](/zh-CN/guide/graphic-style#%E9%85%8D%E7%BD%AE%E6%96%87%E5%AD%97%E6%A0%B7%E5%BC%8F)
 
-***textBackgroundStyle***
+**_TooltipCrosshairsTextCallback_** 类型定义如下：
 
-| 细分配置项名称 | 类型                 | 功能描述           |
-| -------------- | -------------------- | ------------------ |
-| padding        | *number | number\[]* | 文本背景周围的留白 |
-| style          | *shapeStyle*         | 线的配置项, 详细可见 [*ShapeAttrs*](/zh-CN/guide/graphic-style)          |
+```ts
+/**
+ * 辅助线文本回调函数
+ * @param type 对应当前 crosshairs 的类型，值为 'x' 或者 'y'
+ * @param defaultContent 对应当前 crosshairs 默认的文本内容
+ * @param items 对应当前 tooltip 内容框中的数据
+ * @param currentPoint 对应当前坐标点
+ * @returns 返回当前 crosshairs 对应的辅助线文本配置
+ */
+type TooltipCrosshairsTextCallback = (
+  type: string,
+  defaultContent: any,
+  items: any[],
+  currentPoint: Point,
+) => TooltipCrosshairsText;
+```
+
+<!-- 容器无限变大 -->
+
+<!-- <playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
+
+**_TextBackgroundStyle_**
+
+| Properties | Type | Description |
+| --- | --- | --- |
+| padding | _number 、 number\[]_ | White space around the background of a text |
+| style | _shapeStyle_ | The configuration item for line, see more [_ShapeAttrs_](/guide/graphic-style) |
 
 ##### showMarkers
 
-<description>**可选** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-是否渲染 tooltipMarkers。
+Whether to render TooltipMarkers.
 
 ##### marker
 
-<description>**可选** *ShapeAttrs*</description>
+<description>**optional** _ShapeAttrs_</description>
 
-tooltipMarker 的样式配置。
+TooltipMarker style configuration.
 
-样式配置类型，详细可见: [ShapeAttrs](/zh-CN/guide/graphic-style)
+Please refer to the style configuration [ShapeAttrs](/guide/graphic-style)
 
 ##### showContent
 
-<description>**可选** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-是否展示 tooltip 内容框。
+Whether to display the Tooltip content box.
 
 ##### container
 
-<description>**可选** *string|HTMLElement*</description>
+<description>**optional** _string|HTMLElement_</description>
 
-自定义 tooltip 的容器。
+Custom tooltip container.
 
 ##### containerTpl
 
-<description>**可选** *string*</description>
+<description>**optional** _string_</description>
 
-用于指定图例容器的模板，自定义模板时必须包含各个 dom 节点的 class。
+Templates used to specify the legend container must include the classes of each DOM node when customizing the template
 
 ##### itemTpl
 
-<description>**可选** *string*</description>
+<description>**optional** _string_</description>
 
-每项记录的默认模板，自定义模板时必须包含各个 dom 节点的 class。
+The default template for each record, which must include the classes of each DOM node when customizing the template.
 
 ##### domStyles
 
-<description>**可选** *TooltipDomStyles*</description>
+<description>**optional** _TooltipDomStyles_</description>
 
-传入各个 dom 的样式。
+The styles for each DOM.
 
 <img src="https://gw.alipayobjects.com/zos/antfincdn/pKDA06iIeQ/tooltip.png" class="img-400" alt="dom-styles" />
 
 ```ts
-/** Tooltip 内容框的 css 样式定义 */
+/** Tooltip content box css style */
 {
   domStyles: {
     'g2-tooltip'?: CSSProperties;
@@ -389,15 +405,44 @@ tooltipMarker 的样式配置。
 
 ##### offset
 
-<description>**可选** *number*</description>
+<description>**optional** _number_</description>
 
-tooltip 偏移量。
+Tooltip offset.
+
+##### reversed
+
+<description>**optional** _boolean_</description>
+
+是否将 tooltip items 逆序.
+
+##### showNil
+
+<description>**optional** _boolean_</description>
+
+是否显示空值的 tooltip 项
+
+##### customItems ✨
+
+<description>**optional** _Function_</description>
+
+在 tooltip 渲染之前，对最终的 items 进行自定义处理（比如排序、过滤、格式化等）。
+
+```ts
+{
+  tooltip: {
+    customItems: (originalItems: TooltipItem[]) => {
+      // process originalItems,
+      return originalItems;
+    };
+  }
+}
+```
 
 ##### customContent
 
-<description>**可选** *Function*</description>
+<description>**optional** _Function_</description>
 
-支持自定义模板。
+Support for custom templates.
 
 ```ts
 {
@@ -409,264 +454,63 @@ tooltip 偏移量。
 }
 ```
 
+Try it:
+
+<playground path="case/customize/demo/customize-tooltip.ts" rid="customize-tooltip"></playground>
 
 #### axis
 
-xAxis、yAxis 配置相同。
+Same for xAxis and yAxis.
+
+##### top
+
+<description>**optional** _boolean_ _default:_ `false`</description>
+
+是否渲染在画布顶层，防止部分图形中，需要将 axis 显示在图形上面，避免被图形遮挡。
 
 ##### position
 
-<description>**optional** *`top` | `bottom` | `left` | `right`*</description>
+<description>**optional** _`top` | `bottom` | `left` | `right`_</description>
 
-适用于直角坐标系，设置坐标轴的位置。
-
-##### label
-
-<description> *AxisLabelCfg | null* **optional** </description>
-
-文本标签的配置项，null 表示不展示。*AxisLabelCfg* 配置如下：
-
-| 参数名       | 类型                                                   | 默认值  | 描述                     |
-| ------------ | -----------------------------------------------------| ------- | ------------------------ |
-| style        | *[ShapeAttrs](/zh-CN/guide/graphic-style)*        | -       | 坐标轴刻度线的样式配置项 |
-| offset       | *number*                                                | -       | label 的偏移量           |
-| rotate       | *number*                                                | -       | 文本旋转角度             |
-| autoRotate   | *boolean*                                               | `true`  | 是否自动旋转             |
-| autoHide     | *boolean*                                                | `false` | 是否自动隐藏             |
-| autoEllipsis | *boolean*                                                | `false` | 是否自动省略             |
-| formatter    | *`(text: string, item: ListItem, index: number) => any`* | `false` | 格式化函数               |
-
-##### verticalFactor
-
-<description>**optional** *number*</description>
-
-标记坐标轴 label 的方向，左侧为 1，右侧为 -1（仅适用于垂直方向的坐标轴）
-
-##### verticalLimitLength
-
-<description>**optional** *number*</description>
-
-配置坐标轴垂直方向的最大限制长度，对文本自适应有很大影响。
-
-##### nice
-
-<description>**optional** *boolean* *default:* `true`</description>
-
-是否美化。
-
-##### min
-
-<description>**optional** *number* *default:* `0`</description>
-
-坐标轴最小值。
-
-##### max
-
-<description>**optional** *number*</description>
-
-坐标轴最大值。
-
-##### minLimit
-
-<description>**optional** *number*</description>
-
-最小值限定。
-
-##### maxLimit
-
-<description>**optional** *number*</description>
-
-最大值限定。
-
-##### tickCount
-
-<description>**optional** *number*</description>
-
-期望的坐标轴刻度数量，非最终结果。
-
-##### tickInterval
-
-<description>**optional** *number*</description>
-
-坐标轴刻度间隔。
-
-##### tickMethod
-
-<description>**optional** *string | Function* *default:* `false`</description>
-
-指定 tick 计算方法，或自定义计算 tick 的方法，内置 tick 计算方法包括 `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`。
-
-##### line
-
-<description>**optional** *object*</description>
-
-坐标轴线的配置项，null 表示不展示。
-
-<!--线条样式-->
-
-| 属性名        | 类型            | 介绍                                                                                                   |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
-| stroke        | *string*          | 线的颜色                                                                                               |
-| lineWidth     | *number*          | 线宽                                                                                                   |
-| lineDash      | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity       | *number*          | 透明度                                                                                                 |
-| shadowColor   | *string*          | 阴影颜色                                                                                               |
-| shadowBlur    | *number*          | 高斯模糊系数                                                                                           |
-| shadowOffsetX | *number*          | 设置阴影距图形的水平距离                                                                               |
-| shadowOffsetY | *number*          | 设置阴影距图形的垂直距离                                                                               |
-| cursor        | *string*          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                                                           |
-
-示例代码：
-
-```ts
-{
-  xAxis: {
-    grid: {
-      line: {
-        style: {
-          stroke: 'black',
-          lineWidth: 2,
-          lineDash: [4, 5],
-          strokeOpacity: 0.7,
-          shadowColor: 'black',
-          shadowBlur: 10,
-          shadowOffsetX: 5,
-          shadowOffsetY: 5,
-          cursor: 'pointer'
-        }
-      }
-    }
-  }
-}
-```
-
-
-##### tickLine
-
-<description>**optional** *object*</description>
-
-坐标轴刻度线线的配置项，null 表示不展示。
-
-<!--线条样式-->
-
-| 属性名        | 类型            | 介绍                                                                                                   |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
-| stroke        | *string*          | 线的颜色                                                                                               |
-| lineWidth     | *number*          | 线宽                                                                                                   |
-| lineDash      | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity       | *number*          | 透明度                                                                                                 |
-| shadowColor   | *string*          | 阴影颜色                                                                                               |
-| shadowBlur    | *number*          | 高斯模糊系数                                                                                           |
-| shadowOffsetX | *number*          | 设置阴影距图形的水平距离                                                                               |
-| shadowOffsetY | *number*          | 设置阴影距图形的垂直距离                                                                               |
-| cursor        | *string*          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                                                           |
-
-示例代码：
-
-```ts
-{
-  xAxis: {
-    grid: {
-      line: {
-        style: {
-          stroke: 'black',
-          lineWidth: 2,
-          lineDash: [4, 5],
-          strokeOpacity: 0.7,
-          shadowColor: 'black',
-          shadowBlur: 10,
-          shadowOffsetX: 5,
-          shadowOffsetY: 5,
-          cursor: 'pointer'
-        }
-      }
-    }
-  }
-}
-```
-
-
-##### subTickLine
-
-<description>**optional** *object*</description>
-
-坐标轴子刻度线的配置项，null 表示不展示。
-
-<!--线条样式-->
-
-| 属性名        | 类型            | 介绍                                                                                                   |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
-| stroke        | *string*          | 线的颜色                                                                                               |
-| lineWidth     | *number*          | 线宽                                                                                                   |
-| lineDash      | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity       | *number*          | 透明度                                                                                                 |
-| shadowColor   | *string*          | 阴影颜色                                                                                               |
-| shadowBlur    | *number*          | 高斯模糊系数                                                                                           |
-| shadowOffsetX | *number*          | 设置阴影距图形的水平距离                                                                               |
-| shadowOffsetY | *number*          | 设置阴影距图形的垂直距离                                                                               |
-| cursor        | *string*          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                                                           |
-
-示例代码：
-
-```ts
-{
-  xAxis: {
-    grid: {
-      line: {
-        style: {
-          stroke: 'black',
-          lineWidth: 2,
-          lineDash: [4, 5],
-          strokeOpacity: 0.7,
-          shadowColor: 'black',
-          shadowBlur: 10,
-          shadowOffsetX: 5,
-          shadowOffsetY: 5,
-          cursor: 'pointer'
-        }
-      }
-    }
-  }
-}
-```
-
+For Cartesian coordinates, set the position of the coordinate axes.
 
 ##### title
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
-标题的配置项，null 表示不展示。
+A configuration item for the title, NULL means not to be displayed.
 
-| 细分配置项名称 | 类型         | 功能描述                 |
-| -------------- | ------------ | ------------------------ |
-| text         | *string*     | 坐标轴标题     |
-| offset         | *number*     | 标题距离坐标轴的距离     |
-| spacing        | *lineStyle*  | 标题距离坐标轴文本的距离 |
-| style          | *shapeStyle* | 标题文本配置项           |
-| autoRotate     | *boolean*    | 是否自动旋转             |
+| Properties | Type | Description |
+| --- | --- | --- |
+| text | _string_ | The title of axis |
+| position | _string_ | Position of the axis title, default: 'center'. Options: start, center, end |
+| offset | _number_ | The distance of the title from the coordinate axis |
+| spacing | _number_ | The distance between the title and the text on the coordinate axis |
+| style | _shapeStyle_ | Title text configuration items |
+| autoRotate | _boolean_ | Whether to rotate automatically or not |
 
-***shapeStyle***
+**_shapeStyle_**
 
-<!--图形样式-->
+<!--shape style-->
 
-| 属性名        | 类型            | 介绍                                                                                                         |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
-| fill          | *string*         | 图形的填充色                                                                                                 |
-| r          | *number*         | 用于 `point`, 代表图形的半径大小 |
-| fillOpacity   | *number*         | 图形的填充透明度                                                                                             |
-| stroke        | *string*         | 图形的描边                                                                                                   |
-| lineWidth     | *number*         | 图形描边的宽度                                                                                               |
-| lineDash      | \[number,number] | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| lineOpacity   | *number*         | 描边透明度                                                                                                   |
-| opacity       | *number*         | 图形的整体透明度                                                                                             |
-| shadowColor   | *string*         | 图形阴影颜色                                                                                                 |
-| strokeOpacity | *number*         | 图形边框透明度                                                                                               |
-| shadowBlur    | *number*         | 图形阴影的高斯模糊系数                                                                                       |
-| shadowOffsetX | *number*         | 设置阴影距图形的水平距离                                                                                     |
-| shadowOffsetY | *number*         | 设置阴影距图形的垂直距离                                                                                     |
-| cursor        | *string*         | 鼠标样式。同 css 的鼠标样式，默认 'default'。                                                                |
+| Properties | Type | Description |
+| --- | --- | --- |
+| fill | _string_ | Fill color of the shape |
+| r | _number_ | used in `point`, means the radius of geometry |
+| fillOpacity | _number_ | Fill opacity of the shape |
+| stroke | _string_ | Stroke color of the shape |
+| lineWidth | _number_ | The width of the stroke of the shape |
+| lineDash | \[number,number] | Configure dashed line stroke. The first parameter is the length of each segment, and the second parameter is the gap between segment. When lineDash is set to \[0,0], there is no effect. |
+| lineOpacity | _number_ | Opacity of the stroke |
+| opacity | _number_ | Opacity of the shape |
+| shadowColor | _string_ | Shadow color of the shape |
+| strokeOpacity | _number_ | Stroke opacity of the shape |
+| shadowBlur | _number_ | Gaussian blur coefficient of the shadow |
+| shadowOffsetX | _number_ | Configure horizontal distance between shadow and shape |
+| shadowOffsetY | _number_ | Configure vertical distance between shadow and shape |
+| cursor | _string_ | Mouse style, same as the mouse style of CSS, default value : 'default' |
 
-示例代码：
+Example：
 
 ```ts
 {
@@ -686,36 +530,35 @@ xAxis、yAxis 配置相同。
 }
 ```
 
-关于 ShapeStyle 更加详细的文档参考 [绘图属性](/zh-CN/guide/graphic-style)。
+More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
 
+**_label_**
 
-***label***
+<description>**optional** _object_</description>
 
-<description>**optional** *object*</description>
-
-文本标签的配置项，null 表示不展示。
+A configuration item for the text label. NULL indicates that it is not displayed.
 
 <!--label样式-->
 
-| 属性名       | 类型                                                       | 介绍                                                                                       |
-| ------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| type         | *string*                                                     | 当用户使用了自定义的 label 类型，需要声明具体的 type 类型，否则会使用默认的 label 类型渲染（饼图 label 支持 `inner|outer|spider`）|
-| offset       | *number*                                                     | label 的偏移量                                                                             |
-| offsetX      | *number*                                                     | label 相对于数据点在 X 方向的偏移距离                                                      |
-| offsetY      | *number*                                                     | label 相对于数据点在 Y 方向的偏移距离                                                      |
-| content      | *string | IGroup | IShape | GeometryLabelContentCallback* | 展示的文本内容，如果不声明则按照参与映射的第一字段的值进行显示                             |
-| style        | *ShapeAttrs*                                                     | label 文本图形属性样式                                                                     |
-| autoRotate   | *string*                                                     | 是否自动旋转，默认 true                                                                    |
-| rotate       | *number*                                                     | 文本旋转角度                                                                               |
-| labelLine    | *null* | *boolean* | *LabelLineCfg*                                   | 用于设置文本连接线的样式属性，null 表示不展示。                                            |
-| labelEmit    | *boolean*                                                    | 只对极坐标下的文本生效，表示文本是否按照角度进行放射状显示，true 表示开启，false 表示关闭  |
-| layout       | *'overlap' | 'fixedOverlap' | 'limitInShape'*              | 文本布局类型，支持多种布局函数组合使用。                                                   |
-| position     | *'top' | 'bottom' | 'middle' | 'left' | 'right'*         | 指定当前 label 与当前图形的相对位置                                                        |
-| animate      | *boolean | AnimateOption*                                   | 动画配置。                                                                                 |
-| formatter    | *Function*                                                   | 格式化函数                                                                                 |
-| autoHide     | *boolean*                                                    | 是否自动隐藏，默认 false                                                                   |
+| Properties | Type | Description |
+| --- | --- | --- | --- | --- |
+| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
+| offset | _number_ | label offset |
+| offsetX | _number_ | The offset distance of the label from the data point in the X direction |
+| offsetY | _number_ | The offset distance of the label from the data point in the Y direction |
+| content | _string 、 IGroup 、 IShape 、 GeometryLabelContentCallback_ | Text content that is displayed, if not declared, is displayed according to the value of the first field participating in the mapping |
+| style | _ShapeAttrs_ | Label text graphic property style |
+| autoRotate | _string_ | Whether to rotate automatically, default true |
+| rotate | _number_ | Text rotation Angle |
+| labelLine | _null_ 、 _boolean_ 、 _LabelLineCfg_ | Used to set the style property of the text connector. NULL indicates that it is not displayed. |
+| labelEmit | _boolean_ | Only applies to text in polar coordinates, indicating whether the text is radially displayed according to the Angle. True means on and false means off |
+| layout | _'overlap' 、 'fixedOverlap' 、 'limitInShape'_ | Text layout type, support a variety of layout function combination. |
+| position | _'top' 、 'bottom' 、 'middle' 、 'left' 、 'right'_ | Specifies the position of the current Label relative to the current graphic |
+| animate | _boolean 、 AnimateOption_ | Animation configuration. |
+| formatter | _Function_ | Format function |
+| autoHide | _boolean_ | Whether to hide it automatically, default to false |
 
-***LabelLineCfg*** 类型定义如下：（关于 *ShapeAttrs* 详细查看 [ShapeAttrs](/zh-CN/guide/graphic-style) 文档）
+Types of **_LabelLineCfg_** are as follow: (Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_)
 
 ```plain
 type LabelLineCfg = {
@@ -723,7 +566,7 @@ type LabelLineCfg = {
 }
 ```
 
-示例代码：
+Example code:
 
 ```ts
 {
@@ -738,37 +581,87 @@ type LabelLineCfg = {
 }
 ```
 
+##### label
+
+<description> _AxisLabelCfg 、 null_ **optional** </description>
+
+Configurations related to axis label. Set this to `null` to prevent the axis label from appearing. The details of \_ AxisLabelCfg\_ are as follows:
+
+| Properties   | Type                                                                   |         |
+| ------------ | ---------------------------------------------------------------------- | ------- | --------------------------------------------------------- |
+| style        | _[ShapeAttrs](/guide/graphic-style)_                                   | -       | Axis label text graphic property style                    |
+| offset       | _number_                                                               | -       | Axis label offset                                         |
+| rotate       | _number_                                                               | -       | Axis label text rotation Angle                            |
+| autoRotate   | _boolean 、avoidCallback_                                              | `true`  | Whether to rotate automatically, default true             |
+| autoHide     | _boolean 、avoidCallback 、 { type:string,cfg?:AxisLabelAutoHideCfg }_ | `false` | Whether to hide it automatically, default to false        |
+| autoEllipsis | _boolean_                                                              | `false` | Whether to ellipsis label when overflow, default to false |
+| formatter    | _`(text: string, item: ListItem, index: number) => any`_               | `false` | Format function                                           |
+
+**_avoidCallback_** 类型定义如下：
+
+```ts
+type avoidCallback = (isVertical: boolean, labelGroup: IGroup, limitLength?: number) => boolean;
+```
+
+**_AxisLabelAutoHideCfg_** 类型定义如下：
+
+```ts
+interface AxisLabelAutoHideCfg {
+  /** 最小间距配置 */
+  minGap?: number;
+}
+```
+
+##### verticalFactor
+
+<description>**optional** _number_</description>
+
+Mark the direction of the label on the axis, with 1 to the left and -1 to the right (Only works in vertical axis).
+
+##### verticalLimitLength
+
+<description>**optional** _number_</description>
+
+Configuring the maximum limit length in the vertical direction of the coordinate axis has a significant impact on text adaptation.
 
 ##### grid
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
-坐标轴网格线的配置项，null 表示不展示。
+Axis grid line configuration item. NULL means not shown.
 
-| 细分配置项名称 | 类型               | 功能描述                                                 |
-| -------------- | ------------------ | -------------------------------------------------------- |
-| line.style           | *lineStyle*        | 线的样式,                                               |
-| alternateColor | *string|string\[]* | 两个栅格线间的填充色                                     |
-| closed         | *boolean*          | 对于 circle 是否关闭 grid                                |
-| alignTick      | *boolean*          | 是否同刻度线对齐，如果值为 false，则会显示在两个刻度中间 |
+| Properties | Type | Description |
+| --- | --- | --- |
+| line | _lineStyle_ | The style of the line |
+| alternateColor | _string、string\[]_ | The fill color between two grid lines |
+| closed | _boolean_ | Whether to close the grid for circle |
+| alignTick | _boolean_ | If the value is false, it will be displayed between the two scales |
 
-\*\**lineStyle*\*\*的配置如下：
+Then config of `grid.line` is the same as: [line](#line)
 
-<!--线条样式-->
+##### line
 
-| 属性名        | 类型            | 介绍                                                                                                   |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
-| stroke        | *string*          | 线的颜色                                                                                               |
-| lineWidth     | *number*          | 线宽                                                                                                   |
-| lineDash      | \[number,number] | 虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为\[0,0]的效果为没有描边。 |
-| opacity       | *number*          | 透明度                                                                                                 |
-| shadowColor   | *string*          | 阴影颜色                                                                                               |
-| shadowBlur    | *number*          | 高斯模糊系数                                                                                           |
-| shadowOffsetX | *number*          | 设置阴影距图形的水平距离                                                                               |
-| shadowOffsetY | *number*          | 设置阴影距图形的垂直距离                                                                               |
-| cursor        | *string*          | 鼠标样式。同 css 的鼠标样式,默认 'default'。                                                           |
+<description>**optional** _object_</description>
 
-示例代码：
+Coordinate axis configuration item, NULL means not displayed.
+
+<!--line style-->
+
+> **Attention:** The full configuration of lineStyle is `{ style: { stroke: '#ddd', ... } }`, please check it when your configuration doesn't work.
+
+| Properties | Type | Description |
+| --- | --- | --- |
+| stroke | _string_ | color of the line |
+| lineWidth | _number_ | width of the line |
+| lineDash | _\[number,number]_ | configure dashed line, the first parameter is the length of each segment, the second parameter is the gap between segment. When lineDash is set to \[0,0], there is no effect. |
+| opacity | _number_ | opacity |
+| shadowColor | _string_ | shadow color |
+| shadowBlur | _number_ | Gaussian blur coefficient |
+| shadowOffsetX | _number_ | configure horizontal distance between shadow and line |
+| shadowOffsetY | _number_ | configure vertical distance between shadow and line |
+| cursor | _string_ | mouse style, same as the mouse style of CSS, default value : 'default' |
+
+Example (config the grid line style of xAxis)：
 
 ```ts
 {
@@ -792,29 +685,112 @@ type LabelLineCfg = {
 }
 ```
 
+##### tickLine
+
+<description>**optional** _object_</description>
+
+The configuration item of the coordinate axis scale line. NULL means not displayed.
+
+| Properties | Type        | Description                            |
+| ---------- | ----------- | -------------------------------------- |
+| style      | _lineStyle_ | The style of tickLine.                 |
+| alignTick  | _boolean_   | Whether aligh tickLine with tick label |
+| length     | _number_    | The length of tickLine.                |
+
+Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_. The params of _ShapeAttrsCallback_ are as follow：
+
+```ts
+type ShapeAttrsCallback = (item: any, index: number, items: any[]) => ShapeAttrs;
+```
+
+##### subTickLine
+
+<description>**optional** _object_</description>
+
+A configuration item for a coordinate subscale. NULL indicates that it is not displayed.
+
+| Properties | Type                               | Description                |
+| ---------- | ---------------------------------- | -------------------------- |
+| style      | _ShapeAttrs 、 ShapeAttrsCallback_ | The style of subTickLine.  |
+| count      | _number_                           | The count of subTickLine.  |
+| length     | _number_                           | The length of subTickLine. |
+
+Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_. The params of _ShapeAttrsCallback_ are as follow：
+
+```ts
+type ShapeAttrsCallback = (item: any, index: number, items: any[]) => ShapeAttrs;
+```
+
+##### nice
+
+<description>**optional** _boolean_ _default:_ `true`</description>
+
+Whether to nice.
+
+##### min
+
+<description>**optional** _number_ _default:_ `0`</description>
+
+Minimum axis.
+
+##### max
+
+<description>**optional** _number_</description>
+
+Maximum axis.
+
+##### minLimit
+
+<description>**optional** _number_</description>
+
+Minimal limit.
+
+##### maxLimit
+
+<description>**optional** _number_</description>
+
+Maximum limit.
+
+##### tickCount
+
+<description>**optional** _number_</description>
+
+The expected number of axes, not the final result.
+
+##### tickInterval
+
+<description>**optional** _number_</description>
+
+Interval of axes.
+
+##### tickMethod
+
+<description>**optional** _string 、 Function_ _default:_ `false`</description>
+
+Specify a tick calculation method, or customize a tick calculation method. Built-in tick calculations include `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`。
 
 ##### animate
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-动画开关，默认开启。
+Animation switch, default true.
 
 ##### animateOption
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
-动画参数配置。
+Animation parameter configuration.
 
 ```ts
 interface ComponentAnimateCfg {
-  /** 动画执行时间 */
+  /** Duration of the first animation */
   readonly duration?: number;
-  /** 动画缓动函数 */
+  /** Easing method used for the first animation. */
   readonly easing?: string;
-  /** 动画延迟时间 */
+  /** Delay before updating the animation */
   readonly delay?: number;
 }
-// 配置参考
+// Configure the reference
 {
   animateOption: {
     appear: ComponentAnimateCfg;
@@ -825,64 +801,74 @@ interface ComponentAnimateCfg {
 }
 ```
 
-
 #### annotations
+
+Annotations are array types and can be set multiple times.
+
+```ts
+annotations: [
+  {
+    type: 'text',
+    position: ['median', 'median'],
+    content: '辅助文本',
+    style: {
+      fill: 'red',
+    },
+  },
+];
+```
 
 ##### type
 
-<description>**required** *string* </description>
+<description>**required** _string_ </description>
 
-标注类型, text | line | image | region | dataMarker | dataRegion | regionFilter | shape | html.
+Type of annotation, text | line | image | region | dataMarker | dataRegion | regionFilter | shape | html.
 
 ##### position
 
-<description>**required** *object* </description>
+<description>**required** _object_ </description>
 
-标注位置。
+The position of annotation.
 
-*   第一种，object 使用图表 x, y 对应的原始数据例如：{ time: '2010-01-01', value: 200 };
-*   第二种，数组来配置位置 \[ x, y ]，根据数组中的值的存在以下几种形式：
-    1、对应数据源中的原始数据；
-    2、关键字：'min'、'max'、'median'、'start'、'end' 分别代表数据的最大值、最小值、中间值以及坐标系区间的起始和结束；
-    3、x, y 都是百分比的形式，如 30%，在绘图区域定位(即坐标系内)。
-    1 和 2 两种类型的数据可以混用，但是使用百分比形式时 x 和 y 必须都是百分比形式。
-*   第三种，回调函数，可以动态得确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景。
+- In the first case, object uses the raw data corresponding to graphs x and y. For example: { time: '2010-01-01', value: 200 };
+- The second way is to configure the position \[x, y] in an array. Based on the presence of the values in the array, the following forms are used: 1、Corresponding to the original data in the data source; 2、Key words: 'min', 'Max', 'median', 'median', 'start' and 'end' respectively represent the maximum value, minimum value, median value of data and the start and end of coordinate system interval; 3、X, y are percentages, such as 30%, located in the drawing area (that is, in the coordinate system). The 1 and 2 types of data can be used interchangeably, but when using the percentage form, x and y must both be in the percentage form.
+- The third, callback function, can dynamically determine the position of the auxiliary element, applied to dynamic data update, the position of the auxiliary element changes according to the data.
 
 ##### top
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
-是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层。
+If it is drawn at the top of the canvas, the default is false, meaning it is drawn at the bottom.
 
 ##### animate
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
-是否进行动画。
+Whether to enable animation.
 
 ##### offsetX
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
-x 方向的偏移量。
+The offset in the x direction.
 
 ##### offsetY
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
-y 方向的偏移量。
+The offset in the y direction.
 
 ##### start
 
-<description>**optional** *Array* </description>
+<description>**optional** _Array_ </description>
 
-起始位置，一般用于 line、region 等。
+Starting position, commonly used for line, region, etc.
 
 ##### end
 
-<description>**optional** *Array* </description>
+<description>**optional** _Array_ </description>
 
-结束位置，一般用于 line、region 等。
+End position, commonly used for line, region, etc.
 
 ```ts
 {
@@ -894,129 +880,130 @@ y 方向的偏移量。
 
 ##### style
 
-<description>**optional** *object* </description>
+<description>**optional** _object_ </description>
 
-图形样式属性，参考绘图属性。
+The graph style properties refer to the Graphic Style.
 
 ##### src
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
-图片路径，用于 image 中。
+Image path, used in image.
 
 ##### content
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
-文本内容，用于 text 中。
+Text content, used in text.
 
 ##### rotate
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
-文本的旋转角度，弧度制。
+The rotation Angle of text in radians.
 
 ##### maxLength
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
-文文本的最大长度。
+The maximum length of a text.
 
 ##### autoEllipsis
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
-超出 maxLength 是否自动省略。
+Whether the maxLength beyond is automatically omitted.
 
 ##### ellipsisPosition
 
 <description>**optional** \_head | middle | tail \_ </description>
 
-文本截断的位置。
+The location of the text truncation.
 
 ##### isVertical
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
-文本在二维坐标系的显示位置，是沿着 x 轴显示 还是沿着 y 轴显示。
+The display position of the text in a two-dimensional coordinate system, whether it is displayed along the X axis or along the Y axis.
 
 ##### background
 
-<description>**optional** *object* </description>
+<description>**optional** _object_ </description>
 
-文字包围盒样式设置。
+Text wrap box style Settings.
 
-| 参数名  | 类型                | 默认值 | 描述               |
-| ------- | ------------------- | -------- | ------ |
-| style   | *object* | -      | 文本背景的样式, 参考[绘图属性](/guide/graphic-style)     |
-| padding | *number | number\[]* | -      | 文本背景周围的留白 |
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| style | _object_ | - | Text background style, reference[Graphic Style](/guide/graphic-style) |
+| padding | _number 、 number\[]_ | - | White space around the background of a text |
 
 ##### color
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
-染色色值，一般用于 regionFilter。
+Color value, usually used in RegionFilter.
 
 ##### apply
 
-<description>**optional** *string\[]* </description>
+<description>**optional** _string\[]_ </description>
 
-设定 regionFilter 只对特定 geometry 类型起作用，如 apply: \['area']，一般用于 regionFilter。
+RegionFilter is set to work only on a specific Geometry type, such as Apply: \['area'], which is generally used with RegionFilter.
 
 ##### autoAdjust
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
-文本超出绘制区域时，是否自动调节文本方向。
+Whether to automatically adjust text orientation when text exceeds the drawn area.
 
 ##### direction
 
-<description>**optional** *upward | downward* </description>
+<description>**optional** _upward 、 downward_ </description>
 
-朝向。
+Orientation.
 
 ##### lineLength
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
-line 长度，用于 dataRegion。
+Line length for dataRegion.
 
 ##### render
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
-自定义标记的绘制 render 函数，其他 container 为标记绘制的父容器, view 为图形实例, helpers 为辅助函数，其他 parserPosition 可以用来计算数据点对应的坐标位置，用于 shape。
+Render function of custom marking, other container is the parent container of marking drawing, view is the graphic instance, helpers is the auxiliary function, other parserPosition can be used to calculate the coordinate position corresponding to data points, used in shape.
 
 ##### container
 
-<description>**optional** *string | HTMLElement* </description>
+<description>**optional** _string 、 HTMLElement_ </description>
 
-自定义 HTML 图形标记的容器元素，用于 html
+Container elements for custom HTML graphical tags for HTML
 
 ##### html
 
-<description>**optional** *string | HTMLElement* </description>
+<description>**optional** _string 、 HTMLElement_ </description>
 
-自定义的图形标记的 HTML 元素，可为 HTML DOM 字符串，或 HTML 元素，或 html 回调函数，用于 html
+Custom graphical markup of HTML elements, either as HTML DOM strings, or HTML elements, or HTML callback functions, for HTML
 
 ##### alignX
 
-<description>**optional** *'left' | 'middle' | 'right'* </description>
+<description>**optional** _'left' 、 'middle' 、 'right'_ </description>
 
-DOM 元素在 X 方向的对齐方式，用于 html
+Alignment of DOM elements in the X direction for HTML
 
 ##### alignY
 
-<description>**optional** *left' | 'middle' | 'right'* </description>
+<description>**optional** _left' 、 'middle' 、 'right'_ </description>
 
-DOM 元素在 Y 方向的对齐方式，用于 html
+Alignment of DOM elements in the Y direction for HTML
 
+### Plot Theme
 
-### 图表主题
+Recommend to use 💄 [ThemeSet](https://theme-set.antv.vision) to customize your theme configurations online.
 
-#### 内置主题
+#### Built-in Theme
 
-目前默认的内置主要要两套：`default` 和 `dark`
+Built-in defaults: 'default' and 'dark'
 
 ```ts
 {
@@ -1024,51 +1011,62 @@ DOM 元素在 Y 方向的对齐方式，用于 html
 }
 ```
 
-#### 主题属性
+#### Theme attributes
 
-除了使用内置的 `default` 和 `dark` 主题之外，还可以通过设置主题属性来修改部分主题内容：
+In addition to using the built-in 'default' and 'dark' themes, you can also modify some of the theme content by setting the theme properties.
 
-下表列出了组成主题的大配置项上的具体属性：
+The following table lists the specific properties on the configuration items that make up the topic:
 
-| 主题属性 | 类型 |	描述 |
-| --- | --- | ---|
-| defaultColor | *string*| 主题色 |
-| padding | *number* |	number\[] |
-| fontFamily | *string* |	图表字体 |
-| colors10 | *string\[]* |	分类颜色色板，分类个数小于 10 时使用 |
-| colors20 |*string\[]* |	分类颜色色板，分类个数大于 10 时使用 |
-| columnWidthRatio | *number* |	一般柱状图宽度占比，0 - 1 范围数值
-| maxColumnWidth | *number* |	柱状图最大宽度，像素值 |
-| minColumnWidth| *number* |	柱状图最小宽度，像素值 |
-| roseWidthRatio | *number* |	玫瑰图占比，0 - 1 范围数值 |
-| multiplePieWidthRatio	| *number* | 多层饼图/环图占比，0 - 1 范围数值 |
-| geometries | *object* |	配置每个 Geometry 下每个 shape 的样式，包括默认样式以及各个状态下的样式 |
-| components | *object* |	配置坐标轴，图例，tooltip, annotation 的主题样式 |
-| labels | *object* |	配置 Geometry 下 label 的主题样式 |
-| innerLabels	| *object*  | 配置 Geometry 下展示在图形内部的 labels 的主题样式 |
-| pieLabels	| *object* | 配置饼图 labels 的主题样式 |
+| **Properties** | **Type** | **Description** |
+| --- | --- | --- |
+| defaultColor | _string_ | Theme color |
+| padding | _number_ | number\[] |
+| fontFamily | _string_ | Chart font |
+| colors10 | _string\[]_ | Category color palette, used when the number of categories is less than 10 |
+| colors20 | _string\[]_ | Category color palette, used when the number of categories is greater than 10 |
+| columnWidthRatio | _number_ | General histogram width ratio, 0-1 range of values |
+| maxColumnWidth | _number_ | Maximum width of histogram, pixel value |
+| minColumnWidth | _number_ | Minimum width of histogram, pixel value |
+| roseWidthRatio | _number_ | Rose width ratio, 0-1 range of value |
+| multiplePieWidthRatio | _number_ | Multilayer pie and loop ratio, 0-1 range values |
+| geometries | _object_ | Configure the style of each shape for each Geometry, including the default style and the style for each state |
+| components | _object_ | Configure theme samples for axes, legends, tooltips, and annotations |
+| labels | _object_ | Configure the theme style of the label under Geometry |
+| innerLabels | _object_ | Configure Geometry to display the Labels theme style inside the graph |
+| pieLabels | _object_ | Configure the theme style of pie chart labels |
 
-使用方式：
+usage:
 
 ```ts
 {
   theme: {
-    colors10: ['#FF6B3B', '#626681', '#FFC100', '#9FB40F', '#76523B', '#DAD5B5', '#0E8E89', '#E19348', '#F383A2', '#247FEA']
+    colors10: [
+      '#FF6B3B',
+      '#626681',
+      '#FFC100',
+      '#9FB40F',
+      '#76523B',
+      '#DAD5B5',
+      '#0E8E89',
+      '#E19348',
+      '#F383A2',
+      '#247FEA',
+    ];
   }
 }
 ```
 
-#### 主题属性（主题样式表）
+#### Theme attributes (StyleSheet)
 
 除了以上介绍的主题属性之外，还可以传入主题样式表来自定义主题。如果你需要对全局主题进行配置的话，对样式风格进行切换，比如更改颜色、字体大小、边框粗细等
 
-使用方式:
+usage:
 
 ```ts
 {
   theme: {
     styleSheet: {
-      fontFamily: 'Avenir'
+      fontFamily: 'Avenir';
     }
   }
 }
@@ -1076,70 +1074,73 @@ DOM 元素在 Y 方向的对齐方式，用于 html
 
 支持的样式表属性：
 
-| **属性**                | **类型** | **描述**      |
-| ----------------------- | -------- | ------------- |
-| `backgroundColor`       | *string* | 背景色        |
-| `brandColor`            | *string* | 主题色，默认取 10 色分类颜色色板的第一个颜色 |
-| `paletteQualitative10`  | *string* | 分类颜色色板，分类个数小于 10 时使用 |
-| `paletteQualitative20`  | *string* | 分类颜色色板，分类个数大于 10 时使用 |
-| `paletteSemanticRed`    | *string* | 语义红色      |
-| `paletteSemanticGreen`  | *string* | 语义绿色      |
-| `paletteSemanticYellow` | *string* | 语义黄色      |
-| `fontFamily`            | *string* | 字体          |
+| **Properties**          | **Type** | **Description**                                   |
+| ----------------------- | -------- | ------------------------------------------------- |
+| `backgroundColor`       | _string_ | Background color                                  |
+| `brandColor`            | _string_ | Brand color，默认取 10 色分类颜色色板的第一个颜色 |
+| `paletteQualitative10`  | _string_ | Qualitative palette，分类个数小于 10 时使用       |
+| `paletteQualitative20`  | _string_ | Qualitative palette，分类个数大于 10 时使用       |
+| `paletteSemanticRed`    | _string_ | Semantic red                                      |
+| `paletteSemanticGreen`  | _string_ | Semantic green                                    |
+| `paletteSemanticYellow` | _string_ | Semantic yellow                                   |
+| `fontFamily`            | _string_ | fontFamily                                        |
 
-#### 更新主题
+#### Update theme
 
-使用方式：
+usage：
 
 ```ts
-// 示例1:
+// example 1:
 plot.update({ theme: 'dark' });
 
-// 示例2:
-plot.update({ theme: { defaultColor: '#FF6B3B' } })
+// example 2:
+plot.update({ theme: { defaultColor: '#FF6B3B' } });
 ```
 
-#### 自定义注册主题
+#### Custom theme
 
-另外，还可以通过 G2 提供了自定义主题机制来定义全新的主题结构，以允许用户切换、定义图表主题。前往 [G2 | 自定义主题](https://g2.antv.vision/zh/docs/api/advanced/register-theme) 查看详情。
+In addition, G2 provides a custom topic mechanism to define a new topic structure, allowing users to switch and define chart topics. Go [G2 | Custom theme](https://g2.antv.vision/en/docs/api/advanced/register-theme) for more details.
 
 <playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
-前往 [DEMO](/zh/examples/general/theme#register-theme)
+🌰 Customize theme [DEMO](/zh/examples/general/theme#register-theme)
 
+### Plot Event
 
-### 图表事件
+On Plot, binding events are removed by `ON` and `OFF` method.
 
-在 Plot 上通过 `on` 绑定事件、`off` 移除绑定事件。
-
-```sign
-// 绑定事件
+```ts
+// Bind event
 plot.on('eventName', callback);
-// 绑定事件，只触发一次
+// Bind event, only trigger one time
 plot.once('eventName', callback);
-// 移除事件
+// Remove event
 plot.off('eventName', callback);
 ```
 
-组合方式: `${componentName}:${eventName}`
+Composition: `${componentName}:${eventName}`
+
+Element refers to the type of element to bind to, for example `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` etc.
+
+Events correspond to DOM common events, for example `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` etc. And support mobile events: `touchstart`、`touchmove`、`touchend`
 
 ```ts
-// plot 添加点击事件,整个图表区域
+// Plot adds click events to the entire chart area
 plot.on('plot:click', (...args) => {
   console.log(...args);
 });
 
-// element 添加点击事件， element 代表图形元素，关于图形元素，请查看：https://g2.antv.vision/zh/docs/manual/concepts/element
+// Element to add a click event, element represents the graphic elements, graphical elements, please see: https://g2.antv.vision/en/docs/manual/concepts/element
 plot.on('element:click', (...args) => {
   console.log(...args);
 });
 
-// 图例添加点击事件
+// Legend adds click events
 plot.on('legend-item:click', (...args) => {
   console.log(...args);
 });
 
-// 图例名称添加点击事件
+// Legend name adds click event
 plot.on('legend-item-name:click', (...args) => {
   console.log(...args);
 });
@@ -1157,39 +1158,40 @@ plot.on('tooltip:change', (...args) => {
   console.log(...args);
 });
 
-// label 添加点击事件
+// Label adds click events
 plot.on('label:click', (...args) => {
   console.log(...args);
 });
 
-// mask 添加点击事件
+// Mask adds click events
 plot.on('mask:click', (...args) => {
   console.log(...args);
 });
 
-// axis-label 添加点击事件
+// Axis-label adds click events
 plot.on('axis-label:click', (...args) => {
   console.log(...args);
 });
 
-// 给 annotation 添加点击事件
+// Add click events to the annotation
 plot.on('annotation:click', (...args) => {
   console.log(...args);
 });
 ```
 
-
-### 图表方法
+### Plot Method
 
 #### render()
 
-渲染图表。
+Render the chart.
 
 #### update()
 
-更新图表配置项，配置覆盖，不会做差异比对。
+<description>**optional** </description>
 
-使用示例：
+Update chart configuration and overwrite it without comparing difference.
+
+Example：
 
 ```ts
 plot.update({
@@ -1198,13 +1200,14 @@ plot.update({
 });
 ```
 
-<!-- #### changeData()
+<!--
+#### changeData()
 
 <description>**optional** </description>
 
 更新图表数据。`update()`方法会导致图形区域销毁并重建，如果只进行数据更新，而不涉及其他配置项更新，推荐使用本方法。。
 
-默认配置：`无`
+Default configuration:`无`
 
 使用示例：
 

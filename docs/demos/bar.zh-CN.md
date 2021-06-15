@@ -3,6 +3,66 @@ title: 条形图
 order: 2
 ---
 
+### 设置条形图背景色
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bar } from '@ant-design/charts';
+
+const DemoBar: React.FC = () => {
+  var data = [
+    {
+      type: '家具家电',
+      sales: 38,
+    },
+    {
+      type: '粮油副食',
+      sales: 52,
+    },
+    {
+      type: '生鲜水果',
+      sales: 61,
+    },
+    {
+      type: '美容洗护',
+      sales: 145,
+    },
+    {
+      type: '母婴用品',
+      sales: 48,
+    },
+    {
+      type: '进口食品',
+      sales: 38,
+    },
+    {
+      type: '食品饮料',
+      sales: 38,
+    },
+    {
+      type: '家庭清洁',
+      sales: 38,
+    },
+  ];
+  var config = {
+    data: data,
+    xField: 'sales',
+    yField: 'type',
+    legend: { position: 'top-left' },
+    barBackground: { style: { fill: 'rgba(0,0,0,0.1)' } },
+    interactions: [
+      {
+        type: 'active-region',
+        enable: false,
+      },
+    ],
+  };
+  return <Bar {...config} />;
+};
+
+export default DemoBar;
+```
+
 ### 基础条形图
 
 ```tsx
@@ -45,7 +105,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图 - 自定义颜色
+### 自定义条形图颜色
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -107,7 +167,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图 - 转化率
+### 带转化率条形图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -148,7 +208,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图 - 滚动条
+### 带滚动条的条形图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -180,7 +240,7 @@ const DemoBar: React.FC = () => {
 export default DemoBar;
 ```
 
-### 基础条形图 - 柱子宽度
+### 指定条形图宽度比例
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -230,6 +290,64 @@ const DemoBar: React.FC = () => {
       type: { alias: '类别' },
       sales: { alias: '销售额' },
     },
+  };
+  return <Bar {...config} />;
+};
+
+export default DemoBar;
+```
+
+### 指定条形图最小最大宽度
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bar } from '@ant-design/charts';
+
+const DemoBar: React.FC = () => {
+  var data = [
+    {
+      type: '家具家电',
+      sales: 38,
+    },
+    {
+      type: '粮油副食',
+      sales: 52,
+    },
+    {
+      type: '生鲜水果',
+      sales: 61,
+    },
+    {
+      type: '美容洗护',
+      sales: 145,
+    },
+    {
+      type: '母婴用品',
+      sales: 48,
+    },
+    {
+      type: '进口食品',
+      sales: 38,
+    },
+    {
+      type: '食品饮料',
+      sales: 38,
+    },
+    {
+      type: '家庭清洁',
+      sales: 38,
+    },
+  ];
+  var config = {
+    data: data,
+    xField: 'sales',
+    yField: 'type',
+    meta: {
+      type: { alias: '类别' },
+      sales: { alias: '销售额' },
+    },
+    minBarWidth: 20,
+    maxBarWidth: 20,
   };
   return <Bar {...config} />;
 };
@@ -303,6 +421,249 @@ const DemoBar: React.FC = () => {
     yField: 'label',
     seriesField: 'type',
     marginRatio: 0,
+    label: {
+      position: 'middle',
+      layout: [
+        { type: 'interval-adjust-position' },
+        { type: 'interval-hide-overlap' },
+        { type: 'adjust-color' },
+      ],
+    },
+  };
+  return <Bar {...config} />;
+};
+
+export default DemoBar;
+```
+
+### 圆角条形图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bar } from '@ant-design/charts';
+
+const DemoBar: React.FC = () => {
+  var data = [
+    {
+      label: 'Mon.',
+      type: 'series1',
+      value: 2800,
+    },
+    {
+      label: 'Mon.',
+      type: 'series2',
+      value: 2260,
+    },
+    {
+      label: 'Tues.',
+      type: 'series1',
+      value: 1800,
+    },
+    {
+      label: 'Tues.',
+      type: 'series2',
+      value: 1300,
+    },
+    {
+      label: 'Wed.',
+      type: 'series1',
+      value: 950,
+    },
+    {
+      label: 'Wed.',
+      type: 'series2',
+      value: 900,
+    },
+    {
+      label: 'Thur.',
+      type: 'series1',
+      value: 500,
+    },
+    {
+      label: 'Thur.',
+      type: 'series2',
+      value: 390,
+    },
+    {
+      label: 'Fri.',
+      type: 'series1',
+      value: 170,
+    },
+    {
+      label: 'Fri.',
+      type: 'series2',
+      value: 100,
+    },
+  ];
+  var config = {
+    data: data,
+    isGroup: true,
+    xField: 'value',
+    yField: 'label',
+    seriesField: 'type',
+    marginRatio: 0,
+    label: {
+      position: 'right',
+      offset: 4,
+    },
+    barStyle: {
+      radius: [2, 2, 0, 0],
+    },
+  };
+  return <Bar {...config} />;
+};
+
+export default DemoBar;
+```
+
+### 分组条形图像素级组内柱子间距
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bar } from '@ant-design/charts';
+
+const DemoBar: React.FC = () => {
+  var data = [
+    {
+      label: 'Mon.',
+      type: 'series1',
+      value: 2800,
+    },
+    {
+      label: 'Mon.',
+      type: 'series2',
+      value: 2260,
+    },
+    {
+      label: 'Tues.',
+      type: 'series1',
+      value: 1800,
+    },
+    {
+      label: 'Tues.',
+      type: 'series2',
+      value: 1300,
+    },
+    {
+      label: 'Wed.',
+      type: 'series1',
+      value: 950,
+    },
+    {
+      label: 'Wed.',
+      type: 'series2',
+      value: 900,
+    },
+    {
+      label: 'Thur.',
+      type: 'series1',
+      value: 500,
+    },
+    {
+      label: 'Thur.',
+      type: 'series2',
+      value: 390,
+    },
+    {
+      label: 'Fri.',
+      type: 'series1',
+      value: 170,
+    },
+    {
+      label: 'Fri.',
+      type: 'series2',
+      value: 100,
+    },
+  ];
+  var config = {
+    data: data,
+    isGroup: true,
+    xField: 'value',
+    yField: 'label',
+    seriesField: 'type',
+    dodgePadding: 4,
+    label: {
+      position: 'middle',
+      layout: [
+        { type: 'interval-adjust-position' },
+        { type: 'interval-hide-overlap' },
+        { type: 'adjust-color' },
+      ],
+    },
+  };
+  return <Bar {...config} />;
+};
+
+export default DemoBar;
+```
+
+### 分组条形图像素级组间间距
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Bar } from '@ant-design/charts';
+
+const DemoBar: React.FC = () => {
+  var data = [
+    {
+      label: 'Mon.',
+      type: 'series1',
+      value: 2800,
+    },
+    {
+      label: 'Mon.',
+      type: 'series2',
+      value: 2260,
+    },
+    {
+      label: 'Tues.',
+      type: 'series1',
+      value: 1800,
+    },
+    {
+      label: 'Tues.',
+      type: 'series2',
+      value: 1300,
+    },
+    {
+      label: 'Wed.',
+      type: 'series1',
+      value: 950,
+    },
+    {
+      label: 'Wed.',
+      type: 'series2',
+      value: 900,
+    },
+    {
+      label: 'Thur.',
+      type: 'series1',
+      value: 500,
+    },
+    {
+      label: 'Thur.',
+      type: 'series2',
+      value: 390,
+    },
+    {
+      label: 'Fri.',
+      type: 'series1',
+      value: 170,
+    },
+    {
+      label: 'Fri.',
+      type: 'series2',
+      value: 100,
+    },
+  ];
+  var config = {
+    data: data,
+    isGroup: true,
+    xField: 'value',
+    yField: 'label',
+    seriesField: 'type',
+    dodgePadding: 4,
+    intervalPadding: 20,
     label: {
       position: 'middle',
       layout: [

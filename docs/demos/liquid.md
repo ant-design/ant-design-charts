@@ -1,5 +1,5 @@
 ---
-title: Liquid
+title: 水滴图
 order: 16
 ---
 
@@ -58,7 +58,7 @@ const DemoLiquid: React.FC = () => {
 export default DemoLiquid;
 ```
 
-### 其他形状的水波图
+### 钻石水波图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -80,6 +80,72 @@ const DemoLiquid: React.FC = () => {
 export default DemoLiquid;
 ```
 
+### 自定义 outline 外框样式
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Liquid } from '@ant-design/charts';
+
+const DemoLiquid: React.FC = () => {
+  var config = {
+    percent: 0.25,
+    shape: function shape(x, y, width, height) {
+      var path = [];
+      var w = Math.min(width, height);
+      for (var i = 0; i < 5; i++) {
+        path.push([
+          i === 0 ? 'M' : 'L',
+          (Math.cos(((18 + i * 72) * Math.PI) / 180) * w) / 2 + x,
+          (-Math.sin(((18 + i * 72) * Math.PI) / 180) * w) / 2 + y,
+        ]);
+        path.push([
+          'L',
+          (Math.cos(((54 + i * 72) * Math.PI) / 180) * w) / 4 + x,
+          (-Math.sin(((54 + i * 72) * Math.PI) / 180) * w) / 4 + y,
+        ]);
+      }
+      path.push(['Z']);
+      return path;
+    },
+    outline: {
+      border: 2,
+      distance: 4,
+      style: {
+        stroke: '#FFC100',
+        strokeOpacity: 0.65,
+      },
+    },
+    wave: { length: 128 },
+    theme: { styleSheet: { brandColor: '#FAAD14' } },
+  };
+  return <Liquid {...config} />;
+};
+
+export default DemoLiquid;
+```
+
+### 矩形水波图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Liquid } from '@ant-design/charts';
+
+const DemoLiquid: React.FC = () => {
+  var config = {
+    percent: 0.25,
+    shape: 'rect',
+    outline: {
+      border: 2,
+      distance: 4,
+    },
+    wave: { length: 128 },
+  };
+  return <Liquid {...config} />;
+};
+
+export default DemoLiquid;
+```
+
 ### 样式自定义的水波图
 
 ```tsx
@@ -91,6 +157,7 @@ const DemoLiquid: React.FC = () => {
   var ref;
   var config = {
     percent,
+    radius: 0.8,
     statistic: {
       title: {
         formatter: function formatter() {
@@ -110,15 +177,20 @@ const DemoLiquid: React.FC = () => {
             fill: percent > 0.65 ? 'white' : 'rgba(44,53,66,0.85)',
           };
         },
-        customHtml: (container, view, { percent }) => {
-          const { width, height } = container.getBoundingClientRect();
-          const d = Math.sqrt(Math.pow(width / 2, 2) + Math.pow(height / 2, 2));
-          const text = `占比 ${(percent * 100).toFixed(0)}%`;
-          const textWidth = measureTextWidth(text, { fontSize: 60 });
-          const scale = Math.min(d / textWidth, 1);
-          return `<div style="width:${d}px;display:flex;align-items:center;justify-content:center;font-size:${scale}em;line-height:${
-            scale <= 1 ? 1 : 'inherit'
-          }">${text}</div>`;
+        customHtml: function customHtml(container, view, _ref3) {
+          var percent = _ref3.percent;
+          var _container$getBoundin = container.getBoundingClientRect(),
+            width = _container$getBoundin.width,
+            height = _container$getBoundin.height;
+          var d = Math.sqrt(Math.pow(width / 2, 2) + Math.pow(height / 2, 2));
+          var text = '占比 '.concat((percent * 100).toFixed(0), '%');
+          var textWidth = (0, measureTextWidth)(text, { fontSize: 60 });
+          var scale = Math.min(d / textWidth, 1);
+          return '<div style="width:'
+            .concat(d, 'px;display:flex;align-items:center;justify-content:center;font-size:')
+            .concat(scale, 'em;line-height:')
+            .concat(scale <= 1 ? 1 : 'inherit', '">')
+            .concat(text, '</div>');
         },
       },
     },

@@ -1,5 +1,5 @@
 ---
-title: Treemap
+title: 矩形树图
 order: 32
 ---
 

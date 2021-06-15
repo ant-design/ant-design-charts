@@ -1,94 +1,95 @@
-
-
-
-
 ### Plot Container
 
 #### width
 
-<description>**optional** *number* *default:* `400`</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
 Set the width of the chart.
 
 #### height
 
-<description>**optional** *number* *default:* `400`</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
 Set the height of the chart.
 
 #### autoFit
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
 Whether the chart automatically adjusts to fit the container. If it is set to `true`, `width` and `height` configuration would fail.
 
 #### padding
 
-<description>**optional** *number\[] | number | 'auto'*</description>
+<description>**optional** _number\[] 、 number 、 'auto'_</description>
 
 Set `padding` value of the canvas. You can also use `auto`.
 
 #### appendPadding
 
-<description>**optional** *number\[] | number*</description>
+<description>**optional** _number\[] 、 number_</description>
 
 Extra `appendPadding` value.
 
 #### renderer
 
-<description>**optional** *string* *default:* `canvas`</description>
+<description>**optional** _string_ _default:_ `canvas`</description>
 
 Set the render way to `canvas` or `svg`.
 
 #### pixelRatio
 
-<description>**optional** *number* *default:* `window.devicePixelRatio`</description>
+<description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
 
 Set the pixel ratio of the chart.
 
 #### limitInPlot
 
-<description>**optional** *boolean*</description>
+<description>**optional** _boolean_</description>
 
 Whether clip the Geometry beyond the coordinate system。
 
+<!-- 先插入到这里 -->
+
+#### locale
+
+<description>**optional** _string_</description>
+
+Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts) to see the format.
 
 ### Data Mapping
 
 #### data
 
-<description>**required** *array object*</description>
+<description>**required** _array object_</description>
 
 Configure the data source. The data source is a collection of objects. For example:`[{ time: '1991'，value: 20 }, { time: '1992'，value: 20 }]`。
 
 #### xField
 
-<description>**required** *string*</description>
+<description>**required** _string_</description>
 
 The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.
 
 #### yField
 
-<description>**required** *string*</description>
+<description>**required** _string_</description>
 
 The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.
 
-
 #### meta
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 Configure the meta of each data field of the chart in global, to define the type and presentation of data. Configuration of the meta will affect the text content of all components.
 
-| Properties | Type       | Description                                              |
-| ---------- | ---------- | -------------------------------------------------------- |
-| alias      | *string*   | alias of the data field                                  |
-| formatter  | *function* | callback function to format all values of the data field |
-| values     | *string\[]* | enumerate all the values of the data field               |
-| range      | *number\[]* | mapping range of the data field, default: \[0,1]          |
+| Properties | Type        | Description                                              |
+| ---------- | ----------- | -------------------------------------------------------- |
+| alias      | _string_    | alias of the data field                                  |
+| formatter  | _function_  | callback function to format all values of the data field |
+| values     | _string\[]_ | enumerate all the values of the data field               |
+| range      | _number\[]_ | mapping range of the data field, default: \[0,1]         |
 
 See also the [Meta Options](/guide/common#meta) to learn more about configuration of `meta`.
-
 
 ```ts
 import React, { useState, useEffect } from 'react';
@@ -97,77 +98,71 @@ import { Scatter } from '@ant-design/charts';
 const DemoScatter: React.FC = () => {
   const data = [
     {
-        country: 'Asia',
-        year: '1750',
-        value: 502
+      country: 'Asia',
+      year: '1750',
+      value: 502,
     },
     {
-        country: 'Asia',
-        year: '1800',
-        value: 635
+      country: 'Asia',
+      year: '1800',
+      value: 635,
     },
     {
-        country: 'Europe',
-        year: '1750',
-        value: 163
+      country: 'Europe',
+      year: '1750',
+      value: 163,
     },
     {
-        country: 'Europe',
-        year: '1800',
-        value: 203
-    }
-];
-const config = {
+      country: 'Europe',
+      year: '1800',
+      value: 203,
+    },
+  ];
+  const config = {
     data,
     meta: {
-        year: {
-            alias: '年份',
-            range: [
-                0,
-                1
-            ]
+      year: {
+        alias: '年份',
+        range: [0, 1],
+      },
+      value: {
+        alias: '数量',
+        formatter: (v) => {
+          return `${v}个`;
         },
-        value: {
-            alias: '数量',
-            formatter: v => {
-                return `${ v }个`;
-            }
-        }
+      },
     },
     xField: 'year',
     yField: 'value',
-    colorField: 'country'
-};
+    colorField: 'country',
+  };
   return <Scatter {...config} />;
 };
 
 export default DemoScatter;
-
-
 ```
 
 #### type
 
-<description>**optional** *jitter | stack | symmetric | dodge* *default:* `jitter`</description>
+<description>**optional** _jitter 、 stack 、 symmetric 、 dodge_ _default:_ `jitter`</description>
 
-Adjust the data.
-Adjust types provided by G2Plot includes 'stack', 'dodge' 'jitter', 'symmetric'. Not recommended to modify.
+Adjust the data. Adjust types provided by G2Plot includes 'stack', 'dodge' 'jitter', 'symmetric'. Not recommended to modify.
 
 #### colorField
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 The name of the data field corresponding to the dot color map.
 
 #### shapeField
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 The name of the data field corresponding to the dot shape map.
 
 #### sizeField
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 The name of the data field corresponding to the point size map.
 
@@ -175,7 +170,7 @@ The name of the data field corresponding to the point size map.
 
 #### color
 
-<description>**optional** *string | string\[] | Function*</description>
+<description>**optional** _string 、 string\[] 、 Function_</description>
 
 Configure the color. If there is no colorField configured, set one single color. Otherwise you can set a series of colors, or you can use callback function.
 
@@ -202,7 +197,6 @@ Default: The color board of the theme.
   }
 }
 ```
-
 
 #### size
 
@@ -267,7 +261,7 @@ Built-in shape: circle, square, bowtie, diamond, hexagon, triangle,triangle-down
 
 #### pointStyle
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 Set polyline styles. The 'fill' in pointStyle overrides the configuration of 'color'. PointStyle can be specified either directly or via a callback to specify a separate style based on the data.
 
@@ -318,7 +312,7 @@ Default configuration:
 
 ##### fields
 
-<description>**optional** *string\[]*</description>
+<description>**optional** _string\[]_</description>
 
 Specifies the fields to be displayed in the Tooltip. By default, different charts have different default field lists. Use with the 'formatter' configuration for more effect.
 
@@ -330,7 +324,7 @@ tooltip: {
 
 ##### formatter
 
-<description>**optional** *Function*</description>
+<description>**optional** _Function_</description>
 
 Formats the contents of the Tooltip Item (you can use `customContent` when content contains multiple tooltipItems).
 
@@ -344,118 +338,135 @@ tooltip: {
 
 ##### follow
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
 Sets whether the Tooltip content box follows the mouse.
 
 ##### enterable
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 Whether the tooltip allows mouse to slide in.
 
 ##### showTitle
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 Whether show tooltip title.
 
 ##### title
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 Set the title content of the Tooltip: If the value is the name of the data field, the value for the field in the data is displayed, and if the field does not exist in the data, the title value is displayed directly.
 
 ##### position
 
-<description>**optional** *`top` | `bottom` | `left` | `right`*</description>
+<description>**optional** _`top` | `bottom` | `left` | `right`_</description>
 
 Sets the fixed display location of the Tooltip relative to the data point.
 
 ##### shared
 
-<description>**optional** *boolean*</description>
+<description>**optional** _boolean_</description>
 
 True means that all data corresponding to the current point is merged and displayed, while false means that only the data content closest to the current point is displayed.
 
 ##### showCrosshairs
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 Whether show crosshairs。
 
 ##### crosshairs
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 Configure tooltip crosshairs to work if and only if 'showCrosshairs' is true.
 
-| Properties     | Type                   | Description                                                                                   |
-| -------------- | ---------------------- | --------------------------------------------------------------------------------------------- |
-| type           | \_`x` | `y` | `xy`\_ | Crosshairs Type: 'X' represents the auxiliary line on the X axis, 'Y' on the Y axis           |
-| line           | *lineStyle*            | The configuration item for line, see more [*ShapeAttrs*](/guide/graphic-style#configure-line-styles)      |
-| text           | *textStyle*            | Guideline text configuration, support callback                                                |
-| textBackground | *textBackgroundStyle*  | Guideline text background configuration                                                       |
-| follow         | *boolean*              | Whether the guide line follows the mouse. Default is false, that is, to locate the data point |
+| Properties | Type | Description |
+| --- | --- | --- |
+| type | _'x' 、 'y' 、 'xy'_ | Crosshairs Type: 'X' represents the auxiliary line on the X axis, 'Y' on the Y axis |
+| line | _lineStyle_ | The configuration item for line, see more [_ShapeAttrs_](/guide/graphic-style#configure-line-styles) |
+| text | _TooltipCrosshairsText 、 TooltipCrosshairsTextCallback_ | Text configuration of crosshairs pointer, support callback |
+| textBackground | _textBackgroundStyle_ | Guideline text background configuration |
+| follow | _boolean_ | Whether the guide line follows the mouse. Default is false, that is, to locate the data point |
 
-****textStyle****
+<!-- 类型定义 -->
 
-<!--文本样式-->
-
-| Properties    | Type            | Description                                                                                                                                                                                                 |
-| ------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fontSize      | *number*        | Font size                                                                                                                                                                                                   |
-| fontFamily    | *string*        | Font family                                                                                                                                                                                                 |
-| fontWeight    | *number*        | Font weight                                                                                                                                                                                                 |
-| lineHeight    | *number*        | Line height                                                                                                                                                                                                 |
-| textAlign     | *string*        | Text align, supported `center` | `end` | `left` | `right` | `start`, default `start`                                                                                                                    |
-| fill          | *string*        | Fill color for text                                                                                                                                                                                         |
-| fillOpacity   | *number*        | Fill transparency for text                                                                                                                                                                                  |
-| stroke        | *string*        | Stroke text                                                                                                                                                                                                 |
-| lineWidth     | *number*        | The width of the text stroke                                                                                                                                                                                |
-| lineDash      | \[number,number] | For the dashed line configuration of the stroke, the first value is the length of each segment of the dashed line, and the second value is the distance between segments. LineDash sets \[0,0] to no stroke. |
-| lineOpacity   | *number*        | Stroke transparency                                                                                                                                                                                         |
-| opacity       | *number*        | Overall transparency of the text                                                                                                                                                                            |
-| shadowColor   | *string*        | Shadow color                                                                                                                                                                                                |
-| shadowBlur    | *number*        | Shadow blur                                                                                                                                                                                                 |
-| shadowOffsetX | *number*        | Sets the horizontal distance between the shadow and the text                                                                                                                                                |
-| shadowOffsetY | *number*        | Sets the vertical distance between the shadow and the text                                                                                                                                                  |
-| cursor        | *string*        | Mouse style. With CSS mouse styles, default 'default'.                                                                                                                                                      |
-
-Example code, using label.style configuration:
+**_TooltipCrosshairsText_** 类型定义如下：
 
 ```ts
-{
-  label: {
-    style:{
-      fontSize: 80,
-      fontWeight: 300,
-      textAlign: 'center',
-      textBaseline: 'middle',
-      shadowColor: 'white',
-      shadowBlur: 10,
-    }
-  }
-}
+/** 辅助线文本配置 */
+type TooltipCrosshairsText = {
+  /**
+   * 文本位置，只支持 start， end
+   * @type {string}
+   */
+  position?: string;
+  /**
+   * 文本内容
+   */
+  content?: string;
+  /**
+   * 距离线的距离
+   * @type {number}
+   */
+  offset?: number;
+  /**
+   * 是否自动旋转
+   * @type {boolean}
+   */
+  autoRotate?: boolean;
+  /**
+   * 文本的配置项
+   * @type {ShapeAttrs}
+   */
+  style?: TextStyle;
+};
 ```
 
+其中，**_TextStyle_** 类型定义详见: [通用文本样式](/zh-CN/guide/graphic-style#%E9%85%8D%E7%BD%AE%E6%96%87%E5%AD%97%E6%A0%B7%E5%BC%8F)
 
-***textBackgroundStyle***
+**_TooltipCrosshairsTextCallback_** 类型定义如下：
 
-| Properties | Type                 | Description                                 |
-| ---------- | -------------------- | ------------------------------------------- |
-| padding    | *number | number\[]* | White space around the background of a text |
-| style      | *shapeStyle*         | The configuration item for line, see more [*ShapeAttrs*](/guide/graphic-style)             |
+```ts
+/**
+ * 辅助线文本回调函数
+ * @param type 对应当前 crosshairs 的类型，值为 'x' 或者 'y'
+ * @param defaultContent 对应当前 crosshairs 默认的文本内容
+ * @param items 对应当前 tooltip 内容框中的数据
+ * @param currentPoint 对应当前坐标点
+ * @returns 返回当前 crosshairs 对应的辅助线文本配置
+ */
+type TooltipCrosshairsTextCallback = (
+  type: string,
+  defaultContent: any,
+  items: any[],
+  currentPoint: Point,
+) => TooltipCrosshairsText;
+```
+
+<!-- 容器无限变大 -->
+
+<!-- <playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
+
+**_TextBackgroundStyle_**
+
+| Properties | Type | Description |
+| --- | --- | --- |
+| padding | _number 、 number\[]_ | White space around the background of a text |
+| style | _shapeStyle_ | The configuration item for line, see more [_ShapeAttrs_](/guide/graphic-style) |
 
 ##### showMarkers
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
 Whether to render TooltipMarkers.
 
 ##### marker
 
-<description>**optional** *ShapeAttrs*</description>
+<description>**optional** _ShapeAttrs_</description>
 
 TooltipMarker style configuration.
 
@@ -463,31 +474,31 @@ Please refer to the style configuration [ShapeAttrs](/guide/graphic-style)
 
 ##### showContent
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 Whether to display the Tooltip content box.
 
 ##### container
 
-<description>**optional** *string|HTMLElement*</description>
+<description>**optional** _string|HTMLElement_</description>
 
 Custom tooltip container.
 
 ##### containerTpl
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 Templates used to specify the legend container must include the classes of each DOM node when customizing the template
 
 ##### itemTpl
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 The default template for each record, which must include the classes of each DOM node when customizing the template.
 
 ##### domStyles
 
-<description>**optional** *TooltipDomStyles*</description>
+<description>**optional** _TooltipDomStyles_</description>
 
 The styles for each DOM.
 
@@ -510,13 +521,42 @@ The styles for each DOM.
 
 ##### offset
 
-<description>**optional** *number*</description>
+<description>**optional** _number_</description>
 
 Tooltip offset.
 
+##### reversed
+
+<description>**optional** _boolean_</description>
+
+是否将 tooltip items 逆序.
+
+##### showNil
+
+<description>**optional** _boolean_</description>
+
+是否显示空值的 tooltip 项
+
+##### customItems ✨
+
+<description>**optional** _Function_</description>
+
+在 tooltip 渲染之前，对最终的 items 进行自定义处理（比如排序、过滤、格式化等）。
+
+```ts
+{
+  tooltip: {
+    customItems: (originalItems: TooltipItem[]) => {
+      // process originalItems,
+      return originalItems;
+    };
+  }
+}
+```
+
 ##### customContent
 
-<description>**optional** *Function*</description>
+<description>**optional** _Function_</description>
 
 Support for custom templates.
 
@@ -530,30 +570,33 @@ Support for custom templates.
 }
 ```
 
+Try it:
+
+<playground path="case/customize/demo/customize-tooltip.ts" rid="customize-tooltip"></playground>
 
 #### label
 
 <!--label样式-->
 
-| Properties | Type                                                         | Description                                                                                                                                                      |
-| ---------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type       | *string*                                                     | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
-| offset     | *number*                                                     | label offset                                                                                                                                                     |
-| offsetX    | *number*                                                     | The offset distance of the label from the data point in the X direction                                                                                          |
-| offsetY    | *number*                                                     | The offset distance of the label from the data point in the Y direction                                                                                          |
-| content    | *string | IGroup | IShape | GeometryLabelContentCallback* | Text content that is displayed, if not declared, is displayed according to the value of the first field participating in the mapping                             |
-| style      | *ShapeAttrs*                                                       | Label text graphic property style                                                                                                                                |
-| autoRotate | *string*                                                     | Whether to rotate automatically, default true                                                                                                                    |
-| rotate     | *number*                                                     | Text rotation Angle                                                                                                                                              |
-| labelLine  | *null* | *boolean* | *LabelLineCfg*                               | Used to set the style property of the text connector. NULL indicates that it is not displayed.                                                                   |
-| labelEmit  | *boolean*                                                    | Only applies to text in polar coordinates, indicating whether the text is radially displayed according to the Angle. True means on and false means off           |
-| layout     | *'overlap' | 'fixedOverlap' | 'limitInShape'*              | Text layout type, support a variety of layout function combination.                                                                                              |
-| position   | *'top' | 'bottom' | 'middle' | 'left' | 'right'*         | Specifies the position of the current Label relative to the current graphic                                                                                      |
-| animate    | *boolean | AnimateOption*                                   | Animation configuration.                                                                                                                                         |
-| formatter  | *Function*                                                   | Format function                                                                                                                                                  |
-| autoHide   | *boolean*                                                    | Whether to hide it automatically, default to false                                                                                                               |
+| Properties | Type | Description |
+| --- | --- | --- | --- | --- |
+| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
+| offset | _number_ | label offset |
+| offsetX | _number_ | The offset distance of the label from the data point in the X direction |
+| offsetY | _number_ | The offset distance of the label from the data point in the Y direction |
+| content | _string 、 IGroup 、 IShape 、 GeometryLabelContentCallback_ | Text content that is displayed, if not declared, is displayed according to the value of the first field participating in the mapping |
+| style | _ShapeAttrs_ | Label text graphic property style |
+| autoRotate | _string_ | Whether to rotate automatically, default true |
+| rotate | _number_ | Text rotation Angle |
+| labelLine | _null_ 、 _boolean_ 、 _LabelLineCfg_ | Used to set the style property of the text connector. NULL indicates that it is not displayed. |
+| labelEmit | _boolean_ | Only applies to text in polar coordinates, indicating whether the text is radially displayed according to the Angle. True means on and false means off |
+| layout | _'overlap' 、 'fixedOverlap' 、 'limitInShape'_ | Text layout type, support a variety of layout function combination. |
+| position | _'top' 、 'bottom' 、 'middle' 、 'left' 、 'right'_ | Specifies the position of the current Label relative to the current graphic |
+| animate | _boolean 、 AnimateOption_ | Animation configuration. |
+| formatter | _Function_ | Format function |
+| autoHide | _boolean_ | Whether to hide it automatically, default to false |
 
-Types of ***LabelLineCfg*** are as follow: (Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about *ShapeAttrs*)
+Types of **_LabelLineCfg_** are as follow: (Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_)
 
 ```plain
 type LabelLineCfg = {
@@ -576,96 +619,190 @@ Example code:
 }
 ```
 
-
 #### axis
 
 Same for xAxis and yAxis. **Note**: Since `DualAxes` or `BidirectionalBar` has double Y-axes, the yAxis is a object which takes the field in yField as the 'key'.
 
+##### top
+
+<description>**optional** _boolean_ _default:_ `false`</description>
+
+是否渲染在画布顶层，防止部分图形中，需要将 axis 显示在图形上面，避免被图形遮挡。
+
 ##### position
 
-<description>**optional** *`top` | `bottom` | `left` | `right`*</description>
+<description>**optional** _`top` | `bottom` | `left` | `right`_</description>
 
 For Cartesian coordinates, set the position of the coordinate axes.
 
+##### title
+
+<description>**optional** _object_</description>
+
+A configuration item for the title, NULL means not to be displayed.
+
+| Properties | Type | Description |
+| --- | --- | --- |
+| text | _string_ | The title of axis |
+| position | _string_ | Position of the axis title, default: 'center'. Options: start, center, end |
+| offset | _number_ | The distance of the title from the coordinate axis |
+| spacing | _number_ | The distance between the title and the text on the coordinate axis |
+| style | _shapeStyle_ | Title text configuration items |
+| autoRotate | _boolean_ | Whether to rotate automatically or not |
+
+**_shapeStyle_**
+
+<!--shape style-->
+
+| Properties | Type | Description |
+| --- | --- | --- |
+| fill | _string_ | Fill color of the shape |
+| r | _number_ | used in `point`, means the radius of geometry |
+| fillOpacity | _number_ | Fill opacity of the shape |
+| stroke | _string_ | Stroke color of the shape |
+| lineWidth | _number_ | The width of the stroke of the shape |
+| lineDash | \[number,number] | Configure dashed line stroke. The first parameter is the length of each segment, and the second parameter is the gap between segment. When lineDash is set to \[0,0], there is no effect. |
+| lineOpacity | _number_ | Opacity of the stroke |
+| opacity | _number_ | Opacity of the shape |
+| shadowColor | _string_ | Shadow color of the shape |
+| strokeOpacity | _number_ | Stroke opacity of the shape |
+| shadowBlur | _number_ | Gaussian blur coefficient of the shadow |
+| shadowOffsetX | _number_ | Configure horizontal distance between shadow and shape |
+| shadowOffsetY | _number_ | Configure vertical distance between shadow and shape |
+| cursor | _string_ | Mouse style, same as the mouse style of CSS, default value : 'default' |
+
+Example：
+
+```ts
+{
+  style: {
+    fill: 'red',
+    fillOpacity: 0.5,
+    stroke: 'black',
+    lineWidth: 1,
+    lineDash: [4, 5],
+    strokeOpacity: 0.7,
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffsetX: 5,
+    shadowOffsetY: 5,
+    cursor: 'pointer'
+  }
+}
+```
+
+More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
+
+**_label_**
+
+<description>**optional** _object_</description>
+
+A configuration item for the text label. NULL indicates that it is not displayed.
+
+<!--label样式-->
+
+| Properties | Type | Description |
+| --- | --- | --- | --- | --- |
+| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
+| offset | _number_ | label offset |
+| offsetX | _number_ | The offset distance of the label from the data point in the X direction |
+| offsetY | _number_ | The offset distance of the label from the data point in the Y direction |
+| content | _string 、 IGroup 、 IShape 、 GeometryLabelContentCallback_ | Text content that is displayed, if not declared, is displayed according to the value of the first field participating in the mapping |
+| style | _ShapeAttrs_ | Label text graphic property style |
+| autoRotate | _string_ | Whether to rotate automatically, default true |
+| rotate | _number_ | Text rotation Angle |
+| labelLine | _null_ 、 _boolean_ 、 _LabelLineCfg_ | Used to set the style property of the text connector. NULL indicates that it is not displayed. |
+| labelEmit | _boolean_ | Only applies to text in polar coordinates, indicating whether the text is radially displayed according to the Angle. True means on and false means off |
+| layout | _'overlap' 、 'fixedOverlap' 、 'limitInShape'_ | Text layout type, support a variety of layout function combination. |
+| position | _'top' 、 'bottom' 、 'middle' 、 'left' 、 'right'_ | Specifies the position of the current Label relative to the current graphic |
+| animate | _boolean 、 AnimateOption_ | Animation configuration. |
+| formatter | _Function_ | Format function |
+| autoHide | _boolean_ | Whether to hide it automatically, default to false |
+
+Types of **_LabelLineCfg_** are as follow: (Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_)
+
+```plain
+type LabelLineCfg = {
+  style?: ShapeAttrs;
+}
+```
+
+Example code:
+
+```ts
+{
+  label: {
+    style: {
+      fill: 'red',
+      opacity: 0.6,
+      fontSize: 24
+    },
+    rotate: true
+  }
+}
+```
+
 ##### label
 
-<description> *AxisLabelCfg | null* **optional** </description>
+<description> _AxisLabelCfg 、 null_ **optional** </description>
 
 Configurations related to axis label. Set this to `null` to prevent the axis label from appearing. The details of \_ AxisLabelCfg\_ are as follows:
 
-| Properties   | Type                                                     |         |   |
-| ------------ | -------------------------------------------------------- | ------- | --------------------------------------------------------- |
-| style        | *[ShapeAttrs](/zh-CN/guide/graphic-style)*               | -       | Axis label text graphic property style                    |
-| offset       | *number*                                                 | -       | Axis label offset                                         |
-| rotate       | *number*                                                 | -       | Axis label text rotation Angle                            |
-| autoRotate   | *boolean*                                                | `true`  | Whether to rotate automatically, default true             |
-| autoHide     | *boolean*                                                | `false` | Whether to hide it automatically, default to false        |
-| autoEllipsis | *boolean*                                                | `false` | Whether to ellipsis label when overflow, default to false |
-| formatter    | *`(text: string, item: ListItem, index: number) => any`* | `false` | Format function                                           |
+| Properties   | Type                                                                   |         |
+| ------------ | ---------------------------------------------------------------------- | ------- | --------------------------------------------------------- |
+| style        | _[ShapeAttrs](/guide/graphic-style)_                                   | -       | Axis label text graphic property style                    |
+| offset       | _number_                                                               | -       | Axis label offset                                         |
+| rotate       | _number_                                                               | -       | Axis label text rotation Angle                            |
+| autoRotate   | _boolean 、avoidCallback_                                              | `true`  | Whether to rotate automatically, default true             |
+| autoHide     | _boolean 、avoidCallback 、 { type:string,cfg?:AxisLabelAutoHideCfg }_ | `false` | Whether to hide it automatically, default to false        |
+| autoEllipsis | _boolean_                                                              | `false` | Whether to ellipsis label when overflow, default to false |
+| formatter    | _`(text: string, item: ListItem, index: number) => any`_               | `false` | Format function                                           |
+
+**_avoidCallback_** 类型定义如下：
+
+```ts
+type avoidCallback = (isVertical: boolean, labelGroup: IGroup, limitLength?: number) => boolean;
+```
+
+**_AxisLabelAutoHideCfg_** 类型定义如下：
+
+```ts
+interface AxisLabelAutoHideCfg {
+  /** 最小间距配置 */
+  minGap?: number;
+}
+```
 
 ##### verticalFactor
 
-<description>**optional** *number*</description>
+<description>**optional** _number_</description>
 
 Mark the direction of the label on the axis, with 1 to the left and -1 to the right (Only works in vertical axis).
 
 ##### verticalLimitLength
 
-<description>**optional** *number*</description>
+<description>**optional** _number_</description>
 
 Configuring the maximum limit length in the vertical direction of the coordinate axis has a significant impact on text adaptation.
 
-##### nice
+##### grid
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _object_</description>
 
-Whether to nice.
+Axis grid line configuration item. NULL means not shown.
 
-##### min
+| Properties | Type | Description |
+| --- | --- | --- |
+| line | _lineStyle_ | The style of the line |
+| alternateColor | _string、string\[]_ | The fill color between two grid lines |
+| closed | _boolean_ | Whether to close the grid for circle |
+| alignTick | _boolean_ | If the value is false, it will be displayed between the two scales |
 
-<description>**optional** *number* *default:* `0`</description>
-
-Minimum axis.
-
-##### max
-
-<description>**optional** *number*</description>
-
-Maximum axis.
-
-##### minLimit
-
-<description>**optional** *number*</description>
-
-Minimal limit.
-
-##### maxLimit
-
-<description>**optional** *number*</description>
-
-Maximum limit.
-
-##### tickCount
-
-<description>**optional** *number*</description>
-
-The expected number of axes, not the final result.
-
-##### tickInterval
-
-<description>**optional** *number*</description>
-
-Interval of axes.
-
-##### tickMethod
-
-<description>**optional** *string | Function* *default:* `false`</description>
-
-Specify a tick calculation method, or customize a tick calculation method. Built-in tick calculations include `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`。
+Then config of `grid.line` is the same as: [line](#line)
 
 ##### line
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 Coordinate axis configuration item, NULL means not displayed.
 
@@ -673,17 +810,17 @@ Coordinate axis configuration item, NULL means not displayed.
 
 > **Attention:** The full configuration of lineStyle is `{ style: { stroke: '#ddd', ... } }`, please check it when your configuration doesn't work.
 
-| Properties    | Type              | Description                                                                                                                                                                   |
-| ------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| stroke        | *string*          | color of the line                                                                                                                                                             |
-| lineWidth     | *number*          | width of the line                                                                                                                                                             |
-| lineDash      | *\[number,number]* | configure dashed line, the first parameter is the length of each segment, the second parameter is the gap between segment. When lineDash is set to \[0,0], there is no effect. |
-| opacity       | *number*          | opacity                                                                                                                                                                       |
-| shadowColor   | *string*          | shadow color                                                                                                                                                                  |
-| shadowBlur    | *number*          | Gaussian blur coefficient                                                                                                                                                     |
-| shadowOffsetX | *number*          | configure horizontal distance between shadow and line                                                                                                                         |
-| shadowOffsetY | *number*          | configure vertical distance between shadow and line                                                                                                                           |
-| cursor        | *string*          | mouse style, same as the mouse style of CSS, default value : 'default'                                                                                                        |
+| Properties | Type | Description |
+| --- | --- | --- |
+| stroke | _string_ | color of the line |
+| lineWidth | _number_ | width of the line |
+| lineDash | _\[number,number]_ | configure dashed line, the first parameter is the length of each segment, the second parameter is the gap between segment. When lineDash is set to \[0,0], there is no effect. |
+| opacity | _number_ | opacity |
+| shadowColor | _string_ | shadow color |
+| shadowBlur | _number_ | Gaussian blur coefficient |
+| shadowOffsetX | _number_ | configure horizontal distance between shadow and line |
+| shadowOffsetY | _number_ | configure vertical distance between shadow and line |
+| cursor | _string_ | mouse style, same as the mouse style of CSS, default value : 'default' |
 
 Example (config the grid line style of xAxis)：
 
@@ -709,20 +846,19 @@ Example (config the grid line style of xAxis)：
 }
 ```
 
-
 ##### tickLine
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 The configuration item of the coordinate axis scale line. NULL means not displayed.
 
 | Properties | Type        | Description                            |
 | ---------- | ----------- | -------------------------------------- |
-| style      | *lineStyle* | The style of tickLine.                 |
-| alignTick  | *boolean*   | Whether aligh tickLine with tick label |
-| length     | *number*    | The length of tickLine.                |
+| style      | _lineStyle_ | The style of tickLine.                 |
+| alignTick  | _boolean_   | Whether aligh tickLine with tick label |
+| length     | _number_    | The length of tickLine.                |
 
-Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about *ShapeAttrs*. The params of *ShapeAttrsCallback* are as follow：
+Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_. The params of _ShapeAttrsCallback_ are as follow：
 
 ```ts
 type ShapeAttrsCallback = (item: any, index: number, items: any[]) => ShapeAttrs;
@@ -730,155 +866,79 @@ type ShapeAttrsCallback = (item: any, index: number, items: any[]) => ShapeAttrs
 
 ##### subTickLine
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 A configuration item for a coordinate subscale. NULL indicates that it is not displayed.
 
 | Properties | Type                               | Description                |
 | ---------- | ---------------------------------- | -------------------------- |
-| style      | *ShapeAttrs | ShapeAttrsCallback* | The style of subTickLine.  |
-| count      | *number*                           | The count of subTickLine.  |
-| length     | *number*                           | The length of subTickLine. |
+| style      | _ShapeAttrs 、 ShapeAttrsCallback_ | The style of subTickLine.  |
+| count      | _number_                           | The count of subTickLine.  |
+| length     | _number_                           | The length of subTickLine. |
 
-Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about *ShapeAttrs*. The params of *ShapeAttrsCallback* are as follow：
+Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_. The params of _ShapeAttrsCallback_ are as follow：
 
 ```ts
 type ShapeAttrsCallback = (item: any, index: number, items: any[]) => ShapeAttrs;
 ```
 
-##### title
+##### nice
 
-<description>**optional** *object*</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
-A configuration item for the title, NULL means not to be displayed.
+Whether to nice.
 
-| Properties | Type         | Description                                                                |
-| ---------- | ------------ | -------------------------------------------------------------------------- |
-| text       | *string*     | The title of axis                                                          |
-| position   | *string*     | Position of the axis title, default: 'center'. Options: start, center, end |
-| offset     | *number*     | The distance of the title from the coordinate axis                         |
-| spacing    | *number*     | The distance between the title and the text on the coordinate axis         |
-| style      | *shapeStyle* | Title text configuration items                                             |
-| autoRotate | *boolean*    | Whether to rotate automatically or not                                     |
+##### min
 
-***shapeStyle***
+<description>**optional** _number_ _default:_ `0`</description>
 
-<!--shape style-->
+Minimum axis.
 
-| Properties    | Type            | Description                                                                                                                                                                              |
-| ------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fill          | *string*        | Fill color of the shape                                                                                                                                                                  |
-| r          | *number*         | used in `point`, means the radius of geometry |
-| fillOpacity   | *number*        | Fill opacity of the shape                                                                                                                                                                |
-| stroke        | *string*        | Stroke color of the shape                                                                                                                                                                |
-| lineWidth     | *number*        | The width of the stroke of the shape                                                                                                                                                     |
-| lineDash      | \[number,number] | Configure dashed line stroke. The first parameter is the length of each segment, and the second parameter is the gap between segment. When lineDash is set to \[0,0], there is no effect. |
-| lineOpacity   | *number*        | Opacity of the stroke                                                                                                                                                                    |
-| opacity       | *number*        | Opacity of the shape                                                                                                                                                                     |
-| shadowColor   | *string*        | Shadow color of the shape                                                                                                                                                                |
-| strokeOpacity | *number*        | Stroke opacity of the shape                                                                                                                                                              |
-| shadowBlur    | *number*        | Gaussian blur coefficient of the shadow                                                                                                                                                  |
-| shadowOffsetX | *number*        | Configure horizontal distance between shadow and shape                                                                                                                                   |
-| shadowOffsetY | *number*        | Configure vertical distance between shadow and shape                                                                                                                                     |
-| cursor        | *string*        | Mouse style, same as the mouse style of CSS, default value : 'default'                                                                                                                   |
+##### max
 
-Example：
+<description>**optional** _number_</description>
 
-```ts
-{
-  style: {
-    fill: 'red',
-    fillOpacity: 0.5,
-    stroke: 'black',
-    lineWidth: 1,
-    lineDash: [4, 5],
-    strokeOpacity: 0.7,
-    shadowColor: 'black',
-    shadowBlur: 10,
-    shadowOffsetX: 5,
-    shadowOffsetY: 5,
-    cursor: 'pointer'
-  }
-}
-```
+Maximum axis.
 
-More documents about `ShapeStyle`, see [Graphic Style](/guide/graphic-style).
+##### minLimit
 
+<description>**optional** _number_</description>
 
-***label***
+Minimal limit.
 
-<description>**optional** *object*</description>
+##### maxLimit
 
-A configuration item for the text label. NULL indicates that it is not displayed.
+<description>**optional** _number_</description>
 
-<!--label样式-->
+Maximum limit.
 
-| Properties | Type                                                         | Description                                                                                                                                                      |
-| ---------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type       | *string*                                                     | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
-| offset     | *number*                                                     | label offset                                                                                                                                                     |
-| offsetX    | *number*                                                     | The offset distance of the label from the data point in the X direction                                                                                          |
-| offsetY    | *number*                                                     | The offset distance of the label from the data point in the Y direction                                                                                          |
-| content    | *string | IGroup | IShape | GeometryLabelContentCallback* | Text content that is displayed, if not declared, is displayed according to the value of the first field participating in the mapping                             |
-| style      | *ShapeAttrs*                                                       | Label text graphic property style                                                                                                                                |
-| autoRotate | *string*                                                     | Whether to rotate automatically, default true                                                                                                                    |
-| rotate     | *number*                                                     | Text rotation Angle                                                                                                                                              |
-| labelLine  | *null* | *boolean* | *LabelLineCfg*                               | Used to set the style property of the text connector. NULL indicates that it is not displayed.                                                                   |
-| labelEmit  | *boolean*                                                    | Only applies to text in polar coordinates, indicating whether the text is radially displayed according to the Angle. True means on and false means off           |
-| layout     | *'overlap' | 'fixedOverlap' | 'limitInShape'*              | Text layout type, support a variety of layout function combination.                                                                                              |
-| position   | *'top' | 'bottom' | 'middle' | 'left' | 'right'*         | Specifies the position of the current Label relative to the current graphic                                                                                      |
-| animate    | *boolean | AnimateOption*                                   | Animation configuration.                                                                                                                                         |
-| formatter  | *Function*                                                   | Format function                                                                                                                                                  |
-| autoHide   | *boolean*                                                    | Whether to hide it automatically, default to false                                                                                                               |
+##### tickCount
 
-Types of ***LabelLineCfg*** are as follow: (Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about *ShapeAttrs*)
+<description>**optional** _number_</description>
 
-```plain
-type LabelLineCfg = {
-  style?: ShapeAttrs;
-}
-```
+The expected number of axes, not the final result.
 
-Example code:
+##### tickInterval
 
-```ts
-{
-  label: {
-    style: {
-      fill: 'red',
-      opacity: 0.6,
-      fontSize: 24
-    },
-    rotate: true
-  }
-}
-```
+<description>**optional** _number_</description>
 
+Interval of axes.
 
-##### grid
+##### tickMethod
 
-<description>**optional** *object*</description>
+<description>**optional** _string 、 Function_ _default:_ `false`</description>
 
-Axis grid line configuration item. NULL means not shown.
-
-| Properties     | Type               | Description                                                        |
-| -------------- | ------------------ | ------------------------------------------------------------------ |
-| line           | *lineStyle*        | The style of the line                                              |
-| alternateColor | *string|string\[]* | The fill color between two grid lines                              |
-| closed         | *boolean*          | Whether to close the grid for circle                               |
-| alignTick      | *boolean*          | If the value is false, it will be displayed between the two scales |
-
-Then config of `grid.line` is the same as: [line](#line)
+Specify a tick calculation method, or customize a tick calculation method. Built-in tick calculations include `cat`、`time-cat`、 `wilkinson-extended`、`r-pretty`、`time`、`time-pretty`、`log`、`pow`、`quantile`、`d3-linear`。
 
 ##### animate
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
 Animation switch, default true.
 
 ##### animateOption
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 Animation parameter configuration.
 
@@ -902,10 +962,9 @@ interface ComponentAnimateCfg {
 }
 ```
 
-
 #### legend
 
-<description>**optional** *false | LegendCfg*</description>
+<description>**optional** _false 、 LegendCfg_</description>
 
 ```sign
 When colorField existed and legend is not false, color legend will be rendered.
@@ -920,7 +979,7 @@ Method 1, pass in 'Boolean' to set whether to display a legend.
 legend: false; // close legend
 ```
 
-Method 2, pass in *LegendCfg* to configure the legend as a whole.
+Method 2, pass in _LegendCfg_ to configure the legend as a whole.
 
 ```ts
 legend: {
@@ -931,73 +990,86 @@ legend: {
 
 ##### layout
 
-<description>**optional** *horizontal | vertical* </description>
+<description>**optional** _horizontal 、 vertical_ </description>
 
-Layout
+Layout of legend.
+
+##### title
+
+<description>**optional** _G2LegendTitleCfg_ </description>
+
+Legend title configuration is not displayed by default. _G2LegendTitleCfg_ Configuration is as follows:
+
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| title | _string_ | Content of legend title |
+| spacing | _number_ | - | The spacing between the title and the legend item |
+| style | _object_ | - | Text style configuration item, refer to [Graphic Style](/zh-CN/guide/graphic-style) |
 
 ##### position
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
-The position of legend is optional:
+The position of legend is optional:'top', 'top-left', 'top-right', 'left', 'left-top', 'left-bottom', 'right', 'right-top', 'right-bottom', 'bottom', 'bottom-left', 'bottom-right'。
 
-*   `top`
-*   `top-left`
-*   `top-right`
-*   `right`
-*   `right-top`
-*   `right-bottom`
-*   `left`
-*   `left-top`
-*   `left-bottom`
-*   `bottom`
-*   `bottom-left`
-*   `bottom-right`
+<playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
+
+##### offsetX
+
+<description>**optional** _number_ </description>
+
+Legends offset in the x direction.
+
+##### offsetY
+
+<description>**optional** _number_ </description>
+
+Legends offset in the y direction.
 
 ##### background
 
-<description>**optional** *LegendBackgroundCfg* </description>
+<description>**optional** _LegendBackgroundCfg_ </description>
 
-Background box configuration item. *LegendBackgroundCFG* is configured as follows:
+Background box configuration item. _LegendBackgroundCFG_ is configured as follows:
 
-| Properties | Type               | Default | Description                                             |
-| ---------- | ------------------ | ------- | ------------------------------------------------------- |
-| padding    | number | number\[] | -       | White space in the background                           |
-| style      | object             | -       | Background style configuration, Reference Graphic Style |
+| Properties | Type | Description |
+| --- | --- | --- |
+| padding | _number 、 number\[]_ | White space in the background |
+| style | _ShapeAttr_ | Background style configuration, Reference [Graphic Style](/guide/graphic-style) |
 
 ##### flipPage
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>,whether to page when there are too many legend items.
+Apply to <tag color="green" text="Classification legend">Classification legend</tag>,whether to page when there are too many legend items. (⚠️ 暂不支持多行展示分页)
 
 ##### pageNavigator
 
-<description>**optional** *object* </description>
+<description>**optional** _object_ </description>
 
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, configure the style of page navigator, it works when legend is in flipPage. Types of *LegendPageNavigatorCfg* are as follow:
+Apply to <tag color="green" text="Classification legend">Classification legend</tag>, configure the style of page navigator, it works when legend is in flipPage. Types of _LegendPageNavigatorCfg_ are as follow:
 
-| Properties | Type     | Default | Description          |
-| ------ | --------------------- | ------ | -------------- |
-| marker.style | *PageNavigatorMarkerStyle* | -      | 分页器指示箭头配置项    |
-| text.style   | *PageNavigatorTextStyle*   | -      | The text style of page info.    |
+| Properties   | Type                       | Description                  |
+| ------------ | -------------------------- | ---------------------------- |
+| marker.style | _PageNavigatorMarkerStyle_ | 分页器指示箭头配置项         |
+| text.style   | _PageNavigatorTextStyle_   | The text style of page info. |
 
-Types of ***PageNavigatorMarkerStyle*** are as follow:
+Types of **_PageNavigatorMarkerStyle_** are as follow:
 
-| Properties | Type     | Default | Description          |
-| ------ | --------------------- | ------ | -------------- |
-| inactiveFill | *string* | -      | Fill color of arrow marker when unclickable (inactive status). |
-| inactiveOpacity   | *number*   | -      | Fill opacity of arrow marker when unclickable (inactive status). |
-| fill | *string* | -      | Default fill color of arrow marker (active status). |
-| opacity   | *number*   | -      | Default fill opacity of arrow marker (active status). |
-| size   | *number*   | -      | Size of arrow marker. |
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| inactiveFill | _string_ | - | Fill color of arrow marker when unclickable (inactive status). |
+| inactiveOpacity | _number_ | - | Fill opacity of arrow marker when unclickable (inactive status). |
+| fill | _string_ | - | Default fill color of arrow marker (active status). |
+| opacity | _number_ | - | Default fill opacity of arrow marker (active status). |
+| size | _number_ | - | Size of arrow marker. |
 
-Types of ***PageNavigatorTextStyle*** are as follow:
+Types of **_PageNavigatorTextStyle_** are as follow:
 
-| Properties | Type     | Default | Description          |
-| ------ | --------------------- | ------ | -------------- |
-| fill | *string* | -      | Font color of page navigator info. |
-| fontSize   | *number*   | -      |  Font size of page navigator info. |
+| Properties | Type     | Default | Description                        |
+| ---------- | -------- | ------- | ---------------------------------- |
+| fill       | _string_ | -       | Font color of page navigator info. |
+| fontSize   | _number_ | -       | Font size of page navigator info.  |
 
 Example：
 
@@ -1023,253 +1095,197 @@ pageNavigator: {
 },
 ```
 
-##### handler
-
-<description>**optional** *ContinueLegendHandlerCfg* </description>
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, configuration items for slider *ContinueLegendHandlerCfg* is configured as follows:
-
-| Properties | Type     | Default | Description                                                                 |
-| ---------- | -------- | ------- | --------------------------------------------------------------------------- |
-| size       | *number* | -       | Slider size                                                                 |
-| style      | *object* | -       | Slider configuration, reference [Graphic Style](/zh-CN/guide/graphic-style) |
-
 ##### itemHeight
 
-<description>**optional** *number* *default:* `null`</description>
+<description>**optional** _number_ _default:_ `null`</description>
 
 Apply to <tag color="green" text="Classification legend">Classification legend</tag>, lengend item height, default null。
 
 ##### itemWidth
 
-<description>**optional** *number* *default:* `null`</description>
+<description>**optional** _number_ _default:_ `null`</description>
 
 Apply to <tag color="green" text="Classification legend">Classification legend</tag>, legend item width, default null, automatic calculation.
 
 ##### itemName
 
-<description>**optional** *LegendItemNameCfg* </description>
+<description>**optional** _LegendItemNameCfg_ </description>
 
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, configure the legend item name text. *LegendItemNameCfg* is configured as follows：
+Apply to <tag color="green" text="Classification legend">Classification legend</tag>, configure the legend item name text. _LegendItemNameCfg_ is configured as follows：
 
-| Properties | Type       | Default | Description                                                                      |
-| ---------- | ---------- | ------- | -------------------------------------------------------------------------------- |
-| style      | *object*   | -       | Text style configuration, referecnce [Graphic Style](/zh-CN/guide/graphic-style) |
-| spacing    | *number*   | `false` | The spacing between legend item marker and the following name                    |
-| formatter  | *function* | -       | Format function, `(text: string, item: ListItem, index: number) => any;`         |
-
-##### itemSpacing
-
-<description>**optional** *number* </description>
-
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, control the horizontal spacing of legend items.
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| style | _object_ | - | Text style configuration, referecnce [Graphic Style](/zh-CN/guide/graphic-style) |
+| spacing | _number_ | `false` | The spacing between legend item marker and the following name |
+| formatter | _function_ | - | Format function, `(text: string, item: ListItem, index: number) => any;` |
 
 ##### itemValue
 
-<description>**optional** *LegendItemValueCfg* </description>
+<description>**optional** _LegendItemValueCfg_ </description>
 
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, configuration item of legend item Value added value. *LegendItemValueCfg* Configuration is as follows:
+Apply to <tag color="green" text="Classification legend">Classification legend</tag>, configuration item of legend item Value added value. _LegendItemValueCfg_ Configuration is as follows:
 
-| Properties | Type       | Default | Description                                                                          |
-| ---------- | ---------- | ------- | ------------------------------------------------------------------------------------ |
-| style      | *object*   | -       | Text style configuration item, reference [Graphic Style](/zh-CN/guide/graphic-style) |
-| alignRight | *boolean*  | `false` | Right-align, false by default, only when setting legend item width.                  |
-| formatter  | *function* | -       | Format function, `(text: string, item: ListItem, index: number) => any;`             |
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh-CN/guide/graphic-style) |
+| alignRight | _boolean_ | `false` | Right-align, false by default, only when setting legend item width. |
+| formatter | _function_ | - | Format function, `(text: string, item: ListItem, index: number) => any;` |
 
-##### animate
+<playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
 
-<description>**optional** *boolean* </description>
+##### itemSpacing
 
-Whether to turn on the animation switch.
+<description>**optional** _number_ </description>
 
-##### animateOption
-
-<description>**optional** *ComponentAnimateOption* </description>
-
-Animation parameter configuration, which takes effect if and only if the animate property is true, that is, when the animation is turned on. Animation configuration details are as follows:
-
-<div class='custom-api-docs'>
-
-*ComponentAnimateOption* is configured for each component animation type.
-
-```ts
-interface ComponentAnimateOption {
-  appear?: ComponentAnimateCfg; // The entry animation when the chart first loads
-  enter?: ComponentAnimateCfg; // After the chart is drawn and updated, the incoming animation of the new graph is generated
-  update?: ComponentAnimateCfg; // After the chart is drawn and the data has changed, the updated animation of the graph with the state changed
-  leave?: ComponentAnimateCfg; // After the chart is drawn and the data is changed, the destruction animation of the graph is destroyed
-}
-
-interface ComponentAnimateCfg {
-  duration?: number; // Duration of the first animation
-  easing?: string; // Easing method used for the first animation.
-  delay?: number; // Delay before updating the animation
-}
-```
-
-Where 'animation' passes in the name of the animation function, the built-in default animation function is shown in the table below, and you can also customize the animation function through 'registerAnimation'.
-
-**Effects of animation**, go to see [Examples](/en/examples/dynamic-plots/animation) for more information
-
-| Animation         | Effect      | Description                                 | Not suitable |
-| ----------------- | -------| --------------- |-------- |
-| 'fade-in'         | ![fade-in.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*LTRRRL8JwfQAAAAAAAAAAABkARQnAQ)                                                                                                          | 渐现动画。                                                       | |
-| 'fade-out'        | ![fade-out.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*s4Y4S5JJ6WEAAAAAAAAAAABkARQnAQ)                                                                                                         | 渐隐动画。                                                       | |
-| 'grow-in-x'       | ![grow-in-x.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*vhRVSLxDqU8AAAAAAAAAAABkARQnAQ)                                                                                                        | 容器沿着 x 方向放大的矩阵动画，多用于 G.Group 容器类进行动画。   | 不适用于饼图、玫瑰图等 polar、theta 坐标系下的图表以及柱、条状图 |
-| 'grow-in-y'       | ![grow-in-y.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*L6mkQa3aG64AAAAAAAAAAABkARQnAQ)                                                                                                        | 容器沿着 y 方向放大的矩阵动画，多用于 G.Group 容器类进行动画。   | 不适用于饼图、玫瑰图等 polar、theta 坐标系下的图表以及柱、条状图 |
-| 'grow-in-xy'      | ![grow-in-xy.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*LfPrQouGwYIAAAAAAAAAAABkARQnAQ)                                                                                                       | 容器沿着 x,y 方向放大的矩阵动画，多用于 G.Group 容器类进行动画。 ||
-| 'scale-in-x'      | ![scale-in-x.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*oiaGTLx-dNcAAAAAAAAAAABkARQnAQ)                                                                                                       | 单个图形沿着 x 方向的生长动画。                                  ||
-| 'scale-in-y'      | ![scale-in-y.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*T6mLTY3o9OoAAAAAAAAAAABkARQnAQ)                                                                                                       | 单个图形沿着 y 方向的生长动画。                                  ||
-| 'wave-in'         | ![wave-in-p.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*W5CdQIWw-M4AAAAAAAAAAABkARQnAQ)![wave-in-r.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*z9jjQY-lHcwAAAAAAAAAAABkARQnAQ) | 划入入场动画效果，不同坐标系下效果不同。                         ||
-| 'zoom-in'         | ![zoom-in.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*wc4dQp4E6vkAAAAAAAAAAABkARQnAQ)                                                                                                          | 沿着图形中心点的放大动画。                                       ||
-| 'zoom-out'        | ![zoom-out.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*PZ2gTrkV29YAAAAAAAAAAABkARQnAQ)                                                                                                         | 沿着图形中心点的缩小动画。                                       ||
-| 'path-in'         | ![path-in.gif](https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A\*gxZ1RIIMtdIAAAAAAAAAAABkARQnAQ)                                                                                                          | path 路径入场动画。                                              ||
-| 'position-update' |                                                                                                                                                                                                                | 图形位置移动动画。                                               | 限用于图表标签 label 上 |
-
-</div>
-
-
-##### label
-
-<description>**optional** *ContinueLegendLabelCfg* </description>
-
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, a configuration item for the text, *ContinueLegendLabelCfg* Configuration is as follows:
-
-| Properties | Type     | Default | Description                                                                                                                                                                                                                                      |
-| ---------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| align      | *string* | -       | The alignment of text with the slider <br/> - rail : Align with the slide rail, at both ends of the slide rail <br/> - top, bottom: Legends are valid when laid out horizontally <br/> - left, right: Legends are valid when laid out vertically |
-| style      | *object* | -       | Text style configuration item, reference [Graphic Style](/zh-CN/guide/graphic-style)                                                                                                                                                             |
-| spacing    | *number* | -       | The distance between the text and the slide                                                                                                                                                                                                      |
+Apply to <tag color="green" text="Classification legend">Classification legend</tag>, control the horizontal spacing of legend items.
 
 ##### marker
 
-<description>**optional** *MarkerCfg* </description>
+<description>**optional** _MarkerCfg_ </description>
 
 Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the configuration of the Marker icon of the legend item.
 
-| Properties | Type                         | Default | Description                                                   |
-| ---------- | ---------------------------- | ------- | ------------------------------------------------------------- |
-| symbol     | *Marker* | *MarkerCallback* | -       | The symbol shape of a legend marker is configured             |
-| style      | ShapeAttrs                   | -       | The configuration item of legend item Marker                  |
-| spacing    | number                       | -       | The spacing between legend item marker and the following name |
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| symbol | _Marker_ 、 _MarkerCallback_ | - | The symbol shape of a legend marker is configured |
+| style | ShapeAttrs | - | The configuration item of legend item Marker |
+| spacing | number | - | The spacing between legend item marker and the following name |
 
-*Marker* The supported tag types are： *circle | square | line | diamond | triangle | triangle-down | hexagon | bowtie | cross | tick | plus | hyphen*；
-*MarkerCallback* is `(x: number, y: number, r: number) => PathCommand`；
-
-
-##### min
-
-<description>**optional** *number* </description>
-
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, select the minimum value of the range.
-
-##### max
-
-<description>**optional** *number* </description>
-
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, select the maximum value of the range.
+_Marker_ The supported tag types are： _circle | square | line | diamond | triangle | triangle-down | hexagon | bowtie | cross | tick | plus | hyphen_； _MarkerCallback_ is `(x: number, y: number, r: number) => PathCommand`；
 
 ##### maxWidth
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the maximum width of the legend item.
+Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the maximum width of the legend item. 当 layout 等于 'horizontal' 时，生效，当图例项横向排布，超过最大宽度时，会结合 `flipPage: true` 进行分页。
 
 ##### maxHeight
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the maximum height of the legend item.
-
-##### offsetX
-
-<description>**optional** *number* </description>
-
-Legends offset in the x direction.
-
-##### offsetY
-
-<description>**optional** *number* </description>
-
-Legends offset in the y direction.
-
-##### rail
-
-<description>**optional** *ContinueLegendRailCfg* </description>
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, a style configuration item for the legend slider (background).*ContinueLegendRailCfg* Configuration is as follows:
-
-| Properties    | Type     | Default | Description                                                                                                                                |
-| ------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| type          | *string* | -       | rail type: color and size                                                                                                                  |
-| size          | *number* | -       | The width of the slide rail                                                                                                                |
-| defaultLength | *number* | -       | The default length of the slider. When maxWidth,maxHeight is limited, this property is not used and the length is automatically calculated |
-| style         | *object* | -       | Slide rail style, refer to [Graphic Style](/zh-CN/guide/graphic-style)                                                                     |
+Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the maximum height of the legend item. 当 layout 等于 'vertical' 时，生效，当图例项纵向排布，超过最大高度时，会结合 `flipPage: true` 进行分页。
 
 ##### reversed
 
-<description>**optional** *boolean* </description>
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, whether to display legend items in reverse order.
-
-##### slidable
-
-<description>**optional** *boolean* </description>
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, whether the slider can slide.
-
-##### title
-
-<description>**optional** *G2LegendTitleCfg* </description>
-
-Legend title configuration is not displayed by default. *G2LegendTitleCfg* Configuration is as follows:
-
-| Properties | Type     | Default | Description                                                                         |
-| ---------- | -------- | ------- | ----------------------------------------------------------------------------------- |
-| spacing    | *number* | -       | The spacing between the title and the legend item                                   |
-| style      | *object* | -       | Text style configuration item, refer to [Graphic Style](/zh-CN/guide/graphic-style) |
-
-##### track
-
-<description>**optional** *ContinueLegendTrackCfg* </description>
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, select the color block style configuration item for the range. *ContinueLegendTrackCfg* Configuration is as follows:
-
-| Properties | Type     | Default | Description                                                                     |
-| ---------- | -------- | ------- | ------------------------------------------------------------------------------- |
-| style      | *object* | -       | Selected range of styles, reference [Graphic Style](/zh-CN/guide/graphic-style) |
-
-##### values
-
-<description>**optional** *number\[]* </description>
-Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, selected value.
+<description>**optional** _boolean_ </description> Apply to <tag color="green" text="Classification legend">Classification legend</tag>, whether to display legend items in reverse order.
 
 ##### custom
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
 If it is a custom legend, the items property needs to be declared when this property is true.
 
 ##### items
 
-<description>**optional** *LegendItem\[]* </description>
-Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the user configures the content of the legend item. *LegendItem* Configuration is as follows:
+<description>**optional** _LegendItem\[]_ </description> Apply to <tag color="green" text="Classification legend">Classification legend</tag>, the user configures the content of the legend item. _LegendItem_ Configuration is as follows:
 
 | Properties | Type        | Required | Description                          |
 | ---------- | ----------- | -------- | ------------------------------------ |
-| id         | *string*    |          | Unique value for animation or lookup |
-| name       | *string*    | required | name                                 |
+| id         | _string_    |          | Unique value for animation or lookup |
+| name       | _string_    | required | name                                 |
 | value      | any         | required | value                                |
-| marker     | *MarkerCfg* |          | marker                               |
+| marker     | _MarkerCfg_ |          | marker                               |
 
-| Properties | Type                         | Default | Description                                                   |
-| ---------- | ---------------------------- | ------- | ------------------------------------------------------------- |
-| symbol     | *Marker* | *MarkerCallback* | -       | The symbol shape of a legend marker is configured             |
-| style      | ShapeAttrs                   | -       | The configuration item of legend item Marker                  |
-| spacing    | number                       | -       | The spacing between legend item marker and the following name |
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| symbol | _Marker_ 、 _MarkerCallback_ | - | The symbol shape of a legend marker is configured |
+| style | ShapeAttrs | - | The configuration item of legend item Marker |
+| spacing | number | - | The spacing between legend item marker and the following name |
 
-*Marker* The supported tag types are： *circle | square | line | diamond | triangle | triangle-down | hexagon | bowtie | cross | tick | plus | hyphen*；
-*MarkerCallback* is `(x: number, y: number, r: number) => PathCommand`；
+_Marker_ The supported tag types are： _circle | square | line | diamond | triangle | triangle-down | hexagon | bowtie | cross | tick | plus | hyphen_； _MarkerCallback_ is `(x: number, y: number, r: number) => PathCommand`；
 
+##### min
+
+<description>**optional** _number_ </description>
+
+Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, select the minimum value of the range.
+
+##### max
+
+<description>**optional** _number_ </description>
+
+Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, select the maximum value of the range.
+
+##### value
+
+<description>**optional** _number\[]_ </description>
+
+Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, 当前选中的范围.
+
+##### selected ✨ 🆕
+
+<description> _object_ **optional** </description>
+
+图例高亮状态，false 表示默认置灰，默认不设置或为 true 表示高亮，会同步进行数据的筛选展示。
+
+示例：
+
+```ts
+legend: {
+  selected: {
+    '分类一': true,
+    '分类二': false,
+    '分类三': false,
+  }
+}
+```
+
+<playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
+
+##### slidable
+
+<description>**optional** _boolean_ _default:_ `true`</description> Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, whether the slider can slide.
+
+##### rail
+
+<description>**optional** _ContinueLegendRailCfg_ </description> Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, a style configuration item for the legend slider (background)._ContinueLegendRailCfg_ Configuration is as follows:
+
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| type | _string_ | - | rail type: color and size, default: 'color' |
+| size | _number_ | - | The width of the slide rail |
+| defaultLength | _number_ | - | The default length of the slider, default: 100. When maxWidth,maxHeight is limited, this property is not used and the length is automatically calculated |
+| style | _object_ | - | Slide rail style, refer to [Graphic Style](/zh-CN/guide/graphic-style) |
+
+| **rail.type='color'** | **rail.type='size** |
+| --- | --- |
+| ![color](https://gw.alipayobjects.com/zos/antfincdn/jwMUDJ63aN/72957823-0148-4b24-bbf4-c756959467d3.png) | ![size](https://gw.alipayobjects.com/zos/antfincdn/t%26LwpJHUA6/52de13d5-b232-4efb-aacf-6d673778d92a.png) |
+
+##### label
+
+<description>**optional** _ContinueLegendLabelCfg_ </description>
+
+Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, a configuration item for the text, _ContinueLegendLabelCfg_ Configuration is as follows:
+
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| align | _string_ | - | The alignment of text with the slider <br/> - rail : Align with the slide rail, at both ends of the slide rail <br/> - top, bottom: Legends are valid when laid out horizontally <br/> - left, right: Legends are valid when laid out vertically |
+| style | _object_ | - | Text style configuration item, reference [Graphic Style](/zh-CN/guide/graphic-style) |
+| spacing | _number_ | - | The distance between the text and the slide |
+| formatter | _(value: any) => string_ | 文本的格式化方式 |
+
+##### track
+
+<description>**optional** _ContinueLegendTrackCfg_ </description> Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, select the color block style configuration item for the range. _ContinueLegendTrackCfg_ Configuration is as follows:
+
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| style | _object_ | - | Selected range of styles, reference [Graphic Style](/zh-CN/guide/graphic-style) |
+
+##### handler
+
+<description>**optional** _ContinueLegendHandlerCfg_ </description> Apply to <tag color="cyan" text="Continuous legend">Continuous legend</tag>, configuration items for slider. (暂不支持自定义)
+
+_ContinueLegendHandlerCfg_ is configured as follows:
+
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| size | _number_ | - | Slider size, default: 10 |
+| style | _object_ | - | Slider configuration, reference [Graphic Style](/zh-CN/guide/graphic-style) |
 
 #### shapeLegend
 
-<description>**optional** *false | LegendCfg*</description>
+<description>**optional** _false 、 LegendCfg_</description>
 
 ```sign
 当 shapeField 存在时，且 legend 不为 false 以及 shapeLegend 不为 false，默认会渲染 shape 映射图例。
@@ -1282,7 +1298,7 @@ Details to see: [legend](#legend)
 
 #### sizeLegend
 
-<description>**optional** *false | LegendCfg*</description>
+<description>**optional** _false 、 LegendCfg_</description>
 
 ```sign
 Default size legend is not shown, only when `sizeField` and `sizeLegend` existed，size legend will be shown。
@@ -1309,57 +1325,53 @@ annotations: [
 
 ##### type
 
-<description>**required** *string* </description>
+<description>**required** _string_ </description>
 
 Type of annotation, text | line | image | region | dataMarker | dataRegion | regionFilter | shape | html.
 
 ##### position
 
-<description>**required** *object* </description>
+<description>**required** _object_ </description>
 
 The position of annotation.
 
-*   In the first case, object uses the raw data corresponding to graphs x and y. For example: { time: '2010-01-01', value: 200 };
-*   The second way is to configure the position \[x, y] in an array. Based on the presence of the values in the array, the following forms are used:
-    1、Corresponding to the original data in the data source;
-    2、Key words: 'min', 'Max', 'median', 'median', 'start' and 'end' respectively represent the maximum value, minimum value, median value of data and the start and end of coordinate system interval;
-    3、X, y are percentages, such as 30%, located in the drawing area (that is, in the coordinate system).
-    The 1 and 2 types of data can be used interchangeably, but when using the percentage form, x and y must both be in the percentage form.
-*   The third, callback function, can dynamically determine the position of the auxiliary element, applied to dynamic data update, the position of the auxiliary element changes according to the data.
+- In the first case, object uses the raw data corresponding to graphs x and y. For example: { time: '2010-01-01', value: 200 };
+- The second way is to configure the position \[x, y] in an array. Based on the presence of the values in the array, the following forms are used: 1、Corresponding to the original data in the data source; 2、Key words: 'min', 'Max', 'median', 'median', 'start' and 'end' respectively represent the maximum value, minimum value, median value of data and the start and end of coordinate system interval; 3、X, y are percentages, such as 30%, located in the drawing area (that is, in the coordinate system). The 1 and 2 types of data can be used interchangeably, but when using the percentage form, x and y must both be in the percentage form.
+- The third, callback function, can dynamically determine the position of the auxiliary element, applied to dynamic data update, the position of the auxiliary element changes according to the data.
 
 ##### top
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 If it is drawn at the top of the canvas, the default is false, meaning it is drawn at the bottom.
 
 ##### animate
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
 Whether to enable animation.
 
 ##### offsetX
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 The offset in the x direction.
 
 ##### offsetY
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 The offset in the y direction.
 
 ##### start
 
-<description>**optional** *Array* </description>
+<description>**optional** _Array_ </description>
 
 Starting position, commonly used for line, region, etc.
 
 ##### end
 
-<description>**optional** *Array* </description>
+<description>**optional** _Array_ </description>
 
 End position, commonly used for line, region, etc.
 
@@ -1373,37 +1385,37 @@ End position, commonly used for line, region, etc.
 
 ##### style
 
-<description>**optional** *object* </description>
+<description>**optional** _object_ </description>
 
 The graph style properties refer to the Graphic Style.
 
 ##### src
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
 Image path, used in image.
 
 ##### content
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
 Text content, used in text.
 
 ##### rotate
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 The rotation Angle of text in radians.
 
 ##### maxLength
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 The maximum length of a text.
 
 ##### autoEllipsis
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
 Whether the maxLength beyond is automatically omitted.
 
@@ -1415,112 +1427,111 @@ The location of the text truncation.
 
 ##### isVertical
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
 The display position of the text in a two-dimensional coordinate system, whether it is displayed along the X axis or along the Y axis.
 
 ##### background
 
-<description>**optional** *object* </description>
+<description>**optional** _object_ </description>
 
 Text wrap box style Settings.
 
-| Properties | Type                 | Default | Description                                                                 |
-| ---------- | -------------------- | ------- | --------------------------------------------------------------------------- |
-| style      | *object*             | -       | Text background style, reference[Graphic Style](/guide/graphic-style) |
-| padding    | *number | number\[]* | -       | White space around the background of a text                                 |
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| style | _object_ | - | Text background style, reference[Graphic Style](/guide/graphic-style) |
+| padding | _number 、 number\[]_ | - | White space around the background of a text |
 
 ##### color
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
 Color value, usually used in RegionFilter.
 
 ##### apply
 
-<description>**optional** *string\[]* </description>
+<description>**optional** _string\[]_ </description>
 
 RegionFilter is set to work only on a specific Geometry type, such as Apply: \['area'], which is generally used with RegionFilter.
 
 ##### autoAdjust
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
 Whether to automatically adjust text orientation when text exceeds the drawn area.
 
 ##### direction
 
-<description>**optional** *upward | downward* </description>
+<description>**optional** _upward 、 downward_ </description>
 
 Orientation.
 
 ##### lineLength
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 Line length for dataRegion.
 
 ##### render
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
 Render function of custom marking, other container is the parent container of marking drawing, view is the graphic instance, helpers is the auxiliary function, other parserPosition can be used to calculate the coordinate position corresponding to data points, used in shape.
 
 ##### container
 
-<description>**optional** *string | HTMLElement* </description>
+<description>**optional** _string 、 HTMLElement_ </description>
 
 Container elements for custom HTML graphical tags for HTML
 
 ##### html
 
-<description>**optional** *string | HTMLElement* </description>
+<description>**optional** _string 、 HTMLElement_ </description>
 
 Custom graphical markup of HTML elements, either as HTML DOM strings, or HTML elements, or HTML callback functions, for HTML
 
 ##### alignX
 
-<description>**optional** *'left' | 'middle' | 'right'* </description>
+<description>**optional** _'left' 、 'middle' 、 'right'_ </description>
 
 Alignment of DOM elements in the X direction for HTML
 
 ##### alignY
 
-<description>**optional** *left' | 'middle' | 'right'* </description>
+<description>**optional** _left' 、 'middle' 、 'right'_ </description>
 
 Alignment of DOM elements in the Y direction for HTML
-
 
 #### quadrant
 
 [**DEMO**](/en/examples/scatter/bubble#quadrant)
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 Quadrant components.
 
-| Properties  | Type     | Description                                                                                         |
-| ----------- | -------- | --------------------------------------------------------------------------------------------------- |
-| xBaseline   | number   | The quadrant dividing baseline in the x direction, which defaults to 0                              |
-| yBaseline   | number   | The Y direction of the quadrant division base line, the default is 0                                |
-| lineStyle   | object   | Configure the style of the quadrant divider. Configure the reference drawing properties for details |
-| regionStyle | object\[] | Quadrant style with detailed configuration of reference drawing properties                          |
-| labels      | object\[] | Quadrant text configuration, detailed configuration reference drawing properties                    |
+| Properties | Type | Description |
+| --- | --- | --- |
+| xBaseline | number | The quadrant dividing baseline in the x direction, which defaults to 0 |
+| yBaseline | number | The Y direction of the quadrant division base line, the default is 0 |
+| lineStyle | object | Configure the style of the quadrant divider. Configure the reference drawing properties for details |
+| regionStyle | object\[] | Quadrant style with detailed configuration of reference drawing properties |
+| labels | object\[] | Quadrant text configuration, detailed configuration reference drawing properties |
 
 #### regressionLine
 
 [**DEMO**](/en/examples/scatter/scatter#line)
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 Regression line.
 
-| Properties | Type                                                                | Description                                                                                 |
-| ---------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| type       | string                                                              | The type of regression line, exp | linear | loess | log | poly | pow | quad           |
-| style      | object                                                              | Configure the regression line style. Configure the reference drawing properties for details |
-| algorithm  | Array<\[number, number]> | ((data: any) => Array<\[number, number]>) | Custom algorithm with a higher priority than type                                           |
-| top        | boolean                                                             | Whether top level display                                                                   |
+| Properties | Type | Description |
+| --- | --- | --- |
+| type | string | The type of regression line, exp 、 linear 、 loess 、 log 、 poly 、 pow 、 quad |
+| style | object | Configure the regression line style. Configure the reference drawing properties for details |
+| algorithm | Array<\[number, number]> 、 ((data: any) => Array<\[number, number]>) | Custom algorithm with a higher priority than type |
+| top | boolean | Whether top level display |
 
 ```ts
 regressionLine: {
@@ -1608,7 +1619,6 @@ plot.on('annotation:click', (...args) => {
 });
 ```
 
-
 ### Plot Method
 
 #### render()
@@ -1645,8 +1655,9 @@ Default configuration:`无`
 plot.changeData(newData);
 ``` -->
 
-
 ### Plot Theme
+
+Recommend to use 💄 [ThemeSet](https://theme-set.antv.vision) to customize your theme configurations online.
 
 #### Built-in Theme
 
@@ -1664,23 +1675,23 @@ In addition to using the built-in 'default' and 'dark' themes, you can also modi
 
 The following table lists the specific properties on the configuration items that make up the topic:
 
-| **Properties**        | **Type**   | **Description**                                                                                               |
-| --------------------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
-| defaultColor          | *string*   | Theme color                                                                                                   |
-| padding               | *number*   | number\[]                                                                                                      |
-| fontFamily            | *string*   | Chart font                                                                                                    |
-| colors10              | *string\[]* | Category color palette, used when the number of categories is less than 10                                    |
-| colors20              | *string\[]* | Category color palette, used when the number of categories is greater than 10                                 |
-| columnWidthRatio      | *number*   | General histogram width ratio, 0-1 range of values                                                            |
-| maxColumnWidth        | *number*   | Maximum width of histogram, pixel value                                                                       |
-| minColumnWidth        | *number*   | Minimum width of histogram, pixel value                                                                       |
-| roseWidthRatio        | *number*   | Rose width ratio, 0-1 range of value                                                                          |
-| multiplePieWidthRatio | *number*   | Multilayer pie and loop ratio, 0-1 range values                                                               |
-| geometries            | *object*   | Configure the style of each shape for each Geometry, including the default style and the style for each state |
-| components            | *object*   | Configure theme samples for axes, legends, tooltips, and annotations                                          |
-| labels                | *object*   | Configure the theme style of the label under Geometry                                                         |
-| innerLabels           | *object*   | Configure Geometry to display the Labels theme style inside the graph                                         |
-| pieLabels             | *object*   | Configure the theme style of pie chart labels                                                                 |
+| **Properties** | **Type** | **Description** |
+| --- | --- | --- |
+| defaultColor | _string_ | Theme color |
+| padding | _number_ | number\[] |
+| fontFamily | _string_ | Chart font |
+| colors10 | _string\[]_ | Category color palette, used when the number of categories is less than 10 |
+| colors20 | _string\[]_ | Category color palette, used when the number of categories is greater than 10 |
+| columnWidthRatio | _number_ | General histogram width ratio, 0-1 range of values |
+| maxColumnWidth | _number_ | Maximum width of histogram, pixel value |
+| minColumnWidth | _number_ | Minimum width of histogram, pixel value |
+| roseWidthRatio | _number_ | Rose width ratio, 0-1 range of value |
+| multiplePieWidthRatio | _number_ | Multilayer pie and loop ratio, 0-1 range values |
+| geometries | _object_ | Configure the style of each shape for each Geometry, including the default style and the style for each state |
+| components | _object_ | Configure theme samples for axes, legends, tooltips, and annotations |
+| labels | _object_ | Configure the theme style of the label under Geometry |
+| innerLabels | _object_ | Configure Geometry to display the Labels theme style inside the graph |
+| pieLabels | _object_ | Configure the theme style of pie chart labels |
 
 usage:
 
@@ -1723,14 +1734,14 @@ usage:
 
 | **Properties**          | **Type** | **Description**                                   |
 | ----------------------- | -------- | ------------------------------------------------- |
-| `backgroundColor`       | *string* | Background color                                  |
-| `brandColor`            | *string* | Brand color，默认取 10 色分类颜色色板的第一个颜色 |
-| `paletteQualitative10`  | *string* | Qualitative palette，分类个数小于 10 时使用       |
-| `paletteQualitative20`  | *string* | Qualitative palette，分类个数大于 10 时使用       |
-| `paletteSemanticRed`    | *string* | Semantic red                                      |
-| `paletteSemanticGreen`  | *string* | Semantic green                                    |
-| `paletteSemanticYellow` | *string* | Semantic yellow                                   |
-| `fontFamily`            | *string* | fontFamily                                        |
+| `backgroundColor`       | _string_ | Background color                                  |
+| `brandColor`            | _string_ | Brand color，默认取 10 色分类颜色色板的第一个颜色 |
+| `paletteQualitative10`  | _string_ | Qualitative palette，分类个数小于 10 时使用       |
+| `paletteQualitative20`  | _string_ | Qualitative palette，分类个数大于 10 时使用       |
+| `paletteSemanticRed`    | _string_ | Semantic red                                      |
+| `paletteSemanticGreen`  | _string_ | Semantic green                                    |
+| `paletteSemanticYellow` | _string_ | Semantic yellow                                   |
+| `fontFamily`            | _string_ | fontFamily                                        |
 
 #### Update theme
 
@@ -1750,8 +1761,7 @@ In addition, G2 provides a custom topic mechanism to define a new topic structur
 
 <playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
-Go [DEMO](/en/examples/general/theme#register-theme)
-
+🌰 Customize theme [DEMO](/zh/examples/general/theme#register-theme)
 
 ### Plot Interactions
 
@@ -1774,18 +1784,18 @@ interactions: [{ type: 'element-active' }, { type: 'brush' }];
 ```ts
 // 修改 tooltip 触发事件
 interactions: [
-  { 
+  {
     type: 'tooltip',
-    cfg: { start: [{ trigger: 'element:click', action: 'tooltip:show' }] } 
-  }
-]
+    cfg: { start: [{ trigger: 'element:click', action: 'tooltip:show' }] },
+  },
+];
 ```
 
 #### Remove the interaction
 
 ```ts
 // 方式1: 关闭 tooltip 交互
-interactions: [{ type: 'tooltip', enable: false }]
+interactions: [{ type: 'tooltip', enable: false }];
 
 // 方式2:
 plot.chart.removeInteraction('interaction-type');

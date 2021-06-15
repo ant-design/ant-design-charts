@@ -1,9 +1,9 @@
 ---
 title: 子弹图
-order: 14
+order: 12
 ---
 
-### 基础水平方向子弹图
+### 基础子弹图-水平方向
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -25,12 +25,18 @@ const DemoBullet: React.FC = () => {
     targetField: 'target',
     xField: 'title',
     color: {
-      range: '#5B8FF9',
+      range: '#f0efff',
       measure: '#5B8FF9',
-      target: '#5B8FF9',
+      target: '#3D76DD',
     },
     xAxis: { line: null },
-    yAxis: false,
+    yAxis: {
+      tickMethod: function tickMethod(_ref) {
+        var max = _ref.max;
+        var interval = Math.ceil(max / 5);
+        return [0, interval, interval * 2, interval * 3, interval * 4, max];
+      },
+    },
     legend: {
       custom: true,
       position: 'bottom',
@@ -52,7 +58,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'line',
             style: {
-              stroke: '#5B8FF9',
+              stroke: '#3D76DD',
               r: 5,
             },
           },
@@ -88,9 +94,9 @@ const DemoBullet: React.FC = () => {
     targetField: 'target',
     xField: 'title',
     color: {
-      range: ['#FFB1AC', '#FFDBA2', '#B4EBBF'],
+      range: ['#FFbcb8', '#FFe0b0', '#bfeec8'],
       measure: '#5B8FF9',
-      target: '#5B8FF9',
+      target: '#39a3f4',
     },
     xAxis: { line: null },
     yAxis: false,
@@ -105,7 +111,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: '#FFB1AC',
+              fill: '#FFbcb8',
               r: 5,
             },
           },
@@ -116,7 +122,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: '#FFDBA2',
+              fill: '#FFe0b0',
               r: 5,
             },
           },
@@ -127,7 +133,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: '#B4EBBF',
+              fill: '#bfeec8',
               r: 5,
             },
           },
@@ -149,7 +155,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'line',
             style: {
-              stroke: '#5B8FF9',
+              stroke: '#39a3f4',
               r: 5,
             },
           },
@@ -203,9 +209,9 @@ const DemoBullet: React.FC = () => {
     targetField: 'target',
     xField: 'title',
     color: {
-      range: ['#FFB1AC', '#FFDBA2', '#B4EBBF'],
+      range: ['#FFbcb8', '#FFe0b0', '#bfeec8'],
       measure: '#5B8FF9',
-      target: '#5B8FF9',
+      target: '#39a3f4',
     },
     label: {
       measure: {
@@ -225,7 +231,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: '#FFB1AC',
+              fill: '#FFbcb8',
               r: 5,
             },
           },
@@ -236,7 +242,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: '#FFDBA2',
+              fill: '#FFe0b0',
               r: 5,
             },
           },
@@ -247,7 +253,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: '#B4EBBF',
+              fill: '#bfeec8',
               r: 5,
             },
           },
@@ -269,7 +275,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'line',
             style: {
-              stroke: '#5B8FF9',
+              stroke: '#39a3f4',
               r: 5,
             },
           },
@@ -283,7 +289,7 @@ const DemoBullet: React.FC = () => {
 export default DemoBullet;
 ```
 
-### 基础垂直方向子弹图
+### 基础子弹图-垂直方向
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -305,9 +311,9 @@ const DemoBullet: React.FC = () => {
     targetField: 'target',
     xField: 'title',
     color: {
-      range: '#5B8FF9',
+      range: '#f0efff',
       measure: '#5B8FF9',
-      target: '#5B8FF9',
+      target: '#3D76DD',
     },
     xAxis: { line: null },
     yAxis: false,
@@ -339,7 +345,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'line',
             style: {
-              stroke: '#5B8FF9',
+              stroke: '#3D76DD',
               r: 5,
             },
           },
@@ -375,9 +381,9 @@ const DemoBullet: React.FC = () => {
     targetField: 'target',
     xField: 'title',
     color: {
-      range: ['#FFB1AC', '#FFDBA2', '#B4EBBF'],
-      measure: ['#5B8FF9', '#5AD8A6'],
-      target: '#5B8FF9',
+      range: ['#FFbcb8', '#FFe0b0', '#bfeec8'],
+      measure: ['#5B8FF9', '#61DDAA'],
+      target: '#39a3f4',
     },
     label: {
       measure: {
@@ -401,7 +407,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: '#FFB1AC',
+              fill: '#FFbcb8',
               r: 5,
             },
           },
@@ -412,7 +418,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: '#FFDBA2',
+              fill: '#FFe0b0',
               r: 5,
             },
           },
@@ -423,7 +429,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: '#B4EBBF',
+              fill: '#bfeec8',
               r: 5,
             },
           },
@@ -445,7 +451,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'square',
             style: {
-              fill: ' #5AD8A6',
+              fill: ' #61DDAA',
               r: 5,
             },
           },
@@ -456,7 +462,7 @@ const DemoBullet: React.FC = () => {
           marker: {
             symbol: 'line',
             style: {
-              stroke: '#5B8FF9',
+              stroke: '#39a3f4',
               r: 5,
             },
           },

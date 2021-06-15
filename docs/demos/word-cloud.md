@@ -1,9 +1,9 @@
 ---
-title: WordCloud
-order: 27
+title: 词云图
+order: 26
 ---
 
-### WordCloud
+### 词云图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -40,7 +40,7 @@ const DemoWordCloud: React.FC = () => {
 export default DemoWordCloud;
 ```
 
-### WordCloud-colorField
+### 词云图-colorField
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -77,7 +77,54 @@ const DemoWordCloud: React.FC = () => {
 export default DemoWordCloud;
 ```
 
-### WordCloud-图片遮罩-base64
+### 豆瓣 2020 电影 (部分)
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { WordCloud } from '@ant-design/charts';
+
+const DemoWordCloud: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antfincdn/%24IWXp5slbE/2020-movie-from-douban.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    wordField: 'title',
+    weightField: 'rate',
+    colorField: 'tag',
+    legend: {},
+    imageMask:
+      'https://gw.alipayobjects.com/zos/antfincdn/Qw7Xbn76kM/53176454-747c-4f0a-a9e5-936aa66a0082.png',
+    wordStyle: {
+      fontFamily: 'Avenir',
+      fontSize: [8, 16],
+    },
+    state: {
+      active: {
+        style: {
+          lineWidth: 0,
+          shadowBlur: 4,
+          shadowColor: 'rgba(0,0,0,0.3)',
+        },
+      },
+    },
+  };
+  return <WordCloud {...config} />;
+};
+
+export default DemoWordCloud;
+```
+
+### 词云图-图片遮罩-base64
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -114,7 +161,7 @@ const DemoWordCloud: React.FC = () => {
 export default DemoWordCloud;
 ```
 
-### WordCloud-图片遮罩
+### 词云图-图片遮罩
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -151,7 +198,7 @@ const DemoWordCloud: React.FC = () => {
 export default DemoWordCloud;
 ```
 
-### WordCloud-自定义每个词语位置
+### 词云图-自定义每个词语位置
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -190,7 +237,7 @@ const DemoWordCloud: React.FC = () => {
 export default DemoWordCloud;
 ```
 
-### WordCloud-每次渲染保持位置不变
+### 词云图-每次渲染保持位置不变
 
 ```tsx
 import React, { useState, useEffect } from 'react';

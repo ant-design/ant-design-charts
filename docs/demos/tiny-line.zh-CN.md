@@ -1,6 +1,6 @@
 ---
 title: 迷你折线图
-order: 30
+order: 35
 ---
 
 ### 基础迷你折线图
@@ -11,32 +11,11 @@ import { TinyLine } from '@ant-design/charts';
 
 const DemoTinyLine: React.FC = () => {
   var data = [
-    264,
-    417,
-    438,
-    887,
-    309,
-    397,
-    550,
-    575,
-    563,
-    430,
-    525,
-    592,
-    492,
-    467,
-    513,
-    546,
-    983,
-    340,
-    539,
-    243,
-    226,
-    192,
+    264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513, 546, 983, 340, 539,
+    243, 226, 192,
   ];
   var config = {
     height: 60,
-    width: 300,
     autoFit: false,
     data: data,
     smooth: true,
@@ -55,32 +34,11 @@ import { TinyLine } from '@ant-design/charts';
 
 const DemoTinyLine: React.FC = () => {
   var data = [
-    264,
-    417,
-    438,
-    887,
-    309,
-    397,
-    550,
-    575,
-    563,
-    430,
-    525,
-    592,
-    492,
-    467,
-    513,
-    546,
-    983,
-    340,
-    539,
-    243,
-    226,
-    192,
+    264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513, 546, 983, 340, 539,
+    243, 226, 192,
   ];
   var config = {
     height: 60,
-    width: 300,
     autoFit: false,
     data: data,
     smooth: true,

@@ -1,6 +1,6 @@
 ---
-title: Bidirectional Bar
-order: 20
+title: 对称条形图
+order: 29
 ---
 
 ### 基础水平方对称条形图
@@ -59,8 +59,6 @@ const DemoBidirectionalBar: React.FC = () => {
   ];
   var config = {
     data: data,
-    width: 400,
-    height: 400,
     xField: 'country',
     xAxis: { position: 'bottom' },
     interactions: [{ type: 'active-region' }],
@@ -132,8 +130,6 @@ const DemoBidirectionalBar: React.FC = () => {
   ];
   var config = {
     data: data,
-    width: 400,
-    height: 400,
     layout: 'vertical',
     xField: 'country',
     yField: ['2016年耕地总面积', '2016年转基因种植面积'],

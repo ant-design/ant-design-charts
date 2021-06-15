@@ -1,9 +1,9 @@
 ---
-title: Heatmap
-order: 16
+title: 热力图
+order: 14
 ---
 
-### Heatmap
+### 热力图
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -107,11 +107,11 @@ const DemoHeatmap: React.FC = () => {
   };
   var config = {
     data: data,
-    padding: [150, 30, 150, 70],
+    height: 400,
+    autoFit: false,
     xField: 'week',
     yField: 'day',
     colorField: 'commits',
-    color: '#BAE7FF-#1890FF-#0050B3',
     reflect: 'y',
     shape: 'boundary-polygon',
     meta: {
@@ -165,6 +165,84 @@ const DemoHeatmap: React.FC = () => {
 export default DemoHeatmap;
 ```
 
+### 极坐标色块图
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Heatmap } from '@ant-design/charts';
+
+const DemoHeatmap: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/polar-heatmap.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  var config = {
+    data: data,
+    xField: 'time',
+    yField: 'week',
+    colorField: 'value',
+    legend: true,
+    color: '#BAE7FF-#1890FF-#1028ff',
+    coordinate: {
+      type: 'polar',
+      cfg: { innerRadius: 0.2 },
+    },
+    heatmapStyle: {
+      stroke: '#f5f5f5',
+      opacity: 0.8,
+    },
+    meta: {
+      time: { type: 'cat' },
+      value: {
+        min: 0,
+        max: 1,
+      },
+    },
+    xAxis: {
+      line: null,
+      grid: null,
+      tickLine: null,
+      label: {
+        offset: 12,
+        style: {
+          fill: '#666',
+          fontSize: 12,
+          textBaseline: 'top',
+        },
+      },
+    },
+    yAxis: {
+      top: true,
+      line: null,
+      grid: null,
+      tickLine: null,
+      label: {
+        offset: 0,
+        style: {
+          fill: '#fff',
+          textAlign: 'center',
+          shadowBlur: 2,
+          shadowColor: 'rgba(0, 0, 0, .45)',
+        },
+      },
+    },
+    tooltip: { showMarkers: false },
+    interactions: [{ type: 'element-active' }],
+  };
+  return <Heatmap {...config} />;
+};
+
+export default DemoHeatmap;
+```
+
 ### 热力形状图
 
 ```tsx
@@ -193,7 +271,6 @@ const DemoHeatmap: React.FC = () => {
     sizeRatio: 0.5,
     color: ['#0d5fbb', '#7eadfc', '#fd8b6f', '#aa3523'],
     label: {
-      offset: -2,
       style: {
         fill: '#fff',
         shadowBlur: 2,
@@ -235,7 +312,6 @@ const DemoHeatmap: React.FC = () => {
     shape: 'square',
     color: ['#dddddd', '#9ec8e0', '#5fa4cd', '#2e7ab6', '#114d90'],
     label: {
-      offset: -2,
       style: {
         fill: '#fff',
         shadowBlur: 2,
@@ -275,6 +351,7 @@ const DemoHeatmap: React.FC = () => {
     yField: 'l',
     colorField: 'tmp',
     color: '#F51D27-#FA541C-#FF8C12-#FFC838-#FAFFA8-#80FF73-#12CCCC-#1890FF-#6E32C2',
+    legend: { position: 'bottom' },
     annotations: [
       {
         type: 'image',

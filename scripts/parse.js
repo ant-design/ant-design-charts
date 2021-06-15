@@ -60,6 +60,7 @@ const reset = () => {
   chartName = '';
   dataKey = '';
 };
+const Exp = new RegExp(/\w+.json\(\)/);
 const FunctionTypes = ['FunctionExpression', 'ArrowFunctionExpression'];
 const excludeFunctionNames = ['formatter'];
 // 提取核心信息
@@ -71,14 +72,17 @@ const getOptions = (ast) => {
       }
       if (
         FunctionTypes.includes(node.type) &&
-        ['data', 'fetchData'].includes(get(node, ['params', 0, 'name'])) &&
+        ['data', 'fetchData', 'csv'].includes(get(node, ['params', 0, 'name'])) &&
         get(node, ['body', 'type']) === 'BlockStatement' &&
         !excludeFunctionNames.includes(get(node, ['id', 'name']))
       ) {
         dataKey = get(node, ['params', 0, 'name']);
         const block = get(node, 'body.body', []);
         block.forEach((item) => {
-          blcokBody += escodegen.generate(item);
+          const code = escodegen.generate(item);
+          if (!Exp.test(code)) {
+            blcokBody += code;
+          }
         });
         return estraverse.VisitorOption.Remove;
       }
@@ -192,7 +196,8 @@ const parseFile = (params, type) => {
       code: escodegen
         .generate(parseCode)
         .replace("'use strict';", '')
-        .replace("var _g2plot = require('@antv/g2plot');", ''),
+        .replace("var _g2plot = require('@antv/g2plot');", '')
+        .replace('_g2plot.', ''),
       title: get(metaInfo, 'title.zh'),
       chartName,
       hasError: false,

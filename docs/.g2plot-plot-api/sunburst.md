@@ -1,129 +1,168 @@
-
-
-
-
 ### Plot Container
 
 #### width
 
-<description>**optional** *number* *default:* `400`</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
 Set the width of the chart.
 
 #### height
 
-<description>**optional** *number* *default:* `400`</description>
+<description>**optional** _number_ _default:_ `400`</description>
 
 Set the height of the chart.
 
 #### autoFit
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
 Whether the chart automatically adjusts to fit the container. If it is set to `true`, `width` and `height` configuration would fail.
 
 #### padding
 
-<description>**optional** *number\[] | number | 'auto'*</description>
+<description>**optional** _number\[] 、 number 、 'auto'_</description>
 
 Set `padding` value of the canvas. You can also use `auto`.
 
 #### appendPadding
 
-<description>**optional** *number\[] | number*</description>
+<description>**optional** _number\[] 、 number_</description>
 
 Extra `appendPadding` value.
 
 #### renderer
 
-<description>**optional** *string* *default:* `canvas`</description>
+<description>**optional** _string_ _default:_ `canvas`</description>
 
 Set the render way to `canvas` or `svg`.
 
 #### pixelRatio
 
-<description>**optional** *number* *default:* `window.devicePixelRatio`</description>
+<description>**optional** _number_ _default:_ `window.devicePixelRatio`</description>
 
 Set the pixel ratio of the chart.
 
 #### limitInPlot
 
-<description>**optional** *boolean*</description>
+<description>**optional** _boolean_</description>
 
 Whether clip the Geometry beyond the coordinate system。
 
+<!-- 先插入到这里 -->
+
+#### locale
+
+<description>**optional** _string_</description>
+
+Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts) to see the format.
 
 ### Data Mapping
 
 #### data
 
-<description>**required** *object*</description>
+<description>**required** _object_</description>
 
-Configure the chart data source.
+Configure the chart data source. 旭日图的数据格式要求为：
+
+```sign
+type Node = { name: string; value?: number; children: Node[]; }
+```
+
+示例:
+
+```ts
+{
+  name: 'root',
+  children: [
+    { name: 'type1', value: 1 },
+    { name: 'type2', value: 3, children: [{ name: 'type2-1', value: 2 }] }
+  ]
+}
+```
 
 #### meta
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 Configure the meta of each data field of the chart in global, to define the type and presentation of data. Configuration of the meta will affect the text content of all components.
 
-| Properties | Type       | Description                                              |
-| ---------- | ---------- | -------------------------------------------------------- |
-| alias      | *string*   | alias of the data field                                  |
-| formatter  | *function* | callback function to format all values of the data field |
-| values     | *string\[]* | enumerate all the values of the data field               |
-| range      | *number\[]* | mapping range of the data field, default: \[0,1]          |
+| Properties | Type        | Description                                              |
+| ---------- | ----------- | -------------------------------------------------------- |
+| alias      | _string_    | alias of the data field                                  |
+| formatter  | _function_  | callback function to format all values of the data field |
+| values     | _string\[]_ | enumerate all the values of the data field               |
+| range      | _number\[]_ | mapping range of the data field, default: \[0,1]         |
 
 See also the [Meta Options](/guide/common#meta) to learn more about configuration of `meta`.
 
+旭日图内含的数据字段有：Sunburst.SUNBURST_PATH_FIELD, Sunburst.SUNBURST_ANCESTOR_FIELD, depth, height，这些字段可以在元数据中获取（tooltip、style 回调中使用）.
 
-#### type
+可以通过下面的方式来设置字段的元信息：
 
-<description>**optional** *partition | treemap* *default:* `partition`</description>
+```ts
+meta: {
+  [Sunburst.SUNBURST_PATH_FIELD]: {
+    alias: '节点路径',
+    formatter: (v) => `🌞 ${v}`,
+  },
+  [Sunburst.SUNBURST_ANCESTOR_FIELD]: {
+    alias: '祖先节点',
+  },
+  depth: {
+    alias: '节点层级',
+  },
+},
+```
 
-Layout types, more types to explore.
+#### colorField
 
-#### seriesField
+<description>**optional** _string_</description>
 
-<description>**optional** *string*</description>
+Color mapping field.
 
-Grouping fields, that is, numeric fields to map.
+颜色映射字段。默认为：`Sunburst.SUNBURST_ANCESTOR_FIELD`，即节点的祖先节点，颜色透明度逐渐减小（可以通过 sunburstStyle 回调来控制填充透明度）
 
-#### reflect
+#### rawFields
 
-<description>**optional** *x | y*</description>
+<description>**optional** _string\[]_</description>
 
-Radial type, not recommended in special cases.
-
-#### hierarchyConfig
-
-<description>**optional** *object*</description>
-
-Hierarchy configuration, such as' size ', 'padding', etc., refer to [D3-Hierarchy](https://github.com/d3/d3-hierarchy#treemap) for detailed configuration.
+额外的原始字段。配置之后，可以在 tooltip，sunburstStyle 等回调函数的 datum 参数中，获取到更多额外的原始数据。
 
 ### Geometry Style
 
+#### hierarchyConfig ✨
+
+<description>**optional** _object_</description>
+
+Hierarchy configuration, such as' size ', 'padding', etc., refer to [D3-Hierarchy](https://github.com/d3/d3-hierarchy#partition) for detailed configuration.
+
+支持配置属性：
+
+| Properties | Type | Description |
+| --- | --- | --- |
+| field | _string_ | 数据节点权重映射字段，默认为：`value`. 当你的节点数据格式不是：`{ name: 'xx', value: 'xx' }`, 可以通过该字段来指定，详细见：图表示例 |
+| padding | _number、number\[]_ | 默认：`0`。参考：[d3-hierarchy#partition_padding](https://github.com/d3/d3-hierarchy#partition_padding) |
+| size | _number\[]_ | 默认：`[1, 1]`。参考：[d3-hierarchy#partition_size](https://github.com/d3/d3-hierarchy#partition_size) |
+| round | _boolean_ | 默认：`false`。参考：[d3-hierarchy#partition_round](https://github.com/d3/d3-hierarchy#partition_round) |
+| sort | _Function_ | 数据节点排序方式，默认：降序。参考: [d3-hierarchy#node_sort](https://github.com/d3/d3-hierarchy#node_sort) |
+
 #### radius
 
-<description>**optional** *string* *default:* `1`</description>
+<description>**optional** _string_ _default:_ `0.85`</description>
 
 Radius, 0~1 of the value.
 
 #### innerRadius
 
-<description>**optional** *number* *default:* `0`</description>
+<description>**optional** _number_ _default:_ `0`</description>
 
 Inner radius, 0~1 of the value.
 
-#### colorField
-
-<description>**optional** *string*</description>
-
-Color mapping field.
+<!-- Color 配置 -->
 
 #### color
 
-<description>**optional** *string | string\[] | Function*</description>
+<description>**optional** _string 、 string\[] 、 Function_</description>
 
 Configure the color. If there is no colorField configured, set one single color. Otherwise you can set a series of colors, or you can use callback function.
 
@@ -151,12 +190,11 @@ Default: The color board of the theme.
 }
 ```
 
-
 #### sunburstStyle
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
-Sunburst graphic style. The 'fill' in pointStyle overrides the configuration of 'color'. SunBurstStyle can be specified either directly or via a callback to specify a separate style based on the data.
+Sunburst graphic style. 旭日图默认随着层级增加，而逐渐减小填充透明度，可以通过 sunburstStyle 回调来控制填充透明度，详细见：[图表示例](/zh/examples/more-plots/sunburst#style)
 
 Default configuration:
 
@@ -181,15 +219,14 @@ Default configuration:
 }
 // Function
 {
-  sunburstStyle: (value, item) => {
-    if (value === 0.5) {
+  sunburstStyle: (datum) => {
+    if (datum.value === 0.5) {
       return {
         fill: 'green',
         stroke: 'yellow',
         opacity: 0.8,
       }
     }
-    // TODO
     return {
       fill: 'red',
       stroke: 'yellow',
@@ -199,13 +236,64 @@ Default configuration:
 }
 ```
 
+#### reflect
+
+<description>**optional** _x 、 y_</description>
+
+Radial type, not recommended in special cases. 在旭日图中，不可使用 `reflect: 'x'` 进行 x 轴反转，使用 `reflect: 'y'` 进行 y 轴反转后，祖先节点在最外层，从外至内依次：父节点 - 孩子节点 - 孙子节点
+
 ### Plot Components
+
+#### label
+
+<!--label样式-->
+
+| Properties | Type | Description |
+| --- | --- | --- | --- | --- |
+| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
+| offset | _number_ | label offset |
+| offsetX | _number_ | The offset distance of the label from the data point in the X direction |
+| offsetY | _number_ | The offset distance of the label from the data point in the Y direction |
+| content | _string 、 IGroup 、 IShape 、 GeometryLabelContentCallback_ | Text content that is displayed, if not declared, is displayed according to the value of the first field participating in the mapping |
+| style | _ShapeAttrs_ | Label text graphic property style |
+| autoRotate | _string_ | Whether to rotate automatically, default true |
+| rotate | _number_ | Text rotation Angle |
+| labelLine | _null_ 、 _boolean_ 、 _LabelLineCfg_ | Used to set the style property of the text connector. NULL indicates that it is not displayed. |
+| labelEmit | _boolean_ | Only applies to text in polar coordinates, indicating whether the text is radially displayed according to the Angle. True means on and false means off |
+| layout | _'overlap' 、 'fixedOverlap' 、 'limitInShape'_ | Text layout type, support a variety of layout function combination. |
+| position | _'top' 、 'bottom' 、 'middle' 、 'left' 、 'right'_ | Specifies the position of the current Label relative to the current graphic |
+| animate | _boolean 、 AnimateOption_ | Animation configuration. |
+| formatter | _Function_ | Format function |
+| autoHide | _boolean_ | Whether to hide it automatically, default to false |
+
+Types of **_LabelLineCfg_** are as follow: (Go [ShapeAttrs](/zh-CN/guide/graphic-style) see more details about _ShapeAttrs_)
+
+```plain
+type LabelLineCfg = {
+  style?: ShapeAttrs;
+}
+```
+
+Example code:
+
+```ts
+{
+  label: {
+    style: {
+      fill: 'red',
+      opacity: 0.6,
+      fontSize: 24
+    },
+    rotate: true
+  }
+}
+```
 
 #### tooltip
 
 ##### fields
 
-<description>**optional** *string\[]*</description>
+<description>**optional** _string\[]_</description>
 
 Specifies the fields to be displayed in the Tooltip. By default, different charts have different default field lists. Use with the 'formatter' configuration for more effect.
 
@@ -217,7 +305,7 @@ tooltip: {
 
 ##### formatter
 
-<description>**optional** *Function*</description>
+<description>**optional** _Function_</description>
 
 Formats the contents of the Tooltip Item (you can use `customContent` when content contains multiple tooltipItems).
 
@@ -231,118 +319,135 @@ tooltip: {
 
 ##### follow
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
 Sets whether the Tooltip content box follows the mouse.
 
 ##### enterable
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 Whether the tooltip allows mouse to slide in.
 
 ##### showTitle
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 Whether show tooltip title.
 
 ##### title
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 Set the title content of the Tooltip: If the value is the name of the data field, the value for the field in the data is displayed, and if the field does not exist in the data, the title value is displayed directly.
 
 ##### position
 
-<description>**optional** *`top` | `bottom` | `left` | `right`*</description>
+<description>**optional** _`top` | `bottom` | `left` | `right`_</description>
 
 Sets the fixed display location of the Tooltip relative to the data point.
 
 ##### shared
 
-<description>**optional** *boolean*</description>
+<description>**optional** _boolean_</description>
 
 True means that all data corresponding to the current point is merged and displayed, while false means that only the data content closest to the current point is displayed.
 
 ##### showCrosshairs
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 Whether show crosshairs。
 
 ##### crosshairs
 
-<description>**optional** *object*</description>
+<description>**optional** _object_</description>
 
 Configure tooltip crosshairs to work if and only if 'showCrosshairs' is true.
 
-| Properties     | Type                   | Description                                                                                   |
-| -------------- | ---------------------- | --------------------------------------------------------------------------------------------- |
-| type           | \_`x` | `y` | `xy`\_ | Crosshairs Type: 'X' represents the auxiliary line on the X axis, 'Y' on the Y axis           |
-| line           | *lineStyle*            | The configuration item for line, see more [*ShapeAttrs*](/guide/graphic-style#configure-line-styles)      |
-| text           | *textStyle*            | Guideline text configuration, support callback                                                |
-| textBackground | *textBackgroundStyle*  | Guideline text background configuration                                                       |
-| follow         | *boolean*              | Whether the guide line follows the mouse. Default is false, that is, to locate the data point |
+| Properties | Type | Description |
+| --- | --- | --- |
+| type | _'x' 、 'y' 、 'xy'_ | Crosshairs Type: 'X' represents the auxiliary line on the X axis, 'Y' on the Y axis |
+| line | _lineStyle_ | The configuration item for line, see more [_ShapeAttrs_](/guide/graphic-style#configure-line-styles) |
+| text | _TooltipCrosshairsText 、 TooltipCrosshairsTextCallback_ | Text configuration of crosshairs pointer, support callback |
+| textBackground | _textBackgroundStyle_ | Guideline text background configuration |
+| follow | _boolean_ | Whether the guide line follows the mouse. Default is false, that is, to locate the data point |
 
-****textStyle****
+<!-- 类型定义 -->
 
-<!--文本样式-->
-
-| Properties    | Type            | Description                                                                                                                                                                                                 |
-| ------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fontSize      | *number*        | Font size                                                                                                                                                                                                   |
-| fontFamily    | *string*        | Font family                                                                                                                                                                                                 |
-| fontWeight    | *number*        | Font weight                                                                                                                                                                                                 |
-| lineHeight    | *number*        | Line height                                                                                                                                                                                                 |
-| textAlign     | *string*        | Text align, supported `center` | `end` | `left` | `right` | `start`, default `start`                                                                                                                    |
-| fill          | *string*        | Fill color for text                                                                                                                                                                                         |
-| fillOpacity   | *number*        | Fill transparency for text                                                                                                                                                                                  |
-| stroke        | *string*        | Stroke text                                                                                                                                                                                                 |
-| lineWidth     | *number*        | The width of the text stroke                                                                                                                                                                                |
-| lineDash      | \[number,number] | For the dashed line configuration of the stroke, the first value is the length of each segment of the dashed line, and the second value is the distance between segments. LineDash sets \[0,0] to no stroke. |
-| lineOpacity   | *number*        | Stroke transparency                                                                                                                                                                                         |
-| opacity       | *number*        | Overall transparency of the text                                                                                                                                                                            |
-| shadowColor   | *string*        | Shadow color                                                                                                                                                                                                |
-| shadowBlur    | *number*        | Shadow blur                                                                                                                                                                                                 |
-| shadowOffsetX | *number*        | Sets the horizontal distance between the shadow and the text                                                                                                                                                |
-| shadowOffsetY | *number*        | Sets the vertical distance between the shadow and the text                                                                                                                                                  |
-| cursor        | *string*        | Mouse style. With CSS mouse styles, default 'default'.                                                                                                                                                      |
-
-Example code, using label.style configuration:
+**_TooltipCrosshairsText_** 类型定义如下：
 
 ```ts
-{
-  label: {
-    style:{
-      fontSize: 80,
-      fontWeight: 300,
-      textAlign: 'center',
-      textBaseline: 'middle',
-      shadowColor: 'white',
-      shadowBlur: 10,
-    }
-  }
-}
+/** 辅助线文本配置 */
+type TooltipCrosshairsText = {
+  /**
+   * 文本位置，只支持 start， end
+   * @type {string}
+   */
+  position?: string;
+  /**
+   * 文本内容
+   */
+  content?: string;
+  /**
+   * 距离线的距离
+   * @type {number}
+   */
+  offset?: number;
+  /**
+   * 是否自动旋转
+   * @type {boolean}
+   */
+  autoRotate?: boolean;
+  /**
+   * 文本的配置项
+   * @type {ShapeAttrs}
+   */
+  style?: TextStyle;
+};
 ```
 
+其中，**_TextStyle_** 类型定义详见: [通用文本样式](/zh-CN/guide/graphic-style#%E9%85%8D%E7%BD%AE%E6%96%87%E5%AD%97%E6%A0%B7%E5%BC%8F)
 
-***textBackgroundStyle***
+**_TooltipCrosshairsTextCallback_** 类型定义如下：
 
-| Properties | Type                 | Description                                 |
-| ---------- | -------------------- | ------------------------------------------- |
-| padding    | *number | number\[]* | White space around the background of a text |
-| style      | *shapeStyle*         | The configuration item for line, see more [*ShapeAttrs*](/guide/graphic-style)             |
+```ts
+/**
+ * 辅助线文本回调函数
+ * @param type 对应当前 crosshairs 的类型，值为 'x' 或者 'y'
+ * @param defaultContent 对应当前 crosshairs 默认的文本内容
+ * @param items 对应当前 tooltip 内容框中的数据
+ * @param currentPoint 对应当前坐标点
+ * @returns 返回当前 crosshairs 对应的辅助线文本配置
+ */
+type TooltipCrosshairsTextCallback = (
+  type: string,
+  defaultContent: any,
+  items: any[],
+  currentPoint: Point,
+) => TooltipCrosshairsText;
+```
+
+<!-- 容器无限变大 -->
+
+<!-- <playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
+
+**_TextBackgroundStyle_**
+
+| Properties | Type | Description |
+| --- | --- | --- |
+| padding | _number 、 number\[]_ | White space around the background of a text |
+| style | _shapeStyle_ | The configuration item for line, see more [_ShapeAttrs_](/guide/graphic-style) |
 
 ##### showMarkers
 
-<description>**optional** *boolean* *default:* `true`</description>
+<description>**optional** _boolean_ _default:_ `true`</description>
 
 Whether to render TooltipMarkers.
 
 ##### marker
 
-<description>**optional** *ShapeAttrs*</description>
+<description>**optional** _ShapeAttrs_</description>
 
 TooltipMarker style configuration.
 
@@ -350,31 +455,31 @@ Please refer to the style configuration [ShapeAttrs](/guide/graphic-style)
 
 ##### showContent
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 Whether to display the Tooltip content box.
 
 ##### container
 
-<description>**optional** *string|HTMLElement*</description>
+<description>**optional** _string|HTMLElement_</description>
 
 Custom tooltip container.
 
 ##### containerTpl
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 Templates used to specify the legend container must include the classes of each DOM node when customizing the template
 
 ##### itemTpl
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 The default template for each record, which must include the classes of each DOM node when customizing the template.
 
 ##### domStyles
 
-<description>**optional** *TooltipDomStyles*</description>
+<description>**optional** _TooltipDomStyles_</description>
 
 The styles for each DOM.
 
@@ -397,13 +502,42 @@ The styles for each DOM.
 
 ##### offset
 
-<description>**optional** *number*</description>
+<description>**optional** _number_</description>
 
 Tooltip offset.
 
+##### reversed
+
+<description>**optional** _boolean_</description>
+
+是否将 tooltip items 逆序.
+
+##### showNil
+
+<description>**optional** _boolean_</description>
+
+是否显示空值的 tooltip 项
+
+##### customItems ✨
+
+<description>**optional** _Function_</description>
+
+在 tooltip 渲染之前，对最终的 items 进行自定义处理（比如排序、过滤、格式化等）。
+
+```ts
+{
+  tooltip: {
+    customItems: (originalItems: TooltipItem[]) => {
+      // process originalItems,
+      return originalItems;
+    };
+  }
+}
+```
+
 ##### customContent
 
-<description>**optional** *Function*</description>
+<description>**optional** _Function_</description>
 
 Support for custom templates.
 
@@ -417,6 +551,9 @@ Support for custom templates.
 }
 ```
 
+Try it:
+
+<playground path="case/customize/demo/customize-tooltip.ts" rid="customize-tooltip"></playground>
 
 #### annotations
 
@@ -437,57 +574,53 @@ annotations: [
 
 ##### type
 
-<description>**required** *string* </description>
+<description>**required** _string_ </description>
 
 Type of annotation, text | line | image | region | dataMarker | dataRegion | regionFilter | shape | html.
 
 ##### position
 
-<description>**required** *object* </description>
+<description>**required** _object_ </description>
 
 The position of annotation.
 
-*   In the first case, object uses the raw data corresponding to graphs x and y. For example: { time: '2010-01-01', value: 200 };
-*   The second way is to configure the position \[x, y] in an array. Based on the presence of the values in the array, the following forms are used:
-    1、Corresponding to the original data in the data source;
-    2、Key words: 'min', 'Max', 'median', 'median', 'start' and 'end' respectively represent the maximum value, minimum value, median value of data and the start and end of coordinate system interval;
-    3、X, y are percentages, such as 30%, located in the drawing area (that is, in the coordinate system).
-    The 1 and 2 types of data can be used interchangeably, but when using the percentage form, x and y must both be in the percentage form.
-*   The third, callback function, can dynamically determine the position of the auxiliary element, applied to dynamic data update, the position of the auxiliary element changes according to the data.
+- In the first case, object uses the raw data corresponding to graphs x and y. For example: { time: '2010-01-01', value: 200 };
+- The second way is to configure the position \[x, y] in an array. Based on the presence of the values in the array, the following forms are used: 1、Corresponding to the original data in the data source; 2、Key words: 'min', 'Max', 'median', 'median', 'start' and 'end' respectively represent the maximum value, minimum value, median value of data and the start and end of coordinate system interval; 3、X, y are percentages, such as 30%, located in the drawing area (that is, in the coordinate system). The 1 and 2 types of data can be used interchangeably, but when using the percentage form, x and y must both be in the percentage form.
+- The third, callback function, can dynamically determine the position of the auxiliary element, applied to dynamic data update, the position of the auxiliary element changes according to the data.
 
 ##### top
 
-<description>**optional** *boolean* *default:* `false`</description>
+<description>**optional** _boolean_ _default:_ `false`</description>
 
 If it is drawn at the top of the canvas, the default is false, meaning it is drawn at the bottom.
 
 ##### animate
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
 Whether to enable animation.
 
 ##### offsetX
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 The offset in the x direction.
 
 ##### offsetY
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 The offset in the y direction.
 
 ##### start
 
-<description>**optional** *Array* </description>
+<description>**optional** _Array_ </description>
 
 Starting position, commonly used for line, region, etc.
 
 ##### end
 
-<description>**optional** *Array* </description>
+<description>**optional** _Array_ </description>
 
 End position, commonly used for line, region, etc.
 
@@ -501,37 +634,37 @@ End position, commonly used for line, region, etc.
 
 ##### style
 
-<description>**optional** *object* </description>
+<description>**optional** _object_ </description>
 
 The graph style properties refer to the Graphic Style.
 
 ##### src
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
 Image path, used in image.
 
 ##### content
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
 Text content, used in text.
 
 ##### rotate
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 The rotation Angle of text in radians.
 
 ##### maxLength
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 The maximum length of a text.
 
 ##### autoEllipsis
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
 Whether the maxLength beyond is automatically omitted.
 
@@ -543,561 +676,367 @@ The location of the text truncation.
 
 ##### isVertical
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
 The display position of the text in a two-dimensional coordinate system, whether it is displayed along the X axis or along the Y axis.
 
 ##### background
 
-<description>**optional** *object* </description>
+<description>**optional** _object_ </description>
 
 Text wrap box style Settings.
 
-| Properties | Type                 | Default | Description                                                                 |
-| ---------- | -------------------- | ------- | --------------------------------------------------------------------------- |
-| style      | *object*             | -       | Text background style, reference[Graphic Style](/guide/graphic-style) |
-| padding    | *number | number\[]* | -       | White space around the background of a text                                 |
+| Properties | Type | Default | Description |
+| --- | --- | --- | --- |
+| style | _object_ | - | Text background style, reference[Graphic Style](/guide/graphic-style) |
+| padding | _number 、 number\[]_ | - | White space around the background of a text |
 
 ##### color
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
 Color value, usually used in RegionFilter.
 
 ##### apply
 
-<description>**optional** *string\[]* </description>
+<description>**optional** _string\[]_ </description>
 
 RegionFilter is set to work only on a specific Geometry type, such as Apply: \['area'], which is generally used with RegionFilter.
 
 ##### autoAdjust
 
-<description>**optional** *boolean* </description>
+<description>**optional** _boolean_ </description>
 
 Whether to automatically adjust text orientation when text exceeds the drawn area.
 
 ##### direction
 
-<description>**optional** *upward | downward* </description>
+<description>**optional** _upward 、 downward_ </description>
 
 Orientation.
 
 ##### lineLength
 
-<description>**optional** *number* </description>
+<description>**optional** _number_ </description>
 
 Line length for dataRegion.
 
 ##### render
 
-<description>**optional** *string* </description>
+<description>**optional** _string_ </description>
 
 Render function of custom marking, other container is the parent container of marking drawing, view is the graphic instance, helpers is the auxiliary function, other parserPosition can be used to calculate the coordinate position corresponding to data points, used in shape.
 
 ##### container
 
-<description>**optional** *string | HTMLElement* </description>
+<description>**optional** _string 、 HTMLElement_ </description>
 
 Container elements for custom HTML graphical tags for HTML
 
 ##### html
 
-<description>**optional** *string | HTMLElement* </description>
+<description>**optional** _string 、 HTMLElement_ </description>
 
 Custom graphical markup of HTML elements, either as HTML DOM strings, or HTML elements, or HTML callback functions, for HTML
 
 ##### alignX
 
-<description>**optional** *'left' | 'middle' | 'right'* </description>
+<description>**optional** _'left' 、 'middle' 、 'right'_ </description>
 
 Alignment of DOM elements in the X direction for HTML
 
 ##### alignY
 
-<description>**optional** *left' | 'middle' | 'right'* </description>
+<description>**optional** _left' 、 'middle' 、 'right'_ </description>
 
 Alignment of DOM elements in the Y direction for HTML
 
-
-### Plot Theme
-
-#### Built-in Theme
-
-Built-in defaults: 'default' and 'dark'
-
-```ts
-{
-  theme: 'default', // 'dark',
-}
-```
-
-#### Theme attributes
-
-In addition to using the built-in 'default' and 'dark' themes, you can also modify some of the theme content by setting the theme properties.
-
-The following table lists the specific properties on the configuration items that make up the topic:
-
-| **Properties**        | **Type**   | **Description**                                                                                               |
-| --------------------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
-| defaultColor          | *string*   | Theme color                                                                                                   |
-| padding               | *number*   | number\[]                                                                                                      |
-| fontFamily            | *string*   | Chart font                                                                                                    |
-| colors10              | *string\[]* | Category color palette, used when the number of categories is less than 10                                    |
-| colors20              | *string\[]* | Category color palette, used when the number of categories is greater than 10                                 |
-| columnWidthRatio      | *number*   | General histogram width ratio, 0-1 range of values                                                            |
-| maxColumnWidth        | *number*   | Maximum width of histogram, pixel value                                                                       |
-| minColumnWidth        | *number*   | Minimum width of histogram, pixel value                                                                       |
-| roseWidthRatio        | *number*   | Rose width ratio, 0-1 range of value                                                                          |
-| multiplePieWidthRatio | *number*   | Multilayer pie and loop ratio, 0-1 range values                                                               |
-| geometries            | *object*   | Configure the style of each shape for each Geometry, including the default style and the style for each state |
-| components            | *object*   | Configure theme samples for axes, legends, tooltips, and annotations                                          |
-| labels                | *object*   | Configure the theme style of the label under Geometry                                                         |
-| innerLabels           | *object*   | Configure Geometry to display the Labels theme style inside the graph                                         |
-| pieLabels             | *object*   | Configure the theme style of pie chart labels                                                                 |
-
-usage:
-
-```ts
-{
-  theme: {
-    colors10: [
-      '#FF6B3B',
-      '#626681',
-      '#FFC100',
-      '#9FB40F',
-      '#76523B',
-      '#DAD5B5',
-      '#0E8E89',
-      '#E19348',
-      '#F383A2',
-      '#247FEA',
-    ];
-  }
-}
-```
-
-#### Theme attributes (StyleSheet)
-
-除了以上介绍的主题属性之外，还可以传入主题样式表来自定义主题。如果你需要对全局主题进行配置的话，对样式风格进行切换，比如更改颜色、字体大小、边框粗细等
-
-usage:
-
-```ts
-{
-  theme: {
-    styleSheet: {
-      fontFamily: 'Avenir';
-    }
-  }
-}
-```
-
-支持的样式表属性：
-
-| **Properties**          | **Type** | **Description**                                   |
-| ----------------------- | -------- | ------------------------------------------------- |
-| `backgroundColor`       | *string* | Background color                                  |
-| `brandColor`            | *string* | Brand color，默认取 10 色分类颜色色板的第一个颜色 |
-| `paletteQualitative10`  | *string* | Qualitative palette，分类个数小于 10 时使用       |
-| `paletteQualitative20`  | *string* | Qualitative palette，分类个数大于 10 时使用       |
-| `paletteSemanticRed`    | *string* | Semantic red                                      |
-| `paletteSemanticGreen`  | *string* | Semantic green                                    |
-| `paletteSemanticYellow` | *string* | Semantic yellow                                   |
-| `fontFamily`            | *string* | fontFamily                                        |
-
-#### Update theme
-
-usage：
-
-```ts
-// example 1:
-plot.update({ theme: 'dark' });
-
-// example 2:
-plot.update({ theme: { defaultColor: '#FF6B3B' } });
-```
-
-#### Custom theme
-
-In addition, G2 provides a custom topic mechanism to define a new topic structure, allowing users to switch and define chart topics. Go [G2 | Custom theme](https://g2.antv.vision/en/docs/api/advanced/register-theme) for more details.
-
-<playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
-
-Go [DEMO](/en/examples/general/theme#register-theme)
-
-
-### Plot Event
-
-On Plot, binding events are removed by `ON` and `OFF` method.
-
-```ts
-// Bind event
-plot.on('eventName', callback);
-// Bind event, only trigger one time
-plot.once('eventName', callback);
-// Remove event
-plot.off('eventName', callback);
-```
-
-Composition: `${componentName}:${eventName}`
-
-Element refers to the type of element to bind to, for example `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` etc.
-
-Events correspond to DOM common events, for example `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` etc. And support mobile events: `touchstart`、`touchmove`、`touchend`
-
-```ts
-// Plot adds click events to the entire chart area
-plot.on('plot:click', (...args) => {
-  console.log(...args);
-});
-
-// Element to add a click event, element represents the graphic elements, graphical elements, please see: https://g2.antv.vision/en/docs/manual/concepts/element
-plot.on('element:click', (...args) => {
-  console.log(...args);
-});
-
-// Legend adds click events
-plot.on('legend-item:click', (...args) => {
-  console.log(...args);
-});
-
-// Legend name adds click event
-plot.on('legend-item-name:click', (...args) => {
-  console.log(...args);
-});
-
-// 给 tooltip 添加点击事件
-plot.on('tooltip:show', (...args) => {
-  console.log(...args);
-});
-
-plot.on('tooltip:hide', (...args) => {
-  console.log(...args);
-});
-
-plot.on('tooltip:change', (...args) => {
-  console.log(...args);
-});
-
-// Label adds click events
-plot.on('label:click', (...args) => {
-  console.log(...args);
-});
-
-// Mask adds click events
-plot.on('mask:click', (...args) => {
-  console.log(...args);
-});
-
-// Axis-label adds click events
-plot.on('axis-label:click', (...args) => {
-  console.log(...args);
-});
-
-// Add click events to the annotation
-plot.on('annotation:click', (...args) => {
-  console.log(...args);
-});
-```
-
-
-### Plot Method
-
-#### render()
-
-Render the chart.
-
-#### update()
-
-<description>**optional** </description>
-
-Update chart configuration and overwrite it without comparing difference.
-
-Example：
-
-```ts
-plot.update({
-  ...currentConfig,
-  legend: false,
-});
-```
-
-<!--
-#### changeData()
-
-<description>**optional** </description>
-
-更新图表数据。`update()`方法会导致图形区域销毁并重建，如果只进行数据更新，而不涉及其他配置项更新，推荐使用本方法。。
-
-Default configuration:`无`
-
-使用示例：
-
-```ts
-plot.changeData(newData);
-``` -->
-
-
-### Plot Event
-
-On Plot, binding events are removed by `ON` and `OFF` method.
-
-```ts
-// Bind event
-plot.on('eventName', callback);
-// Bind event, only trigger one time
-plot.once('eventName', callback);
-// Remove event
-plot.off('eventName', callback);
-```
-
-Composition: `${componentName}:${eventName}`
-
-Element refers to the type of element to bind to, for example `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` etc.
-
-Events correspond to DOM common events, for example `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` etc. And support mobile events: `touchstart`、`touchmove`、`touchend`
-
-```ts
-// Plot adds click events to the entire chart area
-plot.on('plot:click', (...args) => {
-  console.log(...args);
-});
-
-// Element to add a click event, element represents the graphic elements, graphical elements, please see: https://g2.antv.vision/en/docs/manual/concepts/element
-plot.on('element:click', (...args) => {
-  console.log(...args);
-});
-
-// Legend adds click events
-plot.on('legend-item:click', (...args) => {
-  console.log(...args);
-});
-
-// Legend name adds click event
-plot.on('legend-item-name:click', (...args) => {
-  console.log(...args);
-});
-
-// 给 tooltip 添加点击事件
-plot.on('tooltip:show', (...args) => {
-  console.log(...args);
-});
-
-plot.on('tooltip:hide', (...args) => {
-  console.log(...args);
-});
-
-plot.on('tooltip:change', (...args) => {
-  console.log(...args);
-});
-
-// Label adds click events
-plot.on('label:click', (...args) => {
-  console.log(...args);
-});
-
-// Mask adds click events
-plot.on('mask:click', (...args) => {
-  console.log(...args);
-});
-
-// Axis-label adds click events
-plot.on('axis-label:click', (...args) => {
-  console.log(...args);
-});
-
-// Add click events to the annotation
-plot.on('annotation:click', (...args) => {
-  console.log(...args);
-});
-```
-
-
-### Plot Method
-
-#### render()
-
-Render the chart.
-
-#### update()
-
-<description>**optional** </description>
-
-Update chart configuration and overwrite it without comparing difference.
-
-Example：
-
-```ts
-plot.update({
-  ...currentConfig,
-  legend: false,
-});
-```
-
-<!--
-#### changeData()
-
-<description>**optional** </description>
-
-更新图表数据。`update()`方法会导致图形区域销毁并重建，如果只进行数据更新，而不涉及其他配置项更新，推荐使用本方法。。
-
-Default configuration:`无`
-
-使用示例：
-
-```ts
-plot.changeData(newData);
-``` -->
-
-
-### Plot Theme
-
-#### Built-in Theme
-
-Built-in defaults: 'default' and 'dark'
-
-```ts
-{
-  theme: 'default', // 'dark',
-}
-```
-
-#### Theme attributes
-
-In addition to using the built-in 'default' and 'dark' themes, you can also modify some of the theme content by setting the theme properties.
-
-The following table lists the specific properties on the configuration items that make up the topic:
-
-| **Properties**        | **Type**   | **Description**                                                                                               |
-| --------------------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
-| defaultColor          | *string*   | Theme color                                                                                                   |
-| padding               | *number*   | number\[]                                                                                                      |
-| fontFamily            | *string*   | Chart font                                                                                                    |
-| colors10              | *string\[]* | Category color palette, used when the number of categories is less than 10                                    |
-| colors20              | *string\[]* | Category color palette, used when the number of categories is greater than 10                                 |
-| columnWidthRatio      | *number*   | General histogram width ratio, 0-1 range of values                                                            |
-| maxColumnWidth        | *number*   | Maximum width of histogram, pixel value                                                                       |
-| minColumnWidth        | *number*   | Minimum width of histogram, pixel value                                                                       |
-| roseWidthRatio        | *number*   | Rose width ratio, 0-1 range of value                                                                          |
-| multiplePieWidthRatio | *number*   | Multilayer pie and loop ratio, 0-1 range values                                                               |
-| geometries            | *object*   | Configure the style of each shape for each Geometry, including the default style and the style for each state |
-| components            | *object*   | Configure theme samples for axes, legends, tooltips, and annotations                                          |
-| labels                | *object*   | Configure the theme style of the label under Geometry                                                         |
-| innerLabels           | *object*   | Configure Geometry to display the Labels theme style inside the graph                                         |
-| pieLabels             | *object*   | Configure the theme style of pie chart labels                                                                 |
-
-usage:
-
-```ts
-{
-  theme: {
-    colors10: [
-      '#FF6B3B',
-      '#626681',
-      '#FFC100',
-      '#9FB40F',
-      '#76523B',
-      '#DAD5B5',
-      '#0E8E89',
-      '#E19348',
-      '#F383A2',
-      '#247FEA',
-    ];
-  }
-}
-```
-
-#### Theme attributes (StyleSheet)
-
-除了以上介绍的主题属性之外，还可以传入主题样式表来自定义主题。如果你需要对全局主题进行配置的话，对样式风格进行切换，比如更改颜色、字体大小、边框粗细等
-
-usage:
-
-```ts
-{
-  theme: {
-    styleSheet: {
-      fontFamily: 'Avenir';
-    }
-  }
-}
-```
-
-支持的样式表属性：
-
-| **Properties**          | **Type** | **Description**                                   |
-| ----------------------- | -------- | ------------------------------------------------- |
-| `backgroundColor`       | *string* | Background color                                  |
-| `brandColor`            | *string* | Brand color，默认取 10 色分类颜色色板的第一个颜色 |
-| `paletteQualitative10`  | *string* | Qualitative palette，分类个数小于 10 时使用       |
-| `paletteQualitative20`  | *string* | Qualitative palette，分类个数大于 10 时使用       |
-| `paletteSemanticRed`    | *string* | Semantic red                                      |
-| `paletteSemanticGreen`  | *string* | Semantic green                                    |
-| `paletteSemanticYellow` | *string* | Semantic yellow                                   |
-| `fontFamily`            | *string* | fontFamily                                        |
-
-#### Update theme
-
-usage：
-
-```ts
-// example 1:
-plot.update({ theme: 'dark' });
-
-// example 2:
-plot.update({ theme: { defaultColor: '#FF6B3B' } });
-```
-
-#### Custom theme
-
-In addition, G2 provides a custom topic mechanism to define a new topic structure, allowing users to switch and define chart topics. Go [G2 | Custom theme](https://g2.antv.vision/en/docs/api/advanced/register-theme) for more details.
-
-<playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
-
-Go [DEMO](/en/examples/general/theme#register-theme)
-
-
 ### Plot Interactions
 
-#### Add interacions
+Built-in interactions of Sunburst are as follows:
 
-Usage:
+| Interaction | Description                              | Configuration                  |
+| ----------- | ---------------------------------------- | ------------------------------ |
+| drill-down  | 用于下钻交互，配置该交互后，点击可下钻。 | `drilldown: { enabled: true }` |
+
+#### drilldown
+
+<description>**optional** _DrillDownCfg_</description>
+
+下钻交互配置。
+
+_DrillDownCfg_ 类型定义如下：
+
+| 属性       | 类型            | 描述                              |
+| ---------- | --------------- | --------------------------------- |
+| enabled    | _boolean_       | 是否开启下钻交互，默认为：'false' |
+| breadCrumb | _BreadCrumbCfg_ | 下钻交互的面包屑 UI 配置          |
+
+_BreadCrumbCfg_ 类型定义如下：
+
+| 属性            | 类型         | 描述                                       |
+| --------------- | ------------ | ------------------------------------------ | ------------- |
+| position        | _string_     | 位置。可选项：'top-left'                   | 'bottom-left' |
+| rootText        | _string_     | 根节点的文案，默认：'Root'（中文：'初始'） |
+| dividerText     | _string_     | 分割线，默认：'/'                          |
+| textStyle       | _ShapeAttrs_ | 字体样式                                   |
+| activeTextStyle | _ShapeAttrs_ | 激活字体样式                               |
+
+#### 添加交互
 
 ```ts
-// Enable the Active interaction when the mouse moves over a chart element (bar in a bar, dot in a dot, etc.)
+// 开启「鼠标移入图表元素（柱状图的柱子、点图的点等）时触发 active」的交互
 interactions: [{ type: 'element-active' }];
 
-// Enable multiple interactions
+// 开启多个交互
 interactions: [{ type: 'element-active' }, { type: 'brush' }];
 ```
 
-#### Config interactions
+#### 配置交互
 
-通过 `cfg` 可以对交互行为进行配置，详细参考 [G2 | 修改交互的默认交互](https://g2.antv.vision/en/docs/api/general/interaction/#修改交互的默认交互)
+通过 `cfg` 可以对交互行为进行配置，详细参考 [G2 | 修改交互的默认交互](https://g2.antv.vision/zh/docs/api/general/interaction/#修改交互的默认交互)
 
 ```ts
 // 修改 tooltip 触发事件
 interactions: [
-  { 
+  {
     type: 'tooltip',
-    cfg: { start: [{ trigger: 'element:click', action: 'tooltip:show' }] } 
-  }
-]
+    cfg: { start: [{ trigger: 'element:click', action: 'tooltip:show' }] },
+  },
+];
 ```
 
-#### Remove the interaction
+#### 移除交互
 
 ```ts
 // 方式1: 关闭 tooltip 交互
-interactions: [{ type: 'tooltip', enable: false }]
+interactions: [{ type: 'tooltip', enable: false }];
 
 // 方式2:
 plot.chart.removeInteraction('interaction-type');
 ```
 
-Example:
+使用示例：
 
 ```ts
-// Removes legend filtering interaction
+// 移除 图例筛选 交互
 plot.chart.removeInteraction('legend-filter');
 ```
+
+### Plot Event
+
+On Plot, binding events are removed by `ON` and `OFF` method.
+
+```ts
+// Bind event
+plot.on('eventName', callback);
+// Bind event, only trigger one time
+plot.once('eventName', callback);
+// Remove event
+plot.off('eventName', callback);
+```
+
+Composition: `${componentName}:${eventName}`
+
+Element refers to the type of element to bind to, for example `element`、`legend-item`、`axis-label`、`mask`、`plot`、`legend-item-name`、`reset-button` etc.
+
+Events correspond to DOM common events, for example `click`、`mousedown`、`mouseup`、`dblclick`、`mouseenter`、`mouseout`、`mouseover`、`mousemove`、`mouseleave`、`contextmenu` etc. And support mobile events: `touchstart`、`touchmove`、`touchend`
+
+```ts
+// Plot adds click events to the entire chart area
+plot.on('plot:click', (...args) => {
+  console.log(...args);
+});
+
+// Element to add a click event, element represents the graphic elements, graphical elements, please see: https://g2.antv.vision/en/docs/manual/concepts/element
+plot.on('element:click', (...args) => {
+  console.log(...args);
+});
+
+// Legend adds click events
+plot.on('legend-item:click', (...args) => {
+  console.log(...args);
+});
+
+// Legend name adds click event
+plot.on('legend-item-name:click', (...args) => {
+  console.log(...args);
+});
+
+// 给 tooltip 添加点击事件
+plot.on('tooltip:show', (...args) => {
+  console.log(...args);
+});
+
+plot.on('tooltip:hide', (...args) => {
+  console.log(...args);
+});
+
+plot.on('tooltip:change', (...args) => {
+  console.log(...args);
+});
+
+// Label adds click events
+plot.on('label:click', (...args) => {
+  console.log(...args);
+});
+
+// Mask adds click events
+plot.on('mask:click', (...args) => {
+  console.log(...args);
+});
+
+// Axis-label adds click events
+plot.on('axis-label:click', (...args) => {
+  console.log(...args);
+});
+
+// Add click events to the annotation
+plot.on('annotation:click', (...args) => {
+  console.log(...args);
+});
+```
+
+### Plot Method
+
+#### render()
+
+Render the chart.
+
+#### update()
+
+<description>**optional** </description>
+
+Update chart configuration and overwrite it without comparing difference.
+
+Example：
+
+```ts
+plot.update({
+  ...currentConfig,
+  legend: false,
+});
+```
+
+<!--
+#### changeData()
+
+<description>**optional** </description>
+
+更新图表数据。`update()`方法会导致图形区域销毁并重建，如果只进行数据更新，而不涉及其他配置项更新，推荐使用本方法。。
+
+Default configuration:`无`
+
+使用示例：
+
+```ts
+plot.changeData(newData);
+``` -->
+
+### Plot Theme
+
+Recommend to use 💄 [ThemeSet](https://theme-set.antv.vision) to customize your theme configurations online.
+
+#### Built-in Theme
+
+Built-in defaults: 'default' and 'dark'
+
+```ts
+{
+  theme: 'default', // 'dark',
+}
+```
+
+#### Theme attributes
+
+In addition to using the built-in 'default' and 'dark' themes, you can also modify some of the theme content by setting the theme properties.
+
+The following table lists the specific properties on the configuration items that make up the topic:
+
+| **Properties** | **Type** | **Description** |
+| --- | --- | --- |
+| defaultColor | _string_ | Theme color |
+| padding | _number_ | number\[] |
+| fontFamily | _string_ | Chart font |
+| colors10 | _string\[]_ | Category color palette, used when the number of categories is less than 10 |
+| colors20 | _string\[]_ | Category color palette, used when the number of categories is greater than 10 |
+| columnWidthRatio | _number_ | General histogram width ratio, 0-1 range of values |
+| maxColumnWidth | _number_ | Maximum width of histogram, pixel value |
+| minColumnWidth | _number_ | Minimum width of histogram, pixel value |
+| roseWidthRatio | _number_ | Rose width ratio, 0-1 range of value |
+| multiplePieWidthRatio | _number_ | Multilayer pie and loop ratio, 0-1 range values |
+| geometries | _object_ | Configure the style of each shape for each Geometry, including the default style and the style for each state |
+| components | _object_ | Configure theme samples for axes, legends, tooltips, and annotations |
+| labels | _object_ | Configure the theme style of the label under Geometry |
+| innerLabels | _object_ | Configure Geometry to display the Labels theme style inside the graph |
+| pieLabels | _object_ | Configure the theme style of pie chart labels |
+
+usage:
+
+```ts
+{
+  theme: {
+    colors10: [
+      '#FF6B3B',
+      '#626681',
+      '#FFC100',
+      '#9FB40F',
+      '#76523B',
+      '#DAD5B5',
+      '#0E8E89',
+      '#E19348',
+      '#F383A2',
+      '#247FEA',
+    ];
+  }
+}
+```
+
+#### Theme attributes (StyleSheet)
+
+除了以上介绍的主题属性之外，还可以传入主题样式表来自定义主题。如果你需要对全局主题进行配置的话，对样式风格进行切换，比如更改颜色、字体大小、边框粗细等
+
+usage:
+
+```ts
+{
+  theme: {
+    styleSheet: {
+      fontFamily: 'Avenir';
+    }
+  }
+}
+```
+
+支持的样式表属性：
+
+| **Properties**          | **Type** | **Description**                                   |
+| ----------------------- | -------- | ------------------------------------------------- |
+| `backgroundColor`       | _string_ | Background color                                  |
+| `brandColor`            | _string_ | Brand color，默认取 10 色分类颜色色板的第一个颜色 |
+| `paletteQualitative10`  | _string_ | Qualitative palette，分类个数小于 10 时使用       |
+| `paletteQualitative20`  | _string_ | Qualitative palette，分类个数大于 10 时使用       |
+| `paletteSemanticRed`    | _string_ | Semantic red                                      |
+| `paletteSemanticGreen`  | _string_ | Semantic green                                    |
+| `paletteSemanticYellow` | _string_ | Semantic yellow                                   |
+| `fontFamily`            | _string_ | fontFamily                                        |
+
+#### Update theme
+
+usage：
+
+```ts
+// example 1:
+plot.update({ theme: 'dark' });
+
+// example 2:
+plot.update({ theme: { defaultColor: '#FF6B3B' } });
+```
+
+#### Custom theme
+
+In addition, G2 provides a custom topic mechanism to define a new topic structure, allowing users to switch and define chart topics. Go [G2 | Custom theme](https://g2.antv.vision/en/docs/api/advanced/register-theme) for more details.
+
+<playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
+
+🌰 Customize theme [DEMO](/zh/examples/general/theme#register-theme)

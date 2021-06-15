@@ -1,5 +1,5 @@
 ---
-title: Chord
+title: 弦图
 order: 7
 ---
 

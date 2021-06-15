@@ -1,6 +1,6 @@
 ---
-title: Tiny Area
-order: 28
+title: 迷你面积图
+order: 33
 ---
 
 ### 带辅助信息的迷你面积图
@@ -11,32 +11,11 @@ import { TinyArea } from '@ant-design/charts';
 
 const DemoTinyArea: React.FC = () => {
   var data = [
-    264,
-    417,
-    438,
-    887,
-    309,
-    397,
-    550,
-    575,
-    563,
-    430,
-    525,
-    592,
-    492,
-    467,
-    513,
-    546,
-    983,
-    340,
-    539,
-    243,
-    226,
-    192,
+    264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513, 546, 983, 340, 539,
+    243, 226, 192,
   ];
   var config = {
     height: 60,
-    width: 300,
     autoFit: false,
     data: data,
     smooth: true,
@@ -90,32 +69,11 @@ import { TinyArea } from '@ant-design/charts';
 
 const DemoTinyArea: React.FC = () => {
   var data = [
-    264,
-    417,
-    438,
-    887,
-    309,
-    397,
-    550,
-    575,
-    563,
-    430,
-    525,
-    592,
-    492,
-    467,
-    513,
-    546,
-    983,
-    340,
-    539,
-    243,
-    226,
-    192,
+    264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513, 546, 983, 340, 539,
+    243, 226, 192,
   ];
   var config = {
     height: 60,
-    width: 300,
     autoFit: false,
     data: data,
     smooth: true,
@@ -134,32 +92,11 @@ import { TinyArea } from '@ant-design/charts';
 
 const DemoTinyArea: React.FC = () => {
   var data = [
-    264,
-    417,
-    438,
-    887,
-    309,
-    397,
-    550,
-    575,
-    563,
-    430,
-    525,
-    592,
-    492,
-    467,
-    513,
-    546,
-    983,
-    340,
-    539,
-    243,
-    226,
-    192,
+    264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513, 546, 983, 340, 539,
+    243, 226, 192,
   ];
   var config = {
     height: 60,
-    width: 300,
     autoFit: false,
     data: data,
     smooth: true,

@@ -1,8 +1,12 @@
 /**
  * 扫描所有demo文件，生成demo文档
+ * eg:
+ *  - `node scripts/demos.js`
+ *  - `node scripts/demos.js en`
  */
 const shelljs = require('shelljs');
 const readline = require('readline');
+const arg = process.argv.splice(2);
 
 // 该操作比较危险，不建议直接扫描
 const demos = [
@@ -98,13 +102,25 @@ const demos = [
     name: '对称条形图',
     chart: 'BidirectionalBar',
   },
-  // {
-  //   name: '雷达图',
-  //   chart: 'Radar',
-  // },
+  {
+    name: '雷达图',
+    chart: 'Radar',
+  },
+  {
+    name: '矩阵树图',
+    chart: 'Treemap',
+  },
   {
     name: '旭日图',
     chart: 'Sunburst',
+  },
+  {
+    name: '小提琴图',
+    chart: 'Violin',
+  },
+  {
+    name: '分面图',
+    chart: 'Facet',
   },
   {
     name: '瀑布图',
@@ -123,7 +139,8 @@ const demos = [
 const start = () => {
   console.info('文档生成中....');
   demos.forEach((item) => {
-    shelljs.exec(`node scripts/singledemo.js ${item.chart} ${item.name}`);
+    // shelljs.exec(`node scripts/singledemo.js ${item.chart} ${arg?.[0]}`);
+    shelljs.exec(`node scripts/singledemo.js ${item.chart}`);
   });
 };
 

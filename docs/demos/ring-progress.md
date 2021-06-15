@@ -1,6 +1,6 @@
 ---
-title: Ring Progress
-order: 24
+title: 进度环图
+order: 22
 ---
 
 ### 迷你进度环图样式

@@ -1,34 +1,32 @@
 /**
  * 扫描指定目录下的所有demo文件，生成demo文档
- * eg: `node scripts/singledemo.js Bar 条形图`
- * 指定路径：`node scripts/singledemo.js Funnel 漏斗图 /more-plots`
+ * eg:
+ *  - `node scripts/singledemo.js Bar`
+ *  - `node scripts/singledemo.js Bar en`
  */
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
 const { groupBy } = require('loadsh');
-const { chartNames } = require('./constants');
+const { chartNames, ChartsLevel } = require('./constants');
 const { lowerCase, toLine } = require('./util.js');
 const parseFile = require('./parse.js');
-
-const tniyPath = ['RingProgress', 'Progress', 'TinyArea', 'TinyColumn', 'TinyLine'];
 const arg = process.argv.splice(2);
 if (!arg.length) {
-  console.log('请指定扫描目录，例如: "node scripts/singledemo.js Bar 条形图" ');
+  console.log('请指定扫描目录，例如: "node scripts/singledemo.js Bar" ');
   return;
 }
+const chartNameZh = chartNames[arg[0]];
+const language = arg[1] === 'en' ? '' : '.zh-CN';
 const lowerCaseFileName = lowerCase(arg[0]);
 const toLineName = toLine(lowerCaseFileName);
-const tiny = tniyPath.includes(arg[0]) ? '/tiny' : '';
-// const fp = path.resolve('../', `G2Plot/examples${tiny}/${toLineName}`);
-// G2Plot 修改导航层级，后续走输入逻辑的逻辑，待完善。  `node scripts/singledemo.js Funnel 漏斗图 /more-plots`
-const chartPath = arg[2];
+const chartPath = ChartsLevel[arg[0]] || '';
 const fp = path.resolve('../', `G2Plot/examples${chartPath}/${toLineName}`);
 // const fp = path.resolve('./test.ts');
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateDemoPath = path.join(__dirname, '../template/doc/demo.ejs');
 const templateTitlePath = path.join(__dirname, '../template/doc/title.ejs');
-const filePath = `${DOC_PATH}/demos/${toLineName}.md`;
+const filePath = `${DOC_PATH}/demos/${toLineName}${language}.md`;
 
 // 存储所有的meta文件
 let result = [];
@@ -87,7 +85,7 @@ const writeTitle = () => {
       ejs.renderFile(
         templateTitlePath,
         {
-          chartTitle: arg[1] || '无标题',
+          chartTitle: chartNameZh || '无标题',
           order: order + 1,
         }, // 渲染的数据key: 对应到了ejs中的index
         (err, data) => {
@@ -127,6 +125,9 @@ const writeFile = async () => {
           chartName: item.chartName,
           chartTitle: chartContent.title,
           chartContent: chartContent.code,
+          useG2: chartContent.code.indexOf('G2.') !== -1 ? ', G2' : '',
+          useMeasureTextWidth:
+            chartContent.code.indexOf('measureTextWidth') !== -1 ? ', measureTextWidth' : '',
         }, // 渲染的数据key: 对应到了ejs中的index
         (err, data) => {
           if (err) {

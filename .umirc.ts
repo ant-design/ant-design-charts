@@ -71,7 +71,7 @@ export default defineConfig({
       {
         title: '进度图',
         path: '/zh-CN/demos/gauge',
-        children: ['demos/gauge.zh-CN.md', 'demos/liquid.zh-CN.md', 'demos/bullet.zh-CN.md'],
+        children: ['/demos/gauge.zh-CN.md', '/demos/liquid.zh-CN.md', '/demos/bullet.zh-CN.md'],
       },
       {
         title: '散点气泡图',
@@ -91,8 +91,8 @@ export default defineConfig({
           // '/demos/indentedTree.zh-CN.md',
           '/demos/dagreGraph.zh-CN.md',
           '/demos/dagreFundFlowGraph.zh-CN.md',
-          'demos/sankey.zh-CN.md',
-          'demos/chord.zh-CN.md',
+          '/demos/sankey.zh-CN.md',
+          '/demos/chord.zh-CN.md',
         ],
       },
       {
@@ -103,11 +103,11 @@ export default defineConfig({
         title: '迷你图',
         path: '/zh-CN/demos/tiny-line',
         children: [
-          'demos/tiny-line.zh-CN.md',
-          'demos/tiny-area.zh-CN.md',
-          'demos/tiny-column.zh-CN.md',
-          'demos/progress.zh-CN.md',
-          'demos/ring-progress.zh-CN.md',
+          '/demos/tiny-line.zh-CN.md',
+          '/demos/tiny-area.zh-CN.md',
+          '/demos/tiny-column.zh-CN.md',
+          '/demos/progress.zh-CN.md',
+          '/demos/ring-progress.zh-CN.md',
         ],
       },
       {
@@ -115,19 +115,21 @@ export default defineConfig({
         path: '/zh-CN/demos/radar',
         children: [
           // 菜单子项（可选）
-          'demos/radar.zh-CN.md',
-          'demos/treemap.zh-CN.md',
-          'demos/funnel.zh-CN.md',
-          'demos/waterfall.zh-CN.md',
-          'demos/word-cloud.zh-CN.md',
-          'demos/histogram.zh-CN.md',
-          'demos/sunburst.zh-CN.md',
-          'demos/bidirectional-bar.zh-CN.md',
-          'demos/radial-bar.zh-CN.md',
-          'demos/box.zh-CN.md',
-          'demos/stock.zh-CN.md',
-          'demos/multi-view.zh-CN.md',
-          'demos/general.zh-CN.md',
+          // '/demos/violin.zh-CN.md',
+          // '/demos/facet.zh-CN.md',
+          '/demos/radar.zh-CN.md',
+          '/demos/treemap.zh-CN.md',
+          '/demos/funnel.zh-CN.md',
+          '/demos/waterfall.zh-CN.md',
+          '/demos/word-cloud.zh-CN.md',
+          '/demos/histogram.zh-CN.md',
+          '/demos/sunburst.zh-CN.md',
+          '/demos/bidirectional-bar.zh-CN.md',
+          '/demos/radial-bar.zh-CN.md',
+          '/demos/box.zh-CN.md',
+          '/demos/stock.zh-CN.md',
+          '/demos/multi-view.zh-CN.md',
+          '/demos/general.zh-CN.md',
         ],
       },
     ],
@@ -163,7 +165,20 @@ export default defineConfig({
       {
         title: 'Progress',
         path: '/demos/gauge',
-        children: ['demos/gauge.md', 'demos/liquid.md', 'demos/bullet.md'],
+        children: [
+          {
+            title: 'Gauge',
+            path: '/demos/gauge',
+          },
+          {
+            title: 'Liquid',
+            path: '/demos/liquid',
+          },
+          {
+            title: 'Bullet',
+            path: '/demos/bullet',
+          },
+        ],
       },
       {
         title: 'Scatter',
@@ -177,14 +192,38 @@ export default defineConfig({
         title: 'Relation',
         path: '/demos/sankey',
         children: [
-          '/demos/indented-tree-graph.md',
-          '/demos/organizational-graph.md',
-          '/demos/radial-graph.md',
-          // '/demos/indentedTree.md',
-          '/demos/dagreGraph.md',
-          '/demos/dagreFundFlowGraph.md',
-          'demos/sankey.md',
-          'demos/chord.md',
+          {
+            title: 'IndentedTreeGraph',
+            path: '/demos/indented-tree-graph',
+          },
+          {
+            title: 'RadialGraph',
+            path: '/demos/radial-graph',
+          },
+          {
+            title: 'OrganizationalGraph',
+            path: '/demos/organizational-graph',
+          },
+          // {
+          //   title: 'indentedTree',
+          //   path: '/demos/indentedTree-graph',
+          // },
+          {
+            title: 'DagreGraph',
+            path: '/demos/dagreGraph',
+          },
+          {
+            title: 'DagreFundFlowGraph',
+            path: '/demos/dagreFundFlowGraph',
+          },
+          {
+            title: 'Sankey',
+            path: '/demos/sankey',
+          },
+          {
+            title: 'Chord',
+            path: '/demos/chord',
+          },
         ],
       },
       {
@@ -195,31 +234,92 @@ export default defineConfig({
         title: 'Tiny',
         path: '/demos/tiny-line',
         children: [
-          'demos/tiny-line.md',
-          'demos/tiny-area.md',
-          'demos/tiny-column.md',
-          'demos/progress.md',
-          'demos/ring-progress.md',
+          {
+            title: 'TinyLine',
+            path: '/demos/tiny-line',
+          },
+          {
+            title: 'TinyArea',
+            path: '/demos/tiny-area',
+          },
+          {
+            title: 'TinyColumn',
+            path: '/demos/tiny-column',
+          },
+          {
+            title: 'Progress',
+            path: '/demos/progress',
+          },
+          {
+            title: 'RingProgress',
+            path: '/demos/ring-progress',
+          },
         ],
       },
       {
         title: 'More Charts',
         path: '/demos/radar',
         children: [
-          // 菜单子项（可选）
-          'demos/radar.md',
-          'demos/treemap.md',
-          'demos/funnel.md',
-          'demos/waterfall.md',
-          'demos/word-cloud.md',
-          'demos/histogram.md',
-          'demos/sunburst.md',
-          'demos/bidirectional-bar.md',
-          'demos/radial-bar.md',
-          'demos/box.md',
-          'demos/stock.md',
-          'demos/multi-view.md',
-          'demos/general.md',
+          // {
+          //   title: 'Violin',
+          //   path: '/demos/violin',
+          // },
+          // {
+          //   title: 'Facet',
+          //   path: '/demos/facet',
+          // },
+          {
+            title: 'Radar',
+            path: '/demos/radar',
+          },
+          {
+            title: 'Treemap',
+            path: '/demos/treemap',
+          },
+          {
+            title: 'Funnel',
+            path: '/demos/funnel',
+          },
+          {
+            title: 'Waterfall',
+            path: '/demos/waterfall',
+          },
+          {
+            title: 'WordCloud',
+            path: '/demos/word-cloud',
+          },
+          {
+            title: 'Histogram',
+            path: '/demos/histogram',
+          },
+          {
+            title: 'Sunburst',
+            path: '/demos/sunburst',
+          },
+          {
+            title: 'Bidirectional Bar',
+            path: '/demos/bidirectional-bar',
+          },
+          {
+            title: 'Radial Bar',
+            path: '/demos/radial-bar',
+          },
+          {
+            title: 'Box',
+            path: '/demos/box',
+          },
+          {
+            title: 'Stock',
+            path: '/demos/stock',
+          },
+          {
+            title: 'Mix',
+            path: '/demos/multi-view',
+          },
+          {
+            title: 'General',
+            path: '/demos/general',
+          },
         ],
       },
     ],
