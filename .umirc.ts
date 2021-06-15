@@ -116,7 +116,7 @@ export default defineConfig({
         children: [
           // 菜单子项（可选）
           // '/demos/violin.zh-CN.md',
-          // '/demos/facet.zh-CN.md',
+          '/demos/facet.zh-CN.md',
           '/demos/radar.zh-CN.md',
           '/demos/treemap.zh-CN.md',
           '/demos/funnel.zh-CN.md',
@@ -264,10 +264,10 @@ export default defineConfig({
           //   title: 'Violin',
           //   path: '/demos/violin',
           // },
-          // {
-          //   title: 'Facet',
-          //   path: '/demos/facet',
-          // },
+          {
+            title: 'Facet',
+            path: '/demos/facet',
+          },
           {
             title: 'Radar',
             path: '/demos/radar',

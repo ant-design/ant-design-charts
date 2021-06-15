@@ -342,7 +342,7 @@ const DemoFacet: React.FC = () => {
 export default DemoFacet;
 ```
 
-### 多级树型分面
+<!-- ### 多级树型分面
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -432,7 +432,7 @@ const DemoFacet: React.FC = () => {
 };
 
 export default DemoFacet;
-```
+``` -->
 
 ### 树型分面
 
