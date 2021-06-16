@@ -1,6 +1,14 @@
+<% if (info.onlyTitle) { %>
+## <%= info.onlyTitle %>
+<% } %>
 
+<% if (!info.onlyTitle) { %>
+<% if (info.isDeepLevel) { %>
+### <%= info.chartName %>
+<%} else { %>
 ## <%= info.chartName %>
-
+<% } %>  
+  
 <div class="gallery-item-box">
   <% info.demos.forEach(function(item){ %>
   <a href="/demos/<%= info.path.split('#')[0] + '#' + item.title.zh %>" >
@@ -9,3 +17,5 @@
   </a>
 <% }); %>
 </div>
+<% }%>
+

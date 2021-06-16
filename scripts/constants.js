@@ -1,15 +1,12 @@
-// 过滤文件
-const filterFileFolder = [
-  '.umi',
-  'base',
-  'context',
-  'errorBoundary',
-  'hooks',
-  'util',
-  'interface',
-  'loading',
-  'theme',
-];
+const excludeFilePath = ['gallery', 'case', 'dynamic-plots'];
+const specilFilePath = ['more-plots', 'tiny', 'progress-plots', 'plugin', 'relation-plots'];
+const specilFilePathZhNames = {
+  'more-plots': '更多图表',
+  tiny: '迷你图',
+  'progress-plots': '进度图',
+  plugin: '高级用法',
+  'relation-plots': '关系图',
+};
 
 const filterTitle = ['基础', '分组', '堆叠', '密度'];
 const exampleBaseUrl = 'https://antv-g2plot.gitee.io';
@@ -84,4 +81,12 @@ const ChartsLevel = {
   Mix: '/plugin',
 };
 
-module.exports = { filterFileFolder, filterTitle, exampleBaseUrl, chartNames, ChartsLevel };
+module.exports = {
+  filterTitle,
+  exampleBaseUrl,
+  chartNames,
+  ChartsLevel,
+  specilFilePath,
+  excludeFilePath,
+  specilFilePathZhNames,
+};

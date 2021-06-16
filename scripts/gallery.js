@@ -1,44 +1,95 @@
 /**
  * 同一目录文件扫描
- * 扫描g2plot examples下所有meta.json，自动生成gallery.md
+ * 扫描 g2plot examples 特定条件下所有 meta.json，自动生成 tempGallery.md
  */
 
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
-const { chartNames, filterTitle } = require('./constants');
+const chalk = require('chalk');
+const {
+  chartNames,
+  filterTitle,
+  specilFilePath,
+  excludeFilePath,
+  specilFilePathZhNames,
+} = require('./constants');
 const { toHump, upperCase } = require('./util.js');
 
 const fp = path.resolve('../', 'G2Plot/examples');
 const DOC_PATH = path.join(__dirname, '../docs');
 const templateGalleryPath = path.join(__dirname, '../template/doc/gallery.ejs');
 const templateNavPath = path.join(__dirname, '../template/doc/nav.ejs');
-const filePath = `${DOC_PATH}/demos/global.zh-CN.md`;
+const filePath = `${DOC_PATH}/demos/temp-gallery.md`;
 
 // 存储所有的meta文件
-let result = [];
+let metaInfo = [];
+const combineResult = [];
 
 /**
  * 根据order排序并合并相同类型的charts
  */
 const sortAndCombineCharts = () => {
   // 排序
-  result = result.sort((pre, next) => {
+  metaInfo = metaInfo.sort((pre, next) => {
     return pre.order - next.order;
   });
   // 去重
-  for (let i = 0; i < result.length; i += 1) {
-    if (result[i].compared) {
+  for (let i = 0; i < metaInfo.length; i += 1) {
+    if (metaInfo[i].compared) {
       continue;
     }
-    for (j = i + 1; j < result.length; j += 1) {
-      const { compared } = result[j];
+    for (j = i + 1; j < metaInfo.length; j += 1) {
+      const { compared } = metaInfo[j];
       if (compared) {
         continue;
       }
-      if (result[i].chart === result[j].chart) {
-        result[i].demos = result[i].demos.concat(result[j].demos);
-        result[j].compared = true;
+      if (metaInfo[i].chart === metaInfo[j].chart) {
+        metaInfo[i].demos = metaInfo[i].demos.concat(metaInfo[j].demos);
+        metaInfo[j].compared = true;
+      }
+    }
+  }
+};
+
+// 将相同 levelName 的聚集到一一起，并插入 title
+const combineSpecialFile = () => {
+  const tempArr = [];
+  metaInfo.forEach((item) => {
+    if (!item.compared) {
+      tempArr.push({
+        ...item,
+        combined: false,
+      });
+    }
+  });
+  for (let i = 0; i < tempArr.length; i += 1) {
+    if (tempArr[i].combined) {
+      continue;
+    }
+    let isFirst = true;
+    combineResult.push(tempArr[i]);
+    if (!tempArr[i].levelName) {
+      continue;
+    }
+    for (j = i + 1; j < tempArr.length; j += 1) {
+      const item = tempArr[j];
+      if (item.combined) {
+        continue;
+      }
+      if (tempArr[i].levelName === item.levelName) {
+        if (isFirst) {
+          const last = combineResult.pop();
+          combineResult.push(
+            {
+              onlyTitle: specilFilePathZhNames[item.levelName],
+            },
+            last,
+          );
+        }
+        combineResult.push(item);
+        isFirst = false;
+        tempArr[j].combined = true;
       }
     }
   }
@@ -61,6 +112,15 @@ const scanFiles = (foldPath, dir) => {
         const file = fs.readFileSync(director, 'utf-8');
         const obj = JSON.parse(file);
         const fileInfo = dir.split('.');
+        let deepLevel = false;
+        let levelName = '';
+        if (excludeFilePath.includes(fileInfo[0])) {
+          return;
+        }
+        if (specilFilePath.includes(fileInfo[0])) {
+          levelName = fileInfo.shift();
+          deepLevel = true;
+        }
         const chart = upperCase(toHump(fileInfo[0]));
         const order = Object.keys(chartNames).findIndex((item) => item === chart);
         let chartName = obj.demos[0].title.zh;
@@ -73,7 +133,10 @@ const scanFiles = (foldPath, dir) => {
           chartName = chartName.replace(item, '');
         });
         obj.chartName = chartName;
-        result.push(obj);
+        obj.levelName = levelName;
+        obj.isDeepLevel = deepLevel;
+
+        metaInfo.push(obj);
       }
     });
   } catch (err) {
@@ -119,31 +182,30 @@ const writeNav = () => {
  */
 const writeFile = async () => {
   await writeNav();
-  result.forEach((item) => {
-    if (!item.compared) {
-      // 生成文件
-      ejs.renderFile(
-        templateGalleryPath,
-        {
-          info: item,
-        }, // 渲染的数据key: 对应到了ejs中的index
-        (err, data) => {
-          if (err) {
-            console.log('模版文件读取失败： ', err);
-            return;
-          }
-          // 生成文件内容
-          fs.appendFileSync(filePath, data);
-        },
-      );
-    }
+  combineResult.forEach((item) => {
+    // 生成文件
+    ejs.renderFile(
+      templateGalleryPath,
+      {
+        info: item,
+      }, // 渲染的数据key: 对应到了ejs中的index
+      (err, data) => {
+        if (err) {
+          console.log('模版文件读取失败： ', err);
+          return;
+        }
+        // 生成文件内容
+        fs.appendFileSync(filePath, data);
+      },
+    );
   });
-  console.log('global.md 追加完成');
+  console.log(chalk.green('临时文件 temp-gallery.md 生成完成，请按需使用'));
 };
 
 const start = () => {
   scanFiles(fp);
   sortAndCombineCharts();
+  combineSpecialFile();
   writeFile();
 };
 
