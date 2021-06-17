@@ -68,6 +68,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
     footerValueStyle,
     showArrow = true,
     arrowType = 'vee',
+    autoFit = true,
     onReady,
     loading,
     loadingTemplate,
@@ -149,7 +150,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
     if (collapseExpand) {
       bindDefaultEvents(graph, collapseExpand);
     }
-    renderGraph(graph, data);
+    renderGraph(graph, data, autoFit);
 
     if (onReady) {
       onReady(graph);
