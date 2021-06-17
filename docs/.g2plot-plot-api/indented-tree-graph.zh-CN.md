@@ -253,6 +253,12 @@ collapseExpand 为 true 时生效， 默认值 `right`，可配合 layout 使用
 
 是否开启动画，默认值 `true`。
 
+#### autoFit
+
+<description>**optional** _Boolean_</description>
+
+是否缩放节点大小自适应容器，默认值 `true`。
+
 #### layout
 
 <description>**optional** _object_</description>

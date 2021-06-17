@@ -38,6 +38,7 @@ const DemoIndentedTree: React.FC = () => {
 
   const config = {
     data,
+    autoFit: false,
     behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
   };
 

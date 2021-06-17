@@ -91,7 +91,7 @@ export interface CommonConfig extends ContainerConfig {
   layout?: any;
   /** 是否开启动画 */
   animate?: boolean;
-  /** 更新数据后是否自动调整布局 */
+  /** 是否缩放节点大小自适应容器 */
   autoFit?: boolean;
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;

@@ -254,6 +254,12 @@ Whether to display tail arrows, default to 'true'.
 
 Whether to turn on animation, default to 'true'.
 
+#### autoFit
+
+<description>**optional** _Boolean_</description>
+
+Whether to scale node size adaptive container. Default value is 'true '.
+
 #### layout
 
 <description>**optional** _object_</description>

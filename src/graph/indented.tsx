@@ -61,6 +61,7 @@ const IndentedTree: React.FC<RelationGraph> = (props) => {
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
     collapseExpand = true,
+    autoFit = true,
     handleNodeClick,
     graphRef,
     onReady,
@@ -109,7 +110,7 @@ const IndentedTree: React.FC<RelationGraph> = (props) => {
 
     processMinimap(minimapCfg, graph);
 
-    renderGraph(graph, data);
+    renderGraph(graph, data, autoFit);
     if (onReady) {
       onReady(graph);
     }

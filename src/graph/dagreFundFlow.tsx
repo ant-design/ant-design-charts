@@ -51,6 +51,7 @@ const DagreFundFlowGraph: React.FC<RelationGraph> = (props) => {
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
     colorMap = {},
+    autoFit = true,
     graphRef,
     onReady,
     loading,
@@ -119,8 +120,7 @@ const DagreFundFlowGraph: React.FC<RelationGraph> = (props) => {
         },
       });
     });
-
-    graph.fitView();
+    autoFit ? graph.fitView() : graph.fitCenter();
     bindEvents(graph, props);
     return () => {
       if (graphs[graphId]) {
