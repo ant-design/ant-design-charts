@@ -25,3 +25,6 @@
 #ide
 .idea/
 .eslintcache
+
+# temp
+temp-gallery.md
