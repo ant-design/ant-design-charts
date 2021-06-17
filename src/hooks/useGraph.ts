@@ -35,9 +35,7 @@ export default function useInit(
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
       graphInstance.changeData(data);
-      if (autoFit) {
-        graphInstance.fitView();
-      }
+      autoFit ? graphInstance.fitView() : graphInstance.fitCenter();
     }
   }, [data]);
 

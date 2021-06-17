@@ -238,7 +238,7 @@ interface Data {
 
 <description>**optional** _Boolean_</description>
 
-更新数据后是否自动调整布局，默认为 true。
+是否缩放节点大小自适应容器，默认为 true。
 
 #### minimapCfg
 

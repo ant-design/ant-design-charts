@@ -41,6 +41,7 @@ const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
     edgeStateStyles = defaultStateStyles,
     showArrow = false,
     arrowType = 'triangle',
+    autoFit = true,
     onReady,
     loading,
     loadingTemplate,
@@ -108,7 +109,7 @@ const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
       };
     });
 
-    renderGraph(graph, data);
+    renderGraph(graph, data, autoFit);
 
     if (onReady) {
       onReady(graph);

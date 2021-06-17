@@ -238,7 +238,7 @@ Whether to turn on animation, default to 'true'.
 
 <description>**optional** _Boolean_</description>
 
-Whether to automatically adjust the layout after updating data. Default value is 'true '.
+Whether to scale node size adaptive container. Default value is 'true '.
 
 #### minimapCfg
 

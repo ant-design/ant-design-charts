@@ -64,6 +64,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
     edgeStyle = defaultEdgeStyle,
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
+    autoFit = true,
     graphRef,
     onReady,
     loading,
@@ -116,7 +117,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
     }
 
     processMinimap(minimapCfg, graph);
-    renderGraph(graph, data);
+    renderGraph(graph, data, autoFit);
     if (onReady) {
       onReady(graph);
     }

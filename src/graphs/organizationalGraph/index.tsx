@@ -66,6 +66,7 @@ const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
     markerStyle,
     nodeStateStyles = defaultStateStyles,
     edgeStateStyles = defaultStateStyles,
+    autoFit = true,
     onReady,
     loading,
     loadingTemplate,
@@ -142,7 +143,7 @@ const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
     });
 
     processMinimap(minimapCfg, graph);
-    renderGraph(graph, data);
+    renderGraph(graph, data, autoFit);
     if (onReady) {
       onReady(graph);
     }

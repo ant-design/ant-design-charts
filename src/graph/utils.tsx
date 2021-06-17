@@ -57,11 +57,11 @@ export const getGraphId = (graph: { current?: string }) => {
   return graph.current;
 };
 
-export const renderGraph = (graph: IGraph, data: any) => {
+export const renderGraph = (graph: IGraph, data: any, autoFit: boolean) => {
   const originData = deepClone(data);
   graph.data(originData);
   graph.render();
-  graph.fitView();
+  autoFit ? graph.fitView() : graph.fitCenter();
 };
 
 // 事件绑定，兼容历史数据
