@@ -755,6 +755,32 @@ toc: content
 
 ## More Chart
 
+### Violin
+
+<div class="gallery-item-box">
+  
+  <a href="/demos/violin#基础小提琴图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*mBJ1Rqh72ScAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础小提琴图</p>
+  </a>
+
+  <a href="/demos/violin#分组小提琴图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*eb3AQ6CiBLwAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">分组小提琴图</p>
+  </a>
+
+  <a href="/demos/violin#平滑/空心小提琴图" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*0nOgSohp4QAAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">平滑/空心小提琴图</p>
+  </a>
+
+  <a href="/demos/violin#自定义Tooltip文案" >
+    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IsxHQYqkeEsAAAAAAAAAAAAAARQnAQ" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义Tooltip文案</p>
+  </a>
+
+</div>
+
 ### Facet
 
 <div class="gallery-item-box">

@@ -115,7 +115,7 @@ export default defineConfig({
         path: '/zh-CN/demos/radar',
         children: [
           // 菜单子项（可选）
-          // '/demos/violin.zh-CN.md',
+          '/demos/violin.zh-CN.md',
           '/demos/facet.zh-CN.md',
           '/demos/radar.zh-CN.md',
           '/demos/treemap.zh-CN.md',
@@ -260,10 +260,10 @@ export default defineConfig({
         title: 'More Charts',
         path: '/demos/radar',
         children: [
-          // {
-          //   title: 'Violin',
-          //   path: '/demos/violin',
-          // },
+          {
+            title: 'Violin',
+            path: '/demos/violin',
+          },
           {
             title: 'Facet',
             path: '/demos/facet',
