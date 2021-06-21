@@ -374,8 +374,8 @@ A configuration item for the text label. NULL indicates that it is not displayed
 <!--label样式-->
 
 | Properties | Type | Description |
-| --- | --- | --- | --- | --- |
-| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
+| --- | --- | --- |
+| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner 、 outer 、spiders`) |
 | offset | _number_ | label offset |
 | offsetX | _number_ | The offset distance of the label from the data point in the X direction |
 | offsetY | _number_ | The offset distance of the label from the data point in the Y direction |
@@ -420,15 +420,15 @@ Example code:
 
 Configurations related to axis label. Set this to `null` to prevent the axis label from appearing. The details of \_ AxisLabelCfg\_ are as follows:
 
-| Properties   | Type                                                                   |         |
-| ------------ | ---------------------------------------------------------------------- | ------- | --------------------------------------------------------- |
-| style        | _[ShapeAttrs](/guide/graphic-style)_                                   | -       | Axis label text graphic property style                    |
-| offset       | _number_                                                               | -       | Axis label offset                                         |
-| rotate       | _number_                                                               | -       | Axis label text rotation Angle                            |
-| autoRotate   | _boolean 、avoidCallback_                                              | `true`  | Whether to rotate automatically, default true             |
-| autoHide     | _boolean 、avoidCallback 、 { type:string,cfg?:AxisLabelAutoHideCfg }_ | `false` | Whether to hide it automatically, default to false        |
-| autoEllipsis | _boolean_                                                              | `false` | Whether to ellipsis label when overflow, default to false |
-| formatter    | _`(text: string, item: ListItem, index: number) => any`_               | `false` | Format function                                           |
+| Properties | Type |  |  |
+| --- | --- | --- | --- |
+| style | _[ShapeAttrs](/guide/graphic-style)_ | - | Axis label text graphic property style |
+| offset | _number_ | - | Axis label offset |
+| rotate | _number_ | - | Axis label text rotation Angle |
+| autoRotate | _boolean 、avoidCallback_ | `true` | Whether to rotate automatically, default true |
+| autoHide | _boolean 、avoidCallback 、 { type:string,cfg?:AxisLabelAutoHideCfg }_ | `false` | Whether to hide it automatically, default to false |
+| autoEllipsis | _boolean_ | `false` | Whether to ellipsis label when overflow, default to false |
+| formatter | _`(text: string, item: ListItem, index: number) => any`_ | `false` | Format function |
 
 **_avoidCallback_** 类型定义如下：
 
@@ -955,8 +955,8 @@ _ContinueLegendHandlerCfg_ is configured as follows:
 <!--label样式-->
 
 | Properties | Type | Description |
-| --- | --- | --- | --- | --- |
-| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
+| --- | --- | --- |
+| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner 、 outer 、spiders`) |
 | offset | _number_ | label offset |
 | offsetX | _number_ | The offset distance of the label from the data point in the X direction |
 | offsetY | _number_ | The offset distance of the label from the data point in the Y direction |
@@ -1548,12 +1548,12 @@ Applicable to base bar charts and base bar charts, the Conversion Rate component
 <description>**optional** _object_ 、 _false_</description>
 
 | Properties | Type | Default | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | size | _number_ | - | Conversion rate Component dimensions |
 | spacing | _number_ | - | Component and column spacing |
 | offset | _number_ | - | Component and axis spacing |
 | arrow | _ArrowCfg 、 false_ | - | Arrow shape configuration, false does not display arrows |
-| text | _TextCfg 、 false_ | No | - | Text configuration, false does not display text |
+| text | _TextCfg 、 false_ | - | Text configuration, false does not display text |
 
 ArrowCfg configuration is as follows:
 
