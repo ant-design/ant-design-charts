@@ -249,8 +249,8 @@ Radial type, not recommended in special cases. 在旭日图中，不可使用 `r
 <!--label样式-->
 
 | Properties | Type | Description |
-| --- | --- | --- | --- | --- |
-| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner | outer | spiders`) |
+| --- | --- | --- |
+| type | _string_ | When a user uses a custom label type, need to declare the specific type, otherwise you will use the default label type rendering (pie chart label support `inner 、 outer 、spiders`) |
 | offset | _number_ | label offset |
 | offsetX | _number_ | The offset distance of the label from the data point in the X direction |
 | offsetY | _number_ | The offset distance of the label from the data point in the Y direction |
