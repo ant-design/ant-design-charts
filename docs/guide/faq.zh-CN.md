@@ -109,6 +109,10 @@ import Line from '@ant-design/charts/es/line';
   }
 ```
 
+### 7、IE 兼容
+
+参考 [ChartsIE](https://github.com/lxfu1/charts-ie)
+
 ### 更多问题
 
 请到 [GitHub issues](https://github.com/ant-design/ant-design-charts/issues) 进行反馈，搜索是否有类似问题。我们会尽快响应和相应改进这篇文档。
