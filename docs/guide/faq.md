@@ -109,6 +109,10 @@ Method 3: Use [babel-plugin-import](https://github.com/ant-design/babel-plugin-i
   }
 ```
 
+### 7、IE Compatibility
+
+Refer to [ChartsIE](https://github.com/lxfu1/charts-ie)
+
 ### More problems
 
 Please go to [GitHub Issues](https://github.com/ant-design/ant-design-charts/issues) to find out if there are similar problems. We will respond and improve this document as soon as possible.
