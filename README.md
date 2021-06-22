@@ -123,7 +123,6 @@ See chart API for details. Common props:
 | errorTemplate | custom error template | (e: Error) => React.ReactNode | - |
 | className | container class | string | - |
 | style | container style | React.CSSProperties | - |
-| chartRef | chart ref | (React.MutableRefObject&lt;Chart&gt;)=> void | - |
 
 
 ## 🤝 How to Contribute
