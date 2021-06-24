@@ -1,13 +1,13 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Rose as G2plotRose, RoseOptions as G2plotConfig } from '@antv/g2plot';
-import useChart, { ContainerConfig } from '../hooks/useChart';
+import useChart from '../hooks/useChart';
 import { getChart } from '../util';
-import { ChartRefOptions } from '../interface';
+import { ChartRefConfig, ContainerConfig } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface RoseConfig extends G2plotConfig, ContainerConfig {
-  chartRef?: ChartRefOptions;
+export interface RoseConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
+  chartRef?: ChartRefConfig;
 }
 
 const RoseChart = forwardRef((props: RoseConfig, ref) => {

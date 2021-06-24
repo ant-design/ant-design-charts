@@ -1,13 +1,13 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Histogram as G2plotHistogram, HistogramOptions as G2plotConfig } from '@antv/g2plot';
-import useChart, { ContainerConfig } from '../hooks/useChart';
+import useChart from '../hooks/useChart';
 import { getChart } from '../util';
-import { ChartRefOptions } from '../interface';
+import { ChartRefConfig, ContainerConfig } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface HistogramConfig extends G2plotConfig, ContainerConfig {
-  chartRef?: ChartRefOptions;
+export interface HistogramConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
+  chartRef?: ChartRefConfig;
 }
 
 const HistogramChart = forwardRef((props: HistogramConfig, ref) => {

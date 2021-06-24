@@ -1,29 +1,18 @@
 import { ReactNode, useRef, useEffect } from 'react';
 import { isEqual } from '@antv/util';
-import { utils } from '../util';
-import { Plot, Options as G2PlotConfig, Tooltip as G2PlotTooltip, G2 } from '@antv/g2plot';
+import type { Options as BaseOptions, G2, Plot, Tooltip as BaseTooltip } from '@antv/g2plot';
 import createNode from '../util/createNode';
+import { utils } from '../util';
 
-export interface ContainerConfig {
-  style?: React.CSSProperties;
-  className?: string;
-  loading?: boolean;
-  loadingTemplate?: React.ReactElement;
-  errorTemplate?: (e: Error) => React.ReactNode;
-  /** 图表渲染完成回调 */
-  onReady?: (chart: G2PlotConfig) => void;
-  /** 任何其他的图形事件 */
-  onEvent?: (chart: G2PlotConfig, event: G2.Event) => void;
-}
-export interface Tooltip extends Omit<G2PlotTooltip, 'customContent'> {
+export interface Tooltip extends Omit<BaseTooltip, 'customContent'> {
   customContent?: (title: string, data: any[]) => ReactNode | string | unknown;
   container?: ReactNode;
 }
 
-export interface Options extends Omit<G2PlotConfig, 'tooltip' | 'data' | 'yAxis'> {
+export interface Options extends Omit<BaseOptions, 'tooltip' | 'data' | 'yAxis'> {
   tooltip?: boolean | Tooltip;
   data?: any;
-  yAxis?: G2PlotConfig['yAxis'] | G2PlotConfig['yAxis'][];
+  yAxis?: BaseOptions['yAxis'] | BaseOptions['yAxis'][];
   [key: string]: any;
 }
 

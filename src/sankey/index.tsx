@@ -1,13 +1,13 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Sankey as G2plotSankey, SankeyOptions as G2plotConfig } from '@antv/g2plot';
-import useChart, { ContainerConfig } from '../hooks/useChart';
+import useChart from '../hooks/useChart';
 import { getChart } from '../util';
-import { ChartRefOptions } from '../interface';
+import { ChartRefConfig, ContainerConfig } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface SankeyConfig extends G2plotConfig, ContainerConfig {
-  chartRef?: ChartRefOptions;
+export interface SankeyConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
+  chartRef?: ChartRefConfig;
 }
 
 const SankeyChart = forwardRef((props: SankeyConfig, ref) => {

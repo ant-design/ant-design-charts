@@ -1,5 +1,5 @@
 import { TreeGraphData, GraphData, StateStyles, ShapeStyle, INode, IEdge, IGraph } from '@antv/g6';
-import { ContainerConfig } from '../interface';
+import { GraphContainerConfig } from '../interface';
 
 export interface MiniMapConfig {
   show?: boolean;
@@ -10,7 +10,7 @@ export interface MiniMapConfig {
   refresh?: boolean;
   padding?: number;
 }
-export interface RelationGraph extends ContainerConfig {
+export interface RelationGraph extends GraphContainerConfig {
   data: TreeGraphData | GraphData;
   width?: number;
   height?: number;
