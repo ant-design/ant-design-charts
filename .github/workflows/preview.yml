@@ -12,6 +12,7 @@ jobs:
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          teardown: true
           build: |
             npm install
             npm run docs:build
