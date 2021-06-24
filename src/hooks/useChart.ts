@@ -4,8 +4,6 @@ import type { Options as BaseOptions, G2, Plot, Tooltip as BaseTooltip } from '@
 import createNode from '../util/createNode';
 import { utils } from '../util';
 
-/** 提供给迷你图专用的 options 类型定义 */
-
 export interface Tooltip extends Omit<BaseTooltip, 'customContent'> {
   customContent?: (title: string, data: any[]) => ReactNode | string | unknown;
   container?: ReactNode;
