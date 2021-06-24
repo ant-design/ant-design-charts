@@ -393,3 +393,93 @@ const DemoScatter: React.FC = () => {
 
 export default DemoScatter;
 ```
+
+### Tooltip 联动
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Line, Area, Column } from '@ant-design/charts';
+import { LineConfig } from '@ant-design/charts/es/line';
+import { AreaConfig } from '@ant-design/charts/es/area';
+import { ColumnConfig } from '@ant-design/charts/es/column';
+import { Plot, PlotEvent } from '@ant-design/charts/es/interface';
+
+type Base = LineConfig | AreaConfig | ColumnConfig;
+
+const PlotMaps: Record<string, Plot<Base>> = {};
+
+let PreTooltipData: { date: string; value: number };
+
+const DemoLine: React.FC = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/sp500.json')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const config = {
+    data,
+    xField: 'date',
+    yField: 'price',
+    height: 200,
+  };
+
+  const showTooltip = ({ x, y }: { x: number; y: number }) => {
+    Object.keys(PlotMaps).forEach((plot) => {
+      PlotMaps[plot].chart.showTooltip({ x, y });
+    });
+  };
+
+  const setTooltipPosition = (evt: PlotEvent, plot: Plot<Base>) => {
+    const { x, y } = evt.gEvent;
+    const currentData = plot.chart.getTooltipItems({ x, y });
+    if (currentData[0]?.data.date === PreTooltipData?.date) {
+      return;
+    }
+    PreTooltipData = currentData[0]?.data;
+    showTooltip({ x, y });
+  };
+
+  return (
+    <div>
+      <Line
+        {...config}
+        onReady={(plot) => {
+          PlotMaps.line = plot;
+          plot.on('mousemove', (evt: PlotEvent) => {
+            setTooltipPosition(evt, plot);
+          });
+        }}
+      />
+      <Area
+        {...config}
+        onReady={(plot) => {
+          PlotMaps.area = plot;
+          plot.on('mousemove', (evt: PlotEvent) => {
+            setTooltipPosition(evt, plot);
+          });
+        }}
+      />
+      <Column
+        {...config}
+        onReady={(plot) => {
+          // @ts-ignore
+          PlotMaps.Column = plot;
+          plot.on('mousemove', (evt: PlotEvent) => {
+            // @ts-ignore
+            setTooltipPosition(evt, plot);
+          });
+        }}
+      />
+    </div>
+  );
+};
+
+export default DemoLine;
+```
