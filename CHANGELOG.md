@@ -1,3 +1,10 @@
+## 1.1.18
+
+`2021-06-24`
+
+- 🐞 修复 onReady & onEvent 类型错误。
+- ContainerOptions 统一为 ContainerConfig，并从 src/hooks/useChart 动到 src/interface 。
+
 ## 1.1.17
 
 `2021-06-17`
