@@ -1,13 +1,13 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Chord as G2plotChord, ChordOptions as G2plotConfig } from '@antv/g2plot';
-import useChart, { ContainerConfig } from '../hooks/useChart';
+import useChart from '../hooks/useChart';
 import { getChart } from '../util';
-import { ChartRefOptions } from '../interface';
+import { ChartRefConfig, ContainerConfig } from '../interface';
 import { ErrorBoundary } from '../base';
 import ChartLoading from '../util/createLoading';
 
-export interface ChordConfig extends G2plotConfig, ContainerConfig {
-  chartRef?: ChartRefOptions;
+export interface ChordConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
+  chartRef?: ChartRefConfig;
 }
 
 const ChordChart = forwardRef((props: ChordConfig, ref) => {

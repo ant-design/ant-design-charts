@@ -1,10 +1,10 @@
 import { isFunction } from '@antv/util';
-import { ChartRefOptions } from '../interface';
+import { ChartRefConfig } from '../interface';
 
 /**
  * 获取或者绑定图表实例
  */
-export const getChart = (chartRef: ChartRefOptions | undefined, chart: any) => {
+export const getChart = (chartRef: ChartRefConfig | undefined, chart: any) => {
   if (!chartRef) {
     return;
   }
