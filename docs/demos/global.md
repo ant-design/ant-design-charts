@@ -575,6 +575,10 @@ toc: content
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Quv4RoUwgf4AAAAAAAAAAAAAARQnAQ" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">Base Organizational Graph</p>
   </a>
+  <a href="/demos/organizational-graph#set-title">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/ODaA4YAea8/e2f9c38a-cdda-4c6e-8bb5-9a1ae9bc56d2.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">Set Title</p>
+  </a>
   <a href="/demos/organizational-graph#show-marker">
     <img src="https://gw.alipayobjects.com/zos/antfincdn/OBtQR%24HhDo/fd78a719-ba60-4cc0-bc9c-67dc7fac6600.png" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">show-marker</p>
