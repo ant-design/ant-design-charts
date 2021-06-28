@@ -64,6 +64,23 @@ export interface CardModelConfig extends ModelConfig {
   labelStyle?: ILabelStyle;
 }
 
+export interface IconNodeModelConfig extends ModelConfig {
+  /** 头像配置 */
+  leftIcon?: {
+    style?: ShapeStyle;
+    /** 头像横向位置 */
+    x?: number;
+    /** 头像纵向位置 */
+    y?: number;
+    /** 头像宽度 */
+    width?: number;
+    /** 头像高度 */
+    height?: number;
+    /** 头像地址或头像 base64 */
+    img: 'string';
+  };
+}
+
 export interface Datum extends TreeGraphData {}
 
 export interface CommonConfig extends GraphContainerConfig {

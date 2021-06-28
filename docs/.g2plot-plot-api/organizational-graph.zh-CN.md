@@ -26,7 +26,20 @@ title: 组织架构图
 interface Data {
   id: string;
   label: string;
-  labelStyle?: LabelStyle | (node, cfg)=> LabelStyle
+  title?: string;
+  labelStyle?: LabelStyle | (node, cfg)=> LabelStyle;
+  leftIcon?: {
+    img: '',
+    style?: ShapeStyle,
+    /** 头像横向位置 */
+    x?: number;
+    /** 头像纵向位置 */
+    y?: number;
+    /** 头像宽度 */
+    width?: number;
+    /** 头像高度 */
+    height?: number;
+  };
   children?: Data[];
   [key: string]?: unknow
 }

@@ -1,7 +1,7 @@
-import G6, { IGroup, ModelConfig } from '@antv/g6';
+import G6, { IGroup } from '@antv/g6';
 import { defaultLabelCfg, Margin, defaultTitleLabelCfg, cardTitlePadding } from './constants';
 import { getConfig, getContentAndStyle, getMarkerPosition } from './utils';
-import { CardModelConfig } from './types';
+import { CardModelConfig, IconNodeModelConfig } from './types';
 
 export const registerCardNode = () => {
   G6.registerNode(
@@ -180,10 +180,19 @@ export const registerIconNode = () => {
         stroke: '#91d5ff',
         fill: '#91d5ff',
       },
-      draw(cfg: ModelConfig | undefined = {}, group: IGroup | undefined) {
+      draw(cfg: IconNodeModelConfig | undefined = {}, group: IGroup | undefined) {
         // @ts-ignore
         const styles = this.getShapeStyle(cfg);
-        const { labelCfg = {}, labelStyle, label, markerStyle, showMarker } = cfg;
+        const {
+          labelCfg = {},
+          labelStyle,
+          label,
+          markerStyle,
+          showMarker,
+          title,
+          titleStyle,
+        } = cfg;
+
         const keyShape = group!.addShape('rect', {
           attrs: {
             ...styles,
@@ -191,35 +200,32 @@ export const registerIconNode = () => {
             y: 0,
           },
         });
-
-        let style = {
-          fill: '#e6fffb',
-        };
-        let img;
+        const { height: keyShapeHeight } = keyShape.getBBox();
+        let headShape;
         if (cfg.leftIcon) {
-          style = { ...style, ...(cfg.leftIcon as any).style };
-          img = (cfg.leftIcon as any).img;
+          const { x = 8, y, width = 24, height = 24, style } = cfg.leftIcon;
+          if (style) {
+            group!.addShape('rect', {
+              attrs: {
+                x: 1,
+                y: 1,
+                width: 38,
+                height: styles.height - 2,
+                ...style,
+              },
+            });
+          }
+          headShape = group!.addShape('image', {
+            attrs: {
+              x,
+              y: y || keyShapeHeight / 2 - height / 2,
+              width,
+              height,
+              img: (cfg.leftIcon as any).img,
+            },
+            name: 'image-shape',
+          });
         }
-        group!.addShape('rect', {
-          attrs: {
-            x: 1,
-            y: 1,
-            width: 38,
-            height: styles.height - 2,
-            ...style,
-          },
-        });
-
-        group!.addShape('image', {
-          attrs: {
-            x: 8,
-            y: 8,
-            width: 24,
-            height: 24,
-            img,
-          },
-          name: 'image-shape',
-        });
 
         if (showMarker) {
           group!.addShape('marker', {
@@ -250,12 +256,30 @@ export const registerIconNode = () => {
         }
         if (label) {
           const textCfg = labelStyle ? getConfig(labelStyle, group, cfg) : labelCfg;
+          const y = title
+            ? styles.height / 2 - (textCfg.fontSize * 1 || 12) - Margin / 2
+            : styles.height / 2;
           group!.addShape('text', {
             attrs: {
               text: label,
               x: styles.width / 2,
-              y: styles.height / 1.5,
+              y,
+              textAlign: headShape ? 'start' : 'center',
+              textBaseline: title ? 'top' : 'middle',
               ...textCfg,
+            },
+          });
+        }
+        if (title) {
+          const titleCfg = titleStyle ? getConfig(titleStyle, group, cfg) : labelCfg;
+          group!.addShape('text', {
+            attrs: {
+              text: title,
+              x: styles.width / 2,
+              y: styles.height / 2 + Margin / 2,
+              textAlign: headShape ? 'start' : 'center',
+              textBaseline: 'top',
+              ...titleCfg,
             },
           });
         }

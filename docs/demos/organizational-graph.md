@@ -5,8 +5,6 @@ order: 1
 
 ### Base
 
-<!-- // 以下代码在页面离开时会出错 -->
-
 ```tsx
 import React, { useState, useEffect } from 'react';
 import { OrganizationalGraph } from '@ant-design/charts';
@@ -89,40 +87,99 @@ const DemoOrganizationGraph: React.FC = () => {
     ],
   };
 
-  /**
-   * 遍历树的方法，仅作为演示 demo 中使用，实际使用中根据具体需求而定
-   */
-  const traverseTree = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
-    if (typeof fn !== 'function') {
-      return;
-    }
-
-    if (fn(data) === false) {
-      return false;
-    }
-
-    if (data && data.children) {
-      for (let i = data.children.length - 1; i >= 0; i--) {
-        if (!traverseTree(data.children[i], fn)) return false;
-      }
-    }
-    return true;
-  };
-
-  traverseTree(data as any, (d: any) => {
-    d.leftIcon = {
-      style: {
-        fill: '#e6fffb',
-        stroke: '#e6fffb',
-      },
-      img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ',
-    };
-    return true;
-  });
-
   return (
     <OrganizationalGraph data={data} behaviors={['drag-canvas', 'zoom-canvas', 'drag-node']} />
   );
+};
+
+export default DemoOrganizationGraph;
+```
+
+### Set Title
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { OrganizationalGraph } from '@ant-design/charts';
+
+const DemoOrganizationGraph: React.FC = () => {
+  const data = {
+    label: 'Joel Alan',
+    labelStyle: {
+      fill: '#fff',
+    },
+    title: 'CEO',
+    titleStyle: {
+      fill: '#fff',
+    },
+    leftIcon: {
+      width: 32,
+      height: 32,
+      img: 'https://avatars.githubusercontent.com/u/31396322?v=4',
+    },
+    children: [
+      {
+        label: 'c1',
+        title: 'CTO',
+        titleStyle: {
+          fill: '#fff',
+        },
+        children: [
+          {
+            label: 'c1-1',
+          },
+          {
+            label: 'c1-2',
+            children: [
+              {
+                label: 'c1-2-1',
+              },
+              {
+                label: 'c1-2-2',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        label: 'c2',
+        title: 'CPO',
+        titleStyle: {
+          fill: '#fff',
+        },
+      },
+      {
+        label: 'c3',
+        title: 'COO',
+        titleStyle: {
+          fill: '#fff',
+        },
+        children: [
+          {
+            label: 'c3-1',
+          },
+          {
+            label: 'c3-2',
+            children: [
+              {
+                label: 'c3-2-1',
+              },
+              {
+                label: 'c3-2-2',
+              },
+              {
+                label: 'c3-2-3',
+              },
+            ],
+          },
+          {
+            label: 'c3-3',
+          },
+        ],
+      },
+    ],
+  };
+
+  return <OrganizationalGraph data={data} autoFit={false} nodeType="icon-node" />;
 };
 
 export default DemoOrganizationGraph;
