@@ -89,8 +89,8 @@ export default defineConfig({
           '/demos/organizational-graph.zh-CN.md',
           '/demos/radial-graph.zh-CN.md',
           // '/demos/indentedTree.zh-CN.md',
-          '/demos/dagreGraph.zh-CN.md',
-          '/demos/dagreFundFlowGraph.zh-CN.md',
+          '/demos/dagre-graph.zh-CN.md',
+          '/demos/dagre-fund-flow-graph.zh-CN.md',
           '/demos/sankey.zh-CN.md',
           '/demos/chord.zh-CN.md',
         ],
@@ -210,11 +210,11 @@ export default defineConfig({
           // },
           {
             title: 'DagreGraph',
-            path: '/demos/dagreGraph',
+            path: '/demos/dagre-graph',
           },
           {
             title: 'DagreFundFlowGraph',
-            path: '/demos/dagreFundFlowGraph',
+            path: '/demos/dagre-fund-flow-graph',
           },
           {
             title: 'Sankey',
