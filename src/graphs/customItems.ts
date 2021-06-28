@@ -254,13 +254,12 @@ export const registerIconNode = () => {
             name: 'remove-item',
           });
         }
-        let labelRectShape;
         if (label) {
           const textCfg = labelStyle ? getConfig(labelStyle, group, cfg) : labelCfg;
           const y = title
             ? styles.height / 2 - (textCfg.fontSize * 1 || 12) - Margin / 2
             : styles.height / 2;
-          labelRectShape = group!.addShape('text', {
+          group!.addShape('text', {
             attrs: {
               text: label,
               x: styles.width / 2,
