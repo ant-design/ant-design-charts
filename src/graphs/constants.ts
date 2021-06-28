@@ -17,7 +17,7 @@ export const defaultNodeAnchorPoints = [
   [1, 0.5],
 ];
 // card 内部 padding | margin
-export const Margin = 8;
+export const Margin = 6;
 // card title 默认样式
 export const defaultTitleLabelCfg = {
   fill: '#fff',
