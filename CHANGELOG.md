@@ -1,3 +1,9 @@
+## 1.1.19
+
+`2021-06-28`
+
+- 🆕 OrganizationalGraph 新增 [Title](https://charts.ant.design/demos/organizational-graph#set-title)。
+
 ## 1.1.18
 
 `2021-06-24`
