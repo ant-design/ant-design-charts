@@ -1,6 +1,6 @@
 import G6, { IGraph, IG6GraphEvent, INode, IGroup, Graph } from '@antv/g6';
 import { deepClone } from '../util/utils';
-import { CardNodeConfig, MiniMapConfig, CardModelConfig } from './types';
+import { CardNodeConfig, MiniMapConfig, CardModelConfig, GraphConfig } from './types';
 import { defaultMinimapCfg } from './constants';
 
 export const getGraphSize = (
@@ -92,7 +92,7 @@ export const getGraphId = (graph: { current?: string }) => {
   return graph.current;
 };
 
-export const renderGraph = (graph: IGraph, data: any, autoFit: boolean) => {
+export const renderGraph = (graph: IGraph, data: any, autoFit: boolean | undefined) => {
   const originData = deepClone(data);
   graph.data(originData);
   graph.render();
@@ -140,4 +140,20 @@ export const getMarkerPosition = (direction: string = 'right', size: number[]) =
   }
 
   return { x, y };
+};
+
+/**
+ * 设置 props 默认值
+ * props 会在对应图表和 hooks 里面使用，不想加个很长的赋值表达式。
+ * layout 使用 merge
+ */
+export const useProps = (props: Partial<GraphConfig>, defaultProps: Partial<GraphConfig>) => {
+  return {
+    ...defaultProps,
+    ...props,
+    layout: {
+      ...defaultProps?.layout,
+      ...props?.layout,
+    },
+  };
 };

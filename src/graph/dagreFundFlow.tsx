@@ -5,7 +5,7 @@ import { ErrorBoundary } from '../base';
 import useGraph from '../hooks/useGraph';
 import { deepClone } from '../util/utils';
 import { defaultNodeAnchorPoints, defaultStateStyles, defaultEdgeStyle } from './constants';
-import { processMinimap, getGraphSize, getGraphId, bindEvents } from './utils';
+import { processMinimap, getGraphSize, getGraphId, bindEvents, useProps } from './utils';
 import { RelationGraph } from './types';
 
 const defaultNodeSize = [150, 30];
@@ -28,9 +28,28 @@ const defaultLabelCfg = {
     fontSize: 10,
   },
 };
+
+const defaultProps = {
+  nodeType: 'round-rect',
+  edgeType: 'fund-polyline',
+  behaviors: ['zoom-canvas', 'drag-canvas'],
+  nodeSize: defaultNodeSize,
+  nodeLabelCfg: defaultLabelCfg,
+  edgeLabelCfg: defaultLabelCfg,
+  nodeAnchorPoints: defaultNodeAnchorPoints,
+  layout: defaultLayout,
+  nodeStyle: defaultNodeStyle,
+  edgeStyle: defaultEdgeStyle,
+  nodeStateStyles: defaultStateStyles,
+  edgeStateStyles: defaultStateStyles,
+  colorMap: {},
+  autoFit: true,
+};
+
 const graphs: any = {};
 
 const DagreFundFlowGraph: React.FC<RelationGraph> = (props) => {
+  const uProps = useProps(props, defaultProps);
   const {
     data,
     className,
@@ -57,11 +76,11 @@ const DagreFundFlowGraph: React.FC<RelationGraph> = (props) => {
     loading,
     loadingTemplate,
     errorTemplate,
-  } = props;
+  } = uProps;
   const container = React.useRef(null);
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
-  useGraph(graphs[graphId], props, container);
+  useGraph(graphs[graphId], uProps, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
@@ -101,7 +120,7 @@ const DagreFundFlowGraph: React.FC<RelationGraph> = (props) => {
     }
 
     processMinimap(minimapCfg, graph);
-    const originData = deepClone(data);
+    const originData = deepClone(data as any);
     graph.data(originData);
     graph.render();
     if (onReady) {

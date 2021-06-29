@@ -3,7 +3,7 @@ import G6, { IEdge, INode } from '@antv/g6';
 import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
 import ChartLoading from '../../util/createLoading';
-import { getGraphSize, getGraphId, getDefaultEdgeArrowCfg } from '../utils';
+import { getGraphSize, getGraphId, getDefaultEdgeArrowCfg, useProps } from '../utils';
 import { RadialGraphConfig } from '../types';
 import { renderGraph } from '../utils';
 import { defaultNodeAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../constants';
@@ -20,7 +20,24 @@ const defaultLayout = {
   radial: true,
 };
 
+const defaultProps = {
+  nodeType: 'circle',
+  linkCenter: true,
+  edgeType: 'line',
+  behaviors: ['zoom-canvas', 'drag-canvas'],
+  nodeAnchorPoints: defaultNodeAnchorPoints,
+  nodeSize: 30,
+  layout: defaultLayout,
+  animate: true,
+  nodeStateStyles: defaultStateStyles,
+  edgeStateStyles: defaultStateStyles,
+  showArrow: false,
+  arrowType: 'triangle',
+  autoFit: true,
+};
+
 const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
+  const uProps = useProps(props, defaultProps);
   const {
     data,
     className,
@@ -46,11 +63,11 @@ const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
     loading,
     loadingTemplate,
     errorTemplate,
-  } = props;
+  } = uProps;
   const container = React.useRef(null);
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
-  useGraph(graphs[graphId], props, container);
+  useGraph(graphs[graphId], uProps, container);
   const arrowOffset = (Array.isArray(nodeSize) ? nodeSize[0] : nodeSize) / 2;
 
   useEffect(() => {
@@ -76,10 +93,7 @@ const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
         },
         nodeStateStyles,
         edgeStateStyles,
-        layout: {
-          ...defaultLayout,
-          ...layout,
-        },
+        layout,
       });
       graphs[graphId] = graph;
     }

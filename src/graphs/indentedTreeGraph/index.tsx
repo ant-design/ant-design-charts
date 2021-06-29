@@ -3,7 +3,7 @@ import G6, { IEdge, INode } from '@antv/g6';
 import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
 import ChartLoading from '../../util/createLoading';
-import { getGraphSize, getGraphId } from '../utils';
+import { getGraphSize, getGraphId, useProps } from '../utils';
 import { IndentedTreeGraphConfig } from '../types';
 import { bindDefaultEvents, renderGraph, getDefaultEdgeArrowCfg } from '../utils';
 import { registerCardNode } from '../customItems';
@@ -40,7 +40,25 @@ const defaultLayout = {
   },
 };
 
+const defaultProps = {
+  nodeType: 'card',
+  edgeType: 'cubic-horizontal',
+  behaviors: ['zoom-canvas', 'drag-canvas'],
+  nodeAnchorPoints: defaultNodeAnchorPoints,
+  nodeSize: defaultNodeSize,
+  layout: defaultLayout,
+  animate: true,
+  markerPosition: 'right' as 'right',
+  nodeStateStyles: defaultStateStyles,
+  edgeStateStyles: defaultStateStyles,
+  collapseExpand: true,
+  showArrow: true,
+  arrowType: 'vee',
+  autoFit: true,
+};
+
 const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
+  const uProps = useProps(props, defaultProps);
   const {
     data,
     className,
@@ -73,11 +91,11 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
     loading,
     loadingTemplate,
     errorTemplate,
-  } = props;
+  } = uProps;
   const container = React.useRef(null);
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
-  useGraph(graphs[graphId], props, container);
+  useGraph(graphs[graphId], uProps, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
@@ -108,10 +126,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
         },
         nodeStateStyles,
         edgeStateStyles,
-        layout: {
-          ...defaultLayout,
-          ...layout,
-        },
+        layout,
       });
       graphs[graphId] = graph;
     }
