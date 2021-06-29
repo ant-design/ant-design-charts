@@ -4,7 +4,14 @@ import ChartLoading from '../util/createLoading';
 import { ErrorBoundary } from '../base';
 import useGraph from '../hooks/useGraph';
 import { defaultNodeSize, defaultLabelCfg, defaultStateStyles } from './constants';
-import { processMinimap, getGraphSize, getGraphId, renderGraph, bindEvents } from './utils';
+import {
+  processMinimap,
+  getGraphSize,
+  getGraphId,
+  renderGraph,
+  bindEvents,
+  useProps,
+} from './utils';
 import { RelationGraph } from './types';
 import { registerCustomItems } from './customItems';
 
@@ -39,9 +46,26 @@ const defaultLayout = {
   },
 };
 
+const defaultProps = {
+  nodeType: 'card-node',
+  edgeType: 'cubic-horizontal',
+  behaviors: ['zoom-canvas', 'drag-canvas'],
+  nodeSize: defaultNodeSize,
+  nodeLabelCfg: defaultLabelCfg,
+  nodeAnchorPoints: defaultNodeAnchorPoints,
+  layout: defaultLayout,
+  nodeStyle: defaultNodeStyle,
+  edgeStyle: defaultEdgeStyle,
+  nodeStateStyles: defaultStateStyles,
+  edgeStateStyles: defaultStateStyles,
+  collapseExpand: true,
+  autoFit: true,
+};
+
 const graphs: any = {};
 
 const IndentedTree: React.FC<RelationGraph> = (props) => {
+  const uProps = useProps(props, defaultProps);
   const {
     data,
     className,
@@ -68,11 +92,11 @@ const IndentedTree: React.FC<RelationGraph> = (props) => {
     loading,
     loadingTemplate,
     errorTemplate,
-  } = props;
+  } = uProps;
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
   const container = React.useRef(null);
-  useGraph(graphs[graphId], props, container);
+  useGraph(graphs[graphId], uProps, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);

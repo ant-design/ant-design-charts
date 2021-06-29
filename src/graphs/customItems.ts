@@ -1,5 +1,5 @@
 import G6, { IGroup } from '@antv/g6';
-import { defaultLabelCfg, Margin, defaultTitleLabelCfg, cardTitlePadding } from './constants';
+import { defaultLabelStyle, Margin, defaultTitleLabelCfg, cardTitlePadding } from './constants';
 import { getConfig, getContentAndStyle, getMarkerPosition } from './utils';
 import { CardModelConfig, IconNodeModelConfig } from './types';
 
@@ -96,7 +96,7 @@ export const registerCardNode = () => {
               x: Margin,
               y: height + Margin,
               text,
-              ...defaultLabelCfg,
+              ...defaultLabelStyle,
               ...getConfig(bodyStyle, group),
             },
             name: `body`,
@@ -118,7 +118,7 @@ export const registerCardNode = () => {
               x: Margin,
               y: height + Margin,
               text: labelText,
-              ...defaultLabelCfg,
+              ...defaultLabelStyle,
               ...getConfig(labelStyle, group),
             },
             name: `footer-label`,
@@ -137,7 +137,7 @@ export const registerCardNode = () => {
                 x: width + Margin * 2,
                 y: height + Margin,
                 text: valueText,
-                ...defaultLabelCfg,
+                ...defaultLabelStyle,
                 ...getConfig(valueStyle, group),
               },
               name: `footer-value`,
@@ -255,7 +255,7 @@ export const registerIconNode = () => {
           });
         }
         if (label) {
-          const textCfg = labelStyle ? getConfig(labelStyle, group, cfg) : labelCfg;
+          const textCfg = labelStyle ? getConfig(labelStyle, group, cfg) : labelCfg.style;
           const y = title
             ? styles.height / 2 - (textCfg.fontSize * 1 || 12) - Margin / 2
             : styles.height / 2;
@@ -271,7 +271,7 @@ export const registerIconNode = () => {
           });
         }
         if (title) {
-          const titleCfg = titleStyle ? getConfig(titleStyle, group, cfg) : labelCfg;
+          const titleCfg = titleStyle ? getConfig(titleStyle, group, cfg) : labelCfg.style;
           group!.addShape('text', {
             attrs: {
               text: title,

@@ -114,3 +114,19 @@ export const bindEvents = (graph: IGraph, props: RelationGraph) => {
     handleCanvasClick?.(graph);
   });
 };
+
+/**
+ * 设置 props 默认值
+ * props 会在对应图表和 hooks 里面使用，不想加个很长的赋值表达式。
+ * layout 使用 merge
+ */
+export const useProps = (props: Partial<RelationGraph>, defaultProps: Partial<RelationGraph>) => {
+  return {
+    ...defaultProps,
+    ...props,
+    layout: {
+      ...defaultProps?.layout,
+      ...props?.layout,
+    },
+  };
+};

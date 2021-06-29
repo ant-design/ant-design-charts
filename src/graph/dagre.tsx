@@ -10,7 +10,14 @@ import {
   defaultStateStyles,
   defaultEdgeStyle,
 } from './constants';
-import { getGraphSize, processMinimap, getGraphId, renderGraph, bindEvents } from './utils';
+import {
+  getGraphSize,
+  processMinimap,
+  getGraphId,
+  renderGraph,
+  bindEvents,
+  useProps,
+} from './utils';
 import { RelationGraph } from './types';
 
 const defaultNodeStyle = {
@@ -24,9 +31,26 @@ const defaultLayout = {
   controlPoints: true,
 };
 
+const defaultProps = {
+  nodeType: 'modelRect',
+  edgeType: 'polyline',
+  behaviors: ['zoom-canvas', 'drag-canvas'],
+  nodeSize: defaultNodeSize,
+  nodeLabelCfg: defaultLabelCfg,
+  edgeLabelCfg: defaultLabelCfg,
+  nodeAnchorPoints: defaultNodeAnchorPoints,
+  layout: defaultLayout,
+  nodeStyle: defaultNodeStyle,
+  edgeStyle: defaultEdgeStyle,
+  nodeStateStyles: defaultStateStyles,
+  edgeStateStyles: defaultStateStyles,
+  autoFit: true,
+};
+
 const graphs: any = {};
 
 const DagreGraph: React.FC<RelationGraph> = (props) => {
+  const uProps = useProps(props, defaultProps);
   const {
     data,
     className,
@@ -52,11 +76,11 @@ const DagreGraph: React.FC<RelationGraph> = (props) => {
     loading,
     loadingTemplate,
     errorTemplate,
-  } = props;
+  } = uProps;
   const container = React.useRef(null);
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
-  useGraph(graphs[graphId], props, container);
+  useGraph(graphs[graphId], uProps, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);

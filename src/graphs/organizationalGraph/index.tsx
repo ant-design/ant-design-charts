@@ -4,13 +4,14 @@ import ChartLoading from '../../util/createLoading';
 import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
 import { registerIconNode } from '../customItems';
-import { defaultLabelCfg, defaultStateStyles, defaultNodeSize } from '../constants';
+import { defaultLabelStyle, defaultStateStyles, defaultNodeSize } from '../constants';
 import {
   getGraphSize,
   processMinimap,
   getGraphId,
   renderGraph,
   getDefaultEdgeArrowCfg,
+  useProps,
 } from '../utils';
 import { OrganizationalGraphConfig } from '../types';
 
@@ -41,9 +42,27 @@ const defaultLayout = {
     return 70;
   },
 };
+const defaultProps = {
+  animate: true,
+  nodeType: 'rect',
+  edgeType: 'flow-line',
+  nodeSize: defaultNodeSize,
+  behaviors: ['drag-canvas', 'zoom-canvas'],
+  nodeLabelCfg: {
+    style: defaultLabelStyle,
+  },
+  layout: defaultLayout,
+  showMarker: false,
+  showArrow: true,
+  arrowType: 'triangle',
+  nodeStateStyles: defaultStateStyles,
+  edgeStateStyles: defaultStateStyles,
+  autoFit: true,
+};
 
 const graphs: any = {};
 const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
+  const uProps = useProps(props, defaultProps);
   const {
     data,
     className,
@@ -55,7 +74,7 @@ const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
     edgeType = 'flow-line',
     nodeSize = defaultNodeSize,
     behaviors = ['drag-canvas', 'zoom-canvas'],
-    nodeLabelCfg = defaultLabelCfg,
+    nodeLabelCfg,
     nodeCfg,
     layout = defaultLayout,
     showMarker = false,
@@ -71,12 +90,12 @@ const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
     loading,
     loadingTemplate,
     errorTemplate,
-  } = props;
+  } = uProps;
 
   const container = React.useRef(null);
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
-  useGraph(graphs[graphId], props, container);
+  useGraph(graphs[graphId], uProps, container);
   const arrowOffset = (Array.isArray(nodeSize) ? nodeSize[1] : nodeSize) / 2;
 
   useEffect(() => {
@@ -107,10 +126,7 @@ const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
         },
         nodeStateStyles,
         edgeStateStyles,
-        layout: {
-          ...defaultLayout,
-          ...layout,
-        },
+        layout,
       });
 
       graphs[graphId] = graph;

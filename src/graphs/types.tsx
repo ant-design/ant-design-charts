@@ -144,7 +144,7 @@ export interface RadialGraphConfig extends CommonConfig {
   linkCenter?: boolean;
 }
 
-export type GraphConfig = IndentedTreeGraphConfig & OrganizationalGraphConfig;
+export type GraphConfig = IndentedTreeGraphConfig & OrganizationalGraphConfig & RadialGraphConfig;
 
 export {
   TreeGraphData,

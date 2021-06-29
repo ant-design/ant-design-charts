@@ -5,7 +5,14 @@ import { ErrorBoundary } from '../base';
 import useGraph from '../hooks/useGraph';
 import { customIconNode } from './customItems';
 import { defaultLabelCfg, defaultStateStyles } from './constants';
-import { getGraphSize, processMinimap, getGraphId, renderGraph, bindEvents } from './utils';
+import {
+  getGraphSize,
+  processMinimap,
+  getGraphId,
+  renderGraph,
+  bindEvents,
+  useProps,
+} from './utils';
 import { RelationGraph } from './types';
 
 const defaultNodeStyle = {
@@ -43,8 +50,25 @@ const defaultLayout = {
   },
 };
 
+const defaultProps = {
+  nodeType: 'rect',
+  edgeType: 'flow-line',
+  collapseExpand: false,
+  nodeSize: [120, 40],
+  nodeLabelCfg: defaultLabelCfg,
+  edgeLabelCfg: defaultLabelCfg,
+  layout: defaultLayout,
+  enableEdit: false,
+  nodeStyle: defaultNodeStyle,
+  edgeStyle: defaultEdgeStyle,
+  nodeStateStyles: defaultStateStyles,
+  edgeStateStyles: defaultStateStyles,
+  autoFit: true,
+};
+
 const graphs: any = {};
 const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
+  const uProps = useProps(props, defaultProps);
   const {
     data,
     className,
@@ -70,11 +94,11 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
     loading,
     loadingTemplate,
     errorTemplate,
-  } = props;
+  } = uProps;
   const container = React.useRef(null);
   const graph = React.useRef(null);
   const graphId = getGraphId(graph as any);
-  useGraph(graphs[graphId], props, container);
+  useGraph(graphs[graphId], uProps, container);
 
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
