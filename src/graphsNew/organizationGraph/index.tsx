@@ -14,7 +14,6 @@ import {
   getArrowCfg,
   getCommonConfig,
   bindStateEvents,
-  bindDefaultEvents,
 } from '../utils';
 import {
   IGroup,
