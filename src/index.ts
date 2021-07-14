@@ -33,7 +33,13 @@ import MultiView from './mix'; // 和 Mix 相同，底层更名
 import Mix from './mix';
 import BidirectionalBar from './bidirectionalBar';
 import { DagreGraph, IndentedTree, DagreFundFlowGraph, OrganizationTreeGraph } from './graph'; // 会逐步下掉
-import { IndentedTreeGraph, OrganizationalGraph, RadialGraph } from './graphs';
+import { IndentedTreeGraph, OrganizationalGraph, RadialGraph } from './graphs'; // 过度版本
+import {
+  FlowAnalysisGraph,
+  RadialTreeGraph,
+  DecompositionTreeGraph,
+  OrganizationGraph,
+} from './graphsNew'; // 最终版，后续不会出现不兼容变更
 import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';
 
 export {
@@ -78,6 +84,10 @@ export {
   IndentedTreeGraph,
   OrganizationalGraph,
   RadialGraph,
+  FlowAnalysisGraph,
+  RadialTreeGraph,
+  DecompositionTreeGraph,
+  OrganizationGraph,
   G2,
   // 直接导出 G2Plot 相关方法
   flow,
@@ -125,6 +135,10 @@ export default {
   IndentedTree,
   DagreFundFlowGraph,
   IndentedTreeGraph,
+  FlowAnalysisGraph,
+  RadialTreeGraph,
+  DecompositionTreeGraph,
+  OrganizationGraph,
   OrganizationalGraph,
   RadialGraph,
   G2,

@@ -45,7 +45,7 @@ const defaultLayout = {
 const defaultProps = {
   animate: true,
   nodeType: 'rect',
-  edgeType: 'flow-line',
+  edgeType: 'polyline',
   nodeSize: defaultNodeSize,
   behaviors: ['drag-canvas', 'zoom-canvas'],
   nodeLabelCfg: {
@@ -71,7 +71,7 @@ const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
     height,
     animate = true,
     nodeType = 'rect',
-    edgeType = 'flow-line',
+    edgeType = 'polyline',
     nodeSize = defaultNodeSize,
     behaviors = ['drag-canvas', 'zoom-canvas'],
     nodeLabelCfg,

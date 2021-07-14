@@ -48,3 +48,5 @@ export interface GraphContainerConfig {
 }
 
 export { Plot, Options };
+
+export * from './graphsNew/interface';
