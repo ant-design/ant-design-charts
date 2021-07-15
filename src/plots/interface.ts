@@ -1,4 +1,4 @@
-// 从 index import {会有包体积问题
+import { Plot, Options } from '@antv/g2plot';
 import { AreaConfig } from './area';
 import { BarConfig } from './bar';
 import { BulletConfig } from './bullet';
@@ -63,4 +63,6 @@ export {
   BidirectionalBarConfig,
   SankeyConfig,
   MixConfig,
+  Plot,
+  Options,
 };
