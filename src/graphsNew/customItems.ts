@@ -157,7 +157,7 @@ export const registerIndicatorCardNode = () => {
                   startX: paddingArray[3] + itemPaddingArray[3],
                   startY: height,
                   width: itemContentWidth,
-                }),
+                }) ?? 0,
               );
             } else {
               itemsHeight.push(
@@ -332,7 +332,7 @@ export const registerOrganizationCardNode = () => {
                   startX: paddingArray[3],
                   startY: height,
                   width: contentWidth,
-                }),
+                }) ?? 0,
               );
             } else {
               itemsHeight.push(...createRowItems(item, contentWidth, paddingArray[3], index));

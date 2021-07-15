@@ -883,68 +883,77 @@ const DemoFlowAnalysisGraph: React.FC = () => {
   const data = {
     nodes: [
       {
-        id: '-4',
-        value: {
-          title: '甲乙对话',
-          items: [
-            {
-              text: '出去玩吗',
-            },
-            {
-              value: '不去',
-            },
-            {
-              text: '有活动',
-            },
-            {
-              value: '走',
-            },
-            {
-              text: '带上钱',
-            },
-          ],
-        },
-      },
-      {
-        id: '-3',
-        value: {
-          title: '乙',
-          items: [
-            {
-              icon: 'https://gw.alipayobjects.com/zos/antfincdn/n71KOJONFe/98a62cd8-789d-4585-b6b0-729af1ff37d2.png',
-            },
-          ],
-        },
-      },
-      {
-        id: '-2',
-        value: {
-          title: '甲',
-          items: [
-            {
-              icon: 'https://gw.alipayobjects.com/zos/antfincdn/dShhKje96T/86d0cbca-f767-4c8b-98f0-df4353b3ad1d.png',
-            },
-          ],
-        },
-      },
-      {
-        id: '-1',
-        value: {
-          title: '甲',
-          items: [
-            {
-              icon: 'https://gw.alipayobjects.com/zos/antfincdn/WifGuAhKdm/357884f9-1bd5-409a-91fa-1d3990cacebd.png',
-            },
-          ],
-        },
-      },
-      {
         id: '0',
         value: {
-          title: '乙',
+          title: 'spmd1',
           items: [
             {
-              icon: 'https://gw.alipayobjects.com/zos/antfincdn/YjOskQ5bCJ/ec3e15d8-bde3-4c5e-a31a-4fbdecb03f50.png',
+              text: '曝光UV',
+              value: '1000万',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              trend: '45.9%',
+            },
+            {
+              text: '点击UV',
+              value: '10万',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              trend: '1.9%',
+            },
+          ],
+        },
+      },
+      {
+        id: '1',
+        value: {
+          title: '开通营销页1',
+          items: [
+            {
+              text: '访问UV',
+              value: '1000万',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              trend: '45.9%',
+            },
+          ],
+        },
+      },
+      {
+        id: '2',
+        value: {
+          title: '开通营销页2',
+          items: [
+            {
+              text: '访问UV',
+              value: '1000万',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              trend: '45.9%',
+            },
+          ],
+        },
+      },
+      {
+        id: '3',
+        value: {
+          title: '去向页面1',
+          items: [
+            {
+              text: '访问UV',
+              value: '1000万',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              trend: '45.9%',
+            },
+          ],
+        },
+      },
+      {
+        id: '4',
+        value: {
+          title: '去向页面2',
+          items: [
+            {
+              text: '访问UV',
+              value: '1000万',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              trend: '45.9%',
             },
           ],
         },
@@ -952,22 +961,20 @@ const DemoFlowAnalysisGraph: React.FC = () => {
     ],
     edges: [
       {
-        source: '-4',
-        target: '-3',
+        source: '0',
+        target: '1',
       },
       {
-        source: '-3',
-        target: '-2',
+        source: '0',
+        target: '2',
       },
       {
-        source: '-2',
-        target: '-1',
-        value: '赶紧打理',
+        source: '1',
+        target: '3',
       },
       {
-        source: '-2',
-        target: '0',
-        value: '赶紧打理',
+        source: '2',
+        target: '4',
       },
     ],
   };
@@ -975,7 +982,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
   const config = {
     data,
     nodeCfg: {
-      size: [140, 40],
+      size: [180, 30],
       items: {
         padding: 6,
         containerStyle: {
@@ -984,10 +991,8 @@ const DemoFlowAnalysisGraph: React.FC = () => {
       },
       customContent: (item, group, cfg) => {
         const { startX, startY, width } = cfg;
-        const { text, value, icon } = item;
-        let textShape, valueShape, iconShape;
-        textShape =
-          text &&
+        const { text, value, icon, trend } = item;
+        text &&
           group!.addShape('text', {
             attrs: {
               textBaseline: 'top',
@@ -999,35 +1004,42 @@ const DemoFlowAnalysisGraph: React.FC = () => {
             // group 内唯一字段
             name: `text-${Math.random()}`,
           });
-        valueShape =
-          value &&
+        value &&
           group!.addShape('text', {
             attrs: {
               textBaseline: 'top',
-              x: startX,
+              x: startX + 60,
               y: startY,
               text: value,
-              fill: '#f00',
+              fill: '#000',
             },
             name: `value-${Math.random()}`,
           });
-        iconShape =
-          icon &&
+        icon &&
           group!.addShape('image', {
             attrs: {
-              x: startX,
+              x: startX + 100,
               y: startY,
-              width: 84,
-              height: 84,
+              width: 8,
+              height: 10,
               img: icon,
             },
             name: `image-${Math.random()}`,
           });
-        return Math.max(
-          textShape?.getBBox().height ?? 0,
-          valueShape?.getBBox().height ?? 0,
-          iconShape?.getBBox().height ?? 0,
-        );
+        trend &&
+          group!.addShape('text', {
+            attrs: {
+              textBaseline: 'top',
+              x: startX + 110,
+              y: startY,
+              text: trend,
+              fill: '#f00',
+            },
+            name: `value-${Math.random()}`,
+          });
+
+        // 行高
+        return 14;
       },
       nodeStateStyles: {
         hover: {
