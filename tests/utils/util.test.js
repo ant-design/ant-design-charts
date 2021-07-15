@@ -1,6 +1,4 @@
-import { utils } from '../../src/util';
-
-const { hasPath, clone, isType, setPath } = utils;
+import { hasPath, clone, isType, setPath } from '../../src/util';
 
 describe('utils', () => {
   it('is type', () => {

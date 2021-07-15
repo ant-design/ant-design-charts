@@ -1,4 +1,4 @@
-import type {
+import {
   Plot,
   Options,
   G2,
@@ -47,6 +47,8 @@ export interface GraphContainerConfig {
   errorTemplate?: (e: Error) => React.ReactNode;
 }
 
-export { Plot, Options };
+// export {  };
 
-export * from './graphsNew/interface';
+export * from './graphs/interface';
+
+export * from './plots/interface';

@@ -1,12 +1,17 @@
 // G6
-import { OrganizationTreeGraph, DagreGraph, IndentedTree, DagreFundFlowGraph } from './graph';
-import { IndentedTreeGraph, OrganizationalGraph, RadialGraph } from './graphs';
+import {
+  OrganizationTreeGraph,
+  DagreGraph,
+  IndentedTree,
+  DagreFundFlowGraph,
+} from './obsolescent/graph';
+import { IndentedTreeGraph, OrganizationalGraph, RadialGraph } from './obsolescent/graphs';
 import {
   FlowAnalysisGraph,
   RadialTreeGraph,
   DecompositionTreeGraph,
   OrganizationGraph,
-} from './graphsNew'; // 最终版，后续不会出现不兼容变更
+} from './graphs'; // 最终版，后续不会出现不兼容变更
 
 export {
   OrganizationTreeGraph,

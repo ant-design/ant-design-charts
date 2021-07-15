@@ -2,7 +2,7 @@ import React from 'react';
 import { create } from 'react-test-renderer';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Mix from '../../src/mix';
+import Mix from '../../src/plots/mix';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 

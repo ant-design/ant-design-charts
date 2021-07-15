@@ -1,6 +1,6 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import Area from '../../src/area';
+import Area from '../../src/plots/area';
 import { ErrorBoundary } from '../../src/base';
 
 describe('Area render', () => {

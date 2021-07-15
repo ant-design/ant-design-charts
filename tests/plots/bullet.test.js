@@ -3,7 +3,7 @@ import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Bullet from '../../src/bullet';
+import Bullet from '../../src/plots/bullet';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 

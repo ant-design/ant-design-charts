@@ -12,18 +12,11 @@ export const defaultNodeStyle = {
   stroke: '#40a9ff',
 };
 // 默认 anchor 连接点
-export const defaultNodeAnchorPoints = [
+export const defaultFlowGraphAnchorPoints = [
   [0, 0.5],
   [1, 0.5],
 ];
-// card 内部 padding | margin
-export const Margin = 6;
-// card title 默认样式
-export const defaultTitleLabelCfg = {
-  fill: '#fff',
-  fontSize: 12,
-};
-export const cardTitlePadding = 2;
+
 // card body|footer  默认样式
 export const defaultLabelStyle = {
   fill: '#000',
@@ -35,15 +28,26 @@ export const defaultMinimapCfg = {
   type: 'keyShape',
 };
 
-export const defaultNodeCfg = {
-  style: {
-    fill: '#000',
-    fontSize: 12,
-  },
+// card title 默认样式
+export const defaultCardStyle = {
+  fill: '#fff',
+  stroke: '#40a9ff',
+  radius: 2,
 };
-
-export const defaultEdgeCfg = {
-  style: {
-    stroke: '#ccc',
-  },
+// card 内部 padding | margin | 行间距
+export const defaultMargin = 6;
+// title 默认样式
+export const defaultTitleLabelStyle = {
+  fill: '#fff',
+  fontSize: 12,
+};
+// title 容器默认样式
+export const defaultTitleRectStyle = {
+  fill: '#40a9ff',
+  radius: [2, 2, 0, 0],
+};
+// card icon 默认样式
+export const defaultIconStyle = {
+  width: 12,
+  height: 12,
 };
