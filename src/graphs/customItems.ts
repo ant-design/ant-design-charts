@@ -150,8 +150,6 @@ export const registerCardNode = () => {
         // 调整容器宽高
         if (bodyShape) {
           const desTextShapeBBox = bodyShape.getBBox();
-          console.log(titleHeight);
-
           const width =
             size[0] > desTextShapeBBox.width + 16 ? size[0] : desTextShapeBBox.width + 16;
           shape.attr({ width, height: height + 16 });

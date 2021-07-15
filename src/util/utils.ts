@@ -17,20 +17,21 @@ export const clone = (source: Object) => {
   return target;
 };
 
+export const getType = (n: Object) => {
+  return Object.prototype.toString.call(n).slice(8, -1);
+};
+
 /**
  * 深克隆
  * @param source 要深克隆的目标对象
  */
-export const deepClone = (source: Object) => {
+export const deepClone = (source: Object | undefined) => {
   if (!source) {
     return source;
   }
 
   // @ts-ignore
   const target = new source.constructor();
-  const getType = (n: Object) => {
-    return Object.prototype.toString.call(n).slice(8, -1);
-  };
 
   for (const key in source) {
     if (source.hasOwnProperty(key)) {

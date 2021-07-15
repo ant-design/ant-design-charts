@@ -45,6 +45,23 @@ export default defineConfig({
         path: '/zh-CN/demos/global',
       },
       {
+        title: '图',
+        path: '/zh-CN/demos/flow-analysis-graph',
+        children: [
+          '/demos/flow-analysis-graph.zh-CN.md',
+          '/demos/organization-graph.zh-CN.md',
+          '/demos/decomposition-tree-graph.zh-CN.md',
+          '/demos/radial-tree-graph.zh-CN.md',
+          // '/demos/indented-tree-graph.zh-CN.md',
+          // '/demos/organizational-graph.zh-CN.md',
+          // '/demos/radial-graph.zh-CN.md',
+          // '/demos/indentedTree.zh-CN.md',
+          // 暂未重构
+          // '/demos/dagre-graph.zh-CN.md',
+          // '/demos/dagre-fund-flow-graph.zh-CN.md',
+        ],
+      },
+      {
         title: '折线图',
         path: '/zh-CN/demos/line',
       },
@@ -84,16 +101,7 @@ export default defineConfig({
       {
         title: '关系图',
         path: '/zh-CN/demos/sankey',
-        children: [
-          '/demos/indented-tree-graph.zh-CN.md',
-          '/demos/organizational-graph.zh-CN.md',
-          '/demos/radial-graph.zh-CN.md',
-          // '/demos/indentedTree.zh-CN.md',
-          '/demos/dagre-graph.zh-CN.md',
-          '/demos/dagre-fund-flow-graph.zh-CN.md',
-          '/demos/sankey.zh-CN.md',
-          '/demos/chord.zh-CN.md',
-        ],
+        children: ['/demos/sankey.zh-CN.md', '/demos/chord.zh-CN.md'],
       },
       {
         title: '热力图',
@@ -137,6 +145,55 @@ export default defineConfig({
       {
         title: 'Gallery',
         path: '/demos/global',
+      },
+      {
+        title: 'Graph',
+        path: '/demos/source-graph',
+        children: [
+          {
+            title: 'FlowAnalysisGraph',
+            path: '/demos/flow-analysis-graph',
+          },
+          {
+            title: 'OrganizationGraph',
+            path: '/demos/organization-graph',
+          },
+          {
+            title: 'DecompositionTreeGraph',
+            path: '/demos/decomposition-tree-graph',
+          },
+          {
+            title: 'RadialTreeGraph',
+            path: '/demos/radial-tree-graph',
+          },
+          // {
+          //   title: 'IndentedTreeGraph',
+          //   path: '/demos/indented-tree-graph',
+          // },
+
+          // {
+          //   title: 'RadialGraph',
+          //   path: '/demos/radial-graph',
+          // },
+
+          // {
+          //   title: 'OrganizationalGraph',
+          //   path: '/demos/organizational-graph',
+          // },
+          // {
+          //   title: 'indentedTree',
+          //   path: '/demos/indentedTree-graph',
+          // },
+          // 暂未重构
+          // {
+          //   title: 'DagreGraph',
+          //   path: '/demos/dagre-graph',
+          // },
+          // {
+          //   title: 'DagreFundFlowGraph',
+          //   path: '/demos/dagre-fund-flow-graph',
+          // },
+        ],
       },
       {
         title: 'Line',
@@ -192,30 +249,6 @@ export default defineConfig({
         title: 'Relation',
         path: '/demos/sankey',
         children: [
-          {
-            title: 'IndentedTreeGraph',
-            path: '/demos/indented-tree-graph',
-          },
-          {
-            title: 'RadialGraph',
-            path: '/demos/radial-graph',
-          },
-          {
-            title: 'OrganizationalGraph',
-            path: '/demos/organizational-graph',
-          },
-          // {
-          //   title: 'indentedTree',
-          //   path: '/demos/indentedTree-graph',
-          // },
-          {
-            title: 'DagreGraph',
-            path: '/demos/dagre-graph',
-          },
-          {
-            title: 'DagreFundFlowGraph',
-            path: '/demos/dagre-fund-flow-graph',
-          },
           {
             title: 'Sankey',
             path: '/demos/sankey',

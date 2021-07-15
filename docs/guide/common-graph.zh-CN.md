@@ -1,304 +1,12 @@
 ---
-title: 组织架构图
+title: Graph 通用配置
+order: 3
+nav:
+  title: 使用文档
+  order: 1
 ---
 
-### 基础配置
-
-#### width
-
-<description>**optional** _number_ _default:_ `500`</description>
-
-设置图表宽度。
-
-#### height
-
-<description>**optional** _number_ _default:_ `500`</description>
-
-设置图表高度。
-
-#### data
-
-数据，详见示例代码。
-
-```ts
-
-// 具体参考示例代码
-interface Data {
-  id: string;
-  label: string;
-  title?: string;
-  labelStyle?: LabelStyle | (node, cfg)=> LabelStyle;
-  leftIcon?: {
-    img: '',
-    style?: ShapeStyle,
-    /** 头像横向位置 */
-    x?: number;
-    /** 头像纵向位置 */
-    y?: number;
-    /** 头像宽度 */
-    width?: number;
-    /** 头像高度 */
-    height?: number;
-  };
-  children?: Data[];
-  [key: string]?: unknow
-}
-```
-
-#### edgeType
-
-边类型，默认 'polyline'
-
-- line：直线，不支持控制点；
-- polyline：折线，支持多个控制点；
-- arc：圆弧线；
-- quadratic：二阶贝塞尔曲线；
-- cubic：三阶贝塞尔曲线；
-- cubic-vertical：垂直方向的三阶贝塞尔曲线，不考虑用户从外部传入的控制点；
-- cubic-horizontal：水平方向的三阶贝塞尔曲线，不考虑用户从外部传入的控制点；
-- loop：自环。
-
-这些内置边的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*H6Y5SrPstw4AAAAAAAAAAABkARQnAQ' width='750' height='120' alt='img'/>
-
-#### nodeType
-
-<description>**optional** _`string`_</description>
-
-节点类型，默认 `rect`, 支持 icon-node，内置节点包括 icon-node ,card，circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut，这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
-
-#### nodeSize
-
-<description>**optional** _Number[] | false | [120, 40]_</description>
-
-节点的（最小）大小，部分图表可能会根据节点内容自适应大小。
-
-#### nodeCfg
-
-<description>**optional** _object | Function_</description>
-
-节点配置。
-
-```ts
-{
-  nodeCfg: {
-    style: {
-      stroke: '#40a9ff',
-    }
-  }
-}
-// 回调模式
-{
-  nodeStyle: (node, graph)=>{
-    return {
-      style: {
-        stroke: '#40a9ff',
-      }
-    }
-  }
-}
-```
-
-#### nodeLabelCfg
-
-<description>**optional** _object_</description>
-
-节点文本样式。
-
-```ts
-{
-  nodeLabelCfg: {
-    style: {
-      fill: 'red';
-    }
-  }
-}
-```
-
-#### nodeStateStyles
-
-<description>**optional** _object_</description>
-
-节点在不同状态下的样式配置项。
-
-```ts
-{
-  hover: {
-    stroke: '#1890ff',
-    lineWidth: 2,
-  },
-  selected: {
-    stroke: '#f00',
-    lineWidth: 3,
-  }
-}
-```
-
-#### edgeCfg
-
-<description>**optional** _object | Function_</description>
-
-边配置。
-
-```ts
-{
-  edgeCfg: {
-    lable: 'label', // 边上文本
-    labelCfg: {
-      style: {
-        fill: '#40a9ff'
-      }
-    },
-    style: {
-      stroke: '#40a9ff',
-    }
-  }
-}
-// 回调模式
-{
-  edgeCfg: (item, graph)=>{
-    /**
-     * graph.findById(item.target).getModel()
-     * item.source: 获取 source 数据
-     * item.target: 获取 target 数据
-     */
-   // console.log(graph.findById(item.source).getModel());
-    return {
-      lable: 'label', // 边上文本
-      labelCfg: {
-        style: {
-          fill: '#40a9ff'
-        }
-      },
-      style: {
-        stroke: '#40a9ff',
-      }
-    }
-  }
-}
-```
-
-#### edgeStateStyles
-
-<description>**optional** _object_</description>
-
-边在不同状态下的样式配置项。
-
-```ts
-{
-  hover: {
-    stroke: '#1890ff',
-    lineWidth: 2,
-  },
-  selected: {
-    stroke: '#f00',
-    lineWidth: 3,
-  },
-}
-```
-
-#### nodeAnchorPoints
-
-<description>**optional** _Number[]_</description>
-
-节点的连接点 anchorPoint 指的是边连入节点的相对位置，即节点与其相关边的交点位置，默认值 `[[0.5, 0], [0.5, 1]]`。anchorPoints 是一个二维数组，每一项表示一个连接点的位置，在一个图形 Shape 中，连接点的位置如下图所示，x 和 y 方向上范围都是 [0, 1]：<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*EJTyR4j9VN4AAAAAAAAAAABkARQnAQ' width='600' height='300' alt='img'/>
-
-#### behaviors
-
-<description>**optional** _Number[]_</description>
-
-交互模式， 默认值 `['drag-canvas', 'zoom-canvas']`。
-
-- drag-canvas: 拖拽画布
-- scroll-canvas: 滚轮滚动画布
-- zoom-canvas: 缩放画布
-- drag-node: 拖拽节点
-
-#### showMarker
-
-<description>**optional** _Boolean_</description>
-
-是否展示底部 Marker，默认值 `false`。
-
-#### markerStyle
-
-<description>**optional** _object | Function_</description>
-
-底部 marker 样式。
-
-```ts
-{
-  markerStyle: {
-    stroke: '#40a9ff',
-  }
-}
-// 回调模式
-{
-  markerStyle: (node, cfg)=>{
-    return {
-      stroke: '#40a9ff',
-    }
-  }
-}
-```
-
-#### animate
-
-<description>**optional** _Boolean_</description>
-
-是否开启动画，默认值 `true`。
-
-#### autoFit
-
-<description>**optional** _Boolean_</description>
-
-是否缩放节点大小自适应容器，默认为 true。
-
-#### minimapCfg
-
-<description>**optional** _objecr_</description>
-
-迷你 map 配置。
-
-```ts
-interface MiniMapConfig {
-  show?: boolean;
-  viewportClassName?: string;
-  type?: 'default' | 'keyShape' | 'delegate';
-  size?: number[];
-  delegateStyle?: ShapeStyle;
-  refresh?: boolean;
-  padding?: number;
-}
-```
-
-#### layout
-
-<description>**optional** _object_</description>
-
-布局。
-
-```ts
-{
-  getHeight: () => {
-    // 每个节点的高度
-    return 60;
-  },
-  getWidth: () => {
-    // 每个节点的宽度
-    return 16;
-  },
-  getVGap: () => {
-    // 每个节点的垂直间隙
-    return 16;
-  },
-  getHGap: () => {
-    // 每个节点的水平间隙
-    return 100;
-  },
-}
-```
-
-### 方法
+## 方法
 
 #### graph.downloadFullImage(name, type, imageConfig)
 
@@ -375,7 +83,24 @@ interface MiniMapConfig {
 }
 ```
 
-### 事件
+#### graph.zoom(ratio, center)
+
+图表缩放。
+
+**用法**
+
+```ts
+{
+  onReady: (graph) => {
+    // 缩小 0.5
+    graph.zoom(0.5);
+    // 以[100, 100]为中心缩小 0.5
+    graph.zoom(0.5, { x: 100, y: 100 });
+  };
+}
+```
+
+## 事件
 
 事件通过 `on` 统一绑定到 graph 上，通过 `off` 移除，onReady 会返回 graph 实例。
 
@@ -387,13 +112,8 @@ graph.off(eventName, (evt) => {});
 ```ts
 {
   onReady: (graph) => {
-    graph.on('node:mouseenter', (evt) => {
-      const item = evt.item;
-      graph.setItemState(item, 'hover', true);
-    });
-    graph.on('node:mouseleave', (evt) => {
-      const item = evt.item;
-      graph.setItemState(item, 'hover', false);
+    graph.on('node:click', (evt) => {
+      console.log(evt);
     });
   };
 }
@@ -491,7 +211,7 @@ graph.off(eventName, (evt) => {});
 | edge:drop        | 被拖拽的元素在目标边元素上同时鼠标放开触发的事件，此事件作用在目标边元素上 |
 | edge:contextmenu | 用户在边上右击鼠标时触发并打开右键菜单                                     |
 
-##### Canvas 交互事件
+#### Canvas 交互事件
 
 | 事件名称           | 描述                                                                   |
 | ------------------ | ---------------------------------------------------------------------- |

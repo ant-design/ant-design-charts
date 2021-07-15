@@ -1,304 +1,12 @@
 ---
-title: Organizational Graph
+title: Graph Common configuration
+order: 3
+nav:
+  title: Docs
+  order: 1
 ---
 
-### Basic configuration
-
-#### width
-
-<description>**optional** _number_ _default:_ `500`</description>
-
-Set the width of the graph.
-
-#### height
-
-<description>**optional** _number_ _default:_ `500`</description>
-
-Set the height of the graph.
-
-#### data
-
-Data, see the sample code.
-
-```ts
-// Refer to the sample code for details.
-interface Data {
-  id: string;
-  label: string;
-  title?: string;
-  labelStyle?: LabelStyle | (node, cfg)=> LabelStyle;
-  leftIcon?: {
-    img: '',
-    style?: ShapeStyle,
-    /** 头像横向位置 */
-    x?: number;
-    /** 头像纵向位置 */
-    y?: number;
-    /** 头像宽度 */
-    width?: number;
-    /** 头像高度 */
-    height?: number;
-  };
-  children?: Data[];
-  [key: string]?: unknow
-}
-```
-
-#### edgeType
-
-Edge type, default `polyline`
-
-- line: straight line without control points;
-- polyline: polyline with one or more control points;
-- arc;
-- quadratic: quadratic bezier curve;
-- cubic: cubic bezier curve;
-- cubic-vertical：vertical cubic bezier curve. The user can not assign the control point for this type of edge;
-- cubic-horizontal: horizontal cubic bezier curve. The user can not assign the control point for this type of edge;
-- loop: self-loop edge.
-
-<br />
-<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*H6Y5SrPstw4AAAAAAAAAAABkARQnAQ' width='750' height='120' alt='img'/>
-
-#### nodeType
-
-<description>**optional** _`string`_</description>
-
-Node type, default `rect`, support `icon-node`, Built-in nodes include `circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut`. <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
-
-#### nodeSize
-
-<description>**optional** _Number[] | false | [120, 40]_</description>
-
-The (minimum) size of the node. Some graphs may be adapted to the size of the node content.
-
-#### nodeCfg
-
-<description>**optional** _object | Function_</description>
-
-Node configuration.
-
-```ts
-{
-  nodeCfg: {
-    style: {
-      stroke: '#40a9ff',
-    }
-  }
-}
-// callback
-{
-  nodeStyle: (node, graph)=>{
-    return {
-      style: {
-        stroke: '#40a9ff',
-      }
-    }
-  }
-}
-```
-
-#### nodeLabelCfg
-
-<description>**optional** _object_</description>
-
-Node label configruation.
-
-```ts
-{
-  nodeLabelCfg: {
-    style: {
-      fill: 'red';
-    }
-  }
-}
-```
-
-#### nodeStateStyles
-
-<description>**optional** _object_</description>
-
-Node style configuration items in different states.
-
-```ts
-{
-  hover: {
-    stroke: '#1890ff',
-    lineWidth: 2,
-  },
-  selected: {
-    stroke: '#f00',
-    lineWidth: 3,
-  }
-}
-```
-
-#### edgeCfg
-
-<description>**optional** _object | Function_</description>
-
-Edge configuration。
-
-```ts
-{
-  edgeCfg: {
-    lable: 'label', // edge label
-    labelCfg: {
-      style: {
-        fill: '#40a9ff'
-      }
-    },
-    style: {
-      stroke: '#40a9ff',
-    }
-  }
-}
-// callback
-{
-  edgeCfg: (item, graph)=>{
-    /**
-     * graph.findById(item.target).getModel()
-     * item.source: Get source data
-     * item.target: Get target data
-     */
-   // console.log(graph.findById(item.source).getModel());
-    return {
-      lable: 'label', // edge label
-      labelCfg: {
-        style: {
-          fill: '#40a9ff'
-        }
-      },
-      style: {
-        stroke: '#40a9ff',
-      }
-    }
-  }
-}
-```
-
-#### edgeStateStyles
-
-<description>**optional** _object_</description>
-
-Side style configuration items in different states.
-
-```ts
-{
-  hover: {
-    stroke: '#1890ff',
-    lineWidth: 2,
-  },
-  selected: {
-    stroke: '#f00',
-    lineWidth: 3,
-  },
-}
-```
-
-#### nodeAnchorPoints
-
-<description>**optional** _Number[]_</description>
-
-The anchorPoint of a node is the link point where the related edges link to. In other words, it is the intersection of a node and its related edges. anchorPoints is a 2d array, each element represents the position of one anchor point. The positions of the anchor points in a Shape are shown below, the range of each x and y is [0, 1]:<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*EJTyR4j9VN4AAAAAAAAAAABkARQnAQ' width='600' height='300' alt='img'/>
-
-#### behaviors
-
-<description>**optional** _Number[]_</description>
-
-Interaction mode, default `['drag-canvas', 'zoom-canvas']`.
-
-- drag-canvas: Drag canvas
-- scroll-canvas: Scroll canvas
-- zoom-canvas: Zoom canvas
-- drag-node: Drag node
-
-#### showMarker
-
-<description>**optional** _Boolean_</description>
-
-Show bottom marker, the default value `false`.
-
-#### markerStyle
-
-<description>**optional** _object | Function_</description>
-
-Bottom marker style.
-
-```ts
-{
-  markerStyle: {
-    stroke: '#40a9ff',
-  }
-}
-// callback
-{
-  markerStyle: (node, cfg)=>{
-    return {
-      stroke: '#40a9ff',
-    }
-  }
-}
-```
-
-#### animate
-
-<description>**optional** _Boolean_</description>
-
-Whether to turn on animation, default to 'true'.
-
-#### autoFit
-
-<description>**optional** _Boolean_</description>
-
-Whether to scale node size adaptive container. Default value is 'true '.
-
-#### minimapCfg
-
-<description>**optional** _objecr_</description>
-
-Min map configruation.
-
-```ts
-interface MiniMapConfig {
-  show?: boolean;
-  viewportClassName?: string;
-  type?: 'default' | 'keyShape' | 'delegate';
-  size?: number[];
-  delegateStyle?: ShapeStyle;
-  refresh?: boolean;
-  padding?: number;
-}
-```
-
-#### layout
-
-<description>**optional** _object_</description>
-
-layout.
-
-```ts
-{
-  getHeight: () => {
-    // The height of each node
-    return 60;
-  },
-  getWidth: () => {
-    // The width of each node
-    return 16;
-  },
-  getVGap: () => {
-    // Vertical clearance of each node
-    return 16;
-  },
-  getHGap: () => {
-    // Horizontal clearance of each node
-    return 100;
-  },
-}
-```
-
-### Functions
+## Functions
 
 #### graph.downloadFullImage(name, type, imageConfig)
 
@@ -374,7 +82,24 @@ No return value, you can process the result in the callback function as shown be
  }
 ```
 
-### Events
+#### graph.zoom(ratio, center)
+
+Zoom Graph.
+
+**Usage**
+
+```ts
+{
+  onReady: (graph) => {
+    // 缩小 0.5
+    graph.zoom(0.5);
+    // 以[100, 100]为中心缩小 0.5
+    graph.zoom(0.5, { x: 100, y: 100 });
+  };
+}
+```
+
+## Events
 
 Events are bound to the Graph by 'on' and removed by 'off'. OnReady returns the Graph instance.
 
