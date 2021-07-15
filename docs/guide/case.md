@@ -391,11 +391,16 @@ export default DemoScatter;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { Line, Area, Column } from '@ant-design/charts';
-import { LineConfig } from '@ant-design/charts/es/line';
-import { AreaConfig } from '@ant-design/charts/es/area';
-import { ColumnConfig } from '@ant-design/charts/es/column';
-import { Plot, PlotEvent } from '@ant-design/charts/es/interface';
+import {
+  Line,
+  Area,
+  Column,
+  LineConfig,
+  AreaConfig,
+  ColumnConfig,
+  Plot,
+  PlotEvent,
+} from '@ant-design/charts';
 
 type Base = LineConfig | AreaConfig | ColumnConfig;
 

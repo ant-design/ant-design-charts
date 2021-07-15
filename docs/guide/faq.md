@@ -89,7 +89,7 @@ Enable webpack sideEffcets configuration, webpack 4+ should be enabled by defaul
 Method 2: Import from es
 
 ```ts
-import Line from '@ant-design/charts/es/line';
+import Line from '@ant-design/charts/es/plots/line';
 ```
 
 Method 3: Use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)
