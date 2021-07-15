@@ -89,7 +89,7 @@ meta: {
 方案 2：从 es 引入
 
 ```ts
-import Line from '@ant-design/charts/es/line';
+import Line from '@ant-design/charts/es/plots/line';
 ```
 
 方案 3： 使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)
