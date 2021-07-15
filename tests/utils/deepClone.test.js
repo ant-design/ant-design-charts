@@ -1,6 +1,4 @@
-import { utils } from '../../src/util';
-
-const { deepClone } = utils;
+import { deepClone } from '../../src/util';
 
 describe('utils deepClone', () => {
   it('deepClone', () => {

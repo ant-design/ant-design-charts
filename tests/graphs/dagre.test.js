@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import { DagreGraph } from '../../src/graph';
+import { DagreGraph } from '../../src/obsolescent/graph';
 
 const refs = renderHook(() => useRef());
 

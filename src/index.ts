@@ -1,45 +1,50 @@
-import Area from './area';
-import Bar from './bar';
-import Bullet from './bullet';
-import Column from './column';
-import Funnel from './funnel';
-import Histogram from './histogram';
-import Line from './line';
-import Box from './box';
-import Liquid from './liquid';
-import Heatmap from './heatmap';
-import Pie from './pie';
-import Gauge from './gauge';
-import Progress from './progress';
-import Radar from './radar';
-import RingProgress from './ringProgress';
-import Rose from './rose';
-import Chord from './chord';
-import Scatter from './scatter';
-import TinyArea from './tinyArea';
-import TinyColumn from './tinyColumn';
-import DualAxes from './dualAxes';
-import TinyLine from './tinyLine';
-import Waterfall from './waterfall';
-import WordCloud from './wordCloud';
-import Sunburst from './sunburst';
-import Stock from './stock';
-import RadialBar from './radialBar';
-import Sankey from './sankey';
-import Treemap from './treemap';
-import Violin from './violin';
-import Facet from './facet';
-import MultiView from './mix'; // 和 Mix 相同，底层更名
-import Mix from './mix';
-import BidirectionalBar from './bidirectionalBar';
-import { DagreGraph, IndentedTree, DagreFundFlowGraph, OrganizationTreeGraph } from './graph'; // 会逐步下掉
-import { IndentedTreeGraph, OrganizationalGraph, RadialGraph } from './graphs'; // 过度版本
+import Area from './plots/area';
+import Bar from './plots/bar';
+import Bullet from './plots/bullet';
+import Column from './plots/column';
+import Funnel from './plots/funnel';
+import Histogram from './plots/histogram';
+import Line from './plots/line';
+import Box from './plots/box';
+import Liquid from './plots/liquid';
+import Heatmap from './plots/heatmap';
+import Pie from './plots/pie';
+import Gauge from './plots/gauge';
+import Progress from './plots/progress';
+import Radar from './plots/radar';
+import RingProgress from './plots/ringProgress';
+import Rose from './plots/rose';
+import Chord from './plots/chord';
+import Scatter from './plots/scatter';
+import TinyArea from './plots/tinyArea';
+import TinyColumn from './plots/tinyColumn';
+import DualAxes from './plots/dualAxes';
+import TinyLine from './plots/tinyLine';
+import Waterfall from './plots/waterfall';
+import WordCloud from './plots/wordCloud';
+import Sunburst from './plots/sunburst';
+import Stock from './plots/stock';
+import RadialBar from './plots/radialBar';
+import Sankey from './plots/sankey';
+import Treemap from './plots/treemap';
+import Violin from './plots/violin';
+import Facet from './plots/facet';
+import MultiView from './plots/mix'; // 和 Mix 相同，底层更名
+import Mix from './plots/mix';
+import BidirectionalBar from './plots/bidirectionalBar';
+import {
+  DagreGraph,
+  IndentedTree,
+  DagreFundFlowGraph,
+  OrganizationTreeGraph,
+} from './obsolescent/graph'; // 会逐步下掉
+import { IndentedTreeGraph, OrganizationalGraph, RadialGraph } from './obsolescent/graphs'; // 会逐步下掉
 import {
   FlowAnalysisGraph,
   RadialTreeGraph,
   DecompositionTreeGraph,
   OrganizationGraph,
-} from './graphsNew'; // 最终版，后续不会出现不兼容变更
+} from './graphs'; // 最终版，后续不会出现不兼容变更
 import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';
 
 export {
@@ -146,3 +151,5 @@ export default {
   measureTextWidth,
   adaptors,
 };
+
+export * from './interface';

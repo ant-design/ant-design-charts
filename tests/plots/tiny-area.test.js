@@ -3,7 +3,7 @@ import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import TinyArea from '../../src/tinyArea';
+import TinyArea from '../../src/plots/tinyArea';
 import ChartLoading from '../../src/util/createLoading';
 import { ErrorBoundary } from '../../src/base';
 

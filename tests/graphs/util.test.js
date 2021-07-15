@@ -1,4 +1,4 @@
-import { processMinimap, getGraphSize } from '../../src/graph/utils';
+import { processMinimap, getGraphSize } from '../../src/obsolescent/graph/utils';
 
 describe('Dagre Graph', () => {
   let container;

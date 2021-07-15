@@ -1,9 +1,8 @@
-import IndentedTreeGraph from './indentedTreeGraph';
-import OrganizationalGraph from './organizationalGraph';
-import RadialGraph from './radialGraph';
+import OrganizationGraph from './organizationGraph';
+import RadialTreeGraph from './radialTreeGraph';
+import FlowAnalysisGraph from './flowAnalysisGraph';
+import DecompositionTreeGraph from './decompositionTreeGraph';
 
-export default { IndentedTreeGraph, OrganizationalGraph, RadialGraph };
+export { FlowAnalysisGraph, RadialTreeGraph, DecompositionTreeGraph, OrganizationGraph };
 
-export { IndentedTreeGraph, OrganizationalGraph, RadialGraph };
-
-export * from './types';
+export * from './interface';

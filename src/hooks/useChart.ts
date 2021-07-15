@@ -2,7 +2,7 @@ import { ReactNode, useRef, useEffect } from 'react';
 import { isEqual } from '@antv/util';
 import type { Options as BaseOptions, G2, Plot, Tooltip as BaseTooltip } from '@antv/g2plot';
 import createNode from '../util/createNode';
-import { utils } from '../util';
+import { hasPath, isType, deepClone, clone, setPath } from '../util';
 
 export interface Tooltip extends Omit<BaseTooltip, 'customContent'> {
   customContent?: (title: string, data: any[]) => ReactNode | string | unknown;
@@ -62,16 +62,15 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
   };
 
   const reactDomToString = (source: U, path: string[], type?: string) => {
-    const { hasPath, setPath } = utils;
     const statisticCustomHtml = hasPath(source, path);
     setPath(source, path, (...arg: any[]) => {
-      const statisticDom = utils.isType(statisticCustomHtml, 'Function')
+      const statisticDom = isType(statisticCustomHtml, 'Function')
         ? statisticCustomHtml(...arg)
         : statisticCustomHtml;
       if (
-        utils.isType(statisticDom, 'String') ||
-        utils.isType(statisticDom, 'Number') ||
-        utils.isType(statisticDom, 'HTMLDivElement')
+        isType(statisticDom, 'String') ||
+        isType(statisticDom, 'Number') ||
+        isType(statisticDom, 'HTMLDivElement')
       ) {
         return statisticDom;
       }
@@ -80,7 +79,6 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
   };
 
   const processConfig = () => {
-    const { hasPath } = utils;
     // statistic
     if (hasPath(config, ['statistic', 'content', 'customHtml'])) {
       reactDomToString(config, ['statistic', 'content', 'customHtml']);
@@ -132,7 +130,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
         processConfig();
         chart.current.update(config);
       }
-      chartOptions.current = utils.deepClone(config);
+      chartOptions.current = deepClone(config);
     }
   }, [config]);
 
@@ -157,9 +155,9 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
     };
     chartInstance.render();
     if (!chartOptions.current) {
-      chartOptions.current = utils.deepClone(config);
+      chartOptions.current = deepClone(config);
     }
-    chart.current = utils.clone(chartInstance) as T;
+    chart.current = clone(chartInstance) as T;
     if (onReady) {
       onReady(chartInstance);
     }
