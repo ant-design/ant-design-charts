@@ -7,6 +7,27 @@ nav:
 toc: content
 ---
 
+## Graph
+
+<div class="gallery-item-box">
+  <a href="/demos/flow-analysis-graph">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/F7lUe0DzCq/a7afd3fd-210c-4b1e-8269-98f8a105617e.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">来源去向图</p>
+  </a>
+   <a href="/demos/organization-graph">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/TLGfMbgLT0/995493e1-c54d-415d-9c80-21d45e69f618.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">组织架构图</p>
+  </a>
+  <a href="/demos/decomposition-tree-graph">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/%26VQ%26JmaDTO/f6740516-06ce-48fd-8fab-3c3b0a3399fa.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">拆解树图</p>
+  </a>
+    <a href="/demos/radial-tree-graph">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/Eo0NShrKVW/90863186-e473-42e1-9687-e663b107fed0.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">辐射树图</p>
+  </a>
+</div>
+
 ## Line
 
 <div class="gallery-item-box">
@@ -522,7 +543,7 @@ toc: content
 
 ## Relation Charts
 
-### Indented Tree Graph
+<!-- ### Indented Tree Graph
 
 <div class="gallery-item-box">
   <a href="/demos/indented-tree-graph#base">
@@ -585,14 +606,14 @@ toc: content
   </a>
 </div>
 
-<!-- ### Indented Tree(Old)
+### Indented Tree(Old)
 
 <div class="gallery-item-box">
  <a href="/demos/indented-tree#演示结果">
     <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C5XCQapXDpwAAAAAAAAAAAAAARQnAQ" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">缩进树图</p>
   </a>
-</div> -->
+</div>
 
 ### Dagre Graph
 
@@ -611,8 +632,8 @@ toc: content
     <img src="https://gw.alipayobjects.com/zos/antfincdn/a60JQyDs9O/378700df-a0b9-41c6-af4c-03952c0f0355.png" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">资金流向图</p>
   </a>
-  
-</div>
+
+</div> -->
 
 ### Sankey
 

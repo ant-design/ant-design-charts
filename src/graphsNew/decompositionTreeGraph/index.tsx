@@ -14,7 +14,15 @@ import {
   bindStateEvents,
   bindDefaultEvents,
 } from '../utils';
-import { IndentedTreeGraphConfig, NodeConfig, EdgeConfig } from '../interface';
+import {
+  IndentedTreeGraphConfig,
+  NodeConfig,
+  EdgeConfig,
+  ShapeCfg,
+  Shape,
+  IGroup,
+  IGraph,
+} from '../interface';
 import { registerIndicatorCardNode } from '../customItems';
 import {
   defaultFlowGraphAnchorPoints,
@@ -58,6 +66,27 @@ const defaultProps = {
     padding: 6,
     layout: 'bundled',
     nodeStateStyles: defaultStateStyles,
+    label: {
+      style: (
+        cfg: Shape | ShapeCfg,
+        group: IGroup | IGraph | undefined,
+        type: string | undefined,
+      ) => {
+        const styles = {
+          icon: {
+            width: 10,
+            height: 10,
+          },
+          value: {
+            fill: '#000',
+          },
+          text: {
+            fill: '#aaa',
+          },
+        };
+        return type ? styles[type] : {};
+      },
+    },
   },
   edgeCfg: {
     type: 'cubic-horizontal',

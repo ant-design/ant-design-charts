@@ -2,7 +2,7 @@
 title: 来源去向图
 ---
 
-### 基础用法
+### 基本用法
 
 ```tsx
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
@@ -19,12 +19,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
             {
               text: '曝光PV',
               value: '10.30万',
-              icon: 'https://avatars.githubusercontent.com/u/31396322?v=4',
-            },
-            {
-              text: '曝光PV',
-              value: '10.30万',
-              icon: 'https://avatars.githubusercontent.com/u/31396322?v=4',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -37,7 +32,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
             {
               text: '点击UV',
               value: '10.30万',
-              icon: 'https://avatars.githubusercontent.com/u/31396322?v=4',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -130,6 +125,39 @@ const DemoFlowAnalysisGraph: React.FC = () => {
           ],
         },
       },
+      {
+        id: '6',
+        value: {
+          title: '去向页面F',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '7',
+        value: {
+          title: '去向页面G',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '8',
+        value: {
+          title: '去向页面H',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
     ],
     edges: [
       {
@@ -173,18 +201,18 @@ const DemoFlowAnalysisGraph: React.FC = () => {
       },
       {
         source: '3',
-        target: '6',
+        target: '7',
       },
       {
         source: '4',
-        target: '6',
+        target: '8',
       },
     ],
   };
   const config = {
     data,
     nodeCfg: {
-      size: [140, 40],
+      size: [140, 25],
       items: {
         padding: 6,
         containerStyle: {
@@ -284,7 +312,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
             {
               text: '曝光PV',
               value: '10.30万',
-              icon: 'https://avatars.githubusercontent.com/u/31396322?v=4',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -297,7 +325,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
             {
               text: '点击UV',
               value: '10.30万',
-              icon: 'https://avatars.githubusercontent.com/u/31396322?v=4',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -390,6 +418,39 @@ const DemoFlowAnalysisGraph: React.FC = () => {
           ],
         },
       },
+      {
+        id: '6',
+        value: {
+          title: '去向页面F',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '7',
+        value: {
+          title: '去向页面G',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '8',
+        value: {
+          title: '去向页面H',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
     ],
     edges: [
       {
@@ -428,15 +489,23 @@ const DemoFlowAnalysisGraph: React.FC = () => {
         target: '5',
       },
       {
-        source: '3',
+        source: '2',
         target: '6',
+      },
+      {
+        source: '3',
+        target: '7',
+      },
+      {
+        source: '4',
+        target: '8',
       },
     ],
   };
   const config = {
     data,
     nodeCfg: {
-      size: [140, 30],
+      size: [140, 25],
       anchorPoints: [
         [0.5, 1],
         [0.5, 0],
@@ -512,7 +581,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
 export default DemoFlowAnalysisGraph;
 ```
 
-### 线条样式
+### 边样式
 
 ```tsx
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
@@ -529,12 +598,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
             {
               text: '曝光PV',
               value: '10.30万',
-              icon: 'https://avatars.githubusercontent.com/u/31396322?v=4',
-            },
-            {
-              text: '曝光PV',
-              value: '10.30万',
-              icon: 'https://avatars.githubusercontent.com/u/31396322?v=4',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -547,7 +611,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
             {
               text: '点击UV',
               value: '10.30万',
-              icon: 'https://avatars.githubusercontent.com/u/31396322?v=4',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -640,6 +704,39 @@ const DemoFlowAnalysisGraph: React.FC = () => {
           ],
         },
       },
+      {
+        id: '6',
+        value: {
+          title: '去向页面F',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '7',
+        value: {
+          title: '去向页面G',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '8',
+        value: {
+          title: '去向页面H',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
     ],
     edges: [
       {
@@ -683,18 +780,18 @@ const DemoFlowAnalysisGraph: React.FC = () => {
       },
       {
         source: '3',
-        target: '6',
+        target: '7',
       },
       {
         source: '4',
-        target: '6',
+        target: '8',
       },
     ],
   };
   const config = {
     data,
     nodeCfg: {
-      size: [140, 40],
+      size: [140, 25],
       items: {
         containerStyle: {
           fill: '#fff',
@@ -776,7 +873,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
 export default DemoFlowAnalysisGraph;
 ```
 
-### 自定义
+### 自定义节点
 
 ```tsx
 import React from 'react';

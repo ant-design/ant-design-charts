@@ -10,12 +10,12 @@ import { DecompositionTreeGraph } from '@ant-design/charts';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
-    id: '青年X高收入',
+    id: 'A0',
     value: {
-      title: '青年X高收入',
+      title: '订单金额',
       items: [
         {
-          text: '1,323,945,835',
+          text: '3031万',
         },
       ],
     },
@@ -23,10 +23,14 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A1',
         value: {
-          title: '青年',
+          title: '华南',
           items: [
             {
-              text: '523,945,835',
+              text: '1152万',
+            },
+            {
+              text: '占比',
+              value: '30%',
             },
           ],
         },
@@ -34,10 +38,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A11',
             value: {
-              title: '15~18',
+              title: '广东',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -45,10 +53,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A12',
             value: {
-              title: '18~21',
+              title: '广西',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -56,10 +68,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A13',
             value: {
-              title: '21~24',
+              title: '海南',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -69,10 +85,15 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A2',
         value: {
-          title: '高收入',
+          title: '华北',
           items: [
             {
-              text: '623,945,835',
+              text: '595万',
+            },
+            {
+              text: '占比',
+              value: '30%',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -82,7 +103,6 @@ const DemoIndentedTree: React.FC = () => {
 
   const config = {
     data,
-    autoFit: false,
     markerCfg: (cfg) => {
       const { children } = cfg;
       return {
@@ -106,12 +126,12 @@ import { DecompositionTreeGraph } from '@ant-design/charts';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
-    id: '青年X高收入',
+    id: 'A0',
     value: {
-      title: '青年X高收入',
+      title: '订单金额',
       items: [
         {
-          text: '1,323,945,835',
+          text: '3031万',
         },
       ],
     },
@@ -119,10 +139,14 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A1',
         value: {
-          title: '青年',
+          title: '华南',
           items: [
             {
-              text: '523,945,835',
+              text: '1152万',
+            },
+            {
+              text: '占比',
+              value: '30%',
             },
           ],
         },
@@ -130,10 +154,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A11',
             value: {
-              title: '15~18',
+              title: '广东',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -141,10 +169,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A12',
             value: {
-              title: '18~21',
+              title: '广西',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -152,10 +184,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A13',
             value: {
-              title: '21~24',
+              title: '海南',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -165,10 +201,15 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A2',
         value: {
-          title: '高收入',
+          title: '华北',
           items: [
             {
-              text: '623,945,835',
+              text: '595万',
+            },
+            {
+              text: '占比',
+              value: '30%',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -213,12 +254,12 @@ import { DecompositionTreeGraph } from '@ant-design/charts';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
-    id: '青年X高收入',
+    id: 'A0',
     value: {
-      title: '青年X高收入',
+      title: '订单金额',
       items: [
         {
-          text: '1,323,945,835',
+          text: '3031万',
         },
       ],
     },
@@ -226,16 +267,14 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A1',
         value: {
-          title: '青年',
+          title: '华南',
           items: [
             {
-              text: '收入',
-              value: '523,945',
+              text: '1152万',
             },
             {
               text: '占比',
               value: '30%',
-              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -243,10 +282,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A11',
             value: {
-              title: '15~18',
+              title: '广东',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -254,10 +297,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A12',
             value: {
-              title: '18~21',
+              title: '广西',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -265,10 +312,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A13',
             value: {
-              title: '21~24',
+              title: '海南',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -278,10 +329,15 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A2',
         value: {
-          title: '高收入',
+          title: '华北',
           items: [
             {
-              text: '623,945,835',
+              text: '595万',
+            },
+            {
+              text: '占比',
+              value: '30%',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -307,14 +363,14 @@ const DemoIndentedTree: React.FC = () => {
         style: (cfg, group, type) => {
           const styles = {
             value: {
-              fill: '#f00',
+              fill: '#52c41a',
             },
             text: {
               fill: '#aaa',
             },
             icon: {
-              width: 12,
-              height: 12,
+              width: 10,
+              height: 10,
             },
           };
           return styles[type];
@@ -352,12 +408,12 @@ import { DecompositionTreeGraph } from '@ant-design/charts';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
-    id: '青年X高收入',
+    id: 'A0',
     value: {
-      title: '青年X高收入',
+      title: '订单金额',
       items: [
         {
-          text: '1,323,945,835',
+          text: '3031万',
         },
       ],
     },
@@ -365,16 +421,14 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A1',
         value: {
-          title: '青年',
+          title: '华南',
           items: [
             {
-              text: '收入',
-              value: '523,945',
+              text: '1152万',
             },
             {
               text: '占比',
               value: '30%',
-              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -382,10 +436,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A11',
             value: {
-              title: '15~18',
+              title: '广东',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -393,10 +451,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A12',
             value: {
-              title: '18~21',
+              title: '广西',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -404,10 +466,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A13',
             value: {
-              title: '21~24',
+              title: '海南',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -417,10 +483,15 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A2',
         value: {
-          title: '高收入',
+          title: '华北',
           items: [
             {
-              text: '623,945,835',
+              text: '595万',
+            },
+            {
+              text: '占比',
+              value: '30%',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -436,14 +507,14 @@ const DemoIndentedTree: React.FC = () => {
         style: (cfg, group, type) => {
           const styles = {
             value: {
-              fill: '#f00',
+              fill: '#52c41a',
             },
             text: {
               fill: '#aaa',
             },
             icon: {
-              width: 12,
-              height: 12,
+              width: 10,
+              height: 10,
             },
           };
           return styles[type];
@@ -499,12 +570,12 @@ import { DecompositionTreeGraph } from '@ant-design/charts';
 
 const DemoIndentedTree: React.FC = () => {
   const data = {
-    id: '青年X高收入',
+    id: 'A0',
     value: {
-      title: '青年X高收入',
+      title: '订单金额',
       items: [
         {
-          text: '1,323,945,835',
+          text: '3031万',
         },
       ],
     },
@@ -512,16 +583,14 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A1',
         value: {
-          title: '青年',
+          title: '华南',
           items: [
             {
-              text: '收入',
-              value: '523,945',
+              text: '1152万',
             },
             {
               text: '占比',
               value: '30%',
-              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -529,10 +598,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A11',
             value: {
-              title: '15~18',
+              title: '广东',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -540,10 +613,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A12',
             value: {
-              title: '18~21',
+              title: '广西',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -551,10 +628,14 @@ const DemoIndentedTree: React.FC = () => {
           {
             id: 'A13',
             value: {
-              title: '21~24',
+              title: '海南',
               items: [
                 {
-                  text: '523,945,835',
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '30%',
                 },
               ],
             },
@@ -564,10 +645,15 @@ const DemoIndentedTree: React.FC = () => {
       {
         id: 'A2',
         value: {
-          title: '高收入',
+          title: '华北',
           items: [
             {
-              text: '623,945,835',
+              text: '595万',
+            },
+            {
+              text: '占比',
+              value: '30%',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
@@ -593,11 +679,11 @@ const DemoIndentedTree: React.FC = () => {
         style: (cfg, group, type) => {
           const styles = {
             icon: {
-              width: 12,
-              height: 12,
+              width: 10,
+              height: 10,
             },
             value: {
-              fill: '#f00',
+              fill: '#52c41a',
             },
             text: {
               fill: '#aaa',

@@ -7,6 +7,38 @@ nav:
 toc: content
 ---
 
+## 图
+
+<div class="gallery-item-box">
+  <a href="/zh-CN/demos/flow-analysis-graph">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/F7lUe0DzCq/a7afd3fd-210c-4b1e-8269-98f8a105617e.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">来源去向图</p>
+  </a>
+   <a href="/zh-CN/demos/organization-graph">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/TLGfMbgLT0/995493e1-c54d-415d-9c80-21d45e69f618.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">组织架构图</p>
+  </a>
+  <a href="/zh-CN/demos/decomposition-tree-graph">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/%26VQ%26JmaDTO/f6740516-06ce-48fd-8fab-3c3b0a3399fa.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">拆解树图</p>
+  </a>
+    <a href="/zh-CN/demos/radial-tree-graph">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/Eo0NShrKVW/90863186-e473-42e1-9687-e663b107fed0.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">辐射树图</p>
+  </a>
+</div>
+
+<!-- ### 资金流向图
+
+<div class="gallery-item-box">
+
+  <a href="/zh-CN/demos/dagre-fund-flow-graph#演示结果" >
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/a60JQyDs9O/378700df-a0b9-41c6-af4c-03952c0f0355.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">资金流向图</p>
+  </a>
+
+</div> -->
+
 ## 折线图
 
 <div class="gallery-item-box">
@@ -521,98 +553,6 @@ toc: content
 </div>
 
 ## 关系图
-
-### 缩进树图
-
-<div class="gallery-item-box">
-  <a href="/zh-CN/demos/indented-tree-graph#基础用法">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/JnTL8NoUXP/7e356fc4-3d85-454f-a705-894292142f5c.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础用法</p>
-  </a>
-  <a href="/zh-CN/demos/indented-tree-graph#布局调整">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/T5pSrfBP3y/cefd761c-8836-4a97-835c-fab2bcc73868.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">布局调整</p>
-  </a>
-   <a href="/zh-CN/demos/indented-tree-graph#自定义节点样式">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/e1neY1VIRH/b4dee2eb-990a-4c75-b9c1-1200b816fa25.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义节点样式</p>
-  </a>
-   <a href="/zh-CN/demos/indented-tree-graph#自定义边样式">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/NXhX4e2GgF/0a039c9d-6d3e-4051-84b8-fa12c07e5c29.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义边样式</p>
-  </a>
-  <a href="/zh-CN/demos/indented-tree-graph#无边框">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/OzXeb4FeEY/044b364b-74c8-41eb-8126-b4bc1bb29df9.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">无边框</p>
-  </a>
-</div>
-
-### 辐射树图
-
-<div class="gallery-item-box">
-  <a href="/zh-CN/demos/radial-graph#基础用法">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/MZoGYBYEeO/e40b1996-464a-4022-8268-bfcecb1cc01d.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础用法</p>
-  </a>
-  <a href="/zh-CN/demos/radial-graph#调整布局">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/GHTGIVfOPj/a348c7f4-d814-4f5e-8a3f-e6875e2cfcdf.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">调整布局</p>
-  </a>
-   <a href="/zh-CN/demos/radial-graph#自定义节点样式">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/NiG47YcQNS/f80179b8-d6f4-46c7-979e-03760004f926.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义节点样式</p>
-  </a>
-   <a href="/zh-CN/demos/radial-graph#自定义边样式">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/4N9fybwZuc/8adc2c1b-92c2-4a8c-989d-ee2bbe6e6507.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">自定义边样式</p>
-  </a>
-</div>
-
-### 组织架构树图
-
-<div class="gallery-item-box">
-  <a href="/zh-CN/demos/organizational-graph#基础组织架构树图">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Quv4RoUwgf4AAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">基础组织架构树图</p>
-  </a>
-  <a href="/zh-CN/demos/organizational-graph#设置-title">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/ODaA4YAea8/e2f9c38a-cdda-4c6e-8bb5-9a1ae9bc56d2.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">设置 Title</p>
-  </a>
-  <a href="/zh-CN/demos/organizational-graph#展示底部控制-marker">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/OBtQR%24HhDo/fd78a719-ba60-4cc0-bc9c-67dc7fac6600.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">展示底部控制-marker</p>
-  </a>
-</div>
-
-<!-- ### 缩进树图(旧)
-
-<div class="gallery-item-box">
- <a href="/zh-CN/demos/indented-tree#演示结果">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*C5XCQapXDpwAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">缩进树图</p>
-  </a>
-</div> -->
-
-### 流程图
-
-<div class="gallery-item-box">
-  <a href="/zh-CN/demos/dagre-graph#演示结果">
-    <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gZwPSoxN-NUAAAAAAAAAAAAAARQnAQ" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">流程图</p>
-  </a>
-</div>
-
-### 资金流向图
-
-<div class="gallery-item-box">
-
-  <a href="/zh-CN/demos/dagre-fund-flow-graph#演示结果" >
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/a60JQyDs9O/378700df-a0b9-41c6-af4c-03952c0f0355.png" height="auto" />
-    <p style="color: #293c55;margin: 0; margin-top: 12px;">资金流向图</p>
-  </a>
-  
-</div>
 
 ### 桑基图
 
