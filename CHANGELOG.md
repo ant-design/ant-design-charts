@@ -1,3 +1,87 @@
+## 1.2.0
+
+> 图组件全新 API ，新增&优化多个图组件，新增交互、节点自定义等。调整目录结构，类型引入定义更简单。
+
+### 新功能
+
+> 新增节点、边交互状态，来源去向图、组织架构图、指标拆解树支持自定义节点，节点、边个性化设置，更灵活。
+
+#### 来源去向图
+
+> FlowAnalysisGraph
+
+| ![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1626337308273-1869606d-da26-470b-99ac-7dce4a324eb6.png#clientId=uc4615b79-7491-4&from=paste&height=396&id=ufe21e8a7&margin=%5Bobject%20Object%5D&name=image.png&originHeight=396&originWidth=754&originalType=binary&ratio=1&size=103139&status=done&style=none&taskId=u8c9cb519-5085-4006-a5cc-7a15448f60a&width=754) | ![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1626335599778-010ac67d-982c-4fca-b240-d53ef55ef35a.png#clientId=ua9a3d129-b5b7-4&from=paste&height=448&id=u2b24628b&margin=%5Bobject%20Object%5D&name=image.png&originHeight=448&originWidth=931&originalType=binary&ratio=1&size=89087&status=done&style=none&taskId=uc41711ad-8b1a-45d9-bacc-acab2f49541&width=931) |
+| --- | --- |
+
+#### 组织架构图
+
+> OrganizationGraph
+
+| ![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1626336025336-fe4de176-5cf4-490a-b222-dac7039bf628.png#clientId=ua9a3d129-b5b7-4&from=paste&height=506&id=u3f49c5ea&margin=%5Bobject%20Object%5D&name=image.png&originHeight=506&originWidth=923&originalType=binary&ratio=1&size=125664&status=done&style=none&taskId=uee2b4d05-5a34-41ab-824a-bd0b2af281f&width=923) | ![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1626336047983-fe2acb21-072f-486f-b0d8-3bb1498d52f1.png#clientId=ua9a3d129-b5b7-4&from=paste&height=372&id=u2cda8a8f&margin=%5Bobject%20Object%5D&name=image.png&originHeight=372&originWidth=866&originalType=binary&ratio=1&size=92687&status=done&style=none&taskId=u6ab558b7-7d5a-43c3-b025-819b815da49&width=866) |
+| --- | --- |
+
+​<br />
+
+#### 指标拆解树
+
+> DecompositionTreeGraph
+
+| ![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1626336487396-701f2b89-4d96-4b43-aa2c-0a98e4ead468.png#clientId=ua9a3d129-b5b7-4&from=paste&height=340&id=ue6de2099&margin=%5Bobject%20Object%5D&name=image.png&originHeight=340&originWidth=721&originalType=binary&ratio=1&size=95783&status=done&style=none&taskId=u0babaee1-4b72-4114-8a53-5643b8d543c&width=721) | ![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1626336513538-be5d3195-b73f-4ed8-87d1-4e68834d7e71.png#clientId=ua9a3d129-b5b7-4&from=paste&height=361&id=u651a2cae&margin=%5Bobject%20Object%5D&name=image.png&originHeight=361&originWidth=692&originalType=binary&ratio=1&size=74657&status=done&style=none&taskId=ua5a066c3-d3d8-4f01-bf7c-a2bc4c30f0a&width=692) |
+| --- | --- |
+
+#### 辐射树图
+
+> RadialTreeGraph
+
+| ![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1626336586223-5d573bc5-01da-43d8-b9cc-250e56cbe79f.png#clientId=ua9a3d129-b5b7-4&from=paste&height=213&id=ub106f57d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=525&originWidth=620&originalType=binary&ratio=1&size=157766&status=done&style=none&taskId=ufcc3ccab-ea60-42b4-98ba-10b0ca74d6c&width=252) | ![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1626336604503-8982ef00-7d01-4a60-8132-4c78f2ffdb0a.png#clientId=ua9a3d129-b5b7-4&from=paste&height=225&id=u4541d37d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=513&originWidth=547&originalType=binary&ratio=1&size=133385&status=done&style=none&taskId=u468c94a6-439f-4b6b-b83d-78287c4251a&width=240) |
+| --- | --- |
+
+​<br />
+
+### 不兼容改动
+
+> 调整目录结构带来不兼容
+
+#### 类型引入
+
+旧：
+
+```typescript
+import { Line } from '@ant-design/charts';
+import { LineConfig } from '@ant-design/charts/es/line';
+```
+
+新：
+
+```typescript
+import { Line, LineConfig } from '@ant-design/charts';
+```
+
+#### 按需引入
+
+旧：
+
+```typescript
+import Line from '@ant-design/charts/es/line';
+```
+
+新：
+
+```typescript
+import Line from '@ant-design/charts/es/plots/line';
+```
+
+#### 官网示例少了
+
+由于目前 API 做了升级，还没来得及升级的图表暂时不在官网透出，但任然可以正常使用，也可以在官网访问。<br />只需手动输入网址即可。
+
+```typescript
+// 组件名为中划线格式
+https://charts.ant.design/zh-CN/demos/ + 组件名
+// OrganizationalGraph
+https://charts.ant.design/zh-CN/demos/organizational-graph
+```
+
 ## 1.1.20
 
 `2021-06-29`
