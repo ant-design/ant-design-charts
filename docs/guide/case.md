@@ -206,35 +206,35 @@ import { Column } from '@ant-design/charts';
 const DemoColumn: React.FC = () => {
   const data = [
     {
-      type: '家具家电',
+      type: 'Furniture appliances',
       sales: 38,
     },
     {
-      type: '粮油副食',
+      type: 'Cereals, Oils and Non-staple food',
       sales: 52,
     },
     {
-      type: '生鲜水果',
+      type: 'Fresh fruits',
       sales: 0,
     },
     {
-      type: '美容洗护',
+      type: 'Beauty care',
       sales: 145,
     },
     {
-      type: '母婴用品',
+      type: 'Baby products',
       sales: 48,
     },
     {
-      type: '进口食品',
+      type: 'Imported food',
       sales: 38,
     },
     {
-      type: '食品饮料',
+      type: 'Food and drink',
       sales: 38,
     },
     {
-      type: '家庭清洁',
+      type: 'Home cleaning',
       sales: 38,
     },
   ];
@@ -251,8 +251,8 @@ const DemoColumn: React.FC = () => {
       },
     },
     meta: {
-      type: { alias: '类别' },
-      sales: { alias: '销售额' },
+      type: { alias: 'Category' },
+      sales: { alias: 'Sales' },
     },
   };
 
