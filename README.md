@@ -80,12 +80,12 @@ const Page: React.FC = () => {
 
   let chart;
 
-  // 导出图片
+  // Export Image
   const downloadImage = () => {
     chart?.downloadImage();
   };
 
-  // 获取图表 base64 数据
+  // Get chart base64 string
   const toDataURL = () => {
     console.log(chart?.toDataURL());
   };
@@ -93,10 +93,10 @@ const Page: React.FC = () => {
   return (
     <div>
       <button type="button" onClick={downloadImage} style={{ marginRight: 24 }}>
-        导出图片
+        Export Image
       </button>
       <button type="button" onClick={toDataURL}>
-        获取图表信息
+        Get base64
       </button>
       <Line {...config} onReady={(chartInstance) => (chart = chartInstance)} />
     </div>
