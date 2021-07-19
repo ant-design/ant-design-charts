@@ -12,6 +12,7 @@ export default defineConfig({
     '@s-site-menu-width': '262px',
   },
   styles: [
+    '__dumi-default-previewer-demo {padding: 24px;}',
     '.__dumi-default-previewer-demo > div > div { min-height: 100px; }',
     '.__dumi-default-layout-content {overflow: hidden; overflow-x: auto;}',
     '.__dumi-default-layout-content h2 {margin: 32px 0 18px;}',

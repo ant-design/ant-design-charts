@@ -262,9 +262,9 @@ export const getArrowCfg = (arrowCfg: IArrowConfig | undefined, edge: EdgeConfig
   if (arrowCfg?.show === false) {
     return;
   }
-  const { type = 'vee', d = 0 } = arrowCfg;
+  const { type = 'vee', d = 0, size = 10 } = arrowCfg;
   return {
-    path: G6.Arrow[type](10, 10, d),
+    path: G6.Arrow[type](size, size, d),
     fill: '#ccc',
     d,
     ...arrowCfg,

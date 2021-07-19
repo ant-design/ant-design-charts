@@ -42,6 +42,8 @@ export interface ArrowConfig extends G6ArrowConfig {
   show?: boolean;
   /** 箭头类型 */
   type?: string;
+  /** 箭头大小 */
+  size?: number;
 }
 
 export type IArrowConfig = false | ArrowConfig | ((edge: Shape | ShapeCfg) => ArrowConfig);
