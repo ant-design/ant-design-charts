@@ -45,6 +45,9 @@ const defaultProps = {
   animate: true,
   markerPosition: 'right' as 'right',
   autoFit: true,
+  style: {
+    height: 'inherit',
+  },
 };
 
 const RadialTreeGraph: React.FC<RadialTreeGraphConfig> = (props) => {

@@ -101,6 +101,9 @@ const defaultProps = {
   markerPosition: 'right' as 'right',
   autoFit: true,
   adjustLayout: false,
+  style: {
+    height: 'inherit',
+  },
 };
 
 const DecompositionTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {

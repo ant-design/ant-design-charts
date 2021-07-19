@@ -58,6 +58,9 @@ const defaultProps = {
   nodeStateStyles: defaultStateStyles,
   edgeStateStyles: defaultStateStyles,
   autoFit: true,
+  style: {
+    height: 'inherit',
+  },
 };
 
 const graphs: any = {};

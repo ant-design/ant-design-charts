@@ -55,6 +55,9 @@ const defaultProps = {
   showArrow: true,
   arrowType: 'vee',
   autoFit: true,
+  style: {
+    height: 'inherit',
+  },
 };
 
 const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {

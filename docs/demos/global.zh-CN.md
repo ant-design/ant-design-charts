@@ -23,7 +23,7 @@ toc: content
     <p style="color: #293c55;margin: 0; margin-top: 12px;">拆解树图</p>
   </a>
     <a href="/zh-CN/demos/radial-tree-graph">
-    <img src="https://gw.alipayobjects.com/zos/antfincdn/Eo0NShrKVW/90863186-e473-42e1-9687-e663b107fed0.png" height="auto" />
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/tCykDJncjJ/2200d0c0-40bd-46a8-a885-30393fb165b1.png" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">辐射树图</p>
   </a>
 </div>
