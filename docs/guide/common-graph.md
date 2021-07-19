@@ -91,9 +91,9 @@ Zoom Graph.
 ```ts
 {
   onReady: (graph) => {
-    // 缩小 0.5
+    // Zoom 0.5x
     graph.zoom(0.5);
-    // 以[100, 100]为中心缩小 0.5
+    // Zoom 0.5x and set the center to [100,100]
     graph.zoom(0.5, { x: 100, y: 100 });
   };
 }
