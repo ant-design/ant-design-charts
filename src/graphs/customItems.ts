@@ -124,7 +124,8 @@ export const registerIndicatorCardNode = () => {
             keys.forEach((key: string, keyIndex: number) => {
               let x;
               const isIcon = key.startsWith('icon');
-              if (layout === 'flex') {
+              // sort 直接均分，简单化
+              if (sort || layout === 'flex') {
                 x = (keyIndex * contentWidth) / keys.length;
               } else if (layout === 'LR') {
                 x = valueShapeWidth;
@@ -134,6 +135,7 @@ export const registerIndicatorCardNode = () => {
                 x = key === 'text' ? 0 : contentWidth / 2;
                 x += isIcon ? valueShapeWidth : 0;
               }
+
               const keyShape = group!.addShape(isIcon ? 'image' : 'text', {
                 attrs: {
                   textBaseline: 'top',
