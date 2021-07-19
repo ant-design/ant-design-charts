@@ -34,6 +34,7 @@ export const registerIndicatorCardNode = () => {
           style: itemStyle,
           containerStyle: itemContainerStyle,
           layout,
+          itemSpacing = 4,
           sort,
           padding: itemPadding = [6, 0, 0],
         } = itemsCfg ?? {};
@@ -123,9 +124,12 @@ export const registerIndicatorCardNode = () => {
             keys.forEach((key: string, keyIndex: number) => {
               let x;
               const isIcon = key.startsWith('icon');
-              if (sort || layout === 'flex') {
+              if (layout === 'flex') {
                 x = (keyIndex * contentWidth) / keys.length;
+              } else if (layout === 'LR') {
+                x = valueShapeWidth;
               } else {
+                // layout === 'bundled'
                 // 直接均分，icon 紧随 value
                 x = key === 'text' ? 0 : contentWidth / 2;
                 x += isIcon ? valueShapeWidth : 0;
@@ -142,8 +146,9 @@ export const registerIndicatorCardNode = () => {
                 },
                 name: `${key}-${index}-${keyIndex}`,
               });
-              if (key === 'value') {
-                valueShapeWidth = keyShape.getBBox().width;
+              if (key === 'value' || layout === 'LR') {
+                valueShapeWidth += keyShape.getBBox().width;
+                valueShapeWidth += layout === 'LR' ? itemSpacing : 0;
               }
               rowHeight.push(keyShape.getBBox().height);
             });
