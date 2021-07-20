@@ -128,12 +128,12 @@ interface Data {
      * item 布局方式<default: bundled>
      * - flex: text、value、icon 均分容器宽度
      * - bundled: text、(value、icon) 均分容器宽度(sort: true 时无效)
-     * - LR: 从左到右依次排列
+     * - follow: 从左到右依次排列
      */
-    layout?: 'bundled' | 'flex';
+    layout?: 'bundled' | 'flex' | 'follow';
     /**
      * 内容横向间距
-     * layout: 'LR' 时生效
+     * layout: 'follow' 时生效
      */
     itemSpacing?: number;
     /** 是否根据 item 顺序绘制 */

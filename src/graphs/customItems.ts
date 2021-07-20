@@ -127,7 +127,7 @@ export const registerIndicatorCardNode = () => {
               // sort 直接均分，简单化
               if (sort || layout === 'flex') {
                 x = (keyIndex * contentWidth) / keys.length;
-              } else if (layout === 'LR') {
+              } else if (layout === 'follow') {
                 x = valueShapeWidth;
               } else {
                 // layout === 'bundled'
@@ -148,9 +148,9 @@ export const registerIndicatorCardNode = () => {
                 },
                 name: `${key}-${index}-${keyIndex}`,
               });
-              if (key === 'value' || layout === 'LR') {
+              if (key === 'value' || layout === 'follow') {
                 valueShapeWidth += keyShape.getBBox().width;
-                valueShapeWidth += layout === 'LR' ? itemSpacing : 0;
+                valueShapeWidth += layout === 'follow' ? itemSpacing : 0;
               }
               rowHeight.push(keyShape.getBBox().height);
             });
