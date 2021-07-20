@@ -7,6 +7,9 @@ import { deepClone } from '../../util/utils';
 import { defaultNodeAnchorPoints, defaultStateStyles, defaultEdgeStyle } from './constants';
 import { processMinimap, getGraphSize, getGraphId, bindEvents, useProps } from './utils';
 import { RelationGraph } from './types';
+import { registerCustomItems } from './customItems';
+
+registerCustomItems();
 
 const defaultNodeSize = [150, 30];
 
