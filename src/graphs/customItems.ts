@@ -237,7 +237,7 @@ export const registerIndicatorCardNode = () => {
           .get('children')
           .find((item: Node) => item.get('type') === 'marker');
         const collapsed = node.getModel().collapsed;
-        markerShape!.attr({
+        markerShape?.attr({
           symbol: collapsed ? G6.Marker.expand : G6.Marker.collapse,
         });
       },

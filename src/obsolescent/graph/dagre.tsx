@@ -19,6 +19,9 @@ import {
   useProps,
 } from './utils';
 import { RelationGraph } from './types';
+import { registerCustomItems } from './customItems';
+
+registerCustomItems();
 
 const defaultNodeStyle = {
   stroke: '#40a9ff',
