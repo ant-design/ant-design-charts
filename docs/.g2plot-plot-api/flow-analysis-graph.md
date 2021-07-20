@@ -127,10 +127,15 @@ Node items configuration.
     /**
      * item layout methods <default: bundled>
      * - flex: text、value、icon divide the container width equally
-     * - bundled: text、(value、icon) divide the container width equally
-     * sort: true is invalid
+     * - bundled: text、(value、icon) divide the container width equally(true is invalid)
+     * - follow: Arrange from left to right
      */
-    layout?: 'bundled' | 'flex';
+    layout?: 'bundled' | 'flex' | 'follow';
+    /**
+     * Horizontal spacing of content
+     * layout: 'follow' takes effct
+    */
+    itemSpacing?: number;
     /** sort by item keys */
     sort?: boolean;
     /** item padding */
