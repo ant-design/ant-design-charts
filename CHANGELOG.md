@@ -1,3 +1,11 @@
+## 1.2.1
+
+`2021-07-20`
+
+- 🆕 FlowAnalysisGraph layout 新增 `follow`
+- 🆕 Graphs ArrowCfg 新增 size
+- 🆕 Graphs 默认值&文档优化
+
 ## 1.2.0
 
 > 图组件全新 API ，新增&优化多个图组件，新增交互、节点自定义等。调整目录结构，类型引入定义更简单。
