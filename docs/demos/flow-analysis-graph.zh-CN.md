@@ -1084,7 +1084,7 @@ const DemoFlowAnalysisGraph: React.FC = () => {
     data,
     nodeCfg: {
       size: [140, 25],
-      statusCfg: {
+      badge: {
         style: (cfg) => {
           const ids = ['-3', '-2', '-1'];
           const fill = ids.includes(cfg.id) ? '#c86bdd' : '#5ae859';

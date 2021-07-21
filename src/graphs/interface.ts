@@ -96,6 +96,17 @@ export interface CustomCfg {
   width?: number;
 }
 
+export interface BadgeCfg {
+  /** 标记位置 */
+  position?: 'left' | 'top' | 'right' | 'bottom';
+  /** 标记宽度 */
+  width?: number;
+  /** 标记高度 */
+  height?: number;
+  /** 标记样式 */
+  style?: IShapeStyle;
+}
+
 // 通用 card 配置
 export interface CardNodeCfg extends NodeCfg {
   title?: {
@@ -125,21 +136,12 @@ export interface CardNodeCfg extends NodeCfg {
     /** 是否根据 item 顺序绘制 */
     sort?: boolean;
     /** item 容器填充 */
-    padding?: number;
+    padding?: number | number[];
   };
   /** card 容器填充 */
-  padding?: number;
-  /** 节点状态条配置 */
-  statusCfg?: {
-    /** 状态条位置 */
-    position?: 'left' | 'top' | 'right' | 'bottom';
-    /** 状态条宽度 */
-    width?: number;
-    /** 状态条高度 */
-    height?: number;
-    /** 状态条样式 */
-    style?: IShapeStyle;
-  };
+  padding?: number | number[];
+  /** 节点标记 */
+  badge?: BadgeCfg;
   /** 自定义节点 */
   customContent?: (item: CardItems, group: IGroup | undefined, cfg: CustomCfg) => number;
 }

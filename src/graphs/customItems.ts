@@ -25,10 +25,10 @@ export const registerIndicatorCardNode = () => {
           label = {},
           style,
           padding = 0,
-          statusCfg,
+          badge,
           customContent,
         } = nodeCfg as CardNodeCfg;
-        const appendPadding = getStatusBBox(statusCfg);
+        const appendPadding = getStatusBBox(badge);
         const { style: labelStyle } = label;
         const cardPadding = getCssPadding(padding);
         const paddingArray = cardPadding.map(
@@ -205,13 +205,13 @@ export const registerIndicatorCardNode = () => {
           : titleShape?.getBBox().height + itemShape?.getBBox().height;
         shape?.attr('height', shapeHeight);
 
-        if (statusCfg) {
-          const statusConfig = getStatusCfg(statusCfg, [size[0], shapeHeight]);
+        if (badge) {
+          const statusConfig = getStatusCfg(badge, [size[0], shapeHeight]);
           group!.addShape('rect', {
             attrs: {
               fill: '#40a9ff',
               ...statusConfig,
-              ...getStyle(statusCfg.style, cfg, group),
+              ...getStyle(badge.style, cfg, group),
             },
             name: 'status-rect',
           });

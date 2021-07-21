@@ -156,22 +156,22 @@ Item content padding .
 }
 ```
 
-##### statusCfg
+##### badge
 
 <description>**optional** _Object_</description>
 
 Item status configuration, style supports callback.
 
 ```ts
-  /** 节点状态条配置 */
-  statusCfg?: {
-    /** 状态条位置 */
+  /** 节点标记配置 */
+  badge?: {
+    /** 标记位置 */
     position?: 'left' | 'top' | 'right' | 'bottom';
-    /** 状态条宽度 */
+    /** 标记宽度 */
     width?: number;
-    /** 状态条高度 */
+    /** 标记高度 */
     height?: number;
-    /** 状态条样式 */
+    /** 标记样式 */
     style?: IShapeStyle;
   };
 ```
