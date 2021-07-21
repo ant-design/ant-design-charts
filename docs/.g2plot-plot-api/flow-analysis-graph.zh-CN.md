@@ -169,9 +169,9 @@ interface Data {
     position?: 'left' | 'top' | 'right' | 'bottom';
     /** 状态条宽度 */
     width?: number;
-    /** 状态条宽度 */
+    /** 状态条高度 */
     height?: number;
-    /** 状态条宽度 */
+    /** 状态条样式 */
     style?: IShapeStyle;
   };
 ```
