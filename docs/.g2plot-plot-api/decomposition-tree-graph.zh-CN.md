@@ -144,6 +144,24 @@ interface Data {
 }
 ```
 
+##### badge
+
+<description>**optional** _Object_</description>
+
+节点状态配置，style 支持回调。
+
+```ts
+  /** 节点标记配置 */
+  badge?: {
+    /** 标记位置 */
+    position?: 'left' | 'top' | 'right' | 'bottom';
+     /** 标记大小 */
+    size?: number | number[];
+    /** 标记样式 */
+    style?: IShapeStyle;
+  };
+```
+
 ##### customContent
 
 <description>**optional** _Function_</description>

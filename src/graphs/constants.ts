@@ -51,3 +51,6 @@ export const defaultIconStyle = {
   width: 12,
   height: 12,
 };
+
+// status bar 的默认宽度
+export const DefaultStatusBarWidth = 4;

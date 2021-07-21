@@ -7,7 +7,7 @@ import {
   defaultCardStyle,
   defaultIconStyle,
 } from './constants';
-import { getStyle, getCssPadding } from './utils';
+import { getStyle, getCssPadding, getStatusBBox, getStatusCfg } from './utils';
 import { createMarker } from './elements';
 import { CardNodeCfg, CardItems } from './interface';
 
@@ -25,10 +25,15 @@ export const registerIndicatorCardNode = () => {
           label = {},
           style,
           padding = 0,
+          badge,
           customContent,
         } = nodeCfg as CardNodeCfg;
+        const appendPadding = getStatusBBox(badge);
         const { style: labelStyle } = label;
-        const paddingArray = getCssPadding(padding);
+        const cardPadding = getCssPadding(padding);
+        const paddingArray = cardPadding.map(
+          (item: number, index: number) => item + appendPadding[index],
+        );
         const { style: titleStyle, containerStyle: titleContainerStyle } = titleCfg ?? {};
         const {
           style: itemStyle,
@@ -195,12 +200,22 @@ export const registerIndicatorCardNode = () => {
           'height',
           Math.max(height - titleShape?.getBBox().height + itemPaddingArray[2], size[1]),
         );
-        shape?.attr(
-          'height',
-          items
-            ? titleShape?.getBBox().height + itemShape?.getBBox().height + paddingArray[2]
-            : titleShape?.getBBox().height + itemShape?.getBBox().height,
-        );
+        const shapeHeight = items
+          ? titleShape?.getBBox().height + itemShape?.getBBox().height + paddingArray[2]
+          : titleShape?.getBBox().height + itemShape?.getBBox().height;
+        shape?.attr('height', shapeHeight);
+
+        if (badge) {
+          const statusConfig = getStatusCfg(badge, [size[0], shapeHeight]);
+          group!.addShape('rect', {
+            attrs: {
+              fill: '#40a9ff',
+              ...statusConfig,
+              ...getStyle(badge.style, cfg, group),
+            },
+            name: 'status-rect',
+          });
+        }
         // collapse marker
         if (markerCfg) {
           const { width: shapeWidth, height: shapeHeight } = shape.getBBox();
