@@ -129,6 +129,17 @@ export interface CardNodeCfg extends NodeCfg {
   };
   /** card 容器填充 */
   padding?: number;
+  /** 节点状态条配置 */
+  statusCfg?: {
+    /** 状态条位置 */
+    position?: 'left' | 'top' | 'right' | 'bottom';
+    /** 状态条宽度 */
+    width?: number;
+    /** 状态条宽度 */
+    height?: number;
+    /** 状态条宽度 */
+    style?: IShapeStyle;
+  };
   /** 自定义节点 */
   customContent?: (item: CardItems, group: IGroup | undefined, cfg: CustomCfg) => number;
 }

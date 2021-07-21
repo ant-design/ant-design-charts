@@ -1,4 +1,5 @@
 import G6 from '@antv/g6';
+import { isNumber } from '@antv/util';
 import { deepClone, isType } from '../util/utils';
 import {
   MiniMapConfig,
@@ -16,7 +17,7 @@ import {
   NodeConfig,
   IEdge,
 } from './interface';
-import { defaultMinimapCfg } from './constants';
+import { defaultMinimapCfg, DefaultStatusBarWidth } from './constants';
 
 export const getGraphSize = (
   width: number | undefined,
@@ -388,4 +389,72 @@ export const getCommonConfig = (
     return cfg(item, graph);
   }
   return cfg;
+};
+
+/**
+ * card status 对布局的影响，直接加到 padding 中
+ */
+export const getStatusBBox = (cfg: CardNodeCfg['statusCfg'] | undefined) => {
+  if (!cfg) {
+    return [0, 0, 0, 0];
+  }
+  const { width, height, position = 'left' } = cfg;
+  const appendPadding = [];
+  switch (position) {
+    case 'top':
+      appendPadding.push(height ?? DefaultStatusBarWidth, 0, 0, 0);
+      break;
+    case 'right':
+      appendPadding.push(0, width ?? DefaultStatusBarWidth, 0, 0);
+      break;
+    case 'bottom':
+      appendPadding.push(0, 0, height ?? DefaultStatusBarWidth, 0);
+      break;
+    case 'left':
+      appendPadding.push(0, 0, 0, width ?? DefaultStatusBarWidth);
+      break;
+  }
+  return appendPadding;
+};
+
+export const getStatusCfg = (cfg: CardNodeCfg['statusCfg'], cardSize: [number, number]) => {
+  const { width, height, position = 'left' } = cfg ?? {};
+  const [cardWidth, cardHeight] = cardSize;
+  let x = 0;
+  let y = 0;
+  let w = 0;
+  let h = 0;
+  switch (position) {
+    case 'top':
+      x = 0;
+      y = 0;
+      w = width ?? cardWidth;
+      h = height ?? DefaultStatusBarWidth;
+      break;
+    case 'left':
+      x = 0;
+      y = 0;
+      w = width ?? DefaultStatusBarWidth;
+      h = height ?? cardHeight;
+      break;
+    case 'right':
+      x = cardWidth - (isNumber(width) ? width : DefaultStatusBarWidth);
+      y = 0;
+      w = width ?? DefaultStatusBarWidth;
+      h = height ?? cardHeight;
+      break;
+    case 'bottom':
+      x = 0;
+      y = cardHeight - (isNumber(height) ? height : DefaultStatusBarWidth);
+      w = width ?? cardWidth;
+      h = height ?? DefaultStatusBarWidth;
+      break;
+  }
+
+  return {
+    x,
+    y,
+    width: w,
+    height: h,
+  };
 };

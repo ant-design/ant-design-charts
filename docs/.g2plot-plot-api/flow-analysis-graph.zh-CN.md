@@ -156,6 +156,26 @@ interface Data {
 }
 ```
 
+##### statusCfg
+
+<description>**optional** _Object_</description>
+
+节点状态配置，style 支持回调。
+
+```ts
+  /** 节点状态条配置 */
+  statusCfg?: {
+    /** 状态条位置 */
+    position?: 'left' | 'top' | 'right' | 'bottom';
+    /** 状态条宽度 */
+    width?: number;
+    /** 状态条宽度 */
+    height?: number;
+    /** 状态条宽度 */
+    style?: IShapeStyle;
+  };
+```
+
 ##### customContent
 
 <description>**optional** _Function_</description>

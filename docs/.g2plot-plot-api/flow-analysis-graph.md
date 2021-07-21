@@ -156,6 +156,26 @@ Item content padding .
 }
 ```
 
+##### statusCfg
+
+<description>**optional** _Object_</description>
+
+Item status configuration, style supports callback.
+
+```ts
+  /** 节点状态条配置 */
+  statusCfg?: {
+    /** 状态条位置 */
+    position?: 'left' | 'top' | 'right' | 'bottom';
+    /** 状态条宽度 */
+    width?: number;
+    /** 状态条宽度 */
+    height?: number;
+    /** 状态条宽度 */
+    style?: IShapeStyle;
+  };
+```
+
 ##### customContent
 
 <description>**optional** _Function_</description>
