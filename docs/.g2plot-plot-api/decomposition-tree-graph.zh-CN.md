@@ -155,10 +155,8 @@ interface Data {
   badge?: {
     /** 标记位置 */
     position?: 'left' | 'top' | 'right' | 'bottom';
-    /** 标记宽度 */
-    width?: number;
-    /** 标记高度 */
-    height?: number;
+     /** 标记大小 */
+    size?: number | number[];
     /** 标记样式 */
     style?: IShapeStyle;
   };

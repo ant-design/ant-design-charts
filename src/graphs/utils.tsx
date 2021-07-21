@@ -391,6 +391,13 @@ export const getCommonConfig = (
   return cfg;
 };
 
+export const getSize = (size: number | number[]) => {
+  if (Array.isArray(size)) {
+    return size;
+  }
+  return [size, size];
+};
+
 /**
  * card status 对布局的影响，直接加到 padding 中
  */
@@ -398,7 +405,8 @@ export const getStatusBBox = (cfg: CardNodeCfg['badge'] | undefined) => {
   if (!cfg) {
     return [0, 0, 0, 0];
   }
-  const { width, height, position = 'left' } = cfg;
+  const { size = [], position = 'left' } = cfg;
+  const [width, height] = getSize(size);
   const appendPadding = [];
   switch (position) {
     case 'top':
@@ -418,7 +426,8 @@ export const getStatusBBox = (cfg: CardNodeCfg['badge'] | undefined) => {
 };
 
 export const getStatusCfg = (cfg: CardNodeCfg['badge'], cardSize: [number, number]) => {
-  const { width, height, position = 'left' } = cfg ?? {};
+  const { size = [], position = 'left' } = cfg ?? {};
+  const [width, height] = getSize(size);
   const [cardWidth, cardHeight] = cardSize;
   let x = 0;
   let y = 0;
