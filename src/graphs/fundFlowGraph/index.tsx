@@ -48,14 +48,9 @@ const defaultProps = {
   },
   edgeCfg: {
     type: 'fund-polyline',
-    edgeStateStyles: {
-      hover: {
-        stroke: '#1890ff',
-        lineWidth: 2,
-        endArrow: {
-          fill: '#1890ff',
-        },
-      },
+    edgeStateStyles: defaultStateStyles,
+    style: {
+      stroke: '#40a9ff',
     },
   },
   behaviors: ['zoom-canvas', 'drag-canvas'],

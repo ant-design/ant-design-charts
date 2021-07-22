@@ -96,35 +96,6 @@ interface Data {
 }
 ```
 
-##### customContent
-
-<description>**optional** _Function_</description>
-
-自定义 items，需要返回自定义元素的最大高度。
-
-```ts
-{
-  customContent: (item, group, cfg) => {
-    const { startX, startY, width } = cfg;
-    const { text } = item;
-    const textShape =
-      text &&
-      group!.addShape('text', {
-        attrs: {
-          textBaseline: 'top',
-          x: startX,
-          y: startY,
-          text,
-          fill: '#aaa',
-        },
-        // group 内唯一字段
-        name: `text-${Math.random()}`,
-      });
-    return textShape?.getBBox().height ?? 0;
-  },
-}
-```
-
 ##### nodeStateStyles
 
 <description>**optional** _object_</description>

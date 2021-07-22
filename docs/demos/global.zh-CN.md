@@ -26,6 +26,11 @@ toc: content
     <img src="https://gw.alipayobjects.com/zos/antfincdn/tCykDJncjJ/2200d0c0-40bd-46a8-a885-30393fb165b1.png" height="auto" />
     <p style="color: #293c55;margin: 0; margin-top: 12px;">辐射树图</p>
   </a>
+  </a>
+    <a href="/zh-CN/demos/fund-flow-graph">
+    <img src="https://gw.alipayobjects.com/zos/antfincdn/53hj5tbpca/e6097b91-e1d1-4226-bee0-8ea8d7161815.png" height="auto" />
+    <p style="color: #293c55;margin: 0; margin-top: 12px;">资金流向图</p>
+  </a>
 </div>
 
 <!-- ### 资金流向图
