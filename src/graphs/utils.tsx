@@ -16,8 +16,11 @@ import {
   EdgeConfig,
   NodeConfig,
   IEdge,
+  ModelConfig,
+  StateStyles,
+  ArrowConfig,
 } from './interface';
-import { defaultMinimapCfg, DefaultStatusBarWidth } from './constants';
+import { defaultMinimapCfg, DefaultStatusBarWidth, defaultNodeSize } from './constants';
 
 export const getGraphSize = (
   width: number | undefined,
@@ -253,22 +256,20 @@ export const getCssPadding = (padding: number | number[]) => {
 };
 
 // 默认箭头样式
-export const getArrowCfg = (arrowCfg: IArrowConfig | undefined, edge: EdgeConfig) => {
+export const getArrowCfg = (arrowCfg: IArrowConfig | undefined, edge?: EdgeConfig) => {
   if (!arrowCfg) {
     return;
   }
-  if (typeof arrowCfg === 'function') {
-    return arrowCfg(edge);
-  }
-  if (arrowCfg?.show === false) {
+  if (typeof arrowCfg === 'object' && arrowCfg?.show === false) {
     return;
   }
-  const { type = 'vee', d = 0, size = 10 } = arrowCfg;
+  const cfg = typeof arrowCfg === 'function' ? arrowCfg(edge) : arrowCfg;
+  const { type = 'vee', d = 0, size = 10 } = cfg;
   return {
     path: G6.Arrow[type](size, size, d),
     fill: '#ccc',
     d,
-    ...arrowCfg,
+    ...cfg,
   };
 };
 
@@ -369,7 +370,7 @@ export const bindStateEvents = (graph: IGraph, cfg?: Partial<GraphConfig> | unde
 // 统一处理 config，支持回调
 export const getStyle = (
   source: unknown,
-  cfg: CardNodeCfg,
+  cfg: CardNodeCfg | ModelConfig,
   item?: IGroup | undefined,
   current?: string | number,
 ) => {
@@ -391,11 +392,11 @@ export const getCommonConfig = (
   return cfg;
 };
 
-export const getSize = (size: number | number[]) => {
+export const getSize = (size: number | number[] | undefined) => {
   if (Array.isArray(size)) {
     return size;
   }
-  return [size, size];
+  return size ? [size, size] : defaultNodeSize;
 };
 
 /**
@@ -465,5 +466,24 @@ export const getStatusCfg = (cfg: CardNodeCfg['badge'], cardSize: [number, numbe
     y,
     width: w,
     height: h,
+  };
+};
+
+// 设置边交互态，仅自定义边需要
+export const getEdgeStateStyles = (edgeStateStyles: StateStyles | undefined) => {
+  if (!edgeStateStyles) {
+    return;
+  }
+  const { hover = {} } = edgeStateStyles;
+  const { endArrow, startArrow } = hover;
+  if (!endArrow && !startArrow) {
+    return edgeStateStyles;
+  }
+  return {
+    hover: {
+      ...hover,
+      endArrow: endArrow ? getArrowCfg(endArrow as ArrowConfig) : false,
+      startArrow: startArrow ? getArrowCfg(startArrow as ArrowConfig) : false,
+    },
   };
 };

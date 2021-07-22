@@ -96,35 +96,6 @@ Item content padding .
 }
 ```
 
-##### customContent
-
-<description>**optional** _Function_</description>
-
-Custom items, returns the maximum height of a custom items.
-
-```ts
-{
-  customContent: (item, group, cfg) => {
-    const { startX, startY, width } = cfg;
-    const { text } = item;
-    const textShape =
-      text &&
-      group!.addShape('text', {
-        attrs: {
-          textBaseline: 'top',
-          x: startX,
-          y: startY,
-          text,
-          fill: '#aaa',
-        },
-        // group 内唯一字段
-        name: `text-${Math.random()}`,
-      });
-    return textShape?.getBBox().height ?? 0;
-  },
-}
-```
-
 ##### nodeStateStyles
 
 <description>**optional** _object_</description>

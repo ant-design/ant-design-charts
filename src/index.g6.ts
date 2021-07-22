@@ -11,6 +11,7 @@ import {
   RadialTreeGraph,
   DecompositionTreeGraph,
   OrganizationGraph,
+  FundFlowGraph,
 } from './graphs'; // 最终版，后续不会出现不兼容变更
 
 export {
@@ -25,4 +26,5 @@ export {
   RadialTreeGraph,
   DecompositionTreeGraph,
   OrganizationGraph,
+  FundFlowGraph,
 };

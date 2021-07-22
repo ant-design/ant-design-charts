@@ -8,15 +8,29 @@ import {
   LabelStyle,
   Node,
   Edge,
-  EdgeConfig,
-  NodeConfig,
+  EdgeConfig as G6EdgeConfig,
+  NodeConfig as G6NodeConfig,
   Graph,
   INode,
   IEdge,
+  IPoint,
   ArrowConfig as G6ArrowConfig,
 } from '@antv/g6';
 
 import { GraphContainerConfig } from '../interface';
+
+export interface NodeConfig extends G6NodeConfig {
+  value?: any;
+}
+
+export interface EdgeConfig extends G6EdgeConfig {
+  value?:
+    | string
+    | {
+        text?: string;
+        subText?: string;
+      };
+}
 
 export interface MiniMapConfig {
   show?: boolean;
@@ -46,7 +60,10 @@ export interface ArrowConfig extends G6ArrowConfig {
   size?: number;
 }
 
-export type IArrowConfig = false | ArrowConfig | ((edge: Shape | ShapeCfg) => ArrowConfig);
+export type IArrowConfig =
+  | false
+  | ArrowConfig
+  | ((edge: Shape | ShapeCfg | undefined) => ArrowConfig);
 
 // 通用节点配置
 export interface NodeCfg extends Omit<ModelConfig, 'style' | 'label'> {
@@ -160,7 +177,7 @@ export interface NodeData<T> {
 export interface EdgeData<T> {
   source: string;
   target: string;
-  label?: T;
+  value?: T;
 }
 
 // 流向图节点数据
@@ -173,6 +190,12 @@ export interface FlowAnalysisGraphNodeData
   > {}
 
 export interface FlowAnalysisGraphEdgeData extends EdgeData<string> {}
+
+export interface FundFlowEdgeData
+  extends EdgeData<{
+    text?: string;
+    subText?: string;
+  }> {}
 
 export type MarkerPosition = 'left' | 'right' | 'top' | 'bottom';
 
@@ -240,31 +263,19 @@ export interface CommonConfig extends GraphContainerConfig {
 // FlowAnalysisGraph 配置
 export interface FlowAnalysisGraphConfig extends CommonConfig {}
 
-export interface IndentedTreeGraphConfig extends CommonConfig {
-  /** 全局 title 样式 */
-  titleStyle?: LabelStyle;
-  /** 全局 body 样式 */
-  bodyStyle?: LabelStyle;
-  /** 全局 footer 样式 */
-  footerStyle?: LabelStyle;
-  /** 全局 footer value 样式 */
-  footerValueStyle?: LabelStyle;
-  /** 是否展示尾部箭头，默认 true */
-  showArrow?: boolean;
-  /** 是否可收缩 */
-  collapseExpand?: boolean;
-  /** expand icon 位置 */
-  markerPosition?: 'top' | 'right' | 'bottom' | 'left';
-}
+export interface DecompositionTreeGraphConfig extends CommonConfig {}
 
 export interface OrganizationGraphConfig extends CommonConfig {}
 
 export interface RadialTreeGraphConfig extends CommonConfig {}
 
+export interface FundFlowGraphConfig extends CommonConfig {}
+
 export type GraphConfig = FlowAnalysisGraphConfig &
-  IndentedTreeGraphConfig &
+  DecompositionTreeGraphConfig &
   OrganizationGraphConfig &
-  RadialTreeGraphConfig;
+  RadialTreeGraphConfig &
+  FundFlowGraphConfig;
 
 export {
   StateStyles,
@@ -276,9 +287,8 @@ export {
   IG6GraphEvent,
   IGroup,
   LabelStyle,
-  EdgeConfig,
-  NodeConfig,
   INode,
   IEdge,
   Graph,
+  IPoint,
 };
