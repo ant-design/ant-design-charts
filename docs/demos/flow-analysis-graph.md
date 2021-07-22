@@ -1176,6 +1176,120 @@ const DemoFlowAnalysisGraph: React.FC = () => {
 export default DemoFlowAnalysisGraph;
 ```
 
+### NodeType
+
+```tsx
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { FlowAnalysisGraph } from '@ant-design/charts';
+
+const DemoFlowAnalysisGraph: React.FC = () => {
+  const data = {
+    nodes: [
+      {
+        id: '0',
+        value: {
+          title: '活动页面',
+        },
+      },
+      {
+        id: '1',
+        value: {
+          title: '去向页面A',
+        },
+      },
+      {
+        id: '2',
+        value: {
+          title: '去向页面B',
+        },
+      },
+      {
+        id: '3',
+        value: {
+          title: '去向页面C',
+        },
+      },
+      {
+        id: '4',
+        value: {
+          title: '去向页面D',
+        },
+      },
+      {
+        id: '5',
+        value: {
+          title: '去向页面E',
+        },
+      },
+      {
+        id: '6',
+        value: {
+          title: '去向页面F',
+        },
+      },
+      {
+        id: '6',
+        value: {
+          title: '去向页面F',
+        },
+      },
+    ],
+    edges: [
+      {
+        source: '0',
+        target: '1',
+      },
+      {
+        source: '0',
+        target: '2',
+      },
+      {
+        source: '1',
+        target: '3',
+      },
+      {
+        source: '1',
+        target: '4',
+      },
+      {
+        source: '2',
+        target: '5',
+      },
+      {
+        source: '2',
+        target: '6',
+      },
+    ],
+  };
+  const config = {
+    data,
+    nodeCfg: {
+      type: 'rect',
+      anchorPoints: [
+        [0.5, 1],
+        [0.5, 0],
+      ],
+      title: {
+        style: {
+          fill: '#000',
+          fontSize: 12,
+        },
+      },
+    },
+    edgeCfg: {
+      type: 'polyline',
+    },
+    layout: {
+      rankdir: 'TB',
+    },
+  };
+
+  return <FlowAnalysisGraph {...config} />;
+};
+
+export default DemoFlowAnalysisGraph;
+```
+
 ### Custom Items
 
 ```tsx

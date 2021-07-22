@@ -22,6 +22,7 @@ import {
   Shape,
   IGroup,
   IGraph,
+  CardNodeCfg,
 } from '../interface';
 import { registerIndicatorCardNode } from '../customItems';
 import {
@@ -132,6 +133,8 @@ const DecompositionTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
     size: nodeSize,
     anchorPoints: nodeAnchorPoints,
     nodeStateStyles,
+    style: nodeStyle,
+    title: nodeLabelCfg,
   } = nodeCfg ?? {};
 
   const {
@@ -178,8 +181,20 @@ const DecompositionTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
 
     // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
     graph.node((node: NodeConfig) => {
-      node.markerCfg = markerCfg;
-      return {};
+      if (nodeType === 'indicator-card') {
+        node.markerCfg = markerCfg;
+        return {};
+      }
+      const { style } = nodeLabelCfg as CardNodeCfg;
+      return {
+        label: node.value?.title,
+        labelCfg: {
+          style: getCommonConfig(style, node, graph),
+        },
+        style: {
+          ...(typeof nodeStyle === 'function' ? nodeStyle(node, graph) : nodeStyle),
+        },
+      };
     });
     graph.edge((edge: EdgeConfig) => {
       const startArrow = getArrowCfg(startArrowCfg, edge);
