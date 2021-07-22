@@ -53,6 +53,7 @@ export default defineConfig({
           '/demos/organization-graph.zh-CN.md',
           '/demos/decomposition-tree-graph.zh-CN.md',
           '/demos/radial-tree-graph.zh-CN.md',
+          '/demos/fund-flow-graph.zh-CN.md',
           // '/demos/indented-tree-graph.zh-CN.md',
           // '/demos/organizational-graph.zh-CN.md',
           // '/demos/radial-graph.zh-CN.md',
@@ -166,6 +167,10 @@ export default defineConfig({
           {
             title: 'RadialTreeGraph',
             path: '/demos/radial-tree-graph',
+          },
+          {
+            title: 'FundFlowGraph',
+            path: '/demos/fund-flow-graph',
           },
           // {
           //   title: 'IndentedTreeGraph',

@@ -7,93 +7,56 @@ import ChartLoading from '../../util/createLoading';
 import {
   getGraphSize,
   getGraphId,
+  bindSourceMapCollapseEvents,
   processMinimap,
   renderGraph,
   getCommonConfig,
   getArrowCfg,
   bindStateEvents,
-  bindDefaultEvents,
+  getEdgeStateStyles,
 } from '../utils';
-import {
-  DecompositionTreeGraphConfig,
-  NodeConfig,
-  EdgeConfig,
-  ShapeCfg,
-  Shape,
-  IGroup,
-  IGraph,
-} from '../interface';
-import { registerIndicatorCardNode } from '../customItems';
+import { registerFundFlowItems } from '../customItems';
 import {
   defaultFlowGraphAnchorPoints,
   defaultNodeSize,
   defaultStateStyles,
   defaultNodeStyle,
 } from '../constants';
+import { FundFlowGraphConfig, FlowAnalysisGraphDatum, EdgeConfig, NodeConfig } from '../interface';
 
-export { DecompositionTreeGraphConfig };
+export { FundFlowGraphConfig };
 
 const graphs: any = {};
 
-registerIndicatorCardNode();
+registerFundFlowItems();
 
 const defaultLayout = {
-  type: 'compactBox',
-  direction: 'LR',
-  getId: (d: any) => {
-    return d.id;
-  },
-  getHeight: () => {
-    return 60;
-  },
-  getWidth: () => {
-    return 16;
-  },
-  getVGap: () => {
-    return 16;
-  },
-  getHGap: () => {
-    return 100;
-  },
+  type: 'dagre',
+  rankdir: 'LR',
+  nodesep: 30,
+  ranksep: 50,
 };
 
 const defaultProps = {
   nodeCfg: {
-    type: 'indicator-card',
+    type: 'fund-card',
     size: defaultNodeSize,
     style: defaultNodeStyle,
     anchorPoints: defaultFlowGraphAnchorPoints,
-    padding: 6,
-    layout: 'bundled',
     nodeStateStyles: defaultStateStyles,
-    label: {
-      style: (
-        cfg: Shape | ShapeCfg,
-        group: IGroup | IGraph | undefined,
-        type: string | undefined,
-      ) => {
-        const styles = {
-          icon: {
-            width: 10,
-            height: 10,
-          },
-          value: {
-            fill: '#000',
-          },
-          text: {
-            fill: '#aaa',
-          },
-        };
-        return type ? styles[type] : {};
-      },
-    },
+    padding: 6,
   },
   edgeCfg: {
-    type: 'cubic-horizontal',
-    endArrow: {
-      type: 'vee',
+    type: 'fund-polyline',
+    edgeStateStyles: {
+      hover: {
+        stroke: '#1890ff',
+        lineWidth: 2,
+        endArrow: {
+          fill: '#1890ff',
+        },
+      },
     },
-    edgeStateStyles: defaultStateStyles,
   },
   behaviors: ['zoom-canvas', 'drag-canvas'],
   layout: defaultLayout,
@@ -105,7 +68,7 @@ const defaultProps = {
   },
 };
 
-const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) => {
+const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
   const { uProps } = useProps(props, defaultProps);
   const {
     data,
@@ -113,24 +76,28 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
     style,
     width,
     height,
-    behaviors = ['zoom-canvas', 'drag-canvas'],
+    nodeCfg,
+    edgeCfg,
+    behaviors,
     layout,
     animate,
-    edgeCfg,
-    nodeCfg,
-    markerCfg,
     minimapCfg,
     autoFit,
+    adjustLayout,
+    markerCfg,
     onReady,
     loading,
     loadingTemplate,
     errorTemplate,
   } = uProps;
+
   const {
     type: nodeType,
     size: nodeSize,
     anchorPoints: nodeAnchorPoints,
     nodeStateStyles,
+    style: nodeStyle,
+    label: nodeLabelCfg,
   } = nodeCfg ?? {};
 
   const {
@@ -149,8 +116,9 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
   useEffect(() => {
     const graphSize = getGraphSize(width, height, container);
     let graph = graphs[graphId];
+
     if (!graph) {
-      graph = new G6.TreeGraph({
+      graph = new G6.Graph({
         container: container.current as any,
         width: graphSize[0],
         height: graphSize[1],
@@ -169,45 +137,61 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
           edgeCfg,
         },
         nodeStateStyles,
-        edgeStateStyles,
+        edgeStateStyles: getEdgeStateStyles(edgeStateStyles),
         layout,
       });
       graphs[graphId] = graph;
     }
-
     // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
     graph.node((node: NodeConfig) => {
-      node.markerCfg = markerCfg;
-      return {};
-    });
-    graph.edge((edge: EdgeConfig) => {
-      const startArrow = getArrowCfg(startArrowCfg, edge);
-      const endArrow = getArrowCfg(endArrowCfg, edge);
-      const { style } = labelCfg ?? {};
+      if (node.type === 'fund-card') {
+        node.markerCfg = markerCfg;
+        return {};
+      }
+      const { style } = nodeLabelCfg ?? {};
+
       return {
-        label: edge.value,
+        label: node.value?.text,
         labelCfg: {
-          style: getCommonConfig(style, edge, graph),
+          style: getCommonConfig(style, node, graph),
         },
         style: {
           stroke: '#ccc',
-          startArrow,
-          endArrow,
-          ...(typeof edgeStyle === 'function' ? edgeStyle(edge, graph) : edgeStyle),
+          ...(typeof nodeStyle === 'function' ? nodeStyle(node, graph) : nodeStyle),
         },
       };
     });
-    processMinimap(minimapCfg, graph);
-    bindStateEvents(graph, uProps);
-    if (markerCfg) {
-      bindDefaultEvents(graph);
+    if (edgeType !== 'fund-polyline') {
+      graph.edge((edge: EdgeConfig) => {
+        const startArrow = getArrowCfg(startArrowCfg, edge);
+        const endArrow = getArrowCfg(endArrowCfg, edge);
+        const { style } = labelCfg ?? {};
+        const { value } = edge;
+        return {
+          // 不兼容 string 类型
+          label: typeof value === 'object' && value?.text,
+          labelCfg: {
+            style: getCommonConfig(style, edge, graph),
+          },
+          style: {
+            stroke: '#ccc',
+            startArrow,
+            endArrow,
+            ...(typeof edgeStyle === 'function' ? edgeStyle(edge, graph) : edgeStyle),
+          },
+        };
+      });
     }
-    renderGraph(graph, data, autoFit);
 
+    processMinimap(minimapCfg, graph);
+    bindStateEvents(graph, uProps as FundFlowGraphConfig);
+    if (markerCfg) {
+      bindSourceMapCollapseEvents(graph, data as FlowAnalysisGraphDatum);
+    }
+    renderGraph(graph, data, autoFit, adjustLayout);
     if (onReady) {
       onReady(graph);
     }
-
     return () => {
       if (graphs[graphId]) {
         graphs[graphId].destroy();
@@ -224,4 +208,4 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
   );
 };
 
-export default DecompositionTreeGraph;
+export default FundFlowGraph;

@@ -44,6 +44,7 @@ import {
   RadialTreeGraph,
   DecompositionTreeGraph,
   OrganizationGraph,
+  FundFlowGraph,
 } from './graphs'; // 最终版，后续不会出现不兼容变更
 import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';
 
@@ -93,6 +94,7 @@ export {
   RadialTreeGraph,
   DecompositionTreeGraph,
   OrganizationGraph,
+  FundFlowGraph,
   G2,
   // 直接导出 G2Plot 相关方法
   flow,
@@ -146,6 +148,7 @@ export default {
   OrganizationGraph,
   OrganizationalGraph,
   RadialGraph,
+  FundFlowGraph,
   G2,
   flow,
   measureTextWidth,
