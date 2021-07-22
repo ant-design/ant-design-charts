@@ -1187,51 +1187,43 @@ const DemoFlowAnalysisGraph: React.FC = () => {
     nodes: [
       {
         id: '0',
-        value: {
-          title: '活动页面',
-        },
+        value: { title: '0' },
       },
       {
         id: '1',
-        value: {
-          title: '去向页面A',
-        },
+        value: { title: '1' },
       },
       {
         id: '2',
-        value: {
-          title: '去向页面B',
-        },
+        value: { title: '2' },
       },
       {
         id: '3',
-        value: {
-          title: '去向页面C',
-        },
+        value: { title: '3' },
       },
       {
         id: '4',
-        value: {
-          title: '去向页面D',
-        },
+        value: { title: '4' },
       },
       {
         id: '5',
-        value: {
-          title: '去向页面E',
-        },
+        value: { title: '5' },
       },
       {
         id: '6',
-        value: {
-          title: '去向页面F',
-        },
+        value: { title: '6' },
       },
       {
-        id: '6',
-        value: {
-          title: '去向页面F',
-        },
+        id: '7',
+        value: { title: '7' },
+      },
+      {
+        id: '8',
+        value: { title: '8' },
+      },
+      {
+        id: '9',
+        value: { title: '9' },
       },
     ],
     edges: [
@@ -1245,19 +1237,43 @@ const DemoFlowAnalysisGraph: React.FC = () => {
       },
       {
         source: '1',
-        target: '3',
-      },
-      {
-        source: '1',
         target: '4',
       },
       {
-        source: '2',
+        source: '0',
+        target: '3',
+      },
+      {
+        source: '3',
+        target: '4',
+      },
+      {
+        source: '4',
         target: '5',
       },
       {
-        source: '2',
+        source: '4',
         target: '6',
+      },
+      {
+        source: '5',
+        target: '7',
+      },
+      {
+        source: '5',
+        target: '8',
+      },
+      {
+        source: '8',
+        target: '9',
+      },
+      {
+        source: '2',
+        target: '9',
+      },
+      {
+        source: '3',
+        target: '9',
       },
     ],
   };
@@ -1278,6 +1294,9 @@ const DemoFlowAnalysisGraph: React.FC = () => {
     },
     edgeCfg: {
       type: 'polyline',
+      endArrow: {
+        fill: '#ccc',
+      },
     },
     layout: {
       rankdir: 'TB',
