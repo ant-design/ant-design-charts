@@ -1176,6 +1176,139 @@ const DemoFlowAnalysisGraph: React.FC = () => {
 export default DemoFlowAnalysisGraph;
 ```
 
+### 节点类型
+
+```tsx
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { FlowAnalysisGraph } from '@ant-design/charts';
+
+const DemoFlowAnalysisGraph: React.FC = () => {
+  const data = {
+    nodes: [
+      {
+        id: '0',
+        value: { title: '0' },
+      },
+      {
+        id: '1',
+        value: { title: '1' },
+      },
+      {
+        id: '2',
+        value: { title: '2' },
+      },
+      {
+        id: '3',
+        value: { title: '3' },
+      },
+      {
+        id: '4',
+        value: { title: '4' },
+      },
+      {
+        id: '5',
+        value: { title: '5' },
+      },
+      {
+        id: '6',
+        value: { title: '6' },
+      },
+      {
+        id: '7',
+        value: { title: '7' },
+      },
+      {
+        id: '8',
+        value: { title: '8' },
+      },
+      {
+        id: '9',
+        value: { title: '9' },
+      },
+    ],
+    edges: [
+      {
+        source: '0',
+        target: '1',
+      },
+      {
+        source: '0',
+        target: '2',
+      },
+      {
+        source: '1',
+        target: '4',
+      },
+      {
+        source: '0',
+        target: '3',
+      },
+      {
+        source: '3',
+        target: '4',
+      },
+      {
+        source: '4',
+        target: '5',
+      },
+      {
+        source: '4',
+        target: '6',
+      },
+      {
+        source: '5',
+        target: '7',
+      },
+      {
+        source: '5',
+        target: '8',
+      },
+      {
+        source: '8',
+        target: '9',
+      },
+      {
+        source: '2',
+        target: '9',
+      },
+      {
+        source: '3',
+        target: '9',
+      },
+    ],
+  };
+  const config = {
+    data,
+    nodeCfg: {
+      type: 'rect',
+      anchorPoints: [
+        [0.5, 1],
+        [0.5, 0],
+      ],
+      title: {
+        style: {
+          fill: '#000',
+          fontSize: 12,
+        },
+      },
+    },
+    edgeCfg: {
+      type: 'polyline',
+      endArrow: {
+        fill: '#ccc',
+      },
+    },
+    layout: {
+      rankdir: 'TB',
+    },
+  };
+
+  return <FlowAnalysisGraph {...config} />;
+};
+
+export default DemoFlowAnalysisGraph;
+```
+
 ### 自定义节点
 
 ```tsx
