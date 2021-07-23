@@ -1,3 +1,21 @@
+## 1.2.3
+
+`2021-07-20`
+
+### New Features
+
+- 新增资金流向图(FundFlowGraph): 支持节自定义；展开收起；边、节点格式化配置等。
+
+- FlowAnalysisGraph 、DecompositionTreeGraph 新增 badge 配置
+
+- 关系图支持默认节点类型
+
+- `indicator-card` 新增 `LR` 布局
+
+### Bug fixes
+
+- 修复 FlowAnalysisGraph 、DecompositionTreeGraph 空数据报错
+
 ## 1.2.2
 
 `2021-07-20`
