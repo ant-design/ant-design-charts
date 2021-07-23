@@ -23,13 +23,8 @@ export interface NodeConfig extends G6NodeConfig {
   value?: any;
 }
 
-export interface EdgeConfig extends G6EdgeConfig {
-  value?:
-    | string
-    | {
-        text?: string;
-        subText?: string;
-      };
+export interface EdgeConfig<T = string> extends G6EdgeConfig {
+  value?: T;
 }
 
 export interface MiniMapConfig {
@@ -43,7 +38,7 @@ export interface MiniMapConfig {
 }
 
 export type Shape = Edge | Node;
-export type ShapeCfg = EdgeConfig | NodeConfig;
+export type ShapeCfg = EdgeConfig<string | object> | NodeConfig;
 export type IShapeStyle =
   | ShapeStyle
   | ((edge: Shape | ShapeCfg, graph: IGraph | IGroup | undefined, name?: string) => ShapeStyle);
@@ -180,23 +175,6 @@ export interface EdgeData<T> {
   value?: T;
 }
 
-// 流向图节点数据
-export interface FlowAnalysisGraphNodeData
-  extends NodeData<
-    Array<{
-      title?: string;
-      items?: CardItems[];
-    }>
-  > {}
-
-export interface FlowAnalysisGraphEdgeData extends EdgeData<string> {}
-
-export interface FundFlowEdgeData
-  extends EdgeData<{
-    text?: string;
-    subText?: string;
-  }> {}
-
 export type MarkerPosition = 'left' | 'right' | 'top' | 'bottom';
 
 export interface MarkerCfg {
@@ -212,30 +190,9 @@ export type IMarkerCfg =
   | MarkerCfg
   | ((cfg: CardNodeCfg, graph: IGraph | IGroup | undefined) => MarkerCfg);
 
-// 流向图数据
-export interface FlowAnalysisGraphDatum {
-  nodes: FlowAnalysisGraphNodeData[];
-  edges: FlowAnalysisGraphEdgeData[];
-}
-
-export interface TreeGraphData
-  extends NodeData<
-    Array<{
-      title?: string;
-      items?: CardItems[];
-    }>
-  > {}
-
-export interface OrganizationGraphData
-  extends NodeData<
-    Array<{
-      name: string;
-      title?: string;
-      icon?: string;
-    }>
-  > {}
-
-export type Datum = TreeGraphData | FlowAnalysisGraphDatum | OrganizationGraphData;
+export type Datum = {
+  [key: string]: any;
+};
 
 // Graph 通用配置
 export interface CommonConfig extends GraphContainerConfig {
@@ -260,22 +217,30 @@ export interface CommonConfig extends GraphContainerConfig {
   onReady?: (graph: IGraph) => void;
 }
 
-// FlowAnalysisGraph 配置
-export interface FlowAnalysisGraphConfig extends CommonConfig {}
+export interface TreeGraphData
+  extends NodeData<
+    Array<{
+      title?: string;
+      items?: CardItems[];
+    }>
+  > {}
 
-export interface DecompositionTreeGraphConfig extends CommonConfig {}
+// 流向图节点数据
+export interface FlowGraphNodeData
+  extends NodeData<
+    Array<{
+      title?: string;
+      items?: CardItems[];
+    }>
+  > {}
 
-export interface OrganizationGraphConfig extends CommonConfig {}
+export interface FlowGraphEdgeData extends EdgeData<string> {}
 
-export interface RadialTreeGraphConfig extends CommonConfig {}
-
-export interface FundFlowGraphConfig extends CommonConfig {}
-
-export type GraphConfig = FlowAnalysisGraphConfig &
-  DecompositionTreeGraphConfig &
-  OrganizationGraphConfig &
-  RadialTreeGraphConfig &
-  FundFlowGraphConfig;
+// 流向图数据
+export interface FlowGraphDatum {
+  nodes: FlowGraphNodeData[];
+  edges: FlowGraphEdgeData[];
+}
 
 export {
   StateStyles,

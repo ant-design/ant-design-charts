@@ -12,10 +12,12 @@ import {
   getArrowCfg,
   bindStateEvents,
 } from '../utils';
-import { RadialTreeGraphConfig, EdgeConfig, NodeConfig } from '../interface';
+import { CommonConfig, EdgeConfig, NodeConfig, FlowGraphDatum } from '../interface';
 import { defaultFlowGraphAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../constants';
 
-export { RadialTreeGraphConfig };
+export interface RadialTreeGraphConfig extends Omit<CommonConfig, 'data'> {
+  data: FlowGraphDatum;
+}
 
 const graphs: any = {};
 

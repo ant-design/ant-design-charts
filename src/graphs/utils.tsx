@@ -6,8 +6,8 @@ import {
   CardNodeCfg,
   IArrowConfig,
   NodeData,
-  FlowAnalysisGraphDatum,
-  GraphConfig,
+  FlowGraphDatum,
+  CommonConfig,
   IGraph,
   IG6GraphEvent,
   INode,
@@ -17,10 +17,10 @@ import {
   NodeConfig,
   IEdge,
   ModelConfig,
-  StateStyles,
-  ArrowConfig,
+  MarkerCfg,
 } from './interface';
-import { defaultMinimapCfg, DefaultStatusBarWidth, defaultNodeSize } from './constants';
+import { defaultMinimapCfg, defaultNodeSize, defaultCardStyle } from './constants';
+import { FundFlowGraphConfig } from './fundFlowGraph';
 
 export const getGraphSize = (
   width: number | undefined,
@@ -60,23 +60,6 @@ export const bindDefaultEvents = (graph: IGraph) => {
   });
 };
 
-const uuid = () => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    let r = (Math.random() * 16) | 0,
-      v = c == 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-};
-
-// 同一页面存在多 graph 时需要指定 graphId
-export const getGraphId = (graph: { current?: string }) => {
-  if (graph.current) {
-    return graph.current;
-  }
-  graph.current = `IndentedTreeGraph-${uuid()}`;
-  return graph.current;
-};
-
 export const renderGraph = (
   graph: IGraph,
   data: any,
@@ -107,9 +90,23 @@ export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph
   return null;
 };
 
-/**
- * min ma
- */
+const getUuid = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    let r = (Math.random() * 16) | 0,
+      v = c == 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
+
+// 同一页面存在多 graph 时需要指定 graphId
+export const getGraphId = (graph: { current?: string }) => {
+  if (graph.current) {
+    return graph.current;
+  }
+  graph.current = `IndentedTreeGraph-${getUuid()}`;
+  return graph.current;
+};
+
 export const getMarkerPosition = (direction: string = 'right', size: number[]) => {
   const [width, height] = size;
   let x = 0;
@@ -142,7 +139,7 @@ export const getMarkerPosition = (direction: string = 'right', size: number[]) =
 type CollapsedNode = NodeData<unknown> & { collapsedLevel: number };
 export const bindSourceMapCollapseEvents = (
   graph: IGraph,
-  fullData: FlowAnalysisGraphDatum | undefined,
+  fullData: FundFlowGraphConfig['data'] | FlowGraphDatum | undefined,
 ) => {
   const controlData = deepClone(fullData);
   const onClick = (e: IG6GraphEvent) => {
@@ -256,7 +253,16 @@ export const getCssPadding = (padding: number | number[]) => {
 };
 
 // 默认箭头样式
-export const getArrowCfg = (arrowCfg: IArrowConfig | undefined, edge?: EdgeConfig) => {
+export const getArrowCfg = (
+  arrowCfg: IArrowConfig | undefined,
+  edge?: EdgeConfig<
+    | string
+    | {
+        text?: string;
+        subText?: string;
+      }
+  >,
+) => {
   if (!arrowCfg) {
     return;
   }
@@ -274,7 +280,7 @@ export const getArrowCfg = (arrowCfg: IArrowConfig | undefined, edge?: EdgeConfi
 };
 
 // 交互
-export const bindStateEvents = (graph: IGraph, cfg?: Partial<GraphConfig> | undefined) => {
+export const bindStateEvents = (graph: IGraph, cfg?: Partial<CommonConfig> | undefined) => {
   const { nodeCfg = {}, edgeCfg = {} } = cfg ?? {};
   const { nodeStateStyles } = nodeCfg;
   const { edgeStateStyles } = edgeCfg;
@@ -383,7 +389,16 @@ export const getStyle = (
 // 统一处理 config，支持回调
 export const getCommonConfig = (
   cfg: unknown,
-  item: EdgeConfig | NodeConfig | undefined,
+  item:
+    | EdgeConfig<
+        | string
+        | {
+            text?: string;
+            subText?: string;
+          }
+      >
+    | NodeConfig
+    | undefined,
   graph?: IGraph | IGroup | undefined,
 ) => {
   if (typeof cfg === 'function') {
@@ -399,6 +414,8 @@ export const getSize = (size: number | number[] | undefined) => {
   return size ? [size, size] : defaultNodeSize;
 };
 
+// status bar 的默认宽度
+const DefaultStatusBarWidth = 4;
 /**
  * card status 对布局的影响，直接加到 padding 中
  */
@@ -469,21 +486,22 @@ export const getStatusCfg = (cfg: CardNodeCfg['badge'], cardSize: [number, numbe
   };
 };
 
-// 设置边交互态，仅自定义边需要
-export const getEdgeStateStyles = (edgeStateStyles: StateStyles | undefined) => {
-  if (!edgeStateStyles) {
-    return;
+export const createMarker = (cfg: MarkerCfg, group: IGroup | undefined, size: number[]) => {
+  const { show, position, collapsed, style } = cfg;
+  if (show) {
+    group!.addShape('marker', {
+      attrs: {
+        ...getMarkerPosition(position, size),
+        r: 6,
+        cursor: 'pointer',
+        symbol: collapsed ? G6.Marker.expand : G6.Marker.collapse,
+        stroke: defaultCardStyle.stroke,
+        lineWidth: 1,
+        fill: '#fff',
+        ...style,
+      },
+      defaultCollapsed: false,
+      name: 'collapse-icon',
+    });
   }
-  const { hover = {} } = edgeStateStyles;
-  const { endArrow, startArrow } = hover;
-  if (!endArrow && !startArrow) {
-    return edgeStateStyles;
-  }
-  return {
-    hover: {
-      ...hover,
-      endArrow: endArrow ? getArrowCfg(endArrow as ArrowConfig) : false,
-      startArrow: startArrow ? getArrowCfg(startArrow as ArrowConfig) : false,
-    },
-  };
 };

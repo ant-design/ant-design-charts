@@ -15,7 +15,14 @@ import {
   bindDefaultEvents,
 } from '../utils';
 import {
-  DecompositionTreeGraphConfig,
+  defaultFlowGraphAnchorPoints,
+  defaultNodeSize,
+  defaultStateStyles,
+  defaultNodeStyle,
+} from '../constants';
+import { registerIndicatorCardNode } from '../flowAnalysisGraph/customItem';
+import {
+  CommonConfig,
   NodeConfig,
   EdgeConfig,
   ShapeCfg,
@@ -23,16 +30,12 @@ import {
   IGroup,
   IGraph,
   CardNodeCfg,
+  TreeGraphData,
 } from '../interface';
-import { registerIndicatorCardNode } from '../customItems';
-import {
-  defaultFlowGraphAnchorPoints,
-  defaultNodeSize,
-  defaultStateStyles,
-  defaultNodeStyle,
-} from '../constants';
 
-export { DecompositionTreeGraphConfig };
+export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data'> {
+  data: TreeGraphData;
+}
 
 const graphs: any = {};
 

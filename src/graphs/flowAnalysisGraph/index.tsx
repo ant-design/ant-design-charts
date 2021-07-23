@@ -14,22 +14,18 @@ import {
   getArrowCfg,
   bindStateEvents,
 } from '../utils';
-import { registerIndicatorCardNode } from '../customItems';
 import {
   defaultFlowGraphAnchorPoints,
   defaultNodeSize,
   defaultStateStyles,
   defaultNodeStyle,
 } from '../constants';
-import {
-  FlowAnalysisGraphConfig,
-  FlowAnalysisGraphDatum,
-  EdgeConfig,
-  NodeConfig,
-  CardNodeCfg,
-} from '../interface';
+import { registerIndicatorCardNode } from './customItem';
+import { CommonConfig, EdgeConfig, NodeConfig, CardNodeCfg, FlowGraphDatum } from '../interface';
 
-export { FlowAnalysisGraphConfig };
+export interface FlowAnalysisGraphConfig extends Omit<CommonConfig, 'data'> {
+  data: FlowGraphDatum;
+}
 
 const graphs: any = {};
 
@@ -179,7 +175,7 @@ const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
     processMinimap(minimapCfg, graph);
     bindStateEvents(graph, uProps as FlowAnalysisGraphConfig);
     if (markerCfg) {
-      bindSourceMapCollapseEvents(graph, data as FlowAnalysisGraphDatum);
+      bindSourceMapCollapseEvents(graph, data as FlowGraphDatum);
     }
     renderGraph(graph, data, autoFit, adjustLayout);
     if (onReady) {

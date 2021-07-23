@@ -13,18 +13,44 @@ import {
   getCommonConfig,
   getArrowCfg,
   bindStateEvents,
-  getEdgeStateStyles,
 } from '../utils';
-import { registerFundFlowItems } from '../customItems';
 import {
   defaultFlowGraphAnchorPoints,
   defaultNodeSize,
   defaultStateStyles,
   defaultNodeStyle,
 } from '../constants';
-import { FundFlowGraphConfig, FlowAnalysisGraphDatum, EdgeConfig, NodeConfig } from '../interface';
+import { registerFundFlowItems } from './customItem';
+import {
+  CommonConfig,
+  EdgeData,
+  EdgeConfig,
+  NodeConfig,
+  NodeData,
+  StateStyles,
+  ArrowConfig,
+} from '../interface';
 
-export { FundFlowGraphConfig };
+export type edgeType =
+  | string
+  | {
+      text?: string;
+      subText?: string;
+    };
+
+export interface FundFlowEdgeData extends EdgeData<edgeType> {}
+
+export interface FundFlowNodeData
+  extends NodeData<{
+    text?: string;
+    icon?: string;
+  }> {}
+export interface FundFlowGraphConfig extends Omit<CommonConfig, 'data'> {
+  data: {
+    nodes: FundFlowNodeData[];
+    edges: FundFlowEdgeData[];
+  };
+}
 
 const graphs: any = {};
 
@@ -52,6 +78,9 @@ const defaultProps = {
     style: {
       stroke: '#40a9ff',
     },
+    endArrow: {
+      fill: '#40a9ff',
+    },
   },
   behaviors: ['zoom-canvas', 'drag-canvas'],
   layout: defaultLayout,
@@ -61,6 +90,24 @@ const defaultProps = {
   style: {
     height: 'inherit',
   },
+};
+
+const getEdgeStateStyles = (edgeStateStyles: StateStyles | undefined) => {
+  if (!edgeStateStyles) {
+    return;
+  }
+  const { hover = {} } = edgeStateStyles;
+  const { endArrow, startArrow } = hover;
+  if (!endArrow && !startArrow) {
+    return edgeStateStyles;
+  }
+  return {
+    hover: {
+      ...hover,
+      endArrow: endArrow ? getArrowCfg(endArrow as ArrowConfig) : false,
+      startArrow: startArrow ? getArrowCfg(startArrow as ArrowConfig) : false,
+    },
+  };
 };
 
 const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
@@ -157,14 +204,13 @@ const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
       };
     });
     if (edgeType !== 'fund-polyline') {
-      graph.edge((edge: EdgeConfig) => {
+      graph.edge((edge: EdgeConfig<edgeType>) => {
         const startArrow = getArrowCfg(startArrowCfg, edge);
         const endArrow = getArrowCfg(endArrowCfg, edge);
         const { style } = labelCfg ?? {};
         const { value } = edge;
         return {
-          // 不兼容 string 类型
-          label: typeof value === 'object' && value?.text,
+          label: typeof value === 'object' ? value?.text : value,
           labelCfg: {
             style: getCommonConfig(style, edge, graph),
           },
@@ -181,7 +227,7 @@ const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
     processMinimap(minimapCfg, graph);
     bindStateEvents(graph, uProps as FundFlowGraphConfig);
     if (markerCfg) {
-      bindSourceMapCollapseEvents(graph, data as FlowAnalysisGraphDatum);
+      bindSourceMapCollapseEvents(graph, data as FundFlowGraphConfig['data']);
     }
     renderGraph(graph, data, autoFit, adjustLayout);
     if (onReady) {

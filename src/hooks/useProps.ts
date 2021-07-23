@@ -1,13 +1,13 @@
 // 合并 defaultProps
 import { useCallback } from 'react';
 import { getType, deepClone } from '../util/utils';
-import { GraphConfig } from '../interface';
+import { CommonConfig } from '../interface';
 
-export default function useProps(props: GraphConfig, defaultProps: Partial<GraphConfig>) {
+export default function useProps(props: CommonConfig, defaultProps: Partial<CommonConfig>) {
   const cloneProps = deepClone(props);
 
   const mergeProps = useCallback(
-    (p: Partial<GraphConfig>, defaultProps: Partial<GraphConfig>) => {
+    (p: Partial<CommonConfig>, defaultProps: Partial<CommonConfig>) => {
       const config = {
         ...defaultProps,
       };

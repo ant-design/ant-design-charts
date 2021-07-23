@@ -1,8 +1,8 @@
-import OrganizationGraph from './organizationGraph';
-import RadialTreeGraph from './radialTreeGraph';
-import FlowAnalysisGraph from './flowAnalysisGraph';
-import DecompositionTreeGraph from './decompositionTreeGraph';
-import FundFlowGraph from './fundFlowGraph';
+import OrganizationGraph, { OrganizationGraphConfig } from './organizationGraph';
+import RadialTreeGraph, { RadialTreeGraphConfig } from './radialTreeGraph';
+import FlowAnalysisGraph, { FlowAnalysisGraphConfig } from './flowAnalysisGraph';
+import DecompositionTreeGraph, { DecompositionTreeGraphConfig } from './decompositionTreeGraph';
+import FundFlowGraph, { FundFlowGraphConfig } from './fundFlowGraph';
 
 export {
   FlowAnalysisGraph,
@@ -13,3 +13,11 @@ export {
 };
 
 export * from './interface';
+
+export type {
+  OrganizationGraphConfig,
+  RadialTreeGraphConfig,
+  FlowAnalysisGraphConfig,
+  DecompositionTreeGraphConfig,
+  FundFlowGraphConfig,
+};

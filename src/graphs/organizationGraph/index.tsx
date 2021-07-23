@@ -4,7 +4,6 @@ import ChartLoading from '../../util/createLoading';
 import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
 import useProps from '../../hooks/useProps';
-import { registerOrganizationCardNode } from '../customItems';
 import { defaultStateStyles } from '../constants';
 import {
   getGraphSize,
@@ -15,17 +14,29 @@ import {
   getCommonConfig,
   bindStateEvents,
 } from '../utils';
+import { registerOrganizationCardNode } from './customItem';
 import {
   IGroup,
-  OrganizationGraphConfig,
+  CommonConfig,
   ShapeCfg,
   Shape,
   NodeConfig,
   EdgeConfig,
   IGraph,
+  NodeData,
 } from '../interface';
 
-export { OrganizationGraphConfig };
+export interface OrganizationGraphData
+  extends NodeData<
+    Array<{
+      name: string;
+      title?: string;
+      icon?: string;
+    }>
+  > {}
+export interface OrganizationGraphConfig extends Omit<CommonConfig, 'data'> {
+  data: OrganizationGraphData;
+}
 
 registerOrganizationCardNode();
 
