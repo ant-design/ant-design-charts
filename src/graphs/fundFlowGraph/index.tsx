@@ -227,7 +227,7 @@ const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
     processMinimap(minimapCfg, graph);
     bindStateEvents(graph, uProps as FundFlowGraphConfig);
     if (markerCfg) {
-      bindSourceMapCollapseEvents(graph, data);
+      bindSourceMapCollapseEvents(graph, data as FundFlowGraphConfig['data']);
     }
     renderGraph(graph, data, autoFit, adjustLayout);
     if (onReady) {
