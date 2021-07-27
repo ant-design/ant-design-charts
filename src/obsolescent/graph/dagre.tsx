@@ -3,6 +3,7 @@ import G6 from '@antv/g6';
 import ChartLoading from '../../util/createLoading';
 import { ErrorBoundary } from '../../base';
 import useGraph from '../../hooks/useGraph';
+import { registerCardNode } from '../graphs/customItems';
 import {
   defaultNodeSize,
   defaultLabelCfg,
@@ -22,6 +23,7 @@ import { RelationGraph } from './types';
 import { registerCustomItems } from './customItems';
 
 registerCustomItems();
+registerCardNode();
 
 const defaultNodeStyle = {
   stroke: '#40a9ff',
