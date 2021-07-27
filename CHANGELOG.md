@@ -1,3 +1,11 @@
+## 1.2.4
+
+`2021-07-27`
+
+- 🆕 DagreGraph 新增 card 类型。
+- 🐞 修复 FlowAnalysisGraph 类型错误。
+- 🐞 修复 autoFit 布局偏移。
+
 ## 1.2.3
 
 `2021-07-20`
