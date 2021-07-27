@@ -111,7 +111,7 @@ const DagreGraph: React.FC<RelationGraph> = (props) => {
         nodeStateStyles,
         edgeStateStyles,
         layout,
-        fitView: true,
+        fitView: autoFit,
       });
 
       graphs[graphId] = graph;
@@ -123,7 +123,7 @@ const DagreGraph: React.FC<RelationGraph> = (props) => {
 
     processMinimap(minimapCfg, graph);
 
-    renderGraph(graph, data, autoFit);
+    renderGraph(graph, data);
 
     if (onReady) {
       onReady(graph);

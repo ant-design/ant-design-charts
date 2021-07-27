@@ -47,6 +47,7 @@ const defaultProps = {
   animate: true,
   markerPosition: 'right' as 'right',
   autoFit: true,
+  fitCenter: true,
   style: {
     height: 'inherit',
   },
@@ -66,6 +67,7 @@ const RadialTreeGraph: React.FC<RadialTreeGraphConfig> = (props) => {
     nodeCfg,
     edgeCfg,
     autoFit,
+    fitCenter,
     minimapCfg,
     onReady,
     loading,
@@ -120,6 +122,8 @@ const RadialTreeGraph: React.FC<RadialTreeGraphConfig> = (props) => {
         nodeStateStyles,
         edgeStateStyles,
         layout,
+        fitView: autoFit,
+        fitCenter,
       });
       graphs[graphId] = graph;
     }
@@ -158,7 +162,7 @@ const RadialTreeGraph: React.FC<RadialTreeGraphConfig> = (props) => {
     });
     processMinimap(minimapCfg, graph);
     bindStateEvents(graph, uProps);
-    renderGraph(graph, data, autoFit);
+    renderGraph(graph, data);
 
     if (onReady) {
       onReady(graph);

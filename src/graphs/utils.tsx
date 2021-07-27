@@ -60,20 +60,12 @@ export const bindDefaultEvents = (graph: IGraph) => {
   });
 };
 
-export const renderGraph = (
-  graph: IGraph,
-  data: any,
-  autoFit: boolean | undefined,
-  adjustLayout: boolean = true,
-) => {
+export const renderGraph = (graph: IGraph, data: any) => {
   const originData = deepClone(data);
   graph.data(originData);
   graph.render();
   // 关闭局部刷新，各种 bug
   graph.get('canvas').set('localRefresh', false);
-  if (adjustLayout) {
-    autoFit ? graph.fitView() : graph.fitCenter();
-  }
 };
 
 export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph) => {

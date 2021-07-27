@@ -290,6 +290,12 @@ interface MarkerCfg {
 
 是否缩放节点大小自适应容器，默认为 true。
 
+#### fitCenter
+
+<description>**optional** _Boolean_</description>
+
+开启后，图将会被平移，图的中心将对齐到画布中心，但不缩放。优先级低于 fitView，默认为 true。
+
 #### minimapCfg
 
 <description>**optional** _objecr_</description>

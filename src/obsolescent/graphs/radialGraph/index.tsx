@@ -94,6 +94,7 @@ const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
         nodeStateStyles,
         edgeStateStyles,
         layout,
+        fitView: autoFit,
       });
       graphs[graphId] = graph;
     }
@@ -123,7 +124,7 @@ const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
       };
     });
 
-    renderGraph(graph, data, autoFit);
+    renderGraph(graph, data);
 
     if (onReady) {
       onReady(graph);
