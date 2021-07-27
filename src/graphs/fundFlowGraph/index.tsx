@@ -86,7 +86,7 @@ const defaultProps = {
   layout: defaultLayout,
   animate: true,
   autoFit: true,
-  adjustLayout: false,
+  fitCenter: true,
   style: {
     height: 'inherit',
   },
@@ -125,7 +125,7 @@ const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
     animate,
     minimapCfg,
     autoFit,
-    adjustLayout,
+    fitCenter,
     markerCfg,
     onReady,
     loading,
@@ -181,6 +181,8 @@ const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
         nodeStateStyles,
         edgeStateStyles: getEdgeStateStyles(edgeStateStyles),
         layout,
+        fitView: autoFit,
+        fitCenter,
       });
       graphs[graphId] = graph;
     }
@@ -229,7 +231,7 @@ const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
     if (markerCfg) {
       bindSourceMapCollapseEvents(graph, data as FundFlowGraphConfig['data']);
     }
-    renderGraph(graph, data, autoFit, adjustLayout);
+    renderGraph(graph, data);
     if (onReady) {
       onReady(graph);
     }

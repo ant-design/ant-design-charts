@@ -114,6 +114,7 @@ const defaultProps = {
   animate: true,
   markerPosition: 'right' as 'right',
   autoFit: true,
+  fitCenter: true,
   style: {
     height: 'inherit',
   },
@@ -136,6 +137,7 @@ const OrganizationGraph: React.FC<OrganizationGraphConfig> = (props) => {
     edgeCfg,
     markerCfg,
     autoFit,
+    fitCenter,
     onReady,
     loading,
     loadingTemplate,
@@ -185,6 +187,8 @@ const OrganizationGraph: React.FC<OrganizationGraphConfig> = (props) => {
         nodeStateStyles,
         edgeStateStyles,
         layout,
+        fitView: autoFit,
+        fitCenter,
       });
 
       graphs[graphId] = graph;
@@ -216,7 +220,7 @@ const OrganizationGraph: React.FC<OrganizationGraphConfig> = (props) => {
 
     processMinimap(minimapCfg, graph);
     bindStateEvents(graph, uProps);
-    renderGraph(graph, data, autoFit);
+    renderGraph(graph, data);
     if (onReady) {
       onReady(graph);
     }

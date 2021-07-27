@@ -27,8 +27,6 @@ export default function useInit(
     behaviors,
     nodeLabelCfg,
     edgeLabelCfg,
-    autoFit = true,
-    adjustLayout = true,
   } = config;
 
   let minimap;
@@ -36,9 +34,6 @@ export default function useInit(
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
       graphInstance.changeData(data);
-      if (adjustLayout) {
-        autoFit ? graphInstance.fitView() : graphInstance.fitCenter();
-      }
     }
   }, [data]);
 

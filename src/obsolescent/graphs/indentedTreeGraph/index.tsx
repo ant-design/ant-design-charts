@@ -130,6 +130,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
         nodeStateStyles,
         edgeStateStyles,
         layout,
+        fitView: autoFit,
       });
       graphs[graphId] = graph;
     }
@@ -168,7 +169,7 @@ const IndentedTreeGraph: React.FC<IndentedTreeGraphConfig> = (props) => {
     if (collapseExpand) {
       bindDefaultEvents(graph, collapseExpand);
     }
-    renderGraph(graph, data, autoFit);
+    renderGraph(graph, data);
 
     if (onReady) {
       onReady(graph);

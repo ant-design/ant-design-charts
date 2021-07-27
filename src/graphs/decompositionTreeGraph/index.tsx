@@ -103,7 +103,7 @@ const defaultProps = {
   layout: defaultLayout,
   animate: true,
   autoFit: true,
-  adjustLayout: false,
+  fitCenter: true,
   style: {
     height: 'inherit',
   },
@@ -125,6 +125,7 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
     markerCfg,
     minimapCfg,
     autoFit,
+    fitCenter,
     onReady,
     loading,
     loadingTemplate,
@@ -177,6 +178,8 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
         nodeStateStyles,
         edgeStateStyles,
         layout,
+        fitView: autoFit,
+        fitCenter,
       });
       graphs[graphId] = graph;
     }
@@ -220,7 +223,7 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
     if (markerCfg) {
       bindDefaultEvents(graph);
     }
-    renderGraph(graph, data, autoFit);
+    renderGraph(graph, data);
 
     if (onReady) {
       onReady(graph);

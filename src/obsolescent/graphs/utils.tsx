@@ -92,11 +92,10 @@ export const getGraphId = (graph: { current?: string }) => {
   return graph.current;
 };
 
-export const renderGraph = (graph: IGraph, data: any, autoFit: boolean | undefined) => {
+export const renderGraph = (graph: IGraph, data: any) => {
   const originData = deepClone(data);
   graph.data(originData);
   graph.render();
-  autoFit ? graph.fitView() : graph.fitCenter();
 };
 
 export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph) => {
