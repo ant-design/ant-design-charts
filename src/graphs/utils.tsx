@@ -21,6 +21,7 @@ import {
 } from './interface';
 import { defaultMinimapCfg, defaultNodeSize, defaultCardStyle } from './constants';
 import { FundFlowGraphConfig } from './fundFlowGraph';
+import { FlowAnalysisGraphConfig } from './flowAnalysisGraph';
 
 export const getGraphSize = (
   width: number | undefined,
@@ -131,7 +132,11 @@ export const getMarkerPosition = (direction: string = 'right', size: number[]) =
 type CollapsedNode = NodeData<unknown> & { collapsedLevel: number };
 export const bindSourceMapCollapseEvents = (
   graph: IGraph,
-  fullData: FundFlowGraphConfig['data'] | FlowGraphDatum | undefined,
+  fullData:
+    | FundFlowGraphConfig['data']
+    | FlowAnalysisGraphConfig['data']
+    | FlowGraphDatum
+    | undefined,
 ) => {
   const controlData = deepClone(fullData);
   const onClick = (e: IG6GraphEvent) => {

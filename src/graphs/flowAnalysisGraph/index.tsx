@@ -21,10 +21,29 @@ import {
   defaultNodeStyle,
 } from '../constants';
 import { registerIndicatorCardNode } from './customItem';
-import { CommonConfig, EdgeConfig, NodeConfig, CardNodeCfg, FlowGraphDatum } from '../interface';
+import {
+  CommonConfig,
+  EdgeConfig,
+  NodeConfig,
+  CardNodeCfg,
+  FlowGraphEdgeData,
+  NodeData,
+  CardItems,
+} from '../interface';
+
+export interface FlowAnalysisNodeData
+  extends NodeData<
+    Array<{
+      title?: string;
+      items?: CardItems;
+    }>
+  > {}
 
 export interface FlowAnalysisGraphConfig extends Omit<CommonConfig, 'data'> {
-  data: FlowGraphDatum;
+  data: {
+    nodes: FlowAnalysisNodeData[];
+    edges: FlowGraphEdgeData[];
+  };
 }
 
 const graphs: any = {};
@@ -177,7 +196,7 @@ const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
     processMinimap(minimapCfg, graph);
     bindStateEvents(graph, uProps as FlowAnalysisGraphConfig);
     if (markerCfg) {
-      bindSourceMapCollapseEvents(graph, data as FlowGraphDatum);
+      bindSourceMapCollapseEvents(graph, data as FlowAnalysisGraphConfig['data']);
     }
     renderGraph(graph, data);
     if (onReady) {
