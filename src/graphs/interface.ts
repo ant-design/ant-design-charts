@@ -198,6 +198,8 @@ export type Datum = {
 export interface CommonConfig extends GraphContainerConfig {
   /** 是否缩放节点大小自适应容器 */
   autoFit?: boolean;
+  /** 是否将图平移到中心位置 */
+  fitCenter?: boolean;
   width?: number;
   height?: number;
   pixelRatio?: number;

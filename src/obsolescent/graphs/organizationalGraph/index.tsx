@@ -130,6 +130,7 @@ const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
         nodeStateStyles,
         edgeStateStyles,
         layout,
+        fitView: autoFit,
       });
 
       graphs[graphId] = graph;
@@ -162,7 +163,7 @@ const OrganizationalGraph: React.FC<OrganizationalGraphConfig> = (props) => {
     });
 
     processMinimap(minimapCfg, graph);
-    renderGraph(graph, data, autoFit);
+    renderGraph(graph, data);
     if (onReady) {
       onReady(graph);
     }

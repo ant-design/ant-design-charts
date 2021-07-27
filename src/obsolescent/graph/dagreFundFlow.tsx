@@ -112,7 +112,7 @@ const DagreFundFlowGraph: React.FC<RelationGraph> = (props) => {
         nodeStateStyles,
         edgeStateStyles,
         layout,
-        fitView: true,
+        fitView: autoFit,
       });
 
       graphs[graphId] = graph;
@@ -142,7 +142,6 @@ const DagreFundFlowGraph: React.FC<RelationGraph> = (props) => {
         },
       });
     });
-    autoFit ? graph.fitView() : graph.fitCenter();
     bindEvents(graph, props);
     return () => {
       if (graphs[graphId]) {

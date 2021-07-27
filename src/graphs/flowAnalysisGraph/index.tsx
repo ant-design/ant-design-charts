@@ -58,7 +58,7 @@ const defaultProps = {
   animate: true,
   markerPosition: 'right' as 'right',
   autoFit: true,
-  adjustLayout: false,
+  fitCenter: true,
   style: {
     height: 'inherit',
   },
@@ -79,7 +79,7 @@ const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
     animate,
     minimapCfg,
     autoFit,
-    adjustLayout,
+    fitCenter,
     markerCfg,
     onReady,
     loading,
@@ -135,6 +135,8 @@ const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
         nodeStateStyles,
         edgeStateStyles,
         layout,
+        fitView: autoFit,
+        fitCenter,
       });
       graphs[graphId] = graph;
     }
@@ -177,7 +179,7 @@ const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
     if (markerCfg) {
       bindSourceMapCollapseEvents(graph, data as FlowGraphDatum);
     }
-    renderGraph(graph, data, autoFit, adjustLayout);
+    renderGraph(graph, data);
     if (onReady) {
       onReady(graph);
     }

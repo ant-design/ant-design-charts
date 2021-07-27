@@ -287,6 +287,12 @@ Whether to turn on animation, default to 'true'.
 
 Whether to scale node size adaptive container. Default value is 'true '.
 
+#### fitCenter
+
+<description>**optional** _Boolean_</description>
+
+Whether to translate the graph to align its center with the canvas. Its priority is lower than fitView, Default value is 'true '.
+
 #### minimapCfg
 
 <description>**optional** _objecr_</description>
