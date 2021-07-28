@@ -1,0 +1,49 @@
+{
+  "name": "@ant-design/charts",
+  "version": "2.0.0-beta.0",
+  "description": "AntV upper level visual component library",
+  "bugs": {
+    "url": "https://github.com/ant-design/ant-design-charts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ant-design/ant-design-charts.git"
+  },
+  "main": "lib/index.js",
+  "unpkg": "dist/charts.min.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "/lib",
+    "/es",
+    "/dist"
+  ],
+  "scripts": {
+    "build": "run-s clean lib dist",
+    "ci": "npm run build && npm run test:coverage",
+    "clean": "rimraf lib es dist",
+    "dist": "webpack --config webpack.config.js --mode production",
+    "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
+    "lib": "run-p lib:*",
+    "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
+    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es"
+  },
+  "dependencies": {
+    "@ant-design/plots": "^0.0.1",
+    "@ant-design/graphs": "^0.0.1",
+    "@ant-design/flowchart": "^0.0.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.4",
+    "react-dom": ">=16.8.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "np": {
+    "yarn": false,
+    "contents": "dist"
+  },
+  "sideEffects": false,
+  "license": "MIT"
+}

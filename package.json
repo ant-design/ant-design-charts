@@ -1,49 +1,19 @@
 {
-  "name": "@ant-design/charts",
-  "version": "1.2.4",
-  "description": "React translate g2plot",
-  "bugs": {
-    "url": "https://github.com/ant-design/ant-design-charts/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ant-design/ant-design-charts.git"
-  },
-  "main": "lib/index.js",
-  "unpkg": "dist/charts.min.js",
-  "module": "es/index.js",
-  "types": "es/index.d.ts",
-  "files": [
-    "/lib",
-    "/es",
-    "/dist"
+  "name": "charts",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "build": "run-s clean lib dist",
-    "ci": "npm run build && npm run test:coverage",
-    "clean": "rimraf lib es dist",
-    "chart": "node ./scripts/chart.js",
-    "deploy": "gh-pages -d dist",
-    "dev": "dumi dev",
-    "dist": "webpack --config webpack.config.js --mode production",
+    "start": "dumi dev",
+    "build": "npm-run-all --parallel build:*",
+    "build:plots": "tnpm run build --prefix ./packages/plots",
+    "build:graphs": "tnpm run build --prefix ./packages/graphs",
+    "build:flowchart": "tnpm run build --prefix ./packages/flowchart",
+    "build:charts": "tnpm run build --prefix ./packages/charts",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
-    "docs:build": "dumi build",
-    "lib": "run-p lib:*",
-    "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
-    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
-    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && npm run lint:prettier",
-    "lint:prettier": "npm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
-    "pub": "npm run build && np",
-    "start": "npm run dev",
-    "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
-  },
-  "dependencies": {
-    "@antv/g2plot": "^2.2.11",
-    "@antv/g6": "^4.2.4",
-    "@antv/util": "^2.0.9",
-    "react-content-loader": "^5.0.4"
+    "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
     "@antv/data-set": "^0.11.7",
@@ -93,8 +63,7 @@
     "webpack-bundle-analyzer": "^3.9.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
-    "whatwg-fetch": "^3.0.0",
-    "yorkie": "^2.0.0"
+    "whatwg-fetch": "^3.0.0"
   },
   "peerDependencies": {
     "react": ">=16.8.4",

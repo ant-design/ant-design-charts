@@ -5,3 +5,7 @@ package.json
 .umi
 .umi-production
 .umi-test
+lib
+es
+dist
+node_modules

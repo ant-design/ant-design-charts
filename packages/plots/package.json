@@ -1,0 +1,54 @@
+{
+  "name": "@ant-design/plots",
+  "version": "0.0.1",
+  "description": "G2Plot Statistical chart",
+  "bugs": {
+    "url": "https://github.com/ant-design/ant-design-charts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ant-design/ant-design-charts.git"
+  },
+  "main": "lib/index.js",
+  "unpkg": "dist/plots.min.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "/lib",
+    "/es",
+    "/dist"
+  ],
+  "scripts": {
+    "build": "run-s clean lib dist",
+    "ci": "npm run build && npm run test:coverage",
+    "clean": "rimraf lib es dist",
+    "dist": "webpack --config webpack.config.js --mode production",
+    "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
+    "lib": "run-p lib:*",
+    "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
+    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
+    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && npm run lint:prettier",
+    "lint:prettier": "npm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
+    "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "dependencies": {
+    "@antv/g2plot": "^2.2.11",
+    "@antv/util": "^2.0.9",
+    "react-content-loader": "^5.0.4"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.4",
+    "react-dom": ">=16.8.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "np": {
+    "yarn": false,
+    "contents": "dist"
+  },
+  "sideEffects": false,
+  "license": "MIT"
+}

@@ -1,0 +1,15 @@
+{
+  "version": "*",
+  "npmClient": "npm",
+  "command": {
+    "publish": {
+      "ignoreChanges": ["*.md", "**/**/*.test.js"],
+      "message": "chore(release): publish",
+      "registry": "https://npm.pkg.github.com"
+    },
+    "bootstrap": {
+      "npmClientArgs": ["--no-package-lock", "--no-ci"]
+    }
+  },
+  "packages": ["packages/*"]
+}
