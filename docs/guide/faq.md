@@ -26,6 +26,7 @@ Possible reasons:
 
 - React version is too low and does not support hooks. Upgrade to 16.8.4 or the latest version.
 - The 2.x version of Ant-Design-Pro is used, resulting in underlying dependency conflict. It is recommended to upgrade Pro to the latest version.
+- The BizCharts is used, resulting in underlying dependency conflict.
 
 ### 3、How to binding event and get current data.
 
