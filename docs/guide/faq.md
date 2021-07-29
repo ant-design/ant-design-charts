@@ -59,7 +59,7 @@ meta: {
 You can use `scale.sync` and hide one of the y-axis.
 
 ```ts
-// 适用于 DualAxes plot
+// Apply to DualAxes plot
 {
   yFields: ['y1', 'y2'],
   meta: {
