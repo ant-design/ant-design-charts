@@ -34,6 +34,7 @@ export default function useInit(
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
       graphInstance.changeData(data);
+      graphInstance.get('eventData')?.setData(data);
     }
   }, [data]);
 
