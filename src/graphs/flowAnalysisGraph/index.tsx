@@ -196,7 +196,7 @@ const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
     processMinimap(minimapCfg, graph);
     bindStateEvents(graph, uProps as FlowAnalysisGraphConfig);
     if (markerCfg) {
-      bindSourceMapCollapseEvents(graph, data as FlowAnalysisGraphConfig['data']);
+      bindSourceMapCollapseEvents(graph);
     }
     renderGraph(graph, data);
     if (onReady) {

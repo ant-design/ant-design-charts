@@ -6,7 +6,6 @@ import {
   CardNodeCfg,
   IArrowConfig,
   NodeData,
-  FlowGraphDatum,
   CommonConfig,
   IGraph,
   IG6GraphEvent,
@@ -20,9 +19,6 @@ import {
   MarkerCfg,
 } from './interface';
 import { defaultMinimapCfg, defaultNodeSize, defaultCardStyle } from './constants';
-import { FundFlowGraphConfig } from './fundFlowGraph';
-import { FlowAnalysisGraphConfig } from './flowAnalysisGraph';
-
 export const getGraphSize = (
   width: number | undefined,
   height: number | undefined,
@@ -41,6 +37,20 @@ export const getGraphSize = (
 
   return [width || CANVAS_WIDTH || 500, height || CANVAS_HEIGHT || 500];
 };
+
+type Datum = any;
+class EventData {
+  data: Datum;
+  constructor(data?: Datum) {
+    data && this.setData(data);
+  }
+  getData(): Datum {
+    return this.data;
+  }
+  setData(data: Datum) {
+    this.data = data;
+  }
+}
 
 // 展开&折叠事件
 export const bindDefaultEvents = (graph: IGraph) => {
@@ -64,6 +74,7 @@ export const bindDefaultEvents = (graph: IGraph) => {
 export const renderGraph = (graph: IGraph, data: any) => {
   const originData = deepClone(data);
   graph.data(originData);
+  graph.set('eventData', new EventData(data));
   graph.render();
   // 关闭局部刷新，各种 bug
   graph.get('canvas').set('localRefresh', false);
@@ -96,7 +107,7 @@ export const getGraphId = (graph: { current?: string }) => {
   if (graph.current) {
     return graph.current;
   }
-  graph.current = `IndentedTreeGraph-${getUuid()}`;
+  graph.current = `Graph-${getUuid()}`;
   return graph.current;
 };
 
@@ -130,16 +141,10 @@ export const getMarkerPosition = (direction: string = 'right', size: number[]) =
  * 流向图展开收起
  */
 type CollapsedNode = NodeData<unknown> & { collapsedLevel: number };
-export const bindSourceMapCollapseEvents = (
-  graph: IGraph,
-  fullData:
-    | FundFlowGraphConfig['data']
-    | FlowAnalysisGraphConfig['data']
-    | FlowGraphDatum
-    | undefined,
-) => {
-  const controlData = deepClone(fullData);
+
+export const bindSourceMapCollapseEvents = (graph: IGraph) => {
   const onClick = (e: IG6GraphEvent) => {
+    const controlData: { edges: any[]; nodes: any[] } = graph.get('eventData').getData();
     if (e.target.get('name') === 'collapse-icon') {
       const item = e.item as INode;
       let collapsed = item.getModel().collapsed;
@@ -152,7 +157,7 @@ export const bindSourceMapCollapseEvents = (
       }
       // @ts-ignore
       const marker = e.item._cfg.group.getChildren().find((item) => item.cfg.type === 'marker');
-      const { edges: fullEdges = [] } = fullData ?? {};
+      const { edges: fullEdges = [] } = controlData ?? {};
       const { id: nodeId } = item.getModel();
       const targetNodeIds: string[] = [];
       const updateItems: INode[] = [];
