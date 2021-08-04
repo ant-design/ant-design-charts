@@ -1,7 +1,7 @@
 {
-  "name": "@ant-design/charts",
-  "version": "2.0.0-beta.0",
-  "description": "AntV upper level visual component library",
+  "name": "@ant-design/maps",
+  "version": "0.0.1",
+  "description": "maps",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
   },
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/ant-design/ant-design-charts.git"
   },
   "main": "lib/index.js",
-  "unpkg": "dist/charts.min.js",
+  "unpkg": "dist/maps.min.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "files": [
@@ -26,13 +26,17 @@
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
-    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es"
+    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
+    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && npm run lint:prettier",
+    "lint:prettier": "npm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
+    "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
   },
   "dependencies": {
-    "@ant-design/plots": "^0.0.1",
-    "@ant-design/graphs": "^0.0.1",
-    "@ant-design/flowchart": "^0.0.1",
-    "@ant-design/maps": "^0.0.1"
+    "@antv/l7plot": "^0.0.1",
+    "@antv/util": "^2.0.9",
+    "react-content-loader": "^5.0.4"
   },
   "peerDependencies": {
     "react": ">=16.8.4",
