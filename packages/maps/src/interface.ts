@@ -1,4 +1,4 @@
-import { Layer, MapSense } from '@antv/l7plot';
+import { ILabelOptions, ILayerMenuControlOptions, ILegendOptions, ILogo, IMapConfig, IScaleControlOptions, ISource, IStateAttribute, ITooltipOptions, IZoomControlOptions } from '@antv/l7plot';
 
 export interface MapContainerConfig {
   style?: React.CSSProperties;
@@ -8,29 +8,93 @@ export interface MapContainerConfig {
   errorTemplate?: (e: Error) => React.ReactNode;
 }
 
-export type ChartRefConfig = ((map: MapSense) => void) | React.MutableRefObject<any | undefined>;
+export type ChartRefConfig = ((map: any) => void) | React.MutableRefObject<any | undefined>;
 
 export type Datum = {
   [key: string]: any;
 };
 
-// Graph 通用配置
+// Map 通用配置
 export interface CommonConfig extends MapContainerConfig {
-  /** 是否缩放节点大小自适应容器 */
-  autoFit?: boolean;
-  /** 是否将图平移到中心位置 */
-  fitCenter?: boolean;
-  width?: number;
-  height?: number;
-  pixelRatio?: number;
+  // 地图容器基本配置
+  /**
+   * 容器宽度
+   */
+    width?: number;
 
-  data: Datum;
-  layout?: any;
-  behaviors?: string[];
-  /** 是否开启动画 */
-  animate?: boolean;
+   /**
+    * 容器高度
+    */
+    height?: number;
+
+  // 通用数据配置
+  /**
+   * 地图配置
+   */
+    map?: IMapConfig;
+
+   /**
+    * 是否开启抗锯齿
+    */
+    antialias?: boolean;
+   /**
+    * 是否保留缓冲区数据
+    */
+    preserveDrawingBuffer?: boolean;
+   /**
+    * logo 配置
+    */
+    logo?: boolean | ILogo;
+
+   /**
+    * 具体的数据
+    */
+    source: ISource;
+
+   /**
+    * 是否自动缩放到图层范围，默认为 false
+    */
+
+    autoFit?: boolean;
+
+   /**
+    * 交互反馈
+    */
+    state?: IStateAttribute;
+
+   /**
+    * 主题，string 或 object
+    */
+    theme?: string | Record<string, any>;
+
+   /**
+    * 数据标签配置
+    */
+    label?: false | ILabelOptions;
+
+   // 组件相关
+   /**
+    * tooltip 配置项
+    */
+    tooltip?: false | ITooltipOptions;
+
+   /**
+    * 图例 legend 配置项
+    */
+    legend?: false | ILegendOptions;
+   /**
+    * zoom 配置
+    */
+    zoom?: false | IZoomControlOptions;
+   /**
+    * scale 配置
+    */
+    scale?: false | IScaleControlOptions;
+   /**
+    * layerMenu 配置
+    */
+    layerMenu?: false | ILayerMenuControlOptions;
+
   /** 图表渲染完成回调 */
-  onReady?: (map: MapSense) => void;
+  // onReady?: (map: any) => void;
 }
-
-export { Layer };

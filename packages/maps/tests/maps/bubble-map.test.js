@@ -17,104 +17,26 @@ describe('Bubble Map', () => {
     document.body.removeChild(container);
     container = null;
   });
-  const data = {
-    nodes: [
-      {
-        id: '0',
-        label: '0',
-      },
-      {
-        id: '1',
-        label: '1',
-      },
-      {
-        id: '2',
-        label: '2',
-      },
-      {
-        id: '3',
-        label: '3',
-      },
-      {
-        id: '4',
-        label: '4',
-      },
-      {
-        id: '5',
-        label: '5',
-      },
-      {
-        id: '6',
-        label: '6',
-      },
-      {
-        id: '7',
-        label: '7',
-      },
-      {
-        id: '8',
-        label: '8',
-      },
-      {
-        id: '9',
-        label: '9',
-      },
-    ],
-    edges: [
-      {
-        source: '0',
-        target: '1',
-      },
-      {
-        source: '0',
-        target: '2',
-      },
-      {
-        source: '1',
-        target: '4',
-      },
-      {
-        source: '0',
-        target: '3',
-      },
-      {
-        source: '3',
-        target: '4',
-      },
-      {
-        source: '4',
-        target: '5',
-      },
-      {
-        source: '4',
-        target: '6',
-      },
-      {
-        source: '5',
-        target: '7',
-      },
-      {
-        source: '5',
-        target: '8',
-      },
-      {
-        source: '8',
-        target: '9',
-      },
-      {
-        source: '2',
-        target: '9',
-      },
-      {
-        source: '3',
-        target: '9',
-      },
-    ],
-  };
+  const data = [{
+    "w": 21.5458,
+    "t": 22.2,
+    "s": "广东",
+    "l": 11,
+    "m": "电白",
+    "j": 110.9886,
+    "h": "59664"
+  },
+  {
+    "w": 22.9661,
+    "t": 21.9,
+    "s": "广东",
+    "l": 12,
+    "m": "东莞",
+    "j": 113.7389,
+    "h": "59289"
+  },];
   it('初始化以及销毁', () => {
     const config = {
-      width: 650,
-      height: 500,
       data,
     };
     mount(<BubbleMap {...config} />);
