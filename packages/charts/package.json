@@ -31,7 +31,8 @@
   "dependencies": {
     "@ant-design/plots": "^0.0.1",
     "@ant-design/graphs": "^0.0.1",
-    "@ant-design/flowchart": "^0.0.1"
+    "@ant-design/flowchart": "^0.0.1",
+    "@ant-design/maps": "^0.0.1"
   },
   "peerDependencies": {
     "react": ">=16.8.4",

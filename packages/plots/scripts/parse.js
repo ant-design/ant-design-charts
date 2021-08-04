@@ -4,7 +4,7 @@ const estraverse = require('estraverse');
 const babelCore = require('@babel/core');
 const escodegen = require('escodegen');
 const chalk = require('chalk');
-const { get, find } = require('loadsh');
+const { get, find } = require('lodash');
 const log = console.log;
 
 let blcokBody = '';

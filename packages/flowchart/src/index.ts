@@ -1,4 +1,27 @@
 // X6
-import { X6Graph } from './flowChart';
+import {
+  XFlowNodeCommands,
+  XFlowGraphCommands,
+  ContextServiceUtils,
+  IconStore,
+  WorkspacePanel,
+  usePanelContext,
+  FormItemWrapper,
+} from '@ali/xflow';
+import Flowchart from './graph';
 
-export { X6Graph };
+export { ToolbarPanel } from './components/toolbar';
+export { FormPanel, FormWrapper } from './components/editorPanel';
+
+export {
+  Flowchart,
+  WorkspacePanel,
+  XFlowNodeCommands,
+  XFlowGraphCommands,
+  usePanelContext,
+  FormItemWrapper,
+  ContextServiceUtils,
+  IconStore,
+};
+
+export * from './interface';
