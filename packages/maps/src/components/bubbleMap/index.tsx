@@ -1,52 +1,37 @@
-import React from 'react';
-import { BaseMapType, BubbleMap as Bubble,  BubbleMapOptions, ColorAttr, SizeAttr, animateAttr, IPointLayerStyleOptions } from '@antv/l7plot';
-import ErrorBoundary from '../../errorBoundary';
+import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
+import { BubbleMap as Bubble,  BubbleMapOptions } from '@antv/l7plot';
+import { MapRefConfig, MapContainerConfig } from '../../interface';
 import useMap from '../../hooks/useMap';
-import useProps from '../../hooks/useProps';
+import { getChart } from '../../util';
+import ErrorBoundary from '../../errorBoundary';
 import ChartLoading from '../../util/createLoading';
 
-import { CommonConfig } from '../../interface';
-
-export interface BubbleMapConfig extends Omit<CommonConfig, 'source'> {
-  /**
-   * 具体的数据
-   */
-  source: BubbleMapOptions['source'];
-  /**
-   * 图斑颜色
-   */
-   color?: ColorAttr;
-   /**
-    * 图斑大小
-    */
-   size?: SizeAttr;
-   /**
-    * 图层样式
-    */
-   style?: IPointLayerStyleOptions;
-   /**
-    * animation 配置
-    */
-   animate?: animateAttr;
+export interface BubbleMapConfig extends Omit<BubbleMapOptions, 'style'>, MapContainerConfig<BubbleMapOptions>  {
+  chartRef?: MapRefConfig;
+  mapStyle?: BubbleMapOptions['style']
 }
 
-const defaultProps = {
-  map: { type: BaseMapType.Amap },
-  source: {
-    data: [],
-    parser: {
-      type: 'json',
-      x: 'x',
-      y: 'y',
-    },
-  },
-};
+const BubbleMap = forwardRef((props: BubbleMapConfig, ref) => {
+  const {
+    chartRef,
+    style,
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    mapStyle,
+    ...rest
+  } = props;
+  const config = Object.assign(rest, { style: mapStyle })
+  const { map, container } = useMap<Bubble, BubbleMapConfig>(Bubble, config);
 
-const BubbleMap: React.FC<BubbleMapConfig> = (props) => {
-  const { uProps } = useProps(props, defaultProps);
-  const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
-  // @ts-ignore
-  const { container } = useMap<Bubble, BubbleMapOptions>(Bubble, rest);
+  useEffect(() => {
+    getChart(chartRef, map.current);
+  }, [map.current]);
+
+  useImperativeHandle(ref, () => ({
+    getChart: () => map.current,
+  }));
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
@@ -54,6 +39,6 @@ const BubbleMap: React.FC<BubbleMapConfig> = (props) => {
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
-};
+});
 
 export default BubbleMap;
