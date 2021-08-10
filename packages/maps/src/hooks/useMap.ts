@@ -1,12 +1,12 @@
 import { useRef, useEffect } from 'react';
 import { Plot, IPlotOptions } from '@antv/l7plot';
 import { isEqual, pick } from '@antv/util';
-import { clone,  deepCloneMapConfig} from '../util';
-
+import { deepCloneMapConfig } from '../util';
 
 export interface Base extends Plot<any> {}
 
-export interface IOptions<O extends IPlotOptions = IPlotOptions, P extends Plot<O> = Plot<O>> extends IPlotOptions {
+export interface IOptions<O extends IPlotOptions = IPlotOptions, P extends Plot<O> = Plot<O>>
+  extends IPlotOptions {
   /** 图表渲染完成回调 */
   onReady?: (chart: P) => void;
 }
@@ -25,23 +25,29 @@ export default function useInit<T extends Base, U extends IOptions>(MapClass: an
       let updateOption = false;
 
       if (mapOptions.current) {
-        const {map: currentMap, source: currentSource, ...currentConfig}= mapOptions.current;
-        const {map: inputMap, source:inputSource, ...inputConfig}= config;
+        const { map: currentMap, source: currentSource, ...currentConfig } = mapOptions.current;
+        const { map: inputMap, source: inputSource, ...inputConfig } = config;
         updateMap = !isEqual(currentMap, inputMap);
         changeData = !isEqual(currentSource, inputSource);
         updateOption = !isEqual(currentConfig, inputConfig);
       }
 
       if (updateMap && config.map) {
-        const updateMapConfig = pick<any>(config.map, ['center', 'pitch', 'rotation', 'zoom', 'style'])
-        map.current.updateMap(updateMapConfig)
+        const updateMapConfig = pick<any>(config.map, [
+          'center',
+          'pitch',
+          'rotation',
+          'zoom',
+          'style',
+        ]);
+        map.current.updateMap(updateMapConfig);
       }
       if (changeData) {
-        const {data, ...rest} = config.source
-        map.current.changeData(config.source.data, rest)
+        const { data, ...rest } = config.source;
+        map.current.changeData(config.source.data, rest);
       }
-      if (updateOption){
-        map.current.update(config)
+      if (updateOption) {
+        map.current.update(config);
       }
 
       mapOptions.current = deepCloneMapConfig<U>(config);
@@ -59,18 +65,17 @@ export default function useInit<T extends Base, U extends IOptions>(MapClass: an
     if (!mapOptions.current) {
       mapOptions.current = deepCloneMapConfig<U>(config);
     }
-    // TODO: why ?
-    map.current = clone(mapInstance) as T;
+    map.current = mapInstance;
     if (onReady) {
       mapInstance.once('loaded', () => {
         onReady(mapInstance);
-      })
+      });
     }
 
     // 组件销毁时销毁图表
     return () => {
       if (map.current) {
-        map.current.destroy()
+        map.current.destroy();
         map.current = undefined;
       }
     };

@@ -1,8 +1,13 @@
 import { Plot, IPlotOptions } from '@antv/l7plot';
 
-export type MapRefConfig = ((map: Plot<IPlotOptions>) => void) | React.MutableRefObject<Plot<IPlotOptions> | undefined>;
+export type MapRefConfig =
+  | ((map: Plot<IPlotOptions>) => void)
+  | React.MutableRefObject<Plot<IPlotOptions> | undefined>;
 
-export interface MapContainerConfig<O extends IPlotOptions = IPlotOptions, P extends Plot<O> = Plot<O>>  {
+export interface MapContainerConfig<
+  O extends IPlotOptions = IPlotOptions,
+  P extends Plot<O> = Plot<O>,
+> {
   style?: React.CSSProperties;
   className?: string;
   loading?: boolean;
@@ -11,4 +16,3 @@ export interface MapContainerConfig<O extends IPlotOptions = IPlotOptions, P ext
   /** 图表渲染完成回调 */
   onReady?: (chart: P) => void;
 }
-

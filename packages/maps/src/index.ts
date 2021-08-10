@@ -1,4 +1,4 @@
-import BubbleMap, { BubbleMapConfig } from './components/bubbleMap';
+import BubbleMap, { BubbleMapConfig } from './components/BubbleMap';
 
 export * from './interface';
 
