@@ -7,7 +7,7 @@ export interface Base extends Graph {
   current?: Graph;
 }
 
-export default function useInit(
+export default function useGraph(
   graphInstance: Graph | TreeGraph | undefined,
   config: any,
   container: React.MutableRefObject<null>,
@@ -27,6 +27,7 @@ export default function useInit(
     behaviors,
     nodeLabelCfg,
     edgeLabelCfg,
+    fitCenter,
   } = config;
 
   let minimap;
@@ -35,6 +36,9 @@ export default function useInit(
     if (graphInstance && !graphInstance.destroyed) {
       graphInstance.changeData(data);
       graphInstance.get('eventData')?.setData(data);
+      if (fitCenter) {
+        graphInstance.fitCenter();
+      }
     }
   }, [data]);
 

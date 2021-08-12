@@ -26,14 +26,13 @@ import {
   NodeData,
 } from '../interface';
 
-export interface OrganizationGraphData
-  extends NodeData<
-    Array<{
-      name: string;
-      title?: string;
-      icon?: string;
-    }>
-  > {}
+export type OrganizationGraphData = NodeData<
+  {
+    name: string;
+    title?: string;
+    icon?: string;
+  }[]
+>;
 export interface OrganizationGraphConfig extends Omit<CommonConfig, 'data'> {
   data: OrganizationGraphData;
 }
@@ -192,6 +191,7 @@ const OrganizationGraph: React.FC<OrganizationGraphConfig> = (props) => {
       });
 
       graphs[graphId] = graph;
+      graph.set('id', graphId);
     }
 
     // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定

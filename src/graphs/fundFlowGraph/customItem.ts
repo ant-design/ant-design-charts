@@ -50,7 +50,8 @@ export const registerFundFlowItems = () => {
             startX: number,
           ): number[] => {
             const { text, icon } = item;
-            let textShape, iconShape;
+            let textShape;
+            let iconShape;
             if (icon) {
               iconShape = group!.addShape('image', {
                 attrs: {
@@ -135,7 +136,7 @@ export const registerFundFlowItems = () => {
         const markerShape = group
           .get('children')
           .find((item: Node) => item.get('type') === 'marker');
-        const collapsed = node.getModel().collapsed;
+        const { collapsed } = node.getModel();
         markerShape?.attr({
           symbol: collapsed ? G6.Marker.expand : G6.Marker.collapse,
         });

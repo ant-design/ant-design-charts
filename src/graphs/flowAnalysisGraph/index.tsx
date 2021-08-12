@@ -31,13 +31,12 @@ import {
   CardItems,
 } from '../interface';
 
-export interface FlowAnalysisNodeData
-  extends NodeData<
-    Array<{
-      title?: string;
-      items?: CardItems;
-    }>
-  > {}
+export type FlowAnalysisNodeData = NodeData<
+  {
+    title?: string;
+    items?: CardItems;
+  }[]
+>;
 
 export interface FlowAnalysisGraphConfig extends Omit<CommonConfig, 'data'> {
   data: {
@@ -158,6 +157,7 @@ const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
         fitCenter,
       });
       graphs[graphId] = graph;
+      graph.set('id', graphId);
     }
     // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
     graph.node((node: NodeConfig) => {

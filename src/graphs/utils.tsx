@@ -80,15 +80,21 @@ export const renderGraph = (graph: IGraph, data: any) => {
   graph.get('canvas').set('localRefresh', false);
 };
 
+const grapgMinmapMaps = {};
 export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph) => {
-  if (!graph || graph.destroyed) return;
-  if (cfg.show) {
+  const graphId = graph?.get('id');
+  if (!graph || graph.destroyed) {
+    grapgMinmapMaps[graphId] = null;
+    return;
+  }
+  if (cfg.show && !grapgMinmapMaps[graphId]) {
     const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);
     const minimap = new G6.Minimap({
       ...curMminimapCfg,
     });
 
     graph.addPlugin(minimap);
+    grapgMinmapMaps[graphId] = minimap;
     return minimap;
   }
   return null;
@@ -96,8 +102,8 @@ export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph
 
 const getUuid = () => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    let r = (Math.random() * 16) | 0,
-      v = c == 'x' ? r : (r & 0x3) | 0x8;
+    const r = (Math.random() * 16) | 0;
+    const v = c == 'x' ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
 };
@@ -147,7 +153,7 @@ export const bindSourceMapCollapseEvents = (graph: IGraph) => {
     const controlData: { edges: any[]; nodes: any[] } = graph.get('eventData').getData();
     if (e.target.get('name') === 'collapse-icon') {
       const item = e.item as INode;
-      let collapsed = item.getModel().collapsed;
+      let { collapsed } = item.getModel();
       if (!isType(collapsed, 'Boolean')) {
         // @ts-ignore
         collapsed = item._cfg.group
@@ -310,9 +316,9 @@ export const bindStateEvents = (graph: IGraph, cfg?: Partial<CommonConfig> | und
     const { endArrow, startArrow } = item.getModel().style ?? {};
     if (endArrow || startArrow) {
       if (!statusCache[item.getID()]) {
-        //@ts-ignore
+        // @ts-ignore
         const { fill: endArrowFill } = endArrow ?? {};
-        //@ts-ignore
+        // @ts-ignore
         const { fill: startArrowFill } = startArrow ?? {};
         const hoverStatus = item.getModel().style?.[name]?.stroke;
         statusCache[item.getID()] = [

@@ -73,7 +73,9 @@ export const registerIndicatorCardNode = () => {
         });
 
         // node title
-        let titleTextShape, itemShape, titleShape;
+        let titleTextShape;
+        let itemShape;
+        let titleShape;
         if (title) {
           // title rect
           titleShape = group!.addShape('rect', {
@@ -108,6 +110,9 @@ export const registerIndicatorCardNode = () => {
         }
 
         if (items) {
+          if (!titleShape) {
+            height += paddingArray[0];
+          }
           itemShape = group!.addShape('rect', {
             attrs: {
               x: paddingArray[3],
@@ -117,6 +122,7 @@ export const registerIndicatorCardNode = () => {
               ...getStyle(itemContainerStyle, cfg, group),
             },
             name: 'item-box',
+            draggable: true,
           });
           height += itemPaddingArray[0];
           const itemContentWidth = contentWidth - itemPaddingArray[1] - itemPaddingArray[3];
@@ -200,13 +206,12 @@ export const registerIndicatorCardNode = () => {
           }
         }
 
-        itemShape?.attr(
-          'height',
-          Math.max(height - titleShape?.getBBox().height + itemPaddingArray[2], size[1]),
-        );
+        const titleHeight = titleShape?.getBBox().height || 0;
+        itemShape?.attr('height', Math.max(height - titleHeight + itemPaddingArray[2], size[1]));
+        const itemHeight = itemShape?.getBBox().height || 0;
         const shapeHeight = items
-          ? titleShape?.getBBox().height + itemShape?.getBBox().height + paddingArray[2]
-          : titleShape?.getBBox().height + itemShape?.getBBox().height;
+          ? (titleHeight || paddingArray[0]) + itemHeight + paddingArray[2]
+          : titleHeight + itemHeight;
         shape?.attr('height', shapeHeight);
 
         if (badge) {
@@ -255,7 +260,8 @@ export const registerIndicatorCardNode = () => {
         const markerShape = group
           .get('children')
           .find((item: Node) => item.get('type') === 'marker');
-        const collapsed = node.getModel().collapsed;
+        const { collapsed } = node.getModel();
+
         markerShape?.attr({
           symbol: collapsed ? G6.Marker.expand : G6.Marker.collapse,
         });

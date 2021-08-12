@@ -81,7 +81,7 @@ export interface IconNodeModelConfig extends ModelConfig {
   };
 }
 
-export interface Datum extends TreeGraphData {}
+export type Datum = TreeGraphData;
 
 export interface CommonConfig extends GraphContainerConfig {
   data: Datum;
