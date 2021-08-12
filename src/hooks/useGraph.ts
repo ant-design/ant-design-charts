@@ -1,7 +1,15 @@
 import { useRef, useEffect } from 'react';
 import { Graph, TreeGraph, ModeType, INode, IEdge } from '@antv/g6';
-import { getGraphSize, processMinimap } from '../graphs/utils';
-import { isObject, isString } from '@antv/util';
+import { isObject, isString, isEqual } from '@antv/util';
+import {
+  getGraphSize,
+  processMinimap,
+  getCommonConfig,
+  getArrowCfg,
+  getMarkerPosition,
+} from '../graphs/utils';
+
+import { deepClone } from '../util';
 
 export interface Base extends Graph {
   current?: Graph;
@@ -15,57 +23,144 @@ export default function useGraph(
   const graphHook = useRef<Base>();
   const {
     data,
-    nodeStyle,
-    nodeAnchorPoints,
-    nodeType,
-    edgeType,
-    edgeStyle,
     width,
     height,
     layout,
     minimapCfg,
     behaviors,
-    nodeLabelCfg,
-    edgeLabelCfg,
     fitCenter,
+    nodeCfg,
+    edgeCfg,
+    markerCfg,
   } = config;
 
-  let minimap;
+  const graphOptions = useRef<any>();
+  // data 单独处理，会被 G6 修改
+  const graphData = useRef<any>();
+
+  const changeData = () => {
+    graphInstance?.changeData(data);
+    graphInstance?.get('eventData')?.setData(data);
+    if (fitCenter) {
+      graphInstance?.fitCenter();
+    }
+  };
+
+  const updateLayout = () => {
+    graphInstance?.updateLayout(layout);
+    if (fitCenter) {
+      graphInstance?.fitCenter();
+    }
+  };
+
+  const updateNodes = () => {
+    if (!graphInstance) {
+      return;
+    }
+    const {
+      type: nodeType,
+      anchorPoints: nodeAnchorPoints,
+      style: nodeStyle,
+      title: nodeLabelCfg,
+    } = nodeCfg ?? {};
+
+    graphInstance.getNodes().forEach((node: INode) => {
+      graphInstance!.updateItem(node, {
+        type: nodeType,
+        style: nodeStyle,
+        anchorPoints: nodeAnchorPoints,
+        labelCfg: nodeLabelCfg,
+      });
+    });
+  };
+
+  const updateEdges = () => {
+    if (!graphInstance) {
+      return;
+    }
+    const {
+      type: edgeType,
+      style: edgeStyle,
+      startArrow: startArrowCfg,
+      endArrow: endArrowCfg,
+      label: labelCfg,
+    } = edgeCfg ?? {};
+
+    graphInstance.getEdges().forEach((edge: IEdge) => {
+      const edgeCfg = edge.getModel();
+      const startArrow = getArrowCfg(startArrowCfg, edgeCfg);
+      const endArrow = getArrowCfg(endArrowCfg, edgeCfg);
+      const { style, content } = labelCfg ?? {};
+      graphInstance!.updateItem(edge, {
+        type: edgeType,
+        label: getCommonConfig(content, edgeCfg, graphInstance),
+        labelCfg: {
+          style: getCommonConfig(style, edgeCfg, graphInstance),
+        },
+        style: {
+          stroke: '#ccc',
+          startArrow,
+          endArrow,
+          ...(typeof edgeStyle === 'function' ? edgeStyle(edgeCfg, graphInstance) : edgeStyle),
+        },
+      });
+    });
+  };
+
+  // 目前仅支持更新位置
+  const updateMarker = () => {
+    if (!graphInstance) {
+      return;
+    }
+    graphInstance.getNodes().forEach((node: INode) => {
+      const { position = 'right' } =
+        typeof markerCfg === 'function' ? markerCfg(node.getModel(), node.get('group')) : markerCfg;
+      const { width, height } = node.getBBox();
+      const markerShape = node
+        .get('group')
+        .get('children')
+        .find((item: INode) => item.get('name') === 'collapse-icon');
+      if (markerShape) {
+        // graphInstance!.updateItem(markerShape, {
+        //   ...getMarkerPosition(position, [width, height]),
+        // });
+        markerShape?.attr({
+          ...getMarkerPosition(position, [width, height]),
+        });
+      }
+    });
+  };
 
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
-      graphInstance.changeData(data);
-      graphInstance.get('eventData')?.setData(data);
-      if (fitCenter) {
-        graphInstance.fitCenter();
+      if (isEqual(data, graphData.current)) {
+        return;
       }
+      graphData.current = deepClone(data);
+      changeData();
     }
   }, [data]);
 
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
-      graphInstance.getNodes().forEach((node: INode) => {
-        graphInstance!.updateItem(node, {
-          type: nodeType,
-          style: nodeStyle,
-          anchorPoints: nodeAnchorPoints,
-          labelCfg: nodeLabelCfg,
-        });
-      });
+      if (!isEqual(layout, graphOptions.current?.layout)) {
+        updateLayout();
+      }
+      if (!isEqual(minimapCfg, graphOptions.current?.minimapCfg)) {
+        processMinimap(minimapCfg, graphInstance);
+      }
+      if (!isEqual(nodeCfg, graphOptions.current?.nodeCfg)) {
+        updateNodes();
+      }
+      if (!isEqual(edgeCfg, graphOptions.current?.edgeCfg)) {
+        updateEdges();
+      }
+      if (!isEqual(markerCfg, graphOptions.current?.markerCfg)) {
+        updateMarker();
+      }
+      graphOptions.current = deepClone(config);
     }
-  }, [nodeStyle, nodeAnchorPoints, nodeType]);
-
-  useEffect(() => {
-    if (graphInstance && !graphInstance.destroyed) {
-      graphInstance.getEdges().forEach((edge: IEdge) => {
-        graphInstance!.updateItem(edge, {
-          type: edgeType,
-          style: edgeStyle,
-          labelCfg: edgeLabelCfg,
-        });
-      });
-    }
-  }, [edgeStyle, edgeType]);
+  }, [config]);
 
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
@@ -73,27 +168,6 @@ export default function useGraph(
       graphInstance.changeSize(graphSize[0], graphSize[1]);
     }
   }, [container, width, height]);
-
-  useEffect(() => {
-    if (graphInstance && !graphInstance.destroyed) {
-      graphInstance.updateLayout(layout);
-    }
-  }, [layout]);
-
-  useEffect(() => {
-    if (!minimapCfg || !graphInstance || graphInstance.destroyed) {
-      return;
-    }
-    if (minimapCfg.show) {
-      minimap = processMinimap(minimapCfg, graphInstance);
-      minimap?.updateCanvas();
-    } else {
-      const [pluginMinimap] = graphInstance.get('plugins');
-      if (pluginMinimap) {
-        graphInstance.removePlugin(pluginMinimap);
-      }
-    }
-  }, [minimapCfg]);
 
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {

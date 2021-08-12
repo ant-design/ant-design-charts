@@ -1,5 +1,5 @@
 import G6 from '@antv/g6';
-import { isNumber } from '@antv/util';
+import { isNumber, isObject, isString, clone } from '@antv/util';
 import { deepClone, isType } from '../util/utils';
 import {
   MiniMapConfig,
@@ -87,10 +87,18 @@ export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph
     grapgMinmapMaps[graphId] = null;
     return;
   }
+  if ((!cfg || !cfg.show) && grapgMinmapMaps[graphId]) {
+    const [pluginMinimap] = graph.get('plugins');
+    if (pluginMinimap) {
+      graph.removePlugin(pluginMinimap);
+    }
+    grapgMinmapMaps[graphId] = null;
+  }
   if (cfg.show && !grapgMinmapMaps[graphId]) {
     const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);
     const minimap = new G6.Minimap({
       ...curMminimapCfg,
+      id: graphId,
     });
 
     graph.addPlugin(minimap);
@@ -512,4 +520,22 @@ export const createMarker = (cfg: MarkerCfg, group: IGroup | undefined, size: nu
       name: 'collapse-icon',
     });
   }
+};
+export const cloneBesidesImg = (obj: any) => {
+  const clonedObj = {};
+  Object.keys(obj).forEach((key1) => {
+    const obj2 = obj[key1];
+    if (isObject(obj2)) {
+      const clonedObj2 = {};
+      Object.keys(obj2).forEach((key2) => {
+        const v = obj2[key2];
+        if (key2 === 'img' && !isString(v)) return;
+        clonedObj2[key2] = clone(v);
+      });
+      clonedObj[key1] = clonedObj2;
+    } else {
+      clonedObj[key1] = clone(obj2);
+    }
+  });
+  return clonedObj;
 };

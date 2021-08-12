@@ -15,6 +15,7 @@ import {
   IEdge,
   IPoint,
   ArrowConfig as G6ArrowConfig,
+  IShape,
 } from '@antv/g6';
 
 import { GraphContainerConfig } from '../interface';
@@ -254,4 +255,5 @@ export {
   IEdge,
   Graph,
   IPoint,
+  IShape,
 };
