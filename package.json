@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib",
+    "build": "run-s clean lib dist",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "chart": "node ./scripts/chart.js",
