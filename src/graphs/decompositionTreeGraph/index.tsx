@@ -174,10 +174,7 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
         defaultEdge: {
           type: edgeType,
           edgeCfg,
-          labelCfg: {
-            position: 'end',
-            refX: -10,
-          },
+          labelCfg: labelCfg?.style,
         },
         nodeStateStyles,
         edgeStateStyles,
