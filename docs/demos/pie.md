@@ -493,7 +493,17 @@ const DemoPie: React.FC = () => {
     interactions: [
       { type: 'element-selected' },
       { type: 'element-active' },
-      { type: 'pie-statistic-active' },
+      {
+        type: 'pie-statistic-active',
+        cfg: {
+          start: [
+            { trigger: 'element:mouseenter', action: 'pie-statistic:change' },
+            { trigger: 'legend-item:mouseenter', action: 'pie-statistic:change' },
+            { trigger: 'element:mouseleave', action: 'pie-statistic:reset' },
+            { trigger: 'legend-item:mouseleave', action: 'pie-statistic:reset' }          
+          ]
+        }
+      }
     ],
   };
   return <Pie {...config} />;
