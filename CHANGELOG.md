@@ -2,7 +2,7 @@
 
 `2021-08-13`
 
-- 🐞 修复 raph node 更新时 marker 没有正常更新
+- 🐞 修复 graph node 更新时 marker 没有正常更新
 - 🐞 修复 minmap 多次渲染
 - 🐞 修复 minmap 更新失败
 - 🐞 修复 node 更新时 collapse icon 位置错误
