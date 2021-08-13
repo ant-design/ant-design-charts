@@ -126,6 +126,7 @@ const RadialTreeGraph: React.FC<RadialTreeGraphConfig> = (props) => {
         fitCenter,
       });
       graphs[graphId] = graph;
+      graph.set('id', graphId);
     }
 
     graph.node((node: NodeConfig) => {

@@ -38,13 +38,12 @@ export type edgeType =
       subText?: string;
     };
 
-export interface FundFlowEdgeData extends EdgeData<edgeType> {}
+export type FundFlowEdgeData = EdgeData<edgeType>;
 
-export interface FundFlowNodeData
-  extends NodeData<{
-    text?: string;
-    icon?: string;
-  }> {}
+export type FundFlowNodeData = NodeData<{
+  text?: string;
+  icon?: string;
+}>;
 export interface FundFlowGraphConfig extends Omit<CommonConfig, 'data'> {
   data: {
     nodes: FundFlowNodeData[];
@@ -185,6 +184,7 @@ const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
         fitCenter,
       });
       graphs[graphId] = graph;
+      graph.set('id', graphId);
     }
     // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
     graph.node((node: NodeConfig) => {

@@ -15,6 +15,7 @@ import {
   IEdge,
   IPoint,
   ArrowConfig as G6ArrowConfig,
+  IShape,
 } from '@antv/g6';
 
 import { GraphContainerConfig } from '../interface';
@@ -190,9 +191,7 @@ export type IMarkerCfg =
   | MarkerCfg
   | ((cfg: CardNodeCfg, graph: IGraph | IGroup | undefined) => MarkerCfg);
 
-export type Datum = {
-  [key: string]: any;
-};
+export type Datum = Record<string, any>;
 
 // Graph 通用配置
 export interface CommonConfig extends GraphContainerConfig {
@@ -219,24 +218,22 @@ export interface CommonConfig extends GraphContainerConfig {
   onReady?: (graph: IGraph) => void;
 }
 
-export interface TreeGraphData
-  extends NodeData<
-    Array<{
-      title?: string;
-      items?: CardItems[];
-    }>
-  > {}
+export type TreeGraphData = NodeData<
+  {
+    title?: string;
+    items?: CardItems[];
+  }[]
+>;
 
 // 流向图节点数据
-export interface FlowGraphNodeData
-  extends NodeData<
-    Array<{
-      title?: string;
-      items?: CardItems[];
-    }>
-  > {}
+export type FlowGraphNodeData = NodeData<
+  {
+    title?: string;
+    items?: CardItems[];
+  }[]
+>;
 
-export interface FlowGraphEdgeData extends EdgeData<string> {}
+export type FlowGraphEdgeData = EdgeData<string>;
 
 // 流向图数据
 export interface FlowGraphDatum {
@@ -258,4 +255,5 @@ export {
   IEdge,
   Graph,
   IPoint,
+  IShape,
 };

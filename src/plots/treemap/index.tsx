@@ -5,6 +5,7 @@ import { getChart } from '../../util';
 import { ChartRefConfig, ContainerConfig } from '../../interface';
 import { ErrorBoundary } from '../../base';
 import ChartLoading from '../../util/createLoading';
+
 export interface TreemapConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
   chartRef?: ChartRefConfig;
 }
