@@ -301,14 +301,76 @@ export const registerIndicatorCardNode = () => {
        * @param  {Node} node 节点
        */
       update(cfg, node) {
+        const { nodeCfg = {}, markerCfg = {} } = cfg;
         const group = node.getContainer();
-        const markerShape = group
-          .get('children')
-          .find((item: Node) => item.get('type') === 'marker');
+        const getShape = (shapeName: string) => {
+          return group.get('children').find((item: Node) => item.get('name') === shapeName);
+        };
+        const getAllShape = (shapeName: string) => {
+          return group
+            .get('children')
+            .filter((item: Node) => item.get('name').startsWith(shapeName));
+        };
+        // collapse marker
         const { collapsed } = node.getModel();
+        const { style: markerStyle } =
+          typeof markerCfg === 'function' ? markerCfg(cfg, group) : markerCfg;
+        const markerShape = getShape('collapse-icon');
         markerShape?.attr({
           symbol: collapsed ? G6.Marker.expand : G6.Marker.collapse,
+          ...markerStyle,
         });
+        const {
+          title: titleCfg,
+          items: itemsCfg,
+          label = {},
+          style,
+          badge,
+          customContent,
+        } = nodeCfg as CardNodeCfg;
+        const { style: labelStyle } = label;
+        const { style: titleStyle, containerStyle: titleContainerStyle } = titleCfg ?? {};
+        const { style: itemStyle, containerStyle: itemContainerStyle } = itemsCfg ?? {};
+        let size = cfg?.size || [100, 30];
+        if (typeof size === 'number') size = [size, size];
+        // card box
+        const cardShape = getShape('main-box');
+        cardShape?.attr({
+          ...getStyle(style, cfg, group),
+        });
+        // node title
+        const titleRectShape = getShape('title-rect');
+        titleRectShape?.attr({
+          ...getStyle(titleContainerStyle, cfg, group),
+        });
+        const titleTextShape = getShape('title');
+        titleTextShape?.attr({
+          ...getStyle(titleStyle, cfg, group),
+        });
+        // items
+        const itemRectShape = getShape('item-box');
+        itemRectShape?.attr({
+          ...getStyle(itemContainerStyle, cfg, group),
+        });
+        if (!customContent) {
+          // shape name
+          const keys = ['text-', 'value-', 'icon-'];
+          keys.forEach((key) => {
+            const keyShapes = getAllShape(key);
+            keyShapes?.forEach((shape: IShape) => {
+              shape.attr({
+                ...getStyle(itemStyle || labelStyle, cfg, group, key.replace('-', '')),
+              });
+            });
+          });
+        }
+
+        if (badge) {
+          const badgeShape = getShape('status-rect');
+          badgeShape?.attr({
+            ...getStyle(badge.style, cfg, group),
+          });
+        }
       },
       // @ts-ignore
       setState(name: string, value: boolean, item: Node) {

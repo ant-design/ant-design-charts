@@ -66,6 +66,8 @@ export default function useGraph(
 
     graphInstance.getNodes().forEach((node: INode) => {
       graphInstance!.updateItem(node, {
+        nodeCfg,
+        markerCfg,
         type: nodeType,
         style: nodeStyle,
         anchorPoints: nodeAnchorPoints,
@@ -85,25 +87,33 @@ export default function useGraph(
       endArrow: endArrowCfg,
       label: labelCfg,
     } = edgeCfg ?? {};
-
     graphInstance.getEdges().forEach((edge: IEdge) => {
-      const edgeCfg = edge.getModel();
-      const startArrow = getArrowCfg(startArrowCfg, edgeCfg);
-      const endArrow = getArrowCfg(endArrowCfg, edgeCfg);
-      const { style, content } = labelCfg ?? {};
-      graphInstance!.updateItem(edge, {
-        type: edgeType,
-        label: getCommonConfig(content, edgeCfg, graphInstance),
-        labelCfg: {
-          style: getCommonConfig(style, edgeCfg, graphInstance),
-        },
-        style: {
-          stroke: '#ccc',
-          startArrow,
-          endArrow,
-          ...(typeof edgeStyle === 'function' ? edgeStyle(edgeCfg, graphInstance) : edgeStyle),
-        },
-      });
+      // 资金流向图
+      if (edgeType === 'fund-polyline') {
+        graphInstance!.updateItem(edge, {
+          edgeCfg,
+        });
+      } else {
+        const edgeCfgModel = edge.getModel();
+        const startArrow = getArrowCfg(startArrowCfg, edgeCfgModel);
+        const endArrow = getArrowCfg(endArrowCfg, edgeCfgModel);
+        const { style, content } = labelCfg ?? {};
+        graphInstance!.updateItem(edge, {
+          type: edgeType,
+          label: getCommonConfig(content, edgeCfgModel, graphInstance),
+          labelCfg: {
+            style: getCommonConfig(style, edgeCfgModel, graphInstance),
+          },
+          style: {
+            stroke: '#ccc',
+            startArrow,
+            endArrow,
+            ...(typeof edgeStyle === 'function'
+              ? edgeStyle(edgeCfgModel, graphInstance)
+              : edgeStyle),
+          },
+        });
+      }
     });
   };
 
@@ -121,9 +131,6 @@ export default function useGraph(
         .get('children')
         .find((item: INode) => item.get('name') === 'collapse-icon');
       if (markerShape) {
-        // graphInstance!.updateItem(markerShape, {
-        //   ...getMarkerPosition(position, [width, height]),
-        // });
         markerShape?.attr({
           ...getMarkerPosition(position, [width, height]),
         });
@@ -143,6 +150,9 @@ export default function useGraph(
 
   useEffect(() => {
     if (graphInstance && !graphInstance.destroyed) {
+      if (isEqual(config, graphOptions.current)) {
+        return;
+      }
       if (!isEqual(layout, graphOptions.current?.layout)) {
         updateLayout();
       }
@@ -158,7 +168,7 @@ export default function useGraph(
       if (!isEqual(markerCfg, graphOptions.current?.markerCfg)) {
         updateMarker();
       }
-      graphOptions.current = deepClone(config);
+      graphOptions.current = config;
     }
   }, [config]);
 
