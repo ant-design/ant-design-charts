@@ -301,7 +301,7 @@ export const registerIndicatorCardNode = () => {
        * @param  {Node} node 节点
        */
       update(cfg, node) {
-        const { nodeCfg, markerCfg } = cfg;
+        const { nodeCfg = {}, markerCfg = {} } = cfg;
         const group = node.getContainer();
         const getShape = (shapeName: string) => {
           return group.get('children').find((item: Node) => item.get('name') === shapeName);
