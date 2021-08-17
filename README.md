@@ -134,7 +134,7 @@ Your contributions are always welcome! Please Do have a look at the [issues](htt
 
 DingTalk group number: `30233731`.
 
-<img src="https://gw.alipayobjects.com/zos/antfincdn/ZUNNShRHlI/2679b4fc-8852-4bfc-a9b5-4b1bcea5d912.png" width="200" height="266" />
+<img src="https://user-images.githubusercontent.com/31396322/129695490-21b57756-9bee-4ddf-93bc-0fa8e3bf10fa.png" width="200" height="266" />
 
 
 ## License
