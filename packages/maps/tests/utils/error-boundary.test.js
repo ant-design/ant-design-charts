@@ -1,6 +1,6 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import BubbleMap from '../../src/maps';
+import BubbleMap from '../../src/components/BubbleMap';
 import { ErrorBoundary } from '../../src/base';
 
 describe('Map render', () => {
@@ -24,9 +24,15 @@ describe('Map render', () => {
       errorTemplate: <span id="error">custom error</span>,
     };
     const chartProps = {
-      data: [],
-      width: '200',
-      height: '160',
+      map: { type: 'amap' },
+      source: {
+        data: [{ w: 21.5458, t: 22.2, s: '广东', l: 11, m: '电白', j: 110.9886, h: '59664' }],
+        parser: {
+          type: 'json',
+          x: 'j',
+          y: 'w',
+        },
+      },
     };
     const testRenderer = create(<BubbleMap {...props} {...chartProps} />);
     const testInstance = testRenderer.root;

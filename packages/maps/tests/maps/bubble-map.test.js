@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import { BubbleMap } from '../../src/components/BubbleMap';
+import BubbleMap from '../../src/components/BubbleMap';
 
 const refs = renderHook(() => useRef());
 
@@ -39,6 +39,7 @@ describe('Bubble Map', () => {
   ];
   it('初始化以及销毁', () => {
     const config = {
+      map: { type: 'amap' },
       source: {
         data,
         parser: {
