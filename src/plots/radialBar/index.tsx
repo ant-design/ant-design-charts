@@ -1,18 +1,14 @@
-import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useImperativeHandle, forwardRef } from 'react';
 import { RadialBar as G2plotRadialBar, RadialBarOptions as G2plotConfig } from '@antv/g2plot';
 import useChart from '../../hooks/useChart';
-import { getChart } from '../../util';
-import { ChartRefConfig, ContainerConfig } from '../../interface';
+import { ContainerConfig } from '../../interface';
 import { ErrorBoundary } from '../../base';
 import ChartLoading from '../../util/createLoading';
 
-export interface RadialBarConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
-  chartRef?: ChartRefConfig;
-}
+export interface RadialBarConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {}
 
 const RadialBarChart = forwardRef((props: RadialBarConfig, ref) => {
   const {
-    chartRef,
     style = {
       height: 'inherit',
     },
@@ -23,9 +19,7 @@ const RadialBarChart = forwardRef((props: RadialBarConfig, ref) => {
     ...rest
   } = props;
   const { chart, container } = useChart<G2plotRadialBar, RadialBarConfig>(G2plotRadialBar, rest);
-  useEffect(() => {
-    getChart(chartRef, chart.current);
-  }, [chart.current]);
+
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
   }));

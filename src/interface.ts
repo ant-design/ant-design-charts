@@ -35,8 +35,10 @@ export interface ContainerConfig<O extends AllBaseConfig = Options, P extends Pl
   errorTemplate?: (e: Error) => React.ReactNode;
   /** 图表渲染完成回调 */
   onReady?: (chart: P) => void;
-  /** 任何其他的图形事件 */
+  /** 任何其他的图形事件(仅对统计图表生效) */
   onEvent?: (chart: P, event: PlotEvent) => void;
+  /** 功能等同 onReady(仅对统计图表生效，不推荐使用) */
+  chartRef?: ChartRefConfig;
 }
 
 export interface GraphContainerConfig {
