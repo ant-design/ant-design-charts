@@ -33,11 +33,18 @@ export interface ContainerConfig<O extends AllBaseConfig = Options, P extends Pl
   loading?: boolean;
   loadingTemplate?: React.ReactElement;
   errorTemplate?: (e: Error) => React.ReactNode;
-  /** 图表渲染完成回调 */
+  /**
+   * @title 图表渲染完成回调
+   */
   onReady?: (chart: P) => void;
-  /** 任何其他的图形事件(仅对统计图表生效) */
+  /**
+   * @description 任何其他的图形事件(仅对统计图表生效)
+   */
   onEvent?: (chart: P, event: PlotEvent) => void;
-  /** 功能等同 onReady(仅对统计图表生效，不推荐使用) */
+  /**
+   * @description 功能等同 onReady(仅对统计图表生效，不推荐使用)
+   * @deprecated
+   */
   chartRef?: ChartRefConfig;
 }
 
