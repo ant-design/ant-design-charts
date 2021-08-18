@@ -1,18 +1,14 @@
-import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useImperativeHandle, forwardRef } from 'react';
 import { DualAxes as G2plotDualAxes, DualAxesOptions as G2plotConfig } from '@antv/g2plot';
 import useChart from '../../hooks/useChart';
-import { getChart } from '../../util';
-import { ChartRefConfig, ContainerConfig } from '../../interface';
+import { ContainerConfig } from '../../interface';
 import { ErrorBoundary } from '../../base';
 import ChartLoading from '../../util/createLoading';
 
-export interface DualAxesConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
-  chartRef?: ChartRefConfig;
-}
+export interface DualAxesConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {}
 
 const DualAxesChart = forwardRef((props: DualAxesConfig, ref) => {
   const {
-    chartRef,
     style = {
       height: 'inherit',
     },
@@ -24,9 +20,7 @@ const DualAxesChart = forwardRef((props: DualAxesConfig, ref) => {
   } = props;
   // @ts-ignore annotations 类型特殊
   const { chart, container } = useChart<G2plotDualAxes, DualAxesConfig>(G2plotDualAxes, rest);
-  useEffect(() => {
-    getChart(chartRef, chart.current);
-  }, [chart.current]);
+
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
   }));

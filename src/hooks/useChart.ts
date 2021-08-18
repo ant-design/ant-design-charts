@@ -2,7 +2,7 @@ import { ReactNode, useRef, useEffect } from 'react';
 import { isEqual } from '@antv/util';
 import type { Options as BaseOptions, G2, Plot, Tooltip as BaseTooltip } from '@antv/g2plot';
 import createNode from '../util/createNode';
-import { hasPath, isType, deepClone, clone, setPath } from '../util';
+import { hasPath, isType, deepClone, clone, setPath, getChart } from '../util';
 
 export interface Tooltip extends Omit<BaseTooltip, 'customContent'> {
   customContent?: (title: string, data: any[]) => ReactNode | string | unknown;
@@ -24,7 +24,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
   const chart = useRef<T>();
   const chartOptions = useRef<U>();
   const container = useRef<HTMLDivElement>(null);
-  const { onReady, onEvent } = config;
+  const { onReady, onEvent, chartRef } = config;
 
   /**
    * Get data base64
@@ -161,6 +161,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
     if (onReady) {
       onReady(chartInstance);
     }
+    getChart(chartRef, chart.current);
     const handler = (event: G2.Event) => {
       if (onEvent) {
         onEvent(chartInstance, event);

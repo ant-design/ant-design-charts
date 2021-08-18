@@ -1,21 +1,17 @@
-import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useImperativeHandle, forwardRef } from 'react';
 import {
   BidirectionalBar as G2plotBidirectionalBar,
   BidirectionalBarOptions as G2plotConfig,
 } from '@antv/g2plot';
 import useChart from '../../hooks/useChart';
-import { getChart } from '../../util';
-import { ChartRefConfig, ContainerConfig } from '../../interface';
+import { ContainerConfig } from '../../interface';
 import { ErrorBoundary } from '../../base';
 import ChartLoading from '../../util/createLoading';
 
-export interface BidirectionalBarConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
-  chartRef?: ChartRefConfig;
-}
+export interface BidirectionalBarConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {}
 
 const BidirectionalBarChart = forwardRef((props: BidirectionalBarConfig, ref) => {
   const {
-    chartRef,
     style = {
       height: 'inherit',
     },
@@ -29,9 +25,7 @@ const BidirectionalBarChart = forwardRef((props: BidirectionalBarConfig, ref) =>
     G2plotBidirectionalBar,
     rest,
   );
-  useEffect(() => {
-    getChart(chartRef, chart.current);
-  }, [chart.current]);
+
   useImperativeHandle(ref, () => ({
     getChart: () => chart.current,
   }));
