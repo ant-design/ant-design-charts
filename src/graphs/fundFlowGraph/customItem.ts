@@ -61,6 +61,18 @@ const getPathInfo = (cfg: ItemModelConfig) => {
   };
 };
 
+const getPathText = (value: edgeType) => {
+  let text;
+  let subText;
+  if (value instanceof Object) {
+    text = value.text;
+    subText = value.subText;
+  } else {
+    text = value;
+  }
+  return { text, subText };
+};
+
 // 资金流向图
 export const registerFundFlowItems = () => {
   // 注册节点
@@ -156,6 +168,7 @@ export const registerFundFlowItems = () => {
 
         // collapse marker
         if (markerCfg) {
+          const { collapsed: stateCollapsed } = group?.get('item')?.getModel() ?? {};
           const { width: shapeWidth, height: shapeHeight } = shape.getBBox();
           const {
             show,
@@ -167,7 +180,7 @@ export const registerFundFlowItems = () => {
             {
               show,
               position,
-              collapsed,
+              collapsed: stateCollapsed ?? collapsed, // 优先使用内部状态
               style: markerStyle,
             },
             group,
@@ -184,33 +197,7 @@ export const registerFundFlowItems = () => {
        * @param  {Object} cfg 节点的配置项
        * @param  {Node} node 节点
        */
-      update(cfg, node) {
-        const { nodeCfg = {}, markerCfg = {} } = cfg;
-        const group = node.getContainer();
-        const getShape = (shapeName: string) => {
-          return group.get('children').find((item: Node) => item.get('name') === shapeName);
-        };
-        // collapse marker
-        const { collapsed } = node.getModel();
-        const { style: markerStyle } =
-          typeof markerCfg === 'function' ? markerCfg(cfg, group) : markerCfg;
-        const markerShape = getShape('collapse-icon');
-        markerShape?.attr({
-          symbol: collapsed ? G6.Marker.expand : G6.Marker.collapse,
-          ...markerStyle,
-        });
-        const { label = {} } = nodeCfg as CardNodeCfg;
-        const { style: labelStyle } = label;
-        // icon
-        const iconShape = getShape('fund-icon');
-        iconShape?.attr({
-          ...getStyle(labelStyle, cfg, group, 'icon'),
-        });
-        const textShape = getShape('fund-text');
-        textShape?.attr({
-          ...getStyle(labelStyle, cfg, group, 'text'),
-        });
-      },
+      update: undefined,
     },
     'single-node',
   );
@@ -222,14 +209,7 @@ export const registerFundFlowItems = () => {
       // @ts-ignore
       draw: function draw(cfg: ItemModelConfig | undefined = {}, group: IGroup | undefined) {
         const { edgeCfg, value } = cfg;
-        let text;
-        let subText;
-        if (value instanceof Object) {
-          text = value.text;
-          subText = value.subText;
-        } else {
-          text = value;
-        }
+        const { text, subText } = getPathText(value);
         const { style: edgeStyle, label: labelCfg } = edgeCfg as EdgeCfg;
 
         const { startArrow, endArrow, path, line2StartPoint, endY } = getPathInfo(cfg);
@@ -264,12 +244,12 @@ export const registerFundFlowItems = () => {
       },
       // @ts-ignore
       update: (cfg: ItemModelConfig, edge) => {
-        const { edgeCfg } = cfg;
+        const { edgeCfg, value } = cfg;
+        const { text, subText } = getPathText(value);
         const group = edge.getContainer();
         const getShape = (shapeName: string) => {
           return group.get('children').find((item: Node) => item.get('name') === shapeName);
         };
-
         // const { startArrow, endArrow } = getPathInfo(cfg);
         const { startArrow, endArrow, path, line2StartPoint, endY } = getPathInfo(cfg);
         const { style: edgeStyle, label: labelCfg } = edgeCfg as EdgeCfg;
@@ -286,13 +266,14 @@ export const registerFundFlowItems = () => {
         });
         // path text
         const texts = ['text', 'subText'];
-        texts.forEach((text: string) => {
-          const textShape = getShape(`line-text-${text}`);
+        texts.forEach((key: string) => {
+          const textShape = getShape(`line-text-${key}`);
           textShape?.attr({
             x: line2StartPoint.x,
-            y: text === 'text' ? endY - 4 : endY + 16,
+            y: key === 'text' ? endY - 4 : endY + 16,
+            text: key === 'text' ? text : subText,
             ...defaultLabelStyle,
-            ...getStyle(labelStyle, cfg, group, text),
+            ...getStyle(labelStyle, cfg, group, key),
           });
         });
       },
