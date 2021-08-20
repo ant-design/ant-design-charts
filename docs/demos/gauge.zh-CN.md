@@ -52,7 +52,6 @@ import { Gauge } from '@ant-design/charts';
 
 const DemoGauge: React.FC = () => {
   var [percent, setPercent] = useState(0);
-  var ref;
   var ticks = [0, 1 / 3, 2 / 3, 1];
   var color = ['#F4664A', '#FAAD14', '#30BF78'];
   var config = {
@@ -108,7 +107,7 @@ const DemoGauge: React.FC = () => {
       setPercent(data);
     }, 1000);
   }, []);
-  return <Gauge {...config} chartRef={(chartRef) => (ref = chartRef)} />;
+  return <Gauge {...config} />;
 };
 
 export default DemoGauge;
@@ -154,7 +153,6 @@ import { Gauge } from '@ant-design/charts';
 
 const DemoGauge: React.FC = () => {
   var [percent, setPercent] = useState(0);
-  var ref;
   var ticks = [0, 1 / 3, 2 / 3, 1];
   var color = ['#F4664A', '#FAAD14', '#30BF78'];
   var config = {
@@ -218,7 +216,7 @@ const DemoGauge: React.FC = () => {
     }, 1000);
   }, []);
 
-  return <Gauge {...config} chartRef={(chartRef) => (ref = chartRef)} />;
+  return <Gauge {...config} />;
 };
 
 export default DemoGauge;

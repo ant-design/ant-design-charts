@@ -17,7 +17,6 @@ nav:
 | errorTemplate | Template rendered when the chart load error occurs | (e: Error) => React.ReactNode | - |
 | className | The chart container class | string | - |
 | style | The chart container style | React.CSSProperties | - |
-| chartRef | Chart instance | (React.MutableRefObject&lt;Chart&gt;)=> void | - |
 
 ## Event
 

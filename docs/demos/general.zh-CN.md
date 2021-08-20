@@ -57,8 +57,7 @@ const DemoGeneral: React.FC = () => {
     annotations: [
       {
         type: 'image',
-        src:
-          'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ELYbTIVCgPoAAAAAAAAAAABkARQnAQ',
+        src: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ELYbTIVCgPoAAAAAAAAAAABkARQnAQ',
         /** 位置 */
         position: ['50%', '50%'],
         /** 图形样式属性 */
@@ -235,9 +234,9 @@ const DemoGeneral: React.FC = () => {
         },
       ]);
     }
-  }, [data]);
+  }, [data, ref]);
 
-  return <Line {...config} chartRef={(chartRef) => (ref = chartRef)} />;
+  return <Line {...config} onReady={(plot) => (ref = plot)} />;
 };
 
 export default DemoGeneral;
@@ -498,8 +497,15 @@ const DemoGeneral: React.FC = () => {
     if (ref.current) {
       ref.current.setState('selected', (data) => data.type === '分类一' || data.type === '分类二');
     }
-  }, []);
-  return <Pie {...config} chartRef={ref} />;
+  }, [ref]);
+  return (
+    <Pie
+      {...config}
+      onReady={(plot) => {
+        ref.current = plot;
+      }}
+    />
+  );
 };
 
 export default DemoGeneral;

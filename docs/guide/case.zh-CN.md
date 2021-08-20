@@ -90,7 +90,12 @@ const DemoLine: React.FC = () => {
       <button type="button" onClick={toDataURL}>
         获取图表信息
       </button>
-      <Line {...config} chartRef={ref} />
+      <Line
+        {...config}
+        onReady={(plot) => {
+          ref.current = plot;
+        }}
+      />
     </div>
   );
 };
@@ -291,28 +296,7 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-方案 2: 挂载到 chartRef 上
-
-```typescript
-import React from 'react';
-import { Line } from '@ant-design/charts';
-
-const Page: React.FC = () => {
-  const data = [];
-  const config = {};
-  // chart实例
-  const ref = React.useRef();
-  React.useEffect(() => {
-    console.log(ref.current);
-  }, []);
-
-  return <Line {...config} chartRef={ref} />;
-};
-
-export default Page;
-```
-
-方案 3: 挂载到 ref 上
+方案 2: 挂载到 ref 上
 
 ```typescript
 import React from 'react';
