@@ -204,7 +204,7 @@ export const registerFundFlowItems = () => {
 
   // 注册边
   G6.registerEdge(
-    'fund-polyline',
+    'fund-line',
     {
       // @ts-ignore
       draw: function draw(cfg: ItemModelConfig | undefined = {}, group: IGroup | undefined) {

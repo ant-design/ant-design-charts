@@ -72,7 +72,7 @@ const defaultProps = {
     padding: 6,
   },
   edgeCfg: {
-    type: 'fund-polyline',
+    type: 'fund-line',
     edgeStateStyles: defaultStateStyles,
     style: {
       stroke: '#40a9ff',
@@ -205,7 +205,7 @@ const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
         },
       };
     });
-    if (edgeType !== 'fund-polyline') {
+    if (edgeType !== 'fund-line') {
       graph.edge((edge: EdgeConfig<edgeType>) => {
         const startArrow = getArrowCfg(startArrowCfg, edge);
         const endArrow = getArrowCfg(endArrowCfg, edge);
