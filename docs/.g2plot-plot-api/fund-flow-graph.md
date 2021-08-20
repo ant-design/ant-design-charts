@@ -46,7 +46,7 @@ Edge configuration.
 
 ##### type
 
-The default edge type is 'fund-polyline'. Some configurations may not take effect after modification.
+The default edge type is 'fund-line'. Some configurations may not take effect after modification.
 
 #### layout
 

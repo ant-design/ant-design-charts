@@ -46,7 +46,7 @@ interface Data {
 
 ##### type
 
-边类型，默认 'fund-polyline'，修改后部分配置可能不生效。
+边类型，默认 'fund-line'，修改后部分配置可能不生效。
 
 #### layout
 

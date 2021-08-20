@@ -89,7 +89,7 @@ export default function useGraph(
     } = edgeCfg ?? {};
     graphInstance.getEdges().forEach((edge: IEdge) => {
       // 资金流向图
-      if (edgeType === 'fund-polyline') {
+      if (edgeType === 'fund-line') {
         graphInstance!.updateItem(edge, {
           edgeCfg,
         });
