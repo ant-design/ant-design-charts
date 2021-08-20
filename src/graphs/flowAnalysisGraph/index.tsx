@@ -20,6 +20,7 @@ import {
   defaultStateStyles,
   defaultNodeStyle,
 } from '../constants';
+import { createToolbar } from '../toolbar';
 import { registerIndicatorCardNode } from './customItem';
 import {
   CommonConfig,
@@ -78,7 +79,9 @@ const defaultProps = {
   autoFit: true,
   fitCenter: true,
   style: {
+    position: 'relative',
     height: 'inherit',
+    backgroundColor: '#fff',
   },
 };
 
@@ -99,6 +102,7 @@ const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
     autoFit,
     fitCenter,
     markerCfg,
+    toolbarCfg,
     onReady,
     loading,
     loadingTemplate,
@@ -209,6 +213,12 @@ const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (container && toolbarCfg) {
+      createToolbar({ graph: graphs[graphId], container: container.current, toolbarCfg });
+    }
+  }, [container, toolbarCfg]);
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>

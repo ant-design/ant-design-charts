@@ -118,6 +118,17 @@ export interface BadgeCfg {
   style?: IShapeStyle;
 }
 
+export interface ToolbarCfg {
+  /** toolbar css 类名 */
+  className?: string;
+  /** toolbar 容器样式 */
+  style?: React.CSSProperties;
+  /** 是否展示 */
+  show?: boolean;
+  /** 缩放因子 */
+  zoomFactor?: number;
+}
+
 // 通用 card 配置
 export interface CardNodeCfg extends NodeCfg {
   title?: {
@@ -209,6 +220,7 @@ export interface CommonConfig extends GraphContainerConfig {
   nodeCfg?: NodeCfg;
   markerCfg: IMarkerCfg;
   minimapCfg?: MiniMapConfig;
+  toolbarCfg?: ToolbarCfg;
   behaviors?: string[];
   /** 是否开启动画 */
   animate?: boolean;
