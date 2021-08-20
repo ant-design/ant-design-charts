@@ -154,7 +154,6 @@ import { Liquid, measureTextWidth } from '@ant-design/charts';
 
 const DemoLiquid: React.FC = () => {
   var [percent, setPercent] = useState(0.26);
-  var ref;
   var config = {
     percent,
     radius: 0.8,
@@ -216,7 +215,7 @@ const DemoLiquid: React.FC = () => {
       }
     }, 500);
   }, []);
-  return <Liquid {...config} chartRef={(chartRef) => (ref = chartRef)} />;
+  return <Liquid {...config} />;
 };
 
 export default DemoLiquid;

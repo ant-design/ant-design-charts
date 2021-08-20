@@ -90,7 +90,12 @@ const DemoLine: React.FC = () => {
       <button type="button" onClick={toDataURL}>
         Get base64
       </button>
-      <Line {...config} chartRef={ref} />
+      <Line
+        {...config}
+        onReady={(plot) => {
+          ref.current = plot;
+        }}
+      />
     </div>
   );
 };
@@ -291,22 +296,7 @@ const Page: React.FC = () => {
 export default Page;
 ```
 
-Plan 2: chartRef callback
-
-```typescript
-import React from 'react';
-import { Line } from '@ant-design/charts';
-
-const Page: React.FC = () => {
-  const data = [];
-  const config = {};
-  return <Line {...config} chartRef={(chart) => console.log(chart)} />;
-};
-
-export default Page;
-```
-
-plan 3: Mount it on ref
+plan 2: Mount it on ref
 
 ```typescript
 import React from 'react';
