@@ -38,11 +38,27 @@ export default function useGraph(
   // data 单独处理，会被 G6 修改
   const graphData = useRef<any>();
 
+  /** 隐藏孤立边 */
+  const setEdgesState = (edges: IEdge[]) => {
+    edges.forEach((edge: IEdge) => {
+      const { source, target } = edge.getModel();
+      const sourceVisible = graphInstance?.findById(source as string)?.get('visible');
+      const targetVisible = graphInstance?.findById(target as string)?.get('visible');
+      if (sourceVisible === false || targetVisible === false) {
+        edge.changeVisibility(false);
+      }
+    });
+  };
+
   const changeData = () => {
-    graphInstance?.changeData(data);
-    graphInstance?.get('eventData')?.setData(data);
+    if (!graphInstance) {
+      return;
+    }
+    graphInstance.changeData(data);
+    graphInstance.get('eventData')?.setData(data);
+    setEdgesState(graphInstance.getEdges());
     if (fitCenter) {
-      graphInstance?.fitCenter();
+      graphInstance.fitCenter();
     }
   };
 
