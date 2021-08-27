@@ -1,16 +1,16 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { BubbleMap as Bubble, BubbleMapOptions } from '@antv/l7plot';
+import { Heatmap, HeatmapOptions } from '@antv/l7plot';
 import { MapRefConfig, MapContainerConfig } from '../../interface';
 import useMap from '../../hooks/useMap';
 import { getChart } from '../../util';
 import ErrorBoundary from '../../errorBoundary';
 import ChartLoading from '../../util/createLoading';
 
-export interface BubbleMapConfig extends BubbleMapOptions, MapContainerConfig<BubbleMapOptions> {
+export interface HeatMapConfig extends HeatmapOptions, MapContainerConfig<HeatmapOptions> {
   chartRef?: MapRefConfig;
 }
 
-const BubbleMap = forwardRef((props: BubbleMapConfig, ref) => {
+const HeatMap = forwardRef((props: HeatMapConfig, ref) => {
   const {
     chartRef,
     containerStyle,
@@ -20,7 +20,7 @@ const BubbleMap = forwardRef((props: BubbleMapConfig, ref) => {
     errorTemplate,
     ...config
   } = props;
-  const { map, container } = useMap<Bubble, BubbleMapConfig>(Bubble, config);
+  const { map, container } = useMap<Heatmap, HeatMapConfig>(Heatmap, config);
 
   useEffect(() => {
     getChart(chartRef, map.current);
@@ -38,4 +38,4 @@ const BubbleMap = forwardRef((props: BubbleMapConfig, ref) => {
   );
 });
 
-export default BubbleMap;
+export default HeatMap;

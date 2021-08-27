@@ -8,7 +8,7 @@ export interface MapContainerConfig<
   O extends IPlotOptions = IPlotOptions,
   P extends Plot<O> = Plot<O>,
 > {
-  style?: React.CSSProperties;
+  containerStyle?: React.CSSProperties;
   className?: string;
   loading?: boolean;
   loadingTemplate?: React.ReactElement;
