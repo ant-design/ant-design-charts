@@ -306,13 +306,21 @@ interface MiniMapConfig {
 {
   // 方向
   direction: 'TB',
-  getVGap: () => {
-    // 每个节点的垂直间隙
+  getWidth: () => {
+     // 用于计算布局的节点高度，建议设置为 size[0]
     return 16;
   },
+  getHeight: () => {
+    // 用于计算布局的节点高度，建议设置为 size[1]
+    return 16;
+  },
+  getVGap: () => {
+    // 每个节点的垂直间隙，会结合 getHeight 返回值使用
+    return 40;
+  },
   getHGap: () => {
-    // 每个节点的水平间隙
-    return 100;
+    // 每个节点的水平间隙，会结合 getWidth 返回值使用
+    return 70;
   },
 }
 ```

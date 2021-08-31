@@ -402,12 +402,20 @@ interface MiniMapConfig {
 {
   /** Direction for rank nodes. Can be TB, BT, LR, or RL, where T = top, B = bottom, L = left, and R = right. */
   direction: 'TB',
+  getWidth: () => {
+     // 用于计算布局的节点宽度，建议设置为 size[0]
+    return 16;
+  },
+  getHeight: () => {
+    // 用于计算布局的节点高度，建议设置为 size[1]
+    return 60;
+  },
   getVGap: () => {
-    // 每个节点的垂直间隙
+    // 每个节点的垂直间隙，会结合 getHeight 返回值使用
     return 16;
   },
   getHGap: () => {
-    // 每个节点的水平间隙
+    // 每个节点的水平间隙，会结合 getWidth 返回值使用
     return 100;
   },
 }

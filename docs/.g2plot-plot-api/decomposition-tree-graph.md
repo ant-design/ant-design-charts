@@ -399,12 +399,20 @@ Layout.
 {
   /** Direction for rank nodes. Can be TB, BT, LR, or RL, where T = top, B = bottom, L = left, and R = right. */
   direction: 'LR',
+  getWidth: () => {
+    // The width of the node used to calculate the layout is recommended as size[0]
+    return 16;
+  },
+  getHeight: () => {
+    // The width of the node used to calculate the layout is recommended as size[1]
+    return 60;
+  },
   getVGap: () => {
-    // Vertical clearance of each node
+    // The vertical clearance of each node is used in conjunction with the getHeight return value
     return 16;
   },
   getHGap: () => {
-    // Horizontal clearance of each node
+    // The vertical clearance of each node is used in conjunction with the getWidth return value
     return 100;
   },
 }
