@@ -298,7 +298,7 @@ interface MarkerCfg {
 
 #### minimapCfg
 
-<description>**optional** _objecr_</description>
+<description>**optional** _object_</description>
 
 迷你 map 配置。
 
@@ -311,6 +311,50 @@ interface MiniMapConfig {
   delegateStyle?: ShapeStyle;
   refresh?: boolean;
   padding?: number;
+}
+```
+
+| 名称 | 类型 | 描述 |
+| --- | --- | --- |
+| container | Object | 放置 Minimap 的 DOM 容器。若不指定则自动生成 |
+| className | String | 生成的 DOM 元素的 className |
+| viewportClassName | String | Minimap 上视窗 DOM 元素的 className |
+| type | String | 选项：`'default'`：渲染图上所有图形；`'keyShape'`：只渲染图上元素的 keyShape，以减少渲染成本；`'delegate'`：只渲染图上元素的大致图形，以降低渲染成本。渲染成本 `'default'` > `'keyShape'` > `'delegate'`。默认为 `'default'` |
+| size | Array | Minimap 的大小 |
+| delegateStyle | Object | 在 `type` 为 `'delegate'` 时生效，代表元素大致图形的样式 |
+
+其中，delegateStyle 可以设置如下属性：
+
+| 名称        | 类型   | 描述       |
+| ----------- | ------ | ---------- |
+| fill        | String | 填充颜色   |
+| stroke      | String | 描边颜色   |
+| lineWidth   | Number | 描边宽度   |
+| opacity     | Number | 透明度     |
+| fillOpacity | Number | 填充透明度 |
+
+#### toolbarCfg
+
+<description>**optional** _object_</description>
+
+Toolbar 配置。
+
+```ts
+interface ToolbarCfg {
+  /** toolbar css 类名 */
+  className?: string;
+  /** toolbar 容器样式 */
+  style?: React.CSSProperties;
+  /** 是否展示 */
+  show?: boolean;
+  /** 缩放因子 */
+  zoomFactor?: number;
+  /** 自定义 icon */
+  renderIcon?: (
+    zoomIn: () => void,
+    zoomOut: () => void,
+    toggleFullscreen: () => void,
+  ) => React.ReactElement;
 }
 ```
 

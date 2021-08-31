@@ -295,7 +295,7 @@ Whether to translate the graph to align its center with the canvas. Its priority
 
 #### minimapCfg
 
-<description>**optional** _objecr_</description>
+<description>**optional** _object_</description>
 
 Min map configruation.
 
@@ -308,6 +308,50 @@ interface MiniMapConfig {
   delegateStyle?: ShapeStyle;
   refresh?: boolean;
   padding?: number;
+}
+```
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| container | Object | false | The DOM container of Minimap. The plugin will generate a new one if `container` is not defined |
+| className | String | false | The className of the DOM element of the Minimap |
+| viewportClassName | String | false | The className of the DOM element of the view port on the Minimap |
+| type | String | false | Render type. Options: `'default'`: Render all the graphics shapes on the graph; `'keyShape'`: Only render the keyShape of the items on the graph to reach better performance; `'delegate'`: Only render the delegate of the items on the graph to reach better performance. Performance: `'default'` < `'keyShape'` < `'delegate'`. `'default'` by default |
+| size | Array | false | The size of the Minimap |
+| delegateStyle | Object | false | Takes effect when `type` is `'delegate'`. The style of the delegate of the items on the graph |
+
+The `delegateStyle` has the properties:
+
+| Name        | Type   | Required | Description             |
+| ----------- | ------ | -------- | ----------------------- |
+| fill        | String | false    | Filling color           |
+| stroke      | String | false    | Stroke color            |
+| lineWidth   | Number | false    | The width of the stroke |
+| opacity     | Number | false    | Opacity                 |
+| fillOpacity | Number | false    | Filling opacity         |
+
+#### toolbarCfg
+
+<description>**optional** _object_</description>
+
+Toolbar configruation.
+
+```ts
+interface ToolbarCfg {
+  /** toolbar classname */
+  className?: string;
+  /** container style */
+  style?: React.CSSProperties;
+  /** Whether to show */
+  show?: boolean;
+  /** zoom factor */
+  zoomFactor?: number;
+  /** custom icon */
+  renderIcon?: (
+    zoomIn: () => void,
+    zoomOut: () => void,
+    toggleFullscreen: () => void,
+  ) => React.ReactElement;
 }
 ```
 
