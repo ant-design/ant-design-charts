@@ -217,7 +217,9 @@ layout, default value is `dendrogram`.
 {
   type: 'dendrogram',
   direction: 'LR',
+  // Number of pixels that separate nodes horizontally in the layout.
   nodeSep: 20,
+  // Number of pixels between each rank in the layout.
   rankSep: 100,
   radial: true,
 }
@@ -227,16 +229,20 @@ layout, default value is `dendrogram`.
   getId: function getId(d) {
     return d.id;
   },
-  getHeight: () => {
+  getWidth: () => {
+    // The width of the node used to calculate the layout is recommended as size[0]
     return 26;
   },
-  getWidth: () => {
+  getHeight: () => {
+    // The width of the node used to calculate the layout is recommended as size[1]
     return 26;
   },
   getVGap: () => {
+    // The vertical clearance of each node is used in conjunction with the getHeight return value
     return 20;
   },
   getHGap: () => {
+    // The vertical clearance of each node is used in conjunction with the getWidth return value
     return 30;
   },
   radial: true,

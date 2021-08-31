@@ -229,26 +229,29 @@ interface Data {
 {
   type: 'dendrogram',
   direction: 'LR',
+  // Number of pixels that separate nodes horizontally in the layout.
   nodeSep: 20,
+  // Number of pixels between each rank in the layout.
   rankSep: 100,
   radial: true,
 }
 {
   type: 'compactBox',
   direction: 'RL',
-  getId: function getId(d) {
-    return d.id;
-  },
-  getHeight: () => {
+  getWidth: () => {
+     // 用于计算布局的节点高度，建议设置为 size[0]
     return 26;
   },
-  getWidth: () => {
+  getHeight: () => {
+    // 用于计算布局的节点高度，建议设置为 size[1]
     return 26;
   },
   getVGap: () => {
+    // 每个节点的垂直间隙，会结合 getHeight 返回值使用
     return 20;
   },
   getHGap: () => {
+    // 每个节点的水平间隙，会结合 getWidth 返回值使用
     return 30;
   },
   radial: true,
