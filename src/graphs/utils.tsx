@@ -62,7 +62,7 @@ export const bindDefaultEvents = (graph: IGraph, level?: number) => {
         level &&
         !(children as Array<Datum>).length &&
         getChildrenData(graph.get('eventData').getData(), g_currentPath as string);
-      if (appendChildren.length > 0) {
+      if (appendChildren?.length > 0) {
         const currentData = setParentChildren(
           graph.get('data'),
           g_currentPath as string,
@@ -341,6 +341,7 @@ export const bindStateEvents = (graph: IGraph, cfg?: Partial<CommonConfig> | und
   const setState = (item: INode | IEdge, name: string, status: boolean) => {
     status ? item.toFront() : item.toBack();
     const { endArrow, startArrow } = item.getModel().style ?? {};
+
     if (endArrow || startArrow) {
       if (!statusCache[item.getID()]) {
         // @ts-ignore
