@@ -1,11 +1,5 @@
 import React, { useEffect, useRef, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import {
-  FullscreenOutlined,
-  FullscreenExitOutlined,
-  PlusOutlined,
-  MinusOutlined,
-} from '@ant-design/icons';
 import useFullscreen from '../hooks/useFullscreen';
 import { Graph, ToolbarCfg } from './interface';
 
@@ -20,7 +14,7 @@ const Toolbar: React.FC<IToolbar> = ({ toolbarCfg, container, graph }) => {
   const width = useRef<number>();
   const height = useRef<number>();
   const zoom = useRef<number>(1);
-  const { zoomFactor = 0.25 } = toolbarCfg;
+  const { zoomFactor = 0.25, renderIcon } = toolbarCfg;
   const [fullscreen, toggleFullscreen] = useFullscreen(container);
   // 获取当全屏时的窗口大小
   const getWindow = () => {
@@ -64,25 +58,52 @@ const Toolbar: React.FC<IToolbar> = ({ toolbarCfg, container, graph }) => {
     }
   }, [graph]);
 
+  const setToggleFullscreen = () => {
+    toggleFullscreen();
+    toggleWidth(!document.fullscreenElement);
+  };
+
+  if (renderIcon) {
+    return renderIcon(zoomIn, zoomOut, toggleFullscreen);
+  }
+
   return (
     <Fragment>
       {!fullscreen ? (
-        <FullscreenOutlined
-          onClick={() => {
-            toggleFullscreen();
-            toggleWidth(true);
+        <span
+          style={{
+            cursor: 'pointer',
           }}
-        />
+          onClick={setToggleFullscreen}
+        >
+          ☐
+        </span>
       ) : (
-        <FullscreenExitOutlined
-          onClick={() => {
-            toggleFullscreen();
-            toggleWidth(false);
+        <span
+          style={{
+            cursor: 'pointer',
           }}
-        />
+          onClick={setToggleFullscreen}
+        >
+          ⚄
+        </span>
       )}
-      <PlusOutlined onClick={zoomIn} />
-      <MinusOutlined onClick={zoomOut} />
+      <span
+        style={{
+          cursor: 'pointer',
+        }}
+        onClick={zoomIn}
+      >
+        +
+      </span>
+      <span
+        style={{
+          cursor: 'pointer',
+        }}
+        onClick={zoomIn}
+      >
+        -
+      </span>
     </Fragment>
   );
 };
@@ -112,7 +133,9 @@ export const createToolbar = ({ graph, container, toolbarCfg }: IToolbar) => {
     flexDirection: 'column',
     padding: '6px',
     borderRadius: '2px',
-    fontSize: '18px',
+    fontSize: '24px',
+    textAlign: 'center',
+    lineHeight: '24px',
     color: 'rgba(0,0,0,.65)',
     backgroundColor: '#fff',
     boxShadow: '0 0 3px #ccc',
