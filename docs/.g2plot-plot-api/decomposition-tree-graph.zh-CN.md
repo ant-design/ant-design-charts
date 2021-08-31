@@ -326,6 +326,12 @@ interface ArrowConfig {
 }
 ```
 
+#### level
+
+<description>**optional** _number_</description>
+
+设置默认展开层级。
+
 #### behaviors
 
 <description>**optional** _Number[]_</description>

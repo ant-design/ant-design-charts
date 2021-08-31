@@ -327,6 +327,12 @@ Side style configuration items in different states.
 }
 ```
 
+#### level
+
+<description>**optional** _number_</description>
+
+Set the default expansion level.
+
 #### behaviors
 
 <description>**optional** _Number[]_</description>
