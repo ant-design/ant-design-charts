@@ -7,6 +7,8 @@ import {
   getCommonConfig,
   getArrowCfg,
   getMarkerPosition,
+  setTag,
+  getLevelData,
 } from '../graphs/utils';
 
 import { deepClone } from '../util';
@@ -32,6 +34,7 @@ export default function useGraph(
     nodeCfg,
     edgeCfg,
     markerCfg,
+    level,
   } = config;
 
   const graphOptions = useRef<any>();
@@ -54,8 +57,12 @@ export default function useGraph(
     if (!graphInstance) {
       return;
     }
-    graphInstance.changeData(data);
-    graphInstance.get('eventData')?.setData(data);
+    let currentData = data;
+    if (level) {
+      currentData = setTag(data);
+    }
+    graphInstance.changeData(level ? getLevelData(currentData, level) : data);
+    graphInstance.get('eventData')?.setData(currentData);
     setEdgesState(graphInstance.getEdges());
     if (fitCenter) {
       graphInstance.fitCenter();

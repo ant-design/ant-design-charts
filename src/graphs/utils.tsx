@@ -18,7 +18,7 @@ import {
   ModelConfig,
   MarkerCfg,
 } from './interface';
-import { defaultMinimapCfg, defaultNodeSize, defaultCardStyle } from './constants';
+import { defaultMinimapCfg, defaultNodeSize, defaultCardStyle, prefix } from './constants';
 export const getGraphSize = (
   width: number | undefined,
   height: number | undefined,
@@ -53,14 +53,28 @@ class EventData {
 }
 
 // 展开&折叠事件
-export const bindDefaultEvents = (graph: IGraph) => {
+export const bindDefaultEvents = (graph: IGraph, level?: number) => {
   const onClick = (e: IG6GraphEvent) => {
     const item = e.item as INode;
     if (e.target.get('name') === 'collapse-icon') {
-      graph.updateItem(item, {
-        collapsed: !item.getModel().collapsed,
-      });
-      graph.layout();
+      const { collapsed, g_currentPath, children = [] } = item.getModel();
+      const appendChildren =
+        level &&
+        !(children as Array<Datum>).length &&
+        getChildrenData(graph.get('eventData').getData(), g_currentPath as string);
+      if (appendChildren.length > 0) {
+        const currentData = setParentChildren(
+          graph.get('data'),
+          g_currentPath as string,
+          appendChildren,
+        );
+        graph.changeData(currentData);
+      } else {
+        graph.updateItem(item, {
+          collapsed: !collapsed,
+        });
+        graph.layout();
+      }
     }
   };
   graph.on('node:click', (e: IG6GraphEvent) => {
@@ -71,10 +85,15 @@ export const bindDefaultEvents = (graph: IGraph) => {
   });
 };
 
-export const renderGraph = (graph: IGraph, data: any) => {
-  const originData = deepClone(data);
+export const renderGraph = (graph: IGraph, data: any, level?: number) => {
+  let originData = deepClone(data);
+  let tagData = originData;
+  if (level) {
+    tagData = setTag(data);
+    originData = getLevelData(tagData, level);
+  }
   graph.data(originData);
-  graph.set('eventData', new EventData(data));
+  graph.set('eventData', new EventData(tagData));
   graph.render();
   // 关闭局部刷新，各种 bug
   graph.get('canvas').set('localRefresh', false);
@@ -538,4 +557,78 @@ export const cloneBesidesImg = (obj: any) => {
     }
   });
   return clonedObj;
+};
+
+/**
+ * 对数据进行打标，加上 level 和  parentId
+ */
+export const setTag = (data: Datum, level = 0, parentId = '', path: string = '') => {
+  const { id, children = [] } = data;
+  return {
+    [`${prefix}_level`]: level,
+    [`${prefix}_parentId`]: parentId,
+    [`${prefix}_currentPath`]: path,
+    ...data,
+    children: children?.map((item: Datum, index: number) => {
+      return setTag(item, level + 1, parentId ? `${parentId}-${id}` : id, `${path}-${index}`);
+    }),
+  };
+};
+
+/**
+ * 根据 level 获取相关数据
+ */
+export const getLevelData = (data: Datum, level: number): Datum => {
+  const { children = [], g_level = 0 } = data;
+  if (level <= 0) {
+    return data;
+  }
+  return {
+    ...data,
+    children:
+      g_level + 1 < level
+        ? children?.map((item: Datum) => {
+            return getLevelData(item, level);
+          })
+        : [],
+  };
+};
+
+/**
+ * get children
+ * 获取相关路径下的一级节点
+ */
+export const getChildrenData = (data: Datum, currentPath: string): Datum => {
+  // 打标时已经做了编码，这直接取值即可
+  const path = currentPath.split('-');
+  path.shift(); // 根节点没有 path
+  let current = data;
+  path.forEach((childrenIndex: string) => {
+    current = current.children[Number(childrenIndex)];
+  });
+  if (!current?.children) {
+    return [];
+  }
+  return current.children.map((item: Datum) => ({
+    ...item,
+    children: [],
+  }));
+};
+
+/**
+ * 将查询到的节点挂载到当前图数据上
+ */
+export const setParentChildren = (
+  parendData: Datum,
+  currentPath: string,
+  children: Datum[],
+): Datum => {
+  const path = currentPath.split('-');
+  path.shift();
+  let current = parendData;
+  path.forEach((childrenIndex: string) => {
+    current = current.children[Number(childrenIndex)];
+  });
+  current.children = children;
+  return parendData;
 };

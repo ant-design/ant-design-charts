@@ -35,6 +35,8 @@ import {
 
 export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data'> {
   data: TreeGraphData;
+  /** 默认展开层级 */
+  level?: number;
 }
 
 const graphs: any = {};
@@ -126,6 +128,7 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
     minimapCfg,
     autoFit,
     fitCenter,
+    level,
     onReady,
     loading,
     loadingTemplate,
@@ -223,9 +226,9 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
     processMinimap(minimapCfg, graph);
     bindStateEvents(graph, uProps);
     if (markerCfg) {
-      bindDefaultEvents(graph);
+      bindDefaultEvents(graph, level);
     }
-    renderGraph(graph, data);
+    renderGraph(graph, data, level);
 
     if (onReady) {
       onReady(graph);
