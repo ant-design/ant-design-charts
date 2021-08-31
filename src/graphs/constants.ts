@@ -41,3 +41,6 @@ export const defaultCardStyle = {
 
 // card 内部 padding | margin | 行间距
 export const defaultMargin = 6;
+
+// 打标前缀
+export const prefix = 'g';
