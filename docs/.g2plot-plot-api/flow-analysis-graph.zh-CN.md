@@ -107,6 +107,8 @@ interface Data {
     containerStyle?: IShapeStyle;
     /** title 样式 */
     style?: ILabelStyle;
+    /** 超出自动隐藏 */
+    autoEllipsis?: boolean;
   },
 }
 ```

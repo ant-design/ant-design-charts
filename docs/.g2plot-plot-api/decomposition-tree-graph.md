@@ -100,6 +100,8 @@ Node title configuration.
     containerStyle?: IShapeStyle;
     /** title style */
     style?: ILabelStyle;
+    /** auto ellipsis */
+    autoEllipsis?: boolean;
   },
 }
 ```

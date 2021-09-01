@@ -633,3 +633,17 @@ export const setParentChildren = (
   current.children = children;
   return parendData;
 };
+
+/** 超出省略 */
+export const useEllipsis = (
+  text: string,
+  fontSize: string | number = 12,
+  contentWidth: number = 120,
+) => {
+  const size = isNumber(fontSize) ? fontSize : Number(fontSize.replace('px', ''));
+  const maxWords = Math.floor(contentWidth / size);
+  if (text.length <= maxWords) {
+    return text;
+  }
+  return text.slice(0, maxWords - 1) + '...';
+};
