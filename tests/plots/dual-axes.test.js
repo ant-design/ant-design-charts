@@ -12,16 +12,30 @@ const refs = renderHook(() => useRef());
 describe('DualAxes render', () => {
   let container;
   const data = [
-    {
-      time: '2019-03',
-      value: 350,
-      count: 800,
-    },
-    {
-      time: '2019-04',
-      value: 900,
-      count: 600,
-    },
+    [
+      {
+        time: '2019-03',
+        value: 350,
+        count: 800,
+      },
+      {
+        time: '2019-04',
+        value: 900,
+        count: 600,
+      },
+    ],
+    [
+      {
+        time: '2019-03',
+        value: 350,
+        count: 800,
+      },
+      {
+        time: '2019-04',
+        value: 900,
+        count: 600,
+      },
+    ],
   ];
   beforeEach(() => {
     container = document.createElement('div');
@@ -126,7 +140,10 @@ describe('DualAxes render', () => {
     const canvas = container.querySelector('canvas');
     expect(canvas.width).toBe(200);
     expect(canvas.height).toBe(160);
-    expect(chartRef.chart.views[0].getData()).toEqual({ time: '2019-03', value: 350, count: 800 });
+    expect(chartRef.chart.views[0].getData()).toEqual([
+      { count: 800, time: '2019-03', value: 350 },
+      { count: 600, time: '2019-04', value: 900 },
+    ]);
   });
 
   it('chartRef with createRef', () => {
@@ -153,11 +170,10 @@ describe('DualAxes render', () => {
     act(() => {
       ReactDOM.render(<DualAxes {...props} {...chartProps} />, container);
     });
-    expect(chartRef.current.chart.views[0].getData()).toEqual({
-      time: '2019-03',
-      value: 350,
-      count: 800,
-    });
+    expect(chartRef.current.chart.views[0].getData()).toEqual([
+      { count: 800, time: '2019-03', value: 350 },
+      { count: 600, time: '2019-04', value: 900 },
+    ]);
   });
 
   it('chartRef with useRef', () => {
@@ -182,10 +198,9 @@ describe('DualAxes render', () => {
     act(() => {
       ReactDOM.render(<DualAxes {...props} {...chartProps} ref={refs} />, container);
     });
-    expect(refs.current.getChart().chart.views[0].getData()).toEqual({
-      time: '2019-03',
-      value: 350,
-      count: 800,
-    });
+    expect(refs.current.getChart().chart.views[0].getData()).toEqual([
+      { count: 800, time: '2019-03', value: 350 },
+      { count: 600, time: '2019-04', value: 900 },
+    ]);
   });
 });
