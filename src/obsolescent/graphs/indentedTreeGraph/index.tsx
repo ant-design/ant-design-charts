@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import G6, { IEdge, INode } from '@antv/g6';
 import { ErrorBoundary } from '../../../base';
-import useGraph from '../../../hooks/useGraph';
+import useGraph from '../../hooks/useGraph';
 import ChartLoading from '../../../util/createLoading';
 import { getGraphSize, getGraphId, useProps } from '../utils';
 import { IndentedTreeGraphConfig } from '../types';

@@ -9,9 +9,9 @@ import {
   getMarkerPosition,
   setTag,
   getLevelData,
-} from '../graphs/utils';
+} from '../../graphs/utils';
 
-import { deepClone } from '../util';
+import { deepClone } from '../../util';
 
 export interface Base extends Graph {
   current?: Graph;
