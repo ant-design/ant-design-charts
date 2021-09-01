@@ -140,7 +140,7 @@ export const getGraphId = (graph: { current?: string }) => {
   if (graph.current) {
     return graph.current;
   }
-  graph.current = `Graph-${getUuid()}`;
+  graph.current = `graph-${getUuid()}`;
   return graph.current;
 };
 
@@ -558,6 +558,13 @@ export const cloneBesidesImg = (obj: any) => {
     }
   });
   return clonedObj;
+};
+
+export const setStyles = (container: HTMLDivElement, style: React.CSSProperties = {}) => {
+  const keys = Object.keys(style);
+  keys.forEach((key: string) => {
+    container.style[key] = style[key];
+  });
 };
 
 /**

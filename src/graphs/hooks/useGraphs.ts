@@ -15,7 +15,7 @@ import {
   bindStateEvents,
   bindDefaultEvents,
   bindSourceMapCollapseEvents,
-} from '../graphs/utils';
+} from '../utils';
 import {
   NodeConfig,
   EdgeConfig,
@@ -23,10 +23,10 @@ import {
   StateStyles,
   ArrowConfig,
   CommonConfig,
-} from '../graphs/interface';
-import { createToolbar } from '../graphs/toolbar';
+} from '../interface';
+import { createToolbar, createTooltip } from '../components';
 
-import { deepClone } from '../util';
+import { deepClone } from '../../util';
 
 export default function useGraph(graphClass: string, config: any, extra: { name?: string } = {}) {
   const container = useRef(null);
@@ -48,6 +48,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     markerCfg,
     level,
     toolbarCfg,
+    tooltipCfg,
   } = config;
   const graph = graphRef.current;
   /** 隐藏孤立边 */
@@ -388,6 +389,12 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       createToolbar({ graph: graphRef.current, container: container.current, toolbarCfg });
     }
   }, [graphRef, toolbarCfg]);
+
+  useEffect(() => {
+    if (graphRef.current && tooltipCfg) {
+      createTooltip({ graph: graphRef.current, container: container.current, tooltipCfg, nodeCfg });
+    }
+  }, [graphRef, tooltipCfg]);
 
   useEffect(() => {
     return () => {

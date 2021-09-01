@@ -206,6 +206,17 @@ export interface MarkerCfg {
   style?: ShapeStyle;
 }
 
+export interface TooltipCfg {
+  /** toolbar css 类名 */
+  className?: string;
+  /** toolbar 容器样式 */
+  style?: React.CSSProperties;
+  /** 是否展示 */
+  show?: boolean;
+  /** 自定义模板 */
+  customContent: (item?: NodeConfig) => React.ReactElement;
+}
+
 export type IMarkerCfg =
   | MarkerCfg
   | ((cfg: CardNodeCfg, graph: IGraph | IGroup | undefined) => MarkerCfg);
@@ -229,6 +240,7 @@ export interface CommonConfig extends GraphContainerConfig {
   markerCfg: IMarkerCfg;
   minimapCfg?: MiniMapConfig;
   toolbarCfg?: ToolbarCfg;
+  tooltipCfg?: TooltipCfg;
   behaviors?: string[];
   /** 是否开启动画 */
   animate?: boolean;

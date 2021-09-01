@@ -1,6 +1,6 @@
 // 合并 defaultProps
 import { useCallback } from 'react';
-import { getType, deepClone } from '../util/utils';
+import { getType, deepClone } from '../../util/utils';
 import { CommonConfig } from '../interface';
 
 type SpecialKey = 'level';
