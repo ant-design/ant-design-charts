@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import G6, { NodeConfig, IEdge, INode } from '@antv/g6';
 import ChartLoading from '../../../util/createLoading';
 import { ErrorBoundary } from '../../../base';
-import useGraph from '../../../hooks/useGraph';
+import useGraph from '../../hooks/useGraph';
 import { registerIconNode } from '../customItems';
 import { defaultLabelStyle, defaultStateStyles, defaultNodeSize } from '../constants';
 import {

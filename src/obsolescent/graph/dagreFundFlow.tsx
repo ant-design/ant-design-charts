@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import G6 from '@antv/g6';
 import ChartLoading from '../../util/createLoading';
 import { ErrorBoundary } from '../../base';
-import useGraph from '../../hooks/useGraph';
+import useGraph from '../hooks/useGraph';
 import { deepClone } from '../../util/utils';
 import { defaultNodeAnchorPoints, defaultStateStyles, defaultEdgeStyle } from './constants';
 import { processMinimap, getGraphSize, getGraphId, bindEvents, useProps } from './utils';
