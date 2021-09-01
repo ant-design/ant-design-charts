@@ -1,3 +1,14 @@
+## 1.2.11
+
+`2021-09-01`
+
+### Graph
+
+- 🆕 新增 tooltip
+- 🆕 新增 toolbar
+- 🆕 DecompositionTreeGraph 新增 level 配置，支持默认层级
+- 🆕 DecompositionTreeGraph nodeCfg.title 新增 autoEllipsis 配置，支持超出省略
+
 ## 1.2.10
 
 `2021-08-20`
