@@ -358,6 +358,25 @@ interface ToolbarCfg {
 }
 ```
 
+#### tooltipCfg
+
+<description>**optional** _object_</description>
+
+Tooltip 配置。
+
+```ts
+interface ToolbarCfg {
+  /** toolbar css 类名 */
+  className?: string;
+  /** toolbar 容器样式 */
+  style?: React.CSSProperties;
+  /** 是否展示 */
+  show?: boolean;
+  /** 自定义模板 */
+  customContent: (item?: NodeConfig) => React.ReactElement;
+}
+```
+
 ## 方法
 
 #### graph.downloadFullImage(name, type, imageConfig)

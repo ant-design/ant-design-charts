@@ -355,6 +355,25 @@ interface ToolbarCfg {
 }
 ```
 
+#### tooltipCfg
+
+<description>**optional** _object_</description>
+
+Tooltip configruation.
+
+```ts
+interface ToolbarCfg {
+  /** toolbar classname */
+  className?: string;
+  /** container style */
+  style?: React.CSSProperties;
+  /** whether to show */
+  show?: boolean;
+  /** custom content */
+  customContent: (item?: NodeConfig) => React.ReactElement;
+}
+```
+
 ## Functions
 
 #### graph.downloadFullImage(name, type, imageConfig)

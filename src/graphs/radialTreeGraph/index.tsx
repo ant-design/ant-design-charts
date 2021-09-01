@@ -1,7 +1,7 @@
 import React from 'react';
 import { ErrorBoundary } from '../../base';
-import useGraph from '../../hooks/useGraphs';
-import useProps from '../../hooks/useProps';
+import useGraph from '../hooks/useGraphs';
+import useProps from '../hooks/useProps';
 import ChartLoading from '../../util/createLoading';
 
 import { CommonConfig, FlowGraphDatum } from '../interface';

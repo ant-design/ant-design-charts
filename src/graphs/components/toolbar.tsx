@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import useFullscreen from '../hooks/useFullscreen';
-import { Graph, ToolbarCfg } from './interface';
+import { setStyles } from '../utils';
+import { Graph, ToolbarCfg } from '../interface';
 
 export interface IToolbar {
   toolbarCfg: ToolbarCfg;
@@ -108,16 +109,9 @@ const Toolbar: React.FC<IToolbar> = ({ toolbarCfg, container, graph }) => {
   );
 };
 
-const setStyles = (container: HTMLDivElement, style: React.CSSProperties = {}) => {
-  const keys = Object.keys(style);
-  keys.forEach((key: string) => {
-    container.style[key] = style[key];
-  });
-};
-
 export const createToolbar = ({ graph, container, toolbarCfg }: IToolbar) => {
   const { style, show, className } = toolbarCfg;
-  const toolbarId = graph.get('id');
+  const toolbarId = `${graph.get('id')}-toolbar`;
   const exist = document.querySelector(`#${toolbarId}`);
   if (exist) {
     exist.parentNode?.removeChild(exist);
@@ -141,7 +135,7 @@ export const createToolbar = ({ graph, container, toolbarCfg }: IToolbar) => {
     boxShadow: '0 0 3px #ccc',
   } as React.CSSProperties;
   const mountPoint = document.createElement('div');
-  mountPoint.id = graph.get('id');
+  mountPoint.id = toolbarId;
   mountPoint.className = className ?? 'charts-toolbar';
   setStyles(mountPoint, defaultStyle);
   setStyles(mountPoint, style);

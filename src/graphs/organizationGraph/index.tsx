@@ -2,8 +2,8 @@ import React from 'react';
 
 import ChartLoading from '../../util/createLoading';
 import { ErrorBoundary } from '../../base';
-import useGraph from '../../hooks/useGraphs';
-import useProps from '../../hooks/useProps';
+import useGraph from '../hooks/useGraphs';
+import useProps from '../hooks/useProps';
 import { defaultStateStyles } from '../constants';
 
 import { registerOrganizationCardNode } from './customItem';
