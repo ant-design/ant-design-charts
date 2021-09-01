@@ -8,6 +8,7 @@ import {
   getStatusCfg,
   createMarker,
   cloneBesidesImg,
+  useEllipsis,
 } from '../utils';
 import { CardNodeCfg, CardItems, IShape } from '../interface';
 
@@ -83,7 +84,11 @@ export const registerIndicatorCardNode = () => {
         const paddingArray = cardPadding.map(
           (item: number, index: number) => item + appendPadding[index],
         );
-        const { style: titleStyle, containerStyle: titleContainerStyle } = titleCfg ?? {};
+        const {
+          style: titleStyle,
+          containerStyle: titleContainerStyle,
+          autoEllipsis = true,
+        } = titleCfg ?? {};
         const {
           style: itemStyle,
           containerStyle: itemContainerStyle,
@@ -135,14 +140,17 @@ export const registerIndicatorCardNode = () => {
             name: 'title-rect',
             draggable: true,
           });
+          const textStyle = {
+            ...defaultTitleLabelStyle,
+            ...getStyle(titleStyle, cfg, group),
+          };
           titleTextShape = group!.addShape('text', {
             attrs: {
               x: paddingArray[3],
               y: paddingArray[0],
               textBaseline: 'top',
-              text: title,
-              ...defaultTitleLabelStyle,
-              ...getStyle(titleStyle, cfg, group),
+              text: autoEllipsis ? useEllipsis(title, textStyle?.fontSize, contentWidth) : title,
+              ...textStyle,
             },
             name: 'title',
           });

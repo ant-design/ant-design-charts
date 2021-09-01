@@ -142,6 +142,8 @@ export interface CardNodeCfg extends NodeCfg {
     containerStyle?: IShapeStyle;
     /** title 样式 */
     style?: ILabelStyle;
+    /** 是否自动隐藏 */
+    autoEllipsis?: boolean;
   };
   items?: {
     /** items 容器样式 */
