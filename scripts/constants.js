@@ -48,6 +48,7 @@ const chartNames = {
   TinyLine: '迷你折线图',
   Violin: '小提琴图',
   Facet: '分面图',
+  Venn: '韦恩图',
 };
 
 // 维护 G2Plot examples 特殊 层级关系
@@ -78,6 +79,7 @@ const ChartsLevel = {
   Bullet: '/progress-plots',
   Gauge: '/progress-plots',
   Liquid: '/progress-plots',
+  Venn: '/more-plots',
   Mix: '/plugin',
 };
 

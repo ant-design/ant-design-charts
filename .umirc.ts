@@ -139,6 +139,7 @@ export default defineConfig({
           '/demos/box.zh-CN.md',
           '/demos/stock.zh-CN.md',
           '/demos/multi-view.zh-CN.md',
+          '/demos/venn.zh-CN.md',
           '/demos/general.zh-CN.md',
         ],
       },
@@ -354,6 +355,10 @@ export default defineConfig({
           {
             title: 'Mix',
             path: '/demos/multi-view',
+          },
+          {
+            title: 'Venn',
+            path: '/demos/venn',
           },
           {
             title: 'General',
