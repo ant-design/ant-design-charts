@@ -49,7 +49,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     level,
     toolbarCfg,
     tooltipCfg,
-    fetch,
   } = config;
   const graph = graphRef.current;
   /** 隐藏孤立边 */
@@ -265,6 +264,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         style: nodeStyle,
         title: nodeLabelCfg,
         linkCenter,
+        getChildren,
       } = nodeCfg ?? {};
 
       const {
@@ -375,7 +375,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         const sourceGraph = ['FlowAnalysisGraph', 'FundFlowGraph'];
         sourceGraph.includes(name)
           ? bindSourceMapCollapseEvents(graph)
-          : bindDefaultEvents(graph, level, fetch);
+          : bindDefaultEvents(graph, level, getChildren);
       }
       renderGraph(graph, data, level);
       if (fitCenter) {

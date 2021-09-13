@@ -20,12 +20,14 @@ import {
   NodeConfig,
 } from '../interface';
 
-export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data'> {
+export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data' | 'nodeCfg'> {
   data: TreeGraphData;
   /** 展开层级，默认 100 */
   level?: number;
-  /** 点击展开时异步获取数据 */
-  fetch?: (nodeCfg: NodeConfig) => TreeGraphData['children'];
+  nodeCfg: CommonConfig['nodeCfg'] & {
+    /** 点击展开时异步获取数据 */
+    getChildren?: (nodeCfg: NodeConfig) => TreeGraphData['children'];
+  };
 }
 
 registerIndicatorCardNode();

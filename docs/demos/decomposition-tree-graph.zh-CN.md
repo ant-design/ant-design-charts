@@ -338,7 +338,7 @@ const DemoIndentedTree: React.FC = () => {
     });
   };
 
-  const fetch = async (nodeCfg) => {
+  const getChildren = async (nodeCfg) => {
     const d = await fetchData();
     return d;
   };
@@ -346,7 +346,9 @@ const DemoIndentedTree: React.FC = () => {
   const config = {
     data,
     animate: false,
-    fetch,
+    nodeCfg: {
+      getChildren,
+    },
     autoFit: false,
     markerCfg: (cfg) => {
       const { children } = cfg;

@@ -58,7 +58,7 @@ class EventData {
 export const bindDefaultEvents = (
   graph: IGraph,
   level?: number,
-  fetch?: DecompositionTreeGraphConfig['fetch'],
+  getChildren?: DecompositionTreeGraphConfig['nodeCfg']['getChildren'],
 ) => {
   const onClick = async (e: IG6GraphEvent) => {
     const item = e.item as INode;
@@ -69,9 +69,9 @@ export const bindDefaultEvents = (
         !(children as Array<Datum>).length &&
         getChildrenData(graph.get('eventData').getData(), g_currentPath as string);
 
-      if (fetch && !(children as Array<Datum>)?.length && !appendChildren?.length) {
+      if (getChildren && !(children as Array<Datum>)?.length && !appendChildren?.length) {
         createLoading();
-        let appendChildrenData = await fetch(item.getModel() as NodeConfig);
+        let appendChildrenData = await getChildren(item.getModel() as NodeConfig);
         if (appendChildrenData) {
           appendChildrenData = appendChildrenData.map((t, index) => {
             return {
