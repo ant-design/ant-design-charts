@@ -164,6 +164,12 @@ interface Data {
   };
 ```
 
+##### getChildren
+
+<description>**optional** _Function_</description>
+
+点击 Marker 时异步加载数据。
+
 ##### customContent
 
 <description>**optional** _Function_</description>
@@ -332,7 +338,7 @@ interface ArrowConfig {
 
 <description>**optional** _number_</description>
 
-设置默认展开层级。
+设置默认展开层级，默认 100。
 
 #### behaviors
 

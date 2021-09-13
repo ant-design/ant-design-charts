@@ -264,6 +264,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         style: nodeStyle,
         title: nodeLabelCfg,
         linkCenter,
+        getChildren,
       } = nodeCfg ?? {};
 
       const {
@@ -374,10 +375,12 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         const sourceGraph = ['FlowAnalysisGraph', 'FundFlowGraph'];
         sourceGraph.includes(name)
           ? bindSourceMapCollapseEvents(graph)
-          : bindDefaultEvents(graph, level);
+          : bindDefaultEvents(graph, level, getChildren);
       }
       renderGraph(graph, data, level);
-
+      if (fitCenter) {
+        graph.fitCenter();
+      }
       if (onReady) {
         onReady(graph);
       }

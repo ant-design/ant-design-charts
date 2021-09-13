@@ -19,6 +19,8 @@ import {
   MarkerCfg,
 } from './interface';
 import { defaultMinimapCfg, defaultNodeSize, defaultCardStyle, prefix } from './constants';
+import { DecompositionTreeGraphConfig } from './decompositionTreeGraph';
+
 export const getGraphSize = (
   width: number | undefined,
   height: number | undefined,
@@ -53,15 +55,38 @@ class EventData {
 }
 
 // 展开&折叠事件
-export const bindDefaultEvents = (graph: IGraph, level?: number) => {
-  const onClick = (e: IG6GraphEvent) => {
+export const bindDefaultEvents = (
+  graph: IGraph,
+  level?: number,
+  getChildren?: DecompositionTreeGraphConfig['nodeCfg']['getChildren'],
+) => {
+  const onClick = async (e: IG6GraphEvent) => {
     const item = e.item as INode;
     if (e.target.get('name') === 'collapse-icon') {
-      const { collapsed, g_currentPath, children = [] } = item.getModel();
-      const appendChildren =
+      const { collapsed, g_currentPath, children = [], g_parentId, g_level, id } = item.getModel();
+      let appendChildren =
         level &&
         !(children as Array<Datum>).length &&
         getChildrenData(graph.get('eventData').getData(), g_currentPath as string);
+
+      if (getChildren && !(children as Array<Datum>)?.length && !appendChildren?.length) {
+        createLoading();
+        let appendChildrenData = await getChildren(item.getModel() as NodeConfig);
+        if (appendChildrenData) {
+          appendChildrenData = appendChildrenData.map((t, index) => {
+            return {
+              [`${prefix}_level`]: (g_level as number) + 1,
+              [`${prefix}_parentId`]: `${g_parentId}-${id}`,
+              [`${prefix}_currentPath`]: `${g_currentPath}-${index}`,
+              ...t,
+            };
+          });
+          setLevelData(graph, appendChildrenData, g_currentPath as string);
+        }
+        appendChildren = appendChildrenData;
+        closeLoading();
+      }
+
       if (appendChildren?.length > 0) {
         const currentData = setParentChildren(
           graph.get('data'),
@@ -69,6 +94,9 @@ export const bindDefaultEvents = (graph: IGraph, level?: number) => {
           appendChildren,
         );
         graph.changeData(currentData);
+        if (graph.get('fitCenter')) {
+          graph.fitCenter();
+        }
       } else {
         graph.updateItem(item, {
           collapsed: !collapsed,
@@ -603,6 +631,21 @@ export const getLevelData = (data: Datum, level: number): Datum => {
 };
 
 /**
+ * 挂载异步数据到全局 data
+ */
+export const setLevelData = (graph: IGraph, data: Datum, currentPath: string) => {
+  const currentData = graph.get('eventData').getData();
+  // 打标时已经做了编码，这直接取值即可
+  const path = currentPath.split('-');
+  path.shift(); // 根节点没有 path
+  let current = currentData;
+  path.forEach((childrenIndex: string) => {
+    current = current.children[Number(childrenIndex)];
+  });
+  current.children = data;
+};
+
+/**
  * get children
  * 获取相关路径下的一级节点
  */
@@ -653,4 +696,38 @@ export const useEllipsis = (
     return text;
   }
   return text.slice(0, maxWords - 1) + '...';
+};
+
+/** 开启加载动画， 不支持同时存在多个 */
+export const createLoading = () => {
+  const container = document.createElement('div');
+  container.className = `${prefix}-antd-loading`;
+  const styles = {
+    position: 'fixed' as 'fixed',
+    left: '0',
+    top: '0',
+    width: '100vw',
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'rgba(0,0,0, 0.25)',
+    color: '#fff',
+    fontSize: '16px',
+    zIndex: 999,
+  };
+  const span = document.createElement('span');
+  span.innerText = 'loading...';
+  setStyles(container, styles);
+  container.appendChild(span);
+  document.body.appendChild(container);
+};
+
+/** 关闭加载动画 */
+export const closeLoading = () => {
+  const hideContainer = document.getElementsByClassName(`${prefix}-antd-loading`);
+  // @ts-ignore
+  hideContainer?.forEach((element) => {
+    document.body.removeChild(element);
+  });
 };
