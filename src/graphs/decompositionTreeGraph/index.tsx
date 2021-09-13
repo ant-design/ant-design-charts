@@ -10,12 +10,22 @@ import {
   defaultNodeStyle,
 } from '../constants';
 import { registerIndicatorCardNode } from '../flowAnalysisGraph/customItem';
-import { CommonConfig, ShapeCfg, Shape, IGroup, IGraph, TreeGraphData } from '../interface';
+import {
+  CommonConfig,
+  ShapeCfg,
+  Shape,
+  IGroup,
+  IGraph,
+  TreeGraphData,
+  NodeConfig,
+} from '../interface';
 
 export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data'> {
   data: TreeGraphData;
-  /** 默认展开层级 */
+  /** 展开层级，默认 100 */
   level?: number;
+  /** 点击展开时异步获取数据 */
+  fetch?: (nodeCfg: NodeConfig) => TreeGraphData['children'];
 }
 
 registerIndicatorCardNode();
@@ -88,6 +98,7 @@ const defaultProps = {
     height: 'inherit',
     backgroundColor: '#fff',
   },
+  level: 100,
 };
 
 const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) => {

@@ -333,7 +333,13 @@ Side style configuration items in different states.
 
 <description>**optional** _number_</description>
 
-Set the default expansion level.
+Set the default expansion level, default 100.
+
+#### fetch
+
+<description>**optional** _Function_</description>
+
+Asynchronously load data when Marker is clicked.
 
 #### behaviors
 

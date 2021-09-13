@@ -246,6 +246,123 @@ const DemoIndentedTree: React.FC = () => {
 export default DemoIndentedTree;
 ```
 
+### Sync fetch data
+
+```tsx
+import React from 'react';
+import { DecompositionTreeGraph } from '@ant-design/charts';
+
+const DemoIndentedTree: React.FC = () => {
+  const data = {
+    id: 'A0',
+    value: {
+      title: '订单金额',
+      items: [
+        {
+          text: '3031万',
+        },
+      ],
+    },
+    children: [
+      {
+        id: 'A1',
+        value: {
+          title: '华南',
+          items: [
+            {
+              text: '1152万',
+            },
+            {
+              text: '占比',
+              value: '30%',
+            },
+          ],
+        },
+        children: [],
+      },
+      {
+        id: 'A2',
+        value: {
+          title: '华北',
+          items: [
+            {
+              text: '595万',
+            },
+            {
+              text: '占比',
+              value: '30%',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+            },
+          ],
+        },
+      },
+    ],
+  };
+
+  const fetchData = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve([
+          {
+            id: 'A11-22' + Math.random(),
+            value: {
+              title: '深圳' + Math.random(),
+              items: [
+                {
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '50%',
+                },
+              ],
+            },
+          },
+          {
+            id: 'A11-23' + Math.random(),
+            value: {
+              title: '北京' + Math.random(),
+              items: [
+                {
+                  text: '1152万',
+                },
+                {
+                  text: '占比',
+                  value: '50%',
+                },
+              ],
+            },
+          },
+        ]);
+      }, 1000);
+    });
+  };
+
+  const fetch = async (nodeCfg) => {
+    const d = await fetchData();
+    return d;
+  };
+
+  const config = {
+    data,
+    animate: false,
+    fetch,
+    autoFit: false,
+    markerCfg: (cfg) => {
+      const { children } = cfg;
+      return {
+        show: true,
+        collapsed: !children?.length,
+      };
+    },
+  };
+
+  return <DecompositionTreeGraph {...config} />;
+};
+
+export default DemoIndentedTree;
+```
+
 ### Custom node style
 
 ```tsx
