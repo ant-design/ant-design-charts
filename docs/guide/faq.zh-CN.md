@@ -110,7 +110,11 @@ import Line from '@ant-design/charts/es/plots/line';
   }
 ```
 
-### 7、IE 兼容
+### 7、为什么图表一直重绘
+
+由于 react 机制，默认情况下只要父组件有状态更新，子组件都会重新渲染，导致图表再次重绘。可参考[示例](https://codesandbox.io/s/pedantic-lucy-tylzl?file=/App.tsx)
+
+### 8、IE 兼容
 
 参考 [ChartsIE](https://github.com/lxfu1/charts-ie)
 
