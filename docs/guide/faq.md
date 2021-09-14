@@ -110,7 +110,11 @@ Method 3: Use [babel-plugin-import](https://github.com/ant-design/babel-plugin-i
   }
 ```
 
-### 7、IE Compatibility
+### 7、Why do charts keep being redrawn
+
+Due to the React mechanism, by default, whenever the parent component has a state update, the child component is rerendered, causing the chart to be redrawn again. Refer to [example](https://codesandbox.io/s/pedantic-lucy-tylzl?file=/App.tsx)
+
+### 8、IE Compatibility
 
 Refer to [ChartsIE](https://github.com/lxfu1/charts-ie)
 
