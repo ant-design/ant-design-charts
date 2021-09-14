@@ -726,8 +726,7 @@ export const createLoading = () => {
 /** 关闭加载动画 */
 export const closeLoading = () => {
   const hideContainer = document.getElementsByClassName(`${prefix}-antd-loading`);
-  // @ts-ignore
-  hideContainer?.forEach((element) => {
-    document.body.removeChild(element);
+  Array.from(hideContainer).forEach((el) => {
+    document.body.removeChild(el);
   });
 };
