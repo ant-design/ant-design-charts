@@ -31,6 +31,7 @@ import Violin from './plots/violin';
 import Facet from './plots/facet';
 import MultiView from './plots/mix'; // 和 Mix 相同，底层更名
 import Mix from './plots/mix';
+import Venn from './plots/venn';
 import BidirectionalBar from './plots/bidirectionalBar';
 import {
   DagreGraph,
@@ -81,6 +82,7 @@ export {
   Treemap,
   Violin,
   MultiView,
+  Venn,
   Mix,
   BidirectionalBar,
   OrganizationTreeGraph,
@@ -136,6 +138,7 @@ export default {
   Violin,
   MultiView,
   Mix,
+  Venn,
   BidirectionalBar,
   OrganizationTreeGraph,
   DagreGraph,

@@ -1,3 +1,8 @@
+/**
+ * 新曾图表组件
+ * eg:
+ *  - `node scripts/chart.js Bar`
+ */
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
