@@ -307,21 +307,6 @@ xAxis、yAxis 配置相同。**注意**：由于 DualAxes(双轴图) 和 Bidirec
 
 For Cartesian coordinates, set the position of the coordinate axes.
 
-##### title
-
-<description>**optional** _object_</description>
-
-A configuration item for the title, NULL means not to be displayed.
-
-| Properties | Type | Description |
-| --- | --- | --- |
-| text | _string_ | The title of axis |
-| position | _string_ | Position of the axis title, default: 'center'. Options: start, center, end |
-| offset | _number_ | The distance of the title from the coordinate axis |
-| spacing | _number_ | The distance between the title and the text on the coordinate axis |
-| style | _shapeStyle_ | Title text configuration items |
-| autoRotate | _boolean_ | Whether to rotate automatically or not |
-
 **_shapeStyle_**
 
 <!--shape style-->
