@@ -761,15 +761,17 @@ plot.on('legend-item-name:click', (...args) => {
   console.log(...args);
 });
 
-// 给 tooltip 添加点击事件
+// Tooltip show event
 plot.on('tooltip:show', (...args) => {
   console.log(...args);
 });
 
+// Tooltip hide event
 plot.on('tooltip:hide', (...args) => {
   console.log(...args);
 });
 
+// Tooltip change event
 plot.on('tooltip:change', (...args) => {
   console.log(...args);
 });

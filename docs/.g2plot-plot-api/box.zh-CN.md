@@ -1429,15 +1429,17 @@ plot.on('legend-item-name:click', (...args) => {
   console.log(...args);
 });
 
-// 给 tooltip 添加点击事件
+// tooltip 显示事件
 plot.on('tooltip:show', (...args) => {
   console.log(...args);
 });
 
+// tooltip 隐藏事件
 plot.on('tooltip:hide', (...args) => {
   console.log(...args);
 });
 
+// tooltip 改变事件
 plot.on('tooltip:change', (...args) => {
   console.log(...args);
 });
