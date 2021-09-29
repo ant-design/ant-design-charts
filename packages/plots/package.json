@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib",
+    "build": "run-s clean lib dist",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
@@ -50,5 +50,8 @@
     "contents": "dist"
   },
   "sideEffects": false,
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^17.0.24"
+  }
 }
