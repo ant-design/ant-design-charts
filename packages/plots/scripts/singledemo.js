@@ -7,7 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
-const { groupBy } = require('loadsh');
+const { groupBy } = require('lodash');
 const { chartNames, ChartsLevel } = require('./constants');
 const { lowerCase, toLine } = require('./util.js');
 const parseFile = require('./parse.js');

@@ -34,7 +34,6 @@
     "test:coverage": "umi-test --coverage"
   },
   "dependencies": {
-    "@antv/l7plot": "^0.0.1",
     "@antv/util": "^2.0.9",
     "react-content-loader": "^5.0.4"
   },

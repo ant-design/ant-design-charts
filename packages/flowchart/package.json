@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib dist",
+    "build": "run-s clean lib",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
@@ -34,7 +34,12 @@
     "test:coverage": "umi-test --coverage"
   },
   "dependencies": {
-    "@antv/x6": "^1.25.0"
+    "@ali/xflow": "0.0.3-alpha.8",
+    "@antv/x6": "^1.25.0",
+    "@antv/x6-react-components": "^1.1.13",
+    "@antv/x6-react-shape": "^1.4.5",
+    "lodash-es": "^4.17.21",
+    "react-use": "^17.3.1"
   },
   "peerDependencies": {
     "react": ">=16.8.4",
@@ -48,5 +53,8 @@
     "contents": "dist"
   },
   "sideEffects": false,
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.4"
+  }
 }
