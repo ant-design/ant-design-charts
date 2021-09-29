@@ -101,7 +101,7 @@ const Toolbar: React.FC<IToolbar> = ({ toolbarCfg, container, graph }) => {
         style={{
           cursor: 'pointer',
         }}
-        onClick={zoomIn}
+        onClick={zoomOut}
       >
         -
       </span>
