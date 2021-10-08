@@ -9,8 +9,8 @@
     "build": "npm-run-all --parallel build:*",
     "build:plots": "tnpm run build --prefix ./packages/plots",
     "build:graphs": "tnpm run build --prefix ./packages/graphs",
-    "build:flowchart": "tnpm run build --prefix ./packages/flowchart",
     "build:charts": "tnpm run build --prefix ./packages/charts",
+    "build:site": "tnpm run start --prefix  ./packages/site",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "bootstrap": "lerna bootstrap"
@@ -67,8 +67,8 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.4",
-    "react-dom": ">=16.8.4"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "publishConfig": {
     "access": "public"

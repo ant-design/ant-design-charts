@@ -10,7 +10,7 @@ process.env.NODE_ENV = 'production';
 
 module.exports = {
   entry: {
-    charts: './src/index.ts', // G2Plot 相关图表
+    charts: './src/index.ts',
   },
   output: {
     filename: '[name].min.js',
@@ -24,8 +24,18 @@ module.exports = {
     modules: ['node_modules'],
   },
   externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react',
+    },
+    'react-dom': {
+      root: 'ReactDom',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom',
+    },
   },
   module: {
     rules: [
