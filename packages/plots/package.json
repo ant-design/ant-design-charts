@@ -50,5 +50,8 @@
     "contents": "dist"
   },
   "sideEffects": false,
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^17.0.24"
+  }
 }
