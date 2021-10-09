@@ -119,10 +119,7 @@ const generateFile = (ast) => {
       if (isImport(node)) {
         return estraverse.VisitorOption.Remove;
       }
-      if (
-        node.type === 'CallExpression' &&
-        filterParams.includes(get(node, 'callee.property.name'))
-      ) {
+      if (node.type === 'CallExpression' && filterParams.includes(get(node, 'callee.property.name'))) {
         return esprima.parseScript('CONSTANTCODE');
       }
     },

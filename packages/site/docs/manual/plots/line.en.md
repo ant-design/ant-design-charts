@@ -1,0 +1,147 @@
+
+
+## title: Line&#xA;order: 0&#xA;contributors:&#xA;\[&#xA;{&#xA;author: '新茗',&#xA;github: 'visiky',&#xA;avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg',&#xA;},&#xA;]
+
+<div class="manual-docs">
+
+  <div data-card-type="block" data-lake-card="table" id="pLwYV" class="">
+      <table
+        class="lake-table"
+        style="width: 100%; outline: none; border-collapse: collapse"
+      >
+        <colgroup>
+          <col width="425" span="1" />
+          <col width="340" span="1" />
+        </colgroup>
+        <tbody>
+          <tr style="height: 33px">
+            <td colspan="1" rowspan="5" style="background: #fff">
+              <playground path="line/basic/demo/line.ts"></playground>
+            </td>
+            <td class="style1">
+              <p><strong>Description</strong></p>
+              <p>
+                <span class="lake-fontsize-12"
+                  >使用一条折线的线段显示数据在一个具有顺序性的维度上的变化。</span
+                >
+              </p>
+              <p>
+                <strong>Alias: </strong>
+                <span class="lake-fontsize-12">折线图、线图、基础折线图</span>
+              </p>
+            </td>
+          </tr>
+                 <tr style="height: 33px">
+            <td class="style1">
+              <p><strong>When to use: </strong></p>
+              <p><span class="lake-fontsize-12">折线图用于显示数据在一个连续的时间间隔或者时间跨度上的变化，它的特点是反映事物随时间或有序类别而变化的趋势。</span></p>
+            </td>
+          </tr>
+          <tr style="height: 33px">
+            <td class="style1">
+              <p><strong>视觉通道</strong></p>
+              <p><span class="lake-fontsize-12">位置、方向</span></p>
+            </td>
+          </tr>
+          <tr style="height: 33px">
+            <td colspan="1">
+              <p><strong>This chart could be used for</strong></p>
+              <p><span class="lake-fontsize-12">Comparison, Data Over Time</span></p>
+            </td>
+          </tr>
+          <tr style="height: 33px">
+            <td colspan="1">
+              <p><strong>数据准备</strong></p>
+              <p>
+                <span class="lake-fontsize-12">1 个「时间」或「有序名词」字段</span>
+              </p>
+              <p><span class="lake-fontsize-12">1 个「数值」字段</span></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+## Design Guide
+
+### 用法建议
+
+<img
+alt="design"
+src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*NGoOQatmkx0AAAAAAAAAAABkARQnAQ"
+width="1000"
+/>
+
+### 元素构成
+
+<img alt="design" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*uxv8RJgYx4oAAAAAAAAAAABkARQnAQ" width="800">
+
+<div class="design-guide-list">
+
+*   X 轴：通常对应连续数据，值为时间，调用连续数据 X 轴。
+*   Y 轴：通常对应连续数据，值为数字，调用连续数据 Y 轴。
+*   图例：通常出现在多条折线图中，用来区分不同折线代表的数据含义。
+*   标签：用来解释数据点的值。
+*   辅助元素：用来解释某个特殊的数据点的值，或标记出某个特殊含义的区域。
+
+</div>
+
+## Quick start
+
+<div class="sign">
+
+```ts
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
+
+const Demo: React.FC = () => {
+  const [data, setData] = useState([]);
+useEffect(() => {
+    asyncFetch();
+}, []);
+const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json').then(response => response.json()).then(json => setData(json)).catch(error => {
+        console.log('fetch data failed', error);
+    });
+};
+const config = {
+    data,
+    xField: 'Date',
+    yField: 'scales'
+};
+;;;
+  return < {...config} />;
+};
+
+export default Demo;
+
+
+```
+
+</div>
+
+📊 See more <a href="/en/examples/line/basic" target='blank'>examples</a>.
+
+🎨 For an overview of the line plot options see the [API reference](/en/docs/api/plots/line).
+
+## Line plot features
+
+### Smooth
+
+曲线图是用曲线将一系列的数据点连接的图表, 对应的只需要配置 `smooth: true` 属性即可。
+
+<playground path='line/basic/demo/spline.ts' rid='rect2'></playground>
+
+### Step
+
+对应的只需要配置 `stepType` 属性即可。
+
+```ts
+options: {
+  stepType: 'vh' // 可选项：hv | vh | hvh | vhv
+}
+```
+
+<playground path='line/step/demo/line.ts' rid='rect3'></playground>
+
+</div>

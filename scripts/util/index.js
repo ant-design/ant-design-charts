@@ -1,4 +1,5 @@
 const shell = require('shelljs');
+const fs = require('fs');
 
 // 首字母小写
 const lowerCase = (str = '') => {
@@ -23,9 +24,24 @@ const toLine = (name = '') => {
   return name.replace(/([A-Z])/g, '-$1').toLowerCase();
 };
 
+// 文件路径是否存在，不存在时直接创建
+const checkDirExist = (folderpath) => {
+  const pathArr = folderpath.split('/');
+  let _path = '';
+  for (let i = 0; i < pathArr.length; i++) {
+    if (pathArr[i]) {
+      _path += `/${pathArr[i]}`;
+      if (!fs.existsSync(_path)) {
+        fs.mkdirSync(_path);
+      }
+    }
+  }
+};
+
 module.exports = {
   lowerCase,
   upperCase,
   toHump,
   toLine,
+  checkDirExist,
 };
