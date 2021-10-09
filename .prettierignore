@@ -1,6 +1,7 @@
 **/*.svg
 **/*.ejs
 **/*.html
+*.md
 package.json
 .umi
 .umi-production

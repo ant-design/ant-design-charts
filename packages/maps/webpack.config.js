@@ -1,5 +1,3 @@
-const { getConfig } = require('../../scripts/webpack/config');
+const { getWebpackConfig } = require('../../config/webpack');
 
-process.env.NODE_ENV = 'production';
-
-module.exports = getConfig();
+module.exports = getWebpackConfig();
