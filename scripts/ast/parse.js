@@ -1,25 +1,15 @@
 const fs = require('fs');
-const esprima = require('esprima');
-const estraverse = require('estraverse');
-const babelCore = require('@babel/core');
-const escodegen = require('escodegen');
+const babel = require('@babel/core');
 const chalk = require('chalk');
 const { get, find } = require('lodash');
 const log = console.log;
 
-let blcokBody = '';
 let fetchUrl = '';
-let chartName = '';
-let dataKey = '';
-const filterParams = ['then'];
-
-/**
- * import语句
- * @param {*} node
- */
-const isImport = (node) => {
-  return node.type === 'ImportDeclaration';
-};
+let chartName = ''; // 组件名称
+let plotName = ''; // 插件名称
+let utilName = ''; // util 名称
+let dataKey = ''; // 存放 data 的变量
+let dataSet = ''; // dataset
 
 /**
  * render
@@ -46,6 +36,14 @@ const isFetch = (node) => {
 };
 
 /**
+ * isFetchExpression
+ * @param {*} node
+ */
+const isFetchExpression = (node) => {
+  return node.type === 'CallExpression' && get(node, 'callee.object.callee.object.callee.name') === 'fetch';
+};
+
+/**
  * new表达式
  * @param {*} node
  */
@@ -55,161 +53,155 @@ const isNewExpression = (node) => {
 
 // 状态重置
 const reset = () => {
-  blcokBody = '';
   fetchUrl = '';
   chartName = '';
+  plotName = '';
   dataKey = '';
+  utilName = '';
+  dataSet = '';
 };
-const Exp = new RegExp(/\w+.json\(\)/);
-const FunctionTypes = ['FunctionExpression', 'ArrowFunctionExpression'];
+
 const excludeFunctionNames = ['formatter'];
-// 提取核心信息
-const getOptions = (ast) => {
-  estraverse.replace(ast, {
-    enter: (node, parent) => {
-      if (isFetch(node)) {
-        fetchUrl = node.object.arguments[0].value;
-      }
-      if (
-        FunctionTypes.includes(node.type) &&
-        ['data', 'fetchData', 'csv'].includes(get(node, ['params', 0, 'name'])) &&
-        get(node, ['body', 'type']) === 'BlockStatement' &&
-        !excludeFunctionNames.includes(get(node, ['id', 'name']))
-      ) {
-        dataKey = get(node, ['params', 0, 'name']);
-        const block = get(node, 'body.body', []);
-        block.forEach((item) => {
-          const code = escodegen.generate(item);
-          if (!Exp.test(code)) {
-            blcokBody += code;
-          }
-        });
-        return estraverse.VisitorOption.Remove;
-      }
-      if (isNewExpression(node)) {
-        chartName = get(node, 'init.callee.name');
-        node.id.name = 'config';
-        node.init = node.init.arguments[1];
-      }
-    },
-  });
+
+const initCode = (code) => {
+  return `
+  const [${dataKey}, setData] = useState([]);
+
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+
+  const asyncFetch = () => {
+    fetch("${fetchUrl}")
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log("fetch data failed", error);
+      });
+  };
+  ${code}
+  `;
 };
 
-// 独立处理body
-const generateBody = (body) => {
-  const bodyCode = esprima.parseModule(body, { loc: true, tokens: true });
-  estraverse.replace(bodyCode, {
-    enter: (node) => {
-      if (isNewExpression(node)) {
-        node.id.name = 'config';
-        node.init = node.init.arguments[1];
-      }
-      if (isRender(node)) {
-        return esprima.parseScript('');
-      }
-    },
-  });
-  return escodegen.generate(bodyCode);
-};
-
-// 过滤多余信息
-const generateFile = (ast) => {
-  estraverse.replace(ast, {
-    enter: (node, parent) => {
-      if (isImport(node)) {
-        return estraverse.VisitorOption.Remove;
-      }
-      if (
-        node.type === 'CallExpression' &&
-        filterParams.includes(get(node, 'callee.property.name'))
-      ) {
-        return esprima.parseScript('CONSTANTCODE');
-      }
-    },
-    leave: (node, parent) => {
-      if (node.type === 'Identifier' && get(node, 'name') === 'CONSTANTCODE') {
-        const code = `
-        const [${dataKey}, setData] = useState([]);
-
-        useEffect(() => {
-          asyncFetch();
-        }, []);
-
-        const asyncFetch = () => {
-          fetch("${fetchUrl}")
-            .then((response) => response.json())
-            .then((json) => setData(json))
-            .catch((error) => {
-              console.log("fetch data failed", error);
-            });
-        };
-        ${generateBody(blcokBody)}
-        `;
-        return esprima.parseScript(code);
-      }
-      if (isRender(node) || isNullExpression(node)) {
-        return estraverse.VisitorOption.Remove;
-      }
-      if (isNewExpression(node)) {
-        node.id.name = 'config';
-        node.init = node.init.arguments[1];
-      }
-    },
-    fallback: (node) => {
-      console.log('fallback: ', node.type);
-    },
-  });
-};
-
-const getMetaInfo = (filePath) => {
-  const pathArray = filePath.split('/');
-  const fileName = pathArray.pop();
-  const metaJsonCode = fs.readFileSync(`${pathArray.join('/')}/meta.json`, 'utf-8');
-  const demos = JSON.parse(metaJsonCode).demos;
-  const metaInfo = find(demos, (item) => item.filename === fileName);
-  return metaInfo;
+const setImport = (path) => {
+  const { node } = path;
+  if (node.source.value === '@antv/g2plot') {
+    node.specifiers?.forEach((item) => {
+      plotName += plotName ? ', ' : '';
+      plotName += item.imported.name;
+    });
+  }
+  if (node.source.value === '@antv/util') {
+    node.specifiers?.forEach((item) => {
+      utilName += utilName ? ', ' : '';
+      utilName += item.imported.name;
+    });
+  }
+  if (node.source.value === '@antv/data-set') {
+    node.specifiers?.forEach((item) => {
+      dataSet += dataSet ? ', ' : '';
+      dataSet += item.imported.name;
+    });
+  }
 };
 
 const parseFile = (params, type) => {
   try {
     reset();
     let jsCode = '';
-    let metaInfo = {};
     if (type === 'code') {
       jsCode = params;
     } else {
       jsCode = fs.readFileSync(params, 'utf-8');
-      metaInfo = getMetaInfo(params);
+
       if (params.indexOf('.ts') !== -1) {
-        const { code } = babelCore.transformSync(jsCode, {
-          presets: ['@babel/preset-typescript'],
-          filename: params.split('/')[params.split('/').length - 1],
-          code: true,
+        // 提取关键信息，正常情况应该全部使用 babel ，由于时间原因，暂不考虑全量修改
+        const visitorExpressions = {
+          // import 信息
+          ImportDeclaration(path) {
+            setImport(path);
+            path.remove();
+          },
+          ExportNamedDeclaration(path) {
+            const { node } = path;
+            path.replaceWith(node.declaration);
+          },
+          // 获取 fetch  地址
+          MemberExpression(path) {
+            const { node } = path;
+            if (isFetch(node)) {
+              fetchUrl = node.object.arguments[0].value;
+            }
+          },
+          // 抽取 config
+          VariableDeclarator(path) {
+            const { node } = path;
+            if (isNewExpression(node)) {
+              if (get(node, 'init.callee.type') === 'Identifier' && get(node, 'init.callee.name') !== 'DataView') {
+                chartName = get(node, 'init.callee.name');
+                node.id.name = 'config';
+                node.init = node.init.arguments[1];
+                path.replaceWith(node);
+              }
+            }
+          },
+          // 提取 data 变量
+          'FunctionExpression|ArrowFunctionExpression'(path) {
+            const { node } = path;
+            if (
+              ['data', 'fetchData', 'csv'].includes(get(node, ['params', 0, 'name'])) &&
+              get(node, ['body', 'type']) === 'BlockStatement' &&
+              !excludeFunctionNames.includes(get(node, ['id', 'name']))
+            ) {
+              dataKey = get(node, ['params', 0, 'name']);
+            }
+          },
+          // 删除空值
+          ExpressionStatement(path) {
+            const { node } = path;
+            if (isNullExpression(node)) {
+              path.remove();
+            }
+          },
+          CallExpression(path) {
+            const { node } = path;
+            // remove render
+            if (isRender(node)) {
+              path.remove();
+            }
+            // recursive
+            path.traverse(visitorExpressions);
+            if (isFetchExpression(node)) {
+              path.replaceWithMultiple(node.arguments[0].body.body);
+            }
+          },
+        };
+        const vistorPlugins = {
+          visitor: visitorExpressions,
+        };
+        const { code } = babel.transform(fs.readFileSync(params, 'utf-8'), {
+          plugins: [vistorPlugins],
         });
-        jsCode = code;
+        // fs.writeFileSync('./temp.js', initCode(code));
+        jsCode = fetchUrl ? initCode(code) : code;
       }
     }
-    const parseCode = esprima.parseModule(jsCode, { loc: true, tokens: true });
-    getOptions(parseCode);
-    generateFile(parseCode);
+
     return {
-      code: escodegen
-        .generate(parseCode)
-        .replace("'use strict';", '')
-        .replace("var _g2plot = require('@antv/g2plot');", '')
-        .replace('_g2plot.', ''),
-      title: get(metaInfo, 'title.zh'),
+      code: chartName && jsCode,
       chartName,
+      plotName,
+      utilName,
+      dataSet,
       hasError: false,
+      errPath: '',
     };
   } catch (err) {
     log(chalk.red(`解析出错：params: ${params}; type: ${type}`));
     log(chalk.red(`出错信息：${err}`));
     return {
-      code: params,
-      title: '',
-      chartName,
       hasError: true,
+      errPath: params,
     };
   }
 };

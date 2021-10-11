@@ -15,16 +15,7 @@ import {
   bindStateEvents,
 } from '../../util';
 import { registerOrganizationCardNode } from './customItem';
-import {
-  IGroup,
-  CommonConfig,
-  ShapeCfg,
-  Shape,
-  NodeConfig,
-  EdgeConfig,
-  IGraph,
-  NodeData,
-} from '../../interface';
+import { IGroup, CommonConfig, ShapeCfg, Shape, NodeConfig, EdgeConfig, IGraph, NodeData } from '../../interface';
 
 export interface OrganizationGraphData
   extends NodeData<
@@ -77,11 +68,7 @@ const defaultProps = {
     ],
     nodeStateStyles: defaultStateStyles,
     label: {
-      style: (
-        cfg: Shape | ShapeCfg,
-        group: IGroup | IGraph | undefined,
-        type: string | undefined,
-      ) => {
+      style: (cfg: Shape | ShapeCfg, group: IGroup | IGraph | undefined, type: string | undefined) => {
         const styles = {
           icon: {
             width: 32,
@@ -143,12 +130,7 @@ const OrganizationGraph: React.FC<OrganizationGraphConfig> = (props) => {
     loadingTemplate,
     errorTemplate,
   } = uProps;
-  const {
-    type: nodeType,
-    size: nodeSize,
-    anchorPoints: nodeAnchorPoints,
-    nodeStateStyles,
-  } = nodeCfg ?? {};
+  const { type: nodeType, size: nodeSize, anchorPoints: nodeAnchorPoints, nodeStateStyles } = nodeCfg ?? {};
 
   const {
     type: edgeType,

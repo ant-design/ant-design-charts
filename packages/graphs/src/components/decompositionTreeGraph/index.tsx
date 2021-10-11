@@ -14,12 +14,7 @@ import {
   bindStateEvents,
   bindDefaultEvents,
 } from '../../util';
-import {
-  defaultFlowGraphAnchorPoints,
-  defaultNodeSize,
-  defaultStateStyles,
-  defaultNodeStyle,
-} from '../../constants';
+import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultStateStyles, defaultNodeStyle } from '../../constants';
 import { registerIndicatorCardNode } from '../flowAnalysisGraph/customItem';
 import {
   CommonConfig,
@@ -71,11 +66,7 @@ const defaultProps = {
     layout: 'bundled',
     nodeStateStyles: defaultStateStyles,
     label: {
-      style: (
-        cfg: Shape | ShapeCfg,
-        group: IGroup | IGraph | undefined,
-        type: string | undefined,
-      ) => {
+      style: (cfg: Shape | ShapeCfg, group: IGroup | IGraph | undefined, type: string | undefined) => {
         const styles = {
           icon: {
             width: 10,

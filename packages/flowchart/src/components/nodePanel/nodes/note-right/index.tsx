@@ -40,13 +40,7 @@ export const NoteRightNode: NsGraphConfig.INodeRender = (props) => {
           fill: '#fff',
         }}
       />
-      <text
-        x={width / 2}
-        y={height / 2}
-        fill={stateLabelConfig.fill}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-      >
+      <text x={width / 2} y={height / 2} fill={stateLabelConfig.fill} textAnchor="middle" alignmentBaseline="middle">
         {data?.label}
       </text>
       Sorry, your browser does not support inline SVG.

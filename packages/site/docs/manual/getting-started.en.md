@@ -1,200 +1,112 @@
----
-title: Getting Started
-order: 1
----
 
-## The First Example
 
-<iframe
-     src="https://codesandbox.io/embed/compassionate-lalande-5lxm7?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="compassionate-lalande-5lxm7"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-   ></iframe>
+## title: Quick Start&#xA;order: 1
 
-## Installation & Import
+## Installation
 
-There are two ways to import G6: by NPM; by CDN.
+### Import by CDN in browser
 
-### 1 Import G6 by NPM
+You can import by CDN in browser or you can import local source.
 
-**Step 1:** Run the following command under the your project's directory in terminal:
+```html
+<!-- import CDN source -->
+<script type="text/javascript" src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
+<script>
+  const { Line } = G2Plot;
+</script>
+```
+
+```html
+<!-- import local source -->
+<script src="./g2plot.min.js"></script>
+<script>
+  const { Line } = G2Plot;
+</script>
+```
+
+### Import via NPM
+
+We provide G2Plot npm package:
 
 ```bash
- npm install --save @antv/g6
+// Recommended usage
+npm install @antv/g2plot --save
 ```
 
-**Step 2:** Import the JS file to the file where G6 is going to be used:
+You can use `import` or `require` to start.
 
-```javascript
-import G6 from '@antv/g6';
+```ts
+import { Line } from '@antv/g2plot';
 ```
 
-### 2 Import by CDN in HTML
+## Quick Start
+
+Now we're ready to create our first chart by using G2Plot. Let's begin with a basic line Chart.
+
+**step1**: create chart container
 
 ```html
-// version <= 3.2
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-{$version}/build/g6.js"></script>
-
-// version >= 3.3
-<script src="https://gw.alipayobjects.com/os/lib/antv/g6/{$version}/dist/g6.min.js"></script>
+<div id="container"></div>
 ```
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️Attention:</strong></span>
+**step2**: load your data
 
-- Replace `{$version}` by the version number. e.g. `3.7.1`;
-- The last version and its number can be found on <a href='https://www.npmjs.com/package/@antv/g6' target='_blank'>NPM</a>;
-- Please refer to the branch in Github: <a href='https://github.com/antvis/g6/tree/master' target='_blank'>https://github.com/antvis/g6/tree/master</a> for more detail.
+The standard data format in G2Plot is JSON array with JSON object elements.
 
-## Getting Started
-
-The following steps lead to a Graph of G6:
-
-1. Create an HTML container for graph;
-2. Prepare the data;
-3. Instancialize the Graph;
-4. Load the data and render.
-
-### Step 1 Create a HTML Container
-
-Create an HTML container for graph canvas, `div` tag in general. G6 will append a `canvas` tag to it and draw graph on the `canvas`.
-
-```html
-<div id="mountNode"></div>
+```ts
+const data = [
+  { year: '1991', value: 3 },
+  { year: '1992', value: 4 },
+  { year: '1993', value: 3.5 },
+  { year: '1994', value: 5 },
+  { year: '1995', value: 4.9 },
+  { year: '1996', value: 6 },
+  { year: '1997', value: 7 },
+  { year: '1998', value: 9 },
+  { year: '1999', value: 13 },
+];
 ```
 
-### Step 2 Data Preparation
+**step3**: create and render chart
 
-The data for G6 should be JSON format, includes arrays `nodes` and `edges`:
+```ts
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
 
-```javascript
-const data = {
-  // The array of nodes
-  nodes: [
-    {
-      id: 'node1', // String, unique and required
-      x: 100, // Number, the x coordinate
-      y: 200, // Number, the y coordinate
-    },
-    {
-      id: 'node2', // String, unique and required
-      x: 300, // Number, the x coordinate
-      y: 200, // Number, the y coordinate
-    },
-  ],
-  // The array of edges
-  edges: [
-    {
-      source: 'node1', // String, required, the id of the source node
-      target: 'node2', // String, required, the id of the target node
-    },
-  ],
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
+
+export default Demo;
+
+
 ```
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️Attention:</strong></span>
+the result：
 
-- `nodes` is an array of nodes, the `id` is unique and required property; the `x` and `y` are coordinates of the node;
-- `edges` is an array of edges, `source` and `target` are required, represent the `id` of the source node and the `id` of the target node respectively;
-- The properties of node and edge are described in [Built-in Nodes](/en/docs/manual/middle/elements/nodes/defaultNode) and [Built-in Edges](/en/docs/manual/middle/elements/edges/defaultEdge).
+<img alt="example" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*VV2bQpd-aBIAAAAAAAAAAAAAARQnAQ" width="800">
 
-### Step 3 Instantiate the Graph
+## Stylize your chart
 
-The container, width, and height are required configurations when instantiating a Graph:
+Till now, the visual style of our chart was defaultly applied by chart theme, not to mention the unformatted text content of labels. In this section, we'll stylize the chart through several steps. More information please reference API.
 
-```javascript
-const graph = new G6.Graph({
-  container: 'mountNode', // String | HTMLElement, required, the id of DOM element or an HTML node
-  width: 800, // Number, required, the width of the graph
-  height: 500, // Number, required, the height of the graph
-});
+```ts
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
+
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
+};
+
+export default Demo;
+
+
 ```
 
-### Step 4 Load the Data and Render
+the result：
 
-```javascript
-graph.data(data); // Load the data defined in Step 2
-graph.render(); // Render the graph
-```
+<img alt="example" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Y-4xSprUCV0AAAAAAAAAAAAAARQnAQ" width="800">
 
-### The Final Result
-
-<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*srtDT5slbN8AAAAAAAAAAABkARQnAQ' width=400 alt='img'/>
-
-## The Complete Code
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Tutorial Demo</title>
-  </head>
-  <body>
-    /* The container of the graph */
-    <div id="mountNode"></div>
-
-    /* Import G6 by CDN */
-    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.7.0/dist/g6.min.js"></script>
-
-    <script>
-      // Define the source data
-      const data = {
-        // The array of nodes
-        nodes: [
-          {
-            id: 'node1',
-            x: 100,
-            y: 200,
-          },
-          {
-            id: 'node2',
-            x: 300,
-            y: 200,
-          },
-        ],
-        // The array of edges
-        edges: [
-          // An edge links from node1 to node2
-          {
-            source: 'node1',
-            target: 'node2',
-          },
-        ],
-      };
-
-      // Instantiate a Graph
-      const graph = new G6.Graph({
-        container: 'mountNode', // The id of the container
-        // The width and height of the graph
-        width: 800,
-        height: 500,
-      });
-      // Load the data
-      graph.data(data);
-      // Render the graph
-      graph.render();
-    </script>
-  </body>
-</html>
-```
-
-## Using G6 with React
-
-We provide a demo about using G6 with React: <a href='https://github.com/baizn/g6-in-react' target='_blank'>Demo</a>.
-
-For more information about it, please refer to [Using G6 with React](/en/docs/manual/advanced/g6InReact). Welcome the <a href='https://github.com/antvis/g6/issues' target='_blank'>Issues</a>.
-
-## More
-
-In this chapter, we only briefly introduce the installation and usage. In G6 Tutorial, you will learn:
-
-- Common configurations of Graph;
-- Set the properties and styls for items (node/edge);
-- Configure the layout;
-- Configure the interaction;
-- Configure the animation;
-- The usage of components.
-
-For more advanced functions, please refer to [Key Concepts](/en/docs/manual/middle/graph) and [Further Reading](/en/docs/manual/advanced/coordinate-system).
+G2Plot has many fun configuration and features to explore. More information please reference [Configuration Options](./plots/line)。

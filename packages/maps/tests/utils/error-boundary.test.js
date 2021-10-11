@@ -30,8 +30,6 @@ describe('Map render', () => {
     };
     const testRenderer = create(<BubbleMap {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
-    expect(
-      testInstance.findByType(ErrorBoundary).children[0].children[0].indexOf('') !== -1,
-    ).toBeTruthy();
+    expect(testInstance.findByType(ErrorBoundary).children[0].children[0].indexOf('') !== -1).toBeTruthy();
   });
 });

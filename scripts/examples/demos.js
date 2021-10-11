@@ -1,167 +1,135 @@
 /**
  * 扫描所有demo文件，生成demo文档
  * eg:
- *  - `node scripts/demos.js`
- *  - `node scripts/demos.js en`
+ *  - `node scripts/examples/demos.js G2Plot`
  */
-const shelljs = require('shelljs');
-const readline = require('readline');
+const fs = require('fs');
+const path = require('path');
+const ejs = require('ejs');
+const chalk = require('chalk');
+const { checkDirExist } = require('../util');
+const parseFile = require('../ast/parse');
+const demoWriteBasePath = '../../packages/site/examples';
+const templateDemoPath = path.join(__dirname, '../../template/doc/demo.ejs');
 const arg = process.argv.splice(2);
+const demoPath = arg[1] || 'examples';
+const plot = arg[0] || 'G2Plot';
+const fp = path.resolve('../', `${plot}/${demoPath}`);
 
-// 该操作比较危险，不建议直接扫描
-const demos = [
-  {
-    name: '折线图',
-    chart: 'Line',
-  },
-  {
-    name: '柱状图',
-    chart: 'Column',
-  },
-  {
-    name: '条形图',
-    chart: 'Bar',
-  },
-  {
-    name: '漏斗图',
-    chart: 'Funnel',
-  },
-  {
-    name: '子弹图',
-    chart: 'Bullet',
-  },
-  {
-    name: '进度环图',
-    chart: 'RingProgress',
-  },
-  {
-    name: '进度条图',
-    chart: 'Progress',
-  },
-  {
-    name: '直方图',
-    chart: 'Histogram',
-  },
-  {
-    name: '水波图',
-    chart: 'Liquid',
-  },
-  {
-    name: '仪表盘',
-    chart: 'Gauge',
-  },
-  {
-    name: '箱线图',
-    chart: 'Box',
-  },
-  {
-    name: '散点图',
-    chart: 'Scatter',
-  },
-  {
-    name: '玫瑰图',
-    chart: 'Rose',
-  },
-  {
-    name: '热力图',
-    chart: 'Heatmap',
-  },
-  {
-    name: '面积图',
-    chart: 'Area',
-  },
-  {
-    name: '迷你面积图',
-    chart: 'TinyArea',
-  },
-  {
-    name: '迷你柱状图',
-    chart: 'TinyColumn',
-  },
-  {
-    name: '迷你折线图',
-    chart: 'TinyLine',
-  },
-  {
-    name: '词云图',
-    chart: 'WordCloud',
-  },
-  {
-    name: '股票图',
-    chart: 'Stock',
-  },
-  {
-    name: '饼图',
-    chart: 'Pie',
-  },
-  {
-    name: '混合图',
-    chart: 'DualAxes',
-  },
-  {
-    name: '对称条形图',
-    chart: 'BidirectionalBar',
-  },
-  {
-    name: '雷达图',
-    chart: 'Radar',
-  },
-  {
-    name: '矩阵树图',
-    chart: 'Treemap',
-  },
-  {
-    name: '旭日图',
-    chart: 'Sunburst',
-  },
-  {
-    name: '小提琴图',
-    chart: 'Violin',
-  },
-  {
-    name: '分面图',
-    chart: 'Facet',
-  },
-  {
-    name: '瀑布图',
-    chart: 'Waterfall',
-  },
-  {
-    name: '玉珏图',
-    chart: 'RadialBar',
-  },
-  {
-    name: '弦图',
-    chart: 'Chord',
-  },
+const examples = [];
+// 特殊路径不处理
+const excludePath = [
+  'advanced', // 高阶用法
+  'animation',
+  'set-state.ts', // ts any
+  'region-annotation.ts',
+  'large-data.ts',
+  'advanced-brush1.ts', // 多个 config 不想处理
+  'advanced-brush2.ts',
 ];
 
-const start = () => {
-  console.info('文档生成中....');
-  demos.forEach((item) => {
-    // shelljs.exec(`node scripts/singledemo.js ${item.chart} ${arg?.[0]}`);
-    shelljs.exec(`node scripts/singledemo.js ${item.chart}`);
+const hasSameEl = (source, target) => {
+  return new Set(source.concat(target)).size !== source.length + target.length;
+};
+
+const checkDir = (filePath, filename) => {
+  const writePath = path.join(__dirname, demoWriteBasePath, filePath.split(demoPath)[1]);
+  checkDirExist(writePath.split(filename)[0]);
+  return writePath;
+};
+
+// md
+const apiGenerator = (filePath, filename) => {
+  const writePath = checkDir(filePath, filename);
+  // example 目录下不会有示例代码，不需要解析
+  fs.writeFileSync(
+    writePath,
+    fs.readFileSync(filePath, {
+      encoding: 'utf-8',
+    }),
+  );
+};
+
+// 非 ts | js 直接 copy
+const copyGenerator = (filePath, filename) => {
+  const writePath = checkDir(filePath, filename);
+  fs.writeFileSync(
+    writePath,
+    fs.readFileSync(filePath, {
+      encoding: 'utf-8',
+    }),
+  );
+};
+
+// ts | js
+const demoGenerator = (filePath, filename) => {
+  const chartContent = parseFile(filePath);
+  const { chartName, plotName, utilName, dataSet, code, errPath } = chartContent;
+  if (!errPath) {
+    // 生成文件
+    ejs.renderFile(
+      templateDemoPath,
+      {
+        plotName,
+        utilName,
+        chartName,
+        dataSet,
+        chartContent: code,
+      }, // 渲染的数据key: 对应到了ejs中的index
+      (err, data) => {
+        if (err) {
+          console.log(chalk.red(`模版文件读取失败： ${err}`));
+          return;
+        }
+        const writePath = checkDir(filePath, filename);
+        // 生成文件内容
+        fs.writeFileSync(writePath.replace(/\.ts/, '.js'), data);
+      },
+    );
+  }
+};
+
+/**
+ * 文件扫描，获取所有 *.md 文件路径
+ * @param {foldPath} string 扫描路径
+ */
+const scanDir = (foldPath, dir) => {
+  try {
+    const files = fs.readdirSync(foldPath);
+    files.forEach((filename) => {
+      const director = path.join(foldPath + '/', filename);
+      const stats = fs.statSync(director);
+      if (stats.isDirectory()) {
+        scanDir(director, dir ? `${dir}.${filename}` : filename);
+      }
+      if (stats.isFile()) {
+        const filePath = path.resolve(__dirname, `../../../${plot}/${demoPath}`, dir.split('.').join('/'), filename);
+        if (!hasSameEl(excludePath, dir.split('.').concat(filename))) {
+          examples.push({
+            filePath,
+            filename,
+          });
+        }
+      }
+    });
+  } catch (err) {
+    console.info(chalk.red(err));
+  }
+};
+
+const writeFiles = () => {
+  console.info(chalk.green('示例生成中....'));
+  examples.forEach((item) => {
+    const { filePath, filename } = item;
+    if (filename.endsWith('.md')) {
+      apiGenerator(filePath, filename);
+    } else if (filename.endsWith('.ts') || filename.endsWith('.js')) {
+      demoGenerator(filePath, filename);
+    } else {
+      copyGenerator(filePath, filename);
+    }
   });
 };
 
-readSyncByRl = (tips) => {
-  return new Promise((resolve) => {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-    rl.question(tips, (answer) => {
-      rl.close();
-      resolve(answer.trim());
-    });
-  });
-};
-readSyncByRl(`即将生成的文档包含：${demos.map((item) => item.chart).join(',')};\n是否继续？`).then(
-  (res) => {
-    if (res.toLowerCase() === 'y') {
-      start();
-    } else {
-      process.exit();
-    }
-  },
-);
+scanDir(fp);
+writeFiles();

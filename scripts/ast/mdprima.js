@@ -20,7 +20,7 @@ const mdprima = () => {
         tree.value = fileInfo.code;
       } else {
         ejs.renderFile(
-          path.resolve(__dirname, '../template/doc/api.ejs'),
+          path.resolve(__dirname, '../../template/doc/api.ejs'),
           {
             chartName: fileInfo.chartName,
             chartContent: fileInfo.code,
@@ -39,7 +39,7 @@ const mdprima = () => {
     // 解析套娃路径
     if (tree.type === 'inlineCode' && tree.value.indexOf('markdown:') !== -1) {
       const filePath = tree.value.split(':')[1];
-      const docsPath = path.resolve(__dirname, '../../G2Plot', filePath);
+      const docsPath = path.resolve(__dirname, '../../../G2Plot', filePath);
       const processor = remark().use(mdprima).processSync(fs.readFileSync(docsPath));
       tree.type = 'html';
       tree.value = processor.contents;

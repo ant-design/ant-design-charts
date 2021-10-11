@@ -14,12 +14,7 @@ export const ConnectorNode: NsGraphConfig.INodeRender = (props) => {
   const availableR = height - 2 * NODE_PADDING;
 
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-    >
+    <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
       <path
         d={`M ${NODE_PADDING},${height / 2} a ${availableR / 2} ${availableR / 2} 0 1 1 0 1 z`}
         fill={stateNodeConfig.fill}
@@ -28,13 +23,7 @@ export const ConnectorNode: NsGraphConfig.INodeRender = (props) => {
           fill: '#fff',
         }}
       />
-      <text
-        x={height / 2}
-        y={height / 2}
-        fill={stateLabelConfig.fill}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-      >
+      <text x={height / 2} y={height / 2} fill={stateLabelConfig.fill} textAnchor="middle" alignmentBaseline="middle">
         {data?.label}
       </text>
       Sorry, your browser does not support inline SVG.

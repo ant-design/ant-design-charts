@@ -5,3 +5,4 @@ lib
 config/wrapper.js
 .docz
 node_modules
+*.ejs

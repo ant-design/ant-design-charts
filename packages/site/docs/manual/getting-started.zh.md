@@ -1,200 +1,110 @@
----
-title: 快速上手
-order: 1
----
 
-## 第一个示例
 
-<iframe
-     src="https://codesandbox.io/embed/compassionate-lalande-5lxm7?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="compassionate-lalande-5lxm7"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-   ></iframe>
+## title: 快速上手&#xA;order: 1
 
-## 安装 & 引用
+## 安装
 
-在项目中引入 G6 有以下两种方式：NPM 引入；CDN 引入。
+### 浏览器引入
 
-### 1 在项目中使用 NPM 包引入
+既可以通过将脚本下载到本地也可以直接引入在线资源。
 
-**Step 1:** 使用命令行在项目目录下执行以下命令：
+```html
+<!-- 引入在线资源 -->
+<script type="text/javascript" src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
+<script>
+  const { Line } = G2Plot;
+</script>
+```
+
+```html
+<!-- 下载到本地 引入本地脚本 -->
+<script src="./g2plot.min.js"></script>
+<script>
+  const { Line } = G2Plot;
+</script>
+```
+
+### 通过 npm 安装
+
+我们提供了 G2Plot 的 npm 包，通过下面的命令即可完成安装：
 
 ```bash
- npm install --save @antv/g6
+// 推荐用法
+npm install @antv/g2plot --save
 ```
 
-**Step 2:** 在需要用的 G6 的 JS 文件中导入：
+成功安装完成之后，即可使用 `import` 或 `require` 进行引用：
 
-```javascript
-import G6 from '@antv/g6';
+```ts
+import { Line } from '@antv/g2plot';
 ```
 
-### 2 在 HTML 中使用  CDN 引入
+## 快速使用
+
+在 G2Plot 引入页面后，我们就已经做好了创建第一个图表的准备了。下面以一个基础折线图为例开始我们第一个图表的创建。
+
+**step1**: 创建图表容器
 
 ```html
-// version <= 3.2
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-{$version}/build/g6.js"></script>
-
-// version >= 3.3
-<script src="https://gw.alipayobjects.com/os/lib/antv/g6/{$version}/dist/g6.min.js"></script>
+<div id="container"></div>
 ```
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span>
+**step2**: 引入数据。G2Plot 的数据源格式是 JSON 数组，数组的每个元素是一个标准 JSON 对象，部分图表除外。
 
-- 在  `{$version}` 中填写版本号，例如  `3.7.1`；
-- 最新版可以在  <a href='https://www.npmjs.com/package/@antv/g6' target='_blank'>NPM</a>  查看最新版本及版本号；
-- 详情参考 Github 分支：<a href='https://github.com/antvis/g6/tree/master' target='_blank'>https://github.com/antvis/g6/tree/master</a>。
-
-## 快速试用
-
-创建一个 G6 的关系图仅需要下面几个步骤：
-
-1. 创建关系图的 HTML 容器；
-2. 数据准备；
-3. 创建关系图；
-4. 配置数据源，渲染。
-
-### Step 1 创建容器
-
-需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 `div`  标签。G6 在绘制时会在该容器下追加 `canvas` 标签，然后将图绘制在其中。
-
-```html
-<div id="mountNode"></div>
+```ts
+const data = [
+  { year: '1991', value: 3 },
+  { year: '1992', value: 4 },
+  { year: '1993', value: 3.5 },
+  { year: '1994', value: 5 },
+  { year: '1995', value: 4.9 },
+  { year: '1996', value: 6 },
+  { year: '1997', value: 7 },
+  { year: '1998', value: 9 },
+  { year: '1999', value: 13 },
+];
 ```
 
-### Step 2 数据准备
+**step3**: 创建并渲染图表
 
-引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（`nodes`）和边（`edges`）字段，分别用数组表示：
+```ts
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
 
-```javascript
-const data = {
-  // 点集
-  nodes: [
-    {
-      id: 'node1', // String，该节点存在则必须，节点的唯一标识
-      x: 100, // Number，可选，节点位置的 x 值
-      y: 200, // Number，可选，节点位置的 y 值
-    },
-    {
-      id: 'node2', // String，该节点存在则必须，节点的唯一标识
-      x: 300, // Number，可选，节点位置的 x 值
-      y: 200, // Number，可选，节点位置的 y 值
-    },
-  ],
-  // 边集
-  edges: [
-    {
-      source: 'node1', // String，必须，起始点 id
-      target: 'node2', // String，必须，目标点 id
-    },
-  ],
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
+
+export default Demo;
+
+
 ```
 
-注意
+最终效果：
 
-- `nodes` 数组中包含节点对象。每个节点对象中唯一的、必要的 `id` 以标识不同的节点，`x`、 `y` 指定该节点的位置；
-- `edges` 数组中包含边对象。`source` 和 `target` 是每条边的必要属性，分别代表了该边的起始点 `id` 与 目标点 `id`。
-- 点和边的其他属性参见链接：[内置节点](/zh/docs/manual/middle/elements/nodes/defaultNode) 和 [内置边](/en/docs/manual/middle/elements/edges/defaultEdge)。
+<img alt="示例" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*VV2bQpd-aBIAAAAAAAAAAAAAARQnAQ" width="800">
 
-### Step 3 创建关系图
+## 个性化设置
 
-创建关系图（实例化）时，至少需要为图设置容器、宽和高。
+图表元素的视觉样式采用默认主题的样式，还没有经过特别定制，图表主体中的文本元素也没有进行格式化，我们可以根据需求对图表进行各种个性化设置，更多多配置请参考图表 API。
 
-```javascript
-const graph = new G6.Graph({
-  container: 'mountNode', // String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身
-  width: 800, // Number，必须，图的宽度
-  height: 500, // Number，必须，图的高度
-});
+```ts
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
+
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
+};
+
+export default Demo;
+
+
 ```
 
-### Step 4 配置数据源，渲染
+最终效果：
 
-```javascript
-graph.data(data); // 读取 Step 2 中的数据源到图上
-graph.render(); // 渲染图
-```
+<img alt="示例" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Y-4xSprUCV0AAAAAAAAAAAAAARQnAQ" width="800">
 
-### 最终的结果
-
-<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*srtDT5slbN8AAAAAAAAAAABkARQnAQ' width=400 alt='img' />
-
-## 完整代码
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Tutorial Demo</title>
-  </head>
-  <body>
-    /* 图的画布容器 */
-    <div id="mountNode"></div>
-
-    /* 引入 G6 */
-    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.7.1/dist/g6.min.js"></script>
-
-    <script>
-      // 定义数据源
-      const data = {
-        // 点集
-        nodes: [
-          {
-            id: 'node1',
-            x: 100,
-            y: 200,
-          },
-          {
-            id: 'node2',
-            x: 300,
-            y: 200,
-          },
-        ],
-        // 边集
-        edges: [
-          // 表示一条从 node1 节点连接到 node2 节点的边
-          {
-            source: 'node1',
-            target: 'node2',
-          },
-        ],
-      };
-
-      // 创建 G6 图实例
-      const graph = new G6.Graph({
-        container: 'mountNode', // 指定图画布的容器 id，与第 9 行的容器对应
-        // 画布宽高
-        width: 800,
-        height: 500,
-      });
-      // 读取数据
-      graph.data(data);
-      // 渲染图
-      graph.render();
-    </script>
-  </body>
-</html>
-```
-
-## React 中使用 G6
-
-如果你想在 React 中使用 G6 ，可以参考我们提供了的 React 中使用 G6 的 <a href='https://github.com/baizn/g6-in-react' target='_blank'>Demo</a>。
-
-更多关于 React 中如何使用 G6，请参考 [React 中使用 G6 的文档](/zh/docs/manual/advanced/g6InReact)。有任何问题都可以通过页面底部的钉钉交流群和我们沟通，也非常欢迎给我们提 issues 或 PR： <a href='https://github.com/antvis/g6/tree/master' target='_blank'>https://github.com/antvis/g6/tree/master</a>。
-
-## 更多
-
-本章仅仅介绍了如何安装以及最简单的场景，在 G6 Tutorial 中其他的章节中我们会教会你：
-
-- 实例化图时的常见配置；
-- 设置元素（节点/边）属性、样式；
-- 设置布局；
-- 增加交互；
-- 增加动画；
-- 使用辅助组件。
-
-想了解更高阶的功能，请参见 [G6 核心概念](/zh/docs/manual/middle/graph)，[G6 扩展阅读](/zh/docs/manual/advanced/coordinate-system)。
+通过上面由浅入深的教程，你应该已经基本了解 G2Plot 的使用方法了，不过这远远不是终点，G2Plot 还有很多有趣的配置和特性等待你的尝试和探索。更多基础功能请参考[各图表配置项](../api/plots/line)。

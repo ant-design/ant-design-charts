@@ -35,9 +35,7 @@ export const registerIndicatorCardNode = () => {
         const appendPadding = getStatusBBox(badge);
         const { style: labelStyle } = label;
         const cardPadding = getCssPadding(padding);
-        const paddingArray = cardPadding.map(
-          (item: number, index: number) => item + appendPadding[index],
-        );
+        const paddingArray = cardPadding.map((item: number, index: number) => item + appendPadding[index]);
         const { style: titleStyle, containerStyle: titleContainerStyle } = titleCfg ?? {};
         const {
           style: itemStyle,
@@ -99,9 +97,7 @@ export const registerIndicatorCardNode = () => {
             },
             name: 'title',
           });
-          const { height: titleHeight } = titleTextShape
-            ? titleTextShape.getBBox()
-            : { height: size[1] / 2 };
+          const { height: titleHeight } = titleTextShape ? titleTextShape.getBBox() : { height: size[1] / 2 };
 
           titleShape?.attr('height', titleHeight + paddingArray[0] + paddingArray[2]);
           height += titleShape.getBBox().height;
@@ -176,14 +172,7 @@ export const registerIndicatorCardNode = () => {
                 }) ?? 0,
               );
             } else {
-              itemsHeight.push(
-                ...createRowItems(
-                  item,
-                  itemContentWidth,
-                  paddingArray[3] + itemPaddingArray[3],
-                  index,
-                ),
-              );
+              itemsHeight.push(...createRowItems(item, itemContentWidth, paddingArray[3] + itemPaddingArray[3], index));
             }
             height += Math.max(...itemsHeight);
             if (isArray && index !== items.length - 1) {
@@ -200,10 +189,7 @@ export const registerIndicatorCardNode = () => {
           }
         }
 
-        itemShape?.attr(
-          'height',
-          Math.max(height - titleShape?.getBBox().height + itemPaddingArray[2], size[1]),
-        );
+        itemShape?.attr('height', Math.max(height - titleShape?.getBBox().height + itemPaddingArray[2], size[1]));
         const shapeHeight = items
           ? titleShape?.getBBox().height + itemShape?.getBBox().height + paddingArray[2]
           : titleShape?.getBBox().height + itemShape?.getBBox().height;
@@ -252,9 +238,7 @@ export const registerIndicatorCardNode = () => {
        */
       update(cfg, node) {
         const group = node.getContainer();
-        const markerShape = group
-          .get('children')
-          .find((item: Node) => item.get('type') === 'marker');
+        const markerShape = group.get('children').find((item: Node) => item.get('type') === 'marker');
         const collapsed = node.getModel().collapsed;
         markerShape?.attr({
           symbol: collapsed ? G6.Marker.expand : G6.Marker.collapse,

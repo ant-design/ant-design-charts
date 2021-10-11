@@ -1,14 +1,16 @@
-### <%= chartTitle %>
+import React, { useState, useEffect }from 'react';
+import ReactDOM from 'react-dom';
+import { <%= plotName %>  } from '@ant-design/charts';
+<% if (utilName) { %>
+import { <%= utilName %> } from '@antv/util';
+<% } %>
+<% if (dataSet) { %>
+import { <%= dataSet %> } from '@antv/data-set';
+<% } %>
 
-```tsx
-import React, { useState, useEffect } from 'react';
-import { <%= chartName %> <%= useG2 %> <%= useMeasureTextWidth %> } from '@ant-design/charts';
-
-const Demo<%= chartName %>: React.FC = () => {
+const Demo<%= chartName %> = () => {
   <%- chartContent.toString() %>
   return <<%= chartName %> {...config} />;
 };
 
-export default Demo<%= chartName %>;
-```
-
+ReactDOM.render(<Demo<%= chartName %> />, document.getElementById('container'));

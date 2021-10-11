@@ -196,17 +196,11 @@ describe('use chart', () => {
     expect(chartRef).not.toBeUndefined();
     expect(chartRef.options.tooltip.customContent().className).toBe('g2-tooltip');
     expect(chartRef.options.tooltip.customContent().innerHTML).toBe('<div>custom tooltip</div>');
-    expect(chartRef.options.tooltip.container().innerHTML).toBe(
-      '<div class="toooltip-container"></div>',
-    );
+    expect(chartRef.options.tooltip.container().innerHTML).toBe('<div class="toooltip-container"></div>');
     expect(chartRef.options.statistic.title.customHtml().className).toBe('');
-    expect(chartRef.options.statistic.title.customHtml().innerHTML).toEqual(
-      '<div>customHtml title</div>',
-    );
+    expect(chartRef.options.statistic.title.customHtml().innerHTML).toEqual('<div>customHtml title</div>');
     expect(chartRef.options.statistic.content.customHtml().className).toBe('');
-    expect(chartRef.options.statistic.content.customHtml().innerHTML).toEqual(
-      '<div>customHtml content</div>',
-    );
+    expect(chartRef.options.statistic.content.customHtml().innerHTML).toEqual('<div>customHtml content</div>');
   });
 
   it('processConfig * reactDomToString with string', () => {
