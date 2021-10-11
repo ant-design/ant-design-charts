@@ -3,18 +3,17 @@
 *ComponentAnimateOption* is configured for each component animation type.
 
 ```ts
-interface ComponentAnimateOption {
-  appear?: ComponentAnimateCfg; // The entry animation when the chart first loads
-  enter?: ComponentAnimateCfg; // After the chart is drawn and updated, the incoming animation of the new graph is generated
-  update?: ComponentAnimateCfg; // After the chart is drawn and the data has changed, the updated animation of the graph with the state changed
-  leave?: ComponentAnimateCfg; // After the chart is drawn and the data is changed, the destruction animation of the graph is destroyed
-}
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
 
-interface ComponentAnimateCfg {
-  duration?: number; // Duration of the first animation
-  easing?: string; // Easing method used for the first animation.
-  delay?: number; // Delay before updating the animation
-}
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
+};
+
+export default Demo;
+
+
 ```
 
 Where 'animation' passes in the name of the animation function, the built-in default animation function is shown in the table below, and you can also customize the animation function through 'registerAnimation'.

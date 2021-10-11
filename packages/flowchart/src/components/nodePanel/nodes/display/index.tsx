@@ -19,13 +19,7 @@ export const DisplayNode: NsGraphConfig.INodeRender = (props) => {
     ['L', width - sx, NODE_PADDING], // top-right
     ['C', width - 2 * NODE_PADDING, NODE_PADDING, width - 2 * NODE_PADDING, height / 2],
     ['', width - 2 * NODE_PADDING, height / 2],
-    [
-      'C',
-      width - 2 * NODE_PADDING,
-      height / 2,
-      width - 2 * NODE_PADDING,
-      height - 2 * NODE_PADDING,
-    ],
+    ['C', width - 2 * NODE_PADDING, height / 2, width - 2 * NODE_PADDING, height - 2 * NODE_PADDING],
     ['', width - sx, height - 2 * NODE_PADDING], // bottom-right
     ['L', dx, height - 2 * NODE_PADDING], // bottom-left
     ['L', NODE_PADDING, height / 2],
@@ -48,13 +42,7 @@ export const DisplayNode: NsGraphConfig.INodeRender = (props) => {
           fill: '#fff',
         }}
       />
-      <text
-        x={width / 2}
-        y={height / 2}
-        fill={stateLabelConfig.fill}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-      >
+      <text x={width / 2} y={height / 2} fill={stateLabelConfig.fill} textAnchor="middle" alignmentBaseline="middle">
         {data?.label}
       </text>
       Sorry, your browser does not support inline SVG.

@@ -1,8 +1,5 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import {
-  RingProgress as G2plotRingProgress,
-  RingProgressOptions as G2plotConfig,
-} from '@antv/g2plot';
+import { RingProgress as G2plotRingProgress, RingProgressOptions as G2plotConfig } from '@antv/g2plot';
 import useChart from '../../hooks/useChart';
 import { getChart } from '../../util';
 import { ChartRefConfig, ContainerConfig } from '../../interface';
@@ -25,10 +22,7 @@ const RingProgressChart = forwardRef((props: RingProgressConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2plotRingProgress, RingProgressConfig>(
-    G2plotRingProgress,
-    rest,
-  );
+  const { chart, container } = useChart<G2plotRingProgress, RingProgressConfig>(G2plotRingProgress, rest);
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

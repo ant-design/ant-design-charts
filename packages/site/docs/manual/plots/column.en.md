@@ -94,21 +94,7 @@ import React, { useState, useEffect } from 'react';
 import {  } from '@ant-design/charts';
 
 const Demo: React.FC = () => {
-  const [data, setData] = useState([]);
-useEffect(() => {
-    asyncFetch();
-}, []);
-const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/antfincdn/K0kfOzo4j%24/column.json').then(response => response.json()).then(json => setData(json)).catch(error => {
-        console.log('fetch data failed', error);
-    });
-};
-const config = {
-    data,
-    xField: 'type',
-    yField: 'sales'
-};
-;;;
+  
   return < {...config} />;
 };
 

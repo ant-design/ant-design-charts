@@ -156,9 +156,7 @@ export const useToolbarConfig = createToolbarConfig((toolbarConfig) => {
       id: TOOLBAR_ITEMS.FRONT_NODE,
       command: TOOLBAR_ITEMS.FRONT_NODE,
       cmdOptions: async (item, contextService) => {
-        const { data } = await ContextServiceUtils.useSelectedNode<NsGraph.INodeConfig>(
-          contextService,
-        );
+        const { data } = await ContextServiceUtils.useSelectedNode<NsGraph.INodeConfig>(contextService);
         const nodeId = data?.id || '-1';
         return {
           args: {
@@ -184,9 +182,7 @@ export const useToolbarConfig = createToolbarConfig((toolbarConfig) => {
       id: TOOLBAR_ITEMS.BACK_NODE,
       command: TOOLBAR_ITEMS.BACK_NODE,
       cmdOptions: async (item, contextService) => {
-        const { data } = await ContextServiceUtils.useSelectedNode<NsGraph.INodeConfig>(
-          contextService,
-        );
+        const { data } = await ContextServiceUtils.useSelectedNode<NsGraph.INodeConfig>(contextService);
         const nodeId = data?.id || '-1';
         return {
           args: {

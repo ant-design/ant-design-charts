@@ -19,14 +19,14 @@ G2Plot 内置的是业务中使用量占比超过 90% 的常规统计图表，�
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { P } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoP: React.FC = () => {
-  const config = { data: 'Hello, G2Plot v2!' };
-  return <P {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoP;
+export default Demo;
 
 
 ```

@@ -15,11 +15,17 @@ The core technology architecture of G2Plot is very simple. All plots are inherit
 The creation of all plots is the same. First, import the corresponding plot class from G2Plot. Then create a plot instance. The constructor has two parameters.
 
 ```ts
-import { Line } from '@antv/g2plot';
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
 
-const line = new Line(container', options);
-// 1. `container`: The DOM container ID or HtmlElement instance rendered by plot
-// 2. `options`: Plot configuration options
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
+};
+
+export default Demo;
+
+
 ```
 
 The created plot instance has two public properties:

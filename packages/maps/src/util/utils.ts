@@ -23,9 +23,7 @@ export const deepClone = (source: Object | undefined) => {
   for (const key in source) {
     if (source.hasOwnProperty(key)) {
       target[key] =
-        getType(source[key]) === 'Object' || getType(source[key]) === 'Array'
-          ? deepClone(source[key])
-          : source[key];
+        getType(source[key]) === 'Object' || getType(source[key]) === 'Array' ? deepClone(source[key]) : source[key];
     }
   }
 

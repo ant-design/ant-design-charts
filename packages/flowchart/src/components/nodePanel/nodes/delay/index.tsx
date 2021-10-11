@@ -18,25 +18,14 @@ export const DelayNode: NsGraphConfig.INodeRender = (props) => {
     ['L', width - rx, NODE_PADDING], // top-right
     ['C', width - 2 * NODE_PADDING, NODE_PADDING, width - 2 * NODE_PADDING, height / 2],
     ['', width - 2 * NODE_PADDING, height / 2],
-    [
-      'C',
-      width - 2 * NODE_PADDING,
-      height / 2,
-      width - 2 * NODE_PADDING,
-      height - 2 * NODE_PADDING,
-    ],
+    ['C', width - 2 * NODE_PADDING, height / 2, width - 2 * NODE_PADDING, height - 2 * NODE_PADDING],
     ['', width - rx, height - 2 * NODE_PADDING], // bottom-right
     ['L', NODE_PADDING, height - 2 * NODE_PADDING], // bottom-left
     ['Z'],
   ];
 
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-    >
+    <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
       <path
         d={createPath(path)}
         fill={stateNodeConfig.fill}
@@ -45,13 +34,7 @@ export const DelayNode: NsGraphConfig.INodeRender = (props) => {
           fill: '#fff',
         }}
       />
-      <text
-        x={width / 2}
-        y={height / 2}
-        fill={stateLabelConfig.fill}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-      >
+      <text x={width / 2} y={height / 2} fill={stateLabelConfig.fill} textAnchor="middle" alignmentBaseline="middle">
         {data?.label}
       </text>
       Sorry, your browser does not support inline SVG.

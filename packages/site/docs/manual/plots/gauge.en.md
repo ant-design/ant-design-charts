@@ -43,18 +43,14 @@
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { Gauge } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoGauge: React.FC = () => {
-  const config = {
-    percent: 0.75,
-    range: { color: '#5B8FF9' },
-    statistic: { content: { formatter: ({percent}) => `Rate: ${ (percent * 100).toFixed(0) }%` } }
-};
-  return <Gauge {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoGauge;
+export default Demo;
 
 
 ```

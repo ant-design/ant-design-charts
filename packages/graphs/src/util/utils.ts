@@ -60,9 +60,7 @@ export const deepClone = (source: Object | undefined) => {
   for (const key in source) {
     if (source.hasOwnProperty(key)) {
       target[key] =
-        getType(source[key]) === 'Object' || getType(source[key]) === 'Array'
-          ? deepClone(source[key])
-          : source[key];
+        getType(source[key]) === 'Object' || getType(source[key]) === 'Array' ? deepClone(source[key]) : source[key];
     }
   }
 
@@ -227,11 +225,7 @@ export const getMarkerPosition = (direction: string = 'right', size: number[]) =
 type CollapsedNode = NodeData<unknown> & { collapsedLevel: number };
 export const bindSourceMapCollapseEvents = (
   graph: IGraph,
-  fullData:
-    | FundFlowGraphConfig['data']
-    | FlowAnalysisGraphConfig['data']
-    | FlowGraphDatum
-    | undefined,
+  fullData: FundFlowGraphConfig['data'] | FlowAnalysisGraphConfig['data'] | FlowGraphDatum | undefined,
 ) => {
   const controlData = deepClone(fullData);
   const onClick = (e: IG6GraphEvent) => {
@@ -264,9 +258,7 @@ export const bindSourceMapCollapseEvents = (
       getLinkedId(nodeId as string);
       if (!collapsed) {
         // collapse
-        graph
-          .findAll('node', (node) => targetNodeIds.includes(node.get('id')))
-          .forEach((node) => graph.hideItem(node));
+        graph.findAll('node', (node) => targetNodeIds.includes(node.get('id'))).forEach((node) => graph.hideItem(node));
         controlData.nodes.forEach((node: NodeData<unknown> & { collapsedLevel: number }) => {
           const { collapsedLevel = 0, id } = node;
           if (targetNodeIds.includes(id)) {
@@ -277,12 +269,8 @@ export const bindSourceMapCollapseEvents = (
         // expand
         graph
           .findAll('node', (node) => {
-            const { collapsedLevel } = controlData.nodes.find(
-              (item: CollapsedNode) => item.id === node.get('id'),
-            );
-            return (
-              targetNodeIds.includes(node.get('id')) && (!collapsedLevel || collapsedLevel < 2)
-            );
+            const { collapsedLevel } = controlData.nodes.find((item: CollapsedNode) => item.id === node.get('id'));
+            return targetNodeIds.includes(node.get('id')) && (!collapsedLevel || collapsedLevel < 2);
           })
           .forEach((node) => graph.showItem(node));
         controlData.nodes.forEach((node: NodeData<unknown> & { collapsedLevel: number }) => {
@@ -411,26 +399,14 @@ export const bindStateEvents = (graph: IGraph, cfg?: Partial<CommonConfig> | und
         ];
       }
       const fill = statusCache[item.getID()];
-      updateArrowFill(
-        item as IEdge,
-        endArrow && fill[0][status ? 0 : 1],
-        startArrow && fill[1][status ? 0 : 1],
-      );
+      updateArrowFill(item as IEdge, endArrow && fill[0][status ? 0 : 1], startArrow && fill[1][status ? 0 : 1]);
     }
     graph.setItemState(item, name, status);
   };
-  const getRelationItems = (
-    currentItem: INode | IEdge,
-    name: string,
-    status: boolean,
-    type: string,
-  ) => {
+  const getRelationItems = (currentItem: INode | IEdge, name: string, status: boolean, type: string) => {
     const relationItems =
       type === 'node'
-        ? graph.findAll(
-            'edge',
-            (edge: IEdge) => edge.getSource() === currentItem || edge.getTarget() === currentItem,
-          )
+        ? graph.findAll('edge', (edge: IEdge) => edge.getSource() === currentItem || edge.getTarget() === currentItem)
         : graph.findAll(
             'node',
             (node: INode) =>

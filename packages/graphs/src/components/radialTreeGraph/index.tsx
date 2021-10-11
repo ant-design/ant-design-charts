@@ -14,11 +14,7 @@ import {
   getGraphId,
 } from '../../util';
 import { CommonConfig, EdgeConfig, NodeConfig, FlowGraphDatum } from '../../interface';
-import {
-  defaultFlowGraphAnchorPoints,
-  defaultStateStyles,
-  defaultNodeStyle,
-} from '../../constants';
+import { defaultFlowGraphAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../../constants';
 
 export interface RadialTreeGraphConfig extends Omit<CommonConfig, 'data'> {
   data: FlowGraphDatum;

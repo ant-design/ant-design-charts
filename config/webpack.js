@@ -102,9 +102,7 @@ const getWebpackConfig = () => {
         eslint: undefined,
       }),
       new webpack.optimize.AggressiveMergingPlugin(),
-      ...(process.env.MODE === 'ANALYZER'
-        ? [new BundleAnalyzerPlugin({ analyzerMode: 'static' })]
-        : []),
+      ...(process.env.MODE === 'ANALYZER' ? [new BundleAnalyzerPlugin({ analyzerMode: 'static' })] : []),
     ],
     performance: {
       hints: false,

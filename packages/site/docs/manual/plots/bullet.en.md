@@ -69,33 +69,14 @@
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { Bullet } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoBullet: React.FC = () => {
-  const data = [{
-        title: '满意度',
-        ranges: [100],
-        measures: [80],
-        target: 85
-    }];
-const config = {
-    data: [{
-            title: '满意度',
-            ranges: [100],
-            measures: [80],
-            target: 85
-        }],
-    measureField: 'measures',
-    rangeField: 'ranges',
-    targetField: 'target',
-    xField: 'title',
-    color: { range: '#f0efff' },
-    yAxis: false
-};
-  return <Bullet {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoBullet;
+export default Demo;
 
 
 ```

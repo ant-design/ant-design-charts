@@ -69,18 +69,14 @@ const data = [
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { Line } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoLine: React.FC = () => {
-  const config = {
-    data,
-    xField: 'year',
-    yField: 'value'
-};
-  return <Line {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoLine;
+export default Demo;
 
 
 ```
@@ -95,76 +91,14 @@ export default DemoLine;
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { Line } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoLine: React.FC = () => {
-  const config = {
-    data,
-    xField: 'year',
-    yField: 'value',
-    color: '#FE740C',
-    point: {
-        size: 5,
-        shape: 'diamond',
-        style: {
-            stroke: '#FE740C',
-            lineWidth: 2,
-            fillOpacity: 0.6
-        }
-    },
-    yAxis: {
-        label: {
-            formatter: v => {
-                return v + 'k';
-            },
-            style: { fill: '#FE740C' }
-        }
-    },
-    label: { fill: '#FE740C' },
-    annotations: [
-        {
-            type: 'text',
-            position: [
-                'min',
-                'median'
-            ],
-            content: '辅助标记',
-            offsetY: -4,
-            style: { textBaseline: 'bottom' }
-        },
-        {
-            type: 'line',
-            start: [
-                'min',
-                'median'
-            ],
-            end: [
-                'max',
-                'median'
-            ],
-            style: {
-                stroke: 'red',
-                lineDash: [
-                    2,
-                    2
-                ]
-            }
-        }
-    ]
-};
-line.on('element:click', e => {
-    console.log(e);
-});
-line.on('annotation:click', e => {
-    console.log(e);
-});
-line.on('axis-label:click', e => {
-    console.log(e);
-});
-  return <Line {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoLine;
+export default Demo;
 
 
 ```

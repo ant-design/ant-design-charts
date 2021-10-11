@@ -3,13 +3,11 @@
  * eg:
  *  - `node scripts/examples/demos.js G2Plot`
  */
-const shelljs = require('shelljs');
 const fs = require('fs');
 const path = require('path');
-const remark = require('remark');
 const ejs = require('ejs');
+const chalk = require('chalk');
 const { checkDirExist } = require('../util');
-const { mdprima } = require('../ast/mdprima.js');
 const parseFile = require('../ast/parse');
 const demoWriteBasePath = '../../packages/site/examples';
 const templateDemoPath = path.join(__dirname, '../../template/doc/demo.ejs');
@@ -19,6 +17,20 @@ const plot = arg[0] || 'G2Plot';
 const fp = path.resolve('../', `${plot}/${demoPath}`);
 
 const examples = [];
+// 特殊路径不处理
+const excludePath = [
+  'advanced', // 高阶用法
+  'animation',
+  'set-state.ts', // ts any
+  'region-annotation.ts',
+  'large-data.ts',
+  'advanced-brush1.ts', // 多个 config 不想处理
+  'advanced-brush2.ts',
+];
+
+const hasSameEl = (source, target) => {
+  return new Set(source.concat(target)).size !== source.length + target.length;
+};
 
 const checkDir = (filePath, filename) => {
   const writePath = path.join(__dirname, demoWriteBasePath, filePath.split(demoPath)[1]);
@@ -52,26 +64,29 @@ const copyGenerator = (filePath, filename) => {
 // ts | js
 const demoGenerator = (filePath, filename) => {
   const chartContent = parseFile(filePath);
-  const { chartName, code } = chartContent;
-  // 生成文件
-  ejs.renderFile(
-    templateDemoPath,
-    {
-      chartName: chartName,
-      chartContent: code,
-      useG2: code.indexOf('G2.') !== -1 ? ', G2' : '',
-      useMeasureTextWidth: code.indexOf('measureTextWidth') !== -1 ? ', measureTextWidth' : '',
-    }, // 渲染的数据key: 对应到了ejs中的index
-    (err, data) => {
-      if (err) {
-        console.log('模版文件读取失败： ', err);
-        return;
-      }
-      const writePath = checkDir(filePath, filename);
-      // 生成文件内容
-      fs.writeFileSync(writePath.replace(/\.ts/, '.js'), data);
-    },
-  );
+  const { chartName, plotName, utilName, dataSet, code, errPath } = chartContent;
+  if (!errPath) {
+    // 生成文件
+    ejs.renderFile(
+      templateDemoPath,
+      {
+        plotName,
+        utilName,
+        chartName,
+        dataSet,
+        chartContent: code,
+      }, // 渲染的数据key: 对应到了ejs中的index
+      (err, data) => {
+        if (err) {
+          console.log(chalk.red(`模版文件读取失败： ${err}`));
+          return;
+        }
+        const writePath = checkDir(filePath, filename);
+        // 生成文件内容
+        fs.writeFileSync(writePath.replace(/\.ts/, '.js'), data);
+      },
+    );
+  }
 };
 
 /**
@@ -89,19 +104,21 @@ const scanDir = (foldPath, dir) => {
       }
       if (stats.isFile()) {
         const filePath = path.resolve(__dirname, `../../../${plot}/${demoPath}`, dir.split('.').join('/'), filename);
-        examples.push({
-          filePath,
-          filename,
-        });
+        if (!hasSameEl(excludePath, dir.split('.').concat(filename))) {
+          examples.push({
+            filePath,
+            filename,
+          });
+        }
       }
     });
   } catch (err) {
-    console.log(err);
+    console.info(chalk.red(err));
   }
 };
 
 const writeFiles = () => {
-  console.info('示例生成中....');
+  console.info(chalk.green('示例生成中....'));
   examples.forEach((item) => {
     const { filePath, filename } = item;
     if (filename.endsWith('.md')) {

@@ -19,12 +19,17 @@
 *   CDN 下使用
 
 ```ts
-<script src="https://unpkg.com/@babel/polyfill@latest"></script> // 非必需
-<script src="https://unpkg.com/@antv/g2plot@latest"></script>
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
 
-var line = new G2Plot.Line({
-  // ...
-});
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
+};
+
+export default Demo;
+
+
 ```
 
 *   NPM

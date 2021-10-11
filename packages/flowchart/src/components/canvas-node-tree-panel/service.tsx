@@ -1,12 +1,7 @@
 import React from 'react';
 import uniqBy from 'lodash/uniqBy';
 import cloneDeep from 'lodash/cloneDeep';
-import {
-  Disposable,
-  ContextServiceConstant,
-  useContextAsState,
-  createPromiseValue,
-} from '@ali/xflow';
+import { Disposable, ContextServiceConstant, useContextAsState, createPromiseValue } from '@ali/xflow';
 import { usePanelContext } from '@ali/xflow';
 import { IProps, ITreeNode } from './interface';
 import { TREE_ROOT_ID } from './constants';
@@ -49,9 +44,7 @@ export const useTreePanelData = (props: IProps) => {
           const { treeData, rootNodes } = NodeList2Tree(listData);
           const currentState = await createPromiseValue<NsTreePanelData.IState>(self);
           const expandedKeys =
-            currentState.expandedKeys.length > 0
-              ? currentState.expandedKeys
-              : rootNodes.map((i) => i.id);
+            currentState.expandedKeys.length > 0 ? currentState.expandedKeys : rootNodes.map((i) => i.id);
           return { listData, treeData, expandedKeys };
         };
 
@@ -74,18 +67,14 @@ export const useTreePanelData = (props: IProps) => {
     });
   }, []);
 
-  const [state, setState] = useContextAsState<NsTreePanelData.IState>(
-    NsTreePanelData.id,
-    contextService,
-    {
-      keyword: '',
-      treeData: [],
-      treeNodeList: [],
-      expandedKeys: [],
-      defaultExpandAll: false,
-      searchList: [],
-    },
-  );
+  const [state, setState] = useContextAsState<NsTreePanelData.IState>(NsTreePanelData.id, contextService, {
+    keyword: '',
+    treeData: [],
+    treeNodeList: [],
+    expandedKeys: [],
+    defaultExpandAll: false,
+    searchList: [],
+  });
 
   const onFolderExpand = React.useCallback(
     (expandedKeys: string[]) => {

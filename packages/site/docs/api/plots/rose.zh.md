@@ -117,58 +117,14 @@
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { Rose } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoRose: React.FC = () => {
-  const data = [
-    {
-        year: '2001',
-        population: 41.8
-    },
-    {
-        year: '2002',
-        population: 38
-    },
-    {
-        year: '2003',
-        population: 33.7
-    },
-    {
-        year: '2004',
-        population: 30.7
-    },
-    {
-        year: '2005',
-        population: 25.8
-    },
-    {
-        year: '2006',
-        population: 31.7
-    }
-];
-const config = {
-    data,
-    xField: 'year',
-    yField: 'population',
-    meta: {
-        year: {
-            alias: '年份',
-            values: [
-                '2001',
-                '2002',
-                '2003'
-            ],
-            formatter: v => {
-                return `${ v }年`;
-            }
-        }
-    },
-    seriesField: 'year'
-};
-  return <Rose {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoRose;
+export default Demo;
 
 
 ```

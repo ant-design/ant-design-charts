@@ -14,12 +14,7 @@ import {
   getArrowCfg,
   bindStateEvents,
 } from '../../util';
-import {
-  defaultFlowGraphAnchorPoints,
-  defaultNodeSize,
-  defaultStateStyles,
-  defaultNodeStyle,
-} from '../../constants';
+import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultStateStyles, defaultNodeStyle } from '../../constants';
 import { registerIndicatorCardNode } from './customItem';
 import {
   CommonConfig,

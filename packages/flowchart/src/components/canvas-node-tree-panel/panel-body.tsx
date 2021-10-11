@@ -61,8 +61,7 @@ interface ITitleProps {
 
 export const NodeTitle = (props: ITitleProps) => {
   const [isVisible, setVisible] = React.useState(false);
-  const { prefixClz, graphConfig, commands, contextService, popoverContent, onMouseDown, item } =
-    props;
+  const { prefixClz, graphConfig, commands, contextService, popoverContent, onMouseDown, item } = props;
 
   return (
     <>
@@ -162,28 +161,27 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     setDnd(dndInstance);
   }, [graph]);
 
-  const onMouseDown =
-    (nodeConfig: NsGraph.INodeConfig) => (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-      if (!graph || !dnd || !graphConfig) {
-        return;
-      }
-      const { width = 180, height = 40 } = nodeConfig;
-      const renderKey = graphConfig.nodeTypeParser(nodeConfig);
-      const reactComponent = graphConfig.nodeRender.get(renderKey);
-      if (reactComponent) {
-        const wrappedComponent = getNodeReactComponent(reactComponent, commands, contextService);
-        const nodeData = {
-          data: nodeConfig,
-          width,
-          height,
-          // X6_NODE_PORTAL_NODE_VIEW
-          view: graphConfig.flowId,
-          component: wrappedComponent,
-        };
-        const x6Node = x6NodeFactory ? x6NodeFactory(nodeData) : defaultNodeFactory(nodeData);
-        dnd.start(x6Node, e.nativeEvent as any);
-      }
-    };
+  const onMouseDown = (nodeConfig: NsGraph.INodeConfig) => (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (!graph || !dnd || !graphConfig) {
+      return;
+    }
+    const { width = 180, height = 40 } = nodeConfig;
+    const renderKey = graphConfig.nodeTypeParser(nodeConfig);
+    const reactComponent = graphConfig.nodeRender.get(renderKey);
+    if (reactComponent) {
+      const wrappedComponent = getNodeReactComponent(reactComponent, commands, contextService);
+      const nodeData = {
+        data: nodeConfig,
+        width,
+        height,
+        // X6_NODE_PORTAL_NODE_VIEW
+        view: graphConfig.flowId,
+        component: wrappedComponent,
+      };
+      const x6Node = x6NodeFactory ? x6NodeFactory(nodeData) : defaultNodeFactory(nodeData);
+      dnd.start(x6Node, e.nativeEvent as any);
+    }
+  };
 
   const renderTree = React.useCallback(
     (treeList: ITreeNode[] = []) => {

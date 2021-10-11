@@ -15,11 +15,17 @@ G2Plot 的核心技术架构非常简单，所有的 Plot 图表都继承于一�
 所有图表的创建，都是一样的，从 G2Plot 中引入对应的 Plot class，然后创建实例，构造函数有两个参数：
 
 ```ts
-import { Line } from '@antv/g2plot';
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
 
-const line = new Line(container', options);
-// 1. `container`： 图表渲染的 DOM 容器 id 或者 HTMLElement 实例
-// 2. `options`： 图表配置数据，不同的图表功能请参考[基础图表 API]
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
+};
+
+export default Demo;
+
+
 ```
 
 创建好的图表实例，都具有两个公开属性：

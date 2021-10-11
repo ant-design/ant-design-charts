@@ -63,10 +63,7 @@ export interface ArrowConfig extends G6ArrowConfig {
   size?: number;
 }
 
-export type IArrowConfig =
-  | false
-  | ArrowConfig
-  | ((edge: Shape | ShapeCfg | undefined) => ArrowConfig);
+export type IArrowConfig = false | ArrowConfig | ((edge: Shape | ShapeCfg | undefined) => ArrowConfig);
 
 // 通用节点配置
 export interface NodeCfg extends Omit<ModelConfig, 'style' | 'label'> {
@@ -194,9 +191,7 @@ export interface MarkerCfg {
   style?: ShapeStyle;
 }
 
-export type IMarkerCfg =
-  | MarkerCfg
-  | ((cfg: CardNodeCfg, graph: IGraph | IGroup | undefined) => MarkerCfg);
+export type IMarkerCfg = MarkerCfg | ((cfg: CardNodeCfg, graph: IGraph | IGroup | undefined) => MarkerCfg);
 
 export type Datum = {
   [key: string]: any;

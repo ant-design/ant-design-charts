@@ -49,14 +49,14 @@
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { Liquid } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoLiquid: React.FC = () => {
-  const config = { percent: 0.25 };
-  return <Liquid {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoLiquid;
+export default Demo;
 
 
 ```

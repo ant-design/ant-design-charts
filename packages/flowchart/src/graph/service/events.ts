@@ -1,9 +1,4 @@
-import {
-  XFlowNodeCommands,
-  IContextService,
-  IGraphCommandService,
-  XFlowEdgeCommands,
-} from '@ali/xflow';
+import { XFlowNodeCommands, IContextService, IGraphCommandService, XFlowEdgeCommands } from '@ali/xflow';
 
 /**
  * 节点移动时，实时更新位置信息

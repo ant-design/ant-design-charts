@@ -49,48 +49,14 @@
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { Waterfall } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoWaterfall: React.FC = () => {
-  const data = [
-    {
-        type: '日用品',
-        money: 120
-    },
-    {
-        type: '伙食费',
-        money: 900
-    },
-    {
-        type: '交通费',
-        money: 200
-    },
-    {
-        type: '水电费',
-        money: 300
-    },
-    {
-        type: '房租',
-        money: 1200
-    },
-    {
-        type: '商场消费',
-        money: 1000
-    },
-    {
-        type: '红包收入',
-        money: -2000
-    }
-];
-const config = {
-    data,
-    xField: 'type',
-    yField: 'money'
-};
-  return <Waterfall {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoWaterfall;
+export default Demo;
 
 
 ```

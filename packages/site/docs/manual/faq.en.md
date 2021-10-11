@@ -21,12 +21,17 @@ How to add `polyfill` into your project.
 The following JS is introduced in the HEAD.
 
 ```ts
-<script src="https://unpkg.com/@babel/polyfill@latest"></script> // optional
-<script src="https://unpkg.com/@antv/g2plot@latest"></script>
+import React, { useState, useEffect } from 'react';
+import {  } from '@ant-design/charts';
 
-var line = new G2Plot.Line({
-  // ...
-});
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
+};
+
+export default Demo;
+
+
 ```
 
 *   NPM

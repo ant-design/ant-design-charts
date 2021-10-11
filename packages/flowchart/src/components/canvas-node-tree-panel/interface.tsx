@@ -40,11 +40,7 @@ export interface IProps extends Partial<IPanelProps> {
 }
 
 export interface IOnNodeDrop {
-  (
-    nodeMeta: NsGraph.INodeConfig,
-    commands: GraphCommandRegistry,
-    contextService: ContextRegistry,
-  ): Promise<void>;
+  (nodeMeta: NsGraph.INodeConfig, commands: GraphCommandRegistry, contextService: ContextRegistry): Promise<void>;
 }
 
 /** tree node model */

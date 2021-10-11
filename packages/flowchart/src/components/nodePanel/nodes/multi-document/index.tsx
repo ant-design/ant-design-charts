@@ -31,23 +31,12 @@ export const MultiDocumentNode: NsGraphConfig.INodeRender = (props) => {
       height - 2 * padding - 2 * bezierY,
     ], // 控制点，开口向下
     ['', width / 2, height - 2 * padding - bezierY], // bottom-right
-    [
-      'S',
-      width / 4,
-      height - 2 * padding,
-      padding + multiPadding,
-      height - 2 * padding - 2 * bezierY,
-    ],
+    ['S', width / 4, height - 2 * padding, padding + multiPadding, height - 2 * padding - 2 * bezierY],
     ['L', padding + multiPadding, padding], // top-left
   ];
 
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-    >
+    <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
       <path
         d={createPath(path)}
         fill={stateNodeConfig.fill}
@@ -63,13 +52,7 @@ export const MultiDocumentNode: NsGraphConfig.INodeRender = (props) => {
           fill: '#fff',
         }}
       />
-      <text
-        x={width / 2}
-        y={height / 2}
-        fill={stateLabelConfig.fill}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-      >
+      <text x={width / 2} y={height / 2} fill={stateLabelConfig.fill} textAnchor="middle" alignmentBaseline="middle">
         {data?.label}
       </text>
       Sorry, your browser does not support inline SVG.

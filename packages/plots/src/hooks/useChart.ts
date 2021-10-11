@@ -41,11 +41,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
    * @param {string} type A DOMString indicating the image format. The default format type is image/png.
    * @param {number} encoderOptions A Number between 0 and 1 indicating the image quality
    */
-  const downloadImage = (
-    name = 'download',
-    type = 'image/png',
-    encoderOptions?: number,
-  ): string => {
+  const downloadImage = (name = 'download', type = 'image/png', encoderOptions?: number): string => {
     let imageName = name;
     if (name.indexOf('.') === -1) {
       imageName = `${name}.${type.split('/')[1]}`;
@@ -64,14 +60,8 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
   const reactDomToString = (source: U, path: string[], type?: string) => {
     const statisticCustomHtml = hasPath(source, path);
     setPath(source, path, (...arg: any[]) => {
-      const statisticDom = isType(statisticCustomHtml, 'Function')
-        ? statisticCustomHtml(...arg)
-        : statisticCustomHtml;
-      if (
-        isType(statisticDom, 'String') ||
-        isType(statisticDom, 'Number') ||
-        isType(statisticDom, 'HTMLDivElement')
-      ) {
+      const statisticDom = isType(statisticCustomHtml, 'Function') ? statisticCustomHtml(...arg) : statisticCustomHtml;
+      if (isType(statisticDom, 'String') || isType(statisticDom, 'Number') || isType(statisticDom, 'HTMLDivElement')) {
         return statisticDom;
       }
       return createNode(statisticDom, type);
@@ -108,12 +98,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
           percent: currentPercent,
           ...currentConfig
         } = chartOptions.current;
-        const {
-          data: inputData,
-          value: inputValue,
-          percent: inputPercent,
-          ...inputConfig
-        } = config;
+        const { data: inputData, value: inputValue, percent: inputPercent, ...inputConfig } = config;
         changeData = isEqual(currentConfig, inputConfig);
       }
       if (changeData) {
@@ -146,11 +131,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
     ChartClass.__proto__.toDataURL = (type?: string, encoderOptions?: number) => {
       return toDataURL(type, encoderOptions);
     };
-    ChartClass.prototype.downloadImage = (
-      name?: string,
-      type?: string,
-      encoderOptions?: number,
-    ) => {
+    ChartClass.prototype.downloadImage = (name?: string, type?: string, encoderOptions?: number) => {
       return downloadImage(name, type, encoderOptions);
     };
     chartInstance.render();

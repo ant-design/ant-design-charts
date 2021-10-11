@@ -14,22 +14,9 @@ import {
   getArrowCfg,
   bindStateEvents,
 } from '../../util';
-import {
-  defaultFlowGraphAnchorPoints,
-  defaultNodeSize,
-  defaultStateStyles,
-  defaultNodeStyle,
-} from '../../constants';
+import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultStateStyles, defaultNodeStyle } from '../../constants';
 import { registerFundFlowItems } from './customItem';
-import {
-  CommonConfig,
-  EdgeData,
-  EdgeConfig,
-  NodeConfig,
-  NodeData,
-  StateStyles,
-  ArrowConfig,
-} from '../../interface';
+import { CommonConfig, EdgeData, EdgeConfig, NodeConfig, NodeData, StateStyles, ArrowConfig } from '../../interface';
 
 export type edgeType =
   | string

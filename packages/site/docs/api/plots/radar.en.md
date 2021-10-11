@@ -87,46 +87,14 @@ See also the [Meta Options](/en/docs/api/options/meta) to learn more about confi
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { Radar } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoRadar: React.FC = () => {
-  const data = [
-    {
-        item: 'Design',
-        score: 70
-    },
-    {
-        item: 'Development',
-        score: 60
-    },
-    {
-        item: 'Marketing',
-        score: 40
-    },
-    {
-        item: 'Technology',
-        score: 30
-    }
-];
-const config = {
-    data,
-    xField: 'item',
-    yField: 'score',
-    meta: { score: { alias: '分数' } },
-    yAxis: {
-        grid: {
-            alternateColor: [
-                'rgba(0, 0, 0, 0.04)',
-                null
-            ]
-        }
-    },
-    point: {}
-};
-  return <Radar {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoRadar;
+export default Demo;
 
 
 ```

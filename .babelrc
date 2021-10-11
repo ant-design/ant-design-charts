@@ -4,7 +4,7 @@
       "@babel/preset-env",
       {
         "targets": {
-          "browsers": ["last 1 version", "> 1%", "IE 9"]
+          "chrome": 78
         }
       }
     ]

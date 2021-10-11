@@ -44,11 +44,7 @@ export const registerFundFlowItems = () => {
 
         if (value) {
           height += paddingArray[0];
-          const createRowItems = (
-            item: CardItems,
-            contentWidth: number,
-            startX: number,
-          ): number[] => {
+          const createRowItems = (item: CardItems, contentWidth: number, startX: number): number[] => {
             const { text, icon } = item;
             let textShape, iconShape;
             if (icon) {
@@ -68,9 +64,7 @@ export const registerFundFlowItems = () => {
               attrs: {
                 textBaseline: 'middle',
                 textAlign: iconShape ? 'start' : 'center',
-                x:
-                  startX +
-                  (iconShape ? iconShape?.getBBox().width + defaultMargin : contentWidth / 2),
+                x: startX + (iconShape ? iconShape?.getBBox().width + defaultMargin : contentWidth / 2),
                 y: paddingArray[0] + contentHeight / 2,
                 text,
                 ...defaultLabelStyle,
@@ -132,9 +126,7 @@ export const registerFundFlowItems = () => {
        */
       update(cfg, node) {
         const group = node.getContainer();
-        const markerShape = group
-          .get('children')
-          .find((item: Node) => item.get('type') === 'marker');
+        const markerShape = group.get('children').find((item: Node) => item.get('type') === 'marker');
         const collapsed = node.getModel().collapsed;
         markerShape?.attr({
           symbol: collapsed ? G6.Marker.expand : G6.Marker.collapse,

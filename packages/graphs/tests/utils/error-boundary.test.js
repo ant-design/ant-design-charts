@@ -33,9 +33,7 @@ describe('Area render', () => {
     };
     const testRenderer = create(<Area {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
-    expect(
-      testInstance.findByType(ErrorBoundary).children[0].children[0].indexOf('') !== -1,
-    ).toBeTruthy();
+    expect(testInstance.findByType(ErrorBoundary).children[0].children[0].indexOf('') !== -1).toBeTruthy();
   });
 
   it('error template with callback', () => {
@@ -57,8 +55,6 @@ describe('Area render', () => {
     };
     const testRenderer = create(<Area {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
-    expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual([
-      'custom error with callback',
-    ]);
+    expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error with callback']);
   });
 });

@@ -76,9 +76,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           {...nodePanelProps}
         />
         <XFlowCanvas config={graphConfig} position={{ top: 40, left: 240, right: 240, bottom: 0 }}>
-          {show && (
-            <CanvasScaleToolbar position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />
-          )}
+          {show && <CanvasScaleToolbar position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />}
           {showMenu && <ContextMenuPanel config={menuConfig} />}
         </XFlowCanvas>
         <FormPanel {...detailPanelProps} />

@@ -100,56 +100,14 @@
 
 ```ts
 import React, { useState, useEffect } from 'react';
-import { Scatter } from '@ant-design/charts';
+import {  } from '@ant-design/charts';
 
-const DemoScatter: React.FC = () => {
-  const data = [
-    {
-        country: 'Asia',
-        year: '1750',
-        value: 502
-    },
-    {
-        country: 'Asia',
-        year: '1800',
-        value: 635
-    },
-    {
-        country: 'Europe',
-        year: '1750',
-        value: 163
-    },
-    {
-        country: 'Europe',
-        year: '1800',
-        value: 203
-    }
-];
-const config = {
-    data,
-    meta: {
-        year: {
-            alias: '年份',
-            range: [
-                0,
-                1
-            ]
-        },
-        value: {
-            alias: '数量',
-            formatter: v => {
-                return `${ v }个`;
-            }
-        }
-    },
-    xField: 'year',
-    yField: 'value',
-    colorField: 'country'
-};
-  return <Scatter {...config} />;
+const Demo: React.FC = () => {
+  
+  return < {...config} />;
 };
 
-export default DemoScatter;
+export default Demo;
 
 
 ```

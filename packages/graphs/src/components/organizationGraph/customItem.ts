@@ -62,9 +62,7 @@ export const registerOrganizationCardNode = () => {
                   break;
                 case 'value':
                   x = startX + (contentWidth + iconWidth) / 2;
-                  y = item.text
-                    ? paddingArray[0] + rowHeight[1] + defaultMargin
-                    : (size[1] - fontSize) / 2;
+                  y = item.text ? paddingArray[0] + rowHeight[1] + defaultMargin : (size[1] - fontSize) / 2;
                   break;
                 default:
                   break;
