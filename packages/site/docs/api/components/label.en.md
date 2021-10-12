@@ -1,6 +1,7 @@
-
-
-## title: Label&#xA;order: 4
+---
+title: Label
+order: 4
+---
 
 <style>
   span.ant-tag {

@@ -1,12 +1,9 @@
-
-
+---
 title: Introduction
 order: 0
 redirect_from:
-
-*   /en/docs/manual
-
-
+  - /en/docs/manual
+---
 
 G2Plot is an interactive and responsive charting library based on the grammar of graphics, which enables users to generate high quality statistical charts through a few lines of code easily. G2 in "G2Plot" means the grammar of graphics and pays homage to ggplot2.
 

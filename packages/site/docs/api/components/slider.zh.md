@@ -1,6 +1,7 @@
-
-
-## title: 缩略轴 - Slider&#xA;order: 2
+---
+title: 缩略轴 - Slider
+order: 2
+---
 
 <style>
   span.ant-tag {

@@ -15,7 +15,7 @@ module.exports = {
     description: 'A collection of charts made with the Grammar of Graphics',
     siteUrl: homepage,
     githubUrl: repository.url,
-    showAPIDoc: true,
+    showAPIDoc: true, // 是否在demo页展示API文档
     isAntVSite: false,
     versions: {
       [version]: 'https://charts.antv.vision',

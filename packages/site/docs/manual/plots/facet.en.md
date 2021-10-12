@@ -1,6 +1,9 @@
-
-
-## title: Facet&#xA;order: 24&#xA;contributors:&#xA;\[{ author: '新茗', github: 'visiky', avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg' }]
+---
+title: Facet
+order: 24
+contributors:
+  [{ author: '新茗', github: 'visiky', avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg' }]
+---
 
 <!-- ### 用法建议 -->
 
@@ -29,17 +32,6 @@
 <div class='sign'>
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 </div>

@@ -1,6 +1,7 @@
-
-
-## title: 图表主题&#xA;order: 9
+---
+title: 图表主题
+order: 9
+---
 
 推荐使用 💄 [ThemeSet](https://theme-set.antv.vision) 在线自定义自己的主题配置。
 

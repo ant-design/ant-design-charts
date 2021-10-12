@@ -1,6 +1,7 @@
-
-
-## title: 旭日图&#xA;order: 17
+---
+title: 旭日图
+order: 17
+---
 
 ### 图表容器
 
@@ -58,7 +59,7 @@
 
 <description>**optional** *string*</description>
 
-指定具体语言，目前内置 'zh-CN' and 'en-US' 两个语言，你也可以使用 `G2Plot.registerLocale` 方法注册新的语言。语言包格式参考：[src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts)
+指定具体语言，目前内置 'zh-CN' and 'en-US' 两个语言，你也可以使用 `G2Plot.registerLocale` 方法注册新的语言。语言包格式参考：[src/locales/en\_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en\_US.ts)
 
 
 ### 数据映射
@@ -155,10 +156,10 @@ meta: {
 | Properties        | Type               | Description                                                                                                                          |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | field             | *string*           | 数据节点权重映射字段，默认为：`value`. 当你的节点数据格式不是：`{ name: 'xx', value: 'xx' }`, 可以通过该字段来指定，详细见：图表示例 |
-| padding           | *number|number\[]* | 默认：`0`。参考：[d3-hierarchy#partition_padding](https://github.com/d3/d3-hierarchy#partition_padding)                              |
-| size              | *number\[]*         | 默认：`[1, 1]`。参考：[d3-hierarchy#partition_size](https://github.com/d3/d3-hierarchy#partition_size)                               |
-| round             | *boolean*          | 默认：`false`。参考：[d3-hierarchy#partition_round](https://github.com/d3/d3-hierarchy#partition_round)                              |
-| sort              | *Function*         | 数据节点排序方式，默认：降序。参考: [d3-hierarchy#node_sort](https://github.com/d3/d3-hierarchy#node_sort)                           |
+| padding           | *number|number\[]* | 默认：`0`。参考：[d3-hierarchy#partition\_padding](https://github.com/d3/d3-hierarchy#partition\_padding)                              |
+| size              | *number\[]*         | 默认：`[1, 1]`。参考：[d3-hierarchy#partition\_size](https://github.com/d3/d3-hierarchy#partition\_size)                               |
+| round             | *boolean*          | 默认：`false`。参考：[d3-hierarchy#partition\_round](https://github.com/d3/d3-hierarchy#partition\_round)                              |
+| sort              | *Function*         | 数据节点排序方式，默认：降序。参考: [d3-hierarchy#node\_sort](https://github.com/d3/d3-hierarchy#node\_sort)                           |
 | ignoreParentValue | *boolean*          | 是否忽略 parentValue, 默认：true。 当设置为 true 时，父节点的权重由子元素决定                                                        |
 
 #### radius

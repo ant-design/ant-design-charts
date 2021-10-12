@@ -1,6 +1,7 @@
-
-
-## title: Theme&#xA;order: 9
+---
+title: Theme
+order: 9
+---
 
 Recommend to use 💄 [ThemeSet](https://theme-set.antv.vision) to customize your theme configurations online.
 

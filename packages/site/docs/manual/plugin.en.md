@@ -1,6 +1,7 @@
-
-
-## title: Custom Plots&#xA;order: 6
+---
+title: Custom Plots
+order: 6
+---
 
 ## Custom chart development
 
@@ -18,17 +19,6 @@ As G2Plot developers, we also get into some problems:
 Based on these problems, we directly open the adapter mode of G2Plot based on G2 chart. You can package customized charts based on this G2 pattern. If you need to reuse, you can directly produce NPM packages and use them in the G2Plot mode. Take a simple example:
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 In such an open and extended development mode, it can not only ensure the unification of business technology stack, but also ensure that the built-in charts of G2Plot are universal, and make full use of G2.
@@ -37,7 +27,7 @@ In such an open and extended development mode, it can not only ensure the unific
 
 This section describes how to develop a custom chart. Example:
 
-<playground path="plugin/basic/demo/hill-column.ts"></playground>
+<playground path="plugin/basic/demo/hill-column.js"></playground>
 
 The main process is divided into the following steps:
 

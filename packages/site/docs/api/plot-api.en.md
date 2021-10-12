@@ -1,12 +1,9 @@
-
-
+---
 title: Common API
 order: 0
 redirect_from:
-
-*   /en/docs/api
-
-
+  - /en/docs/api
+---
 
 The core technology architecture of G2Plot is very simple. All plots are inherited from a base class. The base class provides a common API method for all plots, and each specific visualization plot only processes its own configuration items. So all plots basically share the common API, except for some plots (such as Gauge and Liquid) that have subtle differences in the changedata API.
 
@@ -15,17 +12,6 @@ The core technology architecture of G2Plot is very simple. All plots are inherit
 The creation of all plots is the same. First, import the corresponding plot class from G2Plot. Then create a plot instance. The constructor has two parameters.
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 The created plot instance has two public properties:

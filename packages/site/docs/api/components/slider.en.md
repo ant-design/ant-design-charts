@@ -1,6 +1,7 @@
-
-
-## title: Slider&#xA;order: 2
+---
+title: Slider
+order: 2
+---
 
 <style>
   span.ant-tag {

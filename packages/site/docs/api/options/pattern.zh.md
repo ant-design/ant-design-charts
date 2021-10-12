@@ -1,6 +1,7 @@
-
-
-## title: 贴图图案&#xA;order: 8
+---
+title: 贴图图案
+order: 8
+---
 
 ### 介绍
 

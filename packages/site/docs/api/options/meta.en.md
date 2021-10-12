@@ -1,6 +1,7 @@
-
-
-## title: Meta&#xA;order: 1
+---
+title: Meta
+order: 1
+---
 
 Through meta, you can configure the data metadata information of the chart globally, and the configuration is carried out by the unit of field. The configuration on 'meta' affects the text information of all components at the same time.
 

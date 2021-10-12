@@ -1,6 +1,15 @@
-
-
-## title: 转化标签 - ConversionTag&#xA;order: 8&#xA;contributors:&#xA;\[&#xA;{&#xA;author: '新茗',&#xA;github: 'visiky',&#xA;avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg',&#xA;},&#xA;]
+---
+title: 转化标签 - ConversionTag
+order: 8
+contributors:
+  [
+    {
+      author: '新茗',
+      github: 'visiky',
+      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg',
+    },
+  ]
+---
 
 适用于基础柱形图和基础条形图，转化率组件可以让用户关注到数据的变化比例。
 

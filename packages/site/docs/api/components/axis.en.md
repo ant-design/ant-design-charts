@@ -1,6 +1,25 @@
-
-
-## title: Axis&#xA;order: 1&#xA;contributors:&#xA;\[&#xA;{&#xA;author: '新茗',&#xA;github: 'visiky',&#xA;avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg',&#xA;},&#xA;{&#xA;author: 'BBSQQ',&#xA;github: 'BBSQQ',&#xA;avatar: 'https://avatars.githubusercontent.com/u/35586469',&#xA;},&#xA;{&#xA;author: 'lxfu1',&#xA;github: 'lxfu1',&#xA;avatar: 'https://avatars.githubusercontent.com/u/31396322',&#xA;},&#xA;]
+---
+title: Axis
+order: 1
+contributors:
+  [
+    {
+      author: '新茗',
+      github: 'visiky',
+      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg',
+    },
+     {
+      author: 'BBSQQ',
+      github: 'BBSQQ',
+      avatar: 'https://avatars.githubusercontent.com/u/35586469',
+    },
+     {
+      author: 'lxfu1',
+      github: 'lxfu1',
+      avatar: 'https://avatars.githubusercontent.com/u/31396322',
+    },
+  ]
+---
 
 <style>
   span.ant-tag {

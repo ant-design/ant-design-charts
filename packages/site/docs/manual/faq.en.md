@@ -1,6 +1,7 @@
-
-
-## title: FAQ&#xA;order: 8
+---
+title: FAQ
+order: 8
+---
 
 ## FAQ
 
@@ -21,17 +22,6 @@ How to add `polyfill` into your project.
 The following JS is introduced in the HEAD.
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 *   NPM
