@@ -1,6 +1,15 @@
-
-
-## title: 统计文本 - Statistic&#xA;order: 7&#xA;contributors:&#xA;\[&#xA;{&#xA;author: '新茗',&#xA;github: 'visiky',&#xA;avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg',&#xA;},&#xA;]
+---
+title: 统计文本 - Statistic
+order: 7
+contributors:
+  [
+    {
+      author: '新茗',
+      github: 'visiky',
+      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg',
+    },
+  ]
+---
 
 <style>
   span.ant-tag {

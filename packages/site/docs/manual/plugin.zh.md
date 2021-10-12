@@ -1,6 +1,7 @@
-
-
-## title: 自定义扩展&#xA;order: 6
+---
+title: 自定义扩展
+order: 6
+---
 
 ## 自定义图表开发
 
@@ -18,17 +19,6 @@ G2Plot 内置的是业务中使用量占比超过 90% 的常规统计图表，�
 基于这些问题，我们将 G2Plot 基于 G2 开发图表的 Adaptor 模式直接开放出来，业务同学可以基于这一个模式去基于 G2 封装定制图表，如果需要给其他业务复用，直接发 NPM 包，并且在 G2Plot 的模式上去使用。举个简单的例子：
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 以这样的开放扩展开发的方式，既保证业务技术栈的统一，又保证 G2Plot 内置图表的足够通用，也可以无限透出 G2 的能力。
@@ -37,7 +27,7 @@ export default Demo;
 
 这个章节，将介绍如何开发一个自定义图表。具体的实例在这里：
 
-<playground path="plugin/basic/demo/hill-column.ts"></playground>
+<playground path="plugin/basic/demo/hill-column.js"></playground>
 
 主要的流程分成为以下几个步骤：
 

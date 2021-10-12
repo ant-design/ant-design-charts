@@ -1,6 +1,7 @@
-
-
-## title: G2Plot&#xA;order: 0
+---
+title: G2Plot
+order: 0
+---
 
 全局 G2Plot 对象，在 script 标签引入 g2plot.min.js 文件后获得，或者通过 `import` 或 `require` 进行引用。
 
@@ -46,7 +47,7 @@ setGlobal({ locale: 'zh-CN' });
 registerLocale(locale: string, localeCfg: Object): void;
 ```
 
-目前内置 'zh-CN' and 'en-US' 两个语言，你也可以使用 `G2Plot.registerLocale` 方法注册新的语言。语言包格式参考：[src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts)
+目前内置 'zh-CN' and 'en-US' 两个语言，你也可以使用 `G2Plot.registerLocale` 方法注册新的语言。语言包格式参考：[src/locales/en\_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en\_US.ts)
 
 #### G2
 

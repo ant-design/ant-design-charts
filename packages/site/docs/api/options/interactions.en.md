@@ -1,6 +1,7 @@
-
-
-## title: Interactions&#xA;order: 7
+---
+title: Interactions
+order: 7
+---
 
 Interaction is an important API in G2, and it is a way to load G2's built-in interactions or custom Interaction interactions based on the Interaction syntax form. G2 4.0 has made a big change in terms of interaction. All interaction code is intrusive and is organized through interaction syntax. The way to use the interaction is also very simple, you just need to set the name of the interaction.
 

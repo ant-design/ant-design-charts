@@ -1,6 +1,7 @@
-
-
-## title: Quick Start&#xA;order: 1
+---
+title: Quick Start
+order: 1
+---
 
 ## Installation
 
@@ -70,17 +71,6 @@ const data = [
 **step3**: create and render chart
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 the result：
@@ -92,17 +82,6 @@ the result：
 Till now, the visual style of our chart was defaultly applied by chart theme, not to mention the unformatted text content of labels. In this section, we'll stylize the chart through several steps. More information please reference API.
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 the result：

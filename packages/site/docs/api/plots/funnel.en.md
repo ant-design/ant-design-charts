@@ -1,6 +1,7 @@
-
-
-## title: Funnel&#xA;order: 9
+---
+title: Funnel
+order: 9
+---
 
 ### Plot Container
 
@@ -58,7 +59,7 @@ Whether clip the Geometry beyond the coordinate system。
 
 <description>**optional** *string*</description>
 
-Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts) to see the format.
+Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en\_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en\_US.ts) to see the format.
 
 
 ### Data Mapping
@@ -1210,11 +1211,11 @@ import { Funnel } from '@antv/g2plot';
 }
 ```
 
-#### FUNNEL_CONVERSATION_FIELD
+#### FUNNEL\_CONVERSATION\_FIELD
 
 > Attention: you can use `Funnel.CONVERSATION_FIELD` to replace `FUNNEL_CONVERSATION_FIELD` in the latest version.
 
-FUNNEL_CONVERSATION_FIELD is an array, stores the current and previous values of the funnel, for example, \[263, 151], from which the user can calculate the conversion rate, for example:
+FUNNEL\_CONVERSATION\_FIELD is an array, stores the current and previous values of the funnel, for example, \[263, 151], from which the user can calculate the conversion rate, for example:
 
 ```javascript
 // 引用

@@ -1,6 +1,7 @@
-
-
-## title: Circle packing&#xA;order: 40
+---
+title: Circle packing
+order: 40
+---
 
 ### Plot Container
 
@@ -58,7 +59,7 @@ Whether clip the Geometry beyond the coordinate system。
 
 <description>**optional** *string*</description>
 
-Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts) to see the format.
+Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en\_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en\_US.ts) to see the format.
 
 
 ### Data Mapping
@@ -150,9 +151,9 @@ Supports configuration properties:
 | Properties    | Type               | Description ｜                                                                                                                              |
 | ------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | field   | *string*           | The data node weight mapping field, default is: 'value'. When your node data format is not: '{name: 'xx', value: 'xx'} ', you can use this field to specify. See the example chart for details |
-| padding | *number|number\[]* | default: `0`。reference：[d3-hierarchy#pack_padding](https://github.com/d3/d3-hierarchy#pack_padding)                              |
-| size    | *number\[]*         | default: `[1, 1]`。reference：[d3-hierarchy#pack_size](https://github.com/d3/d3-hierarchy#pack_size)                               |
-| sort    | *Function*         | Data node sorting method, default: descending order.reference: [d3-hierarchy#node_sort](https://github.com/d3/d3-hierarchy#node_sort)                           |
+| padding | *number|number\[]* | default: `0`。reference：[d3-hierarchy#pack\_padding](https://github.com/d3/d3-hierarchy#pack\_padding)                              |
+| size    | *number\[]*         | default: `[1, 1]`。reference：[d3-hierarchy#pack\_size](https://github.com/d3/d3-hierarchy#pack\_size)                               |
+| sort    | *Function*         | Data node sorting method, default: descending order.reference: [d3-hierarchy#node\_sort](https://github.com/d3/d3-hierarchy#node\_sort)                           |
 
 <!-- 
 #### radius

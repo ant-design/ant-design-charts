@@ -1,6 +1,7 @@
-
-
-## title: 数据标签 - Label&#xA;order: 4
+---
+title: 数据标签 - Label
+order: 4
+---
 
 <style>
   span.ant-tag {

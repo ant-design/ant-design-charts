@@ -1,6 +1,7 @@
-
-
-## title: Pattern&#xA;order: 8
+---
+title: Pattern
+order: 8
+---
 
 ### Introduction
 

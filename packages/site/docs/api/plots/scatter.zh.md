@@ -1,6 +1,7 @@
-
-
-## title: 散点图&#xA;order: 5
+---
+title: 散点图
+order: 5
+---
 
 ### 图表容器
 
@@ -58,7 +59,7 @@
 
 <description>**optional** *string*</description>
 
-指定具体语言，目前内置 'zh-CN' and 'en-US' 两个语言，你也可以使用 `G2Plot.registerLocale` 方法注册新的语言。语言包格式参考：[src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts)
+指定具体语言，目前内置 'zh-CN' and 'en-US' 两个语言，你也可以使用 `G2Plot.registerLocale` 方法注册新的语言。语言包格式参考：[src/locales/en\_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en\_US.ts)
 
 
 ### 数据映射
@@ -99,17 +100,6 @@
 
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 #### type

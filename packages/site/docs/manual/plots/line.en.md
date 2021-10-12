@@ -1,6 +1,15 @@
-
-
-## title: Line&#xA;order: 0&#xA;contributors:&#xA;\[&#xA;{&#xA;author: '新茗',&#xA;github: 'visiky',&#xA;avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg',&#xA;},&#xA;]
+---
+title: Line
+order: 0
+contributors:
+  [
+    {
+      author: '新茗',
+      github: 'visiky',
+      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg',
+    },
+  ]
+---
 
 <div class="manual-docs">
 
@@ -16,7 +25,7 @@
         <tbody>
           <tr style="height: 33px">
             <td colspan="1" rowspan="5" style="background: #fff">
-              <playground path="line/basic/demo/line.ts"></playground>
+              <playground path="line/basic/demo/line.js"></playground>
             </td>
             <td class="style1">
               <p><strong>Description</strong></p>
@@ -91,17 +100,6 @@ width="1000"
 <div class="sign">
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 </div>

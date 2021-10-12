@@ -1,6 +1,7 @@
-
-
-## title: Pie&#xA;order: 6
+---
+title: Pie
+order: 6
+---
 
 <div class="manual-docs">
   <div data-card-type="block" data-lake-card="table" id="pLwYV" class="">
@@ -15,7 +16,7 @@
       <tbody>
         <tr style="height: 33px">
           <td colspan="1" rowspan="5" style="background: #fff">
-            <playground path="pie/basic/demo/basic.ts"></playground>
+            <playground path="pie/basic/demo/basic.js"></playground>
           </td>
           <td class="style1">
             <p><strong>定义</strong></p>
@@ -103,17 +104,6 @@
 <div class='sign'>
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 </div>

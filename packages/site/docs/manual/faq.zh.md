@@ -1,6 +1,7 @@
-
-
-## title: FAQ&#xA;order: 8
+---
+title: FAQ
+order: 8
+---
 
 ## FAQ
 
@@ -19,17 +20,6 @@
 *   CDN 下使用
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 *   NPM

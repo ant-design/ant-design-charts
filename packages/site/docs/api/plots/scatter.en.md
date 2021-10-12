@@ -1,6 +1,7 @@
-
-
-## title: Scatter&#xA;order: 5
+---
+title: Scatter
+order: 5
+---
 
 ### Plot Container
 
@@ -58,7 +59,7 @@ Whether clip the Geometry beyond the coordinate system。
 
 <description>**optional** *string*</description>
 
-Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts) to see the format.
+Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en\_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en\_US.ts) to see the format.
 
 
 ### Data Mapping
@@ -99,17 +100,6 @@ See also the [Meta Options](/en/docs/api/options/meta) to learn more about confi
 
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 #### type

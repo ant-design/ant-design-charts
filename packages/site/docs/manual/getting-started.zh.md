@@ -1,6 +1,7 @@
-
-
-## title: 快速上手&#xA;order: 1
+---
+title: 快速上手
+order: 1
+---
 
 ## 安装
 
@@ -68,17 +69,6 @@ const data = [
 **step3**: 创建并渲染图表
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 最终效果：
@@ -90,17 +80,6 @@ export default Demo;
 图表元素的视觉样式采用默认主题的样式，还没有经过特别定制，图表主体中的文本元素也没有进行格式化，我们可以根据需求对图表进行各种个性化设置，更多多配置请参考图表 API。
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 最终效果：

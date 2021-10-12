@@ -1,6 +1,7 @@
-
-
-## title: 直方图&#xA;order: 8
+---
+title: 直方图
+order: 8
+---
 
 <div class="manual-docs">
 
@@ -49,17 +50,6 @@
 <div class="sign">
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 </div>

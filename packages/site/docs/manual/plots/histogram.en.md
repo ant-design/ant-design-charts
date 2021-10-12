@@ -1,6 +1,7 @@
-
-
-## title: Histogram&#xA;order: 8
+---
+title: Histogram
+order: 8
+---
 
 <div class="manual-docs">
 
@@ -49,17 +50,6 @@
 <div class="sign">
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 </div>

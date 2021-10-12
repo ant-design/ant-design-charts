@@ -1,6 +1,9 @@
-
-
-## title: Legend&#xA;order: 0&#xA;contributors:&#xA;\[{ author: '新茗', github: 'visiky', avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg' }]
+---
+title: Legend
+order: 0
+contributors:
+  [{ author: '新茗', github: 'visiky', avatar: 'https://gw.alipayobjects.com/zos/antfincdn/KAeYPA3TV0/avatar.jpeg' }]
+---
 
 <style>
   span.ant-tag {

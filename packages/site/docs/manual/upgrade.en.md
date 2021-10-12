@@ -1,6 +1,7 @@
-
-
-## title: G2Plot 2.0 Upgrade guide&#xA;order: 7
+---
+title: G2Plot 2.0 Upgrade guide
+order: 7
+---
 
 ## Summary
 

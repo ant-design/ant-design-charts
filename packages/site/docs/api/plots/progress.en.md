@@ -1,6 +1,7 @@
-
-
-## title: Progress plot&#xA;order: 20
+---
+title: Progress plot
+order: 20
+---
 
 ### Plot Container
 
@@ -58,7 +59,7 @@ Whether clip the Geometry beyond the coordinate system。
 
 <description>**optional** *string*</description>
 
-Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts) to see the format.
+Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en\_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en\_US.ts) to see the format.
 
 
 ### Data Mapping

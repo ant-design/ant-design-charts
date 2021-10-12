@@ -1,6 +1,7 @@
-
-
-## title: G2Plot 2.0 升级指南&#xA;order: 7
+---
+title: G2Plot 2.0 升级指南
+order: 7
+---
 
 ## 概述
 

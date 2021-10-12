@@ -1,6 +1,7 @@
-
-
-## title: 子弹图&#xA;order: 9
+---
+title: 子弹图
+order: 9
+---
 
 <div class="manual-docs">
   <div data-card-type="block" data-lake-card="table" id="pLwYV" class="">
@@ -15,7 +16,7 @@
         <tbody>
           <tr style="height: 33px">
             <td colspan="1" rowspan="5" style="background: #fff">
-              <playground path="progress-plots/bullet/demo/grouped.ts"></playground>
+              <playground path="progress-plots/bullet/demo/grouped.js"></playground>
             </td>
             <td class="style1">
               <p><strong>定义</strong></p>
@@ -61,7 +62,7 @@
 
 ### 元素构成
 
-子弹图的发明是为了取代仪表盘上常见的那种里程表，时速表等基于圆形的信息表达方式。更多可以查看：[Bullet Graph Design Specification](https://www.perceptualedge.com/articles/misc/Bullet_Graph_Design_Spec.pdf)
+子弹图的发明是为了取代仪表盘上常见的那种里程表，时速表等基于圆形的信息表达方式。更多可以查看：[Bullet Graph Design Specification](https://www.perceptualedge.com/articles/misc/Bullet\_Graph\_Design\_Spec.pdf)
 
 <img alt="design" src="https://zos.alipayobjects.com/rmsportal/DkOloAVoymGGRJgmezOc.png" width='600'>
 
@@ -70,17 +71,6 @@
 <div class='sign'>
 
 ```ts
-import React, { useState, useEffect } from 'react';
-import {  } from '@ant-design/charts';
-
-const Demo: React.FC = () => {
-  
-  return < {...config} />;
-};
-
-export default Demo;
-
-
 ```
 
 </div>

@@ -1,6 +1,7 @@
-
-
-## title: 桑基图&#xA;order: 27
+---
+title: 桑基图
+order: 27
+---
 
 ### Plot Container
 
@@ -58,7 +59,7 @@ Whether clip the Geometry beyond the coordinate system。
 
 <description>**optional** *string*</description>
 
-Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en_US.ts) to see the format.
+Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you can use `G2Plot.registerLocale` to register a new locale. Go [src/locales/en\_US.ts](https://github.com/antvis/G2Plot/blob/master/src/locales/en\_US.ts) to see the format.
 
 
 ### Data Mapping
