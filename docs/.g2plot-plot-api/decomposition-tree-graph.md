@@ -164,6 +164,12 @@ Item status configuration, style supports callback.
   };
 ```
 
+##### autoWidth
+
+<description>**optional** _Boolean_</description>
+
+Whether to dynamically adjust the node width. If set to true, the title autoEllipsis configuration is invalid.
+
 ##### getChildren
 
 <description>**optional** _Function_</description>
