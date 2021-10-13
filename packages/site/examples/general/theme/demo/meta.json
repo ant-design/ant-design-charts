@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "dark.ts",
+      "filename": "dark.js",
       "title": {
         "zh": "暗黑主题",
         "en": "Dark theme"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*De_URrBNa4wAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "custom-theme.ts",
+      "filename": "custom-theme.js",
       "title": {
         "zh": "自定义主题",
         "en": "Custom theme"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/2%24qq%26Dnx%26c/dark-theme.gif"
     },
     {
-      "filename": "register-theme.ts",
+      "filename": "register-theme.js",
       "title": {
         "zh": "注册主题",
         "en": "Register theme"

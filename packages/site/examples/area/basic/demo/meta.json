@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "基础面积图",
         "en": "Basic area plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/ld0NQtdLO0/mianjitugengxinshuju-after.gif"
     },
     {
-      "filename": "basic-gradients.ts",
+      "filename": "basic-gradients.js",
       "title": {
         "zh": "渐变色面积图",
         "en": "Gradients area plot"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*4dnrSbNeOGQAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "basic-slider.ts",
+      "filename": "basic-slider.js",
       "title": {
         "zh": "带缩略轴面积图",
         "en": "Area plot with slider"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xXtxRLa2CHoAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "basic-annotation.ts",
+      "filename": "basic-annotation.js",
       "title": {
         "zh": "带中位线标注的基础面积图",
         "en": "Basic area plot with line annotation"

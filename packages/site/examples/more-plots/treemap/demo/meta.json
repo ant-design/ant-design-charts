@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "基础矩形树图",
         "en": "Basic treemap plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*Ob1jSbCUl8cAAAAAAAAAAABkARQnAQ"
     },
     {
-      "filename": "treemap-nest.ts",
+      "filename": "treemap-nest.js",
       "title": {
         "zh": "嵌套矩形树图",
         "en": "Nestted treemap plot"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*UwprToL8UjcAAAAAAAAAAABkARQnAQ"
     },
     {
-      "filename": "drill-down.ts",
+      "filename": "drill-down.js",
       "title": {
         "zh": "下钻交互",
         "en": "Drill down treemap plot"

@@ -1,12 +1,77 @@
 import G6, { IGroup, Node } from '@antv/g6';
 import { defaultMargin, defaultLabelStyle } from '../../constants';
-import { getStyle, getCssPadding, getSize, getArrowCfg, createMarker } from '../../util';
+import { getStyle, getCssPadding, getSize, getArrowCfg, createMarker } from '../../utils';
 import { CardNodeCfg, CardItems, ModelConfig, IPoint, EdgeCfg } from '../../interface';
 import { edgeType } from './index';
 
 interface ItemModelConfig extends ModelConfig {
   value: edgeType;
 }
+
+const getPathInfo = (cfg: ItemModelConfig) => {
+  const { edgeCfg } = cfg;
+  const startPoint = cfg.startPoint as IPoint;
+  const endPoint = cfg.endPoint as IPoint;
+  const { x: startX, y: startY } = startPoint;
+  const { x: endX, y: endY } = endPoint;
+  const Ydiff = endY - startY;
+  const slope = Ydiff !== 0 ? Math.min(500 / Math.abs(Ydiff), 20) : 0;
+  const cpOffset = slope > 15 ? 0 : 16;
+  const offset = Ydiff < 0 ? cpOffset : -cpOffset;
+
+  const line1EndPoint = {
+    x: startX + slope,
+    y: endY + offset,
+  };
+  const line2StartPoint = {
+    x: line1EndPoint.x + cpOffset,
+    y: endY,
+  };
+
+  // 控制点坐标
+  const controlPoint = {
+    x: ((line1EndPoint.x - startX) * (endY - startY)) / (line1EndPoint.y - startY) + startX,
+    y: endY,
+  };
+
+  let path = [
+    ['M', startX, startY],
+    ['L', line1EndPoint.x, line1EndPoint.y],
+    ['Q', controlPoint.x, controlPoint.y, line2StartPoint.x, line2StartPoint.y],
+    ['L', endX, endY],
+  ];
+
+  if (Math.abs(Ydiff) <= 5) {
+    path = [
+      ['M', startX, startY],
+      ['L', endX, endY],
+    ];
+  }
+  const { startArrow: startArrowCfg, endArrow: endArrowCfg } = edgeCfg as EdgeCfg;
+
+  const startArrow = getArrowCfg(startArrowCfg, cfg);
+  const endArrow = getArrowCfg(endArrowCfg, cfg);
+
+  return {
+    startArrow,
+    endArrow,
+    path,
+    line2StartPoint,
+    endY,
+  };
+};
+
+const getPathText = (value: edgeType) => {
+  let text;
+  let subText;
+  if (value instanceof Object) {
+    text = value.text;
+    subText = value.subText;
+  } else {
+    text = value;
+  }
+  return { text, subText };
+};
 
 // 资金流向图
 export const registerFundFlowItems = () => {
@@ -46,7 +111,8 @@ export const registerFundFlowItems = () => {
           height += paddingArray[0];
           const createRowItems = (item: CardItems, contentWidth: number, startX: number): number[] => {
             const { text, icon } = item;
-            let textShape, iconShape;
+            let textShape;
+            let iconShape;
             if (icon) {
               iconShape = group!.addShape('image', {
                 attrs: {
@@ -96,6 +162,7 @@ export const registerFundFlowItems = () => {
 
         // collapse marker
         if (markerCfg) {
+          const { collapsed: stateCollapsed } = group?.get('item')?.getModel() ?? {};
           const { width: shapeWidth, height: shapeHeight } = shape.getBBox();
           const {
             show,
@@ -107,7 +174,7 @@ export const registerFundFlowItems = () => {
             {
               show,
               position,
-              collapsed,
+              collapsed: stateCollapsed ?? collapsed, // 优先使用内部状态
               style: markerStyle,
             },
             group,
@@ -124,78 +191,22 @@ export const registerFundFlowItems = () => {
        * @param  {Object} cfg 节点的配置项
        * @param  {Node} node 节点
        */
-      update(cfg, node) {
-        const group = node.getContainer();
-        const markerShape = group.get('children').find((item: Node) => item.get('type') === 'marker');
-        const collapsed = node.getModel().collapsed;
-        markerShape?.attr({
-          symbol: collapsed ? G6.Marker.expand : G6.Marker.collapse,
-        });
-      },
+      update: undefined,
     },
     'single-node',
   );
 
   // 注册边
   G6.registerEdge(
-    'fund-polyline',
+    'fund-line',
     {
       // @ts-ignore
       draw: function draw(cfg: ItemModelConfig | undefined = {}, group: IGroup | undefined) {
         const { edgeCfg, value } = cfg;
-        let text;
-        let subText;
-        if (value instanceof Object) {
-          text = value.text;
-          subText = value.subText;
-        } else {
-          text = value;
-        }
-        const startPoint = cfg.startPoint as IPoint;
-        const endPoint = cfg.endPoint as IPoint;
-        const { x: startX, y: startY } = startPoint;
-        const { x: endX, y: endY } = endPoint;
-        const Ydiff = endY - startY;
-        const slope = Ydiff !== 0 ? Math.min(500 / Math.abs(Ydiff), 20) : 0;
-        const cpOffset = slope > 15 ? 0 : 16;
-        const offset = Ydiff < 0 ? cpOffset : -cpOffset;
+        const { text, subText } = getPathText(value);
+        const { style: edgeStyle, label: labelCfg } = edgeCfg as EdgeCfg;
 
-        const line1EndPoint = {
-          x: startX + slope,
-          y: endY + offset,
-        };
-        const line2StartPoint = {
-          x: line1EndPoint.x + cpOffset,
-          y: endY,
-        };
-
-        // 控制点坐标
-        const controlPoint = {
-          x: ((line1EndPoint.x - startX) * (endY - startY)) / (line1EndPoint.y - startY) + startX,
-          y: endY,
-        };
-
-        let path = [
-          ['M', startX, startY],
-          ['L', line1EndPoint.x, line1EndPoint.y],
-          ['Q', controlPoint.x, controlPoint.y, line2StartPoint.x, line2StartPoint.y],
-          ['L', endX, endY],
-        ];
-
-        if (Math.abs(Ydiff) <= 5) {
-          path = [
-            ['M', startX, startY],
-            ['L', endX, endY],
-          ];
-        }
-        const {
-          style: edgeStyle,
-          startArrow: startArrowCfg,
-          endArrow: endArrowCfg,
-          label: labelCfg,
-        } = edgeCfg as EdgeCfg;
-        const startArrow = getArrowCfg(startArrowCfg, cfg);
-        const endArrow = getArrowCfg(endArrowCfg, cfg);
+        const { startArrow, endArrow, path, line2StartPoint, endY } = getPathInfo(cfg);
         const { style: labelStyle } = labelCfg ?? {};
         const line = group!.addShape('path', {
           attrs: {
@@ -225,7 +236,41 @@ export const registerFundFlowItems = () => {
 
         return line;
       },
-      update: undefined,
+      // @ts-ignore
+      update: (cfg: ItemModelConfig, edge) => {
+        const { edgeCfg, value } = cfg;
+        const { text, subText } = getPathText(value);
+        const group = edge.getContainer();
+        const getShape = (shapeName: string) => {
+          return group.get('children').find((item: Node) => item.get('name') === shapeName);
+        };
+        // const { startArrow, endArrow } = getPathInfo(cfg);
+        const { startArrow, endArrow, path, line2StartPoint, endY } = getPathInfo(cfg);
+        const { style: edgeStyle, label: labelCfg } = edgeCfg as EdgeCfg;
+        const { style: labelStyle } = labelCfg ?? {};
+
+        // path
+        const pathShape = getShape('path-shape');
+        pathShape?.attr({
+          path,
+          stroke: '#ccc',
+          startArrow,
+          endArrow,
+          ...(typeof edgeStyle === 'function' ? edgeStyle(cfg, group) : edgeStyle),
+        });
+        // path text
+        const texts = ['text', 'subText'];
+        texts.forEach((key: string) => {
+          const textShape = getShape(`line-text-${key}`);
+          textShape?.attr({
+            x: line2StartPoint.x,
+            y: key === 'text' ? endY - 4 : endY + 16,
+            text: key === 'text' ? text : subText,
+            ...defaultLabelStyle,
+            ...getStyle(labelStyle, cfg, group, key),
+          });
+        });
+      },
     },
     'single-edge',
   );

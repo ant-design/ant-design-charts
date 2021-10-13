@@ -15,6 +15,7 @@ import {
   IEdge,
   IPoint,
   ArrowConfig as G6ArrowConfig,
+  IShape,
 } from '@antv/g6';
 
 export interface GraphContainerConfig {
@@ -24,9 +25,6 @@ export interface GraphContainerConfig {
   loadingTemplate?: React.ReactElement;
   errorTemplate?: (e: Error) => React.ReactNode;
 }
-
-export type ChartRefConfig = ((chart: Graph) => void) | React.MutableRefObject<any | undefined>;
-
 export interface NodeConfig extends G6NodeConfig {
   value?: any;
 }
@@ -122,6 +120,19 @@ export interface BadgeCfg {
   style?: IShapeStyle;
 }
 
+export interface ToolbarCfg {
+  /** toolbar css 类名 */
+  className?: string;
+  /** toolbar 容器样式 */
+  style?: React.CSSProperties;
+  /** 是否展示 */
+  show?: boolean;
+  /** 缩放因子 */
+  zoomFactor?: number;
+  /** renderIcon，自定义渲染 */
+  renderIcon?: (zoomIn: () => void, zoomOut: () => void, toggleFullscreen: () => void) => React.ReactElement;
+}
+
 // 通用 card 配置
 export interface CardNodeCfg extends NodeCfg {
   title?: {
@@ -129,6 +140,8 @@ export interface CardNodeCfg extends NodeCfg {
     containerStyle?: IShapeStyle;
     /** title 样式 */
     style?: ILabelStyle;
+    /** 是否自动隐藏 */
+    autoEllipsis?: boolean;
   };
   items?: {
     /** items 容器样式 */
@@ -157,6 +170,8 @@ export interface CardNodeCfg extends NodeCfg {
   padding?: number | number[];
   /** 节点标记 */
   badge?: BadgeCfg;
+  /** 是否自动调节节点宽度 */
+  autoWidth?: boolean;
   /** 自定义节点 */
   customContent?: (item: CardItems, group: IGroup | undefined, cfg: CustomCfg) => number;
 }
@@ -191,11 +206,20 @@ export interface MarkerCfg {
   style?: ShapeStyle;
 }
 
+export interface TooltipCfg {
+  /** toolbar css 类名 */
+  className?: string;
+  /** toolbar 容器样式 */
+  style?: React.CSSProperties;
+  /** 是否展示 */
+  show?: boolean;
+  /** 自定义模板 */
+  customContent: (item?: NodeConfig) => React.ReactElement;
+}
+
 export type IMarkerCfg = MarkerCfg | ((cfg: CardNodeCfg, graph: IGraph | IGroup | undefined) => MarkerCfg);
 
-export type Datum = {
-  [key: string]: any;
-};
+export type Datum = Record<string, any>;
 
 // Graph 通用配置
 export interface CommonConfig extends GraphContainerConfig {
@@ -213,6 +237,8 @@ export interface CommonConfig extends GraphContainerConfig {
   nodeCfg?: NodeCfg;
   markerCfg: IMarkerCfg;
   minimapCfg?: MiniMapConfig;
+  toolbarCfg?: ToolbarCfg;
+  tooltipCfg?: TooltipCfg;
   behaviors?: string[];
   /** 是否开启动画 */
   animate?: boolean;
@@ -222,24 +248,22 @@ export interface CommonConfig extends GraphContainerConfig {
   onReady?: (graph: IGraph) => void;
 }
 
-export interface TreeGraphData
-  extends NodeData<
-    Array<{
-      title?: string;
-      items?: CardItems[];
-    }>
-  > {}
+export type TreeGraphData = NodeData<
+  {
+    title?: string;
+    items?: CardItems[];
+  }[]
+>;
 
 // 流向图节点数据
-export interface FlowGraphNodeData
-  extends NodeData<
-    Array<{
-      title?: string;
-      items?: CardItems[];
-    }>
-  > {}
+export type FlowGraphNodeData = NodeData<
+  {
+    title?: string;
+    items?: CardItems[];
+  }[]
+>;
 
-export interface FlowGraphEdgeData extends EdgeData<string> {}
+export type FlowGraphEdgeData = EdgeData<string>;
 
 // 流向图数据
 export interface FlowGraphDatum {
@@ -261,4 +285,5 @@ export {
   IEdge,
   Graph,
   IPoint,
+  IShape,
 };

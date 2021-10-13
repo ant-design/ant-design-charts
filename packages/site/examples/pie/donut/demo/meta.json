@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "基础环图",
         "en": "Basic donut plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*65WIQK5T4c8AAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "statistics.ts",
+      "filename": "statistics.js",
       "title": {
         "zh": "环图统计指标卡",
         "en": "Donut plot with statistics"

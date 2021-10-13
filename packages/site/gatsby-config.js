@@ -18,7 +18,7 @@ module.exports = {
     showAPIDoc: true, // 是否在demo页展示API文档
     isAntVSite: false,
     versions: {
-      [version]: 'https://charts.antv.vision',
+      [version]: 'https://charts.ant.design',
       '0.x': 'https://v0-charts.ant.design/',
     },
     navs: [
@@ -96,6 +96,14 @@ module.exports = {
         title: {
           zh: '',
           en: '',
+        },
+      },
+      {
+        slug: 'relation-graph',
+        icon: 'sankey',
+        title: {
+          zh: '关系图 ❤️',
+          en: 'Realtion Graph ❤️',
         },
       },
       {

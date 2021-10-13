@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "line.ts",
+      "filename": "line.js",
       "title": {
         "zh": "阶梯折线图",
         "en": "Step line plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*lOdVRrYL7UIAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "line-multiple.ts",
+      "filename": "line-multiple.js",
       "title": {
         "zh": "多阶梯折线图",
         "en": "Step line multiple plot"

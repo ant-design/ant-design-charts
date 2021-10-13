@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "分组玫瑰图",
         "en": "Basic grouped rose plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*EUesQ4eJ1fcAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "pattern.ts",
+      "filename": "pattern.js",
       "title": {
         "zh": "带贴图的分组玫瑰图",
         "en": "Grouped rose plot with pattern"

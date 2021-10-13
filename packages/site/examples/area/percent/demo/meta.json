@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "百分比堆叠面积图",
         "en": "Percent Stacked Area"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*vr8gQJiyNmQAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "pattern.ts",
+      "filename": "pattern.js",
       "title": {
         "zh": "带贴图百分比堆叠面积图",
         "en": "Percent Stacked Area with pattern"

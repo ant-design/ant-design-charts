@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "html-tooltip.ts",
+      "filename": "html-tooltip.js",
       "title": {
         "zh": "自定义 html tooltip",
         "en": "Customize html tooltip"

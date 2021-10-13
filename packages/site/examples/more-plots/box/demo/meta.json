@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "基础箱型图",
         "en": "Basic box plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*hL2WSrRh9K0AAAAAAAAAAABkARQnAQ"
     },
     {
-      "filename": "group.ts",
+      "filename": "group.js",
       "title": {
         "zh": "分组箱型图",
         "en": "Grouped box plot"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*bZZ8SLkfTZUAAAAAAAAAAABkARQnAQ"
     },
     {
-      "filename": "outliers.ts",
+      "filename": "outliers.js",
       "title": {
         "zh": "基础箱型图（有异常值）",
         "en": "Box plot with error"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cE6vR461omUAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "meta-alias.ts",
+      "filename": "meta-alias.js",
       "title": {
         "zh": "设置字段别名",
         "en": "Set alias of field"

@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "玫瑰图",
         "en": "Basic rose plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OgVJR7IIQiMAAAAAAAAAAABkARQnAQ"
     },
     {
-      "filename": "inner-label.ts",
+      "filename": "inner-label.js",
       "title": {
         "zh": "玫瑰图-内部图形标签",
         "en": "Rose plot - inner label"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*nCcjT7v3dbYAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "rose-state.ts",
+      "filename": "rose-state.js",
       "title": {
         "zh": "玫瑰图-设置条件状态",
         "en": "Rose plot - set condition state"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OgVJR7IIQiMAAAAAAAAAAABkARQnAQ"
     },
     {
-      "filename": "interaction.ts",
+      "filename": "interaction.js",
       "title": {
         "zh": "玫瑰图-元素交互",
         "en": "Rose interaction - with element action"
@@ -37,7 +37,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*OgVJR7IIQiMAAAAAAAAAAABkARQnAQ"
     },
     {
-      "filename": "rose-pattern.ts",
+      "filename": "rose-pattern.js",
       "title": {
         "zh": "带有贴图图案的玫瑰图",
         "en": "Rose with pattern"

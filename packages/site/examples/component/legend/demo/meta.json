@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/FpI3Qcbr11/tooltip.gif"
     },
     {
-      "filename": "legend-item-value.ts",
+      "filename": "legend-item-value.js",
       "title": {
         "zh": "展示图例项的数值",
         "en": "Display value of legend item"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/KL9rDFTlDt/64abafb6-8e4e-48ff-9a79-cb84883a3bef.png"
     },
     {
-      "filename": "legend-item-cfg.ts",
+      "filename": "legend-item-cfg.js",
       "title": {
         "zh": "图例项配置",
         "en": "Configuration of legend item"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/Bn1qWqQlkG/2d3c80e3-acde-4d13-afc5-83063f684ade.png"
     },
     {
-      "filename": "legend-focus.ts",
+      "filename": "legend-focus.js",
       "title": {
         "zh": "图例项默认不选中",
         "en": "Default unselected legend tem"
@@ -37,7 +37,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/KL9rDFTlDt/64abafb6-8e4e-48ff-9a79-cb84883a3bef.png"
     },
     {
-      "filename": "legend-flippage.ts",
+      "filename": "legend-flippage.js",
       "title": {
         "zh": "图例项分页设置",
         "en": "Legend flip-page configuration"

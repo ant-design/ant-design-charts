@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "hill-column.ts",
+      "filename": "hill-column.js",
       "title": {
         "zh": "自定义柱图",
         "en": "Custom hill column"

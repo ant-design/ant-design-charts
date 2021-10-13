@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "ring-progress.ts",
+      "filename": "ring-progress.js",
       "title": {
         "zh": "迷你进度环图",
         "en": "Basic tiny ring progress"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*NaLRSIdTx_YAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "ring-progress-style.ts",
+      "filename": "ring-progress-style.js",
       "title": {
         "zh": "迷你进度环图样式",
         "en": "Tiny ring progress style"

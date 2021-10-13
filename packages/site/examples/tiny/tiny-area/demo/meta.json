@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic-area.ts",
+      "filename": "basic-area.js",
       "title": {
         "zh": "基础迷你面积图",
         "en": "Basic area plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*1dr5RKX8gWIAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "pattern.ts",
+      "filename": "pattern.js",
       "title": {
         "zh": "带贴图的迷你面积图",
         "en": "Tiny area plot with pattern"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/DZ4mKJ9Y%240/aeae5577-f5fc-49e1-a4aa-eeb91d76610d.png"
     },
     {
-      "filename": "area-annotation.ts",
+      "filename": "area-annotation.js",
       "title": {
         "zh": "带辅助信息的迷你面积图",
         "en": "Tiny area plot with annotations"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*0zwrR62OaHQAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "filled-area.ts",
+      "filename": "filled-area.js",
       "title": {
         "zh": "平铺填充迷你面积图",
         "en": "Filled tiny area plot"
