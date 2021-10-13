@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "grouped-column-line.ts",
+      "filename": "grouped-column-line.js",
       "title": {
         "zh": "分组柱线图表",
         "en": "Grouped column line"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ydQDSpPe9B0AAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "custom-grouped-column-line.ts",
+      "filename": "custom-grouped-column-line.js",
       "title": {
         "zh": "分组柱线图表-自定义样式",
         "en": "Custom grouped column line"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Ogg7R6trDvgAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "pattern-with-callback.ts",
+      "filename": "pattern-with-callback.js",
       "title": {
         "zh": "带贴图的分组柱线图表",
         "en": "Grouped column line with pattern"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/SL3QbumEbL/6131d19d-56b8-42bb-9609-8d0640a77d4a.png"
     },
     {
-      "filename": "grouped-column-multi-line.ts",
+      "filename": "grouped-column-multi-line.js",
       "title": {
         "zh": "分组柱线图表-显示多折线",
         "en": "Grouped column multi line"

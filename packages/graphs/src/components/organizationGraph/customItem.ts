@@ -1,6 +1,6 @@
 import G6, { IGroup, LabelStyle } from '@antv/g6';
 import { defaultMargin, defaultLabelStyle, defaultCardStyle } from '../../constants';
-import { getStyle, getCssPadding, createMarker } from '../../util';
+import { getStyle, getCssPadding, createMarker } from '../../utils';
 import { CardNodeCfg, CardItems } from '../../interface';
 
 // 组织架构图

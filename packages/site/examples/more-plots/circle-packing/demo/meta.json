@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "Circle packing",
         "en": "Circle packing"
@@ -14,7 +14,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/AF1%24co0stf/7db34ba1-5adc-4fca-ab40-fdeb45195ffb.png"
     },
     {
-      "filename": "nest.ts",
+      "filename": "nest.js",
       "title": {
         "zh": "多层 circle packing",
         "en": "Nest circle packing"
@@ -23,7 +23,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/WllYxjrsTq/0bd24155-db51-4c5c-9f82-e77761227d4d.png"
     },
     {
-      "filename": "label.ts",
+      "filename": "label.js",
       "title": {
         "zh": "展示数据标签",
         "en": "Display label"
@@ -32,7 +32,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/o6c3MPudxC/c7ec18d6-ae65-46ea-857f-c499684c9fc5.png"
     },
     {
-      "filename": "custom-padding.ts",
+      "filename": "custom-padding.js",
       "title": {
         "zh": "自定义圆圈之间的 padding 距离",
         "en": "Custom padding between circles"

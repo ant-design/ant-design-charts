@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "仪表盘",
         "en": "Basic gauge plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/xDdGhZK84X/9746c5d8-4341-4c04-9528-87bcab55eedb.png"
     },
     {
-      "filename": "range-width.ts",
+      "filename": "range-width.js",
       "title": {
         "zh": "设置仪表盘的辅助圆弧宽度",
         "en": "Set range width of gauge"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/8NlQkXxCw8/gauge-range-width.png"
     },
     {
-      "filename": "single-gradient.ts",
+      "filename": "single-gradient.js",
       "title": {
         "zh": "仪表盘(单色渐变)",
         "en": "Gradient gauge plot"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/pe4K9%26vl6Y/f79762f9-7ff4-4e6d-a11d-bf79be45d83f.png"
     },
     {
-      "filename": "custom-color.ts",
+      "filename": "custom-color.js",
       "title": {
         "zh": "仪表盘(多色)",
         "en": "Gauge plot with custom color"
@@ -37,7 +37,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/Uev7Dpt5C5/4a829ac9-2fb3-4ac8-8a5d-f17ad4483518.png"
     },
     {
-      "filename": "complex.ts",
+      "filename": "complex.js",
       "title": {
         "zh": "仪表盘(渐变色)",
         "en": "Multiple gradient gauge plot"
@@ -45,7 +45,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*LVeFSYBPDBAAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "meter-gauge.ts",
+      "filename": "meter-gauge.js",
       "title": {
         "zh": "米轨仪表盘",
         "en": "Meter gauge plot"
@@ -53,7 +53,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/hJeVJVaTpf/6aea13fd-6a5a-4a2b-b612-5c3ceb8a280b.png"
     },
     {
-      "filename": "custom-meter-step.ts",
+      "filename": "custom-meter-step.js",
       "title": {
         "zh": "米轨仪表盘(自定义步数和大小)",
         "en": "Meter gauge plot (custom steps and stepRatio)"
@@ -61,7 +61,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/wqWYdQwQlc/demo1.gif"
     },
     {
-      "filename": "custom-indicator.ts",
+      "filename": "custom-indicator.js",
       "title": {
         "zh": "自定义仪表盘指示器",
         "en": "Custom gauge indicator"
@@ -70,7 +70,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/DUTCv9MXHO/71a294f0-99ed-4c41-9592-83add57871bc.png"
     },
     {
-      "filename": "custom-indicator2.ts",
+      "filename": "custom-indicator2.js",
       "title": {
         "zh": "自定义仪表盘指示器",
         "en": "Custom gauge indicator"
@@ -79,7 +79,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/%26tVjT99wV1/6dae1f99-b160-4c6d-9769-b0972d02fd19.png"
     },
     {
-      "filename": "simple-indicator.ts",
+      "filename": "simple-indicator.js",
       "title": {
         "zh": "简易仪表盘指示器",
         "en": "Custom simple gauge indicator"

@@ -1,0 +1,32 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "辐射树图",
+        "en": "Basic"
+      },
+      "screenshot": ""
+    },
+    {
+      "filename": "layout.js",
+      "title": {
+        "zh": "辐射树图-调整布局",
+        "en": "Layout"
+      },
+      "screenshot": ""
+    },
+    {
+      "filename": "style.js",
+      "title": {
+        "zh": "辐射树图-格式化设置",
+        "en": "Style"
+      },
+      "screenshot": ""
+    }
+  ]
+}

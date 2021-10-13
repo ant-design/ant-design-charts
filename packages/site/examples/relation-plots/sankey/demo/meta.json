@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "alipay.ts",
+      "filename": "alipay.js",
       "title": {
         "zh": "支付宝流量桑基图",
         "en": "Alipay sankey"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*bLulSLk-VskAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "set-state.ts",
+      "filename": "set-state.js",
       "title": {
         "zh": "桑基图状态交互",
         "en": "Sankey with state"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/rAuJKL%24Y6n/7a301a5e-4864-44f3-acb7-ebefb9c2402b.png"
     },
     {
-      "filename": "energy.ts",
+      "filename": "energy.js",
       "title": {
         "zh": "能量关系桑基图",
         "en": "Energy sankey"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W-V0QYiLLbgAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "draggable.ts",
+      "filename": "draggable.js",
       "title": {
         "zh": "可拖拽节点桑基图",
         "en": "Draggable sankey"

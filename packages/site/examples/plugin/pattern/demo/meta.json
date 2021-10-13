@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "pie-pattern.ts",
+      "filename": "pie-pattern.js",
       "title": {
         "zh": "带贴图图案的饼图",
         "en": "Pie plot with pattern"
@@ -14,7 +14,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/cACfJO99IO/32b38815-8427-4111-a0f0-34208aa65dd8.png"
     },
     {
-      "filename": "legend-marker-with-pattern.ts",
+      "filename": "legend-marker-with-pattern.js",
       "title": {
         "zh": "图例 marker 设置贴图图案",
         "en": "Custom legend marker with pattern"
@@ -23,7 +23,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/N%26xo4t7zRW/79c6bdf8-0cc6-49b7-94a2-f462b9f825bc.png"
     },
     {
-      "filename": "group-column-pattern.ts",
+      "filename": "group-column-pattern.js",
       "title": {
         "zh": "带贴图图案的分组柱状图",
         "en": "Grouped column plot with pattern"
@@ -32,7 +32,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/wlurjHqyu%24/4b21f53e-7186-42c8-8f57-6f32c91a09ba.png"
     },
     {
-      "filename": "bar-pattern.ts",
+      "filename": "bar-pattern.js",
       "title": {
         "zh": "带贴图图案的条形图",
         "en": "Bar plot with pattern"
@@ -41,7 +41,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/APiY4THavu/93d5749b-1e0d-4118-b04f-4e928a7eb144.png"
     },
     {
-      "filename": "stack-bar-pattern.ts",
+      "filename": "stack-bar-pattern.js",
       "title": {
         "zh": "带贴图图案的堆叠图",
         "en": "Stack-bar plot with pattern"
@@ -50,7 +50,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/LGFxwRRwZl/d11e9835-a520-4a4c-9893-30b6a6ebb3c1.png"
     },
     {
-      "filename": "donut-pattern.ts",
+      "filename": "donut-pattern.js",
       "title": {
         "zh": "带贴图图案的环形图",
         "en": "Donut with pattern"
@@ -59,7 +59,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/spgIo%26zAzG/6562dc40-2ac6-4c8a-b433-88e41e20621a.png"
     },
     {
-      "filename": "area-pattern.ts",
+      "filename": "area-pattern.js",
       "title": {
         "zh": "带贴图图案的面积图",
         "en": "Area with pattern"
@@ -68,7 +68,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/msiCPIX%243T/16b69b77-6a87-42e0-9e8c-9767d6b9df79.png"
     },
     {
-      "filename": "stacked-group-column-pattern.ts",
+      "filename": "stacked-group-column-pattern.js",
       "title": {
         "zh": "带贴图图案的堆叠分组柱状图",
         "en": "Stacked grouped column plot with pattern"
@@ -77,7 +77,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/1Ei8A%24VtRI/a9f53248-bdb4-4bc4-a567-3cd0d76e2a26.png"
     },
     {
-      "filename": "heatmap-pattern.ts",
+      "filename": "heatmap-pattern.js",
       "title": {
         "zh": "带贴图图案的热力图",
         "en": "Heatmap with pattern"
@@ -86,7 +86,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/0zXfW5rjOu/e442fed3-047c-4f34-9536-8efe2e60a92f.png"
     },
     {
-      "filename": "heatmap-cookie-pattern.ts",
+      "filename": "heatmap-cookie-pattern.js",
       "title": {
         "zh": "带贴图图案的热力图",
         "en": "Heatmap with pattern (cookie)"
@@ -95,7 +95,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/vR9mVPFTmx/7b2e0aac-cee0-428b-bca3-c7082bb2b76f.png"
     },
     {
-      "filename": "liquid-pattern.ts",
+      "filename": "liquid-pattern.js",
       "title": {
         "zh": "带贴图图案的水波图",
         "en": "Liquid with pattern"

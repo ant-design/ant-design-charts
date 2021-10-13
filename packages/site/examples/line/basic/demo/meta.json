@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "line.ts",
+      "filename": "line.js",
       "title": {
         "zh": "基础折线图",
         "en": "Basic line plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/aiERL4ey%24U/08d95f7b-46cb-4bfd-89b2-be36343d44a1.png"
     },
     {
-      "filename": "spline.ts",
+      "filename": "spline.js",
       "title": {
         "zh": "基础曲线图",
         "en": "Basic spline plot"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*DRzUQ4UkxjMAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "line-point-style.ts",
+      "filename": "line-point-style.js",
       "title": {
         "zh": "配置折线数据点样式",
         "en": "Set style of line plot point"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*VN5SQYsPOaIAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "line-slider.ts",
+      "filename": "line-slider.js",
       "title": {
         "zh": "带缩略轴的折线",
         "en": "Line plot with slider"
@@ -37,7 +37,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*r8MPQ4n9CIQAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "line-with-data-marker.ts",
+      "filename": "line-with-data-marker.js",
       "title": {
         "zh": "带标注点的折线图",
         "en": "Line plot with dataMarker"
@@ -45,7 +45,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/7jMv8M%26Dlh/dongtaigengxinzhexiantushuju.gif"
     },
     {
-      "filename": "line-annotation.ts",
+      "filename": "line-annotation.js",
       "title": {
         "zh": "条件样式折线图",
         "en": "Line plot with regionFilter"
@@ -53,7 +53,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*7V6nSpj64uYAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "custom-marker.ts",
+      "filename": "custom-marker.js",
       "title": {
         "zh": "自定义折线图 marker 与交互",
         "en": "Custom marker and interaction of line plot"

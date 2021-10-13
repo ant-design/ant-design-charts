@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic-column.ts",
+      "filename": "basic-column.js",
       "title": {
         "zh": "基础迷你柱形图",
         "en": "Tiny column plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*tLNqQpXbZWgAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "tiny-column-pattern.ts",
+      "filename": "tiny-column-pattern.js",
       "title": {
         "zh": "带贴图迷你柱形图",
         "en": "Tiny column plot with pattern"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*tLNqQpXbZWgAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "column-annotation.ts",
+      "filename": "column-annotation.js",
       "title": {
         "zh": "带辅助线的迷你柱形图",
         "en": "Tiny column plot with annotation"

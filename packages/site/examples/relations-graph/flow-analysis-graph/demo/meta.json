@@ -1,0 +1,56 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "来源去向图",
+        "en": "Basic"
+      },
+      "screenshot": ""
+    },
+    {
+      "filename": "layout.js",
+      "title": {
+        "zh": "来源去向图-调整布局",
+        "en": "Layout"
+      },
+      "screenshot": ""
+    },
+    {
+      "filename": "line-style.js",
+      "title": {
+        "zh": "来源去向图-边样式",
+        "en": "Line style"
+      },
+      "screenshot": ""
+    },
+    {
+      "filename": "state.js",
+      "title": {
+        "zh": "来源去向图-状态",
+        "en": "State"
+      },
+      "screenshot": ""
+    },
+    {
+      "filename": "type.js",
+      "title": {
+        "zh": "来源去向图-节点类型",
+        "en": "Node type"
+      },
+      "screenshot": ""
+    },
+    {
+      "filename": "custom.js",
+      "title": {
+        "zh": "来源去向图-自定义节点",
+        "en": "Custom node"
+      },
+      "screenshot": ""
+    }
+  ]
+}

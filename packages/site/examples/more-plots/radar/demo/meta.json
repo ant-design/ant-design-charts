@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "基础雷达图",
         "en": "Basic radar plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W-b2QoNhip0AAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "line.ts",
+      "filename": "line.js",
       "title": {
         "zh": "基础雷达图",
         "en": "Radar plot"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*exgfQbvqKlMAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "line-grid.ts",
+      "filename": "line-grid.js",
       "title": {
         "zh": "基础雷达图(带网格)",
         "en": "Radar plot (with grid)"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*E70qQpBJ2kMAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "line-alternate-grid.ts",
+      "filename": "line-alternate-grid.js",
       "title": {
         "zh": "基础雷达图(带底色)",
         "en": "Basic radar plot (with alternate grid)"
@@ -37,7 +37,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*gexzT7Y8X0oAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "area.ts",
+      "filename": "area.js",
       "title": {
         "zh": "雷达图(面)",
         "en": "Area radar plot"
@@ -45,7 +45,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*O0wxQawDULkAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "area-grid.ts",
+      "filename": "area-grid.js",
       "title": {
         "zh": "雷达图(带网格)",
         "en": "Area radar plot (with grid)"
@@ -53,7 +53,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*AJOVQaiILQoAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "area-alternate-grid.ts",
+      "filename": "area-alternate-grid.js",
       "title": {
         "zh": "雷达图(面-带底色)",
         "en": "Area radar plot (with alternate grid)"

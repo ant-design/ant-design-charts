@@ -1,30 +1,20 @@
-import React, { useEffect } from 'react';
-import G6 from '@antv/g6';
-import ChartLoading from '../../util/createLoading';
+import React from 'react';
+import ChartLoading from '../../utils/createLoading';
 import ErrorBoundary from '../../errorBoundary';
-import useGraph from '../../hooks/useGraph';
+import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
 import { defaultStateStyles } from '../../constants';
-import {
-  getGraphSize,
-  processMinimap,
-  getGraphId,
-  renderGraph,
-  getArrowCfg,
-  getCommonConfig,
-  bindStateEvents,
-} from '../../util';
-import { registerOrganizationCardNode } from './customItem';
-import { IGroup, CommonConfig, ShapeCfg, Shape, NodeConfig, EdgeConfig, IGraph, NodeData } from '../../interface';
 
-export interface OrganizationGraphData
-  extends NodeData<
-    Array<{
-      name: string;
-      title?: string;
-      icon?: string;
-    }>
-  > {}
+import { registerOrganizationCardNode } from './customItem';
+import { IGroup, CommonConfig, ShapeCfg, Shape, NodeConfig, IGraph, NodeData } from '../../interface';
+
+export type OrganizationGraphData = NodeData<
+  {
+    name: string;
+    title?: string;
+    icon?: string;
+  }[]
+>;
 export interface OrganizationGraphConfig extends Omit<CommonConfig, 'data'> {
   data: OrganizationGraphData;
 }
@@ -103,117 +93,16 @@ const defaultProps = {
   autoFit: true,
   fitCenter: true,
   style: {
+    position: 'relative' as React.CSSProperties['position'],
     height: 'inherit',
+    backgroundColor: '#fff',
   },
 };
 
-const graphs: any = {};
 const OrganizationGraph: React.FC<OrganizationGraphConfig> = (props) => {
   const { uProps } = useProps(props, defaultProps);
-  const {
-    data,
-    className,
-    style,
-    width,
-    height,
-    animate,
-    behaviors,
-    nodeCfg,
-    layout,
-    minimapCfg,
-    edgeCfg,
-    markerCfg,
-    autoFit,
-    fitCenter,
-    onReady,
-    loading,
-    loadingTemplate,
-    errorTemplate,
-  } = uProps;
-  const { type: nodeType, size: nodeSize, anchorPoints: nodeAnchorPoints, nodeStateStyles } = nodeCfg ?? {};
-
-  const {
-    type: edgeType,
-    style: edgeStyle,
-    startArrow: startArrowCfg,
-    endArrow: endArrowCfg,
-    label: labelCfg,
-    edgeStateStyles,
-  } = edgeCfg ?? {};
-  const container = React.useRef(null);
-  const graph = React.useRef(null);
-  const graphId = getGraphId(graph as any);
-  useGraph(graphs[graphId], uProps, container);
-
-  useEffect(() => {
-    const graphSize = getGraphSize(width, height, container);
-    let graph = graphs[graphId];
-    if (!graph) {
-      graph = new G6.TreeGraph({
-        container: container.current as any,
-        width: graphSize[0],
-        height: graphSize[1],
-        animate,
-        modes: {
-          default: behaviors,
-        },
-        defaultNode: {
-          type: nodeType,
-          size: nodeSize,
-          anchorPoints: nodeAnchorPoints,
-          nodeCfg,
-        },
-        defaultEdge: {
-          type: edgeType,
-        },
-        nodeStateStyles,
-        edgeStateStyles,
-        layout,
-        fitView: autoFit,
-        fitCenter,
-      });
-
-      graphs[graphId] = graph;
-    }
-
-    // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
-    graph.node((node: NodeConfig) => {
-      node.markerCfg = markerCfg;
-      return {};
-    });
-
-    graph.edge((edge: EdgeConfig) => {
-      const startArrow = getArrowCfg(startArrowCfg, edge);
-      const endArrow = getArrowCfg(endArrowCfg, edge);
-      const { style, content } = labelCfg ?? {};
-      return {
-        label: getCommonConfig(content, edge, graph),
-        labelCfg: {
-          style: getCommonConfig(style, edge, graph),
-        },
-        style: {
-          stroke: '#ccc',
-          startArrow,
-          endArrow,
-          ...(typeof edgeStyle === 'function' ? edgeStyle(edge, graph) : edgeStyle),
-        },
-      };
-    });
-
-    processMinimap(minimapCfg, graph);
-    bindStateEvents(graph, uProps);
-    renderGraph(graph, data);
-    if (onReady) {
-      onReady(graph);
-    }
-
-    return () => {
-      if (graphs[graphId]) {
-        graphs[graphId].destroy();
-        delete graphs[graphId];
-      }
-    };
-  }, []);
+  const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
+  const { container } = useGraph('TreeGraph', rest, { name: 'OrganizationGraph' });
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>

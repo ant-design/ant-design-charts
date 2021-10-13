@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "分组条形图",
         "en": "Grouped bar plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/dfnmnp5KDb/4c47dfc9-534c-42b5-b25b-12219c854e0f.png"
     },
     {
-      "filename": "corner-radius.ts",
+      "filename": "corner-radius.js",
       "title": {
         "zh": "圆角条形图",
         "en": "Bar plot with corner-radius"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/vFQNz1dCaD/21d77486-a9a3-4287-bc49-24fc40ad4800.png"
     },
     {
-      "filename": "dodge-padding.ts",
+      "filename": "dodge-padding.js",
       "title": {
         "zh": "分组条形图像素级组内柱子间距",
         "en": "DodgePadding of grouped bar plot"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/pb4RmT767Q/953ed207-ec9b-4d0b-8f19-dadd7e016610.png"
     },
     {
-      "filename": "interval-padding.ts",
+      "filename": "interval-padding.js",
       "title": {
         "zh": "分组条形图像素级组间间距",
         "en": "IntervalPadding of grouped bar plot"

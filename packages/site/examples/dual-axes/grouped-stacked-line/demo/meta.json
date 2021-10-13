@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "stacked-grouped-column-line.ts",
+      "filename": "stacked-grouped-column-line.js",
       "title": {
         "zh": "堆叠分组柱状图-折线图",
         "en": "Stacked and Grouped column line"

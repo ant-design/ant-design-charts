@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "custom-label.ts",
+      "filename": "custom-label.js",
       "title": {
         "zh": "自定义数据标签",
         "en": "Custom Label"

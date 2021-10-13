@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "基础子弹图-水平方向",
         "en": "Basic bullet plot - horizontal"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Vk43S5pvUJcAAAAAAAAAAABkARQnAQ"
     },
     {
-      "filename": "layout.ts",
+      "filename": "layout.js",
       "title": {
         "zh": "基础子弹图-垂直方向",
         "en": "Basic bullet plot - vertical"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BSeHR45zAxEAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "color.ts",
+      "filename": "color.js",
       "title": {
         "zh": "基础子弹图-带多颜色范围区间",
         "en": "Bullet plot - Custom color"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dL-9TKrcJcEAAAAAAAAAAABkARQnAQ"
     },
     {
-      "filename": "stacked.ts",
+      "filename": "stacked.js",
       "title": {
         "zh": "堆叠子弹图",
         "en": "Stacked bullet plot"
@@ -37,7 +37,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/q1xifQK4No/825ecba3-04f3-4a01-9f6e-747d85d87fc0.png"
     },
     {
-      "filename": "grouped.ts",
+      "filename": "grouped.js",
       "title": {
         "zh": "分组子弹图",
         "en": "Grouped bullet plot"

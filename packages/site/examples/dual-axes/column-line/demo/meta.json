@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "column-line.ts",
+      "filename": "column-line.js",
       "title": {
         "zh": "柱线混合图表",
         "en": "Column line"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*M4ldTo75WeEAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "custom-column-line.ts",
+      "filename": "custom-column-line.js",
       "title": {
         "zh": "柱线混合图表-自定义样式",
         "en": "Custom column line"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*vTPGSLODwLEAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "range-column-line.ts",
+      "filename": "range-column-line.js",
       "title": {
         "zh": "柱线混合图表-区间柱",
         "en": "range-column-line"
@@ -29,7 +29,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MEdZR5UQzosAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "column-multi-line.ts",
+      "filename": "column-multi-line.js",
       "title": {
         "zh": "柱线混合图表-显示多折线",
         "en": "Column multi line"
@@ -37,7 +37,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*FfmvR5_sLAEAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "demo-more-1.ts",
+      "filename": "demo-more-1.js",
       "title": {
         "zh": "柱线混合图表-更多示例",
         "en": "Other column line"
@@ -45,7 +45,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*_-QESLpPhPcAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "slider-column-line.ts",
+      "filename": "slider-column-line.js",
       "title": {
         "zh": "柱线混合图表-滑块",
         "en": "Slider with column line"
@@ -53,7 +53,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/fxukGXuXfg/89ea37e5-e00d-4424-b75e-1aba3ff8b633.png"
     },
     {
-      "filename": "pattern.ts",
+      "filename": "pattern.js",
       "title": {
         "zh": "带贴图图案的柱线混合图表",
         "en": "column line with pattern"

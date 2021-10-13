@@ -13,6 +13,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     'no-console': 'error',
+    noImplicitAny: 0, // 允许 any
   },
   settings: {
     'import/parsers': {

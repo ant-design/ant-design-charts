@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "basic.ts",
+      "filename": "basic.js",
       "title": {
         "zh": "基础直方图",
         "en": "Basic histogram plot"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*cZELRpyp7N4AAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "binWidth.ts",
+      "filename": "binWidth.js",
       "title": {
         "zh": "直方图范围刻度",
         "en": "Bin histogram plot"
@@ -21,7 +21,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*WTP6S6bzkpsAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "stack.ts",
+      "filename": "stack.js",
       "title": {
         "zh": "层叠直方图",
         "en": "Stacked histogram plot"

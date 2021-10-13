@@ -1,11 +1,10 @@
 import G6 from '@antv/g6';
-import { isNumber, isFunction } from '@antv/util';
+import { isNumber, isObject, isString, clone } from '@antv/util';
 import {
   MiniMapConfig,
   CardNodeCfg,
   IArrowConfig,
   NodeData,
-  FlowGraphDatum,
   CommonConfig,
   IGraph,
   IG6GraphEvent,
@@ -17,11 +16,9 @@ import {
   IEdge,
   ModelConfig,
   MarkerCfg,
-  ChartRefConfig,
 } from '../interface';
-import { defaultMinimapCfg, defaultNodeSize, defaultCardStyle } from '../constants';
-import { FundFlowGraphConfig } from '../components/fundFlowGraph';
-import { FlowAnalysisGraphConfig } from '../components/flowAnalysisGraph';
+import { defaultMinimapCfg, defaultNodeSize, defaultCardStyle, prefix } from '../constants';
+import { DecompositionTreeGraphConfig } from '../components/decompositionTreeGraph';
 
 // 类型检测
 export const isType = (value: any, type: string): boolean => {
@@ -29,16 +26,20 @@ export const isType = (value: any, type: string): boolean => {
   return toString.call(value) === `[object ${type}]`;
 };
 
-export const clone = (source: Object) => {
-  if (!source) {
-    return source;
-  }
-  const target = {};
-  // eslint-disable-next-line guard-for-in
-  for (const k in source) {
-    target[k] = source[k];
-  }
-  return target;
+// console
+export const Console = {
+  log: (value: string) => {
+    // eslint-disable-next-line no-console
+    console.log(value);
+  },
+  warn: (value: string) => {
+    // eslint-disable-next-line no-console
+    console.warn(value);
+  },
+  error: (...args: any[]) => {
+    // eslint-disable-next-line no-console
+    console.error(...args);
+  },
 };
 
 export const getType = (n: Object) => {
@@ -67,55 +68,6 @@ export const deepClone = (source: Object | undefined) => {
   return target;
 };
 
-/**
- * 存在时返回路径值，不存在时返回 undefined
- */
-export const hasPath = (source: any, path: string[]) => {
-  let current = source;
-  for (let i = 0; i < path.length; i += 1) {
-    if (current?.[path[i]]) {
-      current = current[path[i]];
-    } else {
-      current = undefined;
-      break;
-    }
-  }
-  return current;
-};
-
-/**
- * 内部指定 params ，不考虑复杂情况
- */
-export const setPath = (source: object, path: string[], value: any) => {
-  if (!source) {
-    return source;
-  }
-  let o = source;
-  path.forEach((key: string, idx: number) => {
-    // 不是最后一个
-    if (idx < path.length - 1) {
-      o = o[key];
-    } else {
-      o[key] = value;
-    }
-  });
-  return source;
-};
-
-/**
- * 获取或者绑定图表实例
- */
-export const getChart = (chartRef: ChartRefConfig | undefined, chart: any) => {
-  if (!chartRef) {
-    return;
-  }
-  if (isFunction(chartRef)) {
-    chartRef(chart);
-  } else {
-    chartRef.current = chart;
-  }
-};
-
 export const getGraphSize = (
   width: number | undefined,
   height: number | undefined,
@@ -128,22 +80,73 @@ export const getGraphSize = (
     CANVAS_HEIGHT = container.current.offsetHeight || 500;
   }
   if ((!width && !CANVAS_WIDTH) || (!height && !CANVAS_HEIGHT)) {
-    console.warn('请为 Graph 指定 width 与 height！否则将使用默认值 500 * 500');
+    Console.warn('请为 Graph 指定 width 与 height！否则将使用默认值 500 * 500');
     return [500, 500];
   }
 
   return [width || CANVAS_WIDTH || 500, height || CANVAS_HEIGHT || 500];
 };
 
+type Datum = any;
+class EventData {
+  data: Datum;
+  constructor(data?: Datum) {
+    data && this.setData(data);
+  }
+  getData(): Datum {
+    return this.data;
+  }
+  setData(data: Datum) {
+    this.data = data;
+  }
+}
+
 // 展开&折叠事件
-export const bindDefaultEvents = (graph: IGraph) => {
-  const onClick = (e: IG6GraphEvent) => {
+export const bindDefaultEvents = (
+  graph: IGraph,
+  level?: number,
+  getChildren?: DecompositionTreeGraphConfig['nodeCfg']['getChildren'],
+) => {
+  const onClick = async (e: IG6GraphEvent) => {
     const item = e.item as INode;
     if (e.target.get('name') === 'collapse-icon') {
-      graph.updateItem(item, {
-        collapsed: !item.getModel().collapsed,
-      });
-      graph.layout();
+      const { collapsed, g_currentPath, children = [], g_parentId, g_level, id } = item.getModel();
+      let appendChildren =
+        level &&
+        !(children as Array<Datum>).length &&
+        getChildrenData(graph.get('eventData').getData(), g_currentPath as string);
+
+      if (getChildren && !(children as Array<Datum>)?.length && !appendChildren?.length) {
+        createLoading();
+        let appendChildrenData = await getChildren(item.getModel() as NodeConfig);
+        if (appendChildrenData) {
+          appendChildrenData = appendChildrenData.map((t, index) => {
+            return {
+              [`${prefix}_level`]: (g_level as number) + 1,
+              [`${prefix}_parentId`]: `${g_parentId}-${id}`,
+              [`${prefix}_currentPath`]: `${g_currentPath}-${index}`,
+              ...t,
+            };
+          });
+          setLevelData(graph, appendChildrenData, g_currentPath as string);
+        }
+        appendChildren = appendChildrenData;
+        closeLoading();
+      }
+
+      if (appendChildren?.length > 0) {
+        const currentData = setParentChildren(graph.get('data'), g_currentPath as string, appendChildren);
+        graph.changeData(currentData);
+        if (graph.get('fitCenter')) {
+          graph.fitCenter();
+          graph.stopAnimate(); // 二次布局使用动画效果较差
+        }
+      } else {
+        graph.updateItem(item, {
+          collapsed: !collapsed,
+        });
+        graph.layout();
+      }
     }
   };
   graph.on('node:click', (e: IG6GraphEvent) => {
@@ -154,23 +157,43 @@ export const bindDefaultEvents = (graph: IGraph) => {
   });
 };
 
-export const renderGraph = (graph: IGraph, data: any) => {
-  const originData = deepClone(data);
+export const renderGraph = (graph: IGraph, data: any, level?: number) => {
+  let originData = deepClone(data);
+  let tagData = originData;
+  if (level) {
+    tagData = setTag(data);
+    originData = getLevelData(tagData, level);
+  }
   graph.data(originData);
+  graph.set('eventData', new EventData(tagData));
   graph.render();
   // 关闭局部刷新，各种 bug
   graph.get('canvas').set('localRefresh', false);
 };
 
+const grapgMinmapMaps = {};
 export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph) => {
-  if (!graph || graph.destroyed) return;
-  if (cfg.show) {
+  const graphId = graph?.get('id');
+  if (!graph || graph.destroyed) {
+    grapgMinmapMaps[graphId] = null;
+    return;
+  }
+  if ((!cfg || !cfg.show) && grapgMinmapMaps[graphId]) {
+    const [pluginMinimap] = graph.get('plugins');
+    if (pluginMinimap) {
+      graph.removePlugin(pluginMinimap);
+    }
+    grapgMinmapMaps[graphId] = null;
+  }
+  if (cfg.show && !grapgMinmapMaps[graphId]) {
     const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);
     const minimap = new G6.Minimap({
       ...curMminimapCfg,
+      id: graphId,
     });
 
     graph.addPlugin(minimap);
+    grapgMinmapMaps[graphId] = minimap;
     return minimap;
   }
   return null;
@@ -178,8 +201,8 @@ export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph
 
 const getUuid = () => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    let r = (Math.random() * 16) | 0,
-      v = c == 'x' ? r : (r & 0x3) | 0x8;
+    const r = (Math.random() * 16) | 0;
+    const v = c == 'x' ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
 };
@@ -189,7 +212,7 @@ export const getGraphId = (graph: { current?: string }) => {
   if (graph.current) {
     return graph.current;
   }
-  graph.current = `IndentedTreeGraph-${getUuid()}`;
+  graph.current = `graph-${getUuid()}`;
   return graph.current;
 };
 
@@ -223,15 +246,13 @@ export const getMarkerPosition = (direction: string = 'right', size: number[]) =
  * 流向图展开收起
  */
 type CollapsedNode = NodeData<unknown> & { collapsedLevel: number };
-export const bindSourceMapCollapseEvents = (
-  graph: IGraph,
-  fullData: FundFlowGraphConfig['data'] | FlowAnalysisGraphConfig['data'] | FlowGraphDatum | undefined,
-) => {
-  const controlData = deepClone(fullData);
+
+export const bindSourceMapCollapseEvents = (graph: IGraph) => {
   const onClick = (e: IG6GraphEvent) => {
+    const controlData: { edges: any[]; nodes: any[] } = graph.get('eventData').getData();
     if (e.target.get('name') === 'collapse-icon') {
       const item = e.item as INode;
-      let collapsed = item.getModel().collapsed;
+      let { collapsed } = item.getModel();
       if (!isType(collapsed, 'Boolean')) {
         // @ts-ignore
         collapsed = item._cfg.group
@@ -241,7 +262,7 @@ export const bindSourceMapCollapseEvents = (
       }
       // @ts-ignore
       const marker = e.item._cfg.group.getChildren().find((item) => item.cfg.type === 'marker');
-      const { edges: fullEdges = [] } = fullData ?? {};
+      const { edges: fullEdges = [] } = controlData ?? {};
       const { id: nodeId } = item.getModel();
       const targetNodeIds: string[] = [];
       const updateItems: INode[] = [];
@@ -386,11 +407,12 @@ export const bindStateEvents = (graph: IGraph, cfg?: Partial<CommonConfig> | und
   const setState = (item: INode | IEdge, name: string, status: boolean) => {
     status ? item.toFront() : item.toBack();
     const { endArrow, startArrow } = item.getModel().style ?? {};
+
     if (endArrow || startArrow) {
       if (!statusCache[item.getID()]) {
-        //@ts-ignore
+        // @ts-ignore
         const { fill: endArrowFill } = endArrow ?? {};
-        //@ts-ignore
+        // @ts-ignore
         const { fill: startArrowFill } = startArrow ?? {};
         const hoverStatus = item.getModel().style?.[name]?.stroke;
         statusCache[item.getID()] = [
@@ -572,4 +594,157 @@ export const createMarker = (cfg: MarkerCfg, group: IGroup | undefined, size: nu
       name: 'collapse-icon',
     });
   }
+};
+export const cloneBesidesImg = (obj: any) => {
+  const clonedObj = {};
+  Object.keys(obj).forEach((key1) => {
+    const obj2 = obj[key1];
+    if (isObject(obj2)) {
+      const clonedObj2 = {};
+      Object.keys(obj2).forEach((key2) => {
+        const v = obj2[key2];
+        if (key2 === 'img' && !isString(v)) return;
+        clonedObj2[key2] = clone(v);
+      });
+      clonedObj[key1] = clonedObj2;
+    } else {
+      clonedObj[key1] = clone(obj2);
+    }
+  });
+  return clonedObj;
+};
+
+export const setStyles = (container: HTMLDivElement, style: React.CSSProperties = {}) => {
+  const keys = Object.keys(style);
+  keys.forEach((key: string) => {
+    container.style[key] = style[key];
+  });
+};
+
+/**
+ * 对数据进行打标，加上 level 和  parentId
+ */
+export const setTag = (data: Datum, level = 0, parentId = '', path: string = '') => {
+  const { id, children = [] } = data;
+  return {
+    [`${prefix}_level`]: level,
+    [`${prefix}_parentId`]: parentId,
+    [`${prefix}_currentPath`]: path,
+    ...data,
+    children: children?.map((item: Datum, index: number) => {
+      return setTag(item, level + 1, parentId ? `${parentId}-${id}` : id, `${path}-${index}`);
+    }),
+  };
+};
+
+/**
+ * 根据 level 获取相关数据
+ */
+export const getLevelData = (data: Datum, level: number): Datum => {
+  const { children = [], g_level = 0 } = data;
+  if (level <= 0) {
+    return data;
+  }
+  return {
+    ...data,
+    children:
+      g_level + 1 < level
+        ? children?.map((item: Datum) => {
+            return getLevelData(item, level);
+          })
+        : [],
+  };
+};
+
+/**
+ * 挂载异步数据到全局 data
+ */
+export const setLevelData = (graph: IGraph, data: Datum, currentPath: string) => {
+  const currentData = graph.get('eventData').getData();
+  // 打标时已经做了编码，这直接取值即可
+  const path = currentPath.split('-');
+  path.shift(); // 根节点没有 path
+  let current = currentData;
+  path.forEach((childrenIndex: string) => {
+    current = current.children[Number(childrenIndex)];
+  });
+  current.children = data;
+};
+
+/**
+ * get children
+ * 获取相关路径下的一级节点
+ */
+export const getChildrenData = (data: Datum, currentPath: string): Datum => {
+  // 打标时已经做了编码，这直接取值即可
+  const path = currentPath.split('-');
+  path.shift(); // 根节点没有 path
+  let current = data;
+  path.forEach((childrenIndex: string) => {
+    current = current.children[Number(childrenIndex)];
+  });
+  if (!current?.children) {
+    return [];
+  }
+  return current.children.map((item: Datum) => ({
+    ...item,
+    children: [],
+  }));
+};
+
+/**
+ * 将查询到的节点挂载到当前图数据上
+ */
+export const setParentChildren = (parendData: Datum, currentPath: string, children: Datum[]): Datum => {
+  const path = currentPath.split('-');
+  path.shift();
+  let current = parendData;
+  path.forEach((childrenIndex: string) => {
+    current = current.children[Number(childrenIndex)];
+  });
+  current.children = children;
+  return parendData;
+};
+
+/** 超出省略 */
+export const setEllipsis = (text: string, fontSize: string | number = 12, contentWidth: number = 120) => {
+  const size = isNumber(fontSize) ? fontSize : Number(fontSize.replace('px', ''));
+  const maxWords = Math.floor(contentWidth / size);
+  if (text.length <= maxWords) {
+    return text;
+  }
+  return text.slice(0, maxWords - 1) + '...';
+};
+
+/** 开启加载动画， 不支持同时存在多个 */
+export const createLoading = () => {
+  const container = document.createElement('div');
+  container.className = `${prefix}-antd-loading`;
+  const styles = {
+    position: 'fixed' as 'fixed',
+    left: '0',
+    top: '0',
+    width: '100vw',
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'rgba(0,0,0, 0.25)',
+    color: '#fff',
+    fontSize: '16px',
+    zIndex: 999,
+  };
+  const span = document.createElement('span');
+  span.innerText = 'loading...';
+  setStyles(container, styles);
+  container.appendChild(span);
+  document.body.appendChild(container);
+};
+
+/** 关闭加载动画 */
+export const closeLoading = () => {
+  const hideContainer = document.getElementsByClassName(`${prefix}-antd-loading`);
+  Array.from(hideContainer).forEach((el) => {
+    document.body.removeChild(el);
+  });
 };

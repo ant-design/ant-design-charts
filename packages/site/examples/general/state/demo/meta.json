@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "custom-state-style.ts",
+      "filename": "custom-state-style.js",
       "title": {
         "zh": "自定义设置状态样式",
         "en": "Custom state style"
@@ -13,7 +13,7 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*7hXwSaRxeYwAAAAAAAAAAAAAARQnAQ"
     },
     {
-      "filename": "set-state.ts",
+      "filename": "set-state.js",
       "title": {
         "zh": "设置状态",
         "en": "Set state"

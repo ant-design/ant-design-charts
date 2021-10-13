@@ -53,12 +53,13 @@ const apiGenerator = (filePath, filename) => {
 // 非 ts | js 直接 copy
 const copyGenerator = (filePath, filename) => {
   const writePath = checkDir(filePath, filename);
-  fs.writeFileSync(
-    writePath,
-    fs.readFileSync(filePath, {
-      encoding: 'utf-8',
-    }),
-  );
+  const content = fs.readFileSync(filePath, {
+    encoding: 'utf-8',
+  });
+  if (filename === 'meta.json') {
+    content.replace(/\.ts/g, '.js');
+  }
+  fs.writeFileSync(writePath, content);
 };
 
 // ts | js
