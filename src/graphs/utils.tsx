@@ -96,6 +96,7 @@ export const bindDefaultEvents = (
         graph.changeData(currentData);
         if (graph.get('fitCenter')) {
           graph.fitCenter();
+          graph.stopAnimate(); // 二次布局使用动画效果较差
         }
       } else {
         graph.updateItem(item, {
@@ -685,7 +686,7 @@ export const setParentChildren = (
 };
 
 /** 超出省略 */
-export const useEllipsis = (
+export const setEllipsis = (
   text: string,
   fontSize: string | number = 12,
   contentWidth: number = 120,

@@ -172,6 +172,8 @@ export interface CardNodeCfg extends NodeCfg {
   padding?: number | number[];
   /** 节点标记 */
   badge?: BadgeCfg;
+  /** 是否自动调节节点宽度 */
+  autoWidth?: boolean;
   /** 自定义节点 */
   customContent?: (item: CardItems, group: IGroup | undefined, cfg: CustomCfg) => number;
 }

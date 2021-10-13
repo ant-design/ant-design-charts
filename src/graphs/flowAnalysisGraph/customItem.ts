@@ -8,7 +8,7 @@ import {
   getStatusCfg,
   createMarker,
   cloneBesidesImg,
-  useEllipsis,
+  setEllipsis,
 } from '../utils';
 import { CardNodeCfg, CardItems, IShape } from '../interface';
 
@@ -76,6 +76,7 @@ export const registerIndicatorCardNode = () => {
           style,
           padding = 0,
           badge,
+          autoWidth,
           customContent,
         } = nodeCfg as CardNodeCfg;
         const appendPadding = getStatusBBox(badge);
@@ -149,7 +150,10 @@ export const registerIndicatorCardNode = () => {
               x: paddingArray[3],
               y: paddingArray[0],
               textBaseline: 'top',
-              text: autoEllipsis ? useEllipsis(title, textStyle?.fontSize, contentWidth) : title,
+              text:
+                autoEllipsis && !autoWidth
+                  ? setEllipsis(title, textStyle?.fontSize, contentWidth)
+                  : title,
               ...textStyle,
             },
             name: 'title',
@@ -266,6 +270,16 @@ export const registerIndicatorCardNode = () => {
           ? (titleHeight || paddingArray[0]) + itemHeight + paddingArray[2]
           : titleHeight + itemHeight;
         shape?.attr('height', shapeHeight);
+        if (autoWidth) {
+          const maxX = Math.max(
+            shapeWidth,
+            ...(group?.getChildren()?.map((childrenShape) => {
+              return (childrenShape.getBBox().maxX || 0) + paddingArray[1];
+            }) as number[]),
+          );
+          titleShape?.attr('width', maxX);
+          shape?.attr('width', maxX);
+        }
 
         if (badge) {
           const statusConfig = getStatusCfg(badge, [size[0], shapeHeight]);

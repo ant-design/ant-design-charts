@@ -164,6 +164,12 @@ interface Data {
   };
 ```
 
+##### autoWidth
+
+<description>**optional** _Boolean_</description>
+
+是否动态调整节点宽度，设置为 true 时，title autoEllipsis 配置无效。
+
 ##### getChildren
 
 <description>**optional** _Function_</description>
