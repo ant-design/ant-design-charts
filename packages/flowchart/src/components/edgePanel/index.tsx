@@ -1,3 +1,4 @@
+import React from 'react';
 import { GraphConfig } from '@ali/xflow';
 import { LabelEdge } from './edges';
 export * from './constants';

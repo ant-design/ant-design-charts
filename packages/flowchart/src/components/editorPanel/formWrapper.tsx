@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import {
   NsGraphCmd,
   XFlowGraphCommands,
-  ContextServiceUtils,
+  MODELS,
   XFlowNodeCommands,
   XFlowEdgeCommands,
   NsEdgeCmd,
-  IControlProps,
+  NsJsonSchemaForm,
 } from '@ali/xflow';
 import useAsync from './useAsync';
 import { usePanelContext, FormItemWrapper } from '@ali/xflow';
@@ -18,17 +18,18 @@ export interface IFormWrapper {
   ) => React.ReactElement;
 }
 
-export const FormWrapper: React.FC<IControlProps & IFormWrapper & { type: string }> = (props) => {
+export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper & { type: string }> = (props) => {
   const { controlSchema, children, type = 'node' } = props;
-  const { commands, contextService } = usePanelContext();
+  const { commandService, modelService } = usePanelContext();
 
   const getSelectNode = useCallback(async () => {
-    const { data } = await ContextServiceUtils.useSelectedNode(contextService);
+    const { data } = await MODELS.SELECTED_NODE.useValue(modelService);
     return data as object;
   }, [props]);
 
   const getSelectEdge = useCallback(async () => {
-    const { cell, data } = await ContextServiceUtils.useSelectedCell(contextService);
+    const cell = await MODELS.SELECTED_CELL.useValue(modelService);
+    const data = cell.getData();
     return {
       id: cell.id,
       ...(data as object),
@@ -38,7 +39,7 @@ export const FormWrapper: React.FC<IControlProps & IFormWrapper & { type: string
   const { data, loading } = useAsync(type === 'edge' ? getSelectEdge : getSelectNode);
 
   React.useEffect(() => {
-    commands.executeCommand(XFlowGraphCommands.SAVE_GRAPH_DATA.id, {
+    commandService.executeCommand(XFlowGraphCommands.SAVE_GRAPH_DATA.id, {
       saveGraphDataService: async (meta, graph) => {
         return { err: null, data: graph, meta };
       },
@@ -47,7 +48,7 @@ export const FormWrapper: React.FC<IControlProps & IFormWrapper & { type: string
 
   const updateNode = async (value: object) => {
     const currentNodeData = await getSelectNode();
-    commands.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+    commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
       nodeConfig: {
         ...currentNodeData,
         ...value,
@@ -57,8 +58,7 @@ export const FormWrapper: React.FC<IControlProps & IFormWrapper & { type: string
 
   const updateEdge = async (value: object) => {
     const currentEdgeData = await getSelectEdge();
-
-    commands.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
+    commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
       edgeConfig: {
         ...currentEdgeData,
         ...value,

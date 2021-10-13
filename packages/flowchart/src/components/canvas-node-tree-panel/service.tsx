@@ -1,8 +1,7 @@
 import React from 'react';
 import uniqBy from 'lodash/uniqBy';
 import cloneDeep from 'lodash/cloneDeep';
-import { Disposable, ContextServiceConstant, useContextAsState, createPromiseValue } from '@ali/xflow';
-import { usePanelContext } from '@ali/xflow';
+import { createComponentModel, Disposable, MODELS, useXFlowContext } from '@ali/xflow';
 import { IProps, ITreeNode } from './interface';
 import { TREE_ROOT_ID } from './constants';
 // import { NsTreePanelData} from '@ali/xflow/es/canvas-node-tree-panel/service'
@@ -20,37 +19,43 @@ export namespace NsTreePanelData {
 
 export const useTreePanelData = (props: IProps) => {
   const { treeDataService, searchService } = props;
-  const { contextService } = usePanelContext();
+  const { modelService } = useXFlowContext();
+
+  /** 使用model */
+  const [state, setState, panelModel] = createComponentModel<NsTreePanelData.IState>({
+    treeData: [],
+    searchList: [],
+    treeNodeList: [],
+    expandedKeys: [],
+    defaultExpandAll: false,
+    keyword: '',
+  });
+
+  /** 注册成为全局状态，方便其他组件联动 */
   React.useEffect(() => {
-    if (contextService.hasContext(NsTreePanelData.id)) {
+    if (modelService.findDeferredModel(NsTreePanelData.id)) {
       return;
     }
 
-    /** 注册成为全局状态，方便其他组件联动 */
-    contextService.registerContext<NsTreePanelData.IState>({
+    modelService.registerModel<NsTreePanelData.IState>({
       id: NsTreePanelData.id,
-      initialValue: {
-        treeData: [],
-        searchList: [],
-        treeNodeList: [],
-        expandedKeys: [],
-        defaultExpandAll: false,
-        keyword: '',
-      },
-      createContext: async (onCtxChange, useContext, self) => {
-        const graphMetaModel = await useContext(ContextServiceConstant.GRAPH_META.id);
-        const fetch = async (meta) => {
-          const listData = await treeDataService(meta, contextService);
+      modelFactory: () => panelModel,
+      watchChange: async (self) => {
+        const graphMetaModel = await MODELS.GRAPH_META.getModel(modelService); //useContext(MODELS.GRAPH_META.id)
+        const fetch = async (meta: MODELS.GRAPH_META.IState) => {
+          const listData = await treeDataService(meta, modelService);
           const { treeData, rootNodes } = NodeList2Tree(listData);
-          const currentState = await createPromiseValue<NsTreePanelData.IState>(self);
+          const currentState = await self.getValidValue();
+          // 设置默认展开的keys
           const expandedKeys =
             currentState.expandedKeys.length > 0 ? currentState.expandedKeys : rootNodes.map((i) => i.id);
+
           return { listData, treeData, expandedKeys };
         };
 
-        const graphMetaDisposable = graphMetaModel.onDidChange(async (meta) => {
+        const graphMetaDisposable = graphMetaModel.watch(async (meta) => {
           const data = await fetch(meta);
-          onCtxChange({
+          self.setValue({
             treeNodeList: data.listData,
             treeData: data.treeData,
             expandedKeys: data.expandedKeys,
@@ -65,45 +70,41 @@ export const useTreePanelData = (props: IProps) => {
         });
       },
     });
+
+    /* eslint-disable-next-line  */
   }, []);
 
-  const [state, setState] = useContextAsState<NsTreePanelData.IState>(NsTreePanelData.id, contextService, {
-    keyword: '',
-    treeData: [],
-    treeNodeList: [],
-    expandedKeys: [],
-    defaultExpandAll: false,
-    searchList: [],
-  });
-
+  /** 折叠文件夹 */
   const onFolderExpand = React.useCallback(
     (expandedKeys: string[]) => {
-      setState((state) => ({ ...state, expandedKeys }));
+      debugger;
+      setState((modelState: { expandedKeys: string[] }) => {
+        modelState.expandedKeys = expandedKeys;
+      });
     },
     [setState],
   );
 
+  /** 搜索 */
   const onKeywordChange = React.useCallback(
     async (keyword: string) => {
       if (!searchService) {
-        return console.warn('searchService is not defined');
+        return;
       }
       if (keyword) {
         const list = await searchService(state.treeNodeList, keyword);
-        setState((state) => ({
-          ...state,
-          keyword,
-          searchList: list,
-        }));
+        setState((modelState) => {
+          modelState.keyword = keyword;
+          modelState.searchList = list;
+        });
       } else {
-        setState((state) => ({
-          ...state,
-          keyword: '',
-          searchList: [],
-        }));
+        setState((modelState) => {
+          modelState.keyword = '';
+          modelState.searchList = [];
+        });
       }
     },
-    [state, setState],
+    [searchService, state.treeNodeList, setState],
   );
 
   return {
@@ -124,7 +125,7 @@ export function NodeList2Tree(treeNodes: ITreeNode[] = []) {
         map.set(parentId, []);
       }
       const group = map.get(parentId);
-      group.push(node);
+      group?.push(node);
       return map;
     }, new Map<string, ITreeNode[]>());
     return groups;
@@ -132,13 +133,13 @@ export function NodeList2Tree(treeNodes: ITreeNode[] = []) {
 
   const groupMap = getGroupByIdMap(cloneDeep(treeNodes));
 
-  function iterator(nodes: ITreeNode[], groupMap: Map<string, ITreeNode[]>) {
+  function iterator(nodes: ITreeNode[], groupMapArgs: Map<string, ITreeNode[]>) {
     return nodes.map((node) => {
-      if (groupMap.has(node.id)) {
-        const children = groupMap.get(node.id);
+      if (groupMapArgs.has(node.id)) {
+        const children = groupMapArgs.get(node.id) || [];
         node.key = node.id;
         node.isDirectory = true;
-        node.children = iterator(children, groupMap) || [];
+        node.children = iterator(children, groupMapArgs) || [];
       } else {
         node.isLeaf = true;
       }

@@ -1,8 +1,8 @@
-import type { NsConfigFormPanel } from '@ali/xflow';
+import type { NsJsonSchemaForm } from '@ali/xflow';
 
-export const defaultFormSchemaService: NsConfigFormPanel.IFormSchamaService = async (args) => {
+export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = async (args) => {
   const { targetType } = args;
-  const nodeSchema: NsConfigFormPanel.ISchema = {
+  const nodeSchema: NsJsonSchemaForm.ISchema = {
     tabs: [
       {
         name: '基本信息',
@@ -12,6 +12,7 @@ export const defaultFormSchemaService: NsConfigFormPanel.IFormSchamaService = as
             controls: [
               {
                 label: '节点名',
+                name: 'node-service',
                 shape: 'node-service',
                 placeholder: '节点名称',
               },
@@ -21,7 +22,7 @@ export const defaultFormSchemaService: NsConfigFormPanel.IFormSchamaService = as
       },
     ],
   };
-  const edgeSchema: NsConfigFormPanel.ISchema = {
+  const edgeSchema: NsJsonSchemaForm.ISchema = {
     tabs: [
       {
         name: '基本信息',
@@ -31,6 +32,7 @@ export const defaultFormSchemaService: NsConfigFormPanel.IFormSchamaService = as
             controls: [
               {
                 label: '边',
+                name: 'edge-service',
                 shape: 'edge-service',
                 placeholder: '边名称',
               },
@@ -40,6 +42,7 @@ export const defaultFormSchemaService: NsConfigFormPanel.IFormSchamaService = as
       },
     ],
   };
+
   if (targetType === 'node') {
     return nodeSchema;
   }
@@ -49,5 +52,5 @@ export const defaultFormSchemaService: NsConfigFormPanel.IFormSchamaService = as
   }
   return {
     tabs: [],
-  };
+  } as NsJsonSchemaForm.ISchema;
 };

@@ -59,11 +59,11 @@ export const useGraphHook = createHookConfig((config) => {
     const edgeData = hooks.afterGraphInit.registerHook({
       name: 'call add edge to replace temp edge',
       handler: async (args) => {
-        const { commands, graph } = args;
+        const { commandService, graph } = args;
         graph.on(NsAddEdgeEvent.EVENT_NAME, (args: NsAddEdgeEvent.IArgs) => {
           const { edge, ...edgeConfig } = args;
 
-          commands.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, {
+          commandService.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, {
             edgeConfig: {
               ...edgeConfig,
               source: {
@@ -119,11 +119,6 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
     snapline: {
       enabled: true,
     },
-    // selecting: {
-    //   enabled: true,
-    //   rubberband: true,
-    //   showNodeSelectionBox: true,
-    // },
     connecting: {
       router: 'manhattan',
       connector: {

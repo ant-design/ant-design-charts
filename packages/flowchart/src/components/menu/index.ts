@@ -1,147 +1,94 @@
-import {
-  createCtxMenuConfig,
-  NsMenuItems,
-  NsNodeCmd,
-  NsEdgeCmd,
-  ICommandConfig,
-  IMenu,
-  IMenuItem,
-  MenuItemType,
-  IconStore,
-  XFlowNodeCommands,
-  XFlowEdgeCommands,
-  ContextServiceUtils,
-  NsGraph,
-} from '@ali/xflow';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Edge } from '@antv/x6';
+import type { NsNodeCmd, NsEdgeCmd, IMenuOptions, NsGraph } from '@ali/xflow';
+import { createCtxMenuConfig, MenuItemType } from '@ali/xflow';
+import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@ali/xflow';
+import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons';
 
 /** menuitem 配置 */
-export namespace NsCustomMenuItems {
+export namespace NsMenuItemConfig {
   /** 注册菜单依赖的icon */
   IconStore.set('DeleteOutlined', DeleteOutlined);
   IconStore.set('EditOutlined', EditOutlined);
+  IconStore.set('StopOutlined', StopOutlined);
 
-  export const DELETE_EDGE: IMenuItem = {
+  export const DELETE_EDGE: IMenuOptions = {
     id: XFlowEdgeCommands.DEL_EDGE.id,
-    type: MenuItemType.command,
-    command: XFlowEdgeCommands.DEL_EDGE.id,
     label: '删除边',
-    isVisible: true,
     iconName: 'DeleteOutlined',
-    cmdOptions: async (menuItem, contextService, cmds) => {
-      const ctx = await ContextServiceUtils.useContextMenuCell(contextService);
-      const cell = ctx.cell as Edge;
-      return {
-        args: {
-          edgeConfig: { ...cell.getData<NsGraph.IEdgeConfig>(), id: cell.id },
-        },
-      } as ICommandConfig<NsEdgeCmd.DelEdge.IArgs>;
-    },
-    useContext: async (ctx, setState) => {
-      const rxmodel = await ContextServiceUtils.useContextMenuModel(ctx);
-      const { type } = await rxmodel.getValidValue();
-      setState((state) => {
-        state.isEnabled = ['edge'].includes(type);
-      });
+    onClick: async ({ target, commandService }) => {
+      if (target.data) {
+        commandService.executeCommand<NsEdgeCmd.DelEdge.IArgs>(XFlowEdgeCommands.DEL_EDGE.id, {
+          edgeConfig: target.data as NsGraph.IEdgeConfig,
+        });
+      }
     },
   };
 
-  export const DELETE_NODE: IMenuItem = {
+  export const DELETE_NODE: IMenuOptions = {
     id: XFlowNodeCommands.DEL_NODE.id,
-    type: MenuItemType.command,
-    command: XFlowNodeCommands.DEL_NODE.id,
     label: '删除节点',
-    isVisible: true,
     iconName: 'DeleteOutlined',
-    /** cmdOptions 返回的是 command执行的入参 */
-    cmdOptions: async (menuItem, contextService, cmds) => {
-      const ctx = await ContextServiceUtils.useContextMenuCell(contextService);
-      return {
-        args: { nodeConfig: { id: ctx.cell.id } },
-      } as ICommandConfig<NsNodeCmd.AddNode.IArgs>;
-    },
-    useContext: async (ctx, setState) => {
-      const target = await ContextServiceUtils.useContextMenuCell(ctx);
-      setState((state) => {
-        state.isEnabled = ['node'].includes(target.type);
-      });
+    onClick: async ({ target, commandService }) => {
+      if (target.data && target?.data?.id) {
+        commandService.executeCommand<NsNodeCmd.DelNode.IArgs>(XFlowNodeCommands.DEL_NODE.id, {
+          nodeConfig: { id: target?.data?.id },
+        });
+      }
     },
   };
 
-  export const SEPARATOR: IMenuItem = {
+  export const EMPTY_MENU: IMenuOptions = {
+    id: 'EMPTY_MENU_ITEM',
+    label: '暂无可用',
+    isEnabled: false,
+    iconName: 'DeleteOutlined',
+  };
+
+  export const SEPARATOR: IMenuOptions = {
     id: 'separator',
-    type: MenuItemType.separator,
-    command: '',
-    label: '',
-    iconName: '',
-  };
-}
-
-export enum MenuEnum {
-  DEFAULT = 'DEFAULT_MENU',
-  GRAPH = 'GRAPH_MENU',
-  NODE = 'NODE_MENU',
-  EDGE = 'EDGE_MENU',
-}
-
-export namespace NsCutomMenu {
-  export const Default: IMenu = {
-    id: MenuEnum.DEFAULT,
-    items: [NsMenuItems.EMPTY],
-  };
-  export const NodeMenu: IMenu = {
-    id: MenuEnum.NODE,
-    items: [NsCustomMenuItems.DELETE_NODE],
-  };
-  export const EdgeMenu: IMenu = {
-    id: MenuEnum.EDGE,
-    items: [NsCustomMenuItems.DELETE_EDGE],
-  };
-  export const GraphMenu: IMenu = {
-    id: MenuEnum.GRAPH,
-    items: [NsMenuItems.EMPTY],
+    type: MenuItemType.Separator,
   };
 }
 
 export const useMenuConfig = createCtxMenuConfig((config) => {
-  config.setMenuIdParser((data) => {
-    if (!data) {
-      return NsCutomMenu.Default.id;
+  config.setMenuModelService(async (target, model) => {
+    if (!target) {
+      return;
     }
-    try {
-      const cell = data.cell;
-      if (cell) {
-        /** 节点菜单 */
-        if (cell.isNode()) {
-          /** 判断节点数据决定返回的menu id */
-          return NsCutomMenu.NodeMenu.id;
-        }
-        /** 边菜单 */
-        if (cell.isEdge()) {
-          return NsCutomMenu.EdgeMenu.id;
-        }
-      }
+    const { type } = target;
+
+    switch (type) {
+      /** 节点菜单 */
+      case 'node':
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [NsMenuItemConfig.DELETE_NODE],
+        });
+        break;
+      /** 边菜单 */
+      case 'edge':
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [NsMenuItemConfig.DELETE_EDGE],
+        });
+        break;
       /** 画布菜单 */
-      if (data.type === 'blank') {
-        return NsCutomMenu.GraphMenu.id;
-      }
+      case 'blank':
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [NsMenuItemConfig.EMPTY_MENU],
+        });
+        break;
       /** 默认菜单 */
-      return MenuEnum.DEFAULT;
-    } catch (error) {
-      return NsCutomMenu.Default.id;
+      default:
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [NsMenuItemConfig.EMPTY_MENU],
+        });
+        break;
     }
-  });
-  config.setMenuRegisterFunctions((registry) => {
-    /** 默认Menu */
-    registry.registerMenu(NsCutomMenu.Default);
-    /** Node Menu */
-    registry.registerMenu(NsCutomMenu.NodeMenu);
-    registry.registerMenuItem(NsCustomMenuItems.DELETE_NODE);
-    /** Edge Menu */
-    registry.registerMenu(NsCutomMenu.EdgeMenu);
-    registry.registerMenuItem(NsCustomMenuItems.DELETE_EDGE);
-    /** Graph Menu */
-    registry.registerMenu(NsCutomMenu.GraphMenu);
   });
 });

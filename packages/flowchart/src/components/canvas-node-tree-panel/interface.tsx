@@ -1,13 +1,7 @@
-import { Addon } from '@antv/x6';
-import {
-  IPosition,
-  NsGraph,
-  ContextRegistry,
-  ContextServiceConstant,
-  GraphCommandRegistry,
-  PanelConfig,
-} from '@ali/xflow';
-import React from 'react';
+import type { Addon } from '@antv/x6';
+import type { IPosition, NsGraph, IModelService, MODELS, IGraphCommandService } from '@ali/xflow-core';
+import type React from 'react';
+import type { Node as X6Node } from '@antv/x6';
 
 export interface IPanelProps {
   headerPosition: IPosition;
@@ -23,11 +17,9 @@ export interface INodeFactoryArgs {
   view: string;
   component: React.ReactNode;
 }
-
 export interface IProps extends Partial<IPanelProps> {
   show?: boolean;
   position?: IPosition;
-  config?: PanelConfig;
   style?: React.CSSProperties;
   prefixClz?: string;
   className?: string;
@@ -35,12 +27,13 @@ export interface IProps extends Partial<IPanelProps> {
   dndOptions?: Partial<Addon.Dnd.Options>;
   header?: React.ReactNode;
   footer?: React.ReactNode;
+  x6NodeFactory?: (args: INodeFactoryArgs) => X6Node;
   searchService?: ISearchService;
   treeDataService: ITreeDataService;
 }
 
 export interface IOnNodeDrop {
-  (nodeMeta: NsGraph.INodeConfig, commands: GraphCommandRegistry, contextService: ContextRegistry): Promise<void>;
+  (nodeMeta: NsGraph.INodeConfig, commandService: IGraphCommandService, modelService: IModelService): Promise<void>;
 }
 
 /** tree node model */
@@ -77,7 +70,7 @@ export interface ITreeNode {
 
 /** service: 获取tree数据 */
 export interface ITreeDataService {
-  (graphMeta: ContextServiceConstant.GRAPH_META.IState, ctx: ContextRegistry): Promise<ITreeNode[]>;
+  (graphMeta: MODELS.GRAPH_META.IState, modelService: IModelService): Promise<ITreeNode[]>;
 }
 
 /** service: 返回过滤后的数据 */
@@ -90,4 +83,16 @@ export interface IOnFolderExpand {
 }
 export interface IOnKeywordChange {
   (kwyword: string): void;
+}
+
+export namespace NsTreePanelData {
+  export const id = 'TREE_PANEL_DATA';
+  export interface IState {
+    treeNodeList: ITreeNode[];
+    treeData: ITreeNode[];
+    expandedKeys: string[];
+    defaultExpandAll: boolean;
+    keyword: string;
+    searchList: ITreeNode[];
+  }
 }

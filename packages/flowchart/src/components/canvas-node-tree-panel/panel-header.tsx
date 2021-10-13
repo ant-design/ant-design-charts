@@ -11,8 +11,8 @@ export interface IHeaderProps extends IProps {
 
 export const NodePanelHeader: React.FC<IHeaderProps> = (props) => {
   const { prefixClz, onKeywordChange } = props;
-  const { config } = usePanelContext();
-  const panelProps = config.getComponentProps<IProps>();
+  const { propsProxy } = usePanelContext<IProps>();
+  const panelProps = propsProxy.getValue();
 
   return (
     <React.Fragment>

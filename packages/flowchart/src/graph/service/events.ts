@@ -1,9 +1,9 @@
-import { XFlowNodeCommands, IContextService, IGraphCommandService, XFlowEdgeCommands } from '@ali/xflow';
+import { XFlowNodeCommands, IModelService, IGraphCommandService, XFlowEdgeCommands } from '@ali/xflow';
 
 /**
  * 节点移动时，实时更新位置信息
  */
-export const movedNode = (e: any, cmds: IGraphCommandService, ctx: IContextService) => {
+export const movedNode = (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
   const { node } = e;
   if (!node) {
     return;
@@ -19,7 +19,7 @@ export const movedNode = (e: any, cmds: IGraphCommandService, ctx: IContextServi
 /**
  * 修改节点大小
  */
-export const resizeNode = (e: any, cmds: IGraphCommandService, ctx: IContextService) => {
+export const resizeNode = (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
   const { node } = e;
   if (!node) {
     return;
@@ -44,8 +44,7 @@ export const changePortsVisible = (visible: boolean) => {
 };
 
 /** 高亮边 */
-export const setEdgeSelected = (e: any, cmds: IGraphCommandService, ctx: IContextService) => {
-  console.log(e);
+export const setEdgeSelected = (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
   const { edge } = e;
   if (!edge) {
     return;
@@ -54,12 +53,6 @@ export const setEdgeSelected = (e: any, cmds: IGraphCommandService, ctx: IContex
   cmds.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
     edgeConfig: {
       ...edge.data,
-      // attrs: {
-      //   line: {
-      //     ...edge.data?.attrs.line,
-      //     stroke: 'red',
-      //   },
-      // },
       attrs: {
         line: {
           stroke: '#1890ff',
