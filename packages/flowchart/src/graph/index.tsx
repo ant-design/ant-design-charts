@@ -15,10 +15,10 @@ import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
 import { setProps } from '../util';
+import { FlowchartProps } from '../interface';
+
 import AppContext from '../context';
 import { useGraphConfig, useGraphHook } from './service';
-
-import { FlowchartProps } from '../interface';
 
 import './index.less';
 

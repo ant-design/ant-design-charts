@@ -11,14 +11,15 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
     "experimentalDecorators": true,
     "strict": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "outDir": "dist",
-    "declaration": true
+    "declaration": true,
+    "noUnusedLocals": false,
+    "noImplicitAny": false
   },
   "exclude": [
     "node_modules",

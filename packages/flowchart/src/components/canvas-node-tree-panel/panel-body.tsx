@@ -1,3 +1,4 @@
+// #boyu
 import React from 'react';
 import { Empty, Popover } from 'antd';
 import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs } from './interface';
@@ -71,6 +72,9 @@ export const NodeTitle = (props: ITitleProps) => {
           destroyTooltipOnHide
           content={popoverContent}
           visible={isVisible}
+          style={{
+            color: 'red',
+          }}
           onVisibleChange={(val) => {
             setVisible(val);
           }}
