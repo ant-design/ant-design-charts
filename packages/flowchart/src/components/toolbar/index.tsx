@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToolbarPanel as XFlowToolbarPanel } from '@ali/xflow';
+import { CanvasToolbar as XFlowToolbarPanel } from '@ali/xflow';
 import { useToolbarConfig } from './util';
 import { FlowchartProps } from '../../interface';
 
@@ -12,7 +12,7 @@ export const ToolbarPanel: React.FC<FlowchartProps['toolbarPanelProps']> = (prop
     style,
   } = props;
 
-  const toolbarConfig = useToolbarConfig();
+  const toolbarConfig = useToolbarConfig(props);
   if (!show) {
     return null;
   }

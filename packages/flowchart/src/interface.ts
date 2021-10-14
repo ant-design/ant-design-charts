@@ -1,13 +1,14 @@
 import {
   GraphConfig,
-  GraphCommandRegistry,
-  ContextRegistry,
+  IGraphCommandService,
+  IModelService,
   NsGraph,
   IPosition,
   NsGraphConfig,
-  NsConfigFormPanel,
+  NsJsonSchemaForm,
   IToolbarLayout,
 } from '@ali/xflow';
+import { Cell } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
 
 export interface FlowchartContainerProps {
@@ -70,15 +71,14 @@ export type ScaleToolbarPanelProps = BaseProps;
 export type ContextMenuPanelProps = Pick<BaseProps, 'show'>;
 
 export interface DetailPanelProps extends BaseProps {
-  controlMapService?: (editorMap: NsConfigFormPanel.IControlMap) => NsConfigFormPanel.IControlMap;
-  formSchemaService?: Promise<
-    (args: {
-      values: Record<string, any>;
-      currentNode: NsGraph.INodeConfig | null;
-      contextService: ContextRegistry;
-      commands: GraphCommandRegistry;
-    }) => NsConfigFormPanel.ISchema
-  >;
+  controlMapService?: (editorMap: NsJsonSchemaForm.IControlMap) => NsJsonSchemaForm.IControlMap;
+  formSchemaService?: (args: {
+    cell: Cell;
+    targetType: NsJsonSchemaForm.TargetType;
+    targetData: NsJsonSchemaForm.TargetData;
+    modelService: IModelService;
+    commandService: IGraphCommandService;
+  }) => Promise<NsJsonSchemaForm.ISchema>;
   prefixClz?: string;
   header?: React.ReactNode;
   footer?: React.ReactNode;

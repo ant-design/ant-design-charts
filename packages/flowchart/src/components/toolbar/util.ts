@@ -1,19 +1,9 @@
-import { createToolbarConfig, uuidv4 } from '@ali/xflow';
-import {
-  XFlowNodeCommands,
-  XFlowGraphCommands,
-  ContextServiceConstant,
-  ContextServiceUtils,
-  NsGraph,
-  ICommandConfig,
-  IToolbarItemProps,
-  NsGraphCmd,
-  IconStore,
-} from '@ali/xflow';
+import { createToolbarConfig, IModelService, IToolbarItemOptions, NsGroupCmd, uuidv4 } from '@ali/xflow';
+import { XFlowNodeCommands, XFlowGraphCommands, MODELS, NsGraphCmd, NsNodeCmd, IconStore } from '@ali/xflow';
 
 import { getProps } from '../../util';
 import { CommandPool } from './constants';
-import { CommandItem } from '../../interface';
+import { CommandItem, FlowchartProps } from '../../interface';
 
 export namespace TOOLBAR_ITEMS {
   export const BACK_NODE = XFlowNodeCommands.BACK_NODE.id;
@@ -23,7 +13,123 @@ export namespace TOOLBAR_ITEMS {
   export const UNDO = `${XFlowGraphCommands.UNDO_CMD.id}`;
 }
 
-export const useToolbarConfig = createToolbarConfig((toolbarConfig) => {
+namespace NSToolbarConfig {
+  /** toolbar依赖的状态 */
+  export interface IToolbarState {
+    isNodeSelected: boolean;
+    isUndoable: boolean;
+    isRedoable: boolean;
+  }
+
+  export const getDependencies = async (modelService: IModelService) => {
+    return [
+      await MODELS.SELECTED_NODES.getModel(modelService),
+      await MODELS.GRAPH_ENABLE_MULTI_SELECT.getModel(modelService),
+    ];
+  };
+
+  /** toolbar依赖的状态 */
+  export const getToolbarState = async (modelService: IModelService) => {
+    // isMultiSelctionActive
+    const isUndoable = await MODELS.COMMAND_UNDOABLE.useValue(modelService);
+    const isRedoable = await MODELS.COMMAND_REDOABLE.useValue(modelService);
+    // isNodeSelected
+    const cells = await MODELS.SELECTED_NODES.useValue(modelService);
+    const isNodeSelected = cells.length > 0;
+    return {
+      isNodeSelected,
+      isUndoable,
+      isRedoable,
+    } as NSToolbarConfig.IToolbarState;
+  };
+
+  export const getToolbarItems = async (state: IToolbarState, getIconName: any) => {
+    const toolbarGroup: IToolbarItemOptions[] = [];
+
+    /** 保存数据 */
+    toolbarGroup.push({
+      ...getIconName(CommandPool.UNDO_CMD),
+      id: TOOLBAR_ITEMS.UNDO,
+      isEnabled: state.isUndoable,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphCmd.UndoCmd.IArgs>(XFlowGraphCommands.UNDO_CMD.id, {});
+      },
+    });
+    /** 保存数据 */
+    toolbarGroup.push({
+      ...getIconName(CommandPool.REDO_CMD),
+      id: TOOLBAR_ITEMS.REDO,
+      isEnabled: state.isRedoable,
+      onClick: async ({ commandService, modelService }) => {
+        const cell = await MODELS.SELECTED_NODE.useValue(modelService);
+        const nodeConfig = cell.getData();
+        commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(TOOLBAR_ITEMS.REDO, {
+          nodeConfig: nodeConfig,
+        });
+      },
+    });
+    /** 保存数据 */
+    toolbarGroup.push({
+      ...getIconName(CommandPool.SAVE_GRAPH_DATA),
+      id: TOOLBAR_ITEMS.SAVE,
+      onClick: async ({ commandService, modelService }) => {
+        commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(TOOLBAR_ITEMS.SAVE, {
+          saveGraphDataService: (meta, graphData) => {
+            const onSave = getProps('onSave');
+            if (onSave) {
+              return onSave(graphData);
+            }
+          },
+        });
+      },
+    });
+    /** FRONT_NODE */
+    toolbarGroup.push({
+      ...getIconName(CommandPool.FRONT_NODE),
+      id: TOOLBAR_ITEMS.FRONT_NODE,
+      isEnabled: state.isNodeSelected,
+      onClick: async ({ commandService, modelService }) => {
+        const node = await MODELS.SELECTED_NODE.useValue(modelService);
+        commandService.executeCommand<NsNodeCmd.FrontNode.IArgs>(TOOLBAR_ITEMS.FRONT_NODE, {
+          nodeId: node?.id,
+        });
+      },
+    });
+    /** BACK_NODE */
+    toolbarGroup.push({
+      ...getIconName(CommandPool.BACK_NODE),
+      id: TOOLBAR_ITEMS.BACK_NODE,
+      isEnabled: state.isNodeSelected,
+      onClick: async ({ commandService, modelService }) => {
+        const node = await MODELS.SELECTED_NODE.useValue(modelService);
+        commandService.executeCommand<NsNodeCmd.FrontNode.IArgs>(TOOLBAR_ITEMS.BACK_NODE, {
+          nodeId: node?.id,
+        });
+      },
+    });
+    /** BACK_NODE */
+    toolbarGroup.push({
+      ...getIconName(CommandPool.BACK_NODE),
+      id: TOOLBAR_ITEMS.BACK_NODE,
+      isEnabled: state.isNodeSelected,
+      onClick: async ({ commandService, modelService }) => {
+        commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(TOOLBAR_ITEMS.BACK_NODE, {
+          saveGraphDataService: (meta, graphData) => {
+            const onSave = getProps('onSave');
+            if (onSave) {
+              return onSave(graphData);
+            }
+          },
+        });
+      },
+    });
+
+    return [{ name: 'graphData', items: toolbarGroup }];
+  };
+}
+
+export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConfig, proxy) => {
+  const toolbarPanelProps = proxy.getValue()?.toolbarPanelProps || {};
   let {
     commands = [
       {
@@ -46,8 +152,8 @@ export const useToolbarConfig = createToolbarConfig((toolbarConfig) => {
         command: CommandPool.SAVE_GRAPH_DATA,
         text: '保存',
       },
-    ],
-  } = getProps('toolbarPanelProps') ?? {};
+    ] as CommandItem[],
+  } = toolbarPanelProps;
 
   const registerIcon = () => {
     commands = commands.map((item: CommandItem) => {
@@ -68,137 +174,27 @@ export const useToolbarConfig = createToolbarConfig((toolbarConfig) => {
 
   const getIconName = (commandName: string) => {
     if (!Object.values(CommandPool).includes(commandName)) {
-      console.warn(`unknown command: ${commandName}`);
+      // console.warn(`unknown command: ${commandName}`);
       return {};
     }
     return commands.find((item: CommandItem) => item.command === commandName);
   };
 
   /** 生产 toolbar item */
-  toolbarConfig.setToolbarItemRegisterFn((registry) => {
-    /** 撤销 */
-    registry.registerToolbarItem({
-      ...getIconName(CommandPool.UNDO_CMD),
-      id: TOOLBAR_ITEMS.UNDO,
-      command: TOOLBAR_ITEMS.UNDO,
-      cmdOptions: async () => ({} as ICommandConfig<NsGraphCmd.UndoCmd.IArgs>),
-      useContext: async (ctxService, setState: any) => {
-        const ctx = await ctxService.useContext<ContextServiceConstant.COMMAND_UNDOABLE.IState>(
-          ContextServiceConstant.COMMAND_UNDOABLE.id,
-        );
-        ctx.onDidChange((bool) => {
-          setState((state: IToolbarItemProps) => {
-            state.isEnabled = bool;
-          });
-        });
-      },
+  toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
+    const updateToolbarModel = async () => {
+      const state = await NSToolbarConfig.getToolbarState(modelService);
+      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconName);
+      toolbarModel.setValue((toolbar) => {
+        toolbar.mainGroups = toolbarItems;
+      });
+    };
+    const models = await NSToolbarConfig.getDependencies(modelService);
+    const subscriptions = models.map((model) => {
+      return model.watch(async () => {
+        updateToolbarModel();
+      });
     });
-
-    /** 重做 */
-    registry.registerToolbarItem({
-      ...getIconName(CommandPool.REDO_CMD),
-      id: TOOLBAR_ITEMS.REDO,
-      command: TOOLBAR_ITEMS.REDO,
-      cmdOptions: async () => ({} as ICommandConfig<NsGraphCmd.RedoCmd.IArgs>),
-      useContext: async (ctxService, setState: any) => {
-        const ctx = await ctxService.useContext<ContextServiceConstant.COMMAND_REDOABLE.IState>(
-          ContextServiceConstant.COMMAND_REDOABLE.id,
-        );
-        ctx.onDidChange((bool) => {
-          setState((state: IToolbarItemProps) => {
-            state.isEnabled = bool;
-          });
-        });
-      },
-    });
-
-    /** 保存数据 */
-    registry.registerToolbarItem({
-      ...getIconName(CommandPool.SAVE_GRAPH_DATA),
-      id: TOOLBAR_ITEMS.SAVE,
-      command: TOOLBAR_ITEMS.SAVE,
-      /** cmdOptions 返回的是 command执行的入参 */
-      cmdOptions: async (item, contextService) => {
-        return {
-          args: {
-            saveGraphDataService: (meta, graphData) => {
-              const onSave = getProps('onSave');
-              if (onSave) {
-                onSave(graphData);
-              }
-            },
-          },
-        } as ICommandConfig<NsGraphCmd.SaveGraphData.IArgs>;
-      },
-      useContext: async (ctxService, setState) => {
-        /** 有meta数据才显示可用 */
-        const ctx = await ctxService.useContext<ContextServiceConstant.GRAPH_META.IState>(
-          ContextServiceConstant.GRAPH_META.id,
-        );
-        const meta = await ctx.getValidValue();
-
-        if (meta.flowId) {
-          setState((state) => {
-            state.isEnabled = true;
-          });
-        }
-        ctx.onDidChange((data) => {
-          setState((state) => {
-            state.isEnabled = true;
-          });
-        });
-      },
-    });
-
-    /** 前置 */
-    registry.registerToolbarItem({
-      ...getIconName(CommandPool.FRONT_NODE),
-      id: TOOLBAR_ITEMS.FRONT_NODE,
-      command: TOOLBAR_ITEMS.FRONT_NODE,
-      cmdOptions: async (item, contextService) => {
-        const { data } = await ContextServiceUtils.useSelectedNode<NsGraph.INodeConfig>(contextService);
-        const nodeId = data?.id || '-1';
-        return {
-          args: {
-            nodeId,
-          },
-        };
-      },
-      useContext: async (ctxService, setState) => {
-        const ctx = await ctxService.useContext<ContextServiceConstant.SELECTED_NODES.IState>(
-          ContextServiceConstant.SELECTED_NODES.id,
-        );
-        ctx.onDidChange((nodes) => {
-          setState((state) => {
-            state.isEnabled = nodes.length > 0;
-          });
-        });
-      },
-    });
-
-    /** 后置 */
-    registry.registerToolbarItem({
-      ...getIconName(CommandPool.BACK_NODE),
-      id: TOOLBAR_ITEMS.BACK_NODE,
-      command: TOOLBAR_ITEMS.BACK_NODE,
-      cmdOptions: async (item, contextService) => {
-        const { data } = await ContextServiceUtils.useSelectedNode<NsGraph.INodeConfig>(contextService);
-        const nodeId = data?.id || '-1';
-        return {
-          args: {
-            nodeId,
-          },
-        };
-      },
-    });
-  });
-
-  // 动态设置 toolbar
-  toolbarConfig.setOptions({
-    mainGroups: [
-      {
-        items: commands.map((item: { command: string }) => `xflow:${item.command}`),
-      },
-    ],
+    toDispose.pushAll(subscriptions);
   });
 });

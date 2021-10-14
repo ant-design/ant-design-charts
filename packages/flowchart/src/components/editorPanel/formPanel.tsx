@@ -1,5 +1,5 @@
 import React from 'react';
-import { ConfigFormPanel as XFlowConfigFormPanel } from '@ali/xflow';
+import { JsonSchemaForm } from '@ali/xflow';
 import { defaultFormSchemaService } from './formSchemaService';
 import { defaultControlMapService } from './controlMapService';
 import { FlowchartProps } from '../../interface';
@@ -18,7 +18,7 @@ export const FormPanel: React.FC<FlowchartProps['detailPanelProps']> = (props) =
   }
 
   return (
-    <XFlowConfigFormPanel
+    <JsonSchemaForm
       targetType={['node', 'edge', 'canvas', 'group']}
       controlMapService={controlMapService}
       formSchemaService={formSchemaService}

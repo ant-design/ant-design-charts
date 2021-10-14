@@ -3,14 +3,14 @@ import { Empty, Popover } from 'antd';
 import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs } from './interface';
 import { Addon } from '@antv/x6';
 import {
-  ContextServiceConstant,
-  IContextService,
-  GraphCommandRegistry,
+  MODELS,
+  IModelService,
+  useModelAsync,
   IGraphConfig,
   NsGraph,
   getNodeReactComponent,
-  useContextAsState,
-  usePanelContext,
+  useXFlowContext,
+  IGraphCommandService,
 } from '@ali/xflow';
 import { NsTreePanelData } from './service';
 import { XFlowNode } from './node';
@@ -21,14 +21,15 @@ export const defaultNodeFactory = (args: INodeFactoryArgs) => {
 
 interface IConfigRenderOptions {
   graphConfig: IGraphConfig;
-  commands: GraphCommandRegistry;
+  modelService: IModelService;
+  commandService: IGraphCommandService;
   nodeConfig: NsGraph.INodeConfig;
-  contextService: IContextService;
+
   onMouseDown: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
 export const renderNode = (props: IConfigRenderOptions) => {
-  const { nodeConfig, onMouseDown, graphConfig, contextService, commands } = props;
+  const { nodeConfig, onMouseDown, graphConfig, modelService, commandService } = props;
 
   if (!graphConfig) {
     return <div />;
@@ -40,8 +41,8 @@ export const renderNode = (props: IConfigRenderOptions) => {
   return (
     <div onMouseDown={onMouseDown}>
       {React.createElement(reactComponent as React.FC<any>, {
-        commands,
-        contextService,
+        commands: commandService,
+        modelService: modelService,
         data: nodeConfig,
         isNodeTreePanel: true,
       })}
@@ -50,19 +51,18 @@ export const renderNode = (props: IConfigRenderOptions) => {
 };
 
 interface ITitleProps {
-  prefixClz?: string;
+  prefixClz: string;
   item: any;
   graphConfig: any;
-  contextService: ContextRegistry;
-  commands: GraphCommandRegistry;
+  modelService: IModelService;
+  commandService: IGraphCommandService;
   popoverContent: React.ReactNode;
   onMouseDown: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
 export const NodeTitle = (props: ITitleProps) => {
   const [isVisible, setVisible] = React.useState(false);
-  const { prefixClz, graphConfig, commands, contextService, popoverContent, onMouseDown, item } = props;
-
+  const { prefixClz, graphConfig, commandService, modelService, popoverContent, onMouseDown, item } = props;
   return (
     <>
       {popoverContent && (
@@ -83,9 +83,9 @@ export const NodeTitle = (props: ITitleProps) => {
           >
             {renderNode({
               graphConfig,
-              commands,
+              commandService: commandService,
               onMouseDown,
-              contextService,
+              modelService,
               nodeConfig: item,
             })}
           </div>
@@ -100,9 +100,9 @@ export const NodeTitle = (props: ITitleProps) => {
         >
           {renderNode({
             graphConfig,
-            commands,
+            commandService: commandService,
             onMouseDown,
-            contextService,
+            modelService,
             nodeConfig: item,
           })}
         </div>
@@ -116,22 +116,24 @@ export interface IBodyProps extends IProps {
 }
 
 export const NodePanelBody: React.FC<IBodyProps> = (props) => {
-  const { x6NodeFactory, dndOptions, onNodeDrop, state, prefixClz } = props;
-  const { contextService, commands } = usePanelContext();
+  const { x6NodeFactory, dndOptions, onNodeDrop, state, prefixClz = '' } = props;
+  const { modelService, commandService } = useXFlowContext();
 
   const [dnd, setDnd] = React.useState<Addon.Dnd>();
   /** 获取graph实例 */
-  const [graph] = useContextAsState<ContextServiceConstant.CURRENT_GRAPH.IState>(
-    ContextServiceConstant.CURRENT_GRAPH.id,
-    contextService,
-    null,
-  );
-  /** 获取graphConfig实例 */
-  const [graphConfig] = useContextAsState<ContextServiceConstant.GRAPH_CONFIG.IState>(
-    ContextServiceConstant.GRAPH_CONFIG.id,
-    contextService,
-    null,
-  );
+  const [graph] = useModelAsync<MODELS.CURRENT_GRAPH.IState, null>({
+    getModel: async () => {
+      return MODELS.CURRENT_GRAPH.getModel(modelService);
+    },
+    initialState: null,
+  });
+
+  const [graphConfig] = useModelAsync<MODELS.GRAPH_CONFIG.IState, null>({
+    getModel: async () => {
+      return MODELS.GRAPH_CONFIG.getModel(modelService);
+    },
+    initialState: null,
+  });
 
   React.useEffect(() => {
     if (!graph) {
@@ -151,9 +153,9 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
           ...droppingNode.getPosition(),
         };
         if (onNodeDrop) {
-          await onNodeDrop(nodeConfig, commands, contextService);
+          await onNodeDrop(nodeConfig, commandService, modelService);
         } else {
-          console.error('onNodeDrop method is required in NodeTree Panel');
+          // console.error('onNodeDrop method is required in NodeTree Panel');
         }
         return false;
       },
@@ -169,7 +171,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     const renderKey = graphConfig.nodeTypeParser(nodeConfig);
     const reactComponent = graphConfig.nodeRender.get(renderKey);
     if (reactComponent) {
-      const wrappedComponent = getNodeReactComponent(reactComponent, commands, contextService);
+      const wrappedComponent = getNodeReactComponent(reactComponent, commandService, modelService);
       const nodeData = {
         data: nodeConfig,
         width,
@@ -194,8 +196,8 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
             onMouseDown={onMouseDown(item)}
             popoverContent={popoverContent}
             prefixClz={prefixClz}
-            contextService={contextService}
-            commands={commands}
+            modelService={modelService}
+            commandService={commandService}
             graphConfig={graphConfig}
           />
         );
@@ -218,8 +220,8 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
                   onMouseDown={onMouseDown(treeNode)}
                   popoverContent={treeNode.popoverContent}
                   prefixClz={prefixClz}
-                  contextService={contextService}
-                  commands={commands}
+                  modelService={modelService}
+                  commandService={commandService}
                   graphConfig={graphConfig}
                 />
               </li>

@@ -6,7 +6,7 @@ import {
   NsGraphCmd,
   FrontendApplication,
   CanvasScaleToolbar,
-  ContextMenuPanel,
+  CanvasContextMenu,
 } from '@ali/xflow';
 import { NodeTreePanel } from '../components/canvas-node-tree-panel';
 import { treeDataService, searchService, onNodeDrop } from '../components/nodePanel';
@@ -63,8 +63,8 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         style={style}
         hookConfig={hookConfig}
         onAppReadyCallback={async (app, registry) => {
+          /* eslint-disable-next-line  */
           console.log(app);
-
           loadData(app);
         }}
       >
@@ -77,7 +77,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         />
         <XFlowCanvas config={graphConfig} position={{ top: 40, left: 240, right: 240, bottom: 0 }}>
           {show && <CanvasScaleToolbar position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />}
-          {showMenu && <ContextMenuPanel config={menuConfig} />}
+          {showMenu && <CanvasContextMenu config={menuConfig} />}
         </XFlowCanvas>
         <FormPanel {...detailPanelProps} />
       </XFlow>
