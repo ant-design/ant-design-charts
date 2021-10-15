@@ -1,19 +1,19 @@
 import type { NsNodeCmd, NsEdgeCmd, IMenuOptions, NsGraph } from '@ali/xflow';
 import { createCtxMenuConfig, MenuItemType } from '@ali/xflow';
 import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@ali/xflow';
-import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons';
+// import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons';
 
 /** menuitem 配置 */
 export namespace NsMenuItemConfig {
   /** 注册菜单依赖的icon */
-  IconStore.set('DeleteOutlined', DeleteOutlined);
-  IconStore.set('EditOutlined', EditOutlined);
-  IconStore.set('StopOutlined', StopOutlined);
+  // IconStore.set('DeleteOutlined', DeleteOutlined);
+  // IconStore.set('EditOutlined', EditOutlined);
+  // IconStore.set('StopOutlined', StopOutlined);
 
   export const DELETE_EDGE: IMenuOptions = {
     id: XFlowEdgeCommands.DEL_EDGE.id,
     label: '删除边',
-    iconName: 'DeleteOutlined',
+    // iconName: 'DeleteOutlined',
     onClick: async ({ target, commandService }) => {
       if (target.data) {
         commandService.executeCommand<NsEdgeCmd.DelEdge.IArgs>(XFlowEdgeCommands.DEL_EDGE.id, {
@@ -26,7 +26,7 @@ export namespace NsMenuItemConfig {
   export const DELETE_NODE: IMenuOptions = {
     id: XFlowNodeCommands.DEL_NODE.id,
     label: '删除节点',
-    iconName: 'DeleteOutlined',
+    // iconName: 'DeleteOutlined',
     onClick: async ({ target, commandService }) => {
       if (target.data && target?.data?.id) {
         commandService.executeCommand<NsNodeCmd.DelNode.IArgs>(XFlowNodeCommands.DEL_NODE.id, {
@@ -40,7 +40,7 @@ export namespace NsMenuItemConfig {
     id: 'EMPTY_MENU_ITEM',
     label: '暂无可用',
     isEnabled: false,
-    iconName: 'DeleteOutlined',
+    // iconName: 'DeleteOutlined',
   };
 
   export const SEPARATOR: IMenuOptions = {

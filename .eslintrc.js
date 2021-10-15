@@ -14,6 +14,8 @@ module.exports = {
   rules: {
     'no-console': 'error',
     noImplicitAny: 0, // 允许 any
+    'no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
   },
   settings: {
     'import/parsers': {

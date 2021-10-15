@@ -515,7 +515,7 @@ export const getStatusBBox = (cfg: CardNodeCfg['badge'] | undefined) => {
   }
   const { size = [], position = 'left' } = cfg;
   const [width, height] = getSize(size);
-  const appendPadding = [];
+  const appendPadding: number[] = [];
   switch (position) {
     case 'top':
       appendPadding.push(height ?? DefaultStatusBarWidth, 0, 0, 0);

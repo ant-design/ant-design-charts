@@ -2,6 +2,11 @@
  * 一键同步 G2Plot API 文档
  * eg:
  * -全量同步：`node scripts/docs/api.js G2Plot`
+ *
+ * 该文件下引用的包和主包会有冲突，使用时在强制安装
+ * ```zx
+ *   npm instaill unified to-vfile remark-parse remark-frontmatter remark-stringify --force
+ * ```
  */
 import { dirname, resolve, join } from 'path';
 import { fileURLToPath } from 'url';

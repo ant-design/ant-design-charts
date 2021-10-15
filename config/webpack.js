@@ -8,10 +8,10 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 process.env.NODE_ENV = 'production';
 
-const getWebpackConfig = () => {
+const getWebpackConfig = (name) => {
   return {
     entry: {
-      plots: './src/index.ts', // G2Plot 相关图表
+      [name]: './src/index.ts',
     },
     output: {
       filename: '[name].min.js',
@@ -23,6 +23,7 @@ const getWebpackConfig = () => {
       mainFields: ['module', 'main'],
       extensions: ['.ts', '.tsx', '.js'],
       modules: ['node_modules'],
+      fallback: { tty: false, os: false },
     },
     externals: {
       react: {
@@ -93,6 +94,27 @@ const getWebpackConfig = () => {
             sourceMaps: true,
             inputSourceMap: true,
           },
+        },
+        {
+          test: /\.css$/,
+          // exclude: /node_modules/,
+          use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        },
+        {
+          test: /\.less$/,
+          // exclude: /node_modules/,
+          use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            {
+              loader: 'less-loader',
+              options: {
+                lessOptions: {
+                  javascriptEnabled: true,
+                },
+              },
+            },
+          ],
         },
       ],
     },

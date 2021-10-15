@@ -2,7 +2,6 @@
 import {
   XFlowNodeCommands,
   XFlowGraphCommands,
-  ContextServiceUtils,
   IconStore,
   WorkspacePanel,
   usePanelContext,
@@ -20,7 +19,6 @@ export {
   XFlowGraphCommands,
   usePanelContext,
   FormItemWrapper,
-  ContextServiceUtils,
   IconStore,
 };
 
