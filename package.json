@@ -76,9 +76,6 @@
   "gitHooks": {
     "pre-commit": "pretty-quick --staged"
   },
-  "tnpm": {
-    "mode": "yarn"
-  },
   "sideEffects": false,
   "license": "MIT"
 }
