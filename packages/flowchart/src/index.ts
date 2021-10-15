@@ -1,4 +1,3 @@
-// X6
 import {
   XFlowNodeCommands,
   XFlowGraphCommands,
