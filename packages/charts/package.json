@@ -39,13 +39,6 @@
     "react": ">=16.8.4",
     "react-dom": ">=16.8.4"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "np": {
-    "yarn": false,
-    "contents": "dist"
-  },
   "sideEffects": false,
   "license": "MIT"
 }

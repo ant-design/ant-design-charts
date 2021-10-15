@@ -218,7 +218,7 @@ export const registerIndicatorCardNode = () => {
             return rowHeight;
           };
           const createItems = (item: CardItems, index: number = 0) => {
-            const itemsHeight = [];
+            const itemsHeight: number[] = [];
             if (customContent) {
               itemsHeight.push(
                 customContent(item, group, {

@@ -45,10 +45,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "np": {
-    "yarn": false,
-    "contents": "dist"
-  },
   "sideEffects": false,
   "license": "MIT"
 }

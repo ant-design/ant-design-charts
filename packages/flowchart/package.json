@@ -22,7 +22,7 @@
     "build": "run-s clean lib copy dist",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
-    "dist": "browser=true webpack --config webpack.config.js --mode production",
+    "dist": "webpack --config webpack.config.js --mode production",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
@@ -35,7 +35,7 @@
     "test:coverage": "umi-test --coverage"
   },
   "dependencies": {
-    "@ali/xflow": "0.0.5-alpha.6",
+    "@ali/xflow": "^0.0.5-alpha.6",
     "@antv/x6": "^1.25.0",
     "@antv/x6-react-components": "^1.1.13",
     "@antv/x6-react-shape": "^1.4.5",
@@ -46,13 +46,6 @@
     "react": ">=16.8.4",
     "react-dom": ">=16.8.4",
     "antd": "^4.6.3"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "np": {
-    "yarn": false,
-    "contents": "dist"
   },
   "sideEffects": false,
   "license": "MIT",

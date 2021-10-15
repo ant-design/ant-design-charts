@@ -141,7 +141,7 @@ export const registerFundFlowItems = () => {
             return [textShape?.getBBox().height ?? 0, iconShape?.getBBox().height ?? 0];
           };
           const createItems = (item: CardItems) => {
-            const itemsHeight = [];
+            const itemsHeight: number[] = [];
             if (customContent) {
               itemsHeight.push(
                 customContent(item, group, {

@@ -10,3 +10,5 @@ es
 dist
 node_modules
 *.ejs
+gatsby-browser.js
+*.min.js

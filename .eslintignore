@@ -5,4 +5,6 @@ lib
 config/wrapper.js
 .docz
 node_modules
+gatsby-browser.js
 *.ejs
+*.min.js
