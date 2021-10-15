@@ -10,7 +10,7 @@
     "url": "git+https://github.com/ant-design/ant-design-charts.git"
   },
   "main": "lib/index.js",
-  "unpkg": "dist/flowChart.min.js",
+  "unpkg": "dist/flowchart.min.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "files": [
