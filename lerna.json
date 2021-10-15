@@ -11,5 +11,5 @@
       "npmClientArgs": ["--no-package-lock", "--no-ci"]
     }
   },
-  "packages": ["packages/*"]
+  "packages": ["packages/*", "!packages/maps", "!packages/site"]
 }
