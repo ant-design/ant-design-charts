@@ -30,10 +30,10 @@
     "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es"
   },
   "dependencies": {
-    "@ant-design/plots": "^0.0.1-alpha.0",
-    "@ant-design/graphs": "^0.0.1-alpha.0",
-    "@ant-design/flowchart": "^0.0.1-alpha.0",
-    "@ant-design/maps": "^0.0.1-alpha.0"
+    "@ant-design/plots": "^0.0.1-beta.0",
+    "@ant-design/graphs": "^0.0.1-beta.0",
+    "@ant-design/flowchart": "^0.0.1-beta.0",
+    "@ant-design/maps": "^0.0.1-beta.0"
   },
   "peerDependencies": {
     "react": ">=16.8.4",
