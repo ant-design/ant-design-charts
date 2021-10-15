@@ -12,7 +12,9 @@
     "build": "lerna run build --ignore @ant-design/maps --stream --profile --profile-location=logs/profile/",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "publish": "lerna publish",
+    "publish:beta": "lerna publish --dist-tag beta"
   },
   "devDependencies": {
     "@antv/data-set": "^0.11.8",

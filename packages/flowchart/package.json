@@ -52,5 +52,8 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.4",
     "antd": "^4.16.13"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
