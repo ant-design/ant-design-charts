@@ -2,7 +2,7 @@ import { ReactNode, useRef, useEffect } from 'react';
 import { isEqual } from '@antv/util';
 import type { Options as BaseOptions, G2, Plot, Tooltip as BaseTooltip } from '@antv/g2plot';
 import createNode from '../util/createNode';
-import { hasPath, isType, deepClone, clone, setPath, getChart } from '../util';
+import { hasPath, isType, deepClone, clone, setPath, getChart, findPaths } from '../util';
 
 export interface Tooltip extends Omit<BaseTooltip, 'customContent'> {
   customContent?: (title: string, data: any[]) => ReactNode | string | unknown;
@@ -80,21 +80,19 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
 
   const processConfig = () => {
     // statistic
-    if (hasPath(config, ['statistic', 'content', 'customHtml'])) {
-      reactDomToString(config, ['statistic', 'content', 'customHtml']);
-    }
-    if (hasPath(config, ['statistic', 'title', 'customHtml'])) {
-      reactDomToString(config, ['statistic', 'title', 'customHtml']);
-    }
+    findPaths(config, ['statistic', 'content', 'customHtml']).forEach((path) => {
+      reactDomToString(path, ['statistic', 'content', 'customHtml']);
+    });
+    findPaths(config, ['statistic', 'title', 'customHtml']).forEach((path) => {
+      reactDomToString(path, ['statistic', 'title', 'customHtml']);
+    });
     // tooltip
-    if (typeof config.tooltip === 'object') {
-      if (hasPath(config, ['tooltip', 'container'])) {
-        reactDomToString(config, ['tooltip', 'container'], 'tooltip');
-      }
-      if (hasPath(config, ['tooltip', 'customContent'])) {
-        reactDomToString(config, ['tooltip', 'customContent'], 'tooltip');
-      }
-    }
+    findPaths(config, ['tooltip', 'customContent']).forEach((path) => {
+      reactDomToString(path, ['tooltip', 'customContent'], 'tooltip');
+    });
+    findPaths(config, ['tooltip', 'container']).forEach((path) => {
+      reactDomToString(path, ['tooltip', 'container'], 'tooltip');
+    });
   };
 
   useEffect(() => {
