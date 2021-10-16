@@ -5,6 +5,7 @@ import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import Pie from '../../src/plots/pie';
 import Area from '../../src/plots/area';
+import Mix from '../../src/plots/mix';
 import RingProgress from '../../src/plots/ringProgress';
 
 describe('use chart', () => {
@@ -185,7 +186,7 @@ describe('use chart', () => {
         },
       },
       tooltip: {
-        container: () => <div className="toooltip-container"></div>,
+        container: () => <div className="toooltip-container" />,
         customContent: () => <div>custom tooltip</div>,
       },
     };
@@ -320,6 +321,61 @@ describe('use chart', () => {
     expect(chartRef.options.tooltip.container().innerHTML).toBe('container');
     expect(chartRef.options.statistic.content.customHtml().innerHTML).toBe('content');
     expect(chartRef.options.statistic.title.customHtml().innerHTML).toBe('title');
+  });
+
+  it('processConfig * reactDomToString with virtual DOM in child views', () => {
+    let chartRef = undefined;
+    const props = {
+      className: 'container',
+      chartRef: (ref) => {
+        chartRef = ref;
+      },
+    };
+    const chartProps = {
+      views: [
+        {
+          data: areaData,
+          geometries: [
+            {
+              type: 'area',
+              xField: 'date',
+              yField: 'scales',
+              mapping: {},
+            },
+          ],
+          tooltip: {
+            container: () => <div className="toooltip-container" />,
+            customContent: () => <div>custom tooltip</div>,
+          },
+        },
+        {
+          data: data,
+          geometries: [
+            {
+              type: 'interval',
+              xField: 'value',
+              yField: 'type',
+              mapping: {},
+            },
+          ],
+          tooltip: {
+            container: () => <div className="toooltip-container" />,
+            customContent: () => <div>custom tooltip</div>,
+          },
+        },
+      ],
+    };
+    act(() => {
+      ReactDOM.render(<Mix {...props} {...chartProps} />, container);
+    });
+    expect(chartRef).not.toBeUndefined();
+    chartRef.chart.views.forEach((view) => {
+      expect(view.options.tooltip.customContent().className).toBe('g2-tooltip');
+      expect(view.options.tooltip.customContent().innerHTML).toBe('<div>custom tooltip</div>');
+      expect(view.options.tooltip.container().innerHTML).toBe(
+        '<div class="toooltip-container"></div>',
+      );
+    });
   });
 
   it('deep clone', () => {
