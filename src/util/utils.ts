@@ -62,6 +62,22 @@ export const hasPath = (source: any, path: string[]) => {
 };
 
 /**
+ * 返回找到的所有路径值，如果不存在这样的路径，则返回空数组
+ */
+export const findPaths = (source: any, path: string[]) => {
+  const paths = [] as any[];
+  if (hasPath(source, path)) {
+    paths.push(source);
+  }
+  for (const key in source) {
+    if (source.hasOwnProperty(key) && typeof source[key] === 'object' && source[key] !== null) {
+      paths.push(...findPaths(source[key], path));
+    }
+  }
+  return paths;
+};
+
+/**
  * 内部指定 params ，不考虑复杂情况
  */
 export const setPath = (source: object, path: string[], value: any) => {
