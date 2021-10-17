@@ -52,6 +52,11 @@ export interface NodePanelProps extends BaseProps {
   registerNode?: RegisterNode;
 }
 
+export interface CanvasProps {
+  /** 节点位置 */
+  position?: IPosition;
+}
+
 export type Command = 'undo-cmd' | 'redo-cmd' | 'front-node' | 'back-node' | 'save-graph-data';
 export type CommandItem = {
   /** 命令 */
@@ -106,6 +111,8 @@ export interface FlowchartProps extends FlowchartContainerProps {
   onSave?: (data: Datum) => void;
   /** 节点面板配置 */
   nodePanelProps?: NodePanelProps;
+  /** 画布主要区域配置 */
+  canvasProps?: CanvasProps;
   /** toolbar */
   toolbarPanelProps?: ToolbarPanelProps;
   /** scale toolbar */

@@ -63,7 +63,7 @@ const getPorts = (position = ['top', 'right', 'bottom', 'left']) => {
   };
 };
 
-export const getregisterNode = () => {
+export const getRegisterNode = () => {
   const { registerNode } = (getProps('nodePanelProps') as FlowchartProps['nodePanelProps']) ?? {};
 
   return (registerNode?.nodes || []).map((item) => {
@@ -79,12 +79,13 @@ export const getregisterNode = () => {
       height,
       ports: ports || getPorts(),
       originData: { ...item },
+      isCustom: true,
     };
   });
 };
 
 export const treeDataService: NsNodeTreePanel.ITreeDataService = async () => {
-  const customNodes = getregisterNode();
+  const customNodes = getRegisterNode();
 
   return [
     ...customNodes,

@@ -23,7 +23,7 @@ const getWebpackConfig = (name) => {
       mainFields: ['module', 'main'],
       extensions: ['.ts', '.tsx', '.js'],
       modules: ['node_modules'],
-      fallback: { tty: false, os: false },
+      fallback: { tty: false, os: false, util: false },
     },
     externals: {
       react: {

@@ -32,9 +32,11 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     nodePanelProps,
     scaleToolbarPanelProps,
     contextMenuPanelProps,
+    canvasProps,
     data,
   } = props;
   setProps(props);
+  const { position = { top: 40, left: 240, right: 240, bottom: 0 } } = canvasProps ?? {};
   const graphConfig = useGraphConfig(props);
   const menuConfig = useMenuConfig();
   const hookConfig = useGraphHook();
@@ -75,7 +77,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           onNodeDrop={onNodeDrop}
           {...nodePanelProps}
         />
-        <XFlowCanvas config={graphConfig} position={{ top: 40, left: 240, right: 240, bottom: 0 }}>
+        <XFlowCanvas config={graphConfig} position={position}>
           {show && <CanvasScaleToolbar position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />}
           {showMenu && <CanvasContextMenu config={menuConfig} />}
         </XFlowCanvas>

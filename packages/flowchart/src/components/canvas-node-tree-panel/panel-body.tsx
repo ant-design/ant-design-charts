@@ -1,5 +1,5 @@
 // #boyu
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Empty, Popover } from 'antd';
 import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs } from './interface';
 import { Addon } from '@antv/x6';
@@ -209,12 +209,19 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     },
     [graphConfig],
   );
+  const customNode = state.treeData.filter((item) => item.isCustom);
+  const officialNode = state.treeData.filter((item) => !item.isCustom);
 
   return (
     <React.Fragment>
       {/* <div className={`${prefixClz}-body`} style={props.style}> */}
       <div className={`${prefixClz}-body`}>
-        {!state.keyword && renderTree(state.treeData)}
+        {!state.keyword && (
+          <Fragment>
+            <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>
+            {customNode.length && <div className={`${prefixClz}-custom`}>{renderTree(customNode)}</div>}
+          </Fragment>
+        )}
         {state.searchList.length > 0 && (
           <ul className={`${prefixClz}-body-list`}>
             {state.searchList.map((treeNode) => (

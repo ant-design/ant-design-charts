@@ -5,6 +5,14 @@
 
 @dnd-panel-prefix-cls: ~'xflow-node-panel';
 
+.node() {
+  padding: 12px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: @body-bg;
+  cursor: grab;
+}
+
 .@{dnd-panel-prefix-cls} {
   border-right: @light-border;
 
@@ -22,16 +30,20 @@
     }
   }
 
-  &-body {
+  &-custom {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 5px;
+    border-top: @light-border;
+    .node();
+  }
+
+  &-official {
+    .node();
     display: grid;
     grid-gap: 5px;
     grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-    padding: 12px;
     padding-top: 48px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background: @body-bg;
-    cursor: grab;
   }
 
   &-node-wrapper {
