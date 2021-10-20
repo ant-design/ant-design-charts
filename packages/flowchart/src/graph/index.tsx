@@ -79,7 +79,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           /* eslint-disable-next-line  */
           const X6Graph = await registry.graphInstanceDefer.promise;
           graphRef.current = X6Graph;
-          onReady?.(appendUtils(X6Graph, app));
+          onReady?.(appendUtils(X6Graph));
           loadData(app);
         }}
       >

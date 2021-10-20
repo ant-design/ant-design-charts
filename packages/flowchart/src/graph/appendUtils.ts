@@ -7,7 +7,7 @@ export interface IGraph extends Graph {
   [key: string]: unknown;
 }
 
-export const appendUtils = (graph: IGraph, app: any) => {
+export const appendUtils = (graph: IGraph) => {
   const x6Graph = graph;
   /** 更新节点指定数据
    * @param {id} string 节点 id
