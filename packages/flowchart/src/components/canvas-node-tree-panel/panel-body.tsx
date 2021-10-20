@@ -219,7 +219,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
         {!state.keyword && (
           <Fragment>
             <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>
-            {customNode.length && <div className={`${prefixClz}-custom`}>{renderTree(customNode)}</div>}
+            {customNode.length > 0 && <div className={`${prefixClz}-custom`}>{renderTree(customNode)}</div>}
           </Fragment>
         )}
         {state.searchList.length > 0 && (
