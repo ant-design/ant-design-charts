@@ -11,6 +11,7 @@ import {
   NsGraph,
   IEvent,
 } from '@ali/xflow';
+import { getProps as getGlobalProps } from '../../util';
 import { Edge, Shape } from '@antv/x6';
 import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/nodePanel';
 
@@ -62,8 +63,7 @@ export const useGraphHook = createHookConfig((config) => {
         const { commandService, graph } = args;
         graph.on(NsAddEdgeEvent.EVENT_NAME, (args: NsAddEdgeEvent.IArgs) => {
           const { edge, ...edgeConfig } = args;
-
-          commandService.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, {
+          const config = {
             edgeConfig: {
               ...edgeConfig,
               source: {
@@ -89,7 +89,12 @@ export const useGraphHook = createHookConfig((config) => {
               },
               data: { ...edgeConfig },
             },
-          });
+          };
+          commandService.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, config);
+          const onAddEdge = getGlobalProps('onAddEdge');
+          if (typeof onAddEdge === 'function') {
+            onAddEdge(config);
+          }
           args.edge.remove();
         });
       },
@@ -230,6 +235,14 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
         props.handleNodeClick?.(nodeData);
       },
     } as IEvent<'node:click'>,
+    {
+      eventName: 'node:removed',
+      callback: (e, cmds, ctx) => {
+        const nodeData: NsGraph.INodeConfig = e?.node?.getData();
+        const props = getProps();
+        props.handleNodeRemoved?.(nodeData);
+      },
+    } as IEvent<'node:removed'>,
     {
       eventName: 'edge:click',
       callback: (e, cmds, ctx) => {

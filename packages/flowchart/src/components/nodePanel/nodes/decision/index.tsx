@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { NsGraphConfig } from '@ali/xflow';
+import { NsGraph } from '@ali/xflow';
 import { AppContext } from '../../index';
 import { createPath } from '../../util';
 import { NODE_HEIGHT, NODE_PADDING, NODE_WIDTH } from '../../constants';
 
-export const DecisionNode: NsGraphConfig.INodeRender = (props) => {
+export const DecisionNode: NsGraph.INodeRender = (props) => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data } = props;
   const {
     theme: { NodeConfig, LabelConfig },

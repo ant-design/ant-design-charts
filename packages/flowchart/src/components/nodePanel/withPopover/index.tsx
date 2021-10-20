@@ -1,10 +1,10 @@
 import React from 'react';
 import { Popover } from 'antd';
-import { NsGraphConfig } from '@ali/xflow';
+import { NsGraph } from '@ali/xflow';
 import { getProps } from '../../../util';
 import { ITreeNode } from '../../canvas-node-tree-panel/interface';
 
-export const withPopover = (props: NsGraphConfig.INodeProps<any>) => (WrappedComponent: NsGraphConfig.INodeRender) => {
+export const withPopover = (props: NsGraph.IReactNodeProps<any>) => (WrappedComponent: NsGraph.INodeRender) => {
   const { content, title, extra } = getProps('popoverProps') ?? {};
   const { data } = props;
 

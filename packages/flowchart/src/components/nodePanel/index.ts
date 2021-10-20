@@ -68,11 +68,11 @@ export const getRegisterNode = () => {
 
   return (registerNode?.nodes || []).map((item) => {
     const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports } = item;
+    const id = uuidv4(); // 暂不使用上层数据
     return {
       parentId: '',
-      id: uuidv4(),
+      id,
       renderKey: name,
-      name: uuidv4(),
       label,
       popoverContent: popover,
       width,
@@ -92,7 +92,7 @@ export const treeDataService: NsNodeTreePanel.ITreeDataService = async () => {
     ...NODEPOOL.map(({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '' }) => {
       return {
         parentId: '',
-        id: name, // 不会被使用
+        id: uuidv4(), // 不会被使用
         renderKey: name,
         // name: `${name.replace(/\s+/g, '-')}`,
         name,

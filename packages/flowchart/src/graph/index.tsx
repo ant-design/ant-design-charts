@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   XFlow,
   XFlowCanvas,
@@ -7,6 +7,8 @@ import {
   FrontendApplication,
   CanvasScaleToolbar,
   CanvasContextMenu,
+  usePanelContext,
+  XFlowNodeCommands,
 } from '@ali/xflow';
 import { NodeTreePanel } from '../components/canvas-node-tree-panel';
 import { treeDataService, searchService, onNodeDrop } from '../components/nodePanel';
@@ -15,6 +17,7 @@ import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
 import { setProps } from '../util';
+import { appendUtils, IGraph } from './appendUtils';
 import { FlowchartProps } from '../interface';
 
 import AppContext from '../context';
@@ -29,20 +32,22 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     theme = 'light',
     detailPanelProps,
     toolbarPanelProps,
-    nodePanelProps,
-    scaleToolbarPanelProps,
-    contextMenuPanelProps,
-    canvasProps,
+    nodePanelProps = {},
+    scaleToolbarPanelProps = {},
+    contextMenuPanelProps = {},
+    canvasProps = {},
     data,
+    onReady,
   } = props;
   setProps(props);
-  const { position = { top: 40, left: 240, right: 240, bottom: 0 } } = canvasProps ?? {};
+  const { position = { top: 40, left: 240, right: 240, bottom: 0 } } = canvasProps;
+  const graphRef = useRef<IGraph>();
   const graphConfig = useGraphConfig(props);
   const menuConfig = useMenuConfig();
   const hookConfig = useGraphHook();
-  const { show = true } = scaleToolbarPanelProps ?? {};
-  const { show: showMenu = true } = contextMenuPanelProps ?? {};
-
+  const { show = true } = scaleToolbarPanelProps;
+  const { show: nodePanelShow = true } = nodePanelProps;
+  const { show: showMenu = true } = contextMenuPanelProps;
   const loadData = async (app: FrontendApplication) => {
     if (data) {
       const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
@@ -58,6 +63,12 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      graphRef.current?.dispose();
+    };
+  }, []);
+
   return (
     <AppContext.Provider value={{ theme: Theme[theme] }}>
       <XFlow
@@ -66,17 +77,22 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         hookConfig={hookConfig}
         onAppReadyCallback={async (app, registry) => {
           /* eslint-disable-next-line  */
-          console.log(app);
+          const X6Graph = await registry.graphInstanceDefer.promise;
+          graphRef.current = X6Graph;
+          onReady?.(appendUtils(X6Graph));
           loadData(app);
         }}
       >
         <ToolbarPanel {...toolbarPanelProps} />
-        <NodeTreePanel
-          searchService={searchService}
-          treeDataService={treeDataService}
-          onNodeDrop={onNodeDrop}
-          {...nodePanelProps}
-        />
+        {nodePanelShow && (
+          <NodeTreePanel
+            searchService={searchService}
+            treeDataService={treeDataService}
+            onNodeDrop={onNodeDrop}
+            {...nodePanelProps}
+          />
+        )}
+
         <XFlowCanvas config={graphConfig} position={position}>
           {show && <CanvasScaleToolbar position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />}
           {showMenu && <CanvasContextMenu config={menuConfig} />}

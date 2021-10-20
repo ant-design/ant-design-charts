@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { NsGraphConfig } from '@ali/xflow';
+import { NsGraph } from '@ali/xflow';
 import { AppContext } from '../../index';
 import { createPath } from '../../util';
 import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
 
-export const MergeNode: NsGraphConfig.INodeRender = (props) => {
+export const MergeNode: NsGraph.INodeRender = (props) => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data } = props;
   const {
     theme: { NodeConfig, LabelConfig },

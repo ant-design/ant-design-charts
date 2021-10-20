@@ -5,6 +5,9 @@ import {
   WorkspacePanel,
   usePanelContext,
   FormItemWrapper,
+  XFlowAppProvider,
+  useXFlowApp,
+  XFlowEdgeCommands,
 } from '@ali/xflow';
 import Flowchart from './graph';
 
@@ -19,6 +22,9 @@ export {
   usePanelContext,
   FormItemWrapper,
   IconStore,
+  XFlowAppProvider,
+  useXFlowApp,
+  XFlowEdgeCommands,
 };
 
 export * from './interface';

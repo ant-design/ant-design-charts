@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib copy dist",
+    "build": "run-s clean lib copy",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
@@ -35,7 +35,7 @@
     "test:coverage": "umi-test --coverage"
   },
   "dependencies": {
-    "@ali/xflow": "^0.0.5-alpha.6",
+    "@ali/xflow": "^0.0.5-alpha.9",
     "@antv/x6": "^1.25.0",
     "@antv/x6-react-components": "^1.1.13",
     "@antv/x6-react-shape": "^1.4.5",

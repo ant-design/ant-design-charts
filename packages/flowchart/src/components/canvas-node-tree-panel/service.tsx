@@ -1,7 +1,7 @@
 import React from 'react';
 import uniqBy from 'lodash/uniqBy';
 import cloneDeep from 'lodash/cloneDeep';
-import { createComponentModel, Disposable, MODELS, useXFlowContext } from '@ali/xflow';
+import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@ali/xflow';
 import { IProps, ITreeNode } from './interface';
 import { TREE_ROOT_ID } from './constants';
 // import { NsTreePanelData} from '@ali/xflow/es/canvas-node-tree-panel/service'
@@ -19,7 +19,7 @@ export namespace NsTreePanelData {
 
 export const useTreePanelData = (props: IProps) => {
   const { treeDataService, searchService } = props;
-  const { modelService } = useXFlowContext();
+  const { modelService } = useXFlowApp();
 
   /** 使用model */
   const [state, setState, panelModel] = createComponentModel<NsTreePanelData.IState>({

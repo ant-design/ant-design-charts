@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { NsGraphConfig } from '@ali/xflow';
+import { NsGraph } from '@ali/xflow';
 import { AppContext } from '../../index';
 import { NODE_HEIGHT, NODE_WIDTH, NODE_PADDING } from '../../constants';
 
-export const ConnectorNode: NsGraphConfig.INodeRender = (props) => {
+export const ConnectorNode: NsGraph.INodeRender = (props) => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data } = props;
   const {
     theme: { NodeConfig, LabelConfig },

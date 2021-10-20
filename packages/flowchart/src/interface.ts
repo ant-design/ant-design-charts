@@ -4,12 +4,13 @@ import {
   IModelService,
   NsGraph,
   IPosition,
-  NsGraphConfig,
   NsJsonSchemaForm,
   IToolbarLayout,
 } from '@ali/xflow';
 import { Cell } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
+
+export { IGraph } from './graph/appendUtils';
 
 export interface FlowchartContainerProps {
   style?: React.CSSProperties;
@@ -26,7 +27,7 @@ export type Datum = {
 
 export interface CustomNode {
   name: string;
-  component: NsGraphConfig.INodeRender<any>;
+  component: NsGraph.INodeRender<any>;
   popover?: React.Component<any>;
   label?: string;
   width?: number;
@@ -125,4 +126,10 @@ export interface FlowchartProps extends FlowchartContainerProps {
   contextMenuPanelProps?: ContextMenuPanelProps;
   /** popover */
   popoverProps?: PopoverProps;
+  /** 新增节点时回调 */
+  onAddNode?: (node: NsGraph.INodeConfig) => void;
+  /** 新增边时回调 */
+  onAddEdge?: (node: NsGraph.IEdgeConfig) => void;
+  /** onReady */
+  onReady?: (graph) => void;
 }

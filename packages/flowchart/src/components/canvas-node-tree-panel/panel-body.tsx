@@ -10,7 +10,7 @@ import {
   IGraphConfig,
   NsGraph,
   getNodeReactComponent,
-  useXFlowContext,
+  useXFlowApp,
   IGraphCommandService,
 } from '@ali/xflow';
 import { NsTreePanelData } from './service';
@@ -121,7 +121,7 @@ export interface IBodyProps extends IProps {
 
 export const NodePanelBody: React.FC<IBodyProps> = (props) => {
   const { x6NodeFactory, dndOptions, onNodeDrop, state, prefixClz = '' } = props;
-  const { modelService, commandService } = useXFlowContext();
+  const { modelService, commandService } = useXFlowApp();
 
   const [dnd, setDnd] = React.useState<Addon.Dnd>();
   /** 获取graph实例 */
