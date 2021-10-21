@@ -61,7 +61,7 @@ export const useGraphHook = createHookConfig((config) => {
       name: 'call add edge to replace temp edge',
       handler: async (args) => {
         const { commandService, graph } = args;
-        graph.on(NsAddEdgeEvent.EVENT_NAME, (args: NsAddEdgeEvent.IArgs) => {
+        graph.on(NsAddEdgeEvent.EVENT_NAME, async (args: NsAddEdgeEvent.IArgs) => {
           const { edge, ...edgeConfig } = args;
           const config = {
             edgeConfig: {
@@ -90,7 +90,7 @@ export const useGraphHook = createHookConfig((config) => {
               data: { ...edgeConfig },
             },
           };
-          commandService.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, config);
+          await commandService.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, config);
           const onAddEdge = getGlobalProps('onAddEdge');
           if (typeof onAddEdge === 'function') {
             onAddEdge(config);

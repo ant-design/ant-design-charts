@@ -15,9 +15,11 @@ export const onNodeDrop: NsNodeTreePanel.IOnNodeDrop = async (node, commands) =>
   const args: NsNodeCmd.AddNode.IArgs = {
     nodeConfig,
   };
+
+  await commands.executeCommand(XFlowNodeCommands.ADD_NODE.id, args);
+
   const onAddNode = getProps('onAddNode');
   if (typeof onAddNode === 'function') {
     onAddNode(nodeConfig);
   }
-  commands.executeCommand(XFlowNodeCommands.ADD_NODE.id, args);
 };
