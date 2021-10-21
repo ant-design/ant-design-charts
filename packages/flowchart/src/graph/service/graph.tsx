@@ -74,7 +74,6 @@ export const useGraphHook = createHookConfig((config) => {
                 cell: edgeConfig.target,
                 port: edgeConfig.targetPortId,
               },
-              // renderKey: 'EDGE1',
               attrs: {
                 line: {
                   stroke: '#A2B1C3',
@@ -224,7 +223,6 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
       }
     },
   });
-  const isEdit = true;
 
   config.setEvents([
     {
@@ -260,25 +258,25 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
     {
       eventName: 'node:mouseenter',
       callback: () => {
-        isEdit && changePortsVisible(true);
+        changePortsVisible(true);
       },
     } as IEvent<'node:mouseenter'>,
     {
       eventName: 'node:mouseleave',
       callback: (e, cmds, ctx) => {
-        isEdit && changePortsVisible(false);
+        changePortsVisible(false);
       },
     } as IEvent<'node:mouseleave'>,
     {
       eventName: 'node:moved',
       callback: (e, cmds, ctx) => {
-        isEdit && movedNode(e, cmds, ctx);
+        movedNode(e, cmds, ctx);
       },
     } as IEvent<'node:moved'>,
     {
       eventName: 'node:resized',
       callback: (e, cmds, ctx) => {
-        isEdit && resizeNode(e, cmds, ctx);
+        resizeNode(e, cmds, ctx);
       },
     } as IEvent<'node:resized'>,
   ]);

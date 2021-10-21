@@ -1,37 +1,40 @@
 import { XFlowNodeCommands, IModelService, IGraphCommandService, XFlowEdgeCommands } from '@ali/xflow';
+import { onConfigChange } from '../../util';
 
 /**
  * 节点移动时，实时更新位置信息
  */
-export const movedNode = (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
+export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
   const { node } = e;
   if (!node) {
     return;
   }
-  cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+  await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
     nodeConfig: {
       ...node.data,
       ...node.getPosition(),
     },
   });
+  onConfigChange();
 };
 
 /**
  * 修改节点大小
  */
-export const resizeNode = (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
+export const resizeNode = async (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
   const { node } = e;
   if (!node) {
     return;
   }
   const { width, height } = node.size();
-  cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+  await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
     nodeConfig: {
       ...node.data,
       width,
       height,
     },
   });
+  onConfigChange();
 };
 
 /** 设置 ports visible */

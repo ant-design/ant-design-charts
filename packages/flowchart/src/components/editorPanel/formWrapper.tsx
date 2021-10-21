@@ -7,9 +7,11 @@ import {
   XFlowEdgeCommands,
   NsEdgeCmd,
   NsJsonSchemaForm,
+  usePanelContext,
+  FormItemWrapper,
 } from '@ali/xflow';
+import { onConfigChange } from '../../util';
 import useAsync from './useAsync';
-import { usePanelContext, FormItemWrapper } from '@ali/xflow';
 
 export interface IFormWrapper {
   children: (
@@ -48,22 +50,24 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
 
   const updateNode = async (value: object) => {
     const currentNodeData = await getSelectNode();
-    commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+    await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
       nodeConfig: {
         ...currentNodeData,
         ...value,
       },
     });
+    onConfigChange();
   };
 
   const updateEdge = async (value: object) => {
     const currentEdgeData = await getSelectEdge();
-    commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
+    await commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
       edgeConfig: {
         ...currentEdgeData,
         ...value,
       },
     } as NsEdgeCmd.UpdateEdge.IArgs);
+    onConfigChange();
   };
 
   if (loading) {

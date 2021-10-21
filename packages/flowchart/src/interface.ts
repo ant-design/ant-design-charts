@@ -7,10 +7,8 @@ import {
   NsJsonSchemaForm,
   IToolbarLayout,
 } from '@ali/xflow';
-import { Cell } from '@antv/x6';
+import { Cell, Graph, Edge } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
-
-export { IGraph } from './graph/appendUtils';
 
 export interface FlowchartContainerProps {
   style?: React.CSSProperties;
@@ -102,6 +100,12 @@ export interface PopoverProps extends Omit<AntDPopoverConfig, 'title' | 'content
   content?: (data: NsGraph.INodeConfig) => React.ReactNode;
 }
 
+export interface IGraph extends Graph {
+  getGraphData?: () => void;
+  updateNodeKeyById?: (id: string, key: string, data: object) => void;
+  __proto__?: Record<string, any>;
+}
+
 // Flowchart 通用配置
 export interface FlowchartProps extends FlowchartContainerProps {
   /** 默认数据 */
@@ -132,4 +136,8 @@ export interface FlowchartProps extends FlowchartContainerProps {
   onAddEdge?: (node: NsGraph.IEdgeConfig) => void;
   /** onReady */
   onReady?: (graph) => void;
+  /** 节点或边更新数据时调用 */
+  onConfigChange?: (Datum) => void;
 }
+
+export { NsGraph, Edge };

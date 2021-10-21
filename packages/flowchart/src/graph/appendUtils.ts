@@ -1,11 +1,6 @@
 /** 向 graph 原型上挂在一系列方法 */
-import { Graph } from '@antv/x6';
-import { NsGraphCmd, XFlowGraphCommands, NsGraph } from '@ali/xflow';
-
-export interface IGraph extends Graph {
-  __proto__?: Record<string, any>;
-  [key: string]: unknown;
-}
+import { getGraphData } from '../util';
+import { IGraph } from '../interface';
 
 export const appendUtils = (graph: IGraph) => {
   const x6Graph = graph;
@@ -22,31 +17,6 @@ export const appendUtils = (graph: IGraph) => {
         ...data,
       });
     }
-  };
-
-  const getGraphData = () => {
-    const x6Nodes = x6Graph.getNodes();
-    const x6Edges = x6Graph.getEdges();
-    const nodes = x6Nodes.map((node) => {
-      const data = node.getData<NsGraph.INodeConfig>();
-      const position = node.position();
-      const size = node.size();
-      return {
-        ...data,
-        ...position,
-        ...size,
-      };
-    });
-
-    const edges = x6Edges.map((edge) => {
-      const data = edge.getData<NsGraph.IEdgeConfig>();
-      return {
-        ...data,
-      };
-    });
-    const graphData = { nodes, edges };
-
-    return graphData;
   };
 
   if (x6Graph.__proto__) {

@@ -1,25 +1,15 @@
-import React, { useRef, useEffect } from 'react';
-import {
-  XFlow,
-  XFlowCanvas,
-  XFlowGraphCommands,
-  NsGraphCmd,
-  CanvasScaleToolbar,
-  CanvasContextMenu,
-  usePanelContext,
-  XFlowNodeCommands,
-} from '@ali/xflow';
+import React, { useRef, useEffect, useCallback } from 'react';
+import { XFlow, XFlowCanvas, XFlowGraphCommands, NsGraphCmd, CanvasScaleToolbar, CanvasContextMenu } from '@ali/xflow';
 import { NodeTreePanel } from '../components/canvas-node-tree-panel';
 import { treeDataService, searchService, onNodeDrop } from '../components/nodePanel';
 import { FormPanel } from '../components/editorPanel';
 import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
-import { setProps } from '../util';
-import { appendUtils, IGraph } from './appendUtils';
-import { FlowchartProps } from '../interface';
-
+import { setProps, setGrapgInstance } from '../util';
+import { FlowchartProps, IGraph } from '../interface';
 import AppContext from '../context';
+import { appendUtils } from './appendUtils';
 import { useGraphConfig, useGraphHook } from './service';
 
 import './index.less';
@@ -47,7 +37,8 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const { show = true } = scaleToolbarPanelProps;
   const { show: nodePanelShow = true } = nodePanelProps;
   const { show: showMenu = true } = contextMenuPanelProps;
-  const loadData = async (app) => {
+
+  const loadData = useCallback(async (app) => {
     if (data) {
       const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
         loadDataService: async () => {
@@ -60,7 +51,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         graphData,
       });
     }
-  };
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -75,11 +66,11 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         style={style}
         hookConfig={hookConfig}
         onLoad={async (app, registry) => {
-          /* eslint-disable-next-line  */
           const X6Graph = await registry.graphInstanceDefer.promise;
+          setGrapgInstance(X6Graph);
           graphRef.current = X6Graph;
-          onReady?.(appendUtils(X6Graph));
           loadData(app);
+          onReady?.(appendUtils(X6Graph));
         }}
       >
         <ToolbarPanel {...toolbarPanelProps} />
