@@ -1,0 +1,59 @@
+@prefix-cls: ~'flowchart-editor';
+
+.@{prefix-cls}-panel-body {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 12px;
+  padding-top: 12px;
+  font-size: 14px;
+
+  input {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+  }
+
+  button {
+    height: 32px;
+    padding: 4px 15px;
+    line-height: 1.5715;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .@{prefix-cls}-popover {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 2;
+    padding: 6px;
+    background: '#fff';
+  }
+
+  .@{prefix-cls}-color {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+  }
+
+  .sketch-picker {
+    width: 100% !important;
+  }
+}
+
+.@{prefix-cls}-canvas-panel {
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+  color: #aaa;
+}

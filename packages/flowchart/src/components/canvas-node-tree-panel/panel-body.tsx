@@ -181,7 +181,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
         width,
         height,
         // X6_NODE_PORTAL_NODE_VIEW
-        view: graphConfig.flowId,
+        view: graphConfig.graphId,
         component: wrappedComponent,
       };
       const x6Node = x6NodeFactory ? x6NodeFactory(nodeData) : defaultNodeFactory(nodeData);

@@ -51,6 +51,22 @@ export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = asy
     return edgeSchema;
   }
   return {
-    tabs: [],
+    tabs: [
+      {
+        name: '主画布',
+        groups: [
+          {
+            name: 'groupName',
+            controls: [
+              {
+                label: '',
+                name: 'canvas-service',
+                shape: 'canvas-service',
+              },
+            ],
+          },
+        ],
+      },
+    ],
   } as NsJsonSchemaForm.ISchema;
 };

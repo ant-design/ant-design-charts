@@ -5,7 +5,8 @@ import { createPath } from '../../util';
 import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
 
 export const OrNode: NsGraph.INodeRender = (props) => {
-  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data } = props;
+  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {} } = props;
+  const { stroke, color, label } = data;
   const {
     theme: { NodeConfig, LabelConfig },
   } = useContext(AppContext) as any;
@@ -28,15 +29,21 @@ export const OrNode: NsGraph.INodeRender = (props) => {
       <path
         d={`M ${NODE_PADDING},${height / 2} a ${availableR / 2} ${availableR / 2} 0 1 1 0 1 z`}
         fill={stateNodeConfig.fill}
-        stroke={stateNodeConfig.stroke}
+        stroke={stroke || stateNodeConfig.stroke}
         style={{
           fill: '#fff',
         }}
       />
-      <path d={createPath(path1)} stroke={stateNodeConfig.stroke} />
-      <path d={createPath(path2)} stroke={stateNodeConfig.stroke} />
-      <text x={width / 2} y={height / 2} fill={stateLabelConfig.fill} textAnchor="middle" alignmentBaseline="middle">
-        {data?.label}
+      <path d={createPath(path1)} stroke={stroke || stateNodeConfig.stroke} />
+      <path d={createPath(path2)} stroke={stroke || stateNodeConfig.stroke} />
+      <text
+        x={width / 2}
+        y={height / 2}
+        fill={color || stateLabelConfig.fill}
+        textAnchor="middle"
+        alignmentBaseline="middle"
+      >
+        {label}
       </text>
       Sorry, your browser does not support inline SVG.
     </svg>

@@ -4,7 +4,6 @@ import {
   XFlowCanvas,
   XFlowGraphCommands,
   NsGraphCmd,
-  FrontendApplication,
   CanvasScaleToolbar,
   CanvasContextMenu,
   usePanelContext,
@@ -48,7 +47,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const { show = true } = scaleToolbarPanelProps;
   const { show: nodePanelShow = true } = nodePanelProps;
   const { show: showMenu = true } = contextMenuPanelProps;
-  const loadData = async (app: FrontendApplication) => {
+  const loadData = async (app) => {
     if (data) {
       const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
         loadDataService: async () => {
@@ -75,7 +74,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         className={className}
         style={style}
         hookConfig={hookConfig}
-        onAppReadyCallback={async (app, registry) => {
+        onLoad={async (app, registry) => {
           /* eslint-disable-next-line  */
           const X6Graph = await registry.graphInstanceDefer.promise;
           graphRef.current = X6Graph;

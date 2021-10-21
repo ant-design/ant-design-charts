@@ -4,7 +4,8 @@ import { AppContext } from '../../index';
 import { NODE_HEIGHT, NODE_WIDTH, NODE_PADDING } from '../../constants';
 
 export const ConnectorNode: NsGraph.INodeRender = (props) => {
-  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data } = props;
+  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {} } = props;
+  const { stroke, color, label } = data;
   const {
     theme: { NodeConfig, LabelConfig },
   } = useContext(AppContext) as any;
@@ -18,13 +19,19 @@ export const ConnectorNode: NsGraph.INodeRender = (props) => {
       <path
         d={`M ${NODE_PADDING},${height / 2} a ${availableR / 2} ${availableR / 2} 0 1 1 0 1 z`}
         fill={stateNodeConfig.fill}
-        stroke={stateNodeConfig.stroke}
+        stroke={stroke || stateNodeConfig.stroke}
         style={{
           fill: '#fff',
         }}
       />
-      <text x={height / 2} y={height / 2} fill={stateLabelConfig.fill} textAnchor="middle" alignmentBaseline="middle">
-        {data?.label}
+      <text
+        x={height / 2}
+        y={height / 2}
+        fill={color || stateLabelConfig.fill}
+        textAnchor="middle"
+        alignmentBaseline="middle"
+      >
+        {label}
       </text>
       Sorry, your browser does not support inline SVG.
     </svg>

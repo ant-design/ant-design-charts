@@ -73,6 +73,7 @@ export const getRegisterNode = () => {
       parentId: '',
       id,
       renderKey: name,
+      name,
       label,
       popoverContent: popover,
       width,

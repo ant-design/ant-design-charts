@@ -236,6 +236,14 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
       },
     } as IEvent<'node:click'>,
     {
+      eventName: 'node:selected',
+      callback: (e, cmds, ctx) => {
+        const nodeData: NsGraph.INodeConfig = e?.node?.getData();
+        const props = getProps();
+        props.handleNodeSelected?.(nodeData);
+      },
+    } as IEvent<'node:selected'>,
+    {
       eventName: 'node:removed',
       callback: (e, cmds, ctx) => {
         const nodeData: NsGraph.INodeConfig = e?.node?.getData();

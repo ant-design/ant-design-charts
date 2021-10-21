@@ -35,11 +35,12 @@
     "test:coverage": "umi-test --coverage"
   },
   "dependencies": {
-    "@ali/xflow": "^0.0.5-alpha.9",
+    "@ali/xflow": "^0.0.5-alpha.10",
     "@antv/x6": "^1.25.0",
     "@antv/x6-react-components": "^1.1.13",
     "@antv/x6-react-shape": "^1.4.5",
     "lodash-es": "^4.17.21",
+    "react-color": "2.17.3",
     "react-use": "^17.3.1"
   },
   "peerDependencies": {
