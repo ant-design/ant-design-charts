@@ -30,10 +30,38 @@ export const getGraphData = () => {
   return graphData;
 };
 
-export const onConfigChange = () => {
-  const configChange = getProps('onConfigChange');
-  if (!configChange || typeof configChange !== 'function') {
-    return;
-  }
-  return configChange(getGraphData());
+/**
+ * 防抖函数
+ * @param func 执行函数
+ * @param delay 延迟时间 ms
+ * @param immediate 是否立即执行
+ */
+export const debounce = (func: Function, delay: number, immediate: boolean = false): Function => {
+  let timer: number | undefined;
+
+  return function (this: unknown, ...args: any[]) {
+    let that = this;
+    if (immediate) {
+      func.apply(that, args);
+      immediate = false;
+      return;
+    }
+    clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      func.apply(that, args);
+    }, delay);
+  };
 };
+
+/** 更新配置时通知上传执行保存 */
+export const onConfigChange = debounce(
+  () => {
+    const configChange = getProps('onConfigChange');
+    if (!configChange || typeof configChange !== 'function') {
+      return;
+    }
+    return configChange(getGraphData());
+  },
+  300,
+  true,
+);

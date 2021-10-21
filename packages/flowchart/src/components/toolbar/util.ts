@@ -46,7 +46,7 @@ namespace NSToolbarConfig {
   export const getToolbarItems = async (state: IToolbarState, getIconName: any) => {
     const toolbarGroup: IToolbarItemOptions[] = [];
 
-    /** 保存数据 */
+    /** 撤销 */
     toolbarGroup.push({
       ...getIconName(CommandPool.UNDO_CMD),
       id: TOOLBAR_ITEMS.UNDO,
@@ -55,7 +55,7 @@ namespace NSToolbarConfig {
         commandService.executeCommand<NsGraphCmd.UndoCmd.IArgs>(XFlowGraphCommands.UNDO_CMD.id, {});
       },
     });
-    /** 保存数据 */
+    /** 重做 */
     toolbarGroup.push({
       ...getIconName(CommandPool.REDO_CMD),
       id: TOOLBAR_ITEMS.REDO,
@@ -104,22 +104,6 @@ namespace NSToolbarConfig {
         const node = await MODELS.SELECTED_NODE.useValue(modelService);
         commandService.executeCommand<NsNodeCmd.FrontNode.IArgs>(TOOLBAR_ITEMS.BACK_NODE, {
           nodeId: node?.id,
-        });
-      },
-    });
-    /** BACK_NODE */
-    toolbarGroup.push({
-      ...getIconName(CommandPool.BACK_NODE),
-      id: TOOLBAR_ITEMS.BACK_NODE,
-      isEnabled: state.isNodeSelected,
-      onClick: async ({ commandService, modelService }) => {
-        commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(TOOLBAR_ITEMS.BACK_NODE, {
-          saveGraphDataService: (meta, graphData) => {
-            const onSave = getProps('onSave');
-            if (onSave) {
-              return onSave(graphData);
-            }
-          },
         });
       },
     });
