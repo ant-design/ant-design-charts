@@ -212,6 +212,9 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
   const customNode = state.treeData.filter((item) => item.isCustom);
   const officialNode = state.treeData.filter((item) => !item.isCustom);
 
+  const searchCustomNode = state.searchList.filter((item) => item.isCustom);
+  const searchOfficialNode = state.searchList.filter((item) => !item.isCustom);
+
   return (
     <React.Fragment>
       {/* <div className={`${prefixClz}-body`} style={props.style}> */}
@@ -223,21 +226,10 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
           </Fragment>
         )}
         {state.searchList.length > 0 && (
-          <ul className={`${prefixClz}-body-list`}>
-            {state.searchList.map((treeNode) => (
-              <li className={`${prefixClz}-body-list-item`}>
-                <NodeTitle
-                  item={treeNode}
-                  onMouseDown={onMouseDown(treeNode)}
-                  popoverContent={treeNode.popoverContent}
-                  prefixClz={prefixClz}
-                  modelService={modelService}
-                  commandService={commandService}
-                  graphConfig={graphConfig}
-                />
-              </li>
-            ))}
-          </ul>
+          <Fragment>
+            <div className={`${prefixClz}-official`}>{renderTree(searchOfficialNode)}</div>
+            {customNode.length > 0 && <div className={`${prefixClz}-custom`}>{renderTree(searchCustomNode)}</div>}
+          </Fragment>
         )}
 
         {state.keyword && state.searchList.length === 0 && <Empty style={{ marginTop: '48px' }} />}
