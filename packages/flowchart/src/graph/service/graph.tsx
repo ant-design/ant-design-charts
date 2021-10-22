@@ -74,6 +74,7 @@ export const useGraphHook = createHookConfig((config) => {
                 cell: edgeConfig.target,
                 port: edgeConfig.targetPortId,
               },
+              zIndex: 1,
               attrs: {
                 line: {
                   stroke: '#A2B1C3',
