@@ -1,5 +1,13 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { XFlow, XFlowCanvas, XFlowGraphCommands, NsGraphCmd, CanvasScaleToolbar, CanvasContextMenu } from '@ali/xflow';
+import {
+  XFlow,
+  XFlowCanvas,
+  XFlowGraphCommands,
+  NsGraphCmd,
+  CanvasScaleToolbar,
+  CanvasContextMenu,
+  KeyBindings,
+} from '@ali/xflow';
 import { NodeTreePanel } from '../components/canvas-node-tree-panel';
 import { treeDataService, searchService, onNodeDrop } from '../components/nodePanel';
 import { FormPanel } from '../components/editorPanel';
@@ -11,6 +19,7 @@ import { FlowchartProps, IGraph } from '../interface';
 import AppContext from '../context';
 import { appendUtils } from './appendUtils';
 import { useGraphConfig, useGraphHook } from './service';
+import { useKeybindingConfig } from './service/keyBinding';
 
 import './index.less';
 
@@ -34,6 +43,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const graphConfig = useGraphConfig(props);
   const menuConfig = useMenuConfig();
   const hookConfig = useGraphHook();
+  const keybindingConfig = useKeybindingConfig();
   const { show = true } = scaleToolbarPanelProps;
   const { show: nodePanelShow = true } = nodePanelProps;
   const { show: showMenu = true } = contextMenuPanelProps;
@@ -88,6 +98,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           {showMenu && <CanvasContextMenu config={menuConfig} />}
         </XFlowCanvas>
         <FormPanel {...detailPanelProps} />
+        <KeyBindings config={keybindingConfig} />
       </XFlow>
     </AppContext.Provider>
   );
