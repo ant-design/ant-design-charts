@@ -1,6 +1,8 @@
 import { getProps, getGraphInstance } from './global';
 import { NsGraph } from '../interface';
 
+export const Log = window.console;
+
 export const getGraphData = () => {
   const x6Graph = getGraphInstance();
   if (!x6Graph) {

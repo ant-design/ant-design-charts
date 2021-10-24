@@ -3,6 +3,9 @@
  * enum Command {Undo, Redo, SaveGraphData,frontNode,backNode}
  */
 
+/** 组群 */
+const GROUP_NODE_RENDER_ID = 'GROUP_NODE_RENDER_ID';
+
 /** undo 操作 */
 const UNDO_CMD = 'undo-cmd';
 /** redo 操作 */
@@ -14,10 +17,20 @@ const FRONT_NODE = 'front-node';
 /** 置后 */
 const BACK_NODE = 'back-node';
 
+const MULTI_SELECT = 'graph-toggle-multi-select';
+
+const ADD_GROUP = 'add-group';
+
+const DEL_GROUP = 'del-group';
+
 export const CommandPool = {
   UNDO_CMD,
   REDO_CMD,
   SAVE_GRAPH_DATA,
   FRONT_NODE,
   BACK_NODE,
+  GROUP_NODE_RENDER_ID,
+  MULTI_SELECT,
+  ADD_GROUP,
+  DEL_GROUP,
 };

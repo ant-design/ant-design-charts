@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Console } from '../utils';
+import { Log } from '../utils';
 
 interface FunUseFullscreen {
   (el?: HTMLElement | null): [boolean, () => void];
@@ -20,7 +20,7 @@ const useFullscreen: FunUseFullscreen = (el) => {
           setFullscreen(true);
         })
         .catch((err) => {
-          Console.error('requestFullscreen error: ', err);
+          Log.error('requestFullscreen error: ', err);
         });
     }
   };
@@ -32,7 +32,7 @@ const useFullscreen: FunUseFullscreen = (el) => {
           setFullscreen(false);
         })
         .catch((err) => {
-          Console.error('exitFullscreen error: ', err);
+          Log.error('exitFullscreen error: ', err);
         });
     }
   };
@@ -40,7 +40,7 @@ const useFullscreen: FunUseFullscreen = (el) => {
   const toggleFullscreen = () => {
     // 切换是否全屏
     if (!el) {
-      Console.error('need dom');
+      Log.error('need dom');
       return;
     }
     if (!fullscreen) {

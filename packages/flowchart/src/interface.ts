@@ -56,14 +56,27 @@ export interface CanvasProps {
   position?: IPosition;
 }
 
-export type Command = 'undo-cmd' | 'redo-cmd' | 'front-node' | 'back-node' | 'save-graph-data';
+export type Command =
+  | 'undo-cmd'
+  | 'redo-cmd'
+  | 'front-node'
+  | 'back-node'
+  | 'save-graph-data'
+  | 'multi-select'
+  | 'add-group'
+  | 'delete-group';
+
 export type CommandItem = {
   /** 命令 */
   command: Command;
   /** 名称 */
   text?: string;
   /** icon */
-  icon?: React.ForwardRefExoticComponent<any>;
+  // icon?: React.ForwardRefExoticComponent<any>;
+  /** tooltip */
+  tooltip?: string;
+  /** iconName */
+  iconName?: string;
 };
 export interface ToolbarPanelProps extends BaseProps {
   commands?: CommandItem[];

@@ -26,21 +26,7 @@ export const isType = (value: any, type: string): boolean => {
   return toString.call(value) === `[object ${type}]`;
 };
 
-// console
-export const Console = {
-  log: (value: string) => {
-    // eslint-disable-next-line no-console
-    console.log(value);
-  },
-  warn: (value: string) => {
-    // eslint-disable-next-line no-console
-    console.warn(value);
-  },
-  error: (...args: any[]) => {
-    // eslint-disable-next-line no-console
-    console.error(...args);
-  },
-};
+export const Log = window.console;
 
 export const getType = (n: Object) => {
   return Object.prototype.toString.call(n).slice(8, -1);
@@ -80,7 +66,7 @@ export const getGraphSize = (
     CANVAS_HEIGHT = container.current.offsetHeight || 500;
   }
   if ((!width && !CANVAS_WIDTH) || (!height && !CANVAS_HEIGHT)) {
-    Console.warn('请为 Graph 指定 width 与 height！否则将使用默认值 500 * 500');
+    Log.warn('请为 Graph 指定 width 与 height！否则将使用默认值 500 * 500');
     return [500, 500];
   }
 

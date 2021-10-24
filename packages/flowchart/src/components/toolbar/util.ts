@@ -1,21 +1,42 @@
-import { createToolbarConfig, IModelService, IToolbarItemOptions, NsGroupCmd, uuidv4 } from '@ali/xflow';
+import {
+  createToolbarConfig,
+  IModelService,
+  IToolbarItemOptions,
+  NsGroupCmd,
+  uuidv4,
+  XFlowGroupCommands,
+} from '@ali/xflow';
 import { XFlowNodeCommands, XFlowGraphCommands, MODELS, NsGraphCmd, NsNodeCmd, IconStore } from '@ali/xflow';
-
-import { getProps } from '../../util';
+import { getProps, Log } from '../../util';
+import {
+  UngroupOutlined,
+  SaveOutlined,
+  GroupOutlined,
+  GatewayOutlined,
+  UndoOutlined,
+  RedoOutlined,
+  VerticalAlignTopOutlined,
+  VerticalAlignBottomOutlined,
+} from '@ant-design/icons';
 import { CommandPool } from './constants';
 import { CommandItem, FlowchartProps } from '../../interface';
 
 export namespace TOOLBAR_ITEMS {
   export const BACK_NODE = XFlowNodeCommands.BACK_NODE.id;
   export const FRONT_NODE = XFlowNodeCommands.FRONT_NODE.id;
-  export const SAVE = XFlowGraphCommands.SAVE_GRAPH_DATA.id;
-  export const REDO = `${XFlowGraphCommands.REDO_CMD.id}`;
-  export const UNDO = `${XFlowGraphCommands.UNDO_CMD.id}`;
+  export const SAVE_GRAPH_DATA = XFlowGraphCommands.SAVE_GRAPH_DATA.id;
+  export const REDO_CMD = `${XFlowGraphCommands.REDO_CMD.id}`;
+  export const UNDO_CMD = `${XFlowGraphCommands.UNDO_CMD.id}`;
+  export const MULTI_SELECT = `${XFlowGraphCommands.GRAPH_TOGGLE_MULTI_SELECT.id}`;
+  export const ADD_GROUP = `${XFlowGroupCommands.ADD_GROUP.id}`;
+  export const DEL_GROUP = `${XFlowGroupCommands.DEL_GROUP.id}`;
 }
 
 namespace NSToolbarConfig {
   /** toolbar依赖的状态 */
   export interface IToolbarState {
+    isMultiSelctionActive: boolean;
+    isGroupSelected: boolean;
     isNodeSelected: boolean;
     isUndoable: boolean;
     isRedoable: boolean;
@@ -43,37 +64,39 @@ namespace NSToolbarConfig {
     } as NSToolbarConfig.IToolbarState;
   };
 
-  export const getToolbarItems = async (state: IToolbarState, getIconName: any) => {
+  export const getToolbarItems = async (state: IToolbarState, getIconConfig: any) => {
     const toolbarGroup: IToolbarItemOptions[] = [];
 
     /** 撤销 */
     toolbarGroup.push({
-      ...getIconName(CommandPool.UNDO_CMD),
-      id: TOOLBAR_ITEMS.UNDO,
+      ...getIconConfig(CommandPool.UNDO_CMD),
+      id: TOOLBAR_ITEMS.UNDO_CMD,
       isEnabled: state.isUndoable,
       onClick: async ({ commandService }) => {
         commandService.executeCommand<NsGraphCmd.UndoCmd.IArgs>(XFlowGraphCommands.UNDO_CMD.id, {});
       },
     });
+
     /** 重做 */
     toolbarGroup.push({
-      ...getIconName(CommandPool.REDO_CMD),
-      id: TOOLBAR_ITEMS.REDO,
+      ...getIconConfig(CommandPool.REDO_CMD),
+      id: TOOLBAR_ITEMS.REDO_CMD,
       isEnabled: state.isRedoable,
       onClick: async ({ commandService, modelService }) => {
         const cell = await MODELS.SELECTED_NODE.useValue(modelService);
         const nodeConfig = cell.getData();
-        commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(TOOLBAR_ITEMS.REDO, {
+        commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(TOOLBAR_ITEMS.REDO_CMD, {
           nodeConfig: nodeConfig,
         });
       },
     });
+
     /** 保存数据 */
     toolbarGroup.push({
-      ...getIconName(CommandPool.SAVE_GRAPH_DATA),
-      id: TOOLBAR_ITEMS.SAVE,
+      ...getIconConfig(CommandPool.SAVE_GRAPH_DATA),
+      id: TOOLBAR_ITEMS.SAVE_GRAPH_DATA,
       onClick: async ({ commandService, modelService }) => {
-        commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(TOOLBAR_ITEMS.SAVE, {
+        commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(TOOLBAR_ITEMS.SAVE_GRAPH_DATA, {
           saveGraphDataService: (meta, graphData) => {
             const onSave = getProps('onSave');
             if (onSave) {
@@ -83,9 +106,10 @@ namespace NSToolbarConfig {
         });
       },
     });
+
     /** FRONT_NODE */
     toolbarGroup.push({
-      ...getIconName(CommandPool.FRONT_NODE),
+      ...getIconConfig(CommandPool.FRONT_NODE),
       id: TOOLBAR_ITEMS.FRONT_NODE,
       isEnabled: state.isNodeSelected,
       onClick: async ({ commandService, modelService }) => {
@@ -95,9 +119,10 @@ namespace NSToolbarConfig {
         });
       },
     });
+
     /** BACK_NODE */
     toolbarGroup.push({
-      ...getIconName(CommandPool.BACK_NODE),
+      ...getIconConfig(CommandPool.BACK_NODE),
       id: TOOLBAR_ITEMS.BACK_NODE,
       isEnabled: state.isNodeSelected,
       onClick: async ({ commandService, modelService }) => {
@@ -108,59 +133,121 @@ namespace NSToolbarConfig {
       },
     });
 
+    /** 开启框选 */
+    toolbarGroup.push({
+      ...getIconConfig(CommandPool.MULTI_SELECT),
+      id: TOOLBAR_ITEMS.MULTI_SELECT,
+      active: state.isMultiSelctionActive,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphCmd.GraphToggleMultiSelect.IArgs>(TOOLBAR_ITEMS.MULTI_SELECT, {});
+      },
+    });
+
+    /** 新建群组 */
+    toolbarGroup.push({
+      ...getIconConfig(CommandPool.ADD_GROUP),
+      id: TOOLBAR_ITEMS.ADD_GROUP,
+      isEnabled: state.isNodeSelected,
+      onClick: async ({ commandService, modelService }) => {
+        const cells = await MODELS.SELECTED_CELLS.useValue(modelService);
+        const groupChildren = cells.map((cell) => cell.id);
+        commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(TOOLBAR_ITEMS.ADD_GROUP, {
+          nodeConfig: {
+            id: uuidv4(),
+            renderKey: CommandPool.GROUP_NODE_RENDER_ID,
+            groupChildren,
+            groupCollapsedSize: { width: 200, height: 40 },
+            label: '新建群组',
+          },
+        });
+      },
+    });
+
+    /** 解散群组 */
+    toolbarGroup.push({
+      ...getIconConfig(CommandPool.DEL_GROUP),
+      id: TOOLBAR_ITEMS.DEL_GROUP,
+      isEnabled: state.isGroupSelected,
+      onClick: async ({ commandService, modelService }) => {
+        const cell = await MODELS.SELECTED_NODE.useValue(modelService);
+        const nodeConfig = cell.getData();
+        commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(XFlowGroupCommands.DEL_GROUP.id, {
+          nodeConfig: nodeConfig,
+        });
+      },
+    });
+
     return [{ name: 'graphData', items: toolbarGroup }];
   };
 }
 
+/** 注册icon 类型 */
+const registerIcon = () => {
+  IconStore.set('SaveOutlined', SaveOutlined);
+  IconStore.set('UndoOutlined', UndoOutlined);
+  IconStore.set('RedoOutlined', RedoOutlined);
+  IconStore.set('VerticalAlignTopOutlined', VerticalAlignTopOutlined);
+  IconStore.set('VerticalAlignBottomOutlined', VerticalAlignBottomOutlined);
+  IconStore.set('GatewayOutlined', GatewayOutlined);
+  IconStore.set('GroupOutlined', GroupOutlined);
+  IconStore.set('UngroupOutlined', UngroupOutlined);
+};
+
 export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConfig, proxy) => {
-  const toolbarPanelProps = proxy.getValue()?.toolbarPanelProps || {};
+  const toolbarPanelProps = getProps('toolbarPanelProps') ?? {};
+  registerIcon();
+
   let {
     commands = [
       {
+        command: CommandPool.SAVE_GRAPH_DATA,
+        tooltip: '保存',
+        iconName: 'SaveOutlined',
+      },
+      {
         command: CommandPool.REDO_CMD,
-        text: '重做',
+        tooltip: '重做',
+        iconName: 'RedoOutlined',
       },
       {
         command: CommandPool.UNDO_CMD,
-        text: '撤销',
+        tooltip: '撤销',
+        iconName: 'UndoOutlined',
       },
       {
         command: CommandPool.FRONT_NODE,
-        text: '置前',
+        tooltip: '置前',
+        iconName: 'VerticalAlignTopOutlined',
       },
       {
         command: CommandPool.BACK_NODE,
-        text: '置后',
+        tooltip: '置后',
+        iconName: 'VerticalAlignBottomOutlined',
       },
       {
-        command: CommandPool.SAVE_GRAPH_DATA,
-        text: '保存',
+        command: CommandPool.MULTI_SELECT,
+        tooltip: '开启框选',
+        iconName: 'GatewayOutlined',
+      },
+      {
+        command: CommandPool.ADD_GROUP,
+        tooltip: '新建群组',
+        iconName: 'GroupOutlined',
+      },
+      {
+        command: CommandPool.DEL_GROUP,
+        tooltip: '解散群组',
+        iconName: 'UngroupOutlined',
       },
     ] as CommandItem[],
   } = toolbarPanelProps;
 
-  const registerIcon = () => {
-    commands = commands.map((item: CommandItem) => {
-      const { icon } = item;
-      if (icon) {
-        const iconName = uuidv4();
-        IconStore.set(iconName, icon);
-        return {
-          ...item,
-          iconName,
-        };
-      }
-      return { ...item };
-    });
-  };
-
-  registerIcon();
-
-  const getIconName = (commandName: string) => {
+  const getIconConfig = (commandName: string) => {
     if (!Object.values(CommandPool).includes(commandName)) {
-      // console.warn(`unknown command: ${commandName}`);
+      Log.warn(`unknown command: ${commandName}`);
       return {};
     }
+    /** 暂时不支持自定义 icon，感觉使用上并不方便，后续再考虑接入 */
     return commands.find((item: CommandItem) => item.command === commandName);
   };
 
@@ -168,7 +255,7 @@ export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConf
   toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
     const updateToolbarModel = async () => {
       const state = await NSToolbarConfig.getToolbarState(modelService);
-      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconName);
+      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconConfig);
       toolbarModel.setValue((toolbar) => {
         toolbar.mainGroups = toolbarItems;
       });
