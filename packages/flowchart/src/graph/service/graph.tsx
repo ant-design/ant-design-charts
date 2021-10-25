@@ -14,6 +14,7 @@ import {
 import { getProps as getGlobalProps } from '../../util';
 import { Edge, Shape } from '@antv/x6';
 import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/nodePanel';
+import { setGroupRender } from '../../components/groupPanel';
 
 import { registerEdge, DefaultEdgeConfig } from '../../components/edgePanel/index';
 import { movedNode, resizeNode, changePortsVisible, setEdgeSelected } from './events';
@@ -110,6 +111,7 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
   config.setEdgeTypeParser((edge) => edge?.renderKey as string);
   registerEdge(config);
   setNodeRender(config, nodePanelProps);
+  setGroupRender(config);
   config.setX6Config({
     grid: true,
     resizing: {

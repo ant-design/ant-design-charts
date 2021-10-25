@@ -18,6 +18,7 @@ import {
   VerticalAlignTopOutlined,
   VerticalAlignBottomOutlined,
 } from '@ant-design/icons';
+import { GROUP_NODE_RENDER_ID } from '../groupPanel';
 import { CommandPool } from './constants';
 import { CommandItem, FlowchartProps } from '../../interface';
 
@@ -154,7 +155,7 @@ namespace NSToolbarConfig {
         commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(TOOLBAR_ITEMS.ADD_GROUP, {
           nodeConfig: {
             id: uuidv4(),
-            renderKey: CommandPool.GROUP_NODE_RENDER_ID,
+            renderKey: GROUP_NODE_RENDER_ID,
             groupChildren,
             groupCollapsedSize: { width: 200, height: 40 },
             label: '新建群组',

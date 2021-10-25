@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/flowchart",
-  "version": "0.0.1-beta.4",
+  "version": "0.0.1-beta.5",
   "description": "Flowchart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib dist copy",
+    "build": "run-s clean dist lib copy",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",

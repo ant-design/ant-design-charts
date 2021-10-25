@@ -1,8 +1,6 @@
 import React from 'react';
 import { PlusSquareOutlined, MinusSquareOutlined } from '@ant-design/icons';
-import { NsGraph, useXFlowApp, XFlowGroupCommands, NsNodeCmd } from '@ali/xflow';
-import AppContext from '../../../../context';
-import { FormWrapper } from '../../formWrapper';
+import { NsGraph, useXFlowApp, XFlowGroupCommands } from '@ali/xflow';
 import './group.less';
 
 export const GroupNode: NsGraph.INodeRender = (props) => {
@@ -35,11 +33,5 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
         </div>
       </div>
     </div>
-  );
-};
-
-export const GroupService: React.FC<any> = (props) => {
-  return (
-    <FormWrapper {...props}>{(config, plugin) => <GroupNode {...props} plugin={plugin} config={config} />}</FormWrapper>
   );
 };
