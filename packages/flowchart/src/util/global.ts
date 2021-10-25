@@ -17,7 +17,7 @@ export const setGrapgInstance = (x6graph: IGraph) => {
 };
 
 export const getGraphInstance = () => {
-  return graphInstance.get('x6graph');
+  return graphInstance.get('x6graph') as IGraph;
 };
 
 /** 获取全局状态 */

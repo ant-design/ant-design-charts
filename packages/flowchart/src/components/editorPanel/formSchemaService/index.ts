@@ -2,6 +2,29 @@ import type { NsJsonSchemaForm } from '@ali/xflow';
 
 export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = async (args) => {
   const { targetType } = args;
+  const isGroup = args.targetData?.isGroup;
+
+  const groupSchema: NsJsonSchemaForm.ISchema = {
+    tabs: [
+      {
+        name: '分组信息',
+        groups: [
+          {
+            name: 'groupName',
+            controls: [
+              {
+                label: '分组名',
+                name: 'group-service',
+                shape: 'group-service',
+                placeholder: '分组名称',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+
   const nodeSchema: NsJsonSchemaForm.ISchema = {
     tabs: [
       {
@@ -42,6 +65,10 @@ export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = asy
       },
     ],
   };
+
+  if (isGroup) {
+    return groupSchema;
+  }
 
   if (targetType === 'node') {
     return nodeSchema;

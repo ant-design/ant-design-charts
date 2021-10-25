@@ -33,9 +33,13 @@ const EdgeComponent = (props) => {
       ...edgeConfig,
       [key]: value,
     });
-    updateEdge({
-      [key]: value,
-    });
+
+    updateEdge(
+      {
+        [key]: value,
+      },
+      key === 'stroke' ? 'attrs' : 'edgeConfig',
+    );
   };
 
   useEffect(() => {
@@ -54,13 +58,13 @@ const EdgeComponent = (props) => {
           onEdgeConfigChange('label', value);
         }}
       />
-      {/* <ColorPicker
+      <ColorPicker
         label="边框颜色"
         value={edgeConfig.stroke}
         onChange={(value: string) => {
-          onEdgeConfigChange('fill', value);
+          onEdgeConfigChange('stroke', value);
         }}
-      /> */}
+      />
     </div>
   );
 };

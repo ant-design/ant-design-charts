@@ -53,15 +53,21 @@ namespace NSToolbarConfig {
   /** toolbar依赖的状态 */
   export const getToolbarState = async (modelService: IModelService) => {
     // isMultiSelctionActive
+    const { isEnable: isMultiSelctionActive } = await MODELS.GRAPH_ENABLE_MULTI_SELECT.useValue(modelService);
+    // isGroupSelected
+    const isGroupSelected = await MODELS.IS_GROUP_SELECTED.useValue(modelService);
+    // isNormalNodesSelected: node不能是GroupNode
+    const isNormalNodesSelected = await MODELS.IS_NORMAL_NODES_SELECTED.useValue(modelService);
+    // undo redo
     const isUndoable = await MODELS.COMMAND_UNDOABLE.useValue(modelService);
     const isRedoable = await MODELS.COMMAND_REDOABLE.useValue(modelService);
-    // isNodeSelected
-    const cells = await MODELS.SELECTED_NODES.useValue(modelService);
-    const isNodeSelected = cells.length > 0;
+
     return {
-      isNodeSelected,
       isUndoable,
       isRedoable,
+      isNodeSelected: isNormalNodesSelected,
+      isGroupSelected,
+      isMultiSelctionActive,
     } as NSToolbarConfig.IToolbarState;
   };
 

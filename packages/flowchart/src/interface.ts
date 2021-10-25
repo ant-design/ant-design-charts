@@ -7,7 +7,7 @@ import {
   NsJsonSchemaForm,
   IToolbarLayout,
 } from '@ali/xflow';
-import { Cell, Graph, Edge } from '@antv/x6';
+import { Cell, Graph, Edge, Node } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
 
 export interface FlowchartContainerProps {
@@ -156,4 +156,4 @@ export interface FlowchartProps extends FlowchartContainerProps {
 type NodeConfig = NsGraph.INodeConfig;
 type EdgeConfig = NsGraph.IEdgeConfig;
 
-export { NsGraph, Edge, NodeConfig, EdgeConfig };
+export { NsGraph, Edge, NodeConfig, EdgeConfig, Node };

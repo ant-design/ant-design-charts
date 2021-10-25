@@ -16,7 +16,11 @@ import useAsync from './useAsync';
 export interface IFormWrapper {
   children: (
     config: Object,
-    plugin: { updateNode: (params: Object) => void; updateEdge: (params: Object) => void },
+    plugin: {
+      updateNode: (params: Object) => void;
+      updateEdge: (params: Object) => void;
+      updateGroup: (params: Object) => void;
+    },
   ) => React.ReactElement;
 }
 
@@ -34,7 +38,7 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
     const data = cell.getData();
     return {
       id: cell.id,
-      ...(data as object),
+      ...(data as any),
     };
   }, [props]);
 
@@ -59,14 +63,43 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
     onConfigChange();
   };
 
-  const updateEdge = async (value: object) => {
+  const updateEdge = async (value: object, type: string = 'edgeConfig') => {
     const currentEdgeData = await getSelectEdge();
-    await commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
-      edgeConfig: {
-        ...currentEdgeData,
+    let config = {};
+    if (type === 'attrs') {
+      config = {
+        edgeConfig: {
+          ...currentEdgeData,
+        },
+        attrs: {
+          line: {
+            ...currentEdgeData.attts?.line,
+            ...value,
+          },
+        },
+      };
+    } else {
+      config = {
+        edgeConfig: {
+          ...currentEdgeData,
+          ...value,
+        },
+      };
+    }
+    await commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, config);
+    onConfigChange();
+  };
+
+  const updateGroup = async (value: object) => {
+    const currentGroupData = await getSelectNode();
+    console.log(currentGroupData);
+
+    await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+      nodeConfig: {
+        ...currentGroupData,
         ...value,
       },
-    } as NsEdgeCmd.UpdateEdge.IArgs);
+    });
     onConfigChange();
   };
 
@@ -77,7 +110,7 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
   return (
     <FormItemWrapper schema={controlSchema}>
       {() => {
-        return children({ ...(data as object) }, { updateNode, updateEdge });
+        return children({ ...(data as object) }, { updateNode, updateEdge, updateGroup });
       }}
     </FormItemWrapper>
   );

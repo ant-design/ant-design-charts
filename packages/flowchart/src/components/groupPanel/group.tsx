@@ -4,7 +4,10 @@ import { NsGraph, useXFlowApp, XFlowGroupCommands } from '@ali/xflow';
 import './group.less';
 
 export const GroupNode: NsGraph.INodeRender = (props) => {
-  const { cell } = props;
+  const {
+    cell,
+    data: { label, stroke },
+  } = props;
   const app = useXFlowApp();
   const isCollapse = cell.getProp('isCollapsed') || false;
   const onExpand = (e) => {
@@ -24,9 +27,14 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
   };
 
   return (
-    <div className="xflow-group-node">
+    <div
+      className="xflow-group-node"
+      style={{
+        borderColor: stroke,
+      }}
+    >
       <div className="xflow-group-header">
-        <div className="header-left">{props.data.label}</div>
+        <div className="header-left">{label}</div>
         <div className="header-right">
           {isCollapse && <PlusSquareOutlined onClick={onExpand} />}
           {!isCollapse && <MinusSquareOutlined onClick={onCollapse} />}

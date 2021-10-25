@@ -1,5 +1,6 @@
 import { XFlowNodeCommands, IModelService, IGraphCommandService, XFlowEdgeCommands } from '@ali/xflow';
-import { onConfigChange } from '../../util';
+import { onConfigChange, getGraphInstance } from '../../util';
+import { Node } from '../../interface';
 
 /**
  * 节点移动时，实时更新位置信息
@@ -9,6 +10,24 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
   if (!node) {
     return;
   }
+
+  const { data } = node;
+  // 更新组内元素
+  if (data?.groupChildren) {
+    const x6Graph = getGraphInstance();
+    data?.groupChildren.forEach(async (id: string) => {
+      const currentNode = x6Graph.getCellById(id) as Node;
+      if (currentNode) {
+        await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+          nodeConfig: {
+            ...currentNode.data,
+            ...currentNode.getPosition(),
+          },
+        });
+      }
+    });
+  }
+
   await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
     nodeConfig: {
       ...node.data,

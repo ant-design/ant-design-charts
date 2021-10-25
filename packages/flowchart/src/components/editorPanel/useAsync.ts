@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Log } from '../../util';
 
 export type PromiseType<P extends Promise<any>> = P extends Promise<infer T> ? T : never;
 
@@ -21,7 +22,7 @@ export default function useAsync<T extends FunctionReturningPromise>(fn: T) {
         set({
           loading: false,
         });
-        console.error(error);
+        Log.error(error);
       },
     );
   };
