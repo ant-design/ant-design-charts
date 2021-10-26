@@ -1,21 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../formWrapper';
-import Input from './fields/input';
-import ColorPicker from './fields/color';
-
+import { ColorPicker, InputNumberFiled, InputFiled } from './fields';
 import { prefix } from './constants';
+import { IConfig } from './node';
 
 import './style.less';
 
-interface IEdgeConfig {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-  label?: string;
-  stroke?: string;
-}
+const AttributeKeys = ['stroke', 'fontSize', 'fontFill'];
+
 const EdgeComponent = (props) => {
   const { config, plugin = {} } = props;
   const { updateEdge } = plugin;
@@ -23,7 +16,7 @@ const EdgeComponent = (props) => {
     theme: { EdgeConfig },
   } = useContext(AppContext) as any;
 
-  const [edgeConfig, setEdgeConfig] = useState<IEdgeConfig>({
+  const [edgeConfig, setEdgeConfig] = useState<IConfig>({
     ...EdgeConfig.normal,
     ...config,
   });
@@ -38,7 +31,7 @@ const EdgeComponent = (props) => {
       {
         [key]: value,
       },
-      key === 'stroke' ? 'attrs' : 'edgeConfig',
+      AttributeKeys.includes(key) ? 'attrs' : 'edgeConfig',
     );
   };
 
@@ -51,7 +44,7 @@ const EdgeComponent = (props) => {
 
   return (
     <div className={`${prefix}-panel-body`}>
-      <Input
+      <InputFiled
         label="标签"
         value={edgeConfig.label}
         onChange={(value) => {
@@ -65,6 +58,23 @@ const EdgeComponent = (props) => {
           onEdgeConfigChange('stroke', value);
         }}
       />
+      {/* 暂不支持 */}
+      {/* <div className={`${prefix}-edge-text-style`}>
+        <ColorPicker
+          label="字色"
+          value={edgeConfig.fontFill}
+          onChange={(value: string) => {
+            onEdgeConfigChange('fontFill', value);
+          }}
+        />
+        <InputNumberFiled
+          label="字号"
+          value={edgeConfig.fontSize}
+          onChange={(value) => {
+            onEdgeConfigChange('fontSize', value);
+          }}
+        />
+      </div> */}
     </div>
   );
 };

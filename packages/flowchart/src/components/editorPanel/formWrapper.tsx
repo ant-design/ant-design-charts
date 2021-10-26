@@ -5,7 +5,6 @@ import {
   MODELS,
   XFlowNodeCommands,
   XFlowEdgeCommands,
-  NsEdgeCmd,
   NsJsonSchemaForm,
   usePanelContext,
   FormItemWrapper,
@@ -54,6 +53,8 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
 
   const updateNode = async (value: object) => {
     const currentNodeData = await getSelectNode();
+    console.log(currentNodeData);
+
     await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
       nodeConfig: {
         ...currentNodeData,
@@ -67,13 +68,15 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
     const currentEdgeData = await getSelectEdge();
     let config = {};
     if (type === 'attrs') {
+      console.log(currentEdgeData.attrs?.line);
+
       config = {
         edgeConfig: {
           ...currentEdgeData,
         },
         attrs: {
           line: {
-            ...currentEdgeData.attts?.line,
+            ...currentEdgeData.attrs?.line,
             ...value,
           },
         },
@@ -92,7 +95,6 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
 
   const updateGroup = async (value: object) => {
     const currentGroupData = await getSelectNode();
-    console.log(currentGroupData);
 
     await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
       nodeConfig: {

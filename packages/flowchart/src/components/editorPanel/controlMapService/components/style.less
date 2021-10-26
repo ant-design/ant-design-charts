@@ -7,13 +7,6 @@
   padding-top: 12px;
   font-size: 14px;
 
-  input {
-    width: 100%;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-  }
-
   .@{prefix-cls}-color {
     width: 100%;
     height: 30px;
@@ -21,8 +14,26 @@
     border-radius: 2px;
   }
 
+  .@{prefix-cls}-position,
+  .@{prefix-cls}-size,
+  .@{prefix-cls}-node-style,
+  .@{prefix-cls}-node-text-style,
+  .@{prefix-cls}-edge-text-style {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 5px;
+
+    > div {
+      flex: 1;
+    }
+  }
+
   .sketch-picker {
     width: 100% !important;
+  }
+
+  .ant-input-number {
+    width: 100%;
   }
 }
 
@@ -55,19 +66,5 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
-
-  button {
-    height: 32px;
-    padding: 4px 15px;
-    line-height: 1.5715;
-    background-color: #fff;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.8;
-    }
   }
 }

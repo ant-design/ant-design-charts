@@ -6,12 +6,19 @@ import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
 
 export const DisplayNode: NsGraph.INodeRender = (props) => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {} } = props;
-  const { stroke, color, label } = data;
   const {
-    theme: { NodeConfig, LabelConfig },
+    theme: { NodeConfig },
   } = useContext(AppContext) as any;
   const stateNodeConfig = NodeConfig?.normal;
-  const stateLabelConfig = LabelConfig?.normal;
+
+  const {
+    stroke = stateNodeConfig.stroke,
+    label = stateNodeConfig.label,
+    fill = stateNodeConfig.fill,
+    fontFill = stateNodeConfig.fontFill,
+    fontSize = stateNodeConfig.fontSize,
+  } = data;
+
   const { width, height } = size;
   const sx = Math.min(height, width) / 3;
   const dx = Math.min(Math.tan(Math.PI / 6) * (height / 2), width / 3);
@@ -35,20 +42,14 @@ export const DisplayNode: NsGraph.INodeRender = (props) => {
       width="100%"
       height="100%"
     >
-      <path
-        d={createPath(path)}
-        fill={stateNodeConfig.fill}
-        stroke={stroke || stateNodeConfig.stroke}
-        style={{
-          fill: '#fff',
-        }}
-      />
+      <path d={createPath(path)} fill={fill} stroke={stroke} />
       <text
         x={width / 2}
         y={height / 2}
-        fill={color || stateLabelConfig.fill}
+        fill={fontFill}
         textAnchor="middle"
         alignmentBaseline="middle"
+        fontSize={fontSize}
       >
         {label}
       </text>

@@ -22,6 +22,7 @@ export const FormPanel: React.FC<FlowchartProps['detailPanelProps']> = (props) =
       targetType={['node', 'edge', 'canvas', 'group']}
       controlMapService={controlMapService}
       formSchemaService={formSchemaService}
+      footer={null}
       position={position}
       {...rest}
     />

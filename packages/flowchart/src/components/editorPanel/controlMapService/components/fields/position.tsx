@@ -1,4 +1,5 @@
 import React from 'react';
+import { InputNumber } from 'antd';
 import { prefix } from '../constants';
 
 interface IProps {
@@ -8,14 +9,14 @@ interface IProps {
 }
 
 export const Item = ({ label, value, onChangeItem }) => (
-  <div style={{ width: '48%' }}>
+  <div className="field">
     <label>{label} </label>
-    <br />
-    <input
+    <InputNumber
       type="number"
       value={value}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-        onChangeItem(e.target.value);
+      size="middle"
+      onChange={(value: number) => {
+        onChangeItem(value);
       }}
     />
   </div>
@@ -25,13 +26,7 @@ const Position: React.FC<IProps> = (props) => {
   const { x, y, onChange } = props;
 
   return (
-    <div
-      className={`${prefix}-position`}
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
+    <div className={`${prefix}-position`}>
       <Item
         label="横坐标"
         value={x}

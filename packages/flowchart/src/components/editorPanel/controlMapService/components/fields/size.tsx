@@ -12,13 +12,7 @@ const Size: React.FC<IProps> = (props) => {
   const { width, height, onChange } = props;
 
   return (
-    <div
-      className={`${prefix}-size`}
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
+    <div className={`${prefix}-size`}>
       <Item
         label="宽度"
         value={width}

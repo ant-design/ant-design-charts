@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../formWrapper';
-import Input from './fields/input';
-import ColorPicker from './fields/color';
-import Position from './fields/position';
-import Size from './fields/size';
+import { InputFiled, ColorPicker, Position, InputNumberFiled, Size } from './fields';
 
 import { prefix } from './constants';
 
 import './style.less';
 
-interface INodeConfig {
+export interface IConfig {
   x?: number;
   y?: number;
   width?: number;
   height?: number;
   label?: string;
   stroke?: string;
+  fill?: string;
+  fontSize?: number;
+  fontFill?: string;
 }
 
 const NodeComponent = (props) => {
@@ -26,7 +26,7 @@ const NodeComponent = (props) => {
     theme: { NodeConfig },
   } = useContext(AppContext) as any;
 
-  const [nodeConfig, setNodeConfig] = useState<INodeConfig>({
+  const [nodeConfig, setNodeConfig] = useState<IConfig>({
     ...NodeConfig.normal,
     ...config,
   });
@@ -50,13 +50,45 @@ const NodeComponent = (props) => {
 
   return (
     <div className={`${prefix}-panel-body`}>
-      <Input
+      <InputFiled
         label="标签"
         value={nodeConfig.label}
         onChange={(value) => {
           onNodeConfigChange('label', value);
         }}
       />
+      <div className={`${prefix}-node-style`}>
+        <ColorPicker
+          label="边框色"
+          value={nodeConfig.stroke}
+          onChange={(value: string) => {
+            onNodeConfigChange('stroke', value);
+          }}
+        />
+        <ColorPicker
+          label="填充色"
+          value={nodeConfig.fill}
+          onChange={(value: string) => {
+            onNodeConfigChange('fill', value);
+          }}
+        />
+      </div>
+      <div className={`${prefix}-node-text-style`}>
+        <ColorPicker
+          label="字色"
+          value={nodeConfig.fontFill}
+          onChange={(value: string) => {
+            onNodeConfigChange('fontFill', value);
+          }}
+        />
+        <InputNumberFiled
+          label="字号"
+          value={nodeConfig.fontSize}
+          onChange={(value) => {
+            onNodeConfigChange('fontSize', value);
+          }}
+        />
+      </div>
       <Position
         x={nodeConfig.x}
         y={nodeConfig.y}
@@ -69,13 +101,6 @@ const NodeComponent = (props) => {
         height={nodeConfig.height}
         onChange={(key, value) => {
           onNodeConfigChange(key, value);
-        }}
-      />
-      <ColorPicker
-        label="边框颜色"
-        value={nodeConfig.stroke}
-        onChange={(value: string) => {
-          onNodeConfigChange('stroke', value);
         }}
       />
     </div>

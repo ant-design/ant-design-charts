@@ -1,4 +1,5 @@
 import React from 'react';
+import { Input } from 'antd';
 import { prefix } from '../constants';
 
 interface IProps {
@@ -7,13 +8,14 @@ interface IProps {
   onChange?: (value: string) => void;
 }
 
-const Input: React.FC<IProps> = (props) => {
+const InputFiled: React.FC<IProps> = (props) => {
   const { label = '标签', value, onChange } = props;
   return (
     <div className={`${prefix}-input`}>
       <label>{label}</label>
-      <input
+      <Input
         value={value}
+        size="middle"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           onChange?.(e.target.value);
         }}
@@ -22,4 +24,4 @@ const Input: React.FC<IProps> = (props) => {
   );
 };
 
-export default Input;
+export default InputFiled;

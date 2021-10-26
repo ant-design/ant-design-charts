@@ -12,11 +12,11 @@ import {
   IEvent,
 } from '@ali/xflow';
 import { getProps as getGlobalProps } from '../../util';
-import { Edge, Shape } from '@antv/x6';
+import { Edge, Shape, Markup } from '@antv/x6';
 import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/nodePanel';
 import { setGroupRender } from '../../components/groupPanel';
 
-import { registerEdge, DefaultEdgeConfig } from '../../components/edgePanel/index';
+import { registerEdge, DefaultEdgeConfig, FLOWCHART_EDGE } from '../../components/edgePanel';
 import { movedNode, resizeNode, changePortsVisible, setEdgeSelected } from './events';
 
 /** 自定义React节点 */
@@ -67,6 +67,7 @@ export const useGraphHook = createHookConfig((config) => {
           const config = {
             edgeConfig: {
               ...edgeConfig,
+              // renderKey: FLOWCHART_EDGE, // 暂不支持
               source: {
                 cell: edgeConfig.source,
                 port: edgeConfig.sourcePortId,

@@ -1,3 +1,4 @@
+export const FLOWCHART_EDGE = 'flowchart-edge';
 export const DefaultEdgeConfig = {
   line: {
     stroke: '#A2B1C3',

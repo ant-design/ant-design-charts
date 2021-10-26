@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { render } from 'react-dom';
+import { Button } from 'antd';
 import { SketchPicker } from 'react-color';
 import { prefix } from '../constants';
 
@@ -26,26 +27,22 @@ const ColorPicker: React.FC<IProps> = (props) => {
           }}
         />
         <div className="foolter">
-          <button
+          <Button
             onClick={() => {
               setShow(false);
             }}
           >
             取消
-          </button>
-          <button
-            style={{
-              color: '#fff',
-              backgroundColor: 'rgb(24, 144, 255)',
-              borderColor: 'rgba(4, 144, 255)',
-            }}
+          </Button>
+          <Button
+            type="primary"
             onClick={() => {
               onChange?.(colorRef.current);
               setShow(false);
             }}
           >
             确认
-          </button>
+          </Button>
         </div>
       </div>
     );
@@ -73,7 +70,7 @@ const ColorPicker: React.FC<IProps> = (props) => {
       <div
         className={`${prefix}-color`}
         style={{
-          border: `1px solid ${value}`,
+          border: `1px solid #eee`,
           backgroundColor: value,
         }}
         onClick={() => {

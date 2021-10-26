@@ -1,8 +1,24 @@
 import React from 'react';
-import type { NsGraph } from '@ali/xflow';
-import { useAppContext } from '@ali/xflow';
+import { NsGraph } from '@ali/xflow';
 
 export const LabelEdge: NsGraph.IEdgeRender = (props) => {
-  const ctx = useAppContext();
-  return <span>rect</span>;
+  const { data = {} } = props;
+  const { label, fontFill, fontSize } = data;
+
+  return (
+    <div
+      style={{
+        textAlign: 'center',
+      }}
+    >
+      <span
+        style={{
+          fontSize,
+          color: fontFill,
+        }}
+      >
+        {label}
+      </span>
+    </div>
+  );
 };
