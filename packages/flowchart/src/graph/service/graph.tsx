@@ -67,7 +67,7 @@ export const useGraphHook = createHookConfig((config) => {
           const config = {
             edgeConfig: {
               ...edgeConfig,
-              renderKey: FLOWCHART_EDGE, // 暂不支持
+              // renderKey: FLOWCHART_EDGE, // 暂不支持
               source: {
                 cell: edgeConfig.source,
                 port: edgeConfig.sourcePortId,

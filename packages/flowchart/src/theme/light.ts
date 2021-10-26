@@ -13,6 +13,7 @@ const EdgeConfig = {
     stroke: '#A2B1C3',
     fontFill: '#000',
     fontSize: 14,
+    strokeWidth: 1,
   },
 };
 

@@ -7,7 +7,7 @@ import { IConfig } from './node';
 
 import './style.less';
 
-const AttributeKeys = ['stroke', 'fontSize', 'fontFill'];
+const AttributeKeys = ['stroke', 'fontSize', 'fontFill', 'strokeWidth'];
 
 const EdgeComponent = (props) => {
   const { config, plugin = {} } = props;
@@ -51,15 +51,23 @@ const EdgeComponent = (props) => {
           onEdgeConfigChange('label', value);
         }}
       />
-      <ColorPicker
-        label="边框颜色"
-        value={edgeConfig.stroke}
-        onChange={(value: string) => {
-          onEdgeConfigChange('stroke', value);
-        }}
-      />
-      {/* 暂不支持 */}
-      {/* <div className={`${prefix}-edge-text-style`}>
+      <div className={`${prefix}-edge-text-style`}>
+        <ColorPicker
+          label="边框颜色"
+          value={edgeConfig.stroke}
+          onChange={(value: string) => {
+            onEdgeConfigChange('stroke', value);
+          }}
+        />
+        <InputNumberFiled
+          label="线宽"
+          value={edgeConfig.strokeWidth}
+          onChange={(value) => {
+            onEdgeConfigChange('strokeWidth', value);
+          }}
+        />
+      </div>
+      <div className={`${prefix}-edge-text-style`}>
         <ColorPicker
           label="字色"
           value={edgeConfig.fontFill}
@@ -74,7 +82,7 @@ const EdgeComponent = (props) => {
             onEdgeConfigChange('fontSize', value);
           }}
         />
-      </div> */}
+      </div>
     </div>
   );
 };
