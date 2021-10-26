@@ -53,8 +53,6 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
 
   const updateNode = async (value: object) => {
     const currentNodeData = await getSelectNode();
-    console.log(currentNodeData);
-
     await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
       nodeConfig: {
         ...currentNodeData,
