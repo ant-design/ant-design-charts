@@ -4,8 +4,10 @@
 @ant-prefix: 'antd';
 
 @dnd-panel-prefix-cls: ~'xflow-node-panel';
+@dnd-panel-prefix-container: ~'flowchart-container-collpase';
 
 .node() {
+  grid-gap: 5px;
   padding: 12px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -14,13 +16,13 @@
 }
 
 .@{dnd-panel-prefix-cls} {
-  border-right: @light-border;
-
   &-header {
     display: flex;
     justify-content: space-evenly;
     background: @header-bg;
+    border-right: @light-border;
     border-bottom: @light-border;
+
     &-title {
       font-size: 16px;
     }
@@ -33,7 +35,6 @@
   &-custom {
     display: flex;
     flex-wrap: wrap;
-    grid-gap: 5px;
     border-top: @light-border;
     .node();
   }
@@ -41,15 +42,44 @@
   &-official {
     .node();
     display: grid;
-    grid-gap: 5px;
     grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-    padding-top: 48px;
   }
 
   &-node-wrapper {
     display: flex;
     justify-content: center;
     cursor: pointer;
-    // transform: scale(0.5);
+  }
+}
+
+.@{dnd-panel-prefix-container} {
+  position: relative;
+  height: 100%;
+
+  &-wrapper {
+    position: relative;
+    height: 100%;
+  }
+
+  &-nodes {
+    border-right: @light-border;
+  }
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    z-index: 99;
+    font-size: 16px;
+    transform: translate(-50%, 0);
+    cursor: pointer;
+    transition: right 0.5s;
+
+    &:hover {
+      color: rgb(43, 132, 192);
+    }
+  }
+
+  .xflow-workspace-panel {
+    transition: left 0.5s;
   }
 }

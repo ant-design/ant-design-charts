@@ -68,8 +68,6 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
     const currentEdgeData = await getSelectEdge();
     let config = {};
     if (type === 'attrs') {
-      console.log(currentEdgeData.attrs?.line);
-
       config = {
         edgeConfig: {
           ...currentEdgeData,

@@ -79,6 +79,8 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           const X6Graph = await registry.graphInstanceDefer.promise;
           setGrapgInstance(X6Graph);
           graphRef.current = X6Graph;
+          // @ts-ignore
+          window.g = X6Graph;
           loadData(app);
           onReady?.(appendUtils(X6Graph));
         }}

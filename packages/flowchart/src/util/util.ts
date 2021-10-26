@@ -23,8 +23,10 @@ export const getGraphData = () => {
 
   const edges = x6Edges.map((edge) => {
     const data = edge.getData<NsGraph.IEdgeConfig>();
+    const attrs = edge.getAttrs();
     return {
       ...data,
+      attrs,
     };
   });
   const graphData = { nodes, edges };
