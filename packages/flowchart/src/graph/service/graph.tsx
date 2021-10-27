@@ -115,6 +115,7 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
   setGroupRender(config);
   config.setX6Config({
     grid: true,
+    history: true,
     resizing: {
       enabled: true,
       minWidth: NODE_HEIGHT,

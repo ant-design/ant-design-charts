@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { get } from 'lodash';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../formWrapper';
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields';
@@ -6,6 +7,11 @@ import { prefix } from './constants';
 
 import './style.less';
 
+export type MarkerCfg = {
+  width?: number;
+  height?: number;
+  name?: string;
+};
 export interface IConfig {
   label?: string;
   attrs?: {
@@ -13,6 +19,9 @@ export interface IConfig {
       fontSize?: number;
       fontFill?: string;
       strokeWidth?: number;
+      sourceMarker?: MarkerCfg;
+      targetMarker?: MarkerCfg;
+      strokeDasharray?: number[];
     };
   };
 }
@@ -56,17 +65,26 @@ const EdgeComponent = (props) => {
     theme: { EdgeConfig },
   } = useContext(AppContext) as any;
 
-  const { attrs = {} } = {
+  const [edgeConfig, setEdgeConfig] = useState<IConfig>({
     ...EdgeConfig.normal,
     ...config,
-  };
+  });
+
+  useEffect(() => {
+    setEdgeConfig({
+      ...EdgeConfig.normal,
+      ...config,
+    });
+  }, [config]);
 
   const getAttrs = (key: string, type = 'line') => {
+    const { attrs = {} } = edgeConfig;
     return attrs[type]?.[key];
   };
 
   const getArrowValue = () => {
-    const { line } = attrs;
+    const { attrs = {} } = edgeConfig;
+    const { line = {} } = attrs;
     if (line.sourceMarker && line.targetMarker) {
       return 'all';
     }
@@ -77,38 +95,37 @@ const EdgeComponent = (props) => {
   };
 
   const getSrokeDashValue = () => {
-    const { line } = attrs;
+    const { attrs = {} } = edgeConfig;
+    const { line = {} } = attrs;
     return line.strokeDasharray ? 'dash' : 'solid';
   };
 
-  /** 更新 strokeWidth 时 xflow 没有触发二次渲染，临时解决 */
-  const [strokeWidth, setStrokeWidth] = useState(getAttrs('strokeWidth'));
-
-  useEffect(() => {
-    setStrokeWidth(getAttrs('strokeWidth'));
-  }, [config]);
-
-  const onEdgeConfigChange = (key: string, value: number | string, type?: string) => {
-    if (key === 'strokeWidth') {
-      setStrokeWidth(value);
-    }
-    if (['arrow'].includes(key)) {
-      updateEdge(value, type);
-    } else {
-      updateEdge(
-        {
+  const onEdgeConfigChange = (key: string, value: number | string | object, type: string = 'line') => {
+    /** 全量更新，简化逻辑 */
+    setEdgeConfig({
+      ...edgeConfig,
+      [key]: value,
+      attrs: {
+        ...edgeConfig.attrs,
+        [type]: {
+          ...edgeConfig.attrs?.[type],
           [key]: value,
         },
-        type,
-      );
-    }
+      },
+    });
+    updateEdge(
+      {
+        [key]: value,
+      },
+      type,
+    );
   };
 
   return (
     <div className={`${prefix}-panel-body`}>
       <InputFiled
         label="标签"
-        value={config.label}
+        value={edgeConfig.label}
         onChange={(value) => {
           onEdgeConfigChange('label', value);
         }}
@@ -133,7 +150,10 @@ const EdgeComponent = (props) => {
             },
           ]}
           onChange={(value) => {
-            onEdgeConfigChange('arrow', ArrowMaps[value], 'line');
+            /** 统一形式，简化判断逻辑 */
+            const { sourceMarker, targetMarker } = ArrowMaps[value];
+            onEdgeConfigChange('sourceMarker', sourceMarker, 'line');
+            onEdgeConfigChange('targetMarker', targetMarker, 'line');
           }}
         />
         <SelectField
@@ -164,8 +184,8 @@ const EdgeComponent = (props) => {
         />
         <InputNumberFiled
           label="线宽"
-          // value={getAttrs('strokeWidth')}
-          value={strokeWidth}
+          value={getAttrs('strokeWidth')}
+          min={1}
           onChange={(value) => {
             onEdgeConfigChange('strokeWidth', value, 'line');
           }}

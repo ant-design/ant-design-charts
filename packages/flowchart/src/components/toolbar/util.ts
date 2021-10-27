@@ -7,7 +7,7 @@ import {
   XFlowGroupCommands,
 } from '@ali/xflow';
 import { XFlowNodeCommands, XFlowGraphCommands, MODELS, NsGraphCmd, NsNodeCmd, IconStore } from '@ali/xflow';
-import { getProps, Log } from '../../util';
+import { getProps, Log, getGraphHistory } from '../../util';
 import {
   UngroupOutlined,
   SaveOutlined,
@@ -73,14 +73,15 @@ namespace NSToolbarConfig {
 
   export const getToolbarItems = async (state: IToolbarState, getIconConfig: any) => {
     const toolbarGroup: IToolbarItemOptions[] = [];
-
+    const history = getGraphHistory();
     /** 撤销 */
     toolbarGroup.push({
       ...getIconConfig(CommandPool.UNDO_CMD),
       id: TOOLBAR_ITEMS.UNDO_CMD,
-      isEnabled: state.isUndoable,
+      isEnabled: history.canUndo(),
       onClick: async ({ commandService }) => {
-        commandService.executeCommand<NsGraphCmd.UndoCmd.IArgs>(XFlowGraphCommands.UNDO_CMD.id, {});
+        history.undo();
+        // commandService.executeCommand<NsGraphCmd.UndoCmd.IArgs>(XFlowGraphCommands.UNDO_CMD.id, {});
       },
     });
 
@@ -88,13 +89,14 @@ namespace NSToolbarConfig {
     toolbarGroup.push({
       ...getIconConfig(CommandPool.REDO_CMD),
       id: TOOLBAR_ITEMS.REDO_CMD,
-      isEnabled: state.isRedoable,
+      isEnabled: history.canRedo(),
       onClick: async ({ commandService, modelService }) => {
-        const cell = await MODELS.SELECTED_NODE.useValue(modelService);
-        const nodeConfig = cell.getData();
-        commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(TOOLBAR_ITEMS.REDO_CMD, {
-          nodeConfig: nodeConfig,
-        });
+        history.redo();
+        // const cell = await MODELS.SELECTED_NODE.useValue(modelService);
+        // const nodeConfig = cell.getData();
+        // commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(TOOLBAR_ITEMS.REDO_CMD, {
+        //   nodeConfig: nodeConfig,
+        // });
       },
     });
 

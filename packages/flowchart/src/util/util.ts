@@ -57,6 +57,10 @@ export const debounce = (func: Function, delay: number, immediate: boolean = fal
   };
 };
 
+export const getGraphHistory = () => {
+  return getGraphInstance().history;
+};
+
 /** 更新配置时通知上传执行保存 */
 export const onConfigChange = debounce(
   () => {
