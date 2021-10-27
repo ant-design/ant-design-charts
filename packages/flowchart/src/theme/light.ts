@@ -10,10 +10,18 @@ const NodeConfig = {
 
 const EdgeConfig = {
   normal: {
-    stroke: '#A2B1C3',
-    fontFill: '#000',
-    fontSize: 14,
-    strokeWidth: 1,
+    attrs: {
+      line: {
+        stroke: '#A2B1C3',
+        strokeWidth: 1,
+      },
+      text: {
+        fill: '#000',
+        fontSize: 14,
+        textAnchor: 'middle',
+        textVerticalAnchor: 'middle',
+      },
+    },
   },
 };
 

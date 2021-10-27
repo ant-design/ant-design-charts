@@ -62,26 +62,24 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
     onConfigChange();
   };
 
-  const updateEdge = async (value: object, type: string = 'edgeConfig') => {
+  const updateEdge = async (value: object, type?: 'text' | 'line') => {
     const currentEdgeData = await getSelectEdge();
-    let config = {};
-    if (type === 'attrs') {
-      config = {
-        edgeConfig: {
-          ...currentEdgeData,
-        },
+    const config = {
+      edgeConfig: {
+        ...currentEdgeData,
+        ...value,
+      },
+    };
+    // 更新线、文本样式
+    if (type) {
+      config.edgeConfig = {
+        ...currentEdgeData,
         attrs: {
-          line: {
-            ...currentEdgeData.attrs?.line,
+          ...currentEdgeData.attrs,
+          [type]: {
+            ...currentEdgeData.attrs?.[type],
             ...value,
           },
-        },
-      };
-    } else {
-      config = {
-        edgeConfig: {
-          ...currentEdgeData,
-          ...value,
         },
       };
     }

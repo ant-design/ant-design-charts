@@ -1,4 +1,5 @@
 import { XFlowNodeCommands, IModelService, IGraphCommandService, XFlowEdgeCommands } from '@ali/xflow';
+import { get } from 'lodash';
 import { onConfigChange, getGraphInstance } from '../../util';
 import { Node } from '../../interface';
 
@@ -71,18 +72,14 @@ export const setEdgeSelected = (e: any, cmds: IGraphCommandService, ctx: IModelS
   if (!edge) {
     return;
   }
-
   cmds.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
     edgeConfig: {
-      ...edge.data,
+      ...get(edge, 'data'),
       attrs: {
+        ...get(edge, 'data.attrs'),
         line: {
+          ...get(edge, 'data.attrs.line'),
           stroke: '#1890ff',
-          strokeDasharray: 5,
-          targetMarker: 'classic',
-          style: {
-            animation: 'ant-line 30s infinite linear',
-          },
         },
       },
     },

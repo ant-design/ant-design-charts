@@ -17,7 +17,6 @@ export interface IConfig {
   fill?: string;
   fontSize?: number;
   fontFill?: string;
-  strokeWidth?: number;
 }
 
 const NodeComponent = (props) => {
