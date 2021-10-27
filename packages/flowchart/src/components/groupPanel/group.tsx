@@ -6,7 +6,7 @@ import './group.less';
 export const GroupNode: NsGraph.INodeRender = (props) => {
   const {
     cell,
-    data: { label, stroke },
+    data: { label, stroke, fill, fontSize, fontFill },
   } = props;
   const app = useXFlowApp();
   const isCollapse = cell.getProp('isCollapsed') || false;
@@ -31,6 +31,9 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
       className="xflow-group-node"
       style={{
         borderColor: stroke,
+        backgroundColor: fill,
+        fontSize,
+        color: fontFill,
       }}
     >
       <div className="xflow-group-header">

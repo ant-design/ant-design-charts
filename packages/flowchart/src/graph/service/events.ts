@@ -22,7 +22,7 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
         await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
           nodeConfig: {
             ...currentNode.data,
-            ...currentNode.getPosition(),
+            ...currentNode.getPosition?.(),
           },
         });
       }
@@ -72,16 +72,16 @@ export const setEdgeSelected = (e: any, cmds: IGraphCommandService, ctx: IModelS
   if (!edge) {
     return;
   }
-  cmds.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
-    edgeConfig: {
-      ...get(edge, 'data'),
-      attrs: {
-        ...get(edge, 'data.attrs'),
-        line: {
-          ...get(edge, 'data.attrs.line'),
-          stroke: '#1890ff',
-        },
-      },
-    },
-  });
+  // cmds.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
+  //   edgeConfig: {
+  //     ...get(edge, 'data'),
+  //     attrs: {
+  //       ...get(edge, 'data.attrs'),
+  //       line: {
+  //         ...get(edge, 'data.attrs.line'),
+  //         stroke: '#1890ff',
+  //       },
+  //     },
+  //   },
+  // });
 };

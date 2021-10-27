@@ -7,30 +7,36 @@ const { Option } = Select;
 interface IProps {
   label?: string;
   value?: string;
+  options?: Array<{
+    label: string | number;
+    value: string | number;
+  }>;
   onChange?: (value: string) => void;
 }
 
-const Arrow: React.FC<IProps> = (props) => {
-  const { label = '箭头', value, onChange } = props;
+const SelectField: React.FC<IProps> = (props) => {
+  const { label = '箭头', value, onChange, options = [] } = props;
   return (
     <div className={`${prefix}-input`}>
       <label>{label}</label>
       <Select
         showSearch
         size="middle"
-        defaultValue={value}
+        value={value}
         optionFilterProp="children"
         onChange={(value: string) => {
           onChange?.(value);
         }}
         filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       >
-        <Option value="target">正向</Option>
-        <Option value="source">逆向</Option>
-        <Option value="all">双向</Option>
+        {options.map((option) => (
+          <Option key={option.label} value={option.value}>
+            {option.label}
+          </Option>
+        ))}
       </Select>
     </div>
   );
 };
 
-export default Arrow;
+export default SelectField;

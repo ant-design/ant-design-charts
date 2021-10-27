@@ -15,7 +15,7 @@ const InputNumberFiled: React.FC<IProps> = (props) => {
     <div className={`${prefix}-input-number`}>
       <label>{label}</label>
       <InputNumber
-        defaultValue={value}
+        value={value}
         min={min}
         size="middle"
         onChange={(value: number) => {

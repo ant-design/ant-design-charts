@@ -1,23 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../formWrapper';
-import Input from './fields/input';
-import ColorPicker from './fields/color';
-import Position from './fields/position';
-import Size from './fields/size';
+import { InputFiled, ColorPicker, Position, InputNumberFiled, Size } from './fields';
+import { IConfig } from './node';
 
 import { prefix } from './constants';
 
 import './style.less';
-
-interface IGroupConfig {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-  label?: string;
-  stroke?: string;
-}
 
 const GroupComponent = (props) => {
   const { config, plugin = {} } = props;
@@ -27,7 +16,7 @@ const GroupComponent = (props) => {
     theme: { NodeConfig },
   } = useContext(AppContext) as any;
 
-  const [groupConfig, setGroupConfig] = useState<IGroupConfig>({
+  const [groupConfig, setGroupConfig] = useState<IConfig>({
     ...NodeConfig.normal,
     ...config,
   });
@@ -51,13 +40,45 @@ const GroupComponent = (props) => {
 
   return (
     <div className={`${prefix}-panel-body`}>
-      <Input
+      <InputFiled
         label="标签"
         value={groupConfig.label}
         onChange={(value) => {
           onGroupConfigChange('label', value);
         }}
       />
+      <div className={`${prefix}-group-style`}>
+        <ColorPicker
+          label="边框色"
+          value={groupConfig.stroke}
+          onChange={(value: string) => {
+            onGroupConfigChange('stroke', value);
+          }}
+        />
+        <ColorPicker
+          label="填充色"
+          value={groupConfig.fill}
+          onChange={(value: string) => {
+            onGroupConfigChange('fill', value);
+          }}
+        />
+      </div>
+      <div className={`${prefix}-group-text-style`}>
+        <ColorPicker
+          label="字色"
+          value={groupConfig.fontFill}
+          onChange={(value: string) => {
+            onGroupConfigChange('fontFill', value);
+          }}
+        />
+        <InputNumberFiled
+          label="字号"
+          value={groupConfig.fontSize}
+          onChange={(value) => {
+            onGroupConfigChange('fontSize', value);
+          }}
+        />
+      </div>
       <Position
         x={groupConfig.x}
         y={groupConfig.y}
@@ -70,13 +91,6 @@ const GroupComponent = (props) => {
         height={groupConfig.height}
         onChange={(key, value) => {
           onGroupConfigChange(key, value);
-        }}
-      />
-      <ColorPicker
-        label="边框颜色"
-        value={groupConfig.stroke}
-        onChange={(value: string) => {
-          onGroupConfigChange('stroke', value);
         }}
       />
     </div>

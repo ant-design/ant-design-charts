@@ -14,7 +14,7 @@ const InputFiled: React.FC<IProps> = (props) => {
     <div className={`${prefix}-input`}>
       <label>{label}</label>
       <Input
-        defaultValue={value}
+        value={value}
         size="middle"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           onChange?.(e.target.value);
