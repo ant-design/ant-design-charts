@@ -17,7 +17,7 @@ import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/no
 import { setGroupRender } from '../../components/groupPanel';
 
 import { registerEdge, DefaultEdgeConfig, FLOWCHART_EDGE } from '../../components/edgePanel';
-import { movedNode, resizeNode, changePortsVisible, setEdgeSelected } from './events';
+import { movedNode, resizeNode, changePortsVisible, setEdgeSelected, addTools, removeTools } from './events';
 
 /** 自定义React节点 */
 const ANT_PREFIX = 'ant';
@@ -260,6 +260,18 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
         setEdgeSelected(e, cmds, ctx);
       },
     } as IEvent<'edge:click'>,
+    {
+      eventName: 'edge:dblclick',
+      callback: (e, cmds, ctx) => {
+        addTools(e, cmds, ctx);
+      },
+    } as IEvent<'edge:dblclick'>,
+    {
+      eventName: 'edge:mouseleave',
+      callback: (e, cmds, ctx) => {
+        removeTools(e, cmds, ctx);
+      },
+    } as IEvent<'edge:mouseleave'>,
     {
       eventName: 'node:mouseenter',
       callback: () => {

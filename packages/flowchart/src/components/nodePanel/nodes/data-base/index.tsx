@@ -21,17 +21,11 @@ export const DatabaseNode: NsGraph.INodeRender = (props) => {
 
   const { width, height } = size;
   const bezierX = width / 4;
-  const bezierY = height / 10;
+  const bezierY = Math.min(height / 10, 12);
 
   const path = [
     ['M', NODE_PADDING, NODE_PADDING + bezierY], // top-left
-    [
-      'C',
-      NODE_PADDING + bezierX,
-      NODE_PADDING + 2 * bezierY,
-      NODE_PADDING + width - bezierX,
-      NODE_PADDING + 2 * bezierY,
-    ], // 控制点，开口向上
+    ['C', NODE_PADDING + bezierX, NODE_PADDING, NODE_PADDING + width - bezierX, NODE_PADDING], // 控制点，开口向下
     ['', width - 2 * NODE_PADDING, NODE_PADDING + bezierY], // top-right
     ['L', width - 2 * NODE_PADDING, height - 2 * NODE_PADDING - bezierY], // bottom-right
     [
@@ -42,15 +36,26 @@ export const DatabaseNode: NsGraph.INodeRender = (props) => {
       height - 2 * NODE_PADDING,
     ], // 控制点，开口向上
     ['', NODE_PADDING, height - 2 * NODE_PADDING - bezierY], // bottom-left
-    ['L', NODE_PADDING, NODE_PADDING + bezierY],
-    ['L', NODE_PADDING, NODE_PADDING + bezierY], // top-left
-    ['C', NODE_PADDING + bezierX, NODE_PADDING, NODE_PADDING + width - bezierX, NODE_PADDING], // 控制点，开口向下
+    ['Z'],
+  ];
+
+  // 多 path 解决填充问题
+  const path1 = [
+    ['M', NODE_PADDING, NODE_PADDING + bezierY],
+    [
+      'C',
+      NODE_PADDING + bezierX,
+      NODE_PADDING + 2 * bezierY,
+      NODE_PADDING + width - bezierX,
+      NODE_PADDING + 2 * bezierY,
+    ], // 控制点，开口向上
     ['', width - 2 * NODE_PADDING, NODE_PADDING + bezierY], // top-right
   ];
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
       <path d={createPath(path)} fill={fill} stroke={stroke} />
+      <path d={createPath(path1)} fill={fill} stroke={stroke} />
       <text
         x={width / 2}
         y={height / 2}

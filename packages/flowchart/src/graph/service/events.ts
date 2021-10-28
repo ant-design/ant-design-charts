@@ -85,3 +85,29 @@ export const setEdgeSelected = (e: any, cmds: IGraphCommandService, ctx: IModelS
   //   },
   // });
 };
+
+// 添加辅助工具
+export const addTools = async (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
+  const { edge } = e;
+  if (!edge) {
+    return;
+  }
+  edge.addTools('vertices', 'ondbclick');
+};
+
+// 添加辅助工具
+export const removeTools = async (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
+  const { edge } = e;
+  if (!edge) {
+    return;
+  }
+  if (edge.hasTools('ondbclick')) {
+    cmds.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
+      edgeConfig: {
+        ...get(edge, 'data'),
+        vertices: edge.getVertices(),
+      },
+    });
+    edge.removeTools();
+  }
+};
