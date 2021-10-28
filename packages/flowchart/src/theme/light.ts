@@ -4,7 +4,7 @@ const NodeConfig = {
     stroke: '#A2B1C3',
     fill: '#FFFFFF',
     fontFill: '#000',
-    fontSize: 14,
+    fontSize: 12,
   },
 };
 
@@ -17,7 +17,7 @@ const EdgeConfig = {
       },
       text: {
         fill: '#000',
-        fontSize: 14,
+        fontSize: 12,
         textAnchor: 'middle',
         textVerticalAnchor: 'middle',
       },

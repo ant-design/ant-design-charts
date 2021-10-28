@@ -1,6 +1,6 @@
 // #boyu
 import React, { Fragment } from 'react';
-import { Empty, Popover } from 'antd';
+import { Empty, Popover, Collapse } from 'antd';
 import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs } from './interface';
 import { Addon } from '@antv/x6';
 import {
@@ -15,6 +15,8 @@ import {
 } from '@ali/xflow';
 import { NsTreePanelData } from './service';
 import { XFlowNode } from './node';
+
+const { Panel } = Collapse;
 
 export const defaultNodeFactory = (args: INodeFactoryArgs) => {
   return new XFlowNode(args);
@@ -120,7 +122,8 @@ export interface IBodyProps extends IProps {
 }
 
 export const NodePanelBody: React.FC<IBodyProps> = (props) => {
-  const { x6NodeFactory, dndOptions, onNodeDrop, state, prefixClz = '' } = props;
+  const { x6NodeFactory, dndOptions, onNodeDrop, state, prefixClz = '', registerNode } = props;
+  const { title = '混合节点' } = registerNode ?? {};
   const { modelService, commandService } = useXFlowApp();
 
   const [dnd, setDnd] = React.useState<Addon.Dnd>();
@@ -214,24 +217,27 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
 
   const searchCustomNode = state.searchList.filter((item) => item.isCustom);
   const searchOfficialNode = state.searchList.filter((item) => !item.isCustom);
+  const hasCustomNode = customNode.length > 0;
 
   return (
     <React.Fragment>
-      {/* <div className={`${prefixClz}-body`} style={props.style}> */}
       <div className={`${prefixClz}-body`}>
-        {!state.keyword && (
-          <Fragment>
-            <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>
-            {customNode.length > 0 && <div className={`${prefixClz}-custom`}>{renderTree(customNode)}</div>}
-          </Fragment>
-        )}
-        {state.searchList.length > 0 && (
-          <Fragment>
-            <div className={`${prefixClz}-official`}>{renderTree(searchOfficialNode)}</div>
-            {customNode.length > 0 && <div className={`${prefixClz}-custom`}>{renderTree(searchCustomNode)}</div>}
-          </Fragment>
-        )}
-
+        <Collapse defaultActiveKey={[hasCustomNode ? 'custom' : 'official']} style={{ border: 'none' }}>
+          <Panel header="通用节点" key="official" style={{ border: 'none' }}>
+            {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>}
+            {state.searchList.length > 0 && (
+              <div className={`${prefixClz}-official`}>{renderTree(searchOfficialNode)}</div>
+            )}
+          </Panel>
+          {hasCustomNode && (
+            <Panel header={title} key="custom" style={{ border: 'none' }}>
+              {!state.keyword && <div className={`${prefixClz}-custom`}>{renderTree(customNode)}</div>}
+              {state.searchList.length > 0 && (
+                <div className={`${prefixClz}-custom`}>{renderTree(searchCustomNode)}</div>
+              )}
+            </Panel>
+          )}
+        </Collapse>
         {state.keyword && state.searchList.length === 0 && <Empty style={{ marginTop: '48px' }} />}
       </div>
     </React.Fragment>

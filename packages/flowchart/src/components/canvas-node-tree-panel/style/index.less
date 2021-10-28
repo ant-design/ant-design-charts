@@ -8,7 +8,6 @@
 
 .node() {
   grid-gap: 5px;
-  padding: 12px;
   overflow-x: hidden;
   overflow-y: auto;
   background: @body-bg;
@@ -35,20 +34,31 @@
   &-custom {
     display: flex;
     flex-wrap: wrap;
-    border-top: @light-border;
     .node();
   }
 
   &-official {
     .node();
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(24px, 1fr));
   }
 
   &-node-wrapper {
     display: flex;
     justify-content: center;
     cursor: pointer;
+  }
+  .ant-collapse-content {
+    border-top: none;
+  }
+  .ant-collapse-content > .ant-collapse-content-box {
+    padding: 6px;
+  }
+  .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    padding: 12px 6px;
+  }
+  .ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
+    margin-right: 6px;
   }
 }
 
@@ -67,11 +77,9 @@
 
   &-icon {
     position: absolute;
-    top: 50%;
     z-index: 99;
     color: #aaa;
-    font-size: 16px;
-    transform: translate(-50%, 0);
+    font-size: 12px;
     cursor: pointer;
     transition: right 0.5s;
 

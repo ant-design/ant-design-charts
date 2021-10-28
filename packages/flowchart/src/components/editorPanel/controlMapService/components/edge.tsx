@@ -202,7 +202,7 @@ const EdgeComponent = (props) => {
         <InputNumberFiled
           label="字号"
           min={10}
-          value={getAttrs('fontSize', 'text') || 14}
+          value={getAttrs('fontSize', 'text') || 12}
           onChange={(value) => {
             onEdgeConfigChange('fontSize', value, 'text');
           }}

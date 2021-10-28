@@ -2,6 +2,7 @@ import type { Addon } from '@antv/x6';
 import type { IPosition, NsGraph, IModelService, MODELS, IGraphCommandService } from '@ali/xflow-core';
 import type React from 'react';
 import type { Node as X6Node } from '@antv/x6';
+import { RegisterNode } from '../../interface';
 
 export interface IPanelProps {
   headerPosition: IPosition;
@@ -30,6 +31,7 @@ export interface IProps extends Partial<IPanelProps> {
   x6NodeFactory?: (args: INodeFactoryArgs) => X6Node;
   searchService?: ISearchService;
   treeDataService: ITreeDataService;
+  registerNode?: RegisterNode;
 }
 
 export interface IOnNodeDrop {

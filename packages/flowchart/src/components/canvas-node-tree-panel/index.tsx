@@ -9,11 +9,10 @@ import { useTreePanelData } from './service';
 import { CONTAINER_CLASS } from './constants';
 
 import './style/index';
-import position from '../editorPanel/controlMapService/components/fields/position';
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
   const { prefixClz, position = { width: 240, top: 0, bottom: 0, left: 0 }, ...rest } = props;
-  const { width, top, left } = position;
+  const { width = 200, top = 0, left } = position;
   const [collpased, setCollpased] = useState(false);
   const { headerStyle, bodyStyle } = usePanelLyaoutStyle(props as IPanelProps);
   const { state, onFolderExpand, onKeywordChange } = useTreePanelData(props);
@@ -38,7 +37,7 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
           position={{
             ...position,
             top: 40,
-            left: !collpased ? position.left : -(position.width || 200),
+            left: !collpased ? left : -width,
           }}
         >
           <NodePanelBody {...props} state={state} style={bodyStyle} onFolderExpand={onFolderExpand} />
@@ -46,7 +45,8 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
         <div
           className={`${CONTAINER_CLASS}-icon`}
           style={{
-            right: collpased ? -24 : -(position.width || 200),
+            top: top + 40,
+            right: collpased ? -20 : -(width + 20),
           }}
         >
           {collpased ? (

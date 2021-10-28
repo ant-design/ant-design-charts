@@ -34,6 +34,7 @@ export interface CustomNode {
 }
 
 export interface RegisterNode {
+  title?: string;
   nodes: CustomNode[];
 }
 

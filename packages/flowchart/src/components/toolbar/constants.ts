@@ -20,6 +20,10 @@ const ADD_GROUP = 'add-group';
 
 const DEL_GROUP = 'del-group';
 
+const COPY = 'graph-copy-selection';
+
+const PASTE = 'graph-paste-selection';
+
 export const CommandPool = {
   UNDO_CMD,
   REDO_CMD,
@@ -29,4 +33,6 @@ export const CommandPool = {
   MULTI_SELECT,
   ADD_GROUP,
   DEL_GROUP,
+  COPY,
+  PASTE,
 };

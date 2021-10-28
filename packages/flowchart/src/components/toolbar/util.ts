@@ -5,9 +5,15 @@ import {
   NsGroupCmd,
   uuidv4,
   XFlowGroupCommands,
+  XFlowNodeCommands,
+  XFlowGraphCommands,
+  NsGraphCmd,
+  NsNodeCmd,
+  IconStore,
+  MODELS,
 } from '@ali/xflow';
-import { XFlowNodeCommands, XFlowGraphCommands, MODELS, NsGraphCmd, NsNodeCmd, IconStore } from '@ali/xflow';
-import { getProps, Log, getGraphHistory } from '../../util';
+import { message } from 'antd';
+import { getProps, Log, getGraphHistory, getGraphInstance } from '../../util';
 import {
   UngroupOutlined,
   SaveOutlined,
@@ -17,6 +23,8 @@ import {
   RedoOutlined,
   VerticalAlignTopOutlined,
   VerticalAlignBottomOutlined,
+  CopyOutlined,
+  SnippetsOutlined,
 } from '@ant-design/icons';
 import { GROUP_NODE_RENDER_ID } from '../groupPanel';
 import { CommandPool } from './constants';
@@ -31,6 +39,8 @@ export namespace TOOLBAR_ITEMS {
   export const MULTI_SELECT = `${XFlowGraphCommands.GRAPH_TOGGLE_MULTI_SELECT.id}`;
   export const ADD_GROUP = `${XFlowGroupCommands.ADD_GROUP.id}`;
   export const DEL_GROUP = `${XFlowGroupCommands.DEL_GROUP.id}`;
+  export const COPY = `${XFlowGraphCommands.GRAPH_COPY.id}`;
+  export const PASTE = `${XFlowGraphCommands.GRAPH_PASTE.id}`;
 }
 
 namespace NSToolbarConfig {
@@ -74,14 +84,16 @@ namespace NSToolbarConfig {
   export const getToolbarItems = async (state: IToolbarState, getIconConfig: any) => {
     const toolbarGroup: IToolbarItemOptions[] = [];
     const history = getGraphHistory();
+    const graph = getGraphInstance();
+    const selectedCells = graph.getSelectedCells();
+
     /** 撤销 */
     toolbarGroup.push({
       ...getIconConfig(CommandPool.UNDO_CMD),
       id: TOOLBAR_ITEMS.UNDO_CMD,
       isEnabled: history.canUndo(),
-      onClick: async ({ commandService }) => {
+      onClick: async () => {
         history.undo();
-        // commandService.executeCommand<NsGraphCmd.UndoCmd.IArgs>(XFlowGraphCommands.UNDO_CMD.id, {});
       },
     });
 
@@ -90,13 +102,8 @@ namespace NSToolbarConfig {
       ...getIconConfig(CommandPool.REDO_CMD),
       id: TOOLBAR_ITEMS.REDO_CMD,
       isEnabled: history.canRedo(),
-      onClick: async ({ commandService, modelService }) => {
+      onClick: async () => {
         history.redo();
-        // const cell = await MODELS.SELECTED_NODE.useValue(modelService);
-        // const nodeConfig = cell.getData();
-        // commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(TOOLBAR_ITEMS.REDO_CMD, {
-        //   nodeConfig: nodeConfig,
-        // });
       },
     });
 
@@ -104,7 +111,7 @@ namespace NSToolbarConfig {
     toolbarGroup.push({
       ...getIconConfig(CommandPool.SAVE_GRAPH_DATA),
       id: TOOLBAR_ITEMS.SAVE_GRAPH_DATA,
-      onClick: async ({ commandService, modelService }) => {
+      onClick: async ({ commandService }) => {
         commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(TOOLBAR_ITEMS.SAVE_GRAPH_DATA, {
           saveGraphDataService: (meta, graphData) => {
             const onSave = getProps('onSave');
@@ -186,6 +193,26 @@ namespace NSToolbarConfig {
       },
     });
 
+    /** copy */
+    toolbarGroup.push({
+      ...getIconConfig(CommandPool.COPY),
+      id: TOOLBAR_ITEMS.COPY,
+      isEnabled: !!selectedCells?.length,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphCmd.GraphCopySelection.IArgs>(XFlowGraphCommands.GRAPH_COPY.id, {});
+      },
+    });
+
+    /** paste */
+    toolbarGroup.push({
+      ...getIconConfig(CommandPool.PASTE),
+      id: CommandPool.PASTE,
+      isEnabled: true,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphCmd.GraphCopySelection.IArgs>(XFlowGraphCommands.GRAPH_PASTE.id, {});
+      },
+    });
+
     return [{ name: 'graphData', items: toolbarGroup }];
   };
 }
@@ -200,6 +227,8 @@ const registerIcon = () => {
   IconStore.set('GatewayOutlined', GatewayOutlined);
   IconStore.set('GroupOutlined', GroupOutlined);
   IconStore.set('UngroupOutlined', UngroupOutlined);
+  IconStore.set('CopyOutlined', CopyOutlined);
+  IconStore.set('SnippetsOutlined', SnippetsOutlined);
 };
 
 export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConfig, proxy) => {
@@ -247,6 +276,16 @@ export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConf
         command: CommandPool.DEL_GROUP,
         tooltip: '解散群组',
         iconName: 'UngroupOutlined',
+      },
+      {
+        command: CommandPool.COPY,
+        tooltip: '复制',
+        iconName: 'CopyOutlined',
+      },
+      {
+        command: CommandPool.PASTE,
+        tooltip: '粘贴',
+        iconName: 'SnippetsOutlined',
       },
     ] as CommandItem[],
   } = toolbarPanelProps;

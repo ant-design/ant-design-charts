@@ -15,6 +15,7 @@ import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
 import { setProps, setGrapgInstance } from '../util';
+import { useCmdConfig } from './service/command';
 import { FlowchartProps, IGraph } from '../interface';
 import AppContext from '../context';
 import { appendUtils } from './appendUtils';
@@ -43,6 +44,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const graphConfig = useGraphConfig(props);
   const menuConfig = useMenuConfig();
   const hookConfig = useGraphHook();
+  const commandConfig = useCmdConfig();
   const keybindingConfig = useKeybindingConfig();
   const { show = true } = scaleToolbarPanelProps;
   const { show: nodePanelShow = true } = nodePanelProps;
@@ -74,6 +76,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
       <XFlow
         className={className}
         style={style}
+        commandConfig={commandConfig}
         hookConfig={hookConfig}
         onLoad={async (app, registry) => {
           const X6Graph = await registry.graphInstanceDefer.promise;
