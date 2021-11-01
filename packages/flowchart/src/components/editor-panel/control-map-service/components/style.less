@@ -1,0 +1,101 @@
+@prefix-cls: ~'flowchart-editor';
+
+.@{prefix-cls}-panel-body {
+  padding: 12px;
+
+  .@{prefix-cls}-color-container {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    border: 1px solid #eee;
+    border-radius: 2px;
+  }
+
+  .@{prefix-cls}-panel-group {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    font-size: 12px;
+    border-bottom: 1px solid #ccc;
+
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    input,
+    select {
+      height: 24px;
+    }
+
+    .group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      h5 {
+        color: rgba(0, 0, 0, 0.85);
+      }
+
+      > label {
+        margin-right: 8px;
+        color: rgba(0, 0, 0, 0.45);
+        word-break: keep-all;
+      }
+    }
+    .split {
+      display: flex;
+      grid-gap: 8px;
+    }
+  }
+
+  .@{prefix-cls}-node-text-style,
+  .@{prefix-cls}-edge-text-style,
+  .@{prefix-cls}-edge-stroke-style {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 8px;
+  }
+
+  .sketch-picker {
+    width: 100% !important;
+  }
+
+  .ant-input-number {
+    width: 100%;
+  }
+}
+
+.@{prefix-cls}-canvas-panel {
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+  color: #aaa;
+}
+
+.@{prefix-cls}-pick-color-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.25);
+
+  .@{prefix-cls}-popover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 12px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+  }
+
+  .foolter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

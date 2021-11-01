@@ -6,7 +6,7 @@ export const Log = window.console;
 export const getGraphData = () => {
   const x6Graph = getGraphInstance();
   if (!x6Graph) {
-    return;
+    return null;
   }
   const x6Nodes = x6Graph.getNodes();
   const x6Edges = x6Graph.getEdges();

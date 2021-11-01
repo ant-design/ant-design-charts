@@ -122,7 +122,15 @@ export interface IBodyProps extends IProps {
 }
 
 export const NodePanelBody: React.FC<IBodyProps> = (props) => {
-  const { x6NodeFactory, dndOptions, onNodeDrop, state, prefixClz = '', registerNode } = props;
+  const {
+    x6NodeFactory,
+    dndOptions,
+    onNodeDrop,
+    state,
+    prefixClz = '',
+    registerNode,
+    defaultActiveKey = ['official', 'custom'],
+  } = props;
   const { title = '混合节点' } = registerNode ?? {};
   const { modelService, commandService } = useXFlowApp();
 
@@ -222,7 +230,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
   return (
     <React.Fragment>
       <div className={`${prefixClz}-body`}>
-        <Collapse defaultActiveKey={[hasCustomNode ? 'custom' : 'official']} style={{ border: 'none' }}>
+        <Collapse defaultActiveKey={defaultActiveKey} style={{ border: 'none' }}>
           <Panel header="通用节点" key="official" style={{ border: 'none' }}>
             {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>}
             {state.searchList.length > 0 && (

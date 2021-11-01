@@ -1,16 +1,9 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import {
-  XFlow,
-  XFlowCanvas,
-  XFlowGraphCommands,
-  NsGraphCmd,
-  CanvasScaleToolbar,
-  CanvasContextMenu,
-  KeyBindings,
-} from '@ali/xflow';
+import { XFlow, XFlowCanvas, XFlowGraphCommands, NsGraphCmd, CanvasContextMenu, KeyBindings } from '@ali/xflow';
 import { NodeTreePanel } from '../components/canvas-node-tree-panel';
-import { treeDataService, searchService, onNodeDrop } from '../components/nodePanel';
-import { FormPanel } from '../components/editorPanel';
+import { CanvasScaleToolbar } from '../components/canvas-scale-toolbar';
+import { treeDataService, searchService, onNodeDrop } from '../components/node-panel';
+import { FormPanel } from '../components/editor-panel';
 import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
@@ -23,6 +16,8 @@ import { useGraphConfig, useGraphHook } from './service';
 import { useKeybindingConfig } from './service/keyBinding';
 
 import './index.less';
+
+export const CONTAINER_CLASS = 'flowchart-container-collpase';
 
 const Flowchart: React.FC<FlowchartProps> = (props) => {
   const {
@@ -49,7 +44,6 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const { show = true } = scaleToolbarPanelProps;
   const { show: nodePanelShow = true } = nodePanelProps;
   const { show: showMenu = true } = contextMenuPanelProps;
-
   const loadData = useCallback(async (app) => {
     if (data) {
       const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
@@ -97,7 +91,6 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
             {...nodePanelProps}
           />
         )}
-
         <XFlowCanvas config={graphConfig} position={position}>
           {show && <CanvasScaleToolbar position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />}
           {showMenu && <CanvasContextMenu config={menuConfig} />}

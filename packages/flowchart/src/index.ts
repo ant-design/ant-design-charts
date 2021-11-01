@@ -12,7 +12,7 @@ import {
 import Flowchart from './graph';
 
 export { ToolbarPanel } from './components/toolbar';
-export { FormPanel, FormWrapper } from './components/editorPanel';
+export { FormPanel, FormWrapper } from './components/editor-panel';
 
 export {
   Flowchart,

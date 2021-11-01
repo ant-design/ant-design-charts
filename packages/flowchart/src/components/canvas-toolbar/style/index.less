@@ -1,0 +1,61 @@
+@import (once) '~@ali/xflow-core/es/style/themes/index.less';
+@import (once) '~@antv/x6-react-components/es/toolbar/style/index.less';
+
+@xflow-toolbar-prefix-cls: ~'@{xflow-prefix}-toolbar';
+
+.@{xflow-toolbar-prefix-cls} {
+  position: absolute;
+  z-index: 99;
+  display: flex;
+  height: 40px;
+  background: #fff;
+  &-root {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    &.horizontal-center {
+      justify-content: center;
+    }
+    &.vertical {
+      flex-direction: column;
+    }
+    .@{x6-prefix}-toolbar.x6-toolbar-hover-effect {
+      align-items: center;
+      height: 100%;
+    }
+    .@{x6-prefix}-toolbar-content {
+      height: 100%;
+    }
+  }
+  &.vertical {
+    right: unset;
+    left: unset;
+    width: 32px;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    box-shadow: ~'0 0 20px rgb(0 0 0 / 1%)';
+    .@{x6-prefix}-toolbar.@{x6-prefix}-toolbar-hover-effect {
+      height: auto;
+      padding: 8px 0;
+    }
+    .@{x6-prefix}-toolbar-content-inner,
+    .@{x6-prefix}-toolbar-group {
+      flex-direction: column;
+    }
+    .@{x6-prefix}-toolbar-item {
+      margin: 0;
+      padding: 6px 8px;
+      color: #595959;
+    }
+  }
+
+  &.horizontal {
+    right: unset;
+    left: unset;
+    .@{x6-prefix}-toolbar.@{x6-prefix}-toolbar-hover-effect {
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+}

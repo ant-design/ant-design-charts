@@ -20,6 +20,7 @@ export interface INodeFactoryArgs {
 }
 export interface IProps extends Partial<IPanelProps> {
   show?: boolean;
+  showHeader?: boolean;
   position?: IPosition;
   style?: React.CSSProperties;
   prefixClz?: string;
@@ -32,6 +33,7 @@ export interface IProps extends Partial<IPanelProps> {
   searchService?: ISearchService;
   treeDataService: ITreeDataService;
   registerNode?: RegisterNode;
+  defaultActiveKey?: string[];
 }
 
 export interface IOnNodeDrop {

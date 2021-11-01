@@ -25,7 +25,7 @@ export const useKeybindingConfig = createKeybindingConfig((config) => {
                   edgeConfig: { ...cell.getData(), id: cell.id },
                 });
               }
-              return;
+              return null;
             }),
           );
           // 先删除nodes
@@ -39,7 +39,7 @@ export const useKeybindingConfig = createKeybindingConfig((config) => {
                   },
                 });
               }
-              return;
+              return null;
             }),
           );
         },

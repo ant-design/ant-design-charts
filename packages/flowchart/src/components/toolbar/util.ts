@@ -26,7 +26,7 @@ import {
   CopyOutlined,
   SnippetsOutlined,
 } from '@ant-design/icons';
-import { GROUP_NODE_RENDER_ID } from '../groupPanel';
+import { GROUP_NODE_RENDER_ID } from '../group-panel';
 import { CommandPool } from './constants';
 import { CommandItem, FlowchartProps } from '../../interface';
 
@@ -212,8 +212,7 @@ namespace NSToolbarConfig {
         commandService.executeCommand<NsGraphCmd.GraphCopySelection.IArgs>(XFlowGraphCommands.GRAPH_PASTE.id, {});
       },
     });
-
-    return [{ name: 'graphData', items: toolbarGroup }];
+    return [{ name: 'graphData', items: toolbarGroup.filter((item) => !!item?.iconName) }];
   };
 }
 

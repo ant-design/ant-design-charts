@@ -1,4 +1,6 @@
 @primaryColor: #3572f9;
+@light-border: ~'1px solid #d9d9d9';
+@dnd-panel-prefix-container: ~'flowchart-container-collpase';
 
 .xflow-app-workspace {
   overflow: hidden;
@@ -30,5 +32,44 @@
         stroke: @primaryColor;
       }
     }
+  }
+
+  .xflow-json-form .ant-tabs-content-holder {
+    padding: 0 !important;
+  }
+}
+
+.@{dnd-panel-prefix-container} {
+  transition: left 0.5s;
+
+  &-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-nodes {
+    border-right: @light-border;
+  }
+
+  &-icon {
+    position: absolute;
+    z-index: 99;
+    width: 20px;
+    color: #aaa;
+    font-size: 12px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    transform: translate(0, -50%);
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(43, 132, 192);
+    }
+  }
+
+  .xflow-workspace-panel {
+    transition: left 0.5s;
   }
 }

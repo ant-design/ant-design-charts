@@ -50,6 +50,10 @@ export interface BaseProps {
 export interface NodePanelProps extends BaseProps {
   /** 自定义节点 */
   registerNode?: RegisterNode;
+  /** 是否展示 header */
+  showHeader?: boolean;
+  /** 默认展开的面板 */
+  defaultActiveKey?: string[];
 }
 
 export interface CanvasProps {

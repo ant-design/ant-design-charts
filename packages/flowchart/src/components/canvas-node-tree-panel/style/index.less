@@ -4,7 +4,7 @@
 @ant-prefix: 'antd';
 
 @dnd-panel-prefix-cls: ~'xflow-node-panel';
-@dnd-panel-prefix-container: ~'flowchart-container-collpase';
+@dnd-panel-prefix-container: ~'flowchart-node-panel-collpase';
 
 .node() {
   grid-gap: 5px;
@@ -51,23 +51,14 @@
   .ant-collapse-content {
     border-top: none;
   }
-  .ant-collapse-content > .ant-collapse-content-box {
-    padding: 6px;
-  }
-  .ant-collapse > .ant-collapse-item > .ant-collapse-header {
-    padding: 12px 6px;
-  }
-  .ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
-    margin-right: 6px;
-  }
 }
 
 .@{dnd-panel-prefix-container} {
-  position: relative;
-  height: 100%;
+  transition: left 0.5s;
 
   &-wrapper {
     position: relative;
+    width: 100%;
     height: 100%;
   }
 
@@ -78,17 +69,17 @@
   &-icon {
     position: absolute;
     z-index: 99;
+    width: 20px;
     color: #aaa;
     font-size: 12px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    transform: translate(0, -50%);
     cursor: pointer;
-    transition: right 0.5s;
 
     &:hover {
       color: rgb(43, 132, 192);
     }
-  }
-
-  .xflow-workspace-panel {
-    transition: left 0.5s;
   }
 }

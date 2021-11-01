@@ -13,10 +13,10 @@ import {
 } from '@ali/xflow';
 import { getProps as getGlobalProps } from '../../util';
 import { Edge, Shape, Markup } from '@antv/x6';
-import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/nodePanel';
-import { setGroupRender } from '../../components/groupPanel';
+import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/node-panel';
+import { setGroupRender } from '../../components/group-panel';
 
-import { registerEdge, DefaultEdgeConfig, FLOWCHART_EDGE } from '../../components/edgePanel';
+import { registerEdge, DefaultEdgeConfig, FLOWCHART_EDGE } from '../../components/edge-panel';
 import { movedNode, resizeNode, changePortsVisible, setEdgeSelected, addTools, removeTools } from './events';
 
 /** 自定义React节点 */

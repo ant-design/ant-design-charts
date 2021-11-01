@@ -1,4 +1,5 @@
 import { createCmdConfig, DisposableCollection, uuidv4 } from '@ali/xflow';
+import { getProps } from '../../util';
 
 export const useCmdConfig = createCmdConfig((config) => {
   // 设置hook
@@ -11,6 +12,10 @@ export const useCmdConfig = createCmdConfig((config) => {
           args.nodeConfig.zIndex = args.nodeConfig.zIndex || 10;
           /** 移除 _copied */
           args.nodeConfig.label = args.nodeConfig.label?.replace(/\_copied/g, '');
+          const onAddNode = getProps('onAddNode');
+          if (typeof onAddNode === 'function') {
+            onAddNode(args.nodeConfig);
+          }
         },
       }),
     ];

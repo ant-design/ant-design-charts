@@ -3,8 +3,8 @@ import { IPanelProps } from './interface';
 import { PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT } from './constants';
 
 export const usePanelLyaoutStyle = (config: IPanelProps) => {
-  const headerHeight = (config && config.headerPosition && config.headerPosition.height) || PANEL_HEADER_HEIGHT;
-  const footerHeight = (config.footerPosition && config.footerPosition.height) || PANEL_FOOTER_HEIGHT;
+  const headerHeight = config?.headerPosition?.height || PANEL_HEADER_HEIGHT;
+  const footerHeight = config?.footerPosition?.height || PANEL_FOOTER_HEIGHT;
 
   return {
     headerStyle: usePositionStyle({
@@ -21,14 +21,6 @@ export const usePanelLyaoutStyle = (config: IPanelProps) => {
       top: headerHeight,
       bottom: footerHeight,
       ...config.bodyPosition,
-    }),
-    footerStyle: usePositionStyle({
-      left: 0,
-      right: 0,
-      lineHeight: footerHeight,
-      height: footerHeight,
-      bottom: 0,
-      ...config.footerPosition,
     }),
   };
 };
