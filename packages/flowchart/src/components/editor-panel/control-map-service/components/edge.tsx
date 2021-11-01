@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { get } from 'lodash';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields';
@@ -37,8 +36,7 @@ export const DisableArrowConfig = {
   height: 0,
   name: '',
 };
-
-const ArrowMaps = {
+export const ArrowMaps = {
   target: {
     sourceMarker: DisableArrowConfig,
     targetMarker: ArrowConfig,
@@ -57,7 +55,7 @@ const ArrowMaps = {
   },
 };
 
-const ArrowStrokeMaps = {
+export const ArrowStrokeMaps = {
   solid: [0, 0],
   dash: [5, 5],
 };
@@ -89,10 +87,13 @@ const EdgeComponent = (props) => {
   const getArrowValue = () => {
     const { attrs = {} } = edgeConfig;
     const { line = {} } = attrs;
-    if (line.sourceMarker && line.targetMarker) {
+    if (line.sourceMarker?.name && line.targetMarker?.name) {
       return 'all';
     }
-    if (line.sourceMarker) {
+    if (!line.sourceMarker?.name && !line.targetMarker?.name) {
+      return 'none';
+    }
+    if (line.sourceMarker?.name) {
       return 'source';
     }
     return 'target';
@@ -137,8 +138,9 @@ const EdgeComponent = (props) => {
           }}
         />
       </div>
-      <div className={`${prefix}-panel-group`}>
-        <h5>样式</h5>
+      <h5 style={{ marginBottom: 12 }}>样式</h5>
+      <div className={`${prefix}-panel-group`} style={{ marginBottom: 0 }}>
+        <h5>线</h5>
         <SelectField
           label="箭头"
           value={getArrowValue()}
@@ -202,6 +204,9 @@ const EdgeComponent = (props) => {
             onEdgeConfigChange('stroke', value, 'line');
           }}
         />
+      </div>
+      <div className={`${prefix}-panel-group`}>
+        <h5>标签</h5>
         <div className={`${prefix}-edge-text-style`}>
           <InputNumberFiled
             label="字号"

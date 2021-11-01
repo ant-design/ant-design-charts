@@ -82,6 +82,10 @@ export const NODEPOOL = [
   {
     name: 'Internal Storage',
   },
+  {
+    name: 'Text',
+    label: 'text',
+  },
 ];
 // 缩放时保存同比例
 export const ASPECTRATIONODE = ['Connector', 'Or'];

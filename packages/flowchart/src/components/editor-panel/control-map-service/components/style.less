@@ -18,11 +18,13 @@
     margin-bottom: 12px;
     padding-bottom: 12px;
     font-size: 12px;
-    border-bottom: 1px solid #ccc;
+
+    &:first-child {
+      border-bottom: 1px solid #ccc;
+    }
 
     &:last-child {
       margin-bottom: 0;
-      border-bottom: none;
     }
 
     input,
@@ -30,14 +32,15 @@
       height: 24px;
     }
 
+    h5 {
+      margin: 0;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
     .group {
       display: flex;
       flex-direction: row;
       align-items: center;
-
-      h5 {
-        color: rgba(0, 0, 0, 0.85);
-      }
 
       > label {
         margin-right: 8px;

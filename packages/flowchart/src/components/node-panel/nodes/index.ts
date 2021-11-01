@@ -21,3 +21,4 @@ export { OffPageLinkNode } from './off-page-link';
 export { NoteLeftNode } from './note-left';
 export { NoteRightNode } from './note-right';
 export { InternalStorageNode } from './internal-storage';
+export { TextNode } from './text';

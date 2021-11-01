@@ -1,7 +1,13 @@
 import type { NsGraphCmd, IToolbarGroupOptions } from '@ali/xflow-core';
 import { IconStore, MODELS, XFlowGraphCommands } from '@ali/xflow-core';
-import { ZoomInOutlined, ZoomOutOutlined, OneToOneOutlined, CompressOutlined } from '@ant-design/icons';
-
+import {
+  ZoomInOutlined,
+  ZoomOutOutlined,
+  OneToOneOutlined,
+  CompressOutlined,
+  FullscreenOutlined,
+  FullscreenExitOutlined,
+} from '@ant-design/icons';
 import { createToolbarConfig } from '../canvas-toolbar';
 
 export namespace CANVAS_SCALE_TOOLBAR_CONFIG {
@@ -9,6 +15,8 @@ export namespace CANVAS_SCALE_TOOLBAR_CONFIG {
   IconStore.set('ZoomOutOutlined', ZoomOutOutlined);
   IconStore.set('OneToOneOutlined', OneToOneOutlined);
   IconStore.set('CompressOutlined', CompressOutlined);
+  IconStore.set('FullscreenOutlined', FullscreenOutlined);
+  IconStore.set('FullscreenExitOutlined', FullscreenExitOutlined);
 
   export const ZOOM_IN = XFlowGraphCommands.GRAPH_ZOOM.id + '-zoom-in';
   export const ZOOM_OUT = XFlowGraphCommands.GRAPH_ZOOM.id + '-zoom-out';

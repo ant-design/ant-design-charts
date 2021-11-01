@@ -11,8 +11,8 @@ import {
   NsGraph,
   IEvent,
 } from '@ali/xflow';
-import { getProps as getGlobalProps } from '../../util';
-import { Edge, Shape, Markup } from '@antv/x6';
+import { getProps as getGlobalProps, getContainer } from '../../util';
+import { Edge, Shape } from '@antv/x6';
 import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/node-panel';
 import { setGroupRender } from '../../components/group-panel';
 
@@ -109,6 +109,7 @@ export const useGraphHook = createHookConfig((config) => {
 /**  graphConfig hook  */
 export const useGraphConfig = createGraphConfig((config, getProps) => {
   const { nodePanelProps } = getProps();
+  // const miniMapContainer = getContainer('miniMapContainer');
   config.setEdgeTypeParser((edge) => edge?.renderKey as string);
   registerEdge(config);
   setNodeRender(config, nodePanelProps);
@@ -128,6 +129,12 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
     snapline: {
       enabled: true,
     },
+    // minimap: {
+    //   enabled: true,
+    //   container: miniMapContainer,
+    //   width: 200,
+    //   height: 200,
+    // },
     connecting: {
       router: 'manhattan',
       connector: {
