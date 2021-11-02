@@ -81,7 +81,7 @@ namespace NSToolbarConfig {
     } as NSToolbarConfig.IToolbarState;
   };
 
-  export const getToolbarItems = async (state: IToolbarState, getIconConfig: any) => {
+  export const getToolbarItems = async (state: IToolbarState, getIconConfig: any, commands: CommandItem[]) => {
     const toolbarGroup: IToolbarItemOptions[] = [];
     const history = getGraphHistory();
     const graph = getGraphInstance();
@@ -212,7 +212,19 @@ namespace NSToolbarConfig {
         });
       },
     });
-    return [{ name: 'graphData', items: toolbarGroup.filter((item) => !!item?.iconName) }];
+    return [
+      {
+        name: 'graphData',
+        items: toolbarGroup
+          .filter((item) => !!item?.iconName)
+          .sort((pre: IToolbarItemOptions & { command: string }, next: IToolbarItemOptions & { command: string }) => {
+            return (
+              commands.findIndex((item: CommandItem) => item.command === pre.command) -
+              commands.findIndex((item: CommandItem) => item.command === next.command)
+            );
+          }),
+      },
+    ];
   };
 }
 
@@ -302,7 +314,8 @@ export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConf
   toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
     const updateToolbarModel = async () => {
       const state = await NSToolbarConfig.getToolbarState(modelService);
-      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconConfig);
+      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconConfig, commands);
+
       toolbarModel.setValue((toolbar) => {
         toolbar.mainGroups = toolbarItems;
       });

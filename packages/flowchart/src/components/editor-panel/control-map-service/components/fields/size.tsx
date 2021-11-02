@@ -15,14 +15,14 @@ const Size: React.FC<IProps> = (props) => {
       <label>尺寸</label>
       <div className="split">
         <Item
-          addonAfter="W"
+          addonBefore="W"
           value={width}
           onChangeItem={(value: number) => {
             onChange?.('width', value);
           }}
         />
         <Item
-          addonAfter="H"
+          addonBefore="H"
           value={height}
           onChangeItem={(value: number) => {
             onChange?.('height', value);

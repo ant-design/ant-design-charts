@@ -8,16 +8,17 @@ interface IProps {
   onChange?: (key: string, value: number) => void;
 }
 
-export const Item = ({ value, onChangeItem, addonAfter }) => (
-  <InputNumber
-    // @ts-ignore
-    addonAfter={addonAfter}
-    value={value}
-    style={{ height: FormItemHeight }}
-    onChange={(value: number) => {
-      onChangeItem(value);
-    }}
-  />
+export const Item = ({ value, onChangeItem, addonBefore }) => (
+  <div className="addon-before-group">
+    <InputNumber
+      value={value}
+      style={{ height: FormItemHeight, border: 'none' }}
+      onChange={(value: number) => {
+        onChangeItem(value);
+      }}
+    />
+    <span>{addonBefore}</span>
+  </div>
 );
 
 const Position: React.FC<IProps> = (props) => {
@@ -28,14 +29,14 @@ const Position: React.FC<IProps> = (props) => {
       <label>位置</label>
       <div className="split">
         <Item
-          addonAfter="X"
+          addonBefore="X"
           value={x}
           onChangeItem={(value: number) => {
             onChange?.('x', value);
           }}
         />
         <Item
-          addonAfter="Y"
+          addonBefore="Y"
           value={y}
           onChangeItem={(value: number) => {
             onChange?.('y', value);

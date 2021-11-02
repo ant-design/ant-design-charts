@@ -107,22 +107,37 @@ const EdgeComponent = (props) => {
 
   const onEdgeConfigChange = (key: string, value: number | string | object, type: string = 'line') => {
     /** 全量更新，简化逻辑 */
-    setEdgeConfig({
-      ...edgeConfig,
-      [key]: value,
-      attrs: {
-        ...edgeConfig.attrs,
-        [type]: {
-          ...edgeConfig.attrs?.[type],
-          [key]: value,
+    if (key === 'arrow') {
+      setEdgeConfig({
+        ...edgeConfig,
+        attrs: {
+          ...edgeConfig.attrs,
+          [type]: {
+            ...edgeConfig.attrs?.[type],
+            ...(value as object),
+          },
         },
-      },
-    });
+      });
+    } else {
+      setEdgeConfig({
+        ...edgeConfig,
+        [key]: value,
+        attrs: {
+          ...edgeConfig.attrs,
+          [type]: {
+            ...edgeConfig.attrs?.[type],
+            [key]: value,
+          },
+        },
+      });
+    }
+
     updateEdge(
       {
         [key]: value,
       },
       type,
+      key === 'arrow' ? 'arrow' : '',
     );
   };
 
@@ -163,10 +178,7 @@ const EdgeComponent = (props) => {
             },
           ]}
           onChange={(value) => {
-            /** 统一形式，简化判断逻辑 */
-            const { sourceMarker, targetMarker } = ArrowMaps[value];
-            onEdgeConfigChange('sourceMarker', sourceMarker, 'line');
-            onEdgeConfigChange('targetMarker', targetMarker, 'line');
+            onEdgeConfigChange('arrow', ArrowMaps[value], 'line');
           }}
         />
 
