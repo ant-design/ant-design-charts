@@ -107,22 +107,6 @@ namespace NSToolbarConfig {
       },
     });
 
-    /** 保存数据 */
-    toolbarGroup.push({
-      ...getIconConfig(CommandPool.SAVE_GRAPH_DATA),
-      id: TOOLBAR_ITEMS.SAVE_GRAPH_DATA,
-      onClick: async ({ commandService }) => {
-        commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(TOOLBAR_ITEMS.SAVE_GRAPH_DATA, {
-          saveGraphDataService: (meta, graphData) => {
-            const onSave = getProps('onSave');
-            if (onSave) {
-              return onSave(graphData);
-            }
-          },
-        });
-      },
-    });
-
     /** FRONT_NODE */
     toolbarGroup.push({
       ...getIconConfig(CommandPool.FRONT_NODE),
@@ -212,6 +196,22 @@ namespace NSToolbarConfig {
         commandService.executeCommand<NsGraphCmd.GraphCopySelection.IArgs>(XFlowGraphCommands.GRAPH_PASTE.id, {});
       },
     });
+
+    /** 保存数据 */
+    toolbarGroup.push({
+      ...getIconConfig(CommandPool.SAVE_GRAPH_DATA),
+      id: TOOLBAR_ITEMS.SAVE_GRAPH_DATA,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(TOOLBAR_ITEMS.SAVE_GRAPH_DATA, {
+          saveGraphDataService: (meta, graphData) => {
+            const onSave = getProps('onSave');
+            if (onSave) {
+              return onSave(graphData);
+            }
+          },
+        });
+      },
+    });
     return [{ name: 'graphData', items: toolbarGroup.filter((item) => !!item?.iconName) }];
   };
 }
@@ -236,11 +236,6 @@ export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConf
 
   let {
     commands = [
-      {
-        command: CommandPool.SAVE_GRAPH_DATA,
-        tooltip: '保存',
-        iconName: 'SaveOutlined',
-      },
       {
         command: CommandPool.REDO_CMD,
         tooltip: '重做',
@@ -285,6 +280,11 @@ export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConf
         command: CommandPool.PASTE,
         tooltip: '粘贴',
         iconName: 'SnippetsOutlined',
+      },
+      {
+        command: CommandPool.SAVE_GRAPH_DATA,
+        tooltip: '保存',
+        iconName: 'SaveOutlined',
       },
     ] as CommandItem[],
   } = toolbarPanelProps;
