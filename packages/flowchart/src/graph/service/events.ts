@@ -61,8 +61,11 @@ export const resizeNode = async (e: any, cmds: IGraphCommandService, ctx: IModel
 export const changePortsVisible = (visible: boolean) => {
   const container = document.getElementsByClassName('xflow-canvas-root')[0];
   const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGAElement>;
+  const graph = getGraphInstance();
+  // 选中中节点时不展示链接桩
+  const isSelectedNode = graph.getSelectedCells()?.[0]?.isNode();
   for (let i = 0, len = ports.length; i < len; i = i + 1) {
-    ports[i].style.visibility = visible ? 'visible' : 'hidden';
+    ports[i].style.visibility = !isSelectedNode && visible ? 'visible' : 'hidden';
   }
 };
 

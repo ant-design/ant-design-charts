@@ -250,6 +250,7 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
       callback: (e, cmds, ctx) => {
         const nodeData: NsGraph.INodeConfig = e?.node?.getData();
         const props = getProps();
+        changePortsVisible(false);
         props.handleNodeSelected?.(nodeData);
       },
     } as IEvent<'node:selected'>,
