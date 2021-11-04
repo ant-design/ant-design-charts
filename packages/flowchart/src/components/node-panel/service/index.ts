@@ -11,7 +11,21 @@ export const searchService: NsNodeTreePanel.ISearchService = async (
 };
 
 export const onNodeDrop: NsNodeTreePanel.IOnNodeDrop = async (node, commands) => {
-  const nodeConfig = { ...node, id: `node-${uuidv4()}`, zIndex: 10 };
+  const { ports } = node;
+  const nodeConfig = {
+    ...node,
+    id: `node-${uuidv4()}`,
+    zIndex: 10,
+    ports: {
+      ...ports,
+      // @ts-ignore
+      items: ports.items?.map((item) => ({
+        ...item,
+        id: uuidv4(),
+      })),
+    },
+  };
+
   const args: NsNodeCmd.AddNode.IArgs = {
     nodeConfig,
   };
