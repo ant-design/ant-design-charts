@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { render } from 'react-dom';
 import { Button } from 'antd';
 import { SketchPicker } from 'react-color';
+import { getContainer } from '../../../../../util';
 import { prefix } from '../constants';
 
 interface IProps {
@@ -50,9 +51,10 @@ const ColorPicker: React.FC<IProps> = (props) => {
 
   /**  react-color mouseOver 和上层事件冲突，不得已为之 */
   const CreatePickColorContainer = (visible: boolean) => {
+    const container = getContainer();
     const exist: HTMLDivElement | null = document.querySelector(`#${prefix}-pick-color-container`);
     if (exist) {
-      document.body.removeChild(exist);
+      container.removeChild(exist);
     }
     if (!visible) {
       return;
@@ -61,7 +63,7 @@ const ColorPicker: React.FC<IProps> = (props) => {
     div.id = `${prefix}-pick-color-container`;
     div.className = `${prefix}-pick-color-container`;
     render(<PickContainer />, div);
-    document.body.appendChild(div);
+    container.appendChild(div);
   };
 
   return (

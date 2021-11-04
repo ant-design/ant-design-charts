@@ -1,13 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import {
-  XFlow,
-  XFlowCanvas,
-  XFlowGraphCommands,
-  NsGraphCmd,
-  CanvasContextMenu,
-  KeyBindings,
-  WorkspacePanel,
-} from '@ali/xflow';
+import { XFlow, XFlowCanvas, XFlowGraphCommands, NsGraphCmd, CanvasContextMenu, KeyBindings } from '@ali/xflow';
 import { NodeTreePanel } from '../components/canvas-node-tree-panel';
 import { CanvasScaleToolbar } from '../components/canvas-scale-toolbar';
 import { treeDataService, searchService, onNodeDrop } from '../components/node-panel';
