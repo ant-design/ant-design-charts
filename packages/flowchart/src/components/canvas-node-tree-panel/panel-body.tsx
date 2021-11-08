@@ -1,12 +1,9 @@
-// #boyu
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Empty, Popover, Collapse } from 'antd';
 import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs } from './interface';
-import { Addon } from '@antv/x6';
+import { Addon, Graph } from '@antv/x6';
 import {
-  MODELS,
   IModelService,
-  useModelAsync,
   IGraphConfig,
   NsGraph,
   getNodeReactComponent,
@@ -127,27 +124,23 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     dndOptions,
     onNodeDrop,
     state,
-    prefixClz = '',
+    prefixClz,
     registerNode,
     defaultActiveKey = ['official', 'custom'],
   } = props;
   const { title = '混合节点' } = registerNode ?? {};
-  const { modelService, commandService } = useXFlowApp();
+  const { graphProvider, modelService, commandService } = useXFlowApp();
 
   const [dnd, setDnd] = React.useState<Addon.Dnd>();
   /** 获取graph实例 */
-  const [graph] = useModelAsync<MODELS.CURRENT_GRAPH.IState, null>({
-    getModel: async () => {
-      return MODELS.CURRENT_GRAPH.getModel(modelService);
-    },
-    initialState: null,
+  const [graph, setGraph] = React.useState<Graph>();
+  graphProvider.getGraphInstance().then((x6Graph) => {
+    setGraph(x6Graph);
   });
 
-  const [graphConfig] = useModelAsync<MODELS.GRAPH_CONFIG.IState, null>({
-    getModel: async () => {
-      return MODELS.GRAPH_CONFIG.getModel(modelService);
-    },
-    initialState: null,
+  let graphConfig = undefined;
+  graphProvider.getGraphOptions().then((x6GraphConfig) => {
+    graphConfig = x6GraphConfig;
   });
 
   React.useEffect(() => {
@@ -170,22 +163,22 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
         if (onNodeDrop) {
           await onNodeDrop(nodeConfig, commandService, modelService);
         } else {
-          // console.error('onNodeDrop method is required in NodeTree Panel');
+          console.error('onNodeDrop method is required in NodeTree Panel');
         }
         return false;
       },
     });
     setDnd(dndInstance);
-  }, [graph]);
+  }, [commandService, dndOptions, graph, modelService, onNodeDrop]);
 
-  const onMouseDown = (nodeConfig: NsGraph.INodeConfig) => (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (!graph || !dnd || !graphConfig) {
-      return;
-    }
-    const { width = 180, height = 40 } = nodeConfig;
-    const renderKey = graphConfig.nodeTypeParser(nodeConfig);
-    const reactComponent = graphConfig.nodeRender.get(renderKey);
-    if (reactComponent) {
+  const onMouseDown = React.useCallback(
+    (nodeConfig: NsGraph.INodeConfig) => (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+      if (!graph || !dnd || !graphConfig) {
+        return;
+      }
+      const renderKey = graphConfig.nodeTypeParser(nodeConfig);
+      const { width = 180, height = 40 } = nodeConfig;
+      const reactComponent = graphConfig.nodeRender.get(renderKey);
       const wrappedComponent = getNodeReactComponent(reactComponent, commandService, modelService);
       const nodeData = {
         data: nodeConfig,
@@ -197,8 +190,9 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
       };
       const x6Node = x6NodeFactory ? x6NodeFactory(nodeData) : defaultNodeFactory(nodeData);
       dnd.start(x6Node, e.nativeEvent as any);
-    }
-  };
+    },
+    [commandService, dnd, graph, graphConfig, modelService, x6NodeFactory],
+  );
 
   const renderTree = React.useCallback(
     (treeList: ITreeNode[] = []) => {
@@ -218,7 +212,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
         );
       });
     },
-    [graphConfig],
+    [commandService, graphConfig, modelService, onMouseDown, prefixClz],
   );
   const customNode = state.treeData.filter((item) => item.isCustom);
   const officialNode = state.treeData.filter((item) => !item.isCustom);

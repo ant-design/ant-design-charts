@@ -1,5 +1,5 @@
 import {
-  GraphConfig,
+  IGraphConfig,
   IGraphCommandService,
   IModelService,
   NsGraph,
@@ -143,7 +143,7 @@ export interface FlowchartProps extends FlowchartContainerProps {
   /** form editor */
   detailPanelProps?: DetailPanelProps;
   /** 主画布配置 */
-  graphProps?: GraphConfig;
+  graphProps?: IGraphConfig;
   /** 右键菜单配置 */
   contextMenuPanelProps?: ContextMenuPanelProps;
   /** popover */

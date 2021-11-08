@@ -46,20 +46,23 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const { show = true } = scaleToolbarPanelProps;
   const { show: nodePanelShow = true } = nodePanelProps;
   const { show: showMenu = true } = contextMenuPanelProps;
-  const loadData = useCallback(async (app) => {
-    if (data) {
-      const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
-        loadDataService: async () => {
-          return data;
-        },
-      } as NsGraphCmd.GraphLoadData.IArgs);
-      const { graphData } = res?.contextProvider()?.getResult();
-      /** 3. 画布内容渲染 */
-      await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
-        graphData,
-      });
-    }
-  }, []);
+  const loadData = useCallback(
+    async (app) => {
+      if (data) {
+        const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
+          loadDataService: async () => {
+            return data;
+          },
+        } as NsGraphCmd.GraphLoadData.IArgs);
+        const { graphData } = res?.contextProvider()?.getResult();
+        /** 3. 画布内容渲染 */
+        await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
+          graphData,
+        });
+      }
+    },
+    [data],
+  );
 
   useEffect(() => {
     return () => {
@@ -75,8 +78,8 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           style={style}
           commandConfig={commandConfig}
           hookConfig={hookConfig}
-          onLoad={async (app, registry) => {
-            const X6Graph = await registry.graphInstanceDefer.promise;
+          onLoad={async (app) => {
+            const X6Graph = await app.getGraphInstance();
             setGrapgInstance(X6Graph);
             graphRef.current = X6Graph;
             loadData(app);

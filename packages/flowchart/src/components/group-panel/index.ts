@@ -1,9 +1,9 @@
-import { GraphConfig } from '@ali/xflow';
+// import { IGraphConfig } from '@ali/xflow';
 
 import { GroupNode } from './group';
 
 export * from './constants';
 
-export const setGroupRender = (config: GraphConfig) => {
+export const setGroupRender = (config) => {
   config.setNodeRender('GROUP_NODE_RENDER_ID', GroupNode);
 };

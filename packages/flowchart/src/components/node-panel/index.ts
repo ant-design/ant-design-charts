@@ -17,7 +17,7 @@
  * }
  * ```
  */
-import { GraphConfig, uuidv4, NsNodeTreePanel } from '@ali/xflow';
+import { uuidv4, NsNodeTreePanel } from '@ali/xflow';
 import { getProps } from '../../util';
 import AppContext from '../../context';
 import { withPopover } from './with-popover';
@@ -107,7 +107,7 @@ export const treeDataService: NsNodeTreePanel.ITreeDataService = async () => {
   ];
 };
 
-export const setNodeRender = (config: GraphConfig, nodePanelProps: FlowchartProps['nodePanelProps']) => {
+export const setNodeRender = (config, nodePanelProps: FlowchartProps['nodePanelProps']) => {
   // 自定义节点
   const { registerNode } = nodePanelProps ?? {};
   const nodes = registerNode?.nodes || [];
