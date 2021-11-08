@@ -1,5 +1,5 @@
 import { NsNodeTreePanel, NsNodeCmd, uuidv4, XFlowNodeCommands } from '@ali/xflow';
-import { getProps } from '../../../util';
+import { getProps, onConfigChange } from '../../../util';
 
 /** 节点查找 */
 export const searchService: NsNodeTreePanel.ISearchService = async (
@@ -36,4 +36,5 @@ export const onNodeDrop: NsNodeTreePanel.IOnNodeDrop = async (node, commands) =>
   if (typeof onAddNode === 'function') {
     onAddNode(nodeConfig);
   }
+  onConfigChange({ type: 'add:node' });
 };

@@ -11,7 +11,7 @@ import {
   NsGraph,
   IEvent,
 } from '@ali/xflow';
-import { getProps as getGlobalProps, getContainer } from '../../util';
+import { getProps as getGlobalProps, getContainer, onConfigChange } from '../../util';
 import { Edge, Shape } from '@antv/x6';
 import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/node-panel';
 import { setGroupRender } from '../../components/group-panel';
@@ -97,6 +97,7 @@ export const useGraphHook = createHookConfig((config) => {
           if (typeof onAddEdge === 'function') {
             onAddEdge(config);
           }
+          onConfigChange({ type: 'add:edge' });
           args.edge.remove();
         });
       },

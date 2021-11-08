@@ -35,7 +35,7 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
       ...node.getPosition(),
     },
   });
-  onConfigChange();
+  onConfigChange({ type: 'move:node' });
 };
 
 /**
@@ -54,7 +54,7 @@ export const resizeNode = async (e: any, cmds: IGraphCommandService, ctx: IModel
       height,
     },
   });
-  onConfigChange();
+  onConfigChange({ type: 'resize:node' });
 };
 
 /** 设置 ports visible */

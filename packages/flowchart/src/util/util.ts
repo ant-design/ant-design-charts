@@ -63,12 +63,15 @@ export const getGraphHistory = () => {
 
 /** 更新配置时通知上传执行保存 */
 export const onConfigChange = debounce(
-  () => {
+  (config: { type: string }) => {
     const configChange = getProps('onConfigChange');
     if (!configChange || typeof configChange !== 'function') {
       return;
     }
-    return configChange(getGraphData());
+    return configChange({
+      data: getGraphData(),
+      ...config,
+    });
   },
   300,
   true,

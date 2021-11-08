@@ -59,7 +59,7 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
         ...value,
       },
     });
-    onConfigChange();
+    onConfigChange({ type: 'update:node' });
   };
 
   const updateEdge = async (value: object, type: 'text' | 'line' = 'line', key?: string) => {
@@ -77,7 +77,7 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
       },
     };
     await commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, { edgeConfig });
-    onConfigChange();
+    onConfigChange({ type: 'update:edge' });
   };
 
   const updateGroup = async (value: object) => {
@@ -89,7 +89,7 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
         ...value,
       },
     });
-    onConfigChange();
+    onConfigChange({ type: 'update:group' });
   };
 
   if (loading) {
