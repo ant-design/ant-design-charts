@@ -11,7 +11,6 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
   const app = useXFlowApp();
   // const isCollapse = cell.getProp('isCollapsed') || false;
   const onExpand = (e) => {
-    console.log('onExpand');
     app.executeCommand(XFlowGroupCommands.COLLAPSE_GROUP.id, {
       nodeId: cell.id,
       isCollapsed: false,
@@ -19,7 +18,6 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
     });
   };
   const onCollapse = (e) => {
-    console.log('onCollapse');
     app.executeCommand(XFlowGroupCommands.COLLAPSE_GROUP.id, {
       nodeId: cell.id,
       isCollapsed: true,
@@ -27,7 +25,6 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
       gap: 3,
     });
   };
-  console.log(isCollapsed);
 
   return (
     <div
