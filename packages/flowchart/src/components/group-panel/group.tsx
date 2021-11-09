@@ -6,7 +6,7 @@ import './group.less';
 export const GroupNode: NsGraph.INodeRender = (props) => {
   const {
     cell,
-    data: { label, stroke, fill, fontSize, fontFill },
+    data: { label, stroke, fill, fontSize, fontFill, width = 200 },
   } = props;
   const app = useXFlowApp();
   const isCollapse = cell.getProp('isCollapsed') || false;
@@ -14,14 +14,14 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
     app.executeCommand(XFlowGroupCommands.COLLAPSE_GROUP.id, {
       nodeId: cell.id,
       isCollapsed: false,
-      collapsedSize: { width: 200, height: 40 },
+      collapsedSize: { width, height: 40 },
     });
   };
   const onCollapse = (e) => {
     app.executeCommand(XFlowGroupCommands.COLLAPSE_GROUP.id, {
       nodeId: cell.id,
       isCollapsed: true,
-      collapsedSize: { width: 200, height: 40 },
+      collapsedSize: { width, height: 40 },
       gap: 3,
     });
   };
