@@ -22,6 +22,7 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
         await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
           nodeConfig: {
             ...currentNode.data,
+            ...currentNode.getSize(),
             ...currentNode.getPosition?.(),
           },
         });
@@ -31,6 +32,7 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
   const nodeConfig = {
     ...node.data,
     ...node.getPosition(),
+    ...node.getSize(),
   };
   await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
     nodeConfig,
@@ -46,11 +48,10 @@ export const resizeNode = async (e: any, cmds: IGraphCommandService, ctx: IModel
   if (!node) {
     return;
   }
-  const { width, height } = node.size();
   const nodeConfig = {
     ...node.data,
-    width,
-    height,
+    ...node.getPosition(),
+    ...node.size(),
   };
   await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
     nodeConfig,

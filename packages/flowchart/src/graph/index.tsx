@@ -1,5 +1,13 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { XFlow, XFlowCanvas, XFlowGraphCommands, NsGraphCmd, CanvasContextMenu, KeyBindings } from '@ali/xflow';
+import {
+  XFlow,
+  XFlowCanvas,
+  XFlowGraphCommands,
+  NsGraphCmd,
+  CanvasContextMenu,
+  KeyBindings,
+  // CanvasMiniMap,
+} from '@ali/xflow';
 import { NodeTreePanel } from '../components/canvas-node-tree-panel';
 import { CanvasScaleToolbar } from '../components/canvas-scale-toolbar';
 import { treeDataService, searchService, onNodeDrop } from '../components/node-panel';
@@ -30,13 +38,14 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     scaleToolbarPanelProps = {},
     contextMenuPanelProps = {},
     canvasProps = {},
+    // miniMapProps = {},
     data,
     onReady,
   } = props;
   const container = useRef<HTMLDivElement>();
-  const miniMapContainer = useRef<HTMLDivElement>();
-  setProps(props, container, miniMapContainer);
+  setProps(props, container);
   const { position = { top: 40, left: 240, right: 240, bottom: 0 } } = canvasProps;
+  // const { position: miniMapPosition = { bottom: 12, right: 12 }, show: showMinimMap = true } = miniMapProps;
   const graphRef = useRef<IGraph>();
   const graphConfig = useGraphConfig(props);
   const menuConfig = useMenuConfig();
@@ -98,19 +107,10 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           <XFlowCanvas config={graphConfig} position={position}>
             {show && <CanvasScaleToolbar position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />}
             {showMenu && <CanvasContextMenu config={menuConfig} />}
+            {/* {showMinimMap && <CanvasMiniMap position={miniMapPosition} />} */}
           </XFlowCanvas>
           <FormPanel {...detailPanelProps} />
           <KeyBindings config={keybindingConfig} />
-          {/* <WorkspacePanel
-            position={{
-              width: 200,
-              bottom: 0,
-              right: 200,
-              height: 200,
-            }}
-          >
-            <div ref={miniMapContainer}></div>
-          </WorkspacePanel> */}
         </XFlow>
       </div>
     </AppContext.Provider>

@@ -140,6 +140,8 @@ export interface FlowchartProps extends FlowchartContainerProps {
   toolbarPanelProps?: ToolbarPanelProps;
   /** scale toolbar */
   scaleToolbarPanelProps?: ScaleToolbarPanelProps;
+  /** mini map */
+  // miniMapProps?: MiniMapProps;
   /** form editor */
   detailPanelProps?: DetailPanelProps;
   /** 主画布配置 */

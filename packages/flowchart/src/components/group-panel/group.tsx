@@ -6,11 +6,12 @@ import './group.less';
 export const GroupNode: NsGraph.INodeRender = (props) => {
   const {
     cell,
-    data: { label, stroke, fill, fontSize, fontFill, width = 200 },
+    data: { label, stroke, fill, fontSize, fontFill, width = 200, isCollapsed = false },
   } = props;
   const app = useXFlowApp();
-  const isCollapse = cell.getProp('isCollapsed') || false;
+  // const isCollapse = cell.getProp('isCollapsed') || false;
   const onExpand = (e) => {
+    console.log('onExpand');
     app.executeCommand(XFlowGroupCommands.COLLAPSE_GROUP.id, {
       nodeId: cell.id,
       isCollapsed: false,
@@ -18,6 +19,7 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
     });
   };
   const onCollapse = (e) => {
+    console.log('onCollapse');
     app.executeCommand(XFlowGroupCommands.COLLAPSE_GROUP.id, {
       nodeId: cell.id,
       isCollapsed: true,
@@ -25,6 +27,7 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
       gap: 3,
     });
   };
+  console.log(isCollapsed);
 
   return (
     <div
@@ -39,8 +42,8 @@ export const GroupNode: NsGraph.INodeRender = (props) => {
       <div className="xflow-group-header">
         <div className="header-left">{label}</div>
         <div className="header-right">
-          {isCollapse && <PlusSquareOutlined onClick={onExpand} />}
-          {!isCollapse && <MinusSquareOutlined onClick={onCollapse} />}
+          {isCollapsed && <PlusSquareOutlined onClick={onExpand} />}
+          {!isCollapsed && <MinusSquareOutlined onClick={onCollapse} />}
         </div>
       </div>
     </div>

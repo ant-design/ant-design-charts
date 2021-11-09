@@ -5,18 +5,12 @@ import { FlowchartProps, IGraph } from '../interface';
 export const globalProps = {
   config: {},
   container: undefined,
-  miniMapcontainer: undefined,
 };
 
 /** 设置全局状态 */
-export const setProps = (
-  props: FlowchartProps,
-  container?: MutableRefObject<HTMLDivElement>,
-  miniMapcontainer?: MutableRefObject<HTMLDivElement>,
-) => {
+export const setProps = (props: FlowchartProps, container?: MutableRefObject<HTMLDivElement>) => {
   globalProps.config = props;
   globalProps.container = container;
-  globalProps.miniMapcontainer = miniMapcontainer;
 };
 
 const graphInstance = new Map<string, IGraph>();
