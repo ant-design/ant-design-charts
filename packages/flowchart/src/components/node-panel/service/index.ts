@@ -36,5 +36,5 @@ export const onNodeDrop: NsNodeTreePanel.IOnNodeDrop = async (node, commands) =>
   if (typeof onAddNode === 'function') {
     onAddNode(nodeConfig);
   }
-  onConfigChange({ type: 'add:node' });
+  onConfigChange({ type: 'add:node', config: nodeConfig });
 };

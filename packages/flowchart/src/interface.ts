@@ -155,10 +155,11 @@ export interface FlowchartProps extends FlowchartContainerProps {
   /** onReady */
   onReady?: (graph) => void;
   /** 节点或边更新数据时调用 */
-  onConfigChange?: ({ data: Datum, type: string }) => void;
+  onConfigChange?: (params: { data: Datum; type: string; config?: NodeConfig | EdgeConfig | GroupConfig }) => void;
 }
 
 type NodeConfig = NsGraph.INodeConfig;
 type EdgeConfig = NsGraph.IEdgeConfig;
+type GroupConfig = NodeConfig;
 
 export { NsGraph, Edge, NodeConfig, EdgeConfig, Node };

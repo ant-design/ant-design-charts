@@ -53,13 +53,11 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
 
   const updateNode = async (value: object) => {
     const currentNodeData = await getSelectNode();
+    const nodeConfig = { ...currentNodeData, ...value };
     await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
-      nodeConfig: {
-        ...currentNodeData,
-        ...value,
-      },
+      nodeConfig,
     });
-    onConfigChange({ type: 'update:node' });
+    onConfigChange({ type: 'update:node', config: nodeConfig });
   };
 
   const updateEdge = async (value: object, type: 'text' | 'line' = 'line', key?: string) => {
@@ -77,19 +75,16 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
       },
     };
     await commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, { edgeConfig });
-    onConfigChange({ type: 'update:edge' });
+    onConfigChange({ type: 'update:edge', config: edgeConfig });
   };
 
   const updateGroup = async (value: object) => {
     const currentGroupData = await getSelectNode();
-
+    const nodeConfig = { ...currentGroupData, ...value };
     await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
-      nodeConfig: {
-        ...currentGroupData,
-        ...value,
-      },
+      nodeConfig,
     });
-    onConfigChange({ type: 'update:group' });
+    onConfigChange({ type: 'update:group', config: nodeConfig });
   };
 
   if (loading) {

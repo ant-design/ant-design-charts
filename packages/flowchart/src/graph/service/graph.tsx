@@ -97,7 +97,7 @@ export const useGraphHook = createHookConfig((config) => {
           if (typeof onAddEdge === 'function') {
             onAddEdge(config);
           }
-          onConfigChange({ type: 'add:edge' });
+          onConfigChange({ type: 'add:edge', config });
           args.edge.remove();
         });
       },

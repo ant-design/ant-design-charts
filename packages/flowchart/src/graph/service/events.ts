@@ -28,14 +28,14 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
       }
     });
   }
-
+  const nodeConfig = {
+    ...node.data,
+    ...node.getPosition(),
+  };
   await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
-    nodeConfig: {
-      ...node.data,
-      ...node.getPosition(),
-    },
+    nodeConfig,
   });
-  onConfigChange({ type: 'move:node' });
+  onConfigChange({ type: 'move:node', config: nodeConfig });
 };
 
 /**
@@ -47,14 +47,15 @@ export const resizeNode = async (e: any, cmds: IGraphCommandService, ctx: IModel
     return;
   }
   const { width, height } = node.size();
+  const nodeConfig = {
+    ...node.data,
+    width,
+    height,
+  };
   await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
-    nodeConfig: {
-      ...node.data,
-      width,
-      height,
-    },
+    nodeConfig,
   });
-  onConfigChange({ type: 'resize:node' });
+  onConfigChange({ type: 'resize:node', config: nodeConfig });
 };
 
 /** 设置 ports visible */
