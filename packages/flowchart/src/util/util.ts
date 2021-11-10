@@ -1,37 +1,18 @@
-import { getProps, getGraphInstance } from './global';
+import { getProps, getGraphInstance, getAppInstance } from './global';
 import { NsGraph } from '../interface';
+import { XFlowGraphCommands, NsGraphCmd } from '@ali/xflow';
 
 export const Log = window.console;
 
-export const getGraphData = () => {
-  const x6Graph = getGraphInstance();
-  if (!x6Graph) {
-    return null;
-  }
-  const x6Nodes = x6Graph.getNodes();
-  const x6Edges = x6Graph.getEdges();
-  const nodes = x6Nodes.map((node) => {
-    const data = node.getData<NsGraph.INodeConfig>();
-    const position = node.position();
-    const size = node.size();
-    return {
-      ...data,
-      ...position,
-      ...size,
-    };
-  });
-
-  const edges = x6Edges.map((edge) => {
-    const data = edge.getData<NsGraph.IEdgeConfig>();
-    const attrs = edge.getAttrs();
-    return {
-      ...data,
-      attrs,
-    };
-  });
-  const graphData = { nodes, edges };
-
-  return graphData;
+export const getGraphData = async () => {
+  const app = getAppInstance();
+  let data;
+  await app.executeCommand(XFlowGraphCommands.SAVE_GRAPH_DATA.id, {
+    saveGraphDataService: async (graphMeta, graphData) => {
+      data = graphData;
+    },
+  } as NsGraphCmd.SaveGraphData.IArgs);
+  return data;
 };
 
 /**

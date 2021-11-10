@@ -8,10 +8,13 @@ export const useCmdConfig = createCmdConfig((config) => {
       hooks.addNode.registerHook({
         name: 'get node config from backend api',
         handler: async (args) => {
-          args.nodeConfig.id = args.nodeConfig.id || `node-${uuidv4()}`;
-          args.nodeConfig.zIndex = args.nodeConfig.zIndex || 10;
-          /** 移除 _copied */
-          args.nodeConfig.label = args.nodeConfig.label?.replace?.(/\_copied/g, '');
+          args.nodeConfig = {
+            ...args.nodeConfig,
+            id: args.nodeConfig.id || `node-${uuidv4()}`,
+            zIndex: args.nodeConfig.zIndex || 10,
+            /** 移除 _copied */
+            label: args.nodeConfig.label?.replace?.(/\_copied/g, ''),
+          };
           const onAddNode = getProps('onAddNode');
           if (typeof onAddNode === 'function') {
             onAddNode(args.nodeConfig);

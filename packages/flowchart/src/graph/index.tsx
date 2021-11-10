@@ -15,7 +15,7 @@ import { FormPanel } from '../components/editor-panel';
 import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
-import { setProps, setGrapgInstance } from '../util';
+import { setProps, setInstance } from '../util';
 import { useCmdConfig } from './service/command';
 import { FlowchartProps, IGraph } from '../interface';
 import AppContext from '../context';
@@ -89,7 +89,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           hookConfig={hookConfig}
           onLoad={async (app) => {
             const X6Graph = await app.getGraphInstance();
-            setGrapgInstance(X6Graph);
+            setInstance(X6Graph, app);
             graphRef.current = X6Graph;
             loadData(app);
             onReady?.(appendUtils(X6Graph));
