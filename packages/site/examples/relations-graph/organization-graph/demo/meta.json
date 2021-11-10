@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "组织架构图",
+        "en": "Basic"
+      },
+      "screenshot": ""
+    },
+    {
+      "filename": "style.js",
+      "title": {
+        "zh": "组织架构图-格式化设置",
+        "en": "Style"
+      },
+      "screenshot": ""
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/flowchart",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.11",
   "description": "Flowchart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/ant-design/ant-design-charts.git"
   },
   "main": "lib/index.js",
-  "unpkg": "dist/flowChart.min.js",
+  "unpkg": "dist/flowchart.min.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "files": [
@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib dist",
+    "build": "run-s clean lib copy",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
@@ -27,6 +27,7 @@
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
+    "copy": "node ./scripts/less-copy.mjs",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && npm run lint:prettier",
     "lint:prettier": "npm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
@@ -34,19 +35,23 @@
     "test:coverage": "umi-test --coverage"
   },
   "dependencies": {
-    "@antv/x6": "^1.25.0"
+    "@ali/xflow": "^0.0.5-alpha.18",
+    "@antv/x6": "^1.25.0",
+    "@antv/x6-react-components": "^1.1.13",
+    "@antv/x6-react-shape": "^1.4.5",
+    "react-color": "2.17.3",
+    "react-use": "^17.3.1"
   },
   "peerDependencies": {
+    "antd": "^4.6.3",
+    "@ant-design/icons": "^4.6.0",
     "react": ">=16.8.4",
     "react-dom": ">=16.8.4"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "np": {
-    "yarn": false,
-    "contents": "dist"
-  },
-  "sideEffects": false,
-  "license": "MIT"
+  "sideEffects": true,
+  "license": "MIT",
+  "devDependencies": {
+    "lodash": "^4.17.20",
+    "antd": "^4.16.13"
+  }
 }

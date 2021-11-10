@@ -1,6 +1,6 @@
 import G6, { IGroup, LabelStyle } from '@antv/g6';
 import { defaultMargin, defaultLabelStyle, defaultCardStyle } from '../../constants';
-import { getStyle, getCssPadding, createMarker } from '../../util';
+import { getStyle, getCssPadding, createMarker } from '../../utils';
 import { CardNodeCfg, CardItems } from '../../interface';
 
 // 组织架构图
@@ -62,9 +62,7 @@ export const registerOrganizationCardNode = () => {
                   break;
                 case 'value':
                   x = startX + (contentWidth + iconWidth) / 2;
-                  y = item.text
-                    ? paddingArray[0] + rowHeight[1] + defaultMargin
-                    : (size[1] - fontSize) / 2;
+                  y = item.text ? paddingArray[0] + rowHeight[1] + defaultMargin : (size[1] - fontSize) / 2;
                   break;
                 default:
                   break;
@@ -94,7 +92,7 @@ export const registerOrganizationCardNode = () => {
             return rowHeight;
           };
           const createItems = (item: CardItems, index: number = 0) => {
-            const itemsHeight = [];
+            const itemsHeight: number[] = [];
             if (customContent) {
               itemsHeight.push(
                 customContent(item, group, {

@@ -6,9 +6,7 @@ import { ChartRefConfig, ContainerConfig } from '../../interface';
 import ErrorBoundary from '../../errorBoundary';
 import ChartLoading from '../../util/createLoading';
 
-export interface BulletConfig
-  extends Omit<G2plotConfig, 'color' | 'label' | 'style'>,
-    ContainerConfig<G2plotConfig> {
+export interface BulletConfig extends Omit<G2plotConfig, 'color' | 'label' | 'style'>, ContainerConfig<G2plotConfig> {
   chartRef?: ChartRefConfig;
 }
 

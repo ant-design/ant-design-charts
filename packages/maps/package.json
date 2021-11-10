@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/maps",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.1",
   "description": "maps",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -41,13 +41,6 @@
   "peerDependencies": {
     "react": ">=16.8.4",
     "react-dom": ">=16.8.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "np": {
-    "yarn": false,
-    "contents": "dist"
   },
   "sideEffects": false,
   "license": "MIT"

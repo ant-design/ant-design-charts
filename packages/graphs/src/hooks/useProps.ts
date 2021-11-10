@@ -1,9 +1,16 @@
 // 合并 defaultProps
 import { useCallback } from 'react';
-import { getType, deepClone } from '../util/utils';
+import { getType, deepClone } from '../utils';
 import { CommonConfig } from '../interface';
 
-export default function useProps(props: CommonConfig, defaultProps: Partial<CommonConfig>) {
+type SpecialKey = 'level';
+
+export default function useProps(
+  props: CommonConfig,
+  defaultProps: Partial<CommonConfig>,
+): {
+  uProps: Partial<CommonConfig> & { [key in SpecialKey]?: number };
+} {
   const cloneProps = deepClone(props);
 
   const mergeProps = useCallback(
