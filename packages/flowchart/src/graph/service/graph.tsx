@@ -141,7 +141,7 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
       connector: {
         name: 'rounded',
         args: {
-          radius: 2,
+          radius: 8,
         },
       },
       anchor: 'center',
@@ -283,14 +283,14 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
     } as IEvent<'edge:mouseleave'>,
     {
       eventName: 'node:mouseenter',
-      callback: () => {
-        changePortsVisible(true);
+      callback: (e) => {
+        changePortsVisible(true, e);
       },
     } as IEvent<'node:mouseenter'>,
     {
       eventName: 'node:mouseleave',
       callback: (e, cmds, ctx) => {
-        changePortsVisible(false);
+        changePortsVisible(false, e);
       },
     } as IEvent<'node:mouseleave'>,
     {

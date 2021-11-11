@@ -59,16 +59,34 @@ export const resizeNode = async (e: any, cmds: IGraphCommandService, ctx: IModel
   onConfigChange({ type: 'resize:node', config: nodeConfig });
 };
 
-/** 设置 ports visible */
-export const changePortsVisible = (visible: boolean) => {
-  const container = document.getElementsByClassName('xflow-canvas-root')[0];
-  const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGAElement>;
-  const graph = getGraphInstance();
-  // 选中中节点时不展示链接桩
-  const isSelectedNode = graph.getSelectedCells()?.[0]?.isNode();
-  for (let i = 0, len = ports.length; i < len; i = i + 1) {
-    ports[i].style.visibility = !isSelectedNode && visible ? 'visible' : 'hidden';
+const getContainer = (e) => {
+  let currentNode = e?.e?.currentTarget;
+  if (!currentNode) {
+    return document.getElementsByClassName('xflow-canvas-root');
   }
+  let containter = null;
+  while (!containter) {
+    const current = currentNode.getElementsByClassName('xflow-canvas-root');
+    if (current?.length > 0) {
+      containter = current;
+    }
+    currentNode = currentNode.parentNode;
+  }
+  return containter;
+};
+
+/** 设置 ports visible */
+export const changePortsVisible = (visible: boolean, e?: any) => {
+  const containers = getContainer(e);
+  Array.from(containers).forEach((container: HTMLDivElement) => {
+    const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGAElement>;
+    const graph = getGraphInstance();
+    // 选中中节点时不展示链接桩
+    const isSelectedNode = graph.getSelectedCells()?.[0]?.isNode();
+    for (let i = 0, len = ports.length; i < len; i = i + 1) {
+      ports[i].style.visibility = !isSelectedNode && visible ? 'visible' : 'hidden';
+    }
+  });
 };
 
 /** 高亮边 */
