@@ -39,6 +39,9 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     contextMenuPanelProps = {},
     canvasProps = {},
     // miniMapProps = {},
+    onDestroy,
+    onConfigReady,
+    isAutoCenter,
     data,
     onReady,
   } = props;
@@ -87,6 +90,9 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           style={style}
           commandConfig={commandConfig}
           hookConfig={hookConfig}
+          onAppDestroy={onDestroy}
+          isAutoCenter={isAutoCenter}
+          onAppConfigReady={onConfigReady}
           onLoad={async (app) => {
             const X6Graph = await app.getGraphInstance();
             setInstance(X6Graph, app);

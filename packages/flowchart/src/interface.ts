@@ -1,11 +1,13 @@
 import {
-  IGraphConfig,
   IGraphCommandService,
   IModelService,
   NsGraph,
   IPosition,
   NsJsonSchemaForm,
   IToolbarLayout,
+  NsGraphCmd,
+  IAppDestory,
+  IAppConfigReady,
 } from '@ali/xflow';
 import { Cell, Graph, Edge, Node } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
@@ -124,14 +126,20 @@ export interface IGraph extends Graph {
   __proto__?: Record<string, any>;
 }
 
+export interface IGraphConfig {}
+
 // Flowchart 通用配置
 export interface FlowchartProps extends FlowchartContainerProps {
   /** 默认数据 */
   data?: Datum;
   /** 主题 */
   theme?: 'light' | 'dark';
-  /** 点击回调，仅支持 save-graph-data */
-  onSave?: (data: Datum) => void;
+  /** 画布的配置 */
+  // graphConfig?: GraphConfig;
+  /** 布局配置项 */
+  graphLayout?: NsGraphCmd.GraphLayout.IArgs;
+  /** 画布是否自动居中 */
+  isAutoCenter?: boolean;
   /** 节点面板配置 */
   nodePanelProps?: NodePanelProps;
   /** 画布主要区域配置 */
@@ -144,18 +152,22 @@ export interface FlowchartProps extends FlowchartContainerProps {
   // miniMapProps?: MiniMapProps;
   /** form editor */
   detailPanelProps?: DetailPanelProps;
-  /** 主画布配置 */
-  graphProps?: IGraphConfig;
   /** 右键菜单配置 */
   contextMenuPanelProps?: ContextMenuPanelProps;
   /** popover */
   popoverProps?: PopoverProps;
+  /** onReady */
+  onReady?: (graph) => void;
+  /** 点击回调，仅支持 save-graph-data */
+  onSave?: (data: Datum) => void;
   /** 新增节点时回调 */
   onAddNode?: (node: NsGraph.INodeConfig) => void;
   /** 新增边时回调 */
   onAddEdge?: (node: NsGraph.IEdgeConfig) => void;
-  /** onReady */
-  onReady?: (graph) => void;
+  /** xflow app 销毁前的回调 */
+  onDestroy?: IAppDestory;
+  /** xflow app 初始化后的回调 */
+  onConfigReady?: IAppConfigReady;
   /** 节点或边更新数据时调用 */
   onConfigChange?: (params: { data: Datum; type: string; config?: NodeConfig | EdgeConfig | GroupConfig }) => void;
 }
