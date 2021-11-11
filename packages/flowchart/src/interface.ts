@@ -136,8 +136,6 @@ export interface FlowchartProps extends FlowchartContainerProps {
   theme?: 'light' | 'dark';
   /** 画布的配置 */
   // graphConfig?: GraphConfig;
-  /** 布局配置项 */
-  graphLayout?: NsGraphCmd.GraphLayout.IArgs;
   /** 画布是否自动居中 */
   isAutoCenter?: boolean;
   /** 节点面板配置 */
