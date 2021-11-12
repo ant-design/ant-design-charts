@@ -1,18 +1,18 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Heatmap, HeatmapOptions } from '@antv/l7plot';
+import { Hexagon, HexagonOptions } from '@antv/l7plot';
 import { PlotRef, ContainerConfig } from '../../types';
 import useL7Plot, { L7PlotConfig } from '../../hooks/useL7Plot';
 import { getChart } from '../../util';
 import ErrorBoundary from '../../errorBoundary';
 import ChartLoading from '../../util/createLoading';
 
-export interface HeatMapConfig extends L7PlotConfig<HeatmapOptions, Heatmap>, ContainerConfig {
-  chartRef?: PlotRef<Heatmap>;
+export interface HexagonMapConfig extends L7PlotConfig<HexagonOptions, Hexagon>, ContainerConfig {
+  chartRef?: PlotRef<Hexagon>;
 }
 
-const HeatMap = forwardRef((props: HeatMapConfig, ref) => {
+const HexagonMap = forwardRef((props: HexagonMapConfig, ref) => {
   const { chartRef, containerStyle, className, loading, loadingTemplate, errorTemplate, ...config } = props;
-  const { plotRef, containerRef } = useL7Plot<HeatmapOptions, Heatmap>(Heatmap, config);
+  const { plotRef, containerRef } = useL7Plot<HexagonOptions, Hexagon>(Hexagon, config);
 
   useEffect(() => {
     getChart(chartRef, plotRef.current);
@@ -30,4 +30,4 @@ const HeatMap = forwardRef((props: HeatMapConfig, ref) => {
   );
 });
 
-export default HeatMap;
+export default HexagonMap;
