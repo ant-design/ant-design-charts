@@ -5,11 +5,11 @@
     "packages/*"
   ],
   "scripts": {
-    "site": "cd ./packages/site && npm run start",
-    "flow": "cd ./packages/flowchart && npm run build",
-    "start": "lerna run  start --scope @ant-design/charts-site --stream",
+    "start": "lerna run start --stream --scope=@ant-design/charts-site",
+    "flow": "lerna run build --stream --scope=@ant-design/flowchart",
+    "maps": "lerna run build --stream --scope=@ant-design/maps",
     "test": "lerna run test --stream",
-    "build": "lerna run build --ignore @ant-design/maps --stream --profile --profile-location=logs/profile/",
+    "build": "lerna run build --stream --profile --profile-location=logs/profile/",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "bootstrap": "lerna bootstrap"

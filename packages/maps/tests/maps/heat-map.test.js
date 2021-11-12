@@ -3,11 +3,11 @@ import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import BubbleMap from '../../src/components/BubbleMap';
+import HeatMap from '../../src/components/HeatMap';
 
 const refs = renderHook(() => useRef());
 
-describe('Bubble Map', () => {
+describe('Heat Map', () => {
   let container;
   beforeEach(() => {
     container = document.createElement('div');
@@ -48,8 +48,12 @@ describe('Bubble Map', () => {
           y: 'w',
         },
       },
+      size: {
+        field: 't',
+        value: [0, 1],
+      },
     };
-    mount(<BubbleMap {...config} />);
+    mount(<HeatMap {...config} />);
     refs.current.destroy();
   });
 });
