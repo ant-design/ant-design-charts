@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@ant-design/charts": "^1.2.12",
-    "@antv/gatsby-theme-antv": "1.1.1",
+    "@antv/gatsby-theme-antv": "^1.1.8",
     "@antv/util": "^2.0.9",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
