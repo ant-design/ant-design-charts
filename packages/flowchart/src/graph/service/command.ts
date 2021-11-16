@@ -1,4 +1,4 @@
-import { createCmdConfig, DisposableCollection, uuidv4 } from '@ali/xflow';
+import { createCmdConfig, DisposableCollection, uuidv4 } from '@antv/xflow';
 import { getProps } from '../../util';
 
 export const useCmdConfig = createCmdConfig((config) => {

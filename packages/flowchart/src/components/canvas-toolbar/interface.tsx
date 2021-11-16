@@ -5,7 +5,7 @@ import type {
   IToolbarLayout,
   DisposableCollection,
   IToolbarOptions,
-} from '@ali/xflow-core';
+} from '@antv/xflow-core';
 import React from 'react';
 
 import type { ToolbarConfig } from './config';

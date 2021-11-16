@@ -1,4 +1,4 @@
-import { usePositionStyle } from '@ali/xflow-core';
+import { usePositionStyle } from '@antv/xflow-core';
 import type { IPanelProps } from './interface';
 
 export const usePanelLyaoutStyle = (config: IPanelProps, noSchema: boolean) => {

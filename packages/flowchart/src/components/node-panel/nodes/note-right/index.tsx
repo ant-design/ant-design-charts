@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NsGraph } from '@ali/xflow';
+import { NsGraph } from '@antv/xflow';
 import { AppContext } from '../../index';
 import { createPath } from '../../util';
 import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';

@@ -1,4 +1,4 @@
-import { uuidv4 } from '@ali/xflow-core';
+import { uuidv4 } from '@antv/xflow-core';
 import type { IToolbarModelService, IToolbarCustomRenderService } from './interface';
 
 export const CONFIG_TYPE = 'CanvasToolbar';

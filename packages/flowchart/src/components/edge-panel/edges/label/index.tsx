@@ -1,5 +1,5 @@
 import React from 'react';
-import { NsGraph } from '@ali/xflow';
+import { NsGraph } from '@antv/xflow';
 
 export const LabelEdge: NsGraph.IEdgeRender = (props) => {
   const { data = {} } = props;

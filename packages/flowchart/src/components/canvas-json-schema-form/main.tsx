@@ -1,12 +1,12 @@
 import React from 'react';
 import type { IProps, IPanelProps, ITriggerUpdate } from './interface';
-import { useXflowPrefixCls } from '@ali/xflow-core';
+import { useXflowPrefixCls } from '@antv/xflow-core';
 import { PanelBody } from './panel-body';
 import { usePanelLyaoutStyle } from './utils';
 import { useJsonSchemaFormModel } from './service';
 export { FormItemWrapper } from './schema-form';
 export { executeJsonSchemaFormCommand } from './service';
-import { WorkspacePanel } from '@ali/xflow';
+import { WorkspacePanel } from '@antv/xflow';
 
 import './style/index';
 

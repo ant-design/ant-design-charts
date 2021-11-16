@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useXflowPrefixCls, WorkspacePanel } from '@ali/xflow';
+import { useXflowPrefixCls, WorkspacePanel } from '@antv/xflow';
 import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons';
 import { IProps, IPanelProps } from './interface';
 import { NodePanelBody } from './panel-body';

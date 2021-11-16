@@ -7,7 +7,7 @@ import {
   CanvasContextMenu,
   KeyBindings,
   // CanvasMiniMap,
-} from '@ali/xflow';
+} from '@antv/xflow';
 import { NodeTreePanel } from '../components/canvas-node-tree-panel';
 import { CanvasScaleToolbar } from '../components/canvas-scale-toolbar';
 import { treeDataService, searchService, onNodeDrop } from '../components/node-panel';

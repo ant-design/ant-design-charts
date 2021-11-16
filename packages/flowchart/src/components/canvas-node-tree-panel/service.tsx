@@ -1,10 +1,10 @@
 import React from 'react';
 import uniqBy from 'lodash/uniqBy';
 import cloneDeep from 'lodash/cloneDeep';
-import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@ali/xflow';
+import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@antv/xflow';
 import { IProps, ITreeNode } from './interface';
 import { TREE_ROOT_ID } from './constants';
-// import { NsTreePanelData} from '@ali/xflow/es/canvas-node-tree-panel/service'
+// import { NsTreePanelData} from '@antv/xflow/es/canvas-node-tree-panel/service'
 export namespace NsTreePanelData {
   export const id = 'TREE_PANEL_DATA';
   export interface IState {

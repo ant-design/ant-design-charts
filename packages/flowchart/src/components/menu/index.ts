@@ -1,6 +1,6 @@
-import type { NsNodeCmd, NsEdgeCmd, IMenuOptions, NsGraph } from '@ali/xflow';
-import { createCtxMenuConfig, MenuItemType } from '@ali/xflow';
-import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@ali/xflow';
+import type { NsNodeCmd, NsEdgeCmd, IMenuOptions, NsGraph } from '@antv/xflow';
+import { createCtxMenuConfig, MenuItemType } from '@antv/xflow';
+import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow';
 import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons';
 
 /** menuitem 配置 */

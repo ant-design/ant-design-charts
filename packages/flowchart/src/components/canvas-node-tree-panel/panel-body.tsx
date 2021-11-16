@@ -9,7 +9,7 @@ import {
   getNodeReactComponent,
   useXFlowApp,
   IGraphCommandService,
-} from '@ali/xflow';
+} from '@antv/xflow';
 import { NsTreePanelData } from './service';
 import { XFlowNode } from './node';
 

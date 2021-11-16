@@ -8,7 +8,7 @@ import {
   NsGraphCmd,
   IAppDestory,
   IAppConfigReady,
-} from '@ali/xflow';
+} from '@antv/xflow';
 import { Cell, Graph, Edge, Node } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
 

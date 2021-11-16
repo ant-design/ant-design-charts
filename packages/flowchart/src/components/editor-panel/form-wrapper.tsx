@@ -8,7 +8,7 @@ import {
   NsJsonSchemaForm,
   usePanelContext,
   FormItemWrapper,
-} from '@ali/xflow';
+} from '@antv/xflow';
 import { onConfigChange } from '../../util';
 import useAsync from './useAsync';
 

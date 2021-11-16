@@ -8,7 +8,7 @@ import {
   XFlowAppProvider,
   useXFlowApp,
   XFlowEdgeCommands,
-} from '@ali/xflow';
+} from '@antv/xflow';
 import Flowchart from './graph';
 
 export { ToolbarPanel } from './components/toolbar';

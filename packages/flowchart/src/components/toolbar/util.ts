@@ -11,7 +11,7 @@ import {
   NsNodeCmd,
   IconStore,
   MODELS,
-} from '@ali/xflow';
+} from '@antv/xflow';
 import { message } from 'antd';
 import { getProps, Log, getGraphHistory, getGraphInstance } from '../../util';
 import {

@@ -1,5 +1,5 @@
-import type { NsGraphCmd, IToolbarGroupOptions } from '@ali/xflow-core';
-import { IconStore, MODELS, XFlowGraphCommands } from '@ali/xflow-core';
+import type { NsGraphCmd, IToolbarGroupOptions } from '@antv/xflow-core';
+import { IconStore, MODELS, XFlowGraphCommands } from '@antv/xflow-core';
 import {
   ZoomInOutlined,
   ZoomOutOutlined,

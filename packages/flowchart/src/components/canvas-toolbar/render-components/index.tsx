@@ -2,8 +2,8 @@ import React from 'react';
 import { Spin } from 'antd';
 import classnames from 'classnames';
 // xflow
-import type { IToolbarOptions, IToolbarLayout, IToolbarGroupOptions } from '@ali/xflow-core';
-import { usePositionStyle } from '@ali/xflow-core';
+import type { IToolbarOptions, IToolbarLayout, IToolbarGroupOptions } from '@antv/xflow-core';
+import { usePositionStyle } from '@antv/xflow-core';
 // component
 import { Toolbar } from '@antv/x6-react-components';
 import { ToolbarGroup } from './toolbar-group';

@@ -1,4 +1,4 @@
-import type { NsJsonSchemaForm } from '@ali/xflow';
+import type { NsJsonSchemaForm } from '@antv/xflow';
 
 export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = async (args) => {
   const { targetType } = args;

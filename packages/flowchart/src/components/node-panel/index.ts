@@ -17,7 +17,7 @@
  * }
  * ```
  */
-import { uuidv4, NsNodeTreePanel } from '@ali/xflow';
+import { uuidv4, NsNodeTreePanel } from '@antv/xflow';
 import { getProps } from '../../util';
 import AppContext from '../../context';
 import { withPopover } from './with-popover';

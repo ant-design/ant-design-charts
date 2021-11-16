@@ -1,4 +1,4 @@
-// import { IGraphConfig } from '@ali/xflow';
+// import { IGraphConfig } from '@antv/xflow';
 
 import { GroupNode } from './group';
 

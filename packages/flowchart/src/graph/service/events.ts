@@ -1,4 +1,4 @@
-import { XFlowNodeCommands, IModelService, IGraphCommandService, XFlowEdgeCommands } from '@ali/xflow';
+import { XFlowNodeCommands, IModelService, IGraphCommandService, XFlowEdgeCommands } from '@antv/xflow';
 import { get } from 'lodash';
 import { onConfigChange, getGraphInstance } from '../../util';
 import { Node } from '../../interface';

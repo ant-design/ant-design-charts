@@ -1,5 +1,5 @@
-import type { IToolbarOptions } from '@ali/xflow-core';
-import { useXFlowApp, createComponentModel, DisposableCollection } from '@ali/xflow-core';
+import type { IToolbarOptions } from '@antv/xflow-core';
+import { useXFlowApp, createComponentModel, DisposableCollection } from '@antv/xflow-core';
 import React from 'react';
 import type { IToolbarProps } from './interface';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CanvasToolbar as XFlowToolbarPanel } from '@ali/xflow';
+import { CanvasToolbar as XFlowToolbarPanel } from '@antv/xflow';
 import { useToolbarConfig } from './util';
 import { FlowchartProps } from '../../interface';
 

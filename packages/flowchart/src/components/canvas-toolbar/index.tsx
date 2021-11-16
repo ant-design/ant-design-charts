@@ -1,5 +1,5 @@
 import React from 'react';
-import { useXFlowApp } from '@ali/xflow-core';
+import { useXFlowApp } from '@antv/xflow-core';
 import { ToolbarConfig } from './config';
 import { XFlowToolbar } from './render-components';
 import './style';

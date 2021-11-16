@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import { JsonSchemaForm } from '@ali/xflow';
-import { WorkspacePanel } from '@ali/xflow';
+// import { JsonSchemaForm } from '@antv/xflow';
+import { WorkspacePanel } from '@antv/xflow';
 import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons';
 import { JsonSchemaForm } from '../canvas-json-schema-form';
 import { defaultFormSchemaService } from './form-schema-service';

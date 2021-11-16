@@ -1,4 +1,4 @@
-import { usePositionStyle } from '@ali/xflow';
+import { usePositionStyle } from '@antv/xflow';
 import { IPanelProps } from './interface';
 import { PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT } from './constants';
 

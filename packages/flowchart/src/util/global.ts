@@ -1,5 +1,5 @@
 import { MutableRefObject } from 'react';
-import { IApplication } from '@ali/xflow';
+import { IApplication } from '@antv/xflow';
 import { FlowchartProps, IGraph } from '../interface';
 
 // 解决 xflow hooks 获取不到上层配置

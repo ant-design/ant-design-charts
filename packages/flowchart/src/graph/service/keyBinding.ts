@@ -7,7 +7,7 @@ import {
   MODELS,
   NsGraphCmd,
   XFlowGraphCommands,
-} from '@ali/xflow';
+} from '@antv/xflow';
 
 export const useKeybindingConfig = createKeybindingConfig((config) => {
   config.setKeybindingFunc((regsitry) => {

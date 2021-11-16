@@ -5,7 +5,7 @@
  * - 缩放到适应屏幕
  * - 缩放到 1:1
  */
-import type { IPosition } from '@ali/xflow-core';
+import type { IPosition } from '@antv/xflow-core';
 import React from 'react';
 import { CanvasToolbar } from '../canvas-toolbar';
 import { useConfig, CANVAS_SCALE_TOOLBAR_CONFIG } from './config';

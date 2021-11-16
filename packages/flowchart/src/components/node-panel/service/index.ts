@@ -1,4 +1,4 @@
-import { NsNodeTreePanel, NsNodeCmd, uuidv4, XFlowNodeCommands } from '@ali/xflow';
+import { NsNodeTreePanel, NsNodeCmd, uuidv4, XFlowNodeCommands } from '@antv/xflow';
 import { getProps, onConfigChange } from '../../../util';
 
 /** 节点查找 */

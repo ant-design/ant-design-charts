@@ -16,4 +16,4 @@
  *   ```
  * CustomPanel 通过 usePanelContext() 获取 context、nodes、egdes 等信息
  */
-export { WorkspacePanel, usePanelContext, NodeTreePanel } from '@ali/xflow';
+export { WorkspacePanel, usePanelContext, NodeTreePanel } from '@antv/xflow';

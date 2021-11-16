@@ -10,7 +10,7 @@ import {
   XFlowEdgeCommands,
   NsGraph,
   IEvent,
-} from '@ali/xflow';
+} from '@antv/xflow';
 import { getProps as getGlobalProps, getContainer, onConfigChange } from '../../util';
 import { Edge, Shape } from '@antv/x6';
 import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/node-panel';

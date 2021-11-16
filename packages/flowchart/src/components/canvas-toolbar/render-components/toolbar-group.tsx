@@ -2,8 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import { Toolbar } from '@antv/x6-react-components';
 
-import type { IToolbarGroupOptions, IToolbarLayout } from '@ali/xflow-core';
-import { uuidv4 } from '@ali/xflow-core';
+import type { IToolbarGroupOptions, IToolbarLayout } from '@antv/xflow-core';
+import { uuidv4 } from '@antv/xflow-core';
 import { ToolbarItem } from './toolbar-item';
 import useFullscreen from '../../../hooks/useFullscreen';
 import { getContainer } from '../../../util';

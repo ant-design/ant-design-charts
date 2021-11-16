@@ -1,6 +1,6 @@
 import { getProps, getGraphInstance, getAppInstance } from './global';
 import { NsGraph } from '../interface';
-import { XFlowGraphCommands, NsGraphCmd } from '@ali/xflow';
+import { XFlowGraphCommands, NsGraphCmd } from '@antv/xflow';
 
 export const Log = window.console;
 
