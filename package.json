@@ -7,9 +7,12 @@
   "scripts": {
     "start": "lerna run start --stream --scope=@ant-design/charts-site",
     "flow": "lerna run build --stream --scope=@ant-design/flowchart",
+    "plot": "lerna run build --stream --scope=@ant-design/plots",
+    "graph": "lerna run build --stream --scope=@ant-design/graphs",
     "maps": "lerna run build --stream --scope=@ant-design/maps",
     "test": "lerna run test --stream",
     "build": "lerna run build --stream --profile --profile-location=logs/profile/",
+    "site:build": "lerna run site:build --stream --scope=@ant-design/charts-site",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "bootstrap": "lerna bootstrap"

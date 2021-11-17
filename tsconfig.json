@@ -9,7 +9,7 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "suppressImplicitAnyIndexErrors": true,
     "experimentalDecorators": true,
     "strict": false,

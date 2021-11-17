@@ -20,7 +20,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib dist",
+    "build": "run-s clean lib",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
