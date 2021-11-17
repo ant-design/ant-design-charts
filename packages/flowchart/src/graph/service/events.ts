@@ -1,7 +1,7 @@
 import { XFlowNodeCommands, IModelService, IGraphCommandService, XFlowEdgeCommands } from '@antv/xflow';
 import { get } from 'lodash';
 import { onConfigChange, getGraphInstance } from '../../util';
-import { Node } from '../../interface';
+import { Node } from '@antv/x6';
 
 /**
  * 节点移动时，实时更新位置信息

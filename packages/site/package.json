@@ -32,7 +32,7 @@
     "cross-env": "^7.0.3"
   },
   "dependencies": {
-    "@ant-design/charts": "^1.2.12",
+    "@ant-design/charts": "^0.0.1-beta.3",
     "@antv/gatsby-theme-antv": "^1.1.8",
     "@antv/util": "^2.0.9",
     "@types/react": "^16.9.35",

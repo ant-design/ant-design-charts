@@ -99,19 +99,27 @@ module.exports = {
         },
       },
       {
+        slug: 'flowchart',
+        icon: 'sankey',
+        title: {
+          zh: '流程图',
+          en: 'Flowchart',
+        },
+      },
+      {
         slug: 'relation-graph',
         icon: 'sankey',
         title: {
-          zh: '关系图 ❤️',
-          en: 'Realtion Graph ❤️',
+          zh: '关系图',
+          en: 'Realtion Graph',
         },
       },
       {
         slug: 'facet',
         icon: 'gallery',
         title: {
-          zh: 'Facet ❤️',
-          en: '分面图 ❤️',
+          zh: 'Facet',
+          en: '分面图',
         },
       },
       {

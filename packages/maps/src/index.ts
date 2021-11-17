@@ -1,4 +1,4 @@
-export * from './types';
+export { ContainerConfig as MapContainerConfig, PlotRef } from './types';
 
 export { default as DotMap, DotMapConfig } from './components/DotMap';
 export { default as HeatMap, HeatMapConfig } from './components/HeatMap';

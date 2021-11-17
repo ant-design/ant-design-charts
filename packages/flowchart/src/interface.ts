@@ -5,11 +5,10 @@ import {
   IPosition,
   NsJsonSchemaForm,
   IToolbarLayout,
-  NsGraphCmd,
   IAppDestory,
   IAppConfigReady,
 } from '@antv/xflow';
-import { Cell, Graph, Edge, Node } from '@antv/x6';
+import { Cell, Graph } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
 
 export interface FlowchartContainerProps {
@@ -20,7 +19,7 @@ export interface FlowchartContainerProps {
   errorTemplate?: (e: Error) => React.ReactNode;
 }
 
-export type Datum = {
+type Datum = {
   nodes?: unknown[];
   egdes?: unknown[];
 };
@@ -120,7 +119,7 @@ export interface PopoverProps extends Omit<AntDPopoverConfig, 'title' | 'content
   content?: (data: NsGraph.INodeConfig) => React.ReactNode;
 }
 
-export interface IGraph extends Graph {
+export interface IFlowchartGraph extends Graph {
   getGraphData?: () => void;
   updateNodeKeyById?: (id: string, key: string, data: object) => void;
   __proto__?: Record<string, any>;
@@ -167,11 +166,7 @@ export interface FlowchartProps extends FlowchartContainerProps {
   /** xflow app 初始化后的回调 */
   onConfigReady?: IAppConfigReady;
   /** 节点或边更新数据时调用 */
-  onConfigChange?: (params: { data: Datum; type: string; config?: NodeConfig | EdgeConfig | GroupConfig }) => void;
+  onConfigChange?: (params: { data: Datum; type: string; config?: NsGraph.INodeConfig | NsGraph.IEdgeConfig }) => void;
 }
 
-type NodeConfig = NsGraph.INodeConfig;
-type EdgeConfig = NsGraph.IEdgeConfig;
-type GroupConfig = NodeConfig;
-
-export { NsGraph, Edge, NodeConfig, EdgeConfig, Node };
+export { NsGraph };

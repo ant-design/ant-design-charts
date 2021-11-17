@@ -17,7 +17,7 @@ import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
 import { setProps, setInstance } from '../util';
 import { useCmdConfig } from './service/command';
-import { FlowchartProps, IGraph } from '../interface';
+import { FlowchartProps, IFlowchartGraph as IGraph } from '../interface';
 import AppContext from '../context';
 import { appendUtils } from './appendUtils';
 import { useGraphConfig, useGraphHook } from './service';

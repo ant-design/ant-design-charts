@@ -1,6 +1,6 @@
 /** 向 graph 原型上挂在一系列方法 */
 import { getGraphData } from '../util';
-import { IGraph } from '../interface';
+import { IFlowchartGraph as IGraph } from '../interface';
 
 export const appendUtils = (graph: IGraph) => {
   const x6Graph = graph;
