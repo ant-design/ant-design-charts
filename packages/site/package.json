@@ -29,20 +29,23 @@
     "start": "npm run site:develop --verbose --watch"
   },
   "devDependencies": {
+    "@types/react": "^16.14.8",
+    "@types/react-dom": "^16.9.13",
+    "gatsby": "^2.24.40",
+    "gh-pages": "^2.1.1",
+    "typedoc": "^0.17.6",
+    "typedoc-plugin-markdown": "^2.2.11",
+    "typescript": "^3.6.5",
     "cross-env": "^7.0.3"
   },
   "dependencies": {
-    "@ant-design/charts": "^0.0.1-beta.3",
-    "@antv/gatsby-theme-antv": "^1.1.8",
+    "@ant-design/charts": "^0.0.1-beta.1",
     "@antv/util": "^2.0.9",
-    "@types/react": "^16.9.35",
-    "@types/react-dom": "^16.9.8",
-    "gatsby": "^2.24.40",
-    "gh-pages": "^2.1.1",
-    "react-i18next": "^11.1.0",
-    "typedoc": "^0.17.6",
-    "typedoc-plugin-markdown": "^2.2.11",
-    "typescript": "^3.6.5"
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "antd": "^4.16.13",
+    "@antv/gatsby-theme-antv": "^1.1.8",
+    "react-i18next": "^11.1.0"
   },
   "resolutions": {
     "@types/react": "^16.9.35"

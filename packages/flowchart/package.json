@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/flowchart",
-  "version": "0.0.1-beta.11",
+  "version": "1.0.0-beta.0",
   "description": "Flowchart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib",
+    "build": "run-s clean lib copy",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
@@ -40,13 +40,15 @@
     "@antv/x6-react-shape": "^1.4.5",
     "@antv/xflow": "0.1.0-beta.3",
     "react-color": "2.17.3",
-    "react-use": "^17.3.1"
+    "react-use": "^17.3.1",
+    "@antv/layout": "^0.0.5"
   },
   "peerDependencies": {
     "antd": "^4.6.3",
     "@ant-design/icons": "^4.6.0",
     "react": ">=16.8.4",
-    "react-dom": ">=16.8.4"
+    "react-dom": ">=16.8.4",
+    "lodash": "^4.17.20"
   },
   "sideEffects": true,
   "license": "MIT",
