@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@ant-design/charts",
-  "version": "1.3.0-beta.0",
+  "version": "1.3.0-beta.1",
   "description": "AntV upper level visual component library",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -30,10 +30,10 @@
     "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es"
   },
   "dependencies": {
-    "@ant-design/flowchart": "^1.0.0-beta.0",
-    "@ant-design/graphs": "^1.0.0-beta.0",
-    "@ant-design/maps": "^0.0.1-beta.0",
-    "@ant-design/plots": "^1.0.0-beta.0"
+    "@ant-design/flowchart": "^1.0.0-beta.1",
+    "@ant-design/graphs": "^1.0.0-beta.1",
+    "@ant-design/maps": "^0.0.1-beta.1",
+    "@ant-design/plots": "^1.0.0-beta.1"
   },
   "peerDependencies": {
     "react": ">=16.8.4",

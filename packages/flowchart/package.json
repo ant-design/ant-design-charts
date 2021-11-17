@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/flowchart",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "Flowchart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -35,25 +35,25 @@
     "test:coverage": "umi-test --coverage"
   },
   "dependencies": {
+    "@antv/layout": "^0.0.5",
     "@antv/x6": "^1.25.0",
     "@antv/x6-react-components": "^1.1.13",
     "@antv/x6-react-shape": "^1.4.5",
     "@antv/xflow": "0.1.0-beta.3",
     "react-color": "2.17.3",
-    "react-use": "^17.3.1",
-    "@antv/layout": "^0.0.5"
+    "react-use": "^17.3.1"
   },
   "peerDependencies": {
-    "antd": "^4.6.3",
     "@ant-design/icons": "^4.6.0",
+    "antd": "^4.6.3",
+    "lodash": "^4.17.20",
     "react": ">=16.8.4",
-    "react-dom": ">=16.8.4",
-    "lodash": "^4.17.20"
+    "react-dom": ">=16.8.4"
   },
   "sideEffects": true,
   "license": "MIT",
   "devDependencies": {
-    "lodash": "^4.17.20",
-    "antd": "^4.16.13"
+    "antd": "^4.16.13",
+    "lodash": "^4.17.20"
   }
 }
