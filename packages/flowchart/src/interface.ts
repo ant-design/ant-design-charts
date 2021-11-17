@@ -77,8 +77,6 @@ export type CommandItem = {
   command: Command;
   /** 名称 */
   text?: string;
-  /** icon */
-  // icon?: React.ForwardRefExoticComponent<any>;
   /** tooltip */
   tooltip?: string;
   /** iconName */

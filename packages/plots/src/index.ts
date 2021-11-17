@@ -29,7 +29,7 @@ import Sankey from './components/sankey';
 import Treemap from './components/treemap';
 import Violin from './components/violin';
 import Facet from './components/facet';
-import MultiView from './components/mix'; // 和 Mix 相同，底层更名
+import MultiView from './components/mix'; // 和 Mix 相同
 import Mix from './components/mix';
 import BidirectionalBar from './components/bidirectionalBar';
 import { G2, flow, measureTextWidth, adaptors } from '@antv/g2plot';

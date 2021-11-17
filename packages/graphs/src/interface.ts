@@ -182,7 +182,6 @@ export interface CardItems {
   value?: string | number;
   icon?: string;
 }
-
 export interface NodeData<T> {
   id: string;
   value: T;
@@ -194,9 +193,7 @@ export interface EdgeData<T> {
   target: string;
   value?: T;
 }
-
 export type MarkerPosition = 'left' | 'right' | 'top' | 'bottom';
-
 export interface MarkerCfg {
   /** 是否展示 */
   show?: boolean;
@@ -247,14 +244,12 @@ export interface CommonConfig extends GraphContainerConfig {
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
 }
-
 export type TreeGraphData = NodeData<
   {
     title?: string;
     items?: CardItems[];
   }[]
 >;
-
 // 流向图节点数据
 export type FlowGraphNodeData = NodeData<
   {
@@ -262,7 +257,6 @@ export type FlowGraphNodeData = NodeData<
     items?: CardItems[];
   }[]
 >;
-
 export type FlowGraphEdgeData = EdgeData<string>;
 
 // 流向图数据
