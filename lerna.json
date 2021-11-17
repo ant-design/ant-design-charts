@@ -1,6 +1,6 @@
 {
-  "version": "0.0.1-beta.3",
   "npmClient": "npm",
+  "version": "independent",
   "command": {
     "publish": {
       "ignoreChanges": ["*.md", "**/**/*.test.js"],
