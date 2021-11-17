@@ -111,6 +111,7 @@ export default {
   MultiView,
   Mix,
   BidirectionalBar,
+  // 直接导出 G2Plot 相关方法
   G2,
   flow,
   measureTextWidth,

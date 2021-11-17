@@ -5,9 +5,7 @@ import DecompositionTreeGraph, { DecompositionTreeGraphConfig } from './componen
 import FundFlowGraph, { FundFlowGraphConfig } from './components/fundFlowGraph';
 
 export { FlowAnalysisGraph, RadialTreeGraph, DecompositionTreeGraph, OrganizationGraph, FundFlowGraph };
-
 export * from './interface';
-
 export type {
   OrganizationGraphConfig,
   RadialTreeGraphConfig,

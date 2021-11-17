@@ -57,7 +57,7 @@ export interface NodePanelProps extends BaseProps {
   defaultActiveKey?: string[];
 }
 
-export interface CanvasProps {
+export interface CanvasProps extends BaseProps {
   /** 节点位置 */
   position?: IPosition;
 }
