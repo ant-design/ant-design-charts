@@ -23,4 +23,4 @@ redirect_from:
 
 Ant Design Charts has integrated a large number of visualization components, and other components are also being further improved.
 
-<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1636530306602-56215523-44ae-43b8-bfce-538e0adf84a9.png)
+<br />![image.png](https://gw.alipayobjects.com/zos/antfincdn/UFTUFpcy89/94efa67a-8a33-4e34-a337-93d558ee8b17.png)
