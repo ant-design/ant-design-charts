@@ -5,51 +5,22 @@ redirect_from:
   - /en/docs/manual
 ---
 
-G2Plot is an interactive and responsive charting library based on the grammar of graphics, which enables users to generate high quality statistical charts through a few lines of code easily. G2 in "G2Plot" means the grammar of graphics and pays homage to ggplot2.
+### Ant Design Charts
 
-[![Version](https://badgen.net/npm/v/@antv/g2plot)](https://www.npmjs.com/@antv/g2plot)
-[![NPM downloads](https://img.shields.io/npm/dm/@antv/g2plot.svg)](https://npmjs.com/@antv/g2plot)
-![Latest commit](https://badgen.net/github/last-commit/antvis/G2Plot)
-[![build Status](https://github.com/antvis/G2Plot/workflows/build/badge.svg?branch=master)](https://github.com/antvis/G2Plot/actions?query=workflow%3Abuild)
-[![coverage](https://img.shields.io/coveralls/antvis/G2Plot/master.svg)](https://coveralls.io/github/antvis/G2Plot)
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/antvis/g2plot.svg)](http://isitmaintained.com/project/antvis/g2plot "Percentage of issues still open")
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/antvis/g2plot.svg)](http://isitmaintained.com/project/antvis/g2plot "Average time to resolve an issue")
+[Ant Design Charts](https://github.com/ant-design/ant-design-charts) is the React version of [AntV](https://antv.vision), and is more friendly to students of the React technology stack<b>Same team development</b>.
 
-## Features
+- Out of the box: Presents high quality charts by default, and precipitates research into the development experience and user experience into the default configuration of the charts
 
-*   📦 Pretty and high-quality charts out of box
+- Easy configuration: users can easily adjust chart details according to specific business needs
 
-*   🎨 Visual language and design specification extracted from enterprise products
+- Experience well: Visual and interactive experiences focus on how to display and discover information at the root of the chart function
 
-*   📊 Responsive charts
+<br /> Just like using components to generate charts, out of the box, you don't even need to modify any configuration items can meet the requirements, the true default is easy to use, there is no feeling tempted to try.
 
-*   🔳 Story-telling charts
+<br />![image.png](https://gw.alipayobjects.com/zos/antfincdn/TcUwTMuNxI/0a9ac684-e862-4889-b783-e0a75a0e3138.png#align=left&display=inline&height=951&name=image.png&originHeight=1901&originWidth=2000&size=968667&status=done&style=none&width=1000)
 
-<img alt="Image loading failed" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800">
+### Framework
 
-## Installation
+Ant Design Charts has integrated a large number of visualization components, and other components are also being further improved.
 
-```bash
-$ npm install @antv/g2plot
-```
-
-## Usage
-
-```html
-<div id="container"></div>
-```
-
-<playground path='bar/basic/demo/basic.ts' rid='basic-bar-demo'></playground>
-
-## Development
-
-```bash
-# install dependences
-$ npm install
-
-# run test case
-$ npm run test
-
-# build & run website with watching file changes
-$ npm run start
-```
+<br />![image.png](https://cdn.nlark.com/yuque/0/2021/png/278352/1636530306602-56215523-44ae-43b8-bfce-538e0adf84a9.png)

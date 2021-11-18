@@ -4,88 +4,138 @@ order: 1
 ---
 
 ## Installation
-
 ### Import by CDN in browser
 
-You can import by CDN in browser or you can import local source.
-
-```html
-<!-- import CDN source -->
-<script type="text/javascript" src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
-<script>
-  const { Line } = G2Plot;
-</script>
-```
-
-```html
-<!-- import local source -->
-<script src="./g2plot.min.js"></script>
-<script>
-  const { Line } = G2Plot;
-</script>
-```
-
-### Import via NPM
-
-We provide G2Plot npm package:
+We provide `Ant Design Charts` npm package:
 
 ```bash
 // Recommended usage
-npm install @antv/g2plot --save
+npm install @ant-design/charts --save
 ```
 
 You can use `import` or `require` to start.
 
 ```ts
-import { Line } from '@antv/g2plot';
+import { Line } from '@ant-design/charts';
 ```
 
-## Quick Start
+Related subpackages
+- Plots: `@ant-design/plots`
+- Maps: `@ant-design/maps`
+- Flowchart: `@ant-design/flowchart`
+- Relation Graphs: `@ant-design/graphs`
 
-Now we're ready to create our first chart by using G2Plot. Let's begin with a basic line Chart.
+### Import by CDN in browser
 
-**step1**: create chart container
+You can download the script locally or import it directly from online resources.
+
+```ts
+// Plots 
+<script type="text/javascript" src="https://unpkg.com/@ant-design/plots@latest/dist/plots.min.js"></script>
+// Flowchart 
+<script type="text/javascript" src="https://unpkg.com/@ant-design/flowchart@latest/dist/flowchart.min.js"></script>
+// Maps 
+<script type="text/javascript" src="https://unpkg.com/@ant-design/maps@latest/dist/maps.min.js"></script>
+// Graphs 
+<script type="text/javascript" src="https://unpkg.com/@ant-design/graphs@latest/dist/graphs.min.js"></script>
+```
+
+由于 @ant-design/charts 里面 externals 了 `react` 和 `react-dom`，该方式使用时需要在项目里面做同样的操作，通过 CDN 的方式在 `charts.min.js` 之前引入 `react` 和 `react-dom`，不同图表 externals 会有差别。
+
+```ts
+// webpack.config.js
+externals: {
+  react: 'React',
+  'react-dom': 'ReactDOM',
+}
+// public/index.html
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+// According to the need to introduce
+<script type="text/javascript" src="https://unpkg.com/@ant-design/plots@latest/dist/plots.min.js"></script>
+```
+
+Usage:
+
+```ts
+// Line chart, similar to other charts
+const { Line } = window.charts;
+```
+
 
 ```html
-<div id="container"></div>
+<!-- Download to local import local scripts -->
+<script src="./plots.min.js"></script>
+<script>
+  const { Line } = window.charts;
+</script>
 ```
 
-**step2**: load your data
+## Quick to use
 
-The standard data format in G2Plot is JSON array with JSON object elements.
+Once the Ant Design Charts page is introduced, we are ready to create our first chart, so let's start with a basic line chart example. Most demos use the parent container width, make sure the parent container width or manually set the chart width.
 
-```ts
-const data = [
-  { year: '1991', value: 3 },
-  { year: '1992', value: 4 },
-  { year: '1993', value: 3.5 },
-  { year: '1994', value: 5 },
-  { year: '1995', value: 4.9 },
-  { year: '1996', value: 6 },
-  { year: '1997', value: 7 },
-  { year: '1998', value: 9 },
-  { year: '1999', value: 13 },
-];
+```tsx | pure
+import React from 'react';
+import { Line } from '@ant-design/charts';
+
+const Page: React.FC = () => {
+  const data = [
+    { year: '1991', value: 3 },
+    { year: '1992', value: 4 },
+    { year: '1993', value: 3.5 },
+    { year: '1994', value: 5 },
+    { year: '1995', value: 4.9 },
+    { year: '1996', value: 6 },
+    { year: '1997', value: 7 },
+    { year: '1998', value: 9 },
+    { year: '1999', value: 13 },
+  ];
+
+  const config = {
+    data,
+    height: 400,
+    xField: 'year',
+    yField: 'value',
+    point: {
+      size: 5,
+      shape: 'diamond',
+    },
+  };
+  return <Line {...config} />;
+};
+export default Page;
 ```
 
-**step3**: create and render chart
+Result：
 
-```ts
+```tsx
+import React from 'react';
+import { Line } from '@ant-design/charts';
+
+const Page: React.FC = () => {
+  const data = [
+    { year: '1991', value: 3 },
+    { year: '1992', value: 4 },
+    { year: '1993', value: 3.5 },
+    { year: '1994', value: 5 },
+    { year: '1995', value: 4.9 },
+    { year: '1996', value: 6 },
+    { year: '1997', value: 7 },
+    { year: '1998', value: 9 },
+    { year: '1999', value: 13 },
+  ];
+
+  const config = {
+    data,
+    xField: 'year',
+    yField: 'value',
+    point: {
+      size: 5,
+      shape: 'diamond',
+    },
+  };
+  return <Line {...config} />;
+};
+export default Page;
 ```
-
-the result：
-
-<img alt="example" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*VV2bQpd-aBIAAAAAAAAAAAAAARQnAQ" width="800">
-
-## Stylize your chart
-
-Till now, the visual style of our chart was defaultly applied by chart theme, not to mention the unformatted text content of labels. In this section, we'll stylize the chart through several steps. More information please reference API.
-
-```ts
-```
-
-the result：
-
-<img alt="example" src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Y-4xSprUCV0AAAAAAAAAAAAAARQnAQ" width="800">
-
-G2Plot has many fun configuration and features to explore. More information please reference [Configuration Options](./plots/line)。

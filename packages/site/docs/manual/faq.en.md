@@ -5,30 +5,40 @@ order: 8
 
 ## FAQ
 
-Here are the frequently asked questions about G2Plot that you should look up before you ask in the community or create a new issue.
+Here is a roundup of some common questions and official responses from the Ant Design Charts community.
 
-### Browser compatibility
+### 1、 What is the relationship between G2, G2Plot and Ant Design Charts?
 
-> Due to the condition limit, the lower version limit is only for reference, which does not mean that the lower version cannot be supported. The test was completed in CDN mode. [online Demo](https://lxfu1.github.io/browser-compatibility-of-antv).
+- Same team development.
+- G2Plot based on G2, which uses grammar of graphics and is relatively expensive to use and powerful.
+- G2Plot is an overlay wrapper over G2, replacing the graph syntax with configuration items.
+- Ant Design Charts is the React version of G2Plot, which synchronizes functionality with G2Plot and has built-in graph-related Charts such as flowcharts, organizational Charts, etc
+- Some of the other charts were implemented by students on other teams based on G2 or G2Plot
 
-|            | Chrome | Edge | Firefox | IE  | Opera | Safari | UC  | 360 speed | 360 safe browser |
-| ---------- | :----: | :--: | :-----: | :-: | :---: | :----: | :-: | :-------: | :--------------: |
-| **G2Plot** |   40   |  12  |   85    |  9  |  40   |   14   | 6.2 |    12     |       7.3        |
+### 2、Object(...) is not a function
 
-How to add `polyfill` into your project.
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GnrEQZUVa5AAAAAAAAAAAAAAARQnAQ" alt="example" />
 
-*   CDN
+Possible reasons:
 
-The following JS is introduced in the HEAD.
+- React version is too low and does not support hooks. Upgrade to 16.8.4 or the latest version.
+- The 2.x version of Ant-Design-Pro is used, resulting in underlying dependency conflict. It is recommended to upgrade Pro to the latest version.
+- The BizCharts is used, resulting in underlying dependency conflict.
 
-```ts
+### 3、How to binding event and get current data.
+
+```tsx | pure
+<Bar
+  onReady={(plot) => {
+    plot.chart.on('plot:click', (evt) => {
+      const { x, y } = evt;
+      console.log(plot.chart.getTooltipItems({ x, y }));
+    });
+  }}
+/>
 ```
 
-*   NPM
-
-Use NPM mode, if there is a compatibility problem please use combination of Babel and `@Babel/polyfill`, reference G2 [.babelrc](https://github.com/antvis/G2/blob/master/.babelrc) and [webpack.config](https://github.com/antvis/G2/blob/master/webpack.config.js), More questions are welcome to join the DingTalk Group.
-
-### How do I set the horizontal axis to start at 0
+### 4、How do I set the horizontal axis to start at 0
 
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*NAvlTZ66qzMAAAAAAAAAAAAAARQnAQ" alt="faq">
 
@@ -42,12 +52,12 @@ meta: {
 }
 ```
 
-### How to share a Y axis in DaulAxes plot
+### 5、How to share a Y axis in DaulAxes plot
 
 You can use `scale.sync` and hide one of the y-axis.
 
 ```ts
-// 适用于 DualAxes plot
+// Apply to DualAxes plot
 {
   yFields: ['y1', 'y2'],
   meta: {
@@ -60,14 +70,51 @@ You can use `scale.sync` and hide one of the y-axis.
 }
 ```
 
-### MultiView Plot of multiple-views is rename to Mix from v2.3.20
+### 6、Package file is too large, how to load on demand
 
-More details to see [API](/en/docs/api/advanced-plots/mix)  of Mix Plot.
+Method 1： Use sideEffects
 
-### Liquid cannot be with transparently or picture background
+Enable webpack sideEffcets configuration, webpack 4+ should be enabled by default.
 
-Currently the abilities to support `distance` and custom `shape` options disable transparently or picture background technically.
+```ts
+{
+  optimization: {
+     sideEffects: true,
+  }
+}
+```
 
-### SeriesField is not supported in Sunburst Plot anymore
+Method 2: Import from es
 
-In the version bigger than 2.3.20, you can use `hierarchyConfig.field` to replace `seriesField` config. More details to see [API](\(/zh/docs/api/plots/sunburst\)) of Sunburst Plot.
+```ts
+import Line from '@ant-design/charts/es/plots/line';
+```
+
+Method 3: Use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)
+
+```ts
+  // install
+  npm install babel-plugin-import -D
+
+  // config .babelrc file
+  {
+    "plugins": [
+      ["import", {
+        "libraryName": "@ant-design/charts",
+        "libraryDirectory": "es"
+      }]
+    ]
+  }
+```
+
+### 7、Why do charts keep being redrawn
+
+Due to the React mechanism, by default, whenever the parent component has a state update, the child component is rerendered, causing the chart to be redrawn again. Refer to [example](https://codesandbox.io/s/pedantic-lucy-tylzl?file=/App.tsx)
+
+### 8、IE Compatibility
+
+Refer to [ChartsIE](https://github.com/lxfu1/charts-ie)
+
+### More problems
+
+Please go to [GitHub Issues](https://github.com/ant-design/ant-design-charts/issues) to find out if there are similar problems. We will respond and improve this document as soon as possible.

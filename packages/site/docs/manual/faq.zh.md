@@ -5,32 +5,44 @@ order: 8
 
 ## FAQ
 
-以下整理了一些 G2Plot 社区常见的问题和官方答复，提问或新增 issue 前先看看。
+以下整理了一些 Ant Design Charts 社区常见的问题和官方答复。
 
-### 浏览器兼容性
+### 1、 G2、G2Plot、Ant Design Charts 什么关系？
 
-> 由于条件限制，版本下限仅供参考，并不意味着不能支持更低版本，该测试在 CDN 模式下测试完成，[在线 Demo](https://lxfu1.github.io/browser-compatibility-of-antv)。
+- 同一团队开发。
+- G2 是 G2Plot 的底层依赖，使用了图形语法，使用成本相对较高，功能强大。
+- G2Plot 是 G2 的上层封装，把图形语法装换成了配置项。
+- Ant Design Charts 是 G2Plot 的 React 版本，功能和 G2Plot 同步，并内置了一些图相关的图表，例如流程图、组织架构图等。
+- 其它一些图表是其它团队的同学基于 G2 或 G2Plot 实现。
 
-|            | Chrome | Edge | Firefox | IE  | Opera | Safari | UC  | 360 极速浏览器 | 360 安全浏览器 |
-| ---------- | :----: | :--: | :-----: | :-: | :---: | :----: | :-: | :------------: | :------------: |
-| **G2Plot** |   40   |  12  |   85    |  9  |  40   |   14   | 6.2 |       12       |      7.3       |
+### 2、Object(...) is not a function
 
-如果出现浏览器兼容，看是否项目中有引入 polyfill。在不同使用方式下，添加方式如下：
+<img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*GnrEQZUVa5AAAAAAAAAAAAAAARQnAQ" alt="示例" />
 
-*   CDN 下使用
+可能原因：
 
-```ts
+- React 版本过低，不支持 hooks 引起的，升级到 16.8.4 版本或最新版本即可。
+- 使用了 2.x 版本的 ant-design-pro ，导致底层依赖冲突，建议升级 pro 到最新版本。
+- 使用了 BizCharts 依赖冲突。
+
+### 3、如何监听事件并获取当前值
+
+```tsx | pure
+<Bar
+  onReady={(plot) => {
+    plot.chart.on('plot:click', (evt) => {
+      const { x, y } = evt;
+      console.log(plot.chart.getTooltipItems({ x, y }));
+    });
+  }}
+/>
 ```
 
-*   NPM
-
-使用 npm 模式，如果出现兼容性问题请结合 babel 和 @babel/polyfill 使用，参考 G2 [.babelrc](https://github.com/antvis/G2/blob/master/.babelrc) 和 [webpack.config](https://github.com/antvis/G2/blob/master/webpack.config.js)，更多问题欢迎进群交流。
-
-### 怎么设置横轴从 0 开始
+### 4、怎么设置横轴从 0 开始
 
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*NAvlTZ66qzMAAAAAAAAAAAAAARQnAQ" alt="faq">
 
-横轴的范围是可配置的，在 meta 里面配置即可，range 可选范围是 0~1。
+横轴的范范是可配置的，在 meta 里面配置即可，range 可选范围是 0~1。
 
 ```ts
 meta: {
@@ -40,7 +52,7 @@ meta: {
 }
 ```
 
-### 双轴图如何共用一个 Y 轴
+### 5、双轴图如何共用一个 Y 轴
 
 可以通过开启 scale 同步， 然后隐藏其中一个 y 轴坐标。
 
@@ -58,14 +70,51 @@ meta: {
 }
 ```
 
-### 多图层图表自 2.3.20 版本从 MultiView 更名为 Mix
+### 6、打包文件过大，如何按需加载
 
-具体使用：可以见 Mix Plot [API](/zh/docs/api/advanced-plots/mix) 文档。
+方案 1： 开启 sideEffects
 
-### 水波图无法设置透明或者图片背景
+开启 webpack sideEffcets 配置，webpack 4+ 默认应该是开启的。
 
-因为水波图需要支持 distance 和通过 path 来自定义 shape，所以目前没有办法设置透明或者图片背景。
+```ts
+{
+  optimization: {
+     sideEffects: true,
+  }
+}
+```
 
-### 旭日图不再支持配置 seriesField
+方案 2：从 es 引入
 
-在旭日图中, seriesField 字段主要代表的是节点权重映射的数值字段，但从更合理的角度看：seriesField 应该代表的是分组字段。在 > 2.3.20 版本之后，我们将其配置使用 `hierarchyConfig.field` 进行替代。详细见旭日图 [API](\(/zh/docs/api/plots/sunburst\)) 文档
+```ts
+import Line from '@ant-design/charts/es/plots/line';
+```
+
+方案 3： 使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)
+
+```ts
+  // 安装依赖
+  npm install babel-plugin-import -D
+
+  // 配置 .babelrc 文件
+  {
+    "plugins": [
+      ["import", {
+        "libraryName": "@ant-design/charts",
+        "libraryDirectory": "es"
+      }]
+    ]
+  }
+```
+
+### 7、为什么图表一直重绘
+
+由于 react 机制，默认情况下只要父组件有状态更新，子组件都会重新渲染，导致图表再次重绘。可参考[示例](https://codesandbox.io/s/pedantic-lucy-tylzl?file=/App.tsx)
+
+### 8、IE 兼容
+
+参考 [ChartsIE](https://github.com/lxfu1/charts-ie)
+
+### 更多问题
+
+请到 [GitHub issues](https://github.com/ant-design/ant-design-charts/issues) 进行反馈，搜索是否有类似问题。我们会尽快响应和相应改进这篇文档。
