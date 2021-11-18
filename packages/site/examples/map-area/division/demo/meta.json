@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "chinese-provinces.js",
+      "title": {
+        "zh": "中国省份",
+        "en": "Chinese provinces"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/xX10CNIu4b/8a064058-518e-4860-af54-58ca17cae985.png"
+    },
+    {
+      "filename": "chinese-citys.js",
+      "title": {
+        "zh": "中国城市",
+        "en": "Chinese citys"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/chBkEDzIdw/8e24ce05-3bae-433f-9423-e5f889411d70.png"
+    }
+  ]
+}

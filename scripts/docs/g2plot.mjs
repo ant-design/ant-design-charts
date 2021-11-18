@@ -1,7 +1,7 @@
 /**
  * 一键同步 G2Plot API 文档
  * eg:
- * -全量同步：`node scripts/docs/api.js G2Plot`
+ * -全量同步：`node scripts/docs/g2plo.mjs G2Plot`
  *
  * 该文件下引用的包和主包会有冲突，使用时在强制安装
  * ```zx

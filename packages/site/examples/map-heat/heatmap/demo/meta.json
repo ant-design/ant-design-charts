@@ -1,0 +1,40 @@
+{
+  "title": {
+    "zh": "分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "housing-transaction.js",
+      "title": {
+        "zh": "杭州房屋交易量",
+        "en": "Hangzhou housing transaction volume"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/qgKi3OxQVE/4553729d-c2ce-490b-aebb-ea948bef7f2e.png"
+    },
+    {
+      "filename": "traffic-accident.js",
+      "title": {
+        "zh": "全国交通事故增长率",
+        "en": "National traffic accident growth rate"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/HRChB6ZKXz/343063e1-afbc-4fb1-a5d7-0383be3d28b3.png"
+    },
+    {
+      "filename": "global-2d.js",
+      "title": {
+        "zh": "全球热力",
+        "en": "Global heat map"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/svqQmzIKVw/2977de7d-6362-42f1-b731-05e734b6bfe0.png"
+    },
+    {
+      "filename": "global-3d.js",
+      "title": {
+        "zh": "全球热力 3D",
+        "en": "Global 3D heat map"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/5osUdJv%24Nq/51c6693d-e00a-4c32-adb2-90b95359d4f2.png"
+    }
+  ]
+}

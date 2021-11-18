@@ -1,6 +1,7 @@
 const fs = require('fs');
 const babel = require('@babel/core');
 const chalk = require('chalk');
+const types = require('babel-types');
 const { get, find } = require('lodash');
 const log = console.log;
 
@@ -10,6 +11,7 @@ let plotName = ''; // 插件名称
 let utilName = ''; // util 名称
 let dataKey = ''; // 存放 data 的变量
 let dataSet = ''; // dataset
+let isGeojson = false; // 是否 geojson
 
 /**
  * render
@@ -48,7 +50,9 @@ const isFetchExpression = (node) => {
  * @param {*} node
  */
 const isNewExpression = (node) => {
-  return node.type === 'VariableDeclarator' && get(node, 'init.type') === 'NewExpression';
+  return (
+    (node.type === 'VariableDeclarator' && get(node, 'init.type') === 'NewExpression') || node.type === 'NewExpression'
+  );
 };
 
 // 状态重置
@@ -59,13 +63,14 @@ const reset = () => {
   dataKey = '';
   utilName = '';
   dataSet = '';
+  isGeojson = false;
 };
 
 const excludeFunctionNames = ['formatter'];
 
 const initCode = (code) => {
   return `
-  const [${dataKey}, setData] = useState([]);
+  const [${dataKey}, setData] = useState(${isGeojson ? `{ type: 'FeatureCollection', features: [] }` : `[]`});
 
   useEffect(() => {
     asyncFetch();
@@ -85,7 +90,7 @@ const initCode = (code) => {
 
 const setImport = (path) => {
   const { node } = path;
-  if (node.source.value === '@antv/g2plot') {
+  if (['@antv/g2plot', '@antv/l7plot'].includes(node.source.value)) {
     node.specifiers?.forEach((item) => {
       plotName += plotName ? ', ' : '';
       plotName += item.imported.name;
@@ -130,7 +135,14 @@ const parseFile = (params, type) => {
           MemberExpression(path) {
             const { node } = path;
             if (isFetch(node)) {
-              fetchUrl = node.object.arguments[0].value;
+              fetchUrl = node.object.arguments[0].value || get(node, 'object.arguments.0.quasis.0.value.raw');
+            }
+          },
+          /** 提取 type 类型， 设置默认值 */
+          Literal(path) {
+            const { node } = path;
+            if (get(node, 'value') === 'geojson') {
+              isGeojson = true;
             }
           },
           // 抽取 config
@@ -149,7 +161,7 @@ const parseFile = (params, type) => {
           'FunctionExpression|ArrowFunctionExpression'(path) {
             const { node } = path;
             if (
-              ['data', 'fetchData', 'csv'].includes(get(node, ['params', 0, 'name'])) &&
+              ['data', 'fetchData', 'csv', 'response', 'list'].includes(get(node, ['params', 0, 'name'])) &&
               get(node, ['body', 'type']) === 'BlockStatement' &&
               !excludeFunctionNames.includes(get(node, ['id', 'name']))
             ) {
@@ -161,6 +173,18 @@ const parseFile = (params, type) => {
             const { node } = path;
             if (isNullExpression(node)) {
               path.remove();
+            }
+            /** l7plot new 表达式 */
+            if (
+              get(node, 'expression.type') === 'NewExpression' &&
+              get(node, 'expression.arguments.0.value') === 'container'
+            ) {
+              const name = get(node, 'expression.callee.name');
+              chartName = name === 'Heatmap' ? 'HeatMap' : `${name}Map`;
+              const func = types.variableDeclaration('const', [
+                types.variableDeclarator(types.identifier('config'), get(node, 'expression.arguments.1')),
+              ]);
+              path.replaceWith(func);
             }
           },
           CallExpression(path) {
@@ -186,7 +210,6 @@ const parseFile = (params, type) => {
         jsCode = fetchUrl ? initCode(code) : code;
       }
     }
-
     return {
       code: chartName && jsCode,
       chartName,

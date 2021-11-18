@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "distribution-cities.js",
+      "title": {
+        "zh": "全国城市与区县分布",
+        "en": "Distribution of cities, districts and counties in China"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/TKxay5%26lpP/c01e799b-85f2-4dd1-8126-4c5d6845c522.png"
+    },
+    {
+      "filename": "classified-scatter.js",
+      "title": {
+        "zh": "分类散点",
+        "en": "Classified Scatter Map"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/u31zxgii2R/d3fe9e5f-feb6-4b32-8237-4d79ae99a906.png"
+    }
+  ]
+}

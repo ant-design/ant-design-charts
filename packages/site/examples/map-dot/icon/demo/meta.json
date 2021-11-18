@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "bank.js",
+      "title": {
+        "zh": "银行网点",
+        "en": "Bank outlets"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/zWvhGhbuTY/08a0857b-814b-4165-b787-b375d73a5b6c.png"
+    },
+    {
+      "filename": "poi.js",
+      "title": {
+        "zh": "POI 图标",
+        "en": "POI Icon"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/cfT2Jb1Fi2/83261ea9-3ccc-4684-a47a-721343c0279b.png"
+    }
+  ]
+}

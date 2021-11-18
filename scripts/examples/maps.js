@@ -1,7 +1,7 @@
 /**
- * 扫描所有demo文件，生成demo文档
+ * 扫描 L7Plot 所有 demo 文件，生成 demo 文档
  * eg:
- *  - `node scripts/examples/demos.js G2Plot`
+ *  - `node scripts/examples/maps.js`
  */
 const fs = require('fs');
 const path = require('path');
@@ -12,28 +12,22 @@ const parseFile = require('../ast/parse');
 const demoWriteBasePath = '../../packages/site/examples';
 const templateDemoPath = path.join(__dirname, '../../template/doc/demo.ejs');
 const arg = process.argv.splice(2);
-const demoPath = arg[1] || 'examples';
-const plot = arg[0] || 'G2Plot';
+const demoPath = 'website/examples';
+const plot = arg[0] || 'L7Plot';
 const fp = path.resolve('../', `${plot}/${demoPath}`);
 
 const examples = [];
 // 特殊路径不处理
-const excludePath = [
-  'advanced', // 高阶用法
-  'animation',
-  'set-state.ts', // ts any
-  'region-annotation.ts',
-  'large-data.ts',
-  'advanced-brush1.ts', // 多个 config 不想处理
-  'advanced-brush2.ts',
-];
+const excludePath = ['administrative-switch.tsx', 'component', 'advanced-plot', 'gallery', 'line'];
 
 const hasSameEl = (source, target) => {
   return new Set(source.concat(target)).size !== source.length + target.length;
 };
 
 const checkDir = (filePath, filename) => {
-  const writePath = path.join(__dirname, demoWriteBasePath, filePath.split(demoPath)[1]);
+  let writePath = path.join(__dirname, demoWriteBasePath, filePath.split(demoPath)[1]);
+  // 统一加上 map 前缀
+  writePath = writePath.replace(/examples\//, 'examples/map-');
   checkDirExist(writePath.split(filename)[0]);
   return writePath;
 };
@@ -53,11 +47,11 @@ const apiGenerator = (filePath, filename) => {
 // 非 ts | js 直接 copy
 const copyGenerator = (filePath, filename) => {
   const writePath = checkDir(filePath, filename);
-  const content = fs.readFileSync(filePath, {
+  let content = fs.readFileSync(filePath, {
     encoding: 'utf-8',
   });
   if (filename === 'meta.json') {
-    content.replace(/\.ts/g, '.js');
+    content = content.replace(/\.ts/g, '.js');
   }
   fs.writeFileSync(writePath, content);
 };
@@ -71,7 +65,7 @@ const demoGenerator = (filePath, filename) => {
     ejs.renderFile(
       templateDemoPath,
       {
-        plotName,
+        plotName: chartName, // 没有多余依赖，先使用 chartName
         utilName,
         chartName,
         dataSet,

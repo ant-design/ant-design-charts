@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "grid2d.js",
+      "title": {
+        "zh": "网格热力 2D",
+        "en": "Grid thermal 2D"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/fKPFt8cFk4/a091a42a-2411-4011-9dc7-ef7d39197f8d.png"
+    },
+    {
+      "filename": "grid3d.js",
+      "title": {
+        "zh": "网格热力 3D",
+        "en": "Grid thermal 3D"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/XPitK0Ftor/9dcf6d62-ffc1-4207-9bb6-1f52fbc93002.png"
+    }
+  ]
+}

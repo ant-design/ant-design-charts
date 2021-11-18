@@ -91,6 +91,38 @@ module.exports = {
         },
       },
       {
+        slug: 'map-area',
+        icon: 'sankey',
+        title: {
+          zh: '区域地图',
+          en: 'Area Map',
+        },
+      },
+      {
+        slug: 'map-choropleth',
+        icon: 'sankey',
+        title: {
+          zh: '行政区域地图',
+          en: 'Choropleth Map',
+        },
+      },
+      {
+        slug: 'map-dot',
+        icon: 'sankey',
+        title: {
+          zh: '散点地图',
+          en: 'Dot Map',
+        },
+      },
+      {
+        slug: 'map-heat',
+        icon: 'sankey',
+        title: {
+          zh: '热力地图',
+          en: 'Heat Map',
+        },
+      },
+      {
         slug: 'relation-graph',
         icon: 'sankey',
         title: {

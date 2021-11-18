@@ -2,7 +2,7 @@
 title: 通用 API
 order: 0
 redirect_from:
-  - /zh/docs/api
+  - /zh/docs/api/common
 ---
 
 G2Plot 的核心技术架构非常简单，所有的 Plot 图表都继承于一个基类，基类为所有的图表提供的了通用的 API 方法，而每个具体的可视化图表仅仅处理自己不同的配置项。所以 API 部分，所有图表基本都是一样，除了部分图表（比如：仪表盘、水波图）在 changeData API 上有细微的区别。

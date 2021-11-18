@@ -2,7 +2,7 @@
 title: Common API
 order: 0
 redirect_from:
-  - /en/docs/api
+  - /en/docs/api/common
 ---
 
 The core technology architecture of G2Plot is very simple. All plots are inherited from a base class. The base class provides a common API method for all plots, and each specific visualization plot only processes its own configuration items. So all plots basically share the common API, except for some plots (such as Gauge and Liquid) that have subtle differences in the changedata API.
