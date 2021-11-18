@@ -91,8 +91,16 @@ module.exports = {
         },
       },
       {
+        slug: 'line',
+        icon: 'line', // 图表名可以去 https://antv.alipay.com/zh-cn/g2/3.x/demo/index.html 打开控制台查看图标类名
+        title: {
+          zh: '折线图',
+          en: 'Line',
+        },
+      },
+      {
         slug: 'map-area',
-        icon: 'sankey',
+        icon: 'polygon',
         title: {
           zh: '区域地图',
           en: 'Area Map',
@@ -100,7 +108,7 @@ module.exports = {
       },
       {
         slug: 'map-choropleth',
-        icon: 'sankey',
+        icon: 'polygon',
         title: {
           zh: '行政区域地图',
           en: 'Choropleth Map',
@@ -108,7 +116,7 @@ module.exports = {
       },
       {
         slug: 'map-dot',
-        icon: 'sankey',
+        icon: 'point',
         title: {
           zh: '散点地图',
           en: 'Dot Map',
@@ -116,7 +124,7 @@ module.exports = {
       },
       {
         slug: 'map-heat',
-        icon: 'sankey',
+        icon: 'heatmap',
         title: {
           zh: '热力地图',
           en: 'Heat Map',
@@ -144,14 +152,6 @@ module.exports = {
         title: {
           zh: '场景案例',
           en: 'Show Case',
-        },
-      },
-      {
-        slug: 'line',
-        icon: 'line', // 图表名可以去 https://antv.alipay.com/zh-cn/g2/3.x/demo/index.html 打开控制台查看图标类名
-        title: {
-          zh: '折线图',
-          en: 'Line',
         },
       },
       {

@@ -10,7 +10,7 @@
         "zh": "来源去向图",
         "en": "Basic"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/SM9hvYbqYB/1caef0d3-78cf-4f7d-aaca-59a361cae2ec.png"
     },
     {
       "filename": "layout.js",
@@ -18,7 +18,7 @@
         "zh": "来源去向图-调整布局",
         "en": "Layout"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/%26%26CzCKJS%26v/3dabb996-b6eb-4be9-b5ce-71f58bb7a238.png"
     },
     {
       "filename": "line-style.js",
@@ -26,7 +26,7 @@
         "zh": "来源去向图-边样式",
         "en": "Line style"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/RBLyS%24za4m/ab3d4511-87d4-4d96-989b-97704c283556.png"
     },
     {
       "filename": "state.js",
@@ -34,7 +34,7 @@
         "zh": "来源去向图-状态",
         "en": "State"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/vaMmDDzbmV/fc466a8f-0526-4226-af7d-a4445b00df26.png"
     },
     {
       "filename": "type.js",
@@ -42,7 +42,7 @@
         "zh": "来源去向图-节点类型",
         "en": "Node type"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/FZ8uhqbOHj/4b5198e2-5466-46e9-8869-fca9015ccbf6.png"
     },
     {
       "filename": "custom.js",
@@ -50,7 +50,7 @@
         "zh": "来源去向图-自定义节点",
         "en": "Custom node"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/x%24v02l2Gk1/b41b1807-2dba-4f4c-af46-192930eb7501.png"
     }
   ]
 }

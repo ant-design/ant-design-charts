@@ -10,7 +10,7 @@
         "zh": "指标拆解图",
         "en": "Basic"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/cOaXmA8nSM/ea4bd786-2442-41a0-acb6-fa1d9dfb20f2.png"
     },
     {
       "filename": "layout.js",
@@ -18,7 +18,7 @@
         "zh": "指标拆解图-调整布局",
         "en": "Layout"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/vcSjpldUrc/569cf7e4-0b01-41d7-b71f-fdb71645c520.png"
     },
     {
       "filename": "style.js",
@@ -26,7 +26,7 @@
         "zh": "指标拆解图-节点样式",
         "en": "Node style"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/IJhgY4ZtHf/4ca28c72-d60c-42ca-b562-1cec9489f409.png"
     },
     {
       "filename": "line-style.js",
@@ -34,7 +34,7 @@
         "zh": "指标拆解图-边样式",
         "en": "Line style"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/sizWh4nARJ/615012d8-825d-462c-a20f-d1e51a2aed15.png"
     },
     {
       "filename": "no-stroke.js",
@@ -42,7 +42,7 @@
         "zh": "指标拆解图-无边框",
         "en": "No stroke"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/eVNaLR7coY/54584a5f-3233-4881-8006-aa7b71678994.png"
     },
     {
       "filename": "fetch.js",
@@ -50,7 +50,7 @@
         "zh": "指标拆解图-异步请求",
         "en": "Asynchronous request"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/oTq0fFxMRL/993abc47-28f7-4489-b3d8-3a04f9fbb10b.png"
     },
     {
       "filename": "auto-width.js",
@@ -58,7 +58,7 @@
         "zh": "指标拆解图-自适应",
         "en": "Auto width"
       },
-      "screenshot": ""
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/d21RW%24hqns/e390cf8f-375f-48da-8eee-b01d7c3184a9.png"
     }
   ]
 }
