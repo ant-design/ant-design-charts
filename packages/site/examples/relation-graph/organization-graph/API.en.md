@@ -1,1 +1,1 @@
-`markdown:docs/api/plots/rose.en.md`
+`markdown:docs/api/graphs/organization-graph.en.md`

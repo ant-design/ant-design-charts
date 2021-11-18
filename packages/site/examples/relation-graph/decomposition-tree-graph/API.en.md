@@ -1,1 +1,1 @@
-`markdown:docs/api/plots/rose.en.md`
+`markdown:docs/api/graphs/decomposition-tree-graph.en.md`
