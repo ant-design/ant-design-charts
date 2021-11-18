@@ -1,7 +1,7 @@
 /**
  * 扫描 G2Plot 所有 demo 文件，生成 demo 文档
  * eg:
- *  - `node scripts/examples/plots.js`
+ *  - `node scripts/examples/g2plots.js`
  */
 const fs = require('fs');
 const path = require('path');

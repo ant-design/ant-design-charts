@@ -1,11 +1,11 @@
 /**
  * 一键同步 G2Plot API 文档
  * eg:
- * -全量同步：`node scripts/docs/g2plo.mjs G2Plot`
+ * -全量同步：`node scripts/docs/g2plot.mjs G2Plot`
  *
  * 该文件下引用的包和主包会有冲突，使用时在强制安装
  * ```zx
- *   npm instaill unified to-vfile remark-parse remark-frontmatter remark-stringify --force
+ *   npm install unified to-vfile remark-parse remark-frontmatter remark-stringify --force
  * ```
  */
 import { dirname, resolve, join } from 'path';
@@ -16,7 +16,7 @@ import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkStringify from 'remark-stringify';
-import mdParse from '../ast/mdParse.mjs';
+import mdParse from '../ast/md-parse.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const apiWriteBasePath = '../../packages/site/docs';
@@ -83,3 +83,5 @@ const scanFiles = async (foldPath, dir) => {
 };
 
 scanFiles(fp);
+
+export { checkDirExist };

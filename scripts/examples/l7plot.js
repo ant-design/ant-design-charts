@@ -1,7 +1,7 @@
 /**
  * 扫描 L7Plot 所有 demo 文件，生成 demo 文档
  * eg:
- *  - `node scripts/examples/maps.js`
+ *  - `node scripts/examples/l7plot.js`
  */
 const fs = require('fs');
 const path = require('path');
@@ -36,12 +36,13 @@ const checkDir = (filePath, filename) => {
 const apiGenerator = (filePath, filename) => {
   const writePath = checkDir(filePath, filename);
   // example 目录下不会有示例代码，不需要解析
-  fs.writeFileSync(
-    writePath,
-    fs.readFileSync(filePath, {
-      encoding: 'utf-8',
-    }),
-  );
+  let content = fs.readFileSync(filePath, {
+    encoding: 'utf-8',
+  });
+  if (content) {
+    content = content.replace(/markdown:docs\//g, 'markdown:docs/map-');
+  }
+  fs.writeFileSync(writePath, content);
 };
 
 // 非 ts | js 直接 copy
