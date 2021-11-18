@@ -1,1 +1,1 @@
-`markdown:docs/api/plots/choropleth.en.md`
+`markdown:docs/map-api/plots/choropleth.en.md`

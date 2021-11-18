@@ -1,1 +1,1 @@
-`markdown:docs/api/plots/dot-density.zh.md`
+`markdown:docs/map-api/plots/dot-density.zh.md`

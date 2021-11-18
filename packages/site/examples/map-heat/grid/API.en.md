@@ -1,1 +1,1 @@
-`markdown:docs/api/plots/grid.en.md`
+`markdown:docs/map-api/plots/grid.en.md`

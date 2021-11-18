@@ -1,1 +1,1 @@
-`markdown:docs/api/plots/hexbin.zh.md`
+`markdown:docs/map-api/plots/hexbin.zh.md`
