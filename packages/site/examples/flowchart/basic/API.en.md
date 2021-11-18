@@ -1,1 +1,1 @@
-`markdown:docs/api/plots/bar.en.md`
+`markdown:docs/api/flowchart/flowchart-api.zh.md`

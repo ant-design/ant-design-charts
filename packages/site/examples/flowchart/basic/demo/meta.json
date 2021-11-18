@@ -11,6 +11,30 @@
         "en": "Basic flowchart"
       },
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/rWp4Sq5ofk/10256978-7f35-4a4c-b67c-39aaad269bc2.png"
+    },
+    {
+      "filename": "custom-node.js",
+      "title": {
+        "zh": "自定义节点",
+        "en": "Custom node"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/rWp4Sq5ofk/10256978-7f35-4a4c-b67c-39aaad269bc2.png"
+    },
+    {
+      "filename": "custom-form.js",
+      "title": {
+        "zh": "自定义表单",
+        "en": "Custom form"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/rWp4Sq5ofk/10256978-7f35-4a4c-b67c-39aaad269bc2.png"
+    },
+    {
+      "filename": "read.js",
+      "title": {
+        "zh": "阅读态",
+        "en": "Reading state"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/rWp4Sq5ofk/10256978-7f35-4a4c-b67c-39aaad269bc2.png"
     }
   ]
 }

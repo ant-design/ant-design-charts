@@ -25,12 +25,19 @@ type Datum = {
 };
 
 export interface CustomNode {
+  /** 节点名称，唯一 */
   name: string;
+  /** 节点 React 组件 */
   component: NsGraph.INodeRender<any>;
+  /** popover 组件 */
   popover?: React.Component<any>;
+  /** 默认标签 */
   label?: string;
+  /** 默认宽度 */
   width?: number;
+  /** 默认高度 */
   height?: number;
+  /** 连接锚点配置，默认上下左右四个 */
   ports?: NsGraph.INodeConfig['ports'];
 }
 
@@ -70,7 +77,10 @@ export type Command =
   | 'save-graph-data'
   | 'multi-select'
   | 'add-group'
-  | 'delete-group';
+  | 'delete-group'
+  | 'graph-toggle-multi-select'
+  | 'graph-copy-selection'
+  | 'graph-paste-selection';
 
 export type CommandItem = {
   /** 命令 */

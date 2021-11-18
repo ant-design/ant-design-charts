@@ -7,7 +7,7 @@ const DemoFlowchart = () => {
     <div style={{ height: 600 }}>
       <Flowchart
         onSave={(d) => {
-          console.log(d, JSON.stringify(d));
+          console.log(d);
         }}
         toolbarPanelProps={{
           position: {

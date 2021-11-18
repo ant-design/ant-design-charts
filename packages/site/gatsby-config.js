@@ -49,42 +49,26 @@ module.exports = {
     ],
     docs: [
       {
-        slug: 'manual/plots',
+        slug: 'api/common/plots',
         title: {
-          zh: '图表指引',
-          en: 'Plot Guide',
+          zh: '统计图表-通用配置',
+          en: 'Statistical Common Configuration',
         },
-        order: 3,
+        order: 7,
       },
       {
-        slug: 'api/plots',
+        slug: 'api/common/maps',
         title: {
-          zh: '基础图表',
-          en: 'Plots',
+          zh: '地图-通用配置',
+          en: 'Map Common Configuration',
         },
-        order: 2,
+        order: 6,
       },
       {
-        slug: 'api/advanced-plots',
+        slug: 'api/common/graphs',
         title: {
-          zh: '高级图表',
-          en: 'Advanced plots',
-        },
-        order: 3,
-      },
-      {
-        slug: 'api/components',
-        title: {
-          zh: '图表组件',
-          en: 'Components',
-        },
-        order: 4,
-      },
-      {
-        slug: 'api/options',
-        title: {
-          zh: '通用配置',
-          en: 'Common Configuration',
+          zh: '关系图-通用配置',
+          en: 'Graphs Common Configuration',
         },
         order: 5,
       },

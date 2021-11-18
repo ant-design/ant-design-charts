@@ -14,7 +14,7 @@ export const NoteLeftNode: NsGraph.INodeRender = (props) => {
   const {
     stroke = stateNodeConfig.stroke,
     label = stateNodeConfig.label,
-    fill = stateNodeConfig.fill,
+    fill = 'transparent',
     fontFill = stateNodeConfig.fontFill,
     fontSize = stateNodeConfig.fontSize,
   } = data;
