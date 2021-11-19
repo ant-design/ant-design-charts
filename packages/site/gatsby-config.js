@@ -64,14 +64,6 @@ module.exports = {
         },
         order: 7,
       },
-      {
-        slug: 'api/common-graph',
-        title: {
-          zh: '通用配置-关系图',
-          en: 'Common Configuration Relation Graph',
-        },
-        order: 7,
-      },
     ],
     examples: [
       {

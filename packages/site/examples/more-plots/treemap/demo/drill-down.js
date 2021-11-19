@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Treemap } from '@ant-design/charts';
 
 const DemoTreemap = () => {
-  const [, setData] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     asyncFetch();
@@ -12,13 +12,13 @@ const DemoTreemap = () => {
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/antfincdn/k5SYI%24mOo1/treemap.json')
       .then((response) => response.json())
-      .then((json) => setData(json))
+      .then(({ list }) => setData(list))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
   const config = {
-    data: rootData,
+    data: data,
     colorField: 'name',
     legend: {
       position: 'top-left',

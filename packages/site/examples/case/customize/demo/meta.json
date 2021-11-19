@@ -13,14 +13,6 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/4gOU7HlFcA/relixinnian.png"
     },
     {
-      "filename": "line.js",
-      "title": {
-        "zh": "用户会话（made by multi-plots）",
-        "en": "User session (made by multi-plots)"
-      },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/KDFF%24Vprlz/multi-plots.gif"
-    },
-    {
       "filename": "customize-tooltip.js",
       "title": {
         "zh": "自定义 Tooltip",

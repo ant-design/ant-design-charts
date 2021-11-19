@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { DotMap } from '@ant-design/charts';
 
 const DemoDotMap = () => {
-  const [, setData] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     asyncFetch();
@@ -12,7 +12,7 @@ const DemoDotMap = () => {
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/antfincdn/g5hIthhKlr/quanguoshixianweizhi.json')
       .then((response) => response.json())
-      .then((json) => setData(json))
+      .then(({ list }) => setData(list))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
@@ -26,7 +26,7 @@ const DemoDotMap = () => {
       pitch: 0,
     },
     source: {
-      data: list,
+      data: data,
       parser: {
         type: 'json',
         coordinates: 'lnglat',
