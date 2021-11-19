@@ -48,6 +48,9 @@ const checkDirExist = async (folderpath) => {
   for (let i = 0; i < pathArr.length; i++) {
     if (pathArr[i]) {
       _path += `/${pathArr[i]}`;
+      if (_path.indexOf('site/docs') === -1) {
+        continue;
+      }
       try {
         // fsPromise 不再支持 exists，没想到好方法
         await fs.mkdir(_path);
@@ -83,5 +86,3 @@ const scanFiles = async (foldPath, dir) => {
 };
 
 scanFiles(fp);
-
-export { checkDirExist };

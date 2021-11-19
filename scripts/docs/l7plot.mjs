@@ -17,7 +17,6 @@ import remarkParse from 'remark-parse';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkStringify from 'remark-stringify';
 import mdParse from '../ast/md-parse-l7plot.mjs';
-import { checkDirExist } from './g2plot.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const apiWriteBasePath = '../../packages/site/docs';
@@ -25,6 +24,35 @@ const arg = process.argv.splice(2);
 const docsPath = arg[1] || 'website/docs';
 const plot = arg[0] || 'L7Plot';
 const fp = resolve('../', `${plot}/${docsPath}`);
+
+const excludePath = ['manual'];
+
+// 文件路径是否存在，不存在时直接创建
+const checkDirExist = async (folderpath) => {
+  const pathArr = folderpath.split('/');
+  if (!pathArr.includes('site')) {
+    return;
+  }
+  let _path = '';
+  for (let i = 0; i < pathArr.length; i++) {
+    if (pathArr[i]) {
+      _path += `/${pathArr[i]}`;
+      if (_path.indexOf('site/docs/map-') === -1) {
+        continue;
+      }
+      try {
+        // fsPromise 不再支持 exists，没想到好方法
+        await fs.mkdir(_path);
+      } catch (err) {
+        // await fs.mkdir(_path);
+      }
+    }
+  }
+};
+
+const hasSameEl = (source, target) => {
+  return new Set(source.concat(target)).size !== source.length + target.length;
+};
 
 const apiGenerator = async (apiPath, filename) => {
   // 文件路径，上层自动扫描
@@ -38,14 +66,14 @@ const apiGenerator = async (apiPath, filename) => {
   // 统一加上 map 前缀
   writePath = writePath.replace(/docs\//, 'docs/map-');
   await checkDirExist(writePath.split(filename)[0]);
-  await fs.writeFile(writePath, res.toString());
+  await fs.writeFile(writePath, res.toString().replace(/docs\//g, 'docs/map-'));
 };
 
 /**
  * 文件扫描，获取所有 *.md 文件路径
  * @param {foldPath} string 扫描路径
  */
-const scanFiles = async (foldPath, dir) => {
+const scanL7PlotFiles = async (foldPath, dir) => {
   console.log('文档生成中....');
   try {
     const files = await fs.readdir(foldPath);
@@ -53,9 +81,9 @@ const scanFiles = async (foldPath, dir) => {
       const director = join(foldPath + '/', filename);
       const stats = await fs.stat(director);
       if (stats.isDirectory()) {
-        scanFiles(director, dir ? `${dir}.${filename}` : filename);
+        scanL7PlotFiles(director, dir ? `${dir}.${filename}` : filename);
       }
-      if (stats.isFile() && filename.endsWith('.md')) {
+      if (stats.isFile() && filename.endsWith('.md') && !hasSameEl(excludePath, dir.split('.').concat(filename))) {
         const apiPath = resolve(__dirname, `../../../${plot}/${docsPath}`, dir.split('.').join('/'), filename);
         apiGenerator(apiPath, filename);
       }
@@ -65,4 +93,4 @@ const scanFiles = async (foldPath, dir) => {
   }
 };
 
-scanFiles(fp);
+scanL7PlotFiles(fp);
