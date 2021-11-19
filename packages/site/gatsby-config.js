@@ -139,14 +139,6 @@ module.exports = {
         },
       },
       {
-        slug: 'case',
-        icon: 'gallery',
-        title: {
-          zh: '场景案例',
-          en: 'Show Case',
-        },
-      },
-      {
         slug: 'area',
         icon: 'area',
         title: {

@@ -19,6 +19,7 @@ const fp = path.resolve('../', `${plot}/${demoPath}`);
 const examples = [];
 // 特殊路径不处理
 const excludePath = [
+  'case', // 场景案例
   'advanced', // 高阶用法
   'animation',
   'set-state.ts', // ts any
