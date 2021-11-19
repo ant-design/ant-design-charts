@@ -5,20 +5,23 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js 12
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
-          node-version: 12
-      - name: npm install
+          node-version: ${{ matrix.node-version }}
+      - uses: c-hive/gha-yarn-cache@v2
+      - name: lerna
         run: npm install --global lerna
       - name: npm install
         run: npm install
       - name: bootstrap
         run: npm run bootstrap
       - name: lint
-        run: |
-          npm run lint
+        run: npm run lint
         env:
           CI: true
