@@ -23,7 +23,7 @@ jobs:
       - name: lerna
         run: npm install --global lerna
       - name: npm install
-        run: npm install
+        run: npm install --prefix assets && npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
       - name: bootstrap
         run: npm run bootstrap
       - name: lint
