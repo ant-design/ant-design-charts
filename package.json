@@ -61,6 +61,10 @@
     "whatwg-fetch": "^3.0.0",
     "yorkie": "^2.0.0"
   },
+  "resolutions": {
+    "**/@typescript-eslint/eslint-plugin": "^4.1.1",
+    "**/@typescript-eslint/parser": "^4.1.1"
+  },
   "gitHooks": {
     "pre-commit": "pretty-quick --staged"
   },
