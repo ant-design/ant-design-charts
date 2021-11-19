@@ -10,10 +10,16 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run docs:build
+      - name: 🚧　Prepare
+        run: npm install --global lerna
+      - name: Install
+        run: npm install
+      - name: Bootstrap
+        run: npm run bootstrap
+      - name: Build
+        run: npm run site:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./packages/site/public

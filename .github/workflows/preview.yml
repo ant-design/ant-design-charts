@@ -14,8 +14,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           teardown: true
           build: |
+            npm install --global lerna 
             npm install
-            npm run docs:build
-          dist: dist
+            npm run bootstrap
+            npm run site:build
+          dist: ./packages/site/public
       - name: Get the preview_url
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
