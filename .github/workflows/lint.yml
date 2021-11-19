@@ -12,9 +12,9 @@ jobs:
         with:
           node-version: 12
       - name: npm install
-        run: |
-          npm install --global lerna 
-          npm install
+        run: npm install --global lerna
+      - name: npm install
+        run: npm install
       - name: bootstrap
         run: npm run bootstrap
       - name: lint
