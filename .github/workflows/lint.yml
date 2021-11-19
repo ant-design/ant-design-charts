@@ -15,6 +15,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - uses: actions/cache@v2
+        with:
+          path: |
+            ~/cache
+            !~/cache/exclude
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
       - name: lerna
         run: npm install --global lerna
       - name: npm install
