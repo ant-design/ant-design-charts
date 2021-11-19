@@ -1,5 +1,5 @@
 ---
-title: Graph Common Configuration
+title: Configuration
 order: 3
 ---
 

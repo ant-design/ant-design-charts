@@ -1,5 +1,5 @@
 ---
-title: Graph 通用配置
+title: 通用配置
 order: 3
 ---
 

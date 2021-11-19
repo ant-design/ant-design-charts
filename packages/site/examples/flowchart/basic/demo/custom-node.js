@@ -5,7 +5,7 @@ import { Flowchart } from '@ant-design/charts';
 const IndicatorNode = (props) => {
   const { size = { width: 120, height: 50 }, data } = props;
   const { width, height } = size;
-  const { title = '自定义节点', stroke = '#ccc', fill = '#fff', fontFill, fontSize } = data;
+  const { label = '自定义节点', stroke = '#ccc', fill = '#fff', fontFill, fontSize } = data;
 
   return (
     <div
@@ -27,9 +27,7 @@ const IndicatorNode = (props) => {
         fontSize,
       }}
     >
-      <div className="title" style={{ color: fontFill }}>
-        {title}
-      </div>
+      <div style={{ color: fontFill }}>{label}</div>
     </div>
   );
 };
@@ -78,6 +76,7 @@ const DemoFlowchart = () => {
                 name: 'custom-node-indicator',
                 width: 120,
                 height: 50,
+                label: '自定义节点',
               },
             ],
           },
