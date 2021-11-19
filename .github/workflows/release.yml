@@ -12,7 +12,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: npm install --global lerna
       - run: npm install
+      - run: npm run bootstrap
       - run: npm run build
 
   publish-npm:
@@ -24,7 +26,9 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+      - run: npm install --global lerna
       - run: npm install
+      - run: npm run bootstrap
       - run: npm run build
       - run: npm publish
         env:

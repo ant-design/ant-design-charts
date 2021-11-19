@@ -11,8 +11,10 @@ jobs:
           node-version: 12
       - name: npm install
         run: |
+          npm install --global lerna 
           npm install
-      - name: build
+          npm run bootstrap
+      - name: ci
         run: |
           npm run ci
         env:
