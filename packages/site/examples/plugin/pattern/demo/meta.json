@@ -50,15 +50,6 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/LGFxwRRwZl/d11e9835-a520-4a4c-9893-30b6a6ebb3c1.png"
     },
     {
-      "filename": "donut-pattern.js",
-      "title": {
-        "zh": "带贴图图案的环形图",
-        "en": "Donut with pattern"
-      },
-      "new": true,
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/spgIo%26zAzG/6562dc40-2ac6-4c8a-b433-88e41e20621a.png"
-    },
-    {
       "filename": "area-pattern.js",
       "title": {
         "zh": "带贴图图案的面积图",

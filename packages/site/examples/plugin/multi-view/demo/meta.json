@@ -5,14 +5,6 @@
   },
   "demos": [
     {
-      "filename": "range-area.js",
-      "title": {
-        "zh": "区间面积图",
-        "en": "Range area Plot"
-      },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/LSyrzQnPWL/ad65dd9d-ced8-42ca-a756-8fe4593157e6.png"
-    },
-    {
       "filename": "brush-filter-record.js",
       "title": {
         "zh": "刷选联动",
@@ -43,14 +35,6 @@
         "en": "Drinks Visual"
       },
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*S4CuR5J89jsAAAAAAAAAAAAAARQnAQ"
-    },
-    {
-      "filename": "series-columns.js",
-      "title": {
-        "zh": "条形图的变种",
-        "en": "Series Columns"
-      },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Xr_fTpVCRv4AAAAAAAAAAAAAARQnAQ"
     },
     {
       "filename": "sales-analysis.js",
