@@ -14,7 +14,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: c-hive/gha-yarn-cache@v2
       - run: yarn bootstrap
       - run: yarn build
       - run: yarn test
