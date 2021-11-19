@@ -758,6 +758,7 @@ const DemoFlowchart = () => {
       <Flowchart
         data={DATA}
         toolbarPanelProps={{
+          show: false,
           position: {
             top: 0,
             left: 0,
@@ -766,17 +767,17 @@ const DemoFlowchart = () => {
         }}
         canvasProps={{
           position: {
-            top: 40,
+            top: 0,
             left: 0,
             right: 0,
             bottom: 0,
           },
         }}
         nodePanelProps={{
-          position: { width: 160, top: 40, bottom: 0, left: 0 },
+          show: false,
         }}
         detailPanelProps={{
-          position: { width: 200, top: 40, bottom: 0, right: 0 },
+          show: false,
         }}
       />
     </div>
