@@ -3,24 +3,21 @@ name: Test
 on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js 12
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
-          node-version: 12
-      - name: npm install
-        run: |
-          npm install --global lerna 
-          npm install
-          npm run bootstrap
-      - name: ci
-        run: |
-          npm run ci
-        env:
-          CI: true
+          node-version: ${{ matrix.node-version }}
+      - uses: c-hive/gha-yarn-cache@v2
+      - run: yarn bootstrap
+      - run: yarn build
+      - run: yarn test
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:

@@ -3,7 +3,7 @@ name: Lint
 on: [push, pull_request]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,19 +14,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v2
-        with:
-          path: |
-            ~/cache
-            !~/cache/exclude
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-      - name: lerna
-        run: npm install --global lerna
-      - name: npm install
-        run: npm install --prefix assets && npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
-      - name: bootstrap
-        run: npm run bootstrap
-      - name: lint
-        run: npm run lint
-        env:
-          CI: true
+      - uses: c-hive/gha-yarn-cache@v2
+      - run: yarn bootstrap
+      - run: yarn lint
