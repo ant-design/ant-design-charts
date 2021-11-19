@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Input } from 'antd';
 import { Flowchart, FormWrapper } from '@ant-design/charts';
+import 'antd/dist/antd.css';
 
 const InputComponent = (props) => {
   const { config, plugin = {} } = props;

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Flowchart } from '@ant-design/charts';
+import 'antd/dist/antd.css';
 
 const DemoFlowchart = () => {
   return (
