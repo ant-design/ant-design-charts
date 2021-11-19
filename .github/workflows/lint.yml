@@ -14,7 +14,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: c-hive/gha-yarn-cache@v2
+      - uses: actions/cache@v2
       - name: lerna
         run: npm install --global lerna
       - name: npm install
