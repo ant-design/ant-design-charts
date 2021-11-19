@@ -4,7 +4,7 @@ title: 资金流向图
 
 ### 基础配置
 
-> 请结合[通用配置](/zh/docs/api/common/common-graph#基础配置)
+> 请结合[通用配置](/zh/docs/api/common-graph/common-graph#基础配置)
 
 #### data
 

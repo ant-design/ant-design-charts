@@ -4,7 +4,7 @@ title: Fund Flow Graph
 
 ### Base configuration
 
-> Please combine with [General Configuration](/en/docs/api/common/common-graph#basic-configuration)
+> Please combine with [General Configuration](/en/docs/api/common-graph/common-graph#basic-configuration)
 
 #### data
 

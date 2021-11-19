@@ -49,10 +49,26 @@ module.exports = {
     ],
     docs: [
       {
-        slug: 'api/common',
+        slug: 'api/options',
         title: {
-          zh: '通用配置',
-          en: 'Common Configuration',
+          zh: '通用配置-统计图表',
+          en: 'Common Configuration Statistical Charts',
+        },
+        order: 7,
+      },
+      {
+        slug: 'api/common-graph',
+        title: {
+          zh: '通用配置-关系图',
+          en: 'Common Configuration Relation Graph',
+        },
+        order: 7,
+      },
+      {
+        slug: 'api/common-graph',
+        title: {
+          zh: '通用配置-关系图',
+          en: 'Common Configuration Relation Graph',
         },
         order: 7,
       },
