@@ -146,6 +146,7 @@ IconStore.set('SaveOutlined', SaveOutlined);
 | 属性名 | 类型 | 描述 | 默认值 | 是否必填 |
 |-------|-------|------|------|---------|
 | position | IPosition | 位置配置 | `{ top: 12, right: 12 }` | false |
+| layout | 'horizontal'、'vertical' | 布局 |  vertical | false |
 
 
 #### detailPanelProps

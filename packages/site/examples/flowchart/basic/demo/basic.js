@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Flowchart } from '@ant-design/charts';
-import 'antd/dist/antd.css';
 
 const DemoFlowchart = () => {
   return (
@@ -15,6 +14,16 @@ const DemoFlowchart = () => {
             top: 0,
             left: 0,
             right: 0,
+          },
+        }}
+        scaleToolbarPanelProps={{
+          layout: 'horizontal',
+          position: {
+            right: 0,
+            top: -40,
+          },
+          style: {
+            background: 'transparent',
           },
         }}
         canvasProps={{

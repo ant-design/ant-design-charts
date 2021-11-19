@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Input } from 'antd';
 import { Flowchart, FormWrapper } from '@ant-design/charts';
-import 'antd/dist/antd.css';
 
 const InputComponent = (props) => {
   const { config, plugin = {} } = props;
   const { placeholder, disabled } = config;
   const { updateNode } = plugin;
-  const [label, setLabel] = useState < string > config?.label;
+  const [label, setLabel] = useState(config?.label);
 
   const onLabelChange = async (e) => {
     setLabel(e.target.value);
@@ -22,14 +21,14 @@ const InputComponent = (props) => {
   }, [config]);
 
   return (
-    <div>
+    <div style={{ padding: 12 }}>
       <label>标签: </label>
       <Input value={label} onChange={onLabelChange} placeholder={placeholder} disabled={disabled} />
     </div>
   );
 };
 
-const Rename = (props) => {
+const RenameService = (props) => {
   return (
     <FormWrapper {...props}>
       {(config, plugin) => <InputComponent {...props} plugin={plugin} config={config} />}
@@ -37,35 +36,19 @@ const Rename = (props) => {
   );
 };
 
+const CanvasService = (props) => {
+  return <p style={{ textAlign: 'center' }}>主画布</p>;
+};
+
 export const controlMapService = (controlMap) => {
-  controlMap.set('rename-service', Rename);
+  controlMap.set('rename-service', RenameService);
+  controlMap.set('canvas-service', CanvasService);
   return controlMap;
 };
 
 const formSchemaService = async (args) => {
   const { targetType } = args;
   const isGroup = args.targetData?.isGroup;
-
-  const groupSchema = {
-    tabs: [
-      {
-        name: '设置',
-        groups: [
-          {
-            name: 'groupName',
-            controls: [
-              {
-                label: '分组名',
-                name: 'group-service',
-                shape: 'group-service',
-                placeholder: '分组名称',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  };
   const nodeSchema = {
     tabs: [
       {
@@ -77,26 +60,8 @@ const formSchemaService = async (args) => {
               {
                 label: '节点名',
                 name: '自定义form',
-                shape: 'custom-service',
+                shape: 'rename-service',
                 placeholder: '节点名称',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  };
-  const edgeSchema = {
-    tabs: [
-      {
-        name: '设置',
-        groups: [
-          {
-            name: 'edge',
-            controls: [
-              {
-                label: '边',
-                shape: 'edge-service',
               },
             ],
           },
@@ -106,7 +71,7 @@ const formSchemaService = async (args) => {
   };
 
   if (isGroup) {
-    return groupSchema;
+    // TODO
   }
 
   if (targetType === 'node') {
@@ -114,8 +79,9 @@ const formSchemaService = async (args) => {
   }
 
   if (targetType === 'edge') {
-    return edgeSchema;
+    // TODO
   }
+
   return {
     tabs: [
       {
@@ -149,6 +115,16 @@ const DemoFlowchart = () => {
             top: 0,
             left: 0,
             right: 0,
+          },
+        }}
+        scaleToolbarPanelProps={{
+          layout: 'horizontal',
+          position: {
+            right: 0,
+            top: -40,
+          },
+          style: {
+            background: 'transparent',
           },
         }}
         canvasProps={{
