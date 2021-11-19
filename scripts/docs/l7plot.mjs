@@ -66,7 +66,13 @@ const apiGenerator = async (apiPath, filename) => {
   // 统一加上 map 前缀
   writePath = writePath.replace(/docs\//, 'docs/map-');
   await checkDirExist(writePath.split(filename)[0]);
-  await fs.writeFile(writePath, res.toString().replace(/docs\//g, 'docs/map-'));
+  await fs.writeFile(
+    writePath,
+    res
+      .toString()
+      .replace(/docs\//g, 'docs/map-')
+      .replace(/@antv\/l7plot/g, '@ant-design/charts'),
+  );
 };
 
 /**
