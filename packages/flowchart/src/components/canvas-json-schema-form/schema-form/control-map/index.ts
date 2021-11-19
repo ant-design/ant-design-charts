@@ -5,6 +5,7 @@ import { Select } from './select';
 import { Datetime } from './datetime';
 import { Float } from './float';
 import type React from 'react';
+import { Log } from '../../../../util';
 import type { IControlProps } from '../../interface';
 
 export const xflowDefaultControls: [string, React.FC<IControlProps>][] = [
@@ -24,7 +25,7 @@ export const makeControlMap = (controls: [string, React.FC<IControlProps>][]) =>
     const [key, control] = item;
     const uuid = key.toLowerCase();
     if (controlMap.has(uuid)) {
-      console.error(`${key} is duplicated in controlMap:`, controlMap);
+      Log.error(`${key} is duplicated in controlMap:`, controlMap);
     }
     controlMap.set(uuid, control);
   });
@@ -43,6 +44,6 @@ export const getControlFromMap = (
   if (controlMap.has(uuid)) {
     return controlMap.get(uuid);
   }
-  console.warn(`${key} is not exist in controlmap, fallback to defaultControl`);
+  Log.warn(`${key} is not exist in controlmap, fallback to defaultControl`);
   return defaultControl;
 };

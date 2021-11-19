@@ -5,19 +5,21 @@ on: [pull_request]
 jobs:
   preview:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
       - uses: afc163/surge-preview@v1
-        id: preview_step
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          teardown: true
+          dist: packages/site/public
           build: |
-            npm install --global lerna 
-            npm install
-            npm run bootstrap
-            npm run site:build
-          dist: ./packages/site/public
-      - name: Get the preview_url
-        run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
+            yarn
+            yarn build
+            yarn site:build

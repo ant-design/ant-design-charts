@@ -22,7 +22,7 @@
   "license": "MIT",
   "author": "https://github.com/orgs/antvis/people",
   "scripts": {
-    "site:build": "npm run site:clean && cross-env GATSBY=true gatsby build --prefix-paths",
+    "site:build": "NODE_OPTIONS=--max_old_space_size=8192 npm run site:clean && cross-env GATSBY=true gatsby build --prefix-paths",
     "site:clean": "gatsby clean",
     "site:develop": "cross-env GATSBY=true gatsby develop --open",
     "site:deploy": "npm run site:build && gh-pages -d public",

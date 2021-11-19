@@ -3,6 +3,7 @@ import { Empty, Form, Tabs } from 'antd';
 import classNames from 'classnames';
 import type { FormInstance, FormProps } from 'antd/es/form';
 import type { IControlMap } from './control-map/index';
+import { Log } from '../../../util';
 import { xflowDefaultControls, makeControlMap, getControlFromMap } from './control-map/index';
 import type { IControlProps, IAfterUpdatingCallback, ISchema, ITab } from '../interface';
 export { FormItemWrapper } from './common/form-item-wrapper';
@@ -96,7 +97,7 @@ export const SchemaForm: React.FC<Props> = (props) => {
                     const { shape, name: controlName } = control;
                     const ControlComponent = getControlFromMap(shape, controlMap, defaultControlRender);
                     if (!ControlComponent) {
-                      console.error('未找到对应的控件:', shape);
+                      Log.error('未找到对应的控件:', shape);
                       return null;
                     }
                     return (

@@ -10,6 +10,7 @@ import {
   useXFlowApp,
   IGraphCommandService,
 } from '@antv/xflow';
+import { Log } from '../../util';
 import { NsTreePanelData } from './service';
 import { XFlowNode } from './node';
 
@@ -163,7 +164,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
         if (onNodeDrop) {
           await onNodeDrop(nodeConfig, commandService, modelService);
         } else {
-          console.error('onNodeDrop method is required in NodeTree Panel');
+          Log.error('onNodeDrop method is required in NodeTree Panel');
         }
         return false;
       },
