@@ -1,3 +1,14 @@
+export {
+  registerImage,
+  registerImages,
+  unregisterImage,
+  registerFontFace,
+  unregisterFontFace,
+  registerIconFont,
+  registerIconFonts,
+  unregisterIconFont,
+} from '@antv/l7plot';
+
 export { ContainerConfig as MapContainerConfig, PlotRef } from './types';
 
 export { default as DotMap, DotMapConfig } from './components/DotMap';
