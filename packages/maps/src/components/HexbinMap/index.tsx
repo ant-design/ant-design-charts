@@ -1,18 +1,18 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Hexagon, HexagonOptions } from '@antv/l7plot';
+import { Hexbin, HexbinOptions } from '@antv/l7plot';
 import { PlotRef, ContainerConfig } from '../../types';
 import useL7Plot, { L7PlotConfig } from '../../hooks/useL7Plot';
 import { getChart } from '../../util';
 import ErrorBoundary from '../../errorBoundary';
 import ChartLoading from '../../util/createLoading';
 
-export interface HexagonMapConfig extends L7PlotConfig<HexagonOptions, Hexagon>, ContainerConfig {
-  chartRef?: PlotRef<Hexagon>;
+export interface HexbinMapConfig extends L7PlotConfig<HexbinOptions, Hexbin>, ContainerConfig {
+  chartRef?: PlotRef<Hexbin>;
 }
 
-const HexagonMap = forwardRef((props: HexagonMapConfig, ref) => {
+const HexbinMap = forwardRef((props: HexbinMapConfig, ref) => {
   const { chartRef, containerStyle, className, loading, loadingTemplate, errorTemplate, ...config } = props;
-  const { plotRef, containerRef } = useL7Plot<HexagonOptions, Hexagon>(Hexagon, config);
+  const { plotRef, containerRef } = useL7Plot<HexbinOptions, Hexbin>(Hexbin, config);
 
   useEffect(() => {
     getChart(chartRef, plotRef.current);
@@ -30,4 +30,4 @@ const HexagonMap = forwardRef((props: HexagonMapConfig, ref) => {
   );
 });
 
-export default HexagonMap;
+export default HexbinMap;
