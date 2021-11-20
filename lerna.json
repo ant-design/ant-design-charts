@@ -1,6 +1,7 @@
 {
   "npmClient": "yarn",
   "version": "independent",
+  "useWorkspaces": true,
   "command": {
     "publish": {
       "ignoreChanges": ["*.md", "**/**/*.test.js"],
