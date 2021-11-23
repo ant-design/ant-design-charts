@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/plots",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "G2Plot Statistical chart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib",
+    "build": "run-s clean lib dist",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
