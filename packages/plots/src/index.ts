@@ -28,6 +28,7 @@ import RadialBar from './components/radialBar';
 import Sankey from './components/sankey';
 import Treemap from './components/treemap';
 import Violin from './components/violin';
+import CirclePacking from './components/circlePacking';
 import Facet from './components/facet';
 import MultiView from './components/mix'; // 和 Mix 相同
 import Mix from './components/mix';
@@ -62,6 +63,7 @@ export {
   DualAxes,
   Stock,
   RadialBar,
+  CirclePacking,
   Gauge,
   Sankey,
   Treemap,
@@ -105,6 +107,7 @@ export default {
   Stock,
   RadialBar,
   Gauge,
+  CirclePacking,
   Sankey,
   Treemap,
   Violin,
