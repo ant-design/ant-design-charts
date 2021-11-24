@@ -17,7 +17,7 @@ export const getGraphData = async (flowchartId: string) => {
 export const getFlowchartId = (e) => {
   let currentNode = e?.e?.currentTarget;
   if (!currentNode) {
-    return document.getElementsByClassName('xflow-canvas-container')[0]?.getAttribute('data-flowchartId');
+    return document.getElementsByClassName('xflow-canvas-container')[0]?.getAttribute('data-flowchart-id');
   }
   let containter = null;
   while (!containter) {
@@ -27,7 +27,7 @@ export const getFlowchartId = (e) => {
     }
     currentNode = currentNode.parentNode;
   }
-  return containter[0]?.getAttribute('data-flowchartId');
+  return containter[0]?.getAttribute('data-flowchart-id');
 };
 
 /**

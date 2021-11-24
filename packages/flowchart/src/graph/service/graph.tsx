@@ -17,7 +17,7 @@ import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/no
 import { setGroupRender } from '../../components/group-panel';
 
 import { registerEdge, DefaultEdgeConfig, FLOWCHART_EDGE } from '../../components/edge-panel';
-import { movedNode, resizeNode, changePortsVisible, setEdgeSelected, addTools, removeTools } from './events';
+import { movedNode, resizeNode, changePortsVisible, addTools, removeTools } from './events';
 
 /** 自定义React节点 */
 const ANT_PREFIX = 'ant';
@@ -263,12 +263,6 @@ export const useGraphConfig = createGraphConfig((config, proxy) => {
         props.handleNodeRemoved?.(nodeData);
       },
     } as IEvent<'node:removed'>,
-    {
-      eventName: 'edge:click',
-      callback: (e, cmds, ctx) => {
-        setEdgeSelected(e, cmds, ctx);
-      },
-    } as IEvent<'edge:click'>,
     {
       eventName: 'edge:dblclick',
       callback: (e, cmds, ctx) => {
