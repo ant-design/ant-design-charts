@@ -95,6 +95,7 @@ export type CommandItem = {
 export interface ToolbarPanelProps extends BaseProps {
   commands?: CommandItem[];
   layout?: IToolbarLayout;
+  readonly flowchartId?: string;
 }
 
 export type ScaleToolbarPanelProps = BaseProps;
@@ -128,9 +129,8 @@ export interface PopoverProps extends Omit<AntDPopoverConfig, 'title' | 'content
 }
 
 export interface IFlowchartGraph extends Graph {
-  getGraphData?: () => void;
+  getGraphData?: (flowchartId: string) => Promise<Datum>;
   updateNodeKeyById?: (id: string, key: string, data: object) => void;
-  __proto__?: Record<string, any>;
 }
 
 export interface IGraphConfig {}

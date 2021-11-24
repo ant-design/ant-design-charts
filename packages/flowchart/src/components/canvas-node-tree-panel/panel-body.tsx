@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Empty, Popover, Collapse } from 'antd';
 import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs } from './interface';
 import { Addon, Graph } from '@antv/x6';
@@ -11,6 +11,7 @@ import {
   IGraphCommandService,
 } from '@antv/xflow';
 import { Log } from '../../util';
+import AppContext from '../../context';
 import { NsTreePanelData } from './service';
 import { XFlowNode } from './node';
 
@@ -129,6 +130,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     registerNode,
     defaultActiveKey = ['official', 'custom'],
   } = props;
+  const { flowchartId } = useContext(AppContext);
   const { title = '混合节点' } = registerNode ?? {};
   const { graphProvider, modelService, commandService } = useXFlowApp();
 
@@ -160,6 +162,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
         const nodeConfig = {
           ...droppingNode.getData<NsGraph.INodeConfig>(),
           ...droppingNode.getPosition(),
+          flowchartId,
         };
         if (onNodeDrop) {
           await onNodeDrop(nodeConfig, commandService, modelService);

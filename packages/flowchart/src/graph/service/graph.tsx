@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ConfigProvider, Tooltip } from 'antd';
 import { TooltipPlacement } from 'antd/es/tooltip';
 import ReactDOM from 'react-dom';
@@ -11,7 +11,7 @@ import {
   NsGraph,
   IEvent,
 } from '@antv/xflow';
-import { getProps as getGlobalProps, getContainer, onConfigChange } from '../../util';
+import { getProps as getGlobalProps, onConfigChange } from '../../util';
 import { Edge, Shape } from '@antv/x6';
 import { NODE_HEIGHT, setNodeRender, ASPECTRATIONODE } from '../../components/node-panel';
 import { setGroupRender } from '../../components/group-panel';
@@ -38,7 +38,7 @@ const XFlowEdge = Shape.Edge.registry.register(
   Shape.Edge.define({
     zIndex: 1,
     highlight: true,
-    shape: 'EDGE1',
+    shape: FLOWCHART_EDGE,
     name: 'custom-edge',
     label: '',
     anchor: {
@@ -55,7 +55,8 @@ const XFlowEdge = Shape.Edge.registry.register(
   true,
 );
 
-export const useGraphHook = createHookConfig((config) => {
+export const useGraphHook = createHookConfig((config, proxy) => {
+  const { flowchartId } = proxy.getValue();
   config.setRegisterHook((hooks) => {
     const todo = new DisposableCollection();
     const edgeData = hooks.afterGraphInit.registerHook({
@@ -93,7 +94,7 @@ export const useGraphHook = createHookConfig((config) => {
             },
           };
           await commandService.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, config);
-          const onAddEdge = getGlobalProps('onAddEdge');
+          const onAddEdge = getGlobalProps(flowchartId, 'onAddEdge');
           if (typeof onAddEdge === 'function') {
             onAddEdge(config);
           }
@@ -108,8 +109,9 @@ export const useGraphHook = createHookConfig((config) => {
 });
 
 /**  graphConfig hook  */
-export const useGraphConfig = createGraphConfig((config, getProps) => {
-  const { nodePanelProps } = getProps();
+export const useGraphConfig = createGraphConfig((config, proxy) => {
+  const props = proxy.getValue();
+  const { nodePanelProps, canvasProps = {} } = props;
   // const miniMapContainer = getContainer('miniMapContainer');
   config.setEdgeTypeParser((edge) => edge?.renderKey as string);
   registerEdge(config);
@@ -235,6 +237,7 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
         );
       }
     },
+    ...canvasProps.config,
   });
 
   config.setEvents([
@@ -242,7 +245,6 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
       eventName: 'node:click',
       callback: (e, cmds, ctx) => {
         const nodeData: NsGraph.INodeConfig = e?.node?.getData();
-        const props = getProps();
         props.handleNodeClick?.(nodeData);
       },
     } as IEvent<'node:click'>,
@@ -250,7 +252,6 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
       eventName: 'node:selected',
       callback: (e, cmds, ctx) => {
         const nodeData: NsGraph.INodeConfig = e?.node?.getData();
-        const props = getProps();
         changePortsVisible(false);
         props.handleNodeSelected?.(nodeData);
       },
@@ -259,7 +260,6 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
       eventName: 'node:removed',
       callback: (e, cmds, ctx) => {
         const nodeData: NsGraph.INodeConfig = e?.node?.getData();
-        const props = getProps();
         props.handleNodeRemoved?.(nodeData);
       },
     } as IEvent<'node:removed'>,

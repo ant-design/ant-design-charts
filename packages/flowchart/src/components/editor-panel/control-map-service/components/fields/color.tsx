@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { render } from 'react-dom';
 import { Button } from 'antd';
 import { SketchPicker } from 'react-color';
 import { getContainer } from '../../../../../util';
+import appContext from '../../../../../context';
 import { prefix } from '../constants';
 
 interface IProps {
@@ -15,6 +16,7 @@ const ColorPicker: React.FC<IProps> = (props) => {
   const { label, value = '', onChange } = props;
   const [show, setShow] = useState(false);
   const colorRef = useRef<string>(value);
+  const { flowchartId } = useContext(appContext);
 
   const PickContainer = () => {
     return (
@@ -51,7 +53,7 @@ const ColorPicker: React.FC<IProps> = (props) => {
 
   /**  react-color mouseOver 和上层事件冲突，不得已为之 */
   const CreatePickColorContainer = (visible: boolean) => {
-    const container = getContainer();
+    const container = getContainer(flowchartId);
     const exist: HTMLDivElement | null = document.querySelector(`#${prefix}-pick-color-container`);
     if (exist) {
       container.removeChild(exist);

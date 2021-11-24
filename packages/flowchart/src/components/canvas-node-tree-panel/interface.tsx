@@ -34,6 +34,7 @@ export interface IProps extends Partial<IPanelProps> {
   treeDataService: ITreeDataService;
   registerNode?: RegisterNode;
   defaultActiveKey?: string[];
+  flowchartId?: string;
 }
 
 export interface IOnNodeDrop {
@@ -74,7 +75,7 @@ export interface ITreeNode {
 
 /** service: 获取tree数据 */
 export interface ITreeDataService {
-  (graphMeta: MODELS.GRAPH_META.IState, modelService: IModelService): Promise<ITreeNode[]>;
+  (graphMeta: MODELS.GRAPH_META.IState, modelService: IModelService, flowchartId: string): Promise<ITreeNode[]>;
 }
 
 /** service: 返回过滤后的数据 */

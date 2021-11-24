@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/flowchart",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Flowchart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -39,9 +39,9 @@
     "@antv/x6": "^1.25.0",
     "@antv/x6-react-components": "^1.1.13",
     "@antv/x6-react-shape": "^1.4.5",
-    "@antv/xflow": "0.1.0-beta.3",
+    "@antv/xflow": "^1.0.0",
     "react-color": "2.17.3",
-    "react-use": "^17.3.1"
+    "react-use": "17.3.1"
   },
   "peerDependencies": {
     "@ant-design/icons": "^4.6.0",

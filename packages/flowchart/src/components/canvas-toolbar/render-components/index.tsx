@@ -34,7 +34,7 @@ const InnerRender: React.FC<IToolbarProps> = (props) => {
   const { isModelReady, state } = useToolbarModel(props);
   const positionStyle = usePositionStyle(props.position);
   const { mainGroups = [], extraGroups = [], layout, customRender } = state;
-  const containerClz = classNames(props.className, layout, 'xflow-toolbar');
+  const containerClz = classNames(props.className, layout, 'flowchart-toolbar');
   const clz = classnames({
     [layout]: true,
     ['xflow-toolbar-root']: true,

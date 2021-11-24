@@ -1,11 +1,10 @@
 import { getProps, getGraphInstance, getAppInstance } from './global';
-import { NsGraph } from '../interface';
 import { XFlowGraphCommands, NsGraphCmd } from '@antv/xflow';
 
 export const Log = window.console;
 
-export const getGraphData = async () => {
-  const app = getAppInstance();
+export const getGraphData = async (flowchartId: string) => {
+  const app = getAppInstance(flowchartId);
   let data;
   await app.executeCommand(XFlowGraphCommands.SAVE_GRAPH_DATA.id, {
     saveGraphDataService: async (graphMeta, graphData) => {
@@ -13,6 +12,22 @@ export const getGraphData = async () => {
     },
   } as NsGraphCmd.SaveGraphData.IArgs);
   return data;
+};
+
+export const getFlowchartId = (e) => {
+  let currentNode = e?.e?.currentTarget;
+  if (!currentNode) {
+    return document.getElementsByClassName('xflow-canvas-container')[0]?.getAttribute('data-flowchartId');
+  }
+  let containter = null;
+  while (!containter) {
+    const current = currentNode.getElementsByClassName('xflow-canvas-container');
+    if (current?.length > 0) {
+      containter = current;
+    }
+    currentNode = currentNode.parentNode;
+  }
+  return containter[0]?.getAttribute('data-flowchartId');
 };
 
 /**
@@ -38,19 +53,19 @@ export const debounce = (func: Function, delay: number, immediate: boolean = fal
   };
 };
 
-export const getGraphHistory = () => {
-  return getGraphInstance().history;
+export const getGraphHistory = (flowchartId: string) => {
+  return getGraphInstance(flowchartId).history;
 };
 
 /** 更新配置时通知上传执行保存 */
 export const onConfigChange = debounce(
-  (config) => {
-    const configChange = getProps('onConfigChange');
+  (config, flowchartId) => {
+    const configChange = getProps(flowchartId, 'onConfigChange');
     if (!configChange || typeof configChange !== 'function') {
       return;
     }
     return configChange({
-      data: getGraphData(),
+      data: getGraphData(flowchartId),
       ...config,
     });
   },

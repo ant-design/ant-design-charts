@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import {
   NsGraphCmd,
   XFlowGraphCommands,
@@ -9,6 +9,7 @@ import {
   usePanelContext,
   FormItemWrapper,
 } from '@antv/xflow';
+import AppContext from '../../context';
 import { onConfigChange } from '../../util';
 import useAsync from './useAsync';
 
@@ -26,7 +27,7 @@ export interface IFormWrapper {
 export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper & { type: string }> = (props) => {
   const { controlSchema, children, type = 'node' } = props;
   const { commandService, modelService } = usePanelContext();
-
+  const { flowchartId } = useContext(AppContext);
   const getSelectNode = useCallback(async () => {
     const { data } = await MODELS.SELECTED_NODE.useValue(modelService);
     return data as object;
@@ -57,7 +58,7 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
     await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
       nodeConfig,
     });
-    onConfigChange({ type: 'update:node', config: nodeConfig });
+    onConfigChange({ type: 'update:node', config: nodeConfig }, flowchartId);
   };
 
   const updateEdge = async (value: object, type: 'text' | 'line' = 'line', key?: string) => {
@@ -75,7 +76,7 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
       },
     };
     await commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, { edgeConfig });
-    onConfigChange({ type: 'update:edge', config: edgeConfig });
+    onConfigChange({ type: 'update:edge', config: edgeConfig }, flowchartId);
   };
 
   const updateGroup = async (value: object) => {
@@ -84,7 +85,7 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
     await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
       nodeConfig,
     });
-    onConfigChange({ type: 'update:group', config: nodeConfig });
+    onConfigChange({ type: 'update:group', config: nodeConfig }, flowchartId);
   };
 
   if (loading) {

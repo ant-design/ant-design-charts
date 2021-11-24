@@ -11,7 +11,7 @@ export const searchService: NsNodeTreePanel.ISearchService = async (
 };
 
 export const onNodeDrop: NsNodeTreePanel.IOnNodeDrop = async (node, commands) => {
-  const { ports } = node;
+  const { ports, flowchartId } = node;
   const nodeConfig = {
     ...node,
     id: `node-${uuidv4()}`,
@@ -32,7 +32,7 @@ export const onNodeDrop: NsNodeTreePanel.IOnNodeDrop = async (node, commands) =>
 
   await commands.executeCommand(XFlowNodeCommands.ADD_NODE.id, args);
 
-  const onAddNode = getProps('onAddNode');
+  const onAddNode = getProps(flowchartId, 'onAddNode');
   if (typeof onAddNode === 'function') {
     onAddNode(nodeConfig);
   }

@@ -81,10 +81,15 @@ namespace NSToolbarConfig {
     } as NSToolbarConfig.IToolbarState;
   };
 
-  export const getToolbarItems = async (state: IToolbarState, getIconConfig: any, commands: CommandItem[]) => {
+  export const getToolbarItems = async (
+    state: IToolbarState,
+    getIconConfig: any,
+    commands: CommandItem[],
+    flowchartId: string,
+  ) => {
     const toolbarGroup: IToolbarItemOptions[] = [];
-    const history = getGraphHistory();
-    const graph = getGraphInstance();
+    const history = getGraphHistory(flowchartId);
+    const graph = getGraphInstance(flowchartId);
     const selectedCells = graph.getSelectedCells();
 
     /** 撤销 */
@@ -204,7 +209,7 @@ namespace NSToolbarConfig {
       onClick: async ({ commandService }) => {
         commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(TOOLBAR_ITEMS.SAVE_GRAPH_DATA, {
           saveGraphDataService: (meta, graphData) => {
-            const onSave = getProps('onSave');
+            const onSave = getProps(flowchartId, 'onSave');
             if (onSave) {
               return onSave(graphData);
             }
@@ -242,8 +247,9 @@ const registerIcon = () => {
   IconStore.set('SnippetsOutlined', SnippetsOutlined);
 };
 
-export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConfig, proxy) => {
-  const toolbarPanelProps = getProps('toolbarPanelProps') ?? {};
+export const useToolbarConfig = createToolbarConfig<FlowchartProps['toolbarPanelProps']>((toolbarConfig, proxy) => {
+  const { flowchartId } = proxy.getValue();
+  const toolbarPanelProps = getProps(flowchartId, 'toolbarPanelProps') ?? {};
   registerIcon();
 
   let {
@@ -314,7 +320,7 @@ export const useToolbarConfig = createToolbarConfig<FlowchartProps>((toolbarConf
   toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
     const updateToolbarModel = async () => {
       const state = await NSToolbarConfig.getToolbarState(modelService);
-      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconConfig, commands);
+      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconConfig, commands, flowchartId);
 
       toolbarModel.setValue((toolbar) => {
         toolbar.mainGroups = toolbarItems;

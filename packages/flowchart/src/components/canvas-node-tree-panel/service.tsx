@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import uniqBy from 'lodash/uniqBy';
 import cloneDeep from 'lodash/cloneDeep';
 import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@antv/xflow';
 import { IProps, ITreeNode } from './interface';
 import { TREE_ROOT_ID } from './constants';
+import AppContext from '../../context';
 // import { NsTreePanelData} from '@antv/xflow/es/canvas-node-tree-panel/service'
 export namespace NsTreePanelData {
   export const id = 'TREE_PANEL_DATA';
@@ -20,7 +21,7 @@ export namespace NsTreePanelData {
 export const useTreePanelData = (props: IProps) => {
   const { treeDataService, searchService } = props;
   const { modelService } = useXFlowApp();
-
+  const { flowchartId } = useContext(AppContext);
   /** 使用model */
   const [state, setState, panelModel] = createComponentModel<NsTreePanelData.IState>({
     treeData: [],
@@ -43,7 +44,7 @@ export const useTreePanelData = (props: IProps) => {
       watchChange: async (self) => {
         const graphMetaModel = await MODELS.GRAPH_META.getModel(modelService); //useContext(MODELS.GRAPH_META.id)
         const fetch = async (meta: MODELS.GRAPH_META.IState) => {
-          const listData = await treeDataService(meta, modelService);
+          const listData = await treeDataService(meta, modelService, flowchartId);
           const { treeData, rootNodes } = NodeList2Tree(listData);
           const currentState = await self.getValidValue();
           // 设置默认展开的keys
