@@ -9,7 +9,6 @@
     "test": "lerna run test --stream",
     "lint": "lerna run lint --stream",
     "build": "lerna run build --stream --profile --profile-location=logs/profile/",
-    "flow": "lerna run build --stream --profile --scope=@ant-design/flowchart",
     "site:build": "lerna run site:build --stream --scope=@ant-design/charts-site",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
