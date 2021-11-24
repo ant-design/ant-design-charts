@@ -11,7 +11,7 @@ export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data' 
   data: TreeGraphData;
   /** 展开层级，默认 100 */
   level?: number;
-  nodeCfg: CommonConfig['nodeCfg'] & {
+  nodeCfg?: CommonConfig['nodeCfg'] & {
     /** 点击展开时异步获取数据 */
     getChildren?: (nodeCfg: NodeConfig) => TreeGraphData['children'];
   };

@@ -11,7 +11,17 @@ export interface AreaMapConfig extends L7PlotConfig<AreaOptions, Area>, Containe
 }
 
 const AreaMap = forwardRef((props: AreaMapConfig, ref) => {
-  const { chartRef, containerStyle, className, loading, loadingTemplate, errorTemplate, ...config } = props;
+  const {
+    chartRef,
+    containerStyle = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...config
+  } = props;
   const { plotRef, containerRef } = useL7Plot<AreaOptions, Area>(Area, config);
 
   useEffect(() => {

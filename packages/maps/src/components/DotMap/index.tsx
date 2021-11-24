@@ -11,7 +11,17 @@ export interface DotMapConfig extends L7PlotConfig<DotOptions, Dot>, ContainerCo
 }
 
 const DotMap = forwardRef((props: DotMapConfig, ref) => {
-  const { chartRef, containerStyle, className, loading, loadingTemplate, errorTemplate, ...config } = props;
+  const {
+    chartRef,
+    containerStyle = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...config
+  } = props;
   const { plotRef, containerRef } = useL7Plot<DotOptions, Dot>(Dot, config);
 
   useEffect(() => {

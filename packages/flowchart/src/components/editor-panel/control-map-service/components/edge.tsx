@@ -4,8 +4,6 @@ import { FormWrapper } from '../../form-wrapper';
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields';
 import { prefix } from './constants';
 
-import './style.less';
-
 export type MarkerCfg = {
   width?: number;
   height?: number;

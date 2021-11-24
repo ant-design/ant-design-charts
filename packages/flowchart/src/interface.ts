@@ -30,7 +30,7 @@ export interface CustomNode {
   /** 节点 React 组件 */
   component: NsGraph.INodeRender<any>;
   /** popover 组件 */
-  popover?: React.Component<any>;
+  popover?: React.Component<any> | React.FC<any>;
   /** 默认标签 */
   label?: string;
   /** 默认宽度 */
@@ -98,7 +98,9 @@ export interface ToolbarPanelProps extends BaseProps {
   readonly flowchartId?: string;
 }
 
-export type ScaleToolbarPanelProps = BaseProps;
+export interface ScaleToolbarPanelProps extends BaseProps {
+  layout?: IToolbarLayout;
+}
 
 export type ContextMenuPanelProps = Pick<BaseProps, 'show'>;
 

@@ -6,8 +6,6 @@ import { IConfig } from './node';
 
 import { prefix } from './constants';
 
-import './style.less';
-
 const GroupComponent = (props) => {
   const { config, plugin = {} } = props;
 

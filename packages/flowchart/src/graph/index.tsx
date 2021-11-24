@@ -24,7 +24,6 @@ import { appendUtils } from './appendUtils';
 import { useGraphConfig, useGraphHook } from './service';
 import { useKeybindingConfig } from './service/keyBinding';
 
-import './index.less';
 import '@antv/xflow/dist/index.css';
 export const CONTAINER_CLASS = 'flowchart-container-collpase';
 

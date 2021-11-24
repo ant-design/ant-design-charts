@@ -5,8 +5,6 @@ import { InputFiled, ColorPicker, Position, InputNumberFiled, Size } from './fie
 
 import { prefix } from './constants';
 
-import './style.less';
-
 export interface IConfig {
   x?: number;
   y?: number;

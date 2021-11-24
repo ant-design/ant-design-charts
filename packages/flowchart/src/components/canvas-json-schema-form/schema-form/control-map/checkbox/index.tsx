@@ -3,7 +3,6 @@ import { Form, Checkbox as ACheckbox } from 'antd';
 import type { IControlSchema } from '../../../interface';
 import { FormItemWrapper } from '../../common/form-item-wrapper';
 import { renderFormItemExtra } from '../../common/tooltip';
-import './index.less';
 
 interface Props {
   controlSchema: IControlSchema;

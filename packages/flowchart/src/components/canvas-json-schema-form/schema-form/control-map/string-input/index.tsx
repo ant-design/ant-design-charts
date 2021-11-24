@@ -3,7 +3,6 @@ import { Input, Form } from 'antd';
 import type { IControlSchema } from '../../../interface';
 import { renderFormItemExtra } from '../../common/tooltip';
 import { FormItemWrapper } from '../../common/form-item-wrapper';
-import './index.less';
 
 interface Props {
   controlSchema: IControlSchema;

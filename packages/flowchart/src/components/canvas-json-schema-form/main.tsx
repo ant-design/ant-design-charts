@@ -8,8 +8,6 @@ export { FormItemWrapper } from './schema-form';
 export { executeJsonSchemaFormCommand } from './service';
 import { WorkspacePanel } from '@antv/xflow';
 
-import './style/index';
-
 /** useFormPanelData获取数据 */
 export const JsonSchemaFormMain: React.FC<IProps> = (props) => {
   const { prefixClz } = props;
