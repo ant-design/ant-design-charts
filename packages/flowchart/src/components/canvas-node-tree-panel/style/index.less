@@ -4,7 +4,7 @@
 @body-bg: #fff;
 
 @dnd-panel-prefix-cls: ~'xflow-node-panel';
-@dnd-panel-prefix-container: ~'flowchart-node-panel-collpase';
+@dnd-panel-prefix-collpase-container: ~'flowchart-node-panel-collpase';
 
 .node() {
   grid-gap: 5px;
@@ -53,7 +53,7 @@
   }
 }
 
-.@{dnd-panel-prefix-container} {
+.@{dnd-panel-prefix-collpase-container} {
   transition: left 0.5s;
 
   &-wrapper {

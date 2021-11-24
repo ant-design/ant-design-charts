@@ -22,7 +22,7 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
         await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
           nodeConfig: {
             ...currentNode.data,
-            ...currentNode.getSize(),
+            ...currentNode.getSize?.(),
             ...currentNode.getPosition?.(),
           },
         });
@@ -81,7 +81,7 @@ export const changePortsVisible = (visible: boolean, e?: any) => {
   const containers = getContainer(e);
   Array.from(containers).forEach((container: HTMLDivElement) => {
     const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGAElement>;
-    const graph = getGraphInstance(container.getAttribute('data-flowchartId'));
+    const graph = getGraphInstance(container.getAttribute('data-flowchart-id'));
     if (!graph) {
       return;
     }
@@ -91,26 +91,6 @@ export const changePortsVisible = (visible: boolean, e?: any) => {
       ports[i].style.visibility = !isSelectedNode && visible ? 'visible' : 'hidden';
     }
   });
-};
-
-/** 高亮边 */
-export const setEdgeSelected = (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
-  const { edge } = e;
-  if (!edge) {
-    return;
-  }
-  // cmds.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
-  //   edgeConfig: {
-  //     ...get(edge, 'data'),
-  //     attrs: {
-  //       ...get(edge, 'data.attrs'),
-  //       line: {
-  //         ...get(edge, 'data.attrs.line'),
-  //         stroke: '#1890ff',
-  //       },
-  //     },
-  //   },
-  // });
 };
 
 // 添加辅助工具

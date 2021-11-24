@@ -25,7 +25,6 @@ import { useGraphConfig, useGraphHook } from './service';
 import { useKeybindingConfig } from './service/keyBinding';
 
 import '@antv/xflow/dist/index.css';
-export const CONTAINER_CLASS = 'flowchart-container-collpase';
 
 const Flowchart: React.FC<FlowchartProps> = (props) => {
   const {
@@ -91,7 +90,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     <AppContext.Provider value={{ theme: Theme[theme], flowchartId: uuidv4Ref.current }}>
       <div
         className="xflow-canvas-container"
-        data-flowchartId={uuidv4Ref.current}
+        data-flowchart-id={uuidv4Ref.current}
         ref={container}
         style={{ width: '100%', height: '100%', backgroundColor: '#fff' }}
       >
