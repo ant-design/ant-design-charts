@@ -63,9 +63,8 @@ const getPorts = (position = ['top', 'right', 'bottom', 'left']) => {
   };
 };
 
-export const getRegisterNode = () => {
-  const { registerNode } = (getProps('nodePanelProps') as FlowchartProps['nodePanelProps']) ?? {};
-
+export const getRegisterNode = (flowchartId: string) => {
+  const { registerNode } = (getProps(flowchartId, 'nodePanelProps') as FlowchartProps['nodePanelProps']) ?? {};
   return (registerNode?.nodes || []).map((item) => {
     const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports } = item;
     const id = uuidv4(); // 暂不使用上层数据
@@ -85,8 +84,8 @@ export const getRegisterNode = () => {
   });
 };
 
-export const treeDataService: NsNodeTreePanel.ITreeDataService = async () => {
-  const customNodes = getRegisterNode();
+export const treeDataService = async (meta, modelService, flowchartId) => {
+  const customNodes = getRegisterNode(flowchartId);
 
   return [
     ...customNodes,

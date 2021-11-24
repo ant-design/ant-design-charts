@@ -19,10 +19,8 @@ export const appendUtils = (graph: IGraph) => {
     }
   };
 
-  if (x6Graph.__proto__) {
-    x6Graph.__proto__.updateNodeKeyById = updateNodeKeyById;
-    x6Graph.__proto__.getGraphData = getGraphData;
-  }
+  x6Graph.updateNodeKeyById = updateNodeKeyById;
+  x6Graph.getGraphData = getGraphData;
 
   return x6Graph;
 };

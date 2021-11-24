@@ -1,6 +1,6 @@
 import { XFlowNodeCommands, IModelService, IGraphCommandService, XFlowEdgeCommands } from '@antv/xflow';
 import { get } from 'lodash';
-import { onConfigChange, getGraphInstance } from '../../util';
+import { onConfigChange, getGraphInstance, getFlowchartId } from '../../util';
 import { Node } from '@antv/x6';
 
 /**
@@ -11,11 +11,11 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
   if (!node) {
     return;
   }
-
+  const flowchartId = getFlowchartId(e);
   const { data } = node;
   // 更新组内元素
   if (data?.groupChildren) {
-    const x6Graph = getGraphInstance();
+    const x6Graph = getGraphInstance(flowchartId);
     data?.groupChildren.forEach(async (id: string) => {
       const currentNode = x6Graph.getCellById(id) as Node;
       if (currentNode) {
@@ -37,7 +37,7 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
   await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
     nodeConfig,
   });
-  onConfigChange({ type: 'move:node', config: nodeConfig });
+  onConfigChange({ type: 'move:node', config: nodeConfig }, flowchartId);
 };
 
 /**
@@ -48,6 +48,7 @@ export const resizeNode = async (e: any, cmds: IGraphCommandService, ctx: IModel
   if (!node) {
     return;
   }
+  const flowchartId = getFlowchartId(e);
   const nodeConfig = {
     ...node.data,
     ...node.getPosition(),
@@ -56,17 +57,17 @@ export const resizeNode = async (e: any, cmds: IGraphCommandService, ctx: IModel
   await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
     nodeConfig,
   });
-  onConfigChange({ type: 'resize:node', config: nodeConfig });
+  onConfigChange({ type: 'resize:node', config: nodeConfig }, flowchartId);
 };
 
 const getContainer = (e) => {
   let currentNode = e?.e?.currentTarget;
   if (!currentNode) {
-    return document.getElementsByClassName('xflow-canvas-root');
+    return document.getElementsByClassName('xflow-canvas-container');
   }
   let containter = null;
   while (!containter) {
-    const current = currentNode.getElementsByClassName('xflow-canvas-root');
+    const current = currentNode.getElementsByClassName('xflow-canvas-container');
     if (current?.length > 0) {
       containter = current;
     }
@@ -80,7 +81,10 @@ export const changePortsVisible = (visible: boolean, e?: any) => {
   const containers = getContainer(e);
   Array.from(containers).forEach((container: HTMLDivElement) => {
     const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGAElement>;
-    const graph = getGraphInstance();
+    const graph = getGraphInstance(container.getAttribute('data-flowchartId'));
+    if (!graph) {
+      return;
+    }
     // 选中中节点时不展示链接桩
     const isSelectedNode = graph.getSelectedCells()?.[0]?.isNode();
     for (let i = 0, len = ports.length; i < len; i = i + 1) {

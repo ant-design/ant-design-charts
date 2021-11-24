@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classnames from 'classnames';
 import { Toolbar } from '@antv/x6-react-components';
-
+import AppContext from '../../../context';
 import type { IToolbarGroupOptions, IToolbarLayout } from '@antv/xflow-core';
 import { uuidv4 } from '@antv/xflow-core';
 import { ToolbarItem } from './toolbar-item';
@@ -15,8 +15,8 @@ export interface IProps {
 
 export const ToolbarGroup: React.FC<IProps> = (props) => {
   const { group, layout } = props;
-
-  const [fullscreen, toggleFullscreen] = useFullscreen(getContainer());
+  const { flowchartId } = useContext(AppContext);
+  const [fullscreen, toggleFullscreen] = useFullscreen(getContainer(flowchartId));
   const groupKey = React.useMemo(() => {
     return group.name || uuidv4();
   }, [group.name]);

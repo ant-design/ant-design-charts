@@ -1,14 +1,14 @@
-@import (once) '~@antv/xflow-core/es/style/themes/index.less';
 @import (once) '~@antv/x6-react-components/es/toolbar/style/index.less';
+
+@xflow-prefix: 'flowchart';
 
 @xflow-toolbar-prefix-cls: ~'@{xflow-prefix}-toolbar';
 
 .@{xflow-toolbar-prefix-cls} {
-  position: absolute;
   z-index: 99;
-  display: flex;
   height: 40px;
   background: #fff;
+
   &-root {
     display: flex;
     justify-content: space-between;
@@ -28,8 +28,6 @@
     }
   }
   &.vertical {
-    right: unset;
-    left: unset;
     width: 32px;
     height: auto;
     border: 1px solid rgba(0, 0, 0, 0.04);
@@ -51,8 +49,6 @@
   }
 
   &.horizontal {
-    right: unset;
-    left: unset;
     .@{x6-prefix}-toolbar.@{x6-prefix}-toolbar-hover-effect {
       height: 40px;
       line-height: 40px;
