@@ -8,8 +8,6 @@ import { usePanelLyaoutStyle } from './utils';
 import { useTreePanelData } from './service';
 import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT } from './constants';
 
-import './style/index';
-
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
   const { prefixClz, position = { width: 240, top: 0, bottom: 0, left: 0 }, showHeader = true, ...rest } = props;
   const { width = 200 } = position;

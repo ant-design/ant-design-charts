@@ -6,7 +6,6 @@ import { JsonSchemaForm } from '../canvas-json-schema-form';
 import { defaultFormSchemaService } from './form-schema-service';
 import { defaultControlMapService } from './control-map-service';
 import { FlowchartProps } from '../../interface';
-import './style.less';
 
 export const CONTAINER_CLASS = 'flowchart-editor-panel-collpase';
 

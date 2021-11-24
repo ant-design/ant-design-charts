@@ -11,7 +11,17 @@ export interface HeatMapConfig extends L7PlotConfig<HeatmapOptions, Heatmap>, Co
 }
 
 const HeatMap = forwardRef((props: HeatMapConfig, ref) => {
-  const { chartRef, containerStyle, className, loading, loadingTemplate, errorTemplate, ...config } = props;
+  const {
+    chartRef,
+    containerStyle = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...config
+  } = props;
   const { plotRef, containerRef } = useL7Plot<HeatmapOptions, Heatmap>(Heatmap, config);
 
   useEffect(() => {

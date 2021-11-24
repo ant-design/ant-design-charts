@@ -11,7 +11,17 @@ export interface HexbinMapConfig extends L7PlotConfig<HexbinOptions, Hexbin>, Co
 }
 
 const HexbinMap = forwardRef((props: HexbinMapConfig, ref) => {
-  const { chartRef, containerStyle, className, loading, loadingTemplate, errorTemplate, ...config } = props;
+  const {
+    chartRef,
+    containerStyle = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...config
+  } = props;
   const { plotRef, containerRef } = useL7Plot<HexbinOptions, Hexbin>(Hexbin, config);
 
   useEffect(() => {

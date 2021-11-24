@@ -11,7 +11,17 @@ export interface ChoroplethMapConfig extends L7PlotConfig<ChoroplethOptions, Cho
 }
 
 const ChoroplethMap = forwardRef((props: ChoroplethMapConfig, ref) => {
-  const { chartRef, containerStyle, className, loading, loadingTemplate, errorTemplate, ...config } = props;
+  const {
+    chartRef,
+    containerStyle = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...config
+  } = props;
   const { plotRef, containerRef } = useL7Plot<ChoroplethOptions, Choropleth>(Choropleth, config);
 
   useEffect(() => {

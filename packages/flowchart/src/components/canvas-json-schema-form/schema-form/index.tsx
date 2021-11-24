@@ -8,8 +8,6 @@ import { xflowDefaultControls, makeControlMap, getControlFromMap } from './contr
 import type { IControlProps, IAfterUpdatingCallback, ISchema, ITab } from '../interface';
 export { FormItemWrapper } from './common/form-item-wrapper';
 
-import './index.less';
-
 interface Props extends FormProps {
   schema: ISchema;
   className?: string;

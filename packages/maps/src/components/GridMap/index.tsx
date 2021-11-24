@@ -11,7 +11,17 @@ export interface GridMapConfig extends L7PlotConfig<GridOptions, Grid>, Containe
 }
 
 const GridMap = forwardRef((props: GridMapConfig, ref) => {
-  const { chartRef, containerStyle, className, loading, loadingTemplate, errorTemplate, ...config } = props;
+  const {
+    chartRef,
+    containerStyle = {
+      height: 'inherit',
+    },
+    className,
+    loading,
+    loadingTemplate,
+    errorTemplate,
+    ...config
+  } = props;
   const { plotRef, containerRef } = useL7Plot<GridOptions, Grid>(Grid, config);
 
   useEffect(() => {
