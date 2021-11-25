@@ -8,14 +8,14 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 process.env.NODE_ENV = 'production';
 
-const getWebpackConfig = (name) => {
+const getWebpackConfig = (name, library) => {
   return {
     entry: {
       [name]: './src/index.ts',
     },
     output: {
       filename: '[name].min.js',
-      library: '[name]',
+      library: library,
       libraryTarget: 'umd',
       path: resolveApp('dist/'),
     },

@@ -1,3 +1,3 @@
 const { getWebpackConfig } = require('../../config/webpack');
 
-module.exports = getWebpackConfig('plots');
+module.exports = getWebpackConfig('plots', 'Plots');
