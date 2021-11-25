@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/flowchart",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Flowchart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -51,7 +51,7 @@
     "react": ">=16.8.4",
     "react-dom": ">=16.8.4"
   },
-  "sideEffects": true,
+  "sideEffects": false,
   "license": "MIT",
   "devDependencies": {
     "antd": "^4.16.13",
