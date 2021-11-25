@@ -1,3 +1,13 @@
+## 1.3.1
+
+`2021-11-26`
+
+- 🆕 CDN 引入变量重命名
+ - window.charts -> window.Charts
+ - window.plots -> window.Plots
+ - window.maps -> window.Maps
+ - window.graphs -> window.Graphs
+
 ## 1.3.0
 
 `2021-11-25`
