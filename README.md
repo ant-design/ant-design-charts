@@ -20,18 +20,18 @@ A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), [G6]
 
 </div>
 
-## 案例
+## Case
 
-### 统计图表
+### Statistical charts
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800"/>
 
-### 流程图
+### Flowchart
 <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*ixVAQrEoCTcAAAAAAAAAAAAAARQnAQ />
 
-### 地理可视化
+### Maps
 <img src="https://gw.alipayobjects.com/zos/antfincdn/xX10CNIu4b/8a064058-518e-4860-af54-58ca17cae985.png" />
 
-### 关系图
+### Relation Graphs
 <img src="https://gw.alipayobjects.com/zos/antfincdn/4wquuBREI7/2f4acfc5-6e14-4972-abc1-ce9ee1ff5c07.png" />
 
 
