@@ -65,7 +65,8 @@
   },
   "resolutions": {
     "**/@typescript-eslint/eslint-plugin": "^4.1.1",
-    "**/@typescript-eslint/parser": "^4.1.1"
+    "**/@typescript-eslint/parser": "^4.1.1",
+    "monaco-editor": "0.21.3"
   },
   "gitHooks": {
     "pre-commit": "pretty-quick --staged"

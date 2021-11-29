@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/plots",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "G2Plot Statistical chart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
-    "@antv/util": "^2.0.9",
     "react-content-loader": "^5.0.4"
   },
   "peerDependencies": {

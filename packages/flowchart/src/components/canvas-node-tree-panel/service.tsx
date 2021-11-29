@@ -5,7 +5,6 @@ import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@antv/xfl
 import { IProps, ITreeNode } from './interface';
 import { TREE_ROOT_ID } from './constants';
 import AppContext from '../../context';
-// import { NsTreePanelData} from '@antv/xflow/es/canvas-node-tree-panel/service'
 export namespace NsTreePanelData {
   export const id = 'TREE_PANEL_DATA';
   export interface IState {

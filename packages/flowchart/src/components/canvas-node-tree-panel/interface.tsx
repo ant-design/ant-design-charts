@@ -1,5 +1,5 @@
 import type { Addon } from '@antv/x6';
-import type { IPosition, NsGraph, IModelService, MODELS, IGraphCommandService } from '@antv/xflow-core';
+import type { IPosition, NsGraph, IModelService, MODELS, IGraphCommandService } from '@antv/xflow';
 import type React from 'react';
 import type { Node as X6Node } from '@antv/x6';
 import { RegisterNode } from '../../interface';

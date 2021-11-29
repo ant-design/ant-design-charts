@@ -38,3 +38,5 @@ export interface ContainerConfig<O extends AllBaseConfig = Options, P extends Pl
   /** 任何其他的图形事件 */
   onEvent?: (chart: P, event: PlotEvent) => void;
 }
+
+export * from './components/interface';
