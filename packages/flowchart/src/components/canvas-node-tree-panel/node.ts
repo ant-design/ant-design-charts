@@ -1,7 +1,6 @@
 import { ReactShape } from '@antv/x6-react-shape';
 import { Node } from '@antv/x6';
-import { X6_NODE_PORTAL_NODE_VIEW } from '@antv/xflow-core/es/constants';
-import { NsGraph } from '@antv/xflow-core/es/interface';
+import { NsGraph } from '@antv/xflow';
 
 export const XFLOW_NODE_SHAPE = 'XFLOW_NODE_SHAPE';
 
@@ -21,7 +20,7 @@ if (Node.registry.exist(XFLOW_NODE_SHAPE)) {
     height: NODE_DEFAULT_HEIGHT,
     shape: XFLOW_NODE_SHAPE,
     // X6_NODE_PORTAL_NODE_VIEW
-    view: X6_NODE_PORTAL_NODE_VIEW,
+    view: 'X6_NODE_PORTAL_NODE_VIEW',
     ports: {
       groups: {
         top: {

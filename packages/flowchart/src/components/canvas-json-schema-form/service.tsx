@@ -1,8 +1,14 @@
 import React from 'react';
-import type { IGraphCommandService, IModelService } from '@antv/xflow-core';
-import { useXFlowApp, DisposableCollection, createComponentModel } from '@antv/xflow-core';
-import type { NsModelServiceCmd } from '@antv/xflow-core';
-import { XFlowModelCommands, Disposable, MODELS } from '@antv/xflow-core';
+import type { IGraphCommandService, IModelService } from '@antv/xflow';
+import {
+  XFlowModelCommands,
+  Disposable,
+  MODELS,
+  useXFlowApp,
+  DisposableCollection,
+  createComponentModel,
+} from '@antv/xflow';
+import type { NsModelServiceCmd } from '@antv/xflow';
 import type { IProps, ISchema, TargetType, TargetData } from './interface';
 import type { Cell } from '@antv/x6';
 

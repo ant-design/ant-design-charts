@@ -30,6 +30,7 @@ import { RadialBarConfig } from './radialBar';
 import { SankeyConfig } from './sankey';
 import { MixConfig } from './mix';
 import { BidirectionalBarConfig } from './bidirectionalBar';
+import { CirclePackingConfig } from './circlePacking';
 
 export {
   AreaConfig,
@@ -63,6 +64,7 @@ export {
   BidirectionalBarConfig,
   SankeyConfig,
   MixConfig,
+  CirclePackingConfig,
   Plot,
   Options,
 };

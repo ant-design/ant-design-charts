@@ -1,12 +1,11 @@
 import React from 'react';
 import type { IProps, IPanelProps, ITriggerUpdate } from './interface';
-import { useXflowPrefixCls } from '@antv/xflow-core';
+import { WorkspacePanel, useXflowPrefixCls } from '@antv/xflow';
 import { PanelBody } from './panel-body';
 import { usePanelLyaoutStyle } from './utils';
 import { useJsonSchemaFormModel } from './service';
 export { FormItemWrapper } from './schema-form';
 export { executeJsonSchemaFormCommand } from './service';
-import { WorkspacePanel } from '@antv/xflow';
 
 /** useFormPanelData获取数据 */
 export const JsonSchemaFormMain: React.FC<IProps> = (props) => {

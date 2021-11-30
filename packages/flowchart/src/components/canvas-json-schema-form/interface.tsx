@@ -1,4 +1,4 @@
-import type { IPosition, NsGraph, IModelService, IGraphCommandService } from '@antv/xflow-core';
+import type { IPosition, NsGraph, IModelService, IGraphCommandService } from '@antv/xflow';
 import type { FormInstance } from 'antd';
 import type React from 'react';
 import type { Cell } from '@antv/x6';
