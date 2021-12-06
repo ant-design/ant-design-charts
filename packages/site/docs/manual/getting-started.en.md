@@ -25,6 +25,19 @@ Related subpackages
 - Flowchart: `@ant-design/flowchart`
 - Relation Graphs: `@ant-design/graphs`
 
+
+In addition to 'react' and 'react-dom', the flowchart also relies on 'antd', '@ant-design/icons' and 'lodash'. Ensure that it has been installed when using it. At the same time, remember to import the style file `import "@ant - design/flowchart/dist/index.css"; `
+
+```ts
+"peerDependencies": {
+    "@ant-design/icons": "^4.6.0",
+    "antd": "^4.6.3",
+    "lodash": "^4.17.20",
+    "react": ">=16.8.4",
+    "react-dom": ">=16.8.4"
+  }
+```
+
 ### Import by CDN in browser
 
 You can download the script locally or import it directly from online resources.
@@ -40,7 +53,7 @@ You can download the script locally or import it directly from online resources.
 <script type="text/javascript" src="https://unpkg.com/@ant-design/graphs@latest/dist/graphs.min.js"></script>
 ```
 
-由于 @ant-design/charts 里面 externals 了 `react` 和 `react-dom`，该方式使用时需要在项目里面做同样的操作，通过 CDN 的方式在 `charts.min.js` 之前引入 `react` 和 `react-dom`，不同图表 externals 会有差别。
+Because the @ant-design/ Charts page externals 'react' and 'react-dom', you need to do the same thing in your project when using this method. By using CDN, introduce 'react' and 'react-dom' before 'Charts.min.js'.
 
 ```ts
 // webpack.config.js

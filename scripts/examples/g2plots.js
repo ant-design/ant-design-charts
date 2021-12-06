@@ -41,6 +41,10 @@ const checkDir = (filePath, filename) => {
 
 // md
 const apiGenerator = (filePath, filename) => {
+  /** 官网太大了，去掉不必要文件 */
+  // if (['design.en.md', 'design.zh.md'].includes(filename)) {
+  //   return;
+  // }
   const writePath = checkDir(filePath, filename);
   // example 目录下不会有示例代码，不需要解析
   fs.writeFileSync(

@@ -24,26 +24,46 @@ order: 3
 
 热力地图的所有配置项，继承自 [Plot options](/zh/docs/map-api/plot-api#options)。
 
+### `options.`source
+
+`SourceOptions` required
+
+数据配置，详见 [Source](/zh/docs/map-api/source)。
+
+```js
+{
+  source: {
+    data: [{ lng: 104.101, lat: 30.649, c: 'red', t: 20, n: 'chengdu' }],
+    parser: { type: 'json', x: 'lng', y: 'lat' }
+  },
+}
+```
+
+
 ### `options.`shape
 
 `string` optional default: `'heatmap'`
 
-元素形状，分别支持 2D 与 3D 热力：
+热力模式支持 2D 与 3D 热力：
 
 *   heatmap
 *   heatmap3D
 
 ```js
-{
-  shape: 'heatmap';
-}
+{ shape: 'heatmap', }
 ```
+
 
 ### `options.`size
 
-`object|Function` optional default: `{ value: [0, 1] }`
+`SizeAttr` required
 
-热力大小。
+热力大小配置，SizeAttr 配置如下：
+
+| 属性  | 描述                 | 类型                 | 默认值   | 是否必填 |
+| ----- | -------------------- | -------------------- | -------- | -------- |
+| field | 热力大小映射字段     | `string`             |          | required |
+| value | 热力大小数据映射区间 | `number[]｜Function` | `[0, 1]` | optional |
 
 ```js
 {
@@ -53,42 +73,31 @@ order: 3
   },
   size: {
     field: 't',
-    value: [0, 1]
-  };
+    value: [0, 1],
+  },
 }
 ```
-
-#### `size.`field
-
-`string` required
-
-热力图权重字段。
-
-#### `size.`value
-
-`number[]|Function` optional default: `[0, 1]`
-
-热力数据映射区间。
-
-#### `size.`scale
-
-`ScaleConfig` optional default: `{type: 'linear'}`
-
-关联字段的映射 scale 类型，有以下 scale 类型：
-
-*   linear：线性
-*   power：指数
-*   log：对数
-*   quantile：等分位
-*   quantize：等间距
-*   cat：枚举
 
 
 ### `options.`style
 
-`object` optional
+`HeatmapLayerStyleOptions` optional
 
-热力全局样式。
+热力样式，HeatmapLayerStyleOptions 配置如下：
+
+| 属性       | 描述               | 类型        | 默认值 | 是否必填 |
+| ---------- | ------------------ | ----------- | ------ | -------- |
+| intensity  | 全局热力权重       | `number`    | `3`    | optional |
+| radius     | 热力半径，单位像素 | `number`    | `20`   | optional |
+| opacity    | 透明度             | `number`    | `1`    | optional |
+| colorsRamp | 热力色带           | `ColorRamp` |        | optional |
+
+热力色带，ColorRamp 配置如下：
+
+| 属性     | 描述       | 类型     | 默认值 | 是否必填 |
+| -------- | ---------- | -------- | ------ | -------- |
+| color    | 颜色       | `string` |        | required |
+| position | 热力映射值 | `number` |        | required |
 
 ```js
 {
@@ -108,34 +117,6 @@ order: 3
 }
 ```
 
-#### `style.`intensity
-
-`number` optional default: `3`
-
-全局热力权重。
-
-#### `style.`radius
-
-`number` optional default: `20`
-
-热力半径，单位像素。
-
-#### `style.`opacity
-
-`number` optional default: `1`
-
-透明度。
-
-#### `style.`colorsRamp
-
-`array` optional
-
-热力色带。
-
-params:
-
-*   color: `string` 颜色
-*   position: `number` 数据
 
 ### `options.`label
 
@@ -180,13 +161,13 @@ params:
 
 ### heatmapLayer
 
-`PlotLayer`
+`HeatmapLayer`
 
 热力图层实例。
 
 ### labelLayer
 
-`undefined|PlotLayer`
+`undefined|TextLayer`
 
 数据标签图层实例。
 

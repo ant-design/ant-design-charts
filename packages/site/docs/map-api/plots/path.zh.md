@@ -24,23 +24,11 @@ order: 6
 
 路径图的所有配置项，继承自 [Plot options](/zh/docs/map-api/plot-api#options)。
 
-### `options.`color
+### `options.`source
 
-`string|object|Function` optional default: `'#5FD3A6'`
+`SourceOptions` required
 
-元素颜色。
-
-```js
-{
-  color: 'red',
-}
-```
-
-#### `color.`field
-
-`string` optional
-
-元素颜色值映射关联字段。
+数据配置，详见 [Source](/zh/docs/map-api/source)。
 
 ```js
 {
@@ -52,10 +40,30 @@ order: 6
         n: 'chengdu'
       }],
     parser: { type: 'json', coordinates: 'path', }
-  },
-  color: {
-    fied: 'c'
   }
+}
+```
+
+
+### `options.`color
+
+`string|object|Function` optional default: `'#5FD3A6'`
+
+元素颜色。
+
+```js
+{ color: 'red', }
+```
+
+#### `color.`field
+
+`string` optional
+
+元素颜色值映射关联字段。
+
+```js
+{
+  color: { fied: 'c', }
 }
 ```
 
@@ -78,7 +86,7 @@ order: 6
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -94,8 +102,8 @@ order: 6
 {
   color: {
     fied: 't',
-    value: ['blue', 'red'],
-    scale: {type: 'quantile'}
+    value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
+    scale: { type: 'quantile' }
   }
 }
 ```
@@ -108,9 +116,7 @@ order: 6
 元素大小。
 
 ```js
-{
-  size: 12,
-}
+{ size: 12, }
 ```
 
 #### `size.`field
@@ -121,18 +127,7 @@ order: 6
 
 ```js
 {
-  source: {
-    data: [{
-        path: [[58.00, 32.84],[85.7, 25.161],[101.95, 41.77],[114.96, 39.63],[117.421, 28.61]],
-        s: 2,
-        t: 3,
-        n: 'chengdu'
-      }],
-    parser: { type: 'json', coordinates: 'path', }
-  },
-  size: {
-    fied: 's';
-  }
+  size: { fied: 't', }
 }
 ```
 
@@ -155,7 +150,7 @@ order: 6
 
 #### `size.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -172,7 +167,7 @@ order: 6
   size: {
     fied: 't',
     value: [12, 15],
-    scale: {type: 'quantile'}
+    scale: { type: 'quantile' },
   }
 }
 ```
@@ -180,9 +175,17 @@ order: 6
 
 ### `options.`style
 
-`object` optional
+`LinesLayerStyleOptions` optional
 
-全局样式。
+元素样，LinesLayerStyleOptions 配置如下：
+
+| 属性      | 描述                   | 类型               | 默认值  | 是否必填 |
+| --------- | ---------------------- | ------------------ | ------- | -------- |
+| opacity   | 透明度                 | `number`           | `1`     | optional |
+| lineType  | 线类型，支持实线与虚线 | `‘solid’｜'dash'`  | ‘solid’ | optional |
+| dashArray | 虚线间隔               | `[number, number]` |         | optional |
+
+> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
 
 ```js
 {
@@ -193,24 +196,6 @@ order: 6
   }
 }
 ```
-
-#### `style.`opacity
-
-`number` optional
-
-线透明度。
-
-#### `style.`lineType
-
-`‘solid’｜'dash'` optional ‘solid’
-
-线类型，支持实线与虚线。
-
-#### `style.`dashArray
-
-`[number, number]` optional
-
-虚线间隔，虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
 
 
 ### `options.`tooltip
@@ -243,14 +228,13 @@ order: 6
 
 地图图层列表控件，详见 [LayerMenu](/zh/docs/map-api/components/layerMenu)。
 
-
 ## 二、属性
 
 继承 [Plot 属性](/zh/docs/map-api/plot-api#二、属性)。
 
 ### pathLayer
 
-`PlotLayer`
+`PathLayer`
 
 路径图层实例。
 

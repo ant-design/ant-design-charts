@@ -1,4 +1,4 @@
-const { version, homepage, repository } = require('../charts/package.json');
+const { version, repository } = require('../charts/package.json');
 
 module.exports = {
   plugins: [
@@ -12,8 +12,8 @@ module.exports = {
   // Customize your site metadata:
   siteMetadata: {
     title: 'Ant Design Charts',
-    description: 'A collection of charts made with the Grammar of Graphics',
-    siteUrl: homepage,
+    description: 'AntV react component library',
+    siteUrl: 'https://charts.ant.design',
     githubUrl: repository.url,
     showAPIDoc: true, // 是否在demo页展示API文档
     isAntVSite: false,
@@ -28,6 +28,14 @@ module.exports = {
           zh: '教程',
           en: 'Manual',
         },
+        order: 3,
+      },
+      {
+        slug: 'examples',
+        title: {
+          zh: '图表示例',
+          en: 'Examples',
+        },
         order: 2,
       },
       {
@@ -39,10 +47,10 @@ module.exports = {
         order: 1,
       },
       {
-        slug: 'examples',
+        slug: 'docs/map-api',
         title: {
-          zh: '图表示例',
-          en: 'Examples',
+          zh: 'API-地图',
+          en: 'API-Map',
         },
         order: 0,
       },
@@ -54,7 +62,7 @@ module.exports = {
           zh: '通用配置-统计图表',
           en: 'Common Configuration Statistical Charts',
         },
-        order: 7,
+        order: 1,
       },
       {
         slug: 'api/common-graph',
@@ -62,7 +70,31 @@ module.exports = {
           zh: '通用配置-关系图',
           en: 'Common Configuration Relation Graph',
         },
-        order: 7,
+        order: 2,
+      },
+      {
+        slug: 'map-api/plots',
+        title: {
+          zh: '基础图表 - Plots',
+          en: 'Plots',
+        },
+        order: 2,
+      },
+      {
+        slug: 'map-api/components',
+        title: {
+          zh: '组件 - Components',
+          en: 'Components',
+        },
+        order: 3,
+      },
+      {
+        slug: 'map-api/layers',
+        title: {
+          zh: '图层 - Layers',
+          en: 'Layers',
+        },
+        order: 5,
       },
     ],
     examples: [

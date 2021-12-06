@@ -102,6 +102,38 @@ plot.update(options: Partial<PlotLayerOptions>);
 plot.changeData(source: SourceOptions);
 ```
 
+### setIndex
+
+设置图层层叠值。
+
+```js
+plot.setIndex();
+```
+
+### setBlend
+
+设置图层的元素混合配置。
+
+```js
+plot.setBlend();
+```
+
+### setMinZoom
+
+设置图层可见最小缩放层级。
+
+```js
+plot.setMinZoom();
+```
+
+### setMaxZoom
+
+设置图层可见最大缩放层级。
+
+```js
+plot.setMaxZoom();
+```
+
 ### show
 
 显示图层。

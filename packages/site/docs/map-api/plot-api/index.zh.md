@@ -116,6 +116,7 @@ constructor(container: string | HTMLDivElement, options: PlotOptions)
 }
 ```
 
+
 ### `options.`antialias
 
 `boolean` optional default: `true`
@@ -145,64 +146,6 @@ constructor(container: string | HTMLDivElement, options: PlotOptions)
 `bool` optional default: `false`
 
 图层完成初始化之后，地图是否自动缩放到图层的数据边界范围。
-
-### `options.`state
-
-`StateAttribute` optional
-
-元素交互反馈效果。
-
-#### `state.`active
-
-`boolean｜ActiveOption` optional default: `false`
-
-标签 mousehover 高亮效果，开启 mousehover 元素高亮效果：
-
-```js
-{
-  state: {
-    active: true;
-  }
-}
-```
-
-开启 mousehover 元素高亮效果并自定义设置高亮颜色：
-
-```js
-{
-  state: {
-    active: {
-      color: 'red';
-    }
-  }
-}
-```
-
-#### `state.`select
-
-`boolean｜ActiveOption` optional default: `false`
-
-元素 mouseclick 选中高亮效果，开启 mouseclick 元素高亮效果：
-
-```js
-{
-  state: {
-    select: true;
-  }
-}
-```
-
-开启 mousehover 元素高亮效果并自定义设置高亮颜色：
-
-```js
-{
-  state: {
-    select: {
-      color: 'red';
-    }
-  }
-}
-```
 
 ### `options.`theme
 
@@ -257,43 +200,43 @@ constructor(container: string | HTMLDivElement, options: PlotOptions)
 
 `HTMLDivElement`
 
-当前图表渲染的 DOM 容器。
+图表渲染的 DOM 容器。
 
 ### options
 
 `PlotOptions`
 
-当前图表的所有配置项。
+图表的所有配置项。
 
 ### scene
 
 `Scene`
 
-当前图表的地图场景实例。
+图表的地图场景实例。
 
 ### type
 
 `string`
 
-当前图表所属类型。
+图表所属类型。
 
 ### layerGroup
 
 `LayerGroup`
 
-当前图表的图层组。
+图表的图层组。
 
 ### sceneLoaded
 
 `boolean`
 
-当前图表的地图场景是否加载完成。
+图表的地图场景是否加载完成。
 
 ### layersLoaded
 
 `boolean`
 
-当前图表的图层是否加载完成。
+图表的图层是否加载完成。
 
 ### zoomControl
 
@@ -622,7 +565,7 @@ params:
 *   image: `HTMLImageElement|File|string`
 
 ```js
-import { registerImage } from '@ant-desing/charts';
+import { registerImage } from '@ant-design/charts';
 
 registerImage('01', 'https://l7plot.antv.vision/xxx.svg');
 ```
@@ -638,7 +581,7 @@ params:
     *   image: `HTMLImageElement|File|string`
 
 ```js
-import { registerImages } from '@ant-desing/charts';
+import { registerImages } from '@ant-design/charts';
 
 const images = [{ id: '01', image: 'https://l7plot.antv.vision/xxx.svg' }];
 registerImages(images);
@@ -656,7 +599,7 @@ params:
 *   fontPath: `string`
 
 ```js
-import { registerFontFace } from '@ant-desing/charts';
+import { registerFontFace } from '@ant-design/charts';
 
 registerFontFace('iconfont', 'https://l7plot.antv.vision/xxx.woff2');
 ```
@@ -673,7 +616,7 @@ params:
 *   fontUnicode: `string`
 
 ```js
-import { registerIconFont } from '@ant-desing/charts';
+import { registerIconFont } from '@ant-design/charts';
 
 registerIconFont('icon1', '&#xe64b;');
 ```
@@ -689,7 +632,7 @@ params:
     *   fontUnicode: `string`
 
 ```js
-import { registerIconFonts } from '@ant-desing/charts';
+import { registerIconFonts } from '@ant-design/charts';
 
 const iconFonts = [{ name: 'icon1', fontUnicode: '&#xe64b;' }];
 registerIconFonts(iconFonts);

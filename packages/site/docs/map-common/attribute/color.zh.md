@@ -5,9 +5,7 @@
 元素颜色。
 
 ```js
-{
-  color: 'red',
-}
+{ color: 'red', }
 ```
 
 #### `color.`field
@@ -18,11 +16,7 @@
 
 ```js
 {
-  source: {
-    data: [{ lng: 104.101, lat: 30.649, c: 'red', t: 20, n: 'chengdu' }],
-    parser: { type: 'json', x: 'lng', y: 'lat' }
-  },
-  color: { fied: 'c' }
+  color: { fied: 'c', }
 }
 ```
 
@@ -45,7 +39,7 @@
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -61,8 +55,8 @@
 {
   color: {
     fied: 't',
-    value: ['blue', 'red'],
-    scale: {type: 'quantile'}
+    value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
+    scale: { type: 'quantile' }
   }
 }
 ```

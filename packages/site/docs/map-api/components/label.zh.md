@@ -1,85 +1,43 @@
 ---
-title: 数据标签 - Lable
+title: 数据标签 - Label
 order: 3
 ---
 
 ## `label.`field
 
-`string` optional default: `''`
+`string` required
 
 映射的标签数据字段。
 
-## `label.`content
+<!-- ## `label.`content
 
 `string` optional default: `''`
 
-标签文本内容。
+标签文本内容。 -->
 
 ## `label.`style
 
 `PointTextLayerStyleOptions` optional
 
-标签字体样式。
+字体样式，PointTextLayerStyleOptions 配置如下：
 
-### `style.`fill
+| 属性             | 描述                                                                      | 类型        | 默认值     | 是否必填 |
+| ---------------- | ------------------------------------------------------------------------- | ----------- | ---------- | -------- |
+| fill             | 字体颜色                                                                  | `ColorAttr` | `'#fff'`   | optional |
+| fontSize         | 字体大小                                                                  | `SizeAttr`  | `12`       | optional |
+| opacity          | 文字透明度                                                                | `number`    | `1`        | optional |
+| stroke           | 文字描边颜色                                                              | `string`    | `'#fff'`   | optional |
+| strokeWidth      | 文字描边宽度                                                              | `number`    | `0`        | optional |
+| strokeOpacity    | 文字描边透明度                                                            | `number`    | `1`        | optional |
+| fontFamily       | 文字字体                                                                  | `string`    |            | optional |
+| fontWeight       | 字体粗细程度                                                              | `string`    |            | optional |
+| textAllowOverlap | 是否允许文本覆盖                                                          | `boolean`   | `false`    | optional |
+| textAnchor       | 文本相对锚点的位置                                                        | `string`    | `'center'` | optional |
+| textOffset       | 文本相对锚点的偏移量                                                      | `number[]`  | `[0, 0]`   | optional |
+| spacing          | 字符间距                                                                  | `number`    | `0`        | optional |
+| padding          | 文本包围盒 padding （水平，垂直），影响碰撞检测结果，避免相邻文本靠的太近 | `number[]`  | `[0, 0]`   | optional |
 
-`string` optional default: `'#fff'`
-
-字体颜色。
-
-### `style.`fontSize
-
-`number` optional default: `12`
-
-字体大小。
-
-### `style.`opacity
-
-`number` optional default: `1`
-
-文字透明度。
-
-### `style.`stroke
-
-`string` optional default: `'#fff'`
-
-文字描边颜色。
-
-### `style.`strokeWidth
-
-`number` optional default: `0`
-
-文字描边宽度。
-
-### `style.`strokeOpacity
-
-`number` optional default: `1`
-
-文字描边透明度。
-
-### `style.`fontFamily
-
-`string` optional
-
-文字字体。
-
-### `style.`fontWeight
-
-`string` optional
-
-文字字体粗细程度。
-
-### `style.`textAllowOverlap
-
-`boolean` optional default: `false`
-
-是否允许文本覆盖。
-
-### `style.`textAnchor
-
-`string` optional default: `'center'`
-
-文本相对锚点的位置，支持以下相对锚点的位置：
+textAnchor 文本相对锚点的位置，支持以下相对锚点的位置：
 
 *   'right'
 *   'top-right'
@@ -96,23 +54,6 @@ order: 3
 *   'top-left'
 *   'center'
 
-### `style.`textOffset
-
-`number[]` optional default: `[0, 0]`
-
-文本相对锚点的偏移量。
-
-### `style.`spacing
-
-`number` optional default: `0`
-
-字符间距。
-
-### `style.`spacing
-
-`number[]` optional default: `[0, 0]`
-
-文本包围盒 padding （水平，垂直），影响碰撞检测结果，避免相邻文本靠的太近。
 
 ## `label.`state
 
@@ -128,9 +69,7 @@ order: 3
 
 ```js
 {
-  state: {
-    active: true;
-  }
+  state: { active: true, }
 }
 ```
 
@@ -139,9 +78,7 @@ order: 3
 ```js
 {
   state: {
-    active: {
-      color: 'red';
-    }
+    active: { color: 'red', }
   }
 }
 ```
@@ -154,9 +91,7 @@ order: 3
 
 ```js
 {
-  state: {
-    select: true;
-  }
+  state: { select: true, }
 }
 ```
 
@@ -165,9 +100,7 @@ order: 3
 ```js
 {
   state: {
-    select: {
-      color: 'red';
-    }
+    select: { color: 'red', }
   }
 }
 ```

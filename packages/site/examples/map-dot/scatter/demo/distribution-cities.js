@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { DotMap } from '@ant-design/charts';
 
 const DemoDotMap = () => {
-  const [data, setData] = useState([]);
+  const [list, setData] = useState([]);
 
   useEffect(() => {
     asyncFetch();
@@ -26,7 +26,7 @@ const DemoDotMap = () => {
       pitch: 0,
     },
     source: {
-      data: data,
+      data: list,
       parser: {
         type: 'json',
         coordinates: 'lnglat',

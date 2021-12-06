@@ -24,6 +24,36 @@ order: 7
 
 连接图的所有配置项，继承自 [Plot options](/zh/docs/map-api/plot-api#options)。
 
+### `options.`source
+
+`SourceOptions` required
+
+数据配置，详见 [Source](/zh/docs/map-api/source)。
+
+```js
+{
+  source: {
+    data: [{ startX: 58.00, startY: 32.84, endX: 85.7, endY: 25.161, c: 'red', t: 20, n: 'chengdu' }],
+    parser: { type: 'json', x: 'startX', y: 'startY', x: 'endX', y: 'endY', }
+  }
+}
+```
+
+### `options.`shape
+
+`string` optional default: `'arc'`
+
+支持 2D 与 3D 弧线及大圆航线：
+
+*   arc
+*   arc3d
+*   greatcircle
+
+```js
+{ shape: 'arc', }
+```
+
+
 ### `options.`color
 
 `string|object|Function` optional default: `'#5FD3A6'`
@@ -31,9 +61,7 @@ order: 7
 元素颜色。
 
 ```js
-{
-  color: 'red',
-}
+{ color: 'red', }
 ```
 
 #### `color.`field
@@ -44,13 +72,7 @@ order: 7
 
 ```js
 {
-  source: {
-    data: [{ startX: 58.00, startY: 32.84, endX: 85.7, endY: 25.161, c: 'red', t: 20, n: 'chengdu' }],
-    parser: { type: 'json', x: 'startX', y: 'startY', x: 'endX', y: 'endY', }
-  },
-  color: {
-    fied: 'c'
-  }
+  color: { fied: 'c', }
 }
 ```
 
@@ -73,7 +95,7 @@ order: 7
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -89,11 +111,12 @@ order: 7
 {
   color: {
     fied: 't',
-    value: ['blue', 'red'],
-    scale: {type: 'quantile'}
+    value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
+    scale: { type: 'quantile' }
   }
 }
 ```
+
 
 ### `options.`size
 
@@ -102,9 +125,7 @@ order: 7
 元素大小。
 
 ```js
-{
-  size: 12,
-}
+{ size: 12, }
 ```
 
 #### `size.`field
@@ -119,9 +140,7 @@ order: 7
     data: [{ startX: 58.00, startY: 32.84, endX: 85.7, endY: 25.161, c: 'red', t: 20, n: 'chengdu' }],
     parser: { type: 'json', x: 'startX', y: 'startY', x: 'endX', y: 'endY', }
   },
-  size: {
-    fied: 's';
-  }
+  size: { fied: 't', }
 }
 ```
 
@@ -144,7 +163,7 @@ order: 7
 
 #### `size.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -161,16 +180,27 @@ order: 7
   size: {
     fied: 't',
     value: [12, 15],
-    scale: {type: 'quantile'}
+    scale: { type: 'quantile' }
   }
 }
 ```
 
+
 ### `options.`style
 
-`object` optional
+`LinesLayerStyleOptions` optional
 
-全局样式。
+元素样式，LinesLayerStyleOptions 配置如下：
+
+| 属性        | 描述                   | 类型               | 默认值  | 是否必填 |
+| ----------- | ---------------------- | ------------------ | ------- | -------- |
+| opacity     | 透明度                 | `number`           | `1`     | optional |
+| lineType    | 线类型，支持实线与虚线 | `‘solid’｜'dash'`  | ‘solid’ | optional |
+| dashArray   | 虚线间隔               | `[number, number]` |         | optional |
+| sourceColor | 渐变起点颜色           | `string`           |         | optional |
+| targetColor | 渐变终点颜色           | `string`           |         | optional |
+
+> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
 
 ```js
 {
@@ -182,35 +212,6 @@ order: 7
 }
 ```
 
-#### `style.`opacity
-
-`number` optional
-
-线透明度。
-
-#### `style.`lineType
-
-`‘solid’｜'dash'` optional ‘solid’
-
-线类型，支持实线与虚线。
-
-#### `style.`dashArray
-
-`[number, number]` optional
-
-虚线间隔，虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
-
-#### `style.`sourceColor
-
-`string` optional
-
-渐变起点颜色。
-
-#### `style.`targetColor
-
-`string` optional
-
-渐变终点颜色。
 
 ### `options.`radiation
 
@@ -227,6 +228,12 @@ order: 7
 }
 ```
 
+#### `radiation.`enabled
+
+`boolean` optional `true`
+
+是否开启辐射圈。
+
 #### `radiation.`color
 
 `string` optional
@@ -238,6 +245,43 @@ order: 7
 `number|object|Function` optional default: `20`
 
 辐射圈大小。
+
+#### `radiation.`animate
+
+`boolean` optional `true`
+
+是否启用辐射圈动画。
+
+
+### `options.`animate
+
+`boolean｜AnimateAttr` optional
+
+水波动画，AnimateAttr 配置如下：
+
+| 属性        | 描述                     | 类型      | 默认值  | 是否必填 |
+| ----------- | ------------------------ | --------- | ------- | -------- |
+| enable      | 是否开启动画             | `boolean` | `false` | optional |
+| interval    | 轨迹间隔, 取值区间 0 - 1 | `number`  |         | optional |
+| duration    | 动画时间，单位秒         | `number`  |         | optional |
+| trailLength | 轨迹长度 取值区间 0 - 1  | `number`  |         | optional |
+
+```js
+{
+  animate: {
+    duration: 4,
+    interval: 0.2,
+    trailLength: 0.1,
+  }
+}
+```
+
+
+### `options.`label
+
+`false｜LabelOptions` optional default: `false`
+
+地图数据标签配置，详见 [Label](/zh/docs/map-api/components/label)。
 
 ### `options.`tooltip
 
@@ -276,9 +320,15 @@ order: 7
 
 ### flowLayer
 
-`PlotLayer`
+`ArcLayer`
 
-流向图层实例。
+弧线图层实例。
+
+### labelLayer
+
+`undefined|TextLayer`
+
+数据标签图层实例。
 
 ## 三、方法
 
@@ -291,6 +341,7 @@ order: 7
 内置图层名称分别为：
 
 *   flowLayer
+*   labelLayer
 
 ```js
 pathMap.on('flowLayer:mousemove', (e: MouseEvent) => void);

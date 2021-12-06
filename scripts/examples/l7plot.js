@@ -1,5 +1,5 @@
 /**
- * 扫描 L7Plot 所有 demo 文件，生成 demo 文档
+ * 扫描 L7Plot 所有 demo 文件，生成 demo
  * eg:
  *  - `node scripts/examples/l7plot.js`
  */

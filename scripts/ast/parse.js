@@ -69,8 +69,14 @@ const reset = () => {
 const excludeFunctionNames = ['formatter'];
 
 const initCode = (code) => {
+  let key = dataKey;
+  let isPattern = false;
+  if (dataKey.endsWith('-Pattern')) {
+    key = key.replace('-Pattern', '');
+    isPattern = true;
+  }
   return `
-  const [${dataKey}, setData] = useState(${isGeojson ? `{ type: 'FeatureCollection', features: [] }` : `[]`});
+  const [${key}, setData] = useState(${isGeojson ? `{ type: 'FeatureCollection', features: [] }` : `[]`});
 
   useEffect(() => {
     asyncFetch();
@@ -79,7 +85,7 @@ const initCode = (code) => {
   const asyncFetch = () => {
     fetch("${fetchUrl}")
       .then((response) => response.json())
-      .then((json) => setData(json))
+      .then((${isPattern ? `{${key}}` : 'json'}) => setData(${isPattern ? key : 'json'}))
       .catch((error) => {
         console.log("fetch data failed", error);
       });
@@ -166,6 +172,12 @@ const parseFile = (params, type) => {
               !excludeFunctionNames.includes(get(node, ['id', 'name']))
             ) {
               dataKey = get(node, ['params', 0, 'name']);
+            } else if (
+              get(node, ['params', 0, 'type']) === 'ObjectPattern' &&
+              ['list', 'data'].includes(get(node, ['params', 0, 'properties', 0, 'key', 'name']))
+            ) {
+              // list 解构
+              dataKey = `${get(node, ['params', 0, 'properties', 0, 'key', 'name'])}-Pattern`;
             }
           },
           // 删除空值
