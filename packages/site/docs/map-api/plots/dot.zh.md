@@ -24,6 +24,22 @@ order: 0
 
 点地图的所有配置项，继承自 [Plot options](/zh/docs/map-api/plot-api#options)。
 
+### `options.`source
+
+`SourceOptions` required
+
+数据配置，详见 [Source](/zh/docs/map-api/source)。
+
+```js
+{
+  source: {
+    data: [{ lng: 104.101, lat: 30.649, c: 'red', t: 20, n: 'chengdu' }],
+    parser: { type: 'json', x: 'lng', y: 'lat' }
+  },
+}
+```
+
+
 ### `options.`shape
 
 `string|Function|object` optional default: `'circle'`
@@ -48,14 +64,12 @@ order: 0
     *   squareColumn: 方柱
 
 ```js
-{
-  shape: 'circle';
-}
+{ shape: 'circle', }
 ```
 
-除内置图标外，可自定义图标
+除内置图标外，还可**自定义图标**：
 
-注册图标
+1.  注册图标
 
 ```js
 const images = [
@@ -66,7 +80,7 @@ const images = [
 registerImages(images);
 ```
 
-使用注册图标
+2.  使用注册图标
 
 ```js
 {
@@ -74,7 +88,7 @@ registerImages(images);
     data: [{ lng: 104.101, lat: 30.649, s: '01', n: 'chengdu' }],
     parser: { type: 'json', x: 'lng', y: 'lat' }
   },
-  shape: 's'
+  shape: 's',
 }
 ```
 
@@ -90,9 +104,7 @@ registerImages(images);
     data: [{ lng: 104.101, lat: 30.649, s: 'circle', t: 24.6, n: 'chengdu' }],
     parser: { type: 'json', x: 'lng', y: 'lat' }
   },
-  shape: {
-    fied: 's'
-  }
+  shape: { fied: 's', }
 }
 ```
 
@@ -115,7 +127,7 @@ registerImages(images);
 
 #### `shape.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -132,10 +144,11 @@ registerImages(images);
   shape: {
     fied: 't',
     value: ['circle', 'triangle'],
-    scale: {type: 'quantile'}
+    scale: { type: 'quantile' }
   }
 }
 ```
+
 
 ### `options.`color
 
@@ -144,9 +157,7 @@ registerImages(images);
 元素颜色。
 
 ```js
-{
-  color: 'red',
-}
+{ color: 'red', }
 ```
 
 #### `color.`field
@@ -157,11 +168,7 @@ registerImages(images);
 
 ```js
 {
-  source: {
-    data: [{ lng: 104.101, lat: 30.649, c: 'red', t: 20, n: 'chengdu' }],
-    parser: { type: 'json', x: 'lng', y: 'lat' }
-  },
-  color: { fied: 'c' }
+  color: { fied: 'c', }
 }
 ```
 
@@ -184,7 +191,7 @@ registerImages(images);
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -200,8 +207,8 @@ registerImages(images);
 {
   color: {
     fied: 't',
-    value: ['blue', 'red'],
-    scale: {type: 'quantile'}
+    value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
+    scale: { type: 'quantile' }
   }
 }
 ```
@@ -214,9 +221,7 @@ registerImages(images);
 元素大小。
 
 ```js
-{
-  size: 12,
-}
+{ size: 12, }
 ```
 
 #### `size.`field
@@ -231,7 +236,7 @@ registerImages(images);
     data: [{ lng: 104.101, lat: 30.649, s: 12, t: 20, n: 'chengdu' }],
     parser: { type: 'json', x: 'lng', y: 'lat' }
   },
-  size: { fied: 's' }
+  size: { fied: 's' },
 }
 ```
 
@@ -254,7 +259,7 @@ registerImages(images);
 
 #### `size.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -271,7 +276,7 @@ registerImages(images);
   size: {
     fied: 't',
     value: [12, 15],
-    scale: {type: 'quantile'}
+    scale: { type: 'quantile' },
   }
 }
 ```
@@ -279,37 +284,95 @@ registerImages(images);
 
 ### `options.`style
 
-`object` optional
+`PointLayerStyleOptions` optional
 
-全局样式。
+元素样式, PointLayerStyleOptions 配置如下：
+
+| 属性        | 描述         | 类型     | 默认值 | 是否必填 |
+| ----------- | ------------ | -------- | ------ | -------- |
+| opacity     | 透明度       | `number` | `1`    | optional |
+| stroke      | 边线填充颜色 | `string` |        | optional |
+| strokeWidth | 描边的宽度   | `number` |        | optional |
 
 ```js
 {
   style: {
     opacity: 0.8,
     stroke: 'white',
-    strokeWidth: 2
+    strokeWidth: 2,
   }
 }
 ```
 
-#### `style.`opacity
 
-`number` optional
+### `options.`state
 
-元素透明度。
+`StateAttribute` optional
 
-#### `style.`stroke
+元素交互反馈效果。
 
-`string` optional
+#### `state.`active
 
-元素边线填充颜色。
+`boolean｜ActiveOption` optional default: `false`
 
-#### `style.`strokeWidth
+标签 mousehover 高亮效果，开启 mousehover 元素高亮效果：
 
-`number` optional
+```js
+{
+  state: { active: true, }
+}
+```
 
-元素线的宽度。
+开启 mousehover 元素高亮效果并自定义设置高亮颜色：
+
+```js
+{
+  state: {
+    active: { color: 'red', }
+  }
+}
+```
+
+#### `state.`select
+
+`boolean｜ActiveOption` optional default: `false`
+
+元素 mouseclick 选中高亮效果，开启 mouseclick 元素高亮效果：
+
+```js
+{
+  state: { select: true, }
+}
+```
+
+开启 mousehover 元素高亮效果并自定义设置高亮颜色：
+
+```js
+{
+  state: {
+    select: { color: 'red', }
+  }
+}
+```
+
+
+### `options.`animate
+
+`boolean｜AnimateAttr` optional
+
+水波动画，AnimateAttr 配置如下：
+
+| 属性   | 描述         | 类型      | 默认值  | 是否必填 |
+| ------ | ------------ | --------- | ------- | -------- |
+| enable | 是否开启动画 | `boolean` | `false` | optional |
+| speed  | 水波速度     | `number`  |         | optional |
+| rings  | 水波环数     | `number`  |         | optional |
+
+```js
+{
+  animate: true,
+}
+```
 
 
 ### `options.`label
@@ -355,13 +418,13 @@ registerImages(images);
 
 ### dotLayer
 
-`PlotLayer`
+`DotLayer`
 
 点图层实例。
 
 ### labelLayer
 
-`undefined|PlotLayer`
+`undefined|TextLayer`
 
 数据标签图层实例。
 

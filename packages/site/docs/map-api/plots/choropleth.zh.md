@@ -40,8 +40,8 @@ order: 9
 ```js
 {
   geoArea: {
-    url: 'https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.0/choropleth-data',
-    type: 'topojson'
+    url: 'https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.1/choropleth-data',
+    type: 'topojson',
   },
 }
 ```
@@ -106,9 +106,7 @@ order: 9
 元素颜色。
 
 ```js
-{
-  color: 'red',
-}
+{ color: 'red', }
 ```
 
 #### `color.`field
@@ -119,11 +117,7 @@ order: 9
 
 ```js
 {
-  source: {
-    data: [{ name: '上海市', code: 310000, c: 'red', t: 20 }],
-    joinBy: { sourceField: 'code', geoField: 'adcode' }
-  },
-  color: { fied: 'c' }
+  color: { fied: 'c', }
 }
 ```
 
@@ -146,7 +140,7 @@ order: 9
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -168,57 +162,33 @@ order: 9
 }
 ```
 
+
 ### `options.`style
 
-`object` optional
+`AreaLayerStyle` optional
 
-区域样式。
+区域样式，AreaLayerStyle 配置如下：
+
+| 属性        | 描述                       | 类型               | 默认值      | 是否必填 |
+| ----------- | -------------------------- | ------------------ | ----------- | -------- |
+| opacity     | 填充透明度                 | `number`           | `1`         | optional |
+| stroke      | 边线描边颜色               | `string`           | `'#2f54eb'` | optional |
+| strokeWidth | 描边的宽度                 | `number`           | `1.5`       | optional |
+| lineOpacity | 描边透明度                 | `number`           | `0.8`       | optional |
+| lineType    | 描边线类型，支持实线与虚线 | `‘solid’｜'dash'`  | `‘solid’`   | optional |
+| dashArray   | 虚线间隔                   | `[number, number]` |             | optional |
+
+> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
 
 ```js
 {
   style: {
     opacity: 0.8,
     stroke: 'white',
-    strokeWidth: 2
+    strokeWidth: 2,
   }
 }
 ```
-
-#### `style.`opacity
-
-`number` optional
-
-填充透明度。
-
-#### `style.`stroke
-
-`string` optional
-
-边线描边颜色。
-
-#### `style.`strokeWidth
-
-`number` optional
-
-描边的宽度。
-
-#### `style.`lineType
-
-`‘solid’｜'dash'` optional ‘solid’
-
-描边线类型，支持实线与虚线。
-
-#### `style.`dashArray
-
-`[number, number]` optional
-
-虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有描边。
-
-#### `style.`lineOpacity
-
-`number` optional
-
-描边透明度。
 
 
 ### `options.`state
@@ -257,9 +227,7 @@ AreaLayerActiveOptions 配置如下：
 
 ```js
 {
-  state: {
-    active: true;
-  }
+  state: { active: true, }
 }
 ```
 
@@ -286,9 +254,7 @@ AreaLayerActiveOptions 配置如下：
 
 ```js
 {
-  state: {
-    select: true;
-  }
+  state: { select: true, }
 }
 ```
 
@@ -306,43 +272,6 @@ AreaLayerActiveOptions 配置如下：
   }
 }
 ```
-
-
-### `options.`label
-
-`false｜LabelOptions` optional default: `false`
-
-地图数据标签配置，详见 [Label](/zh/docs/map-api/components/label)。
-
-### `options.`tooltip
-
-`false｜TooltipOptions` optional default: `false`
-
-数据悬浮提示组件配置，详见 [Tooltip](/zh/docs/map-api/components/tooltip)。
-
-### `options.`legend
-
-`false｜LegendOptions` optional default: `false`
-
-地图图例组件配置，详见 [Legend](/zh/docs/map-api/components/legend)。
-
-### `options.`zoom
-
-`false｜ZoomControlOptions` optional default: `false`
-
-地图放大缩小控件，详见 [Zoom](/zh/docs/map-api/components/zoom)。
-
-### `options.`scale
-
-`false｜ScaleControlOptions` optional default: `false`
-
-地图比例尺控件，详见 [Scale](/zh/docs/map-api/components/scale)。
-
-### `options.`layerMenu
-
-`false｜LayerMenuControlOptions` optional default: `false`
-
-地图图层列表控件，详见 [LayerMenu](/zh/docs/map-api/components/layerMenu)。
 
 
 ### `options.`chinaBorder
@@ -429,19 +358,56 @@ DrillStepConfig 配置如下：
 }
 ```
 
+### `options.`label
+
+`false｜LabelOptions` optional default: `false`
+
+地图数据标签配置，详见 [Label](/zh/docs/map-api/components/label)。
+
+### `options.`tooltip
+
+`false｜TooltipOptions` optional default: `false`
+
+数据悬浮提示组件配置，详见 [Tooltip](/zh/docs/map-api/components/tooltip)。
+
+### `options.`legend
+
+`false｜LegendOptions` optional default: `false`
+
+地图图例组件配置，详见 [Legend](/zh/docs/map-api/components/legend)。
+
+### `options.`zoom
+
+`false｜ZoomControlOptions` optional default: `false`
+
+地图放大缩小控件，详见 [Zoom](/zh/docs/map-api/components/zoom)。
+
+### `options.`scale
+
+`false｜ScaleControlOptions` optional default: `false`
+
+地图比例尺控件，详见 [Scale](/zh/docs/map-api/components/scale)。
+
+### `options.`layerMenu
+
+`false｜LayerMenuControlOptions` optional default: `false`
+
+地图图层列表控件，详见 [LayerMenu](/zh/docs/map-api/components/layerMenu)。
+
+
 ## 二、属性
 
 继承 [Plot 属性](/zh/docs/map-api/plot-api#二、属性)。
 
 ### fillAreaLayer
 
-`PlotLayer`
+`AreaLayer`
 
 填充面图层实例。
 
 ### labelLayer
 
-`undefined|PlotLayer`
+`undefined|TextLayer`
 
 数据标签图层实例。
 

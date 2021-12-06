@@ -24,11 +24,23 @@ order: 5
 
 蜂窝地图的所有配置项，继承自 [Plot options](/zh/docs/map-api/plot-api#options)。
 
-### `options.source.`aggregation
+### `options.`source
 
-`IGridAggregation` required
+`SourceOptions` required
 
-生成六边形网格布局。
+数据配置。
+
+#### `source.`aggregation
+
+`GridAggregation` required
+
+数据网格聚合配置，GridAggregation 配置如下：
+
+| 属性   | 描述     | 类型                                   | 默认值  | 是否必填 |
+| ------ | -------- | -------------------------------------- | ------- | -------- |
+| field  | 聚合字段 | `string`                               |         | required |
+| radius | 网格半径 | `number`                               | `15000` | optional |
+| method | 聚合类型 | `'count'｜'max'｜'min'｜'sum'｜'mean'` | `'sum'` | optional |
 
 ```js
 {
@@ -40,39 +52,22 @@ order: 5
 }
 ```
 
-#### `aggregation.`field
+其它配置详见 [Source](/zh/docs/map-api/source)。
 
-`string` required
-
-聚合字段。
-
-#### `aggregation.`radius
-
-`number` optional default: `15000`
-
-网格半径。
-
-#### `aggregation.`type
-
-`'count'|'max'|'min'|'sum'|'mean'` optional default: `'sum'`
-
-聚合类型。
 
 ### `options.`shape
 
 `string` optional default: `'hexagon'`
 
-元素形状，内置以下形状：
 元素形状，分别支持 2D 与 3D 蜂窝：
 
 *   hexagon: 蜂窝
 *   hexagonColumn: 蜂窝柱
 
 ```js
-{
-  shape: 'hexagon';
-}
+{ shape: 'hexagon', }
 ```
+
 
 ### `options.`color
 
@@ -81,9 +76,7 @@ order: 5
 元素颜色。
 
 ```js
-{
-  color: 'red',
-}
+{ color: 'red', }
 ```
 
 #### `color.`field
@@ -94,11 +87,7 @@ order: 5
 
 ```js
 {
-  source: {
-    data: [{ lng: 104.101, lat: 30.649, c: 'red', t: 20, n: 'chengdu' }],
-    parser: { type: 'json', x: 'lng', y: 'lat' }
-  },
-  color: { fied: 'c' }
+  color: { fied: 'c', }
 }
 ```
 
@@ -121,7 +110,7 @@ order: 5
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -137,8 +126,8 @@ order: 5
 {
   color: {
     fied: 't',
-    value: ['blue', 'red'],
-    scale: {type: 'quantile'}
+    value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
+    scale: { type: 'quantile' }
   }
 }
 ```
@@ -146,7 +135,7 @@ order: 5
 
 ### `options.`size
 
-`number|Function|object` optional default: `12`
+`number|object|Function` optional
 
 元素大小。
 
@@ -165,17 +154,17 @@ order: 5
 
 `string` required
 
-蜂窝大小映射字段。
+网格大小映射字段。
 
 #### `size.`value
 
 `number|number[]|Function` optional
 
-蜂窝大小值映射值。
+网格大小值映射值。
 
 #### `size.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -189,9 +178,15 @@ order: 5
 
 ### `options.`style
 
-`object` optional
+`GridHeatmapLayerStyleOptions` optional
 
-全局样式。
+元素样式, GridHeatmapLayerStyleOptions 配置如下：
+
+| 属性     | 描述                    | 类型     | 默认值 | 是否必填 |
+| -------- | ----------------------- | -------- | ------ | -------- |
+| opacity  | 透明度                  | `number` | `1`    | optional |
+| coverage | 覆盖度，范围 0 到 1     | `string` | `0.9`  | optional |
+| angle    | 旋转角度，范围 0 到 360 | `number` | `0`    | optional |
 
 ```js
 {
@@ -202,24 +197,6 @@ order: 5
   }
 }
 ```
-
-#### `style.`opacity
-
-`number` optional default: `1`
-
-透明度。
-
-#### `style.`coverage
-
-`number` optional default: `0.9`
-
-覆盖度，范围 0 到 1。
-
-#### `style.`angle
-
-`number` optional default: `0`
-
-旋转角度，范围 0 到 360。
 
 
 ### `options.`label
@@ -265,13 +242,13 @@ order: 5
 
 ### hexbinLayer
 
-`PlotLayer`
+`HexbinLayer`
 
 蜂窝图层实例。
 
 ### labelLayer
 
-`undefined|PlotLayer`
+`undefined|HexbinLayer`
 
 数据标签图层实例。
 

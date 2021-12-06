@@ -12,7 +12,7 @@ const DemoDotMap = () => {
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/antfincdn/m5r7MFHt8U/wenchuandizhenshuju.json')
       .then((response) => response.json())
-      .then(({ list }) => setData(list))
+      .then(({ data }) => setData(data))
       .catch((error) => {
         console.log('fetch data failed', error);
       });

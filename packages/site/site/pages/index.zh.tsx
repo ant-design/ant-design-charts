@@ -5,6 +5,7 @@ import Banner from '@antv/gatsby-theme-antv/site/components/Banner';
 import Features from '@antv/gatsby-theme-antv/site/components/Features';
 import Cases from '@antv/gatsby-theme-antv/site/components/Cases';
 import 'antd/dist/antd.css';
+import '@ant-design/flowchart/dist/index.css';
 import './index.less';
 
 const IndexPage = () => {

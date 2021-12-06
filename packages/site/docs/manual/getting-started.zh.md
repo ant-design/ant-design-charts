@@ -25,6 +25,19 @@ import { Line } from '@ant-design/charts';
 - 流程图：`@ant-design/flowchart`
 - 关系图：`@ant-design/graphs`
 
+
+流程图除 `react`、`react-dom` 外，还依赖 `antd`、`@ant-design/icons`、`lodash`，使用时确保已经安装，同时记得引入样式文件 `import "@ant-design/flowchart/dist/index.css";`
+
+```ts
+"peerDependencies": {
+    "@ant-design/icons": "^4.6.0",
+    "antd": "^4.6.3",
+    "lodash": "^4.17.20",
+    "react": ">=16.8.4",
+    "react-dom": ">=16.8.4"
+  }
+```
+
 ### 浏览器引入
 
 既可以通过将脚本下载到本地也可以直接引入在线资源。
@@ -40,7 +53,8 @@ import { Line } from '@ant-design/charts';
 <script type="text/javascript" src="https://unpkg.com/@ant-design/graphs@latest/dist/graphs.min.js"></script>
 ```
 
-Because the @ant-design/ Charts page externals 'react' and 'react-dom', you need to do the same thing in your project when using this method. By using CDN, introduce 'react' and 'react-dom' before 'Charts.min.js'.
+由于 @ant-design/charts 里面 externals 了 `react` 和 `react-dom`，该方式使用时需要在项目里面做同样的操作，通过 CDN 的方式在 `charts.min.js` 之前引入 `react` 和 `react-dom`，不同图表 externals 会有差别。
+
 
 ```ts
 // webpack.config.js

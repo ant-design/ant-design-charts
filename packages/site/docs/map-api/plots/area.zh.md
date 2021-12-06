@@ -24,23 +24,11 @@ order: 8
 
 区域图的所有配置项，继承自 [Plot options](/zh/docs/map-api/plot-api#options)。
 
-### `options.`color
+### `options.`source
 
-`string|object|Function` optional default: `'#5FD3A6'`
+`SourceOptions` required
 
-元素颜色。
-
-```js
-{
-  color: 'red',
-}
-```
-
-#### `color.`field
-
-`string` optional
-
-元素颜色值映射关联字段。
+数据配置，详见 [Source](/zh/docs/map-api/source)。
 
 ```js
 const data = {
@@ -59,6 +47,7 @@ const data = {
             [118.740234375, 29.420460341013133],
             [117.46582031249999, 31.50362930577303],
             [115.1806640625, 30.637912028341123],
+            // ......
           ],
         ],
       },
@@ -72,8 +61,30 @@ const data = {
   source: {
     data,
     parser: { type: 'geojson' }
-  },
-  color: { fied: 'c' }
+  }
+}
+```
+
+
+### `options.`color
+
+`string|object|Function` optional default: `'#5FD3A6'`
+
+元素颜色。
+
+```js
+{ color: 'red', }
+```
+
+#### `color.`field
+
+`string` optional
+
+元素颜色值映射关联字段。
+
+```js
+{
+  color: { fied: 'c', }
 }
 ```
 
@@ -96,7 +107,7 @@ const data = {
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{type: ''}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -112,63 +123,39 @@ const data = {
 {
   color: {
     fied: 't',
-    value: ['blue', 'red'],
-    scale: {type: 'quantile'}
+    value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
+    scale: { type: 'quantile' }
   }
 }
 ```
 
+
 ### `options.`style
 
-`object` optional
+`AreaLayerStyle` optional
 
-区域样式。
+区域样式，AreaLayerStyle 配置如下：
+
+| 属性        | 描述                       | 类型               | 默认值      | 是否必填 |
+| ----------- | -------------------------- | ------------------ | ----------- | -------- |
+| opacity     | 填充透明度                 | `number`           | `1`         | optional |
+| stroke      | 边线描边颜色               | `string`           | `'#2f54eb'` | optional |
+| strokeWidth | 描边的宽度                 | `number`           | `1.5`       | optional |
+| lineOpacity | 描边透明度                 | `number`           | `0.8`       | optional |
+| lineType    | 描边线类型，支持实线与虚线 | `‘solid’｜'dash'`  | `‘solid’`   | optional |
+| dashArray   | 虚线间隔                   | `[number, number]` |             | optional |
+
+> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
 
 ```js
 {
   style: {
     opacity: 0.8,
     stroke: 'white',
-    strokeWidth: 2
+    strokeWidth: 2,
   }
 }
 ```
-
-#### `style.`opacity
-
-`number` optional
-
-填充透明度。
-
-#### `style.`stroke
-
-`string` optional
-
-边线描边颜色。
-
-#### `style.`strokeWidth
-
-`number` optional
-
-描边的宽度。
-
-#### `style.`lineType
-
-`‘solid’｜'dash'` optional ‘solid’
-
-描边线类型，支持实线与虚线。
-
-#### `style.`dashArray
-
-`[number, number]` optional
-
-虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有描边。
-
-#### `style.`lineOpacity
-
-`number` optional
-
-描边透明度。
 
 
 ### `options.`enabledMultiSelect
@@ -213,9 +200,7 @@ AreaLayerActiveOptions 配置如下：
 
 ```js
 {
-  state: {
-    active: true;
-  }
+  state: { active: true, }
 }
 ```
 
@@ -242,9 +227,7 @@ AreaLayerActiveOptions 配置如下：
 
 ```js
 {
-  state: {
-    select: true;
-  }
+  state: { select: true, }
 }
 ```
 
@@ -307,13 +290,13 @@ AreaLayerActiveOptions 配置如下：
 
 ### areaLayer
 
-`PlotLayer`
+`AreaLayer`
 
 填充面图层实例。
 
 ### labelLayer
 
-`undefined|PlotLayer`
+`undefined|TextLayer`
 
 数据标签图层实例。
 
