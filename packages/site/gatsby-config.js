@@ -14,6 +14,7 @@ module.exports = {
     title: 'Ant Design Charts',
     description: 'AntV react component library',
     siteUrl: 'https://charts.ant.design',
+    showChinaMirror: false,
     githubUrl: repository.url,
     showAPIDoc: true, // 是否在demo页展示API文档
     isAntVSite: false,
