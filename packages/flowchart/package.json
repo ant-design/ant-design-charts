@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/flowchart",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Flowchart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -36,7 +36,7 @@
     "test:coverage": "umi-test --coverage"
   },
   "dependencies": {
-    "@antv/layout": "^0.0.5",
+    "@antv/layout": "^0.1.17",
     "@antv/x6": "^1.25.0",
     "@antv/x6-react-components": "^1.1.13",
     "@antv/x6-react-shape": "^1.4.5",
