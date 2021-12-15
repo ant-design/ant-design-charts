@@ -1,9 +1,7 @@
 import React, { useState, useRef, useContext } from 'react';
-import { render } from 'react-dom';
+import { render, createPortal } from 'react-dom';
 import { Button } from 'antd';
 import { SketchPicker } from 'react-color';
-import { getContainer } from '../../../../../util';
-import appContext from '../../../../../context';
 import { prefix } from '../constants';
 
 interface IProps {
@@ -16,56 +14,54 @@ const ColorPicker: React.FC<IProps> = (props) => {
   const { label, value = '', onChange } = props;
   const [show, setShow] = useState(false);
   const colorRef = useRef<string>(value);
-  const { flowchartId } = useContext(appContext);
 
   const PickContainer = () => {
     return (
-      <div className={`${prefix}-popover`}>
-        <SketchPicker
-          style={{
-            width: '100%',
-          }}
-          onChange={(color) => {
-            colorRef.current = color.hex;
-          }}
-        />
-        <div className="foolter">
-          <Button
-            onClick={() => {
-              setShow(false);
+      <div className={`${prefix}-pick-color-container`}>
+        <div className={`${prefix}-popover`}>
+          <SketchPicker
+            style={{
+              width: '100%',
             }}
-          >
-            取消
-          </Button>
-          <Button
-            type="primary"
-            onClick={() => {
-              onChange?.(colorRef.current);
-              setShow(false);
+            onChange={(color) => {
+              colorRef.current = color.hex;
             }}
-          >
-            确认
-          </Button>
+          />
+          <div className="foolter">
+            <Button
+              onClick={() => {
+                setShow(false);
+              }}
+            >
+              取消
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => {
+                onChange?.(colorRef.current);
+                setShow(false);
+              }}
+            >
+              确认
+            </Button>
+          </div>
         </div>
       </div>
     );
   };
 
-  /**  react-color mouseOver 和上层事件冲突，不得已为之 */
   const CreatePickColorContainer = (visible: boolean) => {
-    const container = getContainer(flowchartId);
-    const exist: HTMLDivElement | null = document.querySelector(`#${prefix}-pick-color-container`);
-    if (exist) {
-      container.removeChild(exist);
+    const existElements = document.getElementsByClassName(`${prefix}-pick-color-container`);
+    if (existElements.length) {
+      Array.from(existElements).forEach((ele) => {
+        ele.parentNode?.removeChild(ele);
+      });
     }
     if (!visible) {
       return;
     }
     const div = document.createElement('div');
-    div.id = `${prefix}-pick-color-container`;
-    div.className = `${prefix}-pick-color-container`;
-    render(<PickContainer />, div);
-    container.appendChild(div);
+    render(createPortal(<PickContainer />, document.getElementsByTagName('body')[0]), div);
   };
 
   return (
