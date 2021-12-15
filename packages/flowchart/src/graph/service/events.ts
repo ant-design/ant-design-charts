@@ -18,24 +18,14 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
     const x6Graph = getGraphInstance(flowchartId);
     data?.groupChildren.forEach(async (id: string) => {
       const currentNode = x6Graph.getCellById(id) as Node;
-      if (currentNode) {
-        if (currentNode.isEdge()) {
-          await cmds.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
-            edgeConfig: {
-              ...currentNode.data,
-              ...currentNode.getSize?.(),
-              ...currentNode.getPosition?.(),
-            },
-          });
-        } else {
-          await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
-            nodeConfig: {
-              ...currentNode.data,
-              ...currentNode.getSize?.(),
-              ...currentNode.getPosition?.(),
-            },
-          });
-        }
+      if (currentNode && currentNode.isNode()) {
+        await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+          nodeConfig: {
+            ...currentNode.data,
+            ...currentNode.getSize?.(),
+            ...currentNode.getPosition?.(),
+          },
+        });
       }
     });
   }
