@@ -21,12 +21,10 @@ function compile(source, target) {
     }
 
     cp.execFileSync(cmd, [
-      // lessc cli: https://lesscss.org/usage/#plugins
       // https://www.npmjs.com/package/less-plugin-npm-import
       '--npm-import=prefix=~',
       //https://lesscss.org/usage/#command-line-usage-relative-urls
       '--rewrite-urls=all',
-      // enable javascriptEnabled
       '--js',
       source,
       target,

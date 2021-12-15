@@ -1,4 +1,3 @@
-const shell = require('shelljs');
 const fs = require('fs');
 
 // 首字母小写

@@ -24,8 +24,6 @@ import { appendUtils } from './appendUtils';
 import { useGraphConfig, useGraphHook } from './service';
 import { useKeybindingConfig } from './service/keyBinding';
 
-import '@antv/xflow/dist/index.css';
-
 const Flowchart: React.FC<FlowchartProps> = (props) => {
   const {
     className,
