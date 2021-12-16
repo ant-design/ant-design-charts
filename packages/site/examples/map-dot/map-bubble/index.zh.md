@@ -1,5 +1,5 @@
 ---
-title: 气泡图
+title: 地图气泡图
 order: 0
 ---
 

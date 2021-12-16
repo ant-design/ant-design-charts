@@ -8,6 +8,7 @@ import ChartLoading from '../../util/createLoading';
 
 export interface MixConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
   chartRef?: ChartRefConfig;
+  chartType?: string;
 }
 
 const MultiViewChart = forwardRef((props: MixConfig, ref) => {
@@ -22,7 +23,7 @@ const MultiViewChart = forwardRef((props: MixConfig, ref) => {
     errorTemplate,
     ...rest
   } = props;
-  const { chart, container } = useChart<G2plotMix, MixConfig>(G2plotMix, rest);
+  const { chart, container } = useChart<G2plotMix, MixConfig>(G2plotMix, { ...rest, chartType: 'Mix' });
   useEffect(() => {
     getChart(chartRef, chart.current);
   }, [chart.current]);

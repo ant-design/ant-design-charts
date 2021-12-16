@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Mix, G2 } from '@ant-design/charts';
 
 const DemoMix = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     asyncFetch();
@@ -33,9 +33,9 @@ const DemoMix = () => {
         trigger: 'element:click',
         action: (context) => {
           const { view, event } = context; // 获取第二个 view
-
           const view1 = view.parent.views[1];
           view1.filter('area', (d) => d === event.data?.data.area);
+          view1.render(true);
         },
       },
     ],
@@ -47,10 +47,14 @@ const DemoMix = () => {
 
           const view1 = view.parent.views[1];
           view1.filter('area', null);
+          view1.render(true);
         },
       },
     ],
   });
+  if (!Object.keys(data).length) {
+    return null;
+  }
   const config = {
     // 关闭 chart 上的 tooltip，子 view 开启 tooltip
     tooltip: false,

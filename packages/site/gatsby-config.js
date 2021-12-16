@@ -156,22 +156,6 @@ module.exports = {
         },
       },
       {
-        slug: 'relation-graph',
-        icon: 'sankey',
-        title: {
-          zh: '关系图',
-          en: 'Realtion Graph',
-        },
-      },
-      {
-        slug: 'facet',
-        icon: 'gallery',
-        title: {
-          zh: 'Facet',
-          en: '分面图',
-        },
-      },
-      {
         slug: 'area',
         icon: 'area',
         title: {
@@ -273,6 +257,22 @@ module.exports = {
         title: {
           zh: '矩形树图',
           en: 'Treemap',
+        },
+      },
+      {
+        slug: 'relation-graph',
+        icon: 'sankey',
+        title: {
+          zh: '关系图',
+          en: 'Realtion Graph',
+        },
+      },
+      {
+        slug: 'facet',
+        icon: 'gallery',
+        title: {
+          zh: 'Facet',
+          en: '分面图',
         },
       },
       // OTHERS

@@ -1,5 +1,5 @@
 import { ReactNode, useRef, useEffect } from 'react';
-import { isEqual } from '@antv/util';
+import { isEqual, get } from '@antv/util';
 import type { Options as BaseOptions, G2, Plot, Tooltip as BaseTooltip } from '@antv/g2plot';
 import createNode from '../util/createNode';
 import { hasPath, isType, deepClone, clone, setPath } from '../util';
@@ -101,7 +101,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
         const { data: inputData, value: inputValue, percent: inputPercent, ...inputConfig } = config;
         changeData = isEqual(currentConfig, inputConfig);
       }
-      if (changeData) {
+      if (changeData && get(config, 'chartType') !== 'Mix') {
         let changeType = 'data';
         const typeMaps = ['percent']; // 特殊类型的图表 data 字段，例如 RingProgress
         const currentKeys = Object.keys(config);

@@ -27,6 +27,7 @@ const excludePath = [
   'large-data.ts',
   'advanced-brush1.ts', // 多个 config 不想处理
   'advanced-brush2.ts',
+  'association',
 ];
 
 const hasSameEl = (source, target) => {

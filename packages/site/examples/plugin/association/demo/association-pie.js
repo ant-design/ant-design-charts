@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Mix } from '@ant-design/charts';
 
 const DemoMix = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     asyncFetch();
@@ -17,6 +17,9 @@ const DemoMix = () => {
         console.log('fetch data failed', error);
       });
   };
+  if (!Object.keys(data).length) {
+    return null;
+  }
   const config = {
     // 关闭 chart 上的 tooltip，子 view 开启 tooltip
     tooltip: false,

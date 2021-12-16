@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Mix } from '@ant-design/charts';
 
 const DemoMix = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     asyncFetch();
@@ -17,6 +17,9 @@ const DemoMix = () => {
         console.log('fetch data failed', error);
       });
   };
+  if (!Object.keys(data).length) {
+    return null;
+  }
   const config = {
     // 关闭 chart 上的 tooltip，子 view 开启 tooltip
     tooltip: false,
@@ -81,35 +84,36 @@ const DemoMix = () => {
             {
               type: 'element-active',
             },
-            {
-              type: 'association-tooltip',
-              cfg: {
-                start: [
-                  {
-                    trigger: 'element:mousemove',
-                    action: 'association:showTooltip',
-                    arg: {
-                      dim: 'x',
-                      linkField: 'area',
-                    },
-                  },
-                ],
-              },
-            },
-            {
-              type: 'association-highlight',
-              cfg: {
-                start: [
-                  {
-                    trigger: 'element:mousemove',
-                    action: 'association:highlight',
-                    arg: {
-                      linkField: 'area',
-                    },
-                  },
-                ],
-              },
-            },
+            // 后续开放
+            // {
+            //   type: 'association-tooltip',
+            //   cfg: {
+            //     start: [
+            //       {
+            //         trigger: 'element:mousemove',
+            //         action: 'association:showTooltip',
+            //         arg: {
+            //           dim: 'x',
+            //           linkField: 'area',
+            //         },
+            //       },
+            //     ],
+            //   },
+            // },
+            // {
+            //   type: 'association-highlight',
+            //   cfg: {
+            //     start: [
+            //       {
+            //         trigger: 'element:mousemove',
+            //         action: 'association:highlight',
+            //         arg: {
+            //           linkField: 'area',
+            //         },
+            //       },
+            //     ],
+            //   },
+            // },
           ],
         },
       },
