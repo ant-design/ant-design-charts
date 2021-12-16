@@ -5,7 +5,7 @@ import { Mix } from '@ant-design/charts';
 import { groupBy, get } from '@antv/util';
 
 const DemoMix = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     asyncFetch();
@@ -26,7 +26,9 @@ const DemoMix = () => {
       area,
     }));
   }
-
+  if (!Object.keys(data).length) {
+    return null;
+  }
   const config = {
     // 关闭 chart 上的 tooltip，子 view 开启 tooltip
     tooltip: false,

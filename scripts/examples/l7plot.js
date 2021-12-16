@@ -26,8 +26,11 @@ const hasSameEl = (source, target) => {
 
 const checkDir = (filePath, filename) => {
   let writePath = path.join(__dirname, demoWriteBasePath, filePath.split(demoPath)[1]);
-  // 统一加上 map 前缀
-  writePath = writePath.replace(/examples\//, 'examples/map-');
+  // 统一加上 map 前缀, 避免和 G2Plot 组件名冲突
+  writePath = writePath
+    .replace(/examples\//, 'examples/map-')
+    .replace(/scatter\//, 'map-scatter/')
+    .replace(/bubble\//, 'map-bubble/');
   checkDirExist(writePath.split(filename)[0]);
   return writePath;
 };
@@ -40,7 +43,12 @@ const apiGenerator = (filePath, filename) => {
     encoding: 'utf-8',
   });
   if (content) {
-    content = content.replace(/markdown:docs\//g, 'markdown:docs/map-');
+    content = content
+      .replace(/markdown:docs\//g, 'markdown:docs/map-')
+      .replace(/散点图/g, '地图散点图')
+      .replace(/气泡图/g, '地图气泡图')
+      .replace(/Scatter/g, 'Scatter Map')
+      .replace(/Bubble/g, 'Bubble Map');
   }
   fs.writeFileSync(writePath, content);
 };

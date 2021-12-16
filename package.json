@@ -8,7 +8,6 @@
     "start": "lerna run start --stream --scope=@ant-design/charts-site",
     "test": "lerna run test --stream",
     "lint": "lerna run lint --stream",
-    "build:flow": "lerna run build --stream --scope=@ant-design/flowchart",
     "build": "lerna run build --stream --profile --profile-location=logs/profile/",
     "site:build": "lerna run site:build --stream --scope=@ant-design/charts-site",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
