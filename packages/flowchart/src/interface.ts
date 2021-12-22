@@ -133,6 +133,7 @@ export interface PopoverProps extends Omit<AntDPopoverConfig, 'title' | 'content
 export interface IFlowchartGraph extends Graph {
   getGraphData?: (flowchartId: string) => Promise<Datum>;
   updateNodeKeyById?: (id: string, key: string, data: object) => void;
+  readonly flowchartId?: string;
 }
 
 export interface IGraphConfig {}
