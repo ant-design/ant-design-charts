@@ -33,7 +33,7 @@ import Facet from './components/facet';
 import MultiView from './components/mix'; // 和 Mix 相同
 import Mix from './components/mix';
 import BidirectionalBar from './components/bidirectionalBar';
-import { G2, flow, measureTextWidth, adaptors, getCanvasPattern } from '@antv/g2plot';
+import { G2, flow, measureTextWidth, adaptors, getCanvasPattern, FUNNEL_CONVERSATION_FIELD } from '@antv/g2plot';
 
 export {
   Area,
@@ -74,6 +74,7 @@ export {
   G2,
   // 直接导出 G2Plot 相关方法
   getCanvasPattern,
+  FUNNEL_CONVERSATION_FIELD,
   flow,
   measureTextWidth,
   adaptors,
@@ -117,6 +118,7 @@ export default {
   BidirectionalBar,
   // 直接导出 G2Plot 相关方法
   getCanvasPattern,
+  FUNNEL_CONVERSATION_FIELD,
   G2,
   flow,
   measureTextWidth,
