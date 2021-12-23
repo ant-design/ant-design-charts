@@ -29,34 +29,36 @@ const DemoLine = () => {
         size: 6,
       },
     },
-  };
-  let id = 0;
-  line.on('point:click', (evt) => {
-    line.addAnnotations([
-      {
-        type: 'dataMarker',
-        // 通过 源数据 匹配位置
-        position: evt.data.data,
-        content: '辅助点',
-        text: {
-          content: '辅助点',
-        },
-        // 可以使用随机 id
-        id: `${id++}`,
-      },
-    ]);
-  });
-  line.on('annotation:click', (evt) => {
-    const component = evt.gEvent.delegateObject.component; // 匹配到 辅助点，进行删除
+    onReady: (plot) => {
+      let id = 0;
+      plot.on('point:click', (evt) => {
+        plot.addAnnotations([
+          {
+            type: 'dataMarker',
+            // 通过 源数据 匹配位置
+            position: evt.data.data,
+            content: '辅助点',
+            text: {
+              content: '辅助点',
+            },
+            // 可以使用随机 id
+            id: `${id++}`,
+          },
+        ]);
+      });
+      plot.on('annotation:click', (evt) => {
+        const component = evt.gEvent.delegateObject.component; // 匹配到 辅助点，进行删除
 
-    if (component.get('type') === 'text') {
-      line.removeAnnotations([
-        {
-          id: component.get('id'),
-        },
-      ]);
-    }
-  });
+        if (component.get('type') === 'text') {
+          plot.removeAnnotations([
+            {
+              id: component.get('id'),
+            },
+          ]);
+        }
+      });
+    },
+  };
 
   return <Line {...config} />;
 };

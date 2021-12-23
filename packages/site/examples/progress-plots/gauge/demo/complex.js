@@ -1,10 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { Gauge } from '@ant-design/charts';
 
 const DemoGauge = () => {
   const ticks = [0, 1 / 3, 2 / 3, 1];
   const color = ['#F4664A', '#FAAD14', '#30BF78'];
+  const graphRef = useRef(null);
+  useEffect(() => {
+    if (graphRef.current) {
+      let data = 0.7;
+      const interval = setInterval(() => {
+        if (data >= 1.5) {
+          clearInterval(interval);
+        }
+
+        data += 0.005;
+        graphRef.current.changeData(data > 1 ? data - 1 : data);
+      }, 100);
+    }
+  }, [graphRef]);
   const config = {
     percent: 0,
     range: {
@@ -53,16 +67,11 @@ const DemoGauge = () => {
         formatter: () => '系统表现',
       },
     },
+    onReady: (plot) => {
+      graphRef.current = plot;
+    },
   };
-  let data = 0.7;
-  const interval = setInterval(() => {
-    if (data >= 1.5) {
-      clearInterval(interval);
-    }
 
-    data += 0.005;
-    gauge.changeData(data > 1 ? data - 1 : data);
-  }, 100);
   return <Gauge {...config} />;
 };
 

@@ -45,7 +45,7 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/eVNaLR7coY/54584a5f-3233-4881-8006-aa7b71678994.png"
     },
     {
-      "filename": "fetch.js",
+      "filename": "async-load.js",
       "title": {
         "zh": "指标拆解图-异步请求",
         "en": "Asynchronous request"

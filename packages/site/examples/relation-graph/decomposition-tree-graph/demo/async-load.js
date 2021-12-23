@@ -144,6 +144,4 @@ const DemoDecompositionTreeGraph = () => {
   return <DecompositionTreeGraph {...config} />;
 };
 
-export default DemoDecompositionTreeGraph;
-
 ReactDOM.render(<DemoDecompositionTreeGraph />, document.getElementById('container'));

@@ -20,14 +20,15 @@
     "/dist"
   ],
   "scripts": {
-    "build": "run-s clean lib dist",
+    "build": "run-s clean lib dist copy",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
-    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es"
+    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
+    "copy": "node ./scripts/copy.js"
   },
   "dependencies": {
     "@ant-design/flowchart": "^1.0.2",
