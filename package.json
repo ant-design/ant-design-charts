@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "lerna run start --stream --scope=@ant-design/charts-site",
+    "start": "lerna run site:start --stream --scope=@ant-design/charts-site",
     "test": "lerna run test --stream",
     "lint": "lerna run lint --stream",
     "build": "lerna run build --stream --profile --profile-location=logs/profile/",
@@ -54,10 +54,6 @@
     "ts-loader": "^8.0.7",
     "typescript": "^4.0.3",
     "vfile-reporter": "^7.0.2",
-    "webpack": "^5.58.2",
-    "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.9.0",
-    "webpack-dev-server": "^4.3.1",
     "whatwg-fetch": "^3.0.0",
     "yorkie": "^2.0.0"
   },
