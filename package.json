@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "lerna run start --stream --scope=@ant-design/charts-site",
+    "start": "lerna run site:start --stream --scope=@ant-design/charts-site",
     "test": "lerna run test --stream",
     "lint": "lerna run lint --stream",
     "build": "lerna run build --stream --profile --profile-location=logs/profile/",

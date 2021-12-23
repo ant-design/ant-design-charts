@@ -14,7 +14,7 @@ export const registerOrganizationCardNode = () => {
     {
       draw(cfg: Omit<CardNodeCfg, 'items'> | undefined = {}, group: IGroup | undefined) {
         const { value = {}, nodeCfg, markerCfg } = cfg;
-        const { style, padding = 0, label = {}, customContent } = nodeCfg as CardNodeCfg;
+        const { style, padding = 0, label = {}, autoWidth, customContent } = nodeCfg as CardNodeCfg;
         const { style: labelStyle } = label;
         const paddingArray = getCssPadding(padding);
         let size = (cfg?.size || [100, 30]) as number[];
@@ -51,17 +51,22 @@ export const registerOrganizationCardNode = () => {
               const { fontSize = 12 } = layoutCfg;
               let x = 0;
               let y = 0;
+              const offsetX = autoWidth
+                ? iconWidth
+                  ? iconWidth + paddingArray[3]
+                  : iconWidth
+                : (contentWidth + iconWidth) / 2;
               switch (type) {
                 case 'icon':
                   x = startX;
                   y = height;
                   break;
                 case 'text':
-                  x = startX + (contentWidth + iconWidth) / 2;
+                  x = startX + offsetX;
                   y = item.value ? paddingArray[0] : (size[1] - fontSize) / 2;
                   break;
                 case 'value':
-                  x = startX + (contentWidth + iconWidth) / 2;
+                  x = startX + offsetX;
                   y = item.text ? paddingArray[0] + rowHeight[1] + defaultMargin : (size[1] - fontSize) / 2;
                   break;
                 default:
@@ -78,7 +83,7 @@ export const registerOrganizationCardNode = () => {
               const keyShape = group!.addShape(isIcon ? 'image' : 'text', {
                 attrs: {
                   textBaseline: 'top',
-                  textAlign: 'center',
+                  textAlign: autoWidth ? 'start' : 'center',
                   ...getXY(key, shapeStyle),
                   text: item[key],
                   img: item[key],
@@ -111,8 +116,18 @@ export const registerOrganizationCardNode = () => {
         }
 
         shape?.attr('height', Math.max(height + paddingArray[2], size[1]));
+        if (autoWidth) {
+          const maxX = Math.max(
+            size[0],
+            ...(group?.getChildren()?.map((childrenShape) => {
+              return (childrenShape.getBBox().maxX || 0) + paddingArray[1];
+            }) as number[]),
+          );
+          shape?.attr('width', maxX);
+        }
         // collapse marker
         if (markerCfg) {
+          const { collapsed: stateCollapsed } = group?.get('item')?.getModel() ?? {};
           const { width: shapeWidth, height: shapeHeight } = shape.getBBox();
           const {
             show,
@@ -124,7 +139,7 @@ export const registerOrganizationCardNode = () => {
             {
               show,
               position,
-              collapsed,
+              collapsed: stateCollapsed ?? collapsed, // 优先使用内部状态
               style: markerStyle,
             },
             group,
@@ -135,6 +150,7 @@ export const registerOrganizationCardNode = () => {
 
         return shape;
       },
+      update: undefined,
     },
     'single-node',
   );

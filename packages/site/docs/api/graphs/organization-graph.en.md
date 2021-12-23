@@ -100,6 +100,12 @@ Item content padding .
 }
 ```
 
+##### autoWidth
+
+<description>**optional** _Boolean_</description>
+
+Whether to dynamically adjust the node width.
+
 ##### customContent
 
 <description>**optional** _Function_</description>
