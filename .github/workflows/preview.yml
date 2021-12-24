@@ -1,25 +1,26 @@
-name: 🔂 Surge PR Preview
+name: 🔂 Auto Inspection
 
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - master
 
 jobs:
   preview:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Get branch name (pull request)
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF})" >> $GITHUB_ENV
+      - uses: lxfu1/surge-preview@2.0.3
+        id: preview_step
         with:
-          node-version: ${{ matrix.node-version }}
-      - uses: afc163/surge-preview@v1
-        with:
+          project_name: 'ant-design-charts'
+          dist_command: 'build'
+          project_branch: ${{ env.BRANCH_NAME }}
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          dist: packages/site/public
           build: |
             yarn
-            yarn build
-            yarn site:build
+      - name: Get the preview url
+        run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
