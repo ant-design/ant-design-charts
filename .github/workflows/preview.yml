@@ -16,6 +16,7 @@ jobs:
         id: preview_step
         with:
           project_name: 'ANT-DESIGN-CHARTS'
+          dist_command: 'build'
           project_branch: ${{ env.BRANCH_NAME }}
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
