@@ -28,6 +28,7 @@ import RadialBar from './components/radialBar';
 import Sankey from './components/sankey';
 import Treemap from './components/treemap';
 import Violin from './components/violin';
+import Venn from './components/venn';
 import CirclePacking from './components/circlePacking';
 import Facet from './components/facet';
 import MultiView from './components/mix'; // 和 Mix 相同
@@ -68,6 +69,7 @@ export {
   Sankey,
   Treemap,
   Violin,
+  Venn,
   MultiView,
   Mix,
   BidirectionalBar,
@@ -113,6 +115,7 @@ export default {
   Sankey,
   Treemap,
   Violin,
+  Venn,
   MultiView,
   Mix,
   BidirectionalBar,
