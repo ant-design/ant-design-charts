@@ -12,7 +12,7 @@ const DemoTreemap = () => {
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/antfincdn/k5SYI%24mOo1/treemap.json')
       .then((response) => response.json())
-      .then(({ list }) => setData(list))
+      .then((list) => setData(list))
       .catch((error) => {
         console.log('fetch data failed', error);
       });

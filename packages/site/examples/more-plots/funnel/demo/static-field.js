@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Funnel } from '@ant-design/charts';
+import { Funnel, FUNNEL_CONVERSATION_FIELD } from '@ant-design/charts';
 
 const DemoFunnel = () => {
   const data = [
@@ -32,12 +32,12 @@ const DemoFunnel = () => {
     legend: false,
     label: {
       formatter: (datum) => {
-        return `${(datum[Funnel.PERCENT_FIELD] * 100).toFixed(2)}%`;
+        return `${(datum['$$percentage$$'] * 100).toFixed(2)}%`;
       },
     },
     conversionTag: {
       formatter: (datum) => {
-        return `${((datum[Funnel.CONVERSATION_FIELD][1] / datum[Funnel.CONVERSATION_FIELD][0]) * 100).toFixed(2)}%`;
+        return `${((datum[FUNNEL_CONVERSATION_FIELD][1] / datum[FUNNEL_CONVERSATION_FIELD][0]) * 100).toFixed(2)}%`;
       },
     }, // 关闭 conversionTag 转化率 展示
     // conversionTag: false,
