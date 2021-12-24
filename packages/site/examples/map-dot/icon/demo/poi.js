@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { DotMap } from '@ant-design/charts';
+import { DotMap, registerImages } from '@ant-design/charts';
 
 const DemoDotMap = () => {
   const [data, setData] = useState([]);
