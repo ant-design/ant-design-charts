@@ -20,6 +20,7 @@ import { ScatterConfig } from './scatter';
 import { TinyAreaConfig } from './tinyArea';
 import { TinyColumnConfig } from './tinyColumn';
 import { ViolinConfig } from './violin';
+import { VennConfig } from './venn';
 import { DualAxesConfig } from './dualAxes';
 import { TinyLineConfig } from './tinyLine';
 import { WaterfallConfig } from './waterfall';
@@ -53,6 +54,7 @@ export {
   TinyAreaConfig,
   TinyColumnConfig,
   ViolinConfig,
+  VennConfig,
   TinyLineConfig,
   WaterfallConfig,
   WordCloudConfig,
