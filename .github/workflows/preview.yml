@@ -15,7 +15,7 @@ jobs:
       - uses: lxfu1/surge-preview@2.0.3
         id: preview_step
         with:
-          project_name: 'ANT-DESIGN-CHARTS'
+          project_name: 'ant-design-charts'
           dist_command: 'build'
           project_branch: ${{ env.BRANCH_NAME }}
           surge_token: ${{ secrets.SURGE_TOKEN }}
