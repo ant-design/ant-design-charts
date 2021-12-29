@@ -77,7 +77,7 @@ const Toolbar: React.FC<IToolbar> = ({ toolbarCfg, container, graph }) => {
     return renderIcon({
       zoomIn,
       zoomOut,
-      toggleFullscreen,
+      toggleFullscreen: setToggleFullscreen,
       fullscreen,
     });
   }
