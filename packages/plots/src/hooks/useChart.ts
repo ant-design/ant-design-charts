@@ -17,7 +17,8 @@ export interface Options extends Omit<BaseOptions, 'tooltip' | 'data' | 'yAxis'>
 }
 
 export interface Base extends Plot<any> {
-  __proto__?: any;
+  toDataURL?: (type?: string, encoderOptions?: number) => string;
+  downloadImage?: (name?: string, type?: string, encoderOptions?: number) => string;
 }
 
 export default function useInit<T extends Base, U extends Options>(ChartClass: any, config: U) {
@@ -128,10 +129,10 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       ...config,
     });
 
-    ChartClass.__proto__.toDataURL = (type?: string, encoderOptions?: number) => {
+    chartInstance.toDataURL = (type?: string, encoderOptions?: number) => {
       return toDataURL(type, encoderOptions);
     };
-    ChartClass.prototype.downloadImage = (name?: string, type?: string, encoderOptions?: number) => {
+    chartInstance.downloadImage = (name?: string, type?: string, encoderOptions?: number) => {
       return downloadImage(name, type, encoderOptions);
     };
     chartInstance.render();
