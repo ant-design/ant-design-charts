@@ -347,11 +347,17 @@ interface ToolbarCfg {
   /** 缩放因子 */
   zoomFactor?: number;
   /** 自定义 icon */
-  renderIcon?: (
-    zoomIn: () => void,
-    zoomOut: () => void,
-    toggleFullscreen: () => void,
-  ) => React.ReactElement;
+ renderIcon?: ({
+    zoomIn,
+    zoomOut,
+    toggleFullscreen,
+    fullscreen,
+  }: {
+    zoomIn: () => void;
+    zoomOut: () => void;
+    toggleFullscreen: () => void;
+    fullscreen: boolean;
+  }) => React.ReactElement;
 }
 ```
 

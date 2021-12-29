@@ -344,11 +344,17 @@ interface ToolbarCfg {
   /** zoom factor */
   zoomFactor?: number;
   /** custom icon */
-  renderIcon?: (
-    zoomIn: () => void,
-    zoomOut: () => void,
-    toggleFullscreen: () => void,
-  ) => React.ReactElement;
+ renderIcon?: ({
+    zoomIn,
+    zoomOut,
+    toggleFullscreen,
+    fullscreen,
+  }: {
+    zoomIn: () => void;
+    zoomOut: () => void;
+    toggleFullscreen: () => void;
+    fullscreen: boolean;
+  }) => React.ReactElement;
 }
 ```
 

@@ -32,7 +32,7 @@ const SelectField: React.FC<IProps> = (props) => {
         onChange={(value: string) => {
           onChange?.(value);
         }}
-        filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+        filterOption={(input, option: any) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       >
         {options.map((option) => (
           <Option key={option.label} value={option.value}>
