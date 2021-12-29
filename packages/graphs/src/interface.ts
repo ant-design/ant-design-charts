@@ -130,7 +130,17 @@ export interface ToolbarCfg {
   /** 缩放因子 */
   zoomFactor?: number;
   /** renderIcon，自定义渲染 */
-  renderIcon?: (zoomIn: () => void, zoomOut: () => void, toggleFullscreen: () => void) => React.ReactElement;
+  renderIcon?: ({
+    zoomIn,
+    zoomOut,
+    toggleFullscreen,
+    fullscreen,
+  }: {
+    zoomIn: () => void;
+    zoomOut: () => void;
+    toggleFullscreen: () => void;
+    fullscreen: boolean;
+  }) => React.ReactElement;
 }
 
 // 通用 card 配置
