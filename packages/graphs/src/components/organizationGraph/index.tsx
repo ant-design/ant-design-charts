@@ -8,13 +8,13 @@ import { defaultStateStyles } from '../../constants';
 import { registerOrganizationCardNode } from './customItem';
 import { IGroup, CommonConfig, ShapeCfg, Shape, NodeConfig, IGraph, NodeData } from '../../interface';
 
-export type OrganizationGraphData = NodeData<
-  {
-    name: string;
-    title?: string;
-    icon?: string;
-  }[]
->;
+export type OrgItem = {
+  name: string;
+  title?: string;
+  icon?: string;
+};
+
+export type OrganizationGraphData = NodeData<OrgItem[]>;
 export interface OrganizationGraphConfig extends Omit<CommonConfig, 'data'> {
   data: OrganizationGraphData;
 }

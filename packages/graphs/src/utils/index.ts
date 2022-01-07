@@ -457,7 +457,7 @@ export const getStyle = (
   current?: string | number,
 ) => {
   if (typeof source === 'function') {
-    return source(cfg, item, current);
+    return source(cfg, item, current) || {};
   }
   return source || {};
 };
