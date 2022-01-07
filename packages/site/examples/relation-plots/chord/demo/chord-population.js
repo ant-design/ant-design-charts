@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Chord } from '@ant-design/charts';
+import { Chord } from '@ant-design/plots';
 
 const DemoChord = () => {
   const DATA = [

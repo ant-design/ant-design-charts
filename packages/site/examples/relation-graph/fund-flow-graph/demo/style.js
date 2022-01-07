@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { FundFlowGraph } from '@ant-design/charts';
+import { FundFlowGraph } from '@ant-design/graphs';
 
 const DemoFundFlowGraph = () => {
   const data = {

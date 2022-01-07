@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Funnel, FUNNEL_CONVERSATION_FIELD } from '@ant-design/charts';
+import { Funnel, FUNNEL_CONVERSATION_FIELD } from '@ant-design/plots';
 
 const DemoFunnel = () => {
   const data = [

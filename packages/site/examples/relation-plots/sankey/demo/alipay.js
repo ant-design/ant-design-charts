@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Sankey } from '@ant-design/charts';
+import { Sankey } from '@ant-design/plots';
 
 const DemoSankey = () => {
   const DATA = [

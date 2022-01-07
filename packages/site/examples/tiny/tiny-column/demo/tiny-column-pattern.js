@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { TinyColumn } from '@ant-design/charts';
+import { TinyColumn } from '@ant-design/plots';
 
 const DemoTinyColumn = () => {
   const data = [274, 337, 81, 497, 666, 219, 269];

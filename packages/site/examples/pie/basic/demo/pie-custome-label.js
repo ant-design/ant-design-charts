@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Pie, G2 } from '@ant-design/charts';
+import { Pie, G2 } from '@ant-design/plots';
 
 const DemoPie = () => {
   const G = G2.getEngine('canvas');

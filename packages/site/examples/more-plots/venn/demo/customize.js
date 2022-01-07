@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Venn } from '@ant-design/charts';
+import { Venn } from '@ant-design/plots';
 
 const DemoVenn = () => {
   const [data, setData] = useState([]);

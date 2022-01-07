@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { HexbinMap } from '@ant-design/charts';
+import { HexbinMap } from '@ant-design/maps';
 
 const DemoHexbinMap = () => {
   const [data, setData] = useState([]);
@@ -11,12 +11,15 @@ const DemoHexbinMap = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/a1a8158d-6fe3-424b-8e50-694ccf61c4d7.csv')
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((json) => setData(json))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
+  if (!data.length) {
+    return null;
+  }
   const config = {
     map: {
       type: 'mapbox',

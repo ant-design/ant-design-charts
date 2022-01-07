@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Gauge, G2 } from '@ant-design/charts';
+import { Gauge, G2 } from '@ant-design/plots';
 
 const DemoGauge = () => {
   const { registerShape, Util } = G2; // 自定义 Shape 部分

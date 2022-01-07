@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Line, G2 } from '@ant-design/charts';
+import { Line, G2 } from '@ant-design/plots';
 
 import { each, findIndex } from '@antv/util';
 

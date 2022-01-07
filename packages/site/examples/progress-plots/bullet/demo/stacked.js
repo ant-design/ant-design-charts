@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Bullet } from '@ant-design/charts';
+import { Bullet } from '@ant-design/plots';
 
 const DemoBullet = () => {
   const data = [

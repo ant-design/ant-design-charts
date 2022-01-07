@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { G2, Line } from '@ant-design/charts';
+import { G2, Line } from '@ant-design/plots';
 
 const DemoLine = () => {
   const [data, setData] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Violin } from '@ant-design/charts';
+import { Violin } from '@ant-design/plots';
 
 const DemoViolin = () => {
   const [data, setData] = useState([]);

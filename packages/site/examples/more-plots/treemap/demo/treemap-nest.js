@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Treemap } from '@ant-design/charts';
+import { Treemap } from '@ant-design/plots';
 
 const DemoTreemap = () => {
   const [fetchData, setData] = useState([]);

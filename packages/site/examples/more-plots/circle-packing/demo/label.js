@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { CirclePacking } from '@ant-design/charts';
+import { CirclePacking } from '@ant-design/plots';
 
 const DemoCirclePacking = () => {
   const [data, setData] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { TinyArea } from '@ant-design/charts';
+import { TinyArea } from '@ant-design/plots';
 
 const DemoTinyArea = () => {
   const data = [

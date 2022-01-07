@@ -75,6 +75,8 @@ const initCode = (code) => {
     key = key.replace('-Pattern', '');
     isPattern = true;
   }
+  const reg = new RegExp(/\.csv|\.txt/);
+  const useText = fetchUrl.match(reg);
   return `
   const [${key}, setData] = useState(${isGeojson ? `{ type: 'FeatureCollection', features: [] }` : `[]`});
 
@@ -84,12 +86,18 @@ const initCode = (code) => {
 
   const asyncFetch = () => {
     fetch("${fetchUrl}")
-      .then((response) => response.json())
+      .then((response) => ${!useText ? 'response.json()' : 'response.text()'})
       .then((${isPattern ? `{${key}}` : 'json'}) => setData(${isPattern ? key : 'json'}))
       .catch((error) => {
         console.log("fetch data failed", error);
       });
   };
+  ${
+    useText &&
+    `if (!data.length) {
+    return null;
+  }`
+  }
   ${code}
   `;
 };

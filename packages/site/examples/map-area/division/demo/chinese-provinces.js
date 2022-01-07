@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { AreaMap } from '@ant-design/charts';
+import { AreaMap } from '@ant-design/maps';
 
 const DemoAreaMap = () => {
   const [data, setData] = useState({ type: 'FeatureCollection', features: [] });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Heatmap, G2 } from '@ant-design/charts';
+import { Heatmap, G2 } from '@ant-design/plots';
 
 const DemoHeatmap = () => {
   const [data, setData] = useState([]);

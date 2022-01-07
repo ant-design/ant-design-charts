@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BidirectionalBar } from '@ant-design/charts';
+import { BidirectionalBar } from '@ant-design/plots';
 
 const DemoBidirectionalBar = () => {
   const data = [

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Waterfall } from '@ant-design/charts';
+import { Waterfall } from '@ant-design/plots';
 
 const DemoWaterfall = () => {
   const data = [

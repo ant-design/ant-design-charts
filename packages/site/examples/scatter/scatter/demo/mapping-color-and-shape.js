@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { uniq } from '@antv/util';
-import { Scatter } from '@ant-design/charts';
+import { Scatter } from '@ant-design/plots';
 
 const DemoScatter = () => {
   const [data, setData] = useState([]);

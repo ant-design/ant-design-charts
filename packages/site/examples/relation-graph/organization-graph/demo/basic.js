@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { OrganizationGraph } from '@ant-design/charts';
+import { OrganizationGraph } from '@ant-design/graphs';
 
 const DemoOrganizationGraph = () => {
   const data = {

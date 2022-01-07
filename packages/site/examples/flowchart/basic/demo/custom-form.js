@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Input } from 'antd';
-import { Flowchart, FormWrapper } from '@ant-design/charts';
+import { Flowchart, FormWrapper } from '@ant-design/flowchart';
 
 const InputComponent = (props) => {
   const { config, plugin = {} } = props;

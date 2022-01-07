@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { DualAxes } from '@ant-design/charts';
+import { DualAxes } from '@ant-design/plots';
 
 const DemoDualAxes = () => {
   const uvData = [

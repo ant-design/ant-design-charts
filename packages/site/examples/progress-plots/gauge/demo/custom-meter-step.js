@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { Gauge } from '@ant-design/charts';
+import { Gauge } from '@ant-design/plots';
 
 const DemoGauge = () => {
   const ticks = [0, 1 / 3, 2 / 3, 1];

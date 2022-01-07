@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { ChoroplethMap } from '@ant-design/charts';
+import { ChoroplethMap } from '@ant-design/maps';
 
 const DemoChoroplethMap = () => {
   const [list, setData] = useState([]);

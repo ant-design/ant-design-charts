@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Sunburst } from '@ant-design/charts';
+import { Sunburst } from '@ant-design/plots';
 
 const DemoSunburst = () => {
   const [data, setData] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Area } from '@ant-design/charts';
+import { Area } from '@ant-design/plots';
 
 const DemoArea = () => {
   const data = [

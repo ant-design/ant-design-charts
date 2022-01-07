@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Pie, getCanvasPattern } from '@ant-design/charts';
+import { Pie, getCanvasPattern } from '@ant-design/plots';
 
 const DemoPie = () => {
   // 外置方法 getCanvasPattern

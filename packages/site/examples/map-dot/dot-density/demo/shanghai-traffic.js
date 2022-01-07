@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { DotMap } from '@ant-design/charts';
+import { DotMap } from '@ant-design/maps';
 
 const DemoDotMap = () => {
   const [data, setData] = useState([]);
@@ -11,12 +11,15 @@ const DemoDotMap = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/rmsportal/BElVQFEFvpAKzddxFZxJ.txt')
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((json) => setData(json))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
+  if (!data.length) {
+    return null;
+  }
   const config = {
     map: {
       type: 'mapbox',
