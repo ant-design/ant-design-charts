@@ -77,7 +77,7 @@ export type Command =
   | 'save-graph-data'
   | 'multi-select'
   | 'add-group'
-  | 'delete-group'
+  | 'del-group'
   | 'graph-toggle-multi-select'
   | 'graph-copy-selection'
   | 'graph-paste-selection';
