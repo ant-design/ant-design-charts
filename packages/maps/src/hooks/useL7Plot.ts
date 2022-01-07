@@ -34,7 +34,7 @@ export default function useL7Plot<
     updateMap = !isEqual(currentMap, inputMap);
     changeData = !isEqual(currentSource, inputSource);
     updateOption = !isEqual(currentConfig, inputConfig);
-
+    plotConfig.current = deepCloneMapConfig<C>(config);
     if (updateMap && inputMap) {
       const updateMapConfig = pick<any>(inputMap, ['center', 'pitch', 'rotation', 'zoom', 'style']);
       plotRef.current.updateMap(updateMapConfig);
@@ -62,19 +62,17 @@ export default function useL7Plot<
         });
       }
     }
-
-    plotConfig.current = deepCloneMapConfig<C>(config);
   }, [config]);
 
   useEffect(() => {
     if (!containerRef.current) {
       return () => null;
     }
-    plotRef.current = new Ctor(containerRef.current, { ...config });
-
     if (!plotConfig.current) {
       plotConfig.current = deepCloneMapConfig<C>(config);
     }
+
+    plotRef.current = new Ctor(containerRef.current, { ...config });
 
     if (onReady) {
       plotRef.current.once('loaded', () => {
