@@ -24,6 +24,8 @@ echo "\033[49;32m \n******* removing node_modules *******\n \033[0m"
 
 rm -rf ./package.json
 
+rm -rf ./yarn.lock
+
 rm -rf ./node_modules
 
 cp ./scripts/website/package.json ./
@@ -34,7 +36,7 @@ yarn
 
 echo "\033[49;32m \n******* building webite *******\n \033[0m"
 
-yarn run site:build
+yarn run build:site
 
 echo "\033[49;32m \n******* copy website assets *******\n \033[0m"
 
@@ -60,4 +62,6 @@ git add .
 
 git commit -m 'docs: 网站更新'
 
-git push --set-upstream origin gh-pages --force
+echo "\033[49;32m \n******* 网站代码已更新，请手动push *******\n \033[0m"
+
+#git push --set-upstream origin gh-pages --force
