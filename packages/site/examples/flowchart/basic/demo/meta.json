@@ -35,6 +35,14 @@
         "en": "Reading state"
       },
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/EMItQJlo%24%24/42341287-3b55-4bcd-b62c-4d2e69298a0b.png"
+    },
+    {
+      "filename": "complex-form.js",
+      "title": {
+        "zh": "自定义表单-结合内部组件",
+        "en": "Custom form with internal components"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/gDwaA%24IRr5/cdbe1478-ba99-44c7-b9f3-fc30c13698a1.png"
     }
   ]
 }
