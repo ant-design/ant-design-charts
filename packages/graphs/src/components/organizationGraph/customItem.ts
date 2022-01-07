@@ -2,6 +2,7 @@ import G6, { IGroup, LabelStyle } from '@antv/g6';
 import { defaultMargin, defaultLabelStyle, defaultCardStyle } from '../../constants';
 import { getStyle, getCssPadding, createMarker } from '../../utils';
 import { CardNodeCfg, CardItems } from '../../interface';
+import { OrgItem } from './index';
 
 // 组织架构图
 export const registerOrganizationCardNode = () => {
@@ -13,7 +14,18 @@ export const registerOrganizationCardNode = () => {
     'organization-card',
     {
       draw(cfg: Omit<CardNodeCfg, 'items'> | undefined = {}, group: IGroup | undefined) {
-        const { value = {}, nodeCfg, markerCfg } = cfg;
+        const { value: originValue = {}, nodeCfg, markerCfg } = cfg;
+        const value = { ...(originValue as OrgItem & CardItems) };
+        let isOld = false;
+        /** 兼容历史数据 */
+        if (value.text) {
+          isOld = true;
+          value.name = value.text as string;
+        }
+        if (value.value) {
+          isOld = true;
+          value.title = value.value as string;
+        }
         const { style, padding = 0, label = {}, autoWidth, customContent } = nodeCfg as CardNodeCfg;
         const { style: labelStyle } = label;
         const paddingArray = getCssPadding(padding);
@@ -37,6 +49,17 @@ export const registerOrganizationCardNode = () => {
         });
 
         if (value) {
+          // 兼容历史数据
+          const getKey = (key) => {
+            if (isOld) {
+              const keys = {
+                name: 'text',
+                title: 'value',
+              };
+              return keys[key];
+            }
+            return key;
+          };
           height += paddingArray[0];
           const createRowItems = (
             item: CardItems,
@@ -46,7 +69,7 @@ export const registerOrganizationCardNode = () => {
           ): number[] => {
             let iconWidth = 0;
             const rowHeight: number[] = [];
-            const keys = ['icon', 'text', 'value'];
+            const keys = ['icon', 'name', 'title'];
             const getXY = (type: string, layoutCfg: LabelStyle) => {
               const { fontSize = 12 } = layoutCfg;
               let x = 0;
@@ -61,11 +84,11 @@ export const registerOrganizationCardNode = () => {
                   x = startX;
                   y = height;
                   break;
-                case 'text':
+                case 'name':
                   x = startX + offsetX;
                   y = item.value ? paddingArray[0] : (size[1] - fontSize) / 2;
                   break;
-                case 'value':
+                case 'title':
                   x = startX + offsetX;
                   y = item.text ? paddingArray[0] + rowHeight[1] + defaultMargin : (size[1] - fontSize) / 2;
                   break;
@@ -76,7 +99,7 @@ export const registerOrganizationCardNode = () => {
             };
             keys.forEach((key: string, keyIndex: number) => {
               const isIcon = key.startsWith('icon');
-              const shapeStyle = getStyle(labelStyle, cfg, group, key);
+              const shapeStyle = getStyle(labelStyle, cfg, group, getKey(key));
               if (key === 'icon' && item[key]) {
                 iconWidth = shapeStyle.width || 32;
               }

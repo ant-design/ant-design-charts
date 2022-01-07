@@ -5,7 +5,7 @@ import {
   IPosition,
   NsJsonSchemaForm,
   IToolbarLayout,
-  IAppDestory,
+  IAppDestroy,
   IAppConfigReady,
 } from '@antv/xflow';
 import { Cell, Graph } from '@antv/x6';
@@ -173,7 +173,7 @@ export interface FlowchartProps extends FlowchartContainerProps {
   /** 新增边时回调 */
   onAddEdge?: (node: NsGraph.IEdgeConfig) => void;
   /** xflow app 销毁前的回调 */
-  onDestroy?: IAppDestory;
+  onDestroy?: IAppDestroy;
   /** xflow app 初始化后的回调 */
   onConfigReady?: IAppConfigReady;
   /** 节点或边更新数据时调用 */

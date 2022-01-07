@@ -6,8 +6,8 @@ const DemoOrganizationGraph = () => {
   const data = {
     id: 'joel',
     value: {
-      text: 'Joel Alan',
-      value: 'CEO',
+      name: 'Joel Alan',
+      title: 'CEO',
       // 建议使用 bae64 数据
       icon: 'https://avatars.githubusercontent.com/u/31396322?v=4',
     },
@@ -15,32 +15,32 @@ const DemoOrganizationGraph = () => {
       {
         id: 'c1',
         value: {
-          text: 'c1',
-          value: 'CTO',
+          name: 'c1',
+          title: 'CTO',
         },
         children: [
           {
             id: 'c1-1',
             value: {
-              text: 'c1-1',
+              name: 'c1-1',
             },
           },
           {
             id: 'c1-2',
             value: {
-              text: 'c1-2',
+              name: 'c1-2',
             },
             children: [
               {
                 id: 'c1-2-1',
                 value: {
-                  text: 'c1-2-1',
+                  name: 'c1-2-1',
                 },
               },
               {
                 id: 'c1-2-2',
                 value: {
-                  text: 'c1-2-2',
+                  name: 'c1-2-2',
                 },
               },
             ],
@@ -50,45 +50,45 @@ const DemoOrganizationGraph = () => {
       {
         id: 'c2',
         value: {
-          text: 'c2',
-          value: 'COO',
+          name: 'c2',
+          title: 'COO',
         },
       },
       {
         id: 'c3',
         value: {
-          text: 'c3',
-          value: 'CFO',
+          name: 'c3',
+          title: 'CFO',
         },
         children: [
           {
             id: 'c3-1',
             value: {
-              text: 'c3-1',
+              name: 'c3-1',
             },
           },
           {
             id: 'c3-2',
             value: {
-              text: 'c3-2',
+              name: 'c3-2',
             },
             children: [
               {
                 id: 'c3-2-1',
                 value: {
-                  text: 'c3-2-1',
+                  name: 'c3-2-1',
                 },
               },
               {
                 id: 'c3-2-2',
                 value: {
-                  text: 'c3-2-2',
+                  name: 'c3-2-2',
                 },
               },
               {
                 id: 'c3-2-3',
                 value: {
-                  text: 'c3-2-3',
+                  name: 'c3-2-3',
                 },
               },
             ],
@@ -96,7 +96,7 @@ const DemoOrganizationGraph = () => {
           {
             id: 'c3-3',
             value: {
-              text: 'c3-3',
+              name: 'c3-3',
             },
           },
         ],
@@ -126,7 +126,7 @@ const DemoOrganizationGraph = () => {
               value: {
                 fill: '#fff',
               },
-              text: {
+              name: {
                 fill: '#fff',
               },
             };

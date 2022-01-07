@@ -6,43 +6,43 @@ const DemoOrganizationGraph = () => {
   const data = {
     id: 'root',
     value: {
-      text: '股东会',
+      name: '股东会',
     },
     children: [
       {
         id: 'joel',
         value: {
-          text: 'Joel Alan',
+          name: 'Joel Alan',
         },
         children: [
           {
             id: 'c1',
             value: {
-              text: 'c1',
+              name: 'c1',
             },
             children: [
               {
                 id: 'c1-1',
                 value: {
-                  text: 'c1-1',
+                  name: 'c1-1',
                 },
               },
               {
                 id: 'c1-2',
                 value: {
-                  text: 'c1-2',
+                  name: 'c1-2',
                 },
                 children: [
                   {
                     id: 'c1-2-1',
                     value: {
-                      text: 'c1-2-1',
+                      name: 'c1-2-1',
                     },
                   },
                   {
                     id: 'c1-2-2',
                     value: {
-                      text: 'c1-2-2',
+                      name: 'c1-2-2',
                     },
                   },
                 ],
@@ -52,43 +52,43 @@ const DemoOrganizationGraph = () => {
           {
             id: 'c2',
             value: {
-              text: 'c2',
+              name: 'c2',
             },
           },
           {
             id: 'c3',
             value: {
-              text: 'c3',
+              name: 'c3',
             },
             children: [
               {
                 id: 'c3-1',
                 value: {
-                  text: 'c3-1',
+                  name: 'c3-1',
                 },
               },
               {
                 id: 'c3-2',
                 value: {
-                  text: 'c3-2',
+                  name: 'c3-2',
                 },
                 children: [
                   {
                     id: 'c3-2-1',
                     value: {
-                      text: 'c3-2-1',
+                      name: 'c3-2-1',
                     },
                   },
                   {
                     id: 'c3-2-2',
                     value: {
-                      text: 'c3-2-2',
+                      name: 'c3-2-2',
                     },
                   },
                   {
                     id: 'c3-2-3',
                     value: {
-                      text: 'c3-2-3',
+                      name: 'c3-2-3',
                     },
                   },
                 ],
@@ -96,7 +96,7 @@ const DemoOrganizationGraph = () => {
               {
                 id: 'c3-3',
                 value: {
-                  text: 'c3-3',
+                  name: 'c3-3',
                 },
               },
             ],
