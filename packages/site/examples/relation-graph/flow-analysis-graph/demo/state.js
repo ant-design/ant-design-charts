@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { FlowAnalysisGraph } from '@ant-design/charts';
+import { FlowAnalysisGraph } from '@ant-design/graphs';
 
 const DemoFlowAnalysisGraph = () => {
   const data = {

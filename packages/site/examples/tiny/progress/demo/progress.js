@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Progress } from '@ant-design/charts';
+import { Progress } from '@ant-design/plots';
 
 const DemoProgress = () => {
   const config = {

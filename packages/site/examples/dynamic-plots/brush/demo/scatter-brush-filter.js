@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Scatter } from '@ant-design/charts';
+import { Scatter } from '@ant-design/plots';
 
 const DemoScatter = () => {
   const [data, setData] = useState([]);

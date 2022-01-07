@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Histogram } from '@ant-design/charts';
+import { Histogram } from '@ant-design/plots';
 
 const DemoHistogram = () => {
   const [data, setData] = useState([]);

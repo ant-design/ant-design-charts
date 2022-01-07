@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Stock } from '@ant-design/charts';
+import { Stock } from '@ant-design/plots';
 
 const DemoStock = () => {
   const [data, setData] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Rose } from '@ant-design/charts';
+import { Rose } from '@ant-design/plots';
 
 const DemoRose = () => {
   const data = [

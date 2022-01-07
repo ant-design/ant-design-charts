@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Column } from '@ant-design/charts';
+import { Column } from '@ant-design/plots';
 
 const DemoColumn = () => {
   const [data, setData] = useState([]);

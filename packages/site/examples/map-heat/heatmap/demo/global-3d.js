@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { HeatMap } from '@ant-design/charts';
+import { HeatMap } from '@ant-design/maps';
 
 const DemoHeatMap = () => {
   const [data, setData] = useState({ type: 'FeatureCollection', features: [] });

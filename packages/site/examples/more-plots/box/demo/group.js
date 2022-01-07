@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Box } from '@ant-design/charts';
+import { Box } from '@ant-design/plots';
 
 const DemoBox = () => {
   const data = [

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { TinyLine } from '@ant-design/charts';
+import { TinyLine } from '@ant-design/plots';
 
 const DemoTinyLine = () => {
   const data = [

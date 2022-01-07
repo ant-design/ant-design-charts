@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { GridMap } from '@ant-design/charts';
+import { GridMap } from '@ant-design/maps';
 
 const DemoGridMap = () => {
   const [data, setData] = useState([]);
@@ -11,12 +11,15 @@ const DemoGridMap = () => {
 
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/antfincdn/aBQAMIpvPL/qingdao_500m.csv')
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((json) => setData(json))
       .catch((error) => {
         console.log('fetch data failed', error);
       });
   };
+  if (!data.length) {
+    return null;
+  }
   const config = {
     map: {
       type: 'mapbox',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { RadialBar } from '@ant-design/charts';
+import { RadialBar } from '@ant-design/plots';
 
 const DemoRadialBar = () => {
   const [data, setData] = useState([]);

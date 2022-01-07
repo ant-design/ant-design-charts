@@ -565,7 +565,7 @@ params:
 *   image: `HTMLImageElement|File|string`
 
 ```js
-import { registerImage } from '@ant-design/charts';
+import { registerImage } from '@ant-design/maps';
 
 registerImage('01', 'https://l7plot.antv.vision/xxx.svg');
 ```
@@ -581,7 +581,7 @@ params:
     *   image: `HTMLImageElement|File|string`
 
 ```js
-import { registerImages } from '@ant-design/charts';
+import { registerImages } from '@ant-design/maps';
 
 const images = [{ id: '01', image: 'https://l7plot.antv.vision/xxx.svg' }];
 registerImages(images);
@@ -599,7 +599,7 @@ params:
 *   fontPath: `string`
 
 ```js
-import { registerFontFace } from '@ant-design/charts';
+import { registerFontFace } from '@ant-design/maps';
 
 registerFontFace('iconfont', 'https://l7plot.antv.vision/xxx.woff2');
 ```
@@ -616,7 +616,7 @@ params:
 *   fontUnicode: `string`
 
 ```js
-import { registerIconFont } from '@ant-design/charts';
+import { registerIconFont } from '@ant-design/maps';
 
 registerIconFont('icon1', '&#xe64b;');
 ```
@@ -632,7 +632,7 @@ params:
     *   fontUnicode: `string`
 
 ```js
-import { registerIconFonts } from '@ant-design/charts';
+import { registerIconFonts } from '@ant-design/maps';
 
 const iconFonts = [{ name: 'icon1', fontUnicode: '&#xe64b;' }];
 registerIconFonts(iconFonts);

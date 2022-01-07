@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { HexbinMap } from '@ant-design/charts';
+import { HexbinMap } from '@ant-design/maps';
 
 const DemoHexbinMap = () => {
   const [data, setData] = useState({ type: 'FeatureCollection', features: [] });

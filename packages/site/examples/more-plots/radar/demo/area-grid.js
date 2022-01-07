@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Radar } from '@ant-design/charts';
+import { Radar } from '@ant-design/plots';
 
 const DemoRadar = () => {
   const [data, setData] = useState([]);

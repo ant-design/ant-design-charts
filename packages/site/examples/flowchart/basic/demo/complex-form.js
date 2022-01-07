@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Flowchart, FormWrapper, EdgeService, GroupService, CanvasService, EditorPanels } from '@ant-design/charts';
+import { Flowchart, FormWrapper, EdgeService, GroupService, CanvasService, EditorPanels } from '@ant-design/flowchart';
 
 const PREFIX = 'flowchart-editor';
 const { InputFiled, ColorPicker, Position, InputNumberFiled, Size } = EditorPanels;

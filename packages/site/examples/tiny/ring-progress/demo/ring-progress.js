@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { RingProgress } from '@ant-design/charts';
+import { RingProgress } from '@ant-design/plots';
 
 const DemoRingProgress = () => {
   const config = {

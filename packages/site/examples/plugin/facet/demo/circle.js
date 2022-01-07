@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Facet } from '@ant-design/charts';
+import { Facet } from '@ant-design/plots';
 
 const DemoFacet = () => {
   const [data, setData] = useState([]);

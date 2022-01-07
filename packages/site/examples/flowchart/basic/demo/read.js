@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Flowchart } from '@ant-design/charts';
+import { Flowchart } from '@ant-design/flowchart';
 
 const DATA = {
   nodes: [

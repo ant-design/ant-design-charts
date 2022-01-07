@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Mix, G2 } from '@ant-design/charts';
+import { Mix, G2 } from '@ant-design/plots';
 
 const DemoMix = () => {
   const [data, setData] = useState({});

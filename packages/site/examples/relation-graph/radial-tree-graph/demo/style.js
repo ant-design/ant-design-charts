@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { RadialTreeGraph } from '@ant-design/charts';
+import { RadialTreeGraph } from '@ant-design/graphs';
 
 const DemoRadialTreeGraph = () => {
   const data = {

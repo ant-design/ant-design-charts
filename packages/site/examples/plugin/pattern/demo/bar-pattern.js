@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Bar, getCanvasPattern } from '@ant-design/charts';
+import { Bar, getCanvasPattern } from '@ant-design/plots';
 
 import { deepMix } from '@antv/util';
 

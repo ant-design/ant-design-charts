@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Column } from '@ant-design/charts';
+import { Column } from '@ant-design/plots';
 
 import { each, groupBy } from '@antv/util';
 

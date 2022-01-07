@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Liquid } from '@ant-design/charts';
+import { Liquid } from '@ant-design/plots';
 
 const DemoLiquid = () => {
   const config = {
