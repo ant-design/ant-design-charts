@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: yarn
       - run: yarn build
-      - run: yarn site:build
+      - run: yarn build:site
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

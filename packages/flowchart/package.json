@@ -21,6 +21,7 @@
   "scripts": {
     "start": "yarn lib:es --w",
     "build": "run-s clean lib dist less",
+    "build:site": "yarn build",
     "ci": "npm run build && npm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",

@@ -22,11 +22,11 @@
   "license": "MIT",
   "author": "https://github.com/orgs/antvis/people",
   "scripts": {
-    "site:build": "NODE_OPTIONS=--max_old_space_size=12288 yarn run site:clean && gatsby build --prefix-paths",
-    "site:clean": "gatsby clean",
-    "site:develop": "cross-env GATSBY=true gatsby develop --open",
-    "site:deploy": "npm run site:build && gh-pages -d public",
-    "site:start": "NODE_OPTIONS=--max_old_space_size=8192 npm run site:develop --verbose --watch"
+    "build:site": "NODE_OPTIONS=--max_old_space_size=12288 yarn run clean:site && gatsby build --prefix-paths",
+    "clean:site": "gatsby clean",
+    "develop:site": "cross-env GATSBY=true gatsby develop --open",
+    "deploy:site": "npm run build:site && gh-pages -d public",
+    "start:site": "NODE_OPTIONS=--max_old_space_size=8192 npm run develop:site --verbose --watch"
   },
   "devDependencies": {
     "@types/react": "^16.14.8",
@@ -39,7 +39,10 @@
     "typescript": "^3.6.5"
   },
   "dependencies": {
-    "@ant-design/charts": "^1.3.0-beta.4",
+    "@ant-design/flowchart": "^1.0.2",
+    "@ant-design/graphs": "^1.0.1",
+    "@ant-design/maps": "^0.0.3",
+    "@ant-design/plots": "^1.0.2",
     "@antv/gatsby-theme-antv": "^1.1.8",
     "@antv/util": "^2.0.9",
     "antd": "^4.16.13",
