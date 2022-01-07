@@ -102,6 +102,7 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
         const { data: inputData, value: inputValue, percent: inputPercent, ...inputConfig } = config;
         changeData = isEqual(currentConfig, inputConfig);
       }
+      chartOptions.current = deepClone(config);
       if (changeData && get(config, 'chartType') !== 'Mix') {
         let changeType = 'data';
         const typeMaps = ['percent']; // 特殊类型的图表 data 字段，例如 RingProgress
@@ -116,13 +117,15 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
         processConfig();
         chart.current.update(config);
       }
-      chartOptions.current = deepClone(config);
     }
   }, [config]);
 
   useEffect(() => {
     if (!container.current) {
       return () => null;
+    }
+    if (!chartOptions.current) {
+      chartOptions.current = deepClone(config);
     }
     processConfig();
     const chartInstance: T = new (ChartClass as any)(container.current, {
@@ -136,9 +139,6 @@ export default function useInit<T extends Base, U extends Options>(ChartClass: a
       return downloadImage(name, type, encoderOptions);
     };
     chartInstance.render();
-    if (!chartOptions.current) {
-      chartOptions.current = deepClone(config);
-    }
     chart.current = clone(chartInstance) as T;
     if (onReady) {
       onReady(chartInstance);
