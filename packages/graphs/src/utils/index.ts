@@ -37,18 +37,18 @@ export const getType = (n: Object) => {
  * @param source 要深克隆的目标对象
  */
 export const deepClone = (source: Object | undefined) => {
-  if (!source) {
+  if (!source || typeof source !== 'object') {
     return source;
   }
 
-  // @ts-ignore
-  const target = new source.constructor();
-
-  for (const key in source) {
-    if (source.hasOwnProperty(key)) {
-      target[key] =
-        getType(source[key]) === 'Object' || getType(source[key]) === 'Array' ? deepClone(source[key]) : source[key];
-    }
+  let target;
+  if (Array.isArray(source)) {
+    target = source.map((item) => deepClone(item));
+  } else {
+    target = {};
+    Object.keys(source).forEach((key) => {
+      return (target[key] = deepClone(source[key]));
+    });
   }
 
   return target;
