@@ -5,14 +5,16 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "lerna run start:site --stream --scope=@ant-design/charts-site",
+    "start": "yarn build:site && yarn start:site",
+    "start:site": "lerna run start:site --stream --scope=@ant-design/charts-site",
     "test": "lerna run test --stream",
     "lint": "lerna run lint --stream",
     "build": "lerna run build --stream --profile --profile-location=logs/profile/",
     "build:site": "lerna run build:site --stream",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "test-live": "cross-env DEBUG_MODE=1 jest --watch ./packages"
   },
   "devDependencies": {
     "@antv/data-set": "^0.11.8",
@@ -37,6 +39,9 @@
     "eslint": "^7.32.0",
     "gh-pages": "^3.0.0",
     "jest-canvas-mock": "^2.2.0",
+    "jest": "^26.0.1",
+    "jest-electron": "^0.1.12",
+    "jest-extended": "^1.2.0",
     "lerna": "^4.0.0",
     "less": "^4.1.2",
     "less-loader": "^10.1.0",
@@ -51,6 +56,7 @@
     "react-test-renderer": "^17.0.1",
     "rimraf": "^3.0.2",
     "style-loader": "^3.3.0",
+    "ts-jest": "^25.4.0",
     "ts-loader": "^8.0.7",
     "typescript": "^4.0.3",
     "vfile-reporter": "^7.0.2",
@@ -71,6 +77,22 @@
   },
   "sideEffects": false,
   "license": "MIT",
+  "jest": {
+    "runner": "jest-electron/runner",
+    "testEnvironment": "jest-electron/environment",
+    "testTimeout": 30000,
+    "setupFilesAfterEnv": [
+      "jest-extended",
+      "./jest.setup.js"
+    ],
+    "preset": "ts-jest",
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "packages/**/*.ts",
+      "!**/node_modules/**"
+    ],
+    "testRegex": "/tests/.*-spec\\.ts|js?$"
+  },
   "dependencies": {
     "less-plugin-npm-import": "^2.1.0"
   }
