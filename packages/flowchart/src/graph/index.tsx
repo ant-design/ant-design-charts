@@ -23,7 +23,7 @@ import AppContext from '../context';
 import { appendUtils } from './appendUtils';
 import { useGraphConfig, useGraphHook } from './service';
 import { useKeybindingConfig } from './service/keyBinding';
-
+import 'antd/dist/antd.css';
 const Flowchart: React.FC<FlowchartProps> = (props) => {
   const {
     className,

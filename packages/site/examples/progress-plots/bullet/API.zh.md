@@ -1,1 +1,0 @@
-`markdown:docs/api/plots/bullet.zh.md`

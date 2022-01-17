@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "start": "yarn lib:es --w",
+    "start": "yarn less:build && dumi dev",
     "build": "run-s clean lib dist less",
     "build:site": "yarn build",
     "ci": "npm run build && npm run test:coverage",
@@ -57,6 +57,7 @@
   "license": "MIT",
   "devDependencies": {
     "antd": "^4.16.13",
+    "dumi": "^1.1.38",
     "lodash": "^4.17.20"
   }
 }
