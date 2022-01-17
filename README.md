@@ -2,7 +2,7 @@
 
 <div align="center">
 
-A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), [G6](https://github.com/antvis/G6), [X6](https://github.com/antvis/X6), [L7](https://github.com/antvis/L7).
+A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), [G6](https://github.com/antvis/G6), [X6](https://github.com/antvis/X6), [L7Plot](https://github.com/antvis/L7Plot).
 
 ![build](https://github.com/ant-design/ant-design-charts/workflows/build/badge.svg)
 ![npm](https://img.shields.io/npm/v/@ant-design/charts)
