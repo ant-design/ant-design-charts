@@ -1,8 +1,0 @@
-{
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../dist"
-  },
-  "include": ["../packages/plots/src"],
-  "exclude": ["./test", "node_modules"]
-}
