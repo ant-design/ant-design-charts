@@ -10,6 +10,7 @@ interface IGlobalProps {
     container?: MutableRefObject<HTMLDivElement>;
   };
 }
+/** 全局状态 */
 export const globalProps: IGlobalProps = {};
 
 /** 设置全局状态 */
@@ -18,6 +19,11 @@ export const setProps = (props: FlowchartProps, flowchartId: string, container?:
     config: props,
     container,
   };
+};
+
+/** 获取全局状态 */
+export const getProps = (flowchartId: string, key: string) => {
+  return globalProps[flowchartId]?.config?.[key];
 };
 
 const graphInstance = new Map<string, IGraph>();
@@ -36,10 +42,6 @@ export const getAppInstance = (flowchartId: string) => {
   return appInstance.get(`${flowchartId}-app`);
 };
 
-/** 获取全局状态 */
-export const getProps = (flowchartId: string, key: string) => {
-  return globalProps[flowchartId]?.config?.[key];
-};
 export const getContainer = (flowchartId: string, type = 'container') => {
   return globalProps[flowchartId]?.[type]?.current;
 };
