@@ -9,7 +9,6 @@ export const withPopover = (props: NsGraph.IReactNodeProps<any>) => (WrappedComp
   const { flowchartId } = useContext(AppContext);
   const { content, title, extra } = getProps(flowchartId, 'popoverProps') ?? {};
   const { data } = props;
-
   if (!content) {
     return <WrappedComponent {...props} />;
   }

@@ -13,7 +13,7 @@ export const LabelEdge: NsGraph.IEdgeRender = (props) => {
     >
       <span
         style={{
-          fontSize,
+          fontSize: 40,
           color: fontFill,
         }}
       >
