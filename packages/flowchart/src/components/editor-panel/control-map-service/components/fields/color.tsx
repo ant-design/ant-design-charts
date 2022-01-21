@@ -73,13 +73,15 @@ const ColorPicker: React.FC<IProps> = (props) => {
           setShow(true);
         }}
       >
-        <div
-          className={`${prefix}-color`}
-          style={{
-            backgroundColor: value,
-            height: '100%',
-          }}
-        ></div>
+        {
+          <div
+            className={`${prefix}-color`}
+            style={{
+              backgroundColor: value,
+              height: '100%',
+            }}
+          ></div>
+        }
       </div>
       {CreatePickColorContainer(show)}
     </div>

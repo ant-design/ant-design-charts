@@ -5,6 +5,7 @@ const NodeConfig = {
     fill: '#FFFFFF',
     fontFill: '#000',
     fontSize: 12,
+    strokeWidth: 1,
   },
 };
 

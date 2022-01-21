@@ -2,7 +2,7 @@ import * as nodePathMap from './paths';
 import React, { useContext } from 'react';
 import { NsGraph } from '@antv/xflow';
 import { AppContext } from './index';
-import { NODE_HEIGHT, NODE_WIDTH, NODE_PADDING } from './constants';
+import { NODE_HEIGHT, NODE_WIDTH } from './constants';
 
 export const NodeComponent: NsGraph.INodeRender = (props) => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {}, name } = props;
@@ -17,6 +17,8 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     fill = stateNodeConfig.fill,
     fontFill = stateNodeConfig.fontFill,
     fontSize = stateNodeConfig.fontSize,
+    strokeWidth = stateNodeConfig.strokeWidth,
+    strokeDasharray = stateNodeConfig.strokeDasharray,
   } = data;
 
   const { width, height } = size;
@@ -30,7 +32,16 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
       height="100%"
     >
       {nodePathMap[`${name.replace(/\s+/g, '')}NodePath`](props).map((path) => {
-        return <path key={path} d={path} fill={fill} stroke={stroke}></path>;
+        return (
+          <path
+            key={path}
+            d={path}
+            fill={fill}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            stroke-dasharray={strokeDasharray}
+          ></path>
+        );
       })}
       <text
         x={height / (scale * 2)}
