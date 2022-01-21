@@ -1,9 +1,9 @@
 import { createPath } from '../../util';
-import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
+import { NODE_PADDING } from '../../constants';
+import { getConfig } from '../utils';
 
 export const InternalStorageNodePath = (props) => {
-  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT } } = props;
-  const { width, height } = size;
+  const { width, height } = getConfig(props);
   const availableWidth = width - 2 * NODE_PADDING;
   const availableHieght = height - 2 * NODE_PADDING;
   const rx = 6;

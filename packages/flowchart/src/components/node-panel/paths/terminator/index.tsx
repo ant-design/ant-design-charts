@@ -1,9 +1,9 @@
 import { createPath } from '../../util';
-import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
+import { NODE_PADDING } from '../../constants';
+import { getConfig } from '../utils';
 
 export const TerminalNodePath = (props) => {
-  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT } } = props;
-  const { width, height } = size;
+  const { width, height } = getConfig(props);
   const rx = Math.min(height, width) / 2;
   const path = [
     ['M', rx, NODE_PADDING], // top-left

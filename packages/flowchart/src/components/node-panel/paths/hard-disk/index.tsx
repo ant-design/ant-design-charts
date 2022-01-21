@@ -1,9 +1,9 @@
 import { createPath } from '../../util';
-import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
+import { NODE_PADDING } from '../../constants';
+import { getConfig } from '../utils';
 
 export const HardDiskNodePath = (props) => {
-  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT } } = props;
-  const { width, height } = size;
+  const { width, height } = getConfig(props);
   const bezierX = Math.min(width / 10, height / 4);
   const bezierY = Math.min(height / 4, width / 4);
   const path = [

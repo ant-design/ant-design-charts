@@ -1,9 +1,9 @@
 import { createPath } from '../../util';
-import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
+import { NODE_PADDING } from '../../constants';
+import { getConfig } from '../utils';
 
 export const DisplayNodePath = (props) => {
-  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT } } = props;
-  const { width, height } = size;
+  const { width, height } = getConfig(props);
   const sx = Math.min(height, width) / 3;
   const dx = Math.min(Math.tan(Math.PI / 6) * (height / 2), width / 3);
   const path = [

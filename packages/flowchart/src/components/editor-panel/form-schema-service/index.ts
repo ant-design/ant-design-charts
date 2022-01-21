@@ -1,7 +1,6 @@
 import type { NsJsonSchemaForm } from '@antv/xflow';
 
 export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = async (args) => {
-  //console.log(args)
   const { targetType } = args;
   const isGroup = args.targetData?.isGroup;
 

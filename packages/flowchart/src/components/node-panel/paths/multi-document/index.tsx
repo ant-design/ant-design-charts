@@ -1,13 +1,12 @@
 import { createPath } from '../../util';
-import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
+import { NODE_PADDING } from '../../constants';
+import { getConfig } from '../utils';
 
 export const MultiDocumentNodePath = (props) => {
-  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT } } = props;
+  let { width, height } = getConfig(props);
   const multipleWidth = 6;
   const padding = NODE_PADDING;
   const multiPadding = multipleWidth / 2;
-
-  let { width, height } = size;
   width += multipleWidth;
   height += multipleWidth;
   const bezierX = width / 8;

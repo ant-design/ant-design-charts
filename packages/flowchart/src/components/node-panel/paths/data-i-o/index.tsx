@@ -1,10 +1,9 @@
 import { createPath } from '../../util';
-import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
+import { NODE_PADDING } from '../../constants';
+import { getConfig } from '../utils';
 
 export const DataIONodePath = (props) => {
-  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT } } = props;
-  const { width, height } = size;
-
+  const { width, height } = getConfig(props);
   const slope = height / 2; // 用于计算斜率 tan(&) =  slope / height
 
   const path = [

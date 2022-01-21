@@ -1,10 +1,10 @@
 import { createPath } from '../../util';
-import { NODE_WIDTH, NODE_HEIGHT, NODE_PADDING } from '../../constants';
+import { NODE_PADDING } from '../../constants';
+import { getConfig } from '../utils';
 
 export const OrNodePath = (props) => {
-  const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {} } = props;
+  const { height } = getConfig(props);
 
-  const { height } = size;
   const path1 = [
     ['M', height / 2, NODE_PADDING], // top-center
     ['L', height / 2, height - 2 * NODE_PADDING], // bottom-center

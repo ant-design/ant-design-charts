@@ -120,8 +120,7 @@ export const setNodeRender = (config, nodePanelProps: FlowchartProps['nodePanelP
   // 默认节点
   NODEPOOL.forEach((item) => {
     config.setNodeRender(item.name, (props) => {
-      //return withPopover(props)(NodeComponents[`${item.name.replace(/\s+/g, '')}Node`]);
-      return withPopover({ ...props, name: item.name })(NodeComponent);
+      return withPopover({ ...props }, item.name)(NodeComponent);
     });
   });
 };
