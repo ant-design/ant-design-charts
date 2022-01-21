@@ -16,12 +16,12 @@ export const NODEPOOL = [
     name: 'Decision',
   },
   {
-    name: 'Multi Document',
-  },
-  {
     name: 'Connector',
     width: NODE_HEIGHT,
     height: NODE_HEIGHT,
+  },
+  {
+    name: 'Multi Document',
   },
   {
     name: 'DataIO',

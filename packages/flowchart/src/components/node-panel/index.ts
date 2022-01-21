@@ -23,6 +23,7 @@ import AppContext from '../../context';
 import { withPopover } from './with-popover';
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL, ASPECTRATIONODE } from './constants';
 import * as NodeComponents from './nodes';
+import { NodeComponent } from './node-components';
 export { searchService, onNodeDrop } from './service';
 
 import { FlowchartProps } from '../../interface';
@@ -119,7 +120,7 @@ export const setNodeRender = (config, nodePanelProps: FlowchartProps['nodePanelP
   // 默认节点
   NODEPOOL.forEach((item) => {
     config.setNodeRender(item.name, (props) => {
-      return withPopover(props)(NodeComponents[`${item.name.replace(/\s+/g, '')}Node`]);
+      return withPopover({ ...props }, item.name)(NodeComponent);
     });
   });
 };

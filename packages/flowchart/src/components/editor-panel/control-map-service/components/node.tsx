@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
-import { InputFiled, ColorPicker, Position, InputNumberFiled, Size } from './fields';
+import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField } from './fields';
 
 import { prefix } from './constants';
 
@@ -15,6 +15,8 @@ export interface IConfig {
   fill?: string;
   fontSize?: number;
   fontFill?: string;
+  strokeWidth?: number;
+  strokeDasharray?: string;
 }
 
 const NodeComponent = (props) => {
@@ -37,6 +39,10 @@ const NodeComponent = (props) => {
     updateNode({
       [key]: value,
     });
+  };
+
+  const getSrokeDashValue = () => {
+    return nodeConfig.strokeDasharray ? 'dash' : 'solid';
   };
 
   useEffect(() => {
@@ -88,6 +94,37 @@ const NodeComponent = (props) => {
             onNodeConfigChange('stroke', value);
           }}
         />
+        <div className={`${prefix}-edge-stroke-style`}>
+          <SelectField
+            label="线形"
+            width={68}
+            value={getSrokeDashValue()}
+            options={[
+              {
+                label: '实线',
+                value: 'solid',
+              },
+              {
+                label: '虚线',
+                value: 'dash',
+              },
+            ]}
+            onChange={(value) => {
+              if (value === 'solid') {
+                onNodeConfigChange('strokeDasharray', undefined);
+              } else {
+                onNodeConfigChange('strokeDasharray', '2, 2');
+              }
+            }}
+          />
+          <InputNumberFiled
+            value={nodeConfig.strokeWidth}
+            min={1}
+            onChange={(value) => {
+              onNodeConfigChange('strokeWidth', value);
+            }}
+          />
+        </div>
         <div className={`${prefix}-node-text-style`}>
           <InputNumberFiled
             label="字号"

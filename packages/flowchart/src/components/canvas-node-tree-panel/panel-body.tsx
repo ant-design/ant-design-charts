@@ -198,6 +198,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     [commandService, dnd, graph, graphConfig, modelService, x6NodeFactory],
   );
 
+  /** 渲染生成 node panel 上的图标 */
   const renderTree = React.useCallback(
     (treeList: ITreeNode[] = []) => {
       return treeList.map((item) => {
