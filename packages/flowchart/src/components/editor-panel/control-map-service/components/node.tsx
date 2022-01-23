@@ -17,6 +17,7 @@ export interface IConfig {
   fontFill?: string;
   strokeWidth?: number;
   strokeDasharray?: string;
+  fillOpacity?: number;
 }
 
 const NodeComponent = (props) => {
@@ -87,6 +88,18 @@ const NodeComponent = (props) => {
             onNodeConfigChange('fill', value);
           }}
         />
+        <InputNumberFiled
+          label="透明度"
+          value={nodeConfig.fillOpacity}
+          formatter={(value) => `${value * 100}%`}
+          max={1}
+          min={0}
+          step={0.1}
+          width={68}
+          onChange={(value) => {
+            onNodeConfigChange('fillOpacity', value);
+          }}
+        />
         <ColorPicker
           label="边框"
           value={nodeConfig.stroke}
@@ -120,6 +133,7 @@ const NodeComponent = (props) => {
           <InputNumberFiled
             value={nodeConfig.strokeWidth}
             min={1}
+            max={5}
             onChange={(value) => {
               onNodeConfigChange('strokeWidth', value);
             }}

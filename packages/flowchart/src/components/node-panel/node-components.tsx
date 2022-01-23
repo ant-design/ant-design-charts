@@ -19,6 +19,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     fontSize = stateNodeConfig.fontSize,
     strokeWidth = stateNodeConfig.strokeWidth,
     strokeDasharray = stateNodeConfig.strokeDasharray,
+    fillOpacity = stateNodeConfig.fillOpacity,
   } = data;
 
   const { width, height } = size;
@@ -39,7 +40,8 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
             fill={fill}
             stroke={stroke}
             strokeWidth={strokeWidth}
-            stroke-dasharray={strokeDasharray}
+            strokeDasharray={strokeDasharray}
+            fillOpacity={fillOpacity}
           ></path>
         );
       })}
