@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Checkbox } from 'antd';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate } from './fields';
-import { prefix } from './constants';
+import { prefix, canEditorRounded } from './constants';
 
 export interface IConfig {
   x?: number;
@@ -18,6 +19,8 @@ export interface IConfig {
   strokeDasharray?: string;
   fillOpacity?: number;
   angel?: number;
+  rounded?: boolean;
+  name: string;
 }
 
 const NodeComponent = (props) => {
@@ -32,7 +35,7 @@ const NodeComponent = (props) => {
     ...config,
   });
 
-  const onNodeConfigChange = (key: string, value: number | string) => {
+  const onNodeConfigChange = (key: string, value: number | string | boolean) => {
     setNodeConfig({
       ...nodeConfig,
       [key]: value,
@@ -138,6 +141,17 @@ const NodeComponent = (props) => {
             }}
           />
         </div>
+        {canEditorRounded.indexOf(nodeConfig.name) !== -1 ? (
+          <Checkbox
+            style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+            checked={nodeConfig.rounded}
+            onChange={(e) => {
+              onNodeConfigChange('rounded', e.target.checked);
+            }}
+          >
+            圆角
+          </Checkbox>
+        ) : null}
         <Rotate
           angel={nodeConfig.angel}
           onChange={(key, value) => {

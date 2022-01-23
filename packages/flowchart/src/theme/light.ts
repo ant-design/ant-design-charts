@@ -8,6 +8,7 @@ const NodeConfig = {
     strokeWidth: 1,
     fillOpacity: 1,
     angel: 0,
+    rounded: false,
   },
 };
 

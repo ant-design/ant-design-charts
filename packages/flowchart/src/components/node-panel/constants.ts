@@ -5,6 +5,9 @@ export const NODE_HEIGHT = 40;
 // svg 绘制起始点，解决边不清晰的问题
 export const NODE_PADDING = 1;
 
+//圆角半径
+export const ROUNDEDRADIUS = 10;
+
 export const NODEPOOL = [
   {
     name: 'Terminal',
