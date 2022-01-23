@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
-import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField } from './fields';
-
+import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate } from './fields';
 import { prefix } from './constants';
 
 export interface IConfig {
@@ -18,6 +17,7 @@ export interface IConfig {
   strokeWidth?: number;
   strokeDasharray?: string;
   fillOpacity?: number;
+  angel?: number;
 }
 
 const NodeComponent = (props) => {
@@ -138,6 +138,15 @@ const NodeComponent = (props) => {
             }}
           />
         </div>
+        <Rotate
+          angel={nodeConfig.angel}
+          onChange={(key, value) => {
+            onNodeConfigChange(key, value);
+          }}
+          onRotate={(key) => {
+            onNodeConfigChange(key, nodeConfig.angel + 90);
+          }}
+        />
         <div className={`${prefix}-node-text-style`}>
           <InputNumberFiled
             label="字号"

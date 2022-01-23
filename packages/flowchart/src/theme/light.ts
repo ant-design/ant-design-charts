@@ -7,6 +7,7 @@ const NodeConfig = {
     fontSize: 12,
     strokeWidth: 1,
     fillOpacity: 1,
+    angel: 0,
   },
 };
 
