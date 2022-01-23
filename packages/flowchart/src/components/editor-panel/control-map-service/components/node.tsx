@@ -91,11 +91,10 @@ const NodeComponent = (props) => {
         <InputNumberFiled
           label="透明度"
           value={nodeConfig.fillOpacity}
-          formatter={(value) => `${value * 100}%`}
           max={1}
           min={0}
           step={0.1}
-          width={68}
+          width={70}
           onChange={(value) => {
             onNodeConfigChange('fillOpacity', value);
           }}

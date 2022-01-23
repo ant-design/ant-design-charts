@@ -24,6 +24,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
 
   const { width, height } = size;
   const scale = name === 'Text' ? 2 : 1;
+  //console.log(fontSize);
 
   return (
     <svg
