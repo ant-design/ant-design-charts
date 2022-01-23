@@ -12,7 +12,7 @@ const Rotate: React.FC<IProps> = (props) => {
   const { angel, onChange, onRotate } = props;
   return (
     <div className="group">
-      <label>尺寸</label>
+      <label>角度</label>
       <div className="split">
         <Item
           addonBefore="度"
