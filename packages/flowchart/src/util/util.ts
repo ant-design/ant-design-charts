@@ -64,6 +64,7 @@ export const onConfigChange = debounce(
     if (!configChange || typeof configChange !== 'function') {
       return;
     }
+
     return configChange({
       data: getGraphData(flowchartId),
       ...config,

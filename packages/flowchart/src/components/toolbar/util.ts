@@ -253,7 +253,6 @@ const registerIcon = () => {
 
 export const useToolbarConfig = createToolbarConfig<FlowchartProps['toolbarPanelProps']>((toolbarConfig, proxy) => {
   const { flowchartId } = proxy.getValue();
-  console.log('flowcharId && proxy', flowchartId, proxy);
   const toolbarPanelProps = getProps(flowchartId, 'toolbarPanelProps') ?? {};
   registerIcon();
 
@@ -334,7 +333,6 @@ export const useToolbarConfig = createToolbarConfig<FlowchartProps['toolbarPanel
 
     //画布中被选中节点的 models 和能否多选的 models
     const models = await NSToolbarConfig.getDependencies(modelService);
-    console.log('utils/models', models);
     const subscriptions = models.map((model) => {
       return model.watch(async () => {
         updateToolbarModel();

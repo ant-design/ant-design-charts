@@ -27,3 +27,16 @@ export const createPath = (paths: (string | number)[][], offsetX = 0, offsetY = 
 
   return path;
 };
+
+export const createRoundedPath = (paths: (string | number)[][]) => {
+  if (!paths.length) {
+    return null;
+  }
+  let path = '';
+  // @ts-ignore
+  paths.forEach((item) => {
+    path += item.join(' ');
+  });
+
+  return path;
+};

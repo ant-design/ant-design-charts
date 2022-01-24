@@ -19,10 +19,15 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     fontSize = stateNodeConfig.fontSize,
     strokeWidth = stateNodeConfig.strokeWidth,
     strokeDasharray = stateNodeConfig.strokeDasharray,
+    fillOpacity = stateNodeConfig.fillOpacity,
+    angel = stateNodeConfig.angel,
+    rounded = stateNodeConfig.rounded,
   } = data;
 
   const { width, height } = size;
   const scale = name === 'Text' ? 2 : 1;
+  const getnodePath = nodePathMap[`${name.replace(/\s+/g, '')}NodePath`];
+  const nodePath = getnodePath(props, rounded);
 
   return (
     <svg
@@ -30,8 +35,9 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
       height="100%"
+      style={{ transform: `rotate(${angel}deg)` }}
     >
-      {nodePathMap[`${name.replace(/\s+/g, '')}NodePath`](props).map((path) => {
+      {nodePath.map((path) => {
         return (
           <path
             key={path}
@@ -39,7 +45,8 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
             fill={fill}
             stroke={stroke}
             strokeWidth={strokeWidth}
-            stroke-dasharray={strokeDasharray}
+            strokeDasharray={strokeDasharray}
+            fillOpacity={fillOpacity}
           ></path>
         );
       })}

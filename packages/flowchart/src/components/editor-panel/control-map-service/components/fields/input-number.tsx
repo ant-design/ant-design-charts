@@ -5,19 +5,24 @@ import { FormItemHeight } from '../constants';
 interface IProps {
   label?: string;
   value?: number;
+  max?: number;
   min?: number;
   width?: number;
+  step?: number;
   onChange?: (value: number) => void;
 }
 
 const InputNumberFiled: React.FC<IProps> = (props) => {
-  const { label, value, onChange, min, width } = props;
+  const { label, value, onChange, max, min, width, step = 1 } = props;
+
   return (
     <div className="group">
       {label && <label>{label}</label>}
       <InputNumber
         value={value}
+        max={max}
         min={min}
+        step={step}
         style={{
           width,
           height: FormItemHeight,

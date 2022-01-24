@@ -6,6 +6,9 @@ const NodeConfig = {
     fontFill: '#000',
     fontSize: 12,
     strokeWidth: 1,
+    fillOpacity: 1,
+    angel: 0,
+    rounded: false,
   },
 };
 

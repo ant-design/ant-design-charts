@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Checkbox } from 'antd';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
-import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField } from './fields';
-
-import { prefix } from './constants';
+import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate } from './fields';
+import { prefix, canEditorRounded } from './constants';
 
 export interface IConfig {
   x?: number;
@@ -17,6 +17,10 @@ export interface IConfig {
   fontFill?: string;
   strokeWidth?: number;
   strokeDasharray?: string;
+  fillOpacity?: number;
+  angel?: number;
+  rounded?: boolean;
+  name: string;
 }
 
 const NodeComponent = (props) => {
@@ -31,7 +35,7 @@ const NodeComponent = (props) => {
     ...config,
   });
 
-  const onNodeConfigChange = (key: string, value: number | string) => {
+  const onNodeConfigChange = (key: string, value: number | string | boolean) => {
     setNodeConfig({
       ...nodeConfig,
       [key]: value,
@@ -87,6 +91,17 @@ const NodeComponent = (props) => {
             onNodeConfigChange('fill', value);
           }}
         />
+        <InputNumberFiled
+          label="透明度"
+          value={nodeConfig.fillOpacity}
+          max={1}
+          min={0}
+          step={0.1}
+          width={70}
+          onChange={(value) => {
+            onNodeConfigChange('fillOpacity', value);
+          }}
+        />
         <ColorPicker
           label="边框"
           value={nodeConfig.stroke}
@@ -120,11 +135,32 @@ const NodeComponent = (props) => {
           <InputNumberFiled
             value={nodeConfig.strokeWidth}
             min={1}
+            max={5}
             onChange={(value) => {
               onNodeConfigChange('strokeWidth', value);
             }}
           />
         </div>
+        {canEditorRounded.indexOf(nodeConfig.name) !== -1 ? (
+          <Checkbox
+            style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+            checked={nodeConfig.rounded}
+            onChange={(e) => {
+              onNodeConfigChange('rounded', e.target.checked);
+            }}
+          >
+            圆角
+          </Checkbox>
+        ) : null}
+        <Rotate
+          angel={nodeConfig.angel}
+          onChange={(key, value) => {
+            onNodeConfigChange(key, value);
+          }}
+          onRotate={(key) => {
+            onNodeConfigChange(key, nodeConfig.angel + 90);
+          }}
+        />
         <div className={`${prefix}-node-text-style`}>
           <InputNumberFiled
             label="字号"
