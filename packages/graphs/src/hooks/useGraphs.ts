@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
-import G6 from '@antv/g6';
-import { ModeType, INode, IEdge } from '@antv/g6';
-import { isObject, isString, isEqual } from '@antv/util';
+import ReactDOM from 'react-dom';
+import G6, { ModeType, INode, IEdge } from '@antv/g6';
+import { isObject, isString, isEqual, isFunction } from '@antv/util';
 import {
   getGraphSize,
   processMinimap,
@@ -19,7 +19,6 @@ import {
 } from '../utils';
 import { NodeConfig, EdgeConfig, CardNodeCfg, StateStyles, ArrowConfig, CommonConfig } from '../interface';
 import { createToolbar } from '../components/toolbar';
-import { createTooltip } from '../components/tooltip';
 
 export default function useGraph(graphClass: string, config: any, extra: { name?: string } = {}) {
   const container = useRef(null);
@@ -41,7 +40,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     markerCfg,
     level,
     toolbarCfg,
-    tooltipCfg,
   } = config;
   const graph = graphRef.current;
   /** 隐藏孤立边 */
@@ -241,8 +239,8 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     if (container.current && graphClass) {
       const { name = '' } = extra;
       const graphSize = getGraphSize(width, height, container);
-
-      const { nodeCfg, edgeCfg, behaviors, layout, animate, autoFit, fitCenter, onReady } = config;
+      const plugins = [];
+      const { nodeCfg, edgeCfg, behaviors, layout, animate, autoFit, fitCenter, onReady, tooltipCfg } = config;
 
       const {
         type: nodeType,
@@ -264,6 +262,25 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         edgeStateStyles,
       } = edgeCfg ?? {};
 
+      if (tooltipCfg && isFunction(tooltipCfg.customContent)) {
+        const { customContent, ...rest } = tooltipCfg;
+        const createNode = (children: React.ReactNode) => {
+          const mountPoint = document.createElement('div');
+          mountPoint.className = 'g6-tooltip';
+          ReactDOM.render(children as React.ReactElement, mountPoint);
+          return mountPoint;
+        };
+        const tooltipPlugin = new G6.Tooltip({
+          offsetX: 10,
+          offsetY: 20,
+          itemTypes: ['node'],
+          ...rest,
+          getContent(e) {
+            return createNode(customContent(e.item.getModel()));
+          },
+        });
+        plugins.push(tooltipPlugin);
+      }
       graphRef.current = new G6[graphClass]({
         container: container.current as any,
         width: graphSize[0],
@@ -289,6 +306,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         layout,
         fitView: autoFit,
         fitCenter,
+        plugins,
       });
       const graphId = getGraphId(graphRef.current);
       const graph = graphRef.current;
@@ -378,12 +396,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       createToolbar({ graph: graphRef.current, container: container.current, toolbarCfg });
     }
   }, [graphRef, toolbarCfg]);
-
-  useEffect(() => {
-    if (graphRef.current && tooltipCfg) {
-      createTooltip({ graph: graphRef.current, container: container.current, tooltipCfg, nodeCfg });
-    }
-  }, [graphRef, tooltipCfg]);
 
   useEffect(() => {
     return () => {

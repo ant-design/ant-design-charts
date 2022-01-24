@@ -1,3 +1,4 @@
+import G6 from '@antv/g6';
 import OrganizationGraph, { OrganizationGraphConfig } from './components/organizationGraph';
 import RadialTreeGraph, { RadialTreeGraphConfig } from './components/radialTreeGraph';
 import FlowAnalysisGraph, { FlowAnalysisGraphConfig } from './components/flowAnalysisGraph';
@@ -35,6 +36,7 @@ export {
   IndentedTreeGraph,
   OrganizationalGraph,
   RadialGraph,
+  G6,
 };
 export * from './interface';
 export type {
