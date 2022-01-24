@@ -218,10 +218,15 @@ export interface TooltipCfg {
   className?: string;
   /** toolbar 容器样式 */
   style?: React.CSSProperties;
-  /** 是否展示 */
-  show?: boolean;
   /** 自定义模板 */
   customContent: (item?: NodeConfig) => React.ReactElement;
+  container?: HTMLDivElement | string | null;
+  offsetX?: number;
+  offsetY?: number;
+  shouldBegin?: (evt?: IG6GraphEvent) => boolean;
+  itemTypes?: string[];
+  trigger?: 'mouseenter' | 'click';
+  fixToNode?: [number, number] | undefined;
 }
 
 export type IMarkerCfg = MarkerCfg | ((cfg: CardNodeCfg, graph: IGraph | IGroup | undefined) => MarkerCfg);
