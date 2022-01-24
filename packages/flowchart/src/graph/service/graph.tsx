@@ -129,6 +129,7 @@ export const useGraphConfig = createGraphConfig((config, proxy) => {
         return ASPECTRATIONODE.includes(data.name);
       },
     },
+    rotating: true,
     snapline: {
       enabled: true,
     },
