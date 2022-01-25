@@ -1,3 +1,11 @@
+## 1.3.5
+
+`2022-01-25`
+
+- 🐞 修复 umd 命名错误问题 [1120](https://github.com/ant-design/ant-design-charts/issues/1120)
+- 🐞 修复流程图无法异步加载数据 [1117](https://github.com/ant-design/ant-design-charts/issues/1117)
+- 🐞 修复关系图 tooltipCfg.container 配置报错
+
 ## 1.3.4
 
 `2022-01-07`
