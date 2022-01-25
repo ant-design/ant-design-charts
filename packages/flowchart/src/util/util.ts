@@ -14,6 +14,22 @@ export const getGraphData = async (flowchartId: string) => {
   return data;
 };
 
+export const excLoadData = async (app, data) => {
+  if (!data?.nodes?.length) {
+    return;
+  }
+  const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
+    loadDataService: async () => {
+      return data;
+    },
+  } as NsGraphCmd.GraphLoadData.IArgs);
+  const { graphData } = res?.contextProvider()?.getResult();
+  /** 3. 画布内容渲染 */
+  await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
+    graphData,
+  });
+};
+
 export const getFlowchartId = (e) => {
   let currentNode = e?.e?.currentTarget;
   if (!currentNode) {

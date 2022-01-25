@@ -7,6 +7,7 @@ import {
   IToolbarLayout,
   IAppDestroy,
   IAppConfigReady,
+  IApplication,
 } from '@antv/xflow';
 import { Cell, Graph } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
@@ -133,6 +134,7 @@ export interface PopoverProps extends Omit<AntDPopoverConfig, 'title' | 'content
 export interface IFlowchartGraph extends Graph {
   getGraphData?: (flowchartId: string) => Promise<Datum>;
   updateNodeKeyById?: (id: string, key: string, data: object) => void;
+  loadData?: (data: Datum) => void;
   readonly flowchartId?: string;
 }
 
@@ -165,7 +167,7 @@ export interface FlowchartProps extends FlowchartContainerProps {
   /** popover */
   popoverProps?: PopoverProps;
   /** onReady */
-  onReady?: (graph) => void;
+  onReady?: (graph: IFlowchartGraph, app: IApplication) => void;
   /** 点击回调，仅支持 save-graph-data */
   onSave?: (data: Datum) => void;
   /** 新增节点时回调 */

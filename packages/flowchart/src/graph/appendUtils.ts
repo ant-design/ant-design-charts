@@ -1,8 +1,9 @@
 /** 向 graph 原型上挂在一系列方法 */
-import { getGraphData } from '../util';
+import { IApplication } from '@antv/xflow';
+import { getGraphData, excLoadData } from '../util';
 import { IFlowchartGraph as IGraph } from '../interface';
 
-export const appendUtils = (graph: IGraph) => {
+export const appendUtils = (graph: IGraph, app: IApplication) => {
   const x6Graph = graph;
   /** 更新节点指定数据
    * @param {id} string 节点 id
@@ -21,6 +22,9 @@ export const appendUtils = (graph: IGraph) => {
 
   x6Graph.updateNodeKeyById = updateNodeKeyById;
   x6Graph.getGraphData = getGraphData;
+  x6Graph.loadData = (data) => {
+    excLoadData(app, data);
+  };
 
   return x6Graph;
 };
