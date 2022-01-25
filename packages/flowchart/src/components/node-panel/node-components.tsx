@@ -22,16 +22,17 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     fillOpacity = stateNodeConfig.fillOpacity,
     angel = stateNodeConfig.angel,
     rounded = stateNodeConfig.rounded,
-    isFontWeight = stateNodeConfig.isFontWeight,
+    isBold = stateNodeConfig.isBold,
     isItalic = stateNodeConfig.isItalic,
     isUnderline = stateNodeConfig.isUnderline,
+    alignmentBaseline = stateNodeConfig.alignmentBaseline,
   } = data;
 
   const { width, height } = size;
   const scale = name === 'Text' ? 2 : 1;
   const getnodePath = nodePathMap[`${name.replace(/\s+/g, '')}NodePath`];
   const nodePath = getnodePath(props, rounded);
-  const fontWeight = isFontWeight ? 'bold' : 'normal';
+  const fontWeight = isBold ? 'bold' : 'normal';
   const fontStyle = isItalic ? 'italic' : 'normal';
   const textDecoration = isUnderline ? 'underline' : 'none';
 
@@ -61,7 +62,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
         y={height / (scale * 2)}
         fill={fontFill}
         textAnchor="middle"
-        alignmentBaseline="middle"
+        alignmentBaseline={alignmentBaseline}
         fontSize={fontSize}
         fontWeight={fontWeight}
         fontStyle={fontStyle}

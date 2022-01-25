@@ -96,6 +96,27 @@
   .ant-input-number {
     width: 100%;
   }
+
+  .@{prefix-cls}-icon-container {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 8px;
+    .@{prefix-cls}-icon-noselect-style {
+      padding: 4px;
+      background-color: #eee8e8fa;
+      border: #dadce0 1px solid;
+      border-radius: 3px;
+    }
+    .@{prefix-cls}-icon-select-style {
+      padding: 4px;
+      background-color: rgb(169, 218, 249);
+      border: #dadce0 1px solid;
+      border-radius: 3px;
+    }
+    .@{prefix-cls}-icon-noselect-style:hover {
+      background-color: #f1eded;
+    }
+  }
 }
 
 .@{prefix-cls}-pick-color-container {

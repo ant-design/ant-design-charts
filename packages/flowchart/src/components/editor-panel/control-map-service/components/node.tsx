@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Checkbox, Tabs } from 'antd';
+import {
+  VerticalAlignTopOutlined,
+  VerticalAlignMiddleOutlined,
+  VerticalAlignBottomOutlined,
+  BoldOutlined,
+  ItalicOutlined,
+  UnderlineOutlined,
+} from '@ant-design/icons';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate } from './fields';
@@ -21,9 +29,10 @@ export interface IConfig {
   fillOpacity?: number;
   angel?: number;
   rounded?: boolean;
-  isFontWeight?: boolean;
+  isBold?: boolean;
   isItalic?: boolean;
   isUnderline?: boolean;
+  alignmentBaseline?: 'middle' | 'before-edge' | 'after-edge';
   name: string;
 }
 
@@ -187,33 +196,58 @@ const NodeComponent = (props) => {
               }}
             />
           </div>
-          <Checkbox
-            style={{ color: 'rgba(0, 0, 0, 0.45)' }}
-            checked={nodeConfig.isFontWeight}
-            onChange={(e) => {
-              onNodeConfigChange('isFontWeight', e.target.checked);
-            }}
-          >
-            粗体
-          </Checkbox>
-          <Checkbox
-            style={{ color: 'rgba(0, 0, 0, 0.45)', marginLeft: 0 }}
-            checked={nodeConfig.isItalic}
-            onChange={(e) => {
-              onNodeConfigChange('isItalic', e.target.checked);
-            }}
-          >
-            斜体
-          </Checkbox>
-          <Checkbox
-            style={{ color: 'rgba(0, 0, 0, 0.45)', marginLeft: 0 }}
-            checked={nodeConfig.isUnderline}
-            onChange={(e) => {
-              onNodeConfigChange('isUnderline', e.target.checked);
-            }}
-          >
-            下划线
-          </Checkbox>
+          <div className={`${prefix}-icon-container`}>
+            <BoldOutlined
+              className={nodeConfig.isBold ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
+              onClick={() => {
+                onNodeConfigChange('isBold', !nodeConfig.isBold);
+              }}
+            />
+            <ItalicOutlined
+              className={nodeConfig.isItalic ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
+              onClick={() => {
+                onNodeConfigChange('isItalic', !nodeConfig.isItalic);
+              }}
+            />
+            <UnderlineOutlined
+              className={nodeConfig.isUnderline ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
+              onClick={() => {
+                onNodeConfigChange('isUnderline', !nodeConfig.isUnderline);
+              }}
+            />
+          </div>
+          <div className={`${prefix}-icon-container`}>
+            <VerticalAlignTopOutlined
+              className={
+                nodeConfig.alignmentBaseline === 'after-edge'
+                  ? `${prefix}-icon-select-style`
+                  : `${prefix}-icon-noselect-style`
+              }
+              onClick={() => {
+                onNodeConfigChange('alignmentBaseline', 'after-edge');
+              }}
+            />
+            <VerticalAlignMiddleOutlined
+              className={
+                nodeConfig.alignmentBaseline === 'middle'
+                  ? `${prefix}-icon-select-style`
+                  : `${prefix}-icon-noselect-style`
+              }
+              onClick={() => {
+                onNodeConfigChange('alignmentBaseline', 'middle');
+              }}
+            />
+            <VerticalAlignBottomOutlined
+              className={
+                nodeConfig.alignmentBaseline === 'before-edge'
+                  ? `${prefix}-icon-select-style`
+                  : `${prefix}-icon-noselect-style`
+              }
+              onClick={() => {
+                onNodeConfigChange('alignmentBaseline', 'before-edge');
+              }}
+            />
+          </div>
         </div>
       </TabPane>
     </Tabs>
