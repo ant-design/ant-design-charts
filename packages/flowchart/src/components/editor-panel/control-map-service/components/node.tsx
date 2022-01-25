@@ -7,6 +7,9 @@ import {
   BoldOutlined,
   ItalicOutlined,
   UnderlineOutlined,
+  AlignLeftOutlined,
+  AlignCenterOutlined,
+  AlignRightOutlined,
 } from '@ant-design/icons';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
@@ -33,6 +36,7 @@ export interface IConfig {
   isItalic?: boolean;
   isUnderline?: boolean;
   alignmentBaseline?: 'middle' | 'before-edge' | 'after-edge';
+  textAnchor?: 'start' | 'middle' | 'end';
   name: string;
 }
 
@@ -245,6 +249,32 @@ const NodeComponent = (props) => {
               }
               onClick={() => {
                 onNodeConfigChange('alignmentBaseline', 'before-edge');
+              }}
+            />
+          </div>
+          <div className={`${prefix}-icon-container`}>
+            <AlignLeftOutlined
+              className={
+                nodeConfig.textAnchor === 'start' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
+              }
+              onClick={() => {
+                onNodeConfigChange('textAnchor', 'start');
+              }}
+            />
+            <AlignCenterOutlined
+              className={
+                nodeConfig.textAnchor === 'middle' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
+              }
+              onClick={() => {
+                onNodeConfigChange('textAnchor', 'middle');
+              }}
+            />
+            <AlignRightOutlined
+              className={
+                nodeConfig.textAnchor === 'end' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
+              }
+              onClick={() => {
+                onNodeConfigChange('textAnchor', 'end');
               }}
             />
           </div>

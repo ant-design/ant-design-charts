@@ -26,6 +26,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     isItalic = stateNodeConfig.isItalic,
     isUnderline = stateNodeConfig.isUnderline,
     alignmentBaseline = stateNodeConfig.alignmentBaseline,
+    textAnchor = stateNodeConfig.textAnchor,
   } = data;
 
   const { width, height } = size;
@@ -35,6 +36,16 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
   const fontWeight = isBold ? 'bold' : 'normal';
   const fontStyle = isItalic ? 'italic' : 'normal';
   const textDecoration = isUnderline ? 'underline' : 'none';
+
+  //文本初始位置
+  let textX;
+  if (textAnchor === 'start') {
+    textX = 0;
+  } else if (textAnchor === 'middle') {
+    textX = width / (scale * 2);
+  } else {
+    textX = width;
+  }
 
   return (
     <svg
@@ -58,10 +69,10 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
         );
       })}
       <text
-        x={width / (scale * 2)}
+        x={textX}
         y={height / (scale * 2)}
         fill={fontFill}
-        textAnchor="middle"
+        textAnchor={textAnchor}
         alignmentBaseline={alignmentBaseline}
         fontSize={fontSize}
         fontWeight={fontWeight}

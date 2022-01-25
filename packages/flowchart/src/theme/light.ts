@@ -13,6 +13,7 @@ const NodeConfig = {
     isItalic: false,
     isUnderline: false,
     alignmentBaseline: 'middle',
+    textAnchor: 'middle',
   },
 };
 
