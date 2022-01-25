@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Checkbox } from 'antd';
+import { Checkbox, Tabs } from 'antd';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate } from './fields';
 import { prefix, canEditorRounded } from './constants';
+import './style.less';
 
 export interface IConfig {
   x?: number;
@@ -20,9 +21,13 @@ export interface IConfig {
   fillOpacity?: number;
   angel?: number;
   rounded?: boolean;
+  isFontWeight?: boolean;
+  isItalic?: boolean;
+  isUnderline?: boolean;
   name: string;
 }
 
+const { TabPane } = Tabs;
 const NodeComponent = (props) => {
   const { config, plugin = {} } = props;
   const { updateNode } = plugin;
@@ -57,128 +62,161 @@ const NodeComponent = (props) => {
   }, [config]);
 
   return (
-    <div className={`${prefix}-panel-body`}>
-      <div className={`${prefix}-panel-group`}>
-        <h5>内容</h5>
-        <InputFiled
-          label="标题"
-          value={nodeConfig.label}
-          onChange={(value) => {
-            onNodeConfigChange('label', value);
-          }}
-        />
-      </div>
-      <div className={`${prefix}-panel-group`}>
-        <h5>样式</h5>
-        <Position
-          x={nodeConfig.x}
-          y={nodeConfig.y}
-          onChange={(key, value) => {
-            onNodeConfigChange(key, value);
-          }}
-        />
-        <Size
-          width={nodeConfig.width}
-          height={nodeConfig.height}
-          onChange={(key, value) => {
-            onNodeConfigChange(key, value);
-          }}
-        />
-        <ColorPicker
-          label="填充"
-          value={nodeConfig.fill}
-          onChange={(value: string) => {
-            onNodeConfigChange('fill', value);
-          }}
-        />
-        <InputNumberFiled
-          label="透明度"
-          value={nodeConfig.fillOpacity}
-          max={1}
-          min={0}
-          step={0.1}
-          width={70}
-          onChange={(value) => {
-            onNodeConfigChange('fillOpacity', value);
-          }}
-        />
-        <ColorPicker
-          label="边框"
-          value={nodeConfig.stroke}
-          onChange={(value: string) => {
-            onNodeConfigChange('stroke', value);
-          }}
-        />
-        <div className={`${prefix}-edge-stroke-style`}>
-          <SelectField
-            label="线形"
-            width={68}
-            value={getSrokeDashValue()}
-            options={[
-              {
-                label: '实线',
-                value: 'solid',
-              },
-              {
-                label: '虚线',
-                value: 'dash',
-              },
-            ]}
-            onChange={(value) => {
-              if (value === 'solid') {
-                onNodeConfigChange('strokeDasharray', undefined);
-              } else {
-                onNodeConfigChange('strokeDasharray', '2, 2');
-              }
+    <Tabs className={`${prefix}-panel-body`} defaultActiveKey="1">
+      <TabPane tab="节点" key="1">
+        <div className={`${prefix}-panel-group`}>
+          <h5>样式</h5>
+          <Position
+            x={nodeConfig.x}
+            y={nodeConfig.y}
+            onChange={(key, value) => {
+              onNodeConfigChange(key, value);
             }}
           />
-          <InputNumberFiled
-            value={nodeConfig.strokeWidth}
-            min={1}
-            max={5}
-            onChange={(value) => {
-              onNodeConfigChange('strokeWidth', value);
-            }}
-          />
-        </div>
-        {canEditorRounded.indexOf(nodeConfig.name) !== -1 ? (
-          <Checkbox
-            style={{ color: 'rgba(0, 0, 0, 0.45)' }}
-            checked={nodeConfig.rounded}
-            onChange={(e) => {
-              onNodeConfigChange('rounded', e.target.checked);
-            }}
-          >
-            圆角
-          </Checkbox>
-        ) : null}
-        <Rotate
-          angel={nodeConfig.angel}
-          onChange={(key, value) => {
-            onNodeConfigChange(key, value);
-          }}
-          onRotate={(key) => {
-            onNodeConfigChange(key, nodeConfig.angel + 90);
-          }}
-        />
-        <div className={`${prefix}-node-text-style`}>
-          <InputNumberFiled
-            label="字号"
-            value={nodeConfig.fontSize}
-            width={68}
-            onChange={(value) => {
-              onNodeConfigChange('fontSize', value);
+          <Size
+            width={nodeConfig.width}
+            height={nodeConfig.height}
+            onChange={(key, value) => {
+              onNodeConfigChange(key, value);
             }}
           />
           <ColorPicker
-            value={nodeConfig.fontFill}
+            label="填充"
+            value={nodeConfig.fill}
             onChange={(value: string) => {
-              onNodeConfigChange('fontFill', value);
+              onNodeConfigChange('fill', value);
+            }}
+          />
+          <InputNumberFiled
+            label="透明度"
+            value={nodeConfig.fillOpacity}
+            max={1}
+            min={0}
+            step={0.1}
+            width={70}
+            onChange={(value) => {
+              onNodeConfigChange('fillOpacity', value);
+            }}
+          />
+          <ColorPicker
+            label="边框"
+            value={nodeConfig.stroke}
+            onChange={(value: string) => {
+              onNodeConfigChange('stroke', value);
+            }}
+          />
+          <div className={`${prefix}-edge-stroke-style`}>
+            <SelectField
+              label="线形"
+              width={68}
+              value={getSrokeDashValue()}
+              options={[
+                {
+                  label: '实线',
+                  value: 'solid',
+                },
+                {
+                  label: '虚线',
+                  value: 'dash',
+                },
+              ]}
+              onChange={(value) => {
+                if (value === 'solid') {
+                  onNodeConfigChange('strokeDasharray', undefined);
+                } else {
+                  onNodeConfigChange('strokeDasharray', '2, 2');
+                }
+              }}
+            />
+            <InputNumberFiled
+              value={nodeConfig.strokeWidth}
+              min={1}
+              max={5}
+              onChange={(value) => {
+                onNodeConfigChange('strokeWidth', value);
+              }}
+            />
+          </div>
+          {canEditorRounded.indexOf(nodeConfig.name) !== -1 ? (
+            <Checkbox
+              style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+              checked={nodeConfig.rounded}
+              onChange={(e) => {
+                onNodeConfigChange('rounded', e.target.checked);
+              }}
+            >
+              圆角
+            </Checkbox>
+          ) : null}
+          <Rotate
+            angel={nodeConfig.angel}
+            onChange={(key, value) => {
+              onNodeConfigChange(key, value);
+            }}
+            onRotate={(key) => {
+              onNodeConfigChange(key, nodeConfig.angel + 90);
             }}
           />
         </div>
-      </div>
-    </div>
+      </TabPane>
+      <TabPane tab="字体" key="2">
+        <div className={`${prefix}-panel-group`}>
+          <h5>内容</h5>
+          <InputFiled
+            label="标题"
+            value={nodeConfig.label}
+            onChange={(value) => {
+              onNodeConfigChange('label', value);
+            }}
+          />
+        </div>
+        <div className={`${prefix}-panel-group`}>
+          <div className={`${prefix}-node-text-style`}>
+            <InputNumberFiled
+              label="字号"
+              value={nodeConfig.fontSize}
+              width={68}
+              onChange={(value) => {
+                onNodeConfigChange('fontSize', value);
+              }}
+            />
+            <ColorPicker
+              value={nodeConfig.fontFill}
+              onChange={(value: string) => {
+                onNodeConfigChange('fontFill', value);
+              }}
+            />
+          </div>
+          <Checkbox
+            style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+            checked={nodeConfig.isFontWeight}
+            onChange={(e) => {
+              onNodeConfigChange('isFontWeight', e.target.checked);
+            }}
+          >
+            粗体
+          </Checkbox>
+          <Checkbox
+            style={{ color: 'rgba(0, 0, 0, 0.45)', marginLeft: 0 }}
+            checked={nodeConfig.isItalic}
+            onChange={(e) => {
+              onNodeConfigChange('isItalic', e.target.checked);
+            }}
+          >
+            斜体
+          </Checkbox>
+          <Checkbox
+            style={{ color: 'rgba(0, 0, 0, 0.45)', marginLeft: 0 }}
+            checked={nodeConfig.isUnderline}
+            onChange={(e) => {
+              onNodeConfigChange('isUnderline', e.target.checked);
+            }}
+          >
+            下划线
+          </Checkbox>
+        </div>
+      </TabPane>
+    </Tabs>
   );
 };
 

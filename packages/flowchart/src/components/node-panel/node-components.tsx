@@ -22,12 +22,18 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     fillOpacity = stateNodeConfig.fillOpacity,
     angel = stateNodeConfig.angel,
     rounded = stateNodeConfig.rounded,
+    isFontWeight = stateNodeConfig.isFontWeight,
+    isItalic = stateNodeConfig.isItalic,
+    isUnderline = stateNodeConfig.isUnderline,
   } = data;
 
   const { width, height } = size;
   const scale = name === 'Text' ? 2 : 1;
   const getnodePath = nodePathMap[`${name.replace(/\s+/g, '')}NodePath`];
   const nodePath = getnodePath(props, rounded);
+  const fontWeight = isFontWeight ? 'bold' : 'normal';
+  const fontStyle = isItalic ? 'italic' : 'normal';
+  const textDecoration = isUnderline ? 'underline' : 'none';
 
   return (
     <svg
@@ -51,12 +57,15 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
         );
       })}
       <text
-        x={height / (scale * 2)}
+        x={width / (scale * 2)}
         y={height / (scale * 2)}
         fill={fontFill}
         textAnchor="middle"
         alignmentBaseline="middle"
         fontSize={fontSize}
+        fontWeight={fontWeight}
+        fontStyle={fontStyle}
+        textDecoration={textDecoration}
       >
         {label}
       </text>
