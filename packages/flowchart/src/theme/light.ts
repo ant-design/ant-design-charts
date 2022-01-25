@@ -9,6 +9,9 @@ const NodeConfig = {
     fillOpacity: 1,
     angel: 0,
     rounded: false,
+    isGradient: false,
+    gradientDirection: 'top-bottom',
+    endColor: '#00FF00',
   },
 };
 

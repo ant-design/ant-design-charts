@@ -1,8 +1,9 @@
-import * as nodePathMap from './paths';
 import React, { useContext } from 'react';
 import { NsGraph } from '@antv/xflow';
+import * as nodePathMap from './paths';
 import { AppContext } from './index';
 import { NODE_HEIGHT, NODE_WIDTH } from './constants';
+import { GradientComponent } from './gradient-component';
 
 export const NodeComponent: NsGraph.INodeRender = (props) => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {}, name } = props;
@@ -14,7 +15,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
   const {
     stroke = stateNodeConfig.stroke,
     label = stateNodeConfig.label,
-    fill = stateNodeConfig.fill,
+    fill: startColor = stateNodeConfig.fill,
     fontFill = stateNodeConfig.fontFill,
     fontSize = stateNodeConfig.fontSize,
     strokeWidth = stateNodeConfig.strokeWidth,
@@ -22,13 +23,17 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     fillOpacity = stateNodeConfig.fillOpacity,
     angel = stateNodeConfig.angel,
     rounded = stateNodeConfig.rounded,
+    isGradient = stateNodeConfig.rounded,
+    gradientDirection = stateNodeConfig.gradientDirection,
+    endColor = stateNodeConfig.endColor,
   } = data;
 
   const { width, height } = size;
   const scale = name === 'Text' ? 2 : 1;
   const getnodePath = nodePathMap[`${name.replace(/\s+/g, '')}NodePath`];
   const nodePath = getnodePath(props, rounded);
-
+  const fill = isGradient ? `url(#${gradientDirection})` : startColor;
+  console.log(fill, startColor, endColor, gradientDirection);
   return (
     <svg
       viewBox={`0 0 ${width / scale} ${height / scale}`}
@@ -37,6 +42,10 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
       height="100%"
       style={{ transform: `rotate(${angel}deg)` }}
     >
+      <linearGradient id="top-bottom" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor={startColor}></stop>
+        <stop offset="100%" stopColor={endColor}></stop>
+      </linearGradient>
       {nodePath.map((path) => {
         return (
           <path
