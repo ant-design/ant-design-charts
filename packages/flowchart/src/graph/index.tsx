@@ -16,7 +16,7 @@ import { FormPanel } from '../components/editor-panel';
 import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
-import { setProps, setInstance } from '../util';
+import { setProps, setInstance, excLoadData } from '../util';
 import { useCmdConfig } from './service/command';
 import { FlowchartProps, IFlowchartGraph as IGraph } from '../interface';
 import AppContext from '../context';
@@ -63,16 +63,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const loadData = useCallback(
     async (app) => {
       if (data) {
-        const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
-          loadDataService: async () => {
-            return data;
-          },
-        } as NsGraphCmd.GraphLoadData.IArgs);
-        const { graphData } = res?.contextProvider()?.getResult();
-        /** 3. 画布内容渲染 */
-        await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
-          graphData,
-        });
+        excLoadData(app, data);
       }
     },
     [data],
@@ -107,7 +98,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
             X6Graph.flowchartId = uuidv4Ref.current;
             graphRef.current = X6Graph;
             loadData(app);
-            onReady?.(appendUtils(X6Graph));
+            onReady?.(appendUtils(X6Graph, app), app);
           }}
         >
           <ToolbarPanel {...toolbarPanelProps} flowchartId={uuidv4Ref.current} />
