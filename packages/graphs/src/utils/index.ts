@@ -44,6 +44,8 @@ export const deepClone = (source: Object | undefined) => {
   let target;
   if (Array.isArray(source)) {
     target = source.map((item) => deepClone(item));
+  } else if (source instanceof HTMLElement) {
+    target = source;
   } else {
     target = {};
     Object.keys(source).forEach((key) => {

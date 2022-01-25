@@ -63,6 +63,10 @@ describe('DecompositionTreeGraph tooltip', () => {
         };
       },
       tooltipCfg: {
+        container: document.getElementsByTagName('body')[0],
+        shouldBegin: (e) => {
+          return true;
+        },
         customContent: (e) => {
           return 'custom content';
         },
