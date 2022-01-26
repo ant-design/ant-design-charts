@@ -9,6 +9,11 @@ const NodeConfig = {
     fillOpacity: 1,
     angel: 0,
     rounded: false,
+    isBold: false,
+    isItalic: false,
+    isUnderline: false,
+    alignmentBaseline: 'middle',
+    textAnchor: 'middle',
   },
 };
 
