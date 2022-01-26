@@ -76,23 +76,8 @@ const NodeComponent = (props) => {
 
   return (
     <Tabs className={`${prefix}-panel-body`} defaultActiveKey="1">
-      <TabPane tab="节点" key="1">
+      <TabPane tab="样式" key="node-style">
         <div className={`${prefix}-panel-group`}>
-          <h5>样式</h5>
-          <Position
-            x={nodeConfig.x}
-            y={nodeConfig.y}
-            onChange={(key, value) => {
-              onNodeConfigChange(key, value);
-            }}
-          />
-          <Size
-            width={nodeConfig.width}
-            height={nodeConfig.height}
-            onChange={(key, value) => {
-              onNodeConfigChange(key, value);
-            }}
-          />
           <ColorPicker
             label="填充"
             value={nodeConfig.fill}
@@ -161,20 +146,10 @@ const NodeComponent = (props) => {
               圆角
             </Checkbox>
           ) : null}
-          <Rotate
-            angel={nodeConfig.angel}
-            onChange={(key, value) => {
-              onNodeConfigChange(key, value);
-            }}
-            onRotate={(key) => {
-              onNodeConfigChange(key, nodeConfig.angel + 90);
-            }}
-          />
         </div>
       </TabPane>
-      <TabPane tab="字体" key="2">
+      <TabPane tab="字体" key="node-text">
         <div className={`${prefix}-panel-group`}>
-          <h5>内容</h5>
           <InputFiled
             label="标题"
             value={nodeConfig.label}
@@ -278,6 +253,33 @@ const NodeComponent = (props) => {
               }}
             />
           </div>
+        </div>
+      </TabPane>
+      <TabPane tab="布局" key="node-arrange">
+        <div className={`${prefix}-panel-group`}>
+          <Position
+            x={nodeConfig.x}
+            y={nodeConfig.y}
+            onChange={(key, value) => {
+              onNodeConfigChange(key, value);
+            }}
+          />
+          <Size
+            width={nodeConfig.width}
+            height={nodeConfig.height}
+            onChange={(key, value) => {
+              onNodeConfigChange(key, value);
+            }}
+          />
+          <Rotate
+            angel={nodeConfig.angel}
+            onChange={(key, value) => {
+              onNodeConfigChange(key, value);
+            }}
+            onRotate={(key) => {
+              onNodeConfigChange(key, nodeConfig.angel + 90);
+            }}
+          />
         </div>
       </TabPane>
     </Tabs>
