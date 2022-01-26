@@ -1,5 +1,4 @@
 import {
-  createToolbarConfig,
   IModelService,
   IToolbarItemOptions,
   NsGroupCmd,
@@ -9,28 +8,15 @@ import {
   XFlowGraphCommands,
   NsGraphCmd,
   NsNodeCmd,
-  IconStore,
   MODELS,
 } from '@antv/xflow';
 import { message } from 'antd';
-import { getProps, Log, getGraphHistory, getGraphInstance } from '../../util';
-import {
-  UngroupOutlined,
-  SaveOutlined,
-  GroupOutlined,
-  GatewayOutlined,
-  UndoOutlined,
-  RedoOutlined,
-  VerticalAlignTopOutlined,
-  VerticalAlignBottomOutlined,
-  CopyOutlined,
-  SnippetsOutlined,
-} from '@ant-design/icons';
+import { getProps, getGraphHistory, getGraphInstance } from '../../util';
 import { GROUP_NODE_RENDER_ID } from '../group-panel';
 import { CommandPool } from './constants';
-import { CommandItem, FlowchartProps } from '../../interface';
+import { CommandItem } from '../../interface';
 
-export namespace TOOLBAR_ITEMS {
+namespace TOOLBAR_ITEMS {
   export const BACK_NODE = XFlowNodeCommands.BACK_NODE.id;
   export const FRONT_NODE = XFlowNodeCommands.FRONT_NODE.id;
   export const SAVE_GRAPH_DATA = XFlowGraphCommands.SAVE_GRAPH_DATA.id;
@@ -43,7 +29,7 @@ export namespace TOOLBAR_ITEMS {
   export const PASTE = `${XFlowGraphCommands.GRAPH_PASTE.id}`;
 }
 
-namespace NSToolbarConfig {
+export namespace NSToolbarConfig {
   /** toolbar依赖的状态 */
   export interface IToolbarState {
     isMultiSelctionActive: boolean;
@@ -236,108 +222,3 @@ namespace NSToolbarConfig {
     ];
   };
 }
-
-/** 注册icon 类型 */
-const registerIcon = () => {
-  IconStore.set('SaveOutlined', SaveOutlined);
-  IconStore.set('UndoOutlined', UndoOutlined);
-  IconStore.set('RedoOutlined', RedoOutlined);
-  IconStore.set('VerticalAlignTopOutlined', VerticalAlignTopOutlined);
-  IconStore.set('VerticalAlignBottomOutlined', VerticalAlignBottomOutlined);
-  IconStore.set('GatewayOutlined', GatewayOutlined);
-  IconStore.set('GroupOutlined', GroupOutlined);
-  IconStore.set('UngroupOutlined', UngroupOutlined);
-  IconStore.set('CopyOutlined', CopyOutlined);
-  IconStore.set('SnippetsOutlined', SnippetsOutlined);
-};
-
-export const useToolbarConfig = createToolbarConfig<FlowchartProps['toolbarPanelProps']>((toolbarConfig, proxy) => {
-  const { flowchartId } = proxy.getValue();
-  const toolbarPanelProps = getProps(flowchartId, 'toolbarPanelProps') ?? {};
-  registerIcon();
-
-  let {
-    commands = [
-      {
-        command: CommandPool.REDO_CMD,
-        tooltip: '重做',
-        iconName: 'RedoOutlined',
-      },
-      {
-        command: CommandPool.UNDO_CMD,
-        tooltip: '撤销',
-        iconName: 'UndoOutlined',
-      },
-      {
-        command: CommandPool.FRONT_NODE,
-        tooltip: '置前',
-        iconName: 'VerticalAlignTopOutlined',
-      },
-      {
-        command: CommandPool.BACK_NODE,
-        tooltip: '置后',
-        iconName: 'VerticalAlignBottomOutlined',
-      },
-      {
-        command: CommandPool.MULTI_SELECT,
-        tooltip: '开启框选',
-        iconName: 'GatewayOutlined',
-      },
-      {
-        command: CommandPool.ADD_GROUP,
-        tooltip: '新建群组',
-        iconName: 'GroupOutlined',
-      },
-      {
-        command: CommandPool.DEL_GROUP,
-        tooltip: '解散群组',
-        iconName: 'UngroupOutlined',
-      },
-      {
-        command: CommandPool.COPY,
-        tooltip: '复制',
-        iconName: 'CopyOutlined',
-      },
-      {
-        command: CommandPool.PASTE,
-        tooltip: '粘贴',
-        iconName: 'SnippetsOutlined',
-      },
-      {
-        command: CommandPool.SAVE_GRAPH_DATA,
-        tooltip: '保存',
-        iconName: 'SaveOutlined',
-      },
-    ] as CommandItem[],
-  } = toolbarPanelProps;
-
-  const getIconConfig = (commandName: string) => {
-    if (!Object.values(CommandPool).includes(commandName)) {
-      Log.warn(`unknown command: ${commandName}`);
-      return {};
-    }
-    /** 暂时不支持自定义 icon，感觉使用上并不方便，后续再考虑接入 */
-    return commands.find((item: CommandItem) => item.command === commandName);
-  };
-
-  /** 生产 toolbar item */
-  toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
-    const updateToolbarModel = async () => {
-      const state = await NSToolbarConfig.getToolbarState(modelService);
-      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconConfig, commands, flowchartId);
-
-      toolbarModel.setValue((toolbar) => {
-        toolbar.mainGroups = toolbarItems;
-      });
-    };
-
-    //画布中被选中节点的 models 和能否多选的 models
-    const models = await NSToolbarConfig.getDependencies(modelService);
-    const subscriptions = models.map((model) => {
-      return model.watch(async () => {
-        updateToolbarModel();
-      });
-    });
-    toDispose.pushAll(subscriptions);
-  });
-});

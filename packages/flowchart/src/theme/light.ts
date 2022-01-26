@@ -9,6 +9,14 @@ const NodeConfig = {
     fillOpacity: 1,
     angel: 0,
     rounded: false,
+    isGradient: false,
+    gradientDirection: 'top-bottom',
+    endColor: '#00FF00',
+    isBold: false,
+    isItalic: false,
+    isUnderline: false,
+    alignmentBaseline: 'middle',
+    textAnchor: 'middle',
   },
 };
 
