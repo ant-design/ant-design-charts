@@ -75,214 +75,216 @@ const NodeComponent = (props) => {
   }, [config]);
 
   return (
-    <Tabs className={`${prefix}-panel-body`} defaultActiveKey="1">
-      <TabPane tab="样式" key="node-style">
-        <div className={`${prefix}-panel-group`}>
-          <ColorPicker
-            label="填充"
-            value={nodeConfig.fill}
-            onChange={(value: string) => {
-              onNodeConfigChange('fill', value);
-            }}
-          />
-          <InputNumberFiled
-            label="透明度"
-            value={nodeConfig.fillOpacity}
-            max={1}
-            min={0}
-            step={0.1}
-            width={70}
-            onChange={(value) => {
-              onNodeConfigChange('fillOpacity', value);
-            }}
-          />
-          <ColorPicker
-            label="边框"
-            value={nodeConfig.stroke}
-            onChange={(value: string) => {
-              onNodeConfigChange('stroke', value);
-            }}
-          />
-          <div className={`${prefix}-edge-stroke-style`}>
-            <SelectField
-              label="线形"
-              width={68}
-              value={getSrokeDashValue()}
-              options={[
-                {
-                  label: '实线',
-                  value: 'solid',
-                },
-                {
-                  label: '虚线',
-                  value: 'dash',
-                },
-              ]}
-              onChange={(value) => {
-                if (value === 'solid') {
-                  onNodeConfigChange('strokeDasharray', undefined);
-                } else {
-                  onNodeConfigChange('strokeDasharray', '2, 2');
-                }
+    <div className={`${prefix}-panel-body`}>
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="样式" key="node-style">
+          <div className={`${prefix}-panel-group`}>
+            <ColorPicker
+              label="填充"
+              value={nodeConfig.fill}
+              onChange={(value: string) => {
+                onNodeConfigChange('fill', value);
               }}
             />
             <InputNumberFiled
-              value={nodeConfig.strokeWidth}
-              min={1}
-              max={5}
+              label="透明度"
+              value={nodeConfig.fillOpacity}
+              max={1}
+              min={0}
+              step={0.1}
+              width={70}
               onChange={(value) => {
-                onNodeConfigChange('strokeWidth', value);
-              }}
-            />
-          </div>
-          {canEditorRounded.indexOf(nodeConfig.name) !== -1 ? (
-            <Checkbox
-              style={{ color: 'rgba(0, 0, 0, 0.45)' }}
-              checked={nodeConfig.rounded}
-              onChange={(e) => {
-                onNodeConfigChange('rounded', e.target.checked);
-              }}
-            >
-              圆角
-            </Checkbox>
-          ) : null}
-        </div>
-      </TabPane>
-      <TabPane tab="字体" key="node-text">
-        <div className={`${prefix}-panel-group`}>
-          <InputFiled
-            label="标题"
-            value={nodeConfig.label}
-            onChange={(value) => {
-              onNodeConfigChange('label', value);
-            }}
-          />
-        </div>
-        <div className={`${prefix}-panel-group`}>
-          <div className={`${prefix}-node-text-style`}>
-            <InputNumberFiled
-              label="字号"
-              value={nodeConfig.fontSize}
-              width={68}
-              onChange={(value) => {
-                onNodeConfigChange('fontSize', value);
+                onNodeConfigChange('fillOpacity', value);
               }}
             />
             <ColorPicker
-              value={nodeConfig.fontFill}
+              label="边框"
+              value={nodeConfig.stroke}
               onChange={(value: string) => {
-                onNodeConfigChange('fontFill', value);
+                onNodeConfigChange('stroke', value);
+              }}
+            />
+            <div className={`${prefix}-edge-stroke-style`}>
+              <SelectField
+                label="线形"
+                width={68}
+                value={getSrokeDashValue()}
+                options={[
+                  {
+                    label: '实线',
+                    value: 'solid',
+                  },
+                  {
+                    label: '虚线',
+                    value: 'dash',
+                  },
+                ]}
+                onChange={(value) => {
+                  if (value === 'solid') {
+                    onNodeConfigChange('strokeDasharray', undefined);
+                  } else {
+                    onNodeConfigChange('strokeDasharray', '2, 2');
+                  }
+                }}
+              />
+              <InputNumberFiled
+                value={nodeConfig.strokeWidth}
+                min={1}
+                max={5}
+                onChange={(value) => {
+                  onNodeConfigChange('strokeWidth', value);
+                }}
+              />
+            </div>
+            {canEditorRounded.indexOf(nodeConfig.name) !== -1 ? (
+              <Checkbox
+                style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+                checked={nodeConfig.rounded}
+                onChange={(e) => {
+                  onNodeConfigChange('rounded', e.target.checked);
+                }}
+              >
+                圆角
+              </Checkbox>
+            ) : null}
+          </div>
+        </TabPane>
+        <TabPane tab="字体" key="node-text">
+          <div className={`${prefix}-panel-group`}>
+            <InputFiled
+              label="标题"
+              value={nodeConfig.label}
+              onChange={(value) => {
+                onNodeConfigChange('label', value);
               }}
             />
           </div>
-          <div className={`${prefix}-icon-container`}>
-            <BoldOutlined
-              className={nodeConfig.isBold ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
-              onClick={() => {
-                onNodeConfigChange('isBold', !nodeConfig.isBold);
+          <div className={`${prefix}-panel-group`}>
+            <div className={`${prefix}-node-text-style`}>
+              <InputNumberFiled
+                label="字号"
+                value={nodeConfig.fontSize}
+                width={68}
+                onChange={(value) => {
+                  onNodeConfigChange('fontSize', value);
+                }}
+              />
+              <ColorPicker
+                value={nodeConfig.fontFill}
+                onChange={(value: string) => {
+                  onNodeConfigChange('fontFill', value);
+                }}
+              />
+            </div>
+            <div className={`${prefix}-icon-container`}>
+              <BoldOutlined
+                className={nodeConfig.isBold ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
+                onClick={() => {
+                  onNodeConfigChange('isBold', !nodeConfig.isBold);
+                }}
+              />
+              <ItalicOutlined
+                className={nodeConfig.isItalic ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
+                onClick={() => {
+                  onNodeConfigChange('isItalic', !nodeConfig.isItalic);
+                }}
+              />
+              <UnderlineOutlined
+                className={nodeConfig.isUnderline ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
+                onClick={() => {
+                  onNodeConfigChange('isUnderline', !nodeConfig.isUnderline);
+                }}
+              />
+            </div>
+            <div className={`${prefix}-icon-container`}>
+              <VerticalAlignTopOutlined
+                className={
+                  nodeConfig.alignmentBaseline === 'after-edge'
+                    ? `${prefix}-icon-select-style`
+                    : `${prefix}-icon-noselect-style`
+                }
+                onClick={() => {
+                  onNodeConfigChange('alignmentBaseline', 'after-edge');
+                }}
+              />
+              <VerticalAlignMiddleOutlined
+                className={
+                  nodeConfig.alignmentBaseline === 'middle'
+                    ? `${prefix}-icon-select-style`
+                    : `${prefix}-icon-noselect-style`
+                }
+                onClick={() => {
+                  onNodeConfigChange('alignmentBaseline', 'middle');
+                }}
+              />
+              <VerticalAlignBottomOutlined
+                className={
+                  nodeConfig.alignmentBaseline === 'before-edge'
+                    ? `${prefix}-icon-select-style`
+                    : `${prefix}-icon-noselect-style`
+                }
+                onClick={() => {
+                  onNodeConfigChange('alignmentBaseline', 'before-edge');
+                }}
+              />
+            </div>
+            <div className={`${prefix}-icon-container`}>
+              <AlignLeftOutlined
+                className={
+                  nodeConfig.textAnchor === 'start' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
+                }
+                onClick={() => {
+                  onNodeConfigChange('textAnchor', 'start');
+                }}
+              />
+              <AlignCenterOutlined
+                className={
+                  nodeConfig.textAnchor === 'middle' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
+                }
+                onClick={() => {
+                  onNodeConfigChange('textAnchor', 'middle');
+                }}
+              />
+              <AlignRightOutlined
+                className={
+                  nodeConfig.textAnchor === 'end' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
+                }
+                onClick={() => {
+                  onNodeConfigChange('textAnchor', 'end');
+                }}
+              />
+            </div>
+          </div>
+        </TabPane>
+        <TabPane tab="布局" key="node-arrange">
+          <div className={`${prefix}-panel-group`}>
+            <Position
+              x={nodeConfig.x}
+              y={nodeConfig.y}
+              onChange={(key, value) => {
+                onNodeConfigChange(key, value);
               }}
             />
-            <ItalicOutlined
-              className={nodeConfig.isItalic ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
-              onClick={() => {
-                onNodeConfigChange('isItalic', !nodeConfig.isItalic);
+            <Size
+              width={nodeConfig.width}
+              height={nodeConfig.height}
+              onChange={(key, value) => {
+                onNodeConfigChange(key, value);
               }}
             />
-            <UnderlineOutlined
-              className={nodeConfig.isUnderline ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
-              onClick={() => {
-                onNodeConfigChange('isUnderline', !nodeConfig.isUnderline);
+            <Rotate
+              angel={nodeConfig.angel}
+              onChange={(key, value) => {
+                onNodeConfigChange(key, value);
+              }}
+              onRotate={(key) => {
+                onNodeConfigChange(key, nodeConfig.angel + 90);
               }}
             />
           </div>
-          <div className={`${prefix}-icon-container`}>
-            <VerticalAlignTopOutlined
-              className={
-                nodeConfig.alignmentBaseline === 'after-edge'
-                  ? `${prefix}-icon-select-style`
-                  : `${prefix}-icon-noselect-style`
-              }
-              onClick={() => {
-                onNodeConfigChange('alignmentBaseline', 'after-edge');
-              }}
-            />
-            <VerticalAlignMiddleOutlined
-              className={
-                nodeConfig.alignmentBaseline === 'middle'
-                  ? `${prefix}-icon-select-style`
-                  : `${prefix}-icon-noselect-style`
-              }
-              onClick={() => {
-                onNodeConfigChange('alignmentBaseline', 'middle');
-              }}
-            />
-            <VerticalAlignBottomOutlined
-              className={
-                nodeConfig.alignmentBaseline === 'before-edge'
-                  ? `${prefix}-icon-select-style`
-                  : `${prefix}-icon-noselect-style`
-              }
-              onClick={() => {
-                onNodeConfigChange('alignmentBaseline', 'before-edge');
-              }}
-            />
-          </div>
-          <div className={`${prefix}-icon-container`}>
-            <AlignLeftOutlined
-              className={
-                nodeConfig.textAnchor === 'start' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
-              }
-              onClick={() => {
-                onNodeConfigChange('textAnchor', 'start');
-              }}
-            />
-            <AlignCenterOutlined
-              className={
-                nodeConfig.textAnchor === 'middle' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
-              }
-              onClick={() => {
-                onNodeConfigChange('textAnchor', 'middle');
-              }}
-            />
-            <AlignRightOutlined
-              className={
-                nodeConfig.textAnchor === 'end' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
-              }
-              onClick={() => {
-                onNodeConfigChange('textAnchor', 'end');
-              }}
-            />
-          </div>
-        </div>
-      </TabPane>
-      <TabPane tab="布局" key="node-arrange">
-        <div className={`${prefix}-panel-group`}>
-          <Position
-            x={nodeConfig.x}
-            y={nodeConfig.y}
-            onChange={(key, value) => {
-              onNodeConfigChange(key, value);
-            }}
-          />
-          <Size
-            width={nodeConfig.width}
-            height={nodeConfig.height}
-            onChange={(key, value) => {
-              onNodeConfigChange(key, value);
-            }}
-          />
-          <Rotate
-            angel={nodeConfig.angel}
-            onChange={(key, value) => {
-              onNodeConfigChange(key, value);
-            }}
-            onRotate={(key) => {
-              onNodeConfigChange(key, nodeConfig.angel + 90);
-            }}
-          />
-        </div>
-      </TabPane>
-    </Tabs>
+        </TabPane>
+      </Tabs>
+    </div>
   );
 };
 
