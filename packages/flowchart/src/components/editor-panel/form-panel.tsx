@@ -33,18 +33,20 @@ export const FormPanel: React.FC<FlowchartProps['detailPanelProps']> = (props) =
       }}
     >
       <div className={`${CONTAINER_CLASS}-wrapper`}>
-        <JsonSchemaForm
-          targetType={['node', 'edge', 'canvas', 'group']}
-          controlMapService={controlMapService}
-          formSchemaService={formSchemaService}
-          header={null}
-          position={{
-            ...position,
-            top: 0,
-          }}
-          prefixClz="charts-form-editor"
-          {...rest}
-        />
+        {
+          <JsonSchemaForm
+            targetType={['node', 'edge', 'canvas', 'group']}
+            controlMapService={controlMapService}
+            formSchemaService={formSchemaService}
+            header={null}
+            position={{
+              ...position,
+              top: 0,
+            }}
+            prefixClz="charts-form-editor"
+            {...rest}
+          />
+        }
         <div
           className={`${CONTAINER_CLASS}-icon`}
           style={{

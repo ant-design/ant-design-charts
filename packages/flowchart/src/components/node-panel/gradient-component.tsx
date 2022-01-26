@@ -7,7 +7,6 @@ interface IProps {
 export const GradientComponent = ({ startColor, endColor }: IProps) => {
   startColor = getGradientColor(startColor);
   endColor = getGradientColor(endColor);
-  console.log(startColor, endColor);
   return (
     <>
       <linearGradient id="top-bottom" x1="0" y1="0" x2="0" y2="1">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CanvasToolbar as XFlowToolbarPanel } from '@antv/xflow';
-import { useToolbarConfig } from './util';
+import { useToolbarConfig } from './useToolbarConfig';
 import { FlowchartProps } from '../../interface';
 
 export const ToolbarPanel: React.FC<FlowchartProps['toolbarPanelProps']> = (props) => {

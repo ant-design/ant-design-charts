@@ -26,6 +26,11 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     isGradient = stateNodeConfig.rounded,
     gradientDirection = stateNodeConfig.gradientDirection,
     endColor = stateNodeConfig.endColor,
+    isBold = stateNodeConfig.isBold,
+    isItalic = stateNodeConfig.isItalic,
+    isUnderline = stateNodeConfig.isUnderline,
+    alignmentBaseline = stateNodeConfig.alignmentBaseline,
+    textAnchor = stateNodeConfig.textAnchor,
   } = data;
 
   const { width, height } = size;
@@ -33,7 +38,20 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
   const getnodePath = nodePathMap[`${name.replace(/\s+/g, '')}NodePath`];
   const nodePath = getnodePath(props, rounded);
   const fill = isGradient ? `url(#${gradientDirection})` : startColor;
-  console.log(fill, startColor, endColor, gradientDirection);
+  const fontWeight = isBold ? 'bold' : 'normal';
+  const fontStyle = isItalic ? 'italic' : 'normal';
+  const textDecoration = isUnderline ? 'underline' : 'none';
+
+  //文本初始位置
+  let textX;
+  if (textAnchor === 'start') {
+    textX = 0;
+  } else if (textAnchor === 'middle') {
+    textX = width / (scale * 2);
+  } else {
+    textX = width;
+  }
+
   return (
     <svg
       viewBox={`0 0 ${width / scale} ${height / scale}`}
@@ -42,10 +60,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
       height="100%"
       style={{ transform: `rotate(${angel}deg)` }}
     >
-      <linearGradient id="top-bottom" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={startColor}></stop>
-        <stop offset="100%" stopColor={endColor}></stop>
-      </linearGradient>
+      <GradientComponent startColor={startColor} endColor={endColor}></GradientComponent>
       {nodePath.map((path) => {
         return (
           <path
@@ -60,12 +75,15 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
         );
       })}
       <text
-        x={height / (scale * 2)}
+        x={textX}
         y={height / (scale * 2)}
         fill={fontFill}
-        textAnchor="middle"
-        alignmentBaseline="middle"
+        textAnchor={textAnchor}
+        alignmentBaseline={alignmentBaseline}
         fontSize={fontSize}
+        fontWeight={fontWeight}
+        fontStyle={fontStyle}
+        textDecoration={textDecoration}
       >
         {label}
       </text>
