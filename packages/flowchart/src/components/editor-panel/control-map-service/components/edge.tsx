@@ -3,7 +3,8 @@ import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields';
 import { prefix } from './constants';
-
+import { rightIcon, leftIcon, solidIcon, dottedLine } from './fields/constant';
+import { ExpandAltOutlined } from '@ant-design/icons';
 export type MarkerCfg = {
   width?: number;
   height?: number;
@@ -100,7 +101,7 @@ const EdgeComponent = (props) => {
   const getSrokeDashValue = () => {
     const { attrs = {} } = edgeConfig;
     const { line = {} } = attrs;
-    return line.strokeDasharray ? 'dash' : 'solid';
+    return line.strokeDasharray[0] ? 'dash' : 'solid';
   };
 
   const onEdgeConfigChange = (key: string, value: number | string | object, type: string = 'line') => {
@@ -159,19 +160,19 @@ const EdgeComponent = (props) => {
           value={getArrowValue()}
           options={[
             {
-              label: '正向',
+              label: rightIcon,
               value: 'target',
             },
             {
-              label: '逆向',
+              label: leftIcon,
               value: 'source',
             },
             {
-              label: '双向',
+              label: <ExpandAltOutlined rotate={45} style={{ fontSize: '25px', color: '#888' }} />,
               value: 'all',
             },
             {
-              label: '无',
+              label: 'None',
               value: 'none',
             },
           ]}
@@ -187,11 +188,11 @@ const EdgeComponent = (props) => {
             value={getSrokeDashValue()}
             options={[
               {
-                label: '实线',
+                label: solidIcon,
                 value: 'solid',
               },
               {
-                label: '虚线',
+                label: dottedLine,
                 value: 'dash',
               },
             ]}
