@@ -37,6 +37,9 @@ export interface IConfig {
   isUnderline?: boolean;
   alignmentBaseline?: 'middle' | 'before-edge' | 'after-edge';
   textAnchor?: 'start' | 'middle' | 'end';
+  isGradient?: boolean;
+  gradientDirection: 'top-bottom' | 'bottom-top' | 'left-right' | 'right-left';
+  endColor?: string;
   name: string;
 }
 
@@ -136,6 +139,53 @@ const NodeComponent = (props) => {
                 }}
               />
             </div>
+            <div className={`${prefix}-node-gradient-style`}>
+              <Checkbox
+                style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+                checked={nodeConfig.isGradient}
+                onChange={(e) => {
+                  onNodeConfigChange('isGradient', e.target.checked);
+                }}
+              >
+                渐变
+              </Checkbox>
+              <ColorPicker
+                value={nodeConfig.endColor}
+                onChange={(value: string) => {
+                  onNodeConfigChange('endColor', value);
+                }}
+              />
+            </div>
+            <SelectField
+              label="方向"
+              width={100}
+              value={nodeConfig.gradientDirection}
+              options={[
+                {
+                  label: '自上向下',
+                  value: 'top-bottom',
+                },
+                {
+                  label: '自下向上',
+                  value: 'bottom-top',
+                },
+                {
+                  label: '自左向右',
+                  value: 'left-right',
+                },
+                {
+                  label: '自右向左',
+                  value: 'right-left',
+                },
+                {
+                  label: '径向',
+                  value: 'radial',
+                },
+              ]}
+              onChange={(value) => {
+                onNodeConfigChange('gradientDirection', value);
+              }}
+            />
             {canEditorRounded.indexOf(nodeConfig.name) !== -1 ? (
               <Checkbox
                 style={{ color: 'rgba(0, 0, 0, 0.45)' }}
