@@ -149,43 +149,47 @@ const NodeComponent = (props) => {
               >
                 渐变
               </Checkbox>
-              <ColorPicker
-                value={nodeConfig.endColor}
-                onChange={(value: string) => {
-                  onNodeConfigChange('endColor', value);
+              {nodeConfig.isGradient ? (
+                <ColorPicker
+                  value={nodeConfig.endColor}
+                  onChange={(value: string) => {
+                    onNodeConfigChange('endColor', value);
+                  }}
+                />
+              ) : null}
+            </div>
+            {nodeConfig.isGradient ? (
+              <SelectField
+                label="方向"
+                width={100}
+                value={nodeConfig.gradientDirection}
+                options={[
+                  {
+                    label: '自上向下',
+                    value: 'top-bottom',
+                  },
+                  {
+                    label: '自下向上',
+                    value: 'bottom-top',
+                  },
+                  {
+                    label: '自左向右',
+                    value: 'left-right',
+                  },
+                  {
+                    label: '自右向左',
+                    value: 'right-left',
+                  },
+                  {
+                    label: '径向',
+                    value: 'radial',
+                  },
+                ]}
+                onChange={(value) => {
+                  onNodeConfigChange('gradientDirection', value);
                 }}
               />
-            </div>
-            <SelectField
-              label="方向"
-              width={100}
-              value={nodeConfig.gradientDirection}
-              options={[
-                {
-                  label: '自上向下',
-                  value: 'top-bottom',
-                },
-                {
-                  label: '自下向上',
-                  value: 'bottom-top',
-                },
-                {
-                  label: '自左向右',
-                  value: 'left-right',
-                },
-                {
-                  label: '自右向左',
-                  value: 'right-left',
-                },
-                {
-                  label: '径向',
-                  value: 'radial',
-                },
-              ]}
-              onChange={(value) => {
-                onNodeConfigChange('gradientDirection', value);
-              }}
-            />
+            ) : null}
             {canEditorRounded.indexOf(nodeConfig.name) !== -1 ? (
               <Checkbox
                 style={{ color: 'rgba(0, 0, 0, 0.45)' }}
