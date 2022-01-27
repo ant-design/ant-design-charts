@@ -11,7 +11,7 @@ const NodeConfig = {
     rounded: false,
     isGradient: false,
     gradientDirection: 'top-bottom',
-    endColor: '#00FF00',
+    endColor: '#FFFFFF',
     isBold: false,
     isItalic: false,
     isUnderline: false,
