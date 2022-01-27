@@ -39,8 +39,9 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
   const nodePath = getnodePath(props, rounded);
 
   //用于解决无法动态修改渐变颜色
-  const randomId = uuidv4();
-  const fill = isGradient ? `url(#${gradientDirection}-${randomId})` : startColor;
+  let uuid = '';
+  if (isGradient) uuid = uuidv4();
+  const fill = isGradient ? `url(#${gradientDirection}-${uuid})` : startColor;
 
   const fontWeight = isBold ? 'bold' : 'normal';
   const fontStyle = isItalic ? 'italic' : 'normal';
@@ -64,7 +65,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
       height="100%"
       style={{ transform: `rotate(${angel}deg)` }}
     >
-      <GradientComponent startColor={startColor} endColor={endColor} randomId={randomId}></GradientComponent>
+      <GradientComponent startColor={startColor} endColor={endColor} uuid={uuid}></GradientComponent>
       {nodePath.map((path) => {
         return (
           <path

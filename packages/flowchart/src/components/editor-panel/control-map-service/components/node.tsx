@@ -149,16 +149,16 @@ const NodeComponent = (props) => {
               >
                 渐变
               </Checkbox>
-              {nodeConfig.isGradient ? (
+              {nodeConfig.isGradient && (
                 <ColorPicker
                   value={nodeConfig.endColor}
                   onChange={(value: string) => {
                     onNodeConfigChange('endColor', value);
                   }}
                 />
-              ) : null}
+              )}
             </div>
-            {nodeConfig.isGradient ? (
+            {nodeConfig.isGradient && (
               <SelectField
                 label="方向"
                 width={100}
@@ -189,8 +189,8 @@ const NodeComponent = (props) => {
                   onNodeConfigChange('gradientDirection', value);
                 }}
               />
-            ) : null}
-            {canEditorRounded.indexOf(nodeConfig.name) !== -1 ? (
+            )}
+            {canEditorRounded.indexOf(nodeConfig.name) !== -1 && (
               <Checkbox
                 style={{ color: 'rgba(0, 0, 0, 0.45)' }}
                 checked={nodeConfig.rounded}
@@ -200,7 +200,7 @@ const NodeComponent = (props) => {
               >
                 圆角
               </Checkbox>
-            ) : null}
+            )}
           </div>
         </TabPane>
         <TabPane tab="字体" key="node-text">
