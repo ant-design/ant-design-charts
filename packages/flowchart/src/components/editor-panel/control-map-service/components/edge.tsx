@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
-import { ColorPicker, InputNumberFiled, InputFiled, SelectField, Position } from './fields';
+import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields';
 import { prefix } from './constants';
-import { rightIcon, leftIcon, solidIcon, dottedLine } from './fields/constant';
-import { ExpandAltOutlined } from '@ant-design/icons';
-import { bottom } from '@antv/x6/lib/registry/port-layout/line';
+import { RightIcon, LeftIcon, SolidIcon, DottedLine, DoubleArrow } from './fields/constant';
+
 export type MarkerCfg = {
   width?: number;
   height?: number;
@@ -102,7 +101,7 @@ const EdgeComponent = (props) => {
   const getSrokeDashValue = () => {
     const { attrs = {} } = edgeConfig;
     const { line = {} } = attrs;
-    return line.strokeDasharray[0] ? 'dash' : 'solid';
+    return line.strokeDasharray?.[0] ? 'dash' : 'solid';
   };
 
   const onEdgeConfigChange = (key: string, value: number | string | object, type: string = 'line') => {
@@ -161,19 +160,19 @@ const EdgeComponent = (props) => {
           value={getArrowValue()}
           options={[
             {
-              label: rightIcon,
+              label: RightIcon,
               value: 'target',
             },
             {
-              label: leftIcon,
+              label: LeftIcon,
               value: 'source',
             },
             {
-              label: <ExpandAltOutlined rotate={45} style={{ fontSize: '28px', color: '#888', width: '32px' }} />,
+              label: DoubleArrow,
               value: 'all',
             },
             {
-              label: 'None',
+              label: SolidIcon,
               value: 'none',
             },
           ]}
@@ -189,11 +188,11 @@ const EdgeComponent = (props) => {
             value={getSrokeDashValue()}
             options={[
               {
-                label: solidIcon,
+                label: SolidIcon,
                 value: 'solid',
               },
               {
-                label: dottedLine,
+                label: DottedLine,
                 value: 'dash',
               },
             ]}
