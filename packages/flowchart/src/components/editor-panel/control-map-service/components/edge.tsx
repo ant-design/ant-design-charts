@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
-import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields';
+import { ColorPicker, InputNumberFiled, InputFiled, SelectField, Position } from './fields';
 import { prefix } from './constants';
 import { rightIcon, leftIcon, solidIcon, dottedLine } from './fields/constant';
 import { ExpandAltOutlined } from '@ant-design/icons';
+import { bottom } from '@antv/x6/lib/registry/port-layout/line';
 export type MarkerCfg = {
   width?: number;
   height?: number;
@@ -168,7 +169,7 @@ const EdgeComponent = (props) => {
               value: 'source',
             },
             {
-              label: <ExpandAltOutlined rotate={45} style={{ fontSize: '25px', color: '#888' }} />,
+              label: <ExpandAltOutlined rotate={45} style={{ fontSize: '28px', color: '#888', width: '32px' }} />,
               value: 'all',
             },
             {

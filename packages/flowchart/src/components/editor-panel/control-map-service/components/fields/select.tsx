@@ -26,6 +26,7 @@ const SelectField: React.FC<IProps> = (props) => {
         style={{
           width,
           height: FormItemHeight,
+          backgroundColor: 'red',
         }}
         getPopupContainer={(trigger) => trigger.parentNode}
         optionFilterProp="children"

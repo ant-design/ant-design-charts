@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NsGraph } from '@antv/xflow';
+import { NsGraph, uuidv4 } from '@antv/xflow';
 import * as nodePathMap from './paths';
 import { AppContext } from './index';
 import { NODE_HEIGHT, NODE_WIDTH } from './constants';
@@ -37,7 +37,12 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
   const scale = name === 'Text' ? 2 : 1;
   const getnodePath = nodePathMap[`${name.replace(/\s+/g, '')}NodePath`];
   const nodePath = getnodePath(props, rounded);
-  const fill = isGradient ? `url(#${gradientDirection})` : startColor;
+
+  //用于解决无法动态修改渐变颜色
+  let uuid = '';
+  if (isGradient) uuid = uuidv4();
+  const fill = isGradient ? `url(#${gradientDirection}-${uuid})` : startColor;
+
   const fontWeight = isBold ? 'bold' : 'normal';
   const fontStyle = isItalic ? 'italic' : 'normal';
   const textDecoration = isUnderline ? 'underline' : 'none';
@@ -60,7 +65,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
       height="100%"
       style={{ transform: `rotate(${angel}deg)` }}
     >
-      <GradientComponent startColor={startColor} endColor={endColor}></GradientComponent>
+      <GradientComponent startColor={startColor} endColor={endColor} uuid={uuid}></GradientComponent>
       {nodePath.map((path) => {
         return (
           <path
