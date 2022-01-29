@@ -14,10 +14,12 @@ export const CanvasService: React.FC = () => {
           value="light"
           options={[
             {
+              id: 1,
               label: '白天',
               value: 'light',
             },
             {
+              id: 2,
               label: '夜间',
               value: 'dark',
             },

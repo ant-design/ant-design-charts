@@ -10,6 +10,7 @@ interface IProps {
   options?: Array<{
     label: string | number | JSX.Element;
     value: string | number;
+    id: number;
   }>;
   width?: number;
   onChange?: (value: string) => void;
@@ -36,7 +37,7 @@ const SelectField: React.FC<IProps> = (props) => {
         filterOption={(input, option: any) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       >
         {options.map((option) => (
-          <Option index={option.label} value={option.value}>
+          <Option index={option.label} key={option.id} value={option.value}>
             {option.label}
           </Option>
         ))}

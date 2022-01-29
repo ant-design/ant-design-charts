@@ -16,7 +16,7 @@ import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate } from './fields';
 import { prefix, canEditorRounded } from './constants';
 import './style.less';
-
+import { SolidIcon, DottedLine } from './edit-style';
 export interface IConfig {
   x?: number;
   y?: number;
@@ -114,11 +114,13 @@ const NodeComponent = (props) => {
                 value={getSrokeDashValue()}
                 options={[
                   {
-                    label: '实线',
+                    id: 1,
+                    label: SolidIcon,
                     value: 'solid',
                   },
                   {
-                    label: '虚线',
+                    id: 2,
+                    label: DottedLine,
                     value: 'dash',
                   },
                 ]}
@@ -165,22 +167,27 @@ const NodeComponent = (props) => {
                 value={nodeConfig.gradientDirection}
                 options={[
                   {
+                    id: 1,
                     label: '自上向下',
                     value: 'top-bottom',
                   },
                   {
+                    id: 2,
                     label: '自下向上',
                     value: 'bottom-top',
                   },
                   {
+                    id: 3,
                     label: '自左向右',
                     value: 'left-right',
                   },
                   {
+                    id: 4,
                     label: '自右向左',
                     value: 'right-left',
                   },
                   {
+                    id: 5,
                     label: '径向',
                     value: 'radial',
                   },
