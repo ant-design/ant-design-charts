@@ -114,12 +114,10 @@ const NodeComponent = (props) => {
                 value={getSrokeDashValue()}
                 options={[
                   {
-                    id: 1,
                     label: SolidIcon,
                     value: 'solid',
                   },
                   {
-                    id: 2,
                     label: DottedLine,
                     value: 'dash',
                   },
@@ -167,27 +165,22 @@ const NodeComponent = (props) => {
                 value={nodeConfig.gradientDirection}
                 options={[
                   {
-                    id: 1,
                     label: '自上向下',
                     value: 'top-bottom',
                   },
                   {
-                    id: 2,
                     label: '自下向上',
                     value: 'bottom-top',
                   },
                   {
-                    id: 3,
                     label: '自左向右',
                     value: 'left-right',
                   },
                   {
-                    id: 4,
                     label: '自右向左',
                     value: 'right-left',
                   },
                   {
-                    id: 5,
                     label: '径向',
                     value: 'radial',
                   },

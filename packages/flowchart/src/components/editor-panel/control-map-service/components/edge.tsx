@@ -160,22 +160,18 @@ const EdgeComponent = (props) => {
           value={getArrowValue()}
           options={[
             {
-              id: 1,
               label: RightIcon,
               value: 'target',
             },
             {
-              id: 2,
               label: LeftIcon,
               value: 'source',
             },
             {
-              id: 3,
               label: DoubleArrow,
               value: 'all',
             },
             {
-              id: 4,
               label: SolidIcon,
               value: 'none',
             },
@@ -192,12 +188,10 @@ const EdgeComponent = (props) => {
             value={getSrokeDashValue()}
             options={[
               {
-                id: 1,
                 label: SolidIcon,
                 value: 'solid',
               },
               {
-                id: 2,
                 label: DottedLine,
                 value: 'dash',
               },
