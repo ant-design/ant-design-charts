@@ -90,7 +90,7 @@ export const treeDataService = async (meta, modelService, flowchartId) => {
 
   return [
     ...customNodes,
-    ...NODEPOOL.map(({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '' }) => {
+    ...NODEPOOL.map(({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '', type }) => {
       return {
         parentId: '',
         id: uuidv4(), // 不会被使用
@@ -102,6 +102,7 @@ export const treeDataService = async (meta, modelService, flowchartId) => {
         width,
         height,
         ports: getPorts(ports),
+        type,
       };
     }),
   ];

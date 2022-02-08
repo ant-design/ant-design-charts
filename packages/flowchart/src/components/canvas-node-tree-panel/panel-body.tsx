@@ -14,6 +14,7 @@ import { Log } from '../../util';
 import AppContext from '../../context';
 import { NsTreePanelData } from './service';
 import { XFlowNode } from './node';
+import './style/index.less';
 
 const { Panel } = Collapse;
 
@@ -165,6 +166,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
           flowchartId,
         };
         if (onNodeDrop) {
+          //拖拽结束后执行 executeCommand(XFlowNodeCommands.ADD_NODE.id, args) 向画布中添加节点
           await onNodeDrop(nodeConfig, commandService, modelService);
         } else {
           Log.error('onNodeDrop method is required in NodeTree Panel');
@@ -220,10 +222,12 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     [commandService, graphConfig, modelService, onMouseDown, prefixClz],
   );
   const customNode = state.treeData.filter((item) => item.isCustom);
-  const officialNode = state.treeData.filter((item) => !item.isCustom);
+  const officialNode = state.treeData.filter((item) => item.type === 'official');
+  const flowchartNode = state.treeData.filter((item) => item.type === 'flowchart');
 
   const searchCustomNode = state.searchList.filter((item) => item.isCustom);
-  const searchOfficialNode = state.searchList.filter((item) => !item.isCustom);
+  const searchOfficialNode = state.searchList.filter((item) => item.type === 'official');
+  const searchFlowchartNode = state.searchList.filter((item) => item.type === 'flowchart');
   const hasCustomNode = customNode.length > 0;
 
   return (
@@ -234,6 +238,12 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
             {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>}
             {state.searchList.length > 0 && (
               <div className={`${prefixClz}-official`}>{renderTree(searchOfficialNode)}</div>
+            )}
+          </Panel>
+          <Panel header="流程图节点" key="flowchart" style={{ border: 'none' }}>
+            {!state.keyword && <div className={`${prefixClz}-flowchart`}>{renderTree(flowchartNode)}</div>}
+            {state.searchList.length > 0 && (
+              <div className={`${prefixClz}-flowchart`}>{renderTree(searchFlowchartNode)}</div>
             )}
           </Panel>
           {hasCustomNode && (

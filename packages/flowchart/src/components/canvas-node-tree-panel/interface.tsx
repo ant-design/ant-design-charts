@@ -68,6 +68,10 @@ export interface ITreeNode {
    */
   children?: ITreeNode[];
   /**
+   * The classification of node, such as 'official'/'flowchart'
+   */
+  type?: string;
+  /**
    *fieldName
    */
   [fieldName: string]: any;
