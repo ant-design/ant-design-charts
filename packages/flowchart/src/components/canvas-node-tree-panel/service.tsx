@@ -121,6 +121,7 @@ export function NodeList2Tree(treeNodes: ITreeNode[] = []) {
     const uniqList = uniqBy(list, 'id');
     const groups = uniqList.reduce((map, node) => {
       const parentId = node.parentId || TREE_ROOT_ID;
+      node.parentId = parentId;
       if (!map.has(parentId)) {
         map.set(parentId, []);
       }

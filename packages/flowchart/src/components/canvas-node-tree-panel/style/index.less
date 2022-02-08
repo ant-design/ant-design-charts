@@ -2,6 +2,8 @@
 @light-border: ~'1px solid #d9d9d9';
 @header-bg: #fff;
 @body-bg: #fff;
+@footer-bg: #fff;
+@footer-hover: #fafafa;
 
 @dnd-panel-prefix-cls: ~'xflow-node-panel';
 @dnd-panel-prefix-collpase-container: ~'flowchart-node-panel-collpase';
@@ -29,6 +31,19 @@
       width: 100%;
       padding: 0px 12px;
     }
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: @footer-bg;
+    border-top: @light-border;
+    border-right: @light-border;
+    cursor: pointer;
+  }
+
+  &-footer:hover {
+    background-color: @footer-hover;
   }
 
   &-custom {

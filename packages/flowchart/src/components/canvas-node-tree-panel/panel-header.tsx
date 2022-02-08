@@ -13,7 +13,6 @@ export const NodePanelHeader: React.FC<IHeaderProps> = (props) => {
   const { prefixClz, onKeywordChange } = props;
   const { propsProxy } = usePanelContext<IProps>();
   const panelProps = propsProxy.getValue();
-
   return (
     <React.Fragment>
       <div
