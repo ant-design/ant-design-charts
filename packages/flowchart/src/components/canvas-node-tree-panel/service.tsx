@@ -2,20 +2,9 @@ import React, { useContext } from 'react';
 import uniqBy from 'lodash/uniqBy';
 import cloneDeep from 'lodash/cloneDeep';
 import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@antv/xflow';
-import { IProps, ITreeNode } from './interface';
+import { IProps, NsTreePanelData } from './interface';
 import { TREE_ROOT_ID } from './constants';
 import AppContext from '../../context';
-export namespace NsTreePanelData {
-  export const id = 'TREE_PANEL_DATA';
-  export interface IState {
-    treeNodeList: ITreeNode[];
-    treeData: ITreeNode[];
-    expandedKeys: string[];
-    defaultExpandAll: boolean;
-    keyword: string;
-    searchList: ITreeNode[];
-  }
-}
 
 export const useTreePanelData = (props: IProps) => {
   const { treeDataService, searchService } = props;
@@ -23,9 +12,8 @@ export const useTreePanelData = (props: IProps) => {
   const { flowchartId } = useContext(AppContext);
   /** 使用model */
   const [state, setState, panelModel] = createComponentModel<NsTreePanelData.IState>({
-    treeData: [],
+    treeData: {},
     searchNodes: {},
-    treeNodeList: [],
     expandedKeys: [],
     defaultExpandAll: false,
     keyword: '',
@@ -43,14 +31,6 @@ export const useTreePanelData = (props: IProps) => {
       watchChange: async (self) => {
         const graphMetaModel = await MODELS.GRAPH_META.getModel(modelService); //useContext(MODELS.GRAPH_META.id)
         const fetch = async (meta: MODELS.GRAPH_META.IState) => {
-          /* const listData = await treeDataService(meta, modelService, flowchartId);
-          const { treeData, rootNodes } = NodeList2Tree(listData);
-          const currentState = await self.getValidValue();
-          // 设置默认展开的keys
-          const expandedKeys =
-            currentState.expandedKeys.length > 0 ? currentState.expandedKeys : rootNodes.map((i) => i.id);
-
-          return { listData, treeData, expandedKeys }; */
           const treeData = await treeDataService(meta, modelService, flowchartId);
           const expandedKeys = [];
           return { treeData, expandedKeys };
@@ -59,12 +39,11 @@ export const useTreePanelData = (props: IProps) => {
         const graphMetaDisposable = graphMetaModel.watch(async (meta) => {
           const data = await fetch(meta);
           self.setValue({
-            treeNodeList: data.treeData,
             treeData: data.treeData,
             expandedKeys: data.expandedKeys,
             defaultExpandAll: false,
             keyword: '',
-            searchList: [],
+            searchNodes: {},
           });
         });
 
@@ -95,7 +74,7 @@ export const useTreePanelData = (props: IProps) => {
         return;
       }
       if (keyword) {
-        const searchNodes = await searchService(state.treeNodeList, keyword);
+        const searchNodes = await searchService(state.treeData, keyword);
         setState((modelState) => {
           modelState.keyword = keyword;
           modelState.searchNodes = searchNodes;
@@ -107,7 +86,7 @@ export const useTreePanelData = (props: IProps) => {
         });
       }
     },
-    [searchService, state.treeNodeList, setState],
+    [searchService, state.treeData, setState],
   );
 
   return {
@@ -119,7 +98,7 @@ export const useTreePanelData = (props: IProps) => {
 };
 
 // 将list数据转换为树
-export function NodeList2Tree(treeNodes: ITreeNode[] = []) {
+/* export function NodeList2Tree(treeNodes: ITreeNode[] = []) {
   const getGroupByIdMap = (list: ITreeNode[]) => {
     const uniqList = uniqBy(list, 'id');
     const groups = uniqList.reduce((map, node) => {
@@ -154,4 +133,4 @@ export function NodeList2Tree(treeNodes: ITreeNode[] = []) {
   const rootNodes = groupMap.get(TREE_ROOT_ID) || [];
   const treeData = iterator(rootNodes, groupMap);
   return { treeData, rootNodes };
-}
+} */

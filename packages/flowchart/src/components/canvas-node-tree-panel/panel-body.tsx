@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Empty, Popover, Collapse } from 'antd';
-import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs } from './interface';
+import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs, NsTreePanelData } from './interface';
 import { Addon, Graph } from '@antv/x6';
 import {
   IModelService,
@@ -12,7 +12,6 @@ import {
 } from '@antv/xflow';
 import { Log } from '../../util';
 import AppContext from '../../context';
-import { NsTreePanelData } from './service';
 import { XFlowNode } from './node';
 import './style/index.less';
 
@@ -224,47 +223,21 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
 
   const { treeData, searchNodes } = state;
   const nodeTypes = Object.keys(treeData);
-  const hasCustomNode = treeData?.custom?.nodes > 0;
-
-  /* const customNode = state.nodeList.filter(item => item.isCustom)
-  const officialNode = state.nodeList.filter(item => !item.isCustom)
-  const searchCustomNode = state.searchList.filter(item => item.isCustom)
-  const searchOfficialNode = state.searchList.filter(item => !item.isCustom)
-  const hasCustomNode = customNode.length > 0 */
+  const hasCustomNode = treeData?.custom?.nodes.length > 0;
 
   return (
     <React.Fragment>
       <div className={`${prefixClz}-body`}>
         <Collapse defaultActiveKey={defaultActiveKey} style={{ border: 'none' }}>
-          {/* <Panel header="通用节点" key="official" style={{ border: 'none' }}>
-            {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>}
-            {state.searchList.length > 0 && (
-              <div className={`${prefixClz}-official`}>{renderTree(searchOfficialNode)}</div>
-            )}
-          </Panel>
-          <Panel header="流程图节点" key="flowchart" style={{ border: 'none' }}>
-            {!state.keyword && <div className={`${prefixClz}-flowchart`}>{renderTree(flowchartNode)}</div>}
-            {state.searchList.length > 0 && (
-              <div className={`${prefixClz}-flowchart`}>{renderTree(searchFlowchartNode)}</div>
-            )}
-          </Panel>
-          {hasCustomNode && (
-            <Panel header={title} key="custom" style={{ border: 'none' }}>
-              {!state.keyword && <div className={`${prefixClz}-custom`}>{renderTree(customNode)}</div>}
-              {state.searchList.length > 0 && (
-                <div className={`${prefixClz}-custom`}>{renderTree(searchCustomNode)}</div>
-              )}
-            </Panel>
-          )} */}
           {nodeTypes.map((type) => {
             if (type === 'custom') {
               return (
                 hasCustomNode && (
                   <Panel header={title} key="custom" style={{ border: 'none' }}>
                     {!state.keyword && <div className={`${prefixClz}-custom`}>{renderTree(treeData[type].nodes)}</div>}
-                    {/* {state.searchList.length > 0 && (
-                      <div className={`${prefixClz}-custom`}>{renderTree(searchCustomNode)}</div>
-                    )} */}
+                    {searchNodes && searchNodes[type] && searchNodes[type].length > 0 && (
+                      <div className={`${prefixClz}-custom`}>{renderTree(searchNodes[type])}</div>
+                    )}
                   </Panel>
                 )
               );

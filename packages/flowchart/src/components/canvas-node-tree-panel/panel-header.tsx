@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input } from 'antd';
-import { IProps, IOnKeywordChange } from './interface';
-import { NsTreePanelData } from './service';
+import { IProps, IOnKeywordChange, NsTreePanelData } from './interface';
 import { usePanelContext } from '@antv/xflow';
 
 export interface IHeaderProps extends IProps {

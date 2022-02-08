@@ -87,29 +87,10 @@ export const getRegisterNode = (flowchartId: string) => {
 
 export const treeDataService = async (meta, modelService, flowchartId) => {
   const customNodes = getRegisterNode(flowchartId);
-
-  /* return [
-    ...customNodes,
-    ...NODEPOOL.map(({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '', type }) => {
-      return {
-        parentId: '',
-        id: uuidv4(), // 不会被使用
-        renderKey: name,
-        // name: `${name.replace(/\s+/g, '-')}`,
-        name,
-        label,
-        popoverContent: () => name,
-        width,
-        height,
-        ports: getPorts(ports),
-        type,
-      };
-    }),
-  ]; */
   const treeData = {
     custom: {
       name: '自定义节点',
-      nodes: [],
+      nodes: [...customNodes],
     },
     official: {
       name: '通用节点',

@@ -68,23 +68,40 @@ export interface ITreeNode {
    */
   children?: ITreeNode[];
   /**
-   * The classification of node, such as 'official'/'flowchart'
-   */
-  type?: string;
-  /**
    *fieldName
    */
   [fieldName: string]: any;
 }
 
+export interface ITreeData {
+  custom?: {
+    name?: string;
+    nodes?: ITreeNode[];
+  };
+  official?: {
+    name?: string;
+    nodes?: ITreeNode[];
+  };
+  flowchart?: {
+    name?: string;
+    nodes?: ITreeNode[];
+  };
+}
+
+export interface ISearchNodes {
+  custom?: ITreeNode[];
+  official?: ITreeNode[];
+  flowchart?: ITreeNode[];
+}
+
 /** service: 获取tree数据 */
 export interface ITreeDataService {
-  (graphMeta: MODELS.GRAPH_META.IState, modelService: IModelService, flowchartId: string): Promise<ITreeNode[]>;
+  (graphMeta: MODELS.GRAPH_META.IState, modelService: IModelService, flowchartId: string): Promise<ITreeData>;
 }
 
 /** service: 返回过滤后的数据 */
 export interface ISearchService {
-  (treeNodeList: ITreeNode[], keyword: string): Promise<ITreeNode[]>;
+  (treeNodeList: ITreeData, keyword: string): Promise<ISearchNodes>;
 }
 
 export interface IOnFolderExpand {
@@ -97,11 +114,10 @@ export interface IOnKeywordChange {
 export namespace NsTreePanelData {
   export const id = 'TREE_PANEL_DATA';
   export interface IState {
-    treeNodeList: ITreeNode[];
-    treeData: ITreeNode[];
+    treeData: ITreeData;
     expandedKeys: string[];
     defaultExpandAll: boolean;
     keyword: string;
-    searchList: ITreeNode[];
+    searchNodes: {};
   }
 }

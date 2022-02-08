@@ -1,22 +1,17 @@
 import { NsNodeTreePanel, NsNodeCmd, uuidv4, XFlowNodeCommands } from '@antv/xflow';
-import { type } from 'os';
 import { getProps, onConfigChange } from '../../../util';
+import { ISearchService, ITreeData } from '../../canvas-node-tree-panel/interface';
 
 /** 节点查找 */
-export const searchService: NsNodeTreePanel.ISearchService = async (
-  treeNode: NsNodeTreePanel.ITreeNode[] = [],
-  keyword: string,
-) => {
-  /* const list = treeNodeList.filter((i) => i.isDirectory || i.label?.includes(keyword) || i.name?.includes(keyword));
-  return list; */
-  const nodeTypes = Object.keys(treeNode);
+export const searchService: ISearchService = async (treeData: ITreeData = {}, keyword: string) => {
+  const nodeTypes = Object.keys(treeData);
   const searchNodes = {
     custom: [],
     official: [],
     flowchart: [],
   };
   nodeTypes.forEach((type) => {
-    searchNodes[type] = treeNode[type].nodes.filter((i) => i.label?.includes(keyword) || i.name?.includes(keyword));
+    searchNodes[type] = treeData[type].nodes.filter((i) => i.label?.includes(keyword) || i.name?.includes(keyword));
   });
   return searchNodes;
 };
