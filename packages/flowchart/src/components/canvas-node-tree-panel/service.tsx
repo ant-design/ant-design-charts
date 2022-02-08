@@ -24,7 +24,7 @@ export const useTreePanelData = (props: IProps) => {
   /** 使用model */
   const [state, setState, panelModel] = createComponentModel<NsTreePanelData.IState>({
     treeData: [],
-    searchList: [],
+    searchNodes: {},
     treeNodeList: [],
     expandedKeys: [],
     defaultExpandAll: false,
@@ -43,20 +43,23 @@ export const useTreePanelData = (props: IProps) => {
       watchChange: async (self) => {
         const graphMetaModel = await MODELS.GRAPH_META.getModel(modelService); //useContext(MODELS.GRAPH_META.id)
         const fetch = async (meta: MODELS.GRAPH_META.IState) => {
-          const listData = await treeDataService(meta, modelService, flowchartId);
+          /* const listData = await treeDataService(meta, modelService, flowchartId);
           const { treeData, rootNodes } = NodeList2Tree(listData);
           const currentState = await self.getValidValue();
           // 设置默认展开的keys
           const expandedKeys =
             currentState.expandedKeys.length > 0 ? currentState.expandedKeys : rootNodes.map((i) => i.id);
 
-          return { listData, treeData, expandedKeys };
+          return { listData, treeData, expandedKeys }; */
+          const treeData = await treeDataService(meta, modelService, flowchartId);
+          const expandedKeys = [];
+          return { treeData, expandedKeys };
         };
 
         const graphMetaDisposable = graphMetaModel.watch(async (meta) => {
           const data = await fetch(meta);
           self.setValue({
-            treeNodeList: data.listData,
+            treeNodeList: data.treeData,
             treeData: data.treeData,
             expandedKeys: data.expandedKeys,
             defaultExpandAll: false,
@@ -92,15 +95,15 @@ export const useTreePanelData = (props: IProps) => {
         return;
       }
       if (keyword) {
-        const list = await searchService(state.treeNodeList, keyword);
+        const searchNodes = await searchService(state.treeNodeList, keyword);
         setState((modelState) => {
           modelState.keyword = keyword;
-          modelState.searchList = list;
+          modelState.searchNodes = searchNodes;
         });
       } else {
         setState((modelState) => {
           modelState.keyword = '';
-          modelState.searchList = [];
+          modelState.searchNodes = {};
         });
       }
     },
