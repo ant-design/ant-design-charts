@@ -18,7 +18,7 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
         }}
       >
         {panelProps.footer && React.isValidElement(panelProps.footer) && panelProps.footer}
-        <div>新增节点</div>
+        <div>更多节点</div>
       </div>
     </React.Fragment>
   );
