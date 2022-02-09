@@ -10,7 +10,13 @@ import { useTreePanelData } from './service';
 import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT } from './constants';
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
-  const { prefixClz, position = { width: 240, top: 0, bottom: 0, left: 0 }, showHeader = true, ...rest } = props;
+  const {
+    prefixClz,
+    position = { width: 240, top: 0, bottom: 0, left: 0 },
+    showHeader = true,
+    showFooter = true,
+    ...rest
+  } = props;
 
   const { width = 200 } = position;
   const { headerStyle, bodyStyle, footerStyle } = usePanelLyaoutStyle(props as IPanelProps);
@@ -41,17 +47,19 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
       >
         <NodePanelBody {...props} state={state} style={bodyStyle} onFolderExpand={onFolderExpand} />
       </WorkspacePanel>
-      <WorkspacePanel
-        {...rest}
-        position={{
-          bottom: 0,
-          left: 0,
-          height: PANEL_FOOTER_HEIGHT,
-          width,
-        }}
-      >
-        <NodePanelFooter {...props} style={footerStyle} />
-      </WorkspacePanel>
+      {showFooter && (
+        <WorkspacePanel
+          {...rest}
+          position={{
+            bottom: 0,
+            left: 0,
+            height: PANEL_FOOTER_HEIGHT,
+            width,
+          }}
+        >
+          <NodePanelFooter {...props} style={footerStyle} />
+        </WorkspacePanel>
+      )}
     </>
   );
 };
