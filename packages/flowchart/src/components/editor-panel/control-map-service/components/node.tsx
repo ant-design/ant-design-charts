@@ -15,8 +15,8 @@ import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate } from './fields';
 import { prefix, canEditorRounded } from './constants';
-import './style.less';
 import { SolidIcon, DottedLine } from './edit-style';
+import './style.less';
 export interface IConfig {
   x?: number;
   y?: number;
