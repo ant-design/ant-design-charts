@@ -235,8 +235,11 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
                 hasCustomNode && (
                   <Panel header={title} key="custom" style={{ border: 'none' }}>
                     {!state.keyword && <div className={`${prefixClz}-custom`}>{renderTree(treeData[type].nodes)}</div>}
-                    {searchNodes && searchNodes[type] && searchNodes[type].length > 0 && (
+                    {state.keyword && searchNodes[type] && searchNodes[type].length > 0 && (
                       <div className={`${prefixClz}-custom`}>{renderTree(searchNodes[type])}</div>
+                    )}
+                    {state.keyword && searchNodes[type] && searchNodes[type].length === 0 && (
+                      <Empty style={{ marginTop: '24px' }} />
                     )}
                   </Panel>
                 )
@@ -245,8 +248,11 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
               return (
                 <Panel header={`${treeData[type].name}`} key={type} style={{ border: 'none' }}>
                   {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(treeData[type].nodes)}</div>}
-                  {searchNodes && searchNodes[type] && searchNodes[type].length > 0 && (
+                  {state.keyword && searchNodes[type] && searchNodes[type].length > 0 && (
                     <div className={`${prefixClz}-official`}>{renderTree(searchNodes[type])}</div>
+                  )}
+                  {state.keyword && searchNodes[type] && searchNodes[type].length === 0 && (
+                    <Empty style={{ marginTop: '24px' }} />
                   )}
                 </Panel>
               );
