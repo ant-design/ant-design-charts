@@ -2,16 +2,23 @@ import React from 'react';
 import ContentLoader from 'react-content-loader';
 
 interface Props {
+  theme?: string | object;
   loadingTemplate?: React.ReactElement;
 }
 
-const ChartLoading = ({ loadingTemplate }: Props) => {
+const ChartLoading = ({ loadingTemplate, theme = 'light' }: Props) => {
   const renderLoading = () => {
     if (loadingTemplate) {
       return loadingTemplate;
     }
     return (
-      <ContentLoader viewBox="0 0 400 180" width={200} height={90} speed={1}>
+      <ContentLoader
+        viewBox="0 0 400 180"
+        width={200}
+        height={90}
+        speed={1}
+        backgroundColor={theme === 'dark' ? '#262626' : '#D9D9D9'}
+      >
         <rect x="20" y="5" rx="0" ry="0" width="1" height="170" />
         <rect x="20" y="175" rx="0" ry="0" width="360" height="1" />
         <rect x="40" y="75" rx="0" ry="0" width="35" height="100" />
@@ -28,6 +35,7 @@ const ChartLoading = ({ loadingTemplate }: Props) => {
 
   return (
     <div
+      className="charts-loading-container"
       style={{
         position: 'absolute',
         width: '100%',
@@ -38,7 +46,7 @@ const ChartLoading = ({ loadingTemplate }: Props) => {
         left: 0,
         top: 0,
         zIndex: 99,
-        backgroundColor: '#fff',
+        backgroundColor: theme === 'dark' ? 'rgb(20, 20, 20)' : 'rgb(255, 255, 255)',
       }}
     >
       {renderLoading()}

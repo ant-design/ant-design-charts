@@ -31,7 +31,7 @@ const SankeyChart = forwardRef((props: SankeyConfig, ref) => {
   }));
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
-      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} theme={props.theme} />}
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );
