@@ -10,6 +10,7 @@ import { useTreePanelData } from './service';
 import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT } from './constants';
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
+  const [visibleNodeTypes, SetVisibleNodeTypes] = useState<string[]>(['official', 'flowchart', 'custom']);
   const { prefixClz, position = { width: 240, top: 0, bottom: 0, left: 0 }, showHeader = true, ...rest } = props;
 
   const { width = 200 } = position;
@@ -39,7 +40,13 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
           top: showHeader ? PANEL_HEADER_HEIGHT : 0,
         }}
       >
-        <NodePanelBody {...props} state={state} style={bodyStyle} onFolderExpand={onFolderExpand} />
+        <NodePanelBody
+          {...props}
+          visibleNodeTypes={visibleNodeTypes}
+          state={state}
+          style={bodyStyle}
+          onFolderExpand={onFolderExpand}
+        />
       </WorkspacePanel>
       <WorkspacePanel
         {...rest}
@@ -50,7 +57,12 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
           width,
         }}
       >
-        <NodePanelFooter {...props} style={footerStyle} />
+        <NodePanelFooter
+          {...props}
+          visibleNodeTypes={visibleNodeTypes}
+          setVisibleNodeTypes={SetVisibleNodeTypes}
+          style={footerStyle}
+        />
       </WorkspacePanel>
     </>
   );

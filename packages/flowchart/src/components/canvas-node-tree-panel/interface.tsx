@@ -121,3 +121,9 @@ export namespace NsTreePanelData {
     searchNodes: {};
   }
 }
+
+export interface ICheckboxOption {
+  label: string;
+  value: string;
+  disabled?: boolean;
+}
