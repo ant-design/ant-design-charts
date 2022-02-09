@@ -1,18 +1,11 @@
 import React from 'react';
 import { InputNumber } from 'antd';
 import { FormItemHeight } from '../constants';
-
-interface IProps {
-  label?: string;
-  value?: number;
-  max?: number;
-  min?: number;
-  width?: number;
-  step?: number;
-  onChange?: (value: number) => void;
+import { IProps } from './input-number';
+interface MProps extends IProps {
   formatter: (value: number) => string;
 }
-const InputOpacity: React.FC<IProps> = (props) => {
+const InputOpacity: React.FC<MProps> = (props) => {
   const { label, value = 100, onChange, max, min, width, step = 10 } = props;
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { InputNumber } from 'antd';
 import { FormItemHeight } from '../constants';
 
-interface IProps {
+export interface IProps {
   label?: string;
   value?: number;
   max?: number;
