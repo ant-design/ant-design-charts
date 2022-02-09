@@ -42,7 +42,6 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
   let uuid = '';
   if (isGradient) uuid = uuidv4();
   const fill = isGradient ? `url(#${gradientDirection}-${uuid})` : startColor;
-
   const fontWeight = isBold ? 'bold' : 'normal';
   const fontStyle = isItalic ? 'italic' : 'normal';
   const textDecoration = isUnderline ? 'underline' : 'none';
