@@ -42,6 +42,7 @@ export interface IConfig {
   endColor?: string;
   name: string;
   isSelected?: boolean;
+  groundColor?: string;
 }
 
 const { TabPane } = Tabs;
@@ -319,6 +320,25 @@ const NodeComponent = (props) => {
                 value={nodeConfig.fontFill}
                 onChange={(value: string) => {
                   onNodeConfigChange('fontFill', value);
+                }}
+              />
+            )}
+          </div>
+          <div className={`${prefix}-node-gradient-style`}>
+            <Checkbox
+              style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+              // checked={nodeConfig.groundColor}
+              onChange={(values) => {
+                onNodeConfigChange('groundColor', values.target.checked);
+              }}
+            >
+              背景颜色
+            </Checkbox>
+            {nodeConfig.groundColor && (
+              <ColorPicker
+                value={nodeConfig.groundColor}
+                onChange={(value: string) => {
+                  onNodeConfigChange('groundColor', value);
                 }}
               />
             )}

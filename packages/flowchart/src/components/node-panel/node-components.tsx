@@ -78,17 +78,18 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
           ></path>
         );
       })}
-      <text
-        x={textX}
-        y={height / (scale * 2)}
-        fill={fontFill}
-        textAnchor={textAnchor}
-        alignmentBaseline={alignmentBaseline}
-        fontSize={fontSize}
-        fontWeight={fontWeight}
-        fontStyle={fontStyle}
-        textDecoration={textDecoration}
-      >
+      <text>
+        <tspan
+          x={textX}
+          y={height / (scale * 2)}
+          fill={fontFill}
+          textAnchor={textAnchor}
+          alignmentBaseline={alignmentBaseline}
+          fontSize={fontSize}
+          fontWeight={fontWeight}
+          fontStyle={fontStyle}
+          textDecoration={textDecoration}
+        ></tspan>
         {label}
       </text>
       Sorry, your browser does not support inline SVG.
