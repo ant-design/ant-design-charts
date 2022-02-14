@@ -16,7 +16,7 @@ import { FormPanel } from '../components/editor-panel';
 import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
-import { setProps, setInstance } from '../util';
+import { setProps, setInstance, getGraphData, storage } from '../util';
 import { useCmdConfig } from './service/command';
 import { FlowchartProps, IFlowchartGraph as IGraph } from '../interface';
 import AppContext from '../context';
@@ -63,7 +63,12 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const { show: showMenu = true } = contextMenuPanelProps;
   const loadData = useCallback(
     async (app) => {
-      if (data) {
+      if (storage.hasItem('graphData')) {
+        const graphData = storage.getItem('graphData');
+        await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
+          graphData,
+        });
+      } else if (data) {
         const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
           loadDataService: async () => {
             return data;
@@ -80,7 +85,13 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   );
 
   useEffect(() => {
+    const saveGraphData = async () => {
+      const graphData = await getGraphData(uuidv4Ref.current);
+      storage.setItem('graphData', graphData);
+    };
+    window.addEventListener('beforeunload', saveGraphData);
     return () => {
+      window.removeEventListener('beforeunload', saveGraphData);
       graphRef.current?.dispose();
     };
   }, []);

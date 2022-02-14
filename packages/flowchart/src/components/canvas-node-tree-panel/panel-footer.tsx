@@ -3,7 +3,7 @@ import { Modal, Checkbox, Button } from 'antd';
 import { usePanelContext } from '@antv/xflow';
 import { IProps } from './interface';
 import { CHECKBOX_OPTIONS } from './constants';
-import storage from '../../util/stroage';
+import { storage } from '../../util/stroage';
 
 export interface IFooterProps extends IProps {
   visibleNodeTypes: string[];

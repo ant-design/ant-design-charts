@@ -15,7 +15,6 @@ import { getProps, getGraphHistory, getGraphInstance } from '../../util';
 import { GROUP_NODE_RENDER_ID } from '../group-panel';
 import { CommandPool } from './constants';
 import { CommandItem } from '../../interface';
-
 namespace TOOLBAR_ITEMS {
   export const BACK_NODE = XFlowNodeCommands.BACK_NODE.id;
   export const FRONT_NODE = XFlowNodeCommands.FRONT_NODE.id;
@@ -27,6 +26,7 @@ namespace TOOLBAR_ITEMS {
   export const DEL_GROUP = `${XFlowGroupCommands.DEL_GROUP.id}`;
   export const COPY = `${XFlowGraphCommands.GRAPH_COPY.id}`;
   export const PASTE = `${XFlowGraphCommands.GRAPH_PASTE.id}`;
+  export const CLEAR = `${XFlowGraphCommands.GRAPH_RENDER.id}`;
 }
 
 export namespace NSToolbarConfig {
@@ -207,6 +207,17 @@ export namespace NSToolbarConfig {
         });
       },
     });
+
+    toolbarGroup.push({
+      ...getIconConfig(CommandPool.CLEAR),
+      id: TOOLBAR_ITEMS.CLEAR,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand(TOOLBAR_ITEMS.CLEAR, {
+          graphData: { nodes: [], edges: [] },
+        });
+      },
+    });
+
     return [
       {
         name: 'graphData',

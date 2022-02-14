@@ -26,6 +26,8 @@ const COPY = 'graph-copy-selection';
 
 const PASTE = 'graph-paste-selection';
 
+const CLEAR = 'graph-clear';
+
 export const CommandPool = {
   UNDO_CMD,
   REDO_CMD,
@@ -37,6 +39,7 @@ export const CommandPool = {
   DEL_GROUP,
   COPY,
   PASTE,
+  CLEAR,
 };
 
 export const defaultCommands = [
@@ -89,5 +92,10 @@ export const defaultCommands = [
     command: CommandPool.SAVE_GRAPH_DATA,
     tooltip: '保存',
     iconName: 'SaveOutlined',
+  },
+  {
+    command: CommandPool.CLEAR,
+    tooltip: '清空',
+    iconName: 'ClearOutlined',
   },
 ] as CommandItem[];
