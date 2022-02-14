@@ -13,7 +13,7 @@ import {
 } from '@ant-design/icons';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
-import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate } from './fields';
+import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate, InputOpacity } from './fields';
 import { prefix, canEditorRounded } from './constants';
 import './style.less';
 
@@ -43,6 +43,7 @@ export interface IConfig {
   name: string;
   isSelected?: boolean;
   groundColor?: string;
+  opacity: number;
 }
 
 const { TabPane } = Tabs;
@@ -301,6 +302,20 @@ const NodeComponent = (props) => {
                 }
                 onClick={() => {
                   onNodeConfigChange('textAnchor', 'end');
+                }}
+              />
+            </div>
+            <div className={`${prefix}-panel-group`}>
+              <InputOpacity
+                label="透明度"
+                value={nodeConfig.opacity}
+                max={100}
+                min={0}
+                step={10}
+                width={70}
+                formatter={(value) => `${value}%`}
+                onChange={(value) => {
+                  onNodeConfigChange('opacity', value);
                 }}
               />
             </div>

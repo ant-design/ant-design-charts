@@ -31,6 +31,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     isUnderline = stateNodeConfig.isUnderline,
     alignmentBaseline = stateNodeConfig.alignmentBaseline,
     textAnchor = stateNodeConfig.textAnchor,
+    opacity = stateNodeConfig.opacity,
   } = data;
 
   const { width, height } = size;
