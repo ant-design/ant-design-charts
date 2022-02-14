@@ -1,19 +1,12 @@
 import React from 'react';
 import { InputNumber } from 'antd';
 import { FormItemHeight } from '../constants';
-
-export interface IProps {
-  label?: string;
-  value?: number;
-  max?: number;
-  min?: number;
-  width?: number;
-  step?: number;
-  onChange?: (value: number) => void;
+import { IProps } from './input-number';
+interface MProps extends IProps {
+  formatter: (value: number) => string;
 }
-
-const InputNumberFiled: React.FC<IProps> = (props) => {
-  const { label, value, onChange, max, min, width, step = 1 } = props;
+const InputOpacity: React.FC<MProps> = (props) => {
+  const { label, value = 100, onChange, max, min, width, step = 10 } = props;
 
   return (
     <div className="group">
@@ -27,6 +20,7 @@ const InputNumberFiled: React.FC<IProps> = (props) => {
           width,
           height: FormItemHeight,
         }}
+        formatter={(value) => `${value}%`}
         onChange={(value: number) => {
           onChange?.(value);
         }}
@@ -34,5 +28,4 @@ const InputNumberFiled: React.FC<IProps> = (props) => {
     </div>
   );
 };
-
-export default InputNumberFiled;
+export default InputOpacity;

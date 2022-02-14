@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Checkbox } from 'antd';
+import { Modal, Checkbox, Button } from 'antd';
 import { usePanelContext } from '@antv/xflow';
 import { IProps } from './interface';
 import { CHECKBOX_OPTIONS } from './constants';
@@ -20,7 +20,6 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
     setIsModalVisible(false);
     setVisibleNodeTypes([...checkedValue]);
   };
-
   return (
     <React.Fragment>
       <div
@@ -31,7 +30,7 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
         }}
       >
         {panelProps.footer && React.isValidElement(panelProps.footer) && panelProps.footer}
-        <div onClick={() => setIsModalVisible(true)}>更多节点</div>
+        <Button onClick={() => setIsModalVisible(true)}>更多节点</Button>
       </div>
       <Modal
         title="更多节点"

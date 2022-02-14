@@ -21,6 +21,7 @@ export interface INodeFactoryArgs {
 export interface IProps extends Partial<IPanelProps> {
   show?: boolean;
   showHeader?: boolean;
+  showFooter?: boolean;
   position?: IPosition;
   style?: React.CSSProperties;
   prefixClz?: string;
@@ -73,7 +74,11 @@ export interface ITreeNode {
   [fieldName: string]: any;
 }
 
-export interface ITreeData {
+type ITreeItem = {
+  name?: string;
+  nodes?: ITreeNode[];
+};
+/* export interface ITreeData {
   custom?: {
     name?: string;
     nodes?: ITreeNode[];
@@ -86,7 +91,8 @@ export interface ITreeData {
     name?: string;
     nodes?: ITreeNode[];
   };
-}
+} */
+type ITreeData = Map<string, ITreeItem>;
 
 export interface ISearchNodes {
   custom?: ITreeNode[];
