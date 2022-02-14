@@ -6,7 +6,7 @@ interface MProps extends IProps {
   formatter: (value: number) => string;
 }
 const InputOpacity: React.FC<MProps> = (props) => {
-  const { label, value = 100, onChange, max, min, width, step = 10 } = props;
+  const { label, value = 1, onChange, max, min, width, step = 0.1 } = props;
 
   return (
     <div className="group">
@@ -20,7 +20,7 @@ const InputOpacity: React.FC<MProps> = (props) => {
           width,
           height: FormItemHeight,
         }}
-        formatter={(value) => `${value}%`}
+        formatter={(value) => `${value * 100}%`}
         onChange={(value: number) => {
           onChange?.(value);
         }}

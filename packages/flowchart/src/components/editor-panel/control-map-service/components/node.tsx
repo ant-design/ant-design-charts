@@ -339,9 +339,9 @@ const NodeComponent = (props) => {
               <InputOpacity
                 label="透明度"
                 value={nodeConfig.opacity}
-                max={100}
+                max={1}
                 min={0}
-                step={10}
+                step={0.1}
                 width={70}
                 formatter={(value) => `${value}%`}
                 onChange={(value) => {

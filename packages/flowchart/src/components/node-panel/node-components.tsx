@@ -90,7 +90,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
         fontWeight={fontWeight}
         fontStyle={fontStyle}
         textDecoration={textDecoration}
-        opacity={opacity / 100}
+        opacity={opacity}
         letterSpacing={letterSpacing}
       >
         {label}
