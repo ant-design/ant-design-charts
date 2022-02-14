@@ -3,7 +3,7 @@ import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields';
 import { prefix } from './constants';
-import { RightIcon, LeftIcon, SolidIcon, DottedLine, DoubleArrow } from './fields/constant';
+import { LeftIcon, SolidIcon, DottedLine, DoubleArrow, RightIcon } from './edit-style/index';
 
 export type MarkerCfg = {
   width?: number;
