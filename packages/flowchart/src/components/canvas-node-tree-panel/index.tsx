@@ -8,11 +8,12 @@ import { NodePanelFooter } from './panel-footer';
 import { usePanelLyaoutStyle } from './utils';
 import { useTreePanelData } from './service';
 import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT, VISIBLIE_NODE_TYPES } from './constants';
+import storage from '../../util/stroage';
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
   const [visibleNodeTypes, setVisibleNodeTypes] = useState<string[]>(() => {
-    const initialState = window.localStorage.getItem('visibleNodeTypes')
-      ? JSON.parse(window.localStorage.getItem('visibleNodeTypes'))
+    const initialState = storage.hasItem('visibleNodeTypes')
+      ? storage.getItem('visibleNodeTypes')
       : VISIBLIE_NODE_TYPES;
     return initialState;
   });

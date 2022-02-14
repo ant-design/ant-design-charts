@@ -3,6 +3,7 @@ import { Modal, Checkbox, Button } from 'antd';
 import { usePanelContext } from '@antv/xflow';
 import { IProps } from './interface';
 import { CHECKBOX_OPTIONS } from './constants';
+import storage from '../../util/stroage';
 
 export interface IFooterProps extends IProps {
   visibleNodeTypes: string[];
@@ -19,7 +20,7 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
   const handleModalOk = () => {
     setIsModalVisible(false);
     setVisibleNodeTypes([...checkedValue]);
-    window.localStorage.setItem('visibleNodeTypes', JSON.stringify([...checkedValue]));
+    storage.setItem('visibleNodeTypes', [...checkedValue]);
   };
   return (
     <React.Fragment>

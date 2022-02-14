@@ -60,6 +60,8 @@ export interface NodePanelProps extends BaseProps {
   registerNode?: RegisterNode;
   /** 是否展示 header */
   showHeader?: boolean;
+  /** 是否展示 footer */
+  showFooter?: boolean;
   /** 默认展开的面板 */
   defaultActiveKey?: string[];
 }
