@@ -320,9 +320,16 @@ const DemoLine: React.FC = () => {
     height: 200,
   };
 
-  const showTooltip = ({ x, y }: { x: number; y: number }) => {
+   const showTooltip = (date: string) => {
     Object.keys(PlotMaps).forEach((plot) => {
-      PlotMaps[plot].chart.showTooltip({ x, y });
+      const chartData = PlotMaps[plot].chart.getData();
+      for (let i = 0; i < chartData?.length; i++) {
+        if (chartData[i].date === date) {
+          const { x, y } = PlotMaps[plot].chart.getXY(chartData[i]);
+          PlotMaps[plot].chart.showTooltip({ x, y });
+          break;
+        }
+      }
     });
   };
 
@@ -333,12 +340,13 @@ const DemoLine: React.FC = () => {
       return;
     }
     PreTooltipData = currentData[0]?.data;
-    showTooltip({ x, y });
+    showTooltip(PreTooltipData?.date);
   };
 
   return (
     <div>
       <Line
+        style={{ width: '40%' }}
         {...config}
         onReady={(plot) => {
           PlotMaps.line = plot;
@@ -348,6 +356,7 @@ const DemoLine: React.FC = () => {
         }}
       />
       <Area
+        style={{ width: '60%' }}
         {...config}
         onReady={(plot) => {
           PlotMaps.area = plot;
