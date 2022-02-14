@@ -11,8 +11,8 @@ import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT, VISIBLIE_NOD
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
   const [visibleNodeTypes, setVisibleNodeTypes] = useState<string[]>(() => {
-    const initialState = window.sessionStorage.getItem('visibleNodeTypes')
-      ? JSON.parse(window.sessionStorage.getItem('visibleNodeTypes'))
+    const initialState = window.localStorage.getItem('visibleNodeTypes')
+      ? JSON.parse(window.localStorage.getItem('visibleNodeTypes'))
       : VISIBLIE_NODE_TYPES;
     return initialState;
   });
