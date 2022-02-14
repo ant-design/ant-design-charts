@@ -10,7 +10,6 @@ import { useTreePanelData } from './service';
 import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT, VISIBLIE_NODE_TYPES } from './constants';
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
-  const { state, onFolderExpand, onKeywordChange } = useTreePanelData(props);
   const [visibleNodeTypes, setVisibleNodeTypes] = useState<string[]>(() => {
     const initialState = window.sessionStorage.getItem('visibleNodeTypes')
       ? JSON.parse(window.sessionStorage.getItem('visibleNodeTypes'))
@@ -27,7 +26,7 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
 
   const { width = 200 } = position;
   const { headerStyle, bodyStyle, footerStyle } = usePanelLyaoutStyle(props as IPanelProps);
-
+  const { state, onFolderExpand, onKeywordChange } = useTreePanelData(props);
   return (
     <>
       {showHeader && (
