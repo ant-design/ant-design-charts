@@ -19,6 +19,7 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
   const handleModalOk = () => {
     setIsModalVisible(false);
     setVisibleNodeTypes([...checkedValue]);
+    window.sessionStorage.setItem('visibleNodeTypes', JSON.stringify([...checkedValue]));
   };
   return (
     <React.Fragment>

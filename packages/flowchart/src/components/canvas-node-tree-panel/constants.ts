@@ -22,3 +22,5 @@ export const CHECKBOX_OPTIONS: ICheckboxOption[] = [
     disabled: false,
   },
 ];
+
+export const VISIBLIE_NODE_TYPES = ['official', 'flowchart', 'custom'];

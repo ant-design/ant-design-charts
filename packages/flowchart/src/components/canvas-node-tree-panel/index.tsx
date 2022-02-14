@@ -7,10 +7,16 @@ import { NodePanelHeader } from './panel-header';
 import { NodePanelFooter } from './panel-footer';
 import { usePanelLyaoutStyle } from './utils';
 import { useTreePanelData } from './service';
-import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT } from './constants';
+import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT, VISIBLIE_NODE_TYPES } from './constants';
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
-  const [visibleNodeTypes, setVisibleNodeTypes] = useState<string[]>(['official', 'flowchart', 'custom']);
+  const { state, onFolderExpand, onKeywordChange } = useTreePanelData(props);
+  const [visibleNodeTypes, setVisibleNodeTypes] = useState<string[]>(() => {
+    const initialState = window.sessionStorage.getItem('visibleNodeTypes')
+      ? JSON.parse(window.sessionStorage.getItem('visibleNodeTypes'))
+      : VISIBLIE_NODE_TYPES;
+    return initialState;
+  });
   const {
     prefixClz,
     position = { width: 240, top: 0, bottom: 0, left: 0 },
@@ -21,7 +27,6 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
 
   const { width = 200 } = position;
   const { headerStyle, bodyStyle, footerStyle } = usePanelLyaoutStyle(props as IPanelProps);
-  const { state, onFolderExpand, onKeywordChange } = useTreePanelData(props);
 
   return (
     <>
