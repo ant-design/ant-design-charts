@@ -22,5 +22,13 @@ export const usePanelLyaoutStyle = (config: IPanelProps) => {
       bottom: footerHeight,
       ...config.bodyPosition,
     }),
+    footerStyle: usePositionStyle({
+      height: footerHeight,
+      lineHeight: footerHeight,
+      top: 0,
+      left: 0,
+      right: 0,
+      ...config.footerPosition,
+    }),
   };
 };

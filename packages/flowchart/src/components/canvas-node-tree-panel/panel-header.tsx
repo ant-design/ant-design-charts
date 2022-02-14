@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input } from 'antd';
-import { IProps, IOnKeywordChange } from './interface';
-import { NsTreePanelData } from './service';
+import { IProps, IOnKeywordChange, NsTreePanelData } from './interface';
 import { usePanelContext } from '@antv/xflow';
 
 export interface IHeaderProps extends IProps {
@@ -13,7 +12,6 @@ export const NodePanelHeader: React.FC<IHeaderProps> = (props) => {
   const { prefixClz, onKeywordChange } = props;
   const { propsProxy } = usePanelContext<IProps>();
   const panelProps = propsProxy.getValue();
-
   return (
     <React.Fragment>
       <div

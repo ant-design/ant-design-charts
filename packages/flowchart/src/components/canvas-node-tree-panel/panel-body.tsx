@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Empty, Popover, Collapse } from 'antd';
-import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs } from './interface';
+import { IProps, ITreeNode, IOnFolderExpand, INodeFactoryArgs, NsTreePanelData } from './interface';
 import { Addon, Graph } from '@antv/x6';
 import {
   IModelService,
@@ -12,8 +12,8 @@ import {
 } from '@antv/xflow';
 import { Log } from '../../util';
 import AppContext from '../../context';
-import { NsTreePanelData } from './service';
 import { XFlowNode } from './node';
+import './style/index.less';
 
 const { Panel } = Collapse;
 
@@ -165,6 +165,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
           flowchartId,
         };
         if (onNodeDrop) {
+          //拖拽结束后执行 executeCommand(XFlowNodeCommands.ADD_NODE.id, args) 向画布中添加节点
           await onNodeDrop(nodeConfig, commandService, modelService);
         } else {
           Log.error('onNodeDrop method is required in NodeTree Panel');
@@ -219,33 +220,44 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     },
     [commandService, graphConfig, modelService, onMouseDown, prefixClz],
   );
-  const customNode = state.treeData.filter((item) => item.isCustom);
-  const officialNode = state.treeData.filter((item) => !item.isCustom);
 
-  const searchCustomNode = state.searchList.filter((item) => item.isCustom);
-  const searchOfficialNode = state.searchList.filter((item) => !item.isCustom);
-  const hasCustomNode = customNode.length > 0;
+  const { treeData, searchNodes } = state;
+  const nodeTypes = Object.keys(treeData);
+  const hasCustomNode = treeData?.custom?.nodes.length > 0;
 
   return (
     <React.Fragment>
       <div className={`${prefixClz}-body`}>
         <Collapse defaultActiveKey={defaultActiveKey} style={{ border: 'none' }}>
-          <Panel header="通用节点" key="official" style={{ border: 'none' }}>
-            {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>}
-            {state.searchList.length > 0 && (
-              <div className={`${prefixClz}-official`}>{renderTree(searchOfficialNode)}</div>
-            )}
-          </Panel>
-          {hasCustomNode && (
-            <Panel header={title} key="custom" style={{ border: 'none' }}>
-              {!state.keyword && <div className={`${prefixClz}-custom`}>{renderTree(customNode)}</div>}
-              {state.searchList.length > 0 && (
-                <div className={`${prefixClz}-custom`}>{renderTree(searchCustomNode)}</div>
-              )}
-            </Panel>
-          )}
+          {nodeTypes.map((type) => {
+            if (type === 'custom') {
+              return (
+                hasCustomNode && (
+                  <Panel header={title} key="custom" style={{ border: 'none' }}>
+                    {!state.keyword && <div className={`${prefixClz}-custom`}>{renderTree(treeData[type].nodes)}</div>}
+                    {state.keyword && searchNodes[type] && searchNodes[type].length > 0 && (
+                      <div className={`${prefixClz}-custom`}>{renderTree(searchNodes[type])}</div>
+                    )}
+                    {state.keyword && searchNodes[type] && searchNodes[type].length === 0 && (
+                      <Empty style={{ marginTop: '24px' }} />
+                    )}
+                  </Panel>
+                )
+              );
+            }
+            return (
+              <Panel header={`${treeData[type].name}`} key={type} style={{ border: 'none' }}>
+                {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(treeData[type].nodes)}</div>}
+                {state.keyword && searchNodes[type] && searchNodes[type].length > 0 && (
+                  <div className={`${prefixClz}-official`}>{renderTree(searchNodes[type])}</div>
+                )}
+                {state.keyword && searchNodes[type] && searchNodes[type].length === 0 && (
+                  <Empty style={{ marginTop: '24px' }} />
+                )}
+              </Panel>
+            );
+          })}
         </Collapse>
-        {state.keyword && state.searchList.length === 0 && <Empty style={{ marginTop: '48px' }} />}
       </div>
     </React.Fragment>
   );
