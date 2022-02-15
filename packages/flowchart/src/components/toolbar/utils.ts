@@ -10,6 +10,7 @@ import {
   VerticalAlignBottomOutlined,
   CopyOutlined,
   SnippetsOutlined,
+  ClearOutlined,
 } from '@ant-design/icons';
 
 /** 注册icon 类型 */
@@ -24,4 +25,5 @@ export const registerIcon = () => {
   IconStore.set('UngroupOutlined', UngroupOutlined);
   IconStore.set('CopyOutlined', CopyOutlined);
   IconStore.set('SnippetsOutlined', SnippetsOutlined);
+  IconStore.set('ClearOutlined', ClearOutlined);
 };

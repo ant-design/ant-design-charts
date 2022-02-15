@@ -16,7 +16,7 @@ import { FormPanel } from '../components/editor-panel';
 import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import Theme from '../theme';
-import { setProps, setInstance } from '../util';
+import { setProps, setInstance, getGraphData, storage } from '../util';
 import { useCmdConfig } from './service/command';
 import { FlowchartProps, IFlowchartGraph as IGraph } from '../interface';
 import AppContext from '../context';
@@ -74,13 +74,26 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
           graphData,
         });
+      } else if (storage.hasItem('graphData')) {
+        const graphData = storage.getItem('graphData');
+        await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
+          graphData,
+        });
       }
     },
     [data],
   );
 
   useEffect(() => {
+    const saveGraphData = async () => {
+      const graphData = await getGraphData(uuidv4Ref.current);
+      storage.setItem('graphData', graphData);
+    };
+    window.addEventListener('beforeunload', saveGraphData);
+    window.addEventListener('beforeunload', storage.saveToLocal);
     return () => {
+      window.removeEventListener('beforeunload', saveGraphData);
+      window.removeEventListener('beforeunload', storage.saveToLocal);
       graphRef.current?.dispose();
     };
   }, []);
