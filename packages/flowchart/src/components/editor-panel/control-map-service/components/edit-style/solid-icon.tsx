@@ -9,7 +9,7 @@ const SolidIcon = (
         d="m209.8,105.6.5,-3,1.5l7.98,0l0,-1.5l5.5,3-5.5,3,-1.5l-7.98,0l0,1.5l-5.5,-3z"
         style={{ fill: editIconColor }}
       />
-      <rect style={{ width: 28, height: iconRectHeight, fill: editIconColor }} stroke="null" x="1.6" y="11" />
+      <rect style={{ width: 28, height: iconRectHeight, fill: editIconColor }} x={1.6} y={11} />
     </g>
   </svg>
 );

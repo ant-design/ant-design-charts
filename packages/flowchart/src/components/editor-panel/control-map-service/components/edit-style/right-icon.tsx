@@ -8,16 +8,10 @@ const RightIcon = (
       <path style={{ fill: editIconColor }} d="m209.86,105.67.5,-3,1.5,0l0,-1.5,3-5.5,3,-1.5-7.9,0l0,1.5l-5.5,-3z" />
       <path
         transform="rotate(90 21.3394 11.1035)"
-        stroke="null"
         d="m17.7,14.29191l3.62319,-6.37681l3.62,6.37-7.24,0z"
         style={{ fill: editIconColor }}
       />
-      <rect
-        style={{ width: iconRectWidth, height: iconRectHeight, fill: editIconColor }}
-        y="10"
-        x="1.6"
-        stroke="null"
-      />
+      <rect style={{ width: iconRectWidth, height: iconRectHeight, fill: editIconColor }} y={10} x={1.6} />
     </g>
   </svg>
 );
