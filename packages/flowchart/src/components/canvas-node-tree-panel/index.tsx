@@ -7,9 +7,16 @@ import { NodePanelHeader } from './panel-header';
 import { NodePanelFooter } from './panel-footer';
 import { usePanelLyaoutStyle } from './utils';
 import { useTreePanelData } from './service';
-import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT } from './constants';
+import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT, VISIBLIE_NODE_TYPES } from './constants';
+import storage from '../../util/stroage';
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
+  const [visibleNodeTypes, setVisibleNodeTypes] = useState<string[]>(() => {
+    const initialState = storage.hasItem('visibleNodeTypes')
+      ? storage.getItem('visibleNodeTypes')
+      : VISIBLIE_NODE_TYPES;
+    return initialState;
+  });
   const {
     prefixClz,
     position = { width: 240, top: 0, bottom: 0, left: 0 },
@@ -21,7 +28,6 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
   const { width = 200 } = position;
   const { headerStyle, bodyStyle, footerStyle } = usePanelLyaoutStyle(props as IPanelProps);
   const { state, onFolderExpand, onKeywordChange } = useTreePanelData(props);
-
   return (
     <>
       {showHeader && (
@@ -45,7 +51,13 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
           top: showHeader ? PANEL_HEADER_HEIGHT : 0,
         }}
       >
-        <NodePanelBody {...props} state={state} style={bodyStyle} onFolderExpand={onFolderExpand} />
+        <NodePanelBody
+          {...props}
+          visibleNodeTypes={visibleNodeTypes}
+          state={state}
+          style={bodyStyle}
+          onFolderExpand={onFolderExpand}
+        />
       </WorkspacePanel>
       {showFooter && (
         <WorkspacePanel
@@ -57,7 +69,12 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
             width,
           }}
         >
-          <NodePanelFooter {...props} style={footerStyle} />
+          <NodePanelFooter
+            visibleNodeTypes={visibleNodeTypes}
+            setVisibleNodeTypes={setVisibleNodeTypes}
+            {...props}
+            style={footerStyle}
+          />
         </WorkspacePanel>
       )}
     </>
