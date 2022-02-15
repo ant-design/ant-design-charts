@@ -41,6 +41,8 @@ export interface IConfig {
   gradientDirection: 'top-bottom' | 'bottom-top' | 'left-right' | 'right-left';
   endColor?: string;
   name: string;
+  isSelected?: boolean;
+  groundColor?: string;
   opacity: number;
 }
 
@@ -224,12 +226,6 @@ const NodeComponent = (props) => {
                   onNodeConfigChange('fontSize', value);
                 }}
               />
-              <ColorPicker
-                value={nodeConfig.fontFill}
-                onChange={(value: string) => {
-                  onNodeConfigChange('fontFill', value);
-                }}
-              />
             </div>
             <div className={`${prefix}-icon-container`}>
               <BoldOutlined
@@ -323,6 +319,44 @@ const NodeComponent = (props) => {
                 }}
               />
             </div>
+          </div>
+          <div className={`${prefix}-node-gradient-style`}>
+            <Checkbox
+              style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+              checked={nodeConfig.isSelected}
+              onChange={(values) => {
+                onNodeConfigChange('isSelected', values.target.checked);
+              }}
+            >
+              字体颜色
+            </Checkbox>
+            {nodeConfig.isSelected && (
+              <ColorPicker
+                value={nodeConfig.fontFill}
+                onChange={(value: string) => {
+                  onNodeConfigChange('fontFill', value);
+                }}
+              />
+            )}
+          </div>
+          <div className={`${prefix}-node-gradient-style`}>
+            <Checkbox
+              style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+              // checked={nodeConfig.groundColor}
+              onChange={(values) => {
+                onNodeConfigChange('groundColor', values.target.checked);
+              }}
+            >
+              背景颜色
+            </Checkbox>
+            {nodeConfig.groundColor && (
+              <ColorPicker
+                value={nodeConfig.groundColor}
+                onChange={(value: string) => {
+                  onNodeConfigChange('groundColor', value);
+                }}
+              />
+            )}
           </div>
         </TabPane>
         <TabPane tab="布局" key="node-arrange">

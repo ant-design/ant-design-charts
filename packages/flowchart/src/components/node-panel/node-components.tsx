@@ -43,7 +43,6 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
   let uuid = '';
   if (isGradient) uuid = uuidv4();
   const fill = isGradient ? `url(#${gradientDirection}-${uuid})` : startColor;
-
   const fontWeight = isBold ? 'bold' : 'normal';
   const fontStyle = isItalic ? 'italic' : 'normal';
   const textDecoration = isUnderline ? 'underline' : 'none';
@@ -80,18 +79,18 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
           ></path>
         );
       })}
-      <text
-        x={textX}
-        y={height / (scale * 2)}
-        fill={fontFill}
-        textAnchor={textAnchor}
-        alignmentBaseline={alignmentBaseline}
-        fontSize={fontSize}
-        fontWeight={fontWeight}
-        fontStyle={fontStyle}
-        textDecoration={textDecoration}
-        opacity={opacity / 100}
-      >
+      <text>
+        <tspan
+          x={textX}
+          y={height / (scale * 2)}
+          fill={fontFill}
+          textAnchor={textAnchor}
+          alignmentBaseline={alignmentBaseline}
+          fontSize={fontSize}
+          fontWeight={fontWeight}
+          fontStyle={fontStyle}
+          textDecoration={textDecoration}
+        ></tspan>
         {label}
       </text>
       Sorry, your browser does not support inline SVG.
