@@ -10,7 +10,7 @@ import {
   NsNodeCmd,
   MODELS,
 } from '@antv/xflow';
-import { message } from 'antd';
+import { message, Modal } from 'antd';
 import { getProps, getGraphHistory, getGraphInstance } from '../../util';
 import { GROUP_NODE_RENDER_ID } from '../group-panel';
 import { CommandPool } from './constants';
@@ -212,8 +212,15 @@ export namespace NSToolbarConfig {
       ...getIconConfig(CommandPool.CLEAR),
       id: TOOLBAR_ITEMS.CLEAR,
       onClick: async ({ commandService }) => {
-        commandService.executeCommand(TOOLBAR_ITEMS.CLEAR, {
-          graphData: { nodes: [], edges: [] },
+        Modal.confirm({
+          content: '是否确定清空画布?',
+          okText: '确定',
+          cancelText: '取消',
+          onOk: () => {
+            commandService.executeCommand<NsGraphCmd.GraphRender.IArgs>(TOOLBAR_ITEMS.CLEAR, {
+              graphData: { nodes: [], edges: [] },
+            });
+          },
         });
       },
     });

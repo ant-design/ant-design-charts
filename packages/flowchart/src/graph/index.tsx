@@ -63,12 +63,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const { show: showMenu = true } = contextMenuPanelProps;
   const loadData = useCallback(
     async (app) => {
-      if (storage.hasItem('graphData')) {
-        const graphData = storage.getItem('graphData');
-        await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
-          graphData,
-        });
-      } else if (data) {
+      if (data) {
         const res = await app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
           loadDataService: async () => {
             return data;
@@ -76,6 +71,11 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         } as NsGraphCmd.GraphLoadData.IArgs);
         const { graphData } = res?.contextProvider()?.getResult();
         /** 3. 画布内容渲染 */
+        await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
+          graphData,
+        });
+      } else if (storage.hasItem('graphData')) {
+        const graphData = storage.getItem('graphData');
         await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
           graphData,
         });
@@ -90,8 +90,10 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
       storage.setItem('graphData', graphData);
     };
     window.addEventListener('beforeunload', saveGraphData);
+    window.addEventListener('beforeunload', storage.saveToLocal);
     return () => {
       window.removeEventListener('beforeunload', saveGraphData);
+      window.removeEventListener('beforeunload', storage.saveToLocal);
       graphRef.current?.dispose();
     };
   }, []);
