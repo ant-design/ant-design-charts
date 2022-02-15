@@ -45,13 +45,13 @@ export interface ContainerConfig<O extends AllBaseConfig = Options, P extends Pl
    */
   style?: React.CSSProperties;
   /**
-   * @title 类名
+   * @title 容器class
    * @description 类名添加
    */
   className?: string;
   /**
-   * @title 加载模块
-   * @description 判断是否加载
+   * @title 加载状态
+   * @description 是否加载中
    * @default false
    */
   loading?: boolean;
