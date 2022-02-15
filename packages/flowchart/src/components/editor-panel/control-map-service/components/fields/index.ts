@@ -6,6 +6,7 @@ import Position from './position';
 import SelectField from './select';
 import Rotate from './rotate';
 import InputOpacity from './input-opacity';
+import InputFontSpacing from './font-spacing';
 export const EditorPanels: { [key: string]: React.FC } = {
   InputFiled,
   ColorPicker,
@@ -17,4 +18,14 @@ export const EditorPanels: { [key: string]: React.FC } = {
   InputOpacity,
 };
 
-export { InputFiled, ColorPicker, InputNumberFiled, Size, Position, SelectField, Rotate, InputOpacity };
+export {
+  InputFiled,
+  ColorPicker,
+  InputNumberFiled,
+  Size,
+  Position,
+  SelectField,
+  Rotate,
+  InputOpacity,
+  InputFontSpacing,
+};
