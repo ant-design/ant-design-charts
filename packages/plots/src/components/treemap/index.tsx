@@ -6,6 +6,10 @@ import { ChartRefConfig, ContainerConfig } from '../../interface';
 import ErrorBoundary from '../../errorBoundary';
 import ChartLoading from '../../util/createLoading';
 export interface TreemapConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
+  /**
+   * @title 绑定图表
+   * @description 获取或者绑定图表实例
+   */
   chartRef?: ChartRefConfig;
 }
 

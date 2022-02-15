@@ -2,7 +2,15 @@ import React from 'react';
 import ContentLoader from 'react-content-loader';
 
 interface Props {
+  /**
+   * @title 主题
+   * @description 配置主题颜色
+   */
   theme?: string | object;
+  /**
+   * @title 加载模块
+   * @description 图表加载
+   */
   loadingTemplate?: React.ReactElement;
 }
 

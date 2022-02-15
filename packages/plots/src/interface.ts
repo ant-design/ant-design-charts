@@ -12,7 +12,10 @@ import {
 interface TinyPlotOptions extends Omit<Options, 'data' | 'legend' | 'label'> {
   data: number[];
 }
-
+/**
+ * @title 基础配置
+ * @description 整合所有基础配置
+ */
 export type AllBaseConfig =
   | Options
   | DualAxesOptions
@@ -22,16 +25,38 @@ export type AllBaseConfig =
   | MixOptions
   | TreemapOptions;
 
+/**
+ * @title 图表配置
+ * @description 默认配置或自定义配置
+ */
 export type ChartRefConfig =
   | ((chart: Plot<AllBaseConfig>) => void)
   | React.MutableRefObject<Plot<AllBaseConfig> | undefined>;
 
+/**
+ * @title 事件
+ * @description 事件类型的浅拷贝
+ */
 export type PlotEvent = G2.Event;
 export interface ContainerConfig<O extends AllBaseConfig = Options, P extends Plot<O> = Plot<O>> {
+  /**
+   * @title 图表样式
+   * @description 配置图表样式
+   */
   style?: React.CSSProperties;
+  /**
+   * @title 类名
+   * @description 类名添加
+   */
   className?: string;
+  /**
+   * @title 加载模块
+   * @description 判断是否加载
+   * @default false
+   */
   loading?: boolean;
   loadingTemplate?: React.ReactElement;
+  /**模板错误回调*/
   errorTemplate?: (e: Error) => React.ReactNode;
   /** 图表渲染完成回调 */
   onReady?: (chart: P) => void;
