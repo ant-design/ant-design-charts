@@ -264,12 +264,10 @@ export interface CommonConfig extends GraphContainerConfig {
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
 }
-export type TreeGraphData = NodeData<
-  {
-    title?: string;
-    items?: CardItems[];
-  }[]
->;
+export type TreeGraphData = NodeData<{
+  title?: string;
+  items?: CardItems[];
+}>;
 // 流向图节点数据
 export type FlowGraphNodeData = NodeData<
   {
