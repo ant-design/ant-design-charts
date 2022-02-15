@@ -3,11 +3,11 @@ import { InputNumber } from 'antd';
 import { FormItemHeight } from '../constants';
 import { IProps } from './input-number';
 
-interface Mprops extends IProps {
+interface SpacingProps extends IProps {
   formatter: (value: number) => string;
 }
 
-const InputFontSpacing: React.FC<Mprops> = (props) => {
+const InputFontSpacing: React.FC<SpacingProps> = (props) => {
   const { label, value = 0, onChange, max, min, width, step = 1 } = props;
 
   return (
