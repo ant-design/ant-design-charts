@@ -3,6 +3,7 @@ import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields';
 import { prefix } from './constants';
+import { LeftIcon, SolidIcon, DottedLine, DoubleArrow, RightIcon } from './edit-style/index';
 
 export type MarkerCfg = {
   width?: number;
@@ -100,7 +101,7 @@ const EdgeComponent = (props) => {
   const getSrokeDashValue = () => {
     const { attrs = {} } = edgeConfig;
     const { line = {} } = attrs;
-    return line.strokeDasharray ? 'dash' : 'solid';
+    return line.strokeDasharray?.[0] ? 'dash' : 'solid';
   };
 
   const onEdgeConfigChange = (key: string, value: number | string | object, type: string = 'line') => {
@@ -159,19 +160,19 @@ const EdgeComponent = (props) => {
           value={getArrowValue()}
           options={[
             {
-              label: '正向',
+              label: RightIcon,
               value: 'target',
             },
             {
-              label: '逆向',
+              label: LeftIcon,
               value: 'source',
             },
             {
-              label: '双向',
+              label: DoubleArrow,
               value: 'all',
             },
             {
-              label: '无',
+              label: SolidIcon,
               value: 'none',
             },
           ]}
@@ -187,11 +188,11 @@ const EdgeComponent = (props) => {
             value={getSrokeDashValue()}
             options={[
               {
-                label: '实线',
+                label: SolidIcon,
                 value: 'solid',
               },
               {
-                label: '虚线',
+                label: DottedLine,
                 value: 'dash',
               },
             ]}

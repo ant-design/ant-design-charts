@@ -13,10 +13,20 @@ import {
 } from '@ant-design/icons';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
-import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate, InputOpacity } from './fields';
+import {
+  InputFiled,
+  ColorPicker,
+  Position,
+  InputNumberFiled,
+  Size,
+  SelectField,
+  Rotate,
+  InputOpacity,
+  InputFontSpacing,
+} from './fields';
 import { prefix, canEditorRounded } from './constants';
+import { SolidIcon, DottedLine } from './edit-style';
 import './style.less';
-
 export interface IConfig {
   x?: number;
   y?: number;
@@ -44,6 +54,7 @@ export interface IConfig {
   isSelected?: boolean;
   groundColor?: string;
   opacity: number;
+  letterSpacing: number;
 }
 
 const { TabPane } = Tabs;
@@ -117,11 +128,11 @@ const NodeComponent = (props) => {
                 value={getSrokeDashValue()}
                 options={[
                   {
-                    label: '实线',
+                    label: SolidIcon,
                     value: 'solid',
                   },
                   {
-                    label: '虚线',
+                    label: DottedLine,
                     value: 'dash',
                   },
                 ]}
@@ -305,58 +316,51 @@ const NodeComponent = (props) => {
                 }}
               />
             </div>
+            <div className={`${prefix}-node-gradient-style`}>
+              <Checkbox
+                style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+                checked={nodeConfig.isSelected}
+                onChange={(values) => {
+                  onNodeConfigChange('isSelected', values.target.checked);
+                }}
+              >
+                字体颜色
+              </Checkbox>
+              {nodeConfig.isSelected && (
+                <ColorPicker
+                  value={nodeConfig.fontFill}
+                  onChange={(value: string) => {
+                    onNodeConfigChange('fontFill', value);
+                  }}
+                />
+              )}
+            </div>
             <div className={`${prefix}-panel-group`}>
               <InputOpacity
                 label="透明度"
                 value={nodeConfig.opacity}
-                max={100}
+                max={1}
                 min={0}
-                step={10}
+                step={0.1}
                 width={70}
                 formatter={(value) => `${value}%`}
                 onChange={(value) => {
                   onNodeConfigChange('opacity', value);
                 }}
               />
+              <InputFontSpacing
+                label="字体间距"
+                value={nodeConfig.letterSpacing}
+                max={10}
+                min={0}
+                step={1}
+                width={70}
+                formatter={(value) => `${value}%`}
+                onChange={(value) => {
+                  onNodeConfigChange('letterSpacing', value);
+                }}
+              />
             </div>
-          </div>
-          <div className={`${prefix}-node-gradient-style`}>
-            <Checkbox
-              style={{ color: 'rgba(0, 0, 0, 0.45)' }}
-              checked={nodeConfig.isSelected}
-              onChange={(values) => {
-                onNodeConfigChange('isSelected', values.target.checked);
-              }}
-            >
-              字体颜色
-            </Checkbox>
-            {nodeConfig.isSelected && (
-              <ColorPicker
-                value={nodeConfig.fontFill}
-                onChange={(value: string) => {
-                  onNodeConfigChange('fontFill', value);
-                }}
-              />
-            )}
-          </div>
-          <div className={`${prefix}-node-gradient-style`}>
-            <Checkbox
-              style={{ color: 'rgba(0, 0, 0, 0.45)' }}
-              // checked={nodeConfig.groundColor}
-              onChange={(values) => {
-                onNodeConfigChange('groundColor', values.target.checked);
-              }}
-            >
-              背景颜色
-            </Checkbox>
-            {nodeConfig.groundColor && (
-              <ColorPicker
-                value={nodeConfig.groundColor}
-                onChange={(value: string) => {
-                  onNodeConfigChange('groundColor', value);
-                }}
-              />
-            )}
           </div>
         </TabPane>
         <TabPane tab="布局" key="node-arrange">

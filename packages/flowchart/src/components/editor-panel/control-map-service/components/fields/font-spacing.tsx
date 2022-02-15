@@ -2,11 +2,13 @@ import React from 'react';
 import { InputNumber } from 'antd';
 import { FormItemHeight } from '../constants';
 import { IProps } from './input-number';
-interface MProps extends IProps {
+
+interface SpacingProps extends IProps {
   formatter: (value: number) => string;
 }
-const InputOpacity: React.FC<MProps> = (props) => {
-  const { label, value = 1, onChange, max, min, width, step = 0.1 } = props;
+
+const InputFontSpacing: React.FC<SpacingProps> = (props) => {
+  const { label, value = 0, onChange, max, min, width, step = 1 } = props;
 
   return (
     <div className="group">
@@ -15,12 +17,11 @@ const InputOpacity: React.FC<MProps> = (props) => {
         value={value}
         max={max}
         min={min}
-        step={step}
         style={{
           width,
           height: FormItemHeight,
         }}
-        formatter={(value) => `${value * 100}%`}
+        formatter={(value) => `${value}pt`}
         onChange={(value: number) => {
           onChange?.(value);
         }}
@@ -28,4 +29,5 @@ const InputOpacity: React.FC<MProps> = (props) => {
     </div>
   );
 };
-export default InputOpacity;
+
+export default InputFontSpacing;

@@ -8,7 +8,7 @@ interface IProps {
   label?: string;
   value?: string;
   options?: Array<{
-    label: string | number;
+    label: string | number | JSX.Element;
     value: string | number;
   }>;
   width?: number;
@@ -26,6 +26,7 @@ const SelectField: React.FC<IProps> = (props) => {
         style={{
           width,
           height: FormItemHeight,
+          backgroundColor: 'red',
         }}
         getPopupContainer={(trigger) => trigger.parentNode}
         optionFilterProp="children"
@@ -35,7 +36,7 @@ const SelectField: React.FC<IProps> = (props) => {
         filterOption={(input, option: any) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       >
         {options.map((option) => (
-          <Option key={option.label} value={option.value}>
+          <Option index={option.label} key={option.value} value={option.value}>
             {option.label}
           </Option>
         ))}
