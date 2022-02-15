@@ -15,8 +15,8 @@ import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, Position, InputNumberFiled, Size, SelectField, Rotate, InputOpacity } from './fields';
 import { prefix, canEditorRounded } from './constants';
+import { SolidIcon, DottedLine } from './edit-style';
 import './style.less';
-
 export interface IConfig {
   x?: number;
   y?: number;
@@ -117,11 +117,11 @@ const NodeComponent = (props) => {
                 value={getSrokeDashValue()}
                 options={[
                   {
-                    label: '实线',
+                    label: SolidIcon,
                     value: 'solid',
                   },
                   {
-                    label: '虚线',
+                    label: DottedLine,
                     value: 'dash',
                   },
                 ]}
