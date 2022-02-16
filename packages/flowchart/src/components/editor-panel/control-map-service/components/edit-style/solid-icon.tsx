@@ -5,10 +5,7 @@ import { editIconWidth, editIconHeight, iconRectHeight, editIconColor } from './
 const SolidIcon = (
   <svg style={{ width: editIconWidth, height: editIconHeight }} xmlns="http://www.w3.org/2000/svg">
     <g>
-      <path
-        d="m209.8,105.6.5,-3,1.5l7.98,0l0,-1.5l5.5,3-5.5,3,-1.5l-7.98,0l0,1.5l-5.5,-3z"
-        style={{ fill: editIconColor }}
-      />
+      <path d="m1.53955,11.6586l28.60555,0l0,1.35458l-28.60555,0l0,-1.35458z" fill="#888" />
       <rect style={{ width: 28, height: iconRectHeight, fill: editIconColor }} x={1.6} y={11} />
     </g>
   </svg>
