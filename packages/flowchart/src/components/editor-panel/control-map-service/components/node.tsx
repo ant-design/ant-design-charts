@@ -124,7 +124,7 @@ const NodeComponent = (props) => {
             <div className={`${prefix}-edge-stroke-style`}>
               <SelectField
                 label="线形"
-                width={68}
+                width={69}
                 value={getSrokeDashValue()}
                 options={[
                   {
