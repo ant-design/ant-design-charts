@@ -28,16 +28,48 @@ export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = asy
   const nodeSchema: NsJsonSchemaForm.ISchema = {
     tabs: [
       {
-        name: '设置',
+        name: '样式',
         groups: [
           {
             name: 'groupName',
             controls: [
               {
-                label: '节点名',
-                name: 'node-service',
-                shape: 'node-service',
-                placeholder: '节点名称',
+                label: '节点样式',
+                name: 'node-style',
+                shape: 'node-style',
+                placeholder: '节点样式',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: '字体',
+        groups: [
+          {
+            name: 'groupName',
+            controls: [
+              {
+                label: '字体样式',
+                name: 'node-text',
+                shape: 'node-text',
+                placeholder: '字体样式',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: '布局',
+        groups: [
+          {
+            name: 'groupName',
+            controls: [
+              {
+                label: '节点布局',
+                name: 'node-arrange',
+                shape: 'node-arrange',
+                placeholder: '节点布局',
               },
             ],
           },

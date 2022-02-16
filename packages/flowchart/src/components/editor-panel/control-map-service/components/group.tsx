@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, Position, InputNumberFiled, Size } from './fields';
-import { IConfig } from './node';
+import { IConfig } from './node-arrange';
 
 import { prefix } from './constants';
 

@@ -58,14 +58,6 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
     await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
       nodeConfig,
     });
-    /* console.log(nodeConfig);
-    await commandService.executeCommand(XFlowNodeCommands.DEL_NODE.id, {
-      nodeConfig,
-    });
-    await commandService.executeCommand(XFlowNodeCommands.ADD_NODE.id, {
-      nodeConfig,
-    });
-    await commandService.executeCommand(XFlowNodeCommands.SELECT_NODE.id, { nodeIds: [nodeConfig.id] }); */
     onConfigChange({ type: 'update:node', config: nodeConfig }, flowchartId);
   };
 

@@ -31,7 +31,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     isUnderline = stateNodeConfig.isUnderline,
     alignmentBaseline = stateNodeConfig.alignmentBaseline,
     textAnchor = stateNodeConfig.textAnchor,
-    opacity = stateNodeConfig.opacity,
+    textOpacity = stateNodeConfig.textOpacity,
     letterSpacing = stateNodeConfig.letterSpacing,
   } = data;
 
@@ -90,7 +90,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
         fontWeight={fontWeight}
         fontStyle={fontStyle}
         textDecoration={textDecoration}
-        opacity={opacity}
+        opacity={textOpacity}
         letterSpacing={letterSpacing}
       >
         {label}
