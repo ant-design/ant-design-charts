@@ -55,12 +55,25 @@ export interface ContainerConfig<O extends AllBaseConfig = Options, P extends Pl
    * @default false
    */
   loading?: boolean;
+  /**
+   * @title 加载模板
+   * @description 是否加载模板
+   */
   loadingTemplate?: React.ReactElement;
-  /**模板错误回调*/
+  /**
+   * @title 模板错误
+   * @description 模板错误执行回调
+   */
   errorTemplate?: (e: Error) => React.ReactNode;
-  /** 图表渲染完成回调 */
+  /**
+   * @title 图表渲染
+   * @description 图表渲染完成执行回调
+   */
   onReady?: (chart: P) => void;
-  /** 任何其他的图形事件 */
+  /**
+   * @title 图形事件
+   * @description 任何图形事件触发回调
+   */
   onEvent?: (chart: P, event: PlotEvent) => void;
 }
 
