@@ -1,25 +1,15 @@
 import React from 'react';
-import { editIconWidth, editIconHeight, iconRectHeight, iconRectWidth, editIconColor } from './constants';
+import { editIconWidth, editIconHeight, editIconColor, rectHeight, rectWidth } from './constants';
 
 //双向箭头
 const DoubleArrow = (
   <svg style={{ width: editIconWidth, height: editIconHeight }} xmlns="http://www.w3.org/2000/svg">
     <g>
+      <rect style={{ width: rectWidth, height: rectHeight, fill: 'none' }} x={-1} y={-1} />
       <path
-        style={{ fill: editIconColor }}
-        d="m209.86,105.67.5,-3,1.5l8,0l0,-1.5l5.5,3-5.5,3,-1.5l-8,0l0,1.5l-5.5,-3z"
+        style={{ strokeWidth: 0, fill: editIconColor }}
+        d="m1.06204,11.58766l8.18428,-3.58766l0,2.61941l13.44529,0l0,-2.61941l8.30839,3.58766l-8.30839,3.41234l0,-2.44409l-13.44529,0l0,2.4-8.2,-3.4z"
       />
-      <path
-        style={{ fill: editIconColor }}
-        transform={'rotate(90 27 11)'}
-        d="m23.6,14.48515l3.62319,-6.37681l3.6,6.4-7,0z"
-      />
-      <path
-        style={{ fill: editIconColor }}
-        transform={'rotate(-90 4.5 11)'}
-        d="m0.9,14.29191l3.62319,-6.37681l3.6,6.4-7,0z"
-      />
-      <rect style={{ width: iconRectWidth, height: iconRectHeight, fill: editIconColor }} y={10} x={7.6} />
     </g>
   </svg>
 );
