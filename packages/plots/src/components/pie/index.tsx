@@ -8,8 +8,10 @@ import ChartLoading from '../../util/createLoading';
 
 export interface PieConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
   /**
-   * @title 绑定图表
-   * @description 获取或者绑定图表实例
+   * @title 图表实例
+   * @description 获取图表实例
+   * @title.en_US Chart instance
+   * @description.en_US Get chart instance
    */
   chartRef?: ChartRefConfig;
 }

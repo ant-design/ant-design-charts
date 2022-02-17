@@ -10,7 +10,7 @@ export interface AreaConfig extends G2plotConfig, ContainerConfig<G2plotConfig> 
   /**
    * @title 图表实例
    * @description 获取图表实例
-   * @title .en_US Chart instance
+   * @title.en_US Chart instance
    * @description.en_US Get chart instance
    */
   chartRef?: ChartRefConfig;
