@@ -16,11 +16,6 @@ export const CHECKBOX_OPTIONS: ICheckboxOption[] = [
     value: 'flowchart',
     disabled: false,
   },
-  {
-    label: '自定义节点',
-    value: 'custom',
-    disabled: false,
-  },
 ];
 
-export const VISIBLIE_NODE_TYPES = ['official', 'flowchart', 'custom'];
+export const VISIBLIE_NODE_TYPES = ['official', 'flowchart'];

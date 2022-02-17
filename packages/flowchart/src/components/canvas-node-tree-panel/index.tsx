@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useXflowPrefixCls, WorkspacePanel } from '@antv/xflow';
 import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons';
+import AppContext from '../../context';
+import { getProps } from '../../util';
+import { FlowchartProps } from '../../interface';
 import { IProps, IPanelProps } from './interface';
 import { NodePanelBody } from './panel-body';
 import { NodePanelHeader } from './panel-header';
@@ -11,10 +14,18 @@ import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT, VISIBLIE_NOD
 import { storage } from '../../util/stroage';
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
+  const { flowchartId } = useContext(AppContext);
+  const { registerNode = [] } = (getProps(flowchartId, 'nodePanelProps') as FlowchartProps['nodePanelProps']) ?? {};
   const [visibleNodeTypes, setVisibleNodeTypes] = useState<string[]>(() => {
-    const initialState = storage.hasItem('visibleNodeTypes')
-      ? storage.getItem('visibleNodeTypes')
-      : VISIBLIE_NODE_TYPES;
+    let initialState: string[];
+    if (storage.hasItem('vsibleNodeTypes')) {
+      initialState = storage.getItem('visibleNodeTypes');
+    } else {
+      initialState = VISIBLIE_NODE_TYPES;
+      registerNode.forEach((item) => {
+        initialState.push(item.type);
+      });
+    }
     return initialState;
   });
   const {

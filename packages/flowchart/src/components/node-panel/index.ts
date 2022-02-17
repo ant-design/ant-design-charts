@@ -20,13 +20,12 @@
 import { uuidv4, NsNodeTreePanel } from '@antv/xflow';
 import { getProps } from '../../util';
 import AppContext from '../../context';
+import { FlowchartProps } from '../../interface';
 import { withPopover } from './with-popover';
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL, ASPECTRATIONODE } from './constants';
 import * as NodeComponents from './nodes';
 import { NodeComponent } from './node-components';
 export { searchService, onNodeDrop } from './service';
-
-import { FlowchartProps } from '../../interface';
 
 export { NodeComponents, NODE_HEIGHT, NODE_WIDTH, AppContext, ASPECTRATIONODE };
 
@@ -65,8 +64,8 @@ const getPorts = (position = ['top', 'right', 'bottom', 'left']) => {
 };
 
 export const getRegisterNode = (flowchartId: string) => {
-  const { registerNode } = (getProps(flowchartId, 'nodePanelProps') as FlowchartProps['nodePanelProps']) ?? {};
-  return (registerNode?.nodes || []).map((item) => {
+  const { registerNode = [] } = (getProps(flowchartId, 'nodePanelProps') as FlowchartProps['nodePanelProps']) ?? {};
+  /* return (registerNode?.nodes || []).map((item) => {
     const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports } = item;
     const id = uuidv4(); // 暂不使用上层数据
     return {
@@ -82,16 +81,38 @@ export const getRegisterNode = (flowchartId: string) => {
       originData: { ...item },
       isCustom: true,
     };
+  }); */
+  const treeData = {};
+  registerNode.forEach((item) => {
+    const nodes = item.nodes.map((node) => {
+      const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports } = node;
+      const id = uuidv4(); // 暂不使用上层数据
+      return {
+        parentId: '',
+        id,
+        renderKey: name,
+        name,
+        label,
+        popoverContent: popover,
+        width,
+        height,
+        ports: ports || getPorts(),
+        originData: { ...item },
+        /* isCustom: true, */
+      };
+    });
+    treeData[item.type] = {
+      name: item.name,
+      nodes,
+    };
   });
+  return treeData;
 };
 
 export const treeDataService = async (meta, modelService, flowchartId) => {
-  const customNodes = getRegisterNode(flowchartId);
+  const registerNode = getRegisterNode(flowchartId);
   const treeData = {
-    custom: {
-      name: '自定义节点',
-      nodes: [...customNodes],
-    },
+    ...registerNode,
     official: {
       name: '通用节点',
       nodes: [],
@@ -120,8 +141,11 @@ export const treeDataService = async (meta, modelService, flowchartId) => {
 
 export const setNodeRender = (config, nodePanelProps: FlowchartProps['nodePanelProps']) => {
   // 自定义节点
-  const { registerNode } = nodePanelProps ?? {};
-  const nodes = registerNode?.nodes || [];
+  const { registerNode = [] } = nodePanelProps ?? {};
+  let nodes = [];
+  registerNode.forEach((item) => {
+    nodes = [...nodes, ...item.nodes];
+  });
   if (nodes.length) {
     nodes.forEach((item) => {
       const { name, component } = item;

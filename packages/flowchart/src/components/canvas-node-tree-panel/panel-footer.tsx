@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, Checkbox, Button } from 'antd';
 import { usePanelContext } from '@antv/xflow';
-import { IProps } from './interface';
+import AppContext from '../../context';
+import { getProps } from '../../util';
+import { FlowchartProps } from '../../interface';
+import { IProps, ICheckboxOption } from './interface';
 import { CHECKBOX_OPTIONS } from './constants';
 import { storage } from '../../util/stroage';
 
@@ -16,6 +19,18 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
   const [checkedValue, setCheckedValue] = useState<string[]>([...visibleNodeTypes]);
   const { propsProxy } = usePanelContext<IProps>();
   const panelProps = propsProxy.getValue();
+
+  const { flowchartId } = useContext(AppContext);
+  const { registerNode = [] } = (getProps(flowchartId, 'nodePanelProps') as FlowchartProps['nodePanelProps']) ?? {};
+  const extraCheckBoxOptions: ICheckboxOption[] = registerNode.map((item) => {
+    return {
+      value: item.type,
+      label: item.name,
+      disabled: false,
+    };
+  });
+
+  const checkBoxOptions: ICheckboxOption[] = [...CHECKBOX_OPTIONS, ...extraCheckBoxOptions];
 
   const handleModalOk = () => {
     setIsModalVisible(false);
@@ -43,7 +58,7 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
         cancelText="取消"
       >
         <Checkbox.Group
-          options={CHECKBOX_OPTIONS}
+          options={checkBoxOptions}
           value={checkedValue}
           onChange={(values) => setCheckedValue(values as string[])}
         ></Checkbox.Group>
