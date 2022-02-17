@@ -128,12 +128,10 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     onNodeDrop,
     state,
     prefixClz,
-    registerNode,
     defaultActiveKey = ['official', 'custom'],
     visibleNodeTypes,
   } = props;
   const { flowchartId } = useContext(AppContext);
-  const { title = '混合节点' } = registerNode ?? {};
   const { graphProvider, modelService, commandService } = useXFlowApp();
 
   const [dnd, setDnd] = React.useState<Addon.Dnd>();
@@ -233,7 +231,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
         <Collapse defaultActiveKey={defaultActiveKey} style={{ border: 'none' }}>
           {visibleNodeTypes.map((type) => {
             return (
-              <Panel header={`${treeData[type]?.name}`} key={type} style={{ border: 'none' }}>
+              <Panel header={`${treeData[type]?.title}`} key={type} style={{ border: 'none' }}>
                 {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(treeData[type]?.nodes)}</div>}
 
                 {state.keyword && searchNodes[type] && searchNodes[type].length > 0 && (

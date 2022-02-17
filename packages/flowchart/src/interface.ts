@@ -43,7 +43,7 @@ export interface CustomNode {
 
 export interface RegisterNodeItem {
   type: string;
-  name: string;
+  title: string;
   nodes: CustomNode[];
 }
 export type RegisterNode = RegisterNodeItem[];

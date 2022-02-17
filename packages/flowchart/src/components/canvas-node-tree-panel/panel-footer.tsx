@@ -25,7 +25,7 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
   const extraCheckBoxOptions: ICheckboxOption[] = registerNode.map((item) => {
     return {
       value: item.type,
-      label: item.name,
+      label: item.title,
       disabled: false,
     };
   });

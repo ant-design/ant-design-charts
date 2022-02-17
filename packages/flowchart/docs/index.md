@@ -42,12 +42,12 @@ const DemoFlowchart = () => {
           position: { width: 160, top: 40, bottom: 0, left: 0 },
           registerNode: [
             {
-            name: "测试1",
+            title: "测试1",
             type: 'test1',
             nodes: [{name: "test1", component: "div"}], 
             },
             {
-            name: "测试2",
+            title: "测试2",
             type: 'test2',
             nodes: [{name: "test1", component: "div"}],
             }

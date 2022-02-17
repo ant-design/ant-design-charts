@@ -75,7 +75,7 @@ export interface ITreeNode {
 }
 
 type ITreeItem = {
-  name?: string;
+  title?: string;
   nodes?: ITreeNode[];
 };
 /* export interface ITreeData {

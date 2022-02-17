@@ -102,7 +102,7 @@ export const getRegisterNode = (flowchartId: string) => {
       };
     });
     treeData[item.type] = {
-      name: item.name,
+      title: item.title,
       nodes,
     };
   });
@@ -114,11 +114,11 @@ export const treeDataService = async (meta, modelService, flowchartId) => {
   const treeData = {
     ...registerNode,
     official: {
-      name: '通用节点',
+      title: '通用节点',
       nodes: [],
     },
     flowchart: {
-      name: '流程图节点',
+      title: '流程图节点',
       nodes: [],
     },
   };
