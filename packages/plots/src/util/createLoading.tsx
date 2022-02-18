@@ -10,9 +10,9 @@ interface Props {
    */
   theme?: string | object;
   /**
-   * @title 加载模块
+   * @title 加载模板
    * @description 图表加载
-   * @title.en_US Load module
+   * @title.en_US Load template
    * @description.en_US Chart loading
    */
   loadingTemplate?: React.ReactElement;
