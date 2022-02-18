@@ -7,6 +7,7 @@ import SelectField from './select';
 import Rotate from './rotate';
 import InputOpacity from './input-opacity';
 import InputFontSpacing from './font-spacing';
+import InputFontPosition from './font-position';
 export const EditorPanels: { [key: string]: React.FC } = {
   InputFiled,
   ColorPicker,
@@ -16,6 +17,7 @@ export const EditorPanels: { [key: string]: React.FC } = {
   SelectField,
   Rotate,
   InputOpacity,
+  InputFontPosition,
 };
 
 export {
@@ -28,4 +30,5 @@ export {
   Rotate,
   InputOpacity,
   InputFontSpacing,
+  InputFontPosition,
 };
