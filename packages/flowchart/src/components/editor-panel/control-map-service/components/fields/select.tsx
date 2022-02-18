@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select } from 'antd';
-import { FormItemHeight } from '../constants';
+import { FormItemHeight } from '../../constants';
 
 const { Option } = Select;
 

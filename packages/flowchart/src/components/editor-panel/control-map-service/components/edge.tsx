@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields';
-import { prefix } from './constants';
+import { PREFIX } from '../constants';
+import { IControlProps } from '../interface';
 import { LeftIcon, SolidIcon, DottedLine, DoubleArrow, RightIcon } from './edit-style/index';
 
 export type MarkerCfg = {
@@ -10,7 +11,7 @@ export type MarkerCfg = {
   height?: number;
   name?: string;
 };
-export interface IConfig {
+export interface IEdgeConfig {
   label?: string;
   attrs?: {
     line?: {
@@ -59,14 +60,14 @@ export const ArrowStrokeMaps = {
   dash: [5, 5],
 };
 
-const EdgeComponent = (props) => {
-  const { config, plugin = {} } = props;
+const EdgeComponent: React.FC<IControlProps> = (props) => {
+  const { config, plugin } = props;
   const { updateEdge } = plugin;
   const {
     theme: { EdgeConfig },
   } = useContext(AppContext) as any;
 
-  const [edgeConfig, setEdgeConfig] = useState<IConfig>({
+  const [edgeConfig, setEdgeConfig] = useState<IEdgeConfig>({
     ...EdgeConfig.normal,
     ...config,
   });
@@ -141,8 +142,8 @@ const EdgeComponent = (props) => {
   };
 
   return (
-    <div className={`${prefix}-panel-body`}>
-      <div className={`${prefix}-panel-group`}>
+    <div className={`${PREFIX}-panel-body`}>
+      <div className={`${PREFIX}-panel-group`}>
         <h5>内容</h5>
         <InputFiled
           label="标签"
@@ -153,7 +154,7 @@ const EdgeComponent = (props) => {
         />
       </div>
       <h5 style={{ marginBottom: 12 }}>样式</h5>
-      <div className={`${prefix}-panel-group`} style={{ marginBottom: 0 }}>
+      <div className={`${PREFIX}-panel-group`} style={{ marginBottom: 0 }}>
         <h5>线</h5>
         <SelectField
           label="箭头"
@@ -181,7 +182,7 @@ const EdgeComponent = (props) => {
           }}
         />
 
-        <div className={`${prefix}-edge-stroke-style`}>
+        <div className={`${PREFIX}-edge-stroke-style`}>
           <SelectField
             label="线形"
             width={69}
@@ -216,9 +217,9 @@ const EdgeComponent = (props) => {
           }}
         />
       </div>
-      <div className={`${prefix}-panel-group`}>
+      <div className={`${PREFIX}-panel-group`}>
         <h5>标签</h5>
-        <div className={`${prefix}-edge-text-style`}>
+        <div className={`${PREFIX}-edge-text-style`}>
           <InputNumberFiled
             label="字号"
             min={10}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Checkbox, Tabs } from 'antd';
+import { Checkbox } from 'antd';
 import {
   VerticalAlignTopOutlined,
   VerticalAlignMiddleOutlined,
@@ -14,9 +14,11 @@ import {
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, InputNumberFiled, InputOpacity, InputFontSpacing } from './fields';
-import { prefix } from './constants';
+import { PREFIX } from '../constants';
+import { IControlProps } from '../interface';
 import './style.less';
-export interface IConfig {
+
+export interface INodeTextConfig {
   label?: string;
   fontSize?: number;
   fontFill?: string;
@@ -31,14 +33,14 @@ export interface IConfig {
   letterSpacing: number;
 }
 
-const NodeComponent = (props) => {
-  const { config, plugin = {} } = props;
+const NodeComponent: React.FC<IControlProps> = (props) => {
+  const { config, plugin } = props;
   const { updateNode } = plugin;
   const {
     theme: { NodeConfig },
   } = useContext(AppContext) as any;
 
-  const [nodeConfig, setNodeConfig] = useState<IConfig>({
+  const [nodeConfig, setNodeConfig] = useState<INodeTextConfig>({
     ...NodeConfig.normal,
     ...config,
   });
@@ -61,8 +63,8 @@ const NodeComponent = (props) => {
   }, [config]);
 
   return (
-    <div className={`${prefix}-panel-body`}>
-      <div className={`${prefix}-panel-group`}>
+    <div className={`${PREFIX}-panel-body`}>
+      <div className={`${PREFIX}-panel-group`}>
         <InputFiled
           label="标题"
           value={nodeConfig.label}
@@ -71,8 +73,8 @@ const NodeComponent = (props) => {
           }}
         />
       </div>
-      <div className={`${prefix}-panel-group`}>
-        <div className={`${prefix}-node-text-style`}>
+      <div className={`${PREFIX}-panel-group`}>
+        <div className={`${PREFIX}-node-text-style`}>
           <InputNumberFiled
             label="字号"
             value={nodeConfig.fontSize}
@@ -82,32 +84,32 @@ const NodeComponent = (props) => {
             }}
           />
         </div>
-        <div className={`${prefix}-icon-container`}>
+        <div className={`${PREFIX}-icon-container`}>
           <BoldOutlined
-            className={nodeConfig.isBold ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
+            className={nodeConfig.isBold ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`}
             onClick={() => {
               onNodeConfigChange('isBold', !nodeConfig.isBold);
             }}
           />
           <ItalicOutlined
-            className={nodeConfig.isItalic ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
+            className={nodeConfig.isItalic ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`}
             onClick={() => {
               onNodeConfigChange('isItalic', !nodeConfig.isItalic);
             }}
           />
           <UnderlineOutlined
-            className={nodeConfig.isUnderline ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`}
+            className={nodeConfig.isUnderline ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`}
             onClick={() => {
               onNodeConfigChange('isUnderline', !nodeConfig.isUnderline);
             }}
           />
         </div>
-        <div className={`${prefix}-icon-container`}>
+        <div className={`${PREFIX}-icon-container`}>
           <VerticalAlignTopOutlined
             className={
               nodeConfig.alignmentBaseline === 'after-edge'
-                ? `${prefix}-icon-select-style`
-                : `${prefix}-icon-noselect-style`
+                ? `${PREFIX}-icon-select-style`
+                : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
               onNodeConfigChange('alignmentBaseline', 'after-edge');
@@ -116,8 +118,8 @@ const NodeComponent = (props) => {
           <VerticalAlignMiddleOutlined
             className={
               nodeConfig.alignmentBaseline === 'middle'
-                ? `${prefix}-icon-select-style`
-                : `${prefix}-icon-noselect-style`
+                ? `${PREFIX}-icon-select-style`
+                : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
               onNodeConfigChange('alignmentBaseline', 'middle');
@@ -126,18 +128,18 @@ const NodeComponent = (props) => {
           <VerticalAlignBottomOutlined
             className={
               nodeConfig.alignmentBaseline === 'before-edge'
-                ? `${prefix}-icon-select-style`
-                : `${prefix}-icon-noselect-style`
+                ? `${PREFIX}-icon-select-style`
+                : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
               onNodeConfigChange('alignmentBaseline', 'before-edge');
             }}
           />
         </div>
-        <div className={`${prefix}-icon-container`}>
+        <div className={`${PREFIX}-icon-container`}>
           <AlignLeftOutlined
             className={
-              nodeConfig.textAnchor === 'start' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
+              nodeConfig.textAnchor === 'start' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
               onNodeConfigChange('textAnchor', 'start');
@@ -145,7 +147,7 @@ const NodeComponent = (props) => {
           />
           <AlignCenterOutlined
             className={
-              nodeConfig.textAnchor === 'middle' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
+              nodeConfig.textAnchor === 'middle' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
               onNodeConfigChange('textAnchor', 'middle');
@@ -153,14 +155,14 @@ const NodeComponent = (props) => {
           />
           <AlignRightOutlined
             className={
-              nodeConfig.textAnchor === 'end' ? `${prefix}-icon-select-style` : `${prefix}-icon-noselect-style`
+              nodeConfig.textAnchor === 'end' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
               onNodeConfigChange('textAnchor', 'end');
             }}
           />
         </div>
-        <div className={`${prefix}-node-gradient-style`}>
+        <div className={`${PREFIX}-node-gradient-style`}>
           <Checkbox
             style={{ color: 'rgba(0, 0, 0, 0.45)' }}
             checked={nodeConfig.isSelected}
@@ -179,7 +181,7 @@ const NodeComponent = (props) => {
             />
           )}
         </div>
-        <div className={`${prefix}-panel-group`}>
+        <div className={`${PREFIX}-panel-group`}>
           <InputOpacity
             label="透明度"
             value={nodeConfig.textOpacity}

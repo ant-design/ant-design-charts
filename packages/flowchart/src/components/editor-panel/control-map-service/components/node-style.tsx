@@ -3,10 +3,11 @@ import { Checkbox } from 'antd';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { ColorPicker, InputNumberFiled, SelectField } from './fields';
-import { prefix, canEditorRounded } from './constants';
+import { PREFIX, canEditorRounded } from '../constants';
 import { SolidIcon, DottedLine } from './edit-style';
+import { IControlProps } from '../interface';
 import './style.less';
-export interface IConfig {
+export interface INodeStyleConfig {
   width?: number;
   height?: number;
   label?: string;
@@ -23,14 +24,14 @@ export interface IConfig {
   isSelected?: boolean;
 }
 
-const NodeComponent = (props) => {
-  const { config, plugin = {} } = props;
+const NodeComponent: React.FC<IControlProps> = (props) => {
+  const { config, plugin } = props;
   const { updateNode } = plugin;
   const {
     theme: { NodeConfig },
   } = useContext(AppContext) as any;
 
-  const [nodeConfig, setNodeConfig] = useState<IConfig>({
+  const [nodeConfig, setNodeConfig] = useState<INodeStyleConfig>({
     ...NodeConfig.normal,
     ...config,
   });
@@ -57,8 +58,8 @@ const NodeComponent = (props) => {
   }, [config]);
 
   return (
-    <div className={`${prefix}-panel-body`}>
-      <div className={`${prefix}-panel-group`}>
+    <div className={`${PREFIX}-panel-body`}>
+      <div className={`${PREFIX}-panel-group`}>
         <ColorPicker
           label="填充"
           value={nodeConfig.fill}
@@ -84,7 +85,7 @@ const NodeComponent = (props) => {
             onNodeConfigChange('stroke', value);
           }}
         />
-        <div className={`${prefix}-edge-stroke-style`}>
+        <div className={`${PREFIX}-edge-stroke-style`}>
           <SelectField
             label="线形"
             width={68}
@@ -116,7 +117,7 @@ const NodeComponent = (props) => {
             }}
           />
         </div>
-        <div className={`${prefix}-node-gradient-style`}>
+        <div className={`${PREFIX}-node-gradient-style`}>
           <Checkbox
             style={{ color: 'rgba(0, 0, 0, 0.45)' }}
             checked={nodeConfig.isGradient}

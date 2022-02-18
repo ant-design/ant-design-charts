@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { Position, Size, Rotate } from './fields';
-import { prefix } from './constants';
+import { PREFIX } from '../constants';
+import { IControlProps } from '../interface';
 import './style.less';
-export interface IConfig {
+export interface INodeArrangeConfig {
   x?: number;
   y?: number;
   width?: number;
@@ -12,14 +13,14 @@ export interface IConfig {
   angel?: number;
 }
 
-const NodeComponent = (props) => {
-  const { config, plugin = {} } = props;
+const NodeComponent: React.FC<IControlProps> = (props) => {
+  const { config, plugin } = props;
   const { updateNode } = plugin;
   const {
     theme: { NodeConfig },
   } = useContext(AppContext) as any;
 
-  const [nodeConfig, setNodeConfig] = useState<IConfig>({
+  const [nodeConfig, setNodeConfig] = useState<INodeArrangeConfig>({
     ...NodeConfig.normal,
     ...config,
   });
@@ -42,8 +43,8 @@ const NodeComponent = (props) => {
   }, [config]);
 
   return (
-    <div className={`${prefix}-panel-body`}>
-      <div className={`${prefix}-panel-group`}>
+    <div className={`${PREFIX}-panel-body`}>
+      <div className={`${PREFIX}-panel-group`}>
         <Position
           x={nodeConfig.x}
           y={nodeConfig.y}
