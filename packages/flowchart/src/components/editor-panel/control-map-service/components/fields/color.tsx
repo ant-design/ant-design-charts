@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext } from 'react';
 import { render, createPortal } from 'react-dom';
 import { Button } from 'antd';
 import { SketchPicker } from 'react-color';
-import { prefix } from '../constants';
+import { prefix } from '../../constants';
 
 interface IProps {
   label?: string;

@@ -1,3 +1,6 @@
+/*  
+  此组件已废弃
+ */
 import React, { useState, useEffect, useContext } from 'react';
 import { Checkbox, Tabs } from 'antd';
 import {
@@ -25,7 +28,7 @@ import {
   InputFontSpacing,
   InputFontPosition,
 } from './fields';
-import { prefix, canEditorRounded } from './constants';
+import { prefix, canEditorRounded } from '../constants';
 import { SolidIcon, DottedLine } from './edit-style';
 import './style.less';
 export interface IConfig {

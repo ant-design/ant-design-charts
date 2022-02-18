@@ -249,8 +249,8 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
               );
             } else {
               return (
-                <Panel header={`${treeData[type].name}`} key={type} style={{ border: 'none' }}>
-                  {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(treeData[type].nodes)}</div>}
+                <Panel header={`${treeData[type]?.name}`} key={type} style={{ border: 'none' }}>
+                  {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(treeData[type]?.nodes)}</div>}
                   {state.keyword && searchNodes[type] && searchNodes[type].length > 0 && (
                     <div className={`${prefixClz}-official`}>{renderTree(searchNodes[type])}</div>
                   )}

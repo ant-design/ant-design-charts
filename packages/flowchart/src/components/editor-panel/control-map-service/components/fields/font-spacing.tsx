@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputNumber } from 'antd';
-import { FormItemHeight } from '../constants';
+import { FormItemHeight } from '../../constants';
 import { IProps } from './input-number';
 
 const InputFontSpacing: React.FC<IProps> = (props) => {

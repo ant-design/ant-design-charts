@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputNumber } from 'antd';
-import { FormItemHeight } from '../constants';
+import { FormItemHeight } from '../../constants';
 
 interface IProps {
   x?: number;

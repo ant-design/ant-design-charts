@@ -2,19 +2,20 @@ import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, Position, InputNumberFiled, Size } from './fields';
-import { IConfig } from './node';
+import { IControlProps } from '../interface';
+// 对于 group 配置项还未明确，暂时去掉 IConfig 接口
+//import { IConfig } from './node-arrange';
 
-import { prefix } from './constants';
+import { PREFIX } from '../constants';
 
-const GroupComponent = (props) => {
-  const { config, plugin = {} } = props;
-
+const GroupComponent: React.FC<IControlProps> = (props) => {
+  const { config, plugin } = props;
   const { updateGroup } = plugin;
   const {
     theme: { NodeConfig },
   } = useContext(AppContext) as any;
 
-  const [groupConfig, setGroupConfig] = useState<IConfig>({
+  const [groupConfig, setGroupConfig] = useState({
     ...NodeConfig.normal,
     ...config,
   });
@@ -37,8 +38,8 @@ const GroupComponent = (props) => {
   }, [config]);
 
   return (
-    <div className={`${prefix}-panel-body`}>
-      <div className={`${prefix}-panel-group`}>
+    <div className={`${PREFIX}-panel-body`}>
+      <div className={`${PREFIX}-panel-group`}>
         <h5>内容</h5>
         <InputFiled
           label="标题"
@@ -48,7 +49,7 @@ const GroupComponent = (props) => {
           }}
         />
       </div>
-      <div className={`${prefix}-panel-group`}>
+      <div className={`${PREFIX}-panel-group`}>
         <h5>样式</h5>
         <Position
           x={groupConfig.x}
@@ -78,7 +79,7 @@ const GroupComponent = (props) => {
             onGroupConfigChange('stroke', value);
           }}
         />
-        <div className={`${prefix}-node-text-style`}>
+        <div className={`${PREFIX}-node-text-style`}>
           <InputNumberFiled
             label="字号"
             value={groupConfig.fontSize}
