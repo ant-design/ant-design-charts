@@ -3,7 +3,7 @@ import { InputNumber } from 'antd';
 import { FormItemHeight } from '../../constants';
 import { IProps } from './input-number';
 
-const InputFontSpacing: React.FC<IProps> = (props) => {
+const InputFontPosition: React.FC<IProps> = (props) => {
   const { label, value = 0, onChange, max, min, width, step = 1 } = props;
 
   return (
@@ -26,4 +26,4 @@ const InputFontSpacing: React.FC<IProps> = (props) => {
   );
 };
 
-export default InputFontSpacing;
+export default InputFontPosition;
