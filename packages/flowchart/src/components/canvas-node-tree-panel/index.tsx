@@ -22,9 +22,8 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
       initialState = storage.getItem('visibleNodeTypes');
     } else {
       initialState = VISIBLIE_NODE_TYPES;
-      registerNode.forEach((item) => {
-        initialState.push(item.type);
-      });
+      //加入自定义节点的类型
+      initialState = initialState.concat(registerNode.map((item) => item.type));
     }
     return initialState;
   });
