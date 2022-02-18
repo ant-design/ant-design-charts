@@ -7,6 +7,12 @@ import ErrorBoundary from '../../errorBoundary';
 import ChartLoading from '../../util/createLoading';
 
 export interface BidirectionalBarConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
+  /**
+   * @title 图表实例
+   * @description 获取图表实例
+   * @title.en_US Chart instance
+   * @description.en_US Get chart instance
+   */
   chartRef?: ChartRefConfig;
 }
 
