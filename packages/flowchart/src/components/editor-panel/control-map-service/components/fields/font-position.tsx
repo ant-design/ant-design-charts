@@ -1,19 +1,10 @@
 import React from 'react';
 import { InputNumber } from 'antd';
 import { FormItemHeight } from '../../constants';
+import { IProps } from './input-number';
 
-export interface IProps {
-  label?: string;
-  value?: number;
-  max?: number;
-  min?: number;
-  width?: number;
-  step?: number;
-  onChange?: (value: number) => void;
-}
-
-const InputNumberFiled: React.FC<IProps> = (props) => {
-  const { label, value, onChange, max, min, width, step = 1 } = props;
+const InputFontPosition: React.FC<IProps> = (props) => {
+  const { label, value = 0, onChange, max, min, width, step = 1 } = props;
 
   return (
     <div className="group">
@@ -35,4 +26,4 @@ const InputNumberFiled: React.FC<IProps> = (props) => {
   );
 };
 
-export default InputNumberFiled;
+export default InputFontPosition;

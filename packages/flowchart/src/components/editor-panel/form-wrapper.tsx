@@ -11,17 +11,11 @@ import {
 } from '@antv/xflow';
 import AppContext from '../../context';
 import { onConfigChange } from '../../util';
+import { IPlugn } from './control-map-service/interface';
 import useAsync from './useAsync';
 
 export interface IFormWrapper {
-  children: (
-    config: Object,
-    plugin: {
-      updateNode: (params: Object) => void;
-      updateEdge: (params: Object) => void;
-      updateGroup: (params: Object) => void;
-    },
-  ) => React.ReactElement;
+  children: (config: object, plugin: IPlugn) => React.ReactElement;
 }
 
 export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper & { type: string }> = (props) => {
@@ -43,7 +37,6 @@ export const FormWrapper: React.FC<NsJsonSchemaForm.IControlProps & IFormWrapper
   }, [props]);
 
   const { data, loading } = useAsync(type === 'edge' ? getSelectEdge : getSelectNode);
-
   React.useEffect(() => {
     commandService.executeCommand(XFlowGraphCommands.SAVE_GRAPH_DATA.id, {
       saveGraphDataService: async (meta, graph) => {

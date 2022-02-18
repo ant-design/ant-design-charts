@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext } from 'react';
 import { render, createPortal } from 'react-dom';
 import { Button } from 'antd';
 import { SketchPicker } from 'react-color';
-import { prefix } from '../constants';
+import { PREFIX } from '../../constants';
 
 interface IProps {
   label?: string;
@@ -17,8 +17,8 @@ const ColorPicker: React.FC<IProps> = (props) => {
 
   const PickContainer = () => {
     return (
-      <div className={`${prefix}-pick-color-container`}>
-        <div className={`${prefix}-popover`}>
+      <div className={`${PREFIX}-pick-color-container`}>
+        <div className={`${PREFIX}-popover`}>
           <SketchPicker
             style={{
               width: '100%',
@@ -51,7 +51,7 @@ const ColorPicker: React.FC<IProps> = (props) => {
   };
 
   const CreatePickColorContainer = (visible: boolean) => {
-    const existElements = document.getElementsByClassName(`${prefix}-pick-color-container`);
+    const existElements = document.getElementsByClassName(`${PREFIX}-pick-color-container`);
     if (existElements.length) {
       Array.from(existElements).forEach((ele) => {
         ele.parentNode?.removeChild(ele);
@@ -68,14 +68,14 @@ const ColorPicker: React.FC<IProps> = (props) => {
     <div className="group">
       {label && <label>{label}</label>}
       <div
-        className={`${prefix}-color-container`}
+        className={`${PREFIX}-color-container`}
         onClick={() => {
           setShow(true);
         }}
       >
         {
           <div
-            className={`${prefix}-color`}
+            className={`${PREFIX}-color`}
             style={{
               backgroundColor: value,
               height: '100%',
