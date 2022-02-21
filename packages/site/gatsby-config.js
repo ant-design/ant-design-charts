@@ -22,6 +22,10 @@ module.exports = {
       [version]: 'https://charts.ant.design',
       '0.x': 'https://v0-charts.ant.design/',
     },
+    docsearchOptions: {
+      apiKey: 'cd83d8f913aeb993cd93f45fdbe9b5ac',
+      indexName: 'charts-ant-design',
+    },
     navs: [
       {
         slug: 'docs/manual',
