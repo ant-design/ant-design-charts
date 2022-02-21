@@ -83,7 +83,7 @@ type ITreeItem = {
     name?: string;
     nodes?: ITreeNode[];
   };
-  official?: {
+  common?: {
     name?: string;
     nodes?: ITreeNode[];
   };

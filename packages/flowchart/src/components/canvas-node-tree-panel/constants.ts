@@ -8,7 +8,7 @@ export const CONTAINER_CLASS = 'flowchart-node-panel-collpase';
 export const CHECKBOX_OPTIONS: ICheckboxOption[] = [
   {
     label: '通用节点',
-    value: 'official',
+    value: 'common',
     disabled: false,
   },
   {
@@ -18,8 +18,8 @@ export const CHECKBOX_OPTIONS: ICheckboxOption[] = [
   },
 ];
 
-export const VISIBLIE_NODE_TYPES = ['official', 'flowchart'];
+export const VISIBLIE_NODE_TYPES = ['common', 'flowchart'];
 export const TYPE_IMG_MAP = {
-  official: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*HVZwQYtQ9cIAAAAAAAAAAAAAARQnAQ',
+  common: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*HVZwQYtQ9cIAAAAAAAAAAAAAARQnAQ',
   flowchart: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*c-IOS6IAEAQAAAAAAAAAAAAAARQnAQ',
 };

@@ -128,7 +128,7 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     onNodeDrop,
     state,
     prefixClz,
-    defaultActiveKey = ['official', 'custom'],
+    defaultActiveKey = ['common', 'custom'],
     visibleNodeTypes,
   } = props;
   const { flowchartId } = useContext(AppContext);
@@ -232,10 +232,10 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
           {visibleNodeTypes.map((type) => {
             return (
               <Panel header={`${treeData[type]?.title}`} key={type} style={{ border: 'none' }}>
-                {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(treeData[type]?.nodes)}</div>}
+                {!state.keyword && <div className={`${prefixClz}-common`}>{renderTree(treeData[type]?.nodes)}</div>}
 
                 {state.keyword && searchNodes[type]?.length > 0 && (
-                  <div className={`${prefixClz}-official`}>{renderTree(searchNodes[type])}</div>
+                  <div className={`${prefixClz}-common`}>{renderTree(searchNodes[type])}</div>
                 )}
                 {state.keyword && searchNodes[type] && searchNodes[type].length === 0 && (
                   <Empty style={{ marginTop: '24px' }} />

@@ -19,7 +19,7 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [checkedValue, setCheckedValue] = useState<string[]>([...visibleNodeTypes]);
   //被选中的节点分类菜单项
-  const [typeImg, setTypeImg] = useState<string>('official');
+  const [typeImg, setTypeImg] = useState<string>('common');
 
   const { propsProxy } = usePanelContext<IProps>();
   const panelProps = propsProxy.getValue();
@@ -85,7 +85,7 @@ export const NodePanelFooter: React.FC<IFooterProps> = (props) => {
             >
               <Menu
                 style={{ width: '100%', height: '100%' }}
-                defaultSelectedKeys={['official']}
+                defaultSelectedKeys={['common']}
                 onClick={handleClickMenuItem}
               >
                 {checkBoxOptions.map((option) => {
