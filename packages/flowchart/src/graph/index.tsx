@@ -2,8 +2,6 @@ import React, { useRef, useEffect, useCallback } from 'react';
 import {
   XFlow,
   XFlowCanvas,
-  XFlowGraphCommands,
-  NsGraphCmd,
   CanvasContextMenu,
   KeyBindings,
   uuidv4,
@@ -35,6 +33,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     scaleToolbarPanelProps = {},
     contextMenuPanelProps = {},
     canvasProps = {},
+    keyBindingProps,
     // miniMapProps = {},
     onDestroy,
     onConfigReady,
@@ -56,7 +55,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const commandConfig = useCmdConfig({
     flowchartId: uuidv4Ref.current,
   }); // 需要 getProps
-  const keybindingConfig = useKeybindingConfig();
+  const keybindingConfig = keyBindingProps || useKeybindingConfig();
   const { show = true } = scaleToolbarPanelProps;
   const { show: nodePanelShow = true } = nodePanelProps;
   const { show: showMenu = true } = contextMenuPanelProps;
@@ -117,7 +116,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
             {/* {showMinimMap && <CanvasMiniMap position={miniMapPosition} />} */}
           </XFlowCanvas>
           <FormPanel {...detailPanelProps} />
-          <KeyBindings config={keybindingConfig} />
+          {keyBindingProps !== false && <KeyBindings config={keybindingConfig} />}
         </XFlow>
       </div>
     </AppContext.Provider>

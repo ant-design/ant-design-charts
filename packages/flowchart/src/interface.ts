@@ -8,6 +8,7 @@ import {
   IAppDestroy,
   IAppConfigReady,
   IApplication,
+  KeybindingConfig,
 } from '@antv/xflow';
 import { Cell, Graph } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
@@ -156,6 +157,8 @@ export interface FlowchartProps extends FlowchartContainerProps {
   canvasProps?: CanvasProps;
   /** toolbar */
   toolbarPanelProps?: ToolbarPanelProps;
+  /** keyBinding */
+  keyBindingProps?: false | KeybindingConfig;
   /** scale toolbar */
   scaleToolbarPanelProps?: ScaleToolbarPanelProps;
   /** mini map */
