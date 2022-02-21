@@ -132,3 +132,6 @@ export const NODEPOOL = [
 ];
 // 缩放时保存同比例
 export const ASPECTRATIONODE = ['Connector', 'Or'];
+
+//内置节点分类
+export const BUILDIN_NODE_TYPES = ['official', 'flowchart'];
