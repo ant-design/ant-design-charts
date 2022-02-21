@@ -8,6 +8,7 @@ import {
   XFlowAppProvider,
   useXFlowApp,
   XFlowEdgeCommands,
+  createKeybindingConfig,
 } from '@antv/xflow';
 import Flowchart from './graph';
 
@@ -33,6 +34,7 @@ export {
   XFlowAppProvider,
   useXFlowApp,
   XFlowEdgeCommands,
+  createKeybindingConfig,
 };
 
 export * from './interface';
