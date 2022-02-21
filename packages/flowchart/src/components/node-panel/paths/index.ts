@@ -22,3 +22,7 @@ export { NoteLeftNodePath } from './note-left';
 export { NoteRightNodePath } from './note-right';
 export { InternalStorageNodePath } from './internal-storage';
 export { TextNodePath } from './text';
+export { IsoscelesTrapezoidNodePath } from './Isosceles-Trapezoid';
+export { LeftTrapezoidNodePath } from './trapezoid-left';
+export { RightTrapezoidNodePath } from './trapezoid-right';
+export { EllipseNodePath } from './ellipse';
