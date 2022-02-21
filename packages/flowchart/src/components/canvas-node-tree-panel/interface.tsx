@@ -75,7 +75,7 @@ export interface ITreeNode {
 }
 
 type ITreeItem = {
-  name?: string;
+  title?: string;
   nodes?: ITreeNode[];
 };
 /* export interface ITreeData {
@@ -92,12 +92,10 @@ type ITreeItem = {
     nodes?: ITreeNode[];
   };
 } */
-type ITreeData = Map<string, ITreeItem>;
+export type ITreeData = Map<string, ITreeItem>;
 
 export interface ISearchNodes {
-  custom?: ITreeNode[];
-  official?: ITreeNode[];
-  flowchart?: ITreeNode[];
+  [key: string]: ITreeNode[];
 }
 
 /** service: 获取tree数据 */

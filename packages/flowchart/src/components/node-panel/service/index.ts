@@ -5,11 +5,7 @@ import { ISearchService, ITreeData } from '../../canvas-node-tree-panel/interfac
 /** 节点查找 */
 export const searchService: ISearchService = async (treeData: ITreeData = {}, keyword: string) => {
   const nodeTypes = Object.keys(treeData);
-  const searchNodes = {
-    custom: [],
-    official: [],
-    flowchart: [],
-  };
+  const searchNodes = {};
   nodeTypes.forEach((type) => {
     searchNodes[type] = treeData[type].nodes.filter((i) => i.label?.includes(keyword) || i.name?.includes(keyword));
   });

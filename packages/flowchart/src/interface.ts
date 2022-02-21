@@ -41,10 +41,12 @@ export interface CustomNode {
   ports?: NsGraph.INodeConfig['ports'];
 }
 
-export interface RegisterNode {
-  title?: string;
+export interface RegisterNodeItem {
+  type: string;
+  title: string;
   nodes: CustomNode[];
 }
+export type RegisterNode = RegisterNodeItem[];
 
 export interface BaseProps {
   style?: React.CSSProperties;

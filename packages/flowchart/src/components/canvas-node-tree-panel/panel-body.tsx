@@ -128,12 +128,10 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
     onNodeDrop,
     state,
     prefixClz,
-    registerNode,
     defaultActiveKey = ['official', 'custom'],
     visibleNodeTypes,
   } = props;
   const { flowchartId } = useContext(AppContext);
-  const { title = '混合节点' } = registerNode ?? {};
   const { graphProvider, modelService, commandService } = useXFlowApp();
 
   const [dnd, setDnd] = React.useState<Addon.Dnd>();
@@ -224,7 +222,6 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
   );
 
   const { treeData, searchNodes } = state;
-  const hasCustomNode = treeData?.custom?.nodes.length > 0;
   //treeData 是异步获取的, 初次渲染时 treeData 对象为空
   if (Object.keys(treeData).length === 0) return null;
 
@@ -233,33 +230,18 @@ export const NodePanelBody: React.FC<IBodyProps> = (props) => {
       <div className={`${prefixClz}-body`}>
         <Collapse defaultActiveKey={defaultActiveKey} style={{ border: 'none' }}>
           {visibleNodeTypes.map((type) => {
-            if (type === 'custom') {
-              return (
-                hasCustomNode && (
-                  <Panel header={title} key="custom" style={{ border: 'none' }}>
-                    {!state.keyword && <div className={`${prefixClz}-custom`}>{renderTree(treeData[type].nodes)}</div>}
-                    {state.keyword && searchNodes[type] && searchNodes[type].length > 0 && (
-                      <div className={`${prefixClz}-custom`}>{renderTree(searchNodes[type])}</div>
-                    )}
-                    {state.keyword && searchNodes[type] && searchNodes[type].length === 0 && (
-                      <Empty style={{ marginTop: '24px' }} />
-                    )}
-                  </Panel>
-                )
-              );
-            } else {
-              return (
-                <Panel header={`${treeData[type]?.name}`} key={type} style={{ border: 'none' }}>
-                  {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(treeData[type]?.nodes)}</div>}
-                  {state.keyword && searchNodes[type] && searchNodes[type].length > 0 && (
-                    <div className={`${prefixClz}-official`}>{renderTree(searchNodes[type])}</div>
-                  )}
-                  {state.keyword && searchNodes[type] && searchNodes[type].length === 0 && (
-                    <Empty style={{ marginTop: '24px' }} />
-                  )}
-                </Panel>
-              );
-            }
+            return (
+              <Panel header={`${treeData[type]?.title}`} key={type} style={{ border: 'none' }}>
+                {!state.keyword && <div className={`${prefixClz}-official`}>{renderTree(treeData[type]?.nodes)}</div>}
+
+                {state.keyword && searchNodes[type]?.length > 0 && (
+                  <div className={`${prefixClz}-official`}>{renderTree(searchNodes[type])}</div>
+                )}
+                {state.keyword && searchNodes[type] && searchNodes[type].length === 0 && (
+                  <Empty style={{ marginTop: '24px' }} />
+                )}
+              </Panel>
+            );
           })}
         </Collapse>
       </div>

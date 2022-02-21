@@ -40,6 +40,18 @@ const DemoFlowchart = () => {
         }}
         nodePanelProps={{
           position: { width: 160, top: 40, bottom: 0, left: 0 },
+          registerNode: [
+            {
+            title: "测试1",
+            type: 'test1',
+            nodes: [{name: "test1", component: "div"}], 
+            },
+            {
+            title: "测试2",
+            type: 'test2',
+            nodes: [{name: "test1", component: "div"}],
+            }
+          ],
         }}
         detailPanelProps={{
           position: { width: 200, top: 40, bottom: 0, right: 0 },
