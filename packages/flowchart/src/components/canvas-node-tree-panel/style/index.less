@@ -41,6 +41,15 @@
     border-top: @light-border;
     border-right: @light-border;
     cursor: pointer;
+    &-content-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      .@{dnd-panel-prefix-cls}-text {
+        font-size: 24px;
+      }
+    }
   }
 
   &-custom {
@@ -49,7 +58,7 @@
     .node();
   }
 
-  &-official,
+  &-common,
   &-flowchart {
     .node();
     display: grid;

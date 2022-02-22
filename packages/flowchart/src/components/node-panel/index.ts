@@ -113,7 +113,7 @@ export const treeDataService = async (meta, modelService, flowchartId) => {
   const registerNode = getRegisterNode(flowchartId);
   const treeData = {
     ...registerNode,
-    official: {
+    common: {
       title: '通用节点',
       nodes: [],
     },

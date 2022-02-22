@@ -11,21 +11,21 @@ export const ROUNDEDRADIUS = 10;
 export const NODEPOOL = [
   {
     name: 'Terminal',
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'Process',
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'Decision',
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'Connector',
     width: NODE_HEIGHT,
     height: NODE_HEIGHT,
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'Multi Document',
@@ -34,7 +34,7 @@ export const NODEPOOL = [
   {
     name: 'DataIO',
     ports: ['top', 'bottom'],
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'Database',
@@ -42,7 +42,7 @@ export const NODEPOOL = [
   },
   {
     name: 'Hard Disk',
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'Stroed Data',
@@ -54,7 +54,7 @@ export const NODEPOOL = [
   },
   {
     name: 'Predefined Process',
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'Extract',
@@ -111,24 +111,27 @@ export const NODEPOOL = [
   {
     name: 'Text',
     label: 'text',
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'Isosceles Trapezoid',
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'LeftTrapezoid',
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'RightTrapezoid',
-    type: 'official',
+    type: 'common',
   },
   {
     name: 'Ellipse',
-    type: 'official',
+    type: 'common',
   },
 ];
 // 缩放时保存同比例
 export const ASPECTRATIONODE = ['Connector', 'Or'];
+
+//内置节点分类
+export const BUILDIN_NODE_TYPES = ['common', 'flowchart'];
