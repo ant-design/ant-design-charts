@@ -4,8 +4,9 @@ import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
 import { ColorPicker, InputNumberFiled, SelectField } from './fields';
 import { PREFIX, canEditorRounded } from '../constants';
-import { SolidIcon, DottedLine } from './edit-style';
+import { SolidIcon, DottedLine } from './edit-style/index';
 import { IControlProps } from '../interface';
+import { ArrowStrokeMaps } from './edge';
 import './style.less';
 export interface INodeStyleConfig {
   width?: number;
@@ -88,7 +89,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
         <div className={`${PREFIX}-edge-stroke-style`}>
           <SelectField
             label="线形"
-            width={68}
+            width={69}
             value={getSrokeDashValue()}
             options={[
               {
@@ -101,11 +102,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
               },
             ]}
             onChange={(value) => {
-              if (value === 'solid') {
-                onNodeConfigChange('strokeDasharray', undefined);
-              } else {
-                onNodeConfigChange('strokeDasharray', '2, 2');
-              }
+              onNodeConfigChange('strokeDasharray', ArrowStrokeMaps[value]);
             }}
           />
           <InputNumberFiled
