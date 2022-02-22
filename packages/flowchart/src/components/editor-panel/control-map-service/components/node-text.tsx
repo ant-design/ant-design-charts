@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Checkbox } from 'antd';
 import {
   VerticalAlignTopOutlined,
   VerticalAlignMiddleOutlined,
@@ -13,7 +12,7 @@ import {
 } from '@ant-design/icons';
 import AppContext from '../../../../context';
 import { FormWrapper } from '../../form-wrapper';
-import { InputFiled, ColorPicker, InputNumberFiled, InputOpacity, InputFontSpacing } from './fields';
+import { InputFiled, ColorPicker, InputNumberFiled, InputOpacity, InputFontSpacing, InputFontPosition } from './fields';
 import { PREFIX } from '../constants';
 import { IControlProps } from '../interface';
 import './style.less';
@@ -31,6 +30,9 @@ export interface INodeTextConfig {
   isSelected?: boolean;
   textOpacity: number;
   letterSpacing: number;
+  opacity: number;
+  dy: number;
+  dx: number;
 }
 
 const NodeComponent: React.FC<IControlProps> = (props) => {
@@ -78,9 +80,39 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
           <InputNumberFiled
             label="字号"
             value={nodeConfig.fontSize}
-            width={68}
+            width={50}
             onChange={(value) => {
               onNodeConfigChange('fontSize', value);
+            }}
+          />
+          <InputFontSpacing
+            label="间距"
+            value={nodeConfig.letterSpacing}
+            min={0}
+            step={1}
+            width={50}
+            onChange={(value) => {
+              onNodeConfigChange('letterSpacing', value);
+            }}
+          />
+        </div>
+        <div className={`${PREFIX}-node-text-style`}>
+          <label style={{ color: '#888' }}>颜色</label>
+          <ColorPicker
+            value={nodeConfig.fontFill}
+            onChange={(value: string) => {
+              onNodeConfigChange('fontFill', value);
+            }}
+          />
+          <InputOpacity
+            label="透明度"
+            value={nodeConfig.textOpacity}
+            max={1}
+            min={0}
+            step={0.1}
+            width={65}
+            onChange={(value) => {
+              onNodeConfigChange('textOpacity', value);
             }}
           />
         </div>
@@ -103,6 +135,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
               onNodeConfigChange('isUnderline', !nodeConfig.isUnderline);
             }}
           />
+          <label style={{ color: '#888' }}>&#12288;&#12288;&#12288;文本位置</label>
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <VerticalAlignTopOutlined
@@ -135,6 +168,16 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
               onNodeConfigChange('alignmentBaseline', 'before-edge');
             }}
           />
+          &#12288;
+          <InputFontPosition
+            label="Y"
+            value={nodeConfig.dy}
+            step={1}
+            width={60}
+            onChange={(value) => {
+              onNodeConfigChange('dy', value);
+            }}
+          />
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <AlignLeftOutlined
@@ -161,49 +204,14 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
               onNodeConfigChange('textAnchor', 'end');
             }}
           />
-        </div>
-        <div className={`${PREFIX}-node-gradient-style`}>
-          <Checkbox
-            style={{ color: 'rgba(0, 0, 0, 0.45)' }}
-            checked={nodeConfig.isSelected}
-            onChange={(values) => {
-              onNodeConfigChange('isSelected', values.target.checked);
-            }}
-          >
-            字体颜色
-          </Checkbox>
-          {nodeConfig.isSelected && (
-            <ColorPicker
-              value={nodeConfig.fontFill}
-              onChange={(value: string) => {
-                onNodeConfigChange('fontFill', value);
-              }}
-            />
-          )}
-        </div>
-        <div className={`${PREFIX}-panel-group`}>
-          <InputOpacity
-            label="透明度"
-            value={nodeConfig.textOpacity}
-            max={1}
-            min={0}
-            step={0.1}
-            width={70}
-            formatter={(value) => `${value}%`}
-            onChange={(value) => {
-              onNodeConfigChange('textOpacity', value);
-            }}
-          />
-          <InputFontSpacing
-            label="字体间距"
-            value={nodeConfig.letterSpacing}
-            max={10}
-            min={0}
+          &#12288;
+          <InputFontPosition
+            label="X"
+            value={nodeConfig.dx}
             step={1}
-            width={70}
-            formatter={(value) => `${value}%`}
+            width={60}
             onChange={(value) => {
-              onNodeConfigChange('letterSpacing', value);
+              onNodeConfigChange('dx', value);
             }}
           />
         </div>
