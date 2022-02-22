@@ -23,11 +23,10 @@ import AppContext from '../../context';
 import { FlowchartProps } from '../../interface';
 import { withPopover } from './with-popover';
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL, ASPECTRATIONODE } from './constants';
-import * as NodeComponents from './nodes';
 import { NodeComponent } from './node-components';
 export { searchService, onNodeDrop } from './service';
 
-export { NodeComponents, NODE_HEIGHT, NODE_WIDTH, AppContext, ASPECTRATIONODE };
+export { NODE_HEIGHT, NODE_WIDTH, AppContext, ASPECTRATIONODE };
 
 /** 和 graph config 注册的节点保持一致 */
 const getAnchorStyle = (position: string) => {
