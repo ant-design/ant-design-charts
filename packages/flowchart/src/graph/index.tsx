@@ -23,6 +23,7 @@ import AppContext from '../context';
 import { appendUtils } from './appendUtils';
 import { useGraphConfig, useGraphHook } from './service';
 import { useKeybindingConfig } from './service/keyBinding';
+import { NODEPOOL } from '../components/node-panel/constants';
 import 'antd/dist/antd.css';
 import './index.less';
 const Flowchart: React.FC<FlowchartProps> = (props) => {
@@ -76,6 +77,31 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         });
       } else if (storage.hasItem('graphData')) {
         const graphData = storage.getItem('graphData');
+        const validNodes = new Set<string>(NODEPOOL.map((node) => node.name));
+        const clearNodes = new Set<string>();
+        const { registerNode = [] } = nodePanelProps;
+        registerNode.forEach((item) => {
+          item.nodes?.forEach((node) => {
+            validNodes.add(node.name);
+          });
+        });
+        /* graphData.nodes.forEach((node) => {
+          if (!validNodes.has(node.renderKey)) {
+            graphData.nodes = [];
+            graphData.edges = [];
+          }
+        }); */
+        graphData.nodes = graphData.nodes?.filter((node) => {
+          if (!validNodes.has(node.renderKey)) {
+            clearNodes.add(node.id);
+            return false;
+          }
+          return true;
+        });
+
+        graphData.edges = graphData.edges?.filter(
+          (edge) => !clearNodes.has(edge.source.cell) && !clearNodes.has(edge.target.cell),
+        );
         await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
           graphData,
         });

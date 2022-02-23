@@ -74,7 +74,7 @@ const DemoFlowchart = () => {
             {
             title: "测试1",
             type: 'test1',
-            nodes: [], 
+            nodes: [{name: "test1", component: "div"}], 
             },
             {
             title: "测试2",
