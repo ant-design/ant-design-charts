@@ -64,23 +64,6 @@ const getPorts = (position = ['top', 'right', 'bottom', 'left']) => {
 
 export const getRegisterNode = (flowchartId: string) => {
   const { registerNode = [] } = (getProps(flowchartId, 'nodePanelProps') as FlowchartProps['nodePanelProps']) ?? {};
-  /* return (registerNode?.nodes || []).map((item) => {
-    const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports } = item;
-    const id = uuidv4(); // 暂不使用上层数据
-    return {
-      parentId: '',
-      id,
-      renderKey: name,
-      name,
-      label,
-      popoverContent: popover,
-      width,
-      height,
-      ports: ports || getPorts(),
-      originData: { ...item },
-      isCustom: true,
-    };
-  }); */
   const treeData = {};
   registerNode.forEach((item) => {
     const nodes = item.nodes.map((node) => {
@@ -97,7 +80,6 @@ export const getRegisterNode = (flowchartId: string) => {
         height,
         ports: ports || getPorts(),
         originData: { ...item },
-        /* isCustom: true, */
       };
     });
     treeData[item.type] = {
