@@ -129,9 +129,57 @@ export const NODEPOOL = [
     name: 'Ellipse',
     type: 'common',
   },
+  {
+    name: 'Right Triangle',
+    type: 'common',
+  },
+  {
+    name: 'Left Triangle',
+    type: 'common',
+  },
+  {
+    name: 'Step',
+    type: 'common',
+  },
+  {
+    name: 'Card',
+    type: 'common',
+  },
+  {
+    name: 'Reference',
+    type: 'common',
+  },
+  {
+    name: 'Diagonal Snip Rectangle',
+    type: 'common',
+  },
+  {
+    name: 'FiveSides',
+    type: 'common',
+  },
+  {
+    name: 'Hexagon',
+    type: 'common',
+  },
+  {
+    name: 'Loop',
+    type: 'common',
+  },
+  {
+    name: 'Callout',
+    type: 'common',
+  },
+  {
+    name: 'Collate',
+    type: 'common',
+  },
+  {
+    name: 'Message',
+    type: 'common',
+  },
 ];
 // 缩放时保存同比例
-export const ASPECTRATIONODE = ['Connector', 'Or'];
+export const ASPECTRATIONODE = ['Connector', 'Or', 'Ellipse'];
 
 //内置节点分类
 export const BUILDIN_NODE_TYPES = ['common', 'flowchart'];
