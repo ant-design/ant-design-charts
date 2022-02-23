@@ -17,8 +17,6 @@ export const CHECKBOX_OPTIONS: ICheckboxOption[] = [
     disabled: false,
   },
 ];
-
-export const VISIBLIE_NODE_TYPES = ['common', 'flowchart'];
 export const TYPE_IMG_MAP = {
   common: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*HVZwQYtQ9cIAAAAAAAAAAAAAARQnAQ',
   flowchart: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*c-IOS6IAEAQAAAAAAAAAAAAAARQnAQ',
