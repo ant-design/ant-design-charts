@@ -6,14 +6,14 @@ export const HexagonNodePath = (props) => {
   const { width, height } = getConfig(props);
 
   const path = [
-    ['M', 15, NODE_PADDING], // top-left
-    ['L', width - 15 * NODE_PADDING, NODE_PADDING], // top-right
-    ['L', width * NODE_PADDING, 15], // bottom-right
-    ['L', width * NODE_PADDING, height - 15 * NODE_PADDING], // bottom-left
-    ['L', width - 15 * NODE_PADDING, height * NODE_PADDING], // bottom-left
-    ['L', 15, height * NODE_PADDING], // bottom-left
-    ['L', NODE_PADDING, height - 15 * NODE_PADDING], // bottom-left
-    ['L', NODE_PADDING, 15],
+    ['M', width / 4, NODE_PADDING],
+    ['L', width - width / 4, NODE_PADDING],
+    ['L', width - 2, height / 4],
+    ['L', width - 2, height - height / 4],
+    ['L', width - width / 4, height],
+    ['L', width / 4, height],
+    ['L', NODE_PADDING, height - height / 4],
+    ['L', NODE_PADDING, height / 4],
     ['Z'],
   ];
 

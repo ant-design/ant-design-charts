@@ -6,11 +6,11 @@ export const CardNodePath = (props) => {
   const { width, height } = getConfig(props);
 
   const path = [
-    ['M', 10, NODE_PADDING],
+    ['M', (width / 8) * NODE_PADDING, NODE_PADDING],
     ['L', width - 2 * NODE_PADDING, NODE_PADDING],
-    ['L', width - 2 * NODE_PADDING, height - 2 * NODE_PADDING],
-    ['L', NODE_PADDING, height - 2 * NODE_PADDING],
-    ['L', NODE_PADDING, 10], // 缺口线条
+    ['L', width - 2 * NODE_PADDING, height * NODE_PADDING],
+    ['L', NODE_PADDING, height * NODE_PADDING],
+    ['L', NODE_PADDING, (height / 8) * NODE_PADDING], // 缺口线条
     ['Z'],
   ];
 

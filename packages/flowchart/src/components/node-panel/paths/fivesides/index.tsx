@@ -7,10 +7,10 @@ export const FiveSidesNodePath = (props) => {
 
   const path = [
     ['M', width / 2, NODE_PADDING],
-    ['L', NODE_PADDING, 17],
-    ['L', 12, height * NODE_PADDING],
-    ['L', width - 12, height * NODE_PADDING],
-    ['L', width * NODE_PADDING, 17],
+    ['L', NODE_PADDING, (height / 3) * NODE_PADDING],
+    ['L', width / 6, height * NODE_PADDING],
+    ['L', width - width / 6, height * NODE_PADDING],
+    ['L', width * NODE_PADDING, (height / 3) * NODE_PADDING],
     ['Z'],
   ];
 
