@@ -10,26 +10,12 @@ export const ROUNDEDRADIUS = 10;
 
 export const NODEPOOL = [
   {
-    name: 'Terminal',
-    type: 'common',
-  },
-  {
-    name: 'Process',
-    type: 'common',
-  },
-  {
     name: 'Decision',
     type: 'common',
   },
   {
-    name: 'Connector',
-    width: NODE_HEIGHT,
-    height: NODE_HEIGHT,
-    type: 'common',
-  },
-  {
     name: 'Multi Document',
-    type: 'flowchart',
+    type: 'common',
   },
   {
     name: 'DataIO',
@@ -37,24 +23,84 @@ export const NODEPOOL = [
     type: 'common',
   },
   {
-    name: 'Database',
-    type: 'flowchart',
-  },
-  {
     name: 'Hard Disk',
     type: 'common',
   },
   {
-    name: 'Stroed Data',
-    type: 'flowchart',
-  },
-  {
-    name: 'Document',
-    type: 'flowchart',
-  },
-  {
     name: 'Predefined Process',
     type: 'common',
+  },
+
+  {
+    name: 'Isosceles Trapezoid',
+    type: 'common',
+  },
+  {
+    name: 'LeftTrapezoid',
+    type: 'common',
+  },
+  {
+    name: 'RightTrapezoid',
+    type: 'common',
+  },
+  {
+    name: 'Ellipse',
+    type: 'common',
+  },
+  {
+    name: 'Right Triangle',
+    type: 'common',
+  },
+  {
+    name: 'Left Triangle',
+    type: 'common',
+  },
+  {
+    name: 'Step',
+    type: 'common',
+  },
+  {
+    name: 'Card',
+    type: 'common',
+  },
+
+  {
+    name: 'Callout',
+    type: 'common',
+  },
+
+  {
+    name: 'Message',
+    type: 'common',
+  },
+  {
+    name: 'Text',
+    label: 'text',
+    type: 'common',
+  },
+  {
+    name: 'Terminal',
+    type: 'flowchart',
+  },
+  {
+    name: 'Process',
+    type: 'flowchart',
+  },
+  {
+    name: 'Connector',
+    width: NODE_HEIGHT,
+    height: NODE_HEIGHT,
+    type: 'flowchart',
+  },
+
+  {
+    name: 'Database',
+    type: 'flowchart',
+  },
+
+  {
+    name: 'Stroed Data',
+    type: 'flowchart',
   },
   {
     name: 'Extract',
@@ -95,6 +141,30 @@ export const NODEPOOL = [
     type: 'flowchart',
   },
   {
+    name: 'Internal Storage',
+    type: 'flowchart',
+  },
+  {
+    name: 'Reference',
+    type: 'flowchart',
+  },
+  {
+    name: 'Diagonal Snip Rectangle',
+    type: 'flowchart',
+  },
+  {
+    name: 'FiveSides',
+    type: 'flowchart',
+  },
+  {
+    name: 'Hexagon',
+    type: 'flowchart',
+  },
+  {
+    name: 'Loop',
+    type: 'flowchart',
+  },
+  {
     name: 'Note Left',
     label: '≣',
     type: 'flowchart',
@@ -105,77 +175,13 @@ export const NODEPOOL = [
     type: 'flowchart',
   },
   {
-    name: 'Internal Storage',
+    name: 'Collate',
     type: 'flowchart',
   },
+
   {
-    name: 'Text',
-    label: 'text',
-    type: 'common',
-  },
-  {
-    name: 'Isosceles Trapezoid',
-    type: 'common',
-  },
-  {
-    name: 'LeftTrapezoid',
-    type: 'common',
-  },
-  {
-    name: 'RightTrapezoid',
-    type: 'common',
-  },
-  {
-    name: 'Ellipse',
-    type: 'common',
-  },
-  {
-    name: 'Right Triangle',
-    type: 'common',
-  },
-  {
-    name: 'Left Triangle',
-    type: 'common',
-  },
-  {
-    name: 'Step',
-    type: 'common',
-  },
-  {
-    name: 'Card',
-    type: 'common',
-  },
-  {
-    name: 'Reference',
-    type: 'common',
-  },
-  {
-    name: 'Diagonal Snip Rectangle',
-    type: 'common',
-  },
-  {
-    name: 'FiveSides',
-    type: 'common',
-  },
-  {
-    name: 'Hexagon',
-    type: 'common',
-  },
-  {
-    name: 'Loop',
-    type: 'common',
-  },
-  {
-    name: 'Callout',
-    type: 'common',
-  },
-  {
-    name: 'Collate',
-    type: 'common',
-  },
-  {
-    name: 'Message',
-    type: 'common',
+    name: 'Document',
+    type: 'flowchart',
   },
 ];
 // 缩放时保存同比例
