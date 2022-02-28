@@ -281,6 +281,12 @@ interface MarkerCfg {
 
 是否开启动画，默认值 `true`。
 
+### customLayout
+
+<description>**optional** _Boolean_</description>
+
+开启后，layout 失效，使用 data 里面的 x、y 进行数据布局。
+
 #### autoFit
 
 <description>**optional** _Boolean_</description>

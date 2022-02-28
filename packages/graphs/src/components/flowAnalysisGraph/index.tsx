@@ -8,12 +8,10 @@ import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultStateStyles, defa
 import { registerIndicatorCardNode } from './customItem';
 import { CommonConfig, FlowGraphEdgeData, NodeData, CardItems } from '../../interface';
 
-export type FlowAnalysisNodeData = NodeData<
-  {
-    title?: string;
-    items?: CardItems;
-  }[]
->;
+export type FlowAnalysisNodeData = NodeData<{
+  title?: string;
+  items?: CardItems[];
+}>;
 
 export interface FlowAnalysisGraphConfig extends Omit<CommonConfig, 'data'> {
   data: {
