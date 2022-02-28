@@ -252,15 +252,37 @@ export interface CommonConfig extends GraphContainerConfig {
   layout?: any;
   edgeCfg?: EdgeCfg;
   nodeCfg?: NodeCfg;
-  markerCfg: IMarkerCfg;
+  markerCfg?: IMarkerCfg;
   minimapCfg?: MiniMapConfig;
   toolbarCfg?: ToolbarCfg;
   tooltipCfg?: TooltipCfg;
   behaviors?: string[];
   /** 是否开启动画 */
   animate?: boolean;
-  /** 是否调整布局 */
-  adjustLayout?: boolean;
+  /**
+   * @title 是否自定义布局
+   * @description 开启后，layout 失效，使用 data 里面的 x/y 进行数据布局
+   * @example
+   * ```ts
+   *  {
+   *   id: '-3',
+   *   x: 100,
+   *   y: 100,
+   *   value: {
+   *     title: '来源页面A',
+   *     items: [
+   *       {
+   *         text: '曝光PV',
+   *         value: '10.30万',
+   *         icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+   *       },
+   *     ],
+   *   },
+   *  },
+   * ```
+   * @default false
+   */
+  customLayout?: boolean;
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
 }

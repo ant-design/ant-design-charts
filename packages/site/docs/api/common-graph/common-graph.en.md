@@ -278,6 +278,12 @@ interface MarkerCfg {
 
 Whether to turn on animation, default to 'true'.
 
+### customLayout
+
+<description>**optional** _Boolean_</description>
+
+Whether to turn on custom layout,  layout is invalid and x、y in data is used for data layout  when enabled.
+
 #### autoFit
 
 <description>**optional** _Boolean_</description>

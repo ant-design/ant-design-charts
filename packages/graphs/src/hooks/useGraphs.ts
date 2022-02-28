@@ -40,6 +40,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     markerCfg,
     level,
     toolbarCfg,
+    customLayout,
   } = config;
   const graph = graphRef.current;
   /** 隐藏孤立边 */
@@ -193,7 +194,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       if (isEqual(config, graphOptions.current)) {
         return;
       }
-      if (!isEqual(layout, graphOptions.current?.layout)) {
+      if (!customLayout && !isEqual(layout, graphOptions.current?.layout)) {
         updateLayout();
       }
       if (!isEqual(minimapCfg, graphOptions.current?.minimapCfg)) {
@@ -240,7 +241,8 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       const { name = '' } = extra;
       const graphSize = getGraphSize(width, height, container);
       const plugins = [];
-      const { nodeCfg, edgeCfg, behaviors, layout, animate, autoFit, fitCenter, onReady, tooltipCfg } = config;
+      const { nodeCfg, edgeCfg, behaviors, layout, animate, autoFit, fitCenter, onReady, tooltipCfg, customLayout } =
+        config;
 
       const {
         type: nodeType,
@@ -303,7 +305,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         },
         nodeStateStyles,
         edgeStateStyles: getEdgeStateStyles(edgeStateStyles),
-        layout,
+        layout: customLayout ? undefined : layout,
         fitView: autoFit,
         fitCenter,
         plugins,

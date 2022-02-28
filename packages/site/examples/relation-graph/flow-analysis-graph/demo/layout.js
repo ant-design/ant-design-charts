@@ -4,115 +4,225 @@ import { FlowAnalysisGraph } from '@ant-design/graphs';
 
 const DemoFlowAnalysisGraph = () => {
   const data = {
-    id: 'A0',
-    value: {
-      title: '订单金额',
-      items: [
-        {
-          text: '3031万',
-        },
-      ],
-    },
-    children: [
+    nodes: [
       {
-        id: 'A1',
+        id: '-3',
         value: {
-          title: '华南',
+          title: '来源页面A',
           items: [
             {
-              text: '1152万',
-            },
-            {
-              text: '占比',
-              value: '30%',
-            },
-          ],
-        },
-        children: [
-          {
-            id: 'A11',
-            value: {
-              title: '广东',
-              items: [
-                {
-                  text: '1152万',
-                },
-                {
-                  text: '占比',
-                  value: '30%',
-                },
-              ],
-            },
-          },
-          {
-            id: 'A12',
-            value: {
-              title: '广西',
-              items: [
-                {
-                  text: '1152万',
-                },
-                {
-                  text: '占比',
-                  value: '30%',
-                },
-              ],
-            },
-          },
-          {
-            id: 'A13',
-            value: {
-              title: '海南',
-              items: [
-                {
-                  text: '1152万',
-                },
-                {
-                  text: '占比',
-                  value: '30%',
-                },
-              ],
-            },
-          },
-        ],
-      },
-      {
-        id: 'A2',
-        value: {
-          title: '华北',
-          items: [
-            {
-              text: '595万',
-            },
-            {
-              text: '占比',
-              value: '30%',
+              text: '曝光PV',
+              value: '10.30万',
               icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
       },
+      {
+        id: '-2',
+        value: {
+          title: '来源页面B',
+          items: [
+            {
+              text: '点击UV',
+              value: '10.30万',
+              icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+            },
+          ],
+        },
+      },
+      {
+        id: '-1',
+        value: {
+          title: '来源页面C',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '0',
+        value: {
+          title: '活动页面',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '1',
+        value: {
+          title: '去向页面A',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '2',
+        value: {
+          title: '去向页面B',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '3',
+        value: {
+          title: '去向页面C',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '4',
+        value: {
+          title: '去向页面D',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '5',
+        value: {
+          title: '去向页面E',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '6',
+        value: {
+          title: '去向页面F',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '6',
+        value: {
+          title: '去向页面F',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '7',
+        value: {
+          title: '去向页面G',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+      {
+        id: '8',
+        value: {
+          title: '去向页面H',
+          items: [
+            {
+              text: '访问页面UV',
+            },
+          ],
+        },
+      },
+    ],
+    edges: [
+      {
+        source: '-3',
+        target: '0',
+        value: '来源A',
+      },
+      {
+        source: '-2',
+        target: '0',
+        value: '来源B',
+      },
+      {
+        source: '-1',
+        target: '0',
+        value: '来源C',
+      },
+      {
+        source: '0',
+        target: '1',
+      },
+      {
+        source: '0',
+        target: '2',
+      },
+      {
+        source: '0',
+        target: '3',
+      },
+      {
+        source: '0',
+        target: '4',
+      },
+      {
+        source: '0',
+        target: '5',
+      },
+      {
+        source: '2',
+        target: '6',
+      },
+      {
+        source: '3',
+        target: '7',
+      },
+      {
+        source: '4',
+        target: '8',
+      },
     ],
   };
-
   const config = {
     data,
     layout: {
-      type: 'indented',
-      direction: 'LR',
-      dropCap: false,
-      indent: 250,
-      getHeight: () => {
-        return 60;
-      },
-      getWidth: () => {
-        return 100;
-      },
+      rankdir: 'TB',
+      ranksepFunc: () => 20,
+    },
+    nodeCfg: {
+      anchorPoints: [
+        [0.5, 0],
+        [0.5, 1],
+      ],
+    },
+    edgeCfg: {
+      type: 'polyline',
+      endArrow: true,
     },
     markerCfg: (cfg) => {
-      const { children } = cfg;
       return {
-        show: children?.length,
+        position: 'bottom',
+        show: data.edges.filter((item) => item.source === cfg.id)?.length,
       };
     },
     behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
