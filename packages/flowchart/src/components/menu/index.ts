@@ -58,7 +58,7 @@ export const useMenuConfig = createCtxMenuConfig((config) => {
 
     switch (type) {
       /** 节点菜单 */
-      case 'node':
+      case 'node' /*  */:
         model.setValue({
           id: 'root',
           type: MenuItemType.Root,

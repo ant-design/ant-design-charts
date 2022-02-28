@@ -9,19 +9,17 @@ import {
   useXFlowApp,
   XFlowEdgeCommands,
   createKeybindingConfig,
+  FlowchartFormPanel as FormPanel,
+  FlowchartFormWrapper as FormWrapper,
+  // EditorPanels,
+  // NodeService,
+  // EdgeService,
+  // GroupService,
+  // CanvasService,
 } from '@antv/xflow';
 import Flowchart from './graph';
 
 export { ToolbarPanel } from './components/toolbar';
-export {
-  FormPanel,
-  FormWrapper,
-  EditorPanels,
-  NodeService,
-  EdgeService,
-  GroupService,
-  CanvasService,
-} from './components/editor-panel';
 
 export {
   Flowchart,
@@ -35,6 +33,8 @@ export {
   useXFlowApp,
   XFlowEdgeCommands,
   createKeybindingConfig,
+  FormPanel,
+  FormWrapper,
 };
 
 export * from './interface';

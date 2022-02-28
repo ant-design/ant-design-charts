@@ -1,32 +1,28 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import {
   XFlow,
-  XFlowCanvas,
+  // XFlowCanvas,
+  FlowchartCanvas,
   CanvasContextMenu,
   KeyBindings,
   uuidv4,
+  FlowchartNodePanel,
+  FlowchartFormPanel,
+  CanvasScaleToolbar,
   // CanvasMiniMap,
 } from '@antv/xflow';
-import { NodeTreePanel } from '../components/canvas-node-tree-panel';
-import { CanvasScaleToolbar } from '../components/canvas-scale-toolbar';
-import { treeDataService, searchService, onNodeDrop } from '../components/node-panel';
-import { FormPanel } from '../components/editor-panel';
 import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
-import Theme from '../theme';
 import { setProps, setInstance, excLoadData } from '../util';
-import { useCmdConfig } from './service/command';
+import { useCmdConfig, useKeybindingConfig, useGraphHook } from './service';
 import { FlowchartProps, IFlowchartGraph as IGraph } from '../interface';
 import AppContext from '../context';
 import { appendUtils } from './appendUtils';
-import { useGraphConfig, useGraphHook } from './service';
-import { useKeybindingConfig } from './service/keyBinding';
 
 const Flowchart: React.FC<FlowchartProps> = (props) => {
   const {
     className,
     style,
-    theme = 'light',
     detailPanelProps,
     toolbarPanelProps,
     nodePanelProps = {},
@@ -35,19 +31,21 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     canvasProps = {},
     keyBindingProps,
     // miniMapProps = {},
+    onAddNode,
+    onAddEdge,
+    onConfigChange,
     onDestroy,
     onConfigReady,
     isAutoCenter,
     data,
     onReady,
-  } = props;
+  } = props as any;
   const uuidv4Ref = useRef<string>(uuidv4());
   const container = useRef<HTMLDivElement>();
   setProps(props, uuidv4Ref.current, container);
   const { position = { top: 40, left: 240, right: 240, bottom: 0 } } = canvasProps;
   // const { position: miniMapPosition = { bottom: 12, right: 12 }, show: showMinimMap = true } = miniMapProps;
   const graphRef = useRef<IGraph>();
-  const graphConfig = useGraphConfig(props);
   const menuConfig = useMenuConfig();
   const hookConfig = useGraphHook({
     flowchartId: uuidv4Ref.current,
@@ -75,7 +73,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{ theme: Theme[theme], flowchartId: uuidv4Ref.current }}>
+    <AppContext.Provider value={{ flowchartId: uuidv4Ref.current }}>
       <div
         className="xflow-canvas-container"
         data-flowchart-id={uuidv4Ref.current}
@@ -101,21 +99,15 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           }}
         >
           <ToolbarPanel {...toolbarPanelProps} flowchartId={uuidv4Ref.current} />
-          {nodePanelShow && (
-            <NodeTreePanel
-              flowchartId={uuidv4Ref.current}
-              searchService={searchService}
-              treeDataService={treeDataService}
-              onNodeDrop={onNodeDrop}
-              {...nodePanelProps}
-            />
-          )}
-          <XFlowCanvas config={graphConfig} position={position}>
-            {show && <CanvasScaleToolbar position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />}
+          {nodePanelShow && <FlowchartNodePanel {...nodePanelProps} />}
+          <FlowchartCanvas config={{ ...canvasProps, onAddNode, onAddEdge, onConfigChange }} position={position}>
+            {show && (
+              <CanvasScaleToolbar layout="vertical" position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />
+            )}
             {showMenu && <CanvasContextMenu config={menuConfig} />}
             {/* {showMinimMap && <CanvasMiniMap position={miniMapPosition} />} */}
-          </XFlowCanvas>
-          <FormPanel {...detailPanelProps} />
+          </FlowchartCanvas>
+          <FlowchartFormPanel {...detailPanelProps} />
           {keyBindingProps !== false && <KeyBindings config={keybindingConfig} />}
         </XFlow>
       </div>
