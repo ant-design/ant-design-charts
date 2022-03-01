@@ -33,6 +33,8 @@ export interface INodeTextConfig {
   opacity: number;
   dy: number;
   dx: number;
+  bgColor: string;
+  bdColor: string;
 }
 
 const NodeComponent: React.FC<IControlProps> = (props) => {
@@ -46,7 +48,6 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
     ...NodeConfig.normal,
     ...config,
   });
-
   const onNodeConfigChange = (key: string, value: number | string | boolean) => {
     setNodeConfig({
       ...nodeConfig,
@@ -63,7 +64,6 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
       ...config,
     });
   }, [config]);
-
   return (
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>
@@ -113,6 +113,22 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
             width={65}
             onChange={(value) => {
               onNodeConfigChange('textOpacity', value);
+            }}
+          />
+        </div>
+        <div className={`${PREFIX}-node-text-style`}>
+          <label style={{ color: '#888' }}>字体背景</label>
+          <ColorPicker
+            value={nodeConfig.bgColor}
+            onChange={(value: string) => {
+              onNodeConfigChange('bgColor', value);
+            }}
+          />
+          <label style={{ color: '#888' }}>字体边框</label>
+          <ColorPicker
+            value={nodeConfig.bdColor}
+            onChange={(value: string) => {
+              onNodeConfigChange('bdColor', value);
             }}
           />
         </div>

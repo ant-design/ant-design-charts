@@ -43,10 +43,17 @@ export const createRoundedPath = (paths: (string | number)[][]) => {
 
 // 将16进制表示颜色转变为gba表示
 // 例如 getGradientColor('#FF0000') ===> 'rgb(255, 0, 0)'
-export const getGradientColor = (color) => {
+export const getGradientColor = (color, opacity = 1) => {
   if (!color) return;
+  if (color.length === 4) {
+    let colorNew = '#';
+    for (let i = 1; i < 4; i += 1) {
+      colorNew += color.slice(i, i + 1).concat(color.slice(i, i + 1));
+    }
+    color = colorNew;
+  }
   const r = parseInt(color[1] + color[2], 16);
   const g = parseInt(color[3] + color[4], 16);
   const b = parseInt(color[5] + color[6], 16);
-  return `rgb(${r}, ${g}, ${b})`;
+  return `rgba(${r}, ${g}, ${b},${opacity})`;
 };
