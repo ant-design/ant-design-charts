@@ -36,6 +36,8 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     letterSpacing = stateNodeConfig.letterSpacing,
     bgColor = stateNodeConfig.bgColor,
     bdColor = stateNodeConfig.bdColor,
+    dx = stateNodeConfig.dx,
+    dy = stateNodeConfig.dy,
   } = data;
 
   const { width, height } = size;
@@ -86,6 +88,8 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
               fontStyle,
               textDecoration,
               border: `1px solid ${bdColor}`,
+              left: dx,
+              top: dy,
             }}
           >
             {label}
