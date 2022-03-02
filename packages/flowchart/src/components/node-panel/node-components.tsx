@@ -52,7 +52,6 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
   const fontStyle = isItalic ? 'italic' : 'normal';
   const textDecoration = isUnderline ? 'underline' : 'none';
   const textColor = getGradientColor(fontFill, textOpacity);
-
   return (
     <svg
       viewBox={`0 0 ${width / scale} ${height / scale}`}
@@ -80,6 +79,8 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
           <div
             className="flowchart-text"
             style={{
+              maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
+              maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
               backgroundColor: bgColor,
               fontSize,
               letterSpacing: letterSpacing,
