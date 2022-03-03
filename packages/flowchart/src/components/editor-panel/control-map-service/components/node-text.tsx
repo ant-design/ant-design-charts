@@ -15,6 +15,7 @@ import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, InputNumberFiled, InputOpacity, InputFontSpacing, InputFontPosition } from './fields';
 import { PREFIX } from '../constants';
 import { IControlProps } from '../interface';
+import { SelectField } from './fields';
 import './style.less';
 
 export interface INodeTextConfig {
@@ -35,6 +36,7 @@ export interface INodeTextConfig {
   dx: number;
   bgColor: string;
   bdColor: string;
+  fontFamily: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu';
 }
 
 const NodeComponent: React.FC<IControlProps> = (props) => {
@@ -66,6 +68,43 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
   }, [config]);
   return (
     <div className={`${PREFIX}-panel-body`}>
+      <div className={`${PREFIX}-panel-group`}>
+        <SelectField
+          label="字体"
+          width={150}
+          value={nodeConfig.fontFamily}
+          options={[
+            {
+              label: '微软雅黑',
+              value: 'microsoftYahei',
+            },
+            {
+              label: '仿宋',
+              value: 'fangsong',
+            },
+            {
+              label: '新宋体',
+              value: 'nsimSun',
+            },
+            {
+              label: '楷体',
+              value: 'kaiti',
+            },
+
+            {
+              label: '幼圆',
+              value: 'youyuan',
+            },
+            {
+              label: '隶书',
+              value: 'lisu',
+            },
+          ]}
+          onChange={(value) => {
+            onNodeConfigChange('fontFamily', value);
+          }}
+        />
+      </div>
       <div className={`${PREFIX}-panel-group`}>
         <InputFiled
           label="标题"

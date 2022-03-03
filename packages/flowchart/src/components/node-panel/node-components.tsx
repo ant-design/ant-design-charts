@@ -38,6 +38,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     bdColor = stateNodeConfig.bdColor,
     dx = stateNodeConfig.dx,
     dy = stateNodeConfig.dy,
+    fontFamily = stateNodeConfig.fontFamily,
   } = data;
 
   const { width, height } = size;
@@ -74,7 +75,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
           ></path>
         );
       })}
-      <foreignObject width={'100%'} height={'100%'}>
+      <foreignObject width={'100%'} height={'100%'} xmlns="http://www.w3.org/2000/svg">
         <div className={`flowchart-nodetext x-${textAnchor} y-${alignmentBaseline}`}>
           <div
             className="flowchart-text"
@@ -91,6 +92,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
               border: `1px solid ${bdColor}`,
               left: dx,
               top: dy,
+              fontFamily,
             }}
           >
             {label}
