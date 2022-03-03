@@ -69,6 +69,15 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
   return (
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>
+        <InputFiled
+          label="标题"
+          value={nodeConfig.label}
+          onChange={(value) => {
+            onNodeConfigChange('label', value);
+          }}
+        />
+      </div>
+      <div className={`${PREFIX}-panel-group`}>
         <SelectField
           label="字体"
           width={150}
@@ -102,15 +111,6 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
           ]}
           onChange={(value) => {
             onNodeConfigChange('fontFamily', value);
-          }}
-        />
-      </div>
-      <div className={`${PREFIX}-panel-group`}>
-        <InputFiled
-          label="标题"
-          value={nodeConfig.label}
-          onChange={(value) => {
-            onNodeConfigChange('label', value);
           }}
         />
       </div>
