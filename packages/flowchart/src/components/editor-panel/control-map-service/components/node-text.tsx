@@ -15,6 +15,7 @@ import { FormWrapper } from '../../form-wrapper';
 import { InputFiled, ColorPicker, InputNumberFiled, InputOpacity, InputFontSpacing, InputFontPosition } from './fields';
 import { PREFIX } from '../constants';
 import { IControlProps } from '../interface';
+import { SelectField } from './fields';
 import './style.less';
 
 export interface INodeTextConfig {
@@ -33,6 +34,9 @@ export interface INodeTextConfig {
   opacity: number;
   dy: number;
   dx: number;
+  bgColor: string;
+  bdColor: string;
+  fontFamily: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu';
 }
 
 const NodeComponent: React.FC<IControlProps> = (props) => {
@@ -46,7 +50,6 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
     ...NodeConfig.normal,
     ...config,
   });
-
   const onNodeConfigChange = (key: string, value: number | string | boolean) => {
     setNodeConfig({
       ...nodeConfig,
@@ -63,7 +66,6 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
       ...config,
     });
   }, [config]);
-
   return (
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>
@@ -72,6 +74,43 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
           value={nodeConfig.label}
           onChange={(value) => {
             onNodeConfigChange('label', value);
+          }}
+        />
+      </div>
+      <div className={`${PREFIX}-panel-group`}>
+        <SelectField
+          label="字体"
+          width={150}
+          value={nodeConfig.fontFamily}
+          options={[
+            {
+              label: '微软雅黑',
+              value: 'microsoftYahei',
+            },
+            {
+              label: '仿宋',
+              value: 'fangsong',
+            },
+            {
+              label: '新宋体',
+              value: 'nsimSun',
+            },
+            {
+              label: '楷体',
+              value: 'kaiti',
+            },
+
+            {
+              label: '幼圆',
+              value: 'youyuan',
+            },
+            {
+              label: '隶书',
+              value: 'lisu',
+            },
+          ]}
+          onChange={(value) => {
+            onNodeConfigChange('fontFamily', value);
           }}
         />
       </div>
@@ -113,6 +152,22 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
             width={65}
             onChange={(value) => {
               onNodeConfigChange('textOpacity', value);
+            }}
+          />
+        </div>
+        <div className={`${PREFIX}-node-text-style`}>
+          <label style={{ color: '#888' }}>字体背景</label>
+          <ColorPicker
+            value={nodeConfig.bgColor}
+            onChange={(value: string) => {
+              onNodeConfigChange('bgColor', value);
+            }}
+          />
+          <label style={{ color: '#888' }}>字体边框</label>
+          <ColorPicker
+            value={nodeConfig.bdColor}
+            onChange={(value: string) => {
+              onNodeConfigChange('bdColor', value);
             }}
           />
         </div>

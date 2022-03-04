@@ -4,7 +4,8 @@ import * as nodePathMap from './paths';
 import { AppContext } from './index';
 import { NODE_HEIGHT, NODE_WIDTH } from './constants';
 import { GradientComponent } from './gradient-component';
-
+import { getGradientColor } from './util';
+import './style.less';
 export const NodeComponent: NsGraph.INodeRender = (props) => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {}, name } = props;
   const {
@@ -33,15 +34,17 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
     textAnchor = stateNodeConfig.textAnchor,
     textOpacity = stateNodeConfig.textOpacity,
     letterSpacing = stateNodeConfig.letterSpacing,
-    dy = stateNodeConfig.dy,
+    bgColor = stateNodeConfig.bgColor,
+    bdColor = stateNodeConfig.bdColor,
     dx = stateNodeConfig.dx,
+    dy = stateNodeConfig.dy,
+    fontFamily = stateNodeConfig.fontFamily,
   } = data;
 
   const { width, height } = size;
   const scale = name === 'Text' ? 2 : 1;
   const getnodePath = nodePathMap[`${name.replace(/\s+/g, '')}NodePath`];
   const nodePath = getnodePath(props, rounded);
-
   //用于解决无法动态修改渐变颜色
   let uuid = '';
   if (isGradient) uuid = uuidv4();
@@ -49,17 +52,7 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
   const fontWeight = isBold ? 'bold' : 'normal';
   const fontStyle = isItalic ? 'italic' : 'normal';
   const textDecoration = isUnderline ? 'underline' : 'none';
-
-  //文本初始位置
-  let textX;
-  if (textAnchor === 'start') {
-    textX = 0;
-  } else if (textAnchor === 'middle') {
-    textX = width / (scale * 2);
-  } else {
-    textX = width;
-  }
-
+  const textColor = getGradientColor(fontFill, textOpacity);
   return (
     <svg
       viewBox={`0 0 ${width / scale} ${height / scale}`}
@@ -82,23 +75,30 @@ export const NodeComponent: NsGraph.INodeRender = (props) => {
           ></path>
         );
       })}
-      <text
-        x={textX}
-        y={height / (scale * 2)}
-        fill={fontFill}
-        textAnchor={textAnchor}
-        alignmentBaseline={alignmentBaseline}
-        fontSize={fontSize}
-        fontWeight={fontWeight}
-        fontStyle={fontStyle}
-        textDecoration={textDecoration}
-        opacity={textOpacity}
-        letterSpacing={letterSpacing}
-        dy={dy}
-        dx={dx}
-      >
-        {label}
-      </text>
+      <foreignObject width={'100%'} height={'100%'} xmlns="http://www.w3.org/2000/svg">
+        <div className={`flowchart-nodetext x-${textAnchor} y-${alignmentBaseline}`}>
+          <div
+            className="flowchart-text"
+            style={{
+              maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
+              maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
+              backgroundColor: bgColor,
+              fontSize,
+              letterSpacing: letterSpacing,
+              color: textColor,
+              fontWeight,
+              fontStyle,
+              textDecoration,
+              border: `1px solid ${bdColor}`,
+              left: dx,
+              top: dy,
+              fontFamily,
+            }}
+          >
+            {label}
+          </div>
+        </div>
+      </foreignObject>
       Sorry, your browser does not support inline SVG.
     </svg>
   );

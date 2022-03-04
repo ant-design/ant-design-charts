@@ -21,6 +21,7 @@ const SelectField: React.FC<IProps> = (props) => {
     <div className="group">
       <label>{label}</label>
       <Select
+        defaultValue="microsoftYahei"
         size="small"
         value={value}
         style={{
