@@ -10,7 +10,8 @@ import { NodePanelHeader } from './panel-header';
 import { NodePanelFooter } from './panel-footer';
 import { usePanelLyaoutStyle } from './utils';
 import { useTreePanelData } from './service';
-import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT, VISIBLIE_NODE_TYPES } from './constants';
+import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT } from './constants';
+import { BUILDIN_NODE_TYPES } from '../node-panel/constants';
 import { storage } from '../../util/stroage';
 
 export const NodeTreePanelMain: React.FC<IProps> = (props) => {
@@ -21,14 +22,21 @@ export const NodeTreePanelMain: React.FC<IProps> = (props) => {
     if (storage.hasItem('vsibleNodeTypes')) {
       initialState = storage.getItem('visibleNodeTypes');
     } else {
-      initialState = VISIBLIE_NODE_TYPES;
+      initialState = BUILDIN_NODE_TYPES;
+      const set = new Set<string>();
       //加入自定义节点的类型
-      initialState = initialState.concat(registerNode.map((item) => item.type));
+      initialState = initialState.concat(
+        registerNode.map((item) => {
+          if (BUILDIN_NODE_TYPES.includes(item.type)) throw new Error(`${item.type} is a build-in node type`);
+          if (set.has(item.type)) throw new Error('you cannot set two same register-node types');
+          set.add(item.type);
+          return item.type;
+        }),
+      );
     }
     return initialState;
   });
   const {
-    prefixClz,
     position = { width: 240, top: 0, bottom: 0, left: 0 },
     showHeader = true,
     showFooter = true,
