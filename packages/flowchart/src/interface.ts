@@ -9,6 +9,7 @@ import {
   IAppConfigReady,
   IApplication,
   KeybindingConfig,
+  IFlowchartGraphProps,
 } from '@antv/xflow';
 import { Cell, Graph } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
@@ -66,10 +67,7 @@ export interface NodePanelProps extends BaseProps {
   defaultActiveKey?: string[];
 }
 
-export interface CanvasProps extends BaseProps {
-  /** 节点位置 */
-  position?: IPosition;
-}
+export type CanvasProps = Omit<IFlowchartGraphProps, 'onAddNode' | 'onAddEdge' | 'onConfigChange'>;
 
 export type Command =
   | 'undo-cmd'
@@ -176,7 +174,7 @@ export interface FlowchartProps extends FlowchartContainerProps {
   /** 新增节点时回调 */
   onAddNode?: (node: NsGraph.INodeConfig) => void;
   /** 新增边时回调 */
-  onAddEdge?: (node: NsGraph.IEdgeConfig) => void;
+  onAddEdge?: (edge: NsGraph.IEdgeConfig) => void;
   /** xflow app 销毁前的回调 */
   onDestroy?: IAppDestroy;
   /** xflow app 初始化后的回调 */

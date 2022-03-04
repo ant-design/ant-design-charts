@@ -1,4 +1,10 @@
 {
   "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@antv/xflow-extension": ["node_modules/@antv/xflow-extension/"],
+      "@antv/xflow-core": ["node_modules/@antv/xflow-core/"]
+    }
+  },
   "include": ["src"]
 }

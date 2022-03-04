@@ -3,7 +3,6 @@ import {
   XFlowNodeCommands,
   XFlowEdgeCommands,
   NsNodeCmd,
-  NsEdgeCmd,
   MODELS,
   NsGraphCmd,
   XFlowGraphCommands,
