@@ -13,6 +13,6 @@ If you have any questions, suggestions, feedback or willingness to communicate, 
 
 *   Zhihu：https://zhuanlan.zhihu.com/aiux-antv
 
-*   DingTalk Group Number: 30233731
+*   DingTalk Group Number: 35686967
 
 <img src="https://gw.alipayobjects.com/zos/antfincdn/8qEHi7GiaN/G2Plot-dingding.JPG" width="200" height="266" />

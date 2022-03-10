@@ -13,6 +13,6 @@ order: 9
 
 *   知乎专栏：https://zhuanlan.zhihu.com/aiux-antv
 
-*   钉钉群组号码: 30233731
+*   钉钉群组号码: 35686967
 
 <img src="https://gw.alipayobjects.com/zos/antfincdn/8qEHi7GiaN/G2Plot-dingding.JPG" width="200" height="266" />
