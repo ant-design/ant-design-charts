@@ -1,7 +1,6 @@
 import { MutableRefObject } from 'react';
 import { IApplication } from '@antv/xflow';
 import { FlowchartProps, IFlowchartGraph as IGraph } from '../interface';
-import { useLongPress } from 'react-use';
 
 // 解决 xflow hooks 获取不到上层配置
 interface IGlobalProps {

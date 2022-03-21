@@ -21,7 +21,7 @@ export const ToolbarPanel: React.FC<FlowchartProps['toolbarPanelProps']> = (prop
       className={className}
       layout={layout}
       config={toolbarConfig}
-      style={{ borderBottom: '1px solid #ccc', ...style }}
+      style={{ borderBottom: '1px solid #d9d9d9', ...style }}
       position={position}
     />
   );

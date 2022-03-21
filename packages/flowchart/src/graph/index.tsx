@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import {
   XFlow,
-  // XFlowCanvas,
   FlowchartCanvas,
   CanvasContextMenu,
   KeyBindings,
@@ -9,6 +8,7 @@ import {
   FlowchartNodePanel,
   FlowchartFormPanel,
   CanvasScaleToolbar,
+  FlowchartExtension,
   // CanvasMiniMap,
 } from '@antv/xflow';
 import { ToolbarPanel } from '../components/toolbar';
@@ -38,6 +38,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     onConfigReady,
     isAutoCenter,
     data,
+    mode,
     onReady,
   } = props as any;
   const uuidv4Ref = useRef<string>(uuidv4());
@@ -89,20 +90,33 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           isAutoCenter={isAutoCenter}
           onAppConfigReady={onConfigReady}
           onLoad={async (app) => {
-            const X6Graph = await app.getGraphInstance();
+            const X6Graph = (await app.getGraphInstance()) as any;
             setInstance(X6Graph, app, uuidv4Ref.current);
-            // @ts-ignore
             X6Graph.flowchartId = uuidv4Ref.current;
             graphRef.current = X6Graph;
             loadData(app);
             onReady?.(appendUtils(X6Graph, app), app);
           }}
         >
+          <FlowchartExtension />
           <ToolbarPanel {...toolbarPanelProps} flowchartId={uuidv4Ref.current} />
           {nodePanelShow && <FlowchartNodePanel {...nodePanelProps} />}
-          <FlowchartCanvas config={{ ...canvasProps, onAddNode, onAddEdge, onConfigChange }} position={position}>
+          <FlowchartCanvas
+            config={{ ...canvasProps, onAddNode, onAddEdge, onConfigChange }}
+            mode={mode}
+            position={position}
+          >
             {show && (
-              <CanvasScaleToolbar layout="vertical" position={{ top: 12, right: 12 }} {...scaleToolbarPanelProps} />
+              <CanvasScaleToolbar
+                layout="horizontal"
+                position={{ top: 12, right: 12 }}
+                style={{
+                  width: 150,
+                  left: 'auto',
+                  background: 'transparent',
+                }}
+                {...scaleToolbarPanelProps}
+              />
             )}
             {showMenu && <CanvasContextMenu config={menuConfig} />}
             {/* {showMinimMap && <CanvasMiniMap position={miniMapPosition} />} */}
