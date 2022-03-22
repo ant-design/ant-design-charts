@@ -13,7 +13,8 @@
     "build:site": "lerna run build:site --stream",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "test-live":"lerna run test-live --stream --scope=@ant-design/flowchart"
   },
   "devDependencies": {
     "@antv/data-set": "^0.11.8",

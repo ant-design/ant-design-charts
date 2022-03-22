@@ -153,6 +153,12 @@ export interface FlowchartProps extends FlowchartContainerProps {
   nodePanelProps?: NodePanelProps;
   /** 画布主要区域配置 */
   canvasProps?: CanvasProps;
+  /**
+   * @title 画布状态
+   * @description scan 会禁用一些画布事件，例如连线、鼠标右键等
+   * @default "edit"
+   */
+  mode?: 'edit' | 'scan';
   /** toolbar */
   toolbarPanelProps?: ToolbarPanelProps;
   /** keyBinding */
