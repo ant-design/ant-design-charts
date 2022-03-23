@@ -12,15 +12,14 @@ import {
   FlowchartFormPanel as FormPanel,
   FlowchartFormWrapper as FormWrapper,
   // EditorPanels,
-  // NodeService,
-  // EdgeService,
-  // GroupService,
-  // CanvasService,
+  // FlowchartService,
 } from '@antv/xflow';
+// 临时方案
+import { EditorPanels, FlowchartService } from '@antv/xflow-extension';
 import Flowchart from './graph';
 
 export { ToolbarPanel } from './components/toolbar';
-
+const { NodeService, EdgeService, GroupService, CanvasService } = FlowchartService;
 export {
   Flowchart,
   WorkspacePanel,
@@ -35,6 +34,11 @@ export {
   createKeybindingConfig,
   FormPanel,
   FormWrapper,
+  EditorPanels,
+  NodeService,
+  EdgeService,
+  GroupService,
+  CanvasService,
 };
 
 export * from './interface';
