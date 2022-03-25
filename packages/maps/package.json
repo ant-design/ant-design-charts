@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/maps",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "maps",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -36,7 +36,7 @@
     "test-live": "cross-env DEBUG_MODE=1 jest --watch ./tests/maps/bubble-map.test.js --no-cache"
   },
   "dependencies": {
-    "@antv/l7plot": "^0.0.4",
+    "@antv/l7plot": "~0.0.8",
     "@antv/util": "^2.0.9",
     "react-content-loader": "^5.0.4"
   },
