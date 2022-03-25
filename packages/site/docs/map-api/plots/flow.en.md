@@ -77,7 +77,7 @@ order: 7
 
 ```js
 {
-  color: { fied: 'c', }
+  color: { field: 'c', }
 }
 ```
 
@@ -90,7 +90,7 @@ order: 7
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 'red': 'blue'
     }
@@ -115,7 +115,7 @@ order: 7
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
     scale: { type: 'quantile' }
   }
@@ -145,7 +145,7 @@ order: 7
     data: [{ startX: 58.00, startY: 32.84, endX: 85.7, endY: 25.161, c: 'red', t: 20, n: 'chengdu' }],
     parser: { type: 'json', x: 'startX', y: 'startY', x: 'endX', y: 'endY', }
   },
-  size: { fied: 't', }
+  size: { field: 't', }
 }
 ```
 
@@ -158,7 +158,7 @@ order: 7
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 15 : 12
     }
@@ -183,7 +183,7 @@ order: 7
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: [12, 15],
     scale: { type: 'quantile' }
   }

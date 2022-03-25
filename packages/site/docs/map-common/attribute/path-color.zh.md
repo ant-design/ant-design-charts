@@ -28,7 +28,7 @@
     parser: { type: 'json', coordinates: 'path', }
   },
   color: {
-    fied: 'c'
+    field: 'c'
   }
 }
 ```
@@ -42,7 +42,7 @@
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 'red': 'blue'
     }
@@ -67,7 +67,7 @@
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ['blue', 'red'],
     scale: {type: 'quantile'}
   }

@@ -20,7 +20,7 @@
     data: [{ lng: 104.101, lat: 30.649, s: 12, t: 20, n: 'chengdu' }],
     parser: { type: 'json', x: 'lng', y: 'lat' }
   },
-  size: { fied: 's' },
+  size: { field: 's' },
 }
 ```
 
@@ -33,7 +33,7 @@
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 15 : 12
     }
@@ -58,7 +58,7 @@
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: [12, 15],
     scale: { type: 'quantile' },
   }
