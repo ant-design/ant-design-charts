@@ -3,6 +3,11 @@ title: Advanced Plot
 order: 9
 ---
 
+---
+title: 高级图表 - Advanced Plot
+order: 9
+---
+
 <tag color="red" text="Unstable API">Unstable API</tag>
 
 `L7Plot` 是高级图表类，可以组合多个图层以及图表。
@@ -47,10 +52,12 @@ constructor(container: string | HTMLDivElement, options: L7PlotOptions)
 
 `string` optional default: `'amap'`
 
-地图类型，支持以下两种类型：
+地图底图类型，支持以下两种类型：
 
 *   amap: 高德地图
 *   mapbox: Mapbox 地图
+
+地图底图类型不同时，`map` 下面的有的配置项不相同，比如 `maxZoom`，AMap 最大缩放等级 18，Mapbox 最大缩放等级 20。除此之外还有，底图的交互状态配置，`zoomEnable`、`dragEnable`等。各配置项可详见各官网：高德地图 [配置项](https://lbs.amap.com/api/javascript-api/reference/map)；Mapbox 地图 [配置项](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters)。
 
 #### `map.`token
 
@@ -357,15 +364,15 @@ plot.getMap() : MapboxInstance | AMapInstance;
 添加图层。
 
 ```js
-plot.addLayer(layer: PLotLayer);
+plot.addLayer(layer: LayerConfigType | IPlotLayer);
 ```
 
-### getLayes
+### getLayers
 
 获取所有图层。
 
 ```js
-plot.getLayes(): PLotLayer[];
+plot.getLayers(): PlotLayer[];
 ```
 
 ### getLayerByName
@@ -373,7 +380,7 @@ plot.getLayes(): PLotLayer[];
 根据图层名称获取图层。
 
 ```js
-plot.getLayes(name: string): PLotLayer | undefined;
+plot.getLayerByName(name: string): PlotLayer | undefined;
 ```
 
 ### removeLayer
@@ -381,7 +388,15 @@ plot.getLayes(name: string): PLotLayer | undefined;
 移除图层。
 
 ```js
-plot.removeLayer(layer: PLotLayer);
+plot.removeLayer(layer: PlotLayer);
+```
+
+### removeLayerByName
+
+根据图层名称移除图层。
+
+```js
+plot.removeLayerByName(name: string);
 ```
 
 ### removeAllLayer
@@ -390,6 +405,46 @@ plot.removeLayer(layer: PLotLayer);
 
 ```js
 plot.removeAllLayer();
+```
+
+### addPlot
+
+添加图表。
+
+```js
+plot.addPlot(plotConfig: PlotConfigType);
+```
+
+### getPlots
+
+获取所有图表。
+
+```js
+plot.getPlots(): Plot[];
+```
+
+### getPlotByName
+
+根据图表名称获取图表。
+
+```js
+plot.getPlotByName(name: string): Plot | undefined;
+```
+
+### removePlotByName
+
+移除图表。
+
+```js
+plot.removePlotByName(name: string);
+```
+
+### removeAllPlot
+
+移除容器内所有的图表。
+
+```js
+plot.removeAllPlot();
 ```
 
 ### zoomIn

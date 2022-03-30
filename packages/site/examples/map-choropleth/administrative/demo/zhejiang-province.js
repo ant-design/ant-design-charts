@@ -10,7 +10,7 @@ const DemoChoroplethMap = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.1/administrative-data/area-list.json')
+    fetch('https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.2/administrative-data/area-list.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -56,6 +56,33 @@ const DemoChoroplethMap = () => {
       stroke: '#ccc',
       lineWidth: 0.6,
       lineOpacity: 1,
+    },
+    chinaBorder: {
+      // 国界
+      national: {
+        color: '#ccc',
+        width: 1,
+        opacity: 1,
+      },
+      // 争议
+      dispute: {
+        color: '#ccc',
+        width: 1,
+        opacity: 0.8,
+        dashArray: [2, 2],
+      },
+      // 海洋
+      coast: {
+        color: '#ccc',
+        width: 0.7,
+        opacity: 0.8,
+      },
+      // 港澳
+      hkm: {
+        color: 'gray',
+        width: 0.7,
+        opacity: 0.8,
+      },
     },
     label: {
       visible: true,

@@ -12,7 +12,7 @@
 | sourceColor | 渐变起点颜色           | `string`           |         | optional |
 | targetColor | 渐变终点颜色           | `string`           |         | optional |
 
-> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
+> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。dashArray 设为 `[0,0]` 的效果为没有虚线。
 
 ```js
 {

@@ -47,7 +47,7 @@ order: 2
 
 ```js
 {
-  color: { fied: 'c', }
+  color: { field: 'c', }
 }
 ```
 
@@ -60,7 +60,7 @@ order: 2
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 'red': 'blue'
     }
@@ -85,7 +85,7 @@ order: 2
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
     scale: { type: 'quantile' }
   }

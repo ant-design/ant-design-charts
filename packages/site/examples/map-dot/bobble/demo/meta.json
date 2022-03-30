@@ -1,0 +1,40 @@
+{
+  "title": {
+    "zh": "分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "air-temperature.js",
+      "title": {
+        "zh": "国内气温气泡",
+        "en": "Air bubble map of China"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/gozHK9LNFl/d37bc490-722b-4b73-a627-3c261b0401d2.png"
+    },
+    {
+      "filename": "distribution-cities.js",
+      "title": {
+        "zh": "全国城市与区县分布",
+        "en": "Distribution of cities, districts and counties in China"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/RGpOaNlkdd/1c099806-c02a-4b03-8dfe-788e982b822b.png"
+    },
+    {
+      "filename": "earthquake-level.js",
+      "title": {
+        "zh": "地震等级",
+        "en": "Earthquake level"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/JVdKQHfpZC/d3287038-6329-4bdd-8471-c830d5daf52f.png"
+    },
+    {
+      "filename": "animate.js",
+      "title": {
+        "zh": "全国交通事件气泡动画",
+        "en": "National traffic event bubble animation"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/dTdD4KQGvH/06e323e4-92ce-40d9-a58f-837adbce5f26.png"
+    }
+  ]
+}

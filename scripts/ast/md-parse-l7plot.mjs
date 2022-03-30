@@ -13,7 +13,7 @@ const setCode = (fileInfo) => {
   const { chartName, plotName, utilName, dataSet, code } = fileInfo;
   return `import React, { useState, useEffect }from 'react';
   import ReactDOM from 'react-dom';
-  import {${plotName}} from '@ant-design/charts';
+  import {${plotName}} from '@ant-design/maps';
   ${utilName ? `import { ${utilName} } from '@antv/util';` : ''}
   ${dataSet ? `import { ${dataSet} } from '@antv/data-set';` : ''}
   
