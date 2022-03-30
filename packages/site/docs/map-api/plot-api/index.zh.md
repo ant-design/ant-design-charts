@@ -47,10 +47,12 @@ constructor(container: string | HTMLDivElement, options: PlotOptions)
 
 `string` optional default: `'amap'`
 
-地图类型，支持以下两种类型：
+地图底图类型，支持以下两种类型：
 
 *   amap: 高德地图
 *   mapbox: Mapbox 地图
+
+地图底图类型不同时，`map` 下面的有的配置项不相同，比如 `maxZoom`，AMap 最大缩放等级 18，Mapbox 最大缩放等级 20。除此之外还有，底图的交互状态配置，`zoomEnable`、`dragEnable`等。各配置项可详见各官网：高德地图 [配置项](https://lbs.amap.com/api/javascript-api/reference/map)；Mapbox 地图 [配置项](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters)。
 
 #### `map.`token
 
@@ -315,15 +317,15 @@ plot.getMap() : MapboxInstance | AMapInstance;
 添加图层。
 
 ```js
-plot.addLayer(layer: PLotLayer);
+plot.addLayer(layer: PlotLayer);
 ```
 
-### getLayes
+### getLayers
 
 获取所有图层。
 
 ```js
-plot.getLayes(): PLotLayer[];
+plot.getLayers(): PlotLayer[];
 ```
 
 ### getLayerByName
@@ -331,7 +333,7 @@ plot.getLayes(): PLotLayer[];
 根据图层名称获取图层。
 
 ```js
-plot.getLayes(name: string): PLotLayer | undefined;
+plot.getLayerByName(name: string): PlotLayer | undefined;
 ```
 
 ### removeLayer
@@ -339,7 +341,7 @@ plot.getLayes(name: string): PLotLayer | undefined;
 移除图层。
 
 ```js
-plot.removeLayer(layer: PLotLayer);
+plot.removeLayer(layer: PlotLayer);
 ```
 
 ### removeAllLayer
@@ -380,6 +382,22 @@ plot.setPitch(pitch: number);
 
 ```js
 plot.fitBounds(bound: Bounds);
+```
+
+### setMapStatus
+
+设置地图交互操作状态，可用来关闭地图的一些交互操作，缩放、平移、旋转等。
+
+```js
+plot.setMapStatus(status: MapStatusOptions);
+```
+
+### setBgColor
+
+设置容器的背景色。
+
+```js
+plot.setBgColor(color: string);
 ```
 
 ### addZoomControl
@@ -448,8 +466,26 @@ plot.removeLegendControl();
 
 ### exportPng
 
+导出地图，目前仅支持导出可视化层，不支持底图导出。
+
 ```js
-plot.exportPng(type?: 'png' | 'jpg');
+plot.exportPng(type?: 'png' | 'jpg'): string;
+```
+
+### addToScene
+
+添加到容器，用于 L7 Scene 与图表混合使用场景。
+
+```js
+plot.addToScene(scene: Scene);
+```
+
+### removeFromScene
+
+从容器上移除，用于 L7 Scene 与图表混合使用场景。
+
+```js
+plot.removeFromScene();
 ```
 
 ### on
@@ -565,7 +601,7 @@ params:
 *   image: `HTMLImageElement|File|string`
 
 ```js
-import { registerImage } from '@ant-design/maps';
+import { registerImage } from '@ant-design/charts';
 
 registerImage('01', 'https://l7plot.antv.vision/xxx.svg');
 ```
@@ -581,7 +617,7 @@ params:
     *   image: `HTMLImageElement|File|string`
 
 ```js
-import { registerImages } from '@ant-design/maps';
+import { registerImages } from '@ant-design/charts';
 
 const images = [{ id: '01', image: 'https://l7plot.antv.vision/xxx.svg' }];
 registerImages(images);
@@ -599,7 +635,7 @@ params:
 *   fontPath: `string`
 
 ```js
-import { registerFontFace } from '@ant-design/maps';
+import { registerFontFace } from '@ant-design/charts';
 
 registerFontFace('iconfont', 'https://l7plot.antv.vision/xxx.woff2');
 ```
@@ -616,7 +652,7 @@ params:
 *   fontUnicode: `string`
 
 ```js
-import { registerIconFont } from '@ant-design/maps';
+import { registerIconFont } from '@ant-design/charts';
 
 registerIconFont('icon1', '&#xe64b;');
 ```
@@ -632,7 +668,7 @@ params:
     *   fontUnicode: `string`
 
 ```js
-import { registerIconFonts } from '@ant-design/maps';
+import { registerIconFonts } from '@ant-design/charts';
 
 const iconFonts = [{ name: 'icon1', fontUnicode: '&#xe64b;' }];
 registerIconFonts(iconFonts);

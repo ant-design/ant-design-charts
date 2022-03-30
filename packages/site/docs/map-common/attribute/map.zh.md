@@ -8,10 +8,12 @@
 
 `string` optional default: `'amap'`
 
-地图类型，支持以下两种类型：
+地图底图类型，支持以下两种类型：
 
 *   amap: 高德地图
 *   mapbox: Mapbox 地图
+
+地图底图类型不同时，`map` 下面的有的配置项不相同，比如 `maxZoom`，AMap 最大缩放等级 18，Mapbox 最大缩放等级 20。除此之外还有，底图的交互状态配置，`zoomEnable`、`dragEnable`等。各配置项可详见各官网：高德地图 [配置项](https://lbs.amap.com/api/javascript-api/reference/map)；Mapbox 地图 [配置项](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters)。
 
 #### `map.`token
 

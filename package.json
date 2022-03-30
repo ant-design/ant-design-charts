@@ -14,7 +14,7 @@
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "bootstrap": "lerna bootstrap",
-    "test-live":"lerna run test-live --stream --scope=@ant-design/flowchart"
+    "test-live": "lerna run test-live --stream --scope=@ant-design/flowchart"
   },
   "devDependencies": {
     "@antv/data-set": "^0.11.8",
@@ -82,6 +82,11 @@
   "sideEffects": false,
   "license": "MIT",
   "dependencies": {
-    "less-plugin-npm-import": "^2.1.0"
+    "less-plugin-npm-import": "^2.1.0",
+    "remark-frontmatter": "^4.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-stringify": "^10.0.2",
+    "to-vfile": "^7.2.3",
+    "unified": "^10.1.2"
   }
 }

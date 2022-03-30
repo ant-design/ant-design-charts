@@ -45,7 +45,7 @@ order: 9
 ```js
 {
   geoArea: {
-    url: 'https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.1/choropleth-data',
+    url: 'https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.2/choropleth-data',
     type: 'topojson',
   },
 }
@@ -67,16 +67,34 @@ order: 9
 | 属性        | 描述                                       | 类型                | 默认值     | 是否必填 |
 | ----------- | ------------------------------------------ | ------------------- | ---------- | -------- |
 | sourceField | 业务元数据地理字段                         | `string`            |            | required |
-| geoField    | 地理数据字段                               | `string`            | `'adcode'` | optional |
+| geoField    | 地理数据字段                               | `'adcode'｜'name'`  | `'adcode'` | optional |
 | geoData     | 地理数据，设置则覆盖当前层级的行政地址数据 | `FeatureCollection` |            | optional |
+
+业务数据与地理数据关联主要有以下两种方式。行政名称与编码映射关系详见[行政名称表格](https://www.yuque.com/antv/qbux5m/wrxc8h#yyIb)与[行政名称数据](https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.2/administrative-data/area-list.json)。
+
+1.  根据行政编码匹配渲染
 
 ```js
 {
   source: {
-    data: [{ name: '上海市', code: 310000, value: 200 }],
+    data: [{ cityName: '上海市', code: 310000, value: 200 }],
     joinBy: {
       sourceField: 'code',
       geoField: 'adcode',
+    },
+  },
+}
+```
+
+2.  根据行政名称匹配渲染
+
+```js
+{
+  source: {
+    data: [{ cityName: '上海市', code: 310000, value: 200 }],
+    joinBy: {
+      sourceField: 'cityName',
+      geoField: 'name',
     },
   },
 }
@@ -122,7 +140,7 @@ order: 9
 
 ```js
 {
-  color: { fied: 'c', }
+  color: { field: 'c', }
 }
 ```
 
@@ -135,7 +153,7 @@ order: 9
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 'red': 'blue'
     }
@@ -160,7 +178,7 @@ order: 9
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
     scale: { type: 'quantile' }
   }
@@ -174,23 +192,24 @@ order: 9
 
 区域样式，AreaLayerStyle 配置如下：
 
-| 属性        | 描述                       | 类型               | 默认值      | 是否必填 |
-| ----------- | -------------------------- | ------------------ | ----------- | -------- |
-| opacity     | 填充透明度                 | `number`           | `1`         | optional |
-| stroke      | 边线描边颜色               | `string`           | `'#2f54eb'` | optional |
-| strokeWidth | 描边的宽度                 | `number`           | `1.5`       | optional |
-| lineOpacity | 描边透明度                 | `number`           | `0.8`       | optional |
-| lineType    | 描边线类型，支持实线与虚线 | `‘solid’｜'dash'`  | `‘solid’`   | optional |
-| dashArray   | 虚线间隔                   | `[number, number]` |             | optional |
+| 属性            | 描述                                 | 类型               | 默认值      | 是否必填 |
+| --------------- | ------------------------------------ | ------------------ | ----------- | -------- |
+| opacity         | 填充透明度                           | `number`           | `1`         | optional |
+| fillBottomColor | 填充兜底颜色，用于颜色值映值不存在时 | `false｜string`    | `false`     | optional |
+| stroke          | 描边颜色                             | `string`           | `'#2f54eb'` | optional |
+| lineWidth       | 描边的宽度                           | `number`           | `1.5`       | optional |
+| lineOpacity     | 描边透明度                           | `number`           | `0.8`       | optional |
+| lineType        | 描边线类型，支持实线与虚线           | `‘solid’｜'dash'`  | `‘solid’`   | optional |
+| lineDash        | 描边的虚线间隔                       | `[number, number]` |             | optional |
 
-> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
+> lineDash: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
 
 ```js
 {
   style: {
     opacity: 0.8,
     stroke: 'white',
-    strokeWidth: 2,
+    lineWidth: 2,
   }
 }
 ```
@@ -281,15 +300,22 @@ AreaLayerActiveOptions 配置如下：
 
 ### `options.`chinaBorder
 
-`boolean` optional default: `ture`
+`boolean｜ChinaBoundaryStyle` optional default: `ture`
 
-是否显示中国国界线。
+是否显示中国国界线，国界线样式 ChinaBoundaryStyle 配置如下：
+
+| 属性     | 描述 | 类型                     | 默认值                                                      | 是否必填 |
+| -------- | ---- | ------------------------ | ----------------------------------------------------------- | -------- |
+| national | 国界 | `LinesLayerStyleOptions` | `{ color: 'red', width: 1, opacity: 1 }`                    | optional |
+| dispute  | 争议 | `LinesLayerStyleOptions` | `{ color: 'red', width: 1, opacity: 1, dashArray: [1, 6] }` | optional |
+| coast    | 海洋 | `LinesLayerStyleOptions` | `{ color: 'blue', width: 1, opacity: 1 }`                   | optional |
+| hkm      | 港澳 | `LinesLayerStyleOptions` | `{ color: 'gray', width: 1, opacity: 1 }`                   | optional |
 
 ### `options.`drill
 
 `Drill` optional
 
-数据钻取配置，Drill 配置如下：
+开启数据钻取功能，Drill 配置如下：
 
 | 属性        | 描述               | 类型                                                                                                                           | 默认值    | 是否必填 |
 | ----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------ | --------- | -------- |
@@ -422,7 +448,7 @@ DrillStepConfig 配置如下：
 
 ### changeView
 
-更新显示区域。
+更新显示区域，未开启[钻取功能](/zh/docs/map-api/plots/choropleth#`options.`drill)时，方法控制地图显示区域。
 
 ```js
 plot.changeView(view: ViewLevel, config?: DrillStepConfig);
@@ -430,18 +456,26 @@ plot.changeView(view: ViewLevel, config?: DrillStepConfig);
 
 ### drillDown
 
-向下钻取方法。
+向下钻取方法，配合开启[钻取功能](/zh/docs/map-api/plots/choropleth#`options.`drill)时，方法控制地图下钻。
 
 ```js
 plot.drillDown(view: ViewLevel, config?: DrillStepConfig);
 ```
 
-### drillDown
+### drillUp
 
-向上钻取方法。
+向上钻取方法，配合开启[钻取功能](/zh/docs/map-api/plots/choropleth#`options.`drill)时，方法控制地图上钻。上钻行政级别 `level` 可选，默认上钻到当前行政级别的上一层，也可以回到某一行政级别或最高层级别。
 
 ```js
-plot.drillDown(config?: DrillStepConfig);
+plot.drillUp(config?: DrillStepConfig, level?: `'world'｜'country'｜'province'｜'city'`);
+```
+
+### getCurrentDrillSteps
+
+获取当前已钻取层级数据，配合开启[钻取功能](/zh/docs/map-api/plots/choropleth#`options.`drill)时使用。
+
+```js
+plot.getCurrentDrillSteps(): ViewLevel[];
 ```
 
 ## 四、事件

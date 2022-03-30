@@ -68,7 +68,7 @@ order: 6
 
 ```js
 {
-  color: { fied: 'c', }
+  color: { field: 'c', }
 }
 ```
 
@@ -81,7 +81,7 @@ order: 6
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 'red': 'blue'
     }
@@ -106,7 +106,7 @@ order: 6
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
     scale: { type: 'quantile' }
   }
@@ -132,7 +132,7 @@ order: 6
 
 ```js
 {
-  size: { fied: 't', }
+  size: { field: 't', }
 }
 ```
 
@@ -145,7 +145,7 @@ order: 6
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 15 : 12
     }
@@ -170,7 +170,7 @@ order: 6
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: [12, 15],
     scale: { type: 'quantile' },
   }
@@ -190,7 +190,7 @@ order: 6
 | lineType  | 线类型，支持实线与虚线 | `‘solid’｜'dash'`  | ‘solid’ | optional |
 | dashArray | 虚线间隔               | `[number, number]` |         | optional |
 
-> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
+> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。dashArray 设为 `[0,0]` 的效果为没有虚线。
 
 ```js
 {

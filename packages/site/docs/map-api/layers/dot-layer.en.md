@@ -76,7 +76,7 @@ registerImages(images);
     data: [{ lng: 104.101, lat: 30.649, s: '01', n: 'chengdu' }],
     parser: { type: 'json', x: 'lng', y: 'lat' }
   },
-  shape: 's',
+  shape: '01',
 }
 ```
 
@@ -92,7 +92,7 @@ registerImages(images);
     data: [{ lng: 104.101, lat: 30.649, s: 'circle', t: 24.6, n: 'chengdu' }],
     parser: { type: 'json', x: 'lng', y: 'lat' }
   },
-  shape: { fied: 's', }
+  shape: { field: 's', }
 }
 ```
 
@@ -105,7 +105,7 @@ registerImages(images);
 ```js
 {
   shape: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 'triangle': 'circle'
     }
@@ -130,7 +130,7 @@ registerImages(images);
 ```js
 {
   shape: {
-    fied: 't',
+    field: 't',
     value: ['circle', 'triangle'],
     scale: { type: 'quantile' }
   }
@@ -156,7 +156,7 @@ registerImages(images);
 
 ```js
 {
-  color: { fied: 'c', }
+  color: { field: 'c', }
 }
 ```
 
@@ -169,7 +169,7 @@ registerImages(images);
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 'red': 'blue'
     }
@@ -194,7 +194,7 @@ registerImages(images);
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
     scale: { type: 'quantile' }
   }
@@ -224,7 +224,7 @@ registerImages(images);
     data: [{ lng: 104.101, lat: 30.649, s: 12, t: 20, n: 'chengdu' }],
     parser: { type: 'json', x: 'lng', y: 'lat' }
   },
-  size: { fied: 's' },
+  size: { field: 's' },
 }
 ```
 
@@ -237,7 +237,7 @@ registerImages(images);
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 15 : 12
     }
@@ -262,7 +262,7 @@ registerImages(images);
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: [12, 15],
     scale: { type: 'quantile' },
   }

@@ -46,11 +46,40 @@ DOM 容器自定义 className 。
 
 自定义 legend 样式。
 
+<tag color="green" text="分类图例">分类图例</tag> CSS 样式自定义：
+
+```ts
+{
+  domStyles: {
+    'l7plot-legend__category'?: CSSProperties;
+    'l7plot-legend__title'?: CSSProperties;
+    'l7plot-legend__category-list'?: CSSProperties;
+    'l7plot-legend__list-item'?: CSSProperties;
+    'l7plot-legend__category-marker'?: CSSProperties;
+    'l7plot-legend__category-value'?: CSSProperties;
+  }
+}
+```
+
+<tag color="cyan" text="连续图例">连续图例</tag> CSS 样式自定义：
+
+```ts
+{
+  domStyles: {
+    'l7plot-legend__continue'?: CSSProperties;
+    'l7plot-legend__title'?: CSSProperties;
+    'l7plot-legend__ribbon'?: CSSProperties;
+    'l7plot-legend__gradient-bar'?: CSSProperties;
+    'l7plot-legend__value-range'?: CSSProperties;
+  }
+}
+```
+
 ## `legend.`items
 
-`ICategoryLegendListItem[]` optional
+`CategoryLegendListItem[]` optional
 
-适用于 <tag color="green" text="分类图例">分类图例</tag>，自定义配置图例项的内容。*ICategoryLegendListItem* 配置如下：
+适用于 <tag color="green" text="分类图例">分类图例</tag>，自定义配置图例项的内容。*CategoryLegendListItem* 配置如下：
 
 | 参数名 | 类型   | 是否必选 | 默认值 | 描述             |
 | ------ | ------ | -------- | ------ | ---------------- |
@@ -82,5 +111,5 @@ DOM 容器自定义 className 。
 
 自定义 legend 内容。
 
-*   分类图例 *CategoryLegendCustomContent*: `(title: string, items: ILegendListItem[]) => string|HTMLElement`
-*   连续图例 *ContinueLegendCustomContent*: `(title: string, min: number, max: number, colors: string[]) => string | HTMLElement`
+*   分类图例 *CategoryLegendCustomContent*: `(title: string, items: ILegendListItem[]) => stringHTML | HTMLElement`
+*   连续图例 *ContinueLegendCustomContent*: `(title: string, min: number, max: number, colors: string[]) => stringHTML | HTMLElement`

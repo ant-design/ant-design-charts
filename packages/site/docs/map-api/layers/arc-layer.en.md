@@ -60,7 +60,7 @@ order: 7
 
 ```js
 {
-  color: { fied: 'c', }
+  color: { field: 'c', }
 }
 ```
 
@@ -73,7 +73,7 @@ order: 7
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 'red': 'blue'
     }
@@ -98,7 +98,7 @@ order: 7
 ```js
 {
   color: {
-    fied: 't',
+    field: 't',
     value: ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'],
     scale: { type: 'quantile' }
   }
@@ -128,7 +128,7 @@ order: 7
     data: [{ startX: 58.00, startY: 32.84, endX: 85.7, endY: 25.161, c: 'red', t: 20, n: 'chengdu' }],
     parser: { type: 'json', x: 'startX', y: 'startY', x: 'endX', y: 'endY', }
   },
-  size: { fied: 't', }
+  size: { field: 't', }
 }
 ```
 
@@ -141,7 +141,7 @@ order: 7
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 15 : 12
     }
@@ -166,7 +166,7 @@ order: 7
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: [12, 15],
     scale: { type: 'quantile' }
   }
@@ -188,7 +188,7 @@ order: 7
 | sourceColor | 渐变起点颜色           | `string`           |         | optional |
 | targetColor | 渐变终点颜色           | `string`           |         | optional |
 
-> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为 `[0,0]` 的效果为没有虚线。
+> dashArray: 虚线间隔，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。dashArray 设为 `[0,0]` 的效果为没有虚线。
 
 ```js
 {
