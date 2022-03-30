@@ -10,7 +10,7 @@ const DemoChoroplethMap = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.1/administrative-data/area-list.json')
+    fetch('https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.2/administrative-data/area-list.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
