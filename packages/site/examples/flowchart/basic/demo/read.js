@@ -757,6 +757,7 @@ const DemoFlowchart = () => {
     <div style={{ height: 600 }}>
       <Flowchart
         data={DATA}
+        mode="scan"
         toolbarPanelProps={{
           show: false,
           position: {

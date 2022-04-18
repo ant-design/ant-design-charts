@@ -169,6 +169,12 @@ form 表单
 
 右键菜单
 
+#### mode
+
+<description>**optional** *'edit'|'scan'* </description>
+
+默认 `edit` 模式， `scan` 模式下部分交互事件会被禁用。
+
 ### 事件
 
 #### onReady
