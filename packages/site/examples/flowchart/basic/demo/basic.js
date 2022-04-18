@@ -23,6 +23,9 @@ const DemoFlowchart = () => {
             top: -40,
           },
           style: {
+            width: 150,
+            height: 39,
+            left: 'auto',
             background: 'transparent',
           },
         }}
