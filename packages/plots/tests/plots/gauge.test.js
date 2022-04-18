@@ -1,7 +1,7 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Gauge from '../../src/plots/gauge';
 import ChartLoading from '../../src/util/createLoading';
@@ -92,7 +92,8 @@ describe('Gauge render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Gauge {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Gauge {...props} {...chartProps} />);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -114,7 +115,8 @@ describe('Gauge render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Gauge {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Gauge {...props} {...chartProps} />);
     });
     expect(chartRef.current.chart.views[0].getData()).toEqual([{ percent: 0.75 }]);
   });
@@ -130,7 +132,8 @@ describe('Gauge render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Gauge {...props} {...chartProps} ref={refs} />, container);
+      const root = createRoot(container);
+      root.render(<Gauge {...props} {...chartProps} ref={refs} />);
     });
     expect(refs.current.getChart().chart.views[0].getData()).toEqual([{ percent: 0.75 }]);
   });

@@ -50,7 +50,8 @@ describe('use chart', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<Pie {...props} />, container);
+      const root = createRoot(container);
+      root.render(<Pie {...props} />);
     });
     // chartRef 存在，图表一定渲染。
     expect(chartRef).not.toBeUndefined();
@@ -83,7 +84,8 @@ describe('use chart', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<Pie {...props} />, container);
+      const root = createRoot(container);
+      root.render(<Pie {...props} />);
     });
     expect(readyChart).not.toBeUndefined();
     readyChart.chart.showTooltip({ x: 10, y: 10 });
@@ -190,7 +192,8 @@ describe('use chart', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<Pie {...props} />, container);
+      const root = createRoot(container);
+      root.render(<Pie {...props} />);
     });
     // chartRef 存在，图表一定渲染。
     expect(chartRef).not.toBeUndefined();
@@ -226,7 +229,8 @@ describe('use chart', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<Pie {...props} />, container);
+      const root = createRoot(container);
+      root.render(<Pie {...props} />);
     });
     // chartRef 存在，图表一定渲染。
     expect(chartRef).not.toBeUndefined();
@@ -258,7 +262,8 @@ describe('use chart', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<Pie {...props} />, container);
+      const root = createRoot(container);
+      root.render(<Pie {...props} />);
     });
     // chartRef 存在，图表一定渲染。
     expect(chartRef).not.toBeUndefined();
@@ -306,7 +311,8 @@ describe('use chart', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<Pie {...props} />, container);
+      const root = createRoot(container);
+      root.render(<Pie {...props} />);
     });
     // chartRef 存在，图表一定渲染。
     expect(chartRef).not.toBeUndefined();

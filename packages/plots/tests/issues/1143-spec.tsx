@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Column from '../../src/components/column';
 
@@ -44,7 +44,8 @@ describe('loading theme', () => {
       pixelRatio: 1,
     };
     act(() => {
-      ReactDOM.render(<Column {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Column {...props} {...chartProps} />);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');

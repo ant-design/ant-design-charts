@@ -1,7 +1,7 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import RadialBar from '../../src/plots/radialBar';
 import ChartLoading from '../../src/util/createLoading';
@@ -104,7 +104,8 @@ describe('RadialBar render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<RadialBar {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<RadialBar {...props} {...chartProps} />);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -128,7 +129,8 @@ describe('RadialBar render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<RadialBar {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<RadialBar {...props} {...chartProps} />);
     });
     expect(chartRef.current.chart.getData()).toEqual(data);
   });
@@ -146,7 +148,8 @@ describe('RadialBar render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<RadialBar {...props} {...chartProps} ref={refs} />, container);
+      const root = createRoot(container);
+      root.render(<RadialBar {...props} {...chartProps} ref={refs} />);
     });
     expect(refs.current.getChart().chart.getData()).toEqual(data);
   });

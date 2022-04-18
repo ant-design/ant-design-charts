@@ -1,7 +1,7 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import RingProgress from '../../src/plots/ringProgress';
 import ChartLoading from '../../src/util/createLoading';
@@ -90,7 +90,8 @@ describe('RingProgress render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<RingProgress {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<RingProgress {...props} {...chartProps} />);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -115,7 +116,8 @@ describe('RingProgress render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<RingProgress {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<RingProgress {...props} {...chartProps} />);
     });
     expect(chartRef.current.chart.getData()).toEqual([
       { type: 'current', percent: 0.25 },
@@ -134,7 +136,8 @@ describe('RingProgress render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<RingProgress {...props} {...chartProps} ref={refs} />, container);
+      const root = createRoot(container);
+      root.render(<RingProgress {...props} {...chartProps} ref={refs} />);
     });
     expect(refs.current.getChart().chart.getData()).toEqual([
       { type: 'current', percent: 0.25 },

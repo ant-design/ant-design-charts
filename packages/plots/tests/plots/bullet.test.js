@@ -1,7 +1,8 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Bullet from '../../src/plots/bullet';
 import ChartLoading from '../../src/util/createLoading';
@@ -106,7 +107,8 @@ describe('Bullet render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Bullet {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Bullet {...props} {...chartProps} />);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -136,7 +138,8 @@ describe('Bullet render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Bullet {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Bullet {...props} {...chartProps} />);
     });
     expect(chartRef.current.chart.getData()).toEqual([
       { rKey: 'ranges_0', title: '满意度', ranges: 100 },
@@ -160,7 +163,8 @@ describe('Bullet render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Bullet {...props} {...chartProps} ref={refs} />, container);
+      const root = createRoot(container);
+      root.render(<Bullet {...props} {...chartProps} ref={refs} />);
     });
     expect(refs.current.getChart().chart.getData()).toEqual([
       { rKey: 'ranges_0', title: '满意度', ranges: 100 },

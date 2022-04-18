@@ -1,7 +1,7 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Waterfall from '../../src/plots/waterfall';
 import ChartLoading from '../../src/util/createLoading';
@@ -102,7 +102,8 @@ describe('Waterfall render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Waterfall {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Waterfall {...props} {...chartProps} />);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -127,7 +128,8 @@ describe('Waterfall render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Waterfall {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Waterfall {...props} {...chartProps} />);
     });
     // 总计会增加一条数据
     expect(chartRef.current.chart.getData().length).toBe(data.length + 1);
@@ -146,7 +148,8 @@ describe('Waterfall render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Waterfall {...props} {...chartProps} ref={refs} />, container);
+      const root = createRoot(container);
+      root.render(<Waterfall {...props} {...chartProps} ref={refs} />);
     });
     // 总计会增加一条数据
     expect(refs.current.getChart().chart.getData().length).toBe(data.length + 1);

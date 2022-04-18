@@ -1,7 +1,7 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Sankey from '../../src/plots/sankey';
 import ChartLoading from '../../src/util/createLoading';
@@ -108,7 +108,8 @@ describe('Sankey render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Sankey {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Sankey {...props} {...chartProps} />);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -133,7 +134,8 @@ describe('Sankey render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Sankey {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Sankey {...props} {...chartProps} />);
     });
     expect(chartRef.current.chart.views[0].getData().length).toBe(2);
   });
@@ -152,7 +154,8 @@ describe('Sankey render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Sankey {...props} {...chartProps} ref={refs} />, container);
+      const root = createRoot(container);
+      root.render(<Sankey {...props} {...chartProps} ref={refs} />);
     });
     expect(refs.current.getChart().chart.views[0].getData().length).toBe(2);
   });

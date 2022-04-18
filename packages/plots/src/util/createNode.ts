@@ -1,13 +1,14 @@
 import React from 'react';
 // @ts-ignore
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const createNode = (children: React.ReactNode, type?: string) => {
   const mountPoint = document.createElement('div');
   if (type === 'tooltip') {
     mountPoint.className = 'g2-tooltip';
   }
-  ReactDOM.render(children as React.ReactElement, mountPoint);
+  const root = createRoot(mountPoint);
+  root.render(children as React.ReactElement);
   return mountPoint;
 };
 

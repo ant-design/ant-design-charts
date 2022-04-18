@@ -1,7 +1,7 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import TinyColumn from '../../src/plots/tinyColumn';
 import ChartLoading from '../../src/util/createLoading';
@@ -91,7 +91,8 @@ describe('TinyColumn render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<TinyColumn {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<TinyColumn {...props} {...chartProps} />);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -121,7 +122,8 @@ describe('TinyColumn render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<TinyColumn {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<TinyColumn {...props} {...chartProps} />);
     });
     expect(chartRef.current.chart.getData()).toEqual([
       { x: '0', y: 274 },
@@ -145,7 +147,8 @@ describe('TinyColumn render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<TinyColumn {...props} {...chartProps} ref={refs} />, container);
+      const root = createRoot(container);
+      root.render(<TinyColumn {...props} {...chartProps} ref={refs} />);
     });
     expect(refs.current.getChart().chart.getData()).toEqual([
       { x: '0', y: 274 },

@@ -1,7 +1,7 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Area from '../../src/components/area';
 
@@ -45,7 +45,8 @@ describe('Area render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      const root = createRoot(container);
+      root.render(<Area {...props} {...chartProps} />);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
