@@ -183,7 +183,7 @@ export interface CardNodeCfg extends NodeCfg {
   /** 是否自动调节节点宽度 */
   autoWidth?: boolean;
   /** 自定义节点 */
-  customContent?: (item: CardItems, group: IGroup | undefined, cfg: CustomCfg) => number;
+  customContent?: (item: CardItems | OrgItem, group: IGroup | undefined, cfg: CustomCfg) => number;
 }
 
 // 卡片配置
@@ -192,6 +192,12 @@ export interface CardItems {
   value?: string | number;
   icon?: string;
 }
+/** 组织架构图 */
+export type OrgItem = {
+  name: string;
+  title?: string;
+  icon?: string;
+};
 export interface NodeData<T> {
   id: string;
   value: T;

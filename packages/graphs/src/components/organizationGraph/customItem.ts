@@ -1,8 +1,7 @@
 import G6, { IGroup, LabelStyle } from '@antv/g6';
 import { defaultMargin, defaultLabelStyle, defaultCardStyle } from '../../constants';
 import { getStyle, getCssPadding, createMarker } from '../../utils';
-import { CardNodeCfg, CardItems } from '../../interface';
-import { OrgItem } from './index';
+import { CardNodeCfg, OrgItem } from '../../interface';
 
 // 组织架构图
 export const registerOrganizationCardNode = () => {
@@ -15,7 +14,7 @@ export const registerOrganizationCardNode = () => {
     {
       draw(cfg: Omit<CardNodeCfg, 'items'> | undefined = {}, group: IGroup | undefined) {
         const { value: originValue = {}, nodeCfg, markerCfg } = cfg;
-        const value = { ...(originValue as OrgItem & CardItems) };
+        const value = { ...(originValue as OrgItem & { text?: string; value?: string }) };
         let isOld = false;
         /** 兼容历史数据 */
         if (value.text) {
@@ -62,7 +61,7 @@ export const registerOrganizationCardNode = () => {
           };
           height += paddingArray[0];
           const createRowItems = (
-            item: CardItems,
+            item: OrgItem,
             contentWidth: number,
             startX: number,
             index: number | string = 0,
@@ -86,11 +85,11 @@ export const registerOrganizationCardNode = () => {
                   break;
                 case 'name':
                   x = startX + offsetX;
-                  y = item.value ? paddingArray[0] : (size[1] - fontSize) / 2;
+                  y = item.title ? paddingArray[0] : (size[1] - fontSize) / 2;
                   break;
                 case 'title':
                   x = startX + offsetX;
-                  y = item.text ? paddingArray[0] + rowHeight[1] + defaultMargin : (size[1] - fontSize) / 2;
+                  y = item.name ? paddingArray[0] + rowHeight[1] + defaultMargin : (size[1] - fontSize) / 2;
                   break;
                 default:
                   break;
@@ -119,7 +118,7 @@ export const registerOrganizationCardNode = () => {
             });
             return rowHeight;
           };
-          const createItems = (item: CardItems, index: number = 0) => {
+          const createItems = (item: OrgItem, index: number = 0) => {
             const itemsHeight: number[] = [];
             if (customContent) {
               itemsHeight.push(
@@ -135,7 +134,7 @@ export const registerOrganizationCardNode = () => {
             height += Math.max(...itemsHeight);
           };
 
-          createItems(value as CardItems);
+          createItems(value);
         }
 
         shape?.attr('height', Math.max(height + paddingArray[2], size[1]));
