@@ -6,15 +6,9 @@ import useProps from '../../hooks/useProps';
 import { defaultStateStyles } from '../../constants';
 
 import { registerOrganizationCardNode } from './customItem';
-import { IGroup, CommonConfig, ShapeCfg, Shape, NodeConfig, IGraph, NodeData } from '../../interface';
+import { IGroup, CommonConfig, ShapeCfg, Shape, NodeConfig, IGraph, NodeData, OrgItem } from '../../interface';
 
-export type OrgItem = {
-  name: string;
-  title?: string;
-  icon?: string;
-};
-
-export type OrganizationGraphData = NodeData<OrgItem[]>;
+export type OrganizationGraphData = NodeData<OrgItem>;
 export interface OrganizationGraphConfig extends Omit<CommonConfig, 'data'> {
   data: OrganizationGraphData;
 }
@@ -64,10 +58,10 @@ const defaultProps = {
             width: 32,
             height: 32,
           },
-          value: {
+          title: {
             fill: '#fff',
           },
-          text: {
+          name: {
             fill: '#000',
           },
         };

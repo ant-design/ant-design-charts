@@ -123,7 +123,7 @@ const DemoOrganizationGraph = () => {
                 width: 32,
                 height: 32,
               },
-              value: {
+              title: {
                 fill: '#fff',
               },
               name: {
