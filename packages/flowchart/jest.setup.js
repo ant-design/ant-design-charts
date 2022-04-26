@@ -8,5 +8,5 @@ if (!global._babelPolyfill) {
     document.getElementsByTagName('head')[0].appendChild(link);
   };
   createLink('https://unpkg.com/antd@4/dist/antd.css');
-  createLink('https://unpkg.com/@ant-design/flowchart@1.0.7/dist/index.css');
+  createLink('https://unpkg.com/@ant-design/flowchart@1.1.1/dist/index.css');
 }

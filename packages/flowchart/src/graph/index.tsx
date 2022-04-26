@@ -14,10 +14,11 @@ import {
 import { ToolbarPanel } from '../components/toolbar';
 import { useMenuConfig } from '../components/menu';
 import { setProps, setInstance, excLoadData } from '../util';
-import { useCmdConfig, useKeybindingConfig, useGraphHook } from './service';
+import { useCmdConfig, useKeybindingConfig } from './service';
 import { FlowchartProps, IFlowchartGraph as IGraph } from '../interface';
 import AppContext from '../context';
 import { appendUtils } from './appendUtils';
+import { DEFAULT_SCALE_TOOLBAR_PROPS } from './constants';
 
 const Flowchart: React.FC<FlowchartProps> = (props) => {
   const {
@@ -26,7 +27,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     detailPanelProps,
     toolbarPanelProps,
     nodePanelProps = {},
-    scaleToolbarPanelProps = {},
+    scaleToolbarPanelProps,
     contextMenuPanelProps = {},
     canvasProps = {},
     keyBindingProps,
@@ -48,9 +49,6 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   // const { position: miniMapPosition = { bottom: 12, right: 12 }, show: showMinimMap = true } = miniMapProps;
   const graphRef = useRef<IGraph>();
   const menuConfig = useMenuConfig();
-  const hookConfig = useGraphHook({
-    flowchartId: uuidv4Ref.current,
-  });
   const commandConfig = useCmdConfig({
     flowchartId: uuidv4Ref.current,
   }); // 需要 getProps
@@ -85,7 +83,6 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           className={className}
           style={style}
           commandConfig={commandConfig}
-          hookConfig={hookConfig}
           onAppDestroy={onDestroy}
           isAutoCenter={isAutoCenter}
           onAppConfigReady={onConfigReady}
@@ -115,7 +112,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
                   left: 'auto',
                   background: 'transparent',
                 }}
-                {...scaleToolbarPanelProps}
+                {...Object.assign({}, DEFAULT_SCALE_TOOLBAR_PROPS, scaleToolbarPanelProps)}
               />
             )}
             {showMenu && <CanvasContextMenu config={menuConfig} />}
