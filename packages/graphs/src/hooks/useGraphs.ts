@@ -16,6 +16,7 @@ import {
   bindDefaultEvents,
   bindSourceMapCollapseEvents,
   deepClone,
+  getAnchorPoints,
 } from '../utils';
 import { NodeConfig, EdgeConfig, CardNodeCfg, StateStyles, ArrowConfig, CommonConfig } from '../interface';
 import { createToolbar } from '../components/toolbar';
@@ -85,12 +86,13 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     const { type: nodeType, anchorPoints: nodeAnchorPoints, style: nodeStyle, title: nodeLabelCfg } = nodeCfg ?? {};
 
     graph.getNodes().forEach((node: INode) => {
+      const anchorPoints = getAnchorPoints(nodeAnchorPoints, node.getModel() as NodeConfig);
       graph!.updateItem(node, {
         nodeCfg,
         markerCfg,
         type: nodeType,
         style: nodeStyle,
-        anchorPoints: nodeAnchorPoints,
+        anchorPoints,
         labelCfg: nodeLabelCfg,
       });
     });
@@ -328,8 +330,11 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
       graph.node((node: NodeConfig) => {
         if (customNode.includes(nodeType) || name === 'OrganizationGraph') {
+          const anchorPoints = getAnchorPoints(nodeAnchorPoints, node);
           node.markerCfg = markerCfg;
-          return {};
+          return {
+            anchorPoints,
+          };
         }
         const { style } = (nodeLabelCfg ?? {}) as CardNodeCfg;
         return {

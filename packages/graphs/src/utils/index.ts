@@ -17,7 +17,13 @@ import {
   ModelConfig,
   MarkerCfg,
 } from '../interface';
-import { defaultMinimapCfg, defaultNodeSize, defaultCardStyle, prefix } from '../constants';
+import {
+  defaultMinimapCfg,
+  defaultNodeSize,
+  defaultCardStyle,
+  prefix,
+  defaultFlowGraphAnchorPoints,
+} from '../constants';
 import { DecompositionTreeGraphConfig } from '../components/decompositionTreeGraph';
 
 // 类型检测
@@ -735,4 +741,14 @@ export const closeLoading = () => {
   Array.from(hideContainer).forEach((el) => {
     document.body.removeChild(el);
   });
+};
+/** 支持自定义 anchor */
+export const getAnchorPoints = (anchorPoints: ((node: NodeConfig) => number[][]) | number[][], node?: NodeConfig) => {
+  if (typeof anchorPoints === 'function' && node) {
+    return anchorPoints(node) || {};
+  }
+  if (Array.isArray(anchorPoints)) {
+    return anchorPoints;
+  }
+  return defaultFlowGraphAnchorPoints;
 };

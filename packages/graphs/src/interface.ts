@@ -70,7 +70,7 @@ export interface NodeCfg extends Omit<ModelConfig, 'style' | 'label'> {
   /** 节点大小 */
   size?: number | number[];
   /** 节点锚点 */
-  anchorPoints?: number[][];
+  anchorPoints?: number[][] | ((node: NodeConfig) => number[][]);
   /** 节点样式 */
   style?: IShapeStyle;
   /** 节点 label 样式 */
