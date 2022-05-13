@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/graphs",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Relation graph",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -33,7 +33,7 @@
     "lint:prettier": "npm run prettier && git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
-    "test-live": "cross-env DEBUG_MODE=1 jest --watch ./tests/issues/1286-spec.tsx --no-cache"
+    "test-live": "cross-env DEBUG_MODE=1 jest --watch ./tests/graphs/anchor-callback-spec.tsx --no-cache"
   },
   "dependencies": {
     "@antv/g6": "^4.2.4",
