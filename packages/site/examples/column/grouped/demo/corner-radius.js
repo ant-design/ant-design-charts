@@ -22,7 +22,7 @@ const DemoColumn = () => {
     xField: 'city',
     yField: 'value',
     seriesField: 'type',
-    isGroup: 'true',
+    isGroup: true,
     columnStyle: {
       radius: [20, 20, 0, 0],
     },
