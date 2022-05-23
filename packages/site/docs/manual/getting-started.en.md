@@ -4,7 +4,7 @@ order: 1
 ---
 
 ## Installation
-### Import by CDN in browser
+### Import by NPM
 
 We provide `Ant Design Charts` npm package:
 
