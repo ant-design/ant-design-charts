@@ -253,14 +253,16 @@ export const registerIndicatorCardNode = () => {
           : titleHeight + itemHeight;
         shape?.attr('height', shapeHeight);
         if (autoWidth) {
-          const maxX = Math.max(
-            shapeWidth,
-            ...(group?.getChildren()?.map((childrenShape) => {
-              return (childrenShape.getBBox().maxX || 0) + paddingArray[1];
-            }) as number[]),
+          const shapeMaxX = Math.max.apply(
+            null,
+            group?.getChildren()?.map((childrenShape) => {
+              return childrenShape.getBBox().maxX || 0;
+            }) as number[],
           );
-          titleShape?.attr('width', maxX);
-          shape?.attr('width', maxX);
+          const outerMaxX = Math.max(shapeWidth, shapeMaxX + paddingArray[1]);
+          titleShape?.attr('width', outerMaxX);
+          shape?.attr('width', outerMaxX);
+          itemShape?.attr('width', shapeMaxX - paddingArray[1]);
         }
 
         if (badge) {
