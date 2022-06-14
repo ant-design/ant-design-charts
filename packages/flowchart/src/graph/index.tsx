@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useRef, useEffect, useCallback } from 'react';
 import {
   XFlow,
@@ -54,7 +55,6 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   }); // 需要 getProps
   const keybindingConfig = keyBindingProps || useKeybindingConfig();
   const { show = true } = scaleToolbarPanelProps;
-  const { show: nodePanelShow = true } = nodePanelProps;
   const { show: showMenu = true } = contextMenuPanelProps;
   const loadData = useCallback(
     async (app) => {
@@ -97,24 +97,13 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
         >
           <FlowchartExtension />
           <ToolbarPanel {...toolbarPanelProps} flowchartId={uuidv4Ref.current} />
-          {nodePanelShow && <FlowchartNodePanel {...nodePanelProps} />}
+          <FlowchartNodePanel {...nodePanelProps} />
           <FlowchartCanvas
             config={{ ...canvasProps, onAddNode, onAddEdge, onConfigChange }}
             mode={mode}
             position={position}
           >
-            {show && (
-              <CanvasScaleToolbar
-                layout="horizontal"
-                position={{ top: 12, right: 12 }}
-                style={{
-                  width: 150,
-                  left: 'auto',
-                  background: 'transparent',
-                }}
-                {...Object.assign({}, DEFAULT_SCALE_TOOLBAR_PROPS, scaleToolbarPanelProps)}
-              />
-            )}
+            {show && <CanvasScaleToolbar {...Object.assign({}, DEFAULT_SCALE_TOOLBAR_PROPS, scaleToolbarPanelProps)} />}
             {showMenu && <CanvasContextMenu config={menuConfig} />}
             {/* {showMinimMap && <CanvasMiniMap position={miniMapPosition} />} */}
           </FlowchartCanvas>
