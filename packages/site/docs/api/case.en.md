@@ -74,7 +74,7 @@ const DemoLine: React.FC = () => {
                     <span
                       style={{ display: 'inline-flex', flex: 1, justifyContent: 'space-between' }}
                     >
-                      <span style={{ margiRight: 16 }}>{name}:</span>
+                      <span style={{ marginRight: 16 }}>{name}:</span>
                       <span className="g2-tooltip-list-item-value">{value}</span>
                     </span>
                   </li>
