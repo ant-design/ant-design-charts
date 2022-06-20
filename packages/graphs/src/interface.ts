@@ -1,21 +1,21 @@
 import {
-  StateStyles,
-  ShapeStyle,
-  IGraph,
-  ModelConfig,
-  IG6GraphEvent,
-  IGroup,
-  LabelStyle,
-  Node,
+  ArrowConfig as G6ArrowConfig,
   Edge,
   EdgeConfig as G6EdgeConfig,
-  NodeConfig as G6NodeConfig,
   Graph,
-  INode,
   IEdge,
+  IG6GraphEvent,
+  IGraph,
+  IGroup,
+  INode,
   IPoint,
-  ArrowConfig as G6ArrowConfig,
   IShape,
+  LabelStyle,
+  ModelConfig,
+  Node,
+  NodeConfig as G6NodeConfig,
+  ShapeStyle,
+  StateStyles,
 } from '@antv/g6';
 
 export interface GraphContainerConfig {
@@ -85,12 +85,13 @@ export interface NodeCfg extends Omit<ModelConfig, 'style' | 'label'> {
 // 通用边配置
 export interface EdgeCfg {
   /** 边类型 */
-  type?: string;
+  type?: string | { text: string; subText?: string };
   /** 边 label 配置 */
   label?: {
     /** 仅在树图里面生效 */
     content?: string | ((edge: EdgeCfg) => string);
     style?: ILabelStyle;
+    margin?: number;
   };
   /** 起始箭头 */
   startArrow?: IArrowConfig;

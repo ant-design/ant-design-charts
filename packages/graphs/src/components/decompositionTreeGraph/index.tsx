@@ -1,11 +1,11 @@
 import React from 'react';
+import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultNodeStyle, defaultStateStyles } from '../../constants';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
+import { CommonConfig, IGraph, IGroup, NodeConfig, Shape, ShapeCfg, TreeGraphData } from '../../interface';
 import ChartLoading from '../../utils/createLoading';
-import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultStateStyles, defaultNodeStyle } from '../../constants';
-import { registerIndicatorCardNode } from '../flowAnalysisGraph/customItem';
-import { CommonConfig, ShapeCfg, Shape, IGroup, IGraph, TreeGraphData, NodeConfig } from '../../interface';
+import { registerIndicatorGeometries } from '../flowAnalysisGraph/customItem';
 
 export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data' | 'nodeCfg'> {
   data: TreeGraphData;
@@ -17,7 +17,7 @@ export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data' 
   };
 }
 
-registerIndicatorCardNode();
+registerIndicatorGeometries();
 
 const defaultLayout = {
   type: 'compactBox',

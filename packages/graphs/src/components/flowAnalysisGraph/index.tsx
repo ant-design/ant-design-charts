@@ -1,12 +1,12 @@
 import React from 'react';
+import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultNodeStyle, defaultStateStyles } from '../../constants';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
 import ChartLoading from '../../utils/createLoading';
-import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultStateStyles, defaultNodeStyle } from '../../constants';
 
-import { registerIndicatorCardNode } from './customItem';
-import { CommonConfig, FlowGraphEdgeData, NodeData, CardItems } from '../../interface';
+import { CardItems, CommonConfig, FlowGraphEdgeData, NodeData } from '../../interface';
+import { registerIndicatorGeometries } from './customItem';
 
 export type FlowAnalysisNodeData = NodeData<{
   title?: string;
@@ -20,7 +20,7 @@ export interface FlowAnalysisGraphConfig extends Omit<CommonConfig, 'data'> {
   };
 }
 
-registerIndicatorCardNode();
+registerIndicatorGeometries();
 
 const defaultLayout = {
   type: 'dagre',

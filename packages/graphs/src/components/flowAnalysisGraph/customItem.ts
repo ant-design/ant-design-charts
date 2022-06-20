@@ -1,19 +1,100 @@
 import G6, { IGroup, Node } from '@antv/g6';
-import { isBoolean, mix, isPlainObject, clone, each, deepMix } from '@antv/util';
-import { defaultMargin, defaultLabelStyle, defaultCardStyle } from '../../constants';
+import { clone, deepMix, each, isBoolean, isPlainObject, mix } from '@antv/util';
+import { defaultCardStyle, defaultLabelStyle, defaultLineLabelStyle, defaultMargin } from '../../constants';
+import { CardItems, CardNodeCfg, EdgeCfg, EdgeConfig, IPoint, IShape } from '../../interface';
 import {
-  getStyle,
+  cloneBesidesImg,
+  createMarker,
+  getArrowCfg,
   getCssPadding,
   getStatusBBox,
   getStatusCfg,
-  createMarker,
-  cloneBesidesImg,
+  getStyle,
   setEllipsis,
 } from '../../utils';
-import { CardNodeCfg, CardItems, IShape } from '../../interface';
+
+const getPathInfo = (
+  cfg: EdgeConfig<
+    | string
+    | {
+        text?: string;
+        subText?: string;
+      }
+  >,
+) => {
+  const { edgeCfg } = cfg;
+  const startPoint = cfg.startPoint as IPoint;
+  const endPoint = cfg.endPoint as IPoint;
+  const { x: startX, y: startY } = startPoint;
+  const { x: endX, y: endY } = endPoint;
+  const yDiff = endY - startY;
+  const useControlPoint = Math.abs(yDiff) > 0;
+  let line1EndPoint: IPoint;
+  let line2StartPoint: IPoint;
+  let controlPoint: IPoint;
+  let path: Array<Array<string | number>>;
+  if (Math.abs(yDiff) <= 5) {
+    line2StartPoint = {
+      x: startX + 20,
+      y: endY,
+    };
+    path = [
+      ['M', startX, startY],
+      ['L', endX, endY],
+    ];
+  } else {
+    const slope = useControlPoint ? Math.min(500 / Math.abs(yDiff), 20) : 0;
+    const cpOffset = slope > 15 ? 0 : 16;
+    const offset = yDiff < 0 ? cpOffset : -cpOffset;
+
+    line1EndPoint = {
+      x: startX + slope,
+      y: endY + offset,
+    };
+    line2StartPoint = {
+      x: line1EndPoint.x + cpOffset,
+      y: endY,
+    };
+    // 控制点坐标
+    controlPoint = {
+      x: ((line1EndPoint.x - startX) * (endY - startY)) / (line1EndPoint.y - startY) + startX,
+      y: endY,
+    };
+    path = [
+      ['M', startX, startY],
+      ['L', line1EndPoint.x, line1EndPoint.y],
+      ['Q', controlPoint.x, controlPoint.y, line2StartPoint.x, line2StartPoint.y],
+      ['L', endX, endY],
+    ];
+  }
+
+  const { startArrow: startArrowCfg, endArrow: endArrowCfg } = edgeCfg as EdgeCfg;
+  const startArrow = getArrowCfg(startArrowCfg, cfg);
+  const endArrow = getArrowCfg(endArrowCfg, cfg);
+
+  return {
+    startArrow,
+    endArrow,
+    path,
+    line2StartPoint,
+    endY,
+  };
+};
+
+const getPathText = (value: EdgeCfg['type']) => {
+  let text;
+  let subText;
+  if (value instanceof Object) {
+    text = value.text;
+    subText = value.subText;
+  } else {
+    text = value;
+  }
+  return { text, subText };
+};
 
 // 通用指标卡
-export const registerIndicatorCardNode = () => {
+export const registerIndicatorGeometries = () => {
   const defaultTitleLabelStyle = {
     fill: '#fff',
     fontSize: 12,
@@ -63,6 +144,7 @@ export const registerIndicatorCardNode = () => {
     edge: PATH_SHAPE_DEFAULT_ATTRS,
     node: SHAPE_DEFAULT_ATTRS,
   };
+  // 注册节点
   G6.registerNode(
     'indicator-card',
     {
@@ -461,5 +543,95 @@ export const registerIndicatorCardNode = () => {
       },
     },
     'single-node',
+  );
+  // 注册边
+  G6.registerEdge(
+    'labels-line',
+    {
+      // @ts-ignore
+      draw: function draw(cfg: ItemModelConfig | undefined = {}, group: IGroup | undefined) {
+        const { edgeCfg, value } = cfg;
+        const { text, subText } = getPathText(value);
+        const { style: edgeStyle, label: labelCfg } = edgeCfg as EdgeCfg;
+        const { startArrow, endArrow, path, line2StartPoint, endY } = getPathInfo(cfg);
+        const { style: labelStyle, margin = 4 } = labelCfg ?? {};
+
+        const line = group!.addShape('path', {
+          attrs: {
+            path,
+            stroke: '#ccc',
+            startArrow,
+            endArrow,
+            ...(typeof edgeStyle === 'function' ? edgeStyle(cfg, group) : edgeStyle),
+          },
+          name: 'path-shape',
+        });
+
+        const createItem = (itemText: string, key: string, attrs: object) => {
+          group!.addShape('text', {
+            attrs: {
+              text: itemText,
+              x: line2StartPoint.x,
+              ...attrs,
+            },
+            name: `line-text-${key}`,
+          });
+        };
+        if (text) {
+          const textStyle = { ...defaultLineLabelStyle, ...getStyle(labelStyle, cfg, group, 'text') };
+          const offsetY = subText ? Number((`${textStyle.fontSize}` || '12').replace(/px/g, '')) / 2 : 0;
+          createItem(text, 'text', {
+            y: endY - offsetY - margin / 2,
+            ...textStyle,
+          });
+        }
+        if (subText) {
+          const textStyle = { ...defaultLineLabelStyle, ...getStyle(labelStyle, cfg, group, 'subText') };
+          const offsetY = Number((`${textStyle.fontSize}` || '12').replace(/px/g, '')) / 2;
+          createItem(text, 'subText', {
+            y: endY + offsetY + margin / 2,
+            ...textStyle,
+          });
+        }
+        return line;
+      },
+      // @ts-ignore
+      update: (cfg: ItemModelConfig, edge) => {
+        const { edgeCfg, value } = cfg;
+        const { text, subText } = getPathText(value);
+        const group = edge.getContainer();
+        const getShape = (shapeName: string) => {
+          return group.get('children').find((item: Node) => item.get('name') === shapeName);
+        };
+        const { startArrow, endArrow, path, line2StartPoint, endY } = getPathInfo(cfg);
+        const { style: edgeStyle, label: labelCfg } = edgeCfg as EdgeCfg;
+        const { style: labelStyle, margin = 4 } = labelCfg ?? {};
+
+        // path
+        const pathShape = getShape('path-shape');
+        pathShape?.attr({
+          path,
+          stroke: '#ccc',
+          startArrow,
+          endArrow,
+          ...(typeof edgeStyle === 'function' ? edgeStyle(cfg, group) : edgeStyle),
+        });
+        // path text
+        const texts = ['text', 'subText'];
+        const hasSubText = !!getShape(`line-text-subText`);
+        texts.forEach((key: string) => {
+          const textShape = getShape(`line-text-${key}`);
+          const textStyle = { ...defaultLineLabelStyle, ...getStyle(labelStyle, cfg, group, key) };
+          const offsetY = hasSubText ? Number((`${textStyle.fontSize}` || '12').replace(/px/g, '')) / 2 : 0;
+          textShape?.attr({
+            x: line2StartPoint.x,
+            y: key === 'text' ? endY - offsetY - margin / 2 : endY + offsetY + margin / 2,
+            text: key === 'text' ? text : subText,
+            ...textStyle,
+          });
+        });
+      },
+    },
+    'single-edge',
   );
 };
