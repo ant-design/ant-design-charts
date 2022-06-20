@@ -25,6 +25,12 @@ export const defaultLabelStyle = {
   fill: '#000',
   fontSize: 12,
 };
+export const defaultLineLabelStyle = {
+  fill: '#000',
+  fontSize: 12,
+  textAlign: 'start',
+  textBaseline: 'middle',
+};
 // 缩略图默认配置
 export const defaultMinimapCfg = {
   show: false,

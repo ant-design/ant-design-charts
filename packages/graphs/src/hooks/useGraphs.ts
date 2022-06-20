@@ -1,25 +1,25 @@
-import { useRef, useEffect } from 'react';
+import G6, { IEdge, INode, ModeType } from '@antv/g6';
+import { isEqual, isFunction, isObject, isString } from '@antv/util';
+import { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import G6, { ModeType, INode, IEdge } from '@antv/g6';
-import { isObject, isString, isEqual, isFunction } from '@antv/util';
+import { createToolbar } from '../components/toolbar';
+import { ArrowConfig, CardNodeCfg, CommonConfig, EdgeConfig, NodeConfig, StateStyles } from '../interface';
 import {
-  getGraphSize,
-  processMinimap,
-  getCommonConfig,
-  getArrowCfg,
-  getMarkerPosition,
-  setTag,
-  getLevelData,
-  getGraphId,
-  renderGraph,
-  bindStateEvents,
   bindDefaultEvents,
   bindSourceMapCollapseEvents,
+  bindStateEvents,
   deepClone,
   getAnchorPoints,
+  getArrowCfg,
+  getCommonConfig,
+  getGraphId,
+  getGraphSize,
+  getLevelData,
+  getMarkerPosition,
+  processMinimap,
+  renderGraph,
+  setTag,
 } from '../utils';
-import { NodeConfig, EdgeConfig, CardNodeCfg, StateStyles, ArrowConfig, CommonConfig } from '../interface';
-import { createToolbar } from '../components/toolbar';
 
 export default function useGraph(graphClass: string, config: any, extra: { name?: string } = {}) {
   const container = useRef(null);
@@ -110,8 +110,8 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       label: labelCfg,
     } = edgeCfg ?? {};
     graph.getEdges().forEach((edge: IEdge) => {
-      // 资金流向图
-      if (edgeType === 'fund-line') {
+      // 资金流向图&来源去向图
+      if (['fund-line', 'labels-line'].includes(edgeType)) {
         graph!.updateItem(edge, {
           edgeCfg,
         });
@@ -355,14 +355,14 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         if (['DecompositionTreeGraph', 'OrganizationGraph', 'RadialTreeGraph'].includes(name)) {
           return getCommonConfig(content, edge, graph);
         }
-        if (name === 'FundFlowGraph') {
+        if (['FundFlowGraph', 'FlowAnalysisGraph'].includes(name)) {
           const { value } = edge;
           // @ts-ignore
           return typeof value === 'object' ? value?.text : value;
         }
         return edge.value;
       };
-      if (edgeType !== 'fund-line') {
+      if (!['fund-line', 'labels-line'].includes(edgeType)) {
         graph.edge((edge: EdgeConfig) => {
           const startArrow = getArrowCfg(startArrowCfg, edge);
           const endArrow = getArrowCfg(endArrowCfg, edge);
