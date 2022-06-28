@@ -268,7 +268,7 @@ module.exports = {
         icon: 'sankey',
         title: {
           zh: '关系图',
-          en: 'Realtion Graph',
+          en: 'Relation Graph',
         },
       },
       {
