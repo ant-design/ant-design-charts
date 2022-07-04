@@ -130,6 +130,16 @@ const getWebpackConfig = (name, library) => {
       hints: false,
     },
     devtool: 'source-map',
+    cache: {
+      type: 'filesystem',
+      buildDependencies: {
+        config: [__filename],
+      },
+    },
+    optimization: {
+      runtimeChunk: 'single',
+      moduleIds: 'deterministic',
+    },
   };
 };
 
