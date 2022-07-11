@@ -28,7 +28,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     detailPanelProps,
     toolbarPanelProps,
     nodePanelProps = {},
-    scaleToolbarPanelProps,
+    scaleToolbarPanelProps = {},
     contextMenuPanelProps = {},
     canvasProps = {},
     keyBindingProps,
