@@ -3,7 +3,8 @@
 `2022-07-12`
 
 - 🔥 文件目录命名风格统一
-- 官网更新
+- `@ant-design/maps` Heatmap 重命名为 GeographicHeatmap
+-  支持自定义 anchor
 - 🆕 OrganizationGraph 支持自定义 anchor
 - 🐞 修复 scaleToolbarPanelProps 为空时出错
 - 🐞 修复流程图保存数据失败

@@ -6,11 +6,11 @@ import { getChart } from '../../util';
 import ErrorBoundary from '../../errorBoundary';
 import ChartLoading from '../../util/createLoading';
 
-export interface HeatMapConfig extends L7PlotConfig<HeatmapOptions, Heatmap>, ContainerConfig {
+export interface GeographicHeatmapConfig extends L7PlotConfig<HeatmapOptions, Heatmap>, ContainerConfig {
   chartRef?: PlotRef<Heatmap>;
 }
 
-const HeatMap = forwardRef((props: HeatMapConfig, ref) => {
+const GeographicHeatmap = forwardRef((props: GeographicHeatmapConfig, ref) => {
   const {
     chartRef,
     containerStyle = {
@@ -40,4 +40,4 @@ const HeatMap = forwardRef((props: HeatMapConfig, ref) => {
   );
 });
 
-export default HeatMap;
+export default GeographicHeatmap;

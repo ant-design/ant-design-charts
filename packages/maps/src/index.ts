@@ -13,8 +13,8 @@ export type { ContainerConfig as MapContainerConfig, PlotRef } from './types';
 
 export { default as DotMap } from './components/dot-map';
 export type { DotMapConfig } from './components/dot-map';
-export { default as Heatmap } from './components/heat-map';
-export type { HeatMapConfig } from './components/heat-map';
+export { default as GeographicHeatmap } from './components/geographic-heatmap';
+export type { GeographicHeatmapConfig } from './components/geographic-heatmap';
 export { default as GridMap } from './components/grid-map';
 export type { GridMapConfig } from './components/grid-map';
 export { default as HexbinMap } from './components/hexbin-map';
