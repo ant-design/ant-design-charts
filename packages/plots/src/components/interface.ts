@@ -14,24 +14,24 @@ import { GaugeConfig } from './gauge';
 import { ProgressConfig } from './progress';
 import { RadarConfig } from './radar';
 import { FacetConfig } from './facet';
-import { RingProgressConfig } from './ringProgress';
+import { RingProgressConfig } from './ring-progress';
 import { RoseConfig } from './rose';
 import { ScatterConfig } from './scatter';
-import { TinyAreaConfig } from './tinyArea';
-import { TinyColumnConfig } from './tinyColumn';
+import { TinyAreaConfig } from './tiny-area';
+import { TinyColumnConfig } from './tiny-column';
 import { ViolinConfig } from './violin';
 import { VennConfig } from './venn';
-import { DualAxesConfig } from './dualAxes';
-import { TinyLineConfig } from './tinyLine';
+import { DualAxesConfig } from './dual-axes';
+import { TinyLineConfig } from './tiny-line';
 import { WaterfallConfig } from './waterfall';
-import { WordCloudConfig } from './wordCloud';
+import { WordCloudConfig } from './word-cloud';
 import { SunburstConfig } from './sunburst';
 import { StockConfig } from './stock';
-import { RadialBarConfig } from './radialBar';
+import { RadialBarConfig } from './radial-bar';
 import { SankeyConfig } from './sankey';
 import { MixConfig } from './mix';
-import { BidirectionalBarConfig } from './bidirectionalBar';
-import { CirclePackingConfig } from './circlePacking';
+import { BidirectionalBarConfig } from './bidirectional-bar';
+import { CirclePackingConfig } from './circle-packing';
 
 export {
   AreaConfig,

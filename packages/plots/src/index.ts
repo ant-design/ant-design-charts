@@ -12,28 +12,28 @@ import Pie from './components/pie';
 import Gauge from './components/gauge';
 import Progress from './components/progress';
 import Radar from './components/radar';
-import RingProgress from './components/ringProgress';
+import RingProgress from './components/ring-progress';
 import Rose from './components/rose';
 import Chord from './components/chord';
 import Scatter from './components/scatter';
-import TinyArea from './components/tinyArea';
-import TinyColumn from './components/tinyColumn';
-import DualAxes from './components/dualAxes';
-import TinyLine from './components/tinyLine';
+import TinyArea from './components/tiny-area';
+import TinyColumn from './components/tiny-column';
+import DualAxes from './components/dual-axes';
+import TinyLine from './components/tiny-line';
 import Waterfall from './components/waterfall';
-import WordCloud from './components/wordCloud';
+import WordCloud from './components/word-cloud';
 import Sunburst from './components/sunburst';
 import Stock from './components/stock';
-import RadialBar from './components/radialBar';
+import RadialBar from './components/radial-bar';
 import Sankey from './components/sankey';
 import Treemap from './components/treemap';
 import Violin from './components/violin';
 import Venn from './components/venn';
-import CirclePacking from './components/circlePacking';
+import CirclePacking from './components/circle-packing';
 import Facet from './components/facet';
 import MultiView from './components/mix'; // 和 Mix 相同
 import Mix from './components/mix';
-import BidirectionalBar from './components/bidirectionalBar';
+import BidirectionalBar from './components/bidirectional-bar';
 import { G2, flow, measureTextWidth, adaptors, getCanvasPattern, FUNNEL_CONVERSATION_FIELD } from '@antv/g2plot';
 
 export {

@@ -1,9 +1,9 @@
 import G6 from '@antv/g6';
-import OrganizationGraph, { OrganizationGraphConfig } from './components/organizationGraph';
-import RadialTreeGraph, { RadialTreeGraphConfig } from './components/radialTreeGraph';
-import FlowAnalysisGraph, { FlowAnalysisGraphConfig } from './components/flowAnalysisGraph';
-import DecompositionTreeGraph, { DecompositionTreeGraphConfig } from './components/decompositionTreeGraph';
-import FundFlowGraph, { FundFlowGraphConfig } from './components/fundFlowGraph';
+import OrganizationGraph, { OrganizationGraphConfig } from './components/organization-graph';
+import RadialTreeGraph, { RadialTreeGraphConfig } from './components/radial-tree-graph';
+import FlowAnalysisGraph, { FlowAnalysisGraphConfig } from './components/flow-analysis-graph';
+import DecompositionTreeGraph, { DecompositionTreeGraphConfig } from './components/decomposition-tree-graph';
+import FundFlowGraph, { FundFlowGraphConfig } from './components/fund-flow-graph';
 
 /** @deprecated start */
 import {

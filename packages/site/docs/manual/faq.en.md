@@ -72,7 +72,20 @@ You can use `scale.sync` and hide one of the y-axis.
 
 ### 6、Package file is too large, how to load on demand
 
-Method 1： Use sideEffects
+Method 1: Import from es
+
+Import from the  subpackage
+
+```ts
+// Statistical charts
+import Line from '@ant-design/plots/es/components/line';
+// Relation graph
+import DecompositionTreeGraph from '@ant-design/graphs/es/components/decomposition-tree-graph';
+// Geographic visualization
+import AreaMap from '@ant-design/maps/es/components/area-map';
+```
+
+Method 2： Use sideEffects
 
 Enable webpack sideEffcets configuration, webpack 4+ should be enabled by default.
 
@@ -82,12 +95,6 @@ Enable webpack sideEffcets configuration, webpack 4+ should be enabled by defaul
      sideEffects: true,
   }
 }
-```
-
-Method 2: Import from es
-
-```ts
-import Line from '@ant-design/charts/es/plots/line';
 ```
 
 Method 3: Use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)
@@ -100,7 +107,15 @@ Method 3: Use [babel-plugin-import](https://github.com/ant-design/babel-plugin-i
   {
     "plugins": [
       ["import", {
-        "libraryName": "@ant-design/charts",
+        "libraryName": "@ant-design/plots",
+        "libraryDirectory": "es"
+      }],
+      ["import", {
+        "libraryName": "@ant-design/graphs",
+        "libraryDirectory": "es"
+      }],
+      ["import", {
+        "libraryName": "@ant-design/maps",
         "libraryDirectory": "es"
       }]
     ]

@@ -5,7 +5,7 @@ import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
 import { CommonConfig, IGraph, IGroup, NodeConfig, Shape, ShapeCfg, TreeGraphData } from '../../interface';
 import ChartLoading from '../../utils/createLoading';
-import { registerIndicatorGeometries } from '../flowAnalysisGraph/customItem';
+import { registerIndicatorGeometries } from '../flow-analysis-graph/customItem';
 
 export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data' | 'nodeCfg'> {
   data: TreeGraphData;
