@@ -7,7 +7,7 @@ const createNode = (children: React.ReactNode, type?: string) => {
   if (type === 'tooltip') {
     mountPoint.className = 'g2-tooltip';
   }
-  ReactDOM.render(children as React.ReactElement, mountPoint);
+  ReactDOM.render(children as React.ReactElement<any, any>, mountPoint);
   return mountPoint;
 };
 
