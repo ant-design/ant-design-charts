@@ -33,7 +33,7 @@
   "dependencies": {
     "@ant-design/flowchart": "^1.0.2",
     "@ant-design/graphs": "^1.0.1",
-    "@ant-design/maps": "^1.0.0",
+    "@ant-design/maps": "^1.0.1",
     "@ant-design/plots": "^1.0.2"
   },
   "peerDependencies": {
