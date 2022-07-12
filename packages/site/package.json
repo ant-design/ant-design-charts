@@ -41,7 +41,7 @@
   "dependencies": {
     "@ant-design/flowchart": "^1.0.2",
     "@ant-design/graphs": "^1.0.1",
-    "@ant-design/maps": "^0.0.3",
+    "@ant-design/maps": "^1.0.1",
     "@ant-design/plots": "^1.0.2",
     "@antv/gatsby-theme-antv": "^1.1.8",
     "@antv/util": "^2.0.9",
