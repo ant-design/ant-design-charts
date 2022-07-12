@@ -24,7 +24,7 @@ import {
   prefix,
   defaultFlowGraphAnchorPoints,
 } from '../constants';
-import { DecompositionTreeGraphConfig } from '../components/decompositionTreeGraph';
+import { DecompositionTreeGraphConfig } from '../components/decomposition-tree-graph';
 
 // 类型检测
 export const isType = (value: any, type: string): boolean => {

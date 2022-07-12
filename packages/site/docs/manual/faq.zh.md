@@ -72,7 +72,20 @@ meta: {
 
 ### 6、打包文件过大，如何按需加载
 
-方案 1： 开启 sideEffects
+方案 1：从 es 引入
+
+从对应子包里面引入
+
+```ts
+// 统计图表
+import Line from '@ant-design/plots/es/components/line';
+// 关系图
+import DecompositionTreeGraph from '@ant-design/graphs/es/components/decomposition-tree-graph';
+// 地理可视化
+import AreaMap from '@ant-design/maps/es/components/area-map';
+```
+
+方案 2： 开启 sideEffects
 
 开启 webpack sideEffcets 配置，webpack 4+ 默认应该是开启的。
 
@@ -82,12 +95,6 @@ meta: {
      sideEffects: true,
   }
 }
-```
-
-方案 2：从 es 引入
-
-```ts
-import Line from '@ant-design/charts/es/plots/line';
 ```
 
 方案 3： 使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)
@@ -100,7 +107,15 @@ import Line from '@ant-design/charts/es/plots/line';
   {
     "plugins": [
       ["import", {
-        "libraryName": "@ant-design/charts",
+        "libraryName": "@ant-design/plots",
+        "libraryDirectory": "es"
+      }],
+      ["import", {
+        "libraryName": "@ant-design/graphs",
+        "libraryDirectory": "es"
+      }],
+      ["import", {
+        "libraryName": "@ant-design/maps",
         "libraryDirectory": "es"
       }]
     ]
