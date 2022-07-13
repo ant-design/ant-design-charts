@@ -142,9 +142,9 @@ Your contributions are always welcome! Please Do have a look at the [issues](htt
 
 ## 📧 Contact us
 
-DingTalk group number: `32183967`.
+DingTalk group number: `44788198 `.
 
-<img src="https://gw.alipayobjects.com/zos/antfincdn/8qEHi7GiaN/G2Plot-dingding.JPG" width="200" height="266" />
+<img src="https://gw.alipayobjects.com/zos/antfincdn/bi1LxWeIEj/32f85bbf-a06e-4046-96e5-417126bffeaf.png" width="200" height="266" />
 
 
 ## License
