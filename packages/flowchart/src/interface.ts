@@ -10,6 +10,7 @@ import {
   IApplication,
   KeybindingConfig,
   IFlowchartGraphProps,
+  IFlowchartNodePanelProps,
 } from '@antv/xflow';
 import { Cell, Graph } from '@antv/x6';
 import { PopoverProps as AntDPopoverConfig } from 'antd/es/popover';
@@ -58,14 +59,7 @@ export interface BaseProps {
   position?: IPosition;
 }
 
-export interface NodePanelProps extends BaseProps {
-  /** 自定义节点 */
-  registerNode?: RegisterNode;
-  /** 是否展示 header */
-  showHeader?: boolean;
-  /** 默认展开的面板 */
-  defaultActiveKey?: string[];
-}
+export type NodePanelProps = IFlowchartNodePanelProps;
 
 export type CanvasProps = Omit<IFlowchartGraphProps, 'onAddNode' | 'onAddEdge' | 'onConfigChange'>;
 
@@ -102,7 +96,20 @@ export interface ScaleToolbarPanelProps extends BaseProps {
   layout?: IToolbarLayout;
 }
 
-export type ContextMenuPanelProps = Pick<BaseProps, 'show'>;
+export type MenuItem = {
+  id: string;
+  label: string;
+  render: () => JSX.Element;
+};
+
+export type MenuType = 'node' | 'edge' | 'blank';
+
+export type ContextMenuPanelProps = Pick<BaseProps, 'show'> & {
+  /** 是否展示内置功能 */
+  showOfficial?: boolean;
+  /** 自定义menu */
+  submenu?: (cfg: { menuType: MenuType }) => MenuItem[];
+};
 
 export interface DetailPanelProps extends BaseProps {
   controlMapService?: (editorMap: NsJsonSchemaForm.IControlMap) => NsJsonSchemaForm.IControlMap;

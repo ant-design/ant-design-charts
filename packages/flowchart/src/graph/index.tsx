@@ -49,7 +49,7 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const { position = { top: 40, left: 240, right: 240, bottom: 0 } } = canvasProps;
   // const { position: miniMapPosition = { bottom: 12, right: 12 }, show: showMinimMap = true } = miniMapProps;
   const graphRef = useRef<IGraph>();
-  const menuConfig = useMenuConfig();
+  const menuConfig = useMenuConfig(contextMenuPanelProps);
   const commandConfig = useCmdConfig({
     flowchartId: uuidv4Ref.current,
   }); // 需要 getProps
