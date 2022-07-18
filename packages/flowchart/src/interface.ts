@@ -24,7 +24,7 @@ export interface FlowchartContainerProps {
 
 type Datum = {
   nodes?: unknown[];
-  egdes?: unknown[];
+  edges?: unknown[];
 };
 
 export interface CustomNode {
