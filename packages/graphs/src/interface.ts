@@ -247,6 +247,7 @@ export type Datum = Record<string, any>;
 
 // Graph 通用配置
 export interface CommonConfig extends GraphContainerConfig {
+  data: Datum;
   /** 是否缩放节点大小自适应容器 */
   autoFit?: boolean;
   /** 是否将图平移到中心位置 */
@@ -254,15 +255,21 @@ export interface CommonConfig extends GraphContainerConfig {
   width?: number;
   height?: number;
   pixelRatio?: number;
-
-  data: Datum;
+  /** 不同组件 layout 有差别，参考对应组件文档 */
   layout?: any;
+  /** 边配置 */
   edgeCfg?: EdgeCfg;
+  /** 节点配置 */
   nodeCfg?: NodeCfg;
+  /** marker 配置 */
   markerCfg?: IMarkerCfg;
+  /** 迷你地 */
   minimapCfg?: MiniMapConfig;
+  /** 交互组件 */
   toolbarCfg?: ToolbarCfg;
+  /** 提示 */
   tooltipCfg?: TooltipCfg;
+  /** 交互行为 */
   behaviors?: string[];
   /** 是否开启动画 */
   animate?: boolean;

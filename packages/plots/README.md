@@ -1,12 +1,11 @@
-# @ant-design/charts
+# @ant-design/plots
 
 <div align="center">
 
-A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), [G6](https://github.com/antvis/G6), [X6](https://github.com/antvis/X6), [L7Plot](https://github.com/antvis/L7Plot).
+A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot).
 
-![build](https://github.com/ant-design/ant-design-charts/workflows/build/badge.svg)
-![npm](https://img.shields.io/npm/v/@ant-design/charts)
-![npm](https://img.shields.io/npm/dm/@ant-design/charts)
+![npm](https://img.shields.io/npm/v/@ant-design/plots)
+![npm](https://img.shields.io/npm/dm/@ant-design/plots)
 [![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers)
 [![npm License](https://img.shields.io/npm/l/@ant-design/charts.svg)](https://www.npmjs.com/package/@ant-design/charts)
 
@@ -18,21 +17,9 @@ A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), [G6]
   <a href="https://www.yuque.com/antv/g2plot">Blog</a>
 </p>
 
-</div>
-
-## Case
-
-### Statistical charts
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*sXqrRrEwFRQAAAAAAAAAAABkARQnAQ" width="800"/>
 
-### Flowchart
-<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*ixVAQrEoCTcAAAAAAAAAAAAAARQnAQ />
-
-### Maps
-<img src="https://gw.alipayobjects.com/zos/antfincdn/xX10CNIu4b/8a064058-518e-4860-af54-58ca17cae985.png" />
-
-### Relation Graphs
-<img src="https://gw.alipayobjects.com/zos/antfincdn/4wquuBREI7/2f4acfc5-6e14-4972-abc1-ce9ee1ff5c07.png" />
+</div>
 
 
 ## ✨ Features
@@ -47,7 +34,7 @@ A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), [G6]
 ## 📦 Installation
 
 ```bash | pure
-$ npm install @ant-design/charts
+$ npm install @ant-design/plots
 ```
 
 
@@ -125,7 +112,7 @@ Preview
 See chart API for details. Common props:
 
 | Property | Description | Type | defaultValue |
-| :--- | :--- | :--- | :--- |
+| --- | --- | --- | --- |
 | onReady | chart loaded callback | (chart)=> void | - |
 | onEvent | chart events | (chart, event)=> void | - |
 | loading | loading status | boolean | - |
