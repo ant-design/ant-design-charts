@@ -20,15 +20,16 @@ A React geographic visualization component library, based on [L7Plot](https://gi
 </div>
 
 ## Case
-
-<img src="https://gw.alipayobjects.com/zos/antfincdn/xX10CNIu4b/8a064058-518e-4860-af54-58ca17cae985.png" width=375 />
-<img src="https://gw.alipayobjects.com/zos/antfincdn/wRiG4Cl1tB/9c40912e-13f2-42c6-a580-e86160b35962.png" width=375 />
-<img src="https://gw.alipayobjects.com/zos/antfincdn/tX2zfzui76/821b3d1d-421c-4f09-a44e-53422db302f6.png" width=375 />
-<img src="https://gw.alipayobjects.com/zos/antfincdn/qgKi3OxQVE/4553729d-c2ce-490b-aebb-ea948bef7f2e.png" width=375 />
-<img src="https://gw.alipayobjects.com/zos/antfincdn/fA50QqeP%24T/a5031ad0-7786-4183-bf23-e66dbdf52fe5.png" width=375 />
-<img src="https://gw.alipayobjects.com/zos/antfincdn/t5BQDH5Jp8/dbcddc7e-5ff9-4d3b-af9b-2d86f40b626a.png" width=375 />
-
-
+<div style="display: flex;flex-direction: row;">
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/xX10CNIu4b/8a064058-518e-4860-af54-58ca17cae985.png" width=320 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/wRiG4Cl1tB/9c40912e-13f2-42c6-a580-e86160b35962.png" width=320 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/tX2zfzui76/821b3d1d-421c-4f09-a44e-53422db302f6.png" width=320 />
+</div>  
+<div style="display: flex;flex-direction: row;">
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/qgKi3OxQVE/4553729d-c2ce-490b-aebb-ea948bef7f2e.png" width=320 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/fA50QqeP%24T/a5031ad0-7786-4183-bf23-e66dbdf52fe5.png" width=320 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/t5BQDH5Jp8/dbcddc7e-5ff9-4d3b-af9b-2d86f40b626a.png" width=320 />
+</div>  
 
 ## ✨ Features
 
