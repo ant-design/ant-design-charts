@@ -21,14 +21,14 @@ A React relation graphs component library, based on [G6](https://github.com/antv
 
 ## Case
 <div style="display: flex;flex-direction: row;">
-  <img src="https://gw.alipayobjects.com/zos/antfincdn/IJhgY4ZtHf/4ca28c72-d60c-42ca-b562-1cec9489f409.png" width=375 />
-  <img src="https://gw.alipayobjects.com/zos/antfincdn/SM9hvYbqYB/1caef0d3-78cf-4f7d-aaca-59a361cae2ec.png" width=375 />
-  <img src="https://gw.alipayobjects.com/zos/antfincdn/p7h4IUyVXM/680af564-b119-4e38-9626-bb9917424ec7.png" width=375 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/IJhgY4ZtHf/4ca28c72-d60c-42ca-b562-1cec9489f409.png" width=320 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/SM9hvYbqYB/1caef0d3-78cf-4f7d-aaca-59a361cae2ec.png" width=320 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/p7h4IUyVXM/680af564-b119-4e38-9626-bb9917424ec7.png" width=320 />
 </div>  
 <div style="display: flex;flex-direction: row;">
-  <img src="https://gw.alipayobjects.com/zos/antfincdn/JailFwu5B3/042ce37a-9b73-4218-ae2c-dcdb5994379a.png" width=375 />
-  <img src="https://gw.alipayobjects.com/zos/antfincdn/9Q5ftNEgkR/f9f6ae73-9a2c-4c8d-8ce2-919b16acdad0.png" width=375 />
-  <img src="https://gw.alipayobjects.com/zos/antfincdn/tCykDJncjJ/2200d0c0-40bd-46a8-a885-30393fb165b1.png" width=375 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/JailFwu5B3/042ce37a-9b73-4218-ae2c-dcdb5994379a.png" width=320 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/9Q5ftNEgkR/f9f6ae73-9a2c-4c8d-8ce2-919b16acdad0.png" width=320 />
+  <img src="https://gw.alipayobjects.com/zos/antfincdn/tCykDJncjJ/2200d0c0-40bd-46a8-a885-30393fb165b1.png" width=320 />
 </div>  
 
 ## ✨ Features
