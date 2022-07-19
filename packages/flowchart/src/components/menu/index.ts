@@ -49,7 +49,8 @@ export namespace NsMenuItemConfig {
   };
 }
 
-export const useMenuConfig = createCtxMenuConfig((config) => {
+export const useMenuConfig = createCtxMenuConfig((config, proxy) => {
+  const { showOfficial = true, submenu } = proxy.getValue();
   config.setMenuModelService(async (target, model) => {
     if (!target) {
       return;
@@ -62,7 +63,9 @@ export const useMenuConfig = createCtxMenuConfig((config) => {
         model.setValue({
           id: 'root',
           type: MenuItemType.Root,
-          submenu: [NsMenuItemConfig.DELETE_NODE],
+          submenu: (showOfficial ? [NsMenuItemConfig.DELETE_NODE] : []).concat(
+            submenu ? submenu({ ...config, menuType: 'node' }) : [],
+          ),
         });
         break;
       /** 边菜单 */
@@ -70,7 +73,9 @@ export const useMenuConfig = createCtxMenuConfig((config) => {
         model.setValue({
           id: 'root',
           type: MenuItemType.Root,
-          submenu: [NsMenuItemConfig.DELETE_EDGE],
+          submenu: (showOfficial ? [NsMenuItemConfig.DELETE_EDGE] : []).concat(
+            submenu ? submenu({ ...config, menuType: 'edge' }) : [],
+          ),
         });
         break;
       /** 画布菜单 */
@@ -78,7 +83,9 @@ export const useMenuConfig = createCtxMenuConfig((config) => {
         model.setValue({
           id: 'root',
           type: MenuItemType.Root,
-          submenu: [NsMenuItemConfig.EMPTY_MENU],
+          submenu: (showOfficial ? [NsMenuItemConfig.EMPTY_MENU] : []).concat(
+            submenu ? submenu({ ...config, menuType: 'blank' }) : [],
+          ),
         });
         break;
       /** 默认菜单 */
@@ -86,7 +93,9 @@ export const useMenuConfig = createCtxMenuConfig((config) => {
         model.setValue({
           id: 'root',
           type: MenuItemType.Root,
-          submenu: [NsMenuItemConfig.EMPTY_MENU],
+          submenu: (showOfficial ? [NsMenuItemConfig.EMPTY_MENU] : []).concat(
+            submenu ? submenu({ ...config, menuType: 'blank' }) : [],
+          ),
         });
         break;
     }

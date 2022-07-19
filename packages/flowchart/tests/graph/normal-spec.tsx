@@ -25,6 +25,18 @@ describe('Flowchart render', () => {
   });
 
   it('chart render', () => {
+    const NODE_LINK = {
+      id: 'NODE_LINK',
+      label: 'NODE_LINK',
+      render: () => {
+        return (
+          <a target="_blank" href="https://charts.ant.design/" style={{ padding: '0 16px' }}>
+            自定义渲染
+          </a>
+        );
+      },
+    };
+
     act(() => {
       ReactDOM.render(
         <Flowchart
@@ -37,6 +49,15 @@ describe('Flowchart render', () => {
               top: 0,
               left: 0,
               right: 0,
+            },
+          }}
+          contextMenuPanelProps={{
+            submenu: (cfg) => {
+              const { menuType } = cfg;
+              if (menuType === 'node') {
+                return [NODE_LINK];
+              }
+              return [];
             },
           }}
           scaleToolbarPanelProps={{
