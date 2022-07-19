@@ -20,10 +20,10 @@ Flowchart solutions, based on  [XFlow](https://github.com/antvis/xflow).
 </div>
 
 ## Case
-
-<img src=https://gw.alipayobjects.com/zos/antfincdn/4o%26HrctHA3/bcbfb761-4fbb-4bc9-8875-8e71853f3253.png height=240 />
-<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*ixVAQrEoCTcAAAAAAAAAAAAAARQnAQ height=240 />
-
+<div style="display: flex;flex-direction: row;">
+ <img src=https://gw.alipayobjects.com/zos/antfincdn/4o%26HrctHA3/bcbfb761-4fbb-4bc9-8875-8e71853f3253.png height=240 />
+ <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*ixVAQrEoCTcAAAAAAAAAAAAAARQnAQ height=240 />
+</div>  
 
 ## ✨ Features
 
