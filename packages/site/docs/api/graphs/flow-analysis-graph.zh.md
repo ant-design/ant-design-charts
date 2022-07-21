@@ -255,6 +255,67 @@ interface Data {
 }
 ```
 
+##### asyncData
+
+<description>**optional** _Function_</description>
+
+异步获取数据
+
+```ts
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        nodes: [
+          {
+            id: Math.random().toString(),
+            value: {
+              title: '去向页面xx',
+              items: [
+                {
+                  text: '曝光PV',
+                  value: '10.30万',
+                  icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+                },
+              ],
+            },
+          },
+          {
+            id: Math.random().toString(),
+            value: {
+              title: '去向页面xxx',
+              items: [
+                {
+                  text: '曝光PV',
+                  value: '10.30万',
+                  icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+                },
+              ],
+            },
+          },
+        ],
+        edges: [],
+      });
+    }, 1000);
+  });
+};
+const asyncData = async () => {
+  return await fetchData();
+};
+
+const config = {
+  nodeCfg: { asyncData },
+  markerCfg: (cfg) => {
+    const { edges } = cfg.graphData;
+    return {
+      position: 'right',
+      show: true,
+      collapsed: !edges.find((item) => item.source === cfg.id),
+    };
+  },
+}
+```
+
 #### edgeCfg
 
 边配置
