@@ -5,7 +5,7 @@ import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
 import ChartLoading from '../../utils/createLoading';
 
-import { CardItems, CommonConfig, FlowGraphEdgeData, NodeData } from '../../interface';
+import { CardItems, CommonConfig, FlowGraphEdgeData, NodeData, NodeConfig } from '../../interface';
 import { registerIndicatorGeometries } from './customItem';
 
 export type FlowAnalysisNodeData = NodeData<{
@@ -13,10 +13,17 @@ export type FlowAnalysisNodeData = NodeData<{
   items?: CardItems[];
 }>;
 
-export interface FlowAnalysisGraphConfig extends Omit<CommonConfig, 'data'> {
+export interface FlowAnalysisGraphConfig extends Omit<CommonConfig, 'data' | 'nodeCfg'> {
   data: {
     nodes: FlowAnalysisNodeData[];
     edges: FlowGraphEdgeData[];
+  };
+  nodeCfg?: CommonConfig['nodeCfg'] & {
+    /** 点击展开时异步获取数据 */
+    asyncData?: (nodeCfg: NodeConfig) => {
+      nodes: FlowAnalysisNodeData[];
+      edges?: FlowGraphEdgeData[];
+    };
   };
 }
 

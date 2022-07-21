@@ -12,6 +12,7 @@ import {
   getStyle,
   setEllipsis,
 } from '../../utils';
+import { getGlobalInstance } from '../../utils/global';
 
 const getPathInfo = (
   cfg: EdgeConfig<
@@ -367,7 +368,17 @@ export const registerIndicatorGeometries = () => {
             position = 'right',
             collapsed,
             style: markerStyle,
-          } = typeof markerCfg === 'function' ? markerCfg(cfg, group) : markerCfg;
+          } = typeof markerCfg === 'function'
+            ? markerCfg(
+                {
+                  ...cfg,
+                  graphData: {
+                    ...getGlobalInstance(cfg._graphId)?.get('eventData').getData(),
+                  },
+                },
+                group,
+              )
+            : markerCfg;
           createMarker(
             {
               show,
