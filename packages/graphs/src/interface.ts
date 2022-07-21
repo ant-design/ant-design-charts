@@ -146,6 +146,10 @@ export interface ToolbarCfg {
 
 // 通用 card 配置
 export interface CardNodeCfg extends NodeCfg {
+  /** graph id */
+  readonly _graphId?: string;
+  /** graph data */
+  readonly graphData?: any;
   title?: {
     /** title 容器样式 */
     containerStyle?: IShapeStyle;

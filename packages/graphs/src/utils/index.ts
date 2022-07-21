@@ -25,6 +25,7 @@ import {
   defaultFlowGraphAnchorPoints,
 } from '../constants';
 import { DecompositionTreeGraphConfig } from '../components/decomposition-tree-graph';
+import { FlowAnalysisGraphConfig } from '../components/flow-analysis-graph';
 
 // 类型检测
 export const isType = (value: any, type: string): boolean => {
@@ -241,8 +242,11 @@ export const getMarkerPosition = (direction: string = 'right', size: number[]) =
  */
 type CollapsedNode = NodeData<unknown> & { collapsedLevel: number };
 
-export const bindSourceMapCollapseEvents = (graph: IGraph) => {
-  const onClick = (e: IG6GraphEvent) => {
+export const bindSourceMapCollapseEvents = (
+  graph: IGraph,
+  asyncData: FlowAnalysisGraphConfig['nodeCfg']['asyncData'],
+) => {
+  const onClick = async (e: IG6GraphEvent) => {
     const controlData: { edges: any[]; nodes: any[] } = graph.get('eventData').getData();
     if (e.target.get('name') === 'collapse-icon') {
       const item = e.item as INode;
@@ -254,8 +258,6 @@ export const bindSourceMapCollapseEvents = (graph: IGraph) => {
           .find((item) => item.get('name') === 'main-box')
           ?.attr('defaultCollapsed');
       }
-      // @ts-ignore
-      const marker = e.item._cfg.group.getChildren().find((item) => item.cfg.type === 'marker');
       const { edges: fullEdges = [] } = controlData ?? {};
       const { id: nodeId } = item.getModel();
       const targetNodeIds: string[] = [];
@@ -282,18 +284,35 @@ export const bindSourceMapCollapseEvents = (graph: IGraph) => {
         });
       } else {
         // expand
-        graph
-          .findAll('node', (node) => {
-            const { collapsedLevel } = controlData.nodes.find((item: CollapsedNode) => item.id === node.get('id'));
-            return targetNodeIds.includes(node.get('id')) && (!collapsedLevel || collapsedLevel < 2);
-          })
-          .forEach((node) => graph.showItem(node));
-        controlData.nodes.forEach((node: NodeData<unknown> & { collapsedLevel: number }) => {
-          const { collapsedLevel = 0, id } = node;
-          if (targetNodeIds.includes(id)) {
-            node.collapsedLevel = collapsedLevel - 1;
-          }
+        const showNode = graph.findAll('node', (node) => {
+          const { collapsedLevel } = controlData.nodes.find((item: CollapsedNode) => item.id === node.get('id'));
+          return targetNodeIds.includes(node.get('id')) && (!collapsedLevel || collapsedLevel < 2);
         });
+        if (showNode.length) {
+          showNode.forEach((node) => graph.showItem(node));
+          controlData.nodes.forEach((node: NodeData<unknown> & { collapsedLevel: number }) => {
+            const { collapsedLevel = 0, id } = node;
+            if (targetNodeIds.includes(id)) {
+              node.collapsedLevel = collapsedLevel - 1;
+            }
+          });
+        } else if (asyncData) {
+          createLoading();
+          const { nodes, edges } = await asyncData(item.getModel() as NodeConfig);
+          const eventData = {
+            nodes: controlData.nodes.concat(nodes),
+            edges: controlData.edges.concat(
+              edges?.length ? edges : nodes.map((item) => ({ source: nodeId, target: item.id })),
+            ),
+          };
+          closeLoading();
+          graph.set('eventData', new EventData(eventData));
+          graph.changeData(eventData);
+          if (graph.get('fitCenter')) {
+            graph.fitCenter();
+          }
+          return;
+        }
       }
       fullEdges.forEach((edge) => {
         const { source, target } = edge;

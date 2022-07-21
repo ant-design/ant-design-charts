@@ -20,6 +20,7 @@ import {
   renderGraph,
   setTag,
 } from '../utils';
+import { setGlobalInstance } from '../utils/global';
 
 export default function useGraph(graphClass: string, config: any, extra: { name?: string } = {}) {
   const container = useRef(null);
@@ -255,6 +256,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         title: nodeLabelCfg,
         linkCenter,
         getChildren,
+        asyncData,
       } = nodeCfg ?? {};
 
       const {
@@ -315,7 +317,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       const graphId = getGraphId(graphRef.current);
       const graph = graphRef.current;
       graph.set('id', graphId);
-
+      setGlobalInstance(graphId, graph);
       const getLabel = (value: { [key: string]: string } | string): string => {
         // 辐射树图
         if (isString(value)) {
@@ -334,10 +336,12 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
           node.markerCfg = markerCfg;
           return {
             anchorPoints,
+            _graphId: graphId,
           };
         }
         const { style } = (nodeLabelCfg ?? {}) as CardNodeCfg;
         return {
+          _graphId: graphId,
           label: getLabel(node.value),
           labelCfg: {
             style: getCommonConfig(style, node, graph),
@@ -386,7 +390,9 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       bindStateEvents(graph, config);
       if (markerCfg) {
         const sourceGraph = ['FlowAnalysisGraph', 'FundFlowGraph'];
-        sourceGraph.includes(name) ? bindSourceMapCollapseEvents(graph) : bindDefaultEvents(graph, level, getChildren);
+        sourceGraph.includes(name)
+          ? bindSourceMapCollapseEvents(graph, asyncData)
+          : bindDefaultEvents(graph, level, getChildren);
       }
       renderGraph(graph, data, level);
       if (fitCenter) {

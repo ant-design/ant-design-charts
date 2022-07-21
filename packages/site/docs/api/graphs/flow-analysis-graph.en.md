@@ -255,6 +255,67 @@ Node style configuration items in different states.
 }
 ```
 
+##### asyncData
+
+<description>**optional** _Function_</description>
+
+Async Data
+
+```ts
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        nodes: [
+          {
+            id: Math.random().toString(),
+            value: {
+              title: 'Target page',
+              items: [
+                {
+                  text: '曝光PV',
+                  value: '10.30万',
+                  icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+                },
+              ],
+            },
+          },
+          {
+            id: Math.random().toString(),
+            value: {
+              title: 'Target page',
+              items: [
+                {
+                  text: '曝光PV',
+                  value: '10.30万',
+                  icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+                },
+              ],
+            },
+          },
+        ],
+        edges: [],
+      });
+    }, 1000);
+  });
+};
+const asyncData = async () => {
+  return await fetchData();
+};
+
+const config = {
+  nodeCfg: { asyncData },
+  markerCfg: (cfg) => {
+    const { edges } = cfg.graphData;
+    return {
+      position: 'right',
+      show: true,
+      collapsed: !edges.find((item) => item.source === cfg.id),
+    };
+  },
+}
+```
+
 #### edgeCfg
 
 Edge configuration.
