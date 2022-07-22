@@ -1,4 +1,4 @@
-import G6 from '@antv/g6';
+import G6, { TreeGraphData } from '@antv/g6';
 import { isNumber, isObject, isString, clone } from '@antv/util';
 import {
   MiniMapConfig,
@@ -7,6 +7,7 @@ import {
   NodeData,
   CommonConfig,
   IGraph,
+  ITreeGraph,
   IG6GraphEvent,
   INode,
   Graph,
@@ -98,12 +99,13 @@ class EventData {
 
 // 展开&折叠事件
 export const bindDefaultEvents = (
-  graph: IGraph,
+  graph: ITreeGraph,
   level?: number,
   getChildren?: DecompositionTreeGraphConfig['nodeCfg']['getChildren'],
 ) => {
   const onClick = async (e: IG6GraphEvent) => {
     const item = e.item as INode;
+    const model = item.getModel();
     if (e.target.get('name') === 'collapse-icon') {
       const { collapsed, g_currentPath, children = [], g_parentId, g_level, id } = item.getModel();
       let appendChildren =
@@ -130,12 +132,12 @@ export const bindDefaultEvents = (
       }
 
       if (appendChildren?.length > 0) {
-        const currentData = setParentChildren(graph.get('data'), g_currentPath as string, appendChildren);
-        graph.changeData(currentData);
-        if (graph.get('fitCenter')) {
-          graph.fitCenter();
-          graph.stopAnimate(); // 二次布局使用动画效果较差
-        }
+        model.children = appendChildren;
+        graph.updateChild(model as TreeGraphData, model.id);
+        graph.updateItem(item, {
+          collapsed: false,
+        });
+        graph.refreshItem(item);
       } else {
         graph.updateItem(item, {
           collapsed: !collapsed,
