@@ -211,8 +211,8 @@ describe('Type NodeData', () => {
     document.body.appendChild(container);
   });
   afterEach(() => {
-    // document.body.removeChild(container);
-    // container = null;
+    document.body.removeChild(container);
+    container = null;
   });
   const dataRef = { current: {} };
   it('Render data', () => {
