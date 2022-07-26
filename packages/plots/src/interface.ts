@@ -7,6 +7,7 @@ import {
   BulletOptions,
   MixOptions,
   TreemapOptions,
+  Tooltip as BaseTooltip,
 } from '@antv/g2plot';
 
 interface TinyPlotOptions extends Omit<Options, 'data' | 'legend' | 'label'> {
@@ -38,13 +39,20 @@ export type ChartRefConfig =
   | React.MutableRefObject<Plot<AllBaseConfig> | undefined>;
 
 /**
- * @title 事件
- * @description 事件类型的浅拷贝
- * @title.en_US event
- * @description.en_US Shallow copy of event type
+ * @title 图表浮窗配置
+ * @title.en_US Chart tooltip configuration
  */
-export type PlotEvent = G2.Event;
-export interface ContainerConfig<O extends AllBaseConfig = Options, P extends Plot<O> = Plot<O>> {
+export interface Tooltip extends Omit<BaseTooltip, 'customContent' | 'container'> {
+  customContent?: (title: string, data: any[]) => React.ReactNode | string | unknown;
+  container?: React.ReactNode;
+}
+
+export interface BasePlot extends Plot<any> {
+  toDataURL?: (type?: string, encoderOptions?: number) => string;
+  downloadImage?: (name?: string, type?: string, encoderOptions?: number) => string;
+}
+
+type ContainerConfig = {
   /**
    * @title 图表样式
    * @description 配置图表样式
@@ -82,6 +90,38 @@ export interface ContainerConfig<O extends AllBaseConfig = Options, P extends Pl
    * @description.en_US Error placeholder template
    */
   errorTemplate?: (e: Error) => React.ReactNode;
+  /**
+   * @title 图表浮窗
+   * @description 设置悬浮提示
+   * @title.en_US Chart tooltip
+   * @description.en_US Setting chart tooltip
+   */
+};
+
+/**
+ * @title 事件
+ * @description 事件类型的浅拷贝
+ * @title.en_US event
+ * @description.en_US Shallow copy of event type
+ */
+export type PlotEvent = G2.Event;
+
+export interface BaseConfig<O extends Omit<AllBaseConfig, 'tooltip'>, P extends Plot<O> = Plot<O>>
+  extends ContainerConfig {
+  /**
+   * @title 浮窗提示
+   * @description 设置浮窗提示
+   * @title.en_US Chart tooltip
+   * @description.en_US Set chart tooltip
+   */
+  tooltip?: false | Tooltip;
+  /**
+   * @title 图表实例
+   * @description 获取图表实例
+   * @title.en_US Chart instance
+   * @description.en_US Get chart instance
+   */
+  chartRef?: ChartRefConfig;
   /**
    * @title 图表渲染
    * @description 图表渲染完成执行回调
