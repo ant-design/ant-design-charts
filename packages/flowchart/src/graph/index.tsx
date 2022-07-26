@@ -99,8 +99,10 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
           <ToolbarPanel {...toolbarPanelProps} flowchartId={uuidv4Ref.current} />
           <FlowchartNodePanel {...nodePanelProps} />
           <FlowchartCanvas
-            config={{ ...canvasProps, onAddNode, onAddEdge, onConfigChange }}
+            config={{ ...canvasProps, onAddNode }}
             mode={mode}
+            onAddEdge={onAddEdge}
+            onConfigChange={onConfigChange}
             position={position}
           >
             {show && <CanvasScaleToolbar {...Object.assign({}, DEFAULT_SCALE_TOOLBAR_PROPS, scaleToolbarPanelProps)} />}
