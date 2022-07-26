@@ -70,6 +70,15 @@ describe('Flowchart render', () => {
             //   background: 'transparent',
             // },
           }}
+          onAddNode={() => {
+            console.log('onAddNode');
+          }}
+          onAddEdge={() => {
+            console.log('onAddEdge');
+          }}
+          onConfigChange={() => {
+            console.log('onConfigChange');
+          }}
           canvasProps={{
             position: {
               top: 40,
