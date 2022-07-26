@@ -2,19 +2,11 @@ import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { TinyLine as G2plotTinyLine, TinyLineOptions as G2plotConfig } from '@antv/g2plot';
 import useChart from '../../hooks/useChart';
 import { getChart } from '../../util';
-import { ChartRefConfig, ContainerConfig } from '../../interface';
+import { BaseConfig } from '../../interface';
 import ErrorBoundary from '../../errorBoundary';
 import ChartLoading from '../../util/createLoading';
 
-export interface TinyLineConfig extends G2plotConfig, ContainerConfig<G2plotConfig> {
-  /**
-   * @title 图表实例
-   * @description 获取图表实例
-   * @title.en_US Chart instance
-   * @description.en_US Get chart instance
-   */
-  chartRef?: ChartRefConfig;
-}
+export interface TinyLineConfig extends Omit<G2plotConfig, 'tooltip'>, BaseConfig<G2plotConfig> {}
 
 const TinyLineChart = forwardRef((props: TinyLineConfig, ref) => {
   const {

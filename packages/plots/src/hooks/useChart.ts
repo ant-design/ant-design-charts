@@ -1,27 +1,18 @@
-import { ReactNode, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { isEqual, get } from '@antv/util';
-import type { Options as BaseOptions, G2, Plot, Tooltip as BaseTooltip } from '@antv/g2plot';
+import { G2 } from '@antv/g2plot';
 import createNode from '../util/createNode';
 import { hasPath, isType, deepClone, clone, setPath } from '../util';
+import { BasePlot, BaseConfig, AllBaseConfig } from '../interface';
 
-export interface Tooltip extends Omit<BaseTooltip, 'customContent'> {
-  customContent?: (title: string, data: any[]) => ReactNode | string | unknown;
-  container?: ReactNode;
-}
-
-export interface Options extends Omit<BaseOptions, 'tooltip' | 'data' | 'yAxis'> {
-  tooltip?: boolean | Tooltip;
+interface Base extends BaseConfig<AllBaseConfig> {
   data?: any;
-  yAxis?: BaseOptions['yAxis'] | BaseOptions['yAxis'][];
-  [key: string]: any;
+  value?: number;
+  /** Gauge、Liquid、Progress、RingProgress */
+  percent?: number;
 }
 
-export interface Base extends Plot<any> {
-  toDataURL?: (type?: string, encoderOptions?: number) => string;
-  downloadImage?: (name?: string, type?: string, encoderOptions?: number) => string;
-}
-
-export default function useInit<T extends Base, U extends Options>(ChartClass: any, config: U) {
+export default function useInit<T extends BasePlot, U extends Base>(ChartClass: any, config: U) {
   const chart = useRef<T>();
   const chartOptions = useRef<U>();
   const container = useRef<HTMLDivElement>(null);
