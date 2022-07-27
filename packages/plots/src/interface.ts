@@ -114,7 +114,7 @@ export interface BaseConfig<O extends Omit<AllBaseConfig, 'tooltip'>, P extends 
    * @title.en_US Chart tooltip
    * @description.en_US Set chart tooltip
    */
-  tooltip?: false | Tooltip;
+  tooltip?: Tooltip;
   /**
    * @title 图表实例
    * @description 获取图表实例
