@@ -1,3 +1,10 @@
+## 1.2.0
+
+`2022-08-16`
+
+- 🔥 新增 canvasProps.showPortsOnNodeSelected 属性，支持选中节点时连线
+- 🔥 新增 canvasProps.edgeConfig 属性，支持默认连线配置
+
 ## 1.1.9
 
 `2022-07-26`
