@@ -46,7 +46,11 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   const uuidv4Ref = useRef<string>(uuidv4());
   const container = useRef<HTMLDivElement>();
   setProps(props, uuidv4Ref.current, container);
-  const { position = { top: 40, left: 240, right: 240, bottom: 0 } } = canvasProps;
+  const {
+    position = { top: 40, left: 240, right: 240, bottom: 0 },
+    showPortsOnNodeSelected,
+    edgeConfig = {},
+  } = canvasProps;
   // const { position: miniMapPosition = { bottom: 12, right: 12 }, show: showMinimMap = true } = miniMapProps;
   const graphRef = useRef<IGraph>();
   const menuConfig = useMenuConfig(contextMenuPanelProps);
@@ -104,6 +108,8 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
             onAddEdge={onAddEdge}
             onConfigChange={onConfigChange}
             position={position}
+            showPortsOnNodeSelected={showPortsOnNodeSelected}
+            edgeConfig={edgeConfig}
           >
             {show && <CanvasScaleToolbar {...Object.assign({}, DEFAULT_SCALE_TOOLBAR_PROPS, scaleToolbarPanelProps)} />}
             {showMenu && <CanvasContextMenu config={menuConfig} />}
