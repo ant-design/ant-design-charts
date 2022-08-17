@@ -1,7 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import Area from '../../src/plots/area';
-import { ErrorBoundary } from '../../src/base';
+import { RadialTreeGraph } from '../../src';
+import ErrorBoundary from '../../src/errorBoundary';
 
 describe('Area render', () => {
   let container;
@@ -24,16 +24,23 @@ describe('Area render', () => {
       errorTemplate: <span id="error">custom error</span>,
     };
     const chartProps = {
-      data: [],
-      xField: 'date',
-      yField: 'scales',
+      data: {
+        id: 'Modeling Methods',
+        value: 'Methods',
+        children: [],
+      },
       autoFit: false,
-      width: '200',
-      height: '160',
+      nodeCfg: {
+        type: 'image',
+        img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*mpPvTKdP7cIAAAAAAAAAAABkARQnAQ',
+      },
+      width: 200,
+      height: 160,
     };
-    const testRenderer = create(<Area {...props} {...chartProps} />);
+    // @ts-ignore
+    const testRenderer = create(<RadialTreeGraph {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
-    expect(testInstance.findByType(ErrorBoundary).children[0].children[0].indexOf('') !== -1).toBeTruthy();
+    expect((testInstance.findByType(ErrorBoundary).children[0] as any).children[0].indexOf('') !== -1).toBeTruthy();
   });
 
   it('error template with callback', () => {
@@ -46,15 +53,23 @@ describe('Area render', () => {
       errorTemplate: () => <span id="error-callback">custom error with callback</span>,
     };
     const chartProps = {
-      data: [],
-      xField: 'date',
-      yField: 'scales',
+      data: {
+        id: 'Modeling Methods',
+        value: 'Methods',
+        children: [],
+      },
       autoFit: false,
-      width: '200',
-      height: '160',
+      nodeCfg: {
+        type: 'image',
+        img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*mpPvTKdP7cIAAAAAAAAAAABkARQnAQ',
+      },
+      width: 200,
+      height: 160,
     };
-    const testRenderer = create(<Area {...props} {...chartProps} />);
+    // @ts-ignore
+    const testRenderer = create(<RadialTreeGraph {...props} {...chartProps} />);
     const testInstance = testRenderer.root;
+    // @ts-ignore
     expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error with callback']);
   });
 });
