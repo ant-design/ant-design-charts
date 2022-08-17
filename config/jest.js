@@ -11,7 +11,7 @@ const BaseJestConfig = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: false,
   collectCoverageFrom: ['packages/**/*.ts', '!**/node_modules/**'],
-  testRegex: '/tests/.*-spec\\.tsx|\\.(t|j)s?$',
+  testMatch: ['**/?(*[.-])+(spec|test).[jt]s?(x)'],
 };
 
 module.exports = { BaseJestConfig };

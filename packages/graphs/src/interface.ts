@@ -17,6 +17,7 @@ import {
   NodeConfig as G6NodeConfig,
   ShapeStyle,
   StateStyles,
+  TreeGraphData as G6TreeGraphData,
 } from '@antv/g6';
 
 export interface GraphContainerConfig {
@@ -24,7 +25,7 @@ export interface GraphContainerConfig {
   className?: string;
   loading?: boolean;
   loadingTemplate?: React.ReactElement;
-  errorTemplate?: (e: Error) => React.ReactNode;
+  errorTemplate?: React.ReactNode | ((e: Error) => React.ReactNode);
 }
 export interface NodeConfig extends G6NodeConfig {
   value?: any;
@@ -340,4 +341,5 @@ export {
   Graph,
   IPoint,
   IShape,
+  G6TreeGraphData,
 };

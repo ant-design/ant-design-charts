@@ -4,11 +4,11 @@ import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
 import ChartLoading from '../../utils/createLoading';
 
-import { CommonConfig, FlowGraphDatum } from '../../interface';
+import { CommonConfig, TreeGraphData } from '../../interface';
 import { defaultFlowGraphAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../../constants';
 
 export interface RadialTreeGraphConfig extends Omit<CommonConfig, 'data'> {
-  data: FlowGraphDatum;
+  data: TreeGraphData;
 }
 
 const defaultLayout = {

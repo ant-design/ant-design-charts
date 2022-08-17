@@ -249,7 +249,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
 
       const {
         type: nodeType,
-        size: nodeSize,
         anchorPoints: nodeAnchorPoints,
         nodeStateStyles,
         style: nodeStyle,
@@ -297,13 +296,11 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
           default: behaviors,
         },
         defaultNode: {
-          type: nodeType,
-          size: nodeSize,
-          anchorPoints: nodeAnchorPoints,
+          ...nodeCfg,
           nodeCfg,
         },
         defaultEdge: {
-          type: edgeType,
+          ...edgeCfg,
           edgeCfg,
           labelCfg: labelCfg?.style,
         },
