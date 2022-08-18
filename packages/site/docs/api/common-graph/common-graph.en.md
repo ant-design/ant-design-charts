@@ -350,7 +350,7 @@ interface ToolbarCfg {
   /** zoom factor */
   zoomFactor?: number;
   /** custom icon */
- renderIcon?: ({
+ customContent?: ({
     zoomIn,
     zoomOut,
     toggleFullscreen,
@@ -368,7 +368,7 @@ interface ToolbarCfg {
 
 <description>**optional** _object_</description>
 
-Tooltip configruation.
+Tooltip configuration.
 
 ```ts
 interface ToolbarCfg {
@@ -382,7 +382,27 @@ interface ToolbarCfg {
   customContent: (item?: NodeConfig) => React.ReactElement;
 }
 ```
+#### menuCgf 
 
+<description>**optional** _object_</description>
+
+MenuCfg configuration.
+
+```ts
+interface MenuCfg {
+  container?: HTMLDivElement | string | null;
+  className?: string;
+  handleMenuClick?: (target: HTMLElement, item: Item) => void;
+  customContent?: (evt?: IG6GraphEvent) => React.ReactNode;
+  // offsetX 与 offsetY 需要加上父容器的 padding
+  offsetX?: number;
+  offsetY?: number;
+  shouldBegin?: (evt?: IG6GraphEvent) => boolean;
+  // 允许出现 tooltip 的 item 类型
+  itemTypes?: string[];
+  trigger?: 'click' | 'contextmenu';
+}
+```
 ## Functions
 
 #### graph.downloadFullImage(name, type, imageConfig)

@@ -15,7 +15,7 @@ const Toolbar: React.FC<IToolbar> = ({ toolbarCfg, container, graph }) => {
   const width = useRef<number>();
   const height = useRef<number>();
   const zoom = useRef<number>(1);
-  const { zoomFactor = 0.25, renderIcon } = toolbarCfg;
+  const { zoomFactor = 0.25, renderIcon, customContent } = toolbarCfg;
   const [fullscreen, toggleFullscreen] = useFullscreen(container);
   // 获取当全屏时的窗口大小
   const getWindow = () => {
@@ -64,17 +64,19 @@ const Toolbar: React.FC<IToolbar> = ({ toolbarCfg, container, graph }) => {
     toggleWidth(!document.fullscreenElement);
   };
 
-  if (renderIcon) {
+  const customRender = customContent || renderIcon;
+
+  if (customRender) {
     // 用法升级，提示旧用户
     if (
-      !renderIcon
+      !customRender
         .toString()
         .match(/\(([^)]*)\)/)?.[1]
         ?.includes('{')
     ) {
-      Log.warn(`renderIcon 用法已经升级，renderIcon(zoomIn, xx) => renderIcon({zoomIn, xx})`);
+      Log.warn(`customContent 用法已经升级，customContent(zoomIn, xx) => customContent({zoomIn, xx})`);
     }
-    return renderIcon({
+    return customRender({
       zoomIn,
       zoomOut,
       toggleFullscreen: setToggleFullscreen,

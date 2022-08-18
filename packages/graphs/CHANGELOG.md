@@ -1,5 +1,5 @@
-`2022-08-17`
 
+- 🔥 新增 `menuCfg` 配置
 - 🐞 [关系图透传节点配置，支持 image 等节点](https://github.com/ant-design/ant-design-charts/issues/1489)
 
 ## 1.2.3
