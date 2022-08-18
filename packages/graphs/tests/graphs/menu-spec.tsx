@@ -36,11 +36,11 @@ describe('RadialTreeGraph contentmenu', () => {
     document.body.appendChild(container);
   });
   afterAll(() => {
-    // const containers = document.getElementsByClassName('container');
-    // Array.from(containers).forEach((el) => {
-    //   document.body.removeChild(el);
-    // });
-    // container = null;
+    const containers = document.getElementsByClassName('container');
+    Array.from(containers).forEach((el) => {
+      document.body.removeChild(el);
+    });
+    container = null;
   });
 
   it('menu', () => {
