@@ -353,7 +353,7 @@ interface ToolbarCfg {
   /** 缩放因子 */
   zoomFactor?: number;
   /** 自定义 icon */
- renderIcon?: ({
+ customContent?: ({
     zoomIn,
     zoomOut,
     toggleFullscreen,

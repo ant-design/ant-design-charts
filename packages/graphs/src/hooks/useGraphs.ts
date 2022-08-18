@@ -1,8 +1,8 @@
 import G6, { IEdge, INode, ModeType } from '@antv/g6';
 import { isEqual, isFunction, isObject, isString } from '@antv/util';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { createToolbar } from '../components/toolbar';
+import { createToolbar, Menu } from '../plugins';
 import { ArrowConfig, CardNodeCfg, CommonConfig, EdgeConfig, NodeConfig, StateStyles } from '../interface';
 import {
   bindDefaultEvents,
@@ -244,8 +244,19 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       const { name = '' } = extra;
       const graphSize = getGraphSize(width, height, container);
       const plugins = [];
-      const { nodeCfg, edgeCfg, behaviors, layout, animate, autoFit, fitCenter, onReady, tooltipCfg, customLayout } =
-        config;
+      const {
+        nodeCfg,
+        edgeCfg,
+        behaviors,
+        layout,
+        animate,
+        autoFit,
+        fitCenter,
+        onReady,
+        tooltipCfg,
+        customLayout,
+        menuCfg,
+      } = config;
 
       const {
         type: nodeType,
@@ -266,25 +277,35 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         label: labelCfg,
         edgeStateStyles,
       } = edgeCfg ?? {};
-
+      const createNode = (children: React.ReactNode, className: string) => {
+        const mountPoint = document.createElement('div');
+        mountPoint.className = className;
+        ReactDOM.render(children as React.ReactElement, mountPoint);
+        return mountPoint;
+      };
+      // tooltip
       if (tooltipCfg && isFunction(tooltipCfg.customContent)) {
         const { customContent, ...rest } = tooltipCfg;
-        const createNode = (children: React.ReactNode) => {
-          const mountPoint = document.createElement('div');
-          mountPoint.className = 'g6-tooltip';
-          ReactDOM.render(children as React.ReactElement, mountPoint);
-          return mountPoint;
-        };
         const tooltipPlugin = new G6.Tooltip({
           offsetX: 10,
           offsetY: 20,
           itemTypes: ['node'],
           ...rest,
           getContent(e) {
-            return createNode(customContent(e.item.getModel()));
+            return createNode(customContent(e.item.getModel()), 'g6-tooltip');
           },
         });
         plugins.push(tooltipPlugin);
+      }
+      // menu
+      if (menuCfg && isFunction(menuCfg.customContent)) {
+        const menuPlugin = new Menu({
+          offsetX: 16 + 10,
+          offsetY: 0,
+          itemTypes: ['node'],
+          ...menuCfg,
+        });
+        plugins.push(menuPlugin);
       }
       graphRef.current = new G6[graphClass]({
         container: container.current as any,

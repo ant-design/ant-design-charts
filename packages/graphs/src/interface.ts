@@ -18,7 +18,10 @@ import {
   ShapeStyle,
   StateStyles,
   TreeGraphData as G6TreeGraphData,
+  Item,
 } from '@antv/g6';
+
+import { MenuConfig } from './plugins';
 
 export interface GraphContainerConfig {
   style?: React.CSSProperties;
@@ -123,16 +126,35 @@ export interface BadgeCfg {
   style?: IShapeStyle;
 }
 
-export interface ToolbarCfg {
-  /** toolbar css 类名 */
+type PluginContainer<T> = {
+  /** tooltip css 类名 */
   className?: string;
-  /** toolbar 容器样式 */
+  /** tooltip 容器样式 */
   style?: React.CSSProperties;
+  /** tooltip 容器，默认和 canvas 使用同一父容器 */
+  container?: HTMLDivElement | string | null;
+  /** 自定义模板 */
+  customContent: (item: T) => React.ReactElement;
+};
+
+export interface ToolbarCfg
+  extends Omit<
+    PluginContainer<{
+      zoomIn: () => void;
+      zoomOut: () => void;
+      toggleFullscreen: () => void;
+      fullscreen: boolean;
+    }>,
+    'container'
+  > {
   /** 是否展示 */
   show?: boolean;
   /** 缩放因子 */
   zoomFactor?: number;
-  /** renderIcon，自定义渲染 */
+  /**
+   * @title renderIcon，自定义渲染
+   * @deprecated
+   */
   renderIcon?: ({
     zoomIn,
     zoomOut,
@@ -226,15 +248,7 @@ export interface MarkerCfg {
   style?: ShapeStyle;
 }
 
-export interface TooltipCfg {
-  /** tooltip css 类名 */
-  className?: string;
-  /** tooltip 容器样式 */
-  style?: React.CSSProperties;
-  /** 自定义模板 */
-  customContent: (item?: NodeConfig) => React.ReactElement;
-  /** tooltip 容器，默认和 canvas 使用同一父容器 */
-  container?: HTMLDivElement | string | null;
+export interface TooltipCfg extends PluginContainer<NodeConfig | EdgeConfig> {
   offsetX?: number;
   offsetY?: number;
   /** 是否展示 */
@@ -275,6 +289,8 @@ export interface CommonConfig extends GraphContainerConfig {
   toolbarCfg?: ToolbarCfg;
   /** 提示 */
   tooltipCfg?: TooltipCfg;
+  /** 右键菜单 */
+  menuCfg?: MenuConfig;
   /** 交互行为 */
   behaviors?: string[];
   /** 是否开启动画 */

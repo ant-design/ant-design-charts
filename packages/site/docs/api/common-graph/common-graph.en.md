@@ -350,7 +350,7 @@ interface ToolbarCfg {
   /** zoom factor */
   zoomFactor?: number;
   /** custom icon */
- renderIcon?: ({
+ customContent?: ({
     zoomIn,
     zoomOut,
     toggleFullscreen,
