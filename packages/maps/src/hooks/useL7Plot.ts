@@ -29,29 +29,38 @@ export default function useL7Plot<
     let updateMap = false;
     let updateOption = false;
 
-    const { onReady: currentOnReady, map: currentMap, source: currentSource, ...currentConfig } = plotConfig.current;
-    const { onReady, map: inputMap, source: inputSource, ...inputConfig } = config;
+    const {
+      onReady: currentOnReady,
+      map: currentMap,
+      source: { data: currentSourceData, ...currentSourceConfig },
+      ...currentConfig
+    } = plotConfig.current;
+    const {
+      onReady,
+      map: inputMap,
+      source: { data: inputSourceData, ...inputSourceDataConfig },
+      ...inputConfig
+    } = config;
     updateMap = !isEqual(currentMap, inputMap);
-    changeData = !isEqual(currentSource, inputSource);
+    changeData = !isEqual(currentSourceConfig, inputSourceDataConfig) || currentSourceData !== inputSourceData;
     updateOption = !isEqual(currentConfig, inputConfig);
     plotConfig.current = deepCloneMapConfig<C>(config);
-    if (updateMap && inputMap) {
+    if (updateMap) {
       const updateMapConfig = pick<any>(inputMap, ['center', 'pitch', 'rotation', 'zoom', 'style']);
       plotRef.current.updateMap(updateMapConfig);
     }
 
-    if (changeData && inputSource) {
-      const { data, ...cfg } = inputSource;
+    if (changeData) {
       if (plotRef.current.loaded) {
-        plotRef.current.changeData(data, cfg);
+        plotRef.current.changeData(inputSourceData, inputSourceDataConfig);
       } else {
         plotRef.current.once('loaded', () => {
-          plotRef.current?.changeData(data, cfg);
+          plotRef.current?.changeData(inputSourceData, inputSourceDataConfig);
         });
       }
     }
 
-    if (updateOption && inputConfig) {
+    if (updateOption) {
       if (plotRef.current.loaded) {
         // @ts-ignore
         plotRef.current.update(inputConfig);
