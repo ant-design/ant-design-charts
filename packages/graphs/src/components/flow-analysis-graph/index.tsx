@@ -1,11 +1,20 @@
 import React from 'react';
+import { DagreLayout } from '@antv/layout';
 import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultNodeStyle, defaultStateStyles } from '../../constants';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
 import ChartLoading from '../../utils/createLoading';
 
-import { CardItems, CommonConfig, FlowGraphEdgeData, NodeData, NodeConfig } from '../../interface';
+import {
+  CardItems,
+  CommonConfig,
+  FlowGraphEdgeData,
+  NodeCfg,
+  NodeData,
+  NodeConfig,
+  FetchLoading,
+} from '../../interface';
 import { registerIndicatorGeometries } from './customItem';
 
 export type FlowAnalysisNodeData = NodeData<{
@@ -13,12 +22,12 @@ export type FlowAnalysisNodeData = NodeData<{
   items?: CardItems[];
 }>;
 
-export interface FlowAnalysisGraphConfig extends Omit<CommonConfig, 'data' | 'nodeCfg'> {
+export interface FlowAnalysisGraphConfig extends Omit<CommonConfig<DagreLayout>, 'data' | 'nodeCfg'>, FetchLoading {
   data: {
     nodes: FlowAnalysisNodeData[];
     edges: FlowGraphEdgeData[];
   };
-  nodeCfg?: CommonConfig['nodeCfg'] & {
+  nodeCfg?: NodeCfg & {
     /** 点击展开时异步获取数据 */
     asyncData?: (nodeCfg: NodeConfig) => {
       nodes: FlowAnalysisNodeData[];

@@ -9,6 +9,8 @@ import DecompositionTreeGraph from './components/decomposition-tree-graph';
 import type { DecompositionTreeGraphConfig } from './components/decomposition-tree-graph';
 import FundFlowGraph from './components/fund-flow-graph';
 import type { FundFlowGraphConfig } from './components/fund-flow-graph';
+import RadialGraph from './components/radial-graph';
+import type { RadialGraphConfig } from './components/radial-graph';
 
 /** @deprecated start */
 import {
@@ -21,10 +23,10 @@ import {
 import {
   IndentedTreeGraph,
   OrganizationalGraph,
-  RadialGraph,
+  // RadialGraph,
   IndentedTreeGraphConfig,
   OrganizationalGraphConfig,
-  RadialGraphConfig,
+  // RadialGraphConfig,
 } from './obsolescent/graphs';
 /** @deprecated end */
 
@@ -44,6 +46,7 @@ export {
   G6,
 };
 export * from './interface';
+export * from './layout';
 export type {
   OrganizationGraphConfig,
   RadialTreeGraphConfig,

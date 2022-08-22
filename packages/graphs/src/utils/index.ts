@@ -1,5 +1,7 @@
-import G6, { TreeGraphData } from '@antv/g6';
-import { isNumber, isObject, isString, clone } from '@antv/util';
+import G6, { TreeGraphData, GraphData } from '@antv/g6';
+import { isNumber, isObject, isString, clone, findIndex, isFunction } from '@antv/util';
+import { RadialLayout } from '@antv/layout';
+import { countBy } from './countBy';
 import {
   MiniMapConfig,
   CardNodeCfg,
@@ -17,6 +19,7 @@ import {
   IEdge,
   ModelConfig,
   MarkerCfg,
+  FetchLoading,
 } from '../interface';
 import {
   defaultMinimapCfg,
@@ -25,8 +28,10 @@ import {
   prefix,
   defaultFlowGraphAnchorPoints,
 } from '../constants';
+import { radialSectorLayout } from '../layout';
 import { DecompositionTreeGraphConfig } from '../components/decomposition-tree-graph';
 import { FlowAnalysisGraphConfig } from '../components/flow-analysis-graph';
+import { createNode } from './create-node';
 
 // 类型检测
 export const isType = (value: any, type: string): boolean => {
@@ -97,11 +102,104 @@ class EventData {
   }
 }
 
+export const getCenterNode = (data: GraphData) => {
+  const { nodes, edges } = data;
+  if (nodes.length === 1) {
+    return nodes[0].id;
+  }
+  const linkCount: string[] = [];
+  edges.forEach((item) => {
+    linkCount.push(item.source);
+  });
+  const timesObj = countBy(linkCount);
+  let maxTimes = 0;
+  let maxTimeKey = '';
+  for (let k in timesObj) {
+    if (timesObj.hasOwnProperty(k) && timesObj[k] > maxTimes) {
+      maxTimes = timesObj[k];
+      maxTimeKey = k;
+    }
+  }
+  return maxTimeKey;
+};
+
+/** sector layout */
+export const bindRadialExplore = (
+  graph: ITreeGraph,
+  asyncData: (nodeCfg: NodeConfig) => GraphData,
+  layoutCfg?: RadialLayout,
+  fetchLoading?: FetchLoading,
+) => {
+  const onDblClick = async (e: IG6GraphEvent) => {
+    const item = e.item as INode;
+    const itemModel = item.getModel();
+    createLoading(itemModel as NodeConfig, fetchLoading);
+    const newData = await asyncData(item.getModel() as NodeConfig);
+    closeLoading();
+    const nodes = graph.getNodes();
+    const edges = graph.getEdges();
+    const { x, y } = itemModel;
+    const centerNodeId = graph.get('centerNode');
+    const centerNode = centerNodeId ? graph.findById(centerNodeId) : nodes[0];
+    const { x: centerX, y: centerY } = centerNode.getModel();
+    // the max degree about foces(clicked) node in the original data
+    const pureNodes = newData.nodes.filter(
+      (item) => findIndex(nodes, (t: INode) => t.getModel().id === item.id) === -1,
+    );
+    const pureEdges = newData.edges.filter(
+      (item) =>
+        findIndex(edges, (t: IEdge) => {
+          const { source, target } = t.getModel();
+          return source === item.source && target === item.target;
+        }) === -1,
+    );
+
+    // for graph.changeData()
+    const allNodeModels: GraphData['nodes'] = [];
+    const allEdgeModels: GraphData['edges'] = [];
+    pureNodes.forEach((nodeModel) => {
+      // set the initial positions of the new nodes to the focus(clicked) node
+      nodeModel.x = itemModel.x;
+      nodeModel.y = itemModel.y;
+      graph.addItem('node', nodeModel);
+    });
+
+    // add new edges to graph
+    pureEdges.forEach((em, i) => {
+      graph.addItem('edge', em);
+    });
+
+    edges.forEach((e: IEdge) => {
+      allEdgeModels.push(e.getModel());
+    });
+    nodes.forEach((n: INode) => {
+      allNodeModels.push(n.getModel() as NodeConfig);
+    });
+    // 这里使用了引用类型
+    radialSectorLayout({
+      center: [centerX, centerY],
+      eventNodePosition: [x, y],
+      nodes: nodes.map((n) => n.getModel() as NodeConfig),
+      layoutNodes: pureNodes,
+      options: layoutCfg as any,
+    });
+    graph.positionsAnimate();
+    graph.data({
+      nodes: allNodeModels,
+      edges: allEdgeModels,
+    });
+  };
+  graph.on('node:dblclick', (e: IG6GraphEvent) => {
+    onDblClick(e);
+  });
+};
+
 // 展开&折叠事件
 export const bindDefaultEvents = (
   graph: ITreeGraph,
   level?: number,
   getChildren?: DecompositionTreeGraphConfig['nodeCfg']['getChildren'],
+  fetchLoading?: FetchLoading,
 ) => {
   const onClick = async (e: IG6GraphEvent) => {
     const item = e.item as INode;
@@ -114,7 +212,7 @@ export const bindDefaultEvents = (
         getChildrenData(graph.get('eventData').getData(), g_currentPath as string);
 
       if (getChildren && !(children as Array<Datum>)?.length && !appendChildren?.length) {
-        createLoading();
+        createLoading(model as NodeConfig, fetchLoading);
         let appendChildrenData = await getChildren(item.getModel() as NodeConfig);
         if (appendChildrenData) {
           appendChildrenData = appendChildrenData.map((t, index) => {
@@ -247,6 +345,7 @@ type CollapsedNode = NodeData<unknown> & { collapsedLevel: number };
 export const bindSourceMapCollapseEvents = (
   graph: IGraph,
   asyncData: FlowAnalysisGraphConfig['nodeCfg']['asyncData'],
+  fetchLoading?: FetchLoading,
 ) => {
   const onClick = async (e: IG6GraphEvent) => {
     const controlData: { edges: any[]; nodes: any[] } = graph.get('eventData').getData();
@@ -299,7 +398,7 @@ export const bindSourceMapCollapseEvents = (
             }
           });
         } else if (asyncData) {
-          createLoading();
+          createLoading(item.getModel() as NodeConfig, fetchLoading);
           const { nodes, edges } = await asyncData(item.getModel() as NodeConfig);
           const eventData = {
             nodes: controlData.nodes.concat(nodes),
@@ -732,28 +831,34 @@ export const setEllipsis = (text: string, fontSize: string | number = 12, conten
 };
 
 /** 开启加载动画， 不支持同时存在多个 */
-export const createLoading = () => {
-  const container = document.createElement('div');
-  container.className = `${prefix}-antd-loading`;
-  const styles = {
-    position: 'fixed' as 'fixed',
-    left: '0',
-    top: '0',
-    width: '100vw',
-    height: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'rgba(0,0,0, 0.25)',
-    color: '#fff',
-    fontSize: '16px',
-    zIndex: 999,
-  };
-  const span = document.createElement('span');
-  span.innerText = 'loading...';
-  setStyles(container, styles);
-  container.appendChild(span);
-  document.body.appendChild(container);
+export const createLoading = (node: NodeConfig, fetchLoading: FetchLoading) => {
+  const loadingClassName = `${prefix}-antd-loading`;
+  if (fetchLoading) {
+    const loadingTemplate = isFunction(fetchLoading) ? fetchLoading(node) : fetchLoading;
+    document.body.appendChild(createNode(loadingTemplate, loadingClassName));
+  } else {
+    const container = document.createElement('div');
+    container.className = loadingClassName;
+    const styles = {
+      position: 'fixed' as 'fixed',
+      left: '0',
+      top: '0',
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'rgba(0,0,0, 0.25)',
+      color: '#fff',
+      fontSize: '16px',
+      zIndex: 999,
+    };
+    setStyles(container, styles);
+    const span = document.createElement('span');
+    span.innerText = 'loading...';
+    container.appendChild(span);
+    document.body.appendChild(container);
+  }
 };
 
 /** 关闭加载动画 */
