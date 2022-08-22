@@ -1,5 +1,5 @@
 ---
-title: 辐射树图
+title: 辐射图
 ---
 
 ### 基础配置
@@ -23,12 +23,22 @@ title: 辐射树图
 ```ts
 // 具体参考示例代码
 interface Data {
-  id: string;
-  value: {
+  nodes: Array<{
     id: string;
+    value: {
+      title: string;
+      items: Array<{
+        text: string;
+        value: string;
+        icon: string;
+      }>;
+    };
+  }>;
+  edges: Array<{
+    source: string;
+    target: string;
     value: string;
-  };
-  children: Data[];
+  }>;
 }
 ```
 
@@ -77,6 +87,13 @@ interface Data {
   }
 }
 ```
+
+##### asyncData
+
+<description>**optional** _Function_</description>
+
+双击节点时异步获取数据，也可通过 menu 自动设置获取时机，详见示例。
+
 
 ##### nodeStateStyles
 
@@ -234,11 +251,31 @@ interface MiniMapConfig {
 布局。
 
 ```ts
-{
-  // 方向
-  direction: 'LR',
-  nodeSep: 20,
-  rankSep: 100,
+interface Layout{
+  /** 布局中心 */
+  center?: PointTuple;
+  /** 停止迭代的最大迭代数 */
+  maxIteration?: number;
+  /** 中心点，默认为数据中第一个点 */
+  focusNode?: string | Node | null;
+  /** 每一圈半径 */
+  unitRadius?: number | null;
+  /** 默认边长度 */
+  linkDistance?: number;
+  /** 是否防止重叠 */
+  preventOverlap?: boolean;
+  /** 节点直径 */
+  nodeSize?: number | number[] | undefined;
+  /** 节点间距，防止节点重叠时节点之间的最小距离（两节点边缘最短距离） */
+  nodeSpacing?: number | Function | undefined;
+  /** 是否必须是严格的 radial 布局，即每一层的节点严格布局在一个环上。preventOverlap 为 true 时生效 */
+  strictRadial?: boolean;
+  /** 防止重叠步骤的最大迭代次数 */
+  maxPreventOverlapIteration?: number;
+  sortBy?: string | undefined;
+  sortStrength?: number;
+  width?: number | undefined;
+  height?: number | undefined;
 }
 ```
 
