@@ -1,29 +1,31 @@
 import React from 'react';
-import { DendrogramLayout } from '../../layout';
+import { RadialLayout } from '@antv/layout';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
 import ChartLoading from '../../utils/createLoading';
-
-import { CommonConfig, TreeGraphData } from '../../interface';
+import { CommonConfig, GraphData, NodeCfg, NodeConfig, FetchLoading } from '../../interface';
 import { defaultFlowGraphAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../../constants';
 
-export interface RadialTreeGraphConfig extends Omit<CommonConfig<DendrogramLayout>, 'data'> {
-  data: TreeGraphData;
+export interface RadialGraphConfig extends Omit<CommonConfig<RadialLayout>, 'data'>, FetchLoading {
+  data: GraphData;
+  nodeCfg?: NodeCfg & {
+    /** 点击展开时异步获取数据 */
+    asyncData?: (nodeCfg: NodeConfig) => GraphData;
+  };
 }
 
 const defaultLayout = {
-  type: 'dendrogram',
-  direction: 'LR',
-  nodeSep: 20,
-  rankSep: 100,
-  radial: true,
+  type: 'radial',
+  unitRadius: 50,
+  preventOverlap: true,
+  maxPreventOverlapIteration: 100,
 };
 
 const defaultProps = {
   nodeCfg: {
     type: 'circle',
-    size: 30,
+    size: 10,
     anchorPoints: defaultFlowGraphAnchorPoints,
     linkCenter: true,
     nodeStateStyles: defaultStateStyles,
@@ -46,10 +48,10 @@ const defaultProps = {
   },
 };
 
-const RadialTreeGraph: React.FC<RadialTreeGraphConfig> = (props) => {
+const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
   const { uProps } = useProps(props, defaultProps);
   const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
-  const { container } = useGraph('TreeGraph', rest, { name: 'RadialTreeGraph' });
+  const { container } = useGraph('Graph', rest, { name: 'RadialGraph' });
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
@@ -59,4 +61,4 @@ const RadialTreeGraph: React.FC<RadialTreeGraphConfig> = (props) => {
   );
 };
 
-export default RadialTreeGraph;
+export default RadialGraph;

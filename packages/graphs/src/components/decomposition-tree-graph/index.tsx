@@ -3,15 +3,28 @@ import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultNodeStyle, defaul
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
-import { CommonConfig, IGraph, IGroup, NodeConfig, Shape, ShapeCfg, G6TreeGraphData } from '../../interface';
+import { CompactBoxLayout } from '../../layout';
+import {
+  CommonConfig,
+  IGraph,
+  IGroup,
+  NodeCfg,
+  NodeConfig,
+  Shape,
+  ShapeCfg,
+  G6TreeGraphData,
+  FetchLoading,
+} from '../../interface';
 import ChartLoading from '../../utils/createLoading';
 import { registerIndicatorGeometries } from '../flow-analysis-graph/customItem';
 
-export interface DecompositionTreeGraphConfig extends Omit<CommonConfig, 'data' | 'nodeCfg'> {
+export interface DecompositionTreeGraphConfig
+  extends Omit<CommonConfig<CompactBoxLayout>, 'data' | 'nodeCfg'>,
+    FetchLoading {
   data: G6TreeGraphData;
   /** 展开层级，默认 100 */
   level?: number;
-  nodeCfg?: CommonConfig['nodeCfg'] & {
+  nodeCfg?: NodeCfg & {
     /** 点击展开时异步获取数据 */
     getChildren?: (nodeCfg: NodeConfig) => G6TreeGraphData['children'];
   };

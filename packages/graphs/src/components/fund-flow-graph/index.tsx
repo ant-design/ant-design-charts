@@ -1,4 +1,5 @@
 import React from 'react';
+import { DagreLayout } from '@antv/layout';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
@@ -20,7 +21,7 @@ export type FundFlowNodeData = NodeData<{
   text?: string;
   icon?: string;
 }>;
-export interface FundFlowGraphConfig extends Omit<CommonConfig, 'data'> {
+export interface FundFlowGraphConfig extends Omit<CommonConfig<DagreLayout>, 'data'> {
   data: {
     nodes: FundFlowNodeData[];
     edges: FundFlowEdgeData[];

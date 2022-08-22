@@ -1,7 +1,7 @@
 import G6, { IEdge, INode, ModeType } from '@antv/g6';
 import { isEqual, isFunction, isObject, isString } from '@antv/util';
-import React, { useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { useEffect, useRef } from 'react';
+import { createNode } from '../utils/create-node';
 import { createToolbar, Menu } from '../plugins';
 import { ArrowConfig, CardNodeCfg, CommonConfig, EdgeConfig, NodeConfig, StateStyles } from '../interface';
 import {
@@ -19,6 +19,8 @@ import {
   processMinimap,
   renderGraph,
   setTag,
+  bindRadialExplore,
+  getCenterNode,
 } from '../utils';
 import { setGlobalInstance } from '../utils/global';
 
@@ -27,7 +29,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
   const graphRef = useRef<any>();
   const graphOptions = useRef<CommonConfig>();
   // data 单独处理，会被 G6 修改
-  const graphData = useRef();
+  const graphData = useRef<any>();
 
   const {
     data,
@@ -187,8 +189,17 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       if (isEqual(data, graphData.current)) {
         return;
       }
+      if (extra.name === 'RadialGraph' && !graphData.current.nodes?.length) {
+        const centerNode = getCenterNode(data);
+        graph.set('centerNode', centerNode);
+        graph.updateLayout({
+          ...layout,
+          focusNode: centerNode,
+        });
+      } else {
+        changeData();
+      }
       graphData.current = deepClone(data);
-      changeData();
     }
   }, [data]);
 
@@ -256,6 +267,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         tooltipCfg,
         customLayout,
         menuCfg,
+        fetchLoading,
       } = config;
 
       const {
@@ -277,12 +289,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         label: labelCfg,
         edgeStateStyles,
       } = edgeCfg ?? {};
-      const createNode = (children: React.ReactNode, className: string) => {
-        const mountPoint = document.createElement('div');
-        mountPoint.className = className;
-        ReactDOM.render(children as React.ReactElement, mountPoint);
-        return mountPoint;
-      };
+
       // tooltip
       if (tooltipCfg && isFunction(tooltipCfg.customContent)) {
         const { customContent, ...rest } = tooltipCfg;
@@ -409,8 +416,13 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       if (markerCfg) {
         const sourceGraph = ['FlowAnalysisGraph', 'FundFlowGraph'];
         sourceGraph.includes(name)
-          ? bindSourceMapCollapseEvents(graph, asyncData)
-          : bindDefaultEvents(graph, level, getChildren);
+          ? bindSourceMapCollapseEvents(graph, asyncData, fetchLoading)
+          : bindDefaultEvents(graph, level, getChildren, fetchLoading);
+      }
+      if (name === 'RadialGraph') {
+        const centerNode = getCenterNode(data);
+        graph.set('centerNode', centerNode);
+        bindRadialExplore(graph, asyncData, layout, fetchLoading);
       }
       renderGraph(graph, data, level);
       if (fitCenter) {
@@ -419,6 +431,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       if (onReady) {
         onReady(graph);
       }
+      graphData.current = deepClone(data);
     }
   }, []);
 
