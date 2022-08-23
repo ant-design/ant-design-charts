@@ -1,5 +1,5 @@
 import G6, { IEdge, INode, ModeType } from '@antv/g6';
-import { isEqual, isFunction, isObject, isString } from '@antv/util';
+import { isEqual, isFunction, isObject, isString, omit } from '@antv/util';
 import { useEffect, useRef } from 'react';
 import { createNode } from '../utils/create-node';
 import { createToolbar, Menu } from '../plugins';
@@ -328,7 +328,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
           nodeCfg,
         },
         defaultEdge: {
-          ...edgeCfg,
+          ...omit(edgeCfg, ['label']),
           edgeCfg,
           labelCfg: labelCfg?.style,
         },
