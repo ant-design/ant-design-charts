@@ -80,6 +80,20 @@ describe('Flowchart render', () => {
             console.log('onConfigChange');
           }}
           canvasProps={{
+            showPortsOnNodeSelected: true,
+            config: {
+              connecting: {
+                router: '',
+              },
+            },
+            edgeConfig: {
+              attrs: {
+                line: {
+                  stroke: 'red',
+                  strokeDasharray: '',
+                },
+              },
+            },
             position: {
               top: 40,
               left: 0,
