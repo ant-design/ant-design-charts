@@ -1,7 +1,7 @@
 import G6, { IGroup, Node } from '@antv/g6';
 import { clone, deepMix, each, isBoolean, isPlainObject, mix } from '@antv/util';
 import { defaultCardStyle, defaultLabelStyle, defaultLineLabelStyle, defaultMargin } from '../../constants';
-import { CardItems, CardNodeCfg, EdgeCfg, EdgeConfig, IPoint, IShape } from '../../interface';
+import { CardItems, CardNodeCfg, EdgeCfg, EdgeConfig, IPoint, IShape, CardItem } from '../../interface';
 import {
   cloneBesidesImg,
   createMarker,
@@ -159,6 +159,7 @@ export const registerIndicatorGeometries = () => {
           style,
           padding = 0,
           badge,
+          percent,
           autoWidth,
           customContent,
         } = nodeCfg as CardNodeCfg;
@@ -176,10 +177,7 @@ export const registerIndicatorGeometries = () => {
           padding: itemPadding = [6, 0, 0],
         } = itemsCfg ?? {};
         const itemPaddingArray = getCssPadding(itemPadding);
-        const { title, items } = value as {
-          title?: string;
-          items?: CardItems[];
-        };
+        const { title, items, percent: percentValue } = value as CardItem;
         let size = cfg?.size || [100, 30];
         if (typeof size === 'number') size = [size, size];
         let height = 0; // 统计容器总高度，动态设置
@@ -335,6 +333,7 @@ export const registerIndicatorGeometries = () => {
           ? (titleHeight || paddingArray[0]) + itemHeight + paddingArray[2]
           : titleHeight + itemHeight;
         shape?.attr('height', shapeHeight);
+        let outerMaxX = shapeWidth;
         if (autoWidth) {
           const shapeMaxX = Math.max.apply(
             null,
@@ -342,7 +341,7 @@ export const registerIndicatorGeometries = () => {
               return childrenShape.getBBox().maxX || 0;
             }) as number[],
           );
-          const outerMaxX = Math.max(shapeWidth, shapeMaxX + paddingArray[1]);
+          outerMaxX = Math.max(shapeWidth, shapeMaxX + paddingArray[1]);
           titleShape?.attr('width', outerMaxX);
           shape?.attr('width', outerMaxX);
           itemShape?.attr('width', shapeMaxX - paddingArray[1]);
@@ -357,6 +356,43 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(badge.style, cfg, group),
             },
             name: 'status-rect',
+          });
+        }
+        if (percent && percentValue > 0) {
+          const {
+            size: percentSize = 4,
+            position = 'bottom',
+            style: percentStyle = {
+              fill: '#40a9ff',
+            },
+            backgroundStyle = {
+              fill: 'rgba(0,0,0,.1)',
+              radius: [0, 0, 2, 2],
+            },
+          } = percent;
+          const statusConfig = getStatusCfg(
+            {
+              position,
+              size: [outerMaxX, percentSize],
+            },
+            [outerMaxX, shapeHeight],
+          );
+
+          group!.addShape('rect', {
+            attrs: {
+              ...statusConfig,
+              ...getStyle(backgroundStyle, cfg, group),
+            },
+            name: 'percent-rect-background',
+          });
+          group!.addShape('rect', {
+            attrs: {
+              fill: '#40a9ff',
+              ...statusConfig,
+              width: Math.min(1, percentValue) * statusConfig.width,
+              ...getStyle(percentStyle, cfg, group),
+            },
+            name: 'percent-rect',
           });
         }
         // collapse marker

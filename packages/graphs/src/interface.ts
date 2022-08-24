@@ -130,6 +130,15 @@ export interface BadgeCfg {
   style?: IShapeStyle;
 }
 
+export interface PercentCfg extends Omit<BadgeCfg, 'position' | 'size'> {
+  /** 标记高度 */
+  size?: number;
+  /** 标记位置 */
+  position?: 'top' | 'bottom';
+  /** 占比背景色 */
+  backgroundStyle?: IShapeStyle;
+}
+
 type PluginContainer<T> = {
   /** tooltip css 类名 */
   className?: string;
@@ -213,6 +222,8 @@ export interface CardNodeCfg extends NodeCfg {
   padding?: number | number[];
   /** 节点标记 */
   badge?: BadgeCfg;
+  /** 占比标记 */
+  percent?: PercentCfg;
   /** 是否自动调节节点宽度 */
   autoWidth?: boolean;
   /** 自定义节点 */
@@ -326,17 +337,16 @@ export interface CommonConfig<T = any> extends GraphContainerConfig {
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
 }
-export type TreeGraphData = NodeData<{
+export type CardItem = {
   title?: string;
   items?: CardItems[];
-}>;
+  /** 归一化百分比，仅在 `nodeCfg.percent` 配置时生效 */
+  percent?: number;
+};
+
+export type TreeGraphData = NodeData<CardItem>;
 // 流向图节点数据
-export type FlowGraphNodeData = NodeData<
-  {
-    title?: string;
-    items?: CardItems[];
-  }[]
->;
+export type FlowGraphNodeData = NodeData<CardItem[]>;
 export type FlowGraphEdgeData = EdgeData<string>;
 
 // 流向图数据
