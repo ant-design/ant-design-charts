@@ -21,6 +21,14 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/vcSjpldUrc/569cf7e4-0b01-41d7-b71f-fdb71645c520.png"
     },
     {
+      "filename": "percent.js",
+      "title": {
+        "zh": "指标拆解图-节点占比",
+        "en": "Percent"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/9UCy2n8WPu/fe8e1b07-efde-4ba8-9e83-97986f668faf.png"
+    },
+    {
       "filename": "style.js",
       "title": {
         "zh": "指标拆解图-节点样式",
