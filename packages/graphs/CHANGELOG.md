@@ -1,4 +1,12 @@
 
+## 1.2.7
+
+`2022-08-25`
+
+- 🔥 nodeCfg 新增 `percent` 配置
+
+<img src=https://gw.alipayobjects.com/zos/antfincdn/9UCy2n8WPu/fe8e1b07-efde-4ba8-9e83-97986f668faf.png>
+
 ## 1.2.6
 
 `2022-08-23`

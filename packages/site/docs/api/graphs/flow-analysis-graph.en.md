@@ -176,6 +176,26 @@ Item status configuration, style supports callback.
   };
 ```
 
+##### percent
+
+<description>**optional** _Object_</description>
+
+Item percent configuration, style supports callback.
+
+```ts
+  /** 节点占比配置 */
+  badge?: {
+    /** 占比位置 */
+    position?: 'top' | 'bottom';
+     /** 背景高度 */
+    size?: number;
+    /** 占比样式 */
+    style?: IShapeStyle;
+    /** 占比背景样式 */
+    backgroundStyle?: IShapeStyle;
+  };
+```
+
 ##### autoWidth
 
 <description>**optional** _Boolean_</description>
