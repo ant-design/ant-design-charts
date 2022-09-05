@@ -11,6 +11,7 @@ import {
   getStatusCfg,
   getStyle,
   setEllipsis,
+  getChildrenData,
 } from '../../utils';
 import { getGlobalInstance } from '../../utils/global';
 
@@ -408,9 +409,10 @@ export const registerIndicatorGeometries = () => {
             ? markerCfg(
                 {
                   ...cfg,
-                  graphData: {
-                    ...getGlobalInstance(cfg._graphId)?.get('eventData').getData(),
-                  },
+                  children: getChildrenData(
+                    getGlobalInstance(cfg._graphId)?.get('eventData').getData(),
+                    cfg.g_currentPath as string,
+                  ),
                 },
                 group,
               )
