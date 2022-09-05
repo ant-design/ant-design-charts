@@ -1,4 +1,25 @@
 
+## 1.2.8
+
+`2022-09-05`
+
+- 🐞 修复节点配置 level 后无法区分 markerCfg.show 状态
+
+```ts
+  const level = 2;
+  const chartProps = {
+    data: TreeData,
+    level,
+    markerCfg: (cfg) => {
+      return {
+        position: 'right',
+        show: cfg.children?.length,
+        collapsed: cfg.depth >= level - 1,
+      };
+    },
+  }
+```
+
 ## 1.2.7
 
 `2022-08-25`
