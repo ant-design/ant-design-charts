@@ -1,3 +1,10 @@
+## 1.2.2
+
+`2022-09-07`
+
+- 🐞 [修复 Tooltip 部分配置类型错误](https://github.com/ant-design/ant-design-charts/issues/1555)
+
+
 ## 1.2.1
 
 `2022-07-27`
