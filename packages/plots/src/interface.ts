@@ -7,7 +7,7 @@ import {
   BulletOptions,
   MixOptions,
   TreemapOptions,
-  Tooltip as BaseTooltip,
+  TooltipOptions as BaseTooltip,
 } from '@antv/g2plot';
 
 interface TinyPlotOptions extends Omit<Options, 'data' | 'legend' | 'label'> {
@@ -114,7 +114,7 @@ export interface BaseConfig<O extends Omit<AllBaseConfig, 'tooltip'>, P extends 
    * @title.en_US Chart tooltip
    * @description.en_US Set chart tooltip
    */
-  tooltip?: Tooltip;
+  tooltip?: false | Tooltip;
   /**
    * @title 图表实例
    * @description 获取图表实例
