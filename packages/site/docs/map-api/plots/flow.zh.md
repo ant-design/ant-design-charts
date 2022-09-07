@@ -56,7 +56,7 @@ order: 7
 
 ### `options.`color
 
-`string|object|Function` optional default: `'#5FD3A6'`
+`string|ColorStyleAttribute|Function` optional default: `'#5FD3A6'`
 
 元素颜色。
 
@@ -72,6 +72,10 @@ order: 7
 
 ```js
 {
+  source: {
+    data: [{ c: 'red', t: 20, n: 'chengdu' }],
+    // ...
+  },
   color: { field: 'c', }
 }
 ```
@@ -95,7 +99,7 @@ order: 7
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: ''}`
+`ScaleConfig` optional default: `{}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -163,7 +167,7 @@ order: 7
 
 #### `size.`scale
 
-`ScaleConfig` optional default: `{type: ''}`
+`ScaleConfig` optional default: `{}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 

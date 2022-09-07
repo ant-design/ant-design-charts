@@ -67,7 +67,7 @@ registerImages(images);
 
 ### `options.`color
 
-`string|object|Function` optional default: `'#5FD3A6'`
+`string|ColorStyleAttribute|Function` optional default: `'#5FD3A6'`
 
 元素颜色。
 
@@ -83,6 +83,10 @@ registerImages(images);
 
 ```js
 {
+  source: {
+    data: [{ c: 'red', t: 20, n: 'chengdu' }],
+    // ...
+  },
   color: { field: 'c', }
 }
 ```
@@ -106,7 +110,7 @@ registerImages(images);
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: ''}`
+`ScaleConfig` optional default: `{}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -174,7 +178,7 @@ registerImages(images);
 
 #### `size.`scale
 
-`ScaleConfig` optional default: `{type: ''}`
+`ScaleConfig` optional default: `{}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 

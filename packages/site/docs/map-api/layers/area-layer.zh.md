@@ -51,7 +51,7 @@ const data = {
 
 ### `options.`color
 
-`string|object|Function` optional default: `'#5FD3A6'`
+`string|ColorStyleAttribute|Function` optional default: `'#5FD3A6'`
 
 元素颜色。
 
@@ -67,6 +67,10 @@ const data = {
 
 ```js
 {
+  source: {
+    data: [{ c: 'red', t: 20, n: 'chengdu' }],
+    // ...
+  },
   color: { field: 'c', }
 }
 ```
@@ -90,7 +94,7 @@ const data = {
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: ''}`
+`ScaleConfig` optional default: `{}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 

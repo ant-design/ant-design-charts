@@ -69,7 +69,7 @@ constructor(options: PlotLayerOptions)
 *   subtractive：相减模式
 *   max：最大值
 
-## 三、属性
+## 二、属性
 
 ### name
 

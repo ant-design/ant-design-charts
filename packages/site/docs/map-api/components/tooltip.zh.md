@@ -87,7 +87,15 @@ tooltip 相对锚点的偏移量。
 
 `Function: (title: string, items: TooltipListItem[]) => stringHTML | HTMLElement` optional
 
-自定义 tooltip 内容。
+自定义 tooltip 内容，注意 <tag color="red" text="stringHTML | HTMLElemenct"></tag> 是 [HTMLElement](https://developer.mozilla.org/zh-CN/docs/map-Web/API/HTMLElement) 或拼接好的 HTML 字符串，不是纯文本类型。
+
+```js
+customContent (title: string, items: TooltipListItem[]) {
+  const container = document.createElement('div');
+  container.innerHTML = '内容'
+  return container;
+}
+```
 
 ### `tooltip.`domStyles
 

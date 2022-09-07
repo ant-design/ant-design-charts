@@ -85,7 +85,7 @@ registerImages(images);
 
 #### `shape.`scale
 
-`ScaleConfig` optional default: `{type: ''}`
+`ScaleConfig` optional default: `{}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
