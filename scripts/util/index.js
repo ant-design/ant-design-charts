@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 // 首字母小写
 const lowerCase = (str = '') => {
@@ -37,10 +38,25 @@ const checkDirExist = (folderpath) => {
   }
 };
 
+const removeDir = (dir) => {
+  let files = fs.readdirSync(dir);
+  for (var i = 0; i < files.length; i++) {
+    let newPath = path.join(dir, files[i]);
+    let stat = fs.statSync(newPath);
+    if (stat.isDirectory()) {
+      removeDir(newPath);
+    } else {
+      fs.unlinkSync(newPath);
+    }
+  }
+  fs.rmdirSync(dir); //如果文件夹是空的，就将自己删除掉
+};
+
 module.exports = {
   lowerCase,
   upperCase,
   toHump,
   toLine,
   checkDirExist,
+  removeDir,
 };

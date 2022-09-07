@@ -17,7 +17,7 @@ const DemoDotMap = () => {
         console.log('fetch data failed', error);
       });
   };
-  null;
+
   const config = {
     map: {
       type: 'mapbox',

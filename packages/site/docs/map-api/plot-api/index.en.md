@@ -154,7 +154,7 @@ constructor(container: string | HTMLDivElement, options: PlotOptions)
 
 `bool` optional default: `false`
 
-图层完成初始化之后，地图是否自动缩放到图层的数据边界范围。
+图层完成初始化之后，地图是否自动缩放到图层的数据边界范围，注意 <tag color="red" text="开启"></tag>后图表数据发生更新时，地图也会自动缩放到图层的数据边界范围。
 
 ### `options.`theme
 
@@ -500,7 +500,7 @@ plot.removeFromScene();
 绑定事件。
 
 ```js
-plot.on(event: string, callback: Function);
+plot.on(event: string, callback: (...args) => void);
 ```
 
 ### once
@@ -508,7 +508,7 @@ plot.on(event: string, callback: Function);
 绑定一次事件。
 
 ```js
-plot.once(event: string, callback: Function);
+plot.once(event: string, callback: (...args) => void);
 ```
 
 ### off
@@ -516,7 +516,7 @@ plot.once(event: string, callback: Function);
 解绑事件。
 
 ```js
-plot.off(event: string, callback: Function);
+plot.off(event: string, callback: (...args) => void);
 ```
 
 ### destroy
@@ -532,19 +532,19 @@ plot.destroy();
 #### 绑定事件
 
 ```js
-plot.on(event: string, callback: Function);
+plot.on(event: string, callback: (...args) => void);
 ```
 
 #### 绑定一次事件
 
 ```js
-plot.once(event: string, callback: Function);
+plot.once(event: string, callback: (...args) => void);
 ```
 
 #### 解绑事件
 
 ```js
-plot.off(event: string, callback: Function);
+plot.off(event: string, callback: (...args) => void);
 ```
 
 ### 事件类别
@@ -583,7 +583,7 @@ plot.off(event: string, callback: Function);
 详见[图层事件](/zh/docs/map-api/layers/plot-layer#四事件)，使用方式如下：
 
 ```js
-plot.on('layerName:click', (event) => {});
+plot.on('layerName:click', (...args) => void);
 ```
 
 #### 组件事件
@@ -591,7 +591,7 @@ plot.on('layerName:click', (event) => {});
 详见各组件事件，使用方式如下：
 
 ```js
-plot.on('tooltip:change', (event) => {});
+plot.on('tooltip:change', (...args) => void);
 ```
 
 ## 五、资源注册

@@ -5,20 +5,20 @@
   },
   "demos": [
     {
-      "filename": "chinese-provinces.js",
+      "filename": "europe-pop-est.js",
       "title": {
-        "zh": "中国省份",
-        "en": "Chinese provinces"
+        "zh": "2019 欧洲总人口数",
+        "en": "2019 Europe pop-est"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/xX10CNIu4b/8a064058-518e-4860-af54-58ca17cae985.png"
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/lxHiE3f%24jB/2ab86960-79ee-477d-a656-8f86d71de072.png"
     },
     {
-      "filename": "chinese-citys.js",
+      "filename": "us-states-density.js",
       "title": {
-        "zh": "中国城市",
-        "en": "Chinese citys"
+        "zh": "美国人口密度",
+        "en": "US State density"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/chBkEDzIdw/8e24ce05-3bae-433f-9423-e5f889411d70.png"
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/IsrqSMt3SL/f9238dd6-fd88-4200-a624-3c27a8ae677e.png"
     }
   ]
 }

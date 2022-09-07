@@ -1,13 +1,11 @@
 ### `options.`size
 
-`number|object|Function` optional default: `12`
+`number|SizeStyleAttribute|Function` optional
 
 元素大小。
 
 ```js
-{
-  size: 12,
-}
+{ size: 12, }
 ```
 
 #### `size.`field
@@ -19,10 +17,10 @@
 ```js
 {
   source: {
-    data: [{ lng: 104.101, lat: 30.649, s: 12, t: 20, n: 'chengdu' }],
-    parser: { type: 'json', x: 'lng', y: 'lat' }
+    data: [{ s: 12, t: 20, n: 'chengdu' }],
+    // ...
   },
-  size: { fied: 's' }
+  size: { field: 's' },
 }
 ```
 
@@ -35,7 +33,7 @@
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: ({ t }) => {
       return t > 20 ? 15 : 12
     }
@@ -45,7 +43,7 @@
 
 #### `size.`scale
 
-`ScaleConfig` optional default: `{type: 'linear'}`
+`ScaleConfig` optional default: `{}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -60,9 +58,9 @@
 ```js
 {
   size: {
-    fied: 't',
+    field: 't',
     value: [12, 15],
-    scale: {type: 'quantile'}
+    scale: { type: 'quantile' },
   }
 }
 ```

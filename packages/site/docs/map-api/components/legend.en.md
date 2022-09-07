@@ -109,7 +109,15 @@ DOM 容器自定义 className 。
 
 `CategoryLegendCustomContent|ContinueLegendCustomContent` optional
 
-自定义 legend 内容。
-
 *   分类图例 *CategoryLegendCustomContent*: `(title: string, items: ILegendListItem[]) => stringHTML | HTMLElement`
 *   连续图例 *ContinueLegendCustomContent*: `(title: string, min: number, max: number, colors: string[]) => stringHTML | HTMLElement`
+
+自定义 legend 内容，注意 <tag color="red" text="stringHTML | HTMLElemenct"></tag> 是 [HTMLElement](https://developer.mozilla.org/zh-CN/docs/map-Web/API/HTMLElement) 或拼接好的 HTML 字符串，不是纯文本类型。
+
+```js
+customContent (title: string, items: ILegendListItem[]) {
+  const container = document.createElement('div');
+  container.innerHTML = '内容'
+  return container;
+}
+```

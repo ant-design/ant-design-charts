@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
 const chalk = require('chalk');
-const { checkDirExist } = require('../util');
+const { checkDirExist, removeDir } = require('../util');
 const parseFile = require('../ast/parse');
 const demoWriteBasePath = '../../packages/site/examples';
 const templateDemoPath = path.join(__dirname, '../../template/doc/demo.ejs');
@@ -18,7 +18,7 @@ const fp = path.resolve('../', `${plot}/${demoPath}`);
 
 const examples = [];
 // 特殊路径不处理
-const excludePath = ['administrative-switch.tsx', 'component', 'advanced-plot', 'gallery', 'line'];
+const excludePath = ['administrative-switch.tsx', 'component', 'gallery', 'line'];
 
 const hasSameEl = (source, target) => {
   return new Set(source.concat(target)).size !== source.length + target.length;
@@ -42,6 +42,7 @@ const apiGenerator = (filePath, filename) => {
   let content = fs.readFileSync(filePath, {
     encoding: 'utf-8',
   });
+
   if (content) {
     content = content
       .replace(/markdown:docs\//g, 'markdown:docs/map-')
@@ -79,6 +80,7 @@ const demoGenerator = (filePath, filename) => {
         chartName,
         dataSet,
         chartContent: code,
+        lib: 'maps',
       }, // 渲染的数据key: 对应到了ejs中的index
       (err, data) => {
         if (err) {
@@ -87,7 +89,7 @@ const demoGenerator = (filePath, filename) => {
         }
         const writePath = checkDir(filePath, filename);
         // 生成文件内容
-        fs.writeFileSync(writePath.replace(/\.ts/, '.js'), data);
+        fs.writeFileSync(writePath.replace(/\.ts/, '.js'), data.replace(/\s+null\s+/g, '\n'));
       },
     );
   }
@@ -135,5 +137,24 @@ const writeFiles = () => {
   });
 };
 
+const cleanPath = () => {
+  const paths = [];
+  const getMapsPath = (foldPath) => {
+    try {
+      const files = fs.readdirSync(foldPath);
+      files.forEach((dir) => {
+        if (dir.startsWith('map-')) paths.push(path.join(__dirname, demoWriteBasePath, dir));
+      });
+    } catch (err) {
+      console.info(chalk.red(err));
+    }
+  };
+  getMapsPath(path.join(__dirname, demoWriteBasePath));
+  paths.forEach((dir) => {
+    removeDir(dir);
+  });
+};
+
 scanDir(fp);
+cleanPath();
 writeFiles();

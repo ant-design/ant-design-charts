@@ -35,7 +35,7 @@ order: 9
 | url  | 数据地址 | `string`                |              | required |
 | type | 数据类型 | `'geojson'｜'topojson'` | `'topojson'` | required |
 
-行政地理数据地址默认值为 `Choropleth.GeoAreaUrl`, 不定时以更新其中版本号方式更新数据。
+行政地理数据地址默认值为 `Choropleth.GeoAreaUrl`, 不定时以更新其中版本号方式更新数据，如需内网部署或自定义数据可下载 [choropleth data](https://www.jsdelivr.com/package/npm/static-geo-atlas?path=geo-data%2Fchoropleth-data)。
 
 ```js
 {
@@ -65,7 +65,7 @@ order: 9
 | geoField    | 地理数据字段                               | `'adcode'｜'name'`  | `'adcode'` | optional |
 | geoData     | 地理数据，设置则覆盖当前层级的行政地址数据 | `FeatureCollection` |            | optional |
 
-业务数据与地理数据关联主要有以下两种方式。行政名称与编码映射关系详见[行政名称表格](https://www.yuque.com/antv/qbux5m/wrxc8h#yyIb)与[行政名称数据](https://gw.alipayobjects.com/os/alisis/geo-data-v0.1.2/administrative-data/area-list.json)。
+业务数据与地理数据关联主要有以下两种方式。行政名称与编码映射关系详见[行政名称表格](https://www.yuque.com/antv/l7/wrxc8h#yyIb)与[行政名称数据](https://cdn.jsdelivr.net/npm/static-geo-atlas@0.0.2/geo-data/administrative-data/area-list.json)。
 
 1.  根据行政编码匹配渲染
 
@@ -119,7 +119,7 @@ order: 9
 
 ### `options.`color
 
-`string|object|Function` optional default: `'#5FD3A6'`
+`string|ColorStyleAttribute|Function` optional default: `'#5FD3A6'`
 
 元素颜色。
 
@@ -135,6 +135,10 @@ order: 9
 
 ```js
 {
+  source: {
+    data: [{ c: 'red', t: 20, n: 'chengdu' }],
+    // ...
+  },
   color: { field: 'c', }
 }
 ```
@@ -158,7 +162,7 @@ order: 9
 
 #### `color.`scale
 
-`ScaleConfig` optional default: `{type: ''}`
+`ScaleConfig` optional default: `{}`
 
 关联字段的映射 scale 类型，有以下 scale 类型：
 
@@ -299,12 +303,12 @@ AreaLayerActiveOptions 配置如下：
 
 是否显示中国国界线，国界线样式 ChinaBoundaryStyle 配置如下：
 
-| 属性     | 描述 | 类型                     | 默认值                                                      | 是否必填 |
-| -------- | ---- | ------------------------ | ----------------------------------------------------------- | -------- |
-| national | 国界 | `LinesLayerStyleOptions` | `{ color: 'red', width: 1, opacity: 1 }`                    | optional |
-| dispute  | 争议 | `LinesLayerStyleOptions` | `{ color: 'red', width: 1, opacity: 1, dashArray: [1, 6] }` | optional |
-| coast    | 海洋 | `LinesLayerStyleOptions` | `{ color: 'blue', width: 1, opacity: 1 }`                   | optional |
-| hkm      | 港澳 | `LinesLayerStyleOptions` | `{ color: 'gray', width: 1, opacity: 1 }`                   | optional |
+| 属性     | 描述 | 类型                     | 默认值                                                           | 是否必填 |
+| -------- | ---- | ------------------------ | ---------------------------------------------------------------- | -------- |
+| national | 国界 | `LinesLayerStyleOptions` | `{ color: 'red', width: 1, opacity: 1 }`                         | optional |
+| dispute  | 争议 | `LinesLayerStyleOptions` | `{ color: 'red', width: 1, opacity: 1, dashArray: [2, 4] }`      | optional |
+| coast    | 海洋 | `LinesLayerStyleOptions` | `{ color: 'blue', width: 0.7, opacity: 0.8 }`                    | optional |
+| hkm      | 港澳 | `LinesLayerStyleOptions` | `{ color: 'gray', width: 0.7, opacity: 0.8, dashArray: [2, 4] }` | optional |
 
 ### `options.`drill
 
@@ -420,6 +424,12 @@ DrillStepConfig 配置如下：
 
 地图图层列表控件，详见 [LayerMenu](/zh/docs/map-api/components/layerMenu)。
 
+
+### `options.`customFetchGeoData
+
+`(params: CustomFetchGeoDataParams) => Promise<any>` optional
+
+自定义获取 geo 数据方法。
 
 ## 二、属性
 
