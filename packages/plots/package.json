@@ -19,24 +19,25 @@
     "/dist"
   ],
   "scripts": {
-    "start": "yarn lib:es --w",
+    "start": "pnpm lib:es --w",
     "build": "run-s clean lib dist",
-    "build:site": "yarn build",
-    "ci": "npm run build && npm run test:coverage",
+    "build:site": "pnpm build",
+    "ci": "pnpm run build && pnpm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
-    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && npm run lint:prettier",
-    "lint:prettier": "npm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
+    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && pnpm run lint:prettier",
+    "lint:prettier": "pnpm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
     "test:live": "DEBUG_MODE=1 jest --watch ./tests/issues/1143-spec.tsx --no-cache"
   },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
+    "@antv/util": "^2.0.9",
     "react-content-loader": "^5.0.4"
   },
   "peerDependencies": {
@@ -46,6 +47,7 @@
   "sideEffects": false,
   "license": "MIT",
   "devDependencies": {
-    "@types/react": "^18.0.0"
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.6"
   }
 }

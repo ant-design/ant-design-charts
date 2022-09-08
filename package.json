@@ -1,20 +1,18 @@
 {
   "name": "charts",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "start": "yarn build:site && yarn start:site",
-    "start:site": "lerna run start:site --stream --scope=@ant-design/charts-site",
-    "test": "lerna run test --stream",
-    "lint": "lerna run lint --stream",
-    "build": "lerna run build --stream --profile --profile-location=logs/profile/",
-    "build:site": "lerna run build:site --stream",
+    "start": "npm build:site && npm start:site",
+    "start:site": "pnpm -r --stream --filter=./packages/site run start:site",
+    "test": "pnpm -r --stream --filter=./packages/* run test",
+    "lint": "pnpm -r --stream --filter=./packages/* run lint",
+    "build": "pnpm -r --stream --filter=./packages/* run build",
+    "build:site": "pnpm -r --stream --filter=./packages/site run build:site",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
-    "bootstrap": "lerna bootstrap",
-    "test-live": "lerna run test-live --stream --scope=@ant-design/flowchart"
+    "bootstrap": "pnpm bootstrap",
+    "ci:version": "pnpm changeset version",
+    "add:changelog": "pnpm changeset"
   },
   "devDependencies": {
     "@antv/data-set": "^0.11.8",
@@ -22,6 +20,7 @@
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.13.9",
     "@babel/preset-typescript": "^7.10.4",
+    "@changesets/cli": "^2.24.4",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/enzyme": "^3.10.5",
@@ -46,7 +45,6 @@
     "jest-electron": "^0.1.12",
     "jest-extended": "^1.2.0",
     "jest-less-loader": "^0.1.2",
-    "lerna": "^4.0.0",
     "less": "^4.1.2",
     "less-loader": "^10.1.0",
     "lodash": "^4.17.20",
@@ -54,11 +52,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.2",
     "pretty-quick": "^3.0.1",
-    "react": "^16.14.0",
     "react-dev-utils": "^12.0.1",
-    "react-dom": "^16.14.0",
-    "react-test-renderer": "^17.0.1",
-    "rimraf": "^3.0.2",
     "style-loader": "^3.3.0",
     "ts-jest": "^25.4.0",
     "ts-loader": "^8.0.7",
@@ -71,10 +65,12 @@
     "whatwg-fetch": "^3.0.0",
     "yorkie": "^2.0.0"
   },
-  "resolutions": {
-    "**/@typescript-eslint/eslint-plugin": "^4.1.1",
-    "**/@typescript-eslint/parser": "^4.1.1",
-    "monaco-editor": "0.21.3"
+  "pnpm": {
+    "overrides": {
+      "@typescript-eslint/eslint-plugin": "^4.1.1",
+      "@typescript-eslint/parser": "^4.1.1",
+      "monaco-editor": "0.21.3"
+    }
   },
   "gitHooks": {
     "pre-commit": "pretty-quick --staged"

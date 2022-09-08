@@ -16,7 +16,7 @@ import {
   getGraphSize,
   getLevelData,
   getMarkerPosition,
-  processMinimap,
+  renderMinimap,
   renderGraph,
   setTag,
   bindRadialExplore,
@@ -212,7 +212,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         updateLayout();
       }
       if (!isEqual(minimapCfg, graphOptions.current?.minimapCfg)) {
-        processMinimap(minimapCfg, graph);
+        renderMinimap(minimapCfg, graph);
       }
       if (!isEqual(nodeCfg, graphOptions.current?.nodeCfg)) {
         updateNodes();
@@ -411,7 +411,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         });
       }
 
-      processMinimap(minimapCfg, graph);
+      renderMinimap(minimapCfg, graph);
       bindStateEvents(graph, config);
       if (markerCfg) {
         const sourceGraph = ['FlowAnalysisGraph', 'FundFlowGraph'];

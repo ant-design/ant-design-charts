@@ -1,4 +1,4 @@
-import G6, { TreeGraphData, GraphData } from '@antv/g6';
+import G6, { TreeGraphData, GraphData, Minimap } from '@antv/g6';
 import { isNumber, isObject, isString, clone, findIndex, isFunction } from '@antv/util';
 import { RadialLayout } from '@antv/layout';
 import { countBy } from './countBy';
@@ -267,7 +267,8 @@ export const renderGraph = (graph: IGraph, data: any, level?: number) => {
 };
 
 const grapgMinmapMaps = {};
-export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph) => {
+
+export const renderMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph): void => {
   const graphId = graph?.get('id');
   if (!graph || graph.destroyed) {
     grapgMinmapMaps[graphId] = null;
@@ -289,9 +290,7 @@ export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph
 
     graph.addPlugin(minimap);
     grapgMinmapMaps[graphId] = minimap;
-    return minimap;
   }
-  return null;
 };
 
 const getUuid = () => {

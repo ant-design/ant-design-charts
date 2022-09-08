@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "build": "run-s clean lib dist copy",
-    "ci": "npm run build && npm run test:coverage",
+    "ci": "pnpm run build && pnpm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
@@ -31,17 +31,17 @@
     "copy": "node ./scripts/copy.js"
   },
   "dependencies": {
-    "@ant-design/flowchart": "^1.0.2",
-    "@ant-design/graphs": "^1.0.1",
-    "@ant-design/maps": "^1.0.1",
-    "@ant-design/plots": "^1.0.2"
+    "@ant-design/flowchart": "workspace:*",
+    "@ant-design/graphs": "workspace:*",
+    "@ant-design/maps": "workspace:*",
+    "@ant-design/plots": "workspace:*"
   },
   "peerDependencies": {
-    "react": ">=16.8.4",
-    "react-dom": ">=16.8.4",
     "@ant-design/icons": "^4.6.0",
     "antd": "^4.6.3",
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.20",
+    "react": ">=16.8.4",
+    "react-dom": ">=16.8.4"
   },
   "sideEffects": false,
   "license": "MIT"
