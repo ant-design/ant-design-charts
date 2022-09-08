@@ -14,17 +14,17 @@ echo "\033[49;32m \n******* start build website *******\n \033[0m"
 
 echo "\033[49;32m \n******* installing dependencies *******\n \033[0m"
 
-yarn
+pnpm i
 
 echo "\033[49;32m \n******* building dependencies *******\n \033[0m"
 
-yarn run build
+pnpm run build
 
 echo "\033[49;32m \n******* removing node_modules *******\n \033[0m"
 
 rm -rf ./package.json
 
-rm -rf ./yarn.lock
+rm -rf ./pnpm-lock.yaml
 
 rm -rf ./node_modules
 
@@ -32,11 +32,11 @@ cp ./scripts/website/package.json ./
 
 echo "\033[49;32m \n******* installing website dependencies *******\n \033[0m"
 
-yarn
+pnpm i
 
 echo "\033[49;32m \n******* building webite *******\n \033[0m"
 
-yarn run build:site
+pnpm run build:site
 
 echo "\033[49;32m \n******* copy website assets *******\n \033[0m"
 

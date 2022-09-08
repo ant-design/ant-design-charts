@@ -98,7 +98,7 @@ export const renderGraph = (graph: IGraph, data: any) => {
   graph.render();
 };
 
-export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph) => {
+export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph): void => {
   if (!graph || graph.destroyed) return;
   if (cfg.show) {
     const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);
@@ -107,7 +107,7 @@ export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph
     });
 
     graph.addPlugin(minimap);
-    return minimap;
+    // return minimap;
   }
   return null;
 };

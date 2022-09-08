@@ -3,7 +3,7 @@ import { Graph, TreeGraph, ModeType, INode, IEdge } from '@antv/g6';
 import { isObject, isString, isEqual } from '@antv/util';
 import {
   getGraphSize,
-  processMinimap,
+  renderMinimap,
   getCommonConfig,
   getArrowCfg,
   getMarkerPosition,
@@ -160,7 +160,7 @@ export default function useGraph(
         updateLayout();
       }
       if (!isEqual(minimapCfg, graphOptions.current?.minimapCfg)) {
-        processMinimap(minimapCfg, graphInstance);
+        renderMinimap(minimapCfg, graphInstance);
       }
       if (!isEqual(nodeCfg, graphOptions.current?.nodeCfg)) {
         updateNodes();
