@@ -160,6 +160,14 @@ module.exports = {
         },
       },
       {
+        slug: 'map-advanced-plot',
+        icon: 'other',
+        title: {
+          zh: '多图层',
+          en: 'Advanced Map',
+        },
+      },
+      {
         slug: 'area',
         icon: 'area',
         title: {
