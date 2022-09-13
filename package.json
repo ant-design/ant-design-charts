@@ -2,7 +2,7 @@
   "name": "charts",
   "private": true,
   "scripts": {
-    "start": "pnpm build:site && npm start:site",
+    "start": "pnpm build:site && pnpm start:site",
     "start:site": "pnpm -r --stream --filter=./packages/site run start:site",
     "test": "pnpm -r --stream --filter=./packages/* run test",
     "lint": "pnpm -r --stream --filter=./packages/* run lint",
