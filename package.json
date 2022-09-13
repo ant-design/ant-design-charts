@@ -2,11 +2,12 @@
   "name": "charts",
   "private": true,
   "scripts": {
-    "start": "npm build:site && npm start:site",
+    "start": "pnpm build:site && pnpm start:site",
     "start:site": "pnpm -r --stream --filter=./packages/site run start:site",
     "test": "pnpm -r --stream --filter=./packages/* run test",
     "lint": "pnpm -r --stream --filter=./packages/* run lint",
     "build": "pnpm -r --stream --filter=./packages/* run build",
+    "build:site": "pnpm -r --stream --filter=./packages/* run build:site",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "ci:version": "pnpm changeset version",

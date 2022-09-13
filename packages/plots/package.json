@@ -21,7 +21,7 @@
   "scripts": {
     "start": "pnpm lib:es --w",
     "build": "run-s clean lib dist",
-    "build:site": "pnpm build",
+    "build:site": "run-s clean lib",
     "ci": "pnpm run build && pnpm run test:coverage",
     "clean": "rimraf lib es dist",
     "dist": "webpack --config webpack.config.js --mode production",
