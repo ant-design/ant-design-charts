@@ -22,7 +22,7 @@ pnpm run build:site
 
 echo "\033[49;32m \n******* removing node_modules *******\n \033[0m"
 
-:> ./npmrc
+:> .npmrc
 
 echo "auto-install-peers=false \nstrict-peer-dependencies=false\nshamefully-hoist=true" >> .npmrc
 
