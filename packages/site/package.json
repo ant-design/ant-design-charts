@@ -26,7 +26,7 @@
     "clean:site": "gatsby clean",
     "develop:site": "cross-env GATSBY=true gatsby develop --open",
     "deploy:site": "pnpm run build:site && gh-pages -d public",
-    "start:site": "NODE_OPTIONS=--max_old_space_size=8192 pnpm run develop:site --verbose --watch"
+    "start:site": "NODE_OPTIONS=--max_old_space_size=8192 pnpm run develop:site"
   },
   "devDependencies": {
     "@types/react": "^16.14.8",
