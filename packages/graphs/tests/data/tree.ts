@@ -89,6 +89,131 @@ export const TreeData = {
           },
         ],
       },
+      children: [
+        {
+          id: 'A21',
+          value: {
+            title: '陕西',
+            items: [
+              {
+                text: '595万',
+              },
+              {
+                text: '占比',
+                value: '30%',
+                icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              },
+            ],
+          },
+        },
+        {
+          id: 'A22',
+          value: {
+            title: '青海',
+            items: [
+              {
+                text: '595万',
+              },
+              {
+                text: '占比',
+                value: '30%',
+                icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              },
+            ],
+          },
+        },
+      ],
+    },
+  ],
+};
+
+export const NoTitleTreeData = {
+  id: 'A0',
+  value: {
+    items: [
+      {
+        text: '3031万',
+      },
+    ],
+  },
+  children: [
+    {
+      id: 'A1',
+      value: {
+        items: [
+          {
+            text: '1152万',
+          },
+        ],
+      },
+      children: [
+        {
+          id: 'A11',
+          value: {
+            items: [
+              {
+                text: '1152万',
+              },
+            ],
+          },
+        },
+        {
+          id: 'A12',
+          value: {
+            items: [
+              {
+                text: '1152万',
+              },
+            ],
+          },
+        },
+        {
+          id: 'A13',
+          value: {
+            items: [
+              {
+                text: '1152万',
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: 'A2',
+      value: {
+        items: [
+          {
+            text: '595万',
+          },
+        ],
+      },
+      children: [
+        {
+          id: 'A21',
+          value: {
+            items: [
+              {
+                text: '占比',
+                value: '30%',
+                icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              },
+            ],
+          },
+        },
+        {
+          id: 'A22',
+          value: {
+            items: [
+              {
+                text: '占比',
+                value: '30%',
+                icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+              },
+            ],
+          },
+        },
+      ],
     },
   ],
 };

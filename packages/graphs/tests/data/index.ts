@@ -1,2 +1,2 @@
 export { RadialData } from './radial';
-export { TreeData } from './tree';
+export { TreeData, NoTitleTreeData } from './tree';

@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/graphs",
-  "version": "1.2.8",
+  "version": "1.3.0-alpha.1",
   "description": "Relation graph",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -33,7 +33,7 @@
     "lint:prettier": "pnpm run prettier && git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
-    "test:live": "cross-env DEBUG_MODE=1 jest --watch ./tests/graphs/level-fn-spec.tsx --no-cache"
+    "test:live": "cross-env DEBUG_MODE=1 jest --watch ./tests/graphs/mind-map-spec.tsx --no-cache"
   },
   "dependencies": {
     "@antv/dom-util": "^2.0.4",

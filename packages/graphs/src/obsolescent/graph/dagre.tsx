@@ -11,7 +11,7 @@ import {
   defaultStateStyles,
   defaultEdgeStyle,
 } from './constants';
-import { getGraphSize, processMinimap, getGraphId, renderGraph, bindEvents, useProps } from './utils';
+import { getGraphSize, renderMinimap, getGraphId, renderGraph, bindEvents, useProps } from './utils';
 import { RelationGraph } from './types';
 import { registerCustomItems } from './customItems';
 
@@ -116,7 +116,7 @@ const DagreGraph: React.FC<RelationGraph> = (props) => {
       graphRef!.current = graph;
     }
 
-    processMinimap(minimapCfg, graph);
+    renderMinimap(minimapCfg, graph);
 
     renderGraph(graph, data);
 

@@ -5,7 +5,7 @@ import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../hooks/useGraph';
 import { customIconNode } from './customItems';
 import { defaultLabelCfg, defaultStateStyles } from './constants';
-import { getGraphSize, processMinimap, getGraphId, renderGraph, bindEvents, useProps } from './utils';
+import { getGraphSize, renderMinimap, getGraphId, renderGraph, bindEvents, useProps } from './utils';
 import { RelationGraph } from './types';
 
 const defaultNodeStyle = {
@@ -134,7 +134,7 @@ const OrganizationTreeGraphComponent: React.FC<RelationGraph> = (props) => {
       graphRef!.current = graph;
     }
 
-    processMinimap(minimapCfg, graph);
+    renderMinimap(minimapCfg, graph);
     renderGraph(graph, data);
     if (onReady) {
       onReady(graph);

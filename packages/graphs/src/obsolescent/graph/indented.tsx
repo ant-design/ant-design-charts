@@ -4,7 +4,7 @@ import ChartLoading from '../../utils/createLoading';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../hooks/useGraph';
 import { defaultNodeSize, defaultLabelCfg, defaultStateStyles } from './constants';
-import { processMinimap, getGraphSize, getGraphId, renderGraph, bindEvents, useProps } from './utils';
+import { renderMinimap, getGraphSize, getGraphId, renderGraph, bindEvents, useProps } from './utils';
 import { RelationGraph } from './types';
 import { registerCustomItems } from './customItems';
 
@@ -126,7 +126,7 @@ const IndentedTree: React.FC<RelationGraph> = (props) => {
       graphRef!.current = graph;
     }
 
-    processMinimap(minimapCfg, graph);
+    renderMinimap(minimapCfg, graph);
 
     renderGraph(graph, data);
     if (onReady) {

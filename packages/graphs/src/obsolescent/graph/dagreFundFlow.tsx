@@ -5,7 +5,7 @@ import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../hooks/useGraph';
 import { deepClone } from '../../utils';
 import { defaultNodeAnchorPoints, defaultStateStyles, defaultEdgeStyle } from './constants';
-import { processMinimap, getGraphSize, getGraphId, bindEvents, useProps } from './utils';
+import { renderMinimap, getGraphSize, getGraphId, bindEvents, useProps } from './utils';
 import { RelationGraph } from './types';
 import { registerCustomItems } from './customItems';
 
@@ -122,7 +122,7 @@ const DagreFundFlowGraph: React.FC<RelationGraph> = (props) => {
       graphRef!.current = graph;
     }
 
-    processMinimap(minimapCfg, graph);
+    renderMinimap(minimapCfg, graph);
     const originData = deepClone(data as any);
     graph.data(originData);
     graph.render();

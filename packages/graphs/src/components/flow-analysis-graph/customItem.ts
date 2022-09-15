@@ -398,6 +398,9 @@ export const registerIndicatorGeometries = () => {
         }
         // collapse marker
         if (markerCfg) {
+          const graph = getGlobalInstance(cfg._graphId);
+          const isMindMap = cfg._graphId.startsWith('MindMapGraph');
+          const centerId = graph.get('centerId');
           const { collapsed: stateCollapsed } = group?.get('item')?.getModel() ?? {};
           const { width: shapeWidth, height: shapeHeight } = shape.getBBox();
           const {
@@ -409,24 +412,40 @@ export const registerIndicatorGeometries = () => {
             ? markerCfg(
                 {
                   ...cfg,
-                  children: getChildrenData(
-                    getGlobalInstance(cfg._graphId)?.get('eventData').getData(),
-                    cfg.g_currentPath as string,
-                  ),
+                  children: getChildrenData(graph?.get('eventData').getData(), cfg.g_currentPath as string),
                 },
                 group,
               )
             : markerCfg;
+          let priorityPosition = position;
+          if (isMindMap) {
+            if (centerId === cfg.id) {
+              createMarker(
+                {
+                  show,
+                  position: priorityPosition === 'left' ? 'right' : 'left',
+                  collapsed: stateCollapsed ?? collapsed,
+                  style: markerStyle,
+                },
+                group,
+                [shapeWidth, shapeHeight],
+              );
+            } else {
+              const { x } = graph.findById(centerId).getModel();
+              priorityPosition = cfg.x > x ? 'right' : 'left';
+            }
+          }
           createMarker(
             {
               show,
-              position,
+              position: priorityPosition,
               collapsed: stateCollapsed ?? collapsed, // 优先使用内部状态
               style: markerStyle,
             },
             group,
             [shapeWidth, shapeHeight],
           );
+
           shape.attr('defaultCollapsed', collapsed);
         }
 
