@@ -26,7 +26,7 @@ export const getGraphSize = (
   return [width || CANVAS_WIDTH || 500, height || CANVAS_HEIGHT || 500];
 };
 
-export const processMinimap = (cfg: MiniMapConfig | undefined, graph: Graph): void => {
+export const renderMinimap = (cfg: MiniMapConfig | undefined, graph: Graph): void => {
   if (!graph || graph.destroyed) return;
   if (cfg && cfg.show) {
     const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);

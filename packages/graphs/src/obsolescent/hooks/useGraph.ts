@@ -3,8 +3,8 @@ import { Graph, TreeGraph, ModeType, INode, IEdge } from '@antv/g6';
 import { isObject, isString, isEqual } from '@antv/util';
 import {
   getGraphSize,
-  renderMinimap,
-  getCommonConfig,
+  processMinimap,
+  getCommonCfg,
   getArrowCfg,
   getMarkerPosition,
   setTag,
@@ -105,9 +105,9 @@ export default function useGraph(
         const { style, content } = labelCfg ?? {};
         graphInstance!.updateItem(edge, {
           type: edgeType,
-          label: getCommonConfig(content, edgeCfgModel, graphInstance),
+          label: getCommonCfg(content, edgeCfgModel, graphInstance),
           labelCfg: {
-            style: getCommonConfig(style, edgeCfgModel, graphInstance),
+            style: getCommonCfg(style, edgeCfgModel, graphInstance),
           },
           style: {
             stroke: '#ccc',
@@ -160,7 +160,7 @@ export default function useGraph(
         updateLayout();
       }
       if (!isEqual(minimapCfg, graphOptions.current?.minimapCfg)) {
-        renderMinimap(minimapCfg, graphInstance);
+        processMinimap(minimapCfg, graphInstance);
       }
       if (!isEqual(nodeCfg, graphOptions.current?.nodeCfg)) {
         updateNodes();

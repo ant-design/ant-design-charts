@@ -50,3 +50,6 @@ export const defaultMargin = 6;
 
 // 打标前缀
 export const prefix = 'g';
+
+// status bar 的默认宽度
+export const defaultStatusBarWidth = 4;

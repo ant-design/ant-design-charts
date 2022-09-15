@@ -11,6 +11,8 @@ import FundFlowGraph from './components/fund-flow-graph';
 import type { FundFlowGraphConfig } from './components/fund-flow-graph';
 import RadialGraph from './components/radial-graph';
 import type { RadialGraphConfig } from './components/radial-graph';
+import MindMapGraph from './components/mind-map-graph';
+import type { MindMapGraphConfig } from './components/mind-map-graph';
 
 /** @deprecated start */
 import {
@@ -43,6 +45,7 @@ export {
   IndentedTreeGraph,
   OrganizationalGraph,
   RadialGraph,
+  MindMapGraph,
   G6,
 };
 export * from './interface';
@@ -57,4 +60,5 @@ export type {
   OrganizationalGraphConfig,
   RadialGraphConfig,
   RelationGraph,
+  MindMapGraphConfig,
 };

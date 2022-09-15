@@ -11,12 +11,12 @@ import {
   deepClone,
   getAnchorPoints,
   getArrowCfg,
-  getCommonConfig,
+  getCommonCfg,
   getGraphId,
   getGraphSize,
   getLevelData,
   getMarkerPosition,
-  renderMinimap,
+  processMinimap,
   renderGraph,
   setTag,
   bindRadialExplore,
@@ -126,9 +126,9 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
 
         graph!.updateItem(edge, {
           type: edgeType,
-          label: getCommonConfig(content, edgeCfgModel, graph),
+          label: getCommonCfg(content, edgeCfgModel, graph),
           labelCfg: {
-            style: getCommonConfig(style, edgeCfgModel, graph),
+            style: getCommonCfg(style, edgeCfgModel, graph),
           },
           style: {
             stroke: '#ccc',
@@ -212,7 +212,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         updateLayout();
       }
       if (!isEqual(minimapCfg, graphOptions.current?.minimapCfg)) {
-        renderMinimap(minimapCfg, graph);
+        processMinimap(minimapCfg, graph);
       }
       if (!isEqual(nodeCfg, graphOptions.current?.nodeCfg)) {
         updateNodes();
@@ -339,9 +339,12 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         fitCenter,
         plugins,
       });
-      const graphId = getGraphId(graphRef.current);
+      const graphId = getGraphId(graphRef.current, name);
       const graph = graphRef.current;
       graph.set('id', graphId);
+      if (name === 'MindMapGraph') {
+        graph.set('centerId', data.id);
+      }
       setGlobalInstance(graphId, graph);
       const getLabel = (value: { [key: string]: string } | string): string => {
         // 辐射树图
@@ -369,7 +372,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
           _graphId: graphId,
           label: getLabel(node.value),
           labelCfg: {
-            style: getCommonConfig(style, node, graph),
+            style: getCommonCfg(style, node, graph),
           },
           style: {
             stroke: '#ccc',
@@ -382,7 +385,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         const { content } = labelCfg ?? {};
 
         if (['DecompositionTreeGraph', 'OrganizationGraph', 'RadialTreeGraph'].includes(name)) {
-          return getCommonConfig(content, edge, graph);
+          return getCommonCfg(content, edge, graph);
         }
         if (['FundFlowGraph', 'FlowAnalysisGraph'].includes(name)) {
           const { value } = edge;
@@ -399,7 +402,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
           return {
             label: getEdgeLabel(edge),
             labelCfg: {
-              style: getCommonConfig(style, edge, graph),
+              style: getCommonCfg(style, edge, graph),
             },
             style: {
               stroke: '#ccc',
@@ -411,7 +414,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         });
       }
 
-      renderMinimap(minimapCfg, graph);
+      processMinimap(minimapCfg, graph);
       bindStateEvents(graph, config);
       if (markerCfg) {
         const sourceGraph = ['FlowAnalysisGraph', 'FundFlowGraph'];
