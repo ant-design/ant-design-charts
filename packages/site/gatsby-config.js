@@ -120,51 +120,19 @@ module.exports = {
         },
       },
       {
+        slug: 'relation-graph',
+        icon: 'sankey',
+        title: {
+          zh: '关系图',
+          en: 'Relation Graph',
+        },
+      },
+      {
         slug: 'line',
         icon: 'line', // 图表名可以去 https://antv.alipay.com/zh-cn/g2/3.x/demo/index.html 打开控制台查看图标类名
         title: {
           zh: '折线图',
           en: 'Line',
-        },
-      },
-      {
-        slug: 'map-area',
-        icon: 'polygon',
-        title: {
-          zh: '区域地图',
-          en: 'Area Map',
-        },
-      },
-      {
-        slug: 'map-choropleth',
-        icon: 'polygon',
-        title: {
-          zh: '行政区域地图',
-          en: 'Choropleth Map',
-        },
-      },
-      {
-        slug: 'map-dot',
-        icon: 'point',
-        title: {
-          zh: '散点地图',
-          en: 'Dot Map',
-        },
-      },
-      {
-        slug: 'map-heat',
-        icon: 'heatmap',
-        title: {
-          zh: '热力地图',
-          en: 'Heat Map',
-        },
-      },
-      {
-        slug: 'map-advanced-plot',
-        icon: 'other',
-        title: {
-          zh: '多图层',
-          en: 'Advanced Map',
         },
       },
       {
@@ -272,14 +240,6 @@ module.exports = {
         },
       },
       {
-        slug: 'relation-graph',
-        icon: 'sankey',
-        title: {
-          zh: '关系图',
-          en: 'Relation Graph',
-        },
-      },
-      {
         slug: 'facet',
         icon: 'gallery',
         title: {
@@ -310,6 +270,46 @@ module.exports = {
         title: {
           zh: '图表组件',
           en: 'Components',
+        },
+      },
+      {
+        slug: 'map-area',
+        icon: 'polygon',
+        title: {
+          zh: '区域地图',
+          en: 'Area Map',
+        },
+      },
+      {
+        slug: 'map-choropleth',
+        icon: 'polygon',
+        title: {
+          zh: '行政区域地图',
+          en: 'Choropleth Map',
+        },
+      },
+      {
+        slug: 'map-dot',
+        icon: 'point',
+        title: {
+          zh: '散点地图',
+          en: 'Dot Map',
+        },
+      },
+      {
+        slug: 'map-heat',
+        icon: 'heatmap',
+        title: {
+          zh: '热力地图',
+          en: 'Heat Map',
+        },
+      },
+      {
+        slug: 'map-advanced-plot',
+        icon: 'other',
+        title: {
+          zh: '多图层',
+          en: 'Advanced Map',
         },
       },
       {
