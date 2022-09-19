@@ -1,0 +1,16 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "脑图",
+        "en": "Basic"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/%24cS0yQQN%24/c69ba993-ca99-4ba1-a5d8-5ba824b83d95.png"
+    }
+  ]
+}
