@@ -18,7 +18,7 @@ pnpm i
 
 echo "\033[49;32m \n******* building dependencies *******\n \033[0m"
 
-pnpm run build:site
+pnpm build:lib
 
 echo "\033[49;32m \n******* removing node_modules *******\n \033[0m"
 
@@ -40,7 +40,7 @@ pnpm i
 
 echo "\033[49;32m \n******* building webite *******\n \033[0m"
 
-pnpm run build:site
+pnpm build:site
 
 echo "\033[49;32m \n******* copy website assets *******\n \033[0m"
 
