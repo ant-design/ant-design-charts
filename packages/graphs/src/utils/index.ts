@@ -23,3 +23,5 @@ export { getSize } from './get-size';
 export { setStyles } from './set-styles';
 export { Log } from './log';
 export { getType } from './get-type';
+export { countBy } from './count-by';
+export { isType } from './is-type';

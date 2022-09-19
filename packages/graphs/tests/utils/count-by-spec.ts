@@ -1,4 +1,4 @@
-import { countBy } from '../../src/utils/countBy';
+import { countBy } from '../../src/utils';
 
 describe('utils countBy', () => {
   it('countBy', () => {

@@ -10,7 +10,7 @@ const BaseJestConfig = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: false,
-  collectCoverageFrom: ['packages/**/*.ts', '!**/node_modules/**'],
+  collectCoverageFrom: ['packages/**/*.ts', 'packages/**/*.tsx', '!**/node_modules/**'],
   testMatch: ['**/?(*[.-])+(spec|test).[jt]s?(x)'],
 };
 
