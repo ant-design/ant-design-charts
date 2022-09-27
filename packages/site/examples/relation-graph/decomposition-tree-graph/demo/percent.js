@@ -98,6 +98,7 @@ const DemoDecompositionTreeGraph = () => {
       },
     ],
   };
+  const stroke = '#EA2F97';
   const config = {
     data,
     nodeCfg: {
