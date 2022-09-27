@@ -24,7 +24,7 @@ export interface MindMapGraphConfig extends Omit<CommonConfig<CompactBoxLayout>,
   level?: number;
   nodeCfg?: NodeCfg & {
     /** 点击展开时异步获取数据 */
-    getChildren?: (nodeCfg: NodeConfig) => G6TreeGraphData['children'];
+    getChildren?: (nodeCfg: NodeConfig) => Promise<G6TreeGraphData['children']>;
   };
 }
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
@@ -266,7 +265,7 @@ describe('Edge config', () => {
         style: {
           fill: '#E6EAF1',
           stroke: '#B2BED5',
-          radius: [2, 2, 2, 2],
+          radius: 2,
         },
       },
       edgeCfg: {
@@ -294,7 +293,7 @@ describe('Edge config', () => {
       markerCfg: (cfg) => {
         const { edges } = cfg.graphData;
         return {
-          position: 'right',
+          position: 'right' as const,
           show: true,
           collapsed: !edges.find((item) => item.source === cfg.id),
         };

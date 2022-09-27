@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react-hooks/server';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { RadialGraph } from '../../src';
@@ -24,7 +24,7 @@ describe('RadialGraph contentmenu', () => {
   });
 
   it('explore', () => {
-    const fetchData = (node) => {
+    const fetchData = (node): Promise<any> => {
       return new Promise((resolve, reject) => {
         const data = new Array(Math.ceil(Math.random() * 10) + 2).fill('').map((_, i) => i + 1);
         setTimeout(() => {
@@ -86,6 +86,7 @@ describe('RadialGraph contentmenu', () => {
             <div>
               <button
                 onClick={() => {
+                  // eslint-disable-next-line no-console
                   console.log(e.item, refs.current.emit('node:dblclick', e));
                 }}
               >
@@ -104,14 +105,11 @@ describe('RadialGraph contentmenu', () => {
           size: 2,
         },
       },
-      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
       fetchLoading: <div>custom loading</div>,
       onReady: (graph) => {
         refs.current = graph;
-        // @ts-ignore
-        window.g = graph;
       },
-    } as any;
+    };
     act(() => {
       ReactDOM.render(<RadialGraph {...config} />, container);
     });

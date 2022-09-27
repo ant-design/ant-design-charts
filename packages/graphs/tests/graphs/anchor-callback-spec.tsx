@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
@@ -226,7 +225,7 @@ describe('Type NodeData', () => {
     const chartProps = {
       data,
       nodeCfg: {
-        size: [140, 25],
+        size: [140, 25] as number[],
         anchorPoints: (node) => {
           return [
             [0, 0.5],
@@ -272,7 +271,7 @@ describe('Type NodeData', () => {
         style: {
           fill: '#E6EAF1',
           stroke: '#B2BED5',
-          radius: [2, 2, 2, 2],
+          radius: 2 as number,
         },
       },
       edgeCfg: {
@@ -300,13 +299,13 @@ describe('Type NodeData', () => {
       markerCfg: (cfg) => {
         const { edges } = data;
         return {
-          position: 'right',
-          show: edges.find((item) => item.source === cfg.id),
+          position: 'right' as 'right',
+          show: !!edges.find((item) => item.source === cfg.id),
           collapsed: !edges.find((item) => item.source === cfg.id),
         };
       },
-      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
-    };
+      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'] as string[],
+    } as const;
     act(() => {
       ReactDOM.render(<FlowAnalysisGraph {...props} {...chartProps} />, container);
     });

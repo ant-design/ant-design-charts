@@ -29,10 +29,10 @@ export interface FlowAnalysisGraphConfig extends Omit<CommonConfig<DagreLayout>,
   };
   nodeCfg?: NodeCfg & {
     /** 点击展开时异步获取数据 */
-    asyncData?: (nodeCfg: NodeConfig) => {
+    asyncData?: (nodeCfg: NodeConfig) => Promise<{
       nodes: FlowAnalysisNodeData[];
       edges?: FlowGraphEdgeData[];
-    };
+    }>;
   };
 }
 
