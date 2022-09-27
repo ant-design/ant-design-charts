@@ -6,5 +6,5 @@
       "@antv/xflow-core": ["node_modules/@antv/xflow-core/"]
     }
   },
-  "include": ["src", "tests"]
+  "include": ["src"]
 }
