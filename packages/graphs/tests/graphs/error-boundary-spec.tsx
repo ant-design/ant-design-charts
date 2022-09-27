@@ -1,7 +1,7 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
+import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import { RadialTreeGraph } from '../../src';
-import ErrorBoundary from '../../src/errorBoundary';
 
 describe('Area render', () => {
   let container;
@@ -36,11 +36,11 @@ describe('Area render', () => {
       },
       width: 200,
       height: 160,
-    };
-    // @ts-ignore
-    const testRenderer = create(<RadialTreeGraph {...props} {...chartProps} />);
-    const testInstance = testRenderer.root;
-    expect((testInstance.findByType(ErrorBoundary).children[0] as any).children[0].indexOf('') !== -1).toBeTruthy();
+    } as any;
+    act(() => {
+      ReactDOM.render(<RadialTreeGraph {...props} {...chartProps} />, container);
+    });
+    expect(document.querySelector('#error').innerHTML).toBe('custom error');
   });
 
   it('error template with callback', () => {
@@ -65,11 +65,10 @@ describe('Area render', () => {
       },
       width: 200,
       height: 160,
-    };
-    // @ts-ignore
-    const testRenderer = create(<RadialTreeGraph {...props} {...chartProps} />);
-    const testInstance = testRenderer.root;
-    // @ts-ignore
-    expect(testInstance.findByType(ErrorBoundary).children[0].children).toEqual(['custom error with callback']);
+    } as any;
+    act(() => {
+      ReactDOM.render(<RadialTreeGraph {...props} {...chartProps} />, container);
+    });
+    expect(document.querySelector('#error-callback').innerHTML).toBe('custom error with callback');
   });
 });

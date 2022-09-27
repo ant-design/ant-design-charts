@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { DecompositionTreeGraph } from '../../src';
 import { TreeData } from '../data';
 
-describe('Level', () => {
+describe('Get children types', () => {
   let container;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('Level', () => {
     document.body.removeChild(container);
     container = null;
   });
-  it('show', () => {
+  it('types', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
@@ -49,8 +49,7 @@ describe('Level', () => {
     };
 
     const getChildren = async (): Promise<any> => {
-      const asyncData = await fetchData();
-      return asyncData;
+      return await fetchData();
     };
     const level = 2;
     const chartProps = {
@@ -59,32 +58,10 @@ describe('Level', () => {
       nodeCfg: {
         getChildren,
       },
-      markerCfg: (cfg) => {
-        return {
-          position: 'right' as 'right',
-          show: cfg.children?.length,
-          collapsed: cfg.depth >= level - 1,
-        };
-      },
-      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
     };
     act(() => {
       ReactDOM.render(<DecompositionTreeGraph {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
-    expect(
-      chartRef
-        .findById('A1')
-        .get('group')
-        .getChildren()
-        .filter((item) => item.cfg.name === 'collapse-icon').length,
-    ).toBe(1);
-    expect(
-      chartRef
-        .findById('A2')
-        .get('group')
-        .getChildren()
-        .filter((item) => item.cfg.name === 'collapse-icon').length,
-    ).toBe(1);
   });
 });

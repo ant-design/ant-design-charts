@@ -7,11 +7,11 @@ import ChartLoading from '../../utils/createLoading';
 import { CommonConfig, GraphData, NodeCfg, NodeConfig, FetchLoading } from '../../interface';
 import { defaultFlowGraphAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../../constants';
 
-export interface RadialGraphConfig extends Omit<CommonConfig<RadialLayout>, 'data'>, FetchLoading {
+export interface RadialGraphConfig extends Omit<CommonConfig<Partial<RadialLayout>>, 'data'>, FetchLoading {
   data: GraphData;
   nodeCfg?: NodeCfg & {
     /** 点击展开时异步获取数据 */
-    asyncData?: (nodeCfg: NodeConfig) => GraphData;
+    asyncData?: (nodeCfg: NodeConfig) => Promise<GraphData>;
   };
 }
 

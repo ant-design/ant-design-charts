@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
@@ -13,8 +12,8 @@ describe('Mind Map', () => {
     document.body.appendChild(container);
   });
   afterEach(() => {
-    // document.body.removeChild(container);
-    // container = null;
+    document.body.removeChild(container);
+    container = null;
   });
   it('render', () => {
     let chartRef = undefined;
@@ -45,7 +44,7 @@ describe('Mind Map', () => {
       });
     };
 
-    const getChildren = async () => {
+    const getChildren = async (): Promise<any> => {
       const asyncData = await fetchData();
       return asyncData;
     };
@@ -205,12 +204,11 @@ describe('Mind Map', () => {
       markerCfg: (cfg) => {
         const { children = [] } = cfg;
         return {
-          position: 'right',
+          position: 'right' as const,
           show: !!children?.length,
           collapsed: !children?.length,
         };
       },
-      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
     };
 
     act(() => {

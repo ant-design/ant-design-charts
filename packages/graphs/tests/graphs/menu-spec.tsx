@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react-hooks/server';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { RadialTreeGraph } from '../../src';
