@@ -1,6 +1,6 @@
+// @ts-nocheck
 import React, { useRef, createRef } from 'react';
-import { create } from 'react-test-renderer';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react-hooks/server';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import Area from '../../src/components/area';
@@ -40,6 +40,7 @@ describe('Area render', () => {
       data,
       xField: 'date',
       yField: 'scales',
+      pixelRatio: 1,
       autoFit: false,
       width: 200,
       height: 160,
