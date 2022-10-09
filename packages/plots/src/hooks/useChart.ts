@@ -104,6 +104,7 @@ export default function useInit<T extends BasePlot, U extends Base>(ChartClass: 
           }
         });
         chart.current.changeData(config?.[changeType] || []);
+        chart.current.render();
       } else {
         processConfig();
         chart.current.update(config);

@@ -62,7 +62,7 @@ export const hasPath = (source: any, path: string[]) => {
 /**
  * 内部指定 params ，不考虑复杂情况
  */
-export const setPath = (source: object, path: string[], value: any) => {
+export const setPath = (source: object, path: string[], value?: any) => {
   if (!source) {
     return source;
   }

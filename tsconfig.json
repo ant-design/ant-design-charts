@@ -19,7 +19,8 @@
     "outDir": "dist",
     "declaration": true,
     "noUnusedLocals": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": true
   },
   "exclude": [
     "node_modules",
@@ -34,7 +35,8 @@
     "tslint:latest",
     "tslint-config-prettier",
     "example",
-    "_test_"
+    "_test_",
+    "tests"
   ],
   "include": [
     "**/src/**/*",
@@ -42,7 +44,6 @@
     "scripts/**/*",
     "**/demos",
     ".eslintrc.js",
-    "tests",
     "jest.config.js",
     "**/fixtures",
     "./tests/no-duplicated.ts"
