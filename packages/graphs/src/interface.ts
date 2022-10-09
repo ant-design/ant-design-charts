@@ -150,16 +150,15 @@ type PluginContainer<T> = {
   customContent: (item: T) => React.ReactElement;
 };
 
-export interface ToolbarCfg
-  extends Omit<
-    PluginContainer<{
-      zoomIn: () => void;
-      zoomOut: () => void;
-      toggleFullscreen: () => void;
-      fullscreen: boolean;
-    }>,
-    'container'
-  > {
+type ToolbarCfgCustomContent = {
+  zoomIn: () => void;
+  zoomOut: () => void;
+  toggleFullscreen: () => void;
+  fullscreen: boolean;
+  graph: IGraph;
+};
+
+export interface ToolbarCfg extends Omit<PluginContainer<ToolbarCfgCustomContent>, 'container'> {
   /** 是否展示 */
   show?: boolean;
   /** 缩放因子 */
@@ -173,12 +172,8 @@ export interface ToolbarCfg
     zoomOut,
     toggleFullscreen,
     fullscreen,
-  }: {
-    zoomIn: () => void;
-    zoomOut: () => void;
-    toggleFullscreen: () => void;
-    fullscreen: boolean;
-  }) => React.ReactElement;
+    graph,
+  }: ToolbarCfgCustomContent) => React.ReactElement;
 }
 
 // 通用 card 配置

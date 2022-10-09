@@ -1,3 +1,5 @@
+- 🔥 ToolbarCfg customContent 透出 graph 实例
+
 ## 1.3.1
 
 `2022-09-27`
