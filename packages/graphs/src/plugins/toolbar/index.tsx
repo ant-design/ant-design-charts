@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import useFullscreen from '../../hooks/useFullscreen';
-import { setStyles, Log } from '../../utils';
+import { setStyles } from '../../utils';
 import { Graph, ToolbarCfg } from '../../interface';
 
 export interface IToolbar {
@@ -67,20 +67,12 @@ const Toolbar: React.FC<IToolbar> = ({ toolbarCfg, container, graph }) => {
   const customRender = customContent || renderIcon;
 
   if (customRender) {
-    // 用法升级，提示旧用户
-    if (
-      !customRender
-        .toString()
-        .match(/\(([^)]*)\)/)?.[1]
-        ?.includes('{')
-    ) {
-      Log.warn(`customContent 用法已经升级，customContent(zoomIn, xx) => customContent({zoomIn, xx})`);
-    }
     return customRender({
       zoomIn,
       zoomOut,
       toggleFullscreen: setToggleFullscreen,
       fullscreen,
+      graph,
     });
   }
 
