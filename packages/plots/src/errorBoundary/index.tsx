@@ -27,12 +27,10 @@ class ErrorBoundary extends React.Component<any> {
     const { errorTemplate } = this.props;
     switch (e) {
       default:
-        // fallback
-        return errorTemplate && typeof errorTemplate === 'function' ? (
-          errorTemplate(e)
-        ) : (
-          <h5>组件出错了，请核查后重试： {e.message}</h5>
-        );
+        if (typeof errorTemplate === 'function') {
+          return errorTemplate(e);
+        }
+        return errorTemplate ? errorTemplate : <h5>组件出错了，请核查后重试： {e.message}</h5>;
     }
   };
 

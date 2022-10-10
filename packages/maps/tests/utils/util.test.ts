@@ -22,6 +22,7 @@ describe('utils', () => {
     };
     expect(clone(undefined)).toBeUndefined();
     expect(clone(config)).toEqual(config);
+    // @ts-ignore
     config.__proto__.name = 'fj';
     expect(clone(config)).toEqual({
       statistic: {

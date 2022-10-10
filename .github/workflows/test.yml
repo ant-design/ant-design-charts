@@ -2,20 +2,34 @@ name: Test
 
 on: [push, pull_request]
 
+env:
+  CI: true
+  PNPM_CACHE_FOLDER: .pnpm-store
+
 jobs:
   test:
     runs-on: macos-latest
+    timeout-minutes: 15
     strategy:
       matrix:
         node-version: [14.x]
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout code repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn
-      - run: yarn test
+      - name: installl pnpm
+        run: npm i pnpm@latest -g
+      - name: setup pnpm config
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+      - name: install dependencies
+        run: pnpm install
+      - name: test
+        run: pnpm test
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:

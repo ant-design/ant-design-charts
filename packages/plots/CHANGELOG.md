@@ -1,3 +1,6 @@
+- 🐞 [修复数据更新时legend留存](https://github.com/ant-design/ant-design-charts/issues/620)
+- 🐞 修复自定义 errorTemplate 非 callback 时无效
+
 ## 1.2.2
 
 `2022-09-07`
