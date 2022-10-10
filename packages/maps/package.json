@@ -33,7 +33,7 @@
     "lint:prettier": "pnpm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
-    "test-live": "cross-env DEBUG_MODE=1 jest --watch ./tests/maps/bubble-map.test.js --no-cache"
+    "test:live": "cross-env DEBUG_MODE=1 jest --watch ./tests/utils/error-boundary.test.tsx --no-cache"
   },
   "dependencies": {
     "@antv/l7plot": "^0.1.0",

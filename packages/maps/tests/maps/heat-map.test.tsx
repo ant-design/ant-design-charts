@@ -1,11 +1,8 @@
+// @ts-nocheck
 import React, { useRef } from 'react';
-import { renderHook } from '@testing-library/react-hooks';
-import { mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import HeatMap from '../../src/components/HeatMap';
-
-const refs = renderHook(() => useRef());
+import { act } from 'react-dom/test-utils';
+import GeographicHeatmap from '../../src/components/geographic-heatmap';
 
 describe('Heat Map', () => {
   let container;
@@ -38,6 +35,13 @@ describe('Heat Map', () => {
     },
   ];
   it('初始化以及销毁', () => {
+    let chartRef = undefined;
+    const props = {
+      className: 'container',
+      chartRef: (ref) => {
+        chartRef = ref;
+      },
+    };
     const config = {
       map: { type: 'amap' },
       source: {
@@ -53,7 +57,9 @@ describe('Heat Map', () => {
         value: [0, 1],
       },
     };
-    mount(<HeatMap {...config} />);
-    refs.current.destroy();
+    act(() => {
+      ReactDOM.render(<GeographicHeatmap {...props} {...config} />, container);
+    });
+    expect(chartRef).not.toBeUndefined();
   });
 });
