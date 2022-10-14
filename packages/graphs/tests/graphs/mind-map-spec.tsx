@@ -202,7 +202,21 @@ describe('Mind Map', () => {
         },
       },
       markerCfg: (cfg) => {
-        const { children = [] } = cfg;
+        const { children = [], id } = cfg;
+        if (id === 'A0') {
+          return [
+            {
+              position: 'left' as const,
+              show: !!children?.length,
+              collapsed: !children?.length,
+            },
+            {
+              position: 'right' as const,
+              show: !!children?.length,
+              collapsed: !children?.length,
+            },
+          ];
+        }
         return {
           position: 'right' as const,
           show: !!children?.length,
@@ -226,7 +240,7 @@ describe('Mind Map', () => {
         .findById('A0')
         .get('group')
         .getChildren()
-        .filter((item) => item.cfg.name === 'collapse-icon').length,
+        .filter((item) => item.cfg.name.startsWith('collapse-icon')).length,
     ).toBe(2);
   });
 });

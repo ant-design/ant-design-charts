@@ -106,7 +106,7 @@ export const bindDefaultEvents = (
   const onClick = async (e: IG6GraphEvent) => {
     const item = e.item as INode;
     const model = item.getModel();
-    if (e.target.get('name') === 'collapse-icon') {
+    if (e.target.get('name')?.startsWith('collapse-icon')) {
       const { collapsed, g_currentPath, children = [], g_parentId, g_level, id } = item.getModel();
       let appendChildren =
         level &&
@@ -166,7 +166,7 @@ export const bindSourceMapCollapseEvents = (
 ) => {
   const onClick = async (e: IG6GraphEvent) => {
     const controlData: { edges: any[]; nodes: any[] } = graph.get('eventData').getData();
-    if (e.target.get('name') === 'collapse-icon') {
+    if (e.target.get('name')?.startsWith('collapse-icon')) {
       const item = e.item as INode;
       let { collapsed } = item.getModel();
       if (!isType(collapsed, 'Boolean')) {
