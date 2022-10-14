@@ -3,7 +3,7 @@ import { IGroup, MarkerCfg } from '../interface';
 import { defaultCardStyle } from '../constants';
 import { getMarkerPosition } from './get-marker-position';
 
-export const createMarker = (cfg: MarkerCfg, group: IGroup | undefined, size: number[]) => {
+export const createMarker = (cfg: MarkerCfg, group: IGroup | undefined, size: number[], suffix?: boolean) => {
   const { show, position, collapsed, style } = cfg;
   if (show) {
     group!.addShape('marker', {
@@ -18,7 +18,7 @@ export const createMarker = (cfg: MarkerCfg, group: IGroup | undefined, size: nu
         ...style,
       },
       defaultCollapsed: false,
-      name: 'collapse-icon',
+      name: suffix ? `collapse-icon-${position}` : 'collapse-icon',
       position: position,
     });
   }

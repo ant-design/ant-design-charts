@@ -342,9 +342,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       const graphId = getGraphId(graphRef.current, name);
       const graph = graphRef.current;
       graph.set('id', graphId);
-      if (name === 'MindMapGraph') {
-        graph.set('centerId', data.id);
-      }
       setGlobalInstance(graphId, graph);
       const getLabel = (value: { [key: string]: string } | string): string => {
         // 辐射树图

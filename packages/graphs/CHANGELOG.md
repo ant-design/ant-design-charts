@@ -1,3 +1,9 @@
+## 1.3.2-beta.1
+## 1.3.2-beta.0
+
+`2022-10-13`
+
+- 🔥 MarkerCfg 支持 Array
 - 🔥 ToolbarCfg customContent 透出 graph 实例
 
 ## 1.3.1
