@@ -399,54 +399,36 @@ export const registerIndicatorGeometries = () => {
         // collapse marker
         if (markerCfg) {
           const graph = getGlobalInstance(cfg._graphId);
-          const isMindMap = cfg._graphId.startsWith('MindMapGraph');
-          const centerId = graph.get('centerId');
           const { collapsed: stateCollapsed } = group?.get('item')?.getModel() ?? {};
           const { width: shapeWidth, height: shapeHeight } = shape.getBBox();
-          const {
-            show,
-            position = 'right',
-            collapsed,
-            style: markerStyle,
-          } = typeof markerCfg === 'function'
-            ? markerCfg(
-                {
-                  ...cfg,
-                  children: getChildrenData(graph?.get('eventData').getData(), cfg.g_currentPath as string),
-                },
-                group,
-              )
-            : markerCfg;
-          let priorityPosition = position;
-          if (isMindMap) {
-            if (centerId === cfg.id) {
-              createMarker(
-                {
-                  show,
-                  position: priorityPosition === 'left' ? 'right' : 'left',
-                  collapsed: stateCollapsed ?? collapsed,
-                  style: markerStyle,
-                },
-                group,
-                [shapeWidth, shapeHeight],
-              );
-            } else {
-              const { x } = graph.findById(centerId).getModel();
-              priorityPosition = cfg.x > x ? 'right' : 'left';
-            }
+          let markerCfgArray = [];
+          if (typeof markerCfg === 'function') {
+            const callbackMarkerCfg = markerCfg(
+              {
+                ...cfg,
+                children: getChildrenData(graph?.get('eventData').getData(), cfg.g_currentPath as string),
+              },
+              group,
+            );
+            markerCfgArray = callbackMarkerCfg instanceof Array ? callbackMarkerCfg : [callbackMarkerCfg];
+          } else {
+            markerCfgArray = markerCfg instanceof Array ? markerCfg : [markerCfg];
           }
-          createMarker(
-            {
-              show,
-              position: priorityPosition,
-              collapsed: stateCollapsed ?? collapsed, // 优先使用内部状态
-              style: markerStyle,
-            },
-            group,
-            [shapeWidth, shapeHeight],
-          );
-
-          shape.attr('defaultCollapsed', collapsed);
+          markerCfgArray.forEach((mc) => {
+            const { show, position = 'right', collapsed, style: markerStyle } = mc;
+            createMarker(
+              {
+                show,
+                position,
+                collapsed: stateCollapsed ?? collapsed, // 优先使用内部状态
+                style: markerStyle,
+              },
+              group,
+              [shapeWidth, shapeHeight],
+              markerCfgArray.length > 1,
+            );
+            shape.attr('defaultCollapsed', collapsed);
+          });
         }
 
         return shape;

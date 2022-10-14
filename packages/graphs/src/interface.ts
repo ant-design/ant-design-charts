@@ -271,7 +271,10 @@ export interface TooltipCfg extends PluginContainer<NodeConfig | EdgeConfig> {
   fixToNode?: [number, number] | undefined;
 }
 
-export type IMarkerCfg = MarkerCfg | ((cfg: CardNodeCfg, graph: IGraph | IGroup | undefined) => MarkerCfg);
+export type IMarkerCfg =
+  | MarkerCfg
+  | MarkerCfg[]
+  | ((cfg: CardNodeCfg, graph: IGraph | IGroup | undefined) => MarkerCfg | MarkerCfg[]);
 
 export type Datum = Record<string, any>;
 

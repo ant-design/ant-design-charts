@@ -5,7 +5,7 @@ const BaseJestConfig = {
   testTimeout: 30000,
   setupFilesAfterEnv: ['jest-extended'],
   transform: {
-    '^.+\\.(tsx|ts)?$': 'ts-jest',
+    '^.+\\.(tsx|ts)?$': '@swc/jest',
     '\\.(less|css)$': 'jest-less-loader',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

@@ -20,9 +20,6 @@ const MindMapGraphGraph = () => {
           title: '华南',
           items: [
             {
-              text: '1152万',
-            },
-            {
               text: '占比',
               value: '30%',
             },
@@ -34,9 +31,6 @@ const MindMapGraphGraph = () => {
             value: {
               title: '广东',
               items: [
-                {
-                  text: '1152万',
-                },
                 {
                   text: '占比',
                   value: '30%',
@@ -50,9 +44,6 @@ const MindMapGraphGraph = () => {
               title: '广西',
               items: [
                 {
-                  text: '1152万',
-                },
-                {
                   text: '占比',
                   value: '30%',
                 },
@@ -64,9 +55,6 @@ const MindMapGraphGraph = () => {
             value: {
               title: '海南',
               items: [
-                {
-                  text: '1152万',
-                },
                 {
                   text: '占比',
                   value: '30%',
@@ -82,15 +70,26 @@ const MindMapGraphGraph = () => {
           title: '华北',
           items: [
             {
-              text: '595万',
-            },
-            {
               text: '占比',
               value: '30%',
               icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
             },
           ],
         },
+        children: [
+          {
+            id: 'A2-1',
+            value: {
+              title: '华北',
+              items: [
+                {
+                  text: '占比',
+                  value: '30%',
+                },
+              ],
+            },
+          },
+        ],
       },
     ],
   };
@@ -154,14 +153,13 @@ const MindMapGraphGraph = () => {
     },
     // level,
     nodeCfg: {
-      getChildren,
       size: nodeSize,
       padding: 4,
       style: {
         stroke: '#5AD8A6',
       },
       items: {
-        padding: 0,
+        padding: [4, 0],
       },
       customContent: (item, group, cfg) => {
         const { startX, startY, width } = cfg;
@@ -174,7 +172,6 @@ const MindMapGraphGraph = () => {
             y: 0,
             width: nodeSize[0],
             height: nodeSize[1] + 8,
-            fill: '#5AD8A6',
             fillOpacity: 0.1,
           },
           // group 内唯一字段
@@ -244,12 +241,24 @@ const MindMapGraphGraph = () => {
           // group 内唯一字段
           name: `text-${Math.random()}`,
         });
-        // 行高
-        return 14;
       },
     },
     markerCfg: (cfg) => {
-      const { children = [] } = cfg;
+      const { children = [], id } = cfg;
+      if (id === 'A0') {
+        return [
+          {
+            position: 'left',
+            show: !!children?.length,
+            collapsed: !children?.length,
+          },
+          {
+            position: 'right',
+            show: !!children?.length,
+            collapsed: !children?.length,
+          },
+        ];
+      }
       return {
         position: 'right',
         show: !!children?.length,
