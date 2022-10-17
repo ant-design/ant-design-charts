@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { RadialTreeGraph } from '../../src';
 
@@ -70,7 +70,7 @@ describe('RadialTreeGraph contentmenu', () => {
       },
     } as any;
     act(() => {
-      ReactDOM.render(<RadialTreeGraph {...config} />, container);
+      render(<RadialTreeGraph {...config} />, container);
     });
     const menuContainer = document.querySelector('.g6-component-meu');
     expect(menuContainer).not.toBeUndefined();

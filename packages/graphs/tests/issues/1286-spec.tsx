@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { OrganizationGraph } from '../../src';
 
@@ -132,7 +132,7 @@ describe('Type NodeData', () => {
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
     };
     act(() => {
-      ReactDOM.render(<OrganizationGraph {...props} {...chartProps} />, container);
+      render(<OrganizationGraph {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     // const node = chartRef.findById('2');
