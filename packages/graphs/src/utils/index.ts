@@ -25,3 +25,4 @@ export { Log } from './log';
 export { getType } from './get-type';
 export { countBy } from './count-by';
 export { isType } from './is-type';
+export { render, unmount } from './render';

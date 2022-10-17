@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { DecompositionTreeGraph } from '../../src';
 
@@ -42,6 +42,9 @@ describe('DecompositionTreeGraph tooltip', () => {
     container.style.height = '600px';
     document.body.appendChild(container);
   });
+  beforeAll(() => {
+    // jest.useFakeTimers();
+  });
   afterAll(() => {
     const containers = document.getElementsByClassName('container');
     Array.from(containers).forEach((el) => {
@@ -51,6 +54,12 @@ describe('DecompositionTreeGraph tooltip', () => {
   });
 
   it('tooltip', () => {
+    const after1000ms = (callback: Function) => {
+      setTimeout(() => {
+        callback();
+      }, 1000);
+    };
+    jest.spyOn(global, 'setTimeout');
     const config = {
       data,
       nodeConfig: {
@@ -76,13 +85,15 @@ describe('DecompositionTreeGraph tooltip', () => {
       },
     } as any;
     act(() => {
-      ReactDOM.render(<DecompositionTreeGraph {...config} />, container);
+      render(<DecompositionTreeGraph {...config} />, container);
     });
     const tooltipContainer = document.querySelector('.g6-component-tooltip');
     expect(tooltipContainer).not.toBeUndefined();
     const node = refs.current.getNodes()[0];
     refs.current.emit('node:mouseenter', { item: node });
-    const tooltipContent = document.querySelector('.g6-tooltip');
-    expect(tooltipContent.innerHTML).toBe('custom content');
+    after1000ms(() => {
+      const tooltipContent = document.querySelector('.g6-tooltip');
+      expect(tooltipContent.innerHTML).toBe('custom content');
+    });
   });
 });

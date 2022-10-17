@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { MindMapGraph } from '../../src';
 import { NoTitleTreeData } from '../data';
@@ -226,7 +226,7 @@ describe('Mind Map', () => {
     };
 
     act(() => {
-      ReactDOM.render(
+      render(
         <div style={{ width: containerWidth }}>
           <div style={{ display: 'flex', height: '32px', textAlign: 'center' }}>{LevelFC()}</div>
           <MindMapGraph {...props} {...chartProps} />

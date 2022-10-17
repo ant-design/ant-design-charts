@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { RadialTreeGraph } from '../../src';
 
@@ -124,7 +124,7 @@ describe('Image node', () => {
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
     } as any;
     act(() => {
-      ReactDOM.render(<RadialTreeGraph {...props} {...config} />, container);
+      render(<RadialTreeGraph {...props} {...config} />, container);
     });
     expect(chartRef).not.toBeUndefined();
   });

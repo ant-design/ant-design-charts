@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { FlowAnalysisGraph } from '../../src';
 
@@ -251,7 +251,7 @@ describe('Auto width', () => {
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
     };
     act(() => {
-      ReactDOM.render(<FlowAnalysisGraph {...props} {...chartProps} />, container);
+      render(<FlowAnalysisGraph {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const node = chartRef.findById('1');

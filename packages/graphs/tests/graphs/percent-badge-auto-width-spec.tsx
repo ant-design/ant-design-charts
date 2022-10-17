@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { DecompositionTreeGraph } from '../../src';
 
@@ -143,7 +143,7 @@ describe('Percent badge with auto width', () => {
     };
 
     act(() => {
-      ReactDOM.render(<DecompositionTreeGraph {...props} {...config} />, container);
+      render(<DecompositionTreeGraph {...props} {...config} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     expect(
