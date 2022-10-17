@@ -326,11 +326,11 @@ const asyncData = async () => {
 const config = {
   nodeCfg: { asyncData },
   markerCfg: (cfg) => {
-    const { edges } = cfg.graphData;
+    const { children = [] } = cfg;
     return {
       position: 'right',
       show: true,
-      collapsed: !edges.find((item) => item.source === cfg.id),
+      collapsed: !children?.length,
     };
   },
 }

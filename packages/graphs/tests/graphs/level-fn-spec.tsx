@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { DecompositionTreeGraph } from '../../src';
 import { TreeData } from '../data';
@@ -69,7 +69,7 @@ describe('Level', () => {
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
     };
     act(() => {
-      ReactDOM.render(<DecompositionTreeGraph {...props} {...chartProps} />, container);
+      render(<DecompositionTreeGraph {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     expect(

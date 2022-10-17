@@ -1,10 +1,10 @@
 import { modifyCSS, createDom } from '@antv/dom-util';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { isString } from '@antv/util';
 import insertCss from 'insert-css';
 import { IAbstractGraph as IGraph, IG6GraphEvent, Item } from '@antv/g6';
 import Base, { IPluginBaseConfig } from '../base';
+import { render } from '../../utils';
 
 typeof document !== 'undefined' &&
   insertCss(`
@@ -122,7 +122,7 @@ export default class Menu extends Base {
     const customContent = this.get('customContent');
     const graph: IGraph = this.get('graph');
     const menu = customContent(e, graph);
-    ReactDOM.render(menu, menuDom);
+    render(menu, menuDom);
     // 清除之前监听的事件
     this.removeMenuEventListener();
 

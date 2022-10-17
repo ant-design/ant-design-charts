@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, Fragment } from 'react';
-import ReactDOM from 'react-dom';
 import useFullscreen from '../../hooks/useFullscreen';
-import { setStyles } from '../../utils';
+import { setStyles, render } from '../../utils';
 import { Graph, ToolbarCfg } from '../../interface';
 
 export interface IToolbar {
@@ -147,7 +146,7 @@ export const createToolbar = ({ graph, container, toolbarCfg }: IToolbar) => {
   mountPoint.className = className ?? 'charts-toolbar';
   setStyles(mountPoint, defaultStyle);
   setStyles(mountPoint, style);
-  ReactDOM.render(<Toolbar graph={graph} container={container} toolbarCfg={toolbarCfg} />, mountPoint);
+  render(<Toolbar graph={graph} container={container} toolbarCfg={toolbarCfg} />, mountPoint);
   // @ts-ignore
   container.appendChild(mountPoint);
 };

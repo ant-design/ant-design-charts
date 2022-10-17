@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { RadialGraph } from '../../src';
 import { RadialData } from '../data';
@@ -111,7 +111,7 @@ describe('RadialGraph contentmenu', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<RadialGraph {...config} />, container);
+      render(<RadialGraph {...config} />, container);
     });
     const menuContainer = document.querySelector('.g6-component-meu');
     expect(menuContainer).not.toBeUndefined();

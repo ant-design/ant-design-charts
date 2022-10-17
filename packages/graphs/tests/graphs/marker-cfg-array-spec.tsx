@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { FlowAnalysisGraph } from '../../src';
 import { FlowData } from '../data';
@@ -15,7 +15,6 @@ describe('Type NodeData', () => {
     document.body.removeChild(container);
     container = null;
   });
-  const dataRef = { current: {} };
   it('Render data', () => {
     let chartRef = undefined;
     const props = {
@@ -90,7 +89,6 @@ describe('Type NodeData', () => {
             },
           ];
         }
-        // const { edges } = cfg.graphData;
         return {
           position: 'right',
           show: true,
@@ -100,7 +98,7 @@ describe('Type NodeData', () => {
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
     };
     act(() => {
-      ReactDOM.render(<FlowAnalysisGraph {...props} {...chartProps} />, container);
+      render(<FlowAnalysisGraph {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const { _graphId } = chartRef.findById('-3')?.getModel();

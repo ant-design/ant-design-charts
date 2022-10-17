@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { FlowAnalysisGraph } from '../../src';
 import { FlowData } from '../data';
@@ -104,7 +104,7 @@ describe('Image node', () => {
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
     } as any;
     act(() => {
-      ReactDOM.render(<FlowAnalysisGraph {...props} {...config} />, container);
+      render(<FlowAnalysisGraph {...props} {...config} />, container);
     });
     expect(chartRef).not.toBeUndefined();
   });

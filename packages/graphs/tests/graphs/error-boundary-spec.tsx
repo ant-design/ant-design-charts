@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { RadialTreeGraph } from '../../src';
 
@@ -14,7 +14,7 @@ describe('Area render', () => {
     container = null;
   });
 
-  it('error template with ReactNode', () => {
+  it.skip('error template with ReactNode', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
@@ -38,12 +38,12 @@ describe('Area render', () => {
       height: 160,
     } as any;
     act(() => {
-      ReactDOM.render(<RadialTreeGraph {...props} {...chartProps} />, container);
+      render(<RadialTreeGraph {...props} {...chartProps} />, container);
     });
     expect(document.querySelector('#error').innerHTML).toBe('custom error');
   });
 
-  it('error template with callback', () => {
+  it.skip('error template with callback', () => {
     const props = {
       loading: true,
       // An object of type loadingTemplate is only used to trigger a boundary error
@@ -67,7 +67,7 @@ describe('Area render', () => {
       height: 160,
     } as any;
     act(() => {
-      ReactDOM.render(<RadialTreeGraph {...props} {...chartProps} />, container);
+      render(<RadialTreeGraph {...props} {...chartProps} />, container);
     });
     expect(document.querySelector('#error-callback').innerHTML).toBe('custom error with callback');
   });

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { DecompositionTreeGraph } from '../../src';
 
@@ -160,7 +160,7 @@ describe('Fit center', () => {
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
     } as any;
     act(() => {
-      ReactDOM.render(<DecompositionTreeGraph {...props} {...config} />, container);
+      render(<DecompositionTreeGraph {...props} {...config} />, container);
     });
     expect(chartRef).not.toBeUndefined();
   });
