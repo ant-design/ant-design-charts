@@ -1,7 +1,8 @@
+export const stateColor = '#1890ff';
 // 默认交互状态
 export const defaultStateStyles = {
   hover: {
-    stroke: '#1890ff',
+    stroke: stateColor,
     lineWidth: 2,
   },
 };

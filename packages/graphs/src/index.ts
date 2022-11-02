@@ -13,6 +13,8 @@ import RadialGraph from './components/radial-graph';
 import type { RadialGraphConfig } from './components/radial-graph';
 import MindMapGraph from './components/mind-map-graph';
 import type { MindMapGraphConfig } from './components/mind-map-graph';
+import FileTreeGraph from './components/file-tree-graph';
+import type { FileTreeGraphConfig } from './components/file-tree-graph';
 
 /** @deprecated start */
 import {
@@ -46,6 +48,7 @@ export {
   OrganizationalGraph,
   RadialGraph,
   MindMapGraph,
+  FileTreeGraph,
   G6,
 };
 export * from './interface';
@@ -61,4 +64,5 @@ export type {
   RadialGraphConfig,
   RelationGraph,
   MindMapGraphConfig,
+  FileTreeGraphConfig,
 };

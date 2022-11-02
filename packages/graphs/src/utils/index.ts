@@ -26,3 +26,7 @@ export { getType } from './get-type';
 export { countBy } from './count-by';
 export { isType } from './is-type';
 export { render, unmount } from './render';
+export { createFetchLoading } from './create-fetch-loading';
+export { closeFetchLoading } from './close-fetch-loading';
+export { getGlobalInstance, setGlobalInstance } from './global';
+export { pushAsyncEvent, runAsyncEvent } from './async-events';
