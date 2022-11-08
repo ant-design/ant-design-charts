@@ -1,11 +1,8 @@
 // @ts-nocheck
-import React, { useRef, createRef } from 'react';
-import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import React from 'react';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import Area from '../../src/components/area';
-
-const refs = renderHook(() => useRef());
 
 describe('Area render', () => {
   let container;
@@ -46,7 +43,7 @@ describe('Area render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Area {...props} {...chartProps} />, container);
+      render(<Area {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');

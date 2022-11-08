@@ -9,10 +9,16 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn
-      - run: yarn lint
+      - name: installl pnpm
+        run: npm i pnpm@latest -g
+      - name: setup pnpm config
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+      - name: install dependencies
+        run: pnpm install
+      - name: lint
+        run: pnpm lint

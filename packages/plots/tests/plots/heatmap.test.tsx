@@ -2,10 +2,10 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import Heatmap from '../../src/components/heatmap';
-import ChartLoading from '../../src/util/createLoading';
+import ChartLoading from '../../src/utils/createLoading';
 import ErrorBoundary from '../../src/errorBoundary';
 
 const refs = renderHook(() => useRef());
@@ -122,7 +122,7 @@ describe('Heatmap render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Heatmap {...props} {...chartProps} />, container);
+      render(<Heatmap {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -154,7 +154,7 @@ describe('Heatmap render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Heatmap {...props} {...chartProps} />, container);
+      render(<Heatmap {...props} {...chartProps} />, container);
     });
     expect(chartRef.current.chart.getData()).toEqual(data);
   });
@@ -180,7 +180,7 @@ describe('Heatmap render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Heatmap {...props} {...chartProps} ref={refs} />, container);
+      render(<Heatmap {...props} {...chartProps} ref={refs} />, container);
     });
     expect(refs.current.getChart().chart.getData()).toEqual(data);
   });

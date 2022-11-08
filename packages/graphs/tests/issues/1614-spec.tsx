@@ -30,6 +30,8 @@ describe('React 18', () => {
     const config = {
       data: TreeData,
       autoFit: false,
+      width: 300,
+      height: 300,
       tooltipCfg: {
         customContent: () => {
           return <div>tooltip</div>;

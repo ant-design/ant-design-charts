@@ -1,4 +1,10 @@
-## 1.0.5
+## 1.0.6
+
+`2022-11-08`
+
+- 🐞 修复 L7 依赖丢失
+
+## 1.0.5（dist-tag）
 
 `2022-11-08`
 
@@ -16,4 +22,3 @@
 `2022-07-19`
 
 - 🐞 [Critical security vulnerabilities minimist](https://github.com/ant-design/ant-design-charts/issues/1289)
-

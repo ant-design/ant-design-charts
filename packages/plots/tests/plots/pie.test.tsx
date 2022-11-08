@@ -2,10 +2,10 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import Pie from '../../src/components/pie';
-import ChartLoading from '../../src/util/createLoading';
+import ChartLoading from '../../src/utils/createLoading';
 import ErrorBoundary from '../../src/errorBoundary';
 
 const refs = renderHook(() => useRef());
@@ -100,7 +100,7 @@ describe('Pie render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Pie {...props} {...chartProps} />, container);
+      render(<Pie {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -125,7 +125,7 @@ describe('Pie render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Pie {...props} {...chartProps} />, container);
+      render(<Pie {...props} {...chartProps} />, container);
     });
     expect(chartRef.current.chart.getData()).toEqual(data);
   });
@@ -144,7 +144,7 @@ describe('Pie render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Pie {...props} {...chartProps} ref={refs} />, container);
+      render(<Pie {...props} {...chartProps} ref={refs} />, container);
     });
     expect(refs.current.getChart().chart.getData()).toEqual(data);
   });
