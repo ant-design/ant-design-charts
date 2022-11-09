@@ -1,12 +1,20 @@
 const BaseJestConfig = {
   verbose: true,
-  runner: 'jest-electron/runner',
-  testEnvironment: 'jest-electron/environment',
+  // test:live start
+  // runner: 'jest-electron/runner',
+  // testEnvironment: 'jest-electron/environment',
+  // setupFilesAfterEnv: ['jest-extended', './jest.setup.js'],
+  // test:live end
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['jest-extended', 'jest-canvas-mock', './jest.setup.js'],
   testTimeout: 30000,
-  setupFilesAfterEnv: ['jest-extended'],
   transform: {
     '^.+\\.(tsx|ts)?$': '@swc/jest',
     '\\.(less|css)$': 'jest-less-loader',
+  },
+  moduleNameMapper: {
+    '^lodash-es$': 'lodash',
+    '^.+\\.(css|less)$': 'identity-obj-proxy',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: false,

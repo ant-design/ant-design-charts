@@ -3,10 +3,10 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import Treemap from '../../src/components/treemap';
-import ChartLoading from '../../src/util/createLoading';
+import ChartLoading from '../../src/utils/createLoading';
 import ErrorBoundary from '../../src/errorBoundary';
 
 const refs = renderHook(() => useRef());
@@ -122,7 +122,7 @@ describe('Treemap render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Treemap {...props} {...chartProps} />, container);
+      render(<Treemap {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -147,7 +147,7 @@ describe('Treemap render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Treemap {...props} {...chartProps} />, container);
+      render(<Treemap {...props} {...chartProps} />, container);
     });
     expect(chartRef.current.chart.getData().length).toBe(data.children.length);
   });
@@ -166,7 +166,7 @@ describe('Treemap render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Treemap {...props} {...chartProps} ref={refs} />, container);
+      render(<Treemap {...props} {...chartProps} ref={refs} />, container);
     });
     expect(refs.current.getChart().chart.getData().length).toBe(data.children.length);
   });

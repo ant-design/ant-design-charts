@@ -2,10 +2,10 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import Scatter from '../../src/components/scatter';
-import ChartLoading from '../../src/util/createLoading';
+import ChartLoading from '../../src/utils/createLoading';
 import ErrorBoundary from '../../src/errorBoundary';
 
 const refs = renderHook(() => useRef());
@@ -106,7 +106,7 @@ describe('Scatter render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Scatter {...props} {...chartProps} />, container);
+      render(<Scatter {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -131,7 +131,7 @@ describe('Scatter render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Scatter {...props} {...chartProps} />, container);
+      render(<Scatter {...props} {...chartProps} />, container);
     });
     expect(chartRef.current.chart.getData()).toEqual(data);
   });
@@ -150,7 +150,7 @@ describe('Scatter render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Scatter {...props} {...chartProps} ref={refs} />, container);
+      render(<Scatter {...props} {...chartProps} ref={refs} />, container);
     });
     expect(refs.current.getChart().chart.getData()).toEqual(data);
   });

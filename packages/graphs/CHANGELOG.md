@@ -2,9 +2,10 @@
 
 `2022-10-17`
 
-- 🔥 Graphs 支持 React18 
+- 🔥 Graphs 支持 React18
 
 ## 1.3.2-beta.1
+
 ## 1.3.2-beta.0
 
 `2022-10-13`
@@ -16,7 +17,7 @@
 
 `2022-09-27`
 
-- 🐞 dist-tag `1.3.0` 
+- 🐞 dist-tag `1.3.0`
 - 🐞 修复 `getChildren` `syncData` 等类型错误
 
 ## 1.3.0
@@ -33,18 +34,18 @@
 - 🐞 修复节点配置 level 后无法区分 markerCfg.show 状态
 
 ```ts
-  const level = 2;
-  const chartProps = {
-    data: TreeData,
-    level,
-    markerCfg: (cfg) => {
-      return {
-        position: 'right',
-        show: cfg.children?.length,
-        collapsed: cfg.depth >= level - 1,
-      };
-    },
-  }
+const level = 2;
+const chartProps = {
+  data: TreeData,
+  level,
+  markerCfg: (cfg) => {
+    return {
+      position: 'right',
+      show: cfg.children?.length,
+      collapsed: cfg.depth >= level - 1,
+    };
+  },
+};
 ```
 
 ## 1.2.7
@@ -66,7 +67,7 @@
 `2022-08-22`
 
 - 🔥 `RadialGraph` 升级，可以动态拓展
-- 🔥 新增 `fetchLoading` 配置，可配合 `asyncData` `getChildren` 等配置做自定义loading
+- 🔥 新增 `fetchLoading` 配置，可配合 `asyncData` `getChildren` 等配置做自定义 loading
 - 🐞 完善 `layout` 定义
 
 ## 1.2.4
@@ -80,12 +81,10 @@
 
 `2022-07-22`
 
-- 🐞 [指标拆解图 fitCenter设置为false 时， 树从头节点重新展开](https://github.com/ant-design/ant-design-charts/issues/1441)
-
+- 🐞 [指标拆解图 fitCenter 设置为 false 时， 树从头节点重新展开](https://github.com/ant-design/ant-design-charts/issues/1441)
 
 ## 1.2.2
 
 `2022-07-21`
 
 - 🔥 [来源去向图新增一个异步加载功能](https://github.com/ant-design/ant-design-charts/issues/1437)
-

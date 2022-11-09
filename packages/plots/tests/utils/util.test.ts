@@ -1,4 +1,4 @@
-import { hasPath, clone, isType, setPath } from '../../src/util';
+import { hasPath, clone, isType, setPath } from '../../src/utils';
 
 describe('utils', () => {
   it('is type', () => {

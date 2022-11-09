@@ -1,10 +1,10 @@
 // @ts-nocheck
 import React from 'react';
 import { create } from 'react-test-renderer';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import Mix from '../../src/components/mix';
-import ChartLoading from '../../src/util/createLoading';
+import ChartLoading from '../../src/utils/createLoading';
 import ErrorBoundary from '../../src/errorBoundary';
 
 describe('Mix render', () => {
@@ -156,7 +156,7 @@ describe('Mix render', () => {
       ],
     };
     act(() => {
-      ReactDOM.render(<Mix {...props} {...chartProps} />, container);
+      render(<Mix {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');

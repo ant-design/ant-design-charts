@@ -2,10 +2,10 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import TinyLine from '../../src/components/tiny-line';
-import ChartLoading from '../../src/util/createLoading';
+import ChartLoading from '../../src/utils/createLoading';
 import ErrorBoundary from '../../src/errorBoundary';
 
 const refs = renderHook(() => useRef());
@@ -93,7 +93,7 @@ describe('TinyLine render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<TinyLine {...props} {...chartProps} />, container);
+      render(<TinyLine {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -123,7 +123,7 @@ describe('TinyLine render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<TinyLine {...props} {...chartProps} />, container);
+      render(<TinyLine {...props} {...chartProps} />, container);
     });
     expect(chartRef.current.chart.getData()).toEqual([
       { x: '0', y: 264 },
@@ -147,7 +147,7 @@ describe('TinyLine render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<TinyLine {...props} {...chartProps} ref={refs} />, container);
+      render(<TinyLine {...props} {...chartProps} ref={refs} />, container);
     });
     expect(refs.current.getChart().chart.getData()).toEqual([
       { x: '0', y: 264 },

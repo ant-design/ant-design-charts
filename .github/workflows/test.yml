@@ -8,18 +8,18 @@ env:
 
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     strategy:
       matrix:
         node-version: [14.x]
     steps:
       - name: checkout code repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: installl pnpm
@@ -30,7 +30,7 @@ jobs:
         run: pnpm install
       - name: test
         run: pnpm test
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Coveralls
+      #   uses: coverallsapp/github-action@master
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}

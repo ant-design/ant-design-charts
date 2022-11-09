@@ -4,10 +4,7 @@
 
 A React relation graphs component library, based on [G6](https://github.com/antvis/G6).
 
-![npm](https://img.shields.io/npm/v/@ant-design/graphs)
-![npm](https://img.shields.io/npm/dm/@ant-design/graphs)
-[![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers)
-[![npm License](https://img.shields.io/npm/l/@ant-design/charts.svg)](https://www.npmjs.com/package/@ant-design/charts)
+![npm](https://img.shields.io/npm/v/@ant-design/graphs) ![npm](https://img.shields.io/npm/dm/@ant-design/graphs) [![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers) [![npm License](https://img.shields.io/npm/l/@ant-design/charts.svg)](https://www.npmjs.com/package/@ant-design/charts)
 
 <p align="center">
   <a href="https://charts.ant.design/">Website</a> •
@@ -20,6 +17,7 @@ A React relation graphs component library, based on [G6](https://github.com/antv
 </div>
 
 ## Case
+
 <div style="display: flex;flex-direction: row;">
   <img src="https://gw.alipayobjects.com/zos/antfincdn/IJhgY4ZtHf/4ca28c72-d60c-42ca-b562-1cec9489f409.png" width=320 />
   <img src="https://gw.alipayobjects.com/zos/antfincdn/SM9hvYbqYB/1caef0d3-78cf-4f7d-aaca-59a361cae2ec.png" width=320 />
@@ -29,20 +27,18 @@ A React relation graphs component library, based on [G6](https://github.com/antv
   <img src="https://gw.alipayobjects.com/zos/antfincdn/JailFwu5B3/042ce37a-9b73-4218-ae2c-dcdb5994379a.png" width=320 />
   <img src="https://gw.alipayobjects.com/zos/antfincdn/9Q5ftNEgkR/f9f6ae73-9a2c-4c8d-8ce2-919b16acdad0.png" width=320 />
   <img src="https://gw.alipayobjects.com/zos/antfincdn/tCykDJncjJ/2200d0c0-40bd-46a8-a885-30393fb165b1.png" width=320 />
-</div>  
+</div>
 
 ## ✨ Features
 
 - Easy to use
 - TypeScript
 
-
 ## 📦 Installation
 
 ```bash | pure
 $ npm install @ant-design/graphs
 ```
-
 
 ## 🔨 Usage
 
@@ -198,54 +194,51 @@ const DemoDecompositionTreeGraph = () => {
 export default DemoDecompositionTreeGraph;
 ```
 
-
-
 ## 📜 Document & API
 
 See chart API for details. Common props:
 
-```ts
-
+````ts
 // Graph 通用配置
 export interface CommonConfig extends GraphContainerConfig {
   data: Datum;
   /** 是否缩放节点大小自适应容器 */
   autoFit?: boolean;
-  
+
   /** 是否将图平移到中心位置 */
   fitCenter?: boolean;
-  
+
   width?: number;
   height?: number;
   pixelRatio?: number;
-  
+
   /** 不同组件 layout 有差别，参考对应组件文档 */
   layout?: any;
-  
+
   /** 边配置 */
   edgeCfg?: EdgeCfg;
-  
+
   /** 节点配置 */
   nodeCfg?: NodeCfg;
-  
+
   /** marker 配置 */
   markerCfg?: IMarkerCfg;
-  
+
   /** 迷你地 */
   minimapCfg?: MiniMapConfig;
-  
+
   /** 交互组件 */
   toolbarCfg?: ToolbarCfg;
-  
+
   /** 提示 */
   tooltipCfg?: TooltipCfg;
-  
+
   /** 交互行为 */
   behaviors?: string[];
-  
+
   /** 是否开启动画 */
   animate?: boolean;
-  
+
   /**
    * @title 是否自定义布局
    * @description 开启后，layout 失效，使用 data 里面的 x/y 进行数据布局
@@ -270,24 +263,21 @@ export interface CommonConfig extends GraphContainerConfig {
    * @default false
    */
   customLayout?: boolean;
-  
+
   /** 图表渲染完成回调 */
   onReady?: (graph: IGraph) => void;
 }
-```
-
+````
 
 ## 🤝 How to Contribute
 
 Your contributions are always welcome! Please Do have a look at the [issues](https://github.com/ant-design/ant-design-charts/issues) first.
-
 
 ## 📧 Contact us
 
 DingTalk group number: `44788198 `.
 
 <img src="https://gw.alipayobjects.com/zos/antfincdn/bi1LxWeIEj/32f85bbf-a06e-4046-96e5-417126bffeaf.png" width="200" height="266" />
-
 
 ## License
 

@@ -1,10 +1,7 @@
-import React, { useRef } from 'react';
-import { renderHook } from '@testing-library/react-hooks/server';
+import React from 'react';
 import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { RadialTreeGraph } from '../../src';
-
-const refs = renderHook(() => useRef()) as any;
 
 describe('RadialTreeGraph contentmenu', () => {
   let container;
@@ -64,9 +61,6 @@ describe('RadialTreeGraph contentmenu', () => {
             </div>
           );
         },
-      },
-      onReady: (graph) => {
-        refs.current = graph;
       },
     } as any;
     act(() => {

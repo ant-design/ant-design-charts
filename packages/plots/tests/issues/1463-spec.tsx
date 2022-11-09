@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import Column from '../../src/components/column';
 
@@ -43,7 +43,7 @@ describe('Tooltip types', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<Column {...props} {...chartProps} />, container);
+      render(<Column {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
   });

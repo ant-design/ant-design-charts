@@ -38,7 +38,7 @@
     "eslint": "^7.32.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
-    "jest-canvas-mock": "^2.2.0",
+    "jest-canvas-mock": "^2.4.0",
     "jest-electron": "^0.1.12",
     "jest-extended": "^1.2.0",
     "jest-less-loader": "^0.1.2",

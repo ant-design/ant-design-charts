@@ -2,10 +2,10 @@
 import React, { useRef, createRef } from 'react';
 import { create } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks/server';
-import ReactDOM from 'react-dom';
+import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import Bullet from '../../src/components/bullet';
-import ChartLoading from '../../src/util/createLoading';
+import ChartLoading from '../../src/utils/createLoading';
 import ErrorBoundary from '../../src/errorBoundary';
 
 const refs = renderHook(() => useRef());
@@ -108,7 +108,7 @@ describe('Bullet render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Bullet {...props} {...chartProps} />, container);
+      render(<Bullet {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
     const canvas = container.querySelector('canvas');
@@ -139,7 +139,7 @@ describe('Bullet render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Bullet {...props} {...chartProps} />, container);
+      render(<Bullet {...props} {...chartProps} />, container);
     });
     expect(chartRef.current.chart.getData()).toEqual([
       { rKey: 'ranges_0', title: '满意度', ranges: 100 },
@@ -164,7 +164,7 @@ describe('Bullet render', () => {
       height: 160,
     };
     act(() => {
-      ReactDOM.render(<Bullet {...props} {...chartProps} ref={refs} />, container);
+      render(<Bullet {...props} {...chartProps} ref={refs} />, container);
     });
     expect(refs.current.getChart().chart.getData()).toEqual([
       { rKey: 'ranges_0', title: '满意度', ranges: 100 },

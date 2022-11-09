@@ -1,8 +1,8 @@
 // @ts-nocheck
-import React, { useRef } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { act } from 'react-dom/test-utils';
 import GeographicHeatmap from '../../src/components/geographic-heatmap';
+import { render } from '../../src/util';
 
 describe('Heat Map', () => {
   let container;
@@ -58,7 +58,7 @@ describe('Heat Map', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<GeographicHeatmap {...props} {...config} />, container);
+      render(<GeographicHeatmap {...props} {...config} />, container);
     });
     expect(chartRef).not.toBeUndefined();
   });

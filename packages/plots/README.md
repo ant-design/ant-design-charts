@@ -4,10 +4,7 @@
 
 A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot).
 
-![npm](https://img.shields.io/npm/v/@ant-design/plots)
-![npm](https://img.shields.io/npm/dm/@ant-design/plots)
-[![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers)
-[![npm License](https://img.shields.io/npm/l/@ant-design/charts.svg)](https://www.npmjs.com/package/@ant-design/charts)
+![npm](https://img.shields.io/npm/v/@ant-design/plots) ![npm](https://img.shields.io/npm/dm/@ant-design/plots) [![GitHub stars](https://img.shields.io/github/stars/ant-design/ant-design-charts)](https://github.com/ant-design/ant-design-charts/stargazers) [![npm License](https://img.shields.io/npm/l/@ant-design/charts.svg)](https://www.npmjs.com/package/@ant-design/charts)
 
 <p align="center">
   <a href="https://charts.ant.design/">Website</a> •
@@ -21,7 +18,6 @@ A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot).
 
 </div>
 
-
 ## ✨ Features
 
 - Easy to use
@@ -30,13 +26,11 @@ A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot).
 - Responsive
 - Storytelling
 
-
 ## 📦 Installation
 
 ```bash | pure
 $ npm install @ant-design/plots
 ```
-
 
 ## 🔨 Usage
 
@@ -106,33 +100,29 @@ Preview
 
 <img src="https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xTY6QIQsWcwAAAAAAAAAAAAAARQnAQ" width="600">
 
-
 ## 📜 Document & API
 
 See chart API for details. Common props:
 
-| Property | Description | Type | defaultValue |
-| --- | --- | --- | --- |
-| onReady | chart loaded callback | (chart)=> void | - |
-| onEvent | chart events | (chart, event)=> void | - |
-| loading | loading status | boolean | - |
-| loadingTemplate | loading template | React.ReactElement | - |
-| errorTemplate | custom error template | (e: Error) => React.ReactNode | - |
-| className | container class | string | - |
-| style | container style | React.CSSProperties | - |
-
+| Property        | Description           | Type                          | defaultValue |
+| --------------- | --------------------- | ----------------------------- | ------------ |
+| onReady         | chart loaded callback | (chart)=> void                | -            |
+| onEvent         | chart events          | (chart, event)=> void         | -            |
+| loading         | loading status        | boolean                       | -            |
+| loadingTemplate | loading template      | React.ReactElement            | -            |
+| errorTemplate   | custom error template | (e: Error) => React.ReactNode | -            |
+| className       | container class       | string                        | -            |
+| style           | container style       | React.CSSProperties           | -            |
 
 ## 🤝 How to Contribute
 
 Your contributions are always welcome! Please Do have a look at the [issues](https://github.com/ant-design/ant-design-charts/issues) first.
-
 
 ## 📧 Contact us
 
 DingTalk group number: `44788198 `.
 
 <img src="https://gw.alipayobjects.com/zos/antfincdn/bi1LxWeIEj/32f85bbf-a06e-4046-96e5-417126bffeaf.png" width="200" height="266" />
-
 
 ## License
 

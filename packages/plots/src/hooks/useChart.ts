@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react';
 import { isEqual, get } from '@antv/util';
 import { G2 } from '@antv/g2plot';
-import createNode from '../util/createNode';
-import { hasPath, isType, deepClone, clone, setPath } from '../util';
+import createNode from '../utils/createNode';
+import { hasPath, isType, deepClone, clone, setPath } from '../utils';
 import { BasePlot, BaseConfig, AllBaseConfig } from '../interface';
 
 interface Base extends BaseConfig<AllBaseConfig> {

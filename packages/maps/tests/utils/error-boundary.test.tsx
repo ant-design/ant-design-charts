@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import AreaMap from '../../src/components/area-map';
+import { render } from '../../src/util';
 
 describe('Map render', () => {
   let container;
@@ -36,7 +36,7 @@ describe('Map render', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<AreaMap {...props} {...chartProps} />, container);
+      render(<AreaMap {...props} {...chartProps} />, container);
     });
     expect(container.querySelector('#error').innerText).toBe('custom error');
   });
