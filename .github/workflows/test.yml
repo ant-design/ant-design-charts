@@ -3,7 +3,7 @@ name: Test
 on: [push, pull_request]
 
 env:
-  CI: false
+  CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
 
 jobs:

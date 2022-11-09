@@ -23,7 +23,6 @@ logs
 .umi-test
 /.env.local
 .docz
-/coverage
 
 #ide
 .idea/
