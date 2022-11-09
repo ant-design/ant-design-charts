@@ -169,8 +169,8 @@ describe('use chart', () => {
     });
 
     expect(chartRef.chart.getData()).toEqual([
-      { percent: 0.5, type: 'current' },
-      { percent: 0.5, type: 'target' },
+      { percent: 0.5, type: 'current', current: '0.5' },
+      { percent: 1, type: 'target', current: '0.5' },
     ]);
   });
 
