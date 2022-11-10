@@ -30,7 +30,7 @@ const IndexPage = () => {
     {
       icon: 'https://gw.alipayobjects.com/zos/antfincdn/oyqsrPh0Kg/houyuan.png',
       title: t('专业可靠'),
-      description: t('AntV 团队支持，简单易容、专业可靠、无限可能'),
+      description: t('AntV 团队支持，简单易用、专业可靠、无限可能'),
     },
   ];
 
