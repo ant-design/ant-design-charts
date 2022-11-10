@@ -19,6 +19,7 @@ import {
   StateStyles,
   TreeGraphData as G6TreeGraphData,
   GraphData,
+  Item,
 } from '@antv/g6';
 
 import { MenuConfig } from './plugins';
@@ -305,7 +306,7 @@ export interface CommonConfig<T = any> extends GraphContainerConfig {
   /** 右键菜单 */
   menuCfg?: MenuConfig;
   /** 交互行为 */
-  behaviors?: string[];
+  behaviors?: Array<string|object>;
   /** 是否开启动画 */
   animate?: boolean;
   /**
@@ -371,4 +372,5 @@ export {
   IShape,
   G6TreeGraphData,
   GraphData,
+  Item,
 };

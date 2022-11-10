@@ -1,3 +1,13 @@
+## 1.3.3-beta.1
+
+`2022-11-10`
+## 1.3.3-beta.0
+
+`2022-10-17`
+
+- 🔥 新增 `FileTreeGraph` 
+<img src=https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CoEVTrU_7g4AAAAAAAAAAAAADmJ7AQ/original>
+
 ## 1.3.2
 
 `2022-10-17`

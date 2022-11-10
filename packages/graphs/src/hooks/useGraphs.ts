@@ -5,9 +5,6 @@ import { createNode } from '../utils/create-node';
 import { createToolbar, Menu } from '../plugins';
 import { ArrowConfig, CardNodeCfg, CommonConfig, EdgeConfig, NodeConfig, StateStyles } from '../interface';
 import {
-  bindDefaultEvents,
-  bindSourceMapCollapseEvents,
-  bindStateEvents,
   deepClone,
   getAnchorPoints,
   getArrowCfg,
@@ -19,8 +16,11 @@ import {
   processMinimap,
   renderGraph,
   setTag,
-  bindRadialExplore,
   getCenterNode,
+  bindDefaultEvents,
+  bindSourceMapCollapseEvents,
+  bindStateEvents,
+  bindRadialExplore,
 } from '../utils';
 import { setGlobalInstance } from '../utils/global';
 
@@ -338,6 +338,10 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         fitView: autoFit,
         fitCenter,
         plugins,
+        extraPlugin: {
+          getChildren,
+          fetchLoading,
+        },
       });
       const graphId = getGraphId(graphRef.current, name);
       const graph = graphRef.current;
@@ -353,12 +357,13 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         }
         return value?.title;
       };
-      const customNode = ['fund-card', 'indicator-card'];
+      const customNode = ['fund-card', 'indicator-card', 'file-tree-node'];
       // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
       graph.node((node: NodeConfig) => {
         if (customNode.includes(nodeType) || name === 'OrganizationGraph') {
           const anchorPoints = getAnchorPoints(nodeAnchorPoints, node);
           node.markerCfg = markerCfg;
+          node.edgeCfg = edgeCfg;
           return {
             anchorPoints,
             _graphId: graphId,
@@ -425,12 +430,8 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         bindRadialExplore(graph, asyncData, layout, fetchLoading);
       }
       renderGraph(graph, data, level);
-      if (fitCenter) {
-        graph.fitCenter();
-      }
-      if (onReady) {
-        onReady(graph);
-      }
+      fitCenter && graph.fitCenter();
+      onReady && onReady(graph);
       graphData.current = deepClone(data);
     }
   }, []);
