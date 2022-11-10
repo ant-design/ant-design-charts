@@ -49,7 +49,7 @@ export namespace NsMenuItemConfig {
   };
 }
 
-export const useMenuConfig = createCtxMenuConfig((config, proxy) => {
+export const useMenuConfig: Function = createCtxMenuConfig((config, proxy) => {
   const { showOfficial = true, submenu } = proxy.getValue();
   config.setMenuModelService(async (target, model) => {
     if (!target) {

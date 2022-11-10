@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { render, unmount } from '../../src/utils';
 import { isFunction } from 'lodash';

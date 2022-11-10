@@ -1,6 +1,6 @@
 import { createCmdConfig, DisposableCollection, uuidv4 } from '@antv/xflow';
 
-export const useCmdConfig = createCmdConfig((config, proxy) => {
+export const useCmdConfig: Function = createCmdConfig((config, proxy) => {
   // 设置hook
   config.setRegisterHookFn((hooks) => {
     const list = [
