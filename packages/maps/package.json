@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@antv/l7": "^2.9.37",
-    "@antv/l7plot": "^0.3.2",
+    "@antv/l7plot": "0.x",
     "@antv/util": "^2.0.9",
     "react-content-loader": "^5.0.4"
   },
