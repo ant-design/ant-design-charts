@@ -245,91 +245,93 @@ const registerIcon = () => {
   IconStore.set('SnippetsOutlined', SnippetsOutlined);
 };
 
-export const useToolbarConfig = createToolbarConfig<FlowchartProps['toolbarPanelProps']>((toolbarConfig, proxy) => {
-  const { flowchartId } = proxy.getValue();
-  const toolbarPanelProps = getProps(flowchartId, 'toolbarPanelProps') ?? {};
-  registerIcon();
+export const useToolbarConfig: Function = createToolbarConfig<FlowchartProps['toolbarPanelProps']>(
+  (toolbarConfig, proxy) => {
+    const { flowchartId } = proxy.getValue();
+    const toolbarPanelProps = getProps(flowchartId, 'toolbarPanelProps') ?? {};
+    registerIcon();
 
-  let {
-    commands = [
-      {
-        command: CommandPool.REDO_CMD,
-        tooltip: '重做',
-        iconName: 'RedoOutlined',
-      },
-      {
-        command: CommandPool.UNDO_CMD,
-        tooltip: '撤销',
-        iconName: 'UndoOutlined',
-      },
-      {
-        command: CommandPool.FRONT_NODE,
-        tooltip: '置前',
-        iconName: 'VerticalAlignTopOutlined',
-      },
-      {
-        command: CommandPool.BACK_NODE,
-        tooltip: '置后',
-        iconName: 'VerticalAlignBottomOutlined',
-      },
-      {
-        command: CommandPool.MULTI_SELECT,
-        tooltip: '开启框选',
-        iconName: 'GatewayOutlined',
-      },
-      {
-        command: CommandPool.ADD_GROUP,
-        tooltip: '新建群组',
-        iconName: 'GroupOutlined',
-      },
-      {
-        command: CommandPool.DEL_GROUP,
-        tooltip: '解散群组',
-        iconName: 'UngroupOutlined',
-      },
-      {
-        command: CommandPool.COPY,
-        tooltip: '复制',
-        iconName: 'CopyOutlined',
-      },
-      {
-        command: CommandPool.PASTE,
-        tooltip: '粘贴',
-        iconName: 'SnippetsOutlined',
-      },
-      {
-        command: CommandPool.SAVE_GRAPH_DATA,
-        tooltip: '保存',
-        iconName: 'SaveOutlined',
-      },
-    ] as CommandItem[],
-  } = toolbarPanelProps;
+    let {
+      commands = [
+        {
+          command: CommandPool.REDO_CMD,
+          tooltip: '重做',
+          iconName: 'RedoOutlined',
+        },
+        {
+          command: CommandPool.UNDO_CMD,
+          tooltip: '撤销',
+          iconName: 'UndoOutlined',
+        },
+        {
+          command: CommandPool.FRONT_NODE,
+          tooltip: '置前',
+          iconName: 'VerticalAlignTopOutlined',
+        },
+        {
+          command: CommandPool.BACK_NODE,
+          tooltip: '置后',
+          iconName: 'VerticalAlignBottomOutlined',
+        },
+        {
+          command: CommandPool.MULTI_SELECT,
+          tooltip: '开启框选',
+          iconName: 'GatewayOutlined',
+        },
+        {
+          command: CommandPool.ADD_GROUP,
+          tooltip: '新建群组',
+          iconName: 'GroupOutlined',
+        },
+        {
+          command: CommandPool.DEL_GROUP,
+          tooltip: '解散群组',
+          iconName: 'UngroupOutlined',
+        },
+        {
+          command: CommandPool.COPY,
+          tooltip: '复制',
+          iconName: 'CopyOutlined',
+        },
+        {
+          command: CommandPool.PASTE,
+          tooltip: '粘贴',
+          iconName: 'SnippetsOutlined',
+        },
+        {
+          command: CommandPool.SAVE_GRAPH_DATA,
+          tooltip: '保存',
+          iconName: 'SaveOutlined',
+        },
+      ] as CommandItem[],
+    } = toolbarPanelProps;
 
-  const getIconConfig = (commandName: string) => {
-    if (!Object.values(CommandPool).includes(commandName)) {
-      Log.warn(`unknown command: ${commandName}`);
-      return {};
-    }
-    /** 暂时不支持自定义 icon，感觉使用上并不方便，后续再考虑接入 */
-    return commands.find((item: CommandItem) => item.command === commandName);
-  };
-
-  /** 生产 toolbar item */
-  toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
-    const updateToolbarModel = async () => {
-      const state = await NSToolbarConfig.getToolbarState(modelService);
-      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconConfig, commands, flowchartId);
-
-      toolbarModel.setValue((toolbar) => {
-        toolbar.mainGroups = toolbarItems;
-      });
+    const getIconConfig = (commandName: string) => {
+      if (!Object.values(CommandPool).includes(commandName)) {
+        Log.warn(`unknown command: ${commandName}`);
+        return {};
+      }
+      /** 暂时不支持自定义 icon，感觉使用上并不方便，后续再考虑接入 */
+      return commands.find((item: CommandItem) => item.command === commandName);
     };
-    const models = await NSToolbarConfig.getDependencies(modelService);
-    const subscriptions = models.map((model) => {
-      return model.watch(async () => {
-        updateToolbarModel();
+
+    /** 生产 toolbar item */
+    toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
+      const updateToolbarModel = async () => {
+        const state = await NSToolbarConfig.getToolbarState(modelService);
+        const toolbarItems = await NSToolbarConfig.getToolbarItems(state, getIconConfig, commands, flowchartId);
+
+        toolbarModel.setValue((toolbar) => {
+          toolbar.mainGroups = toolbarItems;
+        });
+      };
+      const models = await NSToolbarConfig.getDependencies(modelService);
+      const subscriptions = models.map((model) => {
+        return model.watch(async () => {
+          updateToolbarModel();
+        });
       });
+      toDispose.pushAll(subscriptions);
     });
-    toDispose.pushAll(subscriptions);
-  });
-});
+  },
+);
