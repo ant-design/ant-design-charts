@@ -115,17 +115,7 @@ const defaultProps = {
       },
     },
   },
-  behaviors: [
-    'drag-canvas',
-    'wheel-scroll',
-    'hover-node',
-    'click-node',
-    'drag-branch',
-    {
-      type: 'collapse-expand',
-      trigger: 'dblclick',
-    },
-  ],
+  behaviors: ['drag-canvas', 'wheel-scroll', 'hover-node', 'click-node', 'drag-branch'],
   layout: defaultLayout,
   animate: true,
   // autoFit: true,
