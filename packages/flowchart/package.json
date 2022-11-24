@@ -40,8 +40,8 @@
   "dependencies": {
     "@antv/layout": "^0.1.17",
     "@antv/x6": "^1.25.0",
-    "@antv/x6-react-components": "^1.1.13",
-    "@antv/x6-react-shape": "^1.4.5",
+    "@antv/x6-react-components": "^2.0.2",
+    "@antv/x6-react-shape": "^2.0.1",
     "@antv/xflow": "^1.0.0",
     "react-color": "2.17.3",
     "react-use": "17.3.1"
