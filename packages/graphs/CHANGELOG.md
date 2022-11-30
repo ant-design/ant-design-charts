@@ -1,4 +1,6 @@
-## 1.3.3-beta.1
+## 1.3.3-beta.3
+
+- - 🔥 `FileTreeGraph` 新增 `nodeCfg.lineStyle` 配置
 
 `2022-11-10`
 ## 1.3.3-beta.0
