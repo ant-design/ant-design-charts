@@ -175,10 +175,10 @@ export const registerFileTreeGeometries = () => {
       });
     },
     draw(model, group) {
-      const { collapsed, depth, value, markerCfg, edgeCfg, children = [] } = model;
+      const { collapsed, depth, value, markerCfg, children = [] } = model;
       const nodeCfg = model.nodeCfg as CardNodeCfg;
-      const { style, label, padding = 0, customContent } = nodeCfg;
-      const edgeStyle = getStyle((edgeCfg as EdgeCfg).style, model, group);
+      const { style, label, padding = 0, customContent, lineStyle } = nodeCfg;
+      const bottomLineStyle = getStyle(lineStyle, model, group);
       const fileName = (value as CardItems).text;
       let size = nodeCfg?.size || [];
       if (typeof size === 'number') size = [size, size];
@@ -227,14 +227,15 @@ export const registerFileTreeGeometries = () => {
       });
 
       // 底部横线
-      this.addBottomLine(group, {
-        stroke: defaultStroke,
-        lineWidth: rootNode ? 0 : defaultLineWidth,
-        x,
-        width,
-        y: y + height,
-        ...edgeStyle,
-      });
+      !rootNode &&
+        this.addBottomLine(group, {
+          stroke: defaultStroke,
+          lineWidth: defaultLineWidth,
+          x,
+          width,
+          y: y + height,
+          ...bottomLineStyle,
+        });
       let callbackMarkerCfg = markerCfg;
       const graph = getGlobalInstance(model._graphId as string);
       if (typeof markerCfg === 'function') {
@@ -304,13 +305,14 @@ export const registerFileTreeGeometries = () => {
     setState(name, value, node) {
       if (['closest', 'selected', 'hover'].includes(name)) {
         const model = node.getModel();
-        const { edgeCfg, nodeCfg, depth } = model;
+        const { edgeCfg, nodeCfg, depth, markerCfg } = model;
         if (depth === 0) return;
         const { edgeStateStyles, style: edgeStyle } = edgeCfg as EdgeCfg;
         const {
           nodeStateStyles,
           label: { style: lableStyle },
           style,
+          lineStyle,
         } = nodeCfg as NodeCfg;
         // closest 使用 hover 样式
         const _name = name === 'closest' ? 'hover' : name;
@@ -366,13 +368,13 @@ export const registerFileTreeGeometries = () => {
           } else {
             const cardStyle = getStyle(style, model, node);
             const textStyle = getStyle(lableStyle, model, node);
-            const pathStyle = getStyle(edgeStyle, model, node);
-            const markerStyle = getStyle(edgeStyle, model, node);
+            const pathStyle = getStyle(lineStyle, model, node);
+            const markStyle = getStyle(markerCfg, model, node);
             rootShape?.attr(cardStyle);
             textShape?.attr(textStyle);
             pathShape?.attr(pathStyle);
             markerShapes.forEach((markerShape) => {
-              markerShape?.attr(markerStyle);
+              markerShape?.attr(markStyle?.style);
             });
           }
         }
@@ -383,18 +385,6 @@ export const registerFileTreeGeometries = () => {
   G6.registerEdge(
     'file-tree-edge',
     {
-      afterDraw: (cfg: ModelConfig, group) => {
-        const { edgeCfg } = cfg;
-        const { style } = edgeCfg as EdgeCfg;
-        const edgeStyle = getStyle(style, cfg, group);
-        const keyShape = group.get('children')[0];
-        keyShape.attr({
-          stroke: defaultStroke,
-          lineWidth: defaultLineWidth, // branchThick
-          ...edgeStyle,
-        });
-        group.toBack();
-      },
       getControlPoints: (cfg) => {
         const startPoint = cfg.startPoint;
         const endPoint = cfg.endPoint;

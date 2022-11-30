@@ -21,6 +21,7 @@ import {
   bindSourceMapCollapseEvents,
   bindStateEvents,
   bindRadialExplore,
+  runAsyncEvent,
 } from '../utils';
 import { setGlobalInstance } from '../utils/global';
 
@@ -73,6 +74,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     if (fitCenter) {
       graph.fitCenter();
     }
+    runAsyncEvent(graph.get('id'));
   };
 
   const updateLayout = () => {
@@ -99,6 +101,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         labelCfg: nodeLabelCfg,
       });
     });
+    runAsyncEvent(graph.get('id'));
   };
 
   const updateEdges = () => {

@@ -14,6 +14,7 @@ import {
   IGraph,
   IGroup,
   CardNodeCfg,
+  IShapeStyle,
 } from '../../interface';
 import ChartLoading from '../../utils/createLoading';
 import { registerFileTreeGeometries, registerFileTreeBehaviors } from './customItem';
@@ -29,6 +30,8 @@ export interface FileTreeGraphConfig
   nodeCfg?: NodeCfg & {
     /** 点击展开时异步获取数据 */
     getChildren?: (nodeCfg: NodeConfig) => Promise<G6TreeGraphData['children']>;
+    /** 装饰线 */
+    lineStyle?: (nodeCfg: NodeConfig) => IShapeStyle;
   };
 }
 
@@ -99,6 +102,10 @@ const defaultProps = {
     style: (model) => ({
       fill: model.depth === 0 ? '#525964' : 'transparent',
     }),
+    lineStyle: {
+      lineWidth: 2,
+      stroke: '#ccc',
+    },
   },
   edgeCfg: {
     type: 'file-tree-edge',

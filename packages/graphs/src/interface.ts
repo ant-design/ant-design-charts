@@ -306,7 +306,7 @@ export interface CommonConfig<T = any> extends GraphContainerConfig {
   /** 右键菜单 */
   menuCfg?: MenuConfig;
   /** 交互行为 */
-  behaviors?: Array<string|object>;
+  behaviors?: Array<string | object>;
   /** 是否开启动画 */
   animate?: boolean;
   /**
