@@ -16,36 +16,12 @@ import type { MindMapGraphConfig } from './components/mind-map-graph';
 import FileTreeGraph from './components/file-tree-graph';
 import type { FileTreeGraphConfig } from './components/file-tree-graph';
 
-/** @deprecated start */
-import {
-  OrganizationTreeGraph,
-  DagreGraph,
-  IndentedTree,
-  DagreFundFlowGraph,
-  RelationGraph,
-} from './obsolescent/graph';
-import {
-  IndentedTreeGraph,
-  OrganizationalGraph,
-  // RadialGraph,
-  IndentedTreeGraphConfig,
-  OrganizationalGraphConfig,
-  // RadialGraphConfig,
-} from './obsolescent/graphs';
-/** @deprecated end */
-
 export {
   FlowAnalysisGraph,
   RadialTreeGraph,
   DecompositionTreeGraph,
   OrganizationGraph,
   FundFlowGraph,
-  OrganizationTreeGraph,
-  DagreGraph,
-  IndentedTree,
-  DagreFundFlowGraph,
-  IndentedTreeGraph,
-  OrganizationalGraph,
   RadialGraph,
   MindMapGraph,
   FileTreeGraph,
@@ -59,10 +35,7 @@ export type {
   FlowAnalysisGraphConfig,
   DecompositionTreeGraphConfig,
   FundFlowGraphConfig,
-  IndentedTreeGraphConfig,
-  OrganizationalGraphConfig,
   RadialGraphConfig,
-  RelationGraph,
   MindMapGraphConfig,
   FileTreeGraphConfig,
 };
