@@ -87,6 +87,6 @@ describe('Tooltip ', () => {
     });
     expect(chartRef).not.toBeUndefined();
     chartRef.chart.showTooltip({ x: 300, y: 200 });
-    expect(document.getElementsByClassName('g2-tooltip')[1]).not.toBeUndefined();
+    expect(document.querySelector('g2-tooltip')).not.toBeUndefined();
   });
 });
