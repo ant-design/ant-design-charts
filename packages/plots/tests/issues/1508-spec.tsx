@@ -29,8 +29,8 @@ describe('Tooltip ', () => {
     document.body.appendChild(container);
   });
   afterEach(() => {
-    // document.body.removeChild(container);
-    // container = null;
+    document.body.removeChild(container);
+    container = null;
   });
 
   it('custom tooltip with jsx', () => {
