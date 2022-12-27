@@ -1,3 +1,8 @@
+## 1.2.3
+
+`2022-12-27`
+
+- 🐞 [修复 React18 Tooltip 闪动](https://github.com/ant-design/ant-design-charts/issues/1508)
 - 🐞 [修复数据更新时 legend 留存](https://github.com/ant-design/ant-design-charts/issues/620)
 - 🐞 修复自定义 errorTemplate 非 callback 时无效
 
