@@ -148,7 +148,7 @@ type PluginContainer<T> = {
   /** tooltip 容器，默认和 canvas 使用同一父容器 */
   container?: HTMLDivElement | string | null;
   /** 自定义模板 */
-  customContent: (item: T) => React.ReactElement;
+  customContent?: (item: T) => React.ReactElement;
 };
 
 type ToolbarCfgCustomContent = {
@@ -260,6 +260,7 @@ export interface MarkerCfg {
 }
 
 export interface TooltipCfg extends PluginContainer<NodeConfig | EdgeConfig> {
+  show?: boolean;
   offsetX?: number;
   offsetY?: number;
   /** 是否展示 */

@@ -1,8 +1,6 @@
 import G6, { IEdge, INode, ModeType } from '@antv/g6';
-import { isEqual, isFunction, isObject, isString, omit } from '@antv/util';
+import { isEqual, isObject, isString, omit } from '@antv/util';
 import { useEffect, useRef } from 'react';
-import { createNode } from '../utils/create-node';
-import { createToolbar, Menu } from '../plugins';
 import { ArrowConfig, CardNodeCfg, CommonConfig, EdgeConfig, NodeConfig, StateStyles } from '../interface';
 import {
   deepClone,
@@ -13,7 +11,6 @@ import {
   getGraphSize,
   getLevelData,
   getMarkerPosition,
-  processMinimap,
   renderGraph,
   setTag,
   getCenterNode,
@@ -23,6 +20,7 @@ import {
   bindRadialExplore,
   runAsyncEvent,
 } from '../utils';
+import { processMinimap, processTooltip, processMenu, processToolbar } from '../plugins';
 import { setGlobalInstance } from '../utils/global';
 
 export default function useGraph(graphClass: string, config: any, extra: { name?: string } = {}) {
@@ -45,6 +43,8 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     markerCfg,
     level,
     toolbarCfg,
+    tooltipCfg,
+    menuCfg,
     customLayout,
   } = config;
   const graph = graphRef.current;
@@ -257,21 +257,8 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     if (container.current && graphClass) {
       const { name = '' } = extra;
       const graphSize = getGraphSize(width, height, container);
-      const plugins = [];
-      const {
-        nodeCfg,
-        edgeCfg,
-        behaviors,
-        layout,
-        animate,
-        autoFit,
-        fitCenter,
-        onReady,
-        tooltipCfg,
-        customLayout,
-        menuCfg,
-        fetchLoading,
-      } = config;
+      const { nodeCfg, edgeCfg, behaviors, layout, animate, autoFit, fitCenter, onReady, customLayout, fetchLoading } =
+        config;
 
       const {
         type: nodeType,
@@ -293,30 +280,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         edgeStateStyles,
       } = edgeCfg ?? {};
 
-      // tooltip
-      if (tooltipCfg && isFunction(tooltipCfg.customContent)) {
-        const { customContent, ...rest } = tooltipCfg;
-        const tooltipPlugin = new G6.Tooltip({
-          offsetX: 10,
-          offsetY: 20,
-          itemTypes: ['node'],
-          ...rest,
-          getContent(e) {
-            return createNode(customContent(e.item.getModel()), 'g6-tooltip');
-          },
-        });
-        plugins.push(tooltipPlugin);
-      }
-      // menu
-      if (menuCfg && isFunction(menuCfg.customContent)) {
-        const menuPlugin = new Menu({
-          offsetX: 16 + 10,
-          offsetY: 0,
-          itemTypes: ['node'],
-          ...menuCfg,
-        });
-        plugins.push(menuPlugin);
-      }
       graphRef.current = new G6[graphClass]({
         container: container.current as any,
         width: graphSize[0],
@@ -340,7 +303,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         layout: customLayout ? undefined : layout,
         fitView: autoFit,
         fitCenter,
-        plugins,
         extraPlugin: {
           getChildren,
           fetchLoading,
@@ -350,6 +312,8 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       const graph = graphRef.current;
       graph.set('id', graphId);
       setGlobalInstance(graphId, graph);
+
+      const customNode = ['fund-card', 'indicator-card', 'file-tree-node'];
       const getLabel = (value: { [key: string]: string } | string): string => {
         // 辐射树图
         if (isString(value)) {
@@ -360,7 +324,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         }
         return value?.title;
       };
-      const customNode = ['fund-card', 'indicator-card', 'file-tree-node'];
       // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
       graph.node((node: NodeConfig) => {
         if (customNode.includes(nodeType) || name === 'OrganizationGraph') {
@@ -419,14 +382,15 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         });
       }
 
-      processMinimap(minimapCfg, graph);
       bindStateEvents(graph, config);
+      // 绑定展开收起事件
       if (markerCfg) {
         const sourceGraph = ['FlowAnalysisGraph', 'FundFlowGraph'];
         sourceGraph.includes(name)
           ? bindSourceMapCollapseEvents(graph, asyncData, fetchLoading)
           : bindDefaultEvents(graph, level, getChildren, fetchLoading);
       }
+      // 绑定节点辐射事件
       if (name === 'RadialGraph') {
         const centerNode = getCenterNode(data);
         graph.set('centerNode', centerNode);
@@ -440,10 +404,14 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
   }, []);
 
   useEffect(() => {
-    if (graphRef.current && toolbarCfg) {
-      createToolbar({ graph: graphRef.current, container: container.current, toolbarCfg });
+    if (graphRef.current) {
+      const _graph = graphRef.current;
+      processMinimap(minimapCfg, _graph);
+      processTooltip(tooltipCfg, _graph);
+      processMenu(menuCfg, _graph);
+      processToolbar(toolbarCfg, _graph, container.current);
     }
-  }, [graphRef, toolbarCfg]);
+  }, [graphRef, toolbarCfg, tooltipCfg, menuCfg]);
 
   useEffect(() => {
     return () => {
