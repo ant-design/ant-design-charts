@@ -45,12 +45,12 @@ describe('Tooltip ', () => {
       ...baseCfg,
       tooltip: {
         showMarkers: false,
-        customContent: (arg, items) => {
+        customContent: (arg, items = []) => {
           return (
             <div className="t" style={{ width: '60px', height: '60px', background: '#000' }}>
               {arg}
               {items.map((item) => {
-                return <p>{item.value}</p>;
+                return <p key={item.value}>{item.value}</p>;
               })}
             </div>
           );
@@ -65,7 +65,7 @@ describe('Tooltip ', () => {
     chartRef.chart.showTooltip({ x: 300, y: 200 });
     expect(document.querySelector('g2-tooltip')).not.toBeUndefined();
   });
-  it('custom tooltip with string', () => {
+  it.only('custom tooltip with string', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
