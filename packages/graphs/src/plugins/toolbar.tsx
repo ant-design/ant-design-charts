@@ -11,24 +11,23 @@ export const processToolbar = (cfg: ToolbarCfg = {}, graph: Graph, container: HT
     return;
   }
   const toolbarId = `${graphId}-toolbar`;
-  if (!show) {
-    const exist = document.querySelector(`#${toolbarId}`);
-    if (exist) {
-      exist.parentNode?.removeChild(exist);
-    }
-    return;
+  const exist = document.querySelector(`#${toolbarId}`);
+  if (exist) {
+    exist.parentNode?.removeChild(exist);
   }
-  const mountPoint = createNode(
-    <Toolbar graph={graph} container={container} toolbarCfg={rest} />,
-    {
-      className: className ?? 'charts-toolbar',
-      id: toolbarId,
-    },
-    {
-      ...defaultToolbarStyle,
-      ...style,
-    },
-  );
-  // @ts-ignore
-  container.appendChild(mountPoint);
+  if (show) {
+    const mountPoint = createNode(
+      <Toolbar graph={graph} container={container} toolbarCfg={rest} />,
+      {
+        className: className ?? 'charts-toolbar',
+        id: toolbarId,
+      },
+      {
+        ...defaultToolbarStyle,
+        ...style,
+      },
+    );
+    // @ts-ignore
+    container.appendChild(mountPoint);
+  }
 };
