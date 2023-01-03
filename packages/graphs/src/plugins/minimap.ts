@@ -9,8 +9,8 @@ export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph
     grapgMinmapMaps[graphId] = null;
     return;
   }
-  if ((!cfg || !cfg.show) && grapgMinmapMaps[graphId]) {
-    const [pluginMinimap] = graph.get('plugins');
+  if (!cfg.show && grapgMinmapMaps[graphId]) {
+    const [pluginMinimap] = graph.get('plugins').filter((plugin) => plugin.get('name') === 'minimap');
     if (pluginMinimap) {
       graph.removePlugin(pluginMinimap);
     }
@@ -20,7 +20,7 @@ export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph
     const curMminimapCfg = Object.assign(defaultMinimapCfg, cfg);
     const minimap = new G6.Minimap({
       ...curMminimapCfg,
-      id: graphId,
+      name: 'minimap',
     });
 
     graph.addPlugin(minimap);

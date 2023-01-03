@@ -4,7 +4,7 @@ import { isString } from '@antv/util';
 import insertCss from 'insert-css';
 import { IAbstractGraph as IGraph, IG6GraphEvent, Item } from '@antv/g6';
 import Base, { IPluginBaseConfig } from '../base';
-import { render } from '../../utils';
+import { render } from '../../../utils';
 
 typeof document !== 'undefined' &&
   insertCss(`
@@ -26,6 +26,7 @@ typeof document !== 'undefined' &&
 `);
 
 export interface MenuConfig extends IPluginBaseConfig {
+  show?: boolean;
   handleMenuClick?: (target: HTMLElement, item: Item) => void;
   customContent?: (evt?: IG6GraphEvent) => React.ReactNode;
   // offsetX 与 offsetY 需要加上父容器的 padding
