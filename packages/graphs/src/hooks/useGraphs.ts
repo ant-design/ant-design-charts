@@ -317,35 +317,37 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         });
         plugins.push(menuPlugin);
       }
-      graphRef.current = new G6[graphClass]({
-        container: container.current as any,
-        width: graphSize[0],
-        height: graphSize[1],
-        animate,
-        linkCenter,
-        modes: {
-          default: behaviors,
-        },
-        defaultNode: {
-          ...nodeCfg,
-          nodeCfg,
-        },
-        defaultEdge: {
-          ...omit(edgeCfg, ['label']),
-          edgeCfg,
-          labelCfg: labelCfg?.style,
-        },
-        nodeStateStyles,
-        edgeStateStyles: getEdgeStateStyles(edgeStateStyles),
-        layout: customLayout ? undefined : layout,
-        fitView: autoFit,
-        fitCenter,
-        plugins,
-        extraPlugin: {
-          getChildren,
-          fetchLoading,
-        },
-      });
+      if (!graphRef.current) {
+        graphRef.current = new G6[graphClass]({
+          container: container.current as any,
+          width: graphSize[0],
+          height: graphSize[1],
+          animate,
+          linkCenter,
+          modes: {
+            default: behaviors,
+          },
+          defaultNode: {
+            ...nodeCfg,
+            nodeCfg,
+          },
+          defaultEdge: {
+            ...omit(edgeCfg, ['label']),
+            edgeCfg,
+            labelCfg: labelCfg?.style,
+          },
+          nodeStateStyles,
+          edgeStateStyles: getEdgeStateStyles(edgeStateStyles),
+          layout: customLayout ? undefined : layout,
+          fitView: autoFit,
+          fitCenter,
+          plugins,
+          extraPlugin: {
+            getChildren,
+            fetchLoading,
+          },
+        });
+      }
       const graphId = getGraphId(graphRef.current, name);
       const graph = graphRef.current;
       graph.set('id', graphId);
