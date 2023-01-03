@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import G6, { IEdge, INode } from '@antv/g6';
 import ErrorBoundary from '../../../errorBoundary';
 import useGraph from '../../hooks/useGraph';
-import ChartLoading from '../../../utils/createLoading';
+import ChartLoading from '../../../utils/chart-loading';
 import { getGraphSize, getGraphId, useProps } from '../utils';
 import { IndentedTreeGraphConfig } from '../types';
 import { bindDefaultEvents, renderGraph, getDefaultEdgeArrowCfg } from '../utils';

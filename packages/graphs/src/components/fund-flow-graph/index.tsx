@@ -3,7 +3,7 @@ import { DagreLayout } from '@antv/layout';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultStateStyles, defaultNodeStyle } from '../../constants';
 import { registerFundFlowItems } from './customItem';
 import { CommonConfig, EdgeData, NodeData } from '../../interface';
