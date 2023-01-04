@@ -1,5 +1,5 @@
 import React from 'react';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';

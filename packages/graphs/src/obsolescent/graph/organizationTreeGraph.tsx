@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import G6, { NodeConfig } from '@antv/g6';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../hooks/useGraph';
 import { customIconNode } from './customItems';

@@ -4,7 +4,7 @@ import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultNodeStyle, defaul
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 
 import {
   CardItems,

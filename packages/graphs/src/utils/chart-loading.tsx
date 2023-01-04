@@ -5,7 +5,7 @@ interface Props {
   loadingTemplate?: React.ReactElement;
 }
 
-const ChartLoading = ({ loadingTemplate }: Props) => {
+export const ChartLoading = ({ loadingTemplate }: Props) => {
   const renderLoading = () => {
     if (loadingTemplate) {
       return loadingTemplate;
@@ -45,5 +45,3 @@ const ChartLoading = ({ loadingTemplate }: Props) => {
     </div>
   );
 };
-
-export default ChartLoading;

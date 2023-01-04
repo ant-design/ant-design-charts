@@ -30,3 +30,4 @@ export { closeFetchLoading } from './close-fetch-loading';
 export { getGlobalInstance, setGlobalInstance } from './global';
 export { pushAsyncEvent, runAsyncEvent } from './async-events';
 export { createNode } from './create-node';
+export { ChartLoading } from './chart-loading';
