@@ -16,7 +16,7 @@ import {
   CardNodeCfg,
   IShapeStyle,
 } from '../../interface';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 import { registerFileTreeGeometries, registerFileTreeBehaviors } from './customItem';
 
 export type FileTreeMarkerCfg = Pick<MarkerCfg, 'position' | 'style' | 'show'>;

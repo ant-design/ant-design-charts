@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import G6, { INode, IG6GraphEvent } from '@antv/g6';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../hooks/useGraph';
 import { defaultNodeSize, defaultLabelCfg, defaultStateStyles } from './constants';

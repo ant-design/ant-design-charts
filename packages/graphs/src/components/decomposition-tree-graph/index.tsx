@@ -15,7 +15,7 @@ import {
   G6TreeGraphData,
   FetchLoading,
 } from '../../interface';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 import { registerIndicatorGeometries } from '../flow-analysis-graph/customItem';
 
 export interface DecompositionTreeGraphConfig

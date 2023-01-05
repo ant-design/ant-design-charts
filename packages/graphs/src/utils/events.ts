@@ -21,7 +21,6 @@ import { createFetchLoading } from './create-fetch-loading';
 import { closeFetchLoading } from './close-fetch-loading';
 import { getChildrenData } from './get-children-data';
 import { setLevelData } from './set-level-data';
-import { setTag } from './set-tag';
 import { isType } from './is-type';
 import EventData from './event-data';
 

@@ -9,7 +9,11 @@ export const createFetchLoading = (node: NodeConfig, fetchLoading: FetchLoading)
   const loadingClassName = `${prefix}-antd-loading`;
   if (fetchLoading) {
     const loadingTemplate = isFunction(fetchLoading) ? fetchLoading(node) : fetchLoading;
-    document.body.appendChild(createNode(loadingTemplate, loadingClassName));
+    document.body.appendChild(
+      createNode(loadingTemplate, {
+        className: loadingClassName,
+      }),
+    );
   } else {
     const container = document.createElement('div');
     container.className = loadingClassName;
