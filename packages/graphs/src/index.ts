@@ -15,6 +15,7 @@ import MindMapGraph from './components/mind-map-graph';
 import type { MindMapGraphConfig } from './components/mind-map-graph';
 import FileTreeGraph from './components/file-tree-graph';
 import type { FileTreeGraphConfig } from './components/file-tree-graph';
+import ConversionDagreGraph from './components/conversion-dagre-graph';
 
 /** @deprecated start */
 import {
@@ -49,6 +50,7 @@ export {
   RadialGraph,
   MindMapGraph,
   FileTreeGraph,
+  ConversionDagreGraph,
   G6,
 };
 export * from './interface';
