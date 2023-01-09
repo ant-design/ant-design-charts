@@ -11,7 +11,7 @@ export const processTooltip = (cfg: TooltipCfg = {}, graph: Graph): void => {
   if (pluginTooltip) {
     graph.removePlugin(pluginTooltip);
   }
-  if (cfg.show || cfg.show === undefined) {
+  if (cfg.show) {
     const { customContent, ...rest } = cfg;
     const tooltip = new G6.Tooltip({
       offsetX: 10,
