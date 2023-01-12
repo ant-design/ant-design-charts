@@ -8,7 +8,12 @@ import {
   XFlowGraphCommands,
 } from '@antv/xflow';
 
-export const useKeybindingConfig = createKeybindingConfig((config) => {
+export const useKeybindingConfig = createKeybindingConfig((config, proxy) => {
+  const { onDelNode, onCopy, onPaste } = proxy.getValue();
+  const emitBindEvents = async (modelService, callback) => {
+    const cells = await MODELS.SELECTED_CELLS.useValue(modelService);
+    if (typeof callback === 'function') callback(cells.map((item) => item.data));
+  };
   config.setKeybindingFunc((regsitry) => {
     return regsitry.registerKeybinding([
       {
@@ -41,6 +46,7 @@ export const useKeybindingConfig = createKeybindingConfig((config) => {
               return null;
             }),
           );
+          emitBindEvents(modelService, onDelNode);
         },
       },
       {
@@ -49,14 +55,16 @@ export const useKeybindingConfig = createKeybindingConfig((config) => {
         callback: async function (item, modelService, cmd, e) {
           e.preventDefault();
           cmd.executeCommand<NsGraphCmd.GraphCopySelection.IArgs>(XFlowGraphCommands.GRAPH_COPY.id, {});
+          emitBindEvents(modelService, onCopy);
         },
       },
       {
         id: 'paste',
         keybinding: ['command+v', 'ctrl+v'],
-        callback: async function (item, ctx, cmd, e) {
+        callback: async function (item, modelService, cmd, e) {
           e.preventDefault();
           cmd.executeCommand(XFlowGraphCommands.GRAPH_PASTE.id, {});
+          emitBindEvents(modelService, onPaste);
         },
       },
     ]);

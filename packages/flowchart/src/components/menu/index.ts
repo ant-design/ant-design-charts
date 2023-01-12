@@ -23,17 +23,20 @@ export namespace NsMenuItemConfig {
     },
   };
 
-  export const DELETE_NODE: IMenuOptions = {
-    id: XFlowNodeCommands.DEL_NODE.id,
-    label: '删除节点',
-    iconName: 'DeleteOutlined',
-    onClick: async ({ target, commandService }) => {
-      if (target.data && target?.data?.id) {
-        commandService.executeCommand<NsNodeCmd.DelNode.IArgs>(XFlowNodeCommands.DEL_NODE.id, {
-          nodeConfig: { id: target?.data?.id },
-        });
-      }
-    },
+  export const DELETE_NODE = (onDelNode): IMenuOptions => {
+    return {
+      id: XFlowNodeCommands.DEL_NODE.id,
+      label: '删除节点',
+      iconName: 'DeleteOutlined',
+      onClick: async ({ target, commandService }) => {
+        if (target.data && target?.data?.id) {
+          commandService.executeCommand<NsNodeCmd.DelNode.IArgs>(XFlowNodeCommands.DEL_NODE.id, {
+            nodeConfig: { id: target?.data?.id },
+          });
+          if (typeof onDelNode === 'function') onDelNode(target.data);
+        }
+      },
+    };
   };
 
   export const EMPTY_MENU: IMenuOptions = {
@@ -50,7 +53,7 @@ export namespace NsMenuItemConfig {
 }
 
 export const useMenuConfig: Function = createCtxMenuConfig((config, proxy) => {
-  const { showOfficial = true, submenu } = proxy.getValue();
+  const { showOfficial = true, submenu, onDelNode } = proxy.getValue();
   config.setMenuModelService(async (target, model) => {
     if (!target) {
       return;
@@ -63,7 +66,7 @@ export const useMenuConfig: Function = createCtxMenuConfig((config, proxy) => {
         model.setValue({
           id: 'root',
           type: MenuItemType.Root,
-          submenu: (showOfficial ? [NsMenuItemConfig.DELETE_NODE] : []).concat(
+          submenu: (showOfficial ? [NsMenuItemConfig.DELETE_NODE(onDelNode)] : []).concat(
             submenu ? submenu({ ...config, menuType: 'node' }) : [],
           ),
         });
