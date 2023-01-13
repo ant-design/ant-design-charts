@@ -1,8 +1,8 @@
 import G6 from '@antv/g6';
 import { defaultMinimapCfg } from '../constants';
-import { MiniMapConfig, Graph } from '../interface';
+import { MiniMapConfig, Graph, TreeGraph } from '../interface';
 
-export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph): void => {
+export const processMinimap = (cfg: MiniMapConfig | undefined = {}, graph: Graph | TreeGraph): void => {
   if (!graph || graph.destroyed) {
     return;
   }

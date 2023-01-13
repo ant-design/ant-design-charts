@@ -1,3 +1,4 @@
+export { MARKER_CLICK } from './event';
 export const stateColor = '#1890ff';
 // 默认交互状态
 export const defaultStateStyles = {

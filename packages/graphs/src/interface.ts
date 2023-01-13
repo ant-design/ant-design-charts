@@ -20,6 +20,7 @@ import {
   TreeGraphData as G6TreeGraphData,
   GraphData,
   Item,
+  TreeGraph,
 } from '@antv/g6';
 
 import { MenuConfig } from './plugins';
@@ -374,4 +375,5 @@ export {
   G6TreeGraphData,
   GraphData,
   Item,
+  TreeGraph,
 };

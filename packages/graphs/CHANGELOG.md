@@ -1,3 +1,9 @@
+## 1.3.3
+
+- 新增 `marker:click` 事件
+- 🔥 新增 `FileTreeGraph` 
+<img src=https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CoEVTrU_7g4AAAAAAAAAAAAADmJ7AQ/original>
+
 ## 1.3.3-beta.3
 
 - 🔥 `FileTreeGraph` 新增 `nodeCfg.lineStyle` 配置
