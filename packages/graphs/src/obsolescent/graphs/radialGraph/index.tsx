@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import G6, { IEdge, INode } from '@antv/g6';
 import ErrorBoundary from '../../../errorBoundary';
 import useGraph from '../../hooks/useGraph';
-import ChartLoading from '../../../utils/chart-loading';
+import { ChartLoading } from '../../../utils';
 import { getGraphSize, getGraphId, getDefaultEdgeArrowCfg, useProps } from '../utils';
 import { RadialGraphConfig } from '../types';
 import { renderGraph } from '../utils';

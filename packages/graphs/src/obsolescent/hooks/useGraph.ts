@@ -3,7 +3,6 @@ import { Graph, TreeGraph, ModeType, INode, IEdge } from '@antv/g6';
 import { isObject, isString, isEqual } from '@antv/util';
 import {
   getGraphSize,
-  processMinimap,
   getCommonCfg,
   getArrowCfg,
   getMarkerPosition,
@@ -11,17 +10,14 @@ import {
   getLevelData,
   deepClone,
 } from '../../utils';
-
-export interface Base extends Graph {
-  current?: Graph;
-}
+import { processMinimap } from '../../plugins';
 
 export default function useGraph(
   graphInstance: Graph | TreeGraph | undefined,
   config: any,
   container: React.MutableRefObject<null>,
 ) {
-  const graphHook = useRef<Base>();
+  const graphHook = useRef<Graph | TreeGraph>();
   const { data, width, height, layout, minimapCfg, behaviors, fitCenter, nodeCfg, edgeCfg, markerCfg, level } = config;
 
   const graphOptions = useRef<any>();

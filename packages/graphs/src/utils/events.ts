@@ -13,7 +13,7 @@ import {
   Datum,
   FetchLoading,
 } from '../interface';
-import { prefix } from '../constants';
+import { prefix, MARKER_CLICK } from '../constants';
 import { radialSectorLayout } from '../layout';
 import { DecompositionTreeGraphConfig } from '../components/decomposition-tree-graph';
 import { FlowAnalysisGraphConfig } from '../components/flow-analysis-graph';
@@ -137,11 +137,19 @@ export const bindDefaultEvents = (
           collapsed: false,
         });
         graph.refreshItem(item);
+        graph.emit(MARKER_CLICK, e, {
+          type: 'fetch',
+          collapsed: true,
+        });
       } else {
         graph.updateItem(item, {
           collapsed: !collapsed,
         });
         graph.layout();
+        graph.emit(MARKER_CLICK, e, {
+          type: 'collapse',
+          collapsed: !!collapsed,
+        });
       }
     }
   };
@@ -222,12 +230,21 @@ export const bindSourceMapCollapseEvents = (
               edges?.length ? edges : nodes.map((item) => ({ source: nodeId, target: item.id })),
             ),
           };
+          // modify current node collapsed status
+          graph.updateItem(item, {
+            collapsed: false,
+          });
+          graph.refreshItem(item);
           closeFetchLoading();
           graph.set('eventData', new EventData(eventData));
           graph.changeData(eventData);
           if (graph.get('fitCenter')) {
             graph.fitCenter();
           }
+          graph.emit(MARKER_CLICK, e, {
+            type: 'fetch',
+            collapsed: true,
+          });
           return;
         }
       }
@@ -246,6 +263,10 @@ export const bindSourceMapCollapseEvents = (
           collapsed: !nodeItem.getModel().collapsed,
         });
         graph.refreshItem(nodeItem);
+      });
+      graph.emit(MARKER_CLICK, e, {
+        type: 'collapse',
+        collapsed: !!collapsed,
       });
     }
   };

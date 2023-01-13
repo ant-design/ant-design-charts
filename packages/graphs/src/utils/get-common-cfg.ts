@@ -1,4 +1,4 @@
-import { IGraph, IGroup, EdgeConfig, NodeConfig } from '../interface';
+import { IGraph, IGroup, EdgeConfig, NodeConfig, TreeGraph } from '../interface';
 
 // 统一处理 config，支持回调
 export const getCommonCfg = (
@@ -13,7 +13,7 @@ export const getCommonCfg = (
       >
     | NodeConfig
     | undefined,
-  graph?: IGraph | IGroup | undefined,
+  graph?: IGraph | IGroup | TreeGraph | undefined,
 ) => {
   if (typeof cfg === 'function') {
     return cfg(item, graph);
