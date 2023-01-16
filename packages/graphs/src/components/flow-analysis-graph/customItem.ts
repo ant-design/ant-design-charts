@@ -226,7 +226,7 @@ export const registerIndicatorGeometries = () => {
               x: paddingArray[3],
               y: paddingArray[0],
               textBaseline: 'top',
-              text: autoEllipsis && !autoWidth ? setEllipsis(title, textStyle?.fontSize, contentWidth) : title,
+              text: autoEllipsis && !autoWidth ? setEllipsis(title, textStyle, contentWidth) : title,
               ...textStyle,
             },
             name: 'title',
