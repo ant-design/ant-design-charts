@@ -152,7 +152,7 @@ export const registerIndicatorGeometries = () => {
     {
       // @ts-ignore
       draw: (cfg: CardNodeCfg | undefined = {}, group: IGroup | undefined) => {
-        const { value = {}, nodeCfg, markerCfg } = cfg;
+        const { value = {}, nodeCfg, markerCfg, _draggable: draggable } = cfg;
         const {
           title: titleCfg,
           items: itemsCfg,
@@ -196,7 +196,7 @@ export const registerIndicatorGeometries = () => {
             ...cardStyle,
           },
           name: 'main-box',
-          draggable: true,
+          draggable,
         });
 
         // node title
@@ -215,7 +215,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(titleContainerStyle, cfg, group),
             },
             name: 'title-rect',
-            draggable: true,
+            draggable,
           });
           const textStyle = {
             ...defaultTitleLabelStyle,
@@ -230,6 +230,7 @@ export const registerIndicatorGeometries = () => {
               ...textStyle,
             },
             name: 'title',
+            draggable,
           });
           const { height: titleHeight } = titleTextShape ? titleTextShape.getBBox() : { height: size[1] / 2 };
 
@@ -250,7 +251,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(itemContainerStyle, cfg, group),
             },
             name: 'item-box',
-            draggable: true,
+            draggable,
           });
           height += itemPaddingArray[0];
           const itemContentWidth = contentWidth - itemPaddingArray[1] - itemPaddingArray[3];
@@ -290,6 +291,7 @@ export const registerIndicatorGeometries = () => {
                   ...getStyle(itemStyle || labelStyle, cfg, group, key),
                 },
                 name: `${key}-${index}-${keyIndex}`,
+                draggable,
               });
               if (key === 'value' || layout === 'follow') {
                 valueShapeWidth += keyShape.getBBox().width;
@@ -357,6 +359,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(badge.style, cfg, group),
             },
             name: 'status-rect',
+            draggable,
           });
         }
         if (percent && percentValue > 0) {
@@ -385,6 +388,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(backgroundStyle, cfg, group),
             },
             name: 'percent-rect-background',
+            draggable,
           });
           group!.addShape('rect', {
             attrs: {
@@ -394,6 +398,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(percentStyle, cfg, group),
             },
             name: 'percent-rect',
+            draggable,
           });
         }
         // collapse marker

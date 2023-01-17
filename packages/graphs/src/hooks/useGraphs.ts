@@ -257,8 +257,18 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     if (container.current && graphClass) {
       const { name = '' } = extra;
       const graphSize = getGraphSize(width, height, container);
-      const { nodeCfg, edgeCfg, behaviors, layout, animate, autoFit, fitCenter, onReady, customLayout, fetchLoading } =
-        config;
+      const {
+        nodeCfg,
+        edgeCfg,
+        behaviors = [],
+        layout,
+        animate,
+        autoFit,
+        fitCenter,
+        onReady,
+        customLayout,
+        fetchLoading,
+      } = config;
 
       const {
         type: nodeType,
@@ -332,6 +342,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
           node.edgeCfg = edgeCfg;
           return {
             anchorPoints,
+            _draggable: behaviors.includes('drag-node'),
             _graphId: graphId,
           };
         }
