@@ -13,6 +13,7 @@ const SankeyChart = forwardRef((props: SankeyConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
+      overflow: 'hidden',
     },
     className,
     loading,

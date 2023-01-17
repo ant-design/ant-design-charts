@@ -13,6 +13,7 @@ const ChordChart = forwardRef((props: ChordConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
+      overflow: 'hidden',
     },
     className,
     loading,

@@ -13,6 +13,7 @@ const ScatterChart = forwardRef((props: ScatterConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
+      overflow: 'hidden',
     },
     className,
     loading,

@@ -13,6 +13,7 @@ const PieChart = forwardRef((props: PieConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
+      overflow: 'hidden',
     },
     className,
     loading,
