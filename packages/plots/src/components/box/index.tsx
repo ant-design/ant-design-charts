@@ -13,6 +13,7 @@ const BoxChart = forwardRef((props: BoxConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
+      overflow: 'hidden',
     },
     className,
     loading,

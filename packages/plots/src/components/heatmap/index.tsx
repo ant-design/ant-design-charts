@@ -13,6 +13,7 @@ const HeatmapChart = forwardRef((props: HeatmapConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
+      overflow: 'hidden',
     },
     className,
     loading,

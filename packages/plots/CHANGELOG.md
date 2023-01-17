@@ -1,3 +1,9 @@
+## 1.2.4
+
+`2023-01-17`
+
+- 🐞 [在 grid 布局中图表 autofit 缩小宽度时不生效](https://github.com/ant-design/ant-design-charts/issues/1761)
+
 ## 1.2.3
 
 `2022-12-27`

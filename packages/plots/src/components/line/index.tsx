@@ -13,6 +13,7 @@ const LineChart = forwardRef((props: LineConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
+      overflow: 'hidden',
     },
     className,
     loading,
