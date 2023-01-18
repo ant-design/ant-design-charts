@@ -9,21 +9,24 @@ import {
   getCommonCfg,
   getGraphId,
   getGraphSize,
-  getLevelData,
   getMarkerPosition,
   renderGraph,
-  setTag,
   getCenterNode,
   bindDefaultEvents,
   bindSourceMapCollapseEvents,
   bindStateEvents,
   bindRadialExplore,
   runAsyncEvent,
+  getRenderData,
 } from '../utils';
 import { processMinimap, processTooltip, processMenu, processToolbar } from '../plugins';
 import { setGlobalInstance } from '../utils/global';
 
-export default function useGraph(graphClass: string, config: any, extra: { name?: string } = {}) {
+export default function useGraph(
+  graphClass: string,
+  config: any,
+  extra: { name?: string; bindEvents?: Function } = {},
+) {
   const container = useRef(null);
   const graphRef = useRef<any>();
   const graphOptions = useRef<CommonConfig>();
@@ -61,15 +64,12 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
   };
 
   const changeData = () => {
-    if (!graph) {
-      return;
-    }
-    let currentData = data;
-    if (level) {
-      currentData = setTag(data);
-    }
-    graph.changeData(level ? getLevelData(currentData, level) : data);
-    graph.get('eventData')?.setData(currentData);
+    if (!graph) return;
+    let originData = data;
+    let tagData = originData;
+    if (level) [originData, tagData] = getRenderData(data, level);
+    graph.changeData(originData);
+    graph.get('eventData')?.setData(tagData);
     setEdgesState(graph.getEdges());
     if (fitCenter) {
       graph.fitCenter();
@@ -255,7 +255,7 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
 
   useEffect(() => {
     if (container.current && graphClass) {
-      const { name = '' } = extra;
+      const { name = '', bindEvents } = extra;
       const graphSize = getGraphSize(width, height, container);
       const {
         nodeCfg,
@@ -396,10 +396,14 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       bindStateEvents(graph, config);
       // 绑定展开收起事件
       if (markerCfg) {
-        const sourceGraph = ['FlowAnalysisGraph', 'FundFlowGraph'];
-        sourceGraph.includes(name)
-          ? bindSourceMapCollapseEvents(graph, asyncData, fetchLoading)
-          : bindDefaultEvents(graph, level, getChildren, fetchLoading);
+        if (typeof bindEvents === 'function') {
+          bindEvents(graph, level, asyncData || getChildren, fetchLoading);
+        } else {
+          const sourceGraph = ['FundFlowGraph'];
+          sourceGraph.includes(name)
+            ? bindSourceMapCollapseEvents(graph, asyncData, fetchLoading)
+            : bindDefaultEvents(graph, level, getChildren, fetchLoading);
+        }
       }
       // 绑定节点辐射事件
       if (name === 'RadialGraph') {
