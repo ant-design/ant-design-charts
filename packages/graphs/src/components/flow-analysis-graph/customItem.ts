@@ -1,6 +1,6 @@
 import G6, { IGroup, Node } from '@antv/g6';
 import { clone, deepMix, each, isBoolean, isPlainObject, mix } from '@antv/util';
-import { defaultCardStyle, defaultLabelStyle, defaultLineLabelStyle, defaultMargin } from '../../constants';
+import { defaultCardStyle, defaultLabelStyle, defaultLineLabelStyle, defaultMargin, prefix } from '../../constants';
 import { CardItems, CardNodeCfg, EdgeCfg, EdgeConfig, IPoint, IShape, CardItem } from '../../interface';
 import {
   cloneBesidesImg,
@@ -419,13 +419,19 @@ export const registerIndicatorGeometries = () => {
           } else {
             markerCfgArray = markerCfg instanceof Array ? markerCfg : [markerCfg];
           }
+          const getCollapsed = () => {
+            if (isBoolean(stateCollapsed)) return stateCollapsed;
+            if (cfg._graphId.startsWith('FlowAnalysisGraph')) return !(cfg[`${prefix}_children`] as string[])?.length;
+            return !(cfg.children as string[])?.length;
+          };
           markerCfgArray.forEach((mc) => {
-            const { show, position = 'right', collapsed, style: markerStyle } = mc;
+            const { show, position = 'right', collapsed: inCollapsed, style: markerStyle } = mc;
+            const collapsed = inCollapsed ?? getCollapsed();
             createMarker(
               {
                 show,
                 position,
-                collapsed: stateCollapsed ?? collapsed, // 优先使用内部状态
+                collapsed, // 优先使用内部状态
                 style: markerStyle,
               },
               group,

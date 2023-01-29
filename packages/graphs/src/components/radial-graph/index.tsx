@@ -6,6 +6,7 @@ import useProps from '../../hooks/useProps';
 import { ChartLoading } from '../../utils';
 import { CommonConfig, GraphData, NodeCfg, NodeConfig, FetchLoading } from '../../interface';
 import { defaultFlowGraphAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../../constants';
+import { bindRadialExplore } from './events';
 
 export interface RadialGraphConfig extends Omit<CommonConfig<Partial<RadialLayout>>, 'data'>, FetchLoading {
   data: GraphData;
@@ -51,7 +52,7 @@ const defaultProps = {
 const RadialGraph: React.FC<RadialGraphConfig> = (props) => {
   const { uProps } = useProps(props, defaultProps);
   const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
-  const { container } = useGraph('Graph', rest, { name: 'RadialGraph' });
+  const { container } = useGraph('Graph', rest, { name: 'RadialGraph', bindEvents: bindRadialExplore });
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>

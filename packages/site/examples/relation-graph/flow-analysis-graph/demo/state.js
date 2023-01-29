@@ -287,7 +287,6 @@ const DemoFlowAnalysisGraph = () => {
       return {
         position: 'right',
         show: edges.find((item) => item.source === cfg.id),
-        collapsed: !edges.find((item) => item.source === cfg.id),
       };
     },
     behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
