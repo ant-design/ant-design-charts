@@ -17,6 +17,7 @@ import {
 } from '../../interface';
 import { ChartLoading } from '../../utils';
 import { registerIndicatorGeometries } from '../flow-analysis-graph/customItem';
+import { bindEvents } from './events';
 
 export interface DecompositionTreeGraphConfig
   extends Omit<CommonConfig<CompactBoxLayout>, 'data' | 'nodeCfg'>,
@@ -104,6 +105,7 @@ const DecompositionTreeGraph: React.FC<DecompositionTreeGraphConfig> = (props) =
   const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
   const { container } = useGraph('TreeGraph', rest, {
     name: 'DecompositionTreeGraph',
+    bindEvents,
   });
 
   return (

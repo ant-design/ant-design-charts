@@ -1,5 +1,5 @@
 import React from 'react';
-import { defaultFlowGraphAnchorPoints, stateColor } from '../../constants';
+import { stateColor } from '../../constants';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
@@ -17,6 +17,7 @@ import {
   IShapeStyle,
 } from '../../interface';
 import { ChartLoading } from '../../utils';
+import { bindEvents } from './events';
 import { registerFileTreeGeometries, registerFileTreeBehaviors } from './customItem';
 
 export type FileTreeMarkerCfg = Pick<MarkerCfg, 'position' | 'style' | 'show'>;
@@ -142,6 +143,7 @@ const FileTreeGraph: React.FC<FileTreeGraphConfig> = (props) => {
   const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
   const { container } = useGraph('TreeGraph', rest, {
     name: 'FileTreeGraph',
+    bindEvents,
   });
 
   return (

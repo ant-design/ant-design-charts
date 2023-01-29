@@ -254,7 +254,7 @@ export type MarkerPosition = 'left' | 'right' | 'top' | 'bottom';
 export interface MarkerCfg {
   /** 是否展示 */
   show?: boolean;
-  /** 是否折叠态 */
+  /** 是否折叠态，推荐使用内置状态 */
   collapsed?: boolean;
   position?: MarkerPosition;
   style?: ShapeStyle;

@@ -16,6 +16,7 @@ import {
   FetchLoading,
 } from '../../interface';
 import { ChartLoading } from '../../utils';
+import { bindEvents } from '../file-tree-graph/events';
 import { registerIndicatorGeometries } from '../flow-analysis-graph/customItem';
 
 export interface MindMapGraphConfig extends Omit<CommonConfig<CompactBoxLayout>, 'data' | 'nodeCfg'>, FetchLoading {
@@ -102,6 +103,7 @@ const MindMapGraph: React.FC<MindMapGraphConfig> = (props) => {
   const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
   const { container } = useGraph('TreeGraph', rest, {
     name: 'MindMapGraph',
+    bindEvents,
   });
 
   return (

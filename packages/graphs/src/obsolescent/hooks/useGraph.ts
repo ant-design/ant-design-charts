@@ -6,8 +6,8 @@ import {
   getCommonCfg,
   getArrowCfg,
   getMarkerPosition,
-  setTag,
-  getLevelData,
+  setTreeTag,
+  getTreeLevelData,
   deepClone,
 } from '../../utils';
 import { processMinimap } from '../../plugins';
@@ -42,9 +42,9 @@ export default function useGraph(
     }
     let currentData = data;
     if (level) {
-      currentData = setTag(data);
+      currentData = setTreeTag(data);
     }
-    graphInstance.changeData(level ? getLevelData(currentData, level) : data);
+    graphInstance.changeData(level ? getTreeLevelData(currentData, level) : data);
     graphInstance.get('eventData')?.setData(currentData);
     setEdgesState(graphInstance.getEdges());
     if (fitCenter) {

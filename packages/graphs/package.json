@@ -33,7 +33,7 @@
     "lint:prettier": "pnpm run prettier && git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
-    "test:live": "cross-env DEBUG_MODE=1 jest --watch ./tests/issues/1764-spec.tsx --no-cache"
+    "test:live": "cross-env DEBUG_MODE=1 jest --watch ./tests/graphs/menu-spec.tsx --no-cache"
   },
   "dependencies": {
     "@antv/dom-util": "^2.0.4",
