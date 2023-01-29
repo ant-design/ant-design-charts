@@ -57,6 +57,7 @@ describe('Pie render', () => {
     expect(testInstance.findAllByType(ChartLoading).length).toBe(0);
     expect(renderTree.rendered.props.style).toEqual({
       height: 'inherit',
+      overflow: 'hidden',
     });
   });
 
