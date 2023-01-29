@@ -311,7 +311,6 @@ export default function useGraph(
           layout: customLayout ? undefined : layout,
           fitView: autoFit,
           fitCenter,
-          plugins,
           extraPlugin: {
             getChildren,
             fetchLoading,
