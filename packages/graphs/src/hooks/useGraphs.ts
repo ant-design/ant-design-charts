@@ -251,7 +251,7 @@ export default function useGraph(
   }, [behaviors]);
 
   useEffect(() => {
-    if (container.current && graphClass) {
+    if (container.current && graphClass && !graphRef.current) {
       const { name = '', bindEvents } = extra;
       const graphSize = getGraphSize(width, height, container);
       const {
@@ -287,37 +287,34 @@ export default function useGraph(
         edgeStateStyles,
       } = edgeCfg ?? {};
 
-      if (!graphRef.current) {
-        graphRef.current = new G6[graphClass]({
-          container: container.current as any,
-          width: graphSize[0],
-          height: graphSize[1],
-          animate,
-          linkCenter,
-          modes: {
-            default: behaviors,
-          },
-          defaultNode: {
-            ...nodeCfg,
-            nodeCfg,
-          },
-          defaultEdge: {
-            ...omit(edgeCfg, ['label']),
-            edgeCfg,
-            labelCfg: labelCfg?.style,
-          },
-          nodeStateStyles,
-          edgeStateStyles: getEdgeStateStyles(edgeStateStyles),
-          layout: customLayout ? undefined : layout,
-          fitView: autoFit,
-          fitCenter,
-          extraPlugin: {
-            getChildren,
-            fetchLoading,
-          },
-        });
-      }
-
+      graphRef.current = new G6[graphClass]({
+        container: container.current as any,
+        width: graphSize[0],
+        height: graphSize[1],
+        animate,
+        linkCenter,
+        modes: {
+          default: behaviors,
+        },
+        defaultNode: {
+          ...nodeCfg,
+          nodeCfg,
+        },
+        defaultEdge: {
+          ...omit(edgeCfg, ['label']),
+          edgeCfg,
+          labelCfg: labelCfg?.style,
+        },
+        nodeStateStyles,
+        edgeStateStyles: getEdgeStateStyles(edgeStateStyles),
+        layout: customLayout ? undefined : layout,
+        fitView: autoFit,
+        fitCenter,
+        extraPlugin: {
+          getChildren,
+          fetchLoading,
+        },
+      });
       const graphId = getGraphId(graphRef.current, name);
       const graph = graphRef.current;
       graph.set('id', graphId);
