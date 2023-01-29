@@ -5,7 +5,7 @@ import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
 import { ChartLoading } from '../../utils';
-import { bindFlowEvents } from './events';
+import { bindEvents } from './events';
 import {
   CardItems,
   CommonConfig,
@@ -79,7 +79,7 @@ const defaultProps = {
 const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
   const { uProps } = useProps(props, defaultProps);
   const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
-  const { container } = useGraph('Graph', rest, { name: 'FlowAnalysisGraph', bindEvents: bindFlowEvents });
+  const { container } = useGraph('Graph', rest, { name: 'FlowAnalysisGraph', bindEvents });
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>

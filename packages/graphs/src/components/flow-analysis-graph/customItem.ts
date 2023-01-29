@@ -422,6 +422,7 @@ export const registerIndicatorGeometries = () => {
           const getCollapsed = () => {
             if (isBoolean(stateCollapsed)) return stateCollapsed;
             if (cfg._graphId.startsWith('FlowAnalysisGraph')) return !(cfg[`${prefix}_children`] as string[])?.length;
+            return !(cfg.children as string[])?.length;
           };
           markerCfgArray.forEach((mc) => {
             const { show, position = 'right', collapsed: inCollapsed, style: markerStyle } = mc;

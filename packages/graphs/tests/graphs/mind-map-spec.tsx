@@ -208,20 +208,17 @@ describe('Mind Map', () => {
             {
               position: 'left' as const,
               show: !!children?.length,
-              collapsed: !children?.length,
             },
             {
               position: 'right' as const,
               show: !!children?.length,
-              collapsed: !children?.length,
             },
           ];
         }
         return {
-          position: 'right' as const,
-          show: !!children?.length,
-          collapsed: !children?.length,
-        };
+          position: cfg.x > 0 ? 'right' : 'left',
+          show: true,
+        } as const;
       },
     };
 

@@ -8,12 +8,13 @@ import { createFetchLoading, closeFetchLoading, isType, EventData } from '../../
  */
 type CollapsedNode = NodeData<unknown> & { collapsedLevel: number; g_level: number };
 
-export const bindFlowEvents = (
-  graph: IGraph,
-  level: number,
-  asyncData: FlowAnalysisGraphConfig['nodeCfg']['asyncData'],
-  fetchLoading?: FetchLoading,
-) => {
+export const bindEvents = (params: {
+  graph: IGraph;
+  level: number;
+  asyncData: FlowAnalysisGraphConfig['nodeCfg']['asyncData'];
+  fetchLoading?: FetchLoading;
+}) => {
+  const { graph, level, asyncData, fetchLoading } = params;
   const changeData = (data, eventData?: FlowGraphDatum) => {
     if (eventData) graph.set('eventData', new EventData(eventData));
     graph.changeData(data);

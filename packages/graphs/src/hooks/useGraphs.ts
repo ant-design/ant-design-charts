@@ -12,10 +12,7 @@ import {
   getMarkerPosition,
   renderGraph,
   getCenterNode,
-  bindDefaultEvents,
-  bindSourceMapCollapseEvents,
   bindStateEvents,
-  bindRadialExplore,
   runAsyncEvent,
   getRenderData,
 } from '../utils';
@@ -394,22 +391,21 @@ export default function useGraph(
       }
 
       bindStateEvents(graph, config);
-      // 绑定展开收起事件
-      if (markerCfg) {
-        if (typeof bindEvents === 'function') {
-          bindEvents(graph, level, asyncData || getChildren, fetchLoading);
-        } else {
-          const sourceGraph = ['FundFlowGraph'];
-          sourceGraph.includes(name)
-            ? bindSourceMapCollapseEvents(graph, asyncData, fetchLoading)
-            : bindDefaultEvents(graph, level, getChildren, fetchLoading);
-        }
-      }
       // 绑定节点辐射事件
       if (name === 'RadialGraph') {
         const centerNode = getCenterNode(data);
         graph.set('centerNode', centerNode);
-        bindRadialExplore(graph, asyncData, layout, fetchLoading);
+      }
+      // 绑定事件
+      if (typeof bindEvents === 'function') {
+        bindEvents({
+          graph,
+          level,
+          asyncData,
+          getChildren,
+          fetchLoading,
+          layout,
+        });
       }
       renderGraph(graph, data, level);
       fitCenter && graph.fitCenter();

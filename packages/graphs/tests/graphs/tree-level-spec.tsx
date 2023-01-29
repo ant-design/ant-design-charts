@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { DecompositionTreeGraph } from '../../src';
 import { TreeData } from '../data';
 
-describe('Get children types', () => {
+describe('Tree level', () => {
   let container;
 
   beforeEach(() => {
@@ -12,10 +12,10 @@ describe('Get children types', () => {
     document.body.appendChild(container);
   });
   afterEach(() => {
-    // document.body.removeChild(container);
-    // container = null;
+    document.body.removeChild(container);
+    container = null;
   });
-  it('types', () => {
+  it('render level', () => {
     let chartRef = undefined;
     const props = {
       className: 'container',
@@ -61,12 +61,13 @@ describe('Get children types', () => {
       },
       markerCfg: {
         show: true,
-        position: 'right',
+        position: 'right' as const,
       },
     };
     act(() => {
       render(<DecompositionTreeGraph {...props} {...chartProps} />, container);
     });
     expect(chartRef).not.toBeUndefined();
+    expect(chartRef.findById('A1').getModel().children.length).toBe(0);
   });
 });
