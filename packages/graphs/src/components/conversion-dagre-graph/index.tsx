@@ -296,7 +296,13 @@ export default class ConversionDagreGraph extends Component<ComponentProps, any>
   };
 
   render(): React.ReactNode {
-    const { className, style } = this.props;
+    const { className, style: propsStyle = {} } = this.props;
+    const style = {
+      width: '100%',
+      height: '100%',
+      ...propsStyle,
+    }
+    
     return (
       <div
         className={className}
