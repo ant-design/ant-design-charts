@@ -13,7 +13,6 @@ const FunnelChart = forwardRef((props: FunnelConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

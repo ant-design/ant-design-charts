@@ -13,7 +13,6 @@ const RingProgressChart = forwardRef((props: RingProgressConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

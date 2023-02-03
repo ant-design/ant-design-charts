@@ -13,7 +13,6 @@ const HistogramChart = forwardRef((props: HistogramConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

@@ -13,7 +13,6 @@ const StockChart = forwardRef((props: StockConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

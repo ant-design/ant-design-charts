@@ -13,7 +13,6 @@ const ColumnChart = forwardRef((props: ColumnConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

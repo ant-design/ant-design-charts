@@ -13,7 +13,6 @@ const ViolinChart = forwardRef((props: ViolinConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

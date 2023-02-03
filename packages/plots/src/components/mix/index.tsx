@@ -15,7 +15,6 @@ const MultiViewChart = forwardRef((props: MixConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,
