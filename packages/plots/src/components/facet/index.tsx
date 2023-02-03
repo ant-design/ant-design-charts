@@ -13,7 +13,6 @@ const FacetChart = forwardRef((props: FacetConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

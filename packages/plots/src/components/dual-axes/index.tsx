@@ -13,7 +13,6 @@ const DualAxesChart = forwardRef((props: DualAxesConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,
