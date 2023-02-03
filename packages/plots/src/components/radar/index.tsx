@@ -13,7 +13,6 @@ const RadarChart = forwardRef((props: RadarConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

@@ -13,7 +13,6 @@ const BarChart = forwardRef((props: BarConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

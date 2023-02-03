@@ -13,7 +13,6 @@ const SunburstChart = forwardRef((props: SunburstConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

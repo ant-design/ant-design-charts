@@ -13,7 +13,6 @@ const WordCloudChart = forwardRef((props: WordCloudConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

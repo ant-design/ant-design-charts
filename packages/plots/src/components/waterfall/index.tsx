@@ -13,7 +13,6 @@ const WaterfallChart = forwardRef((props: WaterfallConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,

@@ -13,7 +13,6 @@ const VennChart = forwardRef((props: VennConfig, ref) => {
     chartRef,
     style = {
       height: 'inherit',
-      overflow: 'hidden',
     },
     className,
     loading,
