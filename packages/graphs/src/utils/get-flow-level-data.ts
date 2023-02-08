@@ -14,7 +14,7 @@ export const getFlowLevelData = (data: FlowGraphDatum, level: number): FlowGraph
     nodes: levelNodes,
     edges: edges.filter((item) => {
       const { source, target } = item;
-      return levelNodes.filter((n) => [source, target].includes(n.id)).length === 2;
+      return levelNodes.filter((n) => [source, target].includes(n.id)).length >= 2;
     }),
   };
 };

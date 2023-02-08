@@ -74,8 +74,6 @@ export const Toolbar: React.FC<IToolbar> = ({ toolbarCfg, container, graph }) =>
     });
   }
 
-  console.log(2);
-
   return (
     <Fragment>
       {!fullscreen ? (
