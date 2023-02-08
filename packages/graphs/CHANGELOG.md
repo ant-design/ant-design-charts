@@ -1,3 +1,9 @@
+## 1.3.7
+
+`2023-02-08`
+
+- 🐞 修复 [render-graph setFlowTag 会导致nodes和edges异常](https://github.com/ant-design/ant-design-charts/issues/1801)
+
 ## 1.3.6
 
 ## 1.3.5
