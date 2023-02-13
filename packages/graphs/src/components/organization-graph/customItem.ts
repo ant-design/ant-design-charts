@@ -13,7 +13,7 @@ export const registerOrganizationCardNode = () => {
     'organization-card',
     {
       draw(cfg: Omit<CardNodeCfg, 'items'> | undefined = {}, group: IGroup | undefined) {
-        const { value: originValue = {}, nodeCfg, markerCfg } = cfg;
+        const { value: originValue = {}, nodeCfg, markerCfg, _draggable: draggable } = cfg;
         const value = { ...(originValue as OrgItem & { text?: string; value?: string }) };
         let isOld = false;
         /** 兼容历史数据 */
@@ -44,7 +44,7 @@ export const registerOrganizationCardNode = () => {
             ...cardStyle,
           },
           name: 'main-box',
-          draggable: true,
+          draggable,
         });
 
         if (value) {
@@ -113,6 +113,7 @@ export const registerOrganizationCardNode = () => {
                   ...shapeStyle,
                 },
                 name: `${key}-${index}-${keyIndex}`,
+                draggable,
               });
               rowHeight.push(keyShape.getBBox().height);
             });
