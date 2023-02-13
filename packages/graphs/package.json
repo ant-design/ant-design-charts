@@ -33,7 +33,11 @@
     "lint:prettier": "pnpm run prettier && git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
+<<<<<<< HEAD
     "test:live": "cross-env DEBUG_MODE=1 jest --watch ./tests/issues/1801-spec.tsx --no-cache"
+=======
+    "test:live": "cross-env DEBUG_MODE=1 jest --watch ./tests/issues/1291-spec.tsx --no-cache"
+>>>>>>> fix/graph-flow-tag
   },
   "dependencies": {
     "@antv/dom-util": "^2.0.4",

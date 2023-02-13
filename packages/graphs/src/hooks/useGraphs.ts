@@ -320,7 +320,7 @@ export default function useGraph(
       graph.set('id', graphId);
       setGlobalInstance(graphId, graph);
 
-      const customNode = ['fund-card', 'indicator-card', 'file-tree-node'];
+      const customNode = ['fund-card', 'indicator-card', 'file-tree-node', 'organization-card'];
       const getLabel = (value: { [key: string]: string } | string): string => {
         // 辐射树图
         if (isString(value)) {
@@ -333,7 +333,7 @@ export default function useGraph(
       };
       // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
       graph.node((node: NodeConfig) => {
-        if (customNode.includes(nodeType) || name === 'OrganizationGraph') {
+        if (customNode.includes(nodeType)) {
           const anchorPoints = getAnchorPoints(nodeAnchorPoints, node);
           node.markerCfg = markerCfg;
           node.edgeCfg = edgeCfg;
