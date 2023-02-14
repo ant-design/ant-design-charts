@@ -1,6 +1,6 @@
 import type { Graph } from '@antv/g6';
 import type { Rankdir } from '../types';
-import type { LayerOrder } from '../../types';
+import type { LayerOrder } from '../types';
 
 // 在画布上绘制层级名称
 export const drawLayerName = (graph: Graph, layerOrder: LayerOrder, rankdir: Rankdir) => {

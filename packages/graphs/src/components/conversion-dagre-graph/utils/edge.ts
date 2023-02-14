@@ -1,7 +1,7 @@
 import type { Graph, EdgeConfig } from '@antv/g6';
 import type { Rankdir } from '../types';
 import { EdgeType } from '../types';
-import type { LayerOrder } from '../../types';
+import type { LayerOrder } from '../types';
 
 // 获取边的类型，起点和终点的anchorPoint索引值
 export const getEdgeAnchorAndType = (
