@@ -25,10 +25,10 @@ export default class ConversionDagreGraph extends Component<Props, any> {
     ratioMethod: 'both',
     layout: {
       rankdir: 'TB', // 默认从上到下
-    }
-  }
+    },
+  };
 
-  constructor(props: ComponentProps) {
+  constructor(props: Props) {
     super(props);
     this.container = null;
     this.graph = null;
@@ -51,12 +51,7 @@ export default class ConversionDagreGraph extends Component<Props, any> {
   static getDerivedStateFromProps(props, state) {
     const { data, layerOrder, segmLayer, ratioMethod } = props;
     // props数据 -> G6渲染图数据
-    const graphData = transformOriginData(
-      data,
-      layerOrder,
-      segmLayer,
-      ratioMethod,
-    );
+    const graphData = transformOriginData(data, layerOrder, segmLayer, ratioMethod);
     return {
       graphData,
     };
@@ -115,7 +110,7 @@ export default class ConversionDagreGraph extends Component<Props, any> {
     resigterEdges();
     // 注册布局
     resigterLayout();
-  }
+  };
 
   // 浅比较图数据: 只比较图结构有没有变化
   getGraphShallowDiff = (data = { nodes: [], edges: [] }, prevData = { nodes: [], edges: [] }) => {
@@ -124,12 +119,8 @@ export default class ConversionDagreGraph extends Component<Props, any> {
     if (nodes.length !== prevNodes.length || edges.length !== prevEdges.length) {
       return true;
     }
-    const noNodeChange = nodes.every((node) =>
-      prevNodes.find((prevNode) => prevNode.id === node.id),
-    );
-    const noEdgeChange = edges.every((edge) =>
-      prevEdges.find((prevEdge) => prevEdge.id === edge.id),
-    );
+    const noNodeChange = nodes.every((node) => prevNodes.find((prevNode) => prevNode.id === node.id));
+    const noEdgeChange = edges.every((edge) => prevEdges.find((prevEdge) => prevEdge.id === edge.id));
     return !(noNodeChange && noEdgeChange);
   };
 
@@ -301,8 +292,8 @@ export default class ConversionDagreGraph extends Component<Props, any> {
       width: '100%',
       height: '100%',
       ...propsStyle,
-    }
-    
+    };
+
     return (
       <div
         className={className}
