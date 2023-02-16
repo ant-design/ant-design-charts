@@ -1,3 +1,4 @@
+import { IGraph } from '@antv/g6';
 export type PlainObject = Record<string, any>;
 
 // 单个指标
@@ -33,7 +34,6 @@ export interface OriginEdge {
   style?: PlainObject; // 样式
 }
 
-
 export type Rankdir = 'TB' | 'LR';
 
 export interface LayoutParams {
@@ -62,4 +62,5 @@ export interface Props {
   layout?: LayoutParams; // 布局配置
   className?: string; // class类名
   style?: PlainObject; // 样式配置
+  onReady?: (graph: IGraph) => void;
 }

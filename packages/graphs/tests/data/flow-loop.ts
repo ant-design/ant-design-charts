@@ -141,53 +141,96 @@ export const FlowLoopData = {
     {
       source: '-3',
       target: '0',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
       value: '来源A',
     },
     {
       source: '-2',
       target: '0',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
       value: '来源B',
     },
     {
       source: '-1',
       target: '0',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
       value: '来源C',
     },
     {
       source: '0',
       target: '1',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
     },
     {
       source: '1',
       target: '-3',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
     },
     {
       source: '0',
       target: '2',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
     },
     {
       source: '0',
       target: '3',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
     },
     {
       source: '0',
       target: '4',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
     },
     {
       source: '0',
       target: '5',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
     },
     {
       source: '2',
       target: '6',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
     },
     {
       source: '3',
       target: '7',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
     },
     {
       source: '4',
       target: '8',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
+    },
+    {
+      source: '4',
+      target: '4',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
     },
   ],
 };

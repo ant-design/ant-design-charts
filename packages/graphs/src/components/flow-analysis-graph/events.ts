@@ -43,13 +43,15 @@ export const bindEvents = (params: {
       const getLinkedId = (currentId: string) => {
         fullEdges.forEach((edge) => {
           const { source, target } = edge;
-          if (source === currentId) {
+          if (source === currentId && !allTargets.includes(target)) {
             allTargets.push(target);
             getLinkedId(target);
           }
         });
       };
       getLinkedId(nodeId as string);
+      // 避免成环的情况
+      allTargets = allTargets.filter((t) => t !== nodeId);
       if (!collapsed) {
         // collapse
         graph.findAll('node', (node) => allTargets.includes(node.get('id'))).forEach((node) => graph.hideItem(node));
