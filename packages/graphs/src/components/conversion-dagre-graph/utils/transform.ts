@@ -8,8 +8,7 @@ import type {
   GraphEdge,
   ConvGraphData,
   RatioMethod,
-  PlainObject,
-} from '../../types';
+} from '../types';
 
 // 数据转换：原始节点数据 -> G6渲染节点数据
 const transformOriginNodes = (
@@ -27,7 +26,7 @@ const transformOriginNodes = (
     return {
       id: originNode.id, // id
       label: originNode.name || '', // 名称
-      layer: layer !== -1 ? layer : undefined, // @antv/layout dagre 加了layer布局有bug，暂时这样处理
+      layer: layer !== -1 ? layer : undefined,
       style: {
         stroke: '#B8C3D9',
         textColor: '#000',
@@ -53,7 +52,7 @@ const transformOriginEdges = (
   layerOrder: string[],
   segmLayer: string,
   ratioMethod: RatioMethod,
-): GraphEdge[] => {
+) : GraphEdge[] => {
   const { nodes: originNodes = [], edges: originEdges = [] } = data;
 
   return originEdges

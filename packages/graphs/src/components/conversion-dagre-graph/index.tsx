@@ -3,7 +3,7 @@ import G6 from '@antv/g6';
 import type { Graph as G6Graph } from '@antv/g6';
 import { isEqual } from 'lodash';
 import { DEFAULT_LAYOUT_OPTIONS, DEFAULT_NODE, DEFAULT_EDGE, DEFAULT_MODE } from './constants';
-import type { ComponentProps } from './types';
+import type { Props } from './types';
 import { ITEM_STATE } from './types';
 import { transformOriginData, drawLayerName, updateEdgeAnchorAndType } from './utils';
 import registerBehavior from './behaviors';
@@ -11,7 +11,7 @@ import { resigterNodes } from './nodes';
 import { resigterEdges } from './edges';
 import { resigterLayout } from './layout';
 
-export default class ConversionDagreGraph extends Component<ComponentProps, any> {
+export default class ConversionDagreGraph extends Component<Props, any> {
   private container: HTMLElement | null;
   private graph: G6Graph | null;
   private shouldCacheZoomAndTranslate: boolean;

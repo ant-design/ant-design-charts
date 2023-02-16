@@ -1,4 +1,4 @@
-import type { OriginNode } from '../../types';
+import type { OriginNode } from '../types';
 
 // 获取文本的字节长度
 export const getNodeStrSize = (node: OriginNode): number => {

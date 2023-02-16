@@ -1,4 +1,4 @@
-import type { OriginEdge } from '../../types';
+import type { OriginEdge } from '../types';
 
 // 获取节点的所有出/入路径的边集合
 export const getInOutPathEdges = (id: string, edges: OriginEdge[]) => {
