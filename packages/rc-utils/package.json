@@ -1,5 +1,5 @@
 {
-  "name": "charts-utils",
+  "name": "rc-utils",
   "version": "0.0.1",
   "description": "charts utils",
   "bugs": {
@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "start": "pnpm lib:es --w",
+    "start": "pnpm lib:cjs --w",
     "build": "run-s clean lib dist",
     "build:lib": "run-s clean lib",
     "ci": "pnpm run build && pnpm run test:coverage",
@@ -36,7 +36,7 @@
     "test:live": "DEBUG_MODE=1 jest --watch ./tests/utils/use-chart.test.tsx --no-cache"
   },
   "peerDependencies": {
-     "react": ">=16.8.4",
+    "react": ">=16.8.4",
     "react-dom": ">=16.8.4"
   },
   "sideEffects": false,
@@ -47,5 +47,8 @@
     "@types/react-dom": "^18.0.6",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "valtio": "^1.10.2"
   }
 }

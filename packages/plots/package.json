@@ -33,12 +33,13 @@
     "lint:prettier": "pnpm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
-    "test:live": "DEBUG_MODE=1 jest --watch ./tests/issues/1772-spec.tsx --no-cache"
+    "test:live": "DEBUG_MODE=1 jest --watch ./tests/plots/column-proxy-spec.tsx --no-cache"
   },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",
     "@antv/util": "^2.0.9",
-    "react-content-loader": "^5.0.4"
+    "react-content-loader": "^5.0.4",
+    "rc-utils": "workspace:*"
   },
   "peerDependencies": {
      "react": ">=16.8.4",

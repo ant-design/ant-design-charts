@@ -1,5 +1,5 @@
 jest.spyOn(console, 'warn').mockReturnValue();
-jest.spyOn(console, 'log').mockReturnValue();
+// jest.spyOn(console, 'log').mockReturnValue();
 // jest.spyOn(console, 'error').mockReturnValue();
 Object.defineProperty(URL, 'createObjectURL', {
   writable: true,
