@@ -12,7 +12,7 @@ export const TreeData = {
     {
       id: 'A1',
       value: {
-        title: '华南',
+        title: '华南华北verylong1234567',
         items: [
           {
             text: '1152万',
@@ -77,7 +77,7 @@ export const TreeData = {
     {
       id: 'A2',
       value: {
-        title: '华北',
+        title: '华北华南真的很大很多很差',
         items: [
           {
             text: '595万',

@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/plots",
-  "version": "1.2.2",
+  "version": "1.2.5",
   "description": "G2Plot Statistical chart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -33,7 +33,7 @@
     "lint:prettier": "pnpm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
-    "test:live": "DEBUG_MODE=1 jest --watch ./tests/utils/use-chart.test.tsx --no-cache"
+    "test:live": "DEBUG_MODE=1 jest --watch ./tests/issues/1772-spec.tsx --no-cache"
   },
   "dependencies": {
     "@antv/g2plot": "^2.2.11",

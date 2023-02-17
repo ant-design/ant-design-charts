@@ -1,6 +1,6 @@
 import G6, { IGroup, Node } from '@antv/g6';
 import { clone, deepMix, each, isBoolean, isPlainObject, mix } from '@antv/util';
-import { defaultCardStyle, defaultLabelStyle, defaultLineLabelStyle, defaultMargin } from '../../constants';
+import { defaultCardStyle, defaultLabelStyle, defaultLineLabelStyle, defaultMargin, prefix } from '../../constants';
 import { CardItems, CardNodeCfg, EdgeCfg, EdgeConfig, IPoint, IShape, CardItem } from '../../interface';
 import {
   cloneBesidesImg,
@@ -152,7 +152,7 @@ export const registerIndicatorGeometries = () => {
     {
       // @ts-ignore
       draw: (cfg: CardNodeCfg | undefined = {}, group: IGroup | undefined) => {
-        const { value = {}, nodeCfg, markerCfg } = cfg;
+        const { value = {}, nodeCfg, markerCfg, _draggable: draggable } = cfg;
         const {
           title: titleCfg,
           items: itemsCfg,
@@ -196,7 +196,7 @@ export const registerIndicatorGeometries = () => {
             ...cardStyle,
           },
           name: 'main-box',
-          draggable: true,
+          draggable,
         });
 
         // node title
@@ -215,7 +215,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(titleContainerStyle, cfg, group),
             },
             name: 'title-rect',
-            draggable: true,
+            draggable,
           });
           const textStyle = {
             ...defaultTitleLabelStyle,
@@ -226,10 +226,11 @@ export const registerIndicatorGeometries = () => {
               x: paddingArray[3],
               y: paddingArray[0],
               textBaseline: 'top',
-              text: autoEllipsis && !autoWidth ? setEllipsis(title, textStyle?.fontSize, contentWidth) : title,
+              text: autoEllipsis && !autoWidth ? setEllipsis(title, textStyle, contentWidth) : title,
               ...textStyle,
             },
             name: 'title',
+            draggable,
           });
           const { height: titleHeight } = titleTextShape ? titleTextShape.getBBox() : { height: size[1] / 2 };
 
@@ -250,7 +251,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(itemContainerStyle, cfg, group),
             },
             name: 'item-box',
-            draggable: true,
+            draggable,
           });
           height += itemPaddingArray[0];
           const itemContentWidth = contentWidth - itemPaddingArray[1] - itemPaddingArray[3];
@@ -290,6 +291,7 @@ export const registerIndicatorGeometries = () => {
                   ...getStyle(itemStyle || labelStyle, cfg, group, key),
                 },
                 name: `${key}-${index}-${keyIndex}`,
+                draggable,
               });
               if (key === 'value' || layout === 'follow') {
                 valueShapeWidth += keyShape.getBBox().width;
@@ -357,6 +359,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(badge.style, cfg, group),
             },
             name: 'status-rect',
+            draggable,
           });
         }
         if (percent && percentValue > 0) {
@@ -385,6 +388,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(backgroundStyle, cfg, group),
             },
             name: 'percent-rect-background',
+            draggable,
           });
           group!.addShape('rect', {
             attrs: {
@@ -394,6 +398,7 @@ export const registerIndicatorGeometries = () => {
               ...getStyle(percentStyle, cfg, group),
             },
             name: 'percent-rect',
+            draggable,
           });
         }
         // collapse marker
@@ -414,13 +419,19 @@ export const registerIndicatorGeometries = () => {
           } else {
             markerCfgArray = markerCfg instanceof Array ? markerCfg : [markerCfg];
           }
+          const getCollapsed = () => {
+            if (isBoolean(stateCollapsed)) return stateCollapsed;
+            if (cfg._graphId.startsWith('FlowAnalysisGraph')) return !(cfg[`${prefix}_children`] as string[])?.length;
+            return !(cfg.children as string[])?.length;
+          };
           markerCfgArray.forEach((mc) => {
-            const { show, position = 'right', collapsed, style: markerStyle } = mc;
+            const { show, position = 'right', collapsed: inCollapsed, style: markerStyle } = mc;
+            const collapsed = inCollapsed ?? getCollapsed();
             createMarker(
               {
                 show,
                 position,
-                collapsed: stateCollapsed ?? collapsed, // 优先使用内部状态
+                collapsed, // 优先使用内部状态
                 style: markerStyle,
               },
               group,

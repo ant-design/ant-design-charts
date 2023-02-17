@@ -4,8 +4,8 @@ import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultNodeStyle, defaul
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
-import ChartLoading from '../../utils/createLoading';
-
+import { ChartLoading } from '../../utils';
+import { bindEvents } from './events';
 import {
   CardItems,
   CommonConfig,
@@ -27,6 +27,8 @@ export interface FlowAnalysisGraphConfig extends Omit<CommonConfig<DagreLayout>,
     nodes: FlowAnalysisNodeData[];
     edges: FlowGraphEdgeData[];
   };
+  /** 展开层级，默认 100 */
+  level?: number;
   nodeCfg?: NodeCfg & {
     /** 点击展开时异步获取数据 */
     asyncData?: (nodeCfg: NodeConfig) => Promise<{
@@ -71,12 +73,13 @@ const defaultProps = {
     height: 'inherit',
     backgroundColor: '#fff',
   },
+  level: 100,
 };
 
 const FlowAnalysisGraph: React.FC<FlowAnalysisGraphConfig> = (props) => {
   const { uProps } = useProps(props, defaultProps);
   const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
-  const { container } = useGraph('Graph', rest, { name: 'FlowAnalysisGraph' });
+  const { container } = useGraph('Graph', rest, { name: 'FlowAnalysisGraph', bindEvents });
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>

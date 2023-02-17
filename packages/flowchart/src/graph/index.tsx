@@ -34,6 +34,9 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
     keyBindingProps,
     // miniMapProps = {},
     onAddNode,
+    onDelNode,
+    onCopy,
+    onPaste,
     onAddEdge,
     onConfigChange,
     onDestroy,
@@ -53,11 +56,11 @@ const Flowchart: React.FC<FlowchartProps> = (props) => {
   } = canvasProps;
   // const { position: miniMapPosition = { bottom: 12, right: 12 }, show: showMinimMap = true } = miniMapProps;
   const graphRef = useRef<IGraph>();
-  const menuConfig = useMenuConfig(contextMenuPanelProps);
+  const menuConfig = useMenuConfig({ ...contextMenuPanelProps, onDelNode });
   const commandConfig = useCmdConfig({
     flowchartId: uuidv4Ref.current,
   }); // 需要 getProps
-  const keybindingConfig = keyBindingProps || useKeybindingConfig();
+  const keybindingConfig = keyBindingProps || useKeybindingConfig({ onDelNode, onCopy, onPaste });
   const { show = true } = scaleToolbarPanelProps;
   const { show: showMenu = true } = contextMenuPanelProps;
   const loadData = useCallback(

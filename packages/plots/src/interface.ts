@@ -8,6 +8,7 @@ import {
   MixOptions,
   TreemapOptions,
   TooltipOptions as BaseTooltip,
+  Datum,
 } from '@antv/g2plot';
 
 interface TinyPlotOptions extends Omit<Options, 'data' | 'legend' | 'label'> {
@@ -139,3 +140,4 @@ export interface BaseConfig<O extends Omit<AllBaseConfig, 'tooltip'>, P extends 
 }
 
 export * from './components/interface';
+export { Datum };

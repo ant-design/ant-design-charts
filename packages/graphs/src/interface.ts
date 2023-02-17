@@ -20,6 +20,7 @@ import {
   TreeGraphData as G6TreeGraphData,
   GraphData,
   Item,
+  TreeGraph,
 } from '@antv/g6';
 
 import { MenuConfig } from './plugins';
@@ -148,7 +149,7 @@ type PluginContainer<T> = {
   /** tooltip 容器，默认和 canvas 使用同一父容器 */
   container?: HTMLDivElement | string | null;
   /** 自定义模板 */
-  customContent: (item: T) => React.ReactElement;
+  customContent?: (item: T) => React.ReactElement;
 };
 
 type ToolbarCfgCustomContent = {
@@ -253,13 +254,14 @@ export type MarkerPosition = 'left' | 'right' | 'top' | 'bottom';
 export interface MarkerCfg {
   /** 是否展示 */
   show?: boolean;
-  /** 是否折叠态 */
+  /** 是否折叠态，推荐使用内置状态 */
   collapsed?: boolean;
   position?: MarkerPosition;
   style?: ShapeStyle;
 }
 
 export interface TooltipCfg extends PluginContainer<NodeConfig | EdgeConfig> {
+  show?: boolean;
   offsetX?: number;
   offsetY?: number;
   /** 是否展示 */
@@ -373,4 +375,5 @@ export {
   G6TreeGraphData,
   GraphData,
   Item,
+  TreeGraph,
 };

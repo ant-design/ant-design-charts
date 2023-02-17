@@ -186,6 +186,12 @@ export interface FlowchartProps extends FlowchartContainerProps {
   onSave?: (data: Datum) => void;
   /** 新增节点时回调 */
   onAddNode?: (node: NsGraph.INodeConfig) => void;
+  /** 删除节点时回调 */
+  onDelNode?: (node: NsGraph.INodeConfig | NsGraph.INodeConfig[]) => void;
+  /** 复制节点时回调 */
+  onCopy?: (node: NsGraph.INodeConfig[]) => void;
+  /** 粘贴节点时回调 */
+  onPaste?: (node: NsGraph.INodeConfig[]) => void;
   /** 新增边时回调 */
   onAddEdge?: (edge: NsGraph.IEdgeConfig) => void;
   /** xflow app 销毁前的回调 */

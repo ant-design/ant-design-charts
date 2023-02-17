@@ -3,7 +3,7 @@ import { DendrogramLayout } from '../../layout';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 
 import { CommonConfig, TreeGraphData } from '../../interface';
 import { defaultFlowGraphAnchorPoints, defaultStateStyles, defaultNodeStyle } from '../../constants';

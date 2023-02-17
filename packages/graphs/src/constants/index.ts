@@ -1,3 +1,4 @@
+export { MARKER_CLICK } from './event';
 export const stateColor = '#1890ff';
 // 默认交互状态
 export const defaultStateStyles = {
@@ -54,3 +55,19 @@ export const prefix = 'g';
 
 // status bar 的默认宽度
 export const defaultStatusBarWidth = 4;
+
+export const defaultToolbarStyle = {
+  position: 'absolute',
+  right: '12px',
+  top: '12px',
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '6px',
+  borderRadius: '2px',
+  fontSize: '24px',
+  textAlign: 'center',
+  lineHeight: '24px',
+  color: 'rgba(0,0,0,.65)',
+  backgroundColor: '#fff',
+  boxShadow: '0 0 3px #ccc',
+} as React.CSSProperties;

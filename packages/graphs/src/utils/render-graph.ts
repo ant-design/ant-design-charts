@@ -1,17 +1,29 @@
-import { IGraph } from '../interface';
+import { IGraph, FlowGraphDatum, TreeGraphData } from '../interface';
 import EventData from './event-data';
 import { deepClone } from './deep-clone';
-import { setTag } from './set-tag';
-import { getLevelData } from './get-level-data';
+import { setTreeTag, setFlowTag, getFlowLevelData, getTreeLevelData } from './';
 import { runAsyncEvent } from './async-events';
 
-export const renderGraph = (graph: IGraph, data: any, level?: number) => {
+const isFlowData = (data) => data?.nodes instanceof Array && data?.edges instanceof Array;
+
+export const getRenderData = (data: FlowGraphDatum | TreeGraphData, level?: number) => {
   let originData = deepClone(data);
   let tagData = originData;
   if (level) {
-    tagData = setTag(data);
-    originData = getLevelData(tagData, level);
+    if (isFlowData(data)) {
+      tagData = setFlowTag(data as FlowGraphDatum, level);
+      originData = getFlowLevelData(tagData, level);
+    } else {
+      // is tree data
+      tagData = setTreeTag(data as TreeGraphData);
+      originData = getTreeLevelData(tagData, level);
+    }
   }
+  return [originData, tagData];
+};
+
+export const renderGraph = (graph: IGraph, data: any, level?: number) => {
+  const [originData, tagData] = getRenderData(data, level);
   graph.data(originData);
   graph.set('eventData', new EventData(tagData));
   graph.render();

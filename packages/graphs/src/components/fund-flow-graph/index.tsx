@@ -3,9 +3,10 @@ import { DagreLayout } from '@antv/layout';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 import { defaultFlowGraphAnchorPoints, defaultNodeSize, defaultStateStyles, defaultNodeStyle } from '../../constants';
 import { registerFundFlowItems } from './customItem';
+import { bindEvents } from '../flow-analysis-graph/events';
 import { CommonConfig, EdgeData, NodeData } from '../../interface';
 
 export type edgeType =
@@ -71,7 +72,7 @@ const defaultProps = {
 const FundFlowGraph: React.FC<FundFlowGraphConfig> = (props) => {
   const { uProps } = useProps(props, defaultProps);
   const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
-  const { container } = useGraph('Graph', rest, { name: 'FundFlowGraph' });
+  const { container } = useGraph('Graph', rest, { name: 'FundFlowGraph', bindEvents });
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>

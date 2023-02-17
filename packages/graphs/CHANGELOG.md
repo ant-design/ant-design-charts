@@ -1,3 +1,37 @@
+## 1.3.9
+
+`2023-02-16`
+
+- 🐞 修复 FlowAnalysisGraph 数据成环时导致的 loop
+
+## 1.3.7
+
+`2023-02-08`
+
+- 🐞 修复 [render-graph setFlowTag 会导致nodes和edges异常](https://github.com/ant-design/ant-design-charts/issues/1801)
+
+## 1.3.6
+
+## 1.3.5
+
+`2023-01-29`
+
+- 🔥 新增 `FlowAnalysisGraph level` 配置
+- 内置 [markerCfg.collapsed](https://github.com/ant-design/ant-design-charts/pull/1775/commits/2a37066cc436752d8726e008127d2f9bc5eb1fa6) 逻辑
+- 🐞 [Avoid duplicated graph](https://github.com/ant-design/ant-design-charts/pull/1749) when useGraph hook being called twice on dev build with StrictMode turned on
+
+## 1.3.4
+
+`2023-01-16`
+
+- 🐞 `set ellipsis` 对非中文字符长度计算不准
+
+## 1.3.3
+
+- 新增 `marker:click` 事件
+- 🔥 新增 `FileTreeGraph` 
+<img src=https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CoEVTrU_7g4AAAAAAAAAAAAADmJ7AQ/original>
+
 ## 1.3.3-beta.3
 
 - 🔥 `FileTreeGraph` 新增 `nodeCfg.lineStyle` 配置

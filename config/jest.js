@@ -1,10 +1,5 @@
 const BaseJestConfig = {
   verbose: true,
-  // test:live start
-  // runner: 'jest-electron/runner',
-  // testEnvironment: 'jest-electron/environment',
-  // setupFilesAfterEnv: ['jest-extended', './jest.setup.js'],
-  // test:live end
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['jest-extended', 'jest-canvas-mock', './jest.setup.js'],
   testTimeout: 30000,
@@ -22,4 +17,10 @@ const BaseJestConfig = {
   testMatch: ['**/?(*[.-])+(spec|test).[jt]s?(x)'],
 };
 
-module.exports = { BaseJestConfig };
+const OnlineConfig = {
+  runner: 'jest-electron/runner',
+  testEnvironment: 'jest-electron/environment',
+  setupFilesAfterEnv: ['jest-extended', './jest.setup.js'],
+};
+
+module.exports = { BaseJestConfig, OnlineConfig };

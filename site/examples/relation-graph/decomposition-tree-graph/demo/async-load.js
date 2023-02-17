@@ -132,10 +132,8 @@ const DemoDecompositionTreeGraph = () => {
       getChildren,
     },
     markerCfg: (cfg) => {
-      const { children } = cfg;
       return {
         show: true,
-        collapsed: !children?.length,
       };
     },
     behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],

@@ -1,10 +1,10 @@
 import React from 'react';
-import ChartLoading from '../../utils/createLoading';
+import { ChartLoading } from '../../utils';
 import ErrorBoundary from '../../errorBoundary';
 import useGraph from '../../hooks/useGraphs';
 import useProps from '../../hooks/useProps';
 import { defaultStateStyles } from '../../constants';
-
+import { bindEvents } from '../file-tree-graph/events';
 import { registerOrganizationCardNode } from './customItem';
 import { IGroup, CommonConfig, ShapeCfg, Shape, NodeConfig, IGraph, NodeData, OrgItem } from '../../interface';
 
@@ -96,7 +96,7 @@ const defaultProps = {
 const OrganizationGraph: React.FC<OrganizationGraphConfig> = (props) => {
   const { uProps } = useProps(props, defaultProps);
   const { className, style, loading, loadingTemplate, errorTemplate, ...rest } = uProps;
-  const { container } = useGraph('TreeGraph', rest, { name: 'OrganizationGraph' });
+  const { container } = useGraph('TreeGraph', rest, { name: 'OrganizationGraph', bindEvents });
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>

@@ -115,17 +115,6 @@ export const FlowData = {
       },
     },
     {
-      id: '6',
-      value: {
-        title: '去向页面F',
-        items: [
-          {
-            text: '访问页面UV',
-          },
-        ],
-      },
-    },
-    {
       id: '7',
       value: {
         title: '去向页面G',

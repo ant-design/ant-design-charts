@@ -17,15 +17,24 @@ describe('Flowchart render', () => {
     container = null;
   });
 
-  it.skip('chart render', () => {
+  it('chart render', () => {
     const NODE_LINK = {
       id: 'NODE_LINK',
       label: 'NODE_LINK',
-      render: () => {
+      render: (ev) => {
         return (
-          <a target="_blank" href="https://charts.ant.design/" style={{ padding: '0 16px' }}>
-            自定义渲染
-          </a>
+          <>
+            <a target="_blank" href="https://charts.ant.design/" style={{ padding: '0 16px' }}>
+              自定义渲染
+            </a>
+            <p
+              onClick={(e) => {
+                console.log(ev);
+              }}
+            >
+              click
+            </p>
+          </>
         );
       },
     };
@@ -37,6 +46,9 @@ describe('Flowchart render', () => {
           onSave={(d) => {
             console.log(d);
           }}
+          onDelNode={(data) => {
+            console.log(data);
+          }}
           toolbarPanelProps={{
             position: {
               top: 0,
@@ -45,6 +57,8 @@ describe('Flowchart render', () => {
             },
           }}
           contextMenuPanelProps={{
+            // showOfficial: false,
+            // @ts-ignore
             submenu: (cfg) => {
               const { menuType } = cfg;
               if (menuType === 'node') {

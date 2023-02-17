@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { isEqual, get } from '@antv/util';
 import { G2 } from '@antv/g2plot';
 import createNode from '../utils/createNode';
-import { hasPath, isType, deepClone, clone, setPath } from '../utils';
+import { hasPath, isType, deepClone, clone, setPath, uuid } from '../utils';
 import { BasePlot, BaseConfig, AllBaseConfig } from '../interface';
 
 interface Base extends BaseConfig<AllBaseConfig> {
@@ -49,18 +49,19 @@ export default function useInit<T extends BasePlot, U extends Base>(ChartClass: 
     return imageName;
   };
 
-  const reactDomToString = (source: U, path: string[], type?: string) => {
+  const reactDomToString = (source: U, path: string[], type?: string, _uuid?: string) => {
     const statisticCustomHtml = hasPath(source, path);
     setPath(source, path, (...arg: any[]) => {
       const statisticDom = isType(statisticCustomHtml, 'Function') ? statisticCustomHtml(...arg) : statisticCustomHtml;
       if (isType(statisticDom, 'String') || isType(statisticDom, 'Number') || isType(statisticDom, 'HTMLDivElement')) {
         return statisticDom;
       }
-      return createNode(statisticDom, type);
+      return createNode(statisticDom, type, _uuid);
     });
   };
 
   const processConfig = () => {
+    const _uuid = uuid();
     // statistic
     if (hasPath(config, ['statistic', 'content', 'customHtml'])) {
       reactDomToString(config, ['statistic', 'content', 'customHtml']);
@@ -71,10 +72,10 @@ export default function useInit<T extends BasePlot, U extends Base>(ChartClass: 
     // tooltip
     if (typeof config.tooltip === 'object') {
       if (hasPath(config, ['tooltip', 'container'])) {
-        reactDomToString(config, ['tooltip', 'container'], 'tooltip');
+        reactDomToString(config, ['tooltip', 'container'], 'tooltip', _uuid);
       }
       if (hasPath(config, ['tooltip', 'customContent'])) {
-        reactDomToString(config, ['tooltip', 'customContent'], 'tooltip');
+        reactDomToString(config, ['tooltip', 'customContent'], 'tooltip', _uuid);
       }
     }
   };

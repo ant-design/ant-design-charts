@@ -1,8 +1,6 @@
 import G6, { IEdge, INode, ModeType } from '@antv/g6';
-import { isEqual, isFunction, isObject, isString, omit } from '@antv/util';
+import { isEqual, isObject, isString, omit } from '@antv/util';
 import { useEffect, useRef } from 'react';
-import { createNode } from '../utils/create-node';
-import { createToolbar, Menu } from '../plugins';
 import { ArrowConfig, CardNodeCfg, CommonConfig, EdgeConfig, NodeConfig, StateStyles } from '../interface';
 import {
   deepClone,
@@ -11,21 +9,21 @@ import {
   getCommonCfg,
   getGraphId,
   getGraphSize,
-  getLevelData,
   getMarkerPosition,
-  processMinimap,
   renderGraph,
-  setTag,
   getCenterNode,
-  bindDefaultEvents,
-  bindSourceMapCollapseEvents,
   bindStateEvents,
-  bindRadialExplore,
   runAsyncEvent,
+  getRenderData,
 } from '../utils';
+import { processMinimap, processTooltip, processMenu, processToolbar } from '../plugins';
 import { setGlobalInstance } from '../utils/global';
 
-export default function useGraph(graphClass: string, config: any, extra: { name?: string } = {}) {
+export default function useGraph(
+  graphClass: string,
+  config: any,
+  extra: { name?: string; bindEvents?: Function } = {},
+) {
   const container = useRef(null);
   const graphRef = useRef<any>();
   const graphOptions = useRef<CommonConfig>();
@@ -45,6 +43,8 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
     markerCfg,
     level,
     toolbarCfg,
+    tooltipCfg,
+    menuCfg,
     customLayout,
   } = config;
   const graph = graphRef.current;
@@ -61,15 +61,12 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
   };
 
   const changeData = () => {
-    if (!graph) {
-      return;
-    }
-    let currentData = data;
-    if (level) {
-      currentData = setTag(data);
-    }
-    graph.changeData(level ? getLevelData(currentData, level) : data);
-    graph.get('eventData')?.setData(currentData);
+    if (!graph) return;
+    let originData = data;
+    let tagData = originData;
+    if (level) [originData, tagData] = getRenderData(data, level);
+    graph.changeData(originData);
+    graph.get('eventData')?.setData(tagData);
     setEdgesState(graph.getEdges());
     if (fitCenter) {
       graph.fitCenter();
@@ -254,22 +251,19 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
   }, [behaviors]);
 
   useEffect(() => {
-    if (container.current && graphClass) {
-      const { name = '' } = extra;
+    if (container.current && graphClass && !graphRef.current) {
+      const { name = '', bindEvents } = extra;
       const graphSize = getGraphSize(width, height, container);
-      const plugins = [];
       const {
         nodeCfg,
         edgeCfg,
-        behaviors,
+        behaviors = [],
         layout,
         animate,
         autoFit,
         fitCenter,
         onReady,
-        tooltipCfg,
         customLayout,
-        menuCfg,
         fetchLoading,
       } = config;
 
@@ -293,30 +287,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         edgeStateStyles,
       } = edgeCfg ?? {};
 
-      // tooltip
-      if (tooltipCfg && isFunction(tooltipCfg.customContent)) {
-        const { customContent, ...rest } = tooltipCfg;
-        const tooltipPlugin = new G6.Tooltip({
-          offsetX: 10,
-          offsetY: 20,
-          itemTypes: ['node'],
-          ...rest,
-          getContent(e) {
-            return createNode(customContent(e.item.getModel()), 'g6-tooltip');
-          },
-        });
-        plugins.push(tooltipPlugin);
-      }
-      // menu
-      if (menuCfg && isFunction(menuCfg.customContent)) {
-        const menuPlugin = new Menu({
-          offsetX: 16 + 10,
-          offsetY: 0,
-          itemTypes: ['node'],
-          ...menuCfg,
-        });
-        plugins.push(menuPlugin);
-      }
       graphRef.current = new G6[graphClass]({
         container: container.current as any,
         width: graphSize[0],
@@ -340,7 +310,6 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         layout: customLayout ? undefined : layout,
         fitView: autoFit,
         fitCenter,
-        plugins,
         extraPlugin: {
           getChildren,
           fetchLoading,
@@ -350,6 +319,8 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
       const graph = graphRef.current;
       graph.set('id', graphId);
       setGlobalInstance(graphId, graph);
+
+      const customNode = ['fund-card', 'indicator-card', 'file-tree-node', 'organization-card'];
       const getLabel = (value: { [key: string]: string } | string): string => {
         // 辐射树图
         if (isString(value)) {
@@ -360,15 +331,15 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         }
         return value?.title;
       };
-      const customNode = ['fund-card', 'indicator-card', 'file-tree-node'];
       // defaultNode 默认只能绑定 plainObject，针对 Function 类型需要通过该模式绑定
       graph.node((node: NodeConfig) => {
-        if (customNode.includes(nodeType) || name === 'OrganizationGraph') {
+        if (customNode.includes(nodeType)) {
           const anchorPoints = getAnchorPoints(nodeAnchorPoints, node);
           node.markerCfg = markerCfg;
           node.edgeCfg = edgeCfg;
           return {
             anchorPoints,
+            _draggable: behaviors.includes('drag-node'),
             _graphId: graphId,
           };
         }
@@ -419,18 +390,22 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
         });
       }
 
-      processMinimap(minimapCfg, graph);
       bindStateEvents(graph, config);
-      if (markerCfg) {
-        const sourceGraph = ['FlowAnalysisGraph', 'FundFlowGraph'];
-        sourceGraph.includes(name)
-          ? bindSourceMapCollapseEvents(graph, asyncData, fetchLoading)
-          : bindDefaultEvents(graph, level, getChildren, fetchLoading);
-      }
+      // 绑定节点辐射事件
       if (name === 'RadialGraph') {
         const centerNode = getCenterNode(data);
         graph.set('centerNode', centerNode);
-        bindRadialExplore(graph, asyncData, layout, fetchLoading);
+      }
+      // 绑定事件
+      if (typeof bindEvents === 'function') {
+        bindEvents({
+          graph,
+          level,
+          asyncData,
+          getChildren,
+          fetchLoading,
+          layout,
+        });
       }
       renderGraph(graph, data, level);
       fitCenter && graph.fitCenter();
@@ -440,10 +415,14 @@ export default function useGraph(graphClass: string, config: any, extra: { name?
   }, []);
 
   useEffect(() => {
-    if (graphRef.current && toolbarCfg) {
-      createToolbar({ graph: graphRef.current, container: container.current, toolbarCfg });
+    if (graphRef.current) {
+      const _graph = graphRef.current;
+      processMinimap(minimapCfg, _graph);
+      processTooltip(tooltipCfg, _graph);
+      processMenu(menuCfg, _graph);
+      processToolbar(toolbarCfg, _graph, container.current);
     }
-  }, [graphRef, toolbarCfg]);
+  }, [graphRef, toolbarCfg, tooltipCfg, menuCfg]);
 
   useEffect(() => {
     return () => {
