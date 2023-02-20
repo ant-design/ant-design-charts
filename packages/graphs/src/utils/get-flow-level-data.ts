@@ -9,7 +9,9 @@ export const getFlowLevelData = (data: FlowGraphDatum, level: number): FlowGraph
   if (level <= 0) {
     return data;
   }
-  const levelNodes = nodes.filter((item) => item[`${prefix}_level`] < level);
+
+  const levelNodes = nodes.filter((item) => !item.hasOwnProperty(`${prefix}_level`) || item[`${prefix}_level`] < level);
+
   return {
     nodes: levelNodes,
     edges: edges.filter((item) => {
