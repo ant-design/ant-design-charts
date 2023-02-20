@@ -164,6 +164,14 @@ export const FlowLoopData = {
     },
     {
       source: '0',
+      target: '-1',
+      sourceAnchor: 1,
+      // 该边连入 target 点的第 0 个 anchorPoint，
+      targetAnchor: 0,
+      value: '来源C',
+    },
+    {
+      source: '0',
       target: '1',
       sourceAnchor: 1,
       // 该边连入 target 点的第 0 个 anchorPoint，
@@ -225,12 +233,58 @@ export const FlowLoopData = {
       // 该边连入 target 点的第 0 个 anchorPoint，
       targetAnchor: 0,
     },
+  ],
+};
+
+export const FlowLoopDoubleData = {
+  nodes: [
+    {
+      id: '4',
+      value: {
+        title: '去向页面A',
+        items: [
+          {
+            text: '访问页面UV',
+          },
+        ],
+      },
+    },
+    {
+      id: '5',
+      value: {
+        title: '去向页面B',
+        items: [
+          {
+            text: '访问页面UV',
+          },
+        ],
+      },
+    },
+
+    {
+      id: '6',
+      value: {
+        title: '去向页面C',
+        items: [
+          {
+            text: '访问页面UV',
+          },
+        ],
+      },
+    },
+  ],
+  edges: [
     {
       source: '4',
+      target: '5',
+    },
+    {
+      source: '5',
+      target: '6',
+    },
+    {
+      source: '6',
       target: '4',
-      sourceAnchor: 1,
-      // 该边连入 target 点的第 0 个 anchorPoint，
-      targetAnchor: 0,
     },
   ],
 };
