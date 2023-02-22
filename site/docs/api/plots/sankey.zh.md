@@ -94,7 +94,7 @@ Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you 
 
 其他原始字段，便于在节点、边定义 tooltip 或者 label 时取用。
 
-<playground path="relation-plots/sankey/demo/draggable.ts" rid="sankey-raw-fields"></playground>
+<Playground path="relation-plots/sankey/demo/draggable.ts" rid="sankey-raw-fields"></playground>
 
 ### Geometry Style
 
@@ -459,6 +459,6 @@ plot.update({ theme: { defaultColor: '#FF6B3B' } });
 
 In addition, G2 provides a custom topic mechanism to define a new topic structure, allowing users to switch and define chart topics. Go [G2 | Custom theme](https://g2.antv.vision/en/docs/api/advanced/register-theme) for more details.
 
-<playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
+<Playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
 🌰 Customize theme [DEMO](/zh/examples/general/theme#register-theme)

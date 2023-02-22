@@ -20,10 +20,7 @@ contributors:
 
 
 <style>
-  .gatsby-highlight + p {
-    margin-top: 18px;
-  }
-  
+
   table {
     margin-top: 12px !important;
   }
@@ -198,7 +195,7 @@ type TooltipCrosshairsTextCallback = (type: string, defaultContent: any, items: 
 
 <!-- 容器无限变大 -->
 
-<!-- <playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
+<!-- <Playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
 
 
 ***TextBackgroundStyle***

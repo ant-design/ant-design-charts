@@ -134,7 +134,7 @@ type TooltipCrosshairsTextCallback = (type: string, defaultContent: any, items: 
 
 <!-- 容器无限变大 -->
 
-<!-- <playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
+<!-- <Playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
 
 
 ***TextBackgroundStyle***
@@ -348,7 +348,7 @@ Legend title configuration is not displayed by default. *G2LegendTitleCfg* Confi
 
 The position of legend is optional:'top', 'top-left', 'top-right', 'left', 'left-top', 'left-bottom', 'right', 'right-top', 'right-bottom', 'bottom', 'bottom-left', 'bottom-right'。
 
-<playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
+<Playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
 
 ##### offsetX
 
@@ -437,7 +437,7 @@ pageNavigator: {
 },
 ```
 
-<playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
+<Playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
 
 ##### itemHeight
 
@@ -525,7 +525,7 @@ type Marker = {
 };
 ```
 
-<playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
+<Playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
 
 ##### itemSpacing
 
@@ -648,7 +648,7 @@ legend: {
 }
 ```
 
-<playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
+<Playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
 
 ##### slidable
 
@@ -1243,7 +1243,7 @@ type AnnotationTextCfg = {
 
 ```plain
 
-`markdown:docs/common/annotations/base-annotation.zh.md`
+<embed src="@/docs/common/annotations/base-annotation.zh.md"></embed>
 ```
 
 

@@ -94,32 +94,6 @@ const MindMapGraphGraph = () => {
     ],
   };
 
-  const fetchData = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(
-          [1, 2].map(() => ({
-            id: 'A2' + Math.random().toString(),
-            value: {
-              items: [
-                {
-                  text: '占比',
-                  value: '50%',
-                  icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
-                },
-              ],
-            },
-          })),
-        );
-      }, 1000);
-    });
-  };
-
-  const getChildren = async () => {
-    const asyncData = await fetchData();
-    return asyncData;
-  };
-
   const level = [-2, -1, 0, 1, 2];
   const levelTexts = level.map((l) => {
     if (l < 0) return `${Math.abs(l)}层上游`;
@@ -179,7 +153,6 @@ const MindMapGraphGraph = () => {
     },
     // level,
     nodeCfg: {
-      getChildren,
       size: nodeSize,
       padding: 4,
       style: {
@@ -277,16 +250,19 @@ const MindMapGraphGraph = () => {
           {
             position: 'left',
             show: !!children?.length,
+            collapsed: !children?.length,
           },
           {
             position: 'right',
             show: !!children?.length,
+            collapsed: !children?.length,
           },
         ];
       }
       return {
         position: 'right',
         show: !!children?.length,
+        collapsed: !children?.length,
       };
     },
     behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],

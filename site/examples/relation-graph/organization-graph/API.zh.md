@@ -1,1 +1,1 @@
-`markdown:docs/api/graphs/organization-graph.zh.md`
+<embed src="@/docs/api/graphs/organization-graph.zh.md"></embed>

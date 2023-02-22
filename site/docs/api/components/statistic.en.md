@@ -20,10 +20,7 @@ contributors:
 
 
 <style>
-  .gatsby-highlight + p {
-    margin-top: 18px;
-  }
-  
+
   table {
     margin-top: 12px !important;
   }
@@ -88,4 +85,4 @@ type CustomHtml = (container: HTMLElement, view: View, datum: object, data: obje
 
 Example:
 
-<playground path="pie/donut/demo/basic.ts" rid="docs-statistic" height="400"></playground>
+<Playground path="pie/donut/demo/basic.ts" rid="docs-statistic" height="400"></playground>

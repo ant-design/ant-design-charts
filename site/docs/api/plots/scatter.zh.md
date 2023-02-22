@@ -163,7 +163,7 @@ order: 5
 
 <description>**optional** \_number | \[number, number] | Function\_</description>
 
-<playground path="scatter/scatter/demo/color-mapping.ts" rid="rect"></playground>
+<Playground path="scatter/scatter/demo/color-mapping.ts" rid="rect"></playground>
 
 指定点的大小。如没有配置 sizeField，指定一个即可。对 sizeFiled 进行了配置的情况下，可以指定大小数组 `[minSize, maxSize]`， 也可以通过回调函数的方法根据对应数值进行设置。
 
@@ -191,7 +191,7 @@ order: 5
 
 <description>**optional** \_string | string\[] | Function\_</description>
 
-<playground path="scatter/bubble/demo/quadrant.ts" rid="rect-quadrant"></playground>
+<Playground path="scatter/bubble/demo/quadrant.ts" rid="rect-quadrant"></playground>
 
 指定点的形状。如没有配置 shapeField ，指定一个即可。对 shapeField 进行了配置的情况下，可以指定形状数组 `['cicle', 'square']`， 也可以通过回调函数的方法根据对应数值进行设置。
 
@@ -405,7 +405,7 @@ type TooltipCrosshairsTextCallback = (type: string, defaultContent: any, items: 
 
 <!-- 容器无限变大 -->
 
-<!-- <playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
+<!-- <Playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
 
 
 ***TextBackgroundStyle***
@@ -974,7 +974,7 @@ legend: {
 
 尝试一下：
 
-<playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
+<Playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
 
 ##### offsetX
 
@@ -1063,7 +1063,7 @@ pageNavigator: {
 },
 ```
 
-<playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
+<Playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
 
 ##### itemHeight
 
@@ -1151,7 +1151,7 @@ type Marker = {
 };
 ```
 
-<playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
+<Playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
 
 ##### itemSpacing
 
@@ -1322,7 +1322,7 @@ legend: {
 }
 ```
 
-<playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
+<Playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
 
 ##### slidable
 
@@ -1637,7 +1637,7 @@ plot.update({ theme: { defaultColor: '#FF6B3B' } })
 
 另外，还可以通过 G2 提供了自定义主题机制来定义全新的主题结构，以允许用户切换、定义图表主题。前往 [G2 | 自定义主题](https://g2.antv.vision/zh/docs/api/advanced/register-theme) 查看详情。
 
-<playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
+<Playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
 🌰 自定义主题 [DEMO](/zh/examples/general/theme#register-theme) 示例
 
@@ -1717,7 +1717,7 @@ brush 交互相关事件:
 
 示例:
 
-<playground path="dynamic-plots/brush/demo/advanced-brush1.ts" rid="brush-filter-event"></playground>
+<Playground path="dynamic-plots/brush/demo/advanced-brush1.ts" rid="brush-filter-event"></playground>
 
 2.  `brush-highlight`, 事件列表：
 
@@ -1730,7 +1730,7 @@ brush 交互相关事件:
 
 示例:
 
-<playground path="dynamic-plots/brush/demo/advanced-brush2.ts" rid="brush-highlight-event"></playground>
+<Playground path="dynamic-plots/brush/demo/advanced-brush2.ts" rid="brush-highlight-event"></playground>
 
 
 #### 添加交互
@@ -2308,7 +2308,7 @@ type AnnotationTextCfg = {
 
 ```plain
 
-`markdown:docs/common/annotations/base-annotation.zh.md`
+<embed src="@/docs/common/annotations/base-annotation.zh.md"></embed>
 ```
 
 

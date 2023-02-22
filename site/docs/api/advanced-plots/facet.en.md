@@ -190,7 +190,7 @@ order: 9
 type ViewCallback = (innerView: View, facet?: FacetData) => IPlot;
 ```
 
-<playground path="facet/basic/demo/rect.ts" rid="facet-rect-plot"></playground>
+<Playground path="facet/basic/demo/rect.ts" rid="facet-rect-plot"></playground>
 
 其中 *FacetData* 结构如下：
 
@@ -276,8 +276,8 @@ const data = [
 
 view 上的图形 geometry 及映射配置，具体见[图层图形](#图层图形)
 
-`markdown:docs/common/common-iview.zh.md`
+<embed src="@/docs/common/common-iview.zh.md"></embed>
 
 ### 图层图形
 
-`markdown:docs/common/geometry-cfg.zh.md` -->
+<embed src="@/docs/common/geometry-cfg.zh.md"></embed> -->

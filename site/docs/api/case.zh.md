@@ -9,7 +9,7 @@ redirect_from:
 
 ```tsx
 import React, { useState, useEffect, useRef } from 'react';
-import { Line } from '@ant-design/charts';
+import { Line } from '@ant-design/plots';
 
 const DemoLine: React.FC = () => {
   const data = [
@@ -108,7 +108,7 @@ export default DemoLine;
 
 ```tsx
 import React from 'react';
-import { Column } from '@ant-design/charts';
+import { Column } from '@ant-design/plots';
 
 const DemoColumn: React.FC = () => {
   const data = [
@@ -187,7 +187,7 @@ export default DemoColumn;
 
 ```typescript
 import React from 'react';
-import { Line } from '@ant-design/charts';
+import { Line } from '@ant-design/plots';
 
 const Page: React.FC = () => {
   const data = [];
@@ -202,7 +202,7 @@ export default Page;
 
 ```typescript
 import React from 'react';
-import { Bar } from '@ant-design/charts';
+import { Bar } from '@ant-design/plots';
 
 const Page: React.FC = () => {
   const data = [];
@@ -222,7 +222,7 @@ export default Page;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { Scatter, G2 } from '@ant-design/charts';
+import { Scatter, G2 } from '@ant-design/plots';
 
 // 注册主体有 point | interval | polygon | line 等，详细参考 G2: https://g2.antv.vision/
 G2.registerShape('point', 'custom-shape', {
@@ -293,7 +293,7 @@ import {
   ColumnConfig,
   Plot,
   PlotEvent,
-} from '@ant-design/charts';
+} from '@ant-design/plots';
 
 type Base = LineConfig | AreaConfig | ColumnConfig;
 
@@ -408,7 +408,7 @@ downloadImage(name, [type,encoderOptions])
 
 ```tsx
 import React, { useRef } from 'react';
-import { Line } from '@ant-design/charts';
+import { Line } from '@ant-design/plots';
 
 const DemoLine: React.FC = () => {
   const data = [

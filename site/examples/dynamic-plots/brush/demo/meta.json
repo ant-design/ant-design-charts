@@ -5,14 +5,6 @@
   },
   "demos": [
     {
-      "filename": "scatter-brush.jsx",
-      "title": {
-        "zh": "散点图刷选高亮",
-        "en": "Brush highlight of scatter"
-      },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/BlpX0yZrRH/brush-highlight.gif"
-    },
-    {
       "filename": "scatter-brush-filter.js",
       "title": {
         "zh": "散点图刷选",
@@ -51,22 +43,6 @@
         "en": "Brush highlight of bar"
       },
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/hksereLMdK/bar-brush-highlight.gif"
-    },
-    {
-      "filename": "advanced-brush1.js",
-      "title": {
-        "zh": "刷选高级用法1",
-        "en": "Advanced usage1 of brush"
-      },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/OLOyP6XI0e/brush-advanced-usage1.gif"
-    },
-    {
-      "filename": "advanced-brush2.js",
-      "title": {
-        "zh": "刷选高级用法2",
-        "en": "Advanced usage2 of brush"
-      },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/2wHu3BD2s%26/brush-advanced-usage.gif"
     }
   ]
 }

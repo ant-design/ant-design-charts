@@ -32,7 +32,7 @@ const mdParse = () => {
   function recursionTree(tree) {
     // 删除顶部导航
     if (tree.type === 'html') {
-      tree.value = tree.value.replace(/<playground path="(\S+)">/g, (_) => {
+      tree.value = tree.value.replace(/<Playground path="(\S+)">/g, (_) => {
         return _.replace(/\.ts/, '.js');
       });
     }

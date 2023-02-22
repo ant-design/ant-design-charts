@@ -107,7 +107,7 @@ order: 11
 
 示例：
 
-<playground path="more-plots/histogram/demo/binWidth.ts" rid="histogram-meta"></playground>
+<Playground path="more-plots/histogram/demo/binWidth.ts" rid="histogram-meta"></playground>
 
 ### 图形样式
 
@@ -719,7 +719,7 @@ legend: {
 
 尝试一下：
 
-<playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
+<Playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
 
 ##### offsetX
 
@@ -808,7 +808,7 @@ pageNavigator: {
 },
 ```
 
-<playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
+<Playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
 
 ##### itemHeight
 
@@ -896,7 +896,7 @@ type Marker = {
 };
 ```
 
-<playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
+<Playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
 
 ##### itemSpacing
 
@@ -1067,7 +1067,7 @@ legend: {
 }
 ```
 
-<playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
+<Playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
 
 ##### slidable
 
@@ -1298,7 +1298,7 @@ type TooltipCrosshairsTextCallback = (type: string, defaultContent: any, items: 
 
 <!-- 容器无限变大 -->
 
-<!-- <playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
+<!-- <Playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
 
 
 ***TextBackgroundStyle***
@@ -1960,7 +1960,7 @@ type AnnotationTextCfg = {
 
 ```plain
 
-`markdown:docs/common/annotations/base-annotation.zh.md`
+<embed src="@/docs/common/annotations/base-annotation.zh.md"></embed>
 ```
 
 
@@ -2459,6 +2459,6 @@ plot.update({ theme: { defaultColor: '#FF6B3B' } })
 
 另外，还可以通过 G2 提供了自定义主题机制来定义全新的主题结构，以允许用户切换、定义图表主题。前往 [G2 | 自定义主题](https://g2.antv.vision/zh/docs/api/advanced/register-theme) 查看详情。
 
-<playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
+<Playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
 🌰 自定义主题 [DEMO](/zh/examples/general/theme#register-theme) 示例

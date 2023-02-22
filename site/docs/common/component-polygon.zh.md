@@ -180,7 +180,7 @@ type TooltipCrosshairsTextCallback = (type: string, defaultContent: any, items: 
 
 <!-- 容器无限变大 -->
 
-<!-- <playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
+<!-- <Playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
 
 
 ***TextBackgroundStyle***
@@ -842,7 +842,7 @@ type AnnotationTextCfg = {
 
 ```plain
 
-`markdown:docs/common/annotations/base-annotation.zh.md`
+<embed src="@/docs/common/annotations/base-annotation.zh.md"></embed>
 ```
 
 

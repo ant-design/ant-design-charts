@@ -24,6 +24,10 @@ logs
 /.env.local
 .docz
 
+# dumi2 website builder
+/**/.dumi/tmp
+/**/.dumi/tmp-production
+
 #ide
 .idea/
 .eslintcache

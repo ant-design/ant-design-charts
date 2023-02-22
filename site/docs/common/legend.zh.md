@@ -40,7 +40,7 @@ legend: {
 
 尝试一下：
 
-<playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
+<Playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
 
 ##### offsetX
 
@@ -129,7 +129,7 @@ pageNavigator: {
 },
 ```
 
-<playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
+<Playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
 
 ##### itemHeight
 
@@ -217,7 +217,7 @@ type Marker = {
 };
 ```
 
-<playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
+<Playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
 
 ##### itemSpacing
 
@@ -388,7 +388,7 @@ legend: {
 }
 ```
 
-<playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
+<Playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
 
 ##### slidable
 

@@ -371,26 +371,15 @@ interface ToolbarCfg {
 Tooltip configuration.
 
 ```ts
-interface TooltipCfg {
-  show?: boolean;
-  offsetX?: number;
-  offsetY?: number;
-  /** 是否展示 */
-  shouldBegin?: (evt?: IG6GraphEvent) => boolean;
-  /** item 类型 ['node','edge'] */
-  itemTypes?: string[];
-  /** 触发方式 */
-  trigger?: 'mouseenter' | 'click';
-  /** 固定位置 */
-  fixToNode?: [number, number] | undefined;
-    /** tooltip css 类名 */
+interface ToolbarCfg {
+  /** toolbar classname */
   className?: string;
-  /** tooltip 容器样式 */
+  /** container style */
   style?: React.CSSProperties;
-  /** tooltip 容器，默认和 canvas 使用同一父容器 */
-  container?: HTMLDivElement | string | null;
-  /** 自定义模板 */
-  customContent?: (item: T) => React.ReactElement;
+  /** whether to show */
+  show?: boolean;
+  /** custom content */
+  customContent: (item?: NodeConfig) => React.ReactElement;
 }
 ```
 #### menuCgf 

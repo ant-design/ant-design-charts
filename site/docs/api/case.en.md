@@ -9,7 +9,7 @@ redirect_from:
 
 ```tsx
 import React, { useState, useEffect, useRef } from 'react';
-import { Line } from '@ant-design/charts';
+import { Line } from '@ant-design/plots';
 
 const DemoLine: React.FC = () => {
   const data = [
@@ -108,7 +108,7 @@ All diagram instances in the document are available via onReady. Please open the
 
 ```tsx
 import React from 'react';
-import { Column } from '@ant-design/charts';
+import { Column } from '@ant-design/plots';
 
 const DemoColumn: React.FC = () => {
   const data = [
@@ -187,7 +187,7 @@ Plan 1: onReady callback
 
 ```typescript
 import React from 'react';
-import { Line } from '@ant-design/charts';
+import { Line } from '@ant-design/plots';
 
 const Page: React.FC = () => {
   const data = [];
@@ -202,7 +202,7 @@ plan 2: Mount it on ref
 
 ```typescript
 import React from 'react';
-import { Bar } from '@ant-design/charts';
+import { Bar } from '@ant-design/plots';
 
 const Page: React.FC = () => {
   const data = [];
@@ -222,7 +222,7 @@ export default Page;
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { Scatter, G2 } from '@ant-design/charts';
+import { Scatter, G2 } from '@ant-design/plots';
 // Subjects of registered point | interval | polygon | line , etc., detailed reference G2: https://g2.antv.vision/
 G2.registerShape('point', 'custom-shape', {
   draw(cfg, group) {
@@ -292,7 +292,7 @@ import {
   ColumnConfig,
   Plot,
   PlotEvent,
-} from '@ant-design/charts';
+} from '@ant-design/plots';
 
 type Base = LineConfig | AreaConfig | ColumnConfig;
 
@@ -406,7 +406,7 @@ downloadImage(name, [type,encoderOptions])
 
 ```tsx
 import React, { useRef } from 'react';
-import { Line } from '@ant-design/charts';
+import { Line } from '@ant-design/plots';
 
 const DemoLine: React.FC = () => {
   const data = [

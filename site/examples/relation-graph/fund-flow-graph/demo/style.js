@@ -124,6 +124,7 @@ const DemoFundFlowGraph = () => {
       return {
         position: 'right',
         show: edges.find((item) => item.source === cfg.id),
+        collapsed: !edges.find((item) => item.source === cfg.id),
       };
     },
   };

@@ -12,10 +12,7 @@ order: 6
 
 
 <style>
-  .gatsby-highlight + p {
-    margin-top: 18px;
-  }
-  
+
   table {
     margin-top: 12px !important;
   }
@@ -621,7 +618,7 @@ type AnnotationTextCfg = {
 
 ```plain
 
-`markdown:docs/common/annotations/base-annotation.zh.md`
+<embed src="@/docs/common/annotations/base-annotation.zh.md"></embed>
 ```
 
 
