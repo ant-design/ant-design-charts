@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from './render';
+import { render } from 'rc-utils';
 
 const TOOLTIP_CONTAINER_MAPPING = new Map();
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ChartLoadingConfig {
+export interface ChartLoadingConfig {
   /**
    * @title 主题
    * @description 配置主题颜色

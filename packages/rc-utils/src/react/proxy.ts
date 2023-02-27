@@ -2,20 +2,25 @@ import { proxy } from 'valtio';
 
 export { useSnapshot } from 'valtio';
 
-export type IProxy = ProxyHandler<object>;
+export type IProxy = object;
 
 export const stateCache = new WeakMap();
 
-export const snapProxy = (state: object): IProxy => {
-  if (!stateCache.get(state)) {
-    stateCache.set(state, proxy(state));
+export function snapProxy<T extends object>(proxyObject: T): T {
+  if (!stateCache.get(proxyObject)) {
+    stateCache.set(proxyObject, proxy(proxyObject));
   }
-  return stateCache.get(state);
-};
+  return stateCache.get(proxyObject);
+}
 
-export const stateProxy = (config: object) => {
+export function stateProxy<T extends object>(
+  proxyObject: T,
+): {
+  state: T;
+  snap: () => T;
+} {
   return {
-    state: snapProxy(config),
-    getSnap: () => snapProxy(config),
+    state: snapProxy(proxyObject),
+    snap: () => snapProxy(proxyObject),
   };
-};
+}

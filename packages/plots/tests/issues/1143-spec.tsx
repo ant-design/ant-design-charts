@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../src/utils';
+import { render } from 'rc-utils';
 import { act } from 'react-dom/test-utils';
 import Column from '../../src/components/column';
 

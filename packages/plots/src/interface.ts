@@ -107,6 +107,8 @@ type ContainerConfig = {
  */
 export type PlotEvent = G2.Event;
 
+export type ProxyState = object;
+
 export interface BaseConfig<O extends Omit<AllBaseConfig, 'tooltip'>, P extends Plot<O> = Plot<O>>
   extends ContainerConfig {
   /**
@@ -116,13 +118,6 @@ export interface BaseConfig<O extends Omit<AllBaseConfig, 'tooltip'>, P extends 
    * @description.en_US Set chart tooltip
    */
   tooltip?: false | Tooltip;
-  /**
-   * @title 图表实例
-   * @description 获取图表实例
-   * @title.en_US Chart instance
-   * @description.en_US Get chart instance
-   */
-  chartRef?: ChartRefConfig;
   /**
    * @title 图表渲染
    * @description 图表渲染完成执行回调
@@ -139,5 +134,23 @@ export interface BaseConfig<O extends Omit<AllBaseConfig, 'tooltip'>, P extends 
   onEvent?: (chart: P, event: PlotEvent) => void;
 }
 
+export type CommonConfig<T = BaseConfig<Options>> = {
+  /**
+   * @title 图表配置项
+   */
+  config: T;
+  /**
+   * @title proxy object
+   * @description 修改对应数据可触发图表刷新
+   * @example:
+   *  state.data = newData
+   */
+  proxy?: (state: ProxyState) => void;
+  /**
+   * @title 内部属性，只读
+   */
+  readonly chartType?: string;
+};
+
 export * from './components/interface';
-export { Datum };
+export { Datum, Options, Plot };

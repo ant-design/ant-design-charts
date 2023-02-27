@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { render } from 'rc-utils';
 import { act } from 'react-dom/test-utils';
+import { renderHook } from '@testing-library/react-hooks/server';
 import { Column } from '../../src';
+import { setTimeout } from 'timers';
+
+const ref: any = renderHook(() => useRef());
 
 describe('Proxy config', () => {
   let container;
@@ -24,8 +28,8 @@ describe('Proxy config', () => {
     document.body.appendChild(container);
   });
   afterEach(() => {
-    document.body.removeChild(container);
-    container = null;
+    // document.body.removeChild(container);
+    // container = null;
   });
 
   it('chart render', async () => {
@@ -41,7 +45,7 @@ describe('Proxy config', () => {
       onReady: (plotInstance) => (plot = plotInstance),
     };
     act(() => {
-      render(<Column config={config} proxy={proxy} />, container);
+      render(<Column config={config} proxy={proxy} ref={ref} />, container);
     });
     expect(stateProxy['xField']).toBe('date');
     stateProxy.data = [...stateProxy.data, { date: '2010-04', scales: 1250 }];
