@@ -292,7 +292,7 @@ export interface CommonConfig<T = any> extends GraphContainerConfig {
   height?: number;
   pixelRatio?: number;
   /** 不同组件 layout 有差别，参考对应组件文档 */
-  layout?: T;
+  layout?: Partial<T>;
   /** 边配置 */
   edgeCfg?: EdgeCfg;
   /** 节点配置 */
