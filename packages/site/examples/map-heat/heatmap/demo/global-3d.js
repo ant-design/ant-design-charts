@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { HeatMap } from '@ant-design/maps';
+import { GeographicHeatmap } from '@ant-design/maps';
 
-const DemoHeatMap = () => {
+const DemoGeographicHeatmap = () => {
   const [data, setData] = useState({ type: 'FeatureCollection', features: [] });
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const DemoHeatMap = () => {
         type: 'geojson',
       },
     },
-    shape: 'heatmap3D',
+    shape: 'GeographicHeatmap3D',
     size: {
       field: 'mag',
     },
@@ -40,7 +40,7 @@ const DemoHeatMap = () => {
     },
   };
 
-  return <HeatMap {...config} />;
+  return <GeographicHeatmap {...config} />;
 };
 
-ReactDOM.render(<DemoHeatMap />, document.getElementById('container'));
+ReactDOM.render(<DemoGeographicHeatmap />, document.getElementById('container'));

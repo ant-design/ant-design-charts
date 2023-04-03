@@ -5,14 +5,6 @@
   },
   "demos": [
     {
-      "filename": "europe-pop-est.js",
-      "title": {
-        "zh": "2019 欧洲总人口数",
-        "en": "2019 Europe pop-est"
-      },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/lxHiE3f%24jB/2ab86960-79ee-477d-a656-8f86d71de072.png"
-    },
-    {
       "filename": "us-states-density.js",
       "title": {
         "zh": "美国人口密度",
