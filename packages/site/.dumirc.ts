@@ -253,14 +253,6 @@ export default defineConfig({
           en: 'Treemap',
         },
       },
-      {
-        slug: 'facet',
-        icon: 'gallery',
-        title: {
-          zh: 'Facet',
-          en: '分面图',
-        },
-      },
       // OTHERS
       {
         slug: 'plugin',
