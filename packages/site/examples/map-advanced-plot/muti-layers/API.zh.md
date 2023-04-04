@@ -1,1 +1,1 @@
-`markdown:docs/map-api/advanced-plot/index.zh.md`
+<embed src="@/docs/api/maps/advanced-plot/index.zh.md"></embed>

@@ -44,7 +44,7 @@ type CoordinateCfg = {
 
 <description>**optional** *object | false*</description>
 
-view 上的图形坐标轴配置，key 值对应 `xField` 和 `yField`， value 具体配置见：[Axis API](/en/docs/api/components/axis)
+view 上的图形坐标轴配置，key 值对应 `xField` 和 `yField`， value 具体配置见：[Axis API](/en/docs/api/plots/components/axis)
 
 <div class="sign">
 
@@ -60,7 +60,7 @@ view 上的图形坐标轴配置，key 值对应 `xField` 和 `yField`， value 
 
 <description>**optional** *object\[]* </description>
 
-Annotations of geometry in view, see more: [Annotations API](/en/docs/api/components/annotations)
+Annotations of geometry in view, see more: [Annotations API](/en/docs/api/plots/components/annotations)
 
 #### IView.interactions
 

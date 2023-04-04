@@ -1,1 +1,1 @@
-`markdown:docs/map-api/plots/heatmap.en.md`
+<embed src="@/docs/api/maps/plots/heatmap.en.md"></embed>

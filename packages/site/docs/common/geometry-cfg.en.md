@@ -88,7 +88,7 @@ The mapping fields of `tooltip`,
 
 <description>**optional** *object*</description>
 
-The mapping of `label`, see more: [Label API](/en/docs/api/components/label)
+The mapping of `label`, see more: [Label API](/en/docs/api/plots/components/label)
 
 #### IGeometry.adjust
 

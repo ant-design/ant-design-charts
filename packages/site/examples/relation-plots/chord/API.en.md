@@ -1,2 +1,2 @@
-`markdown:docs/common/chord.zh.md`
+<embed src="@/docs/api/plots/chord.zh.md"></embed>
 

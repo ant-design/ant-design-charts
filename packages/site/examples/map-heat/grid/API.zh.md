@@ -1,1 +1,1 @@
-`markdown:docs/map-api/plots/grid.zh.md`
+<embed src="@/docs/api/maps/plots/grid.zh.md"></embed>

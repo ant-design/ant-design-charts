@@ -48,7 +48,7 @@ Ant Design Charts 使用 [G](https://github.com/antvis/g) 作为绘图引擎，�
 
 ## 配置线的样式
 
-`markdown:docs/common/line-style.zh.md`
+<embed src="@/docs/common/line-style.zh.md"></embed>
 
 在折线图中，你可以直接使用 `linestyle` 来配置 line 几何图形的样式。示例:
 

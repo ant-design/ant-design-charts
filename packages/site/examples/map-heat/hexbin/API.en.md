@@ -1,1 +1,1 @@
-`markdown:docs/map-api/plots/hexbin.en.md`
+<embed src="@/docs/api/maps/plots/hexbin.en.md"></embed>

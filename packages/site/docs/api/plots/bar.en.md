@@ -274,7 +274,7 @@ Additional configuration for squarePattern
 
 Specify the padding of interval, pixel value.  Used in GroupColumn plot.
 
-<playground path='bar/grouped/interval-padding.ts' rid='rect1'></playground>
+<Playground path='bar/grouped/interval-padding.ts' rid='rect1'></playground>
 
 #### dodgePadding
 
@@ -282,7 +282,7 @@ Specify the padding of interval, pixel value.  Used in GroupColumn plot.
 
 Specify the padding of interval on the same group, pixel value. Used in GroupColumn plot.
 
-<playground path='bar/grouped/dodge-padding.ts' rid='rect2'></playground>
+<Playground path='bar/grouped/dodge-padding.ts' rid='rect2'></playground>
 
 #### minBarWidth
 
@@ -794,7 +794,7 @@ legend: {
 
 尝试一下：
 
-<playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
+<Playground path="component/legend/demo/legend-position.jsx" rid="legend-position"></playground>
 
 ##### offsetX
 
@@ -883,7 +883,7 @@ pageNavigator: {
 },
 ```
 
-<playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
+<Playground path="component/legend/demo/legend-flippage.ts" rid="page-navigator"></playground>
 
 ##### itemHeight
 
@@ -971,7 +971,7 @@ type Marker = {
 };
 ```
 
-<playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
+<Playground path="component/legend/demo/legend-item-value.ts" rid="legend-item-value"></playground>
 
 ##### itemSpacing
 
@@ -1142,7 +1142,7 @@ legend: {
 }
 ```
 
-<playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
+<Playground path='component/legend/demo/legend-focus.ts' rid='legend-selected'></playground>
 
 ##### slidable
 
@@ -1373,7 +1373,7 @@ type TooltipCrosshairsTextCallback = (type: string, defaultContent: any, items: 
 
 <!-- 容器无限变大 -->
 
-<!-- <playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
+<!-- <Playground path="more-plots/stock/demo/custom-crosshairs.ts" rid="crosshairs" height="400"></playground> -->
 
 
 ***TextBackgroundStyle***
@@ -2035,7 +2035,7 @@ type AnnotationTextCfg = {
 
 ```plain
 
-`markdown:docs/common/annotations/base-annotation.zh.md`
+<embed src="@/docs/common/annotations/base-annotation.zh.md"></embed>
 ```
 
 
@@ -2411,7 +2411,7 @@ type ConnectedAreaStyleCfg = ShapeAttrs | ((oldStyle: ShapeAttrs, element: Eleme
 
 **Examples:**
 
-<playground path="column/stacked/demo/connect-area.ts" rid="connectedArea"></playground>
+<Playground path="column/stacked/demo/connect-area.ts" rid="connectedArea"></playground>
 
 
 ### Plot Event
@@ -2630,7 +2630,7 @@ plot.update({ theme: { defaultColor: '#FF6B3B' } });
 
 In addition, G2 provides a custom topic mechanism to define a new topic structure, allowing users to switch and define chart topics. Go [G2 | Custom theme](https://g2.antv.vision/en/docs/api/advanced/register-theme) for more details.
 
-<playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
+<Playground path="general/theme/demo/register-theme.ts" rid="rect-register-theme"></playground>
 
 🌰 Customize theme [DEMO](/zh/examples/general/theme#register-theme)
 
@@ -2708,7 +2708,7 @@ export type ButtonCfg = {
 
 example:
 
-<playground path="dynamic-plots/brush/demo/advanced-brush1.ts" rid="brush-filter-event"></playground>
+<Playground path="dynamic-plots/brush/demo/advanced-brush1.ts" rid="brush-filter-event"></playground>
 
 2.  List of vents of `brush-highlight` interaction,
 
@@ -2721,7 +2721,7 @@ example:
 
 example:
 
-<playground path="dynamic-plots/brush/demo/advanced-brush2.ts" rid="brush-highlight-event"></playground>
+<Playground path="dynamic-plots/brush/demo/advanced-brush2.ts" rid="brush-highlight-event"></playground>
 
 
 #### Add interactions

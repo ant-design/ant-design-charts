@@ -59,14 +59,6 @@
         "en": "Stock plot with slider"
       },
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/H1Rf%26M6wMO/af51e97a-7665-4591-a3f0-9c7931b15b76.png"
-    },
-    {
-      "filename": "large-data.js",
-      "title": {
-        "zh": "超大数据量的股票图",
-        "en": "Stock plot with large data"
-      },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/0q2UxejfIL/f68c60f0-f044-47dd-b217-efa224215145.png"
     }
   ]
 }
