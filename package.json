@@ -9,7 +9,8 @@
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "ci:version": "pnpm changeset version",
-    "add:changelog": "pnpm changeset"
+    "add:changelog": "pnpm changeset",
+    "build:site": "pnpm -r --stream --filter=./packages/site run build"
   },
   "devDependencies": {
     "@antv/data-set": "^0.11.8",
