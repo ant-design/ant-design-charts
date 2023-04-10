@@ -10,6 +10,7 @@ node_modules
 /pnpm-debug.log
 /**/pnpm-debug.log
 /**/.dumi/tmp
+/**/.dumi/tmp-production
 # production
 dist
 lib

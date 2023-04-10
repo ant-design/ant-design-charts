@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@ant-design/charts-site",
-  "version": "0.0.1-beta.4",
+  "version": "1.4.2",
   "description": "React Visual component library",
   "keywords": [
     "antv",
@@ -25,7 +25,7 @@
     "build": "NODE_OPTIONS=--max_old_space_size=12288 dumi build",
     "develop": "cross-env DUMI=true dumi dev",
     "deploy": "pnpm run build && gh-pages -d public",
-    "start": "NODE_OPTIONS=--max_old_space_size=8192 pnpm run develop"
+    "start": "NODE_OPTIONS=--max_old_space_size=8192 npm run develop"
   },
   "devDependencies": {
     "@antv/dumi-theme-antv": "^0.3.0",

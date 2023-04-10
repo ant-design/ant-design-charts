@@ -90,6 +90,15 @@ export default defineConfig({
         },
         order: 0,
       },
+      // 关系图
+      {
+        slug: 'api/flowchart',
+        title: {
+          zh: '流程图',
+          en: 'Flowchart',
+        },
+        order: 4,
+      },
       // 地图
       {
         slug: 'api/maps',
@@ -284,14 +293,6 @@ export default defineConfig({
         title: {
           zh: '区域地图',
           en: 'Area Map',
-        },
-      },
-      {
-        slug: 'map-choropleth',
-        icon: 'polygon',
-        title: {
-          zh: '行政区域地图',
-          en: 'Choropleth Map',
         },
       },
       {
