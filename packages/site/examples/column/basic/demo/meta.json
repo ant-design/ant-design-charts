@@ -59,14 +59,6 @@
         "en": "Column plot with conversion tag"
       },
       "screenshot": "https://gw.alicdn.com/tfs/TB1u3.cvUY1gK0jSZFMXXaWcVXa-1638-1228.png"
-    },
-    {
-      "filename": "region-annotation.js",
-      "title": {
-        "zh": "带辅助框标注的基础柱状图",
-        "en": "Basic column plot with region annotation"
-      },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/ceFSs9FuNn/2922d5e4-df5f-4512-8f8f-6f2ec258c7b8.png"
     }
   ]
 }

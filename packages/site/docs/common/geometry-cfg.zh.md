@@ -87,7 +87,7 @@ tooltip 映射字段。
 
 <description>**可选** *object*</description>
 
-label 映射通道，具体见 [Label API](/zh/docs/api/components/label)
+label 映射通道，具体见 [Label API](/zh/docs/api/plots/components/label)
 
 #### IGeometry.adjust
 

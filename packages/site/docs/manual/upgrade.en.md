@@ -1,1 +1,1 @@
-`markdown:docs/api/manual/upgrade.zh.md`
+<embed src="@/docs/manual/upgrade.zh.md"></embed>

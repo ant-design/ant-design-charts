@@ -245,8 +245,8 @@ Layout.
 
 ### Functions
 
-[Reference](/en/docs/api/common-graph/common-graph#functions)
+[Reference](/en/docs/api/graphs/common/common-graph#functions)
 
 ### Events
 
-[Reference](/en/docs/api/common-graph/common-graph#events)
+[Reference](/en/docs/api/graphs/common/common-graph#events)

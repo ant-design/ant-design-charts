@@ -9,6 +9,7 @@ node_modules
 /package-lock.json
 /pnpm-debug.log
 /**/pnpm-debug.log
+/**/.dumi/tmp
 # production
 dist
 lib
@@ -30,3 +31,4 @@ logs
 
 # temp
 temp-gallery.md
+

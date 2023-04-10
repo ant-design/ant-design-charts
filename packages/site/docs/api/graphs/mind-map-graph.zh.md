@@ -457,8 +457,8 @@ interface MiniMapConfig {
 
 ### 方法
 
-[详见](/zh/docs/api/common-graph/common-graph#方法)
+[详见](/zh/docs/api/graphs/common/common-graph#方法)
 
 ### 事件
 
-[详见](/zh/docs/api/common-graph/common-graph#事件)
+[详见](/zh/docs/api/graphs/common/common-graph#事件)
