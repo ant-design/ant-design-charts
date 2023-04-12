@@ -50,6 +50,8 @@ rm -rf ./config
 
 rm -rf ./node_modules
 
+cp -r ./public/CNAME .
+
 rm -rf ./public
 
 rm -rf ./template
