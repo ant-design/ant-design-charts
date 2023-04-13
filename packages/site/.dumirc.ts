@@ -330,8 +330,8 @@ export default defineConfig({
     ],
     detail: {
       title: {
-        zh: 'AntV react 可视化组件库',
-        en: 'AntV react component library',
+        zh: 'AntV React 可视化组件库',
+        en: 'AntV React component library',
       },
       description: {
         zh: '简单好用的 React 图表库。',
