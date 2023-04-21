@@ -1,5 +1,5 @@
 import G6, { IGroup, Node } from '@antv/g6';
-import { clone, deepMix, each, isBoolean, isPlainObject, mix } from '@antv/util';
+import { clone, deepMix, each, isBoolean, isPlainObject, mix, omit } from '@antv/util';
 import { defaultCardStyle, defaultLabelStyle, defaultLineLabelStyle, defaultMargin, prefix } from '../../constants';
 import { CardItems, CardNodeCfg, EdgeCfg, EdgeConfig, IPoint, IShape, CardItem } from '../../interface';
 import {
@@ -288,7 +288,9 @@ export const registerIndicatorGeometries = () => {
                   text: item[key],
                   img: item[key],
                   ...(isIcon ? defaultIconStyle : defaultLabelStyle),
-                  ...getStyle(itemStyle || labelStyle, cfg, group, key),
+                  ...(isIcon
+                    ? omit(getStyle(itemStyle || labelStyle, cfg, group, key), ['fill'])
+                    : getStyle(itemStyle || labelStyle, cfg, group, key)),
                 },
                 name: `${key}-${index}-${keyIndex}`,
                 draggable,
