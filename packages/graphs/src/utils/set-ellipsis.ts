@@ -7,6 +7,9 @@ export const setEllipsis = (text: string, fontStyle: { [key: string]: unknown },
   let currentText = text;
   let flag = false;
   ctx.fillText(currentText, 0, 0);
+  if(text.length === 1) {
+    return text;
+  }
   for (let i = text.length - 1; i > 0; i--) {
     const { width } = ctx.measureText(currentText);
     if (width <= contentWidth) {
