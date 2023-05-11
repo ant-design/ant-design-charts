@@ -12,7 +12,7 @@ export const processMenu = (cfg: MenuConfig = {}, graph: Graph): void => {
   if (pluginMenu) {
     graph.removePlugin(pluginMenu);
   }
-  if (cfg.show || cfg.show === undefined) {
+  if (cfg.show || (cfg.show === undefined && Object.keys(cfg).length > 0)) {
     const menu = new Menu({
       offsetX: 16 + 10,
       offsetY: 0,
