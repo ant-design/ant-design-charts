@@ -10,9 +10,13 @@ export const createFetchLoading = (node: NodeConfig, fetchLoading: FetchLoading)
   if (fetchLoading) {
     const loadingTemplate = isFunction(fetchLoading) ? fetchLoading(node) : fetchLoading;
     document.body.appendChild(
-      createNode(loadingTemplate, {
-        className: loadingClassName,
-      }),
+      createNode(
+        loadingTemplate,
+        {
+          className: loadingClassName,
+        },
+        'fetchloading',
+      ),
     );
   } else {
     const container = document.createElement('div');
