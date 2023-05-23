@@ -2,11 +2,11 @@ import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
 import { stateProxy, useSnapshot, ErrorBoundary, ChartLoading } from 'rc-utils';
 import useChart from '../../hooks/useChart';
 import { Plots } from './plots';
-import { CommonConfig, Options, Plot } from '../../interface';
+import { CommonConfig, Chart } from '../../interface';
 
 export const BaseChart = forwardRef(({ config, proxy, chartType }: CommonConfig, ref) => {
   const { snap, state } = stateProxy(config);
-  const snapshot = useSnapshot(state);
+  const snapshot = useSnapshot(state) as any;
   const {
     style = {
       height: 'inherit',
@@ -17,7 +17,7 @@ export const BaseChart = forwardRef(({ config, proxy, chartType }: CommonConfig,
     errorTemplate,
   } = snapshot;
 
-  const { chart, container } = useChart<Plot<Options>, CommonConfig['config']>(Plots[chartType], snapshot);
+  const { chart, container } = useChart<Chart, CommonConfig['config']>(Plots[chartType], snapshot);
 
   useEffect(() => {
     if (typeof proxy === 'function') proxy(snap());

@@ -2,7 +2,7 @@
 
 <div align="center">
 
-A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), [G6](https://github.com/antvis/G6), [X6](https://github.com/antvis/X6), [L7Plot](https://github.com/antvis/L7Plot).
+A React chart library, based on [G2Plot](https://github.com/antvis/G2Plot), [G6](https://github.com/antvis/G6), [XFlow](https://github.com/antvis/XFlow), [L7Plot](https://github.com/antvis/L7Plot).
 
 ![build](https://github.com/ant-design/ant-design-charts/workflows/build/badge.svg)
 ![npm](https://img.shields.io/npm/v/@ant-design/charts)
@@ -70,25 +70,29 @@ const Page: React.FC = () => {
     { year: '1999', value: 13 },
   ];
 
-  const config = {
-    data,
-    width: 800,
-    height: 400,
-    autoFit: false,
-    xField: 'year',
-    yField: 'value',
-    point: {
-      size: 5,
-      shape: 'diamond',
-    },
-    label: {
-      style: {
-        fill: '#aaa',
+  let chart;
+
+  const props = {
+    config: {
+      data,
+      width: 800,
+      height: 400,
+      autoFit: false,
+      xField: 'year',
+      yField: 'value',
+      point: {
+        size: 5,
+        shape: 'diamond',
       },
-    },
+      label: {
+        style: {
+          fill: '#aaa',
+        },
+      },
+      onReady: (chartInstance) => chart = chartInstance
+    }
   };
 
-  let chart;
 
   // Export Image
   const downloadImage = () => {
@@ -108,7 +112,7 @@ const Page: React.FC = () => {
       <button type="button" onClick={toDataURL}>
         Get base64
       </button>
-      <Line {...config} onReady={(chartInstance) => (chart = chartInstance)} />
+      <Line {...props} />
     </div>
   );
 };
@@ -134,6 +138,16 @@ See chart API for details. Common props:
 | className | container class | string | - |
 | style | container style | React.CSSProperties | - |
 
+## Development
+
+ Clone locally:
+
+```bash
+$ git clone git@github.com:ant-design/ant-design-charts.git
+$ cd ant-design-charts
+$ pnpm install
+$ pnpm start
+```
 
 ## 🤝 How to Contribute
 

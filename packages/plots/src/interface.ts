@@ -1,43 +1,12 @@
-import {
-  Plot,
-  Options,
-  G2,
-  DualAxesOptions,
-  GaugeOptions,
-  BulletOptions,
-  MixOptions,
-  TreemapOptions,
-  TooltipOptions as BaseTooltip,
-  Datum,
-} from '@antv/g2plot';
+import { Plot, Options, G2, TooltipOptions as BaseTooltip, Datum } from '@antv/g2plot';
 
-interface TinyPlotOptions extends Omit<Options, 'data' | 'legend' | 'label'> {
-  data: number[];
-}
 /**
  * @title 基础配置
  * @description 整合所有基础配置
  * @title.en_US Basic configuration
  * @description.en_US Consolidate all basic configurations
  */
-export type AllBaseConfig =
-  | Options
-  | DualAxesOptions
-  | GaugeOptions
-  | TinyPlotOptions
-  | BulletOptions
-  | MixOptions
-  | TreemapOptions;
-
-/**
- * @title 图表配置
- * @description 默认配置或自定义配置
- * @title.en_US Chart configuration
- * @description.en_US Default or custom configuration
- */
-export type ChartRefConfig =
-  | ((chart: Plot<AllBaseConfig>) => void)
-  | React.MutableRefObject<Plot<AllBaseConfig> | undefined>;
+export type AllBaseConfig = Options;
 
 /**
  * @title 图表浮窗配置
@@ -48,12 +17,12 @@ export interface Tooltip extends Omit<BaseTooltip, 'customContent' | 'container'
   container?: React.ReactNode;
 }
 
-export interface BasePlot extends Plot<any> {
+export interface Chart extends Plot<Options> {
   toDataURL?: (type?: string, encoderOptions?: number) => string;
   downloadImage?: (name?: string, type?: string, encoderOptions?: number) => string;
 }
 
-type ContainerConfig = {
+export interface ContainerConfig {
   /**
    * @title 图表样式
    * @description 配置图表样式
@@ -97,20 +66,9 @@ type ContainerConfig = {
    * @title.en_US Chart tooltip
    * @description.en_US Setting chart tooltip
    */
-};
+}
 
-/**
- * @title 事件
- * @description 事件类型的浅拷贝
- * @title.en_US event
- * @description.en_US Shallow copy of event type
- */
-export type PlotEvent = G2.Event;
-
-export type ProxyState = object;
-
-export interface BaseConfig<O extends Omit<AllBaseConfig, 'tooltip'>, P extends Plot<O> = Plot<O>>
-  extends ContainerConfig {
+export interface AttachConfig {
   /**
    * @title 浮窗提示
    * @description 设置浮窗提示
@@ -124,21 +82,31 @@ export interface BaseConfig<O extends Omit<AllBaseConfig, 'tooltip'>, P extends 
    * @title.en_US Chart rendering
    * @description.en_US Callback when chart rendering is complete
    */
-  onReady?: (chart: P) => void;
+  onReady?: (chart: Chart) => void;
   /**
    * @title 图形事件
    * @description 任何图形事件触发回调
    * @title.en_US Graphics event
    * @description.en_US Any graphics event triggers a callback
    */
-  onEvent?: (chart: P, event: PlotEvent) => void;
+  onEvent?: (chart: Chart, event: PlotEvent) => void;
 }
 
-export type CommonConfig<T = BaseConfig<Options>> = {
+/**
+ * @title 事件
+ * @description 事件类型的浅拷贝
+ * @title.en_US event
+ * @description.en_US Shallow copy of event type
+ */
+export type PlotEvent = G2.Event;
+
+export type ProxyState = object;
+
+export type CommonConfig<T = Options> = {
   /**
    * @title 图表配置项
    */
-  config: T;
+  config: T & AttachConfig & ContainerConfig;
   /**
    * @title proxy object
    * @description 修改对应数据可触发图表刷新
@@ -153,4 +121,4 @@ export type CommonConfig<T = BaseConfig<Options>> = {
 };
 
 export * from './components/interface';
-export { Datum, Options, Plot };
+export { Datum, Options, G2, Plot };

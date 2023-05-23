@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { Column } from '@ant-design/plots';
 
 const DemoColumn = () => {
+  const proxyRef = useRef(null);
   const data = [
     {
       type: '家具家电',
@@ -37,36 +38,50 @@ const DemoColumn = () => {
       sales: 38,
     },
   ];
-  const config = {
-    data,
-    xField: 'type',
-    yField: 'sales',
-    label: {
-      // 可手动配置 label 数据标签位置
-      position: 'middle',
-      // 'top', 'bottom', 'middle',
-      // 配置样式
-      style: {
-        fill: '#FFFFFF',
-        opacity: 0.6,
-      },
-    },
-    xAxis: {
+  const props = {
+    config: {
+      data,
+      xField: 'type',
+      yField: 'sales',
       label: {
-        autoHide: true,
-        autoRotate: false,
+        // 可手动配置 label 数据标签位置
+        position: 'middle',
+        // 'top', 'bottom', 'middle',
+        // 配置样式
+        style: {
+          fill: '#FFFFFF',
+          opacity: 0.6,
+        },
+      },
+      xAxis: {
+        label: {
+          autoHide: true,
+          autoRotate: false,
+        },
+      },
+      meta: {
+        type: {
+          alias: '类别',
+        },
+        sales: {
+          alias: '销售额',
+        },
       },
     },
-    meta: {
-      type: {
-        alias: '类别',
-      },
-      sales: {
-        alias: '销售额',
-      },
-    },
+    proxy: (proxy) => (proxyRef.current = proxy),
   };
-  return <Column {...config} />;
+  return (
+    <div>
+      <button
+        onClick={() => {
+          proxyRef.current.data.pop();
+        }}
+      >
+        改变数据
+      </button>
+      <Column {...props} />
+    </div>
+  );
 };
 
 ReactDOM.render(<DemoColumn />, document.getElementById('container'));

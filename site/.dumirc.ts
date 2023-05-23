@@ -123,148 +123,11 @@ export default defineConfig({
         },
       },
       {
-        slug: 'line',
-        icon: 'line', // 图表名可以去 https://antv.alipay.com/zh-cn/g2/3.x/demo/index.html 打开控制台查看图标类名
-        title: {
-          zh: '折线图',
-          en: 'Line',
-        },
-      },
-      {
-        slug: 'area',
-        icon: 'area',
-        title: {
-          zh: '面积图',
-          en: 'Area',
-        },
-      },
-      {
         slug: 'column',
         icon: 'column',
         title: {
           zh: '柱形图',
           en: 'Column',
-        },
-      },
-      {
-        slug: 'bar',
-        icon: 'bar',
-        title: {
-          zh: '条形图',
-          en: 'Bar',
-        },
-      },
-      {
-        slug: 'pie',
-        icon: 'pie',
-        title: {
-          zh: '饼图',
-          en: 'Pie',
-        },
-      },
-      {
-        slug: 'dual-axes',
-        icon: 'line',
-        title: {
-          zh: '双轴图',
-          en: 'Dual Axes',
-        },
-      },
-      {
-        slug: 'progress-plots',
-        icon: 'gauge',
-        title: {
-          zh: '进度图',
-          en: 'Progress Plots',
-        },
-      },
-      {
-        slug: 'scatter',
-        icon: 'point',
-        title: {
-          zh: '散点气泡图',
-          en: 'Scatter and Bubble',
-        },
-      },
-      {
-        slug: 'rose',
-        icon: 'rose',
-        title: {
-          zh: '玫瑰图',
-          en: 'Rose',
-        },
-      },
-      {
-        slug: 'relation-plots',
-        icon: 'sankey',
-        title: {
-          zh: '关系图',
-          en: 'Relation Plots',
-        },
-      },
-      {
-        slug: 'heatmap',
-        icon: 'heatmap',
-        title: {
-          zh: '热力图',
-          en: 'Heatmap',
-        },
-      },
-      {
-        slug: 'tiny',
-        icon: 'other',
-        title: {
-          zh: '迷你图',
-          en: 'Tiny Plots',
-        },
-      },
-      {
-        slug: 'more-plots',
-        icon: 'other',
-        title: {
-          zh: '更多图表',
-          en: 'More Plots',
-        },
-      },
-      {
-        slug: 'treemap',
-        icon: 'other',
-        title: {
-          zh: '矩形树图',
-          en: 'Treemap',
-        },
-      },
-      {
-        slug: 'facet',
-        icon: 'gallery',
-        title: {
-          zh: 'Facet',
-          en: '分面图',
-        },
-      },
-      // OTHERS
-      {
-        slug: 'plugin',
-        icon: 'other',
-        title: {
-          zh: '高级图表',
-          en: 'Advanced Plots',
-        },
-      },
-      {
-        slug: 'dynamic-plots',
-        icon: 'other',
-        title: {
-          zh: '动态交互',
-          en: 'Dynamic Plots',
-        },
-      },
-      {
-        slug: 'component',
-        icon: 'other',
-        title: {
-          zh: '图表组件',
-          en: 'Components',
         },
       },
       {
@@ -305,14 +168,6 @@ export default defineConfig({
         title: {
           zh: '多图层',
           en: 'Advanced Map',
-        },
-      },
-      {
-        slug: 'general',
-        icon: 'other',
-        title: {
-          zh: '通用配置',
-          en: 'General Configuration',
         },
       },
     ],

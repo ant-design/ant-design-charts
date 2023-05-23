@@ -1,18 +1,11 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { isEqual, get } from '@antv/util';
 import { G2 } from '@antv/g2plot';
 import createNode from '../utils/createNode';
 import { hasPath, isType, deepClone, clone, setPath, uuid } from '../utils';
-import { BasePlot, BaseConfig, AllBaseConfig } from '../interface';
+import { CommonConfig, Chart } from '../interface';
 
-interface Base extends BaseConfig<AllBaseConfig> {
-  data?: any;
-  value?: number;
-  /** Gauge、Liquid、Progress、RingProgress */
-  percent?: number;
-}
-
-export default function useInit<T extends BasePlot, U extends Base>(ChartClass: any, config: U) {
+export default function useInit<T extends Chart, U extends CommonConfig['config']>(ChartClass: T, config: U) {
   const chart = useRef<T>();
   const chartOptions = useRef<U>();
   const container = useRef<HTMLDivElement>(null);
@@ -85,13 +78,8 @@ export default function useInit<T extends BasePlot, U extends Base>(ChartClass: 
       let changeData = false;
       if (chartOptions.current) {
         // 从 options 里面取出 data 、value 、 percent 进行比对，判断是否仅数值发生改变
-        const {
-          data: currentData,
-          value: currentValue,
-          percent: currentPercent,
-          ...currentConfig
-        } = chartOptions.current;
-        const { data: inputData, value: inputValue, percent: inputPercent, ...inputConfig } = config;
+        const { data: currentData, ...currentConfig } = chartOptions.current;
+        const { data: inputData, ...inputConfig } = config;
         changeData = isEqual(currentConfig, inputConfig);
       }
       chartOptions.current = deepClone(config);

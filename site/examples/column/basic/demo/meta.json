@@ -11,54 +11,6 @@
         "en": "Basic column plot"
       },
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*KAg2TY-oYRUAAAAAAAAAAAAAARQnAQ"
-    },
-    {
-      "filename": "color.js",
-      "title": {
-        "zh": "自定义柱状图颜色",
-        "en": "Column plot color"
-      },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dr27SafKNzIAAAAAAAAAAAAAARQnAQ"
-    },
-    {
-      "filename": "width-ratio.js",
-      "title": {
-        "zh": "指定柱状图宽度比例",
-        "en": "Specify column plot widthRatio"
-      },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*92VnSrkQLeAAAAAAAAAAAABkARQnAQ"
-    },
-    {
-      "filename": "width.js",
-      "title": {
-        "zh": "指定柱状图最小最大宽度",
-        "en": "Column plot with customize width"
-      },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/VXpimaHvuV/6fbe7c39-c14a-493c-ad45-4b335ab24ba9.png"
-    },
-    {
-      "filename": "slider.js",
-      "title": {
-        "zh": "带缩略轴柱状图",
-        "en": "Column plot with slider"
-      },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*QhoHQ4QIts0AAAAAAAAAAAAAARQnAQ"
-    },
-    {
-      "filename": "scrollbar.js",
-      "title": {
-        "zh": "带滚动条柱状图",
-        "en": "Column plot with scrollbar"
-      },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IkdWTaXf4vAAAAAAAAAAAABkARQnAQ"
-    },
-    {
-      "filename": "conversion-tag.js",
-      "title": {
-        "zh": "带转化率柱状图",
-        "en": "Column plot with conversion tag"
-      },
-      "screenshot": "https://gw.alicdn.com/tfs/TB1u3.cvUY1gK0jSZFMXXaWcVXa-1638-1228.png"
     }
   ]
 }
