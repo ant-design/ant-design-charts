@@ -393,7 +393,7 @@ interface TooltipCfg {
   customContent?: (item: T) => React.ReactElement;
 }
 ```
-#### menuCgf 
+#### menuCfg 
 
 <description>**optional** _object_</description>
 

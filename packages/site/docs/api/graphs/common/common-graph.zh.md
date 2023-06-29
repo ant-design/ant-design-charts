@@ -397,7 +397,7 @@ interface TooltipCfg {
 }
 ```
 
-#### menuCgf 
+#### menuCfg 
 
 <description>**optional** _object_</description>
 
