@@ -1,12 +1,10 @@
 import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
-import { stateProxy, useSnapshot, ErrorBoundary, ChartLoading } from 'rc-utils';
+import { ErrorBoundary, ChartLoading } from 'rc-utils';
 import useChart from '../../hooks/useChart';
 import { Plots } from './plots';
 import { CommonConfig, Chart } from '../../interface';
 
-export const BaseChart = forwardRef(({ config, proxy, chartType }: CommonConfig, ref) => {
-  const { snap, state } = stateProxy(config);
-  const snapshot = useSnapshot(state) as any;
+export const BaseChart: React.FC<any> = forwardRef(({ chartType, ...config }: CommonConfig, ref) => {
   const {
     style = {
       height: 'inherit',
@@ -15,19 +13,16 @@ export const BaseChart = forwardRef(({ config, proxy, chartType }: CommonConfig,
     loading,
     loadingTemplate,
     errorTemplate,
-  } = snapshot;
+    ...rest
+  } = config;
 
-  const { chart, container } = useChart<Chart, CommonConfig['config']>(Plots[chartType], snapshot);
-
-  useEffect(() => {
-    if (typeof proxy === 'function') proxy(snap());
-  }, [chart.current]);
+  const { chart, container } = useChart<Chart, CommonConfig>(Plots[chartType], rest);
 
   useImperativeHandle(ref, () => chart.current);
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
-      {loading && <ChartLoading loadingTemplate={loadingTemplate} theme={snapshot.theme} />}
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
       <div className={className} style={style} ref={container} />
     </ErrorBoundary>
   );

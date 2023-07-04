@@ -146,6 +146,7 @@ See chart API for details. Common props:
 $ git clone git@github.com:ant-design/ant-design-charts.git
 $ cd ant-design-charts
 $ pnpm install
+$ pnpm build:lib
 $ pnpm start
 ```
 

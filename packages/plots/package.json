@@ -36,7 +36,7 @@
     "test:live": "DEBUG_MODE=1 jest --watch ./tests/plots/column-proxy-spec.tsx --no-cache"
   },
   "dependencies": {
-    "@antv/g2plot": "^2.2.11",
+    "@antv/g2plot": "^3.0.0-alpha.1",
     "@antv/util": "^2.0.9",
     "react-content-loader": "^5.0.4",
     "rc-utils": "workspace:*"

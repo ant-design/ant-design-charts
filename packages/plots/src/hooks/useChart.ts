@@ -5,7 +5,7 @@ import createNode from '../utils/createNode';
 import { hasPath, isType, deepClone, clone, setPath, uuid } from '../utils';
 import { CommonConfig, Chart } from '../interface';
 
-export default function useInit<T extends Chart, U extends CommonConfig['config']>(ChartClass: T, config: U) {
+export default function useInit<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
   const chart = useRef<T>();
   const chartOptions = useRef<U>();
   const container = useRef<HTMLDivElement>(null);
@@ -124,7 +124,7 @@ export default function useInit<T extends Chart, U extends CommonConfig['config'
     if (onReady) {
       onReady(chartInstance);
     }
-    const handler = (event: G2.Event) => {
+    const handler = (event) => {
       if (onEvent) {
         onEvent(chartInstance, event);
       }

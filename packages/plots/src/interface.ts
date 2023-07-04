@@ -1,23 +1,17 @@
-import { Plot, Options, G2, TooltipOptions as BaseTooltip, Datum } from '@antv/g2plot';
-
-/**
- * @title 基础配置
- * @description 整合所有基础配置
- * @title.en_US Basic configuration
- * @description.en_US Consolidate all basic configurations
- */
-export type AllBaseConfig = Options;
+import { Options, G2, G2Spec } from '@antv/g2plot';
 
 /**
  * @title 图表浮窗配置
  * @title.en_US Chart tooltip configuration
  */
-export interface Tooltip extends Omit<BaseTooltip, 'customContent' | 'container'> {
+export interface Tooltip extends Omit<G2Spec, 'customContent' | 'container'> {
   customContent?: (title: string, data: any[]) => React.ReactNode | string | unknown;
   container?: React.ReactNode;
 }
 
-export interface Chart extends Plot<Options> {
+export type Plot = any;
+
+export interface Chart extends Plot {
   toDataURL?: (type?: string, encoderOptions?: number) => string;
   downloadImage?: (name?: string, type?: string, encoderOptions?: number) => string;
 }
@@ -98,27 +92,22 @@ export interface AttachConfig {
  * @title.en_US event
  * @description.en_US Shallow copy of event type
  */
-export type PlotEvent = G2.Event;
+export type PlotEvent = any; // 来自 G2 ，临时使用 any
 
-export type ProxyState = object;
+export type Datum = any; // 来自 G2 ，临时使用 any
 
-export type CommonConfig<T = Options> = {
-  /**
-   * @title 图表配置项
-   */
-  config: T & AttachConfig & ContainerConfig;
-  /**
-   * @title proxy object
-   * @description 修改对应数据可触发图表刷新
-   * @example:
-   *  state.data = newData
-   */
-  proxy?: (state: ProxyState) => void;
+type TransformType<T> = T extends object ? { [P in keyof T]: TransformType<T[P]> } : T;
+
+export interface Common extends AttachConfig, ContainerConfig {
+  data?: Datum[];
   /**
    * @title 内部属性，只读
    */
   readonly chartType?: string;
-};
+}
+
+export type CommonConfig<T = G2Spec> = Common & TransformType<T>;
 
 export * from './components/interface';
-export { Datum, Options, G2, Plot };
+
+export { Options, G2 };
