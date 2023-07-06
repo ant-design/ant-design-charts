@@ -105,13 +105,8 @@ export default function useGraph(
     if (!graph) {
       return;
     }
-    const {
-      type: edgeType,
-      style: edgeStyle,
-      startArrow: startArrowCfg,
-      endArrow: endArrowCfg,
-      label: labelCfg,
-    } = edgeCfg ?? {};
+    const { type: edgeType, style: edgeStyle, startArrow: startArrowCfg, endArrow: endArrowCfg, label: labelCfg } =
+      edgeCfg ?? {};
     graph.getEdges().forEach((edge: IEdge) => {
       // 资金流向图&来源去向图
       if (['fund-line', 'labels-line'].includes(edgeType)) {
@@ -287,7 +282,7 @@ export default function useGraph(
         edgeStateStyles,
       } = edgeCfg ?? {};
 
-      graphRef.current = new G6[graphClass]({
+      const graphConfig = {
         container: container.current as any,
         width: graphSize[0],
         height: graphSize[1],
@@ -314,7 +309,10 @@ export default function useGraph(
           getChildren,
           fetchLoading,
         },
-      });
+        markerCfg,
+      };
+
+      graphRef.current = new G6[graphClass](graphConfig);
       const graphId = getGraphId(graphRef.current, name);
       const graph = graphRef.current;
       graph.set('id', graphId);

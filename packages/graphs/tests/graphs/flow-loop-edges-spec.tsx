@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '../../src/utils';
 import { act } from 'react-dom/test-utils';
 import { FlowAnalysisGraph } from '../../src';
-import { FlowLoopData, FlowLoopDoubleData } from '../data';
+import { FlowLoopData, FlowLoopExpandData, FlowLoopDoubleData } from '../data';
 
 describe('Flow loop edges', () => {
   let container;
@@ -14,6 +14,38 @@ describe('Flow loop edges', () => {
   afterEach(() => {
     document.body.removeChild(container);
     container = null;
+  });
+  it('Render Flow Expand', () => {
+    let chartRef = undefined;
+    const props = {
+      className: 'container',
+      onReady: (ref) => {
+        chartRef = ref;
+      },
+    };
+    const chartProps = {
+      data: FlowLoopExpandData,
+      nodeCfg: {
+        size: [140, 25],
+      },
+      markerCfg: (cfg: any) => {
+        return {
+          position: cfg.level === '-1' ? 'left' : 'right',
+          show: cfg.level !== '-2',
+          expandDirection: cfg.level === '-1' ? 'left' : 'right', // 确定向左展开还是向右展开，默认向右
+        };
+      },
+      edgeCfg: {
+        endArrow: {},
+      },
+      behaviors: ['drag-canvas'],
+    };
+    act(() => {
+      render(<FlowAnalysisGraph {...props} {...chartProps} />, container);
+    });
+    expect(chartRef).not.toBeUndefined();
+    expect(chartRef.get('data').nodes.length).toBe(FlowLoopExpandData.nodes.length);
+    expect(chartRef.get('data').edges.length).toBe(FlowLoopExpandData.edges.length);
   });
   it('Render loop', () => {
     let chartRef = undefined;
@@ -35,7 +67,10 @@ describe('Flow loop edges', () => {
       edgeCfg: {
         endArrow: {},
       },
-      behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+      behaviors: [
+        'drag-canvas',
+        //  'zoom-canvas', 'drag-node'
+      ],
     };
     act(() => {
       render(<FlowAnalysisGraph {...props} {...chartProps} />, container);
