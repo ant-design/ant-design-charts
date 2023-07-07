@@ -76,6 +76,7 @@ export const bindEvents = (params: {
     const controlData: { edges: any[]; nodes: any[] } = graph.get('eventData').getData();
     const { edges: fullEdges = [], nodes: fullNodes } = controlData ?? {};
     const item = e.item as INode;
+    const model = item.getModel() as any;
     const markerCfgValue = typeof markerCfg === 'function' ? markerCfg(item.getModel(), item.get('group')) : markerCfg;
 
     let allTargets = getNodeTargets(nodeId, fullEdges, markerCfgValue?.expandDirection ?? 'right');
@@ -131,7 +132,7 @@ export const bindEvents = (params: {
         }
       } else if (asyncData) {
         createFetchLoading(item.getModel() as NodeConfig, fetchLoading);
-        const { nodes: asnycNodes, edges: asyncEdges } = await asyncData(item.getModel() as NodeConfig);
+        const { nodes: asyncNodes, edges: asyncEdges } = await asyncData(item.getModel() as NodeConfig);
         // modify current node collapsed status
         graph.updateItem(item, {
           collapsed: false,
@@ -142,12 +143,12 @@ export const bindEvents = (params: {
           return {
             nodes: nodes
               .map((n) => {
-                if (n.id === nodeId) n[`${prefix}_children`] = asnycNodes.map((n) => n.id);
+                if (n.id === nodeId) n[`${prefix}_children`] = asyncNodes.map((n) => n.id);
                 return n;
               })
-              .concat(asnycNodes),
+              .concat(asyncNodes),
             edges: edges.concat(
-              asyncEdges?.length ? asyncEdges : asnycNodes.map((t) => ({ source: nodeId, target: t.id })),
+              asyncEdges?.length ? asyncEdges : asyncNodes.map((t) => ({ source: nodeId, target: t.id })),
             ),
           };
         };
@@ -182,9 +183,7 @@ export const bindEvents = (params: {
       // 处理节点的 展开 / 收起，获取所有待更新节点的数据
       handleNodeCollapse(e, nodeId, collapsed);
 
-      console.log(fullEdges, nodeId);
-
-      // 更新连接边
+      // 更新连接边 Update Edges
       const { target: updateNodeTarget } = fullEdges.find((edge) => edge.source === nodeId);
       fullEdges.forEach((edge) => {
         const { source, target } = edge;
@@ -193,7 +192,7 @@ export const bindEvents = (params: {
         }
       });
 
-      // 更新节点
+      // 更新节点 Update Nodes
       Array.from(new Set(updateIds)).forEach((id: string) => {
         updateItems.push(graph.find('node', (node) => node.get('id') === id) as INode);
       });
@@ -204,7 +203,7 @@ export const bindEvents = (params: {
         graph.refreshItem(nodeItem);
       });
 
-      // 更新marker
+      // 更新折叠图标 Update Markers
       graph.emit(MARKER_CLICK, e, {
         type: 'collapse',
         collapsed: !!collapsed,
