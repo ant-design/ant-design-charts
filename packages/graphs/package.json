@@ -39,7 +39,7 @@
     "@antv/dom-util": "^2.0.4",
     "@antv/g6": "^4.2.4",
     "@antv/layout": "^0.1.17",
-    "@antv/util": "^2.0.9",
+    "@antv/util": "^2.0.17",
     "insert-css": "^2.0.0",
     "react-content-loader": "^5.0.4"
   },
