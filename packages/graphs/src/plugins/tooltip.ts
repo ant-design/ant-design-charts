@@ -2,6 +2,7 @@ import G6, { Tooltip } from '@antv/g6';
 import { isFunction } from '@antv/util';
 import { TooltipCfg, Graph } from '../interface';
 import { createNode } from '../utils';
+import { uuid } from '../utils/uuid';
 
 export const processTooltip = (cfg: TooltipCfg = {}, graph: Graph): void => {
   if (!graph || graph.destroyed) {
@@ -14,6 +15,7 @@ export const processTooltip = (cfg: TooltipCfg = {}, graph: Graph): void => {
   // 兼容旧数据
   if (cfg.show || (cfg.show === undefined && Object.keys(cfg).length > 0)) {
     const { customContent, ...rest } = cfg;
+    const _uuid = uuid();
     const tooltip = new G6.Tooltip({
       offsetX: 10,
       offsetY: 20,
@@ -21,9 +23,14 @@ export const processTooltip = (cfg: TooltipCfg = {}, graph: Graph): void => {
       ...rest,
       getContent(e) {
         return isFunction(customContent)
-          ? createNode(customContent(e.item.getModel()), {
-              className: 'g6-tooltip',
-            })
+          ? createNode(
+              customContent(e.item.getModel()),
+              {
+                className: 'g6-tooltip',
+              },
+              'tooltip',
+              _uuid,
+            )
           : '';
       },
       name: 'tooltip',

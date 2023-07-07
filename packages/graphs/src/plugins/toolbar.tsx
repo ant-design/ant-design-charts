@@ -22,6 +22,7 @@ export const processToolbar = (cfg: ToolbarCfg = {}, graph: Graph, container: HT
         className: className ?? 'charts-toolbar',
         id: toolbarId,
       },
+      'toolbar',
       {
         ...defaultToolbarStyle,
         ...style,
