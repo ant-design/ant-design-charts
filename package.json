@@ -48,7 +48,7 @@
     "lodash": "^4.17.20",
     "np": "*",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.2",
+    "prettier": "^2.8.7",
     "pretty-quick": "^3.0.1",
     "react-dev-utils": "^12.0.1",
     "style-loader": "^3.3.0",
