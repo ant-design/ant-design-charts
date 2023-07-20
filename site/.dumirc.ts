@@ -26,8 +26,11 @@ export default defineConfig({
       '0.x': 'https://v0-charts.ant.design/',
     },
     docsearchOptions: {
-      apiKey: 'cd83d8f913aeb993cd93f45fdbe9b5ac',
-      // indexName: 'charts-ant-design',
+      appId: 'I1DYJKMAUK',
+      apiKey: '5d0fcf465bcfa6fe6ef14d1bb1b7fb0f',
+      indexName: 'ant-design-charts-antgroup',
+      // container: '### REPLACE ME WITH A CONTAINER (e.g. div) ###',
+      debug: false,
     },
     navs: [
       {
