@@ -1,4 +1,4 @@
-import { Options, G2, G2Spec } from '@antv/g2plot';
+import { Options, G2Spec } from './g2-core';
 
 /**
  * @title 图表浮窗配置
@@ -110,4 +110,4 @@ export type CommonConfig<T = G2Spec> = Common & TransformType<T>;
 
 export * from './components/interface';
 
-export { Options, G2 };
+export { Options };

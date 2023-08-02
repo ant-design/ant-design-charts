@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { isEqual, get } from '@antv/util';
-import { G2 } from '@antv/g2plot';
+import { isEqual, get } from 'lodash-es';
 import createNode from '../utils/createNode';
 import { hasPath, isType, deepClone, clone, setPath, uuid } from '../utils';
 import { CommonConfig, Chart } from '../interface';

@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@ant-design/charts",
-  "version": "1.4.2",
+  "version": "2.0.0-alpha.0",
   "description": "AntV upper level visual component library",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -31,9 +31,6 @@
     "copy": "node ./scripts/copy.js"
   },
   "dependencies": {
-    "@ant-design/flowchart": "workspace:*",
-    "@ant-design/graphs": "workspace:*",
-    "@ant-design/maps": "workspace:*",
     "@ant-design/plots": "workspace:*"
   },
   "peerDependencies": {

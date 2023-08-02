@@ -1,9 +1,5 @@
-import Column from './components/column';
-import { G2 } from '@antv/g2plot';
+export * as G2 from '@antv/g2';
 
-export {
-  Column,
-  G2,
-};
+export * from './components';
 
 export * from './interface';

@@ -36,14 +36,16 @@
     "test:live": "DEBUG_MODE=1 jest --watch ./tests/plots/column-proxy-spec.tsx --no-cache"
   },
   "dependencies": {
-    "@antv/g2plot": "^3.0.0-alpha.1",
-    "@antv/util": "^2.0.9",
+    "@antv/event-emitter": "^0.1.3",
+    "@antv/g2": "^5.0.6",
+    "size-sensor": "^1.0.1",
     "react-content-loader": "^5.0.4",
     "rc-utils": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=16.8.4",
-    "react-dom": ">=16.8.4"
+    "react-dom": ">=16.8.4",
+    "lodash-es": "^4.17.21"
   },
   "sideEffects": false,
   "license": "MIT",

@@ -26,13 +26,11 @@ echo "\033[49;32m \n******* removing node_modules *******\n \033[0m"
 
 echo "auto-install-peers=false \nstrict-peer-dependencies=false\nshamefully-hoist=true" >> .npmrc
 
-rm -rf ./package.json
 
 rm -rf ./pnpm-lock.yaml
 
 rm -rf ./node_modules
 
-cp ./scripts/website/package.json ./
 
 echo "\033[49;32m \n******* installing website dependencies *******\n \033[0m"
 

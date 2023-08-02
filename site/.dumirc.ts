@@ -57,14 +57,6 @@ export default defineConfig({
         },
         order: 1,
       },
-      {
-        slug: 'docs/map-api',
-        title: {
-          zh: 'API-地图',
-          en: 'API-Map',
-        },
-        order: 0,
-      },
     ],
     docs: [
       {
@@ -75,56 +67,8 @@ export default defineConfig({
         },
         order: 1,
       },
-      {
-        slug: 'api/common-graph',
-        title: {
-          zh: '通用配置-关系图',
-          en: 'Common Configuration Relation Graph',
-        },
-        order: 2,
-      },
-      {
-        slug: 'map-api/plots',
-        title: {
-          zh: '基础图表 - Plots',
-          en: 'Plots',
-        },
-        order: 2,
-      },
-      {
-        slug: 'map-api/components',
-        title: {
-          zh: '组件 - Components',
-          en: 'Components',
-        },
-        order: 3,
-      },
-      {
-        slug: 'map-api/layers',
-        title: {
-          zh: '图层 - Layers',
-          en: 'Layers',
-        },
-        order: 5,
-      },
     ],
     examples: [
-      {
-        slug: 'flowchart',
-        icon: 'sankey',
-        title: {
-          zh: '流程图',
-          en: 'Flowchart',
-        },
-      },
-      {
-        slug: 'relation-graph',
-        icon: 'sankey',
-        title: {
-          zh: '关系图',
-          en: 'Relation Graph',
-        },
-      },
       {
         slug: 'column',
         icon: 'column',
@@ -134,43 +78,11 @@ export default defineConfig({
         },
       },
       {
-        slug: 'map-area',
-        icon: 'polygon',
+        slug: 'line',
+        icon: 'line',
         title: {
-          zh: '区域地图',
-          en: 'Area Map',
-        },
-      },
-      {
-        slug: 'map-choropleth',
-        icon: 'polygon',
-        title: {
-          zh: '行政区域地图',
-          en: 'Choropleth Map',
-        },
-      },
-      {
-        slug: 'map-dot',
-        icon: 'point',
-        title: {
-          zh: '散点地图',
-          en: 'Dot Map',
-        },
-      },
-      {
-        slug: 'map-heat',
-        icon: 'heatmap',
-        title: {
-          zh: '热力地图',
-          en: 'Heat Map',
-        },
-      },
-      {
-        slug: 'map-advanced-plot',
-        icon: 'other',
-        title: {
-          zh: '多图层',
-          en: 'Advanced Map',
+          zh: '折线图',
+          en: 'Line',
         },
       },
     ],

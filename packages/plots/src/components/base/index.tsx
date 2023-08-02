@@ -1,7 +1,7 @@
-import React, { useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useImperativeHandle, forwardRef } from 'react';
 import { ErrorBoundary, ChartLoading } from 'rc-utils';
 import useChart from '../../hooks/useChart';
-import { Plots } from './plots';
+import { Plots } from '../../g2-core';
 import { CommonConfig, Chart } from '../../interface';
 
 export const BaseChart: React.FC<any> = forwardRef(({ chartType, ...config }: CommonConfig, ref) => {

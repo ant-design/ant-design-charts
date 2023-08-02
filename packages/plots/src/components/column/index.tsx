@@ -1,5 +1,5 @@
 import React from 'react';
-import { ColumnOptions } from '@antv/g2plot';
+import { ColumnOptions } from '../../g2-core';
 import { CommonConfig } from '../../interface';
 import { BaseChart } from '../base';
 
