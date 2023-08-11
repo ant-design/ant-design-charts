@@ -10,12 +10,17 @@
 
 ```bash
 # clone 代码
-$ git clone https://github.com/ant-design/ant-design-charts.git
+$ git clone -b v2 https://github.com/ant-design/ant-design-charts.git
 $ cd ./ant-design-charts
 # 依赖安装，由于项目使用了 pnpm 做多包管理，如果没有安装 pnpm，请先[安装pnpm](https://pnpm.io/installation#using-npm)，并配置对应的 [store-dir](https://pnpm.io/configuring) 
 $ pnpm i
 # 先创建开发分支开发，分支名应该有含义，避免使用 update、tmp 之类的
 $ git checkout -b branch-name
+# 启动本地官网
+$ pnpm start
+# 监听要改动的包，eg plots
+$ cd ./packages/plots
+$ pnpm start
 # 开发完成后跑下测试是否通过，必要时需要新增或修改测试用例
 $ pnpm test
 # 测试通过后，提交代码，message 见下面的规范
@@ -39,55 +44,9 @@ $ git push origin branch-name
 
 ```ts
 - packages
-  - charts
-  - flowchart
-  - graphs
-  - maps
+  - rc-utils
   - plots
 ```
-
-以 graphs 为例，`cd ./packages/graphs`, 修改 scripts 里面的 `test:live` 文件路径修改为对应的测试文件, 并执行 `pnpm test:live` 即可，由于 afterEach 会移除对应的 DOM，测试时记得注释掉。
-
-```tsx
-import React from 'react';
-import { act } from 'react-dom/test-utils';
-import { render } from '../../src/utils';
-import { FileTreeGraph } from '../../src';
-import { FileData } from '../data';
-
-describe('File Tree', () => {
-  let container;
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-  afterEach(() => {
-    // document.body.removeChild(container);
-    // container = null;
-  });
-  it('render', () => {
-    let chartRef = undefined;
-    const chartProps = {
-      data: FileData,
-      onReady: (graph) => {
-        chartRef = graph;
-      },
-    };
-    act(() => {
-      render(<FileTreeGraph {...chartProps} />, container);
-    });
-    expect(chartRef).not.toBeUndefined();
-    expect(
-      chartRef
-        .findById('0-1')
-        .get('group')
-        .getChildren()
-        .filter((item) => item.cfg.name === 'text-shape').length,
-    ).toBe(1);
-  });
-});
-```
-
 
 ### 代码风格
 
