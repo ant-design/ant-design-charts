@@ -10,7 +10,11 @@ export const transformOptions = (params: Adaptor) => {
 
   const getRest = (o: Adaptor['options']) => {
     const { children, type, data, ...rest } = o;
-    return omit(rest, CHILDREN_SHAPE);
+    const customKeys = [];
+    Object.keys(TRANSFORM_OPTION_KEY).forEach((key) => {
+      customKeys.push(...Object.keys(TRANSFORM_OPTION_KEY[key]));
+    });
+    return omit(rest, CHILDREN_SHAPE, customKeys);
   };
 
   const rest = getRest(options);
@@ -48,8 +52,8 @@ export const transformOptions = (params: Adaptor) => {
             callback(transformOption, specKey, transformValue);
           } else {
             transformOption[specKey] = Object.assign(transformOption[specKey] || {}, transformValue);
-            delete options[key];
           }
+          delete options[key];
         }
       });
     });

@@ -13,10 +13,12 @@ export const TRANSFORM_OPTION_KEY = {
     yField: 'y',
     colorField: 'color',
     angleField: 'y',
+    sizeField: 'size',
+    seriesField: 'series',
   },
   transform: {
     /**
-     * @title 是否堆叠
+     * @title 堆叠
      * @example
      *  1. stack: true -> transform: [{type: 'stackY'}]
      */
@@ -27,6 +29,44 @@ export const TRANSFORM_OPTION_KEY = {
           available: value,
         };
       }
+      return { type: 'stackY', ...(value as object) };
+    },
+    /**
+     * @title 归一化
+     * @example
+     *  1. normalize: true -> transform: [{type: 'normalizeY'}]
+     */
+    normalize: (value: boolean | object) => {
+      if (isBoolean(value)) {
+        return {
+          type: 'normalizeY',
+          available: value,
+        };
+      }
+      return { type: 'normalizeY', ...(value as object) };
+    },
+    /**
+     * @title 聚合
+     * @example
+     *  1. group: true -> transform: [{type: 'groupX'}]
+     */
+    group: (value: boolean | object) => {
+      if (isBoolean(value)) {
+        return {
+          type: 'groupX',
+          available: value,
+        };
+      }
+      return { type: 'groupX', ...(value as object) };
+    },
+  },
+  scale: {
+    meta: (value: object) => {
+      return value;
+    },
+  },
+  labels: {
+    label: (value: object) => {
       return value;
     },
   },
@@ -67,15 +107,22 @@ export const SPECIAL_OPTIONS = [
     key: 'transform',
     callback: (origin: object, key: string, value: { type: string; available?: boolean }) => {
       origin[key] = origin[key] || [];
-      const { available = true } = value;
+      const { available = true, ...rest } = value;
       if (available) {
-        origin[key].push(value);
+        origin[key].push(rest);
       } else {
         origin[key].splice(
           origin[key].indexOf((item) => item.type === value.type),
           1,
         );
       }
+    },
+  },
+  {
+    key: 'labels',
+    callback: (origin: object, key: string, value: { type: string; available?: boolean }) => {
+      origin[key] = origin[key] || [];
+      origin[key].push(value);
     },
   },
 ];
