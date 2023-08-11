@@ -1,9 +1,9 @@
-import { flow } from '../../utils';
+import { flow, transformOptions } from '../../utils';
 import { mark } from '../../components';
 import type { Adaptor } from '../../types';
-import type { ColumnOptions } from './type';
+import type { PieOptions } from './type';
 
-type Params = Adaptor<ColumnOptions>;
+type Params = Adaptor<PieOptions>;
 
 /**
  * @param chart
@@ -17,5 +17,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, mark)(params);
+  return flow(init, transformOptions, mark)(params);
 }

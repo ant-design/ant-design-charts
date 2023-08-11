@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineOptions } from '../../g2-core';
+import { LineOptions } from '../../core';
 import { CommonConfig } from '../../interface';
 import { BaseChart } from '../base';
 

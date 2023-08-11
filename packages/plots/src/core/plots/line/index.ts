@@ -1,4 +1,4 @@
-import { Plot } from '../../core/plot';
+import { Plot } from '../../base';
 import type { Adaptor } from '../../types';
 import { adaptor } from './adaptor';
 import { LineOptions } from './type';
@@ -14,7 +14,7 @@ export class Line extends Plot<LineOptions> {
    * 供外部使用
    */
   static getDefaultOptions(): Partial<LineOptions> {
-    return { type: 'line' };
+    return { type: 'view', children: [{ type: 'line' }] };
   }
 
   /**

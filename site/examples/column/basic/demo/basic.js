@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Column } from '@ant-design/plots';
 
 const DemoColumn = () => {
-  const props = {
+  const config = {
     data: [
       { genre: 'Sports', sold: 275 },
       { genre: 'Strategy', sold: 115 },
@@ -11,13 +11,11 @@ const DemoColumn = () => {
       { genre: 'Shooter', sold: 350 },
       { genre: 'Other', sold: 150 },
     ],
-    encode: {
-      x: 'genre',
-      y: 'sold',
-      color: 'genre',
-    },
+    xField: 'genre',
+    yField: 'sold',
+    colorField: 'genre',
   };
-  return <Column {...props} />;
+  return <Column {...config} />;
 };
 
 ReactDOM.render(<DemoColumn />, document.getElementById('container'));

@@ -1,4 +1,4 @@
-import { Options, G2Spec } from './g2-core';
+import { Options, G2Spec } from './core';
 
 /**
  * @title 图表浮窗配置
@@ -20,10 +20,10 @@ export interface ContainerConfig {
   /**
    * @title 图表样式
    * @description 配置图表样式
-   * @title.en_US Chart style
-   * @description.en_US Configure chart styles
+   * @title.en_US Chart containerStyle
+   * @description.en_US Configure chart container styles
    */
-  style?: React.CSSProperties;
+  containerStyle?: React.CSSProperties;
   /**
    * @title 容器class
    * @description 类名添加

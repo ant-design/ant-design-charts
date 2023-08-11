@@ -1,4 +1,4 @@
-import { flow } from '../../utils';
+import { flow, transformOptions } from '../../utils';
 import { mark } from '../../components';
 import type { Adaptor } from '../../types';
 import type { LineOptions } from './type';
@@ -17,5 +17,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, mark)(params);
+  return flow(init, transformOptions, mark)(params);
 }

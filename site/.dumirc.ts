@@ -85,6 +85,14 @@ export default defineConfig({
           en: 'Line',
         },
       },
+      {
+        slug: 'pie',
+        icon: 'pie',
+        title: {
+          zh: '饼图',
+          en: 'Pie',
+        },
+      },
     ],
     detail: {
       title: {

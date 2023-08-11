@@ -1,4 +1,4 @@
-import { Plot } from '../../core/plot';
+import { Plot } from '../../base';
 import type { Adaptor } from '../../types';
 import { adaptor } from './adaptor';
 import { ColumnOptions } from './type';
@@ -14,7 +14,7 @@ export class Column extends Plot<ColumnOptions> {
    * 供外部使用
    */
   static getDefaultOptions(): Partial<ColumnOptions> {
-    return { type: 'interval' };
+    return { type: 'view', children: [{ type: 'interval' }] };
   }
 
   /**

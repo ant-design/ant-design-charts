@@ -1,4 +1,5 @@
 import Column from './column';
 import Line from './line';
+import Pie from './pie';
 
-export { Column, Line };
+export { Column, Line, Pie };

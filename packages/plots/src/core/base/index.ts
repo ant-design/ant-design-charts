@@ -26,7 +26,6 @@ export abstract class Plot<O extends Options> extends EE {
     this.container = typeof container === 'string' ? document.getElementById(container) : container;
     this.options = merge({}, this.getBaseOptions(), this.getDefaultOptions(), options);
     this.createG2();
-    this.render();
     this.bindEvents();
   }
 
@@ -62,7 +61,7 @@ export abstract class Plot<O extends Options> extends EE {
     }
     this.chart = new Chart(this.getChartOptions());
     // 给容器增加标识，知道图表的来源区别于 G2
-    this.container.setAttribute(SOURCE_ATTRIBUTE_NAME, 'G2Plot');
+    this.container.setAttribute(SOURCE_ATTRIBUTE_NAME, 'Ant Design Charts');
   }
 
   /**
@@ -164,7 +163,7 @@ export abstract class Plot<O extends Options> extends EE {
     // 转化成 G2 Spec
     adaptor({
       chart: this.chart,
-      options: this.options,
+      options: omit(this.options, CHART_OPTIONS),
     });
   }
 

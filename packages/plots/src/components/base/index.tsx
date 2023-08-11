@@ -1,12 +1,12 @@
 import React, { useImperativeHandle, forwardRef } from 'react';
 import { ErrorBoundary, ChartLoading } from 'rc-utils';
 import useChart from '../../hooks/useChart';
-import { Plots } from '../../g2-core';
+import { Plots } from '../../core';
 import { CommonConfig, Chart } from '../../interface';
 
 export const BaseChart: React.FC<any> = forwardRef(({ chartType, ...config }: CommonConfig, ref) => {
   const {
-    style = {
+    containerStyle = {
       height: 'inherit',
     },
     className,
@@ -23,7 +23,7 @@ export const BaseChart: React.FC<any> = forwardRef(({ chartType, ...config }: Co
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
       {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
-      <div className={className} style={style} ref={container} />
+      <div className={className} style={containerStyle} ref={container} />
     </ErrorBoundary>
   );
 });
