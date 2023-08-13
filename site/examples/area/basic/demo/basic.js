@@ -236,8 +236,8 @@ const DemoArea = () => {
     ],
     xField: 'timePeriod',
     yField: 'value',
-    xAxis: {
-      range: [0, 1],
+    axis: {
+      x: { range: [0, 1] },
     },
   };
 
