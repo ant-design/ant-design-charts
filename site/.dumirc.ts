@@ -93,6 +93,14 @@ export default defineConfig({
           en: 'Pie',
         },
       },
+      {
+        slug: 'area',
+        icon: 'area',
+        title: {
+          zh: '面积图',
+          en: 'Area',
+        },
+      },
     ],
     detail: {
       title: {

@@ -1,0 +1,16 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "基础面积图",
+        "en": "Basic Area plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/ld0NQtdLO0/mianjitugengxinshuju-after.gif"
+    }
+  ]
+}
