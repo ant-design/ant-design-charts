@@ -8,6 +8,8 @@ export const transformOptions = (params: Adaptor) => {
   const { options } = params;
   const { children = [] } = options;
 
+  const deleteKeys = [];
+
   const getRest = (o: Adaptor['options']) => {
     const { children, type, data, ...rest } = o;
 
@@ -29,6 +31,18 @@ export const transformOptions = (params: Adaptor) => {
     return SPECIAL_OPTIONS.find((option) => option.key === key)?.callback;
   };
 
+  /**
+   * @description 更新图表配置
+   */
+  const updateOptions = (origin, key, value) => {
+    const callback = getCustomTransform(key);
+    if (callback) {
+      callback(origin, key, value);
+    } else {
+      origin[key] = Object.assign({}, origin[key], value);
+    }
+  };
+
   children.forEach((child) => {
     /**
      * @description 外层配置应用到所有 children
@@ -42,27 +56,40 @@ export const transformOptions = (params: Adaptor) => {
        * @example 详见 src/core/constants/index.ts
        */
       Object.keys(transformObject).forEach((key) => {
+        /**
+         * @description 常规图表
+         * @example Line Bar Column 等单图层图表
+         */
         if (options[key]) {
           const transformValue = getValue(transformObject[key], options[key], transformOption);
-          const callback = getCustomTransform(specKey);
-          if (callback) {
-            callback(transformOption, specKey, transformValue);
-          } else {
-            transformOption[specKey] = Object.assign(transformOption[specKey] || {}, transformValue);
-          }
-          delete options[key];
+          updateOptions(transformOption, specKey, transformValue);
+          deleteKeys.push(key);
+        }
+        /**
+         * @description 特殊图表
+         * @example DualAxes 等多图层图表
+         */
+        if (child[key]) {
+          const transformValue = getValue(transformObject[key], child[key], transformOption);
+          updateOptions(transformOption, specKey, transformValue);
+          delete child[key];
         }
       });
     });
   });
 
   /**
-   * @description 将 CHILDREN_SHAPE 中的配置项, 转换为 children
+   * @description
+   *  1. 将 CHILDREN_SHAPE 中的配置项, 转换为 children
+   *  2. 删除已移入到 children 内的 key
    * @example 详见 src/core/constants/index.ts
    */
   Object.keys(options).forEach((key) => {
     if (CHILDREN_SHAPE.includes(key)) {
       children.push(...options[key]);
+      deleteKeys.push(key);
+    }
+    if (deleteKeys.includes(key)) {
       delete options[key];
     }
   });

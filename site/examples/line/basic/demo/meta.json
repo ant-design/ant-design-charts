@@ -45,14 +45,6 @@
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*MzXYRqHjHQEAAAAAAAAAAAAADmJ7AQ"
     },
     {
-      "filename": "group.js",
-      "title": {
-        "zh": "聚合折线图",
-        "en": "Group Line plot"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*-q4yQZ7WtDcAAAAAAAAAAAAADmJ7AQ"
-    },
-    {
       "filename": "color.js",
       "title": {
         "zh": "多色折线图",

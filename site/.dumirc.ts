@@ -109,6 +109,14 @@ export default defineConfig({
           en: 'Area',
         },
       },
+      {
+        slug: 'dual-axes',
+        icon: 'other',
+        title: {
+          zh: '双轴图',
+          en: 'DualAxes',
+        },
+      },
     ],
     detail: {
       title: {

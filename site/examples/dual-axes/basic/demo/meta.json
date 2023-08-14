@@ -1,0 +1,16 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": " 柱线混合",
+        "en": "Line Bar Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*GLvKQbqMjTQAAAAAAAAAAAAADmJ7AQ/fmt.webp"
+    }
+  ]
+}
