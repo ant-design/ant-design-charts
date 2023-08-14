@@ -46,18 +46,18 @@ export const TRANSFORM_OPTION_KEY = {
       return { type: 'normalizeY', ...(value as object) };
     },
     /**
-     * @title 聚合
+     * @title 分组
      * @example
-     *  1. group: true -> transform: [{type: 'groupX'}]
+     *  1. group: true -> transform: [{type: 'dodgeX'}]
      */
     group: (value: boolean | object) => {
       if (isBoolean(value)) {
         return {
-          type: 'groupX',
+          type: 'dodgeX',
           available: value,
         };
       }
-      return { type: 'groupX', ...(value as object) };
+      return { type: 'dodgeX', ...(value as object) };
     },
   },
   scale: {

@@ -1,6 +1,6 @@
-import { omit } from './index';
-import { TRANSFORM_OPTION_KEY, CHILDREN_SHAPE, SPECIAL_OPTIONS } from '../constants';
+import { CHILDREN_SHAPE, SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY } from '../constants';
 import { Adaptor } from '../types';
+import { omit } from './index';
 /**
  * @title 将自定义配置转换为 G2 接受的格式
  */

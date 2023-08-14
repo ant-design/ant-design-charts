@@ -4,9 +4,6 @@ import { <%= plotName %>  } from '@ant-design/<%= lib %>';
 <% if (utilName) { %>
 import { <%= utilName %> } from 'lodash-es';
 <% } %>
-<% if (dataSet) { %>
-import { <%= dataSet %> } from '@antv/data-set';
-<% } %>
 
 const Demo<%= chartName %> = () => {
   <%- chartContent.toString() %>

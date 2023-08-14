@@ -34,8 +34,6 @@
     "@ant-design/plots": "workspace:*"
   },
   "peerDependencies": {
-    "@ant-design/icons": "^4.6.0",
-    "antd": "^4.6.3",
     "lodash": "^4.17.20",
     "react": ">=16.8.4",
     "react-dom": ">=16.8.4"

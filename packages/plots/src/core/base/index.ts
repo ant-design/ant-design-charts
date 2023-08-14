@@ -1,8 +1,8 @@
 import EE from '@antv/event-emitter';
 import { Chart } from '@antv/g2';
 import { bind } from 'size-sensor';
+import type { Adaptor, Options } from '../types';
 import { merge, omit, pick } from '../utils';
-import type { Options, Adaptor } from '../types';
 
 const SOURCE_ATTRIBUTE_NAME = 'data-chart-source-type';
 

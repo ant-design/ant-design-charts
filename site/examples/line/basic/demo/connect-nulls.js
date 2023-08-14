@@ -4,46 +4,25 @@ import { Line } from '@ant-design/plots';
 
 const DemoLine = () => {
   const config = {
-    data: [
-      {
-        Date: '2010-01',
-        scales: 1998,
-      },
-      {
-        Date: '2010-02',
-        scales: 1850,
-      },
-      {
-        Date: '2010-03',
-        scales: 1720,
-      },
-      {
-        Date: '2010-04',
-        scales: 1818,
-      },
-      {
-        Date: '2010-05',
-        scales: null,
-      },
-      {
-        Date: '2010-06',
-        scales: 1802,
-      },
-      {
-        Date: '2010-07',
-        scales: 1945,
-      },
-      {
-        Date: '2010-08',
-        scales: 1856,
-      },
-    ],
-    xField: 'Date',
-    yField: 'scales',
-    shape: 'smooth',
+    data: {
+      type: 'fetch',
+      value: 'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+      transform: [
+        // Mock missing data.
+        {
+          type: 'map',
+          callback: (d) => ({
+            ...d,
+            close: d.date.getUTCMonth() < 3 ? NaN : d.close,
+          }),
+        },
+      ],
+    },
+    xField: 'date',
+    yField: 'close',
     connectNulls: {
       connect: true,
-      connectStroke: 'red',
+      connectStroke: '#aaa',
     },
   };
   return <Line {...config} />;

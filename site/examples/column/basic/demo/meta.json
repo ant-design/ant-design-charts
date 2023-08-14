@@ -5,12 +5,36 @@
   },
   "demos": [
     {
-      "filename": "basic.js",
+      "filename": "column.js",
       "title": {
-        "zh": "基础柱状图",
-        "en": "Basic column plot"
+        "zh": "柱形图",
+        "en": "Column Chart"
       },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*KAg2TY-oYRUAAAAAAAAAAAAAARQnAQ"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*vhCKQJ9UJX4AAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "column-maxwidth.js",
+      "title": {
+        "zh": "限制宽度的柱形图",
+        "en": "Column with maxWidth"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*fu-BSYg7U_kAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "column-log.js",
+      "title": {
+        "zh": "对数柱形图",
+        "en": "Log Column Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*cRE5TqJGnVUAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "bar-dodged.js",
+      "title": {
+        "zh": "分组条形图",
+        "en": "Dodged Bar Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FrshQpaS4f0AAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
