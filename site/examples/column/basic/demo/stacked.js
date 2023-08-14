@@ -12,7 +12,7 @@ const DemoColumn = () => {
     xField: 'state',
     yField: 'population',
     colorField: 'age',
-    group: true,
+    stack: true,
     sort: {
       reverse: true,
       slice: 6,
@@ -20,10 +20,12 @@ const DemoColumn = () => {
     },
     axis: {
       y: { labelFormatter: '~s' },
-    },
-    interaction: {
-      tooltip: { shared: true },
-      elementHighlightByColor: { background: true },
+      x: {
+        labelSpacing: 4,
+        style: {
+          labelTransform: 'rotate(90)',
+        },
+      },
     },
   };
   return <Column {...config} />;

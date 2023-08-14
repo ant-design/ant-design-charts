@@ -78,6 +78,14 @@ export default defineConfig({
         },
       },
       {
+        slug: 'bar',
+        icon: 'bar',
+        title: {
+          zh: '条形图',
+          en: 'Bar',
+        },
+      },
+      {
         slug: 'line',
         icon: 'line',
         title: {

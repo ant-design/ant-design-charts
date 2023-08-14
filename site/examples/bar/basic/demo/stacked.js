@@ -1,8 +1,8 @@
-import { Column } from '@ant-design/plots';
+import { Bar } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const DemoColumn = () => {
+const DemoBar = () => {
   const config = {
     data: {
       type: 'fetch',
@@ -12,21 +12,22 @@ const DemoColumn = () => {
     xField: 'state',
     yField: 'population',
     colorField: 'age',
-    group: true,
+    stack: true,
     sort: {
       reverse: true,
-      slice: 6,
       by: 'y',
     },
     axis: {
       y: { labelFormatter: '~s' },
-    },
-    interaction: {
-      tooltip: { shared: true },
-      elementHighlightByColor: { background: true },
+      x: {
+        labelSpacing: 4,
+        style: {
+          labelTransform: 'rotate(90)',
+        },
+      },
     },
   };
-  return <Column {...config} />;
+  return <Bar {...config} />;
 };
 
-ReactDOM.render(<DemoColumn />, document.getElementById('container'));
+ReactDOM.render(<DemoBar />, document.getElementById('container'));

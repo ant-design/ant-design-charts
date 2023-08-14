@@ -1,3 +1,4 @@
-export { omit, pick, isArray, flatten, flow, merge, isBoolean } from 'lodash-es';
+export { flatten, flow, isArray, isBoolean, merge, omit, pick } from 'lodash-es';
+export { getCustomKeys } from './get-custom-keys';
 export { isCompositePlot } from './is-composite-plot';
 export { transformOptions } from './transform';

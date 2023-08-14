@@ -1,6 +1,6 @@
 import { CHILDREN_SHAPE, SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY } from '../constants';
 import { Adaptor } from '../types';
-import { omit } from './index';
+import { getCustomKeys, omit } from './index';
 /**
  * @title 将自定义配置转换为 G2 接受的格式
  */
@@ -10,11 +10,8 @@ export const transformOptions = (params: Adaptor) => {
 
   const getRest = (o: Adaptor['options']) => {
     const { children, type, data, ...rest } = o;
-    const customKeys = [];
-    Object.keys(TRANSFORM_OPTION_KEY).forEach((key) => {
-      customKeys.push(...Object.keys(TRANSFORM_OPTION_KEY[key]));
-    });
-    return omit(rest, CHILDREN_SHAPE, customKeys);
+
+    return omit(rest, CHILDREN_SHAPE, getCustomKeys());
   };
 
   const rest = getRest(options);

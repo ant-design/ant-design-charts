@@ -21,12 +21,12 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*fu-BSYg7U_kAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
-      "filename": "column-log.js",
+      "filename": "range.js",
       "title": {
-        "zh": "对数柱形图",
-        "en": "Log Column Chart"
+        "zh": "区间柱形图",
+        "en": "Range Column Chart"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*cRE5TqJGnVUAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*hTfETY0ObOsAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "bar-dodged.js",
@@ -35,6 +35,14 @@
         "en": "Dodged Bar Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FrshQpaS4f0AAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "stacked.js",
+      "title": {
+        "zh": "堆叠柱形图",
+        "en": "Stacked Column Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*GwDUQbVt9XYAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }

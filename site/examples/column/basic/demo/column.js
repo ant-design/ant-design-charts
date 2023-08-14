@@ -1,6 +1,6 @@
+import { Column } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Column } from '@ant-design/plots';
 
 const DemoColumn = () => {
   const config = {
@@ -10,6 +10,10 @@ const DemoColumn = () => {
     },
     xField: 'letter',
     yField: 'frequency',
+    label: {
+      text: (d) => `${(d.frequency * 100).toFixed(1)}%`,
+      textBaseline: 'bottom',
+    },
     axis: {
       y: {
         labelFormatter: '.0%',

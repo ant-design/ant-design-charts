@@ -1,0 +1,32 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "bar.js",
+      "title": {
+        "zh": "柱形图",
+        "en": "Bar Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*eU1cRqm_fPAAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "stacked.js",
+      "title": {
+        "zh": "堆叠条形图",
+        "en": "Stacked Bar Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*RJvHRpHoFmYAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "normalized-stacked.js",
+      "title": {
+        "zh": "归一化条形图",
+        "en": "Normalized Stacked Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*m6vKSptL6qkAAAAAAAAAAAAADmJ7AQ/original"
+    }
+  ]
+}

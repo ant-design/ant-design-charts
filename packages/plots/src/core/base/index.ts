@@ -1,13 +1,11 @@
 import EE from '@antv/event-emitter';
 import { Chart } from '@antv/g2';
 import { bind } from 'size-sensor';
+import { CHART_OPTIONS } from '../constants';
 import type { Adaptor, Options } from '../types';
-import { merge, omit, pick } from '../utils';
+import { getCustomKeys, merge, omit, pick } from '../utils';
 
 const SOURCE_ATTRIBUTE_NAME = 'data-chart-source-type';
-
-/** new Chart options */
-export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas', 'theme'];
 
 export abstract class Plot<O extends Options> extends EE {
   /** plot 类型名称 */
@@ -49,7 +47,7 @@ export abstract class Plot<O extends Options> extends EE {
    * G2 options(Spec) 配置
    */
   private getSpecOptions() {
-    return omit(this.options, CHART_OPTIONS);
+    return omit(this.options, CHART_OPTIONS, getCustomKeys());
   }
 
   /**
@@ -94,6 +92,8 @@ export abstract class Plot<O extends Options> extends EE {
     this.execAdaptor();
 
     // options 转换
+    console.log(this.getSpecOptions());
+
     this.chart.options(this.getSpecOptions());
     // 渲染
     this.chart.render();

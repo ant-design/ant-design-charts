@@ -1,4 +1,8 @@
 import { isBoolean } from '../utils';
+
+/** new Chart options */
+export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas', 'theme'];
+
 /**
  * @title 字段转换逻辑
  * @example
@@ -58,6 +62,20 @@ export const TRANSFORM_OPTION_KEY = {
         };
       }
       return { type: 'dodgeX', ...(value as object) };
+    },
+    /**
+     * @title 排序
+     * @example
+     *  1. sort: true -> transform: [{type: 'sortX'}]
+     */
+    sort: (value: boolean | object) => {
+      if (isBoolean(value)) {
+        return {
+          type: 'sortX',
+          available: value,
+        };
+      }
+      return { type: 'sortX', ...(value as object) };
     },
   },
   scale: {
