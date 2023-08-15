@@ -22,10 +22,10 @@
   "license": "MIT",
   "author": "https://github.com/orgs/antvis/people",
   "scripts": {
-    "build": "NODE_OPTIONS=--max_old_space_size=12288 dumi build",
+    "build": "cross-env NODE_OPTIONS=--max_old_space_size=12288 dumi build",
     "develop": "cross-env DUMI=true dumi dev",
     "deploy": "pnpm run build && gh-pages -d public",
-    "start": "NODE_OPTIONS=--max_old_space_size=8192 pnpm run develop"
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=8192 pnpm run develop"
   },
   "devDependencies": {
     "@antv/dumi-theme-antv": "0.3.18",
