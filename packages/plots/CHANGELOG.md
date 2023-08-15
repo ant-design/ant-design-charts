@@ -2,7 +2,7 @@
 
 `2023-02-03`
 
-- 🐞 Revert PR [fix: 在 grid 布局中图表 autofit 缩小宽度时不生效](https://github.com/ant-design/ant-design-charts/pull/1766) grid自适应问题参考[在 grid 布局中图表 autofit 缩小宽度时不生效](https://github.com/ant-design/ant-design-charts/issues/1761)
+- 🐞 Revert PR [fix: 在 grid 布局中图表 autofit 缩小宽度时不生效](https://github.com/ant-design/ant-design-charts/pull/1766) grid 自适应问题参考[在 grid 布局中图表 autofit 缩小宽度时不生效](https://github.com/ant-design/ant-design-charts/issues/1761)
 
 ## 1.2.4
 

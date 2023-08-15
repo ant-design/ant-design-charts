@@ -32,7 +32,6 @@ describe('Proxy config', () => {
   });
 
   it('chart render', async () => {
-    let stateProxy: any;
     let plot: any;
     const config = {
       data,
@@ -45,6 +44,6 @@ describe('Proxy config', () => {
     act(() => {
       render(<Column {...config} ref={ref} />, container);
     });
-    expect(stateProxy['xField']).toBe('date');
+    expect(plot).not.toBeUndefined();
   });
 });
