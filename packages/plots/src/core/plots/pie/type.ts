@@ -1,3 +1,3 @@
-import type { Options } from '../../types/common';
+import type { ArcBaseOptions, Options } from '../../types/common';
 
-export type PieOptions = Options;
+export type PieOptions = Options & ArcBaseOptions;
