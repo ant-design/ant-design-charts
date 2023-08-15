@@ -8,8 +8,9 @@ export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas'
  * @example
  *    1. xField: 'year' -> encode: {x: 'year'}
  *    2. yField: 'scales' -> encode: {y: 'scales'}
- *    3. shape: 'smooth' -> style: {shape: 'smooth'}
+ *    3. shape: 'smooth' -> style: {shape: 'smooth'} shapeField: 'shape' -> encode: { shape: 'shape' }
  *    4. connectNulls: {connect: true} -> style: {connect: true}
+ *    5. keyField: 'key' -> encode: { key: 'key' }
  */
 export const TRANSFORM_OPTION_KEY = {
   encode: {
@@ -18,7 +19,9 @@ export const TRANSFORM_OPTION_KEY = {
     colorField: 'color',
     angleField: 'y',
     sizeField: 'size',
+    shapeField: 'shape',
     seriesField: 'series',
+    keyField: 'key',
   },
   transform: {
     /**
