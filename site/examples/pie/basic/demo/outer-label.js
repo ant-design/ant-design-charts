@@ -12,13 +12,13 @@ const DemoPie = () => {
       { type: '分类五', value: 10 },
       { type: '其他', value: 5 },
     ],
+    appendPadding: 10,
     angleField: 'value',
     colorField: 'type',
+    radius: 0.8,
     label: {
-      text: d => `${d.value}%`,
-      style: {
-        fontWeight: 'bold',
-      }
+      text: 'value',
+      position: 'outside',
     },
     legend: {
       color: {
