@@ -115,6 +115,14 @@ export default defineConfig({
         title: {
           zh: '双轴图',
           en: 'DualAxes',
+        }
+      },
+      {
+        slug: 'scatter',
+        icon: 'scatter',
+        title: {
+          zh: '散点图',
+          en: 'Scatter',
         },
       },
     ],
