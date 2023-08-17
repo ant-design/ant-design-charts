@@ -17,7 +17,6 @@ const DemoScatter = () => {
     xField: 'state',
     yField: 'population',
     colorField: 'age',
-    shape: 'point',
     meta: { color: { palette: "spectral" } },
     tooltip: { title: "state", items: ["population"] },
     annotations: [

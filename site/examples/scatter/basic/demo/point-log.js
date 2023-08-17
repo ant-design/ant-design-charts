@@ -13,7 +13,6 @@ const DemoScatter = () => {
     yField: 'LifeExpectancy',
     sizeField: 'Population',
     colorField: 'continent',
-    shape: 'point',
     meta: {
       size: { type: "log", range: [4, 20] },
     },

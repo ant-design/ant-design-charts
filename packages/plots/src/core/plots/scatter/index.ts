@@ -16,6 +16,8 @@ export class Scatter extends Plot<ScatterOptions> {
   static getDefaultOptions(): Partial<ScatterOptions> {
     return {
       children: [{ type: 'point' }],
+      // 默认为 point 有 'line' 的情况
+      shape: 'point',
     };
   }
 
