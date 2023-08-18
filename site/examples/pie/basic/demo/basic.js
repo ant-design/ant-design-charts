@@ -14,6 +14,17 @@ const DemoPie = () => {
     ],
     angleField: 'value',
     colorField: 'type',
+    label: {
+      text: d => `${d.value}%`,
+      style: {
+        fontWeight: 'bold',
+      }
+    },
+    legend: {
+      color: {
+        position: "right"
+      }
+    },
   };
   return <Pie {...config} />;
 };
