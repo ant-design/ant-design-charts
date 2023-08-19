@@ -11,6 +11,22 @@
         "en": "Basic pie plot"
       },
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*wmldRZZj9lIAAAAAAAAAAABkARQnAQ"
+    },
+    {
+      "filename": "outer-label.js",
+      "title": {
+        "zh": "饼图-外部图形标签",
+        "en": "Pie plot - outer label"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ZztJQa4RLwoAAAAAAAAAAABkARQnAQ"
+    },
+    {
+      "filename": "spider-label.js",
+      "title": {
+        "zh": "饼图-蜘蛛布局标签",
+        "en": "Pie plot - spider label"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*QyXPRK-URmUAAAAAAAAAAAAAARQnAQ"
     }
   ]
 }
