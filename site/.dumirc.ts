@@ -115,7 +115,7 @@ export default defineConfig({
         title: {
           zh: '双轴图',
           en: 'DualAxes',
-        }
+        },
       },
       {
         slug: 'scatter',
@@ -123,6 +123,14 @@ export default defineConfig({
         title: {
           zh: '散点图',
           en: 'Scatter',
+        },
+      },
+      {
+        slug: 'tiny',
+        icon: 'other',
+        title: {
+          zh: '迷你图',
+          en: 'Tiny Plots',
         },
       },
     ],

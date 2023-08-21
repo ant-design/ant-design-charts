@@ -1,0 +1,32 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "迷你面积",
+        "en": "tiny area plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*e7gFTKK4RXwAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "area-annotation.js",
+      "title": {
+        "zh": "带辅助信息的迷你面积图",
+        "en": "Tiny area plot with annotations"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*0zwrR62OaHQAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "filled-area.js",
+      "title": {
+        "zh": "平铺填充迷你面积图",
+        "en": "Filled tiny area plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*tN1MTpkoO8gAAAAAAAAAAAAAARQnAQ"
+    }
+  ]
+}
