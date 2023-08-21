@@ -70,59 +70,11 @@ export default defineConfig({
     ],
     examples: [
       {
-        slug: 'column',
-        icon: 'column',
-        title: {
-          zh: '柱形图',
-          en: 'Column',
-        },
-      },
-      {
-        slug: 'bar',
-        icon: 'bar',
-        title: {
-          zh: '条形图',
-          en: 'Bar',
-        },
-      },
-      {
-        slug: 'line',
+        slug: 'statistics',
         icon: 'line',
         title: {
-          zh: '折线图',
-          en: 'Line',
-        },
-      },
-      {
-        slug: 'pie',
-        icon: 'pie',
-        title: {
-          zh: '饼图',
-          en: 'Pie',
-        },
-      },
-      {
-        slug: 'area',
-        icon: 'area',
-        title: {
-          zh: '面积图',
-          en: 'Area',
-        },
-      },
-      {
-        slug: 'dual-axes',
-        icon: 'other',
-        title: {
-          zh: '双轴图',
-          en: 'DualAxes',
-        }
-      },
-      {
-        slug: 'scatter',
-        icon: 'scatter',
-        title: {
-          zh: '散点图',
-          en: 'Scatter',
+          zh: '统计图表',
+          en: 'Statistics',
         },
       },
     ],
