@@ -70,11 +70,11 @@ export default defineConfig({
     ],
     examples: [
       {
-        slug: 'statistic',
+        slug: 'statistics',
         icon: 'line',
         title: {
           zh: '统计图表',
-          en: 'Statistic',
+          en: 'Statistics',
         },
       },
     ],
