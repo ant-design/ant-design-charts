@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "迷你折线图",
+        "en": "Tiny line plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*7mspQrtT-VYAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "line-annotation.js",
+      "title": {
+        "zh": "带辅助线的迷你折线图",
+        "en": "Tiny line plot with annotation"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*KShOSrCq0X4AAAAAAAAAAAAAARQnAQ"
+    }
+  ]
+}

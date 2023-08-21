@@ -6,6 +6,9 @@ export type { DualAxesOptions } from './plots/dual-axes';
 export type { LineOptions } from './plots/line';
 export type { PieOptions } from './plots/pie';
 export type { ScatterOptions } from './plots/scatter';
+export type { TinyLineOptions } from './plots/tiny-line';
+export type { TinyAreaOptions } from './plots/tiny-area';
+export type { TinyColumnOptions } from './plots/tiny-column';
 export * from './types';
 
 import { Area } from './plots/area';
@@ -15,6 +18,8 @@ import { DualAxes } from './plots/dual-axes';
 import { Line } from './plots/line';
 import { Pie } from './plots/pie';
 import { Scatter } from './plots/scatter';
+import { TinyLine } from './plots/tiny-line';
+import { TinyArea } from './plots/tiny-area';
+import { TinyColumn } from './plots/tiny-column';
 
-export const Plots = { Line, Column, Pie, Area, Bar, DualAxes, Scatter };
-
+export const Plots = { Line, Column, Pie, Area, Bar, DualAxes, Scatter, TinyLine, TinyArea, TinyColumn };
