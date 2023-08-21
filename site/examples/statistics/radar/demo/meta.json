@@ -1,0 +1,40 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "基础雷达图",
+        "en": "Basic Radar"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*W-b2QoNhip0AAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "radar.js",
+      "title": {
+        "zh": "雷达图(一般极坐标 polar)",
+        "en": "Radar (coordinate polar)"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*-xcxS7E8sKcAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "parallel-radar.js",
+      "title": {
+        "zh": "雷达图(雷达图特殊极坐标 radar)",
+        "en": "Radar (coordinate radar)"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*4sqyTZUFCNkAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "area-radial.js",
+      "title": {
+        "zh": "径向面积图",
+        "en": "Radial Area Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*-m-2QolJUt0AAAAAAAAAAAAADmJ7AQ"
+    }
+  ]
+}

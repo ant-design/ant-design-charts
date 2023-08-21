@@ -18,10 +18,11 @@ export const TRANSFORM_OPTION_KEY = {
     yField: 'y',
     colorField: 'color',
     angleField: 'y',
+    keyField: 'key',
     sizeField: 'size',
     shapeField: 'shape',
     seriesField: 'series',
-    keyField: 'key',
+    positionField: 'position',
   },
   transform: {
     /**

@@ -5,5 +5,6 @@ import DualAxes from './dual-axes';
 import Line from './line';
 import Pie from './pie';
 import Scatter from './scatter';
+import Radar from './radar';
 
-export { Column, Line, Pie, Area, Bar, DualAxes, Scatter };
+export { Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar };
