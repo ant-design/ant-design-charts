@@ -1,6 +1,7 @@
-import { CHILDREN_SHAPE, SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY } from '../constants';
-import { Adaptor } from '../types';
-import { getCustomKeys, omit } from './index';
+import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE } from '../constants';
+import { Adaptor, Options } from '../types';
+import { getCustomKeys, omit, pick, isFunction, getShapeConfigKeys } from './index';
+
 /**
  * @title 将自定义配置转换为 G2 接受的格式
  */
@@ -8,17 +9,17 @@ export const transformOptions = (params: Adaptor) => {
   const { options } = params;
   const { children = [] } = options;
 
-  const deleteKeys = [];
+  const deleteKeys = getCustomKeys();
 
   const getRest = (o: Adaptor['options']) => {
     const { children, type, data, ...rest } = o;
-
-    return omit(rest, CHILDREN_SHAPE, getCustomKeys());
+    deleteKeys.push(...Object.keys(rest));
+    return omit(rest, getShapeConfigKeys());
   };
 
   const rest = getRest(options);
 
-  const getValue = (newConfig: string | Function, value: unknown, origin: object) => {
+  const getValue = (newConfig: string | Function, value: unknown, origin: Options) => {
     if (typeof newConfig === 'function') {
       return newConfig(value, origin);
     }
@@ -43,12 +44,14 @@ export const transformOptions = (params: Adaptor) => {
     }
   };
 
-  children.forEach((child) => {
-    /**
-     * @description 外层配置应用到所有 children
-     */
-    const transformOption = Object.assign(child, rest);
-
+  /**
+   * @title 通用转换逻辑
+   * @description 直接修改原对象
+   */
+  const transformConfig = <T = Options>(
+    config: T,
+    callback?: (transformObject: object, specKey: string, key: string) => void,
+  ): T => {
     Object.keys(TRANSFORM_OPTION_KEY).forEach((specKey) => {
       const transformObject = TRANSFORM_OPTION_KEY[specKey];
       /**
@@ -60,38 +63,62 @@ export const transformOptions = (params: Adaptor) => {
          * @description 常规图表
          * @example Line Bar Column 等单图层图表
          */
-        if (options[key]) {
-          const transformValue = getValue(transformObject[key], options[key], transformOption);
-          updateOptions(transformOption, specKey, transformValue);
-          deleteKeys.push(key);
+        if (config[key]) {
+          const transformValue = getValue(transformObject[key], config[key], config);
+          updateOptions(config, specKey, transformValue);
+          delete config[key];
         }
-        /**
-         * @description 特殊图表
-         * @example DualAxes 等多图层图表
-         */
-        if (child[key]) {
-          const transformValue = getValue(transformObject[key], child[key], transformOption);
-          updateOptions(transformOption, specKey, transformValue);
-          delete child[key];
-        }
+        if (isFunction(callback)) callback(transformObject, specKey, key);
       });
     });
+    return config;
+  };
+
+  children.forEach((child) => {
+    /**
+     * @description 外层配置应用到所有 children
+     */
+    const copyChild = { ...child };
+    const transformOption = Object.assign(child, rest);
+
+    const transformChildrenConfig = (transformObject: object, specKey: string, key: string) => {
+      /**
+       * @description 特殊图表
+       * @example DualAxes 等多图层图表
+       */
+      if (copyChild[key]) {
+        const transformValue = getValue(transformObject[key], child[key], transformOption);
+        updateOptions(transformOption, specKey, transformValue);
+        delete child[key];
+      }
+    };
+
+    transformConfig(transformOption, transformChildrenConfig);
   });
 
   /**
    * @description
-   *  1. 将 CHILDREN_SHAPE 中的配置项, 转换为 children
-   *  2. 删除已移入到 children 内的 key
+   *  1. 将 CONFIG_SHAPE 中的配置项, 转换为 children
    * @example 详见 src/core/constants/index.ts
    */
   Object.keys(options).forEach((key) => {
-    if (CHILDREN_SHAPE.includes(key)) {
-      children.push(...options[key]);
-      deleteKeys.push(key);
+    const exist = CONFIG_SHAPE.find((item) => item.key === key);
+    if (exist) {
+      const { type, extend_keys } = exist;
+      if (type) {
+        children.push(transformConfig(Object.assign({}, pick(options, extend_keys), { type }, options[key])));
+      } else {
+        // annotations
+        children.push(...options[key]);
+      }
     }
-    if (deleteKeys.includes(key)) {
-      delete options[key];
-    }
+  });
+
+  /**
+   * 统一删除已转换的配置项
+   */
+  deleteKeys.forEach((key) => {
+    delete options[key];
   });
   return params;
 };
