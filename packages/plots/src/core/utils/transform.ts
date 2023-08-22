@@ -1,6 +1,6 @@
 import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE } from '../constants';
 import { Adaptor, Options } from '../types';
-import { getCustomKeys, omit, pick, isFunction, getShapeConfigKeys } from './index';
+import { getCustomKeys, omit, pick, isFunction, getShapeConfigKeys, isArray } from './index';
 
 /**
  * @title 将自定义配置转换为 G2 接受的格式
@@ -109,7 +109,11 @@ export const transformOptions = (params: Adaptor) => {
         children.push(transformConfig(Object.assign({}, pick(options, extend_keys), { type }, options[key])));
       } else {
         // annotations
-        children.push(...options[key]);
+        if (isArray(options[key])) {
+          options[key].forEach((annotation) => {
+            children.push(transformConfig(annotation));
+          });
+        }
       }
     }
   });
