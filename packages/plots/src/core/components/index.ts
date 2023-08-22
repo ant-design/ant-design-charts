@@ -1,2 +1,2 @@
 export { mark } from './mark';
-export { coordinate } from './coordinate';
+export { coordinate, COORDIANTE_CFG } from './coordinate';
