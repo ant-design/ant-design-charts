@@ -1,4 +1,5 @@
 import { set, pick, get } from '../utils';
+
 import type { Adaptor } from '../types';
 
 /**
@@ -9,7 +10,7 @@ import type { Adaptor } from '../types';
  * @param params Adaptor
  * @returns params Adaptor
  */
-export function coordinateOptions<P extends Adaptor>(params: P) {
+export function coordinate<P extends Adaptor>(params: P) {
   const { options } = params;
   const { coordinate = {} } = options;
 

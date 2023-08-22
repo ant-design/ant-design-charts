@@ -1,2 +1,2 @@
 export { mark } from './mark';
-export { coordinateOptions } from './coordinateOptions';
+export { coordinate } from './coordinate';

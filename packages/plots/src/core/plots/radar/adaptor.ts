@@ -1,5 +1,6 @@
 import { flow, transformOptions, get } from '../../utils';
-import { coordinateOptions } from '../../components';
+import { coordinate } from '../../components';
+
 import type { Adaptor } from '../../types';
 import type { RadarOptions } from './type';
 
@@ -28,5 +29,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, coordinateOptions, transformOptions)(params);
+  return flow(init, coordinate, transformOptions)(params);
 }
