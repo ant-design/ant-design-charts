@@ -6,6 +6,7 @@ export const getCustomKeys = (): string[] => {
   Object.keys(TRANSFORM_OPTION_KEY).forEach((key) => {
     customKeys.push(...Object.keys(TRANSFORM_OPTION_KEY[key]));
   });
-  getShapeConfigKeys(customKeys);
+  const configKeys = getShapeConfigKeys();
+  customKeys.push(...configKeys);
   return customKeys;
 };

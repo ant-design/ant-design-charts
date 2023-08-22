@@ -1,7 +1,7 @@
 import { CONFIG_SHAPE } from '../constants';
 
-export const getShapeConfigKeys = (keys: string[] = []): string[] => {
-  const configKeys = keys;
+export const getShapeConfigKeys = (): string[] => {
+  const configKeys = [];
   CONFIG_SHAPE.forEach((item) => {
     configKeys.push(item.key);
   });
