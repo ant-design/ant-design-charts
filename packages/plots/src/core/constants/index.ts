@@ -27,10 +27,11 @@ export const TRANSFORM_OPTION_KEY = {
     yField: 'y',
     colorField: 'color',
     angleField: 'y',
+    keyField: 'key',
     sizeField: 'size',
     shapeField: 'shape',
     seriesField: 'series',
-    keyField: 'key',
+    positionField: 'position',
   },
   transform: {
     /**
@@ -120,7 +121,7 @@ export const TRANSFORM_OPTION_KEY = {
  *    1. annotations: [{type: 'text'}] -> children: [{type: 'text'}]
  *    2. lineConfig: {shape: 'hvh'}-> children: [{type: 'line', style: { shape: 'hvh'}}]
  */
-const EXTEND_KEYS = ['xField', 'yField', 'seriesField', 'colorField', 'sizeField', 'shapeField', 'keyField'];
+const EXTEND_KEYS = ['xField', 'yField', 'seriesField', 'colorField', 'sizeField', 'shapeField', 'keyField', 'positionField'];
 export const CONFIG_SHAPE = [
   {
     key: 'annotations',

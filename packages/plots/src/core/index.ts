@@ -6,6 +6,7 @@ export type { DualAxesOptions } from './plots/dual-axes';
 export type { LineOptions } from './plots/line';
 export type { PieOptions } from './plots/pie';
 export type { ScatterOptions } from './plots/scatter';
+export type { RadarOptions } from './plots/radar';
 export * from './types';
 
 import { Area } from './plots/area';
@@ -15,6 +16,6 @@ import { DualAxes } from './plots/dual-axes';
 import { Line } from './plots/line';
 import { Pie } from './plots/pie';
 import { Scatter } from './plots/scatter';
+import { Radar } from './plots/radar';
 
-export const Plots = { Line, Column, Pie, Area, Bar, DualAxes, Scatter };
-
+export const Plots = { Line, Column, Pie, Area, Bar, DualAxes, Scatter, Radar };
