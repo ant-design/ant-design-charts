@@ -12,6 +12,15 @@ export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas'
  *    4. connectNulls: {connect: true} -> style: {connect: true}
  *    5. keyField: 'key' -> encode: { key: 'key' }
  */
+const commonCallback = (type: string, value: boolean | object) => {
+  if (isBoolean(value)) {
+    return {
+      type,
+      available: value,
+    };
+  }
+  return { type, ...(value as object) };
+};
 export const TRANSFORM_OPTION_KEY = {
   encode: {
     xField: 'x',
@@ -30,13 +39,7 @@ export const TRANSFORM_OPTION_KEY = {
      *  1. stack: true -> transform: [{type: 'stackY'}]
      */
     stack: (value: boolean | object) => {
-      if (isBoolean(value)) {
-        return {
-          type: 'stackY',
-          available: value,
-        };
-      }
-      return { type: 'stackY', ...(value as object) };
+      return commonCallback('stackY', value);
     },
     /**
      * @title 归一化
@@ -44,13 +47,7 @@ export const TRANSFORM_OPTION_KEY = {
      *  1. normalize: true -> transform: [{type: 'normalizeY'}]
      */
     normalize: (value: boolean | object) => {
-      if (isBoolean(value)) {
-        return {
-          type: 'normalizeY',
-          available: value,
-        };
-      }
-      return { type: 'normalizeY', ...(value as object) };
+      return commonCallback('normalizeY', value);
     },
     /**
      * @title 分组
@@ -58,13 +55,7 @@ export const TRANSFORM_OPTION_KEY = {
      *  1. group: true -> transform: [{type: 'dodgeX'}]
      */
     group: (value: boolean | object) => {
-      if (isBoolean(value)) {
-        return {
-          type: 'dodgeX',
-          available: value,
-        };
-      }
-      return { type: 'dodgeX', ...(value as object) };
+      return commonCallback('dodgeX', value);
     },
     /**
      * @title 排序
@@ -72,13 +63,23 @@ export const TRANSFORM_OPTION_KEY = {
      *  1. sort: true -> transform: [{type: 'sortX'}]
      */
     sort: (value: boolean | object) => {
-      if (isBoolean(value)) {
-        return {
-          type: 'sortX',
-          available: value,
-        };
-      }
-      return { type: 'sortX', ...(value as object) };
+      return commonCallback('sortX', value);
+    },
+    /**
+     * @title 对称
+     * @example
+     *  1. symmetry: true -> transform: [{type: 'symmetryY'}]
+     */
+    symmetry: (value: boolean | object) => {
+      return commonCallback('symmetryY', value);
+    },
+    /**
+     * @title 对 y 和 y1 通道求差集
+     * @example
+     *  1. diff: true -> transform: [{type: 'diffY'}]
+     */
+    diff: (value: boolean | object) => {
+      return commonCallback('diffY', value);
     },
   },
   scale: {
@@ -114,11 +115,43 @@ export const TRANSFORM_OPTION_KEY = {
 };
 
 /**
- * @title 将 CHILDREN_SHAPE 中的配置项, 转换为 children
+ * @title 将 CONFIG_SHAPE 中的配置项, 转换为 children
  * @example
  *    1. annotations: [{type: 'text'}] -> children: [{type: 'text'}]
+ *    2. lineConfig: {shape: 'hvh'}-> children: [{type: 'line', style: { shape: 'hvh'}}]
  */
-export const CHILDREN_SHAPE = ['annotations'];
+const EXTEND_KEYS = ['xField', 'yField', 'seriesField', 'colorField', 'sizeField', 'shapeField', 'keyField'];
+export const CONFIG_SHAPE = [
+  {
+    key: 'annotations',
+    extend_keys: [],
+  },
+  {
+    key: 'lineConfig',
+    type: 'line',
+    extend_keys: EXTEND_KEYS,
+  },
+  {
+    key: 'pointConfig',
+    type: 'point',
+    extend_keys: EXTEND_KEYS,
+  },
+  {
+    key: 'areaConfig',
+    type: 'area',
+    extend_keys: EXTEND_KEYS,
+  },
+  {
+    key: 'intervalConfig',
+    type: 'interval',
+    extend_keys: EXTEND_KEYS,
+  },
+  {
+    key: 'polygonConfig',
+    type: 'polygon',
+    extend_keys: EXTEND_KEYS,
+  },
+];
 
 /**
  * @description 一些特殊的配置项，需要自定义转换逻辑
