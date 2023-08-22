@@ -2,8 +2,7 @@ import EE from '@antv/event-emitter';
 import { Chart } from '@antv/g2';
 import { bind } from 'size-sensor';
 import { CHART_OPTIONS } from '../constants';
-import { COORDIANTE_CFG } from '../components';
-import { getCustomKeys, merge, omit, pick } from '../utils';
+import { merge, omit, pick } from '../utils';
 
 import type { Adaptor, Options } from '../types';
 
@@ -92,7 +91,7 @@ export abstract class Plot<O extends Options> extends EE {
   public render(): void {
     // 执行 adaptor
     this.execAdaptor();
-    console.log(this.getSpecOptions(), '1');
+
     // options 转换
     this.chart.options(this.getSpecOptions());
     // 渲染
