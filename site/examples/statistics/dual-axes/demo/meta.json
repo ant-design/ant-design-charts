@@ -11,6 +11,14 @@
         "en": "Line Bar Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*GLvKQbqMjTQAAAAAAAAAAAAADmJ7AQ/fmt.webp"
+    },
+    {
+      "filename": "multi-line.js",
+      "title": {
+        "zh": "多轴图",
+        "en": "Multi Axis Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*BxouQYIIQ0kAAAAAAAAAAAAADmJ7AQ/fmt.webp"
     }
   ]
 }

@@ -13,7 +13,6 @@ export const transformOptions = (params: Adaptor) => {
 
   const getRest = (o: Adaptor['options']) => {
     const { children, type, data, ...rest } = o;
-    deleteKeys.push(...Object.keys(rest));
     return omit(rest, getShapeConfigKeys());
   };
 
@@ -66,7 +65,6 @@ export const transformOptions = (params: Adaptor) => {
         if (config[key]) {
           const transformValue = getValue(transformObject[key], config[key], config);
           updateOptions(config, specKey, transformValue);
-          delete config[key];
         }
         if (isFunction(callback)) callback(transformObject, specKey, key);
       });
@@ -89,7 +87,6 @@ export const transformOptions = (params: Adaptor) => {
       if (copyChild[key]) {
         const transformValue = getValue(transformObject[key], child[key], transformOption);
         updateOptions(transformOption, specKey, transformValue);
-        delete child[key];
       }
     };
 
@@ -121,8 +118,19 @@ export const transformOptions = (params: Adaptor) => {
   /**
    * 统一删除已转换的配置项
    */
-  deleteKeys.forEach((key) => {
-    delete options[key];
-  });
+  const deleteCustomKeys = () => {
+    deleteKeys.forEach((key) => {
+      delete options[key];
+    });
+    options.children.forEach((child) => {
+      Object.keys(child).forEach((key) => {
+        if (deleteKeys.includes(key)) {
+          delete child[key];
+        }
+      });
+    });
+  };
+  deleteCustomKeys();
+
   return params;
 };
