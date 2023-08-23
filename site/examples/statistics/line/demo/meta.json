@@ -13,12 +13,12 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/aiERL4ey%24U/08d95f7b-46cb-4bfd-89b2-be36343d44a1.png"
     },
     {
-      "filename": "multi.js",
+      "filename": "line-var-size.js",
       "title": {
-        "zh": "多折线图",
-        "en": "Multi line plot"
+        "zh": "变宽折线图",
+        "en": "Var Size Line Chart"
       },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IZ9nRq-a6fIAAAAAAAAAAABkARQnAQ"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*pWrERLZIMyQAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "connect-nulls.js",
@@ -51,6 +51,14 @@
         "en": "Colors Line plot"
       },
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*WVwSRa-HQAcAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "line-threshold.js",
+      "title": {
+        "zh": "阈值折线图",
+        "en": "Threshold Line Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*YUrlS4AWYFkAAAAAAAAAAAAADmJ7AQ"
     }
   ]
 }
