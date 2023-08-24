@@ -1,7 +1,8 @@
 import { Plot } from '../../base';
-import type { Adaptor } from '../../types';
 import { adaptor } from './adaptor';
-import { ScatterOptions } from './type';
+
+import type { ScatterOptions } from './type';
+import type { Adaptor } from '../../types';
 
 export type { ScatterOptions };
 
