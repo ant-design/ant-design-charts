@@ -1,6 +1,8 @@
+import { COORDIANTE_OPTIONS } from '../components';
 import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE } from '../constants';
-import { Adaptor, Options } from '../types';
 import { getCustomKeys, omit, pick, isFunction, getShapeConfigKeys, isArray } from './index';
+
+import type { Adaptor, Options } from '../types';
 
 /**
  * @title 将自定义配置转换为 G2 接受的格式
@@ -119,9 +121,10 @@ export const transformOptions = (params: Adaptor) => {
    * 统一删除已转换的配置项
    */
   const deleteCustomKeys = () => {
-    deleteKeys.forEach((key) => {
+    [...deleteKeys, ...COORDIANTE_OPTIONS].forEach((key) => {
       delete options[key];
     });
+
     options.children.forEach((child) => {
       Object.keys(child).forEach((key) => {
         if (deleteKeys.includes(key)) {
@@ -130,6 +133,7 @@ export const transformOptions = (params: Adaptor) => {
       });
     });
   };
+
   deleteCustomKeys();
 
   return params;

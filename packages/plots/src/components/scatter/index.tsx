@@ -1,7 +1,8 @@
 import React from 'react';
-import { ScatterOptions } from '../../core';
-import { CommonConfig } from '../../interface';
 import { BaseChart } from '../base';
+
+import type { ScatterOptions } from '../../core';
+import type { CommonConfig } from '../../interface';
 
 export type ScatterConfig = CommonConfig<ScatterOptions>;
 

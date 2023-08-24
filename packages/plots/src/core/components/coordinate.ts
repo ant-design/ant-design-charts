@@ -2,6 +2,8 @@ import { set, pick, get } from '../utils';
 
 import type { Adaptor } from '../types';
 
+export const COORDIANTE_OPTIONS = ['radius', 'innerRadius', 'startAngle', 'endAngle', 'focusX', 'focusY', 'distortionX', 'distortionY', 'visual']
+
 /**
  * 主要为极坐标配置， 饼图、雷达图等
  * 通用坐标系配置, coordinate 配置根据图表默认进行配置，例如 coordinate 饼图 { type: 'theta' } 玉珏图 { type: 'radial' }。
@@ -16,7 +18,7 @@ export function coordinate<P extends Adaptor>(params: P) {
 
   set(params, ['options', 'coordinate'], {
     ...coordinate,
-    ...pick(options, ['innerRadius', 'startAngle', 'endAngle', 'focusX', 'focusY', 'distortionX', 'distortionY', 'visual']),
+    ...pick(options, COORDIANTE_OPTIONS),
     outerRadius: get(options, 'radius'),
   });
 

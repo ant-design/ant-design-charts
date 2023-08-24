@@ -7,6 +7,7 @@ export type { LineOptions } from './plots/line';
 export type { PieOptions } from './plots/pie';
 export type { ScatterOptions } from './plots/scatter';
 export type { RadarOptions } from './plots/radar';
+export type { RoseOptions } from './plots/rose';
 export * from './types';
 
 import { Area } from './plots/area';
@@ -17,5 +18,6 @@ import { Line } from './plots/line';
 import { Pie } from './plots/pie';
 import { Scatter } from './plots/scatter';
 import { Radar } from './plots/radar';
+import { Rose } from './plots/rose';
 
-export const Plots = { Line, Column, Pie, Area, Bar, DualAxes, Scatter, Radar };
+export const Plots = { Line, Column, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose };
