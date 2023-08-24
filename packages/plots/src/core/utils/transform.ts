@@ -1,4 +1,4 @@
-import { COORDIANTE_CFG } from '../components';
+import { COORDIANTE_OPTIONS } from '../components';
 import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE } from '../constants';
 import { getCustomKeys, omit, pick, isFunction, getShapeConfigKeys, isArray } from './index';
 
@@ -121,7 +121,7 @@ export const transformOptions = (params: Adaptor) => {
    * 统一删除已转换的配置项
    */
   const deleteCustomKeys = () => {
-    [...deleteKeys, ...COORDIANTE_CFG].forEach((key) => {
+    [...deleteKeys, ...COORDIANTE_OPTIONS].forEach((key) => {
       delete options[key];
     });
 

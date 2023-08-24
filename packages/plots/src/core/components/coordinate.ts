@@ -2,7 +2,7 @@ import { set, pick, get } from '../utils';
 
 import type { Adaptor } from '../types';
 
-export const COORDIANTE_CFG = ['radius', 'innerRadius', 'startAngle', 'endAngle', 'focusX', 'focusY', 'distortionX', 'distortionY', 'visual']
+export const COORDIANTE_OPTIONS = ['radius', 'innerRadius', 'startAngle', 'endAngle', 'focusX', 'focusY', 'distortionX', 'distortionY', 'visual']
 
 /**
  * 主要为极坐标配置， 饼图、雷达图等
@@ -18,7 +18,7 @@ export function coordinate<P extends Adaptor>(params: P) {
 
   set(params, ['options', 'coordinate'], {
     ...coordinate,
-    ...pick(options, COORDIANTE_CFG),
+    ...pick(options, COORDIANTE_OPTIONS),
     outerRadius: get(options, 'radius'),
   });
 
