@@ -10,6 +10,16 @@ const data = [
   {type: '分类五', value: 10},
   {type: '其他', value: 5},
 ];
+
+const customLabel = (_, datum) => (
+  <div style={{display: 'flex', alignItems: 'center', gap: 4,}}>
+    <div style={{width: 8, height: 8, background: 'rgba(0,0,0,0.4)', borderRadius: '50%'}}/>
+    <div>
+      {datum.type} : <b>{datum.value}</b>
+    </div>
+  </div>
+)
+
 const DemoPie = () => {
   const config = {
     data,
@@ -17,16 +27,14 @@ const DemoPie = () => {
     colorField: 'type',
     label: {
       text: 'type',
-      position: "outside",
-      render: (text, datum) => {
-        return `
-        <div style="left:-50%;top:-20px;position:relative;font-size:14px;">
-          <span>${datum.type}</span>
-          :
-          <span>${datum.value}</span>
-        </div>
-      `;
-      },
+      position: 'outside',
+      textAlign: 'center',
+      transform: [
+        {
+          type: 'contrastReverse',
+        },
+      ],
+      render: customLabel,
     },
     legend: false,
   };
