@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { isEqual, get } from 'lodash-es';
 import createNode from '../utils/createNode';
-import { hasPath, isType, deepClone, clone, setPath, uuid } from '../utils';
+import { getPathConfig, isType, deepClone, clone, setPathConfig } from '../utils';
+import { JSX_TO_STRING } from '../constants';
 import { CommonConfig, Chart } from '../interface';
 
 export default function useInit<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
@@ -41,35 +42,23 @@ export default function useInit<T extends Chart, U extends CommonConfig>(ChartCl
     return imageName;
   };
 
-  const reactDomToString = (source: U, path: string[], type?: string, _uuid?: string) => {
-    const statisticCustomHtml = hasPath(source, path);
-    setPath(source, path, (...arg: any[]) => {
+  const reactDomToString = (source: U, path: string[], extra?: object) => {
+    const statisticCustomHtml = getPathConfig(source, path);
+    setPathConfig(source, path, (...arg: any[]) => {
       const statisticDom = isType(statisticCustomHtml, 'Function') ? statisticCustomHtml(...arg) : statisticCustomHtml;
       if (isType(statisticDom, 'String') || isType(statisticDom, 'Number') || isType(statisticDom, 'HTMLDivElement')) {
         return statisticDom;
       }
-      return createNode(statisticDom, type, _uuid);
+      return createNode(statisticDom, extra);
     });
   };
 
   const processConfig = () => {
-    const _uuid = uuid();
-    // statistic
-    if (hasPath(config, ['statistic', 'content', 'customHtml'])) {
-      reactDomToString(config, ['statistic', 'content', 'customHtml']);
-    }
-    if (hasPath(config, ['statistic', 'title', 'customHtml'])) {
-      reactDomToString(config, ['statistic', 'title', 'customHtml']);
-    }
-    // tooltip
-    if (typeof config.tooltip === 'object') {
-      if (hasPath(config, ['tooltip', 'container'])) {
-        reactDomToString(config, ['tooltip', 'container'], 'tooltip', _uuid);
+    JSX_TO_STRING.forEach(({ path, extra }) => {
+      if (getPathConfig(config, path)) {
+        reactDomToString(config, path, extra);
       }
-      if (hasPath(config, ['tooltip', 'customContent'])) {
-        reactDomToString(config, ['tooltip', 'customContent'], 'tooltip', _uuid);
-      }
-    }
+    });
   };
 
   useEffect(() => {
