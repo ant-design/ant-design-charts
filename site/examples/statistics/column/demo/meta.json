@@ -43,6 +43,14 @@
         "en": "Stacked Column Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*GwDUQbVt9XYAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "change-data.js",
+      "title": {
+        "zh": "数据更新",
+        "en": "Change Data"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*b5Q8R6DHJZMAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }

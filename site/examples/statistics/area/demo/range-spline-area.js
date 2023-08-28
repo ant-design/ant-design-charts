@@ -26,7 +26,7 @@ const DemoArea = () => {
       y: { title: false },
     },
     meta: {
-      y: { type: 'linear', tickCount: 10 },
+      x: { type: 'linear', tickCount: 10 },
     },
     pointConfig: {
       yField: 'v2',

@@ -3,3 +3,4 @@ export { getCustomKeys } from './get-custom-keys';
 export { isCompositePlot } from './is-composite-plot';
 export { transformOptions } from './transform';
 export { getShapeConfigKeys } from './get-shape-config-keys';
+export { deleteCustomKeys } from './delete-custom-keys';
