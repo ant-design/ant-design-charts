@@ -59,6 +59,22 @@
         "en": "Threshold Line Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*YUrlS4AWYFkAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "line-text.js",
+      "title": {
+        "zh": "文本标记的折线图",
+        "en": "Line, Text Annotation"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*pQq2S7Ns2MUAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "slider.js",
+      "title": {
+        "zh": "缩略轴",
+        "en": "Slider"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*xZAVSKcWzrwAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }

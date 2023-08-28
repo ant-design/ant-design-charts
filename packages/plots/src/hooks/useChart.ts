@@ -71,20 +71,12 @@ export default function useInit<T extends Chart, U extends CommonConfig>(ChartCl
         changeData = isEqual(currentConfig, inputConfig);
       }
       chartOptions.current = deepClone(config);
-      if (changeData && get(config, 'chartType') !== 'Mix') {
-        let changeType = 'data';
-        const typeMaps = ['percent']; // 特殊类型的图表 data 字段，例如 RingProgress
-        const currentKeys = Object.keys(config);
-        typeMaps.forEach((type: string) => {
-          if (currentKeys.includes(type)) {
-            changeType = type;
-          }
-        });
-        chart.current.changeData(config?.[changeType] || []);
-        chart.current.render();
+      if (changeData) {
+        chart.current.changeData(get(config, 'data'));
       } else {
         processConfig();
         chart.current.update(config);
+        chart.current.render();
       }
     }
   }, [config]);
