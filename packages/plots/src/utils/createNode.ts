@@ -1,18 +1,12 @@
 import React from 'react';
 import { render } from 'rc-utils';
 
-const TOOLTIP_CONTAINER_MAPPING = new Map();
-
-const createNode = (children: React.ReactElement, type?: string, uuid?: string) => {
+const createNode = (children: React.ReactElement, extra?: object) => {
   let mountPoint = document.createElement('div');
-  if (type === 'tooltip') {
-    mountPoint.setAttribute('data-uuid', uuid);
-    if (TOOLTIP_CONTAINER_MAPPING.has(uuid)) {
-      mountPoint = TOOLTIP_CONTAINER_MAPPING.get(uuid);
-    } else {
-      TOOLTIP_CONTAINER_MAPPING.set(uuid, mountPoint);
-    }
-    mountPoint.className = 'g2-tooltip';
+  if (extra) {
+    Object.keys(extra).forEach((key) => {
+      mountPoint.setAttribute(key, extra[key]);
+    });
   }
   render(children, mountPoint);
   return mountPoint;

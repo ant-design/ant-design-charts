@@ -1,1 +1,1 @@
-export { isType, clone, hasPath, setPath, deepClone, uuid } from './utils';
+export { isType, clone, getPathConfig, setPathConfig, deepClone, uuid } from './utils';

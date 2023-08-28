@@ -46,7 +46,7 @@ export const deepClone = (source: Object | undefined) => {
 /**
  * 存在时返回路径值，不存在时返回 undefined
  */
-export const hasPath = (source: any, path: string[]) => {
+export const getPathConfig = (source: any, path: string[]) => {
   let current = source;
   for (let i = 0; i < path.length; i += 1) {
     if (current?.[path[i]]) {
@@ -62,7 +62,7 @@ export const hasPath = (source: any, path: string[]) => {
 /**
  * 内部指定 params ，不考虑复杂情况
  */
-export const setPath = (source: object, path: string[], value?: any) => {
+export const setPathConfig = (source: object, path: string[], value?: any) => {
   if (!source) {
     return source;
   }

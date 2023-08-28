@@ -1,4 +1,4 @@
-import { hasPath, clone, isType, setPath } from '../../src/utils';
+import { getPathConfig, clone, isType, setPathConfig } from '../../src/utils';
 
 describe('utils', () => {
   it('is type', () => {
@@ -20,10 +20,10 @@ describe('utils', () => {
         title: {},
       },
     };
-    expect(hasPath(undefined, ['noPath'])).toBeUndefined();
-    expect(hasPath(config, ['statistic', 'content', 'customHtml'])).toBe('html');
-    expect(hasPath(config, ['statistic', 'title', 'customHtml'])).toBeUndefined();
-    expect(hasPath(config, [])).toEqual(config);
+    expect(getPathConfig(undefined, ['noPath'])).toBeUndefined();
+    expect(getPathConfig(config, ['statistic', 'content', 'customHtml'])).toBe('html');
+    expect(getPathConfig(config, ['statistic', 'title', 'customHtml'])).toBeUndefined();
+    expect(getPathConfig(config, [])).toEqual(config);
   });
 
   it('set path', () => {
@@ -35,9 +35,9 @@ describe('utils', () => {
         title: {},
       },
     };
-    expect(setPath(undefined, ['noPath'])).toBeUndefined();
-    expect(setPath(config, [])).toEqual(config);
-    expect(setPath(config, ['statistic', 'title', 'customHtml'], 'title')).toEqual({
+    expect(setPathConfig(undefined, ['noPath'])).toBeUndefined();
+    expect(setPathConfig(config, [])).toEqual(config);
+    expect(setPathConfig(config, ['statistic', 'title', 'customHtml'], 'title')).toEqual({
       statistic: {
         content: {
           customHtml: 'html',
