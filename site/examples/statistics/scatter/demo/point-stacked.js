@@ -17,6 +17,7 @@ const DemoScatter = () => {
     xField: (d) => 2021 - d.birth,
     yField: (d) => (d.gender === 'M' ? 1 : -1),
     colorField: 'gender',
+    shapeField: 'point',
     meta: {
       x: { nice: true },
     },

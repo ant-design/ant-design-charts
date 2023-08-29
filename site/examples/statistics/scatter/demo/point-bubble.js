@@ -18,6 +18,7 @@ const DemoScatter = () => {
     yField: 'Entity',
     sizeField: 'Deaths',
     colorField: 'Entity',
+    shapeField: 'point',
     scale: {
       size: {
         rangeMax: 35,

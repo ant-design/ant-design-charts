@@ -17,14 +17,16 @@ const DemoScatter = () => {
     xField: 'state',
     yField: 'population',
     colorField: 'age',
+    shapeField: "point",
     meta: { color: { palette: "spectral" } },
     tooltip: { title: "state", items: ["population"] },
     annotations: [
       {
         type: "link",
-        encode: { x: "state", y: "population" },
+        xField: "state",
+        yField: "population",
         transform: [{ type: "groupX", y: "min", y1: "max" }],
-        scale: { y: { labelFormatter: ".0%" } },
+        meta: { y: { labelFormatter: ".0%" } },
         style: { stroke: "#000" },
         tooltip: false,
       },
