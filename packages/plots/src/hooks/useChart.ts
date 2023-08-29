@@ -5,7 +5,7 @@ import { getPathConfig, isType, deepClone, clone, setPathConfig } from '../utils
 import { JSX_TO_STRING } from '../constants';
 import { CommonConfig, Chart } from '../interface';
 
-export default function useInit<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
+export default function useChart<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
   const chart = useRef<T>();
   const chartOptions = useRef<U>();
   const container = useRef<HTMLDivElement>(null);
@@ -17,7 +17,8 @@ export default function useInit<T extends Chart, U extends CommonConfig>(ChartCl
    * @param {number} encoderOptions A Number between 0 and 1 indicating the image quality
    */
   const toDataURL = (type = 'image/png', encoderOptions?: number) => {
-    return chart.current?.chart.canvas.cfg.el.toDataURL(type, encoderOptions);
+    const canvas = container.current?.getElementsByTagName('canvas')[0];
+    return canvas?.toDataURL(type, encoderOptions);
   };
 
   /**
@@ -31,7 +32,7 @@ export default function useInit<T extends Chart, U extends CommonConfig>(ChartCl
     if (name.indexOf('.') === -1) {
       imageName = `${name}.${type.split('/')[1]}`;
     }
-    const base64 = chart.current?.chart.canvas.cfg.el.toDataURL(type, encoderOptions);
+    const base64 = toDataURL(type, encoderOptions);
     let a: HTMLAnchorElement | null = document.createElement('a');
     a.href = base64;
     a.download = imageName;
@@ -93,12 +94,8 @@ export default function useInit<T extends Chart, U extends CommonConfig>(ChartCl
       ...config,
     });
 
-    chartInstance.toDataURL = (type?: string, encoderOptions?: number) => {
-      return toDataURL(type, encoderOptions);
-    };
-    chartInstance.downloadImage = (name?: string, type?: string, encoderOptions?: number) => {
-      return downloadImage(name, type, encoderOptions);
-    };
+    chartInstance.toDataURL = toDataURL;
+    chartInstance.downloadImage = downloadImage;
     chartInstance.render();
     chart.current = clone(chartInstance) as T;
     if (onReady) {
