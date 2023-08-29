@@ -35,7 +35,7 @@ const DemoArea = () => {
     axis: {
       y: { labelFormatter: '~s' },
     },
-    lineConfig: {
+    line: {
       shape: 'hvh',
     },
   };

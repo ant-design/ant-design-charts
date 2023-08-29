@@ -24,7 +24,7 @@ const DemoArea = () => {
     meta: {
       color: { range: ['#67a9cf', '#ef8a62'] },
     },
-    lineConfig: {
+    line: {
       yField: 'San Francisco',
       shape: 'hvh',
       style: {

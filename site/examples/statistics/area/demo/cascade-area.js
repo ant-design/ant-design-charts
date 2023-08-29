@@ -21,7 +21,7 @@ const DemoArea = () => {
       y: { labelFormatter: '~s' },
     },
     tooltip: { channel: 'y', valueFormatter: '.2f' },
-    lineConfig: {
+    line: {
       shape: 'smooth',
       stack: {
         orderBy: 'maxIndex',

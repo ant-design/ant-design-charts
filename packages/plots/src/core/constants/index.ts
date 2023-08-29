@@ -119,7 +119,7 @@ export const TRANSFORM_OPTION_KEY = {
  * @title 将 CONFIG_SHAPE 中的配置项, 转换为 children
  * @example
  *    1. annotations: [{type: 'text'}] -> children: [{type: 'text'}]
- *    2. lineConfig: {shape: 'hvh'}-> children: [{type: 'line', style: { shape: 'hvh'}}]
+ *    2. line: {shape: 'hvh'}-> children: [{type: 'line', style: { shape: 'hvh'}}]
  */
 const EXTEND_KEYS = [
   'xField',
@@ -137,30 +137,20 @@ export const CONFIG_SHAPE = [
     extend_keys: [],
   },
   {
-    key: 'lineConfig',
+    key: 'line',
     type: 'line',
     extend_keys: EXTEND_KEYS,
   },
   {
-    key: 'pointConfig',
+    key: 'point',
     type: 'point',
     extend_keys: EXTEND_KEYS,
   },
   {
-    key: 'areaConfig',
+    key: 'area',
     type: 'area',
     extend_keys: EXTEND_KEYS,
-  },
-  {
-    key: 'intervalConfig',
-    type: 'interval',
-    extend_keys: EXTEND_KEYS,
-  },
-  {
-    key: 'polygonConfig',
-    type: 'polygon',
-    extend_keys: EXTEND_KEYS,
-  },
+  }
 ];
 
 /**
