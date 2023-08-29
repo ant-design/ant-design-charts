@@ -12,12 +12,23 @@ const DemoPie = () => {
       { type: '分类五', value: 10 },
       { type: '其他', value: 5 },
     ],
+    appendPadding: 10,
     angleField: 'value',
     colorField: 'type',
-    paddingRight: 80,
+    startAngle: Math.PI,
+    endAngle: Math.PI * 1.5,
     label: {
-      text: 'value',
-      position: 'outside',
+      text: 'type',
+      style: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        transform: 'rotate(40)',
+      },
+      transform: [
+        {
+          type: 'overlapHide',
+        },
+      ],
     },
     legend: {
       color: {

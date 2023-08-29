@@ -15,9 +15,11 @@ export class Pie extends Plot<PieOptions> {
    */
   static getDefaultOptions(): Partial<PieOptions> {
     return {
+      type: 'view',
       children: [{ type: 'interval' }],
-      transform: [{ type: 'stackY' }],
       coordinate: { type: 'theta' },
+      transform: [{ type: 'stackY', reverse: true }],
+      animate: { enter: { type: 'waveIn' } },
     };
   }
 

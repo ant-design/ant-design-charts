@@ -14,16 +14,19 @@ const DemoPie = () => {
     ],
     angleField: 'value',
     colorField: 'type',
+    paddingRight: 80,
     label: {
-      text: d => `${d.value}%`,
+      text: 'value',
       style: {
         fontWeight: 'bold',
-      }
+      },
     },
     legend: {
       color: {
-        position: "right"
-      }
+        title: false,
+        position: 'right',
+        rowPadding: 5,
+      },
     },
   };
   return <Pie {...config} />;

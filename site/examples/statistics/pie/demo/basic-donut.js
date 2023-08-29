@@ -15,9 +15,12 @@ const DemoPie = () => {
     angleField: 'value',
     colorField: 'type',
     paddingRight: 80,
+    innerRadius: 0.6,
     label: {
       text: 'value',
-      position: 'outside',
+      style: {
+        fontWeight: 'bold',
+      },
     },
     legend: {
       color: {
