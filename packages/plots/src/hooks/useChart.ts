@@ -5,7 +5,7 @@ import { getPathConfig, isType, deepClone, clone, setPathConfig } from '../utils
 import { JSX_TO_STRING } from '../constants';
 import { CommonConfig, Chart } from '../interface';
 
-export default function useInit<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
+export default function useChart<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
   const chart = useRef<T>();
   const chartOptions = useRef<U>();
   const container = useRef<HTMLDivElement>(null);
@@ -31,7 +31,8 @@ export default function useInit<T extends Chart, U extends CommonConfig>(ChartCl
     if (name.indexOf('.') === -1) {
       imageName = `${name}.${type.split('/')[1]}`;
     }
-    const base64 = chart.current?.chart.canvas.cfg.el.toDataURL(type, encoderOptions);
+    const canvas = container.current?.getElementsByTagName('canvas')[0];
+    const base64 = canvas?.toDataURL(type, encoderOptions);
     let a: HTMLAnchorElement | null = document.createElement('a');
     a.href = base64;
     a.download = imageName;
