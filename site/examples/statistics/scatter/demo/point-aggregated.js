@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 
 const DemoScatter = () => {
   const config = {
+    autoFit: false,
+    height: 240,
+    inset: 10,
     data: {
       type: "fetch",
       value: "https://assets.antv.antgroup.com/g2/commits.json",
@@ -13,7 +16,7 @@ const DemoScatter = () => {
     yField: (d) => new Date(d.time).getUTCDay(),
     sizeField: "count",
     colorField: "count",
-    shape: "point",
+    shapeField: "point",
     transform: [{ type: "group", size: "sum" }, { type: "sortY" }],
     meta: { y: { type: "point" } },
     axis: {

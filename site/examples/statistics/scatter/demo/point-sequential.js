@@ -13,6 +13,7 @@ const DemoScatter = () => {
     xField: 'date',
     yField: 'value',
     colorField: 'value',
+    shapeField: 'point',
     style: {
       stroke: '#000',
       strokeOpacity: 0.2,
