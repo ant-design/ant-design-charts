@@ -28,12 +28,12 @@ const DemoArea = () => {
     meta: {
       x: { type: 'linear', tickCount: 10 },
     },
-    pointConfig: {
+    point: {
       yField: 'v2',
       shape: 'point',
       sizeField: 2,
     },
-    lineConfig: {
+    line: {
       yField: 'v3',
       shape: 'smooth',
       style: {

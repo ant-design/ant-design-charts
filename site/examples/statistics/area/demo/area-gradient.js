@@ -17,7 +17,7 @@ const DemoArea = () => {
     axis: {
       y: { labelFormatter: '~s' },
     },
-    lineConfig: {
+    line: {
       style: {
         stroke: 'darkgreen',
         strokeWidth: 2,
