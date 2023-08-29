@@ -10,29 +10,33 @@ const data = [
   { type: '分类五', value: 10 },
   { type: '其他', value: 5 },
 ];
+
+const customLabel = (_, datum) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+    <div style={{ width: 8, height: 8, background: 'rgba(0,0,0,0.4)', borderRadius: '50%' }} />
+    <div>
+      {datum.type} : <b>{datum.value}</b>
+    </div>
+  </div>
+);
+
 const DemoPie = () => {
   const config = {
     data,
     angleField: 'value',
     colorField: 'type',
-    inset: 5,
-    paddingRight: 80,
     label: {
-      text: (d) => `${d.type}\n ${d.value}`,
-      position: 'spider',
+      text: 'type',
+      position: 'outside',
+      textAlign: 'center',
       transform: [
         {
-          type: 'overlapDodgeY',
+          type: 'contrastReverse',
         },
       ],
+      render: customLabel,
     },
-    legend: {
-      color: {
-        title: false,
-        position: 'right',
-        rowPadding: 5,
-      },
-    },
+    legend: false,
   };
   return <Pie {...config} />;
 };
