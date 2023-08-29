@@ -1,6 +1,5 @@
-import { COORDIANTE_OPTIONS } from '../components';
 import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE } from '../constants';
-import { getCustomKeys, omit, pick, isFunction, getShapeConfigKeys, isArray } from './index';
+import { omit, pick, isFunction, getShapeConfigKeys, isArray, deleteCustomKeys } from './index';
 
 import type { Adaptor, Options } from '../types';
 
@@ -10,8 +9,6 @@ import type { Adaptor, Options } from '../types';
 export const transformOptions = (params: Adaptor) => {
   const { options } = params;
   const { children = [] } = options;
-
-  const deleteKeys = getCustomKeys();
 
   const getRest = (o: Adaptor['options']) => {
     const { children, type, data, ...rest } = o;
@@ -117,24 +114,7 @@ export const transformOptions = (params: Adaptor) => {
     }
   });
 
-  /**
-   * 统一删除已转换的配置项
-   */
-  const deleteCustomKeys = () => {
-    [...deleteKeys, ...COORDIANTE_OPTIONS].forEach((key) => {
-      delete options[key];
-    });
-
-    options.children.forEach((child) => {
-      Object.keys(child).forEach((key) => {
-        if (deleteKeys.includes(key)) {
-          delete child[key];
-        }
-      });
-    });
-  };
-
-  deleteCustomKeys();
+  deleteCustomKeys(options);
 
   return params;
 };
