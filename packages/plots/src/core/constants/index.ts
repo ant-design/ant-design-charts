@@ -6,6 +6,9 @@ export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas'
 /** 最终透传给 G2 Spec 的保留字 */
 export const RESERVED_KEYS = ['data', 'type', 'children'];
 
+/** 特殊标识，用于标识改配置来自于转换逻辑，而非用户配置 */
+export const TRANSFORM_SIGN = '__transform__';
+
 /**
  * @title 字段转换逻辑
  * @example
@@ -167,7 +170,7 @@ export const SPECIAL_OPTIONS = [
       origin[key] = origin[key] || [];
       const { available = true, ...rest } = value;
       if (available) {
-        origin[key].push(rest);
+        origin[key].push({ [TRANSFORM_SIGN]: true, ...rest });
       } else {
         origin[key].splice(
           origin[key].indexOf((item) => item.type === value.type),
@@ -180,7 +183,7 @@ export const SPECIAL_OPTIONS = [
     key: 'labels',
     callback: (origin: object, key: string, value: { type: string; available?: boolean }) => {
       origin[key] = origin[key] || [];
-      origin[key].push(value);
+      origin[key].push({ [TRANSFORM_SIGN]: true, ...value });
     },
   },
 ];
