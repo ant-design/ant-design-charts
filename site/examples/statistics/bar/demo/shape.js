@@ -13,8 +13,8 @@ const data = [
 const DemoBar = () => {
   const config = {
     data,
-    xField: 'value',
-    yField: 'year',
+    xField: 'year',
+    yField: 'value',
     shapeField: 'hollow',
     colorField: 'year',
     legend: {
