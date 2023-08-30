@@ -3,6 +3,9 @@ import { isBoolean } from '../utils';
 /** new Chart options */
 export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas', 'theme'];
 
+/** 最终透传给 G2 Spec 的保留字 */
+export const RESERVED_KEYS = ['data', 'type', 'children'];
+
 /**
  * @title 字段转换逻辑
  * @example
@@ -150,7 +153,7 @@ export const CONFIG_SHAPE = [
     key: 'area',
     type: 'area',
     extend_keys: EXTEND_KEYS,
-  }
+  },
 ];
 
 /**

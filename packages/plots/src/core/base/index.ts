@@ -48,7 +48,7 @@ export abstract class Plot<O extends Options> extends EE {
    * G2 options(Spec) 配置
    */
   private getSpecOptions() {
-    return deleteCustomKeys(omit(this.options, CHART_OPTIONS));
+    return deleteCustomKeys(omit(this.options, CHART_OPTIONS), true);
   }
 
   /**
