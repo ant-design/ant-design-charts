@@ -19,6 +19,11 @@ const DemoColumn = () => {
         labelFormatter: '.0%',
       },
     },
+    style: {
+      // 圆角样式
+      radiusTopLeft: 10,
+      radiusTopRight: 10,
+    },
   };
   return <Column {...config} />;
 };

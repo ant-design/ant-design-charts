@@ -13,12 +13,44 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*vhCKQJ9UJX4AAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "color.js",
+      "title": {
+        "zh": "自定义柱状图颜色",
+        "en": "Column plot color"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dr27SafKNzIAAAAAAAAAAAAAARQnAQ"
+    },
+    {
       "filename": "column-maxwidth.js",
       "title": {
         "zh": "限制宽度的柱形图",
         "en": "Column with maxWidth"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*fu-BSYg7U_kAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "slider.js",
+      "title": {
+        "zh": "带缩略轴柱状图",
+        "en": "Column plot with slider"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*QhoHQ4QIts0AAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "scrollbar.js",
+      "title": {
+        "zh": "带滚动条柱状图",
+        "en": "Column plot with scrollbar"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IkdWTaXf4vAAAAAAAAAAAABkARQnAQ"
+    },
+    {
+      "filename": "region-annotation.js",
+      "title": {
+        "zh": "带辅助框标注的基础柱状图",
+        "en": "Basic column plot with region annotation"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/ceFSs9FuNn/2922d5e4-df5f-4512-8f8f-6f2ec258c7b8.png"
     },
     {
       "filename": "range.js",
@@ -43,6 +75,22 @@
         "en": "Stacked Column Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*GwDUQbVt9XYAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "annotation-label.js",
+      "title": {
+        "zh": "借助图形标注展示总计 label",
+        "en": "Show total label with annotations"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/h5ZnxOZaVR/f4495644-e5b3-4130-8a8f-686cf6241267.png"
+    },
+    {
+      "filename": "dodge-padding.js",
+      "title": {
+        "zh": "分组柱状图像素级组内柱子间距",
+        "en": "DodgePadding of grouped column plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/VL8xZlzwm5/2d96f1be-83c6-47c8-8a02-6023ecdbe035.png"
     },
     {
       "filename": "change-data.js",
