@@ -17,7 +17,11 @@ const DemoRadar = () => {
     data: data.map((d) => ({ ...d, star: Math.sqrt(d.star) })),
     xField: 'name',
     yField: 'star',
-    area: true,
+    area: {
+      style: {
+        fillOpacity: 0.2,
+      }
+    },
     meta: {
       x: {
         padding: 0.5,
@@ -37,9 +41,6 @@ const DemoRadar = () => {
         label: false,
         title: false,
       },
-    },
-    style: {
-      fillOpacity: 0.2,
     },
   };
   return <Radar {...config} />;
