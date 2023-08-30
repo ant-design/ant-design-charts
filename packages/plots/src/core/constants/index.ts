@@ -184,3 +184,10 @@ export const SPECIAL_OPTIONS = [
     },
   },
 ];
+
+export const ANNOTATION_LIST = [
+  {
+    type: 'conversionTag',
+    shape: 'ConversionTag',
+  },
+];
