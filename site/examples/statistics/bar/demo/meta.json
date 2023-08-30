@@ -13,6 +13,14 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*eU1cRqm_fPAAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "shape.js",
+      "title": {
+        "zh": "自定义条形图 shape",
+        "en": "Csutomize shape of bar plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/ZTl%26D3SI7D/fa6b9790-658e-4d7e-982e-57d9db8a12b8.png"
+    },
+    {
       "filename": "stacked.js",
       "title": {
         "zh": "堆叠条形图",
