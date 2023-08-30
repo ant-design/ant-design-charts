@@ -1,5 +1,5 @@
 import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE } from '../constants';
-import { omit, pick, isFunction, getShapeConfigKeys, isArray, deleteCustomKeys } from './index';
+import { omit, pick, isFunction, getShapeConfigKeys, isArray, deleteCustomKeys, filterTransformed } from './index';
 
 import type { Adaptor, Options } from '../types';
 
@@ -7,7 +7,7 @@ import type { Adaptor, Options } from '../types';
  * @title 将自定义配置转换为 G2 接受的格式
  */
 export const transformOptions = (params: Adaptor) => {
-  const { options } = params;
+  const options = filterTransformed(params);
   const { children = [] } = options;
 
   const getRest = (o: Adaptor['options']) => {
