@@ -40,12 +40,14 @@ const DemoRadar = () => {
     annotations: [
       {
         type: "area",
-        encode: { x: "date", y: ["minmin", "maxmax"] },
+        xField: "date",
+        yField: ["minmin", "maxmax"],
         style: { fill: "lightsteelblue", fillOpacity: 0.2 },
       },
       {
         type: "area",
-        encode: { x: "date", y: ["min", "max"] },
+        xField: "date",
+        yField: ["min", "max"],
         style: { fill: "steelblue", fillOpacity: 0.2 },
       },
     ],

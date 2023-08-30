@@ -133,6 +133,9 @@ const EXTEND_KEYS = [
   'shapeField',
   'keyField',
   'positionField',
+  'axis',
+  'meta',
+  'style',
 ];
 export const CONFIG_SHAPE = [
   {

@@ -36,7 +36,6 @@ const DemoRadar = () => {
       "0-60 mph (s)",
       "year",
     ],
-    area: false,
     axis: {
       position: axis,
       position1: axis,
