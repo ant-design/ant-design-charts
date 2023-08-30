@@ -3,7 +3,6 @@ import { Chart } from '@antv/g2';
 import { bind } from 'size-sensor';
 import { CHART_OPTIONS } from '../constants';
 import { merge, omit, pick, deleteCustomKeys } from '../utils';
-import { HTMLRender, HTMLRenderOptions } from '../shape';
 
 import type { Adaptor, Options } from '../types';
 
@@ -20,9 +19,6 @@ export abstract class Plot<O extends Options> extends EE {
   public chart: Chart;
   /** resizer unbind  */
   private unbind: () => void;
-
-  /** G2 chart 实例 */
-  public htmlRender: HTMLRender;
 
   constructor(container: string | HTMLElement, options: O) {
     super();
@@ -105,16 +101,6 @@ export abstract class Plot<O extends Options> extends EE {
   }
 
   /**
-   * html
-   * @param options
-   */
-  public html(options: HTMLRenderOptions) {
-    // @ts-ignore
-    const { canvas } = this.chart._context;
-    this.htmlRender = new HTMLRender(canvas, options);
-  }
-
-  /**
    * 更新
    * @param options
    */
@@ -154,8 +140,6 @@ export abstract class Plot<O extends Options> extends EE {
   public destroy() {
     // 取消 size-sensor 的绑定
     this.unbindSizeSensor();
-    // html 的销毁
-    this.htmlRender?.destroy();
     // G2 的销毁
     this.chart.destroy();
     // 清空已经绑定的事件
