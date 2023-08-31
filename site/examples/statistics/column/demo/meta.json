@@ -99,6 +99,14 @@
         "en": "Change Data"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*b5Q8R6DHJZMAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "conversion-tag.js",
+      "title": {
+        "zh": "带转化率柱状图",
+        "en": "Column plot with conversion tag"
+      },
+      "screenshot": "https://gw.alicdn.com/tfs/TB1u3.cvUY1gK0jSZFMXXaWcVXa-1638-1228.png"
     }
   ]
 }

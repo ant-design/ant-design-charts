@@ -1,8 +1,9 @@
 import EE from '@antv/event-emitter';
 import { Chart } from '@antv/g2';
 import { bind } from 'size-sensor';
-import { CHART_OPTIONS } from '../constants';
+import { CHART_OPTIONS, ANNOTATION_LIST } from '../constants';
 import { merge, omit, pick, deleteCustomKeys } from '../utils';
+import { Annotaion } from '../annotation';
 
 import type { Adaptor, Options } from '../types';
 
@@ -95,9 +96,25 @@ export abstract class Plot<O extends Options> extends EE {
     // options 转换
     this.chart.options(this.getSpecOptions());
     // 渲染
-    this.chart.render();
+    this.chart.render().then(() => {
+      this.annotations();
+    });
+
     // 绑定
     this.bindSizeSensor();
+  }
+
+  /**
+   * annotaions
+   */
+  public annotations(): void {
+    ANNOTATION_LIST.forEach((annotation) => {
+      const { type, shape } = annotation;
+      const annotationOptions = this.options[type];
+      if (annotationOptions) {
+        new Annotaion[shape](this.chart, annotationOptions);
+      }
+    });
   }
 
   /**
