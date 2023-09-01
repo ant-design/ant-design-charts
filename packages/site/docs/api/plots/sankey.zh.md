@@ -135,7 +135,7 @@ Specify the locale. There are two built-in locales: 'zh-CN' and 'en-US'. Or you 
 
 <description>**optional** *StyleAttr | Function*</description>
 
-桑基图变样式的配置。
+桑基图边样式的配置。
 
 #### color
 
