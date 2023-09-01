@@ -14,7 +14,19 @@ export class Column extends Plot<ColumnOptions> {
    * 供外部使用
    */
   static getDefaultOptions(): Partial<ColumnOptions> {
-    return { type: 'view', children: [{ type: 'interval' }] };
+    return {
+      type: 'view',
+      children: [
+        {
+          type: 'interval',
+          interaction: {
+            elementHighlightByColor: {
+              background: true,
+            },
+          },
+        },
+      ],
+    };
   }
 
   /**
