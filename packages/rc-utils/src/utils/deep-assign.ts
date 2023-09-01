@@ -1,8 +1,8 @@
-const isObject = (obj: any) => {
-  return obj !== null && typeof obj === 'object';
-};
-
 const isArray = (obj: any) => Array.isArray(obj);
+
+const isObject = (obj: any) => {
+  return obj !== null && typeof obj === 'object' && !isArray(obj);
+};
 
 /**
  * @title 深度合并
@@ -17,10 +17,6 @@ export const deepAssign = (target: object, ...sources) => {
 
   for (const key in source) {
     if (Object.hasOwnProperty.call(source, key)) {
-      if (isArray(source[key])) {
-        target[key] = source[key];
-        continue;
-      }
       if (isObject(source[key])) {
         if (!target[key] || typeof target[key] !== 'object') {
           target[key] = {};
