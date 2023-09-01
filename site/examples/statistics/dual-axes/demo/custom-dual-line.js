@@ -2,7 +2,7 @@ import { DualAxes } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const DemoCustomDualLine = () => {
+const DemoDualAxes = () => {
   const data = [
     { year: '1991', value: 3, count: 10 },
     { year: '1992', value: 4, count: 4 },
@@ -29,6 +29,10 @@ const DemoCustomDualLine = () => {
         },
         label: {
           text: (datum) => `${datum.value}个`,
+          style: {
+            dy: -12,
+            textAnchor: 'middle',
+          },
         },
         meta: {
           y: { independent: true },
@@ -51,6 +55,10 @@ const DemoCustomDualLine = () => {
         },
         label: {
           text: (datum) => `${datum.count}个`,
+          style: {
+            dy: -12,
+            textAnchor: 'middle',
+          },
         },
         axis: {
           y: {
@@ -76,4 +84,4 @@ const DemoCustomDualLine = () => {
   return <DualAxes {...config} />;
 };
 
-ReactDOM.render(<DemoCustomDualLine />, document.getElementById('container'));
+ReactDOM.render(<DemoDualAxes />, document.getElementById('container'));

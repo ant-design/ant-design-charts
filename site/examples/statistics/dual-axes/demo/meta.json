@@ -21,6 +21,30 @@
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*BxouQYIIQ0kAAAAAAAAAAAAADmJ7AQ/fmt.webp"
     },
     {
+      "filename": "range-column-line.js",
+      "title": {
+        "zh": "柱线混合图表-区间柱",
+        "en": "range-column-line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*MEdZR5UQzosAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "column-multi-line.js",
+      "title": {
+        "zh": "柱线混合图表-显示多折线",
+        "en": "Column multi line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*FfmvR5_sLAEAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "slider-column-line.js",
+      "title": {
+        "zh": "柱线混合图表-滑块",
+        "en": "Slider with column line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/fxukGXuXfg/89ea37e5-e00d-4424-b75e-1aba3ff8b633.png"
+    },
+    {
       "filename": "dual-line.js",
       "title": {
         "zh": "双折线图",
