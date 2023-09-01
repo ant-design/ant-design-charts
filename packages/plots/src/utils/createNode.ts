@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'rc-utils';
+import { render } from '@ant-design/rc-utils';
 
 const createNode = (children: React.ReactElement, extra?: object) => {
   let mountPoint = document.createElement('div');

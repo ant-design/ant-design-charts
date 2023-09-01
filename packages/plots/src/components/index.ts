@@ -6,7 +6,7 @@ import Line from './line';
 import Pie from './pie';
 import Scatter from './scatter';
 import Radar from './radar';
-import Tiny from './tiny';
+import { Tiny } from './tiny';
 import Rose from './rose';
 
 export { Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose, Tiny };
