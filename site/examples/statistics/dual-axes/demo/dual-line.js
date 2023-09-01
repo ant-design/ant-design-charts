@@ -2,7 +2,7 @@ import { DualAxes } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const DemoDualLine = () => {
+const DemoDualAxes = () => {
   const data = [
     { year: '1991', value: 3, count: 10 },
     { year: '1992', value: 4, count: 4 },
@@ -58,4 +58,4 @@ const DemoDualLine = () => {
   return <DualAxes {...config} />;
 };
 
-ReactDOM.render(<DemoDualLine />, document.getElementById('container'));
+ReactDOM.render(<DemoDualAxes />, document.getElementById('container'));
