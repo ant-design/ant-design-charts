@@ -10,14 +10,15 @@
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "ci:version": "pnpm changeset version",
-    "add:changelog": "pnpm changeset"
+    "add:changelog": "pnpm changeset",
+    "release": "pnpm publish --no-git-checks -r --filter @ant-design/*"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.13.9",
     "@babel/preset-typescript": "^7.10.4",
-    "@changesets/cli": "^2.24.4",
+    "@changesets/cli": "^2.26.2",
     "@swc/jest": "^0.2.23",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react-hooks": "^7.0.2",

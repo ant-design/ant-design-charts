@@ -40,7 +40,7 @@
     "@antv/g2": "^5.0.16",
     "size-sensor": "^1.0.1",
     "react-content-loader": "^5.0.4",
-    "rc-utils": "workspace:*"
+    "@ant-design/rc-utils": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=16.8.4",

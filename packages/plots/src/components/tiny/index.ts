@@ -1,9 +1,7 @@
-import TinyLine from './tiny-line';
-import TinyArea from './tiny-area';
-import TinyColumn from './tiny-column';
+import Line from './tiny-line';
+import Area from './tiny-area';
+import Column from './tiny-column';
 
-export default {
-  Line: TinyLine,
-  Area: TinyArea,
-  Column: TinyColumn,
-};
+type TinyOptions = Record<string, typeof Line | typeof Area | typeof Column>;
+
+export const Tiny: TinyOptions = { Line, Area, Column };
