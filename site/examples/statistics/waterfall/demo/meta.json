@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "revenue-flow-waterfall.js",
+      "title": {
+        "zh": "线标记的瀑布图",
+        "en": "Revenue Flow Waterfall Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*fG4DT7XWNzUAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "annotation.js",
+      "title": {
+        "zh": "瀑布图 - 添加标注",
+        "en": "Waterfall plot with annotation"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xOfKT5qr9R4AAAAAAAAAAAAAARQnAQ"
+    }
+  ]
+}
