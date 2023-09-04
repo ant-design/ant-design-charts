@@ -85,7 +85,7 @@ const DemoDualAxes = () => {
       {
         type: 'line',
         yField: 'Temperature',
-        shape: 'smooth',
+        shapeField: 'smooth',
         colorField: '#EE6666',
         meta: {
           y: { independent: true, domainMax: 30 },
@@ -123,7 +123,7 @@ const DemoDualAxes = () => {
       {
         type: 'line',
         yField: 'Precipitation',
-        shape: 'smooth',
+        shapeField: 'smooth',
         colorField: '#91CC75',
         meta: {
           y: { independent: true },

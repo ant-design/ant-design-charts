@@ -16,7 +16,7 @@ const DemoArea = () => {
     },
     xField: 'x',
     yField: ['low', 'high'],
-    shape: 'smooth',
+    shapeField: 'smooth',
     style: {
       fillOpacity: 0.5,
       fill: '#64b5f6',
@@ -30,12 +30,11 @@ const DemoArea = () => {
     },
     point: {
       yField: 'v2',
-      shape: 'point',
+      shapeField: 'point',
       sizeField: 2,
     },
     line: {
       yField: 'v3',
-      shape: 'smooth',
       style: {
         stroke: '#FF6B3B',
       },

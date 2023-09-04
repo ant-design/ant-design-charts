@@ -7,12 +7,11 @@ const DemoScatter = () => {
     autoFit: false,
     height: 300,
     data: {
-      type: "fetch",
-      value:
-        "https://gw.alipayobjects.com/os/bmw-prod/2c813e2d-2276-40b9-a9af-cf0a0fb7e942.csv",
+      type: 'fetch',
+      value: 'https://gw.alipayobjects.com/os/bmw-prod/2c813e2d-2276-40b9-a9af-cf0a0fb7e942.csv',
     },
     transform: [{ type: 'sortX', channel: 'x' }],
-    coordinate: { transform: [{ type: "transpose" }] },
+    coordinate: { transform: [{ type: 'transpose' }] },
     xField: 'Cylinders',
     yField: 'Horsepower',
     sizeField: 20,
@@ -21,7 +20,7 @@ const DemoScatter = () => {
       y: { zero: true },
       color: { type: 'ordinal' },
     },
-    shape: 'line',
+    shapeField: 'line',
   };
   return <Scatter {...config} />;
 };

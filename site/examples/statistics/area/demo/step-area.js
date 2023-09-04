@@ -17,7 +17,7 @@ const DemoArea = () => {
     ],
     xField: 'year',
     yField: 'value',
-    shape: 'hvh',
+    shapeField: 'hvh',
     label: {
       text: 'value',
       style: {
@@ -35,9 +35,7 @@ const DemoArea = () => {
     axis: {
       y: { labelFormatter: '~s' },
     },
-    line: {
-      shape: 'hvh',
-    },
+    line: {},
   };
   return <Area {...config} />;
 };

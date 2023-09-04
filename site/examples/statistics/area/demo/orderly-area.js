@@ -11,7 +11,7 @@ const DemoArea = () => {
     xField: (d) => new Date(d.date),
     yField: 'unemployed',
     colorField: 'industry',
-    shape: 'smooth',
+    shapeField: 'smooth',
     meta: {
       x: { utc: true },
     },

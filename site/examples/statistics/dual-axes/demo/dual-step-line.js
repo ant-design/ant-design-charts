@@ -22,7 +22,7 @@ const DemoDualAxes = () => {
       {
         type: 'line',
         yField: 'value',
-        shape: 'vh',
+        shapeField: 'vh',
         style: {
           stroke: '#29cae4',
           lineWidth: 2,
@@ -34,7 +34,7 @@ const DemoDualAxes = () => {
       {
         type: 'line',
         yField: 'count',
-        shape: 'smooth',
+        shapeField: 'smooth',
         style: {
           stroke: '#5AD8A6',
           lineWidth: 2,

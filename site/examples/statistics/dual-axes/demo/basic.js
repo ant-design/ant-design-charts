@@ -26,7 +26,7 @@ const DemoDualAxes = () => {
         type: 'line',
         xField: 'time',
         yField: 'people',
-        shape: 'smooth',
+        shapeField: 'smooth',
         style: {
           stroke: '#fdae6b',
           lineWidth: 2,

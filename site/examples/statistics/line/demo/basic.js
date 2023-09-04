@@ -10,7 +10,7 @@ const DemoLine = () => {
     },
     xField: 'Date',
     yField: 'scales',
-    shape: 'smooth',
+    shapeField: 'smooth',
     style: {
       lineWidth: 2,
     },

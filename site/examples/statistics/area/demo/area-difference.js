@@ -19,14 +19,13 @@ const DemoArea = () => {
     xField: (d) => new Date(d.date),
     yField: 'temperature',
     colorField: 'city',
-    shape: 'hvh',
+    shapeField: 'hvh',
     diff: true,
     meta: {
       color: { range: ['#67a9cf', '#ef8a62'] },
     },
     line: {
       yField: 'San Francisco',
-      shape: 'hvh',
       style: {
         stroke: '#000',
       },

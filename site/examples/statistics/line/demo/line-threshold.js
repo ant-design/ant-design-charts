@@ -10,7 +10,7 @@ const DemoLine = () => {
     },
     xField: (d) => new Date(d.date),
     yField: 'value',
-    shape: 'hvh',
+    shapeField: 'hvh',
     colorField: 'value',
     axis: {
       x: { title: 'date' },

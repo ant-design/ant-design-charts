@@ -12,7 +12,7 @@ const DemoArea = () => {
     width: 480,
     height: 80,
     padding: 8,
-    shape: 'smooth',
+    shapeField: 'smooth',
     xField: (_, idx) => idx,
     yField: (d) => d,
     meta: {

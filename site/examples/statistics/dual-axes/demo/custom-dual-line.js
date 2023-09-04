@@ -47,7 +47,7 @@ const DemoDualAxes = () => {
       {
         type: 'line',
         yField: 'count',
-        shape: 'smooth',
+        shapeField: 'smooth',
         style: {
           stroke: '#5AD8A6',
           lineWidth: 4,
