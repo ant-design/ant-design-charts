@@ -7,8 +7,8 @@ const lineColor = {
   bill: 'rgb(90, 216, 166)',
   a: 'rgb(93, 112, 146)',
   b: 'rgb(246, 189, 22)',
-  c: 'rgb(111, 94, 249)'
-}
+  c: 'rgb(111, 94, 249)',
+};
 
 const DemoDualAxes = () => {
   const uvBillData = [
@@ -52,7 +52,7 @@ const DemoDualAxes = () => {
         type: 'line',
         yField: 'value',
         seriesField: 'type',
-        shape: 'smooth',
+        shapeField: 'smooth',
         style: {
           lineWidth: 2,
           lineDash: [5, 5],
@@ -78,7 +78,7 @@ const DemoDualAxes = () => {
           fill: (d) => lineColor[d.name],
           stroke: (d) => lineColor[d.name],
         },
-        tooltip: false
+        tooltip: false,
       },
     ],
   };

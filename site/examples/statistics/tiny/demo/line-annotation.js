@@ -9,7 +9,7 @@ const DemoLine = () => {
     data,
     width: 480,
     height: 120,
-    shape: 'smooth',
+    shapeField: 'smooth',
     xField: (_, idx) => idx,
     yField: (d) => d,
     animate: { enter: { type: 'fadeIn' } },

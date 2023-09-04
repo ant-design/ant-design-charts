@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 const DemoScatter = () => {
   const config = {
     data: {
-      type: "fetch",
-      value: "https://gw.alipayobjects.com/os/bmw-prod/bd73a175-4417-4749-8b88-bc04d955e899.csv",
+      type: 'fetch',
+      value: 'https://gw.alipayobjects.com/os/bmw-prod/bd73a175-4417-4749-8b88-bc04d955e899.csv',
     },
     xField: 'x',
     yField: 'y',
@@ -14,10 +14,10 @@ const DemoScatter = () => {
     sizeField: 5,
     shapeField: 'category',
     meta: {
-      shape: { range: ['point', 'plus', 'diamond'] },
+      shapeField: { range: ['point', 'plus', 'diamond'] },
     },
   };
-  return <Scatter {...config}/>;
+  return <Scatter {...config} />;
 };
 
-ReactDOM.render(<DemoScatter /> , document.getElementById('container'));
+ReactDOM.render(<DemoScatter />, document.getElementById('container'));

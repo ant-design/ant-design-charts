@@ -12,7 +12,7 @@ const DemoArea = () => {
     yField: 'revenue',
     seriesField: 'format',
     colorField: 'group',
-    shape: 'smooth',
+    shapeField: 'smooth',
     stack: {
       orderBy: 'maxIndex',
       reverse: true,
@@ -22,7 +22,6 @@ const DemoArea = () => {
     },
     tooltip: { channel: 'y', valueFormatter: '.2f' },
     line: {
-      shape: 'smooth',
       stack: {
         orderBy: 'maxIndex',
         reverse: true,

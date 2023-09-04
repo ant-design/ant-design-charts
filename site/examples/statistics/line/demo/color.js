@@ -12,7 +12,7 @@ const DemoLine = () => {
     yField: 'value',
     colorField: 'condition',
     seriesField: () => 'a',
-    shape: 'hvh',
+    shapeField: 'hvh',
     style: {
       gradient: 'x',
       lineWidth: 2,

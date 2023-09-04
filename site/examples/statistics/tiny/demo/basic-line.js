@@ -9,7 +9,7 @@ const DemoLine = () => {
     ],
     width: 480,
     height: 120,
-    shape: 'smooth',
+    shapeField: 'smooth',
     xField: (_, idx) => idx,
     yField: (d) => d,
     label: {

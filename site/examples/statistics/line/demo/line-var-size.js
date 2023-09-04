@@ -12,7 +12,7 @@ const DemoLine = () => {
     yField: 'value',
     sizeField: 'value',
     stack: true,
-    shape: 'trail',
+    shapeField: 'trail',
     legend: { size: false },
     colorField: 'category',
   };
