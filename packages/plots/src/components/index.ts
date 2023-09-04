@@ -8,6 +8,7 @@ import Scatter from './scatter';
 import Radar from './radar';
 import { Tiny } from './tiny';
 import Rose from './rose';
+import Waterfall from './waterfall';
 import Histogram from './histogram';
 
-export { Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose, Tiny, Histogram };
+export { Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose, Tiny, Histogram, Waterfall };

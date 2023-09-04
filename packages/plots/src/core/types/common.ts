@@ -65,3 +65,5 @@ export type Adaptor<P = Options> = {
   options: P;
   originOptions?: P;
 };
+
+export type AttrStyle = Record<string, any>;

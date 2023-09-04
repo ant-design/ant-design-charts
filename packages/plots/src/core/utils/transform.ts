@@ -85,7 +85,7 @@ export const transformOptions = (params: Adaptor) => {
      * @description 外层配置应用到所有 children
      */
     const copyChild = { ...child };
-    const transformOption = deepAssign(child, rest);
+    const transformOption = deepAssign(child, rest, copyChild);
 
     const transformChildrenConfig = (transformObject: object, specKey: string, key: string) => {
       /**
