@@ -1,5 +1,14 @@
 import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE } from '../constants';
-import { omit, pick, isFunction, getShapeConfigKeys, isArray, deleteCustomKeys, filterTransformed } from './index';
+import {
+  omit,
+  pick,
+  isFunction,
+  getShapeConfigKeys,
+  isArray,
+  deleteCustomKeys,
+  filterTransformed,
+  deepAssign,
+} from './index';
 
 import type { Adaptor, Options } from '../types';
 
@@ -38,7 +47,7 @@ export const transformOptions = (params: Adaptor) => {
     if (callback) {
       callback(origin, key, value);
     } else {
-      origin[key] = Object.assign({}, origin[key], value);
+      origin[key] = deepAssign({}, origin[key], value);
     }
   };
 
@@ -76,7 +85,7 @@ export const transformOptions = (params: Adaptor) => {
      * @description 外层配置应用到所有 children
      */
     const copyChild = { ...child };
-    const transformOption = Object.assign(child, rest);
+    const transformOption = deepAssign(child, rest);
 
     const transformChildrenConfig = (transformObject: object, specKey: string, key: string) => {
       /**
@@ -102,7 +111,7 @@ export const transformOptions = (params: Adaptor) => {
     if (exist) {
       const { type, extend_keys } = exist;
       if (type) {
-        children.push(transformConfig(Object.assign({}, pick(options, extend_keys), { type }, options[key])));
+        children.push(transformConfig(deepAssign({}, pick(options, extend_keys), { type }, options[key])));
       } else {
         // annotations
         if (isArray(options[key])) {
