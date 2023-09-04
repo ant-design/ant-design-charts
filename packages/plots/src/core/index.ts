@@ -12,6 +12,7 @@ export type { TinyAreaOptions } from './plots/tiny-area';
 export type { TinyColumnOptions } from './plots/tiny-column';
 export type { RoseOptions } from './plots/rose';
 export type { WaterfallOptions } from './plots/waterfall';
+export type { HistogramOptions } from './plots/histogram';
 export * from './types';
 
 import { Area } from './plots/area';
@@ -27,6 +28,7 @@ import { TinyArea } from './plots/tiny-area';
 import { TinyColumn } from './plots/tiny-column';
 import { Rose } from './plots/rose';
 import { Waterfall } from './plots/waterfall';
+import { Histogram } from './plots/histogram';
 
 export const Plots = {
   Line,
@@ -42,4 +44,5 @@ export const Plots = {
   TinyArea,
   TinyColumn,
   Waterfall,
+  Histogram,
 };

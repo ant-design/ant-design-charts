@@ -1,0 +1,32 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "binx.js",
+      "title": {
+        "zh": "直方图",
+        "en": "Histogram"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*sE4kQYzbhS8AAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "binx-color.js",
+      "title": {
+        "zh": "颜色分类直方图",
+        "en": "Histogram with Color"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*sk8XRJTkuwYAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "binWidth.js",
+      "title": {
+        "zh": "直方图范围刻度",
+        "en": "Bin histogram plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*WTP6S6bzkpsAAAAAAAAAAAAAARQnAQ"
+    }
+  ]
+}
