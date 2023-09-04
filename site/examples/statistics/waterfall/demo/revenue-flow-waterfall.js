@@ -33,7 +33,7 @@ const DemoWaterfall = () => {
         return idx === 0 || d.isTotal ? '#96a6a6' : d.value > 0 ? '#64b5f6' : '#ef6c00';
       },
     },
-    labels: {
+    label: {
       text: 'value',
       formatter: '~s',
       position: (d) => (d.value > 0 ? 'top' : 'bottom'),

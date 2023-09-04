@@ -25,7 +25,7 @@ const DemoWaterfall = () => {
         return d.isTotal ? '#96a6a6' : d.value > 0 ? '#F56E53' : '#3CC27F';
       },
     },
-    labels: [
+    label: [
       {
         text: 'value',
         formatter: '~s',

@@ -1,4 +1,4 @@
-import { isBoolean } from '../utils';
+import { isArray, isBoolean } from '../utils';
 
 /** new Chart options */
 export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas', 'theme'];
@@ -182,7 +182,29 @@ export const SPECIAL_OPTIONS = [
   },
   {
     key: 'labels',
-    callback: (origin: object, key: string, value: { type: string; available?: boolean }) => {
+    callback: (
+      origin: object,
+      key: string,
+      value: { available?: boolean; text?: string | Function; [key: string]: unknown } | any[],
+    ) => {
+      /**
+       * @description 特殊情况处理
+       *   1. 如果 labels 为 false，表示关闭标签
+       *   2. 如果 labels 为数组，用于多 label 的场景
+       * @example
+       *   1. label: false -> labels: []
+       *   2. label: [{x}, {xx}] -> labels: [{x}, {xx}]
+       */
+      if (!value || isArray(value)) {
+        origin[key] = value ? value : [];
+        return;
+      }
+      /**
+       * @description 填充默认 text 逻辑
+       */
+      if (!(value as { text: string | Function }).text) {
+        value['text'] = origin['yField'];
+      }
       origin[key] = origin[key] || [];
       origin[key].push({ [TRANSFORM_SIGN]: true, ...value });
     },
