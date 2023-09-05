@@ -10,5 +10,6 @@ import { Tiny } from './tiny';
 import Rose from './rose';
 import Waterfall from './waterfall';
 import Histogram from './histogram';
+import Heatmap from './heatmap';
 
-export { Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose, Tiny, Histogram, Waterfall };
+export { Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose, Tiny, Histogram, Waterfall,Heatmap};

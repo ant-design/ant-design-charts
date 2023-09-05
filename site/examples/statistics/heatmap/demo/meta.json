@@ -1,0 +1,32 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "热力形状大小映射",
+        "en": "Heatmap plot shape size mapping"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*H1vrQbPFskMAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "shape.js",
+      "title": {
+        "zh": "热力形状图",
+        "en": "Shape heatmap plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ZG36SowgMVYAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "cell-aggregated.js",
+      "title": {
+        "zh": "聚合热力图",
+        "en": "Aggregated Heatmap"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*Wk4zR40uQesAAAAAAAAAAAAADmJ7AQ"
+    }
+  ]
+}

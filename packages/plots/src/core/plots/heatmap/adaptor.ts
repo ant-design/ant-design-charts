@@ -1,0 +1,45 @@
+import { flow, transformOptions } from '../../utils';
+import { mark } from '../../components';
+import type { Adaptor } from '../../types';
+import type { HeatmapOptions } from './type';
+
+type Params = Adaptor<HeatmapOptions>;
+
+/**
+ * @param chart
+ * @param options
+ */
+export function adaptor(params: Params) {
+  /**
+   * 图表差异化处理
+   */
+  const init = (params: Params) => {
+    return params;
+  };
+
+  /**
+   * @description 添加 tooltip 默认值
+   */
+  const tooltip = (params: Params) => {
+    const { options } = params;
+    const { tooltip, colorField, sizeField } = options;
+    if (!tooltip.field) {
+      tooltip.field = colorField || sizeField;
+    }
+    return params;
+  };
+
+  /**
+   * @description 根据 mark 修改图表类型
+   */
+  const transformMark = (params: Params) => {
+    const { options } = params;
+    const { mark, children } = options;
+    if (mark) {
+      children[0].type = mark;
+    }
+    return params;
+  };
+
+  return flow(init, tooltip, transformMark, transformOptions, mark)(params);
+}
