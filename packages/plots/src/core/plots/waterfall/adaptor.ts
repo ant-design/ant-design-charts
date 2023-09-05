@@ -66,7 +66,7 @@ export function adaptor(params: Params) {
         stroke: '#697474',
         ...linkStyle,
       },
-      labels: [],
+      label: false,
       tooltip: false,
     });
     return params;

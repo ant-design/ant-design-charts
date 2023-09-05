@@ -21,6 +21,10 @@ const DemoDualAxes = () => {
         axis: {
           y: { title: 'Waiting', style: { titleFill: '#5B8FF9' } },
         },
+        label: {
+          text: 'waiting',
+          position: 'inside',
+        },
       },
       {
         type: 'line',
@@ -30,6 +34,9 @@ const DemoDualAxes = () => {
         style: {
           stroke: '#fdae6b',
           lineWidth: 2,
+        },
+        label: {
+          text: 'people',
         },
         meta: {
           y: {
