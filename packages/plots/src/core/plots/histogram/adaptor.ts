@@ -1,4 +1,4 @@
-import { flow, transformOptions, assign, isNumber, divide, ceil } from '../../utils';
+import { flow, transformOptions, assign, isNumber, divide, ceil, get } from '../../utils';
 import { mark } from '../../components';
 import type { Adaptor } from '../../types';
 import type { HistogramOptions } from './type';
@@ -20,13 +20,14 @@ export function adaptor(params: Params) {
   const transformHistogramConfig = (params: Params) => {
     const { options } = params;
     const { data, binNumber, binWidth, children, channel = 'count' } = options;
+    const targetTransform = get(children, '[0].transform[0]', {});
     if (isNumber(binWidth)) {
-      assign(children[0].transform[0], { thresholds: ceil(divide(data.length, binWidth)), y: channel });
+      assign(targetTransform, { thresholds: ceil(divide(data.length, binWidth)), y: channel });
       return params;
     }
 
     if (isNumber(binNumber)) {
-      assign(children[0].transform[0], { thresholds: binNumber, y: channel });
+      assign(targetTransform, { thresholds: binNumber, y: channel });
       return params;
     }
     return params;
