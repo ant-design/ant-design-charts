@@ -1,7 +1,7 @@
 import { isArray, isBoolean } from '../utils';
 
 /** new Chart options */
-export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas', 'theme'];
+export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas', 'theme', 'inset'];
 
 /** 最终透传给 G2 Spec 的保留字 */
 export const RESERVED_KEYS = ['data', 'type', 'children'];
@@ -185,7 +185,7 @@ export const SPECIAL_OPTIONS = [
     callback: (
       origin: object,
       key: string,
-      value: { available?: boolean; text?: string | Function; [key: string]: unknown } | any[],
+      value: { available?: boolean; text?: string | Function;[key: string]: unknown } | any[],
     ) => {
       /**
        * @description 特殊情况处理

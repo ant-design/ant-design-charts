@@ -14,6 +14,7 @@ export type { RoseOptions } from './plots/rose';
 export type { WaterfallOptions } from './plots/waterfall';
 export type { HistogramOptions } from './plots/histogram';
 export type { HeatmapOptions } from './plots/heatmap';
+export type { BoxOptions } from './plots/box';
 export * from './types';
 
 import { Area } from './plots/area';
@@ -31,6 +32,7 @@ import { Rose } from './plots/rose';
 import { Waterfall } from './plots/waterfall';
 import { Histogram } from './plots/histogram';
 import { Heatmap } from './plots/heatmap';
+import { Box } from './plots/box';
 
 export const Plots = {
   Line,
@@ -48,4 +50,5 @@ export const Plots = {
   Waterfall,
   Histogram,
   Heatmap,
+  Box,
 };

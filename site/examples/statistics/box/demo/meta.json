@@ -1,0 +1,88 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "基础箱线图",
+        "en": "Basic box plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*NDHsSaeEmxYAAAAAAAAAAAAADo2bAQ/original"
+    },
+    {
+      "filename": "box.js",
+      "title": {
+        "zh": "预处理箱线图",
+        "en": "Boxplot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*pU-NQa1PgxQAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "grouped-box.js",
+      "title": {
+        "zh": "预处理分组箱线图",
+        "en": "Grouped Boxplot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*5E47Qa9nQaQAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "boxplot-no-outlier.js",
+      "title": {
+        "zh": "无异常点箱线图",
+        "en": "Boxplot no outlier"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*xoCiQYXmOewAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "boxplot-outlier.js",
+      "title": {
+        "zh": "带异常点箱线图",
+        "en": "Boxplot with Outlier"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*yeZuSY9YIEAAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "grouped-boxplot-outlier.js",
+      "title": {
+        "zh": "带异常点分组箱线图",
+        "en": "grouped Boxplot with Outlier"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ex7XR4hQTOYAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "boxplot-one-dimension.js",
+      "title": {
+        "zh": "一维箱线图",
+        "en": "Boxplot one dimension"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ZOhpRaAAFpkAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "polar-box.js",
+      "title": {
+        "zh": "径向箱线图",
+        "en": "Polar Boxplot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*cCMOQ7YsuFkAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "box-tooltip.js",
+      "title": {
+        "zh": "预处理箱线图 tooltip 配置",
+        "en": "Box tooltip"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*LeZrRoOmJxsAAAAAAAAAAAAADo2bAQ/original"
+    },
+    {
+      "filename": "boxplot-tooltip.js",
+      "title": {
+        "zh": "箱线图 tooltip 配置",
+        "en": "Boxplot tooltip"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*KQ0ZTIRDDg0AAAAAAAAAAAAADo2bAQ/original"
+    }
+  ]
+}

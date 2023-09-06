@@ -1,0 +1,1 @@
+<embed src="@/docs/api/plots/box.zh.md"></embed>
