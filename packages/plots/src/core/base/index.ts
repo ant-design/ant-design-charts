@@ -1,5 +1,5 @@
 import EE from '@antv/event-emitter';
-import { Chart } from '@antv/g2';
+import { Chart, ChartEvent } from '@antv/g2';
 import { bind } from 'size-sensor';
 import { CHART_OPTIONS, ANNOTATION_LIST } from '../constants';
 import { merge, omit, pick, deleteCustomKeys } from '../utils';
@@ -8,6 +8,8 @@ import { Annotaion } from '../annotation';
 import type { Adaptor, Options } from '../types';
 
 const SOURCE_ATTRIBUTE_NAME = 'data-chart-source-type';
+
+const ANNOTATION_MAP = new Map();
 
 export abstract class Plot<O extends Options> extends EE {
   /** plot 类型名称 */
@@ -111,8 +113,11 @@ export abstract class Plot<O extends Options> extends EE {
     ANNOTATION_LIST.forEach((annotation) => {
       const { type, shape } = annotation;
       const annotationOptions = this.options[type];
+      if (ANNOTATION_MAP.has(type)) {
+        ANNOTATION_MAP.get(type).destroy();
+      }
       if (annotationOptions) {
-        new Annotaion[shape](this.chart, annotationOptions);
+        ANNOTATION_MAP.set(type, new Annotaion[shape](this.chart, annotationOptions));
       }
     });
   }
@@ -199,6 +204,9 @@ export abstract class Plot<O extends Options> extends EE {
     }
     const { autoFit = true } = this.options;
     if (autoFit) {
+      this.chart.on(ChartEvent.AFTER_CHANGE_SIZE, () => {
+        this.annotations();
+      });
       this.unbind = bind(this.container, () => {
         // 获取最新的宽高信息
         const { clientHeight, clientWidth } = this.container;
