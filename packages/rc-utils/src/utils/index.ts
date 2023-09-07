@@ -1,2 +1,2 @@
-export { isType } from './is-type';
 export { deepAssign } from './deep-assign';
+export { uuid } from './uuid';

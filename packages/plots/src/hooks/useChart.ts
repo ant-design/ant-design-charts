@@ -1,7 +1,16 @@
 import React, { useRef, useEffect } from 'react';
-import { isEqual, get } from 'lodash-es';
-import createNode from '../utils/createNode';
-import { getPathConfig, isType, deepClone, clone, setPathConfig } from '../utils';
+import {
+  getPathConfig,
+  isString,
+  isNumber,
+  isElement,
+  isFunction,
+  setPathConfig,
+  isEqual,
+  get,
+  createNode,
+  cloneDeep,
+} from '../utils';
 import { JSX_TO_STRING } from '../constants';
 import { CommonConfig, Chart } from '../interface';
 
@@ -46,8 +55,8 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
   const reactDomToString = (source: U, path: string[], extra?: object) => {
     const statisticCustomHtml = getPathConfig(source, path);
     setPathConfig(source, path, (...arg: any[]) => {
-      const statisticDom = isType(statisticCustomHtml, 'Function') ? statisticCustomHtml(...arg) : statisticCustomHtml;
-      if (isType(statisticDom, 'String') || isType(statisticDom, 'Number') || isType(statisticDom, 'HTMLDivElement')) {
+      const statisticDom = isFunction(statisticCustomHtml) ? statisticCustomHtml(...arg) : statisticCustomHtml;
+      if (isString(statisticDom) || isNumber(statisticDom) || isElement(statisticDom)) {
         return statisticDom;
       }
       return createNode(statisticDom, extra);
@@ -71,7 +80,7 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
         const { data: inputData, ...inputConfig } = config;
         changeData = isEqual(currentConfig, inputConfig);
       }
-      chartOptions.current = deepClone(config);
+      chartOptions.current = cloneDeep(config);
       if (changeData) {
         chart.current.changeData(get(config, 'data'));
       } else {
@@ -87,7 +96,7 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
       return () => null;
     }
     if (!chartOptions.current) {
-      chartOptions.current = deepClone(config);
+      chartOptions.current = cloneDeep(config);
     }
     processConfig();
     const chartInstance: T = new (ChartClass as any)(container.current, {
@@ -97,7 +106,7 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
     chartInstance.toDataURL = toDataURL;
     chartInstance.downloadImage = downloadImage;
     chartInstance.render();
-    chart.current = clone(chartInstance) as T;
+    chart.current = chartInstance;
     if (onReady) {
       onReady(chartInstance);
     }

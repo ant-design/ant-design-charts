@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/rc-utils",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.0",
   "description": "charts utils",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -19,7 +19,7 @@
     "/dist"
   ],
   "scripts": {
-    "start": "pnpm lib:cjs --w",
+    "start": "pnpm lib:es --w",
     "build": "run-s clean lib dist",
     "build:lib": "run-s clean lib",
     "ci": "pnpm run build && pnpm run test:coverage",
