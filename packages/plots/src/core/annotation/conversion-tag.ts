@@ -29,6 +29,7 @@ export class ConversionTag {
   public chart: Chart;
   public options: ConversionTagOptions;
   public direction: 'vertical' | 'horizontal';
+  public container: Array<Text | Polygon> = [];
 
   constructor(chart: Chart, options: ConversionTagOptions) {
     if (!options) return;
@@ -157,8 +158,13 @@ export class ConversionTag {
       });
       this.canvas.appendChild(polygon);
       this.canvas.appendChild(text);
+      this.container.push(polygon, text);
     });
   }
   public update(options: ConversionTagOptions) {}
-  public destroy() {}
+  public destroy() {
+    this.container.forEach((child) => {
+      child.destroy();
+    });
+  }
 }
