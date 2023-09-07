@@ -4,7 +4,7 @@ import useChart from '../../hooks/useChart';
 import { Plots } from '../../core';
 import { CommonConfig, Chart } from '../../interface';
 
-export const BaseChart: React.FC<any> = forwardRef(({ chartType, ...config }: CommonConfig, ref) => {
+export const BaseChart: React.FC<any> = forwardRef(({ chartType = 'Base', ...config }: CommonConfig, ref) => {
   const {
     containerStyle = {
       height: 'inherit',

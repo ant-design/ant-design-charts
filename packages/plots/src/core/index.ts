@@ -17,6 +17,7 @@ export type { HeatmapOptions } from './plots/heatmap';
 export type { BoxOptions } from './plots/box';
 export * from './types';
 
+import { Base } from './plots/base';
 import { Area } from './plots/area';
 import { Bar } from './plots/bar';
 import { Column } from './plots/column';
@@ -35,6 +36,7 @@ import { Heatmap } from './plots/heatmap';
 import { Box } from './plots/box';
 
 export const Plots = {
+  Base,
   Line,
   Column,
   Pie,

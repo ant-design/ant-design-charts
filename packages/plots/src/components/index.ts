@@ -1,3 +1,4 @@
+import { BaseChart as Base } from './base';
 import Area from './area';
 import Bar from './bar';
 import Column from './column';
@@ -13,4 +14,4 @@ import Histogram from './histogram';
 import Heatmap from './heatmap';
 import Box from './box';
 
-export { Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose, Tiny, Histogram, Waterfall, Heatmap, Box};
+export { Base, Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose, Tiny, Histogram, Waterfall, Heatmap, Box };

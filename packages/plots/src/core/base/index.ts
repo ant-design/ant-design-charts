@@ -51,6 +51,7 @@ export abstract class Plot<O extends Options> extends EE {
    * G2 options(Spec) 配置
    */
   private getSpecOptions() {
+    if(this.type === 'base') return this.options;
     return deleteCustomKeys(omit(this.options, CHART_OPTIONS), true);
   }
 
@@ -94,7 +95,7 @@ export abstract class Plot<O extends Options> extends EE {
   public render(): void {
     // 执行 adaptor
     this.execAdaptor();
-
+    
     // options 转换
     this.chart.options(this.getSpecOptions());
     // 渲染
