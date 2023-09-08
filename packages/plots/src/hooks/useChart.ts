@@ -10,7 +10,7 @@ import {
   get,
   createNode,
   cloneDeep,
-} from '../utils';
+} from '../util';
 import { JSX_TO_STRING } from '../constants';
 import { CommonConfig, Chart } from '../interface';
 

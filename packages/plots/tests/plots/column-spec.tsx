@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks/server';
-import { render } from '@ant-design/rc-utils';
+import { render } from '@ant-design/charts-util';
 import React, { useRef } from 'react';
 import { act } from 'react-dom/test-utils';
 import { Column } from '../../src';

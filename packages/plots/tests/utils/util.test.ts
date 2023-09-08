@@ -1,4 +1,4 @@
-import { getPathConfig, setPathConfig } from '../../src/utils';
+import { getPathConfig, setPathConfig } from '../../src/util';
 
 describe('utils', () => {
   it('has path', () => {

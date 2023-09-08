@@ -22,4 +22,4 @@ export { transformOptions } from './transform';
 export { getShapeConfigKeys } from './get-shape-config-keys';
 export { deleteCustomKeys } from './delete-custom-keys';
 export { filterTransformed } from './filter-transformed';
-export { deepAssign } from '@ant-design/rc-utils';
+export { deepAssign } from '@ant-design/charts-util';

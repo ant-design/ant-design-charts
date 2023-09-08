@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, forwardRef } from 'react';
-import { ErrorBoundary, ChartLoading } from '@ant-design/rc-utils';
+import { ErrorBoundary, ChartLoading } from '@ant-design/charts-util';
 import useChart from '../../hooks/useChart';
 import { Plots } from '../../core';
 import { CommonConfig, Chart } from '../../interface';

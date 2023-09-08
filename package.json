@@ -11,7 +11,9 @@
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "ci:version": "pnpm changeset version",
     "add:changelog": "pnpm changeset",
-    "release": "pnpm publish --no-git-checks -r --filter @ant-design/*"
+    "release": "pnpm publish --no-git-checks -r --filter @ant-design/*",
+    "release:alpha": "pnpm publish --tag alpha --no-git-checks -r --filter @ant-design/*",
+    "release:beta": "pnpm publish --tag beta --no-git-checks -r --filter @ant-design/*"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
