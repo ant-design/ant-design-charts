@@ -95,7 +95,7 @@ export abstract class Plot<O extends Options> extends EE {
   public render(): void {
     // 执行 adaptor
     this.execAdaptor();
-    
+
     // options 转换
     this.chart.options(this.getSpecOptions());
     // 渲染
