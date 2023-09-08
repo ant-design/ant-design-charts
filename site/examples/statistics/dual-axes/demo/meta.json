@@ -21,6 +21,22 @@
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*BxouQYIIQ0kAAAAAAAAAAAAADmJ7AQ/fmt.webp"
     },
     {
+      "filename": "dual-aggregated-line-area.js",
+      "title": {
+        "zh": "聚合线面双轴图",
+        "en": "Aggregated Dual Line And Area Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*J-lVRamRfgUAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "pareto.js",
+      "title": {
+        "zh": "帕累托图",
+        "en": "Pareto Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*COKsS6s75kYAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
       "filename": "range-column-line.js",
       "title": {
         "zh": "柱线混合图表-区间柱",
@@ -75,6 +91,70 @@
         "en": "Dual multi line"
       },
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*BzyZQapC7ucAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "stacked-column-line.js",
+      "title": {
+        "zh": "堆叠柱线图表",
+        "en": "Stacked column line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*R2j7SIpYvDsAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "custom-stacked-column-line.js",
+      "title": {
+        "zh": "堆叠柱线图表-自定义样式",
+        "en": "Custom stacked column line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*RCl4Tr-4TqwAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "stacked-percent-column-line.js",
+      "title": {
+        "zh": "百分比堆叠柱线图表",
+        "en": "stacked-percent-column-line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*w_VfQ5sDvS0AAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "stacked-column-multi-line.js",
+      "title": {
+        "zh": "堆叠柱线图表-显示多折线",
+        "en": "Stacked column multi line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*I_bmR6CZJScAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "grouped-column-line.js",
+      "title": {
+        "zh": "分组柱线图表",
+        "en": "Grouped column line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*ydQDSpPe9B0AAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "custom-grouped-column-line.js",
+      "title": {
+        "zh": "分组柱线图表-自定义样式",
+        "en": "Custom grouped column line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Ogg7R6trDvgAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "pattern-with-callback.js",
+      "title": {
+        "zh": "带贴图的分组柱线图表",
+        "en": "Grouped column line with pattern"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/SL3QbumEbL/6131d19d-56b8-42bb-9609-8d0640a77d4a.png"
+    },
+    {
+      "filename": "grouped-column-multi-line.js",
+      "title": {
+        "zh": "分组柱线图表-显示多折线",
+        "en": "Grouped column multi line"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xzh4RYzYTFcAAAAAAAAAAAAAARQnAQ"
     }
   ]
 }

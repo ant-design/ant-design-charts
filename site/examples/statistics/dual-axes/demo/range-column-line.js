@@ -22,7 +22,6 @@ const DemoDualAxes = () => {
           stroke: '#5B8FF9',
           maxWidth: 100,
         },
-        meta: { y: { independent: true } },
         axis: { y: { style: { titleFill: '#5B8FF9' }, }, },
       },
       {
@@ -32,6 +31,7 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           lineWidth: 2,
         },
+        meta: { y: { independent: true } },
         axis: {
           y: {
             position: 'right',

@@ -43,8 +43,7 @@ const DemoDualAxes = () => {
         data: uvData,
         type: 'interval',
         yField: 'value',
-        meta: { y: { independent: true } },
-        axis: { y: { title: null } },
+        style: { maxWidth: 80 },
       },
       {
         data: transformData,
@@ -55,7 +54,8 @@ const DemoDualAxes = () => {
           lineWidth: 2,
           stroke: (d) => lineColor[d[0].name],
         },
-        axis: { y: { position: 'right', title: null } },
+        meta: { y: { independent: true } },
+        axis: { y: { position: 'right' } },
       },
     ],
   };

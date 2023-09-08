@@ -2,14 +2,6 @@ import { DualAxes } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const lineColor = {
-  uv: 'rgb(91, 143, 249)',
-  bill: 'rgb(90, 216, 166)',
-  a: 'rgb(93, 112, 146)',
-  b: 'rgb(246, 189, 22)',
-  c: 'rgb(111, 94, 249)',
-};
-
 const DemoDualAxes = () => {
   const uvBillData = [
     { time: '2019-03', value: 350, type: 'uv' },
@@ -48,36 +40,28 @@ const DemoDualAxes = () => {
     children: [
       {
         data: uvBillData,
-        type: 'line',
+        type: 'interval',
         yField: 'value',
-        seriesField: 'type',
-        shapeField: 'smooth',
-        style: {
-          lineWidth: 2,
-          lineDash: [5, 5],
-          stroke: (d) => lineColor[d[0].type],
-        },
+        colorField: 'type',
+        // TODO: group加上line会报错
+        // group: true,
+        style: { maxWidth: 80 },
+        interaction: { elementHighlightByColor: { background: true, } },
       },
       {
         data: transformData,
         type: 'line',
         yField: 'count',
-        seriesField: 'name',
-        style: {
-          lineWidth: 2,
-          stroke: (d) => lineColor[d[0].name],
-        },
-      },
-      {
-        data: transformData,
-        type: 'point',
-        yField: 'count',
-        sizeField: 3,
-        style: {
-          fill: (d) => lineColor[d.name],
-          stroke: (d) => lineColor[d.name],
-        },
-        tooltip: false,
+        colorField: 'name',
+        style: { lineWidth: 2 },
+        meta: { y: { independent: true } },
+        axis: { y: { position: 'right' } },
+        interaction: {
+          tooltip: {
+            crosshairs: false,
+            marker: false,
+          }
+        }
       },
     ],
   };
