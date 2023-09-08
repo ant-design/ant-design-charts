@@ -185,7 +185,7 @@ export abstract class Plot<O extends Options> extends EE {
     // 转化成 G2 Spec
     adaptor({
       chart: this.chart,
-      options: omit(this.options, CHART_OPTIONS),
+      options: this.options
     });
   }
 
