@@ -1,11 +1,13 @@
 import React from 'react';
 import { render } from '../react/render';
 
-export const createNode = (children: React.ReactElement, options: object = {}) => {
-  const mountPoint = document.createElement('div');
-  Object.keys(options).forEach((key) => {
-    mountPoint[key] = options[key];
-  });
+export const createNode = (children: React.ReactElement, extra?: object) => {
+  let mountPoint = document.createElement('div');
+  if (extra) {
+    Object.keys(extra).forEach((key) => {
+      mountPoint.setAttribute(key, extra[key]);
+    });
+  }
   render(children, mountPoint);
   return mountPoint;
 };

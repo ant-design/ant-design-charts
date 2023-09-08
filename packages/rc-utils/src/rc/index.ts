@@ -1,4 +1,4 @@
 export { createNode } from './create-node';
-export { ChartLoading } from './create-loading';
+export { ChartLoading } from './chart-loading';
 export { ErrorBoundary } from './error-boundary';
-export type { ChartLoadingConfig } from './create-loading';
+export type { ChartLoadingConfig } from './chart-loading';
