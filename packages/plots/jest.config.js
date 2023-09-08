@@ -5,6 +5,6 @@ module.exports = {
   moduleNameMapper: {
     '^d3-((?!linear)\\S*)': `<rootDir>/../../node_modules/d3-$1/dist/d3-$1.min.js`,
     '^lodash-es$': 'lodash',
-    '^@ant-design/charts-util': `<rootDir>/../../packages/charts-util/src`,
+    '^@ant-design/charts-util': `<rootDir>/../../packages/util/src`,
   },
 };
