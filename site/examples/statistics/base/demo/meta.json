@@ -1,0 +1,56 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "space-layer.js",
+      "title": {
+        "zh": "层叠容器",
+        "en": "Space Layer"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*sS5PRrp_lj0AAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "space-flex.js",
+      "title": {
+        "zh": "弹性容器",
+        "en": "Space Flex"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*lLecQJkdPbIAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "facet-rect.js",
+      "title": {
+        "zh": "矩行分面",
+        "en": "Rect facet"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*xDR0QKhMLHQAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "circle.js",
+      "title": {
+        "zh": "圆形分面",
+        "en": "Facet Circle"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*Tsx5RJVrVtsAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "matrix-col.js",
+      "title": {
+        "zh": "列重复矩阵",
+        "en": "Repeat Matrix, Col"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*MhTMTrLKT5UAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "matrix.js",
+      "title": {
+        "zh": "重复矩阵",
+        "en": "Repeat Matrix"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*We0gRJIdGYUAAAAAAAAAAAAADmJ7AQ"
+    }
+  ]
+}
