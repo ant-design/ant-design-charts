@@ -46,14 +46,13 @@ const DemoDualAxes = () => {
         type: 'interval',
         yField: 'consumeTime',
         style: { stroke: '#5B8FF9' },
-        meta: { y: { independent: true } },
-        axis: { y: { title: null } },
       },
       {
         type: 'line',
         yField: 'completeTime',
         style: { stroke: '#5AD8A6', lineWidth: 2 },
-        axis: { y: { position: 'right', title: null } },
+        meta: { y: { independent: true } },
+        axis: { y: { position: 'right' } },
       },
     ],
   };
