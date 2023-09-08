@@ -1,4 +1,4 @@
-const { uniqBy, concat, filter, get } = require('lodash');
+const { uniqBy, concat, filter, get } = require('lodash-es');
 
 /**
  * 函数标识

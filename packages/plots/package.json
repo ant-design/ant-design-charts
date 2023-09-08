@@ -39,7 +39,6 @@
     "@antv/event-emitter": "^0.1.3",
     "@antv/g2": "^5.1.0",
     "size-sensor": "^1.0.1",
-    "react-content-loader": "^5.0.4",
     "@ant-design/rc-utils": "workspace:*"
   },
   "peerDependencies": {
