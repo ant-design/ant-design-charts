@@ -1,7 +1,7 @@
 const fs = require('fs');
 const babel = require('@babel/core');
 const chalk = require('chalk');
-const { get, pick } = require('lodash');
+const { get, pick } = require('lodash-es');
 const { PIPELINE } = require('./constants');
 const { SETGLOBAL, RESETGLOBAL, INGLOBALRANGE } = require('./global');
 const {
