@@ -182,10 +182,16 @@ export abstract class Plot<O extends Options> extends EE {
   protected execAdaptor() {
     const adaptor = this.getSchemaAdaptor();
 
+    Object.keys(this.options).forEach((key) => {
+      if (CHART_OPTIONS.includes(key)) {
+        delete this.options[key];
+      }
+    });
+
     // 转化成 G2 Spec
     adaptor({
       chart: this.chart,
-      options: this.options
+      options: this.options,
     });
   }
 
