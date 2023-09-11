@@ -10,17 +10,17 @@ const DemoProgress = () => {
     height: 60,
     autoFit: false,
     percent: progress,
-    color: ["#f3cbb1", "#a0ff03"],
+    color: ['#f3cbb1', '#a0ff03'],
     annotations: [
       {
-        type: "text",
+        type: 'text',
         style: {
           text: `${progress * 100}%`,
-          x: "50%",
-          y: "50%",
-          textAlign: "center",
+          x: '50%',
+          y: '50%',
+          textAlign: 'center',
           fontSize: 16,
-          fontStyle: "bold",
+          fontStyle: 'bold',
         },
       }
     ]

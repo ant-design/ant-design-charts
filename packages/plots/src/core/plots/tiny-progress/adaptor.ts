@@ -32,12 +32,8 @@ export function adaptor(params: Params) {
 
     const transformOption = {
       scale: {
-        color: { range: [] },
+        color: { range: color.length ? color : [] },
       }
-    }
-
-    if (color && color.length) {
-      transformOption.scale.color.range = color;
     }
 
     Object.assign(options, { ...transformOption });
