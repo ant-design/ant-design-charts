@@ -115,6 +115,14 @@
         "en": "Column plot with conversion tag"
       },
       "screenshot": "https://gw.alicdn.com/tfs/TB1u3.cvUY1gK0jSZFMXXaWcVXa-1638-1228.png"
+    },
+    {
+      "filename": "percent.js",
+      "title": {
+        "zh": "百分比柱状图",
+        "en": "Percent Column plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*fFEqTrpsNQQAAAAAAAAAAAAAARQnAQ"
     }
   ]
 }

@@ -58,6 +58,15 @@ export const TRANSFORM_OPTION_KEY = {
       return commonCallback('normalizeY', value);
     },
     /**
+     * @title 百分比
+     * @description 同 normalize
+     * @example
+     *  1. percent: true -> transform: [{type: 'normalizeY'}]
+     */
+    percent: (value: boolean | object) => {
+      return commonCallback('normalizeY', value);
+    },
+    /**
      * @title 分组
      * @example
      *  1. group: true -> transform: [{type: 'dodgeX'}]
@@ -185,7 +194,7 @@ export const SPECIAL_OPTIONS = [
     callback: (
       origin: object,
       key: string,
-      value: { available?: boolean; text?: string | Function;[key: string]: unknown } | any[],
+      value: { available?: boolean; text?: string | Function; [key: string]: unknown } | any[],
     ) => {
       /**
        * @description 特殊情况处理

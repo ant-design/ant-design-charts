@@ -13,7 +13,7 @@ const DemoArea = () => {
     colorField: 'industry',
     normalize: true,
     stack: true,
-    tooltip: { channel: 'y0', valueFormatter: '.3f' },
+    tooltip: { channel: 'y0', valueFormatter: '.0%' },
   };
   return <Area {...config} />;
 };
