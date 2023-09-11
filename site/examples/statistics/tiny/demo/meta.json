@@ -59,6 +59,14 @@
         "en": "Tiny line plot with annotation"
       },
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*KShOSrCq0X4AAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "basic-progress.js",
+      "title": {
+        "zh": "迷你进度图",
+        "en": "Tiny progress plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ZJ6JSL4WFt8AAAAAAAAAAAAADmJ7AQ"
     }
   ]
 }

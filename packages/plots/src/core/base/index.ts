@@ -2,7 +2,7 @@ import EE from '@antv/event-emitter';
 import { Chart, ChartEvent } from '@antv/g2';
 import { bind } from 'size-sensor';
 import { CHART_OPTIONS, ANNOTATION_LIST } from '../constants';
-import { merge, omit, pick, deleteCustomKeys } from '../utils';
+import { merge, omit, pick, deleteCustomKeys, deleteChartOptionKeys } from '../utils';
 import { Annotaion } from '../annotation';
 
 import type { Adaptor, Options } from '../types';
@@ -95,7 +95,7 @@ export abstract class Plot<O extends Options> extends EE {
   public render(): void {
     // 执行 adaptor
     this.execAdaptor();
-    
+
     // options 转换
     this.chart.options(this.getSpecOptions());
     // 渲染
@@ -185,7 +185,7 @@ export abstract class Plot<O extends Options> extends EE {
     // 转化成 G2 Spec
     adaptor({
       chart: this.chart,
-      options: omit(this.options, CHART_OPTIONS),
+      options: deleteChartOptionKeys(this.options),
     });
   }
 

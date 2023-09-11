@@ -10,6 +10,7 @@ export type { RadarOptions } from './plots/radar';
 export type { TinyLineOptions } from './plots/tiny-line';
 export type { TinyAreaOptions } from './plots/tiny-area';
 export type { TinyColumnOptions } from './plots/tiny-column';
+export type { TinyProgressOptions } from './plots/tiny-progress';
 export type { RoseOptions } from './plots/rose';
 export type { WaterfallOptions } from './plots/waterfall';
 export type { HistogramOptions } from './plots/histogram';
@@ -29,6 +30,7 @@ import { Radar } from './plots/radar';
 import { TinyLine } from './plots/tiny-line';
 import { TinyArea } from './plots/tiny-area';
 import { TinyColumn } from './plots/tiny-column';
+import { TinyProgress } from './plots/tiny-progress';
 import { Rose } from './plots/rose';
 import { Waterfall } from './plots/waterfall';
 import { Histogram } from './plots/histogram';
@@ -49,6 +51,7 @@ export const Plots = {
   TinyLine,
   TinyArea,
   TinyColumn,
+  TinyProgress,
   Waterfall,
   Histogram,
   Heatmap,
