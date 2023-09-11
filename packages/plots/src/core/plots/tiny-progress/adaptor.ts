@@ -22,18 +22,14 @@ export function adaptor(params: Params) {
    */
   const transformData = (params: Params) => {
     const { options } = params;
-    const { data = [], percent, color = [] } = options;
+    const { percent, color = [] } = options;
     if (!percent) return params;
-
-    if (data.length) {
-      data.splice(1, 1, percent);
-    } else
-      data.push(1, percent);
 
     const transformOption = {
       scale: {
         color: { range: color.length ? color : [] },
-      }
+      },
+      data: [1, percent]
     }
 
     Object.assign(options, { ...transformOption });
