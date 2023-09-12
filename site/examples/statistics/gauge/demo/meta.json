@@ -1,0 +1,16 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "gauge.js",
+      "title": {
+        "zh": "仪表盘",
+        "en": "Gauge Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_DeKSr3oN5sAAAAAAAAAAAAADmJ7AQ/original"
+    }
+  ]
+}
