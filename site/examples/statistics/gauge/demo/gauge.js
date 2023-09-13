@@ -2,7 +2,7 @@ import { Gauge } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const DemoRose = () => {
+const DemoGauge = () => {
   const config = {
     width: 720,
     height: 720,
@@ -19,4 +19,4 @@ const DemoRose = () => {
   return <Gauge {...config} />;
 };
 
-ReactDOM.render(<DemoRose />, document.getElementById('container'));
+ReactDOM.render(<DemoGauge />, document.getElementById('container'));
