@@ -36,15 +36,13 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
-    interaction: { tooltip: { sort: (d) => ['uv', 'bill', 'a', 'b', 'c'].indexOf(d.name) } },
     children: [
       {
         data: uvBillData,
         type: 'interval',
         yField: 'value',
         colorField: 'type',
-        // TODO: group加上line会报错
-        // group: true,
+        group: true,
         style: { maxWidth: 80 },
         interaction: { elementHighlightByColor: { background: true, } },
       },

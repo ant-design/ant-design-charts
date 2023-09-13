@@ -43,20 +43,6 @@ const DemoDualAxes = () => {
         style: { maxWidth: 50 },
         label: { position: 'inside' },
         scale: { color: { range: ['#5B8FF9', '#5D7092'] } },
-        tooltip: {
-          items: [
-            (d, index, _, column) => ({
-              color: '#5B8FF9',
-              name: 'uv',
-              value: d.type === 'uv' ? d.value : column.y.value[index - uvBillData.length / 2],
-            }),
-            (d, index, _, column) => ({
-              color: '#5D7092',
-              name: 'bill',
-              value: d.type === 'bill' ? d.value : column.y.value[index + uvBillData.length / 2],
-            })
-          ],
-        },
         interaction: { elementHighlightByColor: { background: true, } },
       },
       {

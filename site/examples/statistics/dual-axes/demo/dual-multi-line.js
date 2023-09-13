@@ -44,39 +44,29 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
-    interaction: { tooltip: { sort: (d) => ['uv', 'bill', 'a', 'b', 'c'].indexOf(d.name) } },
     children: [
       {
         data: uvBillData,
         type: 'line',
         yField: 'value',
-        seriesField: 'type',
+        colorField: 'type',
         shapeField: 'smooth',
-        style: {
-          lineWidth: 2,
-          lineDash: [5, 5],
-          stroke: (d) => lineColor[d[0].type],
-        },
+        style: { lineWidth: 3, lineDash: [5, 5] },
       },
       {
         data: transformData,
         type: 'line',
         yField: 'count',
-        seriesField: 'name',
-        style: {
-          lineWidth: 2,
-          stroke: (d) => lineColor[d[0].name],
-        },
+        colorField: 'name',
+        style: { lineWidth: 3 },
       },
       {
         data: transformData,
         type: 'point',
         yField: 'count',
         sizeField: 3,
-        style: {
-          fill: (d) => lineColor[d.name],
-          stroke: (d) => lineColor[d.name],
-        },
+        shapeField: 'point',
+        style: { fill: (d) => lineColor[d.name] },
         tooltip: false,
       },
     ],
