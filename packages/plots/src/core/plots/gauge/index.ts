@@ -7,7 +7,7 @@ export type { GaugeOptions };
 
 export class Gauge extends Plot<GaugeOptions> {
   /** 图表类型 */
-  public type = 'gauge';
+  public type = 'Gauge';
 
   /**
    * 获取 仪表盘 默认配置项

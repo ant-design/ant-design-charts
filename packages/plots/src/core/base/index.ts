@@ -62,7 +62,6 @@ export abstract class Plot<O extends Options> extends EE {
     if (!this.container) {
       throw Error('The container is not initialized!');
     }
-    console.log('this.getChartOptions()', this.getChartOptions())
     this.chart = new Chart(this.getChartOptions());
     // 给容器增加标识，知道图表的来源区别于 G2
     this.container.setAttribute(SOURCE_ATTRIBUTE_NAME, 'Ant Design Charts');
