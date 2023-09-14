@@ -14,7 +14,7 @@
     {
       "filename": "bullets.js",
       "title": {
-        "zh": "多数据子弹图",
+        "zh": "多指标子弹图",
         "en": "Bullets"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*2VHuTLQBDJgAAAAAAAAAAAAADo2bAQ/original"
@@ -22,7 +22,7 @@
     {
       "filename": "bullet-vertical.js",
       "title": {
-        "zh": "子弹图 垂直放向",
+        "zh": "子弹图 垂直方向",
         "en": "Bullet vertical"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*8IYYQorPr_4AAAAAAAAAAAAADo2bAQ/original"
@@ -38,7 +38,7 @@
     {
       "filename": "bullets-group.js",
       "title": {
-        "zh": "分组多数据子弹图",
+        "zh": "分组多指标子弹图",
         "en": "Bullets group"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*u_YoTKv82soAAAAAAAAAAAAADo2bAQ/original"
