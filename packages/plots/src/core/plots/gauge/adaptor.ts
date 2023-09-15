@@ -14,6 +14,12 @@ export function adaptor(params: Params) {
    * 图表差异化处理
    */
   const init = (params: Params) => {
+    const { data } = params.options;
+
+    params.options.data = {
+      value: data
+    }
+
     return params;
   };
 

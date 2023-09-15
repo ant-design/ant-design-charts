@@ -8,11 +8,9 @@ const DemoGauge = () => {
     height: 720,
     autoFit: true,
     data: {
-      value: {
         target: 120,
         total: 400,
         name: 'score',
-      }
     },
     legend: false
   };
