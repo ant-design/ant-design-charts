@@ -1,13 +1,11 @@
+import { TooltipComponent } from '@antv/g2';
 import { Options, G2Spec } from './core';
 
 /**
  * @title 图表浮窗配置
  * @title.en_US Chart tooltip configuration
  */
-export interface Tooltip extends Omit<G2Spec, 'customContent' | 'container'> {
-  customContent?: (title: string, data: any[]) => React.ReactNode | string | unknown;
-  container?: React.ReactNode;
-}
+export type Tooltip = TooltipComponent;
 
 export type Plot = any;
 
@@ -54,12 +52,6 @@ export interface ContainerConfig {
    * @description.en_US Error placeholder template
    */
   errorTemplate?: (e: Error) => React.ReactNode;
-  /**
-   * @title 图表浮窗
-   * @description 设置悬浮提示
-   * @title.en_US Chart tooltip
-   * @description.en_US Setting chart tooltip
-   */
 }
 
 export interface AttachConfig {
@@ -107,7 +99,5 @@ export interface Common extends AttachConfig, ContainerConfig {
 }
 
 export type CommonConfig<T = G2Spec> = Common & TransformType<T>;
-
-export * from './components/interface';
 
 export { Options };
