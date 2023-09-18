@@ -17,6 +17,7 @@ export type { HistogramOptions } from './plots/histogram';
 export type { HeatmapOptions } from './plots/heatmap';
 export type { BoxOptions } from './plots/box';
 export type { BulletOptions } from './plots/bullet';
+export type { GaugeOptions } from './plots/gauge';
 export * from './types';
 
 import { Base } from './plots/base';
@@ -38,6 +39,7 @@ import { Histogram } from './plots/histogram';
 import { Heatmap } from './plots/heatmap';
 import { Box } from './plots/box';
 import { Bullet } from './plots/bullet';
+import { Gauge } from './plots/gauge';
 
 export const Plots = {
   Base,
@@ -59,4 +61,5 @@ export const Plots = {
   Heatmap,
   Box,
   Bullet,
+  Gauge
 };

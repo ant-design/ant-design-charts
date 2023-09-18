@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "gauge.js",
+      "title": {
+        "zh": "仪表盘",
+        "en": "Gauge Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*hpjTRr6LM7IAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "gauge-color.js",
+      "title": {
+        "zh": "自定义仪表盘颜色",
+        "en": "Gauge Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*VSrGTYrM954AAAAAAAAAAAAADmJ7AQ/original"
+    }
+  ]
+}

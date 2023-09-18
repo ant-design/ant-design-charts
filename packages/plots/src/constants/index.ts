@@ -5,6 +5,7 @@
  */
 export const JSX_TO_STRING = [
   { path: ['label', 'render'] },
+  { path: ['style', 'textContent'] },
   {
     path: ['interaction', 'tooltip', 'render'],
     extra: {
