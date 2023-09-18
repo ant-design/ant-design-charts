@@ -14,7 +14,7 @@ const DemoScatter = () => {
     sizeField: 5,
     shapeField: 'category',
     meta: {
-      shapeField: { range: ['point', 'plus', 'diamond'] },
+      shape: { range: ['point', 'plus', 'diamond'] },
     },
   };
   return <Scatter {...config} />;
