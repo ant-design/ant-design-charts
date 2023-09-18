@@ -3,8 +3,8 @@ import { TinyColumnOptions } from '../../../core';
 import { CommonConfig } from '../../../interface';
 import { BaseChart } from '../../base';
 
-export type TinyLineConfig = CommonConfig<TinyColumnOptions>;
+export type TinyColumnConfig = CommonConfig<TinyColumnOptions>;
 
-const TinyLineChart = (props: TinyLineConfig) => <BaseChart {...props} chartType="TinyColumn" />;
+const TinyLineChart = (props: TinyColumnConfig) => <BaseChart {...props} chartType="TinyColumn" />;
 
 export default TinyLineChart;
