@@ -13,5 +13,6 @@ import Waterfall from './waterfall';
 import Histogram from './histogram';
 import Heatmap from './heatmap';
 import Box from './box';
+import Gauge from './gauge';
 
-export { Base, Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose, Tiny, Histogram, Waterfall, Heatmap, Box };
+export { Base, Column, Line, Pie, Area, Bar, DualAxes, Scatter, Radar, Rose, Tiny, Histogram, Waterfall, Heatmap, Box, Gauge };
