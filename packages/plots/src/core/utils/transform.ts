@@ -82,9 +82,11 @@ export const transformOptions = (params: Adaptor) => {
 
   children.forEach((child) => {
     /**
+     * 提前先 child 创造一个 config 防止 rest 被污染 和 child 数据缺失
      * @description 外层配置应用到所有 children
      */
-    transformConfig(deepAssign(child, rest, child));
+    const config = deepAssign({}, rest, child);
+    transformConfig(deepAssign(child, config));
   });
 
   /**
