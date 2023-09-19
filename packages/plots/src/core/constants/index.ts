@@ -1,7 +1,20 @@
 import { isArray, isBoolean } from '../utils';
 
 /** new Chart options */
-export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas', 'theme', 'inset', 'padding'];
+export const CHART_OPTIONS = [
+  'width',
+  'height',
+  'renderer',
+  'autoFit',
+  'canvas',
+  'theme',
+  'inset',
+  'padding',
+  'paddingTop',
+  'paddingRight',
+  'paddingBottom',
+  'paddingLeft',
+];
 
 /** 最终透传给 G2 Spec 的保留字 */
 export const RESERVED_KEYS = ['data', 'type', 'children'];
