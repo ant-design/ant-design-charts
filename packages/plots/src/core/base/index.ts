@@ -51,7 +51,7 @@ export abstract class Plot<O extends Options> extends EE {
    * G2 options(Spec) 配置
    */
   private getSpecOptions() {
-    if(this.type === 'base') return this.options;
+    if (this.type === 'base') return { ...this.options, ...this.getChartOptions() };
     return deleteCustomKeys(omit(this.options, CHART_OPTIONS), true);
   }
 
@@ -87,14 +87,16 @@ export abstract class Plot<O extends Options> extends EE {
   /**
    * 获取默认的 options 配置项，每个组件都可以复写
    */
-  protected getDefaultOptions(): Partial<Options> | void {}
+  protected getDefaultOptions(): Partial<Options> | void { }
 
   /**
    * 绘制
    */
   public render(): void {
-    // 执行 adaptor
-    this.execAdaptor();
+    // 执行 adaptor , base 穿透类型不必 adaptor.
+    if (this.type !== 'base') {
+      this.execAdaptor();
+    }
 
     // options 转换
     this.chart.options(this.getSpecOptions());
