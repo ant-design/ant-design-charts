@@ -8,6 +8,7 @@ const Demobase = () => {
     type: "repeatMatrix",
     width: 800,
     height: 800,
+    autoFit: false,
     paddingLeft: 70,
     paddingBottom: 70,
     data: {

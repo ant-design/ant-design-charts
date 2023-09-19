@@ -6,6 +6,7 @@ const Demobase = () => {
   const config = {
     type: "facetRect",
     height: 640,
+    autoFit: false,
     paddingLeft: 60,
     paddingBottom: 60,
     data: {
