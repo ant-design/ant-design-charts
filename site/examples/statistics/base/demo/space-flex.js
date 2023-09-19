@@ -6,6 +6,7 @@ const Demobase = () => {
   const config = {
     type: "spaceFlex",
     width: 900,
+    autoFit: false,
     ratio: [1, 2],
     direction: "col",
     data: {
