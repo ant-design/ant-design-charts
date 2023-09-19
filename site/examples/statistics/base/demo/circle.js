@@ -7,6 +7,7 @@ const Demobase = () => {
     type: "facetCircle",
     width: 480,
     height: 480,
+    autoFit: false,
     data: [
       { month: "Jan.", name: "A", value: 0.6326436603187056 },
       { month: "Jan.", name: "B", value: 0.9059036864077081 },
