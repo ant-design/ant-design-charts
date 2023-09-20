@@ -35,6 +35,8 @@ export class Waterfall extends Plot<WaterfallOptions> {
       children: [
         {
           type: 'interval',
+          // 层级比 link 高, 防止动画或 scrollbar 重绘时 ,link 在前
+          zIndex: 1,
           interaction: {
             elementHighlightByColor: {
               background: true,
