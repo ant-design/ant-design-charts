@@ -3,6 +3,7 @@ import Area from './area';
 import Bar from './bar';
 import Column from './column';
 import DualAxes from './dual-axes';
+import Funnel from './funnel';
 import Line from './line';
 import Pie from './pie';
 import Scatter from './scatter';
@@ -20,6 +21,7 @@ export type { AreaConfig } from './area';
 export type { BarConfig } from './bar';
 export type { ColumnConfig } from './column';
 export type { DualAxesConfig } from './dual-axes';
+export type { FunnelConfig } from './funnel';
 export type { LineConfig } from './line';
 export type { PieConfig } from './pie';
 export type { ScatterConfig } from './scatter';
@@ -41,6 +43,7 @@ export {
   Area,
   Bar,
   DualAxes,
+  Funnel,
   Scatter,
   Radar,
   Rose,

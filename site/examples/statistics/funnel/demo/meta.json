@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "基础漏斗图",
+        "en": "Basic funnel plot"
+      },
+      "screenshot": "https://gw.alicdn.com/tfs/TB158FxuAT2gK0jSZPcXXcKkpXa-646-500.png"
+    },
+    {
+      "filename": "basic-transpose.js",
+      "title": {
+        "zh": "基础漏斗图-转置",
+        "en": "Funnel plot-transpose"
+      },
+      "screenshot": "https://gw.alicdn.com/tfs/TB1EgtsuuT2gK0jSZFvXXXnFXXa-958-591.png"
+    }
+  ]
+}
