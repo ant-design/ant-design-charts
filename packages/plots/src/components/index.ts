@@ -15,6 +15,7 @@ import Heatmap from './heatmap';
 import Box from './box';
 import Bullet from './bullet';
 import Gauge from './gauge';
+import Liquid from './liquid';
 
 export type { AreaConfig } from './area';
 export type { BarConfig } from './bar';
@@ -32,6 +33,7 @@ export type { HeatmapConfig } from './heatmap';
 export type { BoxConfig } from './box';
 export type { BulletConfig } from './bullet';
 export type { GaugeConfig } from './gauge';
+export type { LiquidConfig } from './liquid';
 
 export {
   Base,
@@ -51,4 +53,5 @@ export {
   Box,
   Bullet,
   Gauge,
+  Liquid,
 };
