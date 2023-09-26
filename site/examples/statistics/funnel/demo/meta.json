@@ -13,6 +13,22 @@
       "screenshot": "https://gw.alicdn.com/tfs/TB158FxuAT2gK0jSZPcXXcKkpXa-646-500.png"
     },
     {
+      "filename": "static-field.js",
+      "title": {
+        "zh": "漏斗图: 使用静态变量",
+        "en": "Funnel plot - static field"
+      },
+      "screenshot": "https://gw.alicdn.com/tfs/TB158FxuAT2gK0jSZPcXXcKkpXa-646-500.png"
+    },
+    {
+      "filename": "pyramid.js",
+      "title": {
+        "zh": "尖底漏斗图",
+        "en": "Pyramid funnel plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/L88CCTUbpo/9127293d-767c-4a57-8852-e7c27fc4df8d.png"
+    },
+    {
       "filename": "basic-transpose.js",
       "title": {
         "zh": "基础漏斗图-转置",

@@ -1,12 +1,17 @@
 import { Plot } from '../../base';
 import type { Adaptor } from '../../types';
 import { adaptor } from './adaptor';
+import { pick, omit, set } from '../../utils';
 import { FunnelOptions } from './type';
-import { FUNNEL_CONVERSATION, FUNNEL_PERCENT, FUNNEL_TOTAL_PERCENT } from './constant';
+import { FUNNEL_CONVERSATION, FUNNEL_PERCENT, FUNNEL_TOTAL_PERCENT, CUSTOM_COMVERSION_TAG_CONFIG } from './constant';
 
 export type { FunnelOptions };
 
 export class Funnel extends Plot<FunnelOptions> {
+  constructor(container: string | HTMLElement, options: FunnelOptions) {
+    super(container, omit(options, ['conversionTag']));
+    set(this.options, CUSTOM_COMVERSION_TAG_CONFIG, options.conversionTag);
+  }
   /** 图表类型 */
   public type = 'Funnel';
 
@@ -16,6 +21,10 @@ export class Funnel extends Plot<FunnelOptions> {
   static PERCENT_FIELD = FUNNEL_PERCENT;
   /** 漏斗 总转换率百分比 字段 */
   static TOTAL_PERCENT_FIELD = FUNNEL_TOTAL_PERCENT;
+
+  static getFields() {
+    return pick(Funnel, ['CONVERSATION_FIELD', 'PERCENT_FIELD', 'TOTAL_PERCENT_FIELD']);
+  }
 
   /**
    * 获取 漏斗图 默认配置项
@@ -59,7 +68,7 @@ export class Funnel extends Plot<FunnelOptions> {
   }
 
   /**
-   * 子弹图适配器
+   * 漏斗图适配器
    */
   protected getSchemaAdaptor(): (params: Adaptor<FunnelOptions>) => void {
     return adaptor;

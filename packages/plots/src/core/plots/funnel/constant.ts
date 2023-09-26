@@ -10,3 +10,5 @@ export const FUNNEL_TOTAL_PERCENT = '$$totalPercentage$$';
 // 漏斗多边型 x 坐标
 export const PLOYGON_X = '$$x$$';
 export const PLOYGON_Y = '$$y$$';
+
+export const CUSTOM_COMVERSION_TAG_CONFIG = '_conversionTag';

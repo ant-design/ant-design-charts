@@ -45,7 +45,7 @@ export type FunnelOptions = Options &
     /** 可以设置为金字塔 pyramid */
     shape?: 'pyramid';
     label?: {
-      formatter?: string | ((datum?: Datum, data?: Datum[]) => string);
+      text?: string | ((datum?: Datum, data?: Datum[]) => string);
     };
     /**
      * @title 转化率信息
@@ -53,9 +53,7 @@ export type FunnelOptions = Options &
     conversionTag?:
       | false
       | {
-          offsetX?: number;
-          offsetY?: number;
           style?: StyleAttr;
-          formatter?: string | ((datum?: Datum, data?: Datum[]) => string);
+          text?: string | ((datum?: Datum, data?: Datum[]) => string);
         };
   };
