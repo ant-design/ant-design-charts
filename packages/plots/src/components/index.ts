@@ -16,6 +16,7 @@ import Box from './box';
 import Bullet from './bullet';
 import Gauge from './gauge';
 import Liquid from './liquid';
+import Treemap from './treemap';
 
 export type { AreaConfig } from './area';
 export type { BarConfig } from './bar';
@@ -34,6 +35,7 @@ export type { BoxConfig } from './box';
 export type { BulletConfig } from './bullet';
 export type { GaugeConfig } from './gauge';
 export type { LiquidConfig } from './liquid';
+export type { TreemapConfig } from './treemap';
 
 export {
   Base,
@@ -54,4 +56,5 @@ export {
   Bullet,
   Gauge,
   Liquid,
+  Treemap,
 };
