@@ -1,7 +1,8 @@
 import { Plot } from '../../base';
-import type { Adaptor } from '../../types';
 import { adaptor } from './adaptor';
-import { LiquidOptions } from './type';
+
+import type { Adaptor } from '../../types';
+import type { LiquidOptions } from './type';
 
 export type { LiquidOptions };
 
