@@ -19,6 +19,7 @@ export type { BoxOptions } from './plots/box';
 export type { BulletOptions } from './plots/bullet';
 export type { GaugeOptions } from './plots/gauge';
 export type { LiquidOptions } from './plots/liquid';
+export type { TreemapOptions } from './plots/treemap';
 export * from './types';
 
 import { Base } from './plots/base';
@@ -42,6 +43,7 @@ import { Box } from './plots/box';
 import { Bullet } from './plots/bullet';
 import { Gauge } from './plots/gauge';
 import { Liquid } from './plots/liquid';
+import { Treemap } from './plots/treemap';
 
 export const Plots = {
   Base,
@@ -65,4 +67,5 @@ export const Plots = {
   Bullet,
   Gauge,
   Liquid,
+  Treemap,
 };

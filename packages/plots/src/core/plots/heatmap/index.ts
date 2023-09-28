@@ -7,7 +7,7 @@ export type { HeatmapOptions };
 
 export class Heatmap extends Plot<HeatmapOptions> {
   /** 图表类型 */
-  public type = 'waterfall';
+  public type = 'heatmap';
 
   /**
    * 获取 折线图 默认配置项
