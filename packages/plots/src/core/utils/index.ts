@@ -9,6 +9,7 @@ export {
   isFunction,
   remove,
   get,
+  groupBy,
   set,
   sortBy,
   assign,

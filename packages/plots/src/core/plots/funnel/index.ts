@@ -47,13 +47,12 @@ export class Funnel extends Plot<FunnelOptions> {
             x: {
               padding: 0,
             },
-            y: {
-              range: [0.1, 0.9],
-            },
           },
         },
       ],
-      // interaction: { tooltip: { shared: true } },
+      paddingLeft: 60,
+      paddingRight: 60,
+      paddingTop: 18,
       // 漏斗基本动画
       animate: { enter: { type: 'fadeIn' } },
       coordinate: [{ type: 'transpose' }],
