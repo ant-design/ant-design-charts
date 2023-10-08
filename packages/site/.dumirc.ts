@@ -26,8 +26,11 @@ export default defineConfig({
       '0.x': 'https://v0-charts.ant.design/',
     },
     docsearchOptions: {
-      apiKey: 'cd83d8f913aeb993cd93f45fdbe9b5ac',
-      // indexName: 'charts-ant-design',
+      appId: 'I1DYJKMAUK',
+      apiKey: '5d0fcf465bcfa6fe6ef14d1bb1b7fb0f',
+      indexName: 'ant-design-charts-antgroup',
+      // container: '### REPLACE ME WITH A CONTAINER (e.g. div) ###',
+      debug: false,
     },
     navs: [
       {
@@ -447,4 +450,12 @@ export default defineConfig({
   },
   links: [],
   scripts: [],
+  analytics: {
+    // google analytics 的 key (GA 4)
+    // ga_v2: 'G-abcdefg',
+    // 若你在使用 GA v1 旧版本，请使用 `ga` 来配置
+    ga_v2: 'G-59GRRXNS00',
+    // 百度统计的 key
+    // baidu: 'baidu_tongji_key',
+  },
 });
