@@ -84,12 +84,6 @@ export function adaptor(params: Params) {
     } else {
       const conversionTag = get(params.options, CUSTOM_COMVERSION_TAG_CONFIG);
 
-      params.options.coordinate = !isTransposed
-        ? {
-            transform: [{ type: 'transpose' }],
-          }
-        : undefined;
-
       const basicLabel = [
         {
           text: (d) => `${d[xField]} ${d[yField]}`,
@@ -134,6 +128,11 @@ export function adaptor(params: Params) {
       const basicFunnel = {
         type: 'interval',
         axis: false,
+        coordinate: !isTransposed
+          ? {
+              transform: [{ type: 'transpose' }],
+            }
+          : undefined,
         scale: {
           x: {
             padding: 0,
@@ -146,6 +145,7 @@ export function adaptor(params: Params) {
           color: xField,
           shape: shape || 'funnel',
         },
+        animate: { enter: { type: 'fadeIn' } },
         tooltip: {
           title: false,
           items: [
@@ -189,5 +189,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(transformData, init, legend, transformOptions)(params);
+  return flow(transformData, init, legend)(params);
 }

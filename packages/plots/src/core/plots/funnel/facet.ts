@@ -11,8 +11,8 @@ type Params = Adaptor<FunnelOptions>;
  * @param options
  */
 export function facetFunnel(params: Params) {
-  const getBasicFunnel = (params: Params, seriesField: string) => {
-    const { xField, yField, shape, funnelStyle, label, isTransposed } = params.options;
+  const getBasicFunnel = (params: Params) => {
+    const { xField, yField, shape, legend, label, isTransposed, seriesField } = params.options;
 
     const conversionTag = get(params.options, CUSTOM_COMVERSION_TAG_CONFIG);
 
@@ -55,20 +55,35 @@ export function facetFunnel(params: Params) {
     ];
 
     const facetLabel = {
-      text: (_, index) => {
-        return index === 0 ? seriesField : '';
+      text: (d, index) => {
+        return index === 0 ? d[seriesField] : '';
       },
       fontSize: 14,
-      position: 'top',
+      position: !isTransposed ? 'top' : 'left',
       fillOpacity: 1,
       dy: -24,
     };
 
-    const labels = [...(label === false ? [] : basicLabel), ...(conversionTag === false ? [] : rateLabel), facetLabel];
+    const labels = [...(label === false ? [] : basicLabel), ...(conversionTag === false ? [] : rateLabel)];
+
+    if (!isTransposed) {
+      labels.push(facetLabel);
+    }
 
     return {
+      // 分面中需要单独设置 theme
+      theme: 'classic',
       type: 'interval',
-      axis: false,
+      axis: {
+        x: false,
+        y: false,
+      },
+      legend,
+      // facetLabel 空间预留
+      marginTop: !isTransposed ? 8 : undefined,
+      // 分面单元 紧凑
+      marginLeft: !isTransposed ? -10 : undefined,
+      frame: false,
       encode: {
         x: xField,
         y: FUNNEL_MAPPING_VALUE,
@@ -80,6 +95,15 @@ export function facetFunnel(params: Params) {
           padding: 0,
         },
       },
+      coordinate: !isTransposed
+        ? {
+            transform: [
+              {
+                type: 'transpose',
+              },
+            ],
+          }
+        : undefined,
       transform: [
         {
           type: 'symmetryY',
@@ -98,64 +122,30 @@ export function facetFunnel(params: Params) {
     };
   };
 
-  const getSeriesFields = (params: Params) => {
-    const { data, seriesField } = params.options;
-    const seriesFields: string[] = [];
-
-    let i = 0;
-    while (seriesFields.length < 2) {
-      const curData = data[i][seriesField];
-      if (seriesFields.every((has) => has !== curData)) {
-        seriesFields.push(curData);
-      }
-      i += 1;
-    }
-
-    return seriesFields;
-  };
   /**
    * 图表差异化处理
    */
   const init = (params: Params) => {
-    const { isTransposed, legend, yField } = params.options;
-
-    const seriesFields = getSeriesFields(params);
-
-    params.options.coordinate = !isTransposed
-      ? {
-          transform: [{ type: 'transpose' }],
-        }
-      : undefined;
+    const { isTransposed, legend, yField, seriesField } = params.options;
 
     params.options.legend = legend;
 
-    params.options.children = seriesFields.map((curSeriesField, index) => {
-      return merge(getBasicFunnel(params, curSeriesField), {
-        data: {
-          transform: [
-            {
-              type: 'filter',
-              callback: (d) => d.company === curSeriesField,
-            },
-          ],
-        },
-        legend: false,
-      });
-    });
+    params.options.children = [getBasicFunnel(params)];
 
     params.options = merge(params.options, {
-      type: 'spaceFlex',
+      type: 'facetRect',
       direction: isTransposed ? 'col' : 'row',
-      paddingTop: 12,
-      marginRight: 80,
-      // marginLeft: 5,
-      // scale: {
-      //   [yField]: {
-      //     sync: true,
-      //   },
-      // },
-      // 分面 需要自定义图例
-      // legend,
+      frame: false,
+      encode: { x: seriesField },
+      autoFit: true,
+      paddingLeft: 60,
+      paddingRight: 60,
+      axis: { x: false },
+      scale: {
+        [yField]: {
+          sync: true,
+        },
+      },
     });
 
     return params;

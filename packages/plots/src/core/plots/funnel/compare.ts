@@ -26,25 +26,6 @@ export function compareFunnel(params: Params) {
     ];
 
     const rateLabel = [
-      // coversion 连线
-      // {
-      //   text: '',
-      //   fillOpacity: 1,
-      //   render: (_, __, i: number) =>
-      //     i !== 0
-      //       ? !isTransposed
-      //         ? `
-      //       <div
-      //         style="height:1px;width:20px;background:#aaa;"
-      //       ></div>`
-      //         : `
-      //       <div
-      //         style="position:relative;top:-20px;height:20px;width:1px;background:#aaa;"
-      //       ></div>`
-      //       : '',
-      //   position: !isTransposed ? 'top-right' : 'top-left',
-      // },
-      // coversion 内容,
       {
         textAlign: 'left',
         textBaseline: 'middle',
@@ -97,6 +78,11 @@ export function compareFunnel(params: Params) {
     return {
       type: 'interval',
       axis: false,
+      coordinate: !isTransposed
+        ? {
+            transform: [{ type: 'transpose' }],
+          }
+        : undefined,
       scale: {
         x: {
           padding: 0,
@@ -109,6 +95,7 @@ export function compareFunnel(params: Params) {
         color: xField,
         shape: 'funnel',
       },
+      animate: { enter: { type: 'fadeIn' } },
       tooltip: {
         title: false,
         items: [
@@ -147,14 +134,6 @@ export function compareFunnel(params: Params) {
 
     const compareFields = getCompareFields(params);
 
-    params.options.coordinate = !isTransposed
-      ? {
-          transform: [{ type: 'transpose' }],
-        }
-      : undefined;
-
-    params.options.legend = legend;
-
     params.options.children = [
       compareFields[0]
         ? merge(getBasicFunnel(params, compareFields[0]), {
@@ -177,30 +156,16 @@ export function compareFunnel(params: Params) {
                 ? []
                 : [
                     {
-                      textAlign: 'end',
-                      position: 'right',
-                      dx: -8,
+                      textAlign: isTransposed ? 'center' : 'end',
+                      position: isTransposed ? 'top' : 'right',
+                      dx: isTransposed ? undefined : -8,
+                      dy: isTransposed ? 8 : undefined,
                       fill: '#FFF',
                     },
                   ]),
               ...(conversionTag === false
                 ? []
                 : [
-                    // {
-                    //               render: (_, __, i: number) =>
-                    //                 i !== 0
-                    //                   ? !isTransposed
-                    //                     ? `
-                    //   <div
-                    //     style="position:relative;left:-20px;height:1px;width:20px;background:#aaa;"
-                    //   ></div>`
-                    //                     : `
-                    //   <div
-                    //     style="position:relative;top:-20px;height:20px;width:1px;background:#aaa;"
-                    //   ></div>`
-                    //                   : '',
-                    //               position: !isTransposed ? 'top-left' : 'top-right',
-                    // },
                     {
                       ...(!isTransposed
                         ? {
@@ -208,12 +173,23 @@ export function compareFunnel(params: Params) {
                             dx: -48 * 2,
                           }
                         : {
-                            position: 'top-right',
+                            position: 'bottom-left',
                             dx: 8,
-                            dy: 20,
+                            dy: 24,
                           }),
                     },
                   ]),
+              isTransposed
+                ? {
+                    text: (_, index, arr) => {
+                      return index === arr.length - 1 ? compareFields[0] : '';
+                    },
+                    textAlign: 'end',
+                    position: 'bottom-right',
+                    textBaseline: 'middle',
+                    dy: 24,
+                  }
+                : {},
             ],
           })
         : null,
@@ -231,16 +207,40 @@ export function compareFunnel(params: Params) {
               stroke: '#FFF',
             },
             labels: [
-              {
-                textAlign: 'start',
-                position: 'left',
-                dx: 8,
-                fill: '#FFF',
-              },
+              ...(label === false
+                ? []
+                : [
+                    {
+                      textAlign: isTransposed ? 'center' : 'start',
+                      position: isTransposed ? 'bottom' : 'left',
+                      dx: isTransposed ? undefined : 8,
+                      dy: isTransposed ? -8 : undefined,
+                      fill: '#FFF',
+                    },
+                  ]),
+              ...(conversionTag === false ? [] : [{}]),
+              isTransposed
+                ? {
+                    text: (_, index, arr) => {
+                      return index === arr.length - 1 ? compareFields[1] : '';
+                    },
+                    textAlign: 'end',
+                    position: 'top-right',
+                    textBaseline: 'middle',
+                    dy: -24,
+                  }
+                : {},
             ],
           })
         : null,
     ].filter((i) => !!i);
+
+    params.options = merge(params.options, {
+      // 预留给 compareLabel 的空间
+      paddingTop: 24,
+      paddingLeft: 60,
+      paddingRight: 60,
+    });
 
     return params;
   };

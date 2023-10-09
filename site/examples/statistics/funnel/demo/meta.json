@@ -51,6 +51,22 @@
         "en": "Funnel plot-transpose"
       },
       "screenshot": "https://gw.alicdn.com/tfs/TB1EgtsuuT2gK0jSZFvXXXnFXXa-958-591.png"
+    },
+    {
+      "filename": "compare-transpose.js",
+      "title": {
+        "zh": "对比漏斗图-转置",
+        "en": "Compare funnel plot"
+      },
+      "screenshot": "https://gw.alicdn.com/tfs/TB1Hkluurr1gK0jSZR0XXbP8XXa-1095-565.png"
+    },
+    {
+      "filename": "facet-transpose.js",
+      "title": {
+        "zh": "分面漏斗图-转置",
+        "en": "Facet funnel plot-transpose"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*lbtdRJjZ4qsAAAAAAAAAAAAAARQnAQ"
     }
   ]
 }

@@ -4,6 +4,7 @@ import { adaptor } from './adaptor';
 import { pick, omit, set } from '../../utils';
 import { FunnelOptions } from './type';
 import { FUNNEL_CONVERSATION, FUNNEL_PERCENT, FUNNEL_TOTAL_PERCENT, CUSTOM_COMVERSION_TAG_CONFIG } from './constant';
+import { SKIP_DEL_CUSTOM_SIGN } from '../../constants';
 
 export type { FunnelOptions };
 
@@ -11,6 +12,7 @@ export class Funnel extends Plot<FunnelOptions> {
   constructor(container: string | HTMLElement, options: FunnelOptions) {
     super(container, omit(options, ['conversionTag']));
     set(this.options, CUSTOM_COMVERSION_TAG_CONFIG, options.conversionTag);
+    set(this, SKIP_DEL_CUSTOM_SIGN, true);
   }
   /** 图表类型 */
   public type = 'Funnel';
@@ -50,12 +52,8 @@ export class Funnel extends Plot<FunnelOptions> {
           },
         },
       ],
-      paddingLeft: 60,
-      paddingRight: 60,
-      paddingTop: 18,
       // 漏斗基本动画
       animate: { enter: { type: 'fadeIn' } },
-      coordinate: [{ type: 'transpose' }],
     };
   }
 
