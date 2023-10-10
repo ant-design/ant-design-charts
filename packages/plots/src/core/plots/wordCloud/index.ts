@@ -11,7 +11,7 @@ export class WordCloud extends Plot<WordCloudOptions> {
   public type = 'WordCloud';
 
   /**
-   * 获取 水波图 默认配置项
+   * 获取 词云图 默认配置项
    * 供外部使用
    */
   static getDefaultOptions(): Partial<WordCloudOptions> {
@@ -19,14 +19,14 @@ export class WordCloud extends Plot<WordCloudOptions> {
   }
 
   /**
-   * 获取 水波图 默认配置
+   * 获取 词云图 默认配置
    */
   protected getDefaultOptions() {
     return WordCloud.getDefaultOptions();
   }
 
   /**
-   * 水波图适配器
+   * 词云图适配器
    */
   protected getSchemaAdaptor(): (params: Adaptor<WordCloudOptions>) => void {
     return adaptor;
