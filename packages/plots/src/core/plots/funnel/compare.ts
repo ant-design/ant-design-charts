@@ -2,7 +2,7 @@ import type { Adaptor } from '../../types';
 import { flow, map, maxBy, get, merge, conversionTagFormatter, omit, isFunction } from '../../utils';
 import type { FunnelOptions } from './type';
 import { FUNNEL_CONVERSATION, FUNNEL_MAPPING_VALUE, CUSTOM_COMVERSION_TAG_CONFIG } from './constant';
-import { Datum } from 'packages/plots/src/interface';
+import { Datum } from '../../../interface';
 
 type Params = Adaptor<FunnelOptions>;
 

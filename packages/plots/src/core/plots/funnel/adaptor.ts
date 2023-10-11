@@ -14,7 +14,7 @@ import {
 } from '../../utils';
 import type { FunnelOptions } from './type';
 import { FUNNEL_CONVERSATION, FUNNEL_PERCENT, FUNNEL_MAPPING_VALUE, CUSTOM_COMVERSION_TAG_CONFIG } from './constant';
-import { Datum } from 'packages/plots/src/interface';
+import { Datum } from '../../../interface';
 import { compareFunnel } from './compare';
 import { facetFunnel } from './facet';
 
