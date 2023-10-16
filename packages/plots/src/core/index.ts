@@ -19,6 +19,7 @@ export type { BoxOptions } from './plots/box';
 export type { BulletOptions } from './plots/bullet';
 export type { GaugeOptions } from './plots/gauge';
 export type { LiquidOptions } from './plots/liquid';
+export type { WordCloudOptions } from './plots/wordCloud';
 export type { TreemapOptions } from './plots/treemap';
 export * from './types';
 
@@ -43,6 +44,7 @@ import { Box } from './plots/box';
 import { Bullet } from './plots/bullet';
 import { Gauge } from './plots/gauge';
 import { Liquid } from './plots/liquid';
+import { WordCloud } from './plots/wordCloud';
 import { Treemap } from './plots/treemap';
 
 export const Plots = {
@@ -67,5 +69,6 @@ export const Plots = {
   Bullet,
   Gauge,
   Liquid,
+  WordCloud,
   Treemap,
 };
