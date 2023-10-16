@@ -17,7 +17,7 @@ $ pnpm i
 # 先创建开发分支开发，分支名应该有含义，避免使用 update、tmp 之类的
 $ git checkout -b branch-name
 # 启动本地官网
-$ pnpm start
+$ pnpm build:lib & pnpm start
 # 监听要改动的包，eg plots
 $ cd ./packages/plots
 $ pnpm start
