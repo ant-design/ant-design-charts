@@ -17,6 +17,7 @@ import Bullet from './bullet';
 import Gauge from './gauge';
 import Liquid from './liquid';
 import WordCloud from './wordCloud';
+import Treemap from './treemap';
 
 export type { AreaConfig } from './area';
 export type { BarConfig } from './bar';
@@ -36,6 +37,7 @@ export type { BulletConfig } from './bullet';
 export type { GaugeConfig } from './gauge';
 export type { LiquidConfig } from './liquid';
 export type { WordCloudConfig } from './wordCloud';
+export type { TreemapConfig } from './treemap';
 
 export {
   Base,
@@ -57,4 +59,5 @@ export {
   Gauge,
   Liquid,
   WordCloud,
+  Treemap,
 };

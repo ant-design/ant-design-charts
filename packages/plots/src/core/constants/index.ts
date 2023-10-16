@@ -52,6 +52,7 @@ export const TRANSFORM_OPTION_KEY = {
     seriesField: 'series',
     positionField: 'position',
     textField: 'text',
+    valueField: 'value',
     binField: 'x',
   },
   transform: {
