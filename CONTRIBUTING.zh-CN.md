@@ -44,8 +44,9 @@ $ git push origin branch-name
 
 ```ts
 - packages
-  - rc-utils
+  - charts
   - plots
+  - util
 ```
 
 ### 代码风格
