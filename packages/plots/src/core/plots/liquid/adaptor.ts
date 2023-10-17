@@ -1,4 +1,4 @@
-import { flow, transformOptions } from '../../utils';
+import { flow, transformOptions, isNumber, set } from '../../utils';
 import { mark } from '../../components';
 import type { Adaptor } from '../../types';
 import type { LiquidOptions } from './type';
@@ -14,6 +14,13 @@ export function adaptor(params: Params) {
    * 图表差异化处理
    */
   const init = (params: Params) => {
+    const {
+      options: { percent },
+    } = params;
+
+    if (isNumber(percent)) {
+      set(params, 'options.data', percent);
+    }
     return params;
   };
 

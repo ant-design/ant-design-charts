@@ -87,7 +87,7 @@ export abstract class Plot<O extends Options> extends EE {
   /**
    * 获取默认的 options 配置项，每个组件都可以复写
    */
-  protected getDefaultOptions(): Partial<Options> | void { }
+  protected getDefaultOptions(): Partial<Options> | void {}
 
   /**
    * 绘制

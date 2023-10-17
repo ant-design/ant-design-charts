@@ -16,6 +16,12 @@ export class Radar extends Plot<RadarOptions> {
    */
   static getDefaultOptions(): Partial<RadarOptions> {
     return {
+      axis: {
+        x: { grid: true, line: true },
+        y: { zIndex: 1, title: false, line: true , nice: true},
+      },
+      meta: { x: { padding: 0.5, align: 0 } },
+      interaction: { tooltip: { style: { crosshairsLineDash: [4, 4] } } },
       children: [{ type: 'line' }],
       // 有  polar 和 radar 两种极坐标形式
       coordinateType: 'polar',

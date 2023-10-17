@@ -14,7 +14,11 @@ export class Gauge extends Plot<GaugeOptions> {
    * 供外部使用
    */
   static getDefaultOptions(): Partial<GaugeOptions> {
-    return { type: 'view', children: [{ type: 'gauge' }] };
+    return {
+      type: 'view',
+      legend: false,
+      children: [{ type: 'gauge' }],
+    };
   }
 
   /**

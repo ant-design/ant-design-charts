@@ -15,7 +15,7 @@ export class WordCloud extends Plot<WordCloudOptions> {
    * 供外部使用
    */
   static getDefaultOptions(): Partial<WordCloudOptions> {
-    return { type: 'view', children: [{ type: 'wordCloud' }] };
+    return { type: 'view', legend: false, children: [{ type: 'wordCloud' }] };
   }
 
   /**
