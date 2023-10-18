@@ -33,6 +33,9 @@ export const RESERVED_KEYS = ['data', 'type', 'children'];
 /** 特殊标识，用于标识改配置来自于转换逻辑，而非用户配置 */
 export const TRANSFORM_SIGN = '__transform__';
 
+/** 特殊标识，用于跳过 删除已转换的配置项 */
+export const SKIP_DEL_CUSTOM_SIGN = '__skipDelCustomKeys__';
+
 /**
  * @title 字段转换逻辑
  * @example

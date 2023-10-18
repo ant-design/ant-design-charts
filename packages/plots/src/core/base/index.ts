@@ -1,7 +1,7 @@
 import EE from '@antv/event-emitter';
 import { Chart, ChartEvent } from '@antv/g2';
 import { bind } from 'size-sensor';
-import { CHART_OPTIONS, ANNOTATION_LIST } from '../constants';
+import { CHART_OPTIONS, ANNOTATION_LIST, SKIP_DEL_CUSTOM_SIGN } from '../constants';
 import { merge, omit, pick, deleteCustomKeys, deleteChartOptionKeys } from '../utils';
 import { Annotaion } from '../annotation';
 
@@ -51,7 +51,10 @@ export abstract class Plot<O extends Options> extends EE {
    * G2 options(Spec) 配置
    */
   private getSpecOptions() {
-    if (this.type === 'base') return { ...this.options, ...this.getChartOptions() };
+    if (this.type === 'base' || this[SKIP_DEL_CUSTOM_SIGN]) {
+      return { ...this.options, ...this.getChartOptions() };
+    }
+
     return deleteCustomKeys(omit(this.options, CHART_OPTIONS), true);
   }
 
