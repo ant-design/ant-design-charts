@@ -67,6 +67,14 @@
         "en": "Tiny progress plot"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ZJ6JSL4WFt8AAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "ring.js",
+      "title": {
+        "zh": "迷你进度环图",
+        "en": "Basic tiny ring progress"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*NaLRSIdTx_YAAAAAAAAAAAAAARQnAQ"
     }
   ]
 }

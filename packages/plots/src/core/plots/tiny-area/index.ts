@@ -16,8 +16,14 @@ export class TinyArea extends Plot<TinyAreaOptions> {
   static getDefaultOptions(): Partial<TinyAreaOptions> {
     return {
       type: 'view',
+      animate: {
+        enter: { type: 'growInX', duration: 500 },
+      },
       children: [{ type: 'area', axis: false }],
       autoFit: false,
+      padding: 0,
+      margin: 0,
+      tooltip: false
     };
   }
 

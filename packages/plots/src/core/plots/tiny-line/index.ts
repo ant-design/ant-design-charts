@@ -18,6 +18,12 @@ export class TinyLine extends Plot<TinyLineOptions> {
       type: 'view',
       children: [{ type: 'line', axis: false }],
       autoFit: false,
+      animate: {
+        enter: { type: 'growInX', duration: 500 },
+      },
+      padding: 0,
+      margin: 0,
+      tooltip: false,
     };
   }
 
