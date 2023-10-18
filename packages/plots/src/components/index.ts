@@ -13,6 +13,7 @@ import Waterfall from './waterfall';
 import Histogram from './histogram';
 import Heatmap from './heatmap';
 import Box from './box';
+import Sankey from './sankey';
 import Bullet from './bullet';
 import Gauge from './gauge';
 import Liquid from './liquid';
@@ -33,6 +34,7 @@ export type { WaterfallConfig } from './waterfall';
 export type { HistogramConfig } from './histogram';
 export type { HeatmapConfig } from './heatmap';
 export type { BoxConfig } from './box';
+export type { SankeyConfig } from './sankey';
 export type { BulletConfig } from './bullet';
 export type { GaugeConfig } from './gauge';
 export type { LiquidConfig } from './liquid';
@@ -55,6 +57,7 @@ export {
   Waterfall,
   Heatmap,
   Box,
+  Sankey,
   Bullet,
   Gauge,
   Liquid,
