@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 const DemoLiquid = () => {
   const config = {
-    data: .3,
+    percent: .3,
     style: {
       backgroundFill: 'pink',
     },

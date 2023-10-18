@@ -16,6 +16,9 @@ export class Column extends Plot<ColumnOptions> {
   static getDefaultOptions(): Partial<ColumnOptions> {
     return {
       type: 'view',
+      scale: {
+        y: { nice: true },
+      },
       children: [
         {
           type: 'interval',

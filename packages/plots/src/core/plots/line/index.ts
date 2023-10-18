@@ -14,7 +14,16 @@ export class Line extends Plot<LineOptions> {
    * 供外部使用
    */
   static getDefaultOptions(): Partial<LineOptions> {
-    return { type: 'view', children: [{ type: 'line' }] };
+    return {
+      type: 'view',
+      scale: {
+        y: { nice: true },
+      },
+      animate: {
+        enter: { type: 'growInX' },
+      },
+      children: [{ type: 'line' }],
+    };
   }
 
   /**

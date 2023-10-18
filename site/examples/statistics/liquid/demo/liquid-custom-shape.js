@@ -4,12 +4,12 @@ import ReactDOM from 'react-dom';
 
 const DemoLiquid = () => {
   const config = {
-    data: .3,
+    percent: 0.3,
     style: {
       shape: (x, y, r) => {
         const path = [];
         const w = r * 2;
-  
+
         for (let i = 0; i < 5; i++) {
           path.push([
             i === 0 ? 'M' : 'L',

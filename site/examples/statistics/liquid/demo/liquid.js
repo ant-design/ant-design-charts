@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 const DemoLiquid = () => {
   const config = {
-    data: .3,
+    percent: 0.3,
     style: {
       outlineBorder: 4,
       outlineDistance: 8,

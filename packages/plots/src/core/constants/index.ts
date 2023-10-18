@@ -9,11 +9,22 @@ export const CHART_OPTIONS = [
   'canvas',
   'theme',
   'inset',
+  'insetLeft',
+  'insetRight',
+  'insetTop',
+  'insetBottom',
   'padding',
   'paddingTop',
   'paddingRight',
   'paddingBottom',
   'paddingLeft',
+  'margin',
+  'marginTop',
+  'marginRight',
+  'marginBottom',
+  'marginLeft',
+  'depth',
+  'title',
 ];
 
 /** 最终透传给 G2 Spec 的保留字 */
@@ -162,6 +173,8 @@ const EXTEND_KEYS = [
   'keyField',
   'positionField',
   'meta',
+  'tooltip',
+  'animate',
 ];
 export const CONFIG_SHAPE = [
   {
