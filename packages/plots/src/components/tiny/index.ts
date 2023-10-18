@@ -1,8 +1,15 @@
-import Line from './tiny-line';
-import Area from './tiny-area';
-import Column from './tiny-column';
-import Progress from './tiny-progress';
+import Line from './line';
+import Area from './area';
+import Column from './column';
+import Progress from './progress';
+import Ring from './ring';
 
-type TinyOptions = Record<string, typeof Line | typeof Area | typeof Column | typeof Progress>;
+export type { TinyLineConfig } from './line';
+export type { TinyAreaConfig } from './area';
+export type { TinyColumnConfig } from './column';
+export type { TinyProgressConfig } from './progress';
+export type { TinyRingConfig } from './ring';
 
-export const Tiny: TinyOptions = { Line, Area, Column, Progress };
+type TinyOptions = Record<string, typeof Line | typeof Area | typeof Column | typeof Progress | typeof Ring>;
+
+export const Tiny: TinyOptions = { Line, Area, Column, Progress, Ring };

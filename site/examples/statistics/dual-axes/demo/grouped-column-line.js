@@ -32,28 +32,13 @@ const DemoDualAxes = () => {
         type: 'interval',
         yField: 'value',
         colorField: 'type',
-        // group: true,
-        tooltip: {
-          items: [
-            (d, index, _, column) => ({
-              color: '#5B8FF9',
-              name: 'uv',
-              value: d.type === 'uv' ? d.value : column.y.value[index - 5],
-            }),
-            (d, index, _, column) => ({
-              color: '#5AD8A6',
-              name: 'bill',
-              value: d.type === 'bill' ? d.value : column.y.value[index + 5],
-            })
-          ],
-        },
+        group: true,
         interaction: { elementHighlightByColor: { background: true, } },
       },
       {
         data: transformData,
         type: 'line',
         yField: 'count',
-        colorField: () => 'count',
         style: {
           stroke: '#5D7092',
           lineWidth: 2,

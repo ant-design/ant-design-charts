@@ -17,6 +17,10 @@ export class TinyProgress extends Plot<TinyProgressOptions> {
     return {
       type: 'view',
       data: [],
+      autoFit: false,
+      margin: 0,
+      padding: 0,
+      tooltip: false,
       children: [
         {
           interaction: { tooltip: false },
@@ -25,7 +29,7 @@ export class TinyProgress extends Plot<TinyProgressOptions> {
           axis: false,
           legend: false,
           encode: { y: (d) => d, color: (d, idx) => idx },
-        }
+        },
       ],
     };
   }

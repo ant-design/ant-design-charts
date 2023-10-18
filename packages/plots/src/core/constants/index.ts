@@ -1,7 +1,31 @@
 import { isArray, isBoolean } from '../utils';
 
 /** new Chart options */
-export const CHART_OPTIONS = ['width', 'height', 'renderer', 'autoFit', 'canvas', 'theme', 'inset'];
+export const CHART_OPTIONS = [
+  'width',
+  'height',
+  'renderer',
+  'autoFit',
+  'canvas',
+  'theme',
+  'inset',
+  'insetLeft',
+  'insetRight',
+  'insetTop',
+  'insetBottom',
+  'padding',
+  'paddingTop',
+  'paddingRight',
+  'paddingBottom',
+  'paddingLeft',
+  'margin',
+  'marginTop',
+  'marginRight',
+  'marginBottom',
+  'marginLeft',
+  'depth',
+  'title',
+];
 
 /** 最终透传给 G2 Spec 的保留字 */
 export const RESERVED_KEYS = ['data', 'type', 'children'];
@@ -38,6 +62,8 @@ export const TRANSFORM_OPTION_KEY = {
     shapeField: 'shape',
     seriesField: 'series',
     positionField: 'position',
+    textField: 'text',
+    valueField: 'value',
     binField: 'x',
   },
   transform: {
@@ -147,6 +173,8 @@ const EXTEND_KEYS = [
   'keyField',
   'positionField',
   'meta',
+  'tooltip',
+  'animate',
 ];
 export const CONFIG_SHAPE = [
   {

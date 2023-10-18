@@ -1,0 +1,55 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [{
+      "filename": "bullet.js",
+      "title": {
+        "zh": "子弹图",
+        "en": "Bullet"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*R4hCRJwwMhgAAAAAAAAAAAAADo2bAQ/original"
+    },
+    {
+      "filename": "bullets.js",
+      "title": {
+        "zh": "多指标子弹图",
+        "en": "Bullets"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*2VHuTLQBDJgAAAAAAAAAAAAADo2bAQ/original"
+    },
+    {
+      "filename": "bullet-vertical.js",
+      "title": {
+        "zh": "子弹图 垂直方向",
+        "en": "Bullet vertical"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*8IYYQorPr_4AAAAAAAAAAAAADo2bAQ/original"
+    },
+    {
+      "filename": "bullet-group.js",
+      "title": {
+        "zh": "分组子弹图",
+        "en": "Bullet group"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*kAwGRZaRy3wAAAAAAAAAAAAADo2bAQ/original"
+    },
+    {
+      "filename": "bullets-group.js",
+      "title": {
+        "zh": "分组多指标子弹图",
+        "en": "Bullets group"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*u_YoTKv82soAAAAAAAAAAAAADo2bAQ/original"
+    },
+    {
+      "filename": "bullet-more-cfg.js",
+      "title": {
+        "zh": "子弹图 更多配置",
+        "en": "Bullet more Config"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_za7we3/afts/img/A*RI6-TYu5QaMAAAAAAAAAAAAADo2bAQ/original"
+    }
+  ]
+}

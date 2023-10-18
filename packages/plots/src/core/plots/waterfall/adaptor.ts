@@ -61,6 +61,8 @@ export function adaptor(params: Params) {
       type: 'link',
       xField: ['x1', 'x2'],
       yField: 'y1',
+      // 防止动画或 scrollbar 重绘时 link 层级高于 interval
+      zIndex: -1,
       data: linkData,
       style: {
         stroke: '#697474',
