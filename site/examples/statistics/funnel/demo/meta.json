@@ -29,6 +29,14 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/L88CCTUbpo/9127293d-767c-4a57-8852-e7c27fc4df8d.png"
     },
     {
+      "filename": "dynamic-height.js",
+      "title": {
+        "zh": "动态高度漏斗图",
+        "en": "Dynamic height funnel plot"
+      },
+      "screenshot": "https://gw.alicdn.com/tfs/TB1Tgtyurj1gK0jSZFOXXc7GpXa-786-503.png"
+    },
+    {
       "filename": "compare.js",
       "title": {
         "zh": "对比漏斗图",

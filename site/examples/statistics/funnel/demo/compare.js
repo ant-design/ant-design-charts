@@ -61,8 +61,7 @@ const DemoFunnel = () => {
     yField: 'number',
     compareField: 'company',
     tooltip: {
-      // fields: ['stage', 'number', 'company'],
-      formatter: (v) => ({
+      text: (v) => ({
         name: `${v.company}的${v.stage}`,
         value: v.number,
       }),
