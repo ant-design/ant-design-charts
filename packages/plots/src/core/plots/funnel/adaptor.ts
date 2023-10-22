@@ -3,7 +3,6 @@ import {
   deepAssign,
   flow,
   map,
-  transformOptions,
   maxBy,
   get,
   groupBy,
@@ -17,6 +16,7 @@ import { FUNNEL_CONVERSATION, FUNNEL_PERCENT, FUNNEL_MAPPING_VALUE, CUSTOM_COMVE
 import { Datum } from '../../../interface';
 import { compareFunnel } from './compare';
 import { facetFunnel } from './facet';
+import { dynamicHeightFunnel } from './dynamic-height';
 
 type Params = Adaptor<FunnelOptions>;
 
@@ -46,7 +46,9 @@ export function adaptor(params: Params) {
   };
 
   const transformData = (params: Params) => {
-    const { yField, data, compareField, seriesField } = params.options;
+    const { yField, data, compareField, seriesField, dynamicHeight } = params.options;
+
+    if (dynamicHeight) return params;
 
     if (compareField || seriesField) {
       const maxCache = {};
@@ -75,9 +77,22 @@ export function adaptor(params: Params) {
    * 图表差异化处理
    */
   const init = (params: Params) => {
-    const { xField, yField, shape, isTransposed, compareField, seriesField, funnelStyle, label } = params.options;
+    const {
+      xField,
+      yField,
+      shape,
+      isTransposed,
+      compareField,
+      seriesField,
+      funnelStyle,
+      label,
+      tooltip,
+      dynamicHeight,
+    } = params.options;
 
-    if (compareField) {
+    if (dynamicHeight) {
+      dynamicHeightFunnel(params);
+    } else if (compareField) {
       compareFunnel(params);
     } else if (seriesField) {
       facetFunnel(params);
@@ -149,13 +164,15 @@ export function adaptor(params: Params) {
         tooltip: {
           title: false,
           items: [
-            (d) => ({
-              name: d[xField],
-              value: d[yField],
-            }),
+            (d) =>
+              isFunction(tooltip?.text)
+                ? tooltip.text(d)
+                : {
+                    name: d[xField],
+                    value: d[yField],
+                  },
           ],
         },
-        // labels 对应 xField
         labels,
       };
 
@@ -165,7 +182,14 @@ export function adaptor(params: Params) {
     }
 
     // 漏斗图 label、conversionTag 不可被通用处理
-    params.options = omit(params.options, ['label', CUSTOM_COMVERSION_TAG_CONFIG, 'yField', 'xField', 'seriesField']);
+    params.options = omit(params.options, [
+      'label',
+      'yField',
+      'xField',
+      'seriesField',
+      'dynamicHeight',
+      CUSTOM_COMVERSION_TAG_CONFIG,
+    ]);
 
     return params;
   };

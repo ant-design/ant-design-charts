@@ -12,7 +12,7 @@ type Params = Adaptor<FunnelOptions>;
  */
 export function facetFunnel(params: Params) {
   const getBasicFunnel = (params: Params) => {
-    const { xField, yField, shape, legend, label, isTransposed, seriesField } = params.options;
+    const { xField, yField, shape, legend, label, isTransposed, seriesField, tooltip } = params.options;
 
     const conversionTag = get(params.options, CUSTOM_COMVERSION_TAG_CONFIG);
 
@@ -112,10 +112,13 @@ export function facetFunnel(params: Params) {
       tooltip: {
         title: false,
         items: [
-          (d) => ({
-            name: d[xField],
-            value: d[yField],
-          }),
+          (d) =>
+            isFunction(tooltip?.text)
+              ? tooltip.text(d)
+              : {
+                  name: d[xField],
+                  value: d[yField],
+                },
         ],
       },
       labels,

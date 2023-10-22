@@ -7,8 +7,10 @@ export const FUNNEL_CONVERSATION = '__conversion__';
 // 漏斗单项占总体和的百分比，用于动态漏斗图计算高度：
 // data[n][yField] / sum(data[0-n][yField])
 export const FUNNEL_TOTAL_PERCENT = '__totalPercentage__';
-// 漏斗多边型 x 坐标
-export const PLOYGON_X = '$$x$$';
-export const PLOYGON_Y = '$$y$$';
+
+// 动态高度漏斗多边形 x 坐标
+export const POLYGON_X = '__x__';
+// 动态高度漏斗多边形 y 坐标
+export const POLYGON_Y = '__y__';
 
 export const CUSTOM_COMVERSION_TAG_CONFIG = '__conversionTag__';

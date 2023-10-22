@@ -1,5 +1,5 @@
 import type { Adaptor } from '../../types';
-import { flow, map, maxBy, get, merge, conversionTagFormatter, omit, isFunction } from '../../utils';
+import { flow, get, merge, conversionTagFormatter, isFunction } from '../../utils';
 import type { FunnelOptions } from './type';
 import { FUNNEL_CONVERSATION, FUNNEL_MAPPING_VALUE, CUSTOM_COMVERSION_TAG_CONFIG } from './constant';
 import { Datum } from '../../../interface';
@@ -12,7 +12,7 @@ type Params = Adaptor<FunnelOptions>;
  */
 export function compareFunnel(params: Params) {
   const getBasicFunnel = (params: Params, compareField: string) => {
-    const { xField, yField, funnelStyle, label, isTransposed } = params.options;
+    const { xField, yField, funnelStyle, label, isTransposed, tooltip } = params.options;
 
     const conversionTag = get(params.options, CUSTOM_COMVERSION_TAG_CONFIG);
 
@@ -63,10 +63,12 @@ export function compareFunnel(params: Params) {
       text: (_, index) => {
         return index === 0 ? compareField : '';
       },
+      textAlign: isTransposed ? 'right' : undefined,
+      position: isTransposed ? 'bottom' : 'top',
+      dx: isTransposed ? 20 : undefined,
       fontSize: 14,
-      position: 'top',
       fillOpacity: 1,
-      dy: -24,
+      dy: isTransposed ? 100 : -24,
     };
 
     const labels = [
@@ -99,10 +101,13 @@ export function compareFunnel(params: Params) {
       tooltip: {
         title: false,
         items: [
-          (d) => ({
-            name: d[xField],
-            value: d[yField],
-          }),
+          (d) =>
+            isFunction(tooltip?.text)
+              ? tooltip.text(d)
+              : {
+                  name: d[xField],
+                  value: d[yField],
+                },
         ],
       },
       // labels 对应 xField
