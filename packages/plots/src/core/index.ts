@@ -18,6 +18,7 @@ export type { WaterfallOptions } from './plots/waterfall';
 export type { HistogramOptions } from './plots/histogram';
 export type { HeatmapOptions } from './plots/heatmap';
 export type { BoxOptions } from './plots/box';
+export type { SankeyOptions } from './plots/sankey';
 export type { BulletOptions } from './plots/bullet';
 export type { GaugeOptions } from './plots/gauge';
 export type { LiquidOptions } from './plots/liquid';
@@ -45,6 +46,7 @@ import { Waterfall } from './plots/waterfall';
 import { Histogram } from './plots/histogram';
 import { Heatmap } from './plots/heatmap';
 import { Box } from './plots/box';
+import { Sankey } from './plots/sankey';
 import { Bullet } from './plots/bullet';
 import { Gauge } from './plots/gauge';
 import { Liquid } from './plots/liquid';
@@ -72,6 +74,7 @@ export const Plots = {
   Histogram,
   Heatmap,
   Box,
+  Sankey,
   Bullet,
   Gauge,
   Liquid,
