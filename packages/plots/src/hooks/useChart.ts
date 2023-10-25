@@ -1,17 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import {
-  getPathConfig,
-  isString,
-  isNumber,
-  isElement,
-  isFunction,
-  setPathConfig,
-  isEqual,
-  get,
-  createNode,
-  cloneDeep,
-} from '../util';
-import { JSX_TO_STRING } from '../constants';
+import { isFunction, isEqual, get, createNode, cloneDeep, isArray, isObject, isValidElement } from '../util';
 import { CommonConfig, Chart } from '../interface';
 
 export default function useChart<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
@@ -52,21 +40,20 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
     return imageName;
   };
 
-  const reactDomToString = (source: U, path: string[], extra?: object) => {
-    const statisticCustomHtml = getPathConfig(source, path);
-    setPathConfig(source, path, (...arg: any[]) => {
-      const statisticDom = isFunction(statisticCustomHtml) ? statisticCustomHtml(...arg) : statisticCustomHtml;
-      if (isString(statisticDom) || isNumber(statisticDom) || isElement(statisticDom)) {
-        return statisticDom;
-      }
-      return createNode(statisticDom, extra);
-    });
-  };
-
-  const processConfig = () => {
-    JSX_TO_STRING.forEach(({ path, extra }) => {
-      if (getPathConfig(config, path)) {
-        reactDomToString(config, path, extra);
+  const processConfig = (cfg: object) => {
+    const keys = Object.keys(cfg);
+    keys.forEach((key) => {
+      const current = cfg[key];
+      if (isFunction(current) && isValidElement(`${current}`)) {
+        cfg[key] = (...arg) => createNode(current(...arg));
+      } else {
+        if (isArray(current)) {
+          current.forEach((item) => {
+            processConfig(item);
+          });
+        } else if (isObject(current)) {
+          processConfig(current);
+        }
       }
     });
   };
@@ -84,7 +71,7 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
       if (changeData) {
         chart.current.changeData(get(config, 'data'));
       } else {
-        processConfig();
+        processConfig(config);
         chart.current.update(config);
         chart.current.render();
       }
@@ -98,7 +85,7 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
     if (!chartOptions.current) {
       chartOptions.current = cloneDeep(config);
     }
-    processConfig();
+    processConfig(config);
     const chartInstance: T = new (ChartClass as any)(container.current, {
       ...config,
     });

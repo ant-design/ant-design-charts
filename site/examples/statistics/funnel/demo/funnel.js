@@ -15,6 +15,9 @@ const DemoFunnel = () => {
     data,
     xField: 'stage',
     yField: 'number',
+    label: {
+      text: (d) => `${d.stage}\n${d.number}`,
+    },
   };
 
   return <Funnel {...config} />;

@@ -5,68 +5,36 @@
   },
   "demos": [
     {
-      "filename": "basic.js",
+      "filename": "funnel.js",
       "title": {
-        "zh": "基础漏斗图",
-        "en": "Basic funnel plot"
+        "zh": "漏斗图",
+        "en": "Funnel"
       },
-      "screenshot": "https://gw.alicdn.com/tfs/TB158FxuAT2gK0jSZPcXXcKkpXa-646-500.png"
-    },
-    {
-      "filename": "static-field.js",
-      "title": {
-        "zh": "漏斗图: 使用静态变量",
-        "en": "Funnel plot - static field"
-      },
-      "screenshot": "https://gw.alicdn.com/tfs/TB158FxuAT2gK0jSZPcXXcKkpXa-646-500.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*6syuS6eMD1AAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "pyramid.js",
       "title": {
-        "zh": "尖底漏斗图",
-        "en": "Pyramid funnel plot"
+        "zh": "金字塔图",
+        "en": "Pyramid"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/L88CCTUbpo/9127293d-767c-4a57-8852-e7c27fc4df8d.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*8SagQbsQk6gAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
-      "filename": "compare.js",
+      "filename": "mirror-funnel.js",
       "title": {
         "zh": "对比漏斗图",
-        "en": "Compare funnel plot"
+        "en": "Mirror Funnel"
       },
-      "screenshot": "https://gw.alicdn.com/tfs/TB1Y7dtuAL0gK0jSZFtXXXQCXXa-709-495.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ejYqRJVJ12gAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
-      "filename": "facet.js",
+      "filename": "transpose.js",
       "title": {
-        "zh": "分面漏斗图",
-        "en": "Facet funnel plot"
-      },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Zk1rRJvD8zwAAAAAAAAAAAAAARQnAQ"
-    },
-    {
-      "filename": "basic-transpose.js",
-      "title": {
-        "zh": "基础漏斗图-转置",
-        "en": "Funnel plot-transpose"
+        "zh": "转化漏斗图-转置",
+        "en": "Annotation Funnel transpose"
       },
       "screenshot": "https://gw.alicdn.com/tfs/TB1EgtsuuT2gK0jSZFvXXXnFXXa-958-591.png"
-    },
-    {
-      "filename": "compare-transpose.js",
-      "title": {
-        "zh": "对比漏斗图-转置",
-        "en": "Compare funnel plot"
-      },
-      "screenshot": "https://gw.alicdn.com/tfs/TB1Hkluurr1gK0jSZR0XXbP8XXa-1095-565.png"
-    },
-    {
-      "filename": "facet-transpose.js",
-      "title": {
-        "zh": "分面漏斗图-转置",
-        "en": "Facet funnel plot-transpose"
-      },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*lbtdRJjZ4qsAAAAAAAAAAAAAARQnAQ"
     }
   ]
 }
