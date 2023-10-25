@@ -100,7 +100,6 @@ export abstract class Plot<O extends Options> extends EE {
     if (this.type !== 'base') {
       this.execAdaptor();
     }
-
     // options 转换
     this.chart.options(this.getSpecOptions());
     // 渲染

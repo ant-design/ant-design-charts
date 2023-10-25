@@ -4,21 +4,21 @@ import { Funnel } from '@ant-design/plots';
 
 const DemoFunnel = () => {
   const data = [
-    { action: '浏览网站', pv: 50000 },
-    { action: '放入购物车', pv: 35000 },
-    { action: '生成订单', pv: 25000 },
-    { action: '支付订单', pv: 15000 },
-    { action: '完成交易', pv: 8000 },
+    { stage: '简历筛选', number: 253 },
+    { stage: '初试人数', number: 151 },
+    { stage: '复试人数', number: 113 },
+    { stage: '录取人数', number: 87 },
+    { stage: '入职人数', number: 59 },
   ];
 
   const config = {
-    data,
-    xField: 'action',
-    yField: 'pv',
-    shapeField: 'pyramid',
+    data: data,
+    xField: 'stage',
+    yField: 'number',
+    isTransposed: false,
     label: [
       {
-        text: (d) => d.pv,
+        text: (d) => d.number,
         position: 'inside',
         fontSize: 16,
       },
@@ -28,24 +28,24 @@ const DemoFunnel = () => {
             return (
               <div
                 style={{
-                  height: 1,
-                  width: 30,
+                  height: 30,
+                  width: 1,
                   background: '#aaa',
-                  margin: '0 20',
+                  marginTop: -30,
                 }}
               ></div>
             );
         },
-        position: 'top-right',
+        position: 'top-left',
       },
       {
         text: (d, i, data) => {
-          if (i) return ((d.pv / data[i - 1].pv) * 100).toFixed(2) + '%';
+          if (i) return ((d.number / data[i - 1].number) * 100).toFixed(2) + '%';
         },
-        position: 'top-right',
-        textAlign: 'left',
-        textBaseline: 'middle',
-        dx: 40,
+        position: 'top-left',
+        textAlign: 'middle',
+        textBaseline: 'bottom',
+        dy: -30,
       },
     ],
   };
