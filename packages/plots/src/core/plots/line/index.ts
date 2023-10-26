@@ -19,6 +19,11 @@ export class Line extends Plot<LineOptions> {
       scale: {
         y: { nice: true },
       },
+      interaction: {
+        tooltip: {
+          shared: true,
+        },
+      },
       animate: {
         enter: { type: 'growInX' },
       },
