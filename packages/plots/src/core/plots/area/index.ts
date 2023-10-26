@@ -14,7 +14,15 @@ export class Area extends Plot<AreaOptions> {
    * 供外部使用
    */
   static getDefaultOptions(): Partial<AreaOptions> {
-    return { type: 'view', children: [{ type: 'area' }] };
+    return {
+      type: 'view',
+      children: [{ type: 'area' }],
+      interaction: {
+        tooltip: {
+          shared: true,
+        },
+      },
+    };
   }
 
   /**

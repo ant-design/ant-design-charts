@@ -32,9 +32,17 @@
       "filename": "normalized-stacked.js",
       "title": {
         "zh": "归一化条形图",
-        "en": "Normalized Stacked Chart"
+        "en": "Normalized Bar Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*m6vKSptL6qkAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "background.js",
+      "title": {
+        "zh": "背景条形图",
+        "en": "Background Bar Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*oDkdRodUnXwAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }

@@ -14,7 +14,16 @@ export class Bar extends Plot<BarOptions> {
    * 供外部使用
    */
   static getDefaultOptions(): Partial<BarOptions> {
-    return { type: 'view', children: [{ type: 'interval', coordinate: { transform: [{ type: 'transpose' }] } }] };
+    return {
+      type: 'view',
+      coordinate: { transform: [{ type: 'transpose' }] },
+      children: [{ type: 'interval' }],
+      interaction: {
+        tooltip: {
+          shared: true,
+        },
+      },
+    };
   }
 
   /**

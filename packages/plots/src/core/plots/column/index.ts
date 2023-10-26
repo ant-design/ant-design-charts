@@ -1,6 +1,6 @@
 import { Plot } from '../../base';
 import type { Adaptor } from '../../types';
-import { adaptor } from './adaptor';
+import { adaptor } from '../bar/adaptor';
 import { ColumnOptions } from './type';
 
 export type { ColumnOptions };
