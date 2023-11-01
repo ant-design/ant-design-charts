@@ -18,6 +18,9 @@ export class Bar extends Plot<BarOptions> {
       type: 'view',
       coordinate: { transform: [{ type: 'transpose' }] },
       children: [{ type: 'interval' }],
+      scale: {
+        y: { nice: true },
+      },
       interaction: {
         tooltip: {
           shared: true,
