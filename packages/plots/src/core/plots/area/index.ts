@@ -17,6 +17,9 @@ export class Area extends Plot<AreaOptions> {
     return {
       type: 'view',
       children: [{ type: 'area' }],
+      scale: {
+        y: { nice: true },
+      },
       interaction: {
         tooltip: {
           shared: true,
