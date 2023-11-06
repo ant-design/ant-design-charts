@@ -20,6 +20,10 @@ export class Area extends Plot<AreaOptions> {
       scale: {
         y: { nice: true },
       },
+      axis: {
+        y: { title: false },
+        x: { title: false },
+      },
       interaction: {
         tooltip: {
           shared: true,

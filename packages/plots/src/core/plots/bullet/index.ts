@@ -29,11 +29,15 @@ export class Bullet extends Plot<BulletOptions> {
           },
         },
       },
+      axis: {
+        y: { title: false },
+        x: { title: false },
+      },
       children: [
         {
           type: 'interval',
           style: { maxWidth: 30 },
-          axis: { y: { grid: true, gridLineWidth: 2 }, x: { title: false } },
+          axis: { y: { grid: true, gridLineWidth: 2 } },
         },
         {
           type: 'interval',

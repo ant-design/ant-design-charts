@@ -16,6 +16,13 @@ export class Scatter extends Plot<ScatterOptions> {
    */
   static getDefaultOptions(): Partial<ScatterOptions> {
     return {
+      axis: {
+        y: { title: false },
+        x: { title: false },
+      },
+      legend: {
+        size: false,
+      },
       children: [{ type: 'point' }],
     };
   }

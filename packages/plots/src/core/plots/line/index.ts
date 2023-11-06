@@ -24,6 +24,10 @@ export class Line extends Plot<LineOptions> {
           shared: true,
         },
       },
+      axis: {
+        y: { title: false },
+        x: { title: false },
+      },
       animate: {
         enter: { type: 'growInX' },
       },

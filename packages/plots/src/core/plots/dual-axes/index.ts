@@ -14,7 +14,13 @@ export class DualAxes extends Plot<DualAxesOptions> {
    * 供外部使用
    */
   static getDefaultOptions(): Partial<DualAxesOptions> {
-    return { type: 'view' };
+    return {
+      type: 'view',
+      axis: {
+        y: { title: false },
+        x: { title: false },
+      },
+    };
   }
 
   /**
