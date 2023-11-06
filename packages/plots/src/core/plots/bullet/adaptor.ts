@@ -135,11 +135,6 @@ export function adaptor(params: Params) {
     if (layout !== 'horizontal') {
       const target = params.options.children[2];
       target.shapeField = 'hyphen';
-      target.labels[0] = {
-        text: target.labels[0].text,
-        position: 'bottom',
-        dy: -5,
-      };
     }
 
     return params;

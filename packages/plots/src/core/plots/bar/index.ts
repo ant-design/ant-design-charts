@@ -21,6 +21,10 @@ export class Bar extends Plot<BarOptions> {
       scale: {
         y: { nice: true },
       },
+      axis: {
+        y: { title: false },
+        x: { title: false },
+      },
       interaction: {
         tooltip: {
           shared: true,

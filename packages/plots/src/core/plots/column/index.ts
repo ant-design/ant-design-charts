@@ -24,6 +24,10 @@ export class Column extends Plot<ColumnOptions> {
           shared: true,
         },
       },
+      axis: {
+        y: { title: false },
+        x: { title: false },
+      },
       children: [
         {
           type: 'interval',
