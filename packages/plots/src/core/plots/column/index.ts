@@ -19,15 +19,6 @@ export class Column extends Plot<ColumnOptions> {
       scale: {
         y: { nice: true },
       },
-      interaction: {
-        tooltip: {
-          shared: true,
-        },
-      },
-      axis: {
-        y: { title: false },
-        x: { title: false },
-      },
       children: [
         {
           type: 'interval',

@@ -17,10 +17,6 @@ export class Histogram extends Plot<HistogramOptions> {
     return {
       type: 'view',
       autoFit: true,
-      axis: {
-        y: { title: false },
-        x: { title: false },
-      },
       children: [
         {
           type: 'rect',

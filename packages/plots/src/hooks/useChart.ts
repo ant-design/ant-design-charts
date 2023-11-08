@@ -7,7 +7,6 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
   const chartOptions = useRef<U>();
   const container = useRef<HTMLDivElement>(null);
   const { onReady, onEvent } = config;
-
   /**
    * Get data base64
    * @param {string} type A DOMString indicating the image format. The default format type is image/png.
@@ -103,7 +102,7 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
       }
     };
     chartInstance.on('*', handler);
-
+    
     // 组件销毁时销毁图表
     return () => {
       if (chart.current) {
@@ -113,7 +112,6 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
       }
     };
   }, []);
-
   return {
     chart,
     container,

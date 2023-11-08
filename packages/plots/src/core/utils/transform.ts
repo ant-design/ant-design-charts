@@ -112,6 +112,5 @@ export const transformOptions = (params: Adaptor) => {
   });
 
   deleteCustomKeys(options);
-
   return params;
 };

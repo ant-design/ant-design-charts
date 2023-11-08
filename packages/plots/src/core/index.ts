@@ -52,6 +52,7 @@ import { Gauge } from './plots/gauge';
 import { Liquid } from './plots/liquid';
 import { WordCloud } from './plots/wordCloud';
 import { Treemap } from './plots/treemap';
+import { Violin } from './plots/violin';
 
 export const Plots = {
   Base,
@@ -80,4 +81,5 @@ export const Plots = {
   Liquid,
   WordCloud,
   Treemap,
+  Violin,
 };

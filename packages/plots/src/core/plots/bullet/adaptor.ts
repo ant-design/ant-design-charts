@@ -46,7 +46,7 @@ function getTransformData(data: any[], field: string, xField: string, isSort = t
  * @returns string[]
  */
 function getFieldColor(maxSize: number, color: string | string[]) {
-  return new Array(maxSize).fill('').map((d, i) => (isArray(color) ? color[i % color.length] : color));
+  return new Array(maxSize).fill('').map((d, i) => isArray(color) ? color[i % color.length] : color);
 }
 
 /**
@@ -58,20 +58,12 @@ export function adaptor(params: Params) {
    * 图表差异化处理
    */
   const init = (params: Params) => {
-    const {
-      color,
-      rangeField = 'ranges',
-      measureField = 'measures',
-      targetField = 'targets',
-      xField = 'title',
-      mapField,
-      data,
-    } = params.options;
+    const { color, rangeField = 'ranges', measureField = 'measures', targetField = 'targets', xField = 'title', mapField, data } = params.options;
 
     // 数据进行拍平
     const [rangesData, rangesMaxSize] = getTransformData(data, rangeField, xField);
     const [measuresData, measuresMaxSize] = getTransformData(data, measureField, xField, false);
-    const [targetsData, targetsMaxSize] = getTransformData(data, targetField, xField, false);
+    const [targetsData, targetsMaxSize] = getTransformData(data, targetField, xField);
 
     // 获取颜色
     const rangesColor = get(color, [rangeField], DEFAULT_COLORS[0]);
@@ -135,10 +127,15 @@ export function adaptor(params: Params) {
     if (layout !== 'horizontal') {
       const target = params.options.children[2];
       target.shapeField = 'hyphen';
+      target.labels[0] = {
+        text: target.labels[0].text,
+        position: "bottom",
+        dy: -5,
+      };
     }
 
     return params;
-  };
+  }
 
   /**
    * range、measure、target 配置适配
@@ -149,7 +146,8 @@ export function adaptor(params: Params) {
     const { range = {}, measure = {}, target = {}, children } = params.options;
     params.options.children = [range, measure, target].map((c, i) => deepAssign(children[i], c));
     return params;
-  };
+  }
+
 
   return flow(init, layoutAdaptor, cfgAdaptor, coordinateLayout, transformOptions)(params);
 }

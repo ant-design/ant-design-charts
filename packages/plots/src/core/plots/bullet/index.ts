@@ -25,32 +25,31 @@ export class Bullet extends Plot<BulletOptions> {
       legend: {
         color: {
           itemMarker: (d) => {
-            return d === 'target' ? 'line' : 'square';
+            return d === "target" ? "line" : "square";
           },
         },
-      },
-      axis: {
-        y: { title: false },
-        x: { title: false },
       },
       children: [
         {
           type: 'interval',
           style: { maxWidth: 30 },
-          axis: { y: { grid: true, gridLineWidth: 2 } },
+          axis: { y: { grid: true, gridLineWidth: 2 }, x: { title: false } },
         },
         {
           type: 'interval',
           style: { maxWidth: 20 },
           transform: [{ type: 'stackY' }],
+          labels: [{ text: "measures", position: "inside" }],
         },
         {
           type: 'point',
-          encode: { size: 8, shape: 'line' },
+          encode: { size: 8, shape: "line" },
+          tooltip: { title: false, items: [{ channel: "y" }] },
+          labels: [{ text: "targets", position: "right", textAlign: 'left', dx: 5 }],
         },
       ],
       interaction: { tooltip: { shared: true } },
-      coordinate: { transform: [{ type: 'transpose' }] },
+      coordinate: { transform: [{ type: "transpose" }] },
     };
   }
 
