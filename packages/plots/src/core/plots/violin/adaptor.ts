@@ -13,11 +13,6 @@ export function adaptor(params: Params) {
   /**
    * 图表差异化处理
    */
-
-  const init = (params: Params) => {
-    return params
-  }
-
   const customTransform = (params: Params) => {
     const { options } = params;
     // 默认‘normal’类型数据格式
@@ -31,5 +26,5 @@ export function adaptor(params: Params) {
     return params;
   }
 
-  return flow(init, customTransform, transformOptions, mark)(params);
+  return flow(customTransform, transformOptions, mark)(params);
 }
