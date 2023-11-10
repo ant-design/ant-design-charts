@@ -4,7 +4,7 @@ import { Violin } from '@ant-design/plots';
 
 const DemoViolin = () => {
   const config = {
-    violinType: 'normal',
+    violinType: 'density',
     data: {
       type: 'fetch',
       value: 'https://assets.antv.antgroup.com/g2/species.json',

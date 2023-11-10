@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef } from 'react';
+import React, { useImperativeHandle, forwardRef, useEffect } from 'react';
 import { ErrorBoundary, ChartLoading } from '@ant-design/charts-util';
 import useChart from '../../hooks/useChart';
 import { Plots } from '../../core';

@@ -5,7 +5,7 @@
   },
   "demos": [
     {
-      "filename": "desity.js",
+      "filename": "density.js",
       "title": {
         "zh": "和密度图",
         "en": "Density plot"

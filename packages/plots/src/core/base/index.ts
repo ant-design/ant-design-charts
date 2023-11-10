@@ -54,7 +54,6 @@ export abstract class Plot<O extends Options> extends EE {
     if (this.type === 'base' || this[SKIP_DEL_CUSTOM_SIGN]) {
       return { ...this.options, ...this.getChartOptions() };
     }
-
     return deleteCustomKeys(omit(this.options, CHART_OPTIONS), true);
   }
 
@@ -106,7 +105,6 @@ export abstract class Plot<O extends Options> extends EE {
     this.chart.render().then(() => {
       this.annotations();
     });
-
     // 绑定
     this.bindSizeSensor();
   }
