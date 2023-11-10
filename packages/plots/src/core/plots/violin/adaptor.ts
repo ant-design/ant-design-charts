@@ -20,6 +20,7 @@ export function adaptor(params: Params) {
 
   const customTransform = (params: Params) => {
     const { options } = params;
+    // 默认‘normal’类型数据格式
     if (options.violinType === 'polar') {
       set(options, 'coordinate', { type: 'polar'})
     } else if (options.violinType === 'density') {
