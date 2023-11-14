@@ -116,13 +116,13 @@ export abstract class Plot<O extends Options> extends EE {
    */
   public annotations(): void {
     ANNOTATION_LIST.forEach((annotation) => {
-      const { type, shape } = annotation;
-      const annotationOptions = this.options[type];
-      if (ANNOTATION_MAP.has(type)) {
-        ANNOTATION_MAP.get(type).destroy();
+      const { key, shape } = annotation;
+      const annotationOptions = this.options[key];
+      if (ANNOTATION_MAP.has(key)) {
+        ANNOTATION_MAP.get(key).destroy();
       }
       if (annotationOptions) {
-        ANNOTATION_MAP.set(type, new Annotaion[shape](this.chart, annotationOptions));
+        ANNOTATION_MAP.set(key, new Annotaion[shape](this.chart, annotationOptions));
       }
     });
   }
