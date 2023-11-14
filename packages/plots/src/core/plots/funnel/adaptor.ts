@@ -60,7 +60,6 @@ export function adaptor(params: Params) {
       set(options, 'type', 'spaceFlex');
       set(options, 'ratio', [1, 1]);
       set(options, 'direction', isTransposed ? 'row' : 'col');
-      // @ts-expect-error
       delete options['seriesField'];
     }
 
