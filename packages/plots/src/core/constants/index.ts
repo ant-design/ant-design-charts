@@ -28,7 +28,7 @@ export const CHART_OPTIONS = [
 ];
 
 /** 最终透传给 G2 Spec 的保留字 */
-export const RESERVED_KEYS = ['data', 'type', 'children'];
+export const RESERVED_KEYS = ['data', 'type', 'children', 'direction'];
 
 /** 特殊标识，用于标识改配置来自于转换逻辑，而非用户配置 */
 export const TRANSFORM_SIGN = '__transform__';
@@ -253,7 +253,11 @@ export const SPECIAL_OPTIONS = [
 
 export const ANNOTATION_LIST = [
   {
-    type: 'conversionTag',
+    key: 'conversionTag',
     shape: 'ConversionTag',
+  },
+  {
+    key: 'axis',
+    shape: 'BidirectionalBarAxisText',
   },
 ];
