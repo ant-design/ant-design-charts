@@ -9,6 +9,9 @@ const DemoViolin = () => {
       type: 'fetch',
       value: 'https://assets.antv.antgroup.com/g2/species.json',
     },
+    xField: 'x',
+    yField: 'y',
+    seriesField: 'species'
   };
   return <Violin {...config} />;
 };
