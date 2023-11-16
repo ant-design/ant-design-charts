@@ -25,7 +25,7 @@ export const CHART_OPTIONS = [
   'marginLeft',
   'depth',
   'title',
-] as const;
+];
 
 /** 最终透传给 G2 Spec 的保留字 */
 export const RESERVED_KEYS = ['data', 'type', 'children', 'direction'];
