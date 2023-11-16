@@ -1,5 +1,5 @@
 import { coordinateLayout } from '../../components';
-import { flow, transformOptions, map, get, isArray, includes, isNumber, deepAssign } from '../../utils';
+import { flow, transformOptions, map, set, get, isArray, includes, isNumber, deepAssign } from '../../utils';
 
 import type { Adaptor } from '../../types';
 import type { BulletOptions } from './type';
@@ -133,8 +133,7 @@ export function adaptor(params: Params) {
     const { layout = 'horizontal' } = params.options;
 
     if (layout !== 'horizontal') {
-      const target = params.options.children[2];
-      target.shapeField = 'hyphen';
+      set(params, 'options.children[2].shapeField', 'hyphen');
     }
 
     return params;

@@ -1,5 +1,5 @@
 import { TooltipComponent } from '@antv/g2';
-import { Options, G2Spec } from './core';
+import { Options, Spec } from './core';
 
 /**
  * @title 图表浮窗配置
@@ -98,6 +98,6 @@ export interface Common extends AttachConfig, ContainerConfig {
   readonly chartType?: string;
 }
 
-export type CommonConfig<T = G2Spec> = Common & TransformType<T>;
+export type CommonConfig<T = Spec> = Common & TransformType<T>;
 
 export { Options };
