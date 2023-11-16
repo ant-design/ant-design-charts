@@ -75,8 +75,9 @@ export class BidirectionalBarAxisText {
   }
   public transformLabelStyle(style) {
     const removeLabel = {};
+    const reg = /^label[A-Z]/;
     Object.keys(style).forEach((key) => {
-      if (key.startsWith('label')) {
+      if (reg.test(key)) {
         removeLabel[key.replace('label', '').replace(/^[A-Z]/, (match) => match.toLowerCase())] = style[key];
       }
     });
@@ -86,10 +87,7 @@ export class BidirectionalBarAxisText {
 
   public drawBidirectionalBarAxisText() {
     const axisLayout = this.getBidirectionalBarAxisTextLayout();
-    const {
-      x: { labelFormatter, ...textStyle },
-      layout: viewLayout,
-    } = this.options;
+    const { layout: viewLayout, labelFormatter, ...textStyle } = this.options;
 
     axisLayout.forEach((layout) => {
       const { x, y, text } = layout;

@@ -1,5 +1,6 @@
-import type { BaseOptions, Options } from '../../types/common';
+import type { Options } from '../../types/common';
 
-export type LiquidOptions = Options & BaseOptions & {
+export type LiquidOptions = Omit<Options, 'data'> & {
   data: number;
+  percent?: boolean;
 };

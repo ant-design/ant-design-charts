@@ -11,13 +11,6 @@ type Params = Adaptor<TinyProgressOptions>;
  */
 export function adaptor(params: Params) {
   /**
-   * 图表差异化处理
-   */
-  const init = (params: Params) => {
-    return params;
-  };
-
-  /**
    * @description 数据转换
    */
   const transformData = (params: Params) => {
@@ -29,12 +22,12 @@ export function adaptor(params: Params) {
       scale: {
         color: { range: color.length ? color : [] },
       },
-      data: [1, percent]
-    }
+      data: [1, percent],
+    };
 
     Object.assign(options, { ...transformOption });
-    return params
-  }
+    return params;
+  };
 
-  return flow(init, transformData, transformOptions, mark)(params);
+  return flow(transformData, transformOptions, mark)(params);
 }

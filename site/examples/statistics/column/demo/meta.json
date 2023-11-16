@@ -61,6 +61,14 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*hTfETY0ObOsAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "group-and-stack.js",
+      "title": {
+        "zh": "分组堆叠柱状图",
+        "en": "Group and stack Column Chart"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/9ExrwrpVrA/908eff62-1132-4dbb-8c3c-9cbe8183c6d8.png"
+    },
+    {
       "filename": "bar-dodged.js",
       "title": {
         "zh": "分组条形图",

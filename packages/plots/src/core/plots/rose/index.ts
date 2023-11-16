@@ -19,7 +19,7 @@ export class Rose extends Plot<RoseOptions> {
       type: 'view',
       children: [{ type: 'interval' }],
       coordinate: { type: 'polar' },
-      animate: { enter: { type: "waveIn" } },
+      animate: { enter: { type: 'waveIn' } },
     };
   }
 

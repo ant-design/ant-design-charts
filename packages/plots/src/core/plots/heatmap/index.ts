@@ -9,10 +9,6 @@ export class Heatmap extends Plot<HeatmapOptions> {
   /** 图表类型 */
   public type = 'heatmap';
 
-  /**
-   * 获取 折线图 默认配置项
-   * 供外部使用
-   */
   static getDefaultOptions(): Partial<HeatmapOptions> {
     return {
       type: 'view',
@@ -43,16 +39,10 @@ export class Heatmap extends Plot<HeatmapOptions> {
     };
   }
 
-  /**
-   * 获取 折线图 默认配置
-   */
   protected getDefaultOptions() {
     return Heatmap.getDefaultOptions();
   }
 
-  /**
-   * 折线图适配器
-   */
   protected getSchemaAdaptor(): (params: Adaptor<HeatmapOptions>) => void {
     return adaptor;
   }

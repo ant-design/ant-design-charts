@@ -22,7 +22,6 @@ export class BidirectionalBar extends Plot<BidirectionalBarOptions> {
       axis: {
         y: {
           title: false,
-          labelFormatter: (item: number) => Math.abs(item),
         },
         x: { title: false, label: false },
       },
