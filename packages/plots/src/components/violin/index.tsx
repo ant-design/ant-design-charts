@@ -1,9 +1,9 @@
 import React from 'react';
-import { LineOptions } from '../../core';
+import { ViolinOptions } from '../../core';
 import { CommonConfig } from '../../interface';
 import { BaseChart } from '../base';
 
-export type ViolinConfig = CommonConfig<LineOptions>;
+export type ViolinConfig = CommonConfig<ViolinOptions>;
 
 const ViolinChart = (props: ViolinConfig) => {
   return <BaseChart {...props} chartType="Violin" />;

@@ -84,6 +84,6 @@ export const Plots = {
   Liquid,
   WordCloud,
   Treemap,
-  Violin
+  Violin,
   BidirectionalBar,
 };

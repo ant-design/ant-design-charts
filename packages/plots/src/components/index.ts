@@ -70,6 +70,6 @@ export {
   Liquid,
   WordCloud,
   Treemap,
-  Violin
+  Violin,
   BidirectionalBar,
 };
