@@ -101,8 +101,6 @@ export abstract class Plot<O extends PickOptions> extends EE {
     if (this.type !== 'base') {
       this.execAdaptor();
     }
-    console.log(this.getSpecOptions());
-
     // options 转换
     this.chart.options(this.getSpecOptions());
     // 渲染

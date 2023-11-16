@@ -17,8 +17,8 @@ export function adaptor(params: Params) {
     const { data } = params.options;
 
     params.options.data = {
-      value: data
-    }
+      value: data,
+    };
 
     return params;
   };
