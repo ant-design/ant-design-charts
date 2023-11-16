@@ -15,12 +15,9 @@ export function adaptor(params: Params) {
    */
   const init = (params: Params) => {
     const { options } = params;
-    const { xField, colorField, labels } = options;
+    const { xField, colorField } = options;
     if (!colorField) {
       set(options, 'colorField', xField);
-    }
-    if (labels) {
-      set(options, 'label', false);
     }
     return params;
   };
@@ -51,6 +48,7 @@ export function adaptor(params: Params) {
       children.push({
         type: 'interval',
         data: groupedData[1],
+        // @ts-ignore
         yField: (item) => -item[yField],
       });
       delete options['compareField'];
@@ -60,6 +58,7 @@ export function adaptor(params: Params) {
       set(options, 'type', 'spaceFlex');
       set(options, 'ratio', [1, 1]);
       set(options, 'direction', isTransposed ? 'row' : 'col');
+      // @ts-expect-error
       delete options['seriesField'];
     }
 

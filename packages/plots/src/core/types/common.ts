@@ -1,4 +1,21 @@
-import type { Chart, DodgeXTransform, G2Spec, NormalizeYTransform, SortByTransform, StackYTransform } from '@antv/g2';
+import type {
+  Chart,
+  DodgeXTransform,
+  NormalizeYTransform,
+  SortByTransform,
+  StackYTransform,
+  Mark,
+  Composition,
+  AxisComponent,
+  LegendComponent,
+} from '@antv/g2';
+
+export type Spec = (Mark | Composition | AxisComponent | Omit<LegendComponent, 'type'>) & {
+  width?: number;
+  height?: number;
+  depth?: number;
+  autoFit?: boolean;
+};
 
 export type BaseOptions = {
   /**
@@ -13,6 +30,18 @@ export type BaseOptions = {
    * @title 分组字段
    */
   readonly seriesField?: string;
+  /**
+   * @title 尺寸字段
+   */
+  readonly sizeField?: string;
+  /**
+   * @title 颜色字段
+   */
+  readonly colorField?: string;
+  /**
+   * @title 形状字段
+   */
+  readonly shapeField?: string;
   /**
    * @title 堆积
    */
@@ -35,6 +64,11 @@ export type BaseOptions = {
    * @example smooth | hvh
    */
   readonly shape?: string;
+  /**
+   * @title 标签
+   * @description 待底层导出
+   */
+  readonly label?: false | Record<string, any>;
 };
 
 export type ArcBaseOptions = {
@@ -56,9 +90,14 @@ export type ArcBaseOptions = {
   readonly innerRadius?: number;
 };
 
-export type Options = G2Spec & {
-  [key: string]: any;
-};
+export type Options = Spec &
+  BaseOptions & {
+    /**
+     * @title 嵌套 view
+     * @description 用于 Mix 等复杂图表
+     */
+    children?: Options[];
+  };
 
 export type Adaptor<P = Options> = {
   chart: Chart;

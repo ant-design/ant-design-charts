@@ -1,3 +1,3 @@
-import type { BaseOptions, Options } from '../../types/common';
+import type { Options } from '../../types/common';
 
-export type TinyLineOptions = Options & BaseOptions;
+export type TinyLineOptions = Options;

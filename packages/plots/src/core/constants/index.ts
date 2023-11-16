@@ -257,7 +257,7 @@ export const ANNOTATION_LIST = [
     shape: 'ConversionTag',
   },
   {
-    key: 'axis',
+    key: 'axisText',
     shape: 'BidirectionalBarAxisText',
   },
 ];

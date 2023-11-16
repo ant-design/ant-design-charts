@@ -1,6 +1,6 @@
 import { mark } from '../../components';
 import type { Adaptor } from '../../types';
-import { flow, transformOptions, set, isArray, omit, get } from '../../utils';
+import { flow, transformOptions, set, isString, isArray, get } from '../../utils';
 import { HORIZONTAL_MARGIN, AXIS_LABEL_PADDING, VERTICAL_MARGIN } from './constants';
 import type { BidirectionalBarOptions } from './type';
 
@@ -15,11 +15,9 @@ export function adaptor(params: Params) {
   const field = (params: Params) => {
     const { options } = params;
     const { yField, children } = options;
-    if (isArray(yField)) {
-      children.forEach((child, index) => {
-        set(child, 'yField', yField[index] || yField[0]);
-      });
-    }
+    children.forEach((child, index) => {
+      set(child, 'yField', yField[index]);
+    });
     return params;
   };
 
@@ -67,8 +65,13 @@ export function adaptor(params: Params) {
       coordinate: { transform },
       paddingBottom = AXIS_LABEL_PADDING,
       paddingLeft = AXIS_LABEL_PADDING,
+      axis,
     } = options;
-    set(options, 'axis.layout', layout);
+    set(options, 'axisText', {
+      ...(axis?.x || {}),
+      layout,
+    });
+
     const [child1, child2] = children;
     if (layout === 'vertical') {
       set(options, 'direction', 'col');

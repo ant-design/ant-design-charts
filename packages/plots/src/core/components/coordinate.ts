@@ -2,7 +2,17 @@ import { set, pick, get } from '../utils';
 
 import type { Adaptor } from '../types';
 
-export const COORDIANTE_OPTIONS = ['radius', 'innerRadius', 'startAngle', 'endAngle', 'focusX', 'focusY', 'distortionX', 'distortionY', 'visual']
+export const COORDIANTE_OPTIONS = [
+  'radius',
+  'innerRadius',
+  'startAngle',
+  'endAngle',
+  'focusX',
+  'focusY',
+  'distortionX',
+  'distortionY',
+  'visual',
+];
 
 /**
  * 主要为极坐标配置， 饼图、雷达图等

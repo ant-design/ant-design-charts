@@ -23,7 +23,7 @@ export class TinyArea extends Plot<TinyAreaOptions> {
       autoFit: false,
       padding: 0,
       margin: 0,
-      tooltip: false
+      tooltip: false,
     };
   }
 
