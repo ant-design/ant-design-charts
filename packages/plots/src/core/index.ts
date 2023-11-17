@@ -26,6 +26,8 @@ export type { WordCloudOptions } from './plots/wordCloud';
 export type { TreemapOptions } from './plots/treemap';
 export type { ViolinOptions } from './plots/violin';
 export type { BidirectionalBarOptions } from './plots/bidirectional-bar';
+export type { VennOptions } from './plots/venn';
+
 export * from './types';
 
 import { Base } from './plots/base';
@@ -56,6 +58,7 @@ import { WordCloud } from './plots/wordCloud';
 import { Treemap } from './plots/treemap';
 import { Violin } from './plots/violin';
 import { BidirectionalBar } from './plots/bidirectional-bar';
+import { Venn } from './plots/venn';
 
 export const Plots = {
   Base,
@@ -86,4 +89,5 @@ export const Plots = {
   Treemap,
   Violin,
   BidirectionalBar,
+  Venn,
 };
