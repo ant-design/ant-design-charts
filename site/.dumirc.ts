@@ -39,7 +39,13 @@ export default defineConfig({
           zh: '教程',
           en: 'Manual',
         },
-        order: 3,
+      },
+      {
+        slug: 'docs/options/plots/overview',
+        title: {
+          zh: '选项',
+          en: 'Option',
+        },
       },
       {
         slug: 'examples',
@@ -47,25 +53,57 @@ export default defineConfig({
           zh: '图表示例',
           en: 'Examples',
         },
-        order: 2,
-      },
-      {
-        slug: 'docs/api',
-        title: {
-          zh: 'API',
-          en: 'API',
-        },
-        order: 1,
       },
     ],
     docs: [
       {
-        slug: 'api/options',
+        slug: 'options/plots',
         title: {
-          zh: '通用配置-统计图表',
+          zh: '统计图表',
           en: 'Common Configuration Statistical Charts',
         },
         order: 1,
+      },
+      {
+        slug: 'options/plots/component',
+        title: {
+          zh: '组件 - Component',
+          en: 'Component',
+        },
+        order: 9,
+      },
+      {
+        slug: 'options/plots/label',
+        title: {
+          zh: '数据标签 - Label',
+          en: 'Label',
+        },
+        order: 10,
+      },
+
+      {
+        slug: 'options/plots/animation',
+        title: {
+          zh: '动画 - Animation',
+          en: 'Animation',
+        },
+        order: 11,
+      },
+      {
+        slug: 'options/plots/interaction',
+        title: {
+          zh: '交互 - Interaction',
+          en: 'Interaction',
+        },
+        order: 12,
+      },
+      {
+        slug: 'options/plots/theme',
+        title: {
+          zh: '主题 - Theme',
+          en: 'Theme',
+        },
+        order: 16,
       },
     ],
     examples: [

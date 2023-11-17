@@ -59,12 +59,6 @@ export type BaseOptions = {
    */
   readonly group?: boolean | DodgeXTransform;
   /**
-   * @title 图形
-   * @description interval 图形元素展示形状
-   * @example smooth | hvh
-   */
-  readonly shape?: string;
-  /**
    * @title 标签
    * @description 待底层导出
    */
@@ -96,7 +90,7 @@ export type Options = Spec &
      * @title 嵌套 view
      * @description 用于 Mix 等复杂图表
      */
-    children?: Options[];
+    children?: Array<Options & { type: unknown }>;
   };
 
 export type Adaptor<P = Options> = {
