@@ -10,7 +10,7 @@
         "zh": "柱形图",
         "en": "Column Chart"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*vhCKQJ9UJX4AAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*5u8UTb6iifcAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "color.js",
@@ -18,7 +18,7 @@
         "zh": "自定义柱状图颜色",
         "en": "Column plot color"
       },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*dr27SafKNzIAAAAAAAAAAAAAARQnAQ"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*yrKvQZUMaVoAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "column-maxwidth.js",
@@ -26,7 +26,7 @@
         "zh": "限制宽度的柱形图",
         "en": "Column with maxWidth"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*fu-BSYg7U_kAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*j1LdS6KxxsAAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "slider.js",
@@ -42,7 +42,7 @@
         "zh": "带滚动条柱状图",
         "en": "Column plot with scrollbar"
       },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*IkdWTaXf4vAAAAAAAAAAAABkARQnAQ"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*9TgiRbYJBUsAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "region-annotation.js",
@@ -66,7 +66,7 @@
         "zh": "分组堆叠柱状图",
         "en": "Group and stack Column Chart"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/9ExrwrpVrA/908eff62-1132-4dbb-8c3c-9cbe8183c6d8.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*vc_STL5MmhIAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "bar-dodged.js",
@@ -90,7 +90,7 @@
         "zh": "自定义联通区域样式柱状图",
         "en": "Stacked column plot with connectedArea"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/KLJB0t7S9W/93ca0482-9d1d-42e9-b99c-c70d87517888.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_f0VT6nfCE4AAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "annotation-label.js",
@@ -98,7 +98,7 @@
         "zh": "借助图形标注展示总计 label",
         "en": "Show total label with annotations"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/h5ZnxOZaVR/f4495644-e5b3-4130-8a8f-686cf6241267.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ZdrbR4mdg9sAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "dodge-padding.js",
@@ -122,7 +122,7 @@
         "zh": "带转化率柱状图",
         "en": "Column plot with conversion tag"
       },
-      "screenshot": "https://gw.alicdn.com/tfs/TB1u3.cvUY1gK0jSZFMXXaWcVXa-1638-1228.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*YHpIRrooM4AAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "percent.js",

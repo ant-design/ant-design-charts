@@ -15,7 +15,6 @@ const DemoColumn = () => {
     group: true,
     sort: {
       reverse: true,
-      slice: 6,
       by: 'y',
     },
     axis: {

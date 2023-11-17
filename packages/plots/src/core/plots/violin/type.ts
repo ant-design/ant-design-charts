@@ -1,5 +1,5 @@
-import type { BaseOptions, Options } from '../../types/common';
+import type { Options } from '../../types/common';
 
-export type ViolinOptions = Options & BaseOptions & {
-  violinType?: 'normal' | 'density' | 'polar'
+export type ViolinOptions = Options & {
+  violinType?: 'normal' | 'density' | 'polar';
 };
