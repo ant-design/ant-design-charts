@@ -81,5 +81,6 @@
     "remark-stringify": "^10.0.2",
     "to-vfile": "^7.2.3",
     "unified": "^10.1.2"
-  }
+  },
+  "repository": "https://github.com/dongxifan/ant-design-charts.git"
 }
