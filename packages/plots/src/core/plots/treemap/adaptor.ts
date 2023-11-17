@@ -1,6 +1,5 @@
-import { flow, transformOptions } from '../../utils';
+import { flow, transformOptions, set } from '../../utils';
 import { mark } from '../../components';
-
 import type { Adaptor } from '../../types';
 import type { TreemapOptions } from './type';
 
@@ -15,6 +14,13 @@ export function adaptor(params: Params) {
    * 图表差异化处理
    */
   const init = (params: Params) => {
+    const { options } = params;
+    const { data } = options;
+    if (data) {
+      set(options, 'data', {
+        value: data,
+      });
+    }
     return params;
   };
 

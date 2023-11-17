@@ -1,0 +1,32 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "density.js",
+      "title": {
+        "zh": "和密度图",
+        "en": "Density plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_lwk8lu/afts/img/A*pctXQbGFiBIAAAAAAAAAAAAADma_AQ/original"
+    },
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "基础小提琴图",
+        "en": "Basic violin plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_lwk8lu/afts/img/A*vKc6SJjPY40AAAAAAAAAAAAADma_AQ/original"
+    },
+    {
+      "filename": "polar.js",
+      "title": {
+        "zh": "极坐标小提琴图",
+        "en": "Polar violin plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_lwk8lu/afts/img/A*LLm1S5RBXGIAAAAAAAAAAAAADma_AQ/original"
+    }
+  ]
+}

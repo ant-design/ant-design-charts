@@ -11,21 +11,25 @@ export class Box extends Plot<BoxOptions> {
   public type = 'box';
 
   /**
-   * 获取 折线图 默认配置项
+   * 获取箱线图默认配置项
    * 供外部使用
    */
   static getDefaultOptions(): Partial<BoxOptions> {
     return {
       type: 'view',
       children: [{ type: 'box' }],
+      axis: {
+        y: { title: false },
+        x: { title: false },
+      },
       // 默认 tooltip
       tooltip: {
         items: [
-          { name: "min", channel: "y" },
-          { name: "q1", channel: "y1" },
-          { name: "q2", channel: "y2" },
-          { name: "q3", channel: "y3" },
-          { name: "max", channel: "y4" },
+          { name: 'min', channel: 'y' },
+          { name: 'q1', channel: 'y1' },
+          { name: 'q2', channel: 'y2' },
+          { name: 'q3', channel: 'y3' },
+          { name: 'max', channel: 'y4' },
         ],
       },
     };
