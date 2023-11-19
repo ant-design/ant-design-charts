@@ -20,6 +20,7 @@ import Gauge from './gauge';
 import Liquid from './liquid';
 import WordCloud from './wordCloud';
 import Treemap from './treemap';
+import Parallel from './parallel';
 import Violin from './violin';
 import BidirectionalBar from './bidirectional-bar';
 
@@ -44,11 +45,13 @@ export type { GaugeConfig } from './gauge';
 export type { LiquidConfig } from './liquid';
 export type { WordCloudConfig } from './wordCloud';
 export type { TreemapConfig } from './treemap';
+export type { ParallelConfig } from './parallel';
 export type { ViolinConfig } from './violin';
 export type { BidirectionalBarConfig } from './bidirectional-bar';
 
 export {
   Base,
+  Parallel,
   Column,
   Line,
   Pie,
