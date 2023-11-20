@@ -6,19 +6,18 @@ const DemoLine = () => {
   const config = {
     data: {
       type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/line-connect-nulls.json',
       transform: [
-        // Mock missing data.
         {
           type: 'map',
           callback: (d) => ({
             ...d,
-            close: d.date.getUTCMonth() < 3 ? NaN : d.close,
+            close: new Date(d.date).getUTCMonth() < 3 ? NaN : d.close,
           }),
         },
       ],
     },
-    xField: 'date',
+    xField: (d) => new Date(d.date),
     yField: 'close',
     connectNulls: {
       connect: true,

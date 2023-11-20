@@ -11,13 +11,6 @@ type Params = Adaptor<BarOptions>;
  */
 export function adaptor(params: Params) {
   /**
-   * 图表差异化处理
-   */
-  const init = (params: Params) => {
-    return params;
-  };
-
-  /**
    * @title 背景图
    * @description 通过新增 interval 实现
    */
@@ -49,5 +42,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, background, transformOptions, mark)(params);
+  return flow(background, transformOptions, mark)(params);
 }

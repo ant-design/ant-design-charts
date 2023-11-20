@@ -8,6 +8,7 @@ export type { LineOptions } from './plots/line';
 export type { PieOptions } from './plots/pie';
 export type { ScatterOptions } from './plots/scatter';
 export type { RadarOptions } from './plots/radar';
+export type { StockOptions } from './plots/stock';
 export type { TinyLineOptions } from './plots/tiny-line';
 export type { TinyAreaOptions } from './plots/tiny-area';
 export type { TinyColumnOptions } from './plots/tiny-column';
@@ -25,6 +26,11 @@ export type { LiquidOptions } from './plots/liquid';
 export type { WordCloudOptions } from './plots/wordCloud';
 export type { TreemapOptions } from './plots/treemap';
 export type { RadialBarOptions } from './plots/radial-bar';
+export type { CirclePackingOptions } from './plots/circlePacking';
+export type { ViolinOptions } from './plots/violin';
+export type { BidirectionalBarOptions } from './plots/bidirectional-bar';
+export type { VennOptions } from './plots/venn';
+
 export * from './types';
 
 import { Base } from './plots/base';
@@ -37,6 +43,7 @@ import { Line } from './plots/line';
 import { Pie } from './plots/pie';
 import { Scatter } from './plots/scatter';
 import { Radar } from './plots/radar';
+import { Stock } from './plots/stock';
 import { TinyLine } from './plots/tiny-line';
 import { TinyArea } from './plots/tiny-area';
 import { TinyColumn } from './plots/tiny-column';
@@ -54,6 +61,10 @@ import { Liquid } from './plots/liquid';
 import { WordCloud } from './plots/wordCloud';
 import { Treemap } from './plots/treemap';
 import { RadialBar } from './plots/radial-bar';
+import { CirclePacking } from './plots/circlePacking';
+import { Violin } from './plots/violin';
+import { BidirectionalBar } from './plots/bidirectional-bar';
+import { Venn } from './plots/venn';
 
 export const Plots = {
   Base,
@@ -67,6 +78,7 @@ export const Plots = {
   Scatter,
   Radar,
   Rose,
+  Stock,
   TinyLine,
   TinyArea,
   TinyColumn,
@@ -83,4 +95,8 @@ export const Plots = {
   WordCloud,
   Treemap,
   RadialBar,
+  CirclePacking,
+  Violin,
+  BidirectionalBar,
+  Venn,
 };

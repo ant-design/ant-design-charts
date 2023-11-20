@@ -11,7 +11,8 @@ const SOURCE_ATTRIBUTE_NAME = 'data-chart-source-type';
 
 const ANNOTATION_MAP = new Map();
 
-export abstract class Plot<O extends Options> extends EE {
+type PickOptions = Pick<Options, 'autoFit' | 'width' | 'height'>;
+export abstract class Plot<O extends PickOptions> extends EE {
   /** plot 类型名称 */
   public abstract readonly type: string;
   /** plot 绘制的 dom */
@@ -54,7 +55,6 @@ export abstract class Plot<O extends Options> extends EE {
     if (this.type === 'base' || this[SKIP_DEL_CUSTOM_SIGN]) {
       return { ...this.options, ...this.getChartOptions() };
     }
-
     return deleteCustomKeys(omit(this.options, CHART_OPTIONS), true);
   }
 
@@ -84,13 +84,13 @@ export abstract class Plot<O extends Options> extends EE {
   }
 
   private getBaseOptions(): Partial<Options> {
-    return { theme: 'classic' };
+    return { type: 'view' };
   }
 
   /**
    * 获取默认的 options 配置项，每个组件都可以复写
    */
-  protected getDefaultOptions(): Partial<Options> | void {}
+  protected getDefaultOptions(): any {}
 
   /**
    * 绘制
@@ -106,7 +106,6 @@ export abstract class Plot<O extends Options> extends EE {
     this.chart.render().then(() => {
       this.annotations();
     });
-
     // 绑定
     this.bindSizeSensor();
   }
@@ -116,13 +115,13 @@ export abstract class Plot<O extends Options> extends EE {
    */
   public annotations(): void {
     ANNOTATION_LIST.forEach((annotation) => {
-      const { type, shape } = annotation;
-      const annotationOptions = this.options[type];
-      if (ANNOTATION_MAP.has(type)) {
-        ANNOTATION_MAP.get(type).destroy();
+      const { key, shape } = annotation;
+      const annotationOptions = this.options[key];
+      if (ANNOTATION_MAP.has(key)) {
+        ANNOTATION_MAP.get(key).destroy();
       }
       if (annotationOptions) {
-        ANNOTATION_MAP.set(type, new Annotaion[shape](this.chart, annotationOptions));
+        ANNOTATION_MAP.set(key, new Annotaion[shape](this.chart, annotationOptions));
       }
     });
   }

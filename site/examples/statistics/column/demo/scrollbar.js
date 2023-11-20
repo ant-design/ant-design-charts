@@ -10,11 +10,6 @@ const DemoColumn = () => {
     },
     xField: '城市',
     yField: '销售额',
-    xAxis: {
-      label: {
-        autoRotate: false,
-      },
-    },
     scrollbar: {
       x: {
         ratio: 0.05,
