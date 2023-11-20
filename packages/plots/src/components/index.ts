@@ -20,6 +20,7 @@ import Gauge from './gauge';
 import Liquid from './liquid';
 import WordCloud from './wordCloud';
 import Treemap from './treemap';
+import RadialBar from './radial-bar';
 
 export type { AreaConfig } from './area';
 export type { BarConfig } from './bar';
@@ -66,4 +67,5 @@ export {
   Liquid,
   WordCloud,
   Treemap,
+  RadialBar,
 };
