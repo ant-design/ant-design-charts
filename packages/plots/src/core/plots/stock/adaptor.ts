@@ -1,13 +1,8 @@
-import { flow, map, transformOptions } from '../../utils';
+import { set, flow, map, transformOptions } from '../../utils';
 import type { Adaptor } from '../../types';
 import type { StockOptions } from './type';
 
 type Params = Adaptor<StockOptions>;
-
-const X_FIELD = 'date';
-
-// 开盘价/收盘价/最高价/最低价
-const Y_FIELD = ['open', 'close', 'high', 'low'];
 
 export const Y_FIELD_KEY = '__stock-range__';
 
@@ -21,7 +16,7 @@ export const TREND_DOWN = 'down';
  */
 export function adaptor(params: Params) {
   const transformData = (params: Params) => {
-    const { data, yField = Y_FIELD } = params.options;
+    const { data, yField } = params.options;
 
     params.options.data = map(data, (item) => {
       const obj = item && { ...item };
@@ -40,7 +35,8 @@ export function adaptor(params: Params) {
    * 图表差异化处理
    */
   const init = (params: Params) => {
-    const { xField = X_FIELD, yField = Y_FIELD, fallingFill, risingFill } = params.options;
+    const { options } = params;
+    const { xField, yField, fallingFill, risingFill } = options;
 
     const [open, close, high, low] = yField;
 
@@ -55,7 +51,6 @@ export function adaptor(params: Params) {
         },
         encode: {
           ...(child.encode || {}),
-          x: xField,
           y: isShadow ? [high, low] : [open, close],
           color: (d) => Math.sign(d[close] - d[open]),
         },
@@ -66,16 +61,18 @@ export function adaptor(params: Params) {
       };
     });
 
+    delete options['yField'];
+
     params.options.legend = {
       color: false,
     };
 
     if (fallingFill) {
-      params.options.scale.color.range[0] = fallingFill;
+      set(params, 'options.scale.color.range[0]', fallingFill);
     }
 
     if (risingFill) {
-      params.options.scale.color.range[2] = risingFill;
+      set(params, 'options.scale.color.range[2]', risingFill);
     }
 
     return params;
