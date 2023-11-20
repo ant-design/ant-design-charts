@@ -11,6 +11,14 @@
         "en": "Treemap Chart"
       },
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*Ob1jSbCUl8cAAAAAAAAAAABkARQnAQ"
+    },
+    {
+      "filename": "circlePacking.js",
+      "title": {
+        "zh": "Circle packing",
+        "en": "CirclePacking Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*epG0TaxEVTsAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
