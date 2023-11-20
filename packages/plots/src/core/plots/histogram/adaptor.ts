@@ -10,13 +10,6 @@ type Params = Adaptor<HistogramOptions>;
  * @param options
  */
 export function adaptor(params: Params) {
-  /**
-   * 图表差异化处理
-   */
-  const init = (params: Params) => {
-    return params;
-  };
-
   const transformHistogramConfig = (params: Params) => {
     const { options } = params;
     const { data, binNumber, binWidth, children, channel = 'count' } = options;
@@ -33,5 +26,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, transformHistogramConfig, transformOptions, mark)(params);
+  return flow(transformHistogramConfig, transformOptions, mark)(params);
 }

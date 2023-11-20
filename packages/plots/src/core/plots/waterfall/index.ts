@@ -10,10 +10,6 @@ export class Waterfall extends Plot<WaterfallOptions> {
   /** 图表类型 */
   public type = 'waterfall';
 
-  /**
-   * 获取 折线图 默认配置项
-   * 供外部使用
-   */
   static getDefaultOptions(): Partial<WaterfallOptions> {
     return {
       type: 'view',
@@ -45,16 +41,10 @@ export class Waterfall extends Plot<WaterfallOptions> {
     };
   }
 
-  /**
-   * 获取 折线图 默认配置
-   */
   protected getDefaultOptions() {
     return Waterfall.getDefaultOptions();
   }
 
-  /**
-   * 折线图适配器
-   */
   protected getSchemaAdaptor(): (params: Adaptor<WaterfallOptions>) => void {
     return adaptor;
   }

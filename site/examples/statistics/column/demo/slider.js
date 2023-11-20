@@ -16,11 +16,6 @@ const DemoColumn = () => {
     },
     xField: '城市',
     yField: '销售额',
-    xAxis: {
-      label: {
-        autoRotate: false,
-      },
-    },
     slider: {
       x: {},
     },

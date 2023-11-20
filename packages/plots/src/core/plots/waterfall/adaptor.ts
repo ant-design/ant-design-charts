@@ -12,13 +12,6 @@ type Params = Adaptor<WaterfallOptions>;
  */
 export function adaptor(params: Params) {
   /**
-   * 图表差异化处理
-   */
-  const init = (params: Params) => {
-    return params;
-  };
-
-  /**
    * @description 数据转换
    */
   const transformData = (params: Params) => {
@@ -50,8 +43,8 @@ export function adaptor(params: Params) {
     const linkData = [...data];
     linkData.reduce((prev, cur, index) => {
       if (index > 0) {
-        cur.x1 = prev[xField];
-        cur.x2 = cur[xField];
+        cur.x1 = prev[xField as string];
+        cur.x2 = cur[xField as string];
         cur.y1 = prev[END_KEY];
       }
       return cur;
@@ -74,5 +67,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, transformData, link, transformOptions, mark)(params);
+  return flow(transformData, link, transformOptions, mark)(params);
 }

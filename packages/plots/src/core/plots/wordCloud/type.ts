@@ -1,3 +1,3 @@
-import type { BaseOptions, Options } from '../../types/common';
+import type { Options } from '../../types/common';
 
-export type WordCloudOptions = Options & BaseOptions;
+export type WordCloudOptions = Options;
