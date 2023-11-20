@@ -79,6 +79,7 @@ export function adaptor(params: Params) {
           endAngle: (3 / 2) * Math.PI,
         },
         animate: false,
+        ...markBackground,
       });
     }
     return params;
