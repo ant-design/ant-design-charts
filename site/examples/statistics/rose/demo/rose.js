@@ -10,7 +10,7 @@ const DemoRose = () => {
     data: {
       type: "fetch",
       value:
-        "https://gw.alipayobjects.com/os/bmw-prod/87b2ff47-2a33-4509-869c-dae4cdd81163.csv",
+        "https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/rose-rose.json",
     },
     xField: 'year',
     yField: 'people',

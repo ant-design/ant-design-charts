@@ -7,7 +7,7 @@ const DemoScatter = () => {
     data: {
       type: "fetch",
       value:
-        "https://gw.alipayobjects.com/os/bmw-prod/b6f2ff26-b232-447d-a613-0df5e30104a0.csv",
+        "https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-dot.json",
     },
     width: 800,
     height: 1200,

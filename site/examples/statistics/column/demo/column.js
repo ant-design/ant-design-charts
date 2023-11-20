@@ -6,7 +6,7 @@ const DemoColumn = () => {
   const config = {
     data: {
       type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv',
+      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/column-column.json',
     },
     xField: 'letter',
     yField: 'frequency',
