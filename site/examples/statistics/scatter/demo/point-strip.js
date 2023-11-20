@@ -18,7 +18,6 @@ const DemoScatter = () => {
     meta: {
       x: { type: 'point' },
       y: { zero: true },
-      // color: { type: 'ordinal' },
     },
     shapeField: 'line',
   };
