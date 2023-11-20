@@ -6,12 +6,17 @@ const DemoLine = () => {
   const config = {
     data: {
       type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/bmw-prod/728a4bdc-9d0b-49e0-a92f-6320a6cddeed.csv',
+      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/line-series.json',
     },
     xField: 'date',
     yField: 'unemployment',
     colorField: 'steelblue',
     seriesField: 'division',
+    // interaction: {
+    //   tooltip: {
+    //     filter: (d, i) => i < 10,
+    //   }
+    // }
   };
   return <Line {...config} />;
 };
