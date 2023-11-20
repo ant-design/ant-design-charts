@@ -1,4 +1,4 @@
-import { flow, transformOptions, get } from '../../utils';
+import { flow, transformOptions, get, set } from '../../utils';
 import { coordinate } from '../../components';
 
 import type { Adaptor } from '../../types';
@@ -15,7 +15,7 @@ export function adaptor(params: Params) {
    * 图表差异化处理
    */
   const init = (params: Params) => {
-    params.options.coordinate = { type: get(params, 'options.coordinateType', 'polar') };
+    set(params, 'options.coordinate', { type: get(params, 'options.coordinateType', 'polar') });
     return params;
   };
 

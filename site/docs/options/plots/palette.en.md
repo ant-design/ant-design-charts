@@ -1,6 +1,6 @@
 ---
 title: Palette
-order: 15
+order: 8
 ---
 
 <embed src="@/docs/options/plots/palette.zh.md"></embed>
