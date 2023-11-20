@@ -19,7 +19,8 @@ const DemoStock = () => {
   };
 
   const config = {
-    // default xField: 'date'、yField: ['open', 'close', 'high', 'low']
+    xField: 'date',
+    yField: ['open', 'close', 'high', 'low'],
     data: data.map((i) => ({ ...i, date: new Date(i.trade_date) })),
   };
 
