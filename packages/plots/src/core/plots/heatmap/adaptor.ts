@@ -11,13 +11,6 @@ type Params = Adaptor<HeatmapOptions>;
  */
 export function adaptor(params: Params) {
   /**
-   * 图表差异化处理
-   */
-  const init = (params: Params) => {
-    return params;
-  };
-
-  /**
    * @description 添加 tooltip 默认值
    */
   const tooltip = (params: Params) => {
@@ -41,5 +34,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, tooltip, transformMark, transformOptions, mark)(params);
+  return flow(tooltip, transformMark, transformOptions, mark)(params);
 }

@@ -21,6 +21,11 @@ import Liquid from './liquid';
 import WordCloud from './wordCloud';
 import Treemap from './treemap';
 import RadialBar from './radial-bar';
+import CirclePacking from './circlePacking';
+import Violin from './violin';
+import BidirectionalBar from './bidirectional-bar';
+import Venn from './venn';
+
 
 export type { AreaConfig } from './area';
 export type { BarConfig } from './bar';
@@ -43,6 +48,11 @@ export type { GaugeConfig } from './gauge';
 export type { LiquidConfig } from './liquid';
 export type { WordCloudConfig } from './wordCloud';
 export type { TreemapConfig } from './treemap';
+export type { CirclePackingConfig } from './circlePacking';
+export type { ViolinConfig } from './violin';
+export type { BidirectionalBarConfig } from './bidirectional-bar';
+export type { VennConfig } from './venn';
+
 
 export {
   Base,
@@ -68,4 +78,8 @@ export {
   WordCloud,
   Treemap,
   RadialBar,
+  CirclePacking,
+  Violin,
+  BidirectionalBar,
+  Venn
 };

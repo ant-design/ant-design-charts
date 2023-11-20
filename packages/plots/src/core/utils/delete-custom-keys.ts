@@ -11,8 +11,8 @@ export const deleteCustomKeys = <O extends Options>(options: O, isRender?: boole
   [...deleteKeys, ...COORDIANTE_OPTIONS].forEach((key) => {
     delete options[key];
   });
-
-  options.children.forEach((child) => {
+  // 2023-11-09 对children为空情况做兼容。
+  options.children?.forEach((child) => {
     Object.keys(child).forEach((key) => {
       if (deleteKeys.includes(key)) {
         delete child[key];

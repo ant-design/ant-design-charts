@@ -8,19 +8,17 @@ const DemoScatter = () => {
     height: 300,
     data: {
       type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/bmw-prod/2c813e2d-2276-40b9-a9af-cf0a0fb7e942.csv',
+      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-strip.json',
     },
-    transform: [{ type: 'sortX', channel: 'x' }],
     coordinate: { transform: [{ type: 'transpose' }] },
     xField: 'Cylinders',
     yField: 'Horsepower',
     sizeField: 20,
-    meta: {
-      x: { type: 'point' },
-      y: { zero: true },
-      color: { type: 'ordinal' },
-    },
     shapeField: 'line',
+    scale: {
+      y: { type: 'linear', zero: true },
+      x: { domain: [0, 10] }
+    }
   };
   return <Scatter {...config} />;
 };
