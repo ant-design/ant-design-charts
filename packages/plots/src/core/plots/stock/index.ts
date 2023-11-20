@@ -3,10 +3,7 @@ import type { Adaptor } from '../../types';
 import { adaptor } from './adaptor';
 import { StockOptions } from './type';
 
-const RISING_COLOR = '#ef5350';
-const FALLING_COLOR = '#26a69a';
-
-export const DEFAULT_COLORS = [FALLING_COLOR, '#999999', RISING_COLOR];
+export const DEFAULT_COLORS = ['#26a69a', '#999999', '#ef5350'];
 
 export type { StockOptions };
 
@@ -64,7 +61,7 @@ export class Stock extends Plot<StockOptions> {
   /**
    * 股票图适配器
    */
-  protected getSchemaAdaptor(): (params: Adaptor<StockOptions>) => void {
+  protected getSchemaAdaptor(): (params: Adaptor<StockOptions>) => Adaptor<StockOptions> {
     return adaptor;
   }
 }
