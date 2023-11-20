@@ -23,4 +23,4 @@ redirect_from:
 
 Ant Design Charts 目前已经集成了大量可视化组件，其它组件也在进一步完善中。
 
-<br />![image.png](https://gw.alipayobjects.com/zos/antfincdn/UFTUFpcy89/94efa67a-8a33-4e34-a337-93d558ee8b17.png)
+<br />![image.png](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*THSzQoAZvz0AAAAAAAAAAAAADmJ7AQ/original)

@@ -1,5 +1,5 @@
-import type { BaseOptions, Options } from '../../types/common';
+import type { Options } from '../../types/common';
 
-export type RadarOptions = Options & BaseOptions & {
+export type RadarOptions = Options & {
   coordinateType?: 'radar' | 'polar';
 };
