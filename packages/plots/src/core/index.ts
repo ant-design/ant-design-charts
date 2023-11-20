@@ -24,7 +24,7 @@ export type { GaugeOptions } from './plots/gauge';
 export type { LiquidOptions } from './plots/liquid';
 export type { WordCloudOptions } from './plots/wordCloud';
 export type { TreemapOptions } from './plots/treemap';
-export type { RadialBar } from './plots/radial-bar';
+export type { RadialBarOptions } from './plots/radial-bar';
 export * from './types';
 
 import { Base } from './plots/base';
