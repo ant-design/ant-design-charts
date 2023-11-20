@@ -15,7 +15,7 @@ const DemoVenn = () => {
     ],
     setsField: 'sets',
     sizeField: 'size',
-    pointStyle: { fillOpacity: 0.85 },
+    style: { fillOpacity: 0.85 },
     label: {
       position: 'inside',
       text: (d) => d.label || '',

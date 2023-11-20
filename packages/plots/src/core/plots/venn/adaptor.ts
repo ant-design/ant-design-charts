@@ -29,30 +29,11 @@ export function adaptor(params: Params) {
         ],
       });
       set(options, 'colorField', setsField);
-      set(options.children[0].encode, 'd', sizeField);
+      set(options, ['children', '0', 'encode', 'd'], DefaultTransformKey.d);
     }
     set(params, 'options', omit(options, ['sizeField', 'setsField']));
     return params;
   };
 
-  const style = (params: Params) => {
-    const { options } = params;
-    const { pointStyle, style } = options;
-    set(options, 'style', { ...style, ...pointStyle });
-    set(params, 'options', omit(options, ['pointStyle']));
-    return params;
-  };
-
-  const transformColorRange = (params: Params) => {
-    const { options } = params;
-    const { color } = options;
-    if (color) {
-      set(options, 'scale', {
-        color: { range: color },
-      });
-    }
-    return params;
-  };
-
-  return flow(init, style, transformColorRange, transformOptions)(params);
+  return flow(init, transformOptions)(params);
 }

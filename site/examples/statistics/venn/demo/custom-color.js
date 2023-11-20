@@ -15,7 +15,6 @@ const DemoVenn = () => {
     ],
     setsField: 'sets',
     sizeField: 'size',
-    pointStyle: { fillOpacity: 0.85 },
     label: {
       position: 'inside',
       text: (d) => d.label || '',
@@ -29,8 +28,9 @@ const DemoVenn = () => {
       ],
     },
     style: {
+      fillOpacity: 0.85,
       fill: (datum, index, data) => {
-        console.log(data)
+        console.log(data);
         const { size } = datum;
         if (size <= 2) return '#f4bb51';
       },

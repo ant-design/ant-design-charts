@@ -18,10 +18,14 @@ const DemoVenn = () => {
     },
     setsField: 'sets',
     sizeField: 'size',
-    pointStyle: { fillOpacity: 0.85 },
-    color: ['#9DF5CA', '#61DDAA', '#42C090'],
+    style: { fillOpacity: 0.85 },
+    scale: {
+      color: {
+        range: ['#9DF5CA', '#61DDAA', '#42C090'],
+      },
+    },
     label: {
-      position:'inside',
+      position: 'inside',
       style: {
         lineHeight: 20,
       },
@@ -33,7 +37,6 @@ const DemoVenn = () => {
       tooltip: {
         // render 回调方法返回一个innerHTML 或者 DOM
         render: (event, { title, items }) => {
-          console.log(event, { title, items });
           return `<div>
           <h3 style="padding:0;margin:0">title:${title}</h3>
           <ul>${items.map((d) => `<li><span style="color: ${d.color}">${d.name}</span> ${d.value}</li>`)}</ul>
