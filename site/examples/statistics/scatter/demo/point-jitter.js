@@ -10,10 +10,7 @@ const DemoScatter = () => {
     },
     transform: [{ type: 'sortX', channel: 'x' }, { type: 'jitterX'}],
     xField: 'Cylinders',
-    yField: (d) => {
-      console.log(d);
-      return String(d.Horsepower);
-    },
+    yField: 'Horsepower',
     colorField: 'Cylinders',
     shapeField: 'hollow',
     meta: {
