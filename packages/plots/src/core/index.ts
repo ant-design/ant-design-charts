@@ -24,6 +24,7 @@ export type { GaugeOptions } from './plots/gauge';
 export type { LiquidOptions } from './plots/liquid';
 export type { WordCloudOptions } from './plots/wordCloud';
 export type { TreemapOptions } from './plots/treemap';
+export type { RadialBarOptions } from './plots/radial-bar';
 export type { CirclePackingOptions } from './plots/circlePacking';
 export type { ViolinOptions } from './plots/violin';
 export type { BidirectionalBarOptions } from './plots/bidirectional-bar';
@@ -57,6 +58,7 @@ import { Gauge } from './plots/gauge';
 import { Liquid } from './plots/liquid';
 import { WordCloud } from './plots/wordCloud';
 import { Treemap } from './plots/treemap';
+import { RadialBar } from './plots/radial-bar';
 import { CirclePacking } from './plots/circlePacking';
 import { Violin } from './plots/violin';
 import { BidirectionalBar } from './plots/bidirectional-bar';
@@ -89,6 +91,7 @@ export const Plots = {
   Liquid,
   WordCloud,
   Treemap,
+  RadialBar,
   CirclePacking,
   Violin,
   BidirectionalBar,

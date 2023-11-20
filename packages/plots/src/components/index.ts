@@ -20,6 +20,7 @@ import Gauge from './gauge';
 import Liquid from './liquid';
 import WordCloud from './wordCloud';
 import Treemap from './treemap';
+import RadialBar from './radial-bar';
 import CirclePacking from './circlePacking';
 import Violin from './violin';
 import BidirectionalBar from './bidirectional-bar';
@@ -76,6 +77,7 @@ export {
   Liquid,
   WordCloud,
   Treemap,
+  RadialBar,
   CirclePacking,
   Violin,
   BidirectionalBar,
