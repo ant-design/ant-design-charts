@@ -68,10 +68,10 @@ export default defineConfig({
       {
         slug: 'options/plots/component',
         title: {
-          zh: '组件 - Component',
+          zh: '图表组件 - Component',
           en: 'Component',
         },
-        order: 9,
+        order: 2,
       },
       {
         slug: 'options/plots/label',
@@ -79,7 +79,7 @@ export default defineConfig({
           zh: '数据标签 - Label',
           en: 'Label',
         },
-        order: 10,
+        order: 3,
       },
 
       {
@@ -88,7 +88,7 @@ export default defineConfig({
           zh: '动画 - Animation',
           en: 'Animation',
         },
-        order: 11,
+        order: 4,
       },
       {
         slug: 'options/plots/interaction',
@@ -96,7 +96,7 @@ export default defineConfig({
           zh: '交互 - Interaction',
           en: 'Interaction',
         },
-        order: 12,
+        order: 5,
       },
       {
         slug: 'options/plots/theme',
@@ -104,7 +104,15 @@ export default defineConfig({
           zh: '主题 - Theme',
           en: 'Theme',
         },
-        order: 16,
+        order: 6,
+      },
+      {
+        slug: 'options/plots/special',
+        title: {
+          zh: '专有配置 - Specal Plot',
+          en: 'Specal Plot',
+        },
+        order: 10,
       },
     ],
     examples: [
