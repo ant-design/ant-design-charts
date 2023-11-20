@@ -10,17 +10,15 @@ const DemoScatter = () => {
       type: 'fetch',
       value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-strip.json',
     },
-    transform: [{ type: 'sortX', channel: 'x' }, { type: 'sortY', channel: 'y'}],
     coordinate: { transform: [{ type: 'transpose' }] },
     xField: 'Cylinders',
     yField: 'Horsepower',
     sizeField: 20,
-    meta: {
-      x: { type: 'point' },
-      y: { zero: true },
-      color: { type: 'ordinal' },
-    },
     shapeField: 'line',
+    scale: {
+      y: { type: 'linear', zero: true },
+      x: { domain: [0, 10] }
+    }
   };
   return <Scatter {...config} />;
 };

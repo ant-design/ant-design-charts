@@ -8,15 +8,16 @@ const DemoScatter = () => {
       type: 'fetch',
       value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-jitter.json',
     },
-    transform: [{ type: 'sortX', channel: 'x' }, { type: 'jitterX'}],
+    transform: [{ type: 'jitterX'}, { type: 'sortX', channel: 'x' }],
     xField: 'Cylinders',
     yField: 'Horsepower',
     colorField: 'Cylinders',
     shapeField: 'hollow',
-    meta: {
-      x: { type: 'point' },
-      color: { type: 'ordinal' },
-    },
+    scale: {
+      x: { type: 'point'},
+      y: { domain: [0, 200] },
+      color: { type: 'ordinal' }
+    }
   };
   return <Scatter {...config} />;
 };
