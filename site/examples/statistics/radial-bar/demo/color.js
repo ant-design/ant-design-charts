@@ -2,7 +2,6 @@ import { RadialBar } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 const data = [
   { name: 'X6', star: 297 },
   { name: 'G', star: 506 },
@@ -19,13 +18,23 @@ const DemoRadialBar = () => {
     data,
     xField: 'name',
     yField: 'star',
-    maxAngle: 270, 
+    maxAngle: 270,
     radius: 0.8,
     innerRadius: 0.2,
     tooltip: {
-      items:['star']
+      items: ['star'],
     },
-    colorField: 'star',
+    // colorField: 'star', // 会默认给颜色
+    style: {
+      fill: ({ star }) => {
+        if (star > 10000) {
+          return '#36c361';
+        } else if (star > 1000) {
+          return '#2194ff';
+        }
+        return '#ff4d4f';
+      },
+    },
   };
   return <RadialBar {...config} />;
 };

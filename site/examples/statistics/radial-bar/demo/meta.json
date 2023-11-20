@@ -47,12 +47,20 @@
       "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/M2EJJVBmHE/8984eee5-da51-4afb-8e81-34a8aaab47c0.png"
     },
     {
-      "filename": "apple-watch-activity.js",
+      "filename": "background.js",
       "title": {
-        "zh": "健身: 活动记录",
-        "en": "Fitness: Activity record"
+        "zh": "带柱子背景的玉珏图",
+        "en": "Radial-Bar plot with background"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/6YIirgSj4E/4fb2dd39-0dfd-4130-a17a-bd3dc602573c.png"
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/A2Ik7iu%26YW/519113a4-f42e-48b2-a75d-1021add83c30.png"
+    },
+    {
+      "filename": "line.js",
+      "title": {
+        "zh": "线形玉珏图",
+        "en": "Radial-line plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*GC6wT4GQ-oMAAAAAAAAAAABkARQnAQ"
     }
   ]
 }

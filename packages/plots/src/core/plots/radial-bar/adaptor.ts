@@ -1,4 +1,4 @@
-import { flow, set, pick, transformOptions, isNumber } from '../../utils';
+import { flow, set, pick, transformOptions, isNumber, get } from '../../utils';
 import { COORDIANTE_OPTIONS, mark } from '../../components';
 import type { Adaptor } from '../../types';
 import type { RadialBarOptions } from './type';
@@ -10,13 +10,6 @@ type Params = Adaptor<RadialBarOptions>;
  * @param options
  */
 export function adaptor(params: Params) {
-  /**
-   * 图表差异化处理
-   */
-  const init = (params: Params) => {
-    return params;
-  };
-
   /**
    * coordinate 配置
    * @param params
@@ -34,7 +27,7 @@ export function adaptor(params: Params) {
       endAngle: end,
       outerRadius: radius,
       innerRadius,
-      startAngle,
+      startAngle: startAngle ?? -Math.PI / 2,
     });
 
     return params;
@@ -60,18 +53,36 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  /** style 配置 */
-  const style = (params) => {
+  /**
+   * background 配置
+   * @param params
+   */
+  const background = (params) => {
     const { options } = params;
-    const { style, barStyle } = options;
-    if (barStyle) {
-      set(params, ['options', 'style'], {
-        ...style,
-        radius: barStyle?.radius,
+    const { markBackground, children, scale, coordinate, xField } = options;
+    const domain = get(scale, 'y.domain', []);
+    if (markBackground) {
+      children.unshift({
+        type: 'interval',
+        xField: xField,
+        yField: domain[domain.length - 1],
+        colorField: markBackground.color,
+        scale: { color: { type: 'identity' } },
+        style: {
+          fillOpacity: markBackground.opacity,
+          fill: markBackground.color ? undefined : '#e0e4ee', // 默认用fill填满灰色背景
+        },
+        // 背景图需要填满整个圆
+        coordinate: {
+          ...coordinate,
+          startAngle: -Math.PI / 2,
+          endAngle: (3 / 2) * Math.PI,
+        },
+        animate: false,
       });
     }
     return params;
   };
 
-  return flow(init, coordinate, tooltip, style, transformOptions, mark)(params);
+  return flow(coordinate, tooltip, background, transformOptions, mark)(params);
 }
