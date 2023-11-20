@@ -1,7 +1,6 @@
-import type { BaseOptions, Options } from '../../types/common';
+import type { Options } from '../../types/common';
 
-export type VennOptions = Options &
-  BaseOptions & {
+export type VennOptions = Options & {
     /**
      * @title 集合空间键名
      */

@@ -18,7 +18,7 @@
         "zh": "带辅助信息的迷你面积图",
         "en": "Tiny area plot with annotations"
       },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*0zwrR62OaHQAAAAAAAAAAAAAARQnAQ"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*4DlNQrsCYZAAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "filled-area.js",
@@ -34,7 +34,7 @@
         "zh": "迷你柱形图",
         "en": "tiny column plot"
       },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*tLNqQpXbZWgAAAAAAAAAAAAAARQnAQ"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*AHtKS7goLgkAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "column-annotation.js",
@@ -42,7 +42,7 @@
         "zh": "带辅助线的迷你柱形图",
         "en": "Tiny column plot with annotation"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*mVxXQZLTI8UAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*SucISYgPzscAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "basic-line.js",

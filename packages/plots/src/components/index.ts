@@ -15,11 +15,13 @@ import Histogram from './histogram';
 import Heatmap from './heatmap';
 import Box from './box';
 import Sankey from './sankey';
+import Stock from './stock';
 import Bullet from './bullet';
 import Gauge from './gauge';
 import Liquid from './liquid';
 import WordCloud from './wordCloud';
 import Treemap from './treemap';
+import RadialBar from './radial-bar';
 import CirclePacking from './circlePacking';
 import Violin from './violin';
 import BidirectionalBar from './bidirectional-bar';
@@ -37,6 +39,7 @@ export type { ScatterConfig } from './scatter';
 export type { RadarConfig } from './radar';
 export type { TinyLineConfig, TinyAreaConfig, TinyColumnConfig, TinyProgressConfig } from './tiny';
 export type { RoseConfig } from './rose';
+export type { StockConfig } from './stock';
 export type { WaterfallConfig } from './waterfall';
 export type { HistogramConfig } from './histogram';
 export type { HeatmapConfig } from './heatmap';
@@ -65,6 +68,7 @@ export {
   Scatter,
   Radar,
   Rose,
+  Stock,
   Tiny,
   Histogram,
   Waterfall,
@@ -76,6 +80,7 @@ export {
   Liquid,
   WordCloud,
   Treemap,
+  RadialBar,
   CirclePacking,
   Violin,
   BidirectionalBar,

@@ -16,6 +16,8 @@ const config = {
 
 ## 选项
 
+<img alt="item" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*d_cUTqkxrmwAAAAAAAAAAAAADmJ7AQ/original" />
+
 ### 标题
 
 | 属性               | 描述                                                           | 类型                                                         | 默认值 |
