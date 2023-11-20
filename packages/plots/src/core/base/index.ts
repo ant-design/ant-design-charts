@@ -84,7 +84,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
   }
 
   private getBaseOptions(): Partial<Options> {
-    return { theme: 'classic' };
+    return { type: 'view' };
   }
 
   /**

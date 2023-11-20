@@ -22,7 +22,8 @@ export default defineConfig({
     showChartResize: true, // 是否在 demo 页展示图表视图切换
     showAPIDoc: true,
     versions: {
-      [version]: 'https://charts.ant.design',
+      [version]: 'https://ant-design-charts-next.antgroup.com',
+      '1.x': 'https://ant-design-charts.antgroup.com',
       '0.x': 'https://v0-charts.ant.design/',
     },
     docsearchOptions: {
@@ -144,32 +145,6 @@ export default defineConfig({
         },
       ],
     },
-    news: [
-      {
-        type: {
-          zh: '论坛',
-          en: 'Forum',
-        },
-        title: {
-          zh: 'AntV 芒种日 图新物：GraphInsight 发布',
-          en: 'AntV Seeds Day Graph New: GraphInsight Released',
-        },
-        date: '2022.06.06',
-        link: 'https://github.com/antvis/GraphInsight',
-      },
-      {
-        type: {
-          zh: '论坛',
-          en: 'Forum',
-        },
-        title: {
-          zh: 'SEE Conf 2022 支付宝体验科技大会',
-          en: 'SEE Conf 2022 Alipay Experience Technology Conference',
-        },
-        date: '2022.01.08',
-        link: 'https://seeconf.antfin.com/',
-      },
-    ],
     features: [
       {
         icon: 'https://gw.alipayobjects.com/zos/basement_prod/eae0ee4e-acbf-4486-88eb-ea17f441a0d5.svg',
@@ -189,8 +164,8 @@ export default defineConfig({
           en: 'Variety of charts',
         },
         description: {
-          zh: '支持全量的 G2Plot 图表，以及关系图、流程图、地理可视化，几乎做到同步更新',
-          en: 'Support full G2Plot charts, as well as relation graphs, flow charts, geographical visualization, almost synchronous update.',
+          zh: '涵盖统计图表、关系图、流程图以及地理可视化，种类齐全',
+          en: 'Covering statistical charts, relational diagrams, flowcharts, and geographic visualization, with a wide range of types.',
         },
       },
       {
@@ -206,20 +181,20 @@ export default defineConfig({
       },
     ],
     cases: [
-      {
-        logo: 'https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Uh1MSpdcj-kAAAAAAAAAAABkARQnAQ',
-        title: {
-          zh: '图编辑',
-          en: 'Advanced Features',
-        },
-        description: {
-          zh: '来这里尝试一下我们正在开发中的流程图功能',
-          en: `Try out the flowchart feature we're developing here`,
-        },
-        link: `/examples/flowchart/basic#basic`,
-        image: 'https://gw.alipayobjects.com/zos/antfincdn/5b5C1FvWLE/08c299c3-b3f8-4071-afc1-9aa5e1a9cb3a.png',
-        isAppLogo: true,
-      },
+      // {
+      //   logo: 'https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Uh1MSpdcj-kAAAAAAAAAAABkARQnAQ',
+      //   title: {
+      //     zh: '图编辑',
+      //     en: 'Advanced Features',
+      //   },
+      //   description: {
+      //     zh: '来这里尝试一下我们正在开发中的流程图功能',
+      //     en: `Try out the flowchart feature we're developing here`,
+      //   },
+      //   link: `/examples/flowchart/basic#basic`,
+      //   image: 'https://gw.alipayobjects.com/zos/antfincdn/5b5C1FvWLE/08c299c3-b3f8-4071-afc1-9aa5e1a9cb3a.png',
+      //   isAppLogo: true,
+      // },
     ],
     /** 首页合作公司 */
     companies: [
