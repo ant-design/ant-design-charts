@@ -8,9 +8,9 @@ const DemoScatter = () => {
     height: 300,
     data: {
       type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/bmw-prod/2c813e2d-2276-40b9-a9af-cf0a0fb7e942.csv',
+      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-strip.json',
     },
-    transform: [{ type: 'sortX', channel: 'x' }],
+    transform: [{ type: 'sortX', channel: 'x' }, { type: 'sortY', channel: 'y'}],
     coordinate: { transform: [{ type: 'transpose' }] },
     xField: 'Cylinders',
     yField: 'Horsepower',

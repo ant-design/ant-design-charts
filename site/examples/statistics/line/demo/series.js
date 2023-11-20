@@ -8,15 +8,10 @@ const DemoLine = () => {
       type: 'fetch',
       value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/line-series.json',
     },
-    xField: 'date',
+    xField: (d) => new Date(d.date),
     yField: 'unemployment',
     colorField: 'steelblue',
     seriesField: 'division',
-    // interaction: {
-    //   tooltip: {
-    //     filter: (d, i) => i < 10,
-    //   }
-    // }
   };
   return <Line {...config} />;
 };

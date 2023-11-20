@@ -17,7 +17,7 @@ const DemoLine = () => {
         },
       ],
     },
-    xField: 'date',
+    xField: (d) => new Date(d.date),
     yField: 'close',
     connectNulls: {
       connect: true,
