@@ -12,6 +12,7 @@ export default defineConfig({
     defaultLanguage: 'zh',
     siteUrl: 'https://charts.ant.design',
     showChinaMirror: false,
+    footerTheme: 'light', // 白色 底部主题
     githubUrl: repository.url,
     showSearch: true, // 是否显示搜索框
     showGithubCorner: true, // 是否显示头部的 GitHub icon
@@ -126,9 +127,13 @@ export default defineConfig({
       },
     ],
     detail: {
+      engine:{
+        zh: 'AntV react',
+        en: 'AntV react',
+      },
       title: {
-        zh: 'AntV react 可视化组件库',
-        en: 'AntV react component library',
+        zh: 'AntV react·可视化组件库',
+        en: 'AntV react·component library',
       },
       description: {
         zh: '简单好用的 React 图表库。',
