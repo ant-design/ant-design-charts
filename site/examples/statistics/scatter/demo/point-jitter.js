@@ -6,17 +6,18 @@ const DemoScatter = () => {
   const config = {
     data: {
       type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/bmw-prod/2c813e2d-2276-40b9-a9af-cf0a0fb7e942.csv',
+      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-jitter.json',
     },
-    transform: [{ type: 'sortX', channel: 'x' }, { type: 'jitterX' }],
+    transform: [{ type: 'jitterX'}, { type: 'sortX', channel: 'x' }],
     xField: 'Cylinders',
     yField: 'Horsepower',
     colorField: 'Cylinders',
     shapeField: 'hollow',
-    meta: {
-      x: { type: 'point' },
-      color: { type: 'ordinal' },
-    },
+    scale: {
+      x: { type: 'point'},
+      y: { domain: [0, 200] },
+      color: { type: 'ordinal' }
+    }
   };
   return <Scatter {...config} />;
 };

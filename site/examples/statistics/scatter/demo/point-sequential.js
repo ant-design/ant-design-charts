@@ -8,9 +8,9 @@ const DemoScatter = () => {
     data: {
       type: "fetch",
       value:
-        "https://gw.alipayobjects.com/os/bmw-prod/56b6b137-e04e-4757-8af5-d75bafaef886.csv",
+        "https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-sequential.json",
     },
-    xField: 'date',
+    xField: (d) => new Date(d.date),
     yField: 'value',
     colorField: 'value',
     shapeField: 'point',

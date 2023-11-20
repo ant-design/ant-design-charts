@@ -6,7 +6,7 @@ const DemoScatter = () => {
   const config = {
     data: {
       type: "fetch",
-      value: "https://gw.alipayobjects.com/os/bmw-prod/2b48887c-56fb-437e-a91c-6f48e80e5a91.csv",
+      value: "https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-bubble.json",
       transform: [{
         type: 'filter',
         callback: (d) => d.Entity !== 'All natural disasters',

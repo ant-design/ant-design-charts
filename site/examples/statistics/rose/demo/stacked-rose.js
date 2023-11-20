@@ -22,7 +22,7 @@ const DemoRose = () => {
     data: {
       type: "fetch",
       value:
-      "https://gw.alipayobjects.com/os/bmw-prod/d582a447-2057-4a74-97ed-1d73a5459ea4.csv",
+      "https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/rose-stacked-rose.json",
       transform: [
         {
           type: "fold",

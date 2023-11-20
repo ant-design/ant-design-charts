@@ -7,7 +7,7 @@ const DemoScatter = () => {
     data: {
       type: "fetch",
       value:
-        "https://gw.alipayobjects.com/os/bmw-prod/474e51c8-b47b-4bb6-b3ed-87813a960df2.csv",
+        "https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-label.json",
     },
     xField: 'mpg',
     yField: 'hp',

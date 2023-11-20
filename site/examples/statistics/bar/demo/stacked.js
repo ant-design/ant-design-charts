@@ -6,8 +6,7 @@ const DemoBar = () => {
   const config = {
     data: {
       type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/bmw-prod/f129b517-158d-41a9-83a3-3294d639b39e.csv',
-      format: 'csv',
+      value: 'https://site-dataa-s09001742540-site.dev.alipay.net/antd-charts/bar-stacked.json',
     },
     xField: 'state',
     yField: 'population',
