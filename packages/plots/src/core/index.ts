@@ -27,6 +27,8 @@ export type { TreemapOptions } from './plots/treemap';
 export type { CirclePackingOptions } from './plots/circlePacking';
 export type { ViolinOptions } from './plots/violin';
 export type { BidirectionalBarOptions } from './plots/bidirectional-bar';
+export type { VennOptions } from './plots/venn';
+
 export * from './types';
 
 import { Base } from './plots/base';
@@ -58,6 +60,7 @@ import { Treemap } from './plots/treemap';
 import { CirclePacking } from './plots/circlePacking';
 import { Violin } from './plots/violin';
 import { BidirectionalBar } from './plots/bidirectional-bar';
+import { Venn } from './plots/venn';
 
 export const Plots = {
   Base,
@@ -89,4 +92,5 @@ export const Plots = {
   CirclePacking,
   Violin,
   BidirectionalBar,
+  Venn,
 };
