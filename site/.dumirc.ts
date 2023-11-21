@@ -132,15 +132,14 @@ export default defineConfig({
         en: 'AntV react',
       },
       title: {
-        zh: 'AntV react·可视化组件库',
-        en: 'AntV react·component library',
+        zh: 'AntV React·可视化组件库',
+        en: 'AntV React·Component Library',
       },
       description: {
         zh: '简单好用的 React 图表库。',
         en: 'Simple and easy to use React chart library.',
       },
-      image:
-        'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*wi05Q7Za5ZIAAAAAAAAAAAAADmJ7AQ/original',
+      image: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*wi05Q7Za5ZIAAAAAAAAAAAAADmJ7AQ/original',
       imageStyle: {
         marginLeft: '80px',
         marginTop: '30px',
