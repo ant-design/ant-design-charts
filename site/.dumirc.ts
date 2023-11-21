@@ -127,10 +127,6 @@ export default defineConfig({
       },
     ],
     detail: {
-      engine: {
-        zh: 'AntV react',
-        en: 'AntV react',
-      },
       title: {
         zh: 'AntV React·可视化组件库',
         en: 'AntV React·Component Library',
@@ -193,7 +189,7 @@ export default defineConfig({
           en: 'Professional and reliable',
         },
         description: {
-          zh: 'AntV 团队支持，简单易容、专业可靠、无限可能"',
+          zh: 'AntV 团队支持，简单易容、专业可靠、无限可能',
           en: 'AntV team support, easy to accommodate, professional and reliable, unlimited possibilities.',
         },
       },
