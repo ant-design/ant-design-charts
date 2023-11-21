@@ -130,7 +130,23 @@
         "zh": "百分比柱状图",
         "en": "Percent Column plot"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*KXo2RaFUtQcAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*3FTARIxIDHMAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "label-text.js",
+      "title": {
+        "zh": "自定义坐标轴标签",
+        "en": "Customize axis labels"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*X_B0Q7Co9xEAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "tooltip.js",
+      "title": {
+        "zh": "自定义提示",
+        "en": "Customize tooltip"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*lZu1Q5vMEewAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
