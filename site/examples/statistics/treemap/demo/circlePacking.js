@@ -20,7 +20,6 @@ const DemoCirclePacking = () => {
         interpolate: interpolateHcl
       },
     },
-    // label 超出隐藏
     label: {
       text: (d) => {
         return (d.height === 0 ? `${d.data.name}` : "")
@@ -32,10 +31,6 @@ const DemoCirclePacking = () => {
         },
       ],
     },
-    // label 超出省略
-    // style: {
-    //   labelText: (d) => (d.r >= 10 && d.height === 0 ? `${d.data.name}` : "")
-    // }
   };
   return <CirclePacking {...config} />;
 };
