@@ -68,7 +68,7 @@ const DemoHistogram = () => {
     binField: 'value',
     channel: 'count',
     binWidth: 4,
-    meta: {
+    scale: {
       x: { domainMin: 0, tickCount: 10 },
       y: {
         domainMax: 15,

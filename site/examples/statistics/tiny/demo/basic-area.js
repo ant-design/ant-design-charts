@@ -13,7 +13,7 @@ const DemoArea = () => {
     shapeField: 'smooth',
     xField: (_, idx) => idx,
     yField: (d) => d,
-    meta: {
+    scale: {
       y: { zero: true },
     },
     style: {

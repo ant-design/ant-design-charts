@@ -5,19 +5,19 @@ import ReactDOM from 'react-dom';
 const DemoDualAxes = () => {
   const config = {
     data: {
-      type: "inline",
+      type: 'inline',
       value: [
-        { x: "Parking Difficult", value: 95 },
-        { x: "Sales Rep was Rude", value: 60 },
-        { x: "Poor Lighting", value: 45 },
-        { x: "Layout Confusing", value: 37 },
-        { x: "Sizes Limited", value: 30 },
-        { x: "Clothing Faded", value: 27 },
-        { x: "Clothing Shrank", value: 18 },
+        { x: 'Parking Difficult', value: 95 },
+        { x: 'Sales Rep was Rude', value: 60 },
+        { x: 'Poor Lighting', value: 45 },
+        { x: 'Layout Confusing', value: 37 },
+        { x: 'Sizes Limited', value: 30 },
+        { x: 'Clothing Faded', value: 27 },
+        { x: 'Clothing Shrank', value: 18 },
       ],
       transform: [
         {
-          type: "custom",
+          type: 'custom',
           callback: (data) => {
             const sum = data.reduce((r, curr) => r + curr.value, 0);
             return data
@@ -41,46 +41,44 @@ const DemoDualAxes = () => {
     xField: 'x',
     children: [
       {
-        type: "interval",
+        type: 'interval',
         yField: 'value',
-        meta: { x: { padding: 0.5 }, y: { domainMax: 312, tickCount: 5 } },
-        style: { fill: (d) => (d.percentage < 0.1 ? "#E24B26" : "#78B3F0") },
-        axis: { x: { title: null }, y: { title: "Defect frequency" } },
+        scale: { x: { padding: 0.5 }, y: { domainMax: 312, tickCount: 5 } },
+        style: { fill: (d) => (d.percentage < 0.1 ? '#E24B26' : '#78B3F0') },
+        axis: { x: { title: null }, y: { title: 'Defect frequency' } },
         labels: [
           {
             text: (d) => `${(d.percentage * 100).toFixed(1)}%`,
-            textBaseline: "bottom",
+            textBaseline: 'bottom',
           },
         ],
       },
       {
-        type: "line",
+        type: 'line',
         yField: 'accumulate',
-        meta: { y: { independent: true, domainMin: 0, tickCount: 5 } },
+        scale: { y: { independent: true, domainMin: 0, tickCount: 5 } },
         axis: {
           y: {
-            position: "right",
-            title: "Cumulative Percentage",
+            position: 'right',
+            title: 'Cumulative Percentage',
             grid: null,
             labelFormatter: (d) => `${(d * 100).toFixed(0)}%`,
           },
         },
         tooltip: {
-          items: [
-            { channel: "y", valueFormatter: (d) => `${(d * 100).toFixed(2)}%` },
-          ],
+          items: [{ channel: 'y', valueFormatter: (d) => `${(d * 100).toFixed(2)}%` }],
         },
       },
       {
-        type: "point",
+        type: 'point',
         yField: 'accumulate',
         shapeField: 'diamond',
-        meta: { y: { independent: true, domainMin: 0 } },
+        scale: { y: { independent: true, domainMin: 0 } },
         axis: { y: null },
         tooltip: null,
       },
     ],
-    title: "Pareto Chart of Customer Complaints",
+    title: 'Pareto Chart of Customer Complaints',
   };
   return <DualAxes {...config} />;
 };

@@ -87,7 +87,7 @@ const DemoDualAxes = () => {
         yField: 'Temperature',
         shapeField: 'smooth',
         colorField: '#EE6666',
-        meta: {
+        scale: {
           y: { independent: true, domainMax: 30 },
         },
         axis: {
@@ -104,7 +104,7 @@ const DemoDualAxes = () => {
         type: 'interval',
         yField: 'Evaporation',
         colorField: '#5470C6',
-        meta: {
+        scale: {
           y: { independent: true, domainMax: 200 },
         },
         style: {
@@ -125,7 +125,7 @@ const DemoDualAxes = () => {
         yField: 'Precipitation',
         shapeField: 'smooth',
         colorField: '#91CC75',
-        meta: {
+        scale: {
           y: { independent: true },
         },
         style: {

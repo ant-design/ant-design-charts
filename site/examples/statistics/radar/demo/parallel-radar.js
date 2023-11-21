@@ -28,13 +28,13 @@ const DemoRadar = () => {
     colorField: 'weight (lb)',
     coordinateType: 'radar',
     positionField: [
-      "economy (mpg)",
-      "cylinders",
-      "displacement (cc)",
-      "power (hp)",
-      "weight (lb)",
-      "0-60 mph (s)",
-      "year",
+      'economy (mpg)',
+      'cylinders',
+      'displacement (cc)',
+      'power (hp)',
+      'weight (lb)',
+      '0-60 mph (s)',
+      'year',
     ],
     axis: {
       position: axis,
@@ -48,15 +48,15 @@ const DemoRadar = () => {
     },
     legend: {
       color: {
-        position: "bottom",
-        labelFormatter: "~s",
+        position: 'bottom',
+        labelFormatter: '~s',
         length: 200,
-        layout: { justifyContent: "center" },
+        layout: { justifyContent: 'center' },
       },
     },
     style: { strokeWidth: 1.5, strokeOpacity: 0.4 },
     interaction: { tooltip: { series: false } },
-    meta: { color: { palette: "brBG", offset: (t) => 1 - t } },
+    scale: { color: { palette: 'brBG', offset: (t) => 1 - t } },
   };
   return <Radar {...config} />;
 };

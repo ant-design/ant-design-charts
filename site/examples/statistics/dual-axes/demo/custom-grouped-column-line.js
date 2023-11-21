@@ -1,4 +1,3 @@
-
 import { DualAxes } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -43,7 +42,7 @@ const DemoDualAxes = () => {
         style: { maxWidth: 50 },
         label: { position: 'inside' },
         scale: { color: { range: ['#5B8FF9', '#5D7092'] } },
-        interaction: { elementHighlightByColor: { background: true, } },
+        interaction: { elementHighlightByColor: { background: true } },
       },
       {
         data: transformData,
@@ -53,14 +52,14 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           lineWidth: 2,
         },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {
             crosshairs: false,
             marker: false,
-          }
-        }
+          },
+        },
       },
     ],
   };

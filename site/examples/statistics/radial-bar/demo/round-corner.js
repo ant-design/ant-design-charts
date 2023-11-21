@@ -2,7 +2,6 @@ import { RadialBar } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 const data = [
   { name: 'X6', star: 297 },
   { name: 'G', star: 506 },
@@ -19,13 +18,13 @@ const DemoRadialBar = () => {
     data,
     xField: 'name',
     yField: 'star',
-    maxAngle: 90, 
+    maxAngle: 90,
     radius: 1,
     innerRadius: 0.2,
     style: {
-      radius:26, // 圆角
+      radius: 26, // 圆角
     },
-    meta: {
+    scale: {
       y: { nice: true },
     },
   };

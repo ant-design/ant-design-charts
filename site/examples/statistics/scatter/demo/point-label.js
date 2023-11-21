@@ -5,18 +5,17 @@ import ReactDOM from 'react-dom';
 const DemoScatter = () => {
   const config = {
     data: {
-      type: "fetch",
-      value:
-        "https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-label.json",
+      type: 'fetch',
+      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-label.json',
     },
     xField: 'mpg',
     yField: 'hp',
     colorField: 'steelblue',
-    meta: {
+    scale: {
       x: { nice: true, domainMax: 38 },
       y: { nice: true },
     },
-    label: { 
+    label: {
       text: 'name',
       style: {
         stroke: '#fff',

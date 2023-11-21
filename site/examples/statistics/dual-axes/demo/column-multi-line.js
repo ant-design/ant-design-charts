@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 const lineColor = {
   a: 'rgb(90, 216, 166)',
   b: 'rgb(93, 112, 146)',
-  c: 'rgb(246, 189, 22)'
-}
+  c: 'rgb(246, 189, 22)',
+};
 
 const DemoDualAxes = () => {
   const uvData = [
@@ -54,7 +54,7 @@ const DemoDualAxes = () => {
           lineWidth: 2,
           stroke: (d) => lineColor[d[0].name],
         },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
       },
     ],

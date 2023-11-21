@@ -18,13 +18,6 @@ const DemoDualAxes = () => {
         type: 'interval',
         xField: 'time',
         yField: 'waiting',
-        axis: {
-          y: { title: 'Waiting', style: { titleFill: '#5B8FF9' } },
-        },
-        label: {
-          text: 'waiting',
-          position: 'inside',
-        },
       },
       {
         type: 'line',
@@ -35,10 +28,7 @@ const DemoDualAxes = () => {
           stroke: '#fdae6b',
           lineWidth: 2,
         },
-        label: {
-          text: 'people',
-        },
-        meta: {
+        scale: {
           y: {
             independent: true,
           },
@@ -46,11 +36,7 @@ const DemoDualAxes = () => {
         axis: {
           y: {
             position: 'right',
-            grid: null,
-            title: 'People',
-            style: {
-              titleFill: '#fdae6b',
-            },
+            // grid: null,
           },
         },
       },

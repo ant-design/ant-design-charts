@@ -12,7 +12,6 @@ const DemoPie = () => {
       { type: '分类五', value: 10 },
       { type: '其他', value: 5 },
     ],
-    appendPadding: 10,
     angleField: 'value',
     colorField: 'type',
     startAngle: Math.PI,

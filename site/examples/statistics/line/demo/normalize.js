@@ -12,7 +12,7 @@ const DemoLine = () => {
     yField: 'Close',
     colorField: 'Symbol',
     normalize: { basis: 'first', groupBy: 'color' },
-    meta: {
+    scale: {
       y: { type: 'log' },
     },
     axis: {
