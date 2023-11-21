@@ -20,8 +20,18 @@ const DemoCirclePacking = () => {
         interpolate: interpolateHcl
       },
     },
-  };
-  return <CirclePacking {...config} />;
+    label: {
+      text: (d) => d.height === 0 ? d.data.name : '',
+      position: 'inside',
+      transform: [
+        {
+          type: 'overflowHide'
+        },
+      ]
+    }
+  }
+  return <CirclePacking {...config
+  } />;
 };
 
 ReactDOM.render(<DemoCirclePacking />, document.getElementById('container'));
