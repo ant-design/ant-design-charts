@@ -3,4 +3,4 @@ title: RadialBar
 order: 21
 ---
 
-<embed src="@/docs/options/plots/special/box.zh.md"></embed>
+<embed src="@/docs/options/plots/special/radial-bar.zh.md"></embed>
