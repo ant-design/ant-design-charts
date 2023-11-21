@@ -10,7 +10,7 @@ const DemoProgress = () => {
     height: 60,
     autoFit: false,
     percent: progress,
-    color: ['#f3cbb1', '#a0ff03'],
+    color: ['#0f0f0f', '#85f231'],
     annotations: [
       {
         type: 'text',

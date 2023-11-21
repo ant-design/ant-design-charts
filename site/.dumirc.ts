@@ -12,6 +12,7 @@ export default defineConfig({
     defaultLanguage: 'zh',
     siteUrl: 'https://charts.ant.design',
     showChinaMirror: false,
+    footerTheme: 'light', // 白色 底部主题
     githubUrl: repository.url,
     showSearch: true, // 是否显示搜索框
     showGithubCorner: true, // 是否显示头部的 GitHub icon
@@ -22,7 +23,8 @@ export default defineConfig({
     showChartResize: true, // 是否在 demo 页展示图表视图切换
     showAPIDoc: true,
     versions: {
-      [version]: 'https://charts.ant.design',
+      [version]: 'https://ant-design-charts-next.antgroup.com',
+      '1.x': 'https://ant-design-charts.antgroup.com',
       '0.x': 'https://v0-charts.ant.design/',
     },
     docsearchOptions: {
@@ -67,10 +69,10 @@ export default defineConfig({
       {
         slug: 'options/plots/component',
         title: {
-          zh: '组件 - Component',
+          zh: '图表组件 - Component',
           en: 'Component',
         },
-        order: 9,
+        order: 2,
       },
       {
         slug: 'options/plots/label',
@@ -78,7 +80,7 @@ export default defineConfig({
           zh: '数据标签 - Label',
           en: 'Label',
         },
-        order: 10,
+        order: 3,
       },
 
       {
@@ -87,7 +89,7 @@ export default defineConfig({
           zh: '动画 - Animation',
           en: 'Animation',
         },
-        order: 11,
+        order: 4,
       },
       {
         slug: 'options/plots/interaction',
@@ -95,7 +97,7 @@ export default defineConfig({
           zh: '交互 - Interaction',
           en: 'Interaction',
         },
-        order: 12,
+        order: 5,
       },
       {
         slug: 'options/plots/theme',
@@ -103,7 +105,15 @@ export default defineConfig({
           zh: '主题 - Theme',
           en: 'Theme',
         },
-        order: 16,
+        order: 6,
+      },
+      {
+        slug: 'options/plots/special',
+        title: {
+          zh: '专有配置 - Specal Plot',
+          en: 'Specal Plot',
+        },
+        order: 10,
       },
     ],
     examples: [
@@ -117,16 +127,32 @@ export default defineConfig({
       },
     ],
     detail: {
+      engine:{
+        zh: 'AntV react',
+        en: 'AntV react',
+      },
       title: {
-        zh: 'AntV react 可视化组件库',
-        en: 'AntV react component library',
+        zh: 'AntV react·可视化组件库',
+        en: 'AntV react·component library',
       },
       description: {
         zh: '简单好用的 React 图表库。',
         en: 'Simple and easy to use React chart library.',
       },
-      image: 'https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*f_gcSbpq-6kAAAAAAAAAAABkARQnAQ',
+      image: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*5bIcTaxarjoAAAAAAAAAAAAADmJ7AQ/original',
+      imageStyle: {
+        transform: 'scale(0.5)',
+        marginLeft: '150px',
+        marginTop: '-80px',
+      },
       buttons: [
+        {
+          text: {
+            zh: '开始使用',
+            en: 'Getting Started',
+          },
+          link: `/manual/introduction`,
+        },
         {
           text: {
             zh: '图表示例',
@@ -135,41 +161,8 @@ export default defineConfig({
           link: `/examples/`,
           type: 'primary',
         },
-        {
-          text: {
-            zh: '开始使用',
-            en: 'Getting Started',
-          },
-          link: `/manual/introduction`,
-        },
       ],
     },
-    news: [
-      {
-        type: {
-          zh: '论坛',
-          en: 'Forum',
-        },
-        title: {
-          zh: 'AntV 芒种日 图新物：GraphInsight 发布',
-          en: 'AntV Seeds Day Graph New: GraphInsight Released',
-        },
-        date: '2022.06.06',
-        link: 'https://github.com/antvis/GraphInsight',
-      },
-      {
-        type: {
-          zh: '论坛',
-          en: 'Forum',
-        },
-        title: {
-          zh: 'SEE Conf 2022 支付宝体验科技大会',
-          en: 'SEE Conf 2022 Alipay Experience Technology Conference',
-        },
-        date: '2022.01.08',
-        link: 'https://seeconf.antfin.com/',
-      },
-    ],
     features: [
       {
         icon: 'https://gw.alipayobjects.com/zos/basement_prod/eae0ee4e-acbf-4486-88eb-ea17f441a0d5.svg',
@@ -189,8 +182,8 @@ export default defineConfig({
           en: 'Variety of charts',
         },
         description: {
-          zh: '支持全量的 G2Plot 图表，以及关系图、流程图、地理可视化，几乎做到同步更新',
-          en: 'Support full G2Plot charts, as well as relation graphs, flow charts, geographical visualization, almost synchronous update.',
+          zh: '涵盖统计图表、关系图、流程图以及地理可视化，种类齐全',
+          en: 'Covering statistical charts, relational diagrams, flowcharts, and geographic visualization, with a wide range of types.',
         },
       },
       {
@@ -206,20 +199,20 @@ export default defineConfig({
       },
     ],
     cases: [
-      {
-        logo: 'https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Uh1MSpdcj-kAAAAAAAAAAABkARQnAQ',
-        title: {
-          zh: '图编辑',
-          en: 'Advanced Features',
-        },
-        description: {
-          zh: '来这里尝试一下我们正在开发中的流程图功能',
-          en: `Try out the flowchart feature we're developing here`,
-        },
-        link: `/examples/flowchart/basic#basic`,
-        image: 'https://gw.alipayobjects.com/zos/antfincdn/5b5C1FvWLE/08c299c3-b3f8-4071-afc1-9aa5e1a9cb3a.png',
-        isAppLogo: true,
-      },
+      // {
+      //   logo: 'https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*Uh1MSpdcj-kAAAAAAAAAAABkARQnAQ',
+      //   title: {
+      //     zh: '图编辑',
+      //     en: 'Advanced Features',
+      //   },
+      //   description: {
+      //     zh: '来这里尝试一下我们正在开发中的流程图功能',
+      //     en: `Try out the flowchart feature we're developing here`,
+      //   },
+      //   link: `/examples/flowchart/basic#basic`,
+      //   image: 'https://gw.alipayobjects.com/zos/antfincdn/5b5C1FvWLE/08c299c3-b3f8-4071-afc1-9aa5e1a9cb3a.png',
+      //   isAppLogo: true,
+      // },
     ],
     /** 首页合作公司 */
     companies: [

@@ -1,0 +1,66 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "玉珏图",
+        "en": "Radial-Bar plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*-1GkR6WftskAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "round-corner.js",
+      "title": {
+        "zh": "带圆角的玉珏图",
+        "en": "Radial-Bar plot with rounded corner"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FmTOT68Ai_EAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "color.js",
+      "title": {
+        "zh": "带自定义颜色的玉珏图",
+        "en": "Radial-Bar plot with custom color"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/l6uP5%26MiT7/385e3f80-52ec-49e9-9dfe-bd447e63203f.png"
+    },
+    {
+      "filename": "stacked.js",
+      "title": {
+        "zh": "堆叠玉珏图",
+        "en": "Stacked Radial-Bar plot"
+      },
+      
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/tft60hEBvN/594d5cfc-8da0-441b-89dd-81eb4f5657b6.png"
+    },
+    {
+      "filename": "grouped.js",
+      "title": {
+        "zh": "分组玉珏图",
+        "en": "Grouped Radial-Bar plot"
+      },
+      
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/M2EJJVBmHE/8984eee5-da51-4afb-8e81-34a8aaab47c0.png"
+    },
+    {
+      "filename": "background.js",
+      "title": {
+        "zh": "带柱子背景的玉珏图",
+        "en": "Radial-Bar plot with background"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/A2Ik7iu%26YW/519113a4-f42e-48b2-a75d-1021add83c30.png"
+    },
+    {
+      "filename": "line.js",
+      "title": {
+        "zh": "线形玉珏图",
+        "en": "Radial-line plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*GC6wT4GQ-oMAAAAAAAAAAABkARQnAQ"
+    }
+  ]
+}

@@ -71,10 +71,6 @@ export type ArcBaseOptions = {
    */
   readonly angleField: string;
   /**
-   * @title 颜色映射字段
-   */
-  readonly colorField: string;
-  /**
    * @title 饼图半径
    */
   readonly radius?: number;

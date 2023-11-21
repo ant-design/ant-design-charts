@@ -12,19 +12,19 @@ const data = [
   { type: '10-30分', value: 0.01 },
   { type: '30+分', value: 0.015 },
 ];
-const paletteSemanticRed = '#F4664A';
-const brandColor = '#5B8FF9';
 
 const DemoColumn = () => {
   const config = {
     data,
     xField: 'type',
     yField: 'value',
-    colorField: ({ type }) => {
-      if (type === '10-30分' || type === '30+分') {
-        return paletteSemanticRed;
-      }
-      return brandColor;
+    style: {
+      fill: ({ type }) => {
+        if (type === '10-30分' || type === '30+分') {
+          return '#22CBCC';
+        }
+        return '#2989FF';
+      },
     },
     label: {
       text: (originData) => {

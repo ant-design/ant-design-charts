@@ -1,0 +1,48 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "basic.js",
+      "title": {
+        "zh": "基础韦恩图",
+        "en": "Basic venn plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/BJw8fy6uxU/009dd50e-c2a4-48dc-a79a-dc417123889f.png"
+    },
+    {
+      "filename": "custom-color.js",
+      "title": {
+        "zh": "自定义颜色",
+        "en": "Custom color"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_lwk8lu/afts/img/A*zLutTqj3As0AAAAAAAAAAAAADma_AQ/original"
+    },
+    {
+      "filename": "label.js",
+      "title": {
+        "zh": "设置label",
+        "en": "Label setting"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/BJw8fy6uxU/009dd50e-c2a4-48dc-a79a-dc417123889f.png"
+    },
+    {
+      "filename": "custom.js",
+      "title": {
+        "zh": "自定义韦恩图",
+        "en": "Customize venn plot"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/T6cgHx5BHB/f2137e3b-5784-4626-a986-109fc8cb5feb.png"
+    },
+    {
+      "filename": "interaction.js",
+      "title": {
+        "zh": "韦恩图-元素交互",
+        "en": "venn plot - with element action"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/BJw8fy6uxU/009dd50e-c2a4-48dc-a79a-dc417123889f.png"
+    }
+  ]
+}
