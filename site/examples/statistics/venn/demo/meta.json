@@ -10,7 +10,7 @@
         "zh": "基础韦恩图",
         "en": "Basic venn plot"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/BJw8fy6uxU/009dd50e-c2a4-48dc-a79a-dc417123889f.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*I7XlS4ps7IcAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "custom-color.js",
@@ -18,7 +18,7 @@
         "zh": "自定义颜色",
         "en": "Custom color"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_lwk8lu/afts/img/A*zLutTqj3As0AAAAAAAAAAAAADma_AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*STtHQ6brAMAAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "label.js",
@@ -26,7 +26,7 @@
         "zh": "设置label",
         "en": "Label setting"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/BJw8fy6uxU/009dd50e-c2a4-48dc-a79a-dc417123889f.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*h7FaRLXj2kgAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "custom.js",
@@ -34,7 +34,7 @@
         "zh": "自定义韦恩图",
         "en": "Customize venn plot"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/T6cgHx5BHB/f2137e3b-5784-4626-a986-109fc8cb5feb.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*7qg4S4iOrnkAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "interaction.js",
@@ -42,7 +42,7 @@
         "zh": "韦恩图-元素交互",
         "en": "venn plot - with element action"
       },
-      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/BJw8fy6uxU/009dd50e-c2a4-48dc-a79a-dc417123889f.png"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*Y5IuSo4u7PEAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
