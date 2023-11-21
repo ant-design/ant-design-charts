@@ -33,7 +33,7 @@ const DemoDualAxes = () => {
         yField: 'value',
         colorField: 'type',
         group: true,
-        interaction: { elementHighlightByColor: { background: true, } },
+        interaction: { elementHighlightByColor: { background: true } },
       },
       {
         data: transformData,
@@ -43,14 +43,14 @@ const DemoDualAxes = () => {
           stroke: '#5D7092',
           lineWidth: 2,
         },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {
             crosshairs: false,
             marker: false,
-          }
-        }
+          },
+        },
       },
     ],
   };

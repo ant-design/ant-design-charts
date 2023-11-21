@@ -10,7 +10,7 @@ export default defineConfig({
     title: 'Ant Design Charts',
     description: 'AntV react component library',
     defaultLanguage: 'zh',
-    siteUrl: 'https://charts.ant.design',
+    siteUrl: 'https://ant-design-charts.antgroup.com',
     showChinaMirror: false,
     footerTheme: 'light', // 白色 底部主题
     githubUrl: repository.url,
@@ -127,7 +127,7 @@ export default defineConfig({
       },
     ],
     detail: {
-      engine:{
+      engine: {
         zh: 'AntV react',
         en: 'AntV react',
       },

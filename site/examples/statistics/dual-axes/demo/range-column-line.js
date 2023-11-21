@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 
 const DemoDualAxes = () => {
   const data = [
-    { time: '2019-03', value: [200, 350], count: 800, },
-    { time: '2019-04', value: [400, 650], count: 600, },
-    { time: '2019-05', value: [150, 350], count: 400, },
-    { time: '2019-06', value: [100, 450], count: 380, },
-    { time: '2019-07', value: [500, 550], count: 220, },
+    { time: '2019-03', value: [200, 350], count: 800 },
+    { time: '2019-04', value: [400, 650], count: 600 },
+    { time: '2019-05', value: [150, 350], count: 400 },
+    { time: '2019-06', value: [100, 450], count: 380 },
+    { time: '2019-07', value: [500, 550], count: 220 },
   ];
 
   const config = {
@@ -22,7 +22,6 @@ const DemoDualAxes = () => {
           stroke: '#5B8FF9',
           maxWidth: 100,
         },
-        axis: { y: { style: { titleFill: '#5B8FF9' }, }, },
       },
       {
         type: 'line',
@@ -31,7 +30,7 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           lineWidth: 2,
         },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         axis: {
           y: {
             position: 'right',

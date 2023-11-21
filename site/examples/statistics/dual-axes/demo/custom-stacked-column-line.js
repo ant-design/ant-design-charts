@@ -30,10 +30,9 @@ const DemoDualAxes = () => {
       color: {
         itemMarker: 'round',
         itemMarkerSize: 14,
-        position: 'right'
+        position: 'right',
       },
     },
-    axis: { y: { title: null } },
     children: [
       {
         data: uvBillData,
@@ -43,10 +42,10 @@ const DemoDualAxes = () => {
         colorField: 'type',
         style: { maxWidth: 80 },
         label: { position: 'inside' },
-        meta: { y: { domainMax: 1200 } },
+        scale: { y: { domainMax: 1200 } },
         interaction: {
           elementHighlight: true,
-          elementHighlightByColor: { background: true }
+          elementHighlightByColor: { background: true },
         },
       },
       {
@@ -55,14 +54,14 @@ const DemoDualAxes = () => {
         yField: 'count',
         colorField: () => 'count',
         style: { lineWidth: 2 },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {
             crosshairs: false,
             marker: false,
-          }
-        }
+          },
+        },
       },
     ],
     theme: { category10: ['#F4A49E', '#FACDAA', '#EE7B91', '#E85285', '#BE408C', '#BE408C'] },

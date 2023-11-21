@@ -22,7 +22,7 @@ const DemoColumn = () => {
     data,
     xField: 'month',
     yField: 'value',
-    meta: {
+    scale: {
       y: {
         domainMax: 2000,
         domainMin: -1000,

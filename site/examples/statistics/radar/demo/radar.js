@@ -37,7 +37,7 @@ const DemoRadar = () => {
         fillOpacity: 0.5,
       },
     },
-    meta: { x: { padding: 0.5, align: 0 }, y: { tickCount: 5, domainMax: 80 } },
+    scale: { x: { padding: 0.5, align: 0 }, y: { tickCount: 5, domainMax: 80 } },
     axis: { x: { grid: true }, y: { zIndex: 1, title: false } },
     interaction: { tooltip: { style: { crosshairsLineDash: [4, 4] } } },
     style: {

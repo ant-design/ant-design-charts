@@ -20,7 +20,7 @@ const DemoLine = () => {
       lineWidth: 1.5,
       lineJoin: 'round',
     },
-    meta: {
+    scale: {
       x: { utc: true },
       y: { nice: true },
       color: { type: 'threshold', domain: [55], range: ['black', 'red'] },

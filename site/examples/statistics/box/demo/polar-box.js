@@ -21,9 +21,9 @@ const DemoBox = () => {
     xField: 'x',
     yField: 'y',
     colorField: 'x',
-    meta: { x: { paddingInner: 0.6, paddingOuter: 0.3 }, y: { zero: true } },
-    coordinate: { type: "polar", innerRadius: 0.2 },
-    style: { stroke: "black" },
+    scale: { x: { paddingInner: 0.6, paddingOuter: 0.3 }, y: { zero: true } },
+    coordinate: { type: 'polar', innerRadius: 0.2 },
+    style: { stroke: 'black' },
     axis: { y: { tickCount: 5 } },
     legend: false,
   };

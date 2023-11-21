@@ -12,9 +12,6 @@ const DemoArea = () => {
     yField: 'unemployed',
     colorField: 'industry',
     shapeField: 'smooth',
-    meta: {
-      x: { utc: true },
-    },
     axis: {
       x: { title: 'Date' },
       y: { labelFormatter: '~s' },

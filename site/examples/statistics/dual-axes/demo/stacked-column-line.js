@@ -26,7 +26,6 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
-    axis: { y: { title: null } },
     children: [
       {
         data: uvBillData,
@@ -35,8 +34,8 @@ const DemoDualAxes = () => {
         stack: true,
         colorField: 'type',
         style: { maxWidth: 80 },
-        meta: { y: { domainMax: 1200 } },
-        interaction: { elementHighlightByColor: { background: true, } },
+        scale: { y: { domainMax: 1200 } },
+        interaction: { elementHighlightByColor: { background: true } },
       },
       {
         data: transformData,
@@ -45,13 +44,13 @@ const DemoDualAxes = () => {
         colorField: () => 'count',
         style: { lineWidth: 2 },
         axis: { y: { position: 'right' } },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         interaction: {
           tooltip: {
             crosshairs: false,
             marker: false,
-          }
-        }
+          },
+        },
       },
     ],
   };
