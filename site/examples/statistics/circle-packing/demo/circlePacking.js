@@ -20,17 +20,6 @@ const DemoCirclePacking = () => {
         interpolate: interpolateHcl
       },
     },
-    label: {
-      text: (d) => {
-        return (d.height === 0 ? `${d.data.name}` : "")
-      },
-      position: 'inside',
-      transform: [
-        {
-          type: 'overflowHide',
-        },
-      ],
-    },
   };
   return <CirclePacking {...config} />;
 };
