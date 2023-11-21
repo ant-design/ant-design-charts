@@ -37,7 +37,7 @@ export function adaptor(params: Params) {
    * tooltip 配置
    * @param params
    */
-  const tooltip = (params) => {
+  const tooltip = (params: Params) => {
     const { options } = params;
     const { tooltip, xField, yField } = options;
     if (!tooltip) {
@@ -57,7 +57,7 @@ export function adaptor(params: Params) {
    * background 配置
    * @param params
    */
-  const background = (params) => {
+  const background = (params: Params) => {
     const { options } = params;
     const { markBackground, children, scale, coordinate, xField } = options;
     const domain = get(scale, 'y.domain', []);
@@ -79,6 +79,7 @@ export function adaptor(params: Params) {
           endAngle: (3 / 2) * Math.PI,
         },
         animate: false,
+        ...markBackground,
       });
     }
     return params;
