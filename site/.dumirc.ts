@@ -127,9 +127,13 @@ export default defineConfig({
       },
     ],
     detail: {
+      engine: {
+        zh: 'AntV React',
+        en: 'AntV React',
+      },
       title: {
-        zh: 'AntV React·可视化组件库',
-        en: 'AntV React·Component Library',
+        zh: '·可视化组件库',
+        en: '·Component Library',
       },
       description: {
         zh: '简单好用的 React 图表库。',
