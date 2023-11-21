@@ -3,40 +3,33 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const DemoLine = () => {
+  const data = [
+    { year: '1991', value: 3 },
+    { year: '1992', value: 4 },
+    { year: '1993', value: 3.5 },
+    { year: '1994', value: 5 },
+    { year: '1995', value: 4.9 },
+    { year: '1996', value: 6 },
+    { year: '1997', value: 7 },
+    { year: '1998', value: 9 },
+    { year: '1999', value: 13 },
+  ];
   const config = {
-    data: {
-      type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json',
+    data,
+    xField: 'year',
+    yField: 'value',
+    point: {
+      shapeField: 'square',
+      sizeField: 4,
     },
-    xField: 'Date',
-    yField: 'scales',
-    shapeField: 'smooth',
+    interaction: {
+      tooltip: {
+        marker: false,
+      },
+    },
     style: {
       lineWidth: 2,
     },
-    annotations: [
-      {
-        type: 'text',
-        data: ['2014-03', 1834],
-        style: {
-          text: '2014-03, 受比特币影响，blockchain 1834',
-          wordWrap: true,
-          wordWrapWidth: 164,
-          dx: -174,
-          dy: 30,
-          fill: '#2C3542',
-          fillOpacity: 0.65,
-          fontSize: 10,
-          background: true,
-          backgroundRadius: 2,
-          connector: true,
-          startMarker: true,
-          startMarkerFill: '#2C3542',
-          startMarkerFillOpacity: 0.65,
-        },
-        tooltip: false,
-      },
-    ],
   };
   return <Line {...config} />;
 };

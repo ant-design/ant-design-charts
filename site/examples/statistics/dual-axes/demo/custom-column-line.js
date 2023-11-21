@@ -14,7 +14,6 @@ const DemoDualAxes = () => {
   const config = {
     data,
     xField: 'time',
-    axis: { y: { title: null } },
     children: [
       {
         type: 'interval',
@@ -23,7 +22,7 @@ const DemoDualAxes = () => {
         label: { position: 'inside' },
         interaction: {
           elementHighlight: true,
-          elementHighlightByColor: { background: true }
+          elementHighlightByColor: { background: true },
         },
       },
       {
@@ -34,14 +33,14 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           lineWidth: 2,
         },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {
             crosshairs: false,
             marker: false,
-          }
-        }
+          },
+        },
       },
     ],
     annotations: [

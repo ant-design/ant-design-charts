@@ -6,7 +6,7 @@ const DemoBar = () => {
   const config = {
     data: {
       type: 'fetch',
-      value: 'https://site-dataa-s09001742540-site.dev.alipay.net/antd-charts/bar-stacked.json',
+      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/bar-stacked.json',
     },
     xField: 'state',
     yField: 'population',

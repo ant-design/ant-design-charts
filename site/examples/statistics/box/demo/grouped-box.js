@@ -89,7 +89,7 @@ const DemoBox = () => {
     style: {
       stroke: 'black',
     },
-    meta: {
+    scale: {
       x: { paddingInner: 0.2, paddingOuter: 0.1 },
       y: { zero: true },
       series: { paddingInner: 0.3, paddingOuter: 0.1 },

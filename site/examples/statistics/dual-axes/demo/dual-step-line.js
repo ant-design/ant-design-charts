@@ -27,7 +27,7 @@ const DemoDualAxes = () => {
           stroke: '#29cae4',
           lineWidth: 2,
         },
-        meta: {
+        scale: {
           y: { independent: true },
         },
       },

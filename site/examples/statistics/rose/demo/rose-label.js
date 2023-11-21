@@ -9,26 +9,25 @@ const DemoRose = () => {
     autoFit: false,
     radius: 0.85,
     data: {
-      type: "fetch",
-      value:
-        "https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/rose-rose-label.json",
+      type: 'fetch',
+      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/rose-rose-label.json',
     },
     xField: 'year',
     yField: 'people',
     colorField: 'year',
-    transform: [{ type: "groupX", y: "sum" }],
-    meta: { y: { type: "sqrt" }, x: { padding: 0 } },
+    transform: [{ type: 'groupX', y: 'sum' }],
+    scale: { y: { type: 'sqrt' }, x: { padding: 0 } },
     axis: false,
-    legend: { color: { length: 400, layout: { justifyContent: "center" } } },
+    legend: { color: { length: 400, layout: { justifyContent: 'center' } } },
     labels: [
       {
-        text: "people",
-        position: "outside",
-        formatter: "~s",
-        transform: [{ type: "overlapDodgeY" }],
+        text: 'people',
+        position: 'outside',
+        formatter: '~s',
+        transform: [{ type: 'overlapDodgeY' }],
       },
     ],
-    tooltip: { items: [{ channel: "y", valueFormatter: "~s" }] },
+    tooltip: { items: [{ channel: 'y', valueFormatter: '~s' }] },
   };
   return <Rose {...config} />;
 };

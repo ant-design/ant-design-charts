@@ -11,13 +11,12 @@ const DemoLine = () => {
     xField: (d) => new Date(d.date),
     yField: 'value',
     colorField: 'condition',
-    seriesField: () => 'a',
     shapeField: 'hvh',
     style: {
       gradient: 'x',
       lineWidth: 2,
     },
-    meta: {
+    scale: {
       y: { nice: true },
       color: {
         domain: ['CLR', 'FEW', 'SCT', 'BKN', 'OVC', 'VV '],

@@ -15,16 +15,10 @@ const DemoPie = () => {
     data,
     angleField: 'value',
     colorField: 'type',
-    inset: 5,
-    paddingRight: 80,
+    radius: 0.8,
     label: {
       text: (d) => `${d.type}\n ${d.value}`,
       position: 'spider',
-      transform: [
-        {
-          type: 'overlapDodgeY',
-        },
-      ],
     },
     legend: {
       color: {

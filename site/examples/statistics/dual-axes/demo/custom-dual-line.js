@@ -34,7 +34,7 @@ const DemoDualAxes = () => {
             textAnchor: 'middle',
           },
         },
-        meta: {
+        scale: {
           y: { independent: true },
         },
         axis: {

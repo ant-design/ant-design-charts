@@ -36,7 +36,6 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
-    axis: { y: { title: null } },
     interaction: { tooltip: { sort: (d) => ['uv', 'bill', 'a', 'b', 'c'].indexOf(d.name) } },
     children: [
       {
@@ -46,8 +45,8 @@ const DemoDualAxes = () => {
         colorField: 'type',
         stack: true,
         style: { maxWidth: 80 },
-        meta: { y: { domainMax: 1200 } },
-        interaction: { elementHighlightByColor: { background: true, } },
+        scale: { y: { domainMax: 1200 } },
+        interaction: { elementHighlightByColor: { background: true } },
       },
       {
         data: transformData,
@@ -58,24 +57,24 @@ const DemoDualAxes = () => {
           lineWidth: 2,
           opacity: (d) => {
             if (d[0].name === 'a') {
-              return 1
+              return 1;
             }
-            return 0.5
+            return 0.5;
           },
           lineDash: (d) => {
             if (d[0].name === 'a') {
-              return [1, 4]
+              return [1, 4];
             }
           },
         },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {
             crosshairs: false,
             marker: false,
-          }
-        }
+          },
+        },
       },
     ],
   };

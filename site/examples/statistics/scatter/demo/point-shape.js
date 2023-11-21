@@ -13,7 +13,7 @@ const DemoScatter = () => {
     colorField: 'category',
     sizeField: 5,
     shapeField: 'category',
-    meta: {
+    scale: {
       shape: { range: ['point', 'plus', 'diamond'] },
     },
   };

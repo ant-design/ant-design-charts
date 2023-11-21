@@ -44,7 +44,7 @@ const DemoDualAxes = () => {
         colorField: 'type',
         group: true,
         style: { maxWidth: 80 },
-        interaction: { elementHighlightByColor: { background: true, } },
+        interaction: { elementHighlightByColor: { background: true } },
       },
       {
         data: transformData,
@@ -52,14 +52,14 @@ const DemoDualAxes = () => {
         yField: 'count',
         colorField: 'name',
         style: { lineWidth: 2 },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {
             crosshairs: false,
             marker: false,
-          }
-        }
+          },
+        },
       },
     ],
   };

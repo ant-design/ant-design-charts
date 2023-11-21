@@ -25,7 +25,7 @@ const DemoArea = () => {
     axis: {
       y: { title: false },
     },
-    meta: {
+    scale: {
       x: { type: 'linear', tickCount: 10 },
     },
     point: {

@@ -5,17 +5,16 @@ import ReactDOM from 'react-dom';
 const DemoScatter = () => {
   const config = {
     data: {
-      type: "fetch",
-      value:
-        "https://gw.alipayobjects.com/os/antvdemo/assets/data/bubble.json",
+      type: 'fetch',
+      value: 'https://gw.alipayobjects.com/os/antvdemo/assets/data/bubble.json',
     },
     xField: 'GDP',
     yField: 'LifeExpectancy',
     sizeField: 'Population',
     colorField: 'continent',
     shapeField: 'point',
-    meta: {
-      size: { type: "log", range: [4, 20] },
+    scale: {
+      size: { type: 'log', range: [4, 20] },
     },
     style: { fillOpacity: 0.3, lineWidth: 1 },
   };

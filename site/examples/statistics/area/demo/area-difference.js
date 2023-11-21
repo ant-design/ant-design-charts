@@ -21,7 +21,7 @@ const DemoArea = () => {
     colorField: 'city',
     shapeField: 'hvh',
     diff: true,
-    meta: {
+    scale: {
       color: { range: ['#67a9cf', '#ef8a62'] },
     },
     line: {

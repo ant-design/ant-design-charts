@@ -7,7 +7,7 @@ const DemoColumn = () => {
     data: [{ letter: 'A', frequency: 120 }],
     xField: 'letter',
     yField: 'frequency',
-    meta: {
+    scale: {
       x: { padding: 0.5 },
     },
     style: {

@@ -17,7 +17,7 @@ export class DualAxes extends Plot<DualAxesOptions> {
     return {
       type: 'view',
       axis: {
-        y: { title: false },
+        y: { title: false, tick: false },
         x: { title: false },
       },
     };

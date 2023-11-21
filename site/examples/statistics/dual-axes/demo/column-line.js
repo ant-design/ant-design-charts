@@ -14,7 +14,6 @@ const DemoDualAxes = () => {
   const config = {
     data,
     xField: 'time',
-    axis: { y: { title: null } },
     children: [
       {
         type: 'interval',
@@ -28,7 +27,7 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           lineWidth: 2,
         },
-        meta: { y: { independent: true } },
+        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
       },
     ],

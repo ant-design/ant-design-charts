@@ -20,16 +20,16 @@ const DemoRadar = () => {
     area: {
       style: {
         fillOpacity: 0.2,
-      }
+      },
     },
-    meta: {
+    scale: {
       x: {
         padding: 0.5,
         align: 0,
       },
       y: {
         nice: true,
-      }
+      },
     },
     axis: {
       x: {
