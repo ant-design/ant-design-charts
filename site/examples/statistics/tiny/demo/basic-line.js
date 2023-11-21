@@ -3,18 +3,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const DemoLine = () => {
+  const data = [
+    264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513, 546, 983, 340, 539, 243, 226, 192,
+  ].map((value, index) => ({ value, index }));
   const config = {
-    data: [
-      264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513, 546, 983, 340, 539, 243, 226, 192,
-    ],
+    data,
     width: 480,
     height: 120,
     shapeField: 'smooth',
-    xField: (_, idx) => idx,
-    yField: (d) => d,
+    xField: 'index',
+    yField: 'value',
     label: {
       selector: 'last',
-      text: (d) => d,
+      text: (d) => d.value,
       textAlign: 'right',
       textBaseline: 'bottom',
       dx: -10,
@@ -22,8 +23,6 @@ const DemoLine = () => {
       connector: true,
       style: { fontSize: 10 },
     },
-    animate: { enter: { type: 'fadeIn' } },
-    interaction: { tooltip: { render: (e, { title, items }) => items[0].value } },
   };
   return <Tiny.Line {...config} />;
 };
