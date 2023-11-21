@@ -4,8 +4,7 @@ import ReactDOM from 'react-dom';
 
 const data = [
   264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513, 546, 983, 340, 539, 243, 226, 192,
-];
-
+].map((value, index) => ({ value, index }));
 const DemoArea = () => {
   const config = {
     data,
@@ -13,21 +12,16 @@ const DemoArea = () => {
     height: 80,
     padding: 8,
     shapeField: 'smooth',
-    xField: (_, idx) => idx,
-    yField: (d) => d,
-    scale: {
-      y: { zero: true },
-    },
+    xField: 'index',
+    yField: 'value',
     style: {
       fill: 'linear-gradient(-90deg, white 0%, darkgreen 100%)',
       fillOpacity: 0.6,
     },
-    animate: { enter: { type: 'fadeIn' } },
-    interaction: { tooltip: { render: (e, { title, items }) => items[0].value } },
     annotations: [
       {
         type: 'lineY',
-        data: [data.reduce((acc, cur) => acc + cur, 0) / data.length],
+        data: [data.reduce((acc, cur) => acc + cur.value, 0) / data.length],
         label: {
           text: '平均值',
           position: 'left',

@@ -26,7 +26,7 @@
         "zh": "堆叠面积图",
         "en": "Stacked Area Chart"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*vymgT7mCD2YAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*z1rZToSDbZcAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "percentage-area.js",
@@ -34,7 +34,7 @@
         "zh": "归一化堆积面积图",
         "en": "Normalized Area, MaxIndex"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*WZe_T5tyWgoAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*pC8lSIAE9g0AAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "step-area.js",
@@ -58,7 +58,7 @@
         "zh": "彩条图",
         "en": "Stripe Chart"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*2YiAT6WCb3oAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jyBQQo9Dr84AAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "streamgraph.js",
@@ -66,7 +66,7 @@
         "zh": "河流图",
         "en": "Streamgraph"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*bFN4S7PCH9gAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*q6vQRZf60uEAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "range-spline-area.js",
@@ -82,7 +82,7 @@
         "zh": "出现顺序堆叠面积图",
         "en": "Stacked Area"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*3JKERLor91gAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*eLO6QLNTEAQAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "area-difference.js",

@@ -18,7 +18,7 @@
         "zh": "预处理箱线图",
         "en": "Boxplot"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*pU-NQa1PgxQAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A746SrYUxbsAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "grouped-box.js",
@@ -26,7 +26,7 @@
         "zh": "预处理分组箱线图",
         "en": "Grouped Boxplot"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*5E47Qa9nQaQAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*90B8R433zSAAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "boxplot-no-outlier.js",
@@ -50,7 +50,7 @@
         "zh": "带异常点分组箱线图",
         "en": "grouped Boxplot with Outlier"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ex7XR4hQTOYAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*w565TbseqlMAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "boxplot-one-dimension.js",
@@ -66,7 +66,7 @@
         "zh": "径向箱线图",
         "en": "Polar Boxplot"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*cCMOQ7YsuFkAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*G2DrSK5xIzsAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
       "filename": "box-tooltip.js",
