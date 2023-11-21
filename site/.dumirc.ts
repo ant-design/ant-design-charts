@@ -139,8 +139,20 @@ export default defineConfig({
         zh: '简单好用的 React 图表库。',
         en: 'Simple and easy to use React chart library.',
       },
-      image: 'https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*f_gcSbpq-6kAAAAAAAAAAABkARQnAQ',
+      image: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*5bIcTaxarjoAAAAAAAAAAAAADmJ7AQ/original',
+      imageStyle: {
+        transform: 'scale(0.5)',
+        marginLeft: '150px',
+        marginTop: '-80px',
+      },
       buttons: [
+        {
+          text: {
+            zh: '开始使用',
+            en: 'Getting Started',
+          },
+          link: `/manual/introduction`,
+        },
         {
           text: {
             zh: '图表示例',
@@ -148,13 +160,6 @@ export default defineConfig({
           },
           link: `/examples/`,
           type: 'primary',
-        },
-        {
-          text: {
-            zh: '开始使用',
-            en: 'Getting Started',
-          },
-          link: `/manual/introduction`,
         },
       ],
     },
