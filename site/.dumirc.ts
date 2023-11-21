@@ -139,11 +139,12 @@ export default defineConfig({
         zh: '简单好用的 React 图表库。',
         en: 'Simple and easy to use React chart library.',
       },
-      image: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*5bIcTaxarjoAAAAAAAAAAAAADmJ7AQ/original',
+      image:
+        'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*wi05Q7Za5ZIAAAAAAAAAAAAADmJ7AQ/original',
       imageStyle: {
-        transform: 'scale(0.5)',
-        marginLeft: '150px',
-        marginTop: '-80px',
+        marginLeft: '80px',
+        magrinTop: '30px',
+        transform: 'scale(1.4)',
       },
       buttons: [
         {
