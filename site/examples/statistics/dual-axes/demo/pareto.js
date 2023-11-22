@@ -45,7 +45,7 @@ const DemoDualAxes = () => {
         yField: 'value',
         meta: { x: { padding: 0.5 }, y: { domainMax: 312, tickCount: 5 } },
         style: { fill: (d) => (d.percentage < 0.1 ? "#E24B26" : "#78B3F0") },
-        axis: { x: { title: null }, y: { title: "Defect frequency" } },
+        axis: { y: { title: "Defect frequency" } },
         labels: [
           {
             text: (d) => `${(d.percentage * 100).toFixed(1)}%`,
@@ -76,7 +76,6 @@ const DemoDualAxes = () => {
         yField: 'accumulate',
         shapeField: 'diamond',
         meta: { y: { independent: true, domainMin: 0 } },
-        axis: { y: null },
         tooltip: null,
       },
     ],

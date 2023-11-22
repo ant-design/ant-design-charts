@@ -26,7 +26,6 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
-    axis: { y: { title: null } },
     children: [
       {
         data: uvBillData,

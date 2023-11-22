@@ -36,7 +36,6 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
-    axis: { y: { title: null } },
     interaction: { tooltip: { sort: (d) => ['uv', 'bill', 'a', 'b', 'c'].indexOf(d.name) } },
     children: [
       {

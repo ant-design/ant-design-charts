@@ -42,7 +42,7 @@ const DemoDualAxes = () => {
         group: true,
         style: { maxWidth: 50 },
         label: { position: 'inside' },
-        scale: { color: { range: ['#5B8FF9', '#5D7092'] } },
+        meta: { color: { range: ['#5B8FF9', '#5D7092'] } },
         interaction: { elementHighlightByColor: { background: true, } },
       },
       {

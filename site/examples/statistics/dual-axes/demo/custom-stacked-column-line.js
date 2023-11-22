@@ -33,7 +33,6 @@ const DemoDualAxes = () => {
         position: 'right'
       },
     },
-    axis: { y: { title: null } },
     children: [
       {
         data: uvBillData,

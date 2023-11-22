@@ -14,7 +14,6 @@ const DemoDualAxes = () => {
   const config = {
     data,
     xField: 'time',
-    axis: { y: { title: null } },
     children: [
       {
         type: 'interval',
