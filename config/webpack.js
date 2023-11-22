@@ -34,11 +34,13 @@ const getWebpackConfig = (name, library) => {
       },
       'react-dom': {
         root: 'ReactDOM',
+        commonjs2: 'react-dom',
         commonjs: 'react-dom',
         amd: 'react-dom',
       },
       'lodash-es': {
         root: '_',
+        commonjs2: 'lodash',
         commonjs: 'lodash',
         amd: 'lodash',
       },
