@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/plots",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "G2Plot Statistical chart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -38,7 +38,6 @@
   "dependencies": {
     "@antv/event-emitter": "^0.1.3",
     "@antv/g2": "^5.1.9",
-    "size-sensor": "^1.0.1",
     "@ant-design/charts-util": "workspace:*"
   },
   "peerDependencies": {

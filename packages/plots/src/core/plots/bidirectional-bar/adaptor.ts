@@ -1,6 +1,6 @@
 import { mark } from '../../components';
 import type { Adaptor } from '../../types';
-import { flow, transformOptions, set, isString, isArray, get } from '../../utils';
+import { flow, transformOptions, set, isArray, get, isPlainObject } from '../../utils';
 import { HORIZONTAL_MARGIN, AXIS_LABEL_PADDING, VERTICAL_MARGIN } from './constants';
 import type { BidirectionalBarOptions } from './type';
 
@@ -25,6 +25,7 @@ export function adaptor(params: Params) {
   const data = (params: Params) => {
     const { options } = params;
     const { yField, children, data } = options;
+    if (isPlainObject(data)) return params;
     const transformData = isArray(get(data, [0])) ? data : [data, data];
     children.forEach((child, index) => {
       set(child, 'data', [...transformData[index].map((item) => ({ groupKey: yField[index], ...item }))]);
