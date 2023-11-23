@@ -33,13 +33,10 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * new Chart 所需配置
    */
   private getChartOptions() {
-    // 逻辑简化：如果存在 width 或 height，则直接使用，否则使用容器大小
-    const { width, height, autoFit = true } = this.options;
+    const { autoFit = true } = this.options;
     return {
       ...pick(this.options, CHART_OPTIONS),
       container: this.container,
-      width,
-      height,
       autoFit,
     };
   }
