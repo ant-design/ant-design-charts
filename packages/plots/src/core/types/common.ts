@@ -83,6 +83,10 @@ export type ArcBaseOptions = {
 export type Options = Spec &
   BaseOptions & {
     /**
+     * @title 标注
+     */
+    annotations?: Array<Options & { type: unknown }>;
+    /**
      * @title 嵌套 view
      * @description 用于 Mix 等复杂图表
      */
