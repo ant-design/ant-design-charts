@@ -44,7 +44,6 @@ const DemoDualAxes = () => {
         colorField: () => 'count',
         style: { lineWidth: 2 },
         axis: { y: { position: 'right' } },
-        scale: { y: { independent: true } },
         interaction: {
           tooltip: {
             crosshairs: false,

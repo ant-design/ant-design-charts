@@ -41,6 +41,7 @@ const DemoDualAxes = () => {
     xField: 'time',
     padding: 70,
     slider: { x: true },
+    scale: { y: { nice: false } },
     children: [
       {
         type: 'interval',
@@ -51,7 +52,6 @@ const DemoDualAxes = () => {
         type: 'line',
         yField: 'completeTime',
         style: { stroke: '#5AD8A6', lineWidth: 2 },
-        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
       },
     ],

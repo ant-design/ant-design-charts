@@ -44,6 +44,7 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
+    scale: { y: { independent: false } },
     children: [
       {
         data: uvBillData,

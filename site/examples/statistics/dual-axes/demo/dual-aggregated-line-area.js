@@ -15,7 +15,6 @@ const DemoDualAxes = () => {
         xField: (d) => new Date(d.date).getUTCMonth(),
         yField: ['temp_max', 'temp_min'],
         transform: [{ type: 'groupX', y: 'mean', y1: 'mean' }],
-        scale: { y: { nice: true } },
         style: { fill: '#85c5A6', fillOpacity: 0.3 },
         axis: { y: { title: 'Avg. Temperature (°C)', titleFill: '#85C5A6' } },
         tooltip: {
@@ -31,12 +30,11 @@ const DemoDualAxes = () => {
         yField: 'precipitation',
         shapeField: 'smooth',
         transform: [{ type: 'groupX', y: 'mean' }],
-        scale: { y: { independent: true } },
         style: { stroke: 'steelblue' },
+        scale: { y: { nice: false } },
         axis: {
           y: {
             position: 'right',
-            grid: null,
             title: 'Precipitation (inches)',
             titleFill: 'steelblue',
           },

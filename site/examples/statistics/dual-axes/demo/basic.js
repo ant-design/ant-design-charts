@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 const DemoDualAxes = () => {
   const config = {
+    xField: 'time',
     data: [
       { time: '10:10', call: 4, waiting: 2, people: 2 },
       { time: '10:15', call: 2, waiting: 6, people: 3 },
@@ -16,29 +17,17 @@ const DemoDualAxes = () => {
     children: [
       {
         type: 'interval',
-        xField: 'time',
         yField: 'waiting',
       },
       {
         type: 'line',
-        xField: 'time',
         yField: 'people',
         shapeField: 'smooth',
         style: {
           stroke: '#fdae6b',
           lineWidth: 2,
         },
-        scale: {
-          y: {
-            independent: true,
-          },
-        },
-        axis: {
-          y: {
-            position: 'right',
-            // grid: null,
-          },
-        },
+        axis: { y: { position: 'right' } },
       },
     ],
   };

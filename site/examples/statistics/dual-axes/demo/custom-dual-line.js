@@ -30,12 +30,9 @@ const DemoDualAxes = () => {
         label: {
           text: (datum) => `${datum.value}个`,
           style: {
-            dy: -12,
+            dy: -10,
             textAnchor: 'middle',
           },
-        },
-        scale: {
-          y: { independent: true },
         },
         axis: {
           y: {
@@ -56,7 +53,7 @@ const DemoDualAxes = () => {
         label: {
           text: (datum) => `${datum.count}个`,
           style: {
-            dy: -12,
+            dy: -10,
             textAnchor: 'middle',
           },
         },
@@ -64,9 +61,7 @@ const DemoDualAxes = () => {
           y: {
             position: 'right',
             title: 'count',
-            style: {
-              titleFill: '#5AD8A6',
-            },
+            style: { titleFill: '#5AD8A6' }
           },
         },
       },
@@ -78,6 +73,7 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           fill: '#fff',
         },
+        axis: { y: false }
       },
     ],
   };

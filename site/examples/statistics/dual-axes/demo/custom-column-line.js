@@ -20,6 +20,7 @@ const DemoDualAxes = () => {
         yField: 'value',
         style: { maxWidth: 80 },
         label: { position: 'inside' },
+        scale: { y: { independent: false } },
         interaction: {
           elementHighlight: true,
           elementHighlightByColor: { background: true },
@@ -33,7 +34,6 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           lineWidth: 2,
         },
-        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {

@@ -40,14 +40,11 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           lineWidth: 2,
         },
-        scale: { y: { independent: true } },
         axis: {
           y: {
             position: 'right',
             title: 'count',
-            style: {
-              titleFill: '#5AD8A6',
-            },
+            style: { titleFill: '#5AD8A6' }
           },
         },
       },
