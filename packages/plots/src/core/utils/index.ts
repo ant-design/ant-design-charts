@@ -22,6 +22,7 @@ export {
   maxBy,
   isObject,
   uniqBy,
+  isPlainObject,
 } from 'lodash-es';
 export { getCustomKeys } from './get-custom-keys';
 export { isCompositePlot } from './is-composite-plot';
