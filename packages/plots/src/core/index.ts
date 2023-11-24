@@ -3,6 +3,7 @@ export type { AreaOptions } from './plots/area';
 export type { BarOptions } from './plots/bar';
 export type { ColumnOptions } from './plots/column';
 export type { DualAxesOptions } from './plots/dual-axes';
+export type { MixOptions } from './plots/mix';
 export type { FunnelOptions } from './plots/funnel';
 export type { LineOptions } from './plots/line';
 export type { PieOptions } from './plots/pie';
@@ -65,6 +66,7 @@ import { CirclePacking } from './plots/circlePacking';
 import { Violin } from './plots/violin';
 import { BidirectionalBar } from './plots/bidirectional-bar';
 import { Venn } from './plots/venn';
+import { Mix } from './plots/mix';
 
 export const Plots = {
   Base,
@@ -99,4 +101,5 @@ export const Plots = {
   Violin,
   BidirectionalBar,
   Venn,
+  Mix,
 };
