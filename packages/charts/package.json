@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@ant-design/charts",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "AntV upper level visual component library",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
