@@ -82,7 +82,22 @@ export default defineConfig({
         },
         order: 3,
       },
-
+      {
+        slug: 'options/plots/annotaion',
+        title: {
+          zh: '标记 - Annotations',
+          en: 'Annotations',
+        },
+        order: 3,
+      },
+      {
+        slug: 'options/plots/events',
+        title: {
+          zh: '事件 - Events',
+          en: 'Events',
+        },
+        order: 4,
+      },
       {
         slug: 'options/plots/animation',
         title: {
