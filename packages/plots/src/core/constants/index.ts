@@ -68,6 +68,7 @@ export const TRANSFORM_OPTION_KEY = {
     textField: 'text',
     valueField: 'value',
     binField: 'x',
+    srcField: 'src',
   },
   transform: {
     /**
