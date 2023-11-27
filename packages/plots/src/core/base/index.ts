@@ -1,6 +1,5 @@
 import EE from '@antv/event-emitter';
 import { Chart, ChartEvent } from '@antv/g2';
-import { bind } from 'size-sensor';
 import { CHART_OPTIONS, ANNOTATION_LIST, SKIP_DEL_CUSTOM_SIGN } from '../constants';
 import { merge, omit, pick, deleteCustomKeys, deleteChartOptionKeys } from '../utils';
 import { Annotaion } from '../annotation';
@@ -21,8 +20,6 @@ export abstract class Plot<O extends PickOptions> extends EE {
   public options: O;
   /** G2 chart 实例 */
   public chart: Chart;
-  /** resizer unbind  */
-  private unbind: () => void;
 
   constructor(container: string | HTMLElement, options: O) {
     super();
@@ -36,14 +33,10 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * new Chart 所需配置
    */
   private getChartOptions() {
-    const { clientWidth, clientHeight } = this.container;
-    // 逻辑简化：如果存在 width 或 height，则直接使用，否则使用容器大小
-    const { width = clientWidth || 640, height = clientHeight || 480, autoFit = true } = this.options;
+    const { autoFit = true } = this.options;
     return {
       ...pick(this.options, CHART_OPTIONS),
       container: this.container,
-      width,
-      height,
       autoFit,
     };
   }
@@ -164,8 +157,6 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * 销毁
    */
   public destroy() {
-    // 取消 size-sensor 的绑定
-    this.unbindSizeSensor();
     // G2 的销毁
     this.chart.destroy();
     // 清空已经绑定的事件
@@ -203,33 +194,11 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * 绑定 dom 容器大小变化的事件
    */
   private bindSizeSensor() {
-    if (this.unbind) {
-      return;
-    }
     const { autoFit = true } = this.options;
     if (autoFit) {
       this.chart.on(ChartEvent.AFTER_CHANGE_SIZE, () => {
         this.annotations();
       });
-      this.unbind = bind(this.container, () => {
-        // 获取最新的宽高信息
-        const { clientHeight, clientWidth } = this.container;
-        const { width, height } = this.chart.options();
-        // 主要是防止绑定的时候触发 resize 回调
-        if (clientHeight !== width || clientWidth !== height) {
-          this.triggerResize();
-        }
-      });
-    }
-  }
-
-  /**
-   * 取消绑定
-   */
-  private unbindSizeSensor() {
-    if (this.unbind) {
-      this.unbind();
-      this.unbind = undefined;
     }
   }
 }

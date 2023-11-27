@@ -26,7 +26,7 @@ import CirclePacking from './circlePacking';
 import Violin from './violin';
 import BidirectionalBar from './bidirectional-bar';
 import Venn from './venn';
-
+import Mix from './mix';
 
 export type { AreaConfig } from './area';
 export type { BarConfig } from './bar';
@@ -54,7 +54,7 @@ export type { CirclePackingConfig } from './circlePacking';
 export type { ViolinConfig } from './violin';
 export type { BidirectionalBarConfig } from './bidirectional-bar';
 export type { VennConfig } from './venn';
-
+export type { MixConfig } from './mix';
 
 export {
   Base,
@@ -84,5 +84,6 @@ export {
   CirclePacking,
   Violin,
   BidirectionalBar,
-  Venn
+  Venn,
+  Mix,
 };

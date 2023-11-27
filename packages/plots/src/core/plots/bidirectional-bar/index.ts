@@ -16,21 +16,16 @@ export class BidirectionalBar extends Plot<BidirectionalBarOptions> {
       scale: {
         y: { nice: true },
       },
-      xAxisLabelText: true,
       direction: 'row',
       layout: 'horizontal',
+      legend: false,
       axis: {
         y: {
           title: false,
         },
         x: { title: false, label: false },
       },
-      children: [
-        {
-          type: 'interval',
-        },
-        { type: 'interval' },
-      ],
+      children: [{ type: 'interval' }, { type: 'interval' }],
     };
   }
 
