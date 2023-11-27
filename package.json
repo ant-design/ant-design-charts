@@ -6,6 +6,7 @@
     "test": "pnpm -r --stream --filter=./packages/* run test",
     "lint": "pnpm -r --stream --filter=./packages/* run lint",
     "build": "pnpm -r --stream --filter=!./site run build",
+    "build:site": "pnpm -r --stream --filter=./site run build",
     "build:lib": "pnpm -r --stream --filter=!./site run build:lib",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",

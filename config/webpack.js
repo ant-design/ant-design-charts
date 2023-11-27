@@ -15,8 +15,10 @@ const getWebpackConfig = (name, library) => {
     },
     output: {
       filename: '[name].min.js',
-      library: library,
-      libraryTarget: 'umd',
+      library: {
+        name: library,
+        type: 'umd',
+      },
       path: resolveApp('dist/'),
     },
     resolve: {
@@ -143,8 +145,8 @@ const getWebpackConfig = (name, library) => {
       },
     },
     optimization: {
-      runtimeChunk: 'single',
-      moduleIds: 'deterministic',
+      // runtimeChunk: true,
+      // moduleIds: 'deterministic',
     },
   };
 };

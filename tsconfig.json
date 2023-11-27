@@ -20,7 +20,8 @@
     "declaration": true,
     "noUnusedLocals": false,
     "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "preserveSymlinks": true
   },
   "exclude": [
     "node_modules",

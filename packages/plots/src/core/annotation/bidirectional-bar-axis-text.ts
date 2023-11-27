@@ -2,7 +2,7 @@
 import { Text, Polygon, canvas as GCanvas } from '@antv/g';
 // @ts-expect-error
 import { Chart, AxisComponent, G2ViewDescriptor } from '@antv/g2';
-import { get, isFunction, uniqBy } from '../utils';
+import { get, isFunction, uniqBy, groupBy } from '../utils';
 import { VERTICAL_MARGIN } from '../plots/bidirectional-bar/constants';
 
 export type BidirectionalBarAxisTextOptions = AxisComponent;
@@ -45,7 +45,7 @@ export class BidirectionalBarAxisText {
     const isVertical = layout === 'vertical';
     const elementsLayout = this.getElementsLayout();
     const textPath = ['title'];
-    const textLayout = [];
+    let textLayout = [];
     const { width: viewWidth, height: viewHeight } = get(this.views, [0, 'layout']);
     elementsLayout.forEach((element) => {
       const { x, y, height, width, data } = element;
@@ -64,6 +64,19 @@ export class BidirectionalBarAxisText {
         });
       }
     });
+
+    /** 分组情况需要特殊处理 */
+    if (uniqBy(textLayout, 'text').length !== textLayout.length) {
+      textLayout = Object.values(groupBy(textLayout, 'text')).map((items: Array<{ x: number; y: number }>) => {
+        const sum = items.reduce((pre, cur) => {
+          return pre + (isVertical ? cur.x : cur.y);
+        }, 0);
+        return {
+          ...items[0],
+          [isVertical ? 'x' : 'y']: sum / items.length,
+        };
+      });
+    }
 
     return textLayout;
   }
