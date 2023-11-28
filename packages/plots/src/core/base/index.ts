@@ -1,7 +1,7 @@
 import EE from '@antv/event-emitter';
 import { Chart, ChartEvent } from '@antv/g2';
 import { CHART_OPTIONS, ANNOTATION_LIST, SKIP_DEL_CUSTOM_SIGN } from '../constants';
-import { merge, omit, pick, deleteCustomKeys, deleteChartOptionKeys } from '../utils';
+import { deepAssign, omit, pick, deleteCustomKeys, deleteChartOptionKeys } from '../utils';
 import { Annotaion } from '../annotation';
 
 import type { Adaptor, Options } from '../types';
@@ -24,7 +24,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
   constructor(container: string | HTMLElement, options: O) {
     super();
     this.container = typeof container === 'string' ? document.getElementById(container) : container;
-    this.options = merge({}, this.getBaseOptions(), this.getDefaultOptions(), options);
+    this.options = deepAssign({}, this.getBaseOptions(), this.getDefaultOptions(), options);
     this.createG2();
     this.bindEvents();
   }
@@ -132,7 +132,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * @param options
    */
   protected updateOption(options: Partial<O>) {
-    this.options = merge({}, this.options, options);
+    this.options = deepAssign({}, this.options, options);
   }
 
   /**

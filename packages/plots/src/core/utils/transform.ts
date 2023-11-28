@@ -52,6 +52,30 @@ export const transformOptions = (params: Adaptor) => {
   };
 
   /**
+   * @description
+   *  1. 将 CONFIG_SHAPE 中的配置项, 转换为 children
+   * @example 详见 src/core/constants/index.ts
+   */
+  const transformShape = <T = Options>(config: T) => {
+    Object.keys(config).forEach((key) => {
+      const exist = CONFIG_SHAPE.find((item) => item.key === key);
+      if (exist) {
+        const { type, extend_keys } = exist;
+        if (type) {
+          children.push(transformConfig(deepAssign({}, pick(config, extend_keys), { type }, config[key])));
+        } else {
+          // annotations
+          if (isArray(config[key])) {
+            config[key].forEach((annotation) => {
+              children.push(transformConfig(annotation));
+            });
+          }
+        }
+      }
+    });
+  };
+
+  /**
    * @title 通用转换逻辑
    * @description 直接修改原对象
    */
@@ -59,6 +83,7 @@ export const transformOptions = (params: Adaptor) => {
     config: T,
     callback?: (transformObject: object, specKey: string, key: string) => void,
   ): T => {
+    transformShape(config);
     Object.keys(TRANSFORM_OPTION_KEY).forEach((specKey) => {
       const transformObject = TRANSFORM_OPTION_KEY[specKey];
       /**
@@ -89,27 +114,7 @@ export const transformOptions = (params: Adaptor) => {
     transformConfig(deepAssign(child, config));
   });
 
-  /**
-   * @description
-   *  1. 将 CONFIG_SHAPE 中的配置项, 转换为 children
-   * @example 详见 src/core/constants/index.ts
-   */
-  Object.keys(options).forEach((key) => {
-    const exist = CONFIG_SHAPE.find((item) => item.key === key);
-    if (exist) {
-      const { type, extend_keys } = exist;
-      if (type) {
-        children.push(transformConfig(deepAssign({}, pick(options, extend_keys), { type }, options[key])));
-      } else {
-        // annotations
-        if (isArray(options[key])) {
-          options[key].forEach((annotation) => {
-            children.push(transformConfig(annotation));
-          });
-        }
-      }
-    }
-  });
+  transformShape(options);
 
   deleteCustomKeys(options);
 
