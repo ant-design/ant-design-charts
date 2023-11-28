@@ -20,6 +20,12 @@ export class DualAxes extends Plot<DualAxesOptions> {
         y: { title: false, tick: false },
         x: { title: false },
       },
+      scale: {
+        y: {
+          independent: true,
+          nice: true,
+        },
+      },
     };
   }
 

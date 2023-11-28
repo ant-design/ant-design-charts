@@ -46,7 +46,7 @@ const DemoDualAxes = () => {
     annotations: [
       {
         type: 'text',
-        data: ['2019-05', 280],
+        data: ['2019-05', 300],
         style: {
           text: '2019-05, 发布新版本',
           dy: -30,

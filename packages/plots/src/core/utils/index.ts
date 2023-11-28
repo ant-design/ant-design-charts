@@ -3,7 +3,6 @@ export {
   flow,
   isArray,
   isBoolean,
-  merge,
   omit,
   pick,
   isFunction,
