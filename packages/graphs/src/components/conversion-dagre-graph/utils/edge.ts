@@ -4,21 +4,12 @@ import { EdgeType } from '../types';
 import type { LayerOrder } from '../types';
 
 // 获取边的类型，起点和终点的anchorPoint索引值
-export const getEdgeAnchorAndType = (
-  graph: Graph,
-  edge: EdgeConfig,
-  layerOrder: LayerOrder,
-  rankdir: Rankdir,
-) => {
+export const getEdgeAnchorAndType = (graph: Graph, edge: EdgeConfig, layerOrder: LayerOrder, rankdir: Rankdir) => {
   const nodes = graph.getNodes().map((node) => node.getModel());
   const sourceNode = nodes.find((node) => node.id === edge.source);
   const targetNode = nodes.find((node) => node.id === edge.target);
-  const sourceLayer = layerOrder.findIndex(
-    (item) => item === (sourceNode?.custom as any)?.layerName,
-  );
-  const targetLayer = layerOrder.findIndex(
-    (item) => item === (targetNode?.custom as any)?.layerName,
-  );
+  const sourceLayer = layerOrder.findIndex((item) => item === (sourceNode?.custom as any)?.layerName);
+  const targetLayer = layerOrder.findIndex((item) => item === (targetNode?.custom as any)?.layerName);
 
   let sourceAnchor;
   let targetAnchor;
@@ -57,12 +48,7 @@ export const getEdgeAnchorAndType = (
 export const updateEdgeAnchorAndType = (graph: Graph, layerOrder: LayerOrder, rankdir: Rankdir) => {
   graph.getEdges().forEach((edge) => {
     const edgeModel = edge.getModel();
-    const { type, sourceAnchor, targetAnchor } = getEdgeAnchorAndType(
-      graph,
-      edgeModel,
-      layerOrder,
-      rankdir,
-    );
+    const { type, sourceAnchor, targetAnchor } = getEdgeAnchorAndType(graph, edgeModel, layerOrder, rankdir);
     graph.updateItem(edgeModel.id, {
       type,
       sourceAnchor,

@@ -105,8 +105,13 @@ export default function useGraph(
     if (!graph) {
       return;
     }
-    const { type: edgeType, style: edgeStyle, startArrow: startArrowCfg, endArrow: endArrowCfg, label: labelCfg } =
-      edgeCfg ?? {};
+    const {
+      type: edgeType,
+      style: edgeStyle,
+      startArrow: startArrowCfg,
+      endArrow: endArrowCfg,
+      label: labelCfg,
+    } = edgeCfg ?? {};
     graph.getEdges().forEach((edge: IEdge) => {
       // 资金流向图&来源去向图
       if (['fund-line', 'labels-line'].includes(edgeType)) {

@@ -103,12 +103,7 @@ export const paintOnce = (graph: Graph, fn: Function) => {
 };
 
 // 清空元素状态
-export const clearItemStates = (
-  graph: Graph,
-  graphItem: Item,
-  states: ITEM_STATE[],
-  enablePaint: boolean = false,
-) => {
+export const clearItemStates = (graph: Graph, graphItem: Item, states: ITEM_STATE[], enablePaint: boolean = false) => {
   function fn() {
     states.forEach((state) => {
       if (graphItem?.hasState(state)) {
@@ -142,7 +137,8 @@ export const clearItemsStates = (
       try {
         clearItemStates(graph, graphItem, clearStates, false);
       } catch (error) {
-        console.log('error :>> ', graphItem, error);
+        const { log } = console;
+        log('error :>> ', graphItem, error);
       }
     });
   }

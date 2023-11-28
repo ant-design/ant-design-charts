@@ -3,7 +3,7 @@
 `2023-01-12`
 
 - 🐞 修复 React18 页面卡死
-- 🔥 新增 `onDelNode、onCopy、onPaste` 方法 
+- 🔥 新增 `onDelNode、onCopy、onPaste` 方法
 
 ## 1.2.1
 

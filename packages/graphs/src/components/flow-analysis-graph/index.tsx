@@ -22,7 +22,9 @@ export type FlowAnalysisNodeData = NodeData<{
   items?: CardItems[];
 }>;
 
-export interface FlowAnalysisGraphConfig extends Omit<CommonConfig<Partial<DagreLayout>>, 'data' | 'nodeCfg'>, FetchLoading {
+export interface FlowAnalysisGraphConfig
+  extends Omit<CommonConfig<Partial<DagreLayout>>, 'data' | 'nodeCfg'>,
+    FetchLoading {
   data: {
     nodes: FlowAnalysisNodeData[];
     edges: FlowGraphEdgeData[];

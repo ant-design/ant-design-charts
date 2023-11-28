@@ -14,8 +14,7 @@ export const registerConvNode = () => {
       } = cfg;
       const label = cfg.label as string;
       const { measure = {}, relatedMeasures = [] } = custom;
-      const showFormattedValue =
-        measure.formattedValue !== undefined && measure.formattedValue !== null;
+      const showFormattedValue = measure.formattedValue !== undefined && measure.formattedValue !== null;
       // 最外层描边（光晕）
       const keyShape = group.addShape('rect', {
         attrs: {
@@ -168,4 +167,4 @@ export const registerConvNode = () => {
       setItemStateStyle(node, 'node');
     },
   });
-}
+};

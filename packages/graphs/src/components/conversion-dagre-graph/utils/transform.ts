@@ -1,21 +1,9 @@
 import { cloneDeep, uniqBy } from 'lodash';
 import { getNodeMaxSize } from './text';
-import type {
-  OriginData,
-  LayerOrder,
-  OriginNode,
-  GraphNode,
-  GraphEdge,
-  ConvGraphData,
-  RatioMethod,
-} from '../types';
+import type { OriginData, LayerOrder, OriginNode, GraphNode, GraphEdge, ConvGraphData, RatioMethod } from '../types';
 
 // 数据转换：原始节点数据 -> G6渲染节点数据
-const transformOriginNodes = (
-  originNodes: OriginNode[],
-  layerOrder: LayerOrder,
-  size: number,
-): GraphNode[] => {
+const transformOriginNodes = (originNodes: OriginNode[], layerOrder: LayerOrder, size: number): GraphNode[] => {
   // 过滤得到节点中实际存在的有效层级
   const effectiveLayer =
     (Array.isArray(layerOrder) &&
@@ -52,7 +40,7 @@ const transformOriginEdges = (
   layerOrder: string[],
   segmLayer: string,
   ratioMethod: RatioMethod,
-) : GraphEdge[] => {
+): GraphEdge[] => {
   const { nodes: originNodes = [], edges: originEdges = [] } = data;
 
   return originEdges
@@ -102,9 +90,7 @@ const transformOriginEdges = (
 
       const ratio = originEdge.ratio || autoRatio; // 优先使用edge数据里的ratio
       const formatRatio =
-        !isNaN(ratio) && ratio !== Infinity
-          ? Number((ratio * 100).toString().match(/^\d+(?:\.\d{0,2})?/))
-          : '-'; // 比率最多保留2位小数
+        !isNaN(ratio) && ratio !== Infinity ? Number((ratio * 100).toString().match(/^\d+(?:\.\d{0,2})?/)) : '-'; // 比率最多保留2位小数
       const showRatio = `${formatRatio}%`;
       const label = originEdge.name || name; // 优先使用edge数据里的name
 

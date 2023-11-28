@@ -40,7 +40,7 @@ describe('Type NodeData', () => {
     act(() => {
       render(<ConversionDagreGraph {...props} {...chartProps} />, container);
     });
-    
+
     expect(chartRef).not.toBeUndefined();
   });
 });

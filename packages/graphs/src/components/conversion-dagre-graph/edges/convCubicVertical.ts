@@ -25,8 +25,8 @@ export const registerConvCubicVertical = () => {
         ],
         ['L', endPoint.x, endPoint.y],
       ];
-  
+
       return baseEdge.draw(cfg, group, path);
     },
   });
-}
+};
