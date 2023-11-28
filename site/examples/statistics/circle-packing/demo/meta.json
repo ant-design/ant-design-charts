@@ -19,6 +19,14 @@
         "en": "CirclePacking Chart With Label"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*epG0TaxEVTsAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "circlePackingPadding.js",
+      "title": {
+        "zh": "捆绑图 - 自定义padding距离",
+        "en": "Custom Padding Distance For CirclePacking Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*epG0TaxEVTsAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
