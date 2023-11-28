@@ -8,11 +8,11 @@ const DemoGauge = () => {
     height: 720,
     autoFit: true,
     data: {
-        target: 120,
-        total: 400,
-        name: 'score',
+      target: 120,
+      total: 400,
+      name: 'score',
     },
-    legend: false
+    legend: false,
   };
   return <Gauge {...config} />;
 };

@@ -17,10 +17,12 @@ export class CirclePacking extends Plot<CirclePackingOptions> {
   static getDefaultOptions(): Partial<CirclePackingOptions> {
     return {
       legend: false,
-      type: "view",
-      children: [{
-        type: "pack"
-      }]
+      type: 'view',
+      children: [
+        {
+          type: 'pack',
+        },
+      ],
     };
   }
 

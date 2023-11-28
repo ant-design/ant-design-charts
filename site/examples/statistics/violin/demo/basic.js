@@ -11,7 +11,7 @@ const DemoViolin = () => {
     },
     xField: 'x',
     yField: 'y',
-    seriesField: 'species'
+    seriesField: 'species',
   };
   return <Violin {...config} />;
 };

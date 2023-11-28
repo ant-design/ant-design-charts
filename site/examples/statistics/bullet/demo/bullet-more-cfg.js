@@ -4,12 +4,14 @@ import { Bullet } from '@ant-design/plots';
 
 const DemoBullet = () => {
   const config = {
-    data: [{
-      title: '满意度',
-      ranges: 100,
-      measures: 80,
-      targets: 85,
-    }],
+    data: [
+      {
+        title: '满意度',
+        ranges: 100,
+        measures: 80,
+        targets: 85,
+      },
+    ],
     range: {
       style: {
         maxWidth: 50,

@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const DemoProgress = () => {
-  const progress = 0.7
+  const progress = 0.7;
 
   const config = {
     width: 480,
@@ -22,8 +22,8 @@ const DemoProgress = () => {
           fontSize: 16,
           fontStyle: 'bold',
         },
-      }
-    ]
+      },
+    ],
   };
 
   return <Tiny.Progress {...config} />;

@@ -110,7 +110,6 @@ const data = [
   },
 ];
 
-
 const DemoArea = () => {
   const config = {
     data,
@@ -121,8 +120,8 @@ const DemoArea = () => {
     stack: true,
     interaction: {
       tooltip: {
-        shared: true
-      }
+        shared: true,
+      },
     },
     tooltip: { channel: 'y0', valueFormatter: '.0%' },
   };

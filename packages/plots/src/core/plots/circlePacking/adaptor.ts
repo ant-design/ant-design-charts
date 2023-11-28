@@ -9,6 +9,5 @@ type Params = Adaptor<CirclePackingOptions>;
  * @param options
  */
 export function adaptor(params: Params) {
-
   return flow(transformOptions)(params);
 }

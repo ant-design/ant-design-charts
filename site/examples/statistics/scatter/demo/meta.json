@@ -3,7 +3,8 @@
     "zh": "中文分类",
     "en": "Category"
   },
-  "demos": [{
+  "demos": [
+    {
       "filename": "basic.js",
       "title": {
         "zh": "散点图",

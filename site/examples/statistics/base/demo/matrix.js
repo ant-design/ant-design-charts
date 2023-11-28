@@ -5,18 +5,18 @@ import { Base } from '@ant-design/plots';
 const Demobase = () => {
   const toNaN = (d) => (d === 'NaN' ? NaN : d);
   const config = {
-    type: "repeatMatrix",
+    type: 'repeatMatrix',
     width: 800,
     height: 800,
     autoFit: false,
     paddingLeft: 70,
     paddingBottom: 70,
     data: {
-      type: "fetch",
-      value: "https://assets.antv.antgroup.com/g2/penguins.json",
+      type: 'fetch',
+      value: 'https://assets.antv.antgroup.com/g2/penguins.json',
       transform: [
         {
-          type: "map",
+          type: 'map',
           callback: ({
             culmen_depth_mm: cdepth,
             culmen_length_mm: clength,
@@ -34,14 +34,9 @@ const Demobase = () => {
       ],
     },
     encode: {
-      position: [
-        "culmen_length_mm",
-        "culmen_depth_mm",
-        "flipper_length_mm",
-        "body_mass_g",
-      ],
+      position: ['culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g'],
     },
-    children: [{ type: "point", encode: { color: "species" } }],  
+    children: [{ type: 'point', encode: { color: 'species' } }],
   };
   return <Base {...config} />;
 };

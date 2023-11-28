@@ -7,6 +7,6 @@ export type ViolinConfig = CommonConfig<ViolinOptions>;
 
 const ViolinChart = (props: ViolinConfig) => {
   return <BaseChart {...props} chartType="Violin" />;
-}
+};
 
 export default ViolinChart;

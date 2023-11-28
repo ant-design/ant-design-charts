@@ -2,7 +2,6 @@ import { RadialBar } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 const data = [
   { name: 'X6', star: 297 },
   { name: 'G', star: 506 },
@@ -23,7 +22,7 @@ const DemoRadialBar = () => {
     radius: 1,
     innerRadius: 0.2,
     tooltip: {
-      items:['star']
+      items: ['star'],
     },
   };
   return <RadialBar {...config} />;
