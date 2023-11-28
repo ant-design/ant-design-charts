@@ -14,7 +14,7 @@
 
 `2023-02-08`
 
-- 🐞 修复 [render-graph setFlowTag 会导致nodes和edges异常](https://github.com/ant-design/ant-design-charts/issues/1801)
+- 🐞 修复 [render-graph setFlowTag 会导致 nodes 和 edges 异常](https://github.com/ant-design/ant-design-charts/issues/1801)
 
 ## 1.3.6
 
@@ -35,20 +35,19 @@
 ## 1.3.3
 
 - 新增 `marker:click` 事件
-- 🔥 新增 `FileTreeGraph` 
-<img src=https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CoEVTrU_7g4AAAAAAAAAAAAADmJ7AQ/original>
+- 🔥 新增 `FileTreeGraph` <img src=https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CoEVTrU_7g4AAAAAAAAAAAAADmJ7AQ/original>
 
 ## 1.3.3-beta.3
 
 - 🔥 `FileTreeGraph` 新增 `nodeCfg.lineStyle` 配置
 
 `2022-11-10`
+
 ## 1.3.3-beta.0
 
 `2022-10-17`
 
-- 🔥 新增 `FileTreeGraph` 
-<img src=https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CoEVTrU_7g4AAAAAAAAAAAAADmJ7AQ/original>
+- 🔥 新增 `FileTreeGraph` <img src=https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CoEVTrU_7g4AAAAAAAAAAAAADmJ7AQ/original>
 
 ## 1.3.2
 

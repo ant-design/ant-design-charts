@@ -8,4 +8,4 @@ export const registerConvPreset = () => {
       // 执行一次空布局，目的是为了走布局流程触发afterlayout
     },
   });
-}
+};

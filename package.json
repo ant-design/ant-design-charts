@@ -10,7 +10,8 @@
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "ci:version": "pnpm changeset version",
     "add:changelog": "pnpm changeset",
-    "build:site": "pnpm -r --stream --filter=./packages/site run build"
+    "build:site": "pnpm -r --stream --filter=./packages/site run build",
+    "release": "pnpm publish --no-git-checks -r --filter @ant-design/*"
   },
   "devDependencies": {
     "@antv/data-set": "^0.11.8",
@@ -65,7 +66,8 @@
     "overrides": {
       "@typescript-eslint/eslint-plugin": "^4.1.1",
       "@typescript-eslint/parser": "^4.1.1",
-      "monaco-editor": "0.21.3"
+      "monaco-editor": "0.21.3",
+      "tslib": "2.6.2"
     }
   },
   "gitHooks": {

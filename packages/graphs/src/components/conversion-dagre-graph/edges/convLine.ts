@@ -2,7 +2,6 @@ import G6 from '@antv/g6';
 import type { EdgeConfig } from '@antv/g6';
 import baseEdge from './baseEdge';
 
-
 export const registerConvLine = () => {
   // 自定义转化边
   G6.registerEdge('conv-line', {
@@ -17,4 +16,4 @@ export const registerConvLine = () => {
       return baseEdge.draw(cfg, group, path);
     },
   });
-}
+};

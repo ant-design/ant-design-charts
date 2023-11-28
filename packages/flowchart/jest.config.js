@@ -1,3 +1,4 @@
+const path = require('path');
 const { BaseJestConfig, OnlineConfig } = require('../../config/jest');
 module.exports = {
   ...BaseJestConfig,
@@ -5,6 +6,9 @@ module.exports = {
   moduleNameMapper: {
     '^lodash-es$': 'lodash',
     '^.+\\.(css|less)$': 'identity-obj-proxy',
-    '@antv/xflow': '<rootDir>/node_modules/@antv/xflow/dist/index.umd.js',
+    '@antv/xflow-(\\S*)': `${path.join(
+      __dirname,
+      '../..',
+    )}/node_modules/.pnpm/node_modules/@antv/xflow-$1/dist/index.umd.js`,
   },
 };

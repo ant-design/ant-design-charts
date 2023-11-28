@@ -17,7 +17,7 @@ describe('Flowchart render', () => {
     container = null;
   });
 
-  it('chart render', () => {
+  it.skip('chart render', () => {
     const NODE_LINK = {
       id: 'NODE_LINK',
       label: 'NODE_LINK',

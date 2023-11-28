@@ -43,9 +43,7 @@ export const getNodeMaxSize = (nodes: OriginNode[] = []): number => {
   const displayValueWidth = getWordsWidth(`${displayValue}`, '600 20px Roboto-Medium');
   // 单位不为空时才计算单位宽度 unit的paddingLeft 4
   const unitWidth =
-    isShowFormatValue && formattedUnit
-      ? getWordsWidth(`${formattedUnit}`, '600 20px PingFangSC') + 4
-      : 0;
+    isShowFormatValue && formattedUnit ? getWordsWidth(`${formattedUnit}`, '600 20px PingFangSC') + 4 : 0;
   // 节点大小 value + unit + 左右padding
   const nodeSize = displayValueWidth + unitWidth + 24;
   // 节点最小宽度 150

@@ -37,8 +37,7 @@ describe('Flow level props', () => {
                     {
                       text: '曝光PV',
                       value: '10.30万',
-                      icon:
-                        'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+                      icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
                     },
                   ],
                 },
@@ -51,8 +50,7 @@ describe('Flow level props', () => {
                     {
                       text: '曝光PV',
                       value: '10.30万',
-                      icon:
-                        'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
+                      icon: 'https://gw.alipayobjects.com/zos/antfincdn/iFh9X011qd/7797962c-04b6-4d67-9143-e9d05f9778bf.png',
                     },
                   ],
                 },

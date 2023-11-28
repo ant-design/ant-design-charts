@@ -137,8 +137,8 @@ const getWebpackConfig = (name, library) => {
       },
     },
     optimization: {
-      runtimeChunk: 'single',
-      moduleIds: 'deterministic',
+      // runtimeChunk: 'single',
+      // moduleIds: 'deterministic',
     },
   };
 };
