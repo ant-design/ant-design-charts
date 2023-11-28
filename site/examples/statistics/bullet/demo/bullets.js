@@ -30,7 +30,7 @@ const DemoBullet = () => {
       target: ['目标'],
     },
   };
-  return <Bullet {...config}/>;
+  return <Bullet {...config} />;
 };
 
 ReactDOM.render(<DemoBullet />, document.getElementById('container'));

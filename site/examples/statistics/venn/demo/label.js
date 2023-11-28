@@ -20,7 +20,7 @@ const DemoVenn = () => {
       position: 'inside',
       text: (d) => d.label || '',
       transform: [{ type: 'contrastReverse' }],
-    }
+    },
   };
   return <Venn {...config} />;
 };

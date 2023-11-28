@@ -114,7 +114,6 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
     };
   }, []);
 
-
   return {
     chart,
     container,

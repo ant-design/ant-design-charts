@@ -24,14 +24,14 @@ const DemoRadialBar = () => {
     tooltip: {
       items: ['star'],
     },
-    legend:false,
+    legend: false,
     axis: {
       y: false,
     },
     markBackground: {
       opacity: 0.25,
     },
-    scale:{
+    scale: {
       y: {
         domain: [0, 12000], // 设定范围用于背景图的渲染获取最大值
       },

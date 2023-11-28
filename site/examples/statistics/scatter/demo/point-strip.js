@@ -17,8 +17,8 @@ const DemoScatter = () => {
     shapeField: 'line',
     scale: {
       y: { type: 'linear', zero: true },
-      x: { domain: [0, 10] }
-    }
+      x: { domain: [0, 10] },
+    },
   };
   return <Scatter {...config} />;
 };

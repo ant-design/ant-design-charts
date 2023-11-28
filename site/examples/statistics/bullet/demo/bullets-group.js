@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Bullet } from '@ant-design/plots';
 
 const DemoBullet = () => {
-  const data = [{
+  const data = [
+    {
       title: '5🌟',
       ranges: [100, 80],
       measures: [50, 40],
@@ -40,7 +41,7 @@ const DemoBullet = () => {
     color,
   };
 
-  return <Bullet {...config}/>;
+  return <Bullet {...config} />;
 };
 
 ReactDOM.render(<DemoBullet />, document.getElementById('container'));
