@@ -1,0 +1,69 @@
+name: V2 Site
+
+on:
+  pull_request:
+    branches:
+      - v2 # default branch
+env:
+  CI: true
+  PNPM_STORE: .pnpm-store
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - name: checkout code repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Switch to site branch
+        run: git checkout -b site
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install pnpm
+        run: npm i pnpm@latest -g
+      - name: Setup npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            email=${NPM_EMAIL}
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
+      - name: setup pnpm config
+        run: pnpm config set store-dir $PNPM_STORE
+      - name: install dependencies
+        run: pnpm install
+      - name: build site
+        run: |
+          pnpm run build:lib
+          pnpm run build:site
+      - name: copy and delete files
+        run: |
+          find . -maxdepth 1 -type f -exec rm -f {} \;
+          cp -r site/dist ./
+          rm -rf site
+          rm -rf node_modules
+          rm -rf packages
+          rm -rf scripts
+          rm -rf public
+          rm -rf config
+          rm -rf template
+          rm -rf .changeset
+          rm -rf .github
+          rm -rf $PNPM_STORE
+      - name: commit changes
+        run: |
+          git config --local user.email "954055752@qq.com"
+          git config --local user.name "lxfu1"
+          git add .
+          git commit -m "chore: update site"
+      - name: push to site branch
+        run: git push origin site -f
