@@ -33,8 +33,7 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           lineWidth: 2,
         },
-        scale: { y: { independent: true } },
-        axis: { y: { position: 'right' } },
+        axis: { y: false },
         interaction: {
           tooltip: {
             crosshairs: false,

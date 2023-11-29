@@ -81,22 +81,18 @@ const DemoDualAxes = () => {
   const config = {
     data,
     xField: 'Month',
+    scale: { y: { nice: false } },
     children: [
       {
         type: 'line',
         yField: 'Temperature',
         shapeField: 'smooth',
         colorField: '#EE6666',
-        scale: {
-          y: { independent: true, domainMax: 30 },
-        },
+        scale: { y: { domainMax: 30 } },
         axis: {
           y: {
             title: 'Temperature (°C)',
-            grid: null,
-            style: {
-              titleFill: '#EE6666',
-            },
+            style: { titleFill: '#EE6666' },
           },
         },
       },
@@ -104,19 +100,13 @@ const DemoDualAxes = () => {
         type: 'interval',
         yField: 'Evaporation',
         colorField: '#5470C6',
-        scale: {
-          y: { independent: true, domainMax: 200 },
-        },
-        style: {
-          fillOpacity: 0.8,
-        },
+        scale: { y: { domainMax: 200 } },
+        style: { fillOpacity: 0.8 },
         axis: {
           y: {
             position: 'right',
             title: 'Evaporation (ml)',
-            style: {
-              titleFill: '#5470C6',
-            },
+            style: { titleFill: '#5470C6' },
           },
         },
       },
@@ -125,9 +115,6 @@ const DemoDualAxes = () => {
         yField: 'Precipitation',
         shapeField: 'smooth',
         colorField: '#91CC75',
-        scale: {
-          y: { independent: true },
-        },
         style: {
           lineWidth: 2,
           lineDash: [2, 2],
@@ -136,10 +123,7 @@ const DemoDualAxes = () => {
           y: {
             position: 'right',
             title: 'Precipitation (ml)',
-            grid: null,
-            style: {
-              titleFill: '#91CC75',
-            },
+            style: { titleFill: '#91CC75' },
           },
         },
       },

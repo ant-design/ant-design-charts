@@ -52,8 +52,8 @@ const DemoDualAxes = () => {
         yField: 'count',
         colorField: 'name',
         style: { lineWidth: 2 },
-        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
+        scale: { series: { independent: true } },
         interaction: {
           tooltip: {
             crosshairs: false,

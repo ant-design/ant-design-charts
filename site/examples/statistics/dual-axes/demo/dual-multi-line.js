@@ -58,6 +58,7 @@ const DemoDualAxes = () => {
         type: 'line',
         yField: 'count',
         colorField: 'name',
+        axis: { y: false },
         style: { lineWidth: 3 },
       },
       {
@@ -67,6 +68,7 @@ const DemoDualAxes = () => {
         sizeField: 3,
         shapeField: 'point',
         style: { fill: (d) => lineColor[d.name] },
+        axis: { y: false },
         tooltip: false,
       },
     ],
