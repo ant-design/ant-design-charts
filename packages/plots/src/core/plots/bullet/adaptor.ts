@@ -1,5 +1,5 @@
 import { coordinateLayout } from '../../components';
-import { flow, transformOptions, map, set, get, isArray, includes, isNumber, deepAssign } from '../../utils';
+import { flow, transformOptions, map, set, get, isArray, includes, isNumber, deepAssign, isNil, isString } from '../../utils';
 
 import type { Adaptor } from '../../types';
 import type { BulletOptions } from './type';
@@ -11,7 +11,9 @@ type Params = Adaptor<BulletOptions>;
 
 /**
  * 转化为扁平化数据
- * [{ measures: [1,2], title: 'x' }, ...] -> [{ measures: 1, title: 'x' }, { measures: 2, title: 'x' },...]
+ * 1、[{ measures: [1,2], title: 'x' }, ...] -> [{ measures: 1, title: 'x', index: 0 }, { measures: 2, title: 'x', index: 1 },...]
+ * 2、[{ measures: 1, title: 'x' }, { measures: [2,3], title: 'x' }] -> 
+ * [{ measures: 1, title: 'x', index: 0 }, { measures: 2, title: 'x', index: 0 }, { measures: 3, title: 'x', index: 1 },...]
  * @param data 数据
  * @param field 通道
  * @param xField x 分类通道
@@ -19,13 +21,28 @@ type Params = Adaptor<BulletOptions>;
  * @returns [扁平化的数据, 最大数据量]
  */
 function getTransformData(data: any[], field: string, xField: string, isSort = true) {
-  let maxSize = 1;
+  let maxSize = 0;
+
+  let isArrayData = false;
+
   const transformData = map(data, (d) => {
-    const fieldData = get(d, [field], []);
+    const fieldData = get(d, [field]);
+
+    // null undefined 以及 Number(string) 为 NaN 的 都去除数据
+    if (isNil(fieldData)) return [];
+    if (isString(fieldData)) {
+      const numberData = Number(fieldData);
+
+      if (isNaN(numberData)) return [];
+
+      return { [xField]: d[xField], [field]: numberData };
+    }
+
+    // 主要组成为数组的形式
     if (isArray(fieldData)) {
-      if (maxSize < fieldData.length) {
-        maxSize = fieldData.length;
-      }
+      isArrayData = true;
+
+      maxSize = Math.max(maxSize, fieldData.length);
 
       return map(isSort ? fieldData.sort((a, b) => b - a) : fieldData, (value: number, index: number) => ({
         [xField]: d[xField],
@@ -34,8 +51,19 @@ function getTransformData(data: any[], field: string, xField: string, isSort = t
       }));
     }
 
+    // 存在则 min 值为 1
+    maxSize = Math.max(1, maxSize);
+
     return { [xField]: d[xField], [field]: fieldData };
   }).flat();
+
+  // 当存在更多分类时，单一的 measures 从 'measures' 的分类，变更为 'measures_0' 的分类
+  if (isArrayData) {
+    return [transformData.map((item) => ({
+      index: 0,
+      ...item,
+    })), maxSize];
+  }
 
   return [transformData, maxSize];
 }
