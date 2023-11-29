@@ -42,5 +42,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(background, transformOptions, mark)(params);
+  return flow(background, mark, transformOptions)(params);
 }

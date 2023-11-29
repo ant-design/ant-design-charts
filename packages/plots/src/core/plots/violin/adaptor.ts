@@ -50,5 +50,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(customTransform, transformOptions, mark)(params);
+  return flow(customTransform, mark, transformOptions)(params);
 }

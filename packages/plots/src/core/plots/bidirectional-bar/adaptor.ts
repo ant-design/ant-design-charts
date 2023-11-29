@@ -114,5 +114,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(field, data, tooltip, layout, transformOptions, mark)(params);
+  return flow(field, data, tooltip, layout, mark, transformOptions)(params);
 }

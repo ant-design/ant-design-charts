@@ -85,5 +85,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(coordinate, tooltip, background, transformOptions, mark)(params);
+  return flow(coordinate, tooltip, background, mark, transformOptions)(params);
 }

@@ -26,5 +26,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(transformHistogramConfig, transformOptions, mark)(params);
+  return flow(transformHistogramConfig, mark, transformOptions)(params);
 }

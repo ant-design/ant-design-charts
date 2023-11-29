@@ -81,5 +81,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, transform, compare, tooltip, transformOptions, mark)(params);
+  return flow(init, transform, compare, tooltip, mark, transformOptions)(params);
 }

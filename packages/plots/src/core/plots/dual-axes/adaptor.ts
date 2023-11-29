@@ -40,5 +40,5 @@ export function adaptor(params: Params) {
     });
     return params;
   };
-  return flow(annotations, transformOptions, mark)(params);
+  return flow(annotations, mark, transformOptions)(params);
 }
