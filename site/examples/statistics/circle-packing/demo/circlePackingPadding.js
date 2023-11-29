@@ -18,16 +18,7 @@ const DemoCirclePackingPadding = () => {
       },
     },
     layout: {
-      padding: 5,
-    },
-    label: {
-      text: (d) => (d.height === 0 ? d.data.name : ''),
-      position: 'inside',
-      transform: [
-        {
-          type: 'overflowHide',
-        },
-      ],
+      padding: 10,
     },
   };
   return <CirclePacking {...config} />;
