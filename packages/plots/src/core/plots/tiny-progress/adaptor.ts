@@ -29,5 +29,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(transformData, transformOptions, mark)(params);
+  return flow(transformData, mark, transformOptions)(params);
 }

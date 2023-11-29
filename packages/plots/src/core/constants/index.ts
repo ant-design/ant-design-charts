@@ -172,13 +172,12 @@ const EXTEND_KEYS = [
   'yField',
   'seriesField',
   'colorField',
-  'sizeField',
-  'shapeField',
   'keyField',
   'positionField',
   'meta',
   'tooltip',
   'animate',
+  ...Object.keys(TRANSFORM_OPTION_KEY.transform),
 ];
 export const CONFIG_SHAPE = [
   {

@@ -34,5 +34,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(tooltip, transformMark, transformOptions, mark)(params);
+  return flow(tooltip, transformMark, mark, transformOptions)(params);
 }

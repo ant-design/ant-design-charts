@@ -39,5 +39,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(radius, transformData, transformOptions, mark)(params);
+  return flow(radius, transformData, mark, transformOptions)(params);
 }

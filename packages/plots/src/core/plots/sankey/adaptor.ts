@@ -10,5 +10,5 @@ type Params = Adaptor<SankeyOptions>;
  * @param options
  */
 export function adaptor(params: Params) {
-  return flow(transformOptions, mark)(params);
+  return flow(mark, transformOptions)(params);
 }
