@@ -54,7 +54,6 @@ const DemoDualAxes = () => {
           lineWidth: 2,
           stroke: (d) => lineColor[d[0].name],
         },
-        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
       },
     ],

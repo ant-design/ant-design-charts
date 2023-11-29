@@ -45,7 +45,6 @@ const DemoDualAxes = () => {
         yField: 'count',
         colorField: () => 'count',
         style: { lineWidth: 2 },
-        scale: { y: { independent: true } },
         axis: {
           y: {
             position: 'right',

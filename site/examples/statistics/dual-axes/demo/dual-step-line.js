@@ -27,9 +27,6 @@ const DemoDualAxes = () => {
           stroke: '#29cae4',
           lineWidth: 2,
         },
-        scale: {
-          y: { independent: true },
-        },
       },
       {
         type: 'line',
@@ -43,9 +40,7 @@ const DemoDualAxes = () => {
           y: {
             position: 'right',
             title: 'count',
-            style: {
-              titleFill: '#5AD8A6',
-            },
+            style: { titleFill: '#5AD8A6' },
           },
         },
       },

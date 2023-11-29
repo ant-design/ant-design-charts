@@ -67,7 +67,6 @@ const DemoDualAxes = () => {
             }
           },
         },
-        scale: { y: { independent: true } },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {

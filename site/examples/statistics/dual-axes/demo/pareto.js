@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 const DemoDualAxes = () => {
   const config = {
+    scale: { y: { nice: false } },
     data: {
       type: 'inline',
       value: [
@@ -56,7 +57,7 @@ const DemoDualAxes = () => {
       {
         type: 'line',
         yField: 'accumulate',
-        scale: { y: { independent: true, domainMin: 0, tickCount: 5 } },
+        scale: { y: { domainMin: 0, tickCount: 5 } },
         axis: {
           y: {
             position: 'right',
@@ -73,9 +74,9 @@ const DemoDualAxes = () => {
         type: 'point',
         yField: 'accumulate',
         shapeField: 'diamond',
-        scale: { y: { independent: true, domainMin: 0 } },
-        axis: { y: null },
-        tooltip: null,
+        scale: { y: { domainMin: 0 } },
+        axis: { y: false },
+        tooltip: false,
       },
     ],
     title: 'Pareto Chart of Customer Complaints',
