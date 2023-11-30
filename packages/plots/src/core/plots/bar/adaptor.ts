@@ -1,6 +1,6 @@
 import { mark } from '../../components';
 import type { Adaptor } from '../../types';
-import { flow, transformOptions, get, isArray } from '../../utils';
+import { flow, transformOptions, get, isArray, set } from '../../utils';
 import type { BarOptions } from './type';
 
 type Params = Adaptor<BarOptions>;
@@ -16,6 +16,12 @@ export function adaptor(params: Params) {
    */
   const background = (params: Params) => {
     const { options } = params;
+    /**
+     * @description 解决更新问题
+     */
+    if (get(options, 'children.length') > 1) {
+      set(options, 'children', [{ type: 'interval' }]);
+    }
     const { scale, markBackground, data, children } = options;
     const domain = get(scale, 'y.domain', []);
     if (markBackground && domain.length && isArray(data)) {
