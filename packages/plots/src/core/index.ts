@@ -31,6 +31,7 @@ export type { CirclePackingOptions } from './plots/circlePacking';
 export type { ViolinOptions } from './plots/violin';
 export type { BidirectionalBarOptions } from './plots/bidirectional-bar';
 export type { VennOptions } from './plots/venn';
+export type { SunburstOptions } from './plots/sunburst';
 
 export * from './types';
 
@@ -67,6 +68,7 @@ import { Violin } from './plots/violin';
 import { BidirectionalBar } from './plots/bidirectional-bar';
 import { Venn } from './plots/venn';
 import { Mix } from './plots/mix';
+import { Sunburst } from './plots/sunburst';
 
 export const Plots = {
   Base,
@@ -102,4 +104,5 @@ export const Plots = {
   BidirectionalBar,
   Venn,
   Mix,
+  Sunburst,
 };
