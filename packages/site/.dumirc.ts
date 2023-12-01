@@ -23,6 +23,7 @@ export default defineConfig({
     showAPIDoc: true,
     versions: {
       [version]: 'https://charts.ant.design',
+      '2.x': 'https://ant-design-charts-next.antgroup.com',
       '0.x': 'https://v0-charts.ant.design/',
     },
     docsearchOptions: {
