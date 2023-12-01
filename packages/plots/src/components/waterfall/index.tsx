@@ -1,7 +1,8 @@
 import React from 'react';
-import { WaterfallOptions } from '../../core';
-import { CommonConfig } from '../../interface';
 import { BaseChart } from '../base';
+
+import type { WaterfallOptions } from '../../core';
+import type { CommonConfig } from '../../interface';
 
 export type WaterfallConfig = CommonConfig<WaterfallOptions>;
 

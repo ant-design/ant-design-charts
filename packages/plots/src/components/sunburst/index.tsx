@@ -1,7 +1,8 @@
 import React from 'react';
-import { SunburstOptions } from '../../core';
-import { CommonConfig } from '../../interface';
 import { BaseChart } from '../base';
+
+import type { SunburstOptions } from '../../core';
+import type { CommonConfig } from '../../interface';
 
 export type SunburstConfig = CommonConfig<SunburstOptions>;
 
