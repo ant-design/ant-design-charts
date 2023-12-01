@@ -1,5 +1,5 @@
-import { Plot } from '../../base';
 import { adaptor } from './adaptor';
+import { Plot } from '../../base';
 
 import type { Adaptor } from '../../types';
 import type { SunburstOptions } from './type';
