@@ -1,9 +1,11 @@
 import EE from '@antv/event-emitter';
-import { Chart, ChartEvent } from '@antv/g2';
+import { ChartEvent } from '@antv/g2';
+import { Chart } from './chart';
+import { Annotaion } from '../annotation';
 import { CHART_OPTIONS, ANNOTATION_LIST, SKIP_DEL_CUSTOM_SIGN } from '../constants';
 import { deepAssign, omit, pick, deleteCustomKeys, deleteChartOptionKeys } from '../utils';
-import { Annotaion } from '../annotation';
 
+import type { G2Chart } from './chart';
 import type { Adaptor, Options } from '../types';
 
 const SOURCE_ATTRIBUTE_NAME = 'data-chart-source-type';
@@ -19,7 +21,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
   /** G2 Spec */
   public options: O;
   /** G2 chart 实例 */
-  public chart: Chart;
+  public chart: G2Chart;
 
   constructor(container: string | HTMLElement, options: O) {
     super();
@@ -58,6 +60,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
     if (!this.container) {
       throw Error('The container is not initialized!');
     }
+
     this.chart = new Chart(this.getChartOptions());
     // 给容器增加标识，知道图表的来源区别于 G2
     this.container.setAttribute(SOURCE_ATTRIBUTE_NAME, 'Ant Design Charts');
@@ -83,7 +86,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
   /**
    * 获取默认的 options 配置项，每个组件都可以复写
    */
-  protected getDefaultOptions(): any {}
+  protected getDefaultOptions(): any { }
 
   /**
    * 绘制
