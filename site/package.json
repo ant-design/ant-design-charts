@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@antv/dumi-theme-antv": "^0.4.2",
-    "@antv/g-pattern": "^1.2.19",
     "@types/react": "^16.14.8",
     "@types/react-dom": "^16.9.13",
     "cross-env": "^7.0.3",
