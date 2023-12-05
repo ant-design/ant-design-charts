@@ -3,9 +3,13 @@ import { render } from '../react/render';
 
 const mountMapping = new Map();
 export const createNode = (children: React.ReactElement) => {
-  if (!mountMapping.has(children)) {
-    mountMapping.set(children, document.createElement('div'));
+  let mount = document.createElement('div');
+  if (children.key) {
+    if (!mountMapping.get(children.key)) {
+      mountMapping.set(children.key, mount);
+    }
+    mount = mountMapping.get(children.key);
   }
-  render(children, mountMapping.get(children));
-  return mountMapping.get(children);
+  render(children, mount);
+  return mount;
 };
