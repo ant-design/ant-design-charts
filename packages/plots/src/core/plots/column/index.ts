@@ -19,6 +19,9 @@ export class Column extends Plot<ColumnOptions> {
         tooltip: {
           shared: true,
         },
+        elementHighlightByColor: {
+          background: true,
+        },
       },
       axis: {
         y: { title: false },
@@ -27,11 +30,6 @@ export class Column extends Plot<ColumnOptions> {
       children: [
         {
           type: 'interval',
-          interaction: {
-            elementHighlightByColor: {
-              background: true,
-            },
-          },
         },
       ],
     };

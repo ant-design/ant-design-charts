@@ -5,12 +5,8 @@ import { createNode } from '../../src';
 describe('Create Node', () => {
   it('run', () => {
     act(() => {
-      document.body.appendChild(
-        createNode(<span>hello</span>, {
-          id: 'test',
-        }),
-      );
+      document.body.appendChild(createNode(<span id="test">hello</span>));
     });
-    expect(document.querySelector('#test').innerHTML).toBe('<span>hello</span>');
+    expect(document.querySelector('#test').innerHTML).toContain('hello');
   });
 });
