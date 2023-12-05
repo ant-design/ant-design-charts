@@ -1,13 +1,15 @@
 import React from 'react';
 import { render } from '../react/render';
 
-export const createNode = (children: React.ReactElement, extra?: object) => {
-  let mountPoint = document.createElement('div');
-  if (extra) {
-    Object.keys(extra).forEach((key) => {
-      mountPoint.setAttribute(key, extra[key]);
-    });
+const mountMapping = new Map();
+export const createNode = (children: React.ReactElement) => {
+  let mount = document.createElement('div');
+  if (children.key) {
+    if (!mountMapping.get(children.key)) {
+      mountMapping.set(children.key, mount);
+    }
+    mount = mountMapping.get(children.key);
   }
-  render(children, mountPoint);
-  return mountPoint;
+  render(children, mount);
+  return mount;
 };
