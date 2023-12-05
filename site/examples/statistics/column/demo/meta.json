@@ -147,6 +147,14 @@
         "en": "Customize tooltip"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*lZu1Q5vMEewAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "legend.js",
+      "title": {
+        "zh": "自定义Legend",
+        "en": "Customize legend"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FFVDR4pgMPgAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
