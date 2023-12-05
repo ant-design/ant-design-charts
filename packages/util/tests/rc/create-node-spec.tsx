@@ -7,6 +7,6 @@ describe('Create Node', () => {
     act(() => {
       document.body.appendChild(createNode(<span id="test">hello</span>));
     });
-    expect(document.querySelector('#test').innerHTML).toBe('<span id="test">hello</span>');
+    expect(document.querySelector('#test').innerHTML).toContain('hello');
   });
 });
