@@ -40,19 +40,21 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
     return imageName;
   };
 
-  const processConfig = (cfg: object) => {
+  const processConfig = (cfg: object, flag = false) => {
     const keys = Object.keys(cfg);
+    let isTooltip = flag;
     keys.forEach((key) => {
       const current = cfg[key];
+      if (key === 'tooltip') isTooltip = true;
       if (isFunction(current) && isValidElement(`${current}`)) {
-        cfg[key] = (...arg) => createNode(current(...arg));
+        cfg[key] = (...arg) => createNode(current(...arg), isTooltip);
       } else {
         if (isArray(current)) {
           current.forEach((item) => {
-            processConfig(item);
+            processConfig(item, isTooltip);
           });
         } else if (isObject(current)) {
-          processConfig(current);
+          processConfig(current, isTooltip);
         }
       }
     });
