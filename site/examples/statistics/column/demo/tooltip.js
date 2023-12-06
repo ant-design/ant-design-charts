@@ -16,7 +16,7 @@ const DemoColumn = () => {
       tooltip: {
         render: (e, { title, items }) => {
           return (
-            <div>
+            <div key={title}>
               <h4>{title}</h4>
               {items.map((item) => {
                 const { name, value, color } = item;
