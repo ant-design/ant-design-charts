@@ -64,6 +64,9 @@ const DemoBar = () => {
         title: false,
       },
     },
+    interaction: {
+      elementHighlightByColor: false,
+    },
   };
   return <Bar {...config} />;
 };

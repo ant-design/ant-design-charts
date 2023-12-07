@@ -155,6 +155,14 @@
         "en": "Customize legend"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FFVDR4pgMPgAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "25d.js",
+      "title": {
+        "zh": "2.5D 柱状图",
+        "en": "2.5D Column Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*wXEWRIbUJ7cAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
