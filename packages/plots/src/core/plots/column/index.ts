@@ -1,9 +1,12 @@
 import { Plot } from '../../base';
 import type { Adaptor } from '../../types';
 import { adaptor } from '../bar/adaptor';
+import { reisterShape } from './shape';
 import { ColumnOptions } from './type';
 
 export type { ColumnOptions };
+
+reisterShape();
 
 export class Column extends Plot<ColumnOptions> {
   /** 图表类型 */

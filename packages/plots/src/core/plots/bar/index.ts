@@ -1,9 +1,13 @@
 import { Plot } from '../../base';
-import type { Adaptor } from '../../types';
 import { adaptor } from './adaptor';
+import { reisterShape } from './shape';
+
+import type { Adaptor } from '../../types';
 import { BarOptions } from './type';
 
 export type { BarOptions };
+
+reisterShape();
 
 export class Bar extends Plot<BarOptions> {
   /** 图表类型 */
@@ -28,6 +32,9 @@ export class Bar extends Plot<BarOptions> {
       interaction: {
         tooltip: {
           shared: true,
+        },
+        elementHighlightByColor: {
+          background: true,
         },
       },
     };
