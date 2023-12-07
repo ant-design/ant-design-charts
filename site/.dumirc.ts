@@ -83,12 +83,20 @@ export default defineConfig({
         order: 3,
       },
       {
-        slug: 'options/plots/annotation',
+        slug: 'options/plots/scale',
+        title: {
+          zh: '比例尺 - Scale',
+          en: 'Scale',
+        },
+        order: 4,
+      },
+      {
+        slug: 'options/plots/',
         title: {
           zh: '标记 - Annotations',
           en: 'Annotations',
         },
-        order: 3,
+        order: 5,
       },
       {
         slug: 'options/plots/events',
@@ -96,7 +104,7 @@ export default defineConfig({
           zh: '事件 - Events',
           en: 'Events',
         },
-        order: 4,
+        order: 6,
       },
       {
         slug: 'options/plots/animation',
@@ -104,7 +112,7 @@ export default defineConfig({
           zh: '动画 - Animation',
           en: 'Animation',
         },
-        order: 4,
+        order: 7,
       },
       {
         slug: 'options/plots/interaction',
@@ -112,7 +120,7 @@ export default defineConfig({
           zh: '交互 - Interaction',
           en: 'Interaction',
         },
-        order: 5,
+        order: 8,
       },
       {
         slug: 'options/plots/theme',
@@ -120,7 +128,7 @@ export default defineConfig({
           zh: '主题 - Theme',
           en: 'Theme',
         },
-        order: 6,
+        order: 9,
       },
       {
         slug: 'options/plots/special',
