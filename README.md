@@ -11,10 +11,10 @@ A React chart library, based on [G2](https://github.com/antvis/G2), [G6](https:/
 [![npm License](https://img.shields.io/npm/l/@ant-design/charts.svg)](https://www.npmjs.com/package/@ant-design/charts)
 
 <p align="center">
-  <a href="https://charts.ant.design/">Website</a> •
-  <a href="https://charts.ant.design/en/docs/manual/getting-started">Quick Start</a> •
-  <a href="https://charts.ant.design/en/examples/gallery">Gallery</a> •
-  <a href="https://charts.ant.design/en/docs/manual/faq">FAQ</a> •
+  <a href="https://ant-design-charts.antgroup.com/en/">Website</a> •
+  <a href="https://ant-design-charts.antgroup.com/en/manual/getting-started">Quick Start</a> •
+  <a href="https://ant-design-charts.antgroup.com/en/examples">Examples</a> •
+  <a href="https://ant-design-charts.antgroup.com/en/manual/faq">FAQ</a> •
 </p>
 
 </div>
