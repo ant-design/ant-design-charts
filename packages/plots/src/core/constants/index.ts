@@ -25,6 +25,7 @@ export const CHART_OPTIONS = [
   'marginLeft',
   'depth',
   'title',
+  'clip',
 ];
 
 /** 最终透传给 G2 Spec 的保留字 */
