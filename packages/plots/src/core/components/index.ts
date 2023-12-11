@@ -1,3 +1,3 @@
 export { mark } from './mark';
 export { coordinate, COORDIANTE_OPTIONS } from './coordinate';
-export * from './coordinateLayout';
+export * from './coordinate-layout';
