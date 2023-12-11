@@ -43,6 +43,14 @@
         "en": "Background Bar Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*oDkdRodUnXwAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "gantt.js",
+      "title": {
+        "zh": "甘特图",
+        "en": "Gantt Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*y260TK0A4UQAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
