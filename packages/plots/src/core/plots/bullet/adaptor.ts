@@ -1,4 +1,4 @@
-import { coordinateLayout } from '../../components';
+import { allCoordinateLayout } from '../../components';
 import { flow, transformOptions, map, set, get, isArray, includes, isNumber, deepAssign, isNil, isString } from '../../utils';
 
 import type { Adaptor } from '../../types';
@@ -178,5 +178,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, layoutAdaptor, cfgAdaptor, coordinateLayout, transformOptions)(params);
+  return flow(init, layoutAdaptor, cfgAdaptor, allCoordinateLayout, transformOptions)(params);
 }
