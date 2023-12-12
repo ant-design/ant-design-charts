@@ -91,7 +91,7 @@ export default defineConfig({
         order: 4,
       },
       {
-        slug: 'options/plots/',
+        slug: 'options/plots/annotation',
         title: {
           zh: '标记 - Annotations',
           en: 'Annotations',
