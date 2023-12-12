@@ -15,27 +15,32 @@ export function adaptor(params: Params) {
    */
   const annotations = (params: Params) => {
     const { options } = params;
-    const { annotations = [], children = [] } = options;
+    const { annotations = [], children = [], scale } = options;
     let sharedScale = false;
+    if (get(scale, 'y.key')) {
+      return params;
+    }
     children.forEach((child, index) => {
-      const scaleKey = `child${index}Scale`;
-      set(child, 'scale.y.key', scaleKey);
-      const { annotations: childAnnotations = [] } = child;
-      /**
-       * @description If the child has annotations, the scale of the child needs to be assigned scaleKey to connect the annotation.
-       */
-      if (childAnnotations.length > 0) {
-        set(child, 'scale.y.independent', false);
-        childAnnotations.forEach((annotation) => {
-          set(annotation, 'scale.y.key', scaleKey);
-        });
-      }
-      if (!sharedScale && annotations.length > 0 && get(child, 'scale.y.independent') === undefined) {
-        sharedScale = true;
-        set(child, 'scale.y.independent', false);
-        annotations.forEach((annotation) => {
-          set(annotation, 'scale.y.key', scaleKey);
-        });
+      if (!get(child, 'scale.y.key')) {
+        const scaleKey = `child${index}Scale`;
+        set(child, 'scale.y.key', scaleKey);
+        const { annotations: childAnnotations = [] } = child;
+        /**
+         * @description If the child has annotations, the scale of the child needs to be assigned scaleKey to connect the annotation.
+         */
+        if (childAnnotations.length > 0) {
+          set(child, 'scale.y.independent', false);
+          childAnnotations.forEach((annotation) => {
+            set(annotation, 'scale.y.key', scaleKey);
+          });
+        }
+        if (!sharedScale && annotations.length > 0 && get(child, 'scale.y.independent') === undefined) {
+          sharedScale = true;
+          set(child, 'scale.y.independent', false);
+          annotations.forEach((annotation) => {
+            set(annotation, 'scale.y.key', scaleKey);
+          });
+        }
       }
     });
     return params;
