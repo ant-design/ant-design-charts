@@ -1,4 +1,4 @@
-import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE } from '../constants';
+import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE, VIEW_OPTIONS } from '../constants';
 import {
   omit,
   pick,
@@ -19,12 +19,7 @@ export const transformOptions = (params: Adaptor) => {
   const options = filterTransformed(params);
   const { children = [] } = options;
 
-  const getRest = (o: Adaptor['options']) => {
-    const { children, type, data, ...rest } = o;
-    return omit(rest, getShapeConfigKeys());
-  };
-
-  const rest = getRest(options);
+  const rest = omit(options, [].concat(VIEW_OPTIONS, getShapeConfigKeys()));
 
   const getValue = (newConfig: string | Function, value: unknown, origin: Options) => {
     if (typeof newConfig === 'function') {

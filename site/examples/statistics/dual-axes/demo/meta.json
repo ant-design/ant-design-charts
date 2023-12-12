@@ -13,6 +13,14 @@
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*GLvKQbqMjTQAAAAAAAAAAAAADmJ7AQ/fmt.webp"
     },
     {
+      "filename": "segment.js",
+      "title": {
+        "zh": " 分段图",
+        "en": "Segment Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*t5wnSouqkP4AAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
       "filename": "multi-line.js",
       "title": {
         "zh": "多轴图",

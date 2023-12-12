@@ -1,12 +1,12 @@
 import { isArray, isBoolean } from '../utils';
 
 /** new Chart options */
-export const CHART_OPTIONS = [
+export const CHART_OPTIONS = ['renderer'];
+/** There is only the view layer, no need to pass it down to children */
+export const VIEW_OPTIONS = [
   'width',
   'height',
-  'renderer',
   'autoFit',
-  'canvas',
   'theme',
   'inset',
   'insetLeft',
@@ -26,10 +26,11 @@ export const CHART_OPTIONS = [
   'depth',
   'title',
   'clip',
+  'children',
+  'type',
+  'data',
+  'direction',
 ];
-
-/** 最终透传给 G2 Spec 的保留字 */
-export const RESERVED_KEYS = ['data', 'type', 'children', 'direction'];
 
 /** 特殊标识，用于标识改配置来自于转换逻辑，而非用户配置 */
 export const TRANSFORM_SIGN = '__transform__';

@@ -3,7 +3,7 @@ import { ChartEvent } from '@antv/g2';
 import { Chart } from './chart';
 import { Annotaion } from '../annotation';
 import { CHART_OPTIONS, ANNOTATION_LIST, SKIP_DEL_CUSTOM_SIGN } from '../constants';
-import { deepAssign, omit, pick, deleteCustomKeys, deleteChartOptionKeys } from '../utils';
+import { deepAssign, pick } from '../utils';
 
 import type { G2Chart } from './chart';
 import type { Adaptor, Options } from '../types';
@@ -35,11 +35,9 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * new Chart 所需配置
    */
   private getChartOptions() {
-    const { autoFit = true } = this.options;
     return {
       ...pick(this.options, CHART_OPTIONS),
       container: this.container,
-      autoFit,
     };
   }
 
@@ -50,7 +48,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
     if (this.type === 'base' || this[SKIP_DEL_CUSTOM_SIGN]) {
       return { ...this.options, ...this.getChartOptions() };
     }
-    return deleteCustomKeys(omit(this.options, CHART_OPTIONS), true);
+    return this.options;
   }
 
   /**
@@ -80,13 +78,13 @@ export abstract class Plot<O extends PickOptions> extends EE {
   }
 
   private getBaseOptions(): Partial<Options> {
-    return { type: 'view' };
+    return { type: 'view', autoFit: true };
   }
 
   /**
    * 获取默认的 options 配置项，每个组件都可以复写
    */
-  protected getDefaultOptions(): any { }
+  protected getDefaultOptions(): any {}
 
   /**
    * 绘制
@@ -182,7 +180,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
     // 转化成 G2 Spec
     adaptor({
       chart: this.chart,
-      options: deleteChartOptionKeys(this.options),
+      options: this.options,
     });
   }
 
