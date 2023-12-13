@@ -9,6 +9,7 @@ export const BaseChart: React.FC<any> = forwardRef(({ chartType = 'Base', ...con
     containerStyle = {
       height: 'inherit',
     },
+    containerAttributes = {},
     className,
     loading,
     loadingTemplate,
@@ -23,7 +24,7 @@ export const BaseChart: React.FC<any> = forwardRef(({ chartType = 'Base', ...con
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
       {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
-      <div className={className} style={containerStyle} ref={container} />
+      <div className={className} style={containerStyle} ref={container} {...containerAttributes} />
     </ErrorBoundary>
   );
 });
