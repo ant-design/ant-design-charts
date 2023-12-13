@@ -17,11 +17,18 @@ export interface Chart extends Plot {
 export interface ContainerConfig {
   /**
    * @title 图表样式
-   * @description 配置图表样式
+   * @description 配置容器样式
    * @title.en_US Chart containerStyle
    * @description.en_US Configure chart container styles
    */
   containerStyle?: React.CSSProperties;
+  /**
+   * @title 容器自定义属性
+   * @description 配置容器自定义属性
+   * @title.en_US Chart containerAttr
+   * @description.en_US Configure chart container attributes
+   */
+  containerAttributes?: Record<string, any>;
   /**
    * @title 容器class
    * @description 类名添加
