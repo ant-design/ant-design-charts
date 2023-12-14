@@ -1,5 +1,17 @@
-import { allCoordinateLayout } from '../../components';
-import { flow, transformOptions, map, set, get, isArray, includes, isNumber, deepAssign, isNil, isString } from '../../utils';
+import { allCoordinateLayout } from '../../adaptor';
+import {
+  flow,
+  transformOptions,
+  map,
+  set,
+  get,
+  isArray,
+  includes,
+  isNumber,
+  mergeWithArrayCoverage,
+  isNil,
+  isString,
+} from '../../utils';
 
 import type { Adaptor } from '../../types';
 import type { BulletOptions } from './type';
@@ -12,7 +24,7 @@ type Params = Adaptor<BulletOptions>;
 /**
  * 转化为扁平化数据
  * 1、[{ measures: [1,2], title: 'x' }, ...] -> [{ measures: 1, title: 'x', index: 0 }, { measures: 2, title: 'x', index: 1 },...]
- * 2、[{ measures: 1, title: 'x' }, { measures: [2,3], title: 'x' }] -> 
+ * 2、[{ measures: 1, title: 'x' }, { measures: [2,3], title: 'x' }] ->
  * [{ measures: 1, title: 'x', index: 0 }, { measures: 2, title: 'x', index: 0 }, { measures: 3, title: 'x', index: 1 },...]
  * @param data 数据
  * @param field 通道
@@ -59,10 +71,13 @@ function getTransformData(data: any[], field: string, xField: string, isSort = t
 
   // 当存在更多分类时，单一的 measures 从 'measures' 的分类，变更为 'measures_0' 的分类
   if (isArrayData) {
-    return [transformData.map((item) => ({
-      index: 0,
-      ...item,
-    })), maxSize];
+    return [
+      transformData.map((item) => ({
+        index: 0,
+        ...item,
+      })),
+      maxSize,
+    ];
   }
 
   return [transformData, maxSize];
@@ -174,7 +189,7 @@ export function adaptor(params: Params) {
    */
   const cfgAdaptor = (params: Params) => {
     const { range = {}, measure = {}, target = {}, children } = params.options;
-    params.options.children = [range, measure, target].map((c, i) => deepAssign(children[i], c));
+    params.options.children = [range, measure, target].map((c, i) => mergeWithArrayCoverage(children[i], c));
     return params;
   };
 

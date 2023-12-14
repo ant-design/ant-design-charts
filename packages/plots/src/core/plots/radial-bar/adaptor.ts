@@ -1,5 +1,6 @@
 import { flow, set, pick, transformOptions, isNumber, get } from '../../utils';
-import { COORDIANTE_OPTIONS, mark } from '../../components';
+import { mark } from '../../adaptor';
+import { COORDIANTE_OPTIONS } from '../../constants';
 import type { Adaptor } from '../../types';
 import type { RadialBarOptions } from './type';
 

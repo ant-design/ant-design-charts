@@ -1,4 +1,4 @@
-import { mark } from '../../components';
+import { mark } from '../../adaptor';
 import type { Adaptor } from '../../types';
 import { flow, transformOptions, set, isArray, get, isPlainObject } from '../../utils';
 import { HORIZONTAL_MARGIN, AXIS_LABEL_PADDING, VERTICAL_MARGIN } from './constants';

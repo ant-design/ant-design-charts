@@ -1,4 +1,4 @@
-import { mark } from '../../components';
+import { mark } from '../../adaptor';
 import type { Adaptor } from '../../types';
 import { flow, transformOptions } from '../../utils';
 import type { SankeyOptions } from './type';

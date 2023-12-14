@@ -3,7 +3,7 @@ import { ChartEvent } from '@antv/g2';
 import { Chart } from './chart';
 import { Annotaion } from '../annotation';
 import { CHART_OPTIONS, ANNOTATION_LIST, SKIP_DEL_CUSTOM_SIGN } from '../constants';
-import { deepAssign, pick } from '../utils';
+import { mergeWithArrayCoverage, pick } from '../utils';
 
 import type { G2Chart } from './chart';
 import type { Adaptor, Options } from '../types';
@@ -26,7 +26,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
   constructor(container: string | HTMLElement, options: O) {
     super();
     this.container = typeof container === 'string' ? document.getElementById(container) : container;
-    this.options = deepAssign({}, this.getBaseOptions(), this.getDefaultOptions(), options);
+    this.options = mergeWithArrayCoverage({}, this.getBaseOptions(), this.getDefaultOptions(), options);
     this.createG2();
     this.bindEvents();
   }
@@ -133,7 +133,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * @param options
    */
   protected updateOption(options: Partial<O>) {
-    this.options = deepAssign({}, this.options, options);
+    this.options = mergeWithArrayCoverage({}, this.options, options);
   }
 
   /**

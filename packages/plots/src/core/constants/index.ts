@@ -57,102 +57,123 @@ const commonCallback = (type: string, value: boolean | object) => {
   return { type, ...(value as object) };
 };
 export const TRANSFORM_OPTION_KEY = {
-  encode: {
-    xField: 'x',
-    yField: 'y',
-    colorField: 'color',
-    angleField: 'y',
-    keyField: 'key',
-    sizeField: 'size',
-    shapeField: 'shape',
-    seriesField: 'series',
-    positionField: 'position',
-    textField: 'text',
-    valueField: 'value',
-    binField: 'x',
-    srcField: 'src',
-  },
-  transform: {
-    /**
-     * @title 堆叠
-     * @example
-     *  1. stack: true -> transform: [{type: 'stackY'}]
-     */
-    stack: (value: boolean | object) => {
+  /** encode */
+  xField: 'encode.x',
+  yField: 'encode.y',
+  colorField: 'encode.color',
+  angleField: 'encode.y',
+  keyField: 'encode.key',
+  sizeField: 'encode.size',
+  shapeField: 'encode.shape',
+  seriesField: 'encode.series',
+  positionField: 'encode.position',
+  textField: 'encode.text',
+  valueField: 'encode.value',
+  binField: 'encode.x',
+  srcField: 'encode.src',
+  /**
+   * @title 堆叠
+   * @example
+   *  1. stack: true -> transform: [{type: 'stackY'}]
+   */
+  stack: {
+    target: 'transform',
+    value: (value: boolean | object) => {
       return commonCallback('stackY', value);
     },
-    /**
-     * @title 归一化
-     * @example
-     *  1. normalize: true -> transform: [{type: 'normalizeY'}]
-     */
-    normalize: (value: boolean | object) => {
+  },
+  /**
+   * @title 归一化
+   * @example
+   *  1. normalize: true -> transform: [{type: 'normalizeY'}]
+   */
+  normalize: {
+    target: 'transform',
+    value: (value: boolean | object) => {
       return commonCallback('normalizeY', value);
     },
-    /**
-     * @title 百分比
-     * @description 同 normalize
-     * @example
-     *  1. percent: true -> transform: [{type: 'normalizeY'}]
-     */
-    percent: (value: boolean | object) => {
+  },
+  /**
+   * @title 百分比
+   * @description 同 normalize
+   * @example
+   *  1. percent: true -> transform: [{type: 'normalizeY'}]
+   */
+  percent: {
+    target: 'transform',
+    value: (value: boolean | object) => {
       return commonCallback('normalizeY', value);
     },
-    /**
-     * @title 分组
-     * @example
-     *  1. group: true -> transform: [{type: 'dodgeX'}]
-     */
-    group: (value: boolean | object) => {
+  },
+  /**
+   * @title 分组
+   * @example
+   *  1. group: true -> transform: [{type: 'dodgeX'}]
+   */
+  group: {
+    target: 'transform',
+    value: (value: boolean | object) => {
       return commonCallback('dodgeX', value);
     },
-    /**
-     * @title 排序
-     * @example
-     *  1. sort: true -> transform: [{type: 'sortX'}]
-     */
-    sort: (value: boolean | object) => {
+  },
+  /**
+   * @title 排序
+   * @example
+   *  1. sort: true -> transform: [{type: 'sortX'}]
+   */
+  sort: {
+    target: 'transform',
+    value: (value: boolean | object) => {
       return commonCallback('sortX', value);
     },
-    /**
-     * @title 对称
-     * @example
-     *  1. symmetry: true -> transform: [{type: 'symmetryY'}]
-     */
-    symmetry: (value: boolean | object) => {
+  },
+  /**
+   * @title 对称
+   * @example
+   *  1. symmetry: true -> transform: [{type: 'symmetryY'}]
+   */
+  symmetry: {
+    target: 'transform',
+    value: (value: boolean | object) => {
       return commonCallback('symmetryY', value);
     },
-    /**
-     * @title 对 y 和 y1 通道求差集
-     * @example
-     *  1. diff: true -> transform: [{type: 'diffY'}]
-     */
-    diff: (value: boolean | object) => {
+  },
+  /**
+   * @title 对 y 和 y1 通道求差集
+   * @example
+   *  1. diff: true -> transform: [{type: 'diffY'}]
+   */
+  diff: {
+    target: 'transform',
+    value: (value: boolean | object) => {
       return commonCallback('diffY', value);
     },
   },
-  scale: {
-    meta: (value: object) => {
+  meta: {
+    target: 'scale',
+    value: (value: object) => {
       return value;
     },
   },
-  labels: {
-    label: (value: object) => {
+  label: {
+    target: 'labels',
+    value: (value: object) => {
       return value;
     },
   },
-  style: {
-    /**
-     * @title 折线的形状
-     * @example
-     *  1. shape: 'smooth' -> style: {shape: 'smooth'}
-     */
-    shape: 'shape',
-    /**
-     * @title 是否链接空值
-     * @description 支持 boolean 和 对象类型
-     */
-    connectNulls: (value: boolean | object) => {
+  /**
+   * @title 折线的形状
+   * @example
+   *  1. shape: 'smooth' -> style: {shape: 'smooth'}
+   */
+  shape: 'style.shape',
+  /**
+   * @title 是否链接空值
+   * @description 支持 boolean 和 对象类型
+   */
+  connectNulls: {
+    target: 'style',
+    value: (value: boolean | object) => {
       if (isBoolean(value)) {
         return {
           connect: value,
@@ -179,7 +200,13 @@ const EXTEND_KEYS = [
   'meta',
   'tooltip',
   'animate',
-  ...Object.keys(TRANSFORM_OPTION_KEY.transform),
+  'stack',
+  'normalize',
+  'percent',
+  'group',
+  'sort',
+  'symmetry',
+  'diff',
 ];
 export const CONFIG_SHAPE = [
   {
@@ -201,6 +228,18 @@ export const CONFIG_SHAPE = [
     type: 'area',
     extend_keys: EXTEND_KEYS,
   },
+];
+
+export const COORDIANTE_OPTIONS = [
+  'radius',
+  'innerRadius',
+  'startAngle',
+  'endAngle',
+  'focusX',
+  'focusY',
+  'distortionX',
+  'distortionY',
+  'visual',
 ];
 
 /**

@@ -24,12 +24,11 @@ export {
   isPlainObject,
   reduce,
   isNil,
+  mergeWith,
 } from 'lodash-es';
-export { getCustomKeys } from './get-custom-keys';
 export { isCompositePlot } from './is-composite-plot';
 export { transformOptions } from './transform';
-export { getShapeConfigKeys } from './get-shape-config-keys';
-export { deleteCustomKeys } from './delete-custom-keys';
+export { deleteExcessKeys } from './delete-excess-keys';
 export { filterTransformed } from './filter-transformed';
 export { conversionTagFormatter } from './conversion';
-export { deepAssign } from '@ant-design/charts-util';
+export { mergeWithArrayCoverage } from './merge-with-array-coverage';

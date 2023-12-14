@@ -42,7 +42,6 @@ const DemoFunnel = () => {
           if (i)
             return (
               <div
-                key={i}
                 style={{
                   height: 1,
                   width: 30,
