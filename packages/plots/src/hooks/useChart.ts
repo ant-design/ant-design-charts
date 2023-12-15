@@ -40,6 +40,11 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
     return imageName;
   };
 
+  /**
+   * JSX TO HTMLElement
+   * @param {object} cfg
+   * @param {boolean} flag isTooltip
+   */
   const processConfig = (cfg: object, flag = false) => {
     const keys = Object.keys(cfg);
     let isTooltip = flag;

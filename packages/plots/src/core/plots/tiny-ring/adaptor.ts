@@ -1,5 +1,5 @@
 import { flow, transformOptions, set } from '../../utils';
-import { mark } from '../../components';
+import { mark } from '../../adaptor';
 import type { Adaptor } from '../../types';
 import type { TinyRingOptions } from './type';
 

@@ -1,4 +1,4 @@
-import { mark } from '../../components';
+import { mark } from '../../adaptor';
 import type { Adaptor } from '../../types';
 import { flow, transformOptions, get, set } from '../../utils';
 import type { DualAxesOptions } from './type';

@@ -1,5 +1,5 @@
 import { flow, transformOptions, set, groupBy } from '../../utils';
-import { mark } from '../../components';
+import { mark } from '../../adaptor';
 import type { Adaptor } from '../../types';
 import type { FunnelOptions } from './type';
 

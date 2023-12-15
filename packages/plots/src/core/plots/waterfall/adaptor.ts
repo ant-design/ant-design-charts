@@ -1,5 +1,5 @@
 import { flow, transformOptions } from '../../utils';
-import { mark } from '../../components';
+import { mark } from '../../adaptor';
 import { START_KEY, END_KEY, WATERFALL_VALUE } from './constants';
 import type { Adaptor } from '../../types';
 import type { WaterfallOptions } from './type';

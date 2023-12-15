@@ -1,4 +1,4 @@
-import { mark } from '../../components';
+import { mark } from '../../adaptor';
 import type { Adaptor } from '../../types';
 import { flow, transformOptions, get, isArray, set } from '../../utils';
 import type { BarOptions } from './type';

@@ -1,5 +1,5 @@
 import { flow, transformOptions } from '../../utils';
-import { coordinate } from '../../components';
+import { coordinate } from '../../adaptor';
 
 import type { Adaptor } from '../../types';
 import type { RoseOptions } from './type';

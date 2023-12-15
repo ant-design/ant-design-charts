@@ -1,4 +1,4 @@
-import { coordinate } from '../../components';
+import { coordinate } from '../../adaptor';
 import { flow, transformOptions } from '../../utils';
 
 import type { Adaptor } from '../../types';
