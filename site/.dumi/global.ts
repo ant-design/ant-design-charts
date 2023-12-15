@@ -8,4 +8,5 @@ if (window) {
   /** 不要使用 link, react-dom 冲突 */
   (window as any).plots = require('@ant-design/plots');
   (window as any).d3Interpolate = require('d3-interpolate');
+  (window as any).d3Regression = require('d3-regression');
 }
