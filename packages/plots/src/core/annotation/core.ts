@@ -21,27 +21,6 @@ export abstract class Annotaion<T extends Record<string, any>> extends CustomEle
 
   attributeChangedCallback<Key extends keyof T>(name: Key): void {}
 
-  public getElementsLayout() {
-    const { canvas } = this.chart.getContext();
-    const elements = canvas.document.getElementsByClassName('element');
-    const elementsLayout = [];
-    elements.forEach((element) => {
-      // @ts-ignore
-      const bbox = element.getBBox();
-      const { x, y, width, height } = bbox;
-      elementsLayout.push({
-        bbox,
-        x,
-        y,
-        width,
-        height,
-        key: element['__data__'].key,
-        data: element['__data__'],
-      });
-    });
-    return elementsLayout;
-  }
-
   public update(attr?: Partial<T>, animate?: GenericAnimation) {
     this.attr(mergeWithArrayCoverage({}, this.attributes, attr || {}));
     return this.render?.(this.attributes as Required<T>, this, animate);
@@ -56,6 +35,28 @@ export abstract class Annotaion<T extends Record<string, any>> extends CustomEle
     container: Group,
     animate?: GenericAnimation,
   ): void | AnimationResult[];
+
+  public getElementsLayout() {
+    const { canvas } = this.chart.getContext();
+    const elements = canvas.document.getElementsByClassName('element');
+    const elementsLayout = [];
+    elements.forEach((element) => {
+      //@ts-expect-error
+      const bbox = element.getBBox();
+      const { x, y, width, height } = bbox;
+      const data = element['__data__'];
+      elementsLayout.push({
+        bbox,
+        x,
+        y,
+        width,
+        height,
+        key: data.key,
+        data,
+      });
+    });
+    return elementsLayout;
+  }
 
   public bindEvents(attributes: T, container: Group): void {}
 }
