@@ -1,16 +1,14 @@
 import EE from '@antv/event-emitter';
 import { ChartEvent } from '@antv/g2';
 import { Chart } from './chart';
-import { Annotaion } from '../annotation';
-import { CHART_OPTIONS, ANNOTATION_LIST, SKIP_DEL_CUSTOM_SIGN } from '../constants';
+import { Controller as Annotaion } from '../annotation';
+import { CHART_OPTIONS, SKIP_DEL_CUSTOM_SIGN } from '../constants';
 import { mergeWithArrayCoverage, pick } from '../utils';
 
 import type { G2Chart } from './chart';
 import type { Adaptor, Options } from '../types';
 
 const SOURCE_ATTRIBUTE_NAME = 'data-chart-source-type';
-
-const ANNOTATION_MAP = new Map();
 
 type PickOptions = Pick<Options, 'autoFit' | 'width' | 'height'>;
 export abstract class Plot<O extends PickOptions> extends EE {
@@ -22,6 +20,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
   public options: O;
   /** G2 chart 实例 */
   public chart: G2Chart;
+  public annotation: Annotaion<O>;
 
   constructor(container: string | HTMLElement, options: O) {
     super();
@@ -98,26 +97,10 @@ export abstract class Plot<O extends PickOptions> extends EE {
     this.chart.options(this.getSpecOptions());
     // 渲染
     this.chart.render().then(() => {
-      this.annotations();
+      this.annotation = new Annotaion(this.chart, this.options);
     });
     // 绑定
     this.bindSizeSensor();
-  }
-
-  /**
-   * annotaions
-   */
-  public annotations(): void {
-    ANNOTATION_LIST.forEach((annotation) => {
-      const { key, shape } = annotation;
-      const annotationOptions = this.options[key];
-      if (ANNOTATION_MAP.has(key)) {
-        ANNOTATION_MAP.get(key).destroy();
-      }
-      if (annotationOptions) {
-        ANNOTATION_MAP.set(key, new Annotaion[shape](this.chart, annotationOptions));
-      }
-    });
   }
 
   /**
@@ -198,7 +181,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
     const { autoFit = true } = this.options;
     if (autoFit) {
       this.chart.on(ChartEvent.AFTER_CHANGE_SIZE, () => {
-        this.annotations();
+        this.annotation.update();
       });
     }
   }

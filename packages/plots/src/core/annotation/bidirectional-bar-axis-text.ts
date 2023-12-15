@@ -1,66 +1,46 @@
-// @ts-expect-error
-import { Text, Polygon, canvas as GCanvas } from '@antv/g';
-// @ts-expect-error
-import { Chart, AxisComponent, G2ViewDescriptor } from '@antv/g2';
+import { Chart, AxisComponent } from '@antv/g2';
 import { get, isFunction, uniqBy, groupBy } from '../utils';
+import { Annotaion } from './core';
+import { Text } from './shapes';
 import { VERTICAL_MARGIN } from '../plots/bidirectional-bar/constants';
 
 export type BidirectionalBarAxisTextOptions = AxisComponent;
 
-export class BidirectionalBarAxisText {
-  /** canvas 实例 */
-  public canvas: GCanvas;
-  public views: G2ViewDescriptor[];
-  public chart: Chart;
-  public options: BidirectionalBarAxisTextOptions;
-  public container: Array<Text | Polygon> = [];
-
+export class BidirectionalBarAxisText extends Annotaion<BidirectionalBarAxisTextOptions> {
+  static tag = 'BidirectionalBarAxisText';
   constructor(chart: Chart, options: BidirectionalBarAxisTextOptions) {
-    if (!options) return;
-    this.chart = chart;
-    this.options = options;
-    this.init();
+    super(chart, options, { type: BidirectionalBarAxisText.tag });
   }
-  public getElementsLayout() {
-    const { layout } = this.options;
-    const isVertical = layout === 'vertical';
-    const elements = this.canvas.document.getElementsByClassName('element');
-    const elementsLayout = [];
-    elements.forEach((element) => {
-      const bbox = element.getBBox();
-      const { x, y, width, height } = bbox;
-      elementsLayout.push({
-        bbox,
-        x,
-        y,
-        width,
-        height,
-        data: element['__data__'],
-      });
-    });
-    return isVertical ? uniqBy(elementsLayout, 'x') : uniqBy(elementsLayout, 'y');
+
+  public render() {
+    this.drawText();
   }
+
   public getBidirectionalBarAxisTextLayout() {
-    const { layout } = this.options;
+    const { layout } = this.attributes;
     const isVertical = layout === 'vertical';
-    const elementsLayout = this.getElementsLayout();
+    const allElementsLayout = this.getElementsLayout();
+    const elementsLayout = isVertical ? uniqBy(allElementsLayout, 'x') : uniqBy(allElementsLayout, 'y');
     const textPath = ['title'];
     let textLayout = [];
-    const { width: viewWidth, height: viewHeight } = get(this.views, [0, 'layout']);
+    const { views } = this.chart.getContext();
+    const { width: viewWidth, height: viewHeight } = get(views, [0, 'layout']);
     elementsLayout.forEach((element) => {
-      const { x, y, height, width, data } = element;
+      const { x, y, height, width, data, key } = element;
       const text = get(data, textPath);
       if (isVertical) {
         textLayout.push({
           x: x + width / 2,
           y: viewHeight,
           text,
+          key,
         });
       } else {
         textLayout.push({
           x: viewWidth,
           y: y + height / 2,
           text,
+          key,
         });
       }
     });
@@ -80,12 +60,7 @@ export class BidirectionalBarAxisText {
 
     return textLayout;
   }
-  public init() {
-    const { canvas, views } = this.chart.getContext();
-    this.views = views;
-    this.canvas = canvas;
-    this.drawBidirectionalBarAxisText();
-  }
+
   public transformLabelStyle(style) {
     const removeLabel = {};
     const reg = /^label[A-Z]/;
@@ -98,36 +73,37 @@ export class BidirectionalBarAxisText {
     return removeLabel;
   }
 
-  public drawBidirectionalBarAxisText() {
+  public drawText() {
     const axisLayout = this.getBidirectionalBarAxisTextLayout();
-    const { layout: viewLayout, labelFormatter, ...textStyle } = this.options;
+    const { layout: viewLayout, labelFormatter, ...textStyle } = this.attributes;
 
     axisLayout.forEach((layout) => {
-      const { x, y, text } = layout;
+      const { x, y, text, key } = layout;
       const textNode = new Text({
         style: {
           x,
           y,
           text: isFunction(labelFormatter) ? labelFormatter(text) : text,
-          fontSize: 12,
-          textBaseline: 'middle',
-          textAlign: 'center',
-          fill: '#000',
           wordWrap: true,
           wordWrapWidth: viewLayout === 'horizontal' ? VERTICAL_MARGIN * 2 : 120,
           maxLines: 2,
           textOverflow: 'ellipsis',
           ...this.transformLabelStyle(textStyle),
         },
+        id: `text-${key}`,
       });
-      this.canvas.appendChild(textNode);
-      this.container.push(textNode);
+      this.appendChild(textNode);
     });
   }
-  public update(options: BidirectionalBarAxisTextOptions) {}
-  public destroy() {
-    this.container.forEach((child) => {
-      child.destroy();
+
+  /** 仅仅更新位置即可 */
+  public update() {
+    const axisLayout = this.getBidirectionalBarAxisTextLayout();
+    axisLayout.forEach((layout) => {
+      const { x, y, key } = layout;
+      const text = this.getElementById(`text-${key}`);
+      text.setAttribute('x', x);
+      text.setAttribute('y', y);
     });
   }
 }

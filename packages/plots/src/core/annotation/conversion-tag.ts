@@ -1,7 +1,7 @@
-// @ts-expect-error
-import { Text, Polygon, canvas as GCanvas } from '@antv/g';
 import { Chart } from '@antv/g2';
 import { get, isFunction } from '../utils';
+import { Text, Polygon } from './shapes';
+import { Annotaion } from './core';
 
 type ShapeAttrs = Record<string, any>;
 
@@ -23,37 +23,14 @@ export type ConversionTagOptions = {
   style?: ShapeAttrs;
 };
 
-export class ConversionTag {
-  /** canvas 实例 */
-  public canvas: GCanvas;
-  public chart: Chart;
-  public options: ConversionTagOptions;
+export class ConversionTag extends Annotaion<ConversionTagOptions> {
+  static tag = 'ConversionTag';
   public direction: 'vertical' | 'horizontal';
-  public container: Array<Text | Polygon> = [];
 
   constructor(chart: Chart, options: ConversionTagOptions) {
-    if (!options) return;
-    this.chart = chart;
-    this.options = options;
-    this.init();
+    super(chart, options, { type: ConversionTag.tag });
   }
-  public getElementsLayout() {
-    const elements = this.canvas.document.getElementsByClassName('element');
-    const elementsLayout = [];
-    elements.forEach((element) => {
-      const bbox = element.getBBox();
-      const { x, y, width, height } = bbox;
-      elementsLayout.push({
-        bbox,
-        x,
-        y,
-        width,
-        height,
-        data: element['__data__'],
-      });
-    });
-    return elementsLayout;
-  }
+
   public getConversionTagLayout() {
     const isVertical = this.direction === 'vertical';
     const elementsLayout = this.getElementsLayout();
@@ -64,10 +41,10 @@ export class ConversionTag {
       ? elementsLayout[1].y - firstY - firstHeigt
       : elementsLayout[1].x - firstX - firstWidth;
     const tagLayout = [];
-    const { size = 40, arrowSize = 20, spacing = 4 } = this.options;
+    const { size = 40, arrowSize = 20, spacing = 4 } = this.attributes;
     elementsLayout.forEach((element, index) => {
       if (index > 0) {
-        const { x, y, height, width, data } = element;
+        const { x, y, height, width, data, key } = element;
         const currentValue = get(data, valuePath);
 
         const halfSize = size / 2;
@@ -85,6 +62,7 @@ export class ConversionTag {
             center: [arrowVertexX, arrowVertexY - elementDistance / 2 - spacing],
             width: elementDistance,
             value: [preValue, currentValue],
+            key,
           });
         } else {
           const arrowVertexX = x;
@@ -100,6 +78,7 @@ export class ConversionTag {
             center: [arrowVertexX - elementDistance / 2 - spacing, arrowVertexY],
             width: elementDistance,
             value: [preValue, currentValue],
+            key,
           });
         }
 
@@ -108,9 +87,7 @@ export class ConversionTag {
     });
     return tagLayout;
   }
-  public init() {
-    const { canvas } = this.chart.getContext();
-    this.canvas = canvas;
+  public render() {
     this.setDirection();
     this.drawConversionTag();
   }
@@ -132,9 +109,9 @@ export class ConversionTag {
     const {
       style,
       text: { style: textStyle, formatter },
-    } = this.options;
+    } = this.attributes;
     conversionLayout.forEach((layout) => {
-      const { points, center, value } = layout;
+      const { points, center, value, key } = layout;
       const [prev, next] = value;
       const [x, y] = center;
       const polygon = new Polygon({
@@ -143,28 +120,33 @@ export class ConversionTag {
           fill: '#eee',
           ...style,
         },
+        id: `polygon-${key}`,
       });
       const text = new Text({
         style: {
           x,
           y,
           text: isFunction(formatter) ? formatter(prev, next) : ((next / prev) * 100).toFixed(2) + '%',
-          fontSize: 12,
-          textBaseline: 'middle',
-          textAlign: 'center',
-          fill: '#000',
           ...textStyle,
         },
+        id: `text-${key}`,
       });
-      this.canvas.appendChild(polygon);
-      this.canvas.appendChild(text);
-      this.container.push(polygon, text);
+      this.appendChild(polygon);
+      this.appendChild(text);
     });
   }
-  public update(options: ConversionTagOptions) {}
-  public destroy() {
-    this.container.forEach((child) => {
-      child.destroy();
+
+  /** 仅仅更新位置即可 */
+  public update() {
+    const conversionLayout = this.getConversionTagLayout();
+    conversionLayout.forEach((layout) => {
+      const { points, center, key } = layout;
+      const [x, y] = center;
+      const polygon = this.getElementById(`polygon-${key}`);
+      const text = this.getElementById(`text-${key}`);
+      polygon.setAttribute('points', points);
+      text.setAttribute('x', x);
+      text.setAttribute('y', y);
     });
   }
 }
