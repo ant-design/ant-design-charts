@@ -99,6 +99,14 @@
         "en": "Dot Plot"
       },
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*RtalTb-DPdkAAAAAAAAAAAAADmJ7AQ"
+    },
+    {
+      "filename": "line.js",
+      "title": {
+        "zh": "散点图-回归线",
+        "en": "Scatter plot regression line"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*WVncQ5FZmXMAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
