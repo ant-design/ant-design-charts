@@ -1,3 +1,11 @@
+## 2.1.4
+
+`2023-12-25`
+
+- 🐞 修复 [measureTextWidth](https://github.com/ant-design/ant-design-charts/issues/2316) 丢失
+- 🐞 修复 [connectNulls](https://github.com/ant-design/ant-design-charts/issues/2305) 类型错误
+
+
 ## 2.1.3
 
 `2023-12-12`
