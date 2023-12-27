@@ -1,4 +1,4 @@
-import { TooltipComponent } from '@antv/g2';
+import type { TooltipComponent, Data as G2Data } from '@antv/g2';
 import { Options, Spec } from './core';
 
 /**
@@ -93,12 +93,12 @@ export interface AttachConfig {
  */
 export type PlotEvent = any; // 来自 G2 ，临时使用 any
 
-export type Datum = any; // 来自 G2 ，临时使用 any
+export type Datum = G2Data | any[];
 
 type TransformType<T> = T extends object ? { [P in keyof T]: TransformType<T[P]> } : T;
 
 export interface Common extends AttachConfig, ContainerConfig {
-  data?: Datum[];
+  data?: Datum;
   /**
    * @title 内部属性，只读
    */
