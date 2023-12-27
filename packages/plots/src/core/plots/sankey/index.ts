@@ -10,7 +10,7 @@ export class Sankey extends Plot<SankeyOptions> {
   public type = 'sankey';
 
   /**
-   * 获取 双轴图 默认配置项
+   * 获取 桑基图 默认配置项
    * 供外部使用
    */
   static getDefaultOptions(): Partial<SankeyOptions> {
@@ -18,14 +18,14 @@ export class Sankey extends Plot<SankeyOptions> {
   }
 
   /**
-   * 获取 条形图 默认配置
+   * 获取 桑基图 默认配置
    */
   protected getDefaultOptions() {
     return Sankey.getDefaultOptions();
   }
 
   /**
-   * 条形图适配器
+   * 桑基图适配器
    */
   protected getSchemaAdaptor(): (params: Adaptor<SankeyOptions>) => void {
     return adaptor;

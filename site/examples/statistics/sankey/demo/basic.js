@@ -4,18 +4,9 @@ import ReactDOM from 'react-dom';
 
 const DemoSankey = () => {
   const config = {
-    layout: { nodeAlign: 'center', nodePadding: 0.03 },
     data: {
       type: 'fetch',
       value: 'https://assets.antv.antgroup.com/g2/energy.json',
-      transform: [
-        {
-          type: 'custom',
-          callback: (data) => ({
-            links: data,
-          }),
-        },
-      ],
     },
     scale: {
       color: {
@@ -33,6 +24,7 @@ const DemoSankey = () => {
         ],
       },
     },
+    layout: { nodeAlign: 'center', nodePadding: 0.03 },
     style: {
       labelSpacing: 3,
       labelFontWeight: 'bold',
