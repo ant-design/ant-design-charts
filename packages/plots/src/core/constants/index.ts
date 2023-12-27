@@ -71,6 +71,7 @@ export const TRANSFORM_OPTION_KEY = {
   valueField: 'encode.value',
   binField: 'encode.x',
   srcField: 'encode.src',
+  linkColorField: 'encode.linkColor',
   /**
    * @title 堆叠
    * @example

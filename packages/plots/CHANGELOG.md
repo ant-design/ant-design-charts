@@ -1,3 +1,10 @@
+## 2.1.5
+
+`2023-12-27`
+
+- 🔥 新增 linkColorField 配置，用于指定 link 颜色跟随节点
+- 🐞 修复 [Snakey data](https://github.com/ant-design/ant-design-charts/issues/2320) 类型错误
+
 ## 2.1.4
 
 `2023-12-25`

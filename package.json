@@ -12,7 +12,8 @@
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "ci:version": "pnpm changeset version",
     "add:changelog": "pnpm changeset",
-    "release": "pnpm publish --no-git-checks -r --filter @ant-design/*",
+    "before:release": "pnpm run build",
+    "release": "pnpm run before:release && pnpm publish --no-git-checks -r --filter @ant-design/*",
     "release:alpha": "pnpm publish --tag alpha --no-git-checks -r --filter @ant-design/*",
     "release:beta": "pnpm publish --tag beta --no-git-checks -r --filter @ant-design/*"
   },
