@@ -14,6 +14,14 @@ const DemoDualAxes = () => {
       { time: '10:35', call: 8, waiting: 2, people: 1 },
       { time: '10:40', call: 13, waiting: 1, people: 2 },
     ],
+    legend: {
+      color: {
+        itemMarker: (v) => {
+          if (v === 'waiting') return 'rect'
+          return 'smooth'
+        }
+      }
+    },
     children: [
       {
         type: 'interval',
@@ -23,11 +31,9 @@ const DemoDualAxes = () => {
         type: 'line',
         yField: 'people',
         shapeField: 'smooth',
-        style: {
-          stroke: '#fdae6b',
-          lineWidth: 2,
-        },
+        scale: { color: { relations: [['people', '#fdae6b']] } },
         axis: { y: { position: 'right' } },
+        style: { lineWidth: 2 },
       },
     ],
   };

@@ -32,6 +32,7 @@ const DemoDualAxes = () => {
         layout: { justifyContent: 'center' },
       },
     },
+    scale: { color: { range: ['#5B8FF9', '#5D7092', '#5AD8A6'] } },
     children: [
       {
         data: uvBillData,
@@ -41,17 +42,13 @@ const DemoDualAxes = () => {
         group: true,
         style: { maxWidth: 50 },
         label: { position: 'inside' },
-        scale: { color: { range: ['#5B8FF9', '#5D7092'] } },
         interaction: { elementHighlightByColor: { background: true } },
       },
       {
         data: transformData,
         type: 'line',
         yField: 'count',
-        style: {
-          stroke: '#5AD8A6',
-          lineWidth: 2,
-        },
+        style: { lineWidth: 2 },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {

@@ -2,14 +2,6 @@ import { DualAxes } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const lineColor = {
-  uv: 'rgb(91, 143, 249)',
-  bill: 'rgb(90, 216, 166)',
-  a: 'rgb(93, 112, 146)',
-  b: 'rgb(246, 189, 22)',
-  c: 'rgb(111, 94, 249)',
-};
-
 const DemoDualAxes = () => {
   const uvBillData = [
     { time: '2019-03', value: 350, type: 'uv' },
@@ -44,6 +36,7 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
+    scale: { color: { range: ['#5B8FF9', '#5AD8A6', '#5D7092', '#F6BD16', '#6F5EF9'] } },
     children: [
       {
         data: uvBillData,
@@ -65,9 +58,9 @@ const DemoDualAxes = () => {
         data: transformData,
         type: 'point',
         yField: 'count',
+        colorField: 'name',
         sizeField: 3,
         shapeField: 'point',
-        style: { fill: (d) => lineColor[d.name] },
         axis: { y: false },
         tooltip: false,
       },

@@ -26,6 +26,7 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
+    legend: true,
     children: [
       {
         data: uvBillData,
@@ -39,10 +40,7 @@ const DemoDualAxes = () => {
         data: transformData,
         type: 'line',
         yField: 'count',
-        style: {
-          stroke: '#5D7092',
-          lineWidth: 2,
-        },
+        style: { lineWidth: 2 },
         axis: { y: { position: 'right' } },
         interaction: {
           tooltip: {

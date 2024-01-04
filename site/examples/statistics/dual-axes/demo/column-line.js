@@ -14,6 +14,7 @@ const DemoDualAxes = () => {
   const config = {
     data,
     xField: 'time',
+    legend: true,
     children: [
       {
         type: 'interval',
@@ -23,10 +24,7 @@ const DemoDualAxes = () => {
       {
         type: 'line',
         yField: 'count',
-        style: {
-          stroke: '#5AD8A6',
-          lineWidth: 2,
-        },
+        style: { lineWidth: 2 },
         axis: { y: { position: 'right' } },
       },
     ],

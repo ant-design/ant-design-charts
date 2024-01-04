@@ -18,6 +18,7 @@ const DemoDualAxes = () => {
   const config = {
     data,
     xField: 'year',
+    legend: true,
     children: [
       {
         type: 'line',

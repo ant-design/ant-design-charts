@@ -18,12 +18,12 @@ const DemoDualAxes = () => {
   const config = {
     data,
     xField: 'year',
+    legend: true,
     children: [
       {
         type: 'line',
         yField: 'value',
         style: {
-          stroke: '#5B8FF9',
           lineWidth: 3,
           lineDash: [5, 5],
         },
@@ -61,7 +61,7 @@ const DemoDualAxes = () => {
           y: {
             position: 'right',
             title: 'count',
-            style: { titleFill: '#5AD8A6' }
+            style: { titleFill: '#5AD8A6' },
           },
         },
       },
@@ -73,7 +73,8 @@ const DemoDualAxes = () => {
           stroke: '#5AD8A6',
           fill: '#fff',
         },
-        axis: { y: false }
+        axis: { y: false },
+        tooltip: false,
       },
     ],
   };
