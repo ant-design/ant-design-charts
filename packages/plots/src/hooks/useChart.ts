@@ -19,7 +19,7 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
   };
 
   /**
-   * Download Iamge
+   * Download Image
    * @param {string} name A name of image
    * @param {string} type A DOMString indicating the image format. The default format type is image/png.
    * @param {number} encoderOptions A Number between 0 and 1 indicating the image quality
