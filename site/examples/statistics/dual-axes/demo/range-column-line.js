@@ -14,28 +14,18 @@ const DemoDualAxes = () => {
   const config = {
     data,
     xField: 'time',
+    legend: true,
     children: [
       {
         type: 'interval',
         yField: 'value',
-        style: {
-          stroke: '#5B8FF9',
-          maxWidth: 100,
-        },
+        style: { maxWidth: 100 },
       },
       {
         type: 'line',
         yField: 'count',
-        style: {
-          stroke: '#5AD8A6',
-          lineWidth: 2,
-        },
-        axis: {
-          y: {
-            position: 'right',
-            style: { titleFill: '#5AD8A6' },
-          },
-        },
+        style: { lineWidth: 2 },
+        axis: { y: { position: 'right' } },
       },
     ],
   };

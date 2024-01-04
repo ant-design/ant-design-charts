@@ -10,6 +10,18 @@ type Params = Adaptor<DualAxesOptions>;
  * @param options
  */
 export function adaptor(params: Params) {
+  const colorField = (params: Params) => {
+    const { options } = params;
+    const { children = [], legend } = options;
+    if (!legend) return params;
+    children.forEach((option) => {
+      if (!get(option, 'colorField')) {
+        const yField = get(option, 'yField');
+        set(option, 'colorField', () => yField);
+      }
+    });
+    return params;
+  };
   /**
    * @description Top level annotations needs to share scale, when top level annotations is not empty, scale needs to be dynamically set.
    */
@@ -45,5 +57,5 @@ export function adaptor(params: Params) {
     });
     return params;
   };
-  return flow(annotations, mark, transformOptions)(params);
+  return flow(colorField, annotations, mark, transformOptions)(params);
 }

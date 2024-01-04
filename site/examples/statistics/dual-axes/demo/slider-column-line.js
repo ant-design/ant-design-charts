@@ -40,6 +40,7 @@ const DemoDualAxes = () => {
     data,
     xField: 'time',
     padding: 70,
+    legend: true,
     slider: { x: true },
     scale: { y: { nice: false } },
     children: [

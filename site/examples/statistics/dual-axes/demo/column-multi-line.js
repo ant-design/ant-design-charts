@@ -2,12 +2,6 @@ import { DualAxes } from '@ant-design/plots';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const lineColor = {
-  a: 'rgb(90, 216, 166)',
-  b: 'rgb(93, 112, 146)',
-  c: 'rgb(246, 189, 22)',
-};
-
 const DemoDualAxes = () => {
   const uvData = [
     { time: '2019-03', value: 35 },
@@ -37,6 +31,8 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
+    legend: true,
+    scale: { color: { range: ['#1783FF', '#5AD8A6', '#5D7092', '#F6BD16'] } },
     interaction: { tooltip: { sort: (d) => ['value', 'a', 'b', 'c'].indexOf(d.name) } },
     children: [
       {
@@ -49,12 +45,10 @@ const DemoDualAxes = () => {
         data: transformData,
         type: 'line',
         yField: 'count',
+        colorField: 'name',
         seriesField: 'name',
-        style: {
-          lineWidth: 2,
-          stroke: (d) => lineColor[d[0].name],
-        },
         axis: { y: { position: 'right' } },
+        style: { lineWidth: 2 },
       },
     ],
   };
