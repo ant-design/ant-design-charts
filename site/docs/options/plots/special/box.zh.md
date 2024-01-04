@@ -3,7 +3,9 @@ title: Box
 order: 4
 ---
 
-#### boxType
+##  特有
+
+### boxType
 
 <description>**optional** *boxplot | box* **default** *box*</description>
 

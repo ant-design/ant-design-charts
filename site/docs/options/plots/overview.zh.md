@@ -3,35 +3,35 @@ title: 概览
 order: 1
 ---
 
-### 图表容器
+## 图表容器
 
-#### width
+### width
 
 <description>**optional** *number* *default:* `400`</description>
 
 设置图表宽度。
 
-#### height
+### height
 
 <description>**optional** *number* *default:* `400`</description>
 
 设置图表高度。
 
-#### autoFit
+### autoFit
 
 <description>**optional** *boolean* *default:* `true`</description>
 
 图表是否自适应容器宽高。当 `autoFit` 设置为 true 时，`width` 和 `height` 的设置将失效。
 
 
-#### renderer
+### renderer
 
 <description>**optional** *string* *default:* `canvas`</description>
 
 设置图表渲染方式为 `canvas` 或 `svg`。
 
 
-### 视图模型
+## 视图模型
 
 G2 中的视图模型定义了一个视图的划分方式，划分得到的不同区域会绘制不同的东西，也通过不同的选项去设置。现在可以简单的把视图理解为一个图表。G2 的视图模型如下：
 
@@ -82,56 +82,56 @@ const contentHeight =
   insetBottom;
 ```
 
-### 数据映射
+## 数据映射
 
-#### data
+### data
 
 <description>**required** *array object*</description>
 
 设置图表数据源。数据源为对象集合，例如：`[{ time: '1991'，value: 20 }, { time: '1992'，value: 20 }]`。
 
-#### xField
+### xField
 
 <description>**required** *string*</description>
 
 图形在 x 方向对应的数据字段名，一般是横向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么班级字段就是对应的 xField。
 
-#### yField
+### yField
 
 <description>**required** *string*</description>
 
 图形在 y 方向对应的数据字段名，一般是纵向的坐标轴对应的字段。比如：要看不同班级的人数情况，那么人数字段就是对应的 yField。
 
 
-#### seriesField
+### seriesField
 
 <description>**optional** *string*</description>
 
 分组字段。比如：我们需要分析不同`省份`的交易额趋势，那么`省份字段`就是分组字段。
 
 
-### 图形样式
+## 图形样式
 
-#### shapeField
+### shapeField
 
 <description>**optional** *string* </description>
 
 指定 line 是否平滑，点图形状等
 
-#### colorField
+### colorField
 
 <description>**optional** *string* </description>
 
 指定颜色通道字段
 
 
-#### sizeField
+### sizeField
 
 <description>**optional** *string* </description>
 
 指定尺寸通道字段
 
-#### stack
+### stack
 
 <description>**optional** *boolean | StackYTransform*</description>
 
@@ -148,7 +148,7 @@ type StackYTransform = {
 };
 ```
 
-#### normalize
+### normalize
 
 <description>**optional** *boolean | NormalizeYTransform*</description>
 
@@ -162,7 +162,7 @@ type NormalizeYTransform = {
 };
 ```
 
-#### sort
+### sort
 
 <description>**optional** *boolean | SortByTransform*</description>
 
@@ -175,7 +175,7 @@ type SortByTransform = {
 };
 ```
 
-#### group
+### group
 
 <description>**optional** *boolean | DodgeXTransform*</description>
 
@@ -190,7 +190,7 @@ type DodgeXTransform = {
 };
 ```
 
-#### percent
+### percent
 
 <description>**optional** *boolean* *default:* `true`</description>
 
@@ -198,13 +198,13 @@ type DodgeXTransform = {
 
 
 
-#### line
+### line
 
 <description>**optional** *Line*</description>
 
 线条，一般用于面积图中添加线条
 
-#### point
+### point
 
 <description>**optional** *Point*</description>
 
@@ -212,7 +212,7 @@ type DodgeXTransform = {
 
 
 
-### 状态
+## 状态
 
 <description>**可选** *object*</description>
 

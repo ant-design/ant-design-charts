@@ -3,20 +3,22 @@ title: Pie
 order: 2
 ---
 
-#### angleField
+##  特有
+
+### angleField
 
 <description>**optional** *string*</description>
 
 角度映射字段
 
 
-#### radius
+### radius
 
 <description>**optional** *number* **default** *1*</description>
 
 饼图半径[0~1]
 
-#### innerRadius
+### innerRadius
 
 <description>**optional** *number*</description>
 

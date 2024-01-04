@@ -3,13 +3,15 @@ title: Waterfall
 order: 14
 ---
 
-#### linkStyle 
+##  特有
+
+### linkStyle 
 
 <description>**required** _attrStyle_</description>
 
 连线样式
 
-#### xField 
+### xField 
 
 <description>**required** _string | string[]_</description>
 

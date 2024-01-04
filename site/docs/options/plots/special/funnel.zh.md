@@ -3,13 +3,15 @@ title: Funnel
 order: 6
 ---
 
-#### compareField
+##  特有
+
+### compareField
 
 <description>**optional** _string_</description>
 
 对比字段。声明此字段时会自动渲染为对比漏斗图
 
-#### isTransposed
+### isTransposed
 
 <description>**optional** _boolean_ _default:_ `false`</description>
 

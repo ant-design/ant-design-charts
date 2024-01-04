@@ -1,22 +1,24 @@
 ---
-title: TinyRing
+title: Tiny
 order: 12
 ---
 
-#### percent 
+##  特有
+
+### percent 
 
 <description>**required** _number_</description>
 
 进度
 
 
-#### color 
+### color 
 
 <description>**required** _string[]_</description>
 
 配色
 
-#### radius 
+### radius 
 
 <description>**required** _number_ **default** _0.8_</description>
 

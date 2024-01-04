@@ -3,7 +3,9 @@ title: Liquid
 order: 9
 ---
 
-#### percent
+##  特有
+
+### percent
 
 <description>**required** _number_</description>
 

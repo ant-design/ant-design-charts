@@ -3,14 +3,16 @@ title: BidirectionalBar
 order: 3
 ---
 
-#### yField
+##  特有
+
+### yField
 
 <description>**optional** *string[]*</description>
 
 Y 轴字段
 
 
-#### layout
+### layout
 
 <description>**optional** *vertical | horizontal* **default** *vertical*</description>
 

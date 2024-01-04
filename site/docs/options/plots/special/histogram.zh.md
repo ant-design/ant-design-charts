@@ -3,19 +3,21 @@ title: Histogram
 order: 8
 ---
 
-#### binField 
+##  特有
+
+### binField 
 
 <description>**required** _string_</description>
 
 设置直方图绘制 (进行分箱) 的字段。
 
-#### binWidth
+### binWidth
 
 <description>**optional** _string_</description>
 
 设置直方图的分箱宽度，binWidth 影响直方图分成多少箱, 不能与 binNumber 一起使用。
 
-#### binNumber
+### binNumber
 
 <description>**optional** _number_</description>
 
