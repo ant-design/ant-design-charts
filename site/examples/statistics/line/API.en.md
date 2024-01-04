@@ -1,1 +1,1 @@
-<embed src="@/docs/api/plots/line.en.md"></embed>
+<embed src="@/docs/options/plots/common/overview.en.md"></embed>

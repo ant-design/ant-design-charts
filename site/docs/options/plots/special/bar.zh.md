@@ -3,7 +3,9 @@ title: Bar
 order: 0
 ---
 
-#### markBackground
+##  特有
+
+### markBackground
 
 <description>**optional** *BarOptions*</description>
 

@@ -4,7 +4,9 @@ order: 1
 ---
 
 
-#### markBackground
+##  特有
+
+### markBackground
 
 <description>**optional** *ColumnOptions*</description>
 

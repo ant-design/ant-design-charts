@@ -3,32 +3,34 @@ title: Bullet
 order: 5
 ---
 
-#### measureField 
+##  特有
+
+### measureField 
 
 <description>**required** _string_</description>
 
 使用数据条的长度，实际数值的设置字段，表示实际数值。
 
-#### rangeField 
+### rangeField 
 
 <description>**required** _string_</description>
 
 使用背景色条的长度的设置字段，表示区间范围。
 
-#### targetField 
+### targetField 
 
 <description>**required** _string_</description>
 
 使用测量标记的刻度轴位置的设置字段，表示目标值。
 
-#### layout
+### layout
 
 <description>**optional** _'horizontal' | 'vertical'_ _default:_ 'horizontal'</description>
 
 表示子弹图方向。
 
 
-#### color 
+### color 
 
 <description>**optional** _object_</description>
 
@@ -41,20 +43,20 @@ order: 5
 | target   | _string\|string[]_ | 目标值颜色   | 无       |
 
 
-#### range 
+### range 
 
 <description>**required** _BulletOptions_</description>
 
 range 配置
 
-#### measure 
+### measure 
 
 <description>**required** _BulletOptions_</description>
 
 measure 配置
 
 
-#### target 
+### target 
 
 <description>**required** _BulletOptions_</description>
 

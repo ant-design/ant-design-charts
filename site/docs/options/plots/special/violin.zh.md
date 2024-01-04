@@ -3,7 +3,9 @@ title: Violin
 order: 13
 ---
 
-#### violinType 
+##  特有
+
+### violinType 
 
 <description>**required** _normal | density | polar_</description>
 

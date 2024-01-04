@@ -3,7 +3,9 @@ title: Radar
 order: 10
 ---
 
-#### coordinateType
+##  特有
+
+### coordinateType
 
 <description>**required** _radar | polar_</description>
 

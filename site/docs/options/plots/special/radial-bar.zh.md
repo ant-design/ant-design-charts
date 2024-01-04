@@ -3,7 +3,9 @@ title: RadialBar
 order: 21
 ---
 
-#### markBackground
+##  特有
+
+### markBackground
 
 <description>**optional** *BarOptions*</description>
 

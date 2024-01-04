@@ -1,1 +1,2 @@
-<embed src="@/docs/api/plots/waterfall.en.md"></embed>
+<embed src="@/docs/options/plots/common/overview.en.md"></embed>
+<embed src="@/docs/options/plots/special/waterfall.en.md"></embed>
