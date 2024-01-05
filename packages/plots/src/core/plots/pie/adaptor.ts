@@ -1,4 +1,4 @@
-import { flow, transformOptions } from '../../utils';
+import { flow, transformOptions, isArray, set } from '../../utils';
 import { coordinate } from '../../adaptor';
 
 import type { Adaptor } from '../../types';
@@ -11,5 +11,40 @@ type Params = Adaptor<PieOptions>;
  * @param options
  */
 export function adaptor(params: Params) {
-  return flow(coordinate, transformOptions)(params);
+  /**
+   * @description 当 angleField 总算为 0 时，设置默认样式
+   * @link https://github.com/ant-design/ant-design-charts/issues/2324
+   */
+  const emptyData = (params: Params) => {
+    const { options } = params;
+    const { angleField, data, label, tooltip, colorField } = options;
+    if (isArray(data)) {
+      const sum = data.reduce((a, b) => a + b[angleField], 0);
+      if (sum === 0) {
+        const normalization = data.map((item) => ({ ...item, [angleField]: 1 }));
+        set(options, 'data', normalization);
+        if (label) {
+          set(options, 'label', {
+            ...label,
+            formatter: () => 0,
+          });
+        }
+        if (tooltip !== false) {
+          set(options, 'tooltip', {
+            ...tooltip,
+            items: [
+              (arg) => {
+                return {
+                  name: arg[colorField],
+                  value: 0,
+                };
+              },
+            ],
+          });
+        }
+      }
+    }
+    return params;
+  };
+  return flow(emptyData, coordinate, transformOptions)(params);
 }

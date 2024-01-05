@@ -14,7 +14,6 @@ const DemoPie = () => {
     ],
     angleField: 'value',
     colorField: 'type',
-    paddingRight: 80,
     label: {
       text: 'value',
       style: {
