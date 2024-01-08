@@ -1,4 +1,3 @@
-import { coordinate } from '../../adaptor';
 import { flow, transformOptions } from '../../utils';
 
 import type { Adaptor } from '../../types';
@@ -18,5 +17,5 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(init, coordinate, transformOptions)(params);
+  return flow(init, transformOptions)(params);
 }

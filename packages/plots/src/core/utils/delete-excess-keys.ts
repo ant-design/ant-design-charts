@@ -1,4 +1,4 @@
-import { TRANSFORM_OPTION_KEY, VIEW_OPTIONS, CONFIG_SHAPE, COORDIANTE_OPTIONS, ANNOTATION_LIST } from '../constants';
+import { TRANSFORM_OPTION_KEY, VIEW_OPTIONS, CONFIG_SHAPE, ANNOTATION_LIST } from '../constants';
 import { Options } from '../types';
 
 /**
@@ -6,10 +6,7 @@ import { Options } from '../types';
  */
 export const deleteExcessKeys = <O extends Options>(options: O): O => {
   const { children = [] } = options;
-  const deleteKeys = Object.keys(TRANSFORM_OPTION_KEY).concat(
-    CONFIG_SHAPE.map((item) => item.key),
-    COORDIANTE_OPTIONS,
-  );
+  const deleteKeys = Object.keys(TRANSFORM_OPTION_KEY).concat(CONFIG_SHAPE.map((item) => item.key));
   deleteKeys.forEach((key) => {
     delete options[key];
   });

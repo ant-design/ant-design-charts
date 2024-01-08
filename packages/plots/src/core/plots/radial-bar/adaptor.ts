@@ -1,6 +1,5 @@
-import { flow, set, pick, transformOptions, isNumber, get } from '../../utils';
+import { flow, set, transformOptions, isNumber, get } from '../../utils';
 import { mark } from '../../adaptor';
-import { COORDIANTE_OPTIONS } from '../../constants';
 import type { Adaptor } from '../../types';
 import type { RadialBarOptions } from './type';
 
@@ -17,17 +16,14 @@ export function adaptor(params: Params) {
    */
   const coordinate = (params: Params) => {
     const { options } = params;
-    const { startAngle, maxAngle, coordinate, radius, innerRadius } = options;
+    const { startAngle, maxAngle, coordinate } = options;
     // 默认开始角度是-90度
     const start = isNumber(startAngle) ? (startAngle / (2 * Math.PI)) * 360 : -90;
     // 结束角度通过maxAngle来计算
     const end = isNumber(maxAngle) ? ((Number(maxAngle) + start) / 180) * Math.PI : Math.PI;
     set(params, ['options', 'coordinate'], {
       ...coordinate,
-      ...pick(options.coordinate, COORDIANTE_OPTIONS),
       endAngle: end,
-      outerRadius: radius,
-      innerRadius,
       startAngle: startAngle ?? -Math.PI / 2,
     });
 

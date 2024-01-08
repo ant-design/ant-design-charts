@@ -1,6 +1,4 @@
 import { flow, transformOptions, isArray, set } from '../../utils';
-import { coordinate } from '../../adaptor';
-
 import type { Adaptor } from '../../types';
 import type { PieOptions } from './type';
 
@@ -46,5 +44,5 @@ export function adaptor(params: Params) {
     }
     return params;
   };
-  return flow(emptyData, coordinate, transformOptions)(params);
+  return flow(emptyData, transformOptions)(params);
 }
