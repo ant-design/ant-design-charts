@@ -28,8 +28,16 @@ order: 1
 
 <description>**optional** *string* *default:* `canvas`</description>
 
-设置图表渲染方式为 `canvas` 或 `svg`。
+设置图表渲染方式为 `canvas` 或 `svg`，默认值无需指定，当要使用 svg 模式时，可以如下配置
 
+```ts
+// import { Renderer as CanvasRenderer } from '@antv/g-canvas';
+import { Renderer as SVGRenderer } from '@antv/g-svg';
+
+const config = {
+  renderer: new SVGRenderer()
+}
+```
 
 ## 视图模型
 
