@@ -1,3 +1,10 @@
+## 2.1.6
+
+`2024-01-08`
+
+- 🐞 修复 [环图的半径不支持动态更新](https://github.com/ant-design/ant-design-charts/issues/2342)
+- 🐞 修复 [2.x版本饼图value为0时图形是不渲染的](https://github.com/ant-design/ant-design-charts/issues/2324)
+
 ## 2.1.5
 
 `2023-12-27`
