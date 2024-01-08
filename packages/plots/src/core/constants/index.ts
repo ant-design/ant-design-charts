@@ -72,6 +72,15 @@ export const TRANSFORM_OPTION_KEY = {
   binField: 'encode.x',
   srcField: 'encode.src',
   linkColorField: 'encode.linkColor',
+  radius: 'coordinate.outerRadius',
+  innerRadius: 'coordinate.innerRadius',
+  startAngle: 'coordinate.startAngle',
+  endAngle: 'coordinate.endAngle',
+  focusX: 'coordinate.focusX',
+  focusY: 'coordinate.focusY',
+  distortionX: 'coordinate.distortionX',
+  distortionY: 'coordinate.distortionY',
+  visual: 'coordinate.visual',
   /**
    * @title 堆叠
    * @example
@@ -229,18 +238,6 @@ export const CONFIG_SHAPE = [
     type: 'area',
     extend_keys: EXTEND_KEYS,
   },
-];
-
-export const COORDIANTE_OPTIONS = [
-  'radius',
-  'innerRadius',
-  'startAngle',
-  'endAngle',
-  'focusX',
-  'focusY',
-  'distortionX',
-  'distortionY',
-  'visual',
 ];
 
 /**
