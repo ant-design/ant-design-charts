@@ -20,6 +20,7 @@ const DemoHeatmap = () => {
       title: 'date',
       field: 'temp_max',
       valueFormatter: '~s',
+      pointerEvents: 'none'
     },
   };
 

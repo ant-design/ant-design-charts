@@ -16,8 +16,8 @@ export function adaptor(params: Params) {
   const tooltip = (params: Params) => {
     const { options } = params;
     const { tooltip, colorField, sizeField } = options;
-    if (!tooltip.field) {
-      tooltip.field = colorField || sizeField;
+    if (tooltip && !tooltip.field) {
+      tooltip['field'] = colorField || sizeField;
     }
     return params;
   };
