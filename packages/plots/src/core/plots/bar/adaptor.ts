@@ -1,6 +1,6 @@
 import { mark } from '../../adaptor';
 import type { Adaptor } from '../../types';
-import { flow, transformOptions, get, isArray, set } from '../../utils';
+import { flow, transformOptions, get, isArray, set, omit } from '../../utils';
 import type { BarOptions } from './type';
 
 type Params = Adaptor<BarOptions>;
@@ -22,13 +22,13 @@ export function adaptor(params: Params) {
     if (get(options, 'children.length') > 1) {
       set(options, 'children', [{ type: 'interval' }]);
     }
-    const { scale, markBackground, data, children } = options;
+    const { scale, markBackground, data, children, yField } = options;
     const domain = get(scale, 'y.domain', []);
     if (markBackground && domain.length && isArray(data)) {
       const domainMax = 'domainMax';
       const backgroundData = data.map((item) => {
         return {
-          ...item,
+          ...omit(item, yField),
           [domainMax]: domain[domain.length - 1],
         };
       });
@@ -37,7 +37,6 @@ export function adaptor(params: Params) {
         data: backgroundData,
         yField: domainMax,
         tooltip: false,
-        legend: false,
         style: {
           fill: '#eee',
         },
