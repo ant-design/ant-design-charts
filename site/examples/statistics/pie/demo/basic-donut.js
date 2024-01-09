@@ -29,6 +29,19 @@ const DemoPie = () => {
         rowPadding: 5,
       },
     },
+    annotations: [
+      {
+        type: 'text',
+        style: {
+          text: 'AntV\nCharts',
+          x: '50%',
+          y: '50%',
+          textAlign: 'center',
+          fontSize: 40,
+          fontStyle: 'bold',
+        },
+      },
+    ],
   };
   return <Pie {...config} />;
 };
