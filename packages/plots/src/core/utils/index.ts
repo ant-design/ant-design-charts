@@ -27,6 +27,7 @@ export {
   mergeWith,
   memoize,
   values,
+  isUndefined,
 } from 'lodash-es';
 export { isCompositePlot } from './is-composite-plot';
 export { transformOptions } from './transform';

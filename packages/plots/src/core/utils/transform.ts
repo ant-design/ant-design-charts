@@ -8,6 +8,7 @@ import {
   mergeWithArrayCoverage,
   set,
   isObject,
+  isUndefined,
 } from './index';
 
 import type { Adaptor, Options } from '../types';
@@ -79,7 +80,7 @@ export const transformOptions = (params: Adaptor) => {
      */
     Object.keys(TRANSFORM_OPTION_KEY).forEach((key) => {
       const transformTarget = TRANSFORM_OPTION_KEY[key];
-      if (config[key]) {
+      if (!isUndefined(config[key])) {
         if (isObject(transformTarget)) {
           const { value, target } = transformTarget;
           const transformValue = value(config[key]);
