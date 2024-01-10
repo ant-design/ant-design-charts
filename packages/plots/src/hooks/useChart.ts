@@ -50,7 +50,7 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
     let isTooltip = flag;
     keys.forEach((key) => {
       const current = cfg[key];
-      if (key === 'tooltip') isTooltip = true;
+      isTooltip = key === 'tooltip';
       if (isFunction(current) && isValidElement(`${current}`)) {
         cfg[key] = (...arg) => createNode(current(...arg), isTooltip);
       } else {
