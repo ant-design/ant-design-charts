@@ -1,7 +1,11 @@
+## 2.1.10
 ## 2.1.9
 
 `2024-01-10`
 
+- 🐞 修复 [axis.y.title 值如果是动态的并不会更新](https://github.com/ant-design/ant-design-charts/issues/2353)
+- 🐞 修复 [面积图类型丢失](https://github.com/ant-design/ant-design-charts/issues/2354)
+- 🐞 修复 isTooltip render 判断逻辑
 - 🔥 `markBackground` 新增 originData 字段，保留原始数据
 
 ## 2.1.8
