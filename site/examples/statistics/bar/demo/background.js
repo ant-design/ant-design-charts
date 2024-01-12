@@ -32,8 +32,8 @@ const DemoBar = () => {
     },
     markBackground: {
       label: {
-        text: (d) => {
-          return `${(d.value / 1000) * 100}% | ${d.value}`;
+        text: ({ originData }) => {
+          return `${(originData.value / 1000) * 100}% | ${originData.value}`;
         },
         position: 'right',
         dx: 80,
