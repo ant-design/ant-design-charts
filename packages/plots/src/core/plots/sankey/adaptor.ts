@@ -20,10 +20,14 @@ export function adaptor(params: Params) {
       },
     ];
     if (isArray(data)) {
-      set(options, 'data', {
-        value: data,
-        transform: defaultTransform,
-      });
+      if (data.length > 0) {
+        set(options, 'data', {
+          value: data,
+          transform: defaultTransform,
+        });
+      } else {
+        delete options.children;
+      }
     } else if (get(data, 'type') === 'fetch' && get(data, 'value')) {
       const transform = get(data, 'transform');
       if (isArray(transform)) {
