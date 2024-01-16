@@ -1,3 +1,10 @@
+## 2.1.12
+
+`2024-01-16`
+
+- 🐞 修复 isValidElement 检测不全
+- 🐞 [ Sankey throws error when data is empty](https://github.com/ant-design/ant-design-charts/issues/2361)
+
 ## 2.1.11
 
 `2024-01-12`
