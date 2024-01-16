@@ -25,8 +25,6 @@ order: 1
 
 ## 选项
 
-目前 rangeY 只有 range 一种 shape 图形。
-
 ### style
 
 | 属性          | 描述                                                                                                          | 类型                                              | 默认值    |
