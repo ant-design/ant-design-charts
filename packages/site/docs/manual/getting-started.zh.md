@@ -4,13 +4,16 @@ order: 1
 ---
 
 ## 安装
-### 通过 npm 安装
+### 包管理器
 
 我们提供了 Ant Design 的 npm 包，通过下面的命令即可完成安装：
 
 ```bash
-// 推荐用法
-npm install @ant-design/charts --save
+// npm
+npm install @ant-design/charts@v1 --save
+
+// yarn
+yarn add @ant-design/charts@v1 --save
 ```
 
 成功安装完成之后，即可使用 `import` 或 `require` 进行引用：
@@ -19,12 +22,11 @@ npm install @ant-design/charts --save
 import { Line } from '@ant-design/charts';
 ```
 
-也可仅引入相关子包
+也可仅引入相关子包，安装方式参考 `@ant-design/charts`， charts 包含了如下子包
 - 统计图表：`@ant-design/plots`
 - 地图：`@ant-design/maps`
 - 流程图：`@ant-design/flowchart`
 - 关系图：`@ant-design/graphs`
-
 
 流程图除 `react`、`react-dom` 外，还依赖 `antd`、`@ant-design/icons`、`lodash`，使用时确保已经安装，同时记得引入样式文件 `import "@ant-design/flowchart/dist/index.css";`
 
@@ -40,7 +42,7 @@ import { Line } from '@ant-design/charts';
 
 ### 浏览器引入
 
-既可以通过将脚本下载到本地也可以直接引入在线资源。
+既可以通过将脚本下载到本地也可以直接引入在线资源，latest 将会指向最新版本，如果使用的是 V1 版本，记得换成对应版本号，可在[npm 官网](https://www.npmjs.com/)查阅相关版本号。
 
 ```ts
 // Plots 相关的图表

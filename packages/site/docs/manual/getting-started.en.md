@@ -4,13 +4,16 @@ order: 1
 ---
 
 ## Installation
-### Import by NPM
+### Package manager
 
 We provide `Ant Design Charts` npm package:
 
 ```bash
-// Recommended usage
-npm install @ant-design/charts --save
+// npm
+npm install @ant-design/charts@v1 --save
+
+// yarn
+yarn add @ant-design/charts@v1 --save
 ```
 
 You can use `import` or `require` to start.
@@ -19,7 +22,7 @@ You can use `import` or `require` to start.
 import { Line } from '@ant-design/charts';
 ```
 
-Related subpackages
+You can also only install sub-packages, refers to `@ant-design/charts`, charts contains the following sub-packages.
 - Plots: `@ant-design/plots`
 - Maps: `@ant-design/maps`
 - Flowchart: `@ant-design/flowchart`
@@ -40,7 +43,7 @@ In addition to 'react' and 'react-dom', the flowchart also relies on 'antd', '@a
 
 ### Import by CDN in browser
 
-You can download the script locally or import it directly from online resources.
+You can download the script locally or import it directly from online resources, `latest` will point to the latest version. If you are using V1, remember to switch to the corresponding version number. You can check the version numbers on [npm website](https://www.npmjs.com/).
 
 ```ts
 // Plots 
