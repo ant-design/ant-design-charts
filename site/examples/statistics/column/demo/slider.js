@@ -17,13 +17,9 @@ const DemoColumn = () => {
     xField: '城市',
     yField: '销售额',
     slider: {
-      x: {},
-    },
-    onReady: (chartsInstance) => {
-      // 初始选区范围
-      chartsInstance.emit('sliderX:filter', {
-        data: { selection: [[0.1, 0.2], undefined] },
-      });
+      x: {
+        values: [0.1, 0.2],
+      },
     },
   };
   return <Column {...config} ref={chartRef} />;
