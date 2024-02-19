@@ -18,14 +18,8 @@ const DemoColumn = () => {
     yField: '销售额',
     slider: {
       x: {
-        values: [0.1, 0.2]
+        values: [0.1, 0.2],
       },
-    },
-    onReady: (chartsInstance) => {
-      // 初始选区范围
-      chartsInstance.emit('sliderX:filter', {
-        data: { selection: [[0.1, 0.2], undefined] },
-      });
     },
   };
   return <Column {...config} ref={chartRef} />;
