@@ -17,7 +17,9 @@ const DemoColumn = () => {
     xField: '城市',
     yField: '销售额',
     slider: {
-      x: {},
+      x: {
+        values: [0.1, 0.2]
+      },
     },
     onReady: (chartsInstance) => {
       // 初始选区范围
