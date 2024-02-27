@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/plots",
-  "version": "2.1.13",
+  "version": "2.1.14",
   "description": "G2Plot Statistical chart",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -36,15 +36,16 @@
     "test:live": "DEBUG_MODE=1 jest --watch ./tests/plots/column-proxy-spec.tsx --no-cache"
   },
   "dependencies": {
+    "@ant-design/charts-util": "workspace:*",
     "@antv/event-emitter": "^0.1.3",
+    "@antv/g": "^5.18.24",
     "@antv/g2": "^5.1.9",
-    "@antv/g2-extension-plot": "^0.1.1",
-    "@ant-design/charts-util": "workspace:*"
+    "@antv/g2-extension-plot": "^0.1.1"
   },
   "peerDependencies": {
+    "lodash-es": "^4.17.21",
     "react": ">=16.8.4",
-    "react-dom": ">=16.8.4",
-    "lodash-es": "^4.17.21"
+    "react-dom": ">=16.8.4"
   },
   "sideEffects": false,
   "license": "MIT",
