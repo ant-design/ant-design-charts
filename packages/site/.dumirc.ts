@@ -10,7 +10,7 @@ export default defineConfig({
     title: 'Ant Design Charts',
     description: 'AntV react component library',
     defaultLanguage: 'zh',
-    siteUrl: 'https://charts.ant.design',
+    siteUrl: 'https://ant-design-charts-v1.antgroup.com',
     showChinaMirror: false,
     githubUrl: repository.url,
     showSearch: true, // 是否显示搜索框
@@ -22,8 +22,8 @@ export default defineConfig({
     showChartResize: true, // 是否在 demo 页展示图表视图切换
     showAPIDoc: true,
     versions: {
-      [version]: 'https://charts.ant.design',
-      '2.x': 'https://ant-design-charts-next.antgroup.com',
+      [version]: 'https://ant-design-charts-v1.antgroup.com',
+      '2.x': 'https://ant-design-charts.antgroup.com',
       '0.x': 'https://v0-charts.ant.design/',
     },
     docsearchOptions: {
