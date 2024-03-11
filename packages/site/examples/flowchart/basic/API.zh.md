@@ -1,1 +1,0 @@
-<embed src="@/docs/api/flowchart/flowchart-api.zh.md"></embed>
