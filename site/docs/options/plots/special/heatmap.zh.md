@@ -9,4 +9,4 @@ order: 7
 
 <description>**optional** _string_</description>
 
-热力图类型，'point' | 'cell'
+热力图类型，'point' | 'cell' | 'heatmap'
