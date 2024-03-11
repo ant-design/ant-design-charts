@@ -27,6 +27,14 @@
         "en": "Aggregated Heatmap"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ru0HSZ6RiCsAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "heatmap-density.js",
+      "title": {
+        "zh": "密度热力图",
+        "en": "Density Heatmap"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*mfxdT4ozJXAAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
