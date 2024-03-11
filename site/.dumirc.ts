@@ -23,8 +23,8 @@ export default defineConfig({
     showChartResize: true, // 是否在 demo 页展示图表视图切换
     showAPIDoc: process.env.NODE_ENV === 'production', // 是否在 demo 页展示 API 说明
     versions: {
-      [version]: 'https://ant-design-charts-next.antgroup.com',
-      '1.x': 'https://ant-design-charts.antgroup.com',
+      [version]: 'https://ant-design-charts.antgroup.com',
+      '1.x': 'https://ant-design-charts-v1.antgroup.com',
       '0.x': 'https://v0-charts.ant.design/',
     },
     docsearchOptions: {
