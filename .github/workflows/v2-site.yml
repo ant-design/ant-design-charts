@@ -48,7 +48,7 @@ jobs:
       - name: copy and delete files
         run: |
           find . -maxdepth 1 -type f -exec rm -f {} \;
-          cp -r site/dist/ ./
+          cp -r site/dist/* ./
           rm -rf site
           rm -rf node_modules
           rm -rf packages
