@@ -29,6 +29,7 @@ const DemoHeatmap = () => {
       position: 'inside',
       style: {
         fill: '#fff',
+        pointerEvents: 'none',
       },
     },
     scale: {

@@ -1,3 +1,40 @@
+## 2.1.14
+## 2.1.14-beta.0
+
+`2024-02-21`
+
+- 🐞 修复 `@antv/g` 版本冲突
+
+
+## 2.1.13
+
+`2024-02-06`
+
+- 🐞 修复 isValidElement 检测错误
+
+## 2.1.12
+
+`2024-01-16`
+
+- 🐞 修复 isValidElement 检测不全
+- 🐞 [ Sankey throws error when data is empty](https://github.com/ant-design/ant-design-charts/issues/2361)
+
+## 2.1.11
+
+`2024-01-12`
+
+- 🐞 修复 tooltip 抖动
+
+## 2.1.10
+## 2.1.9
+
+`2024-01-10`
+
+- 🐞 修复 [axis.y.title 值如果是动态的并不会更新](https://github.com/ant-design/ant-design-charts/issues/2353)
+- 🐞 修复 [面积图类型丢失](https://github.com/ant-design/ant-design-charts/issues/2354)
+- 🐞 修复 isTooltip render 判断逻辑
+- 🔥 `markBackground` 新增 originData 字段，保留原始数据
+
 ## 2.1.8
 ## 2.1.7
 

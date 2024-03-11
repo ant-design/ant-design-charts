@@ -87,6 +87,21 @@ export type Options = Spec &
      */
     annotations?: Array<Options & { type: unknown }>;
     /**
+     * @title 连线
+     * @description 用于面积图、柱状图等添加连接线效果
+     */
+    line?: Options;
+    /**
+     * @title 面积
+     * @description 用于折线图添加面积效果
+     */
+    area?: Options;
+    /**
+     * @title 点
+     * @description 用于折线图、面积图等添加点图形
+     */
+    point?: Options;
+    /**
      * @title 嵌套 view
      * @description 用于 Mix 等复杂图表
      */

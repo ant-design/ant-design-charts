@@ -25,7 +25,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
   constructor(container: string | HTMLElement, options: O) {
     super();
     this.container = typeof container === 'string' ? document.getElementById(container) : container;
-    this.options = mergeWithArrayCoverage({}, this.getBaseOptions(), this.getDefaultOptions(), options);
+    this.options = this.mergeOption(options);
     this.createG2();
     this.bindEvents();
   }
@@ -108,15 +108,11 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * @param options
    */
   public update(options: Partial<O>) {
-    this.updateOption(options);
+    this.options = this.mergeOption(options);
   }
 
-  /**
-   * 更新配置
-   * @param options
-   */
-  protected updateOption(options: Partial<O>) {
-    this.options = mergeWithArrayCoverage({}, this.options, options);
+  protected mergeOption(options: Partial<O>) {
+    return mergeWithArrayCoverage({}, this.getBaseOptions(), this.getDefaultOptions(), options);
   }
 
   /**

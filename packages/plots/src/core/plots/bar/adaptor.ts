@@ -28,6 +28,9 @@ export function adaptor(params: Params) {
       const domainMax = 'domainMax';
       const backgroundData = data.map((item) => {
         return {
+          originData: {
+            ...item,
+          },
           ...omit(item, yField),
           [domainMax]: domain[domain.length - 1],
         };

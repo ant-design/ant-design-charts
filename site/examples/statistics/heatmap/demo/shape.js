@@ -35,6 +35,7 @@ const DemoHeatmap = () => {
         fill: '#fff',
         shadowBlur: 2,
         shadowColor: 'rgba(0, 0, 0, .45)',
+        pointerEvents: 'none',
       },
     },
   };

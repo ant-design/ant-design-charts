@@ -67,6 +67,14 @@
         "en": "Pie plot - Donut Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_OHoQb0Xho8AAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "association-pie.js",
+      "title": {
+        "zh": "饼图联动",
+        "en": "Association Pie"
+      },
+      "screenshot": "https://gw.alipayobjects.com/zos/antfincdn/8hTlCI2Fbn/association-pie.gif"
     }
   ]
 }
