@@ -1,4 +1,4 @@
-import { set, flow, map, transformOptions } from '../../utils';
+import { set, flow, map, transformOptions, fieldAdapter } from '../../utils';
 import type { Adaptor } from '../../types';
 import type { StockOptions } from './type';
 
@@ -40,13 +40,18 @@ export function adaptor(params: Params) {
 
     const [open, close, high, low] = yField;
 
+    const getFieldData = fieldAdapter(xField);
+
     params.options.children = map(params.options.children, (child, index) => {
       const isShadow = index === 0;
 
       return {
         ...child,
         tooltip: {
-          title: (d) => (d[xField] instanceof Date ? d[xField].toLocaleString() : d[xField]),
+          title: (d, i, data) => {
+            const v = getFieldData(d, i, data);
+            return v instanceof Date ? v.toLocaleString() : v;
+          },
           items: [{ field: high }, { field: low }, { field: open }, { field: close }],
         },
         encode: {

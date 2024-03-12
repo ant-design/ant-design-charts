@@ -6,6 +6,7 @@ export type BulletOptions = Options & {
     measures: string | string[];
     target: string | string[];
   };
+  xField: string;
   rangeField: string;
   measureField: string;
   targetField: string;

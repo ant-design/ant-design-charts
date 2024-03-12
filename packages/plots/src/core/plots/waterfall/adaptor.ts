@@ -1,4 +1,4 @@
-import { flow, transformOptions } from '../../utils';
+import { flow, transformOptions, fieldAdapter } from '../../utils';
 import { mark } from '../../adaptor';
 import { START_KEY, END_KEY, WATERFALL_VALUE } from './constants';
 import type { Adaptor } from '../../types';
@@ -18,15 +18,17 @@ export function adaptor(params: Params) {
     const { options } = params;
     const { data = [], yField } = options;
     if (!data.length) return params;
-    data.reduce((prev, cur, index) => {
+    data.reduce((prev, cur, index: number) => {
+      const getFieldData = fieldAdapter(yField);
+      const newCur = getFieldData(cur, index, data);
       if (index === 0 || cur.isTotal) {
         cur[START_KEY] = 0;
-        cur[END_KEY] = cur[yField];
-        cur[WATERFALL_VALUE] = cur[yField];
+        cur[END_KEY] = newCur;
+        cur[WATERFALL_VALUE] = newCur;
       } else {
-        const start = prev[END_KEY] ?? prev[yField];
+        const start = prev[END_KEY] ?? getFieldData(prev, index, data);
         cur[START_KEY] = start;
-        cur[END_KEY] = start + cur[yField];
+        cur[END_KEY] = start + newCur;
         cur[WATERFALL_VALUE] = prev[END_KEY];
       }
       return cur;
