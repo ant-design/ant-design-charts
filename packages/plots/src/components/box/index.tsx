@@ -1,10 +1,12 @@
-import React from 'react';
-import { BoxOptions } from '../../core';
-import { CommonConfig } from '../../interface';
+import React, {forwardRef} from 'react';
+import type {ForwardRefExoticComponent, PropsWithoutRef, RefAttributes} from 'react';
+import type {BoxOptions} from '../../core';
+import type {Chart, CommonConfig} from '../../interface';
 import { BaseChart } from '../base';
 
 export type BoxConfig = CommonConfig<BoxOptions>;
 
-const BoxChart = (props: BoxConfig) => <BaseChart {...props} chartType="Box" />;
+const BoxChart: ForwardRefExoticComponent<PropsWithoutRef<BoxConfig> & RefAttributes<Chart>> = forwardRef<Chart, BoxConfig>((props, ref) =>
+  <BaseChart {...props} chartType="Box" ref={ref}/>);
 
 export default BoxChart;
