@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
+import type {ForwardRefExoticComponent, PropsWithoutRef, RefAttributes} from 'react';
 import { BaseChart } from '../base';
 
 import type { WaterfallOptions } from '../../core';
-import type { CommonConfig } from '../../interface';
+import type {Chart, CommonConfig} from '../../interface';
 
 export type WaterfallConfig = CommonConfig<WaterfallOptions>;
 
-const WaterfallChart = (props: WaterfallConfig) => <BaseChart {...props} chartType="Waterfall" />;
+const WaterfallChart: ForwardRefExoticComponent<PropsWithoutRef<WaterfallConfig> & RefAttributes<Chart>> = forwardRef<Chart, WaterfallConfig>((props, ref) =>
+  <BaseChart {...props} chartType="Waterfall" ref={ref}/>);
 
 export default WaterfallChart;

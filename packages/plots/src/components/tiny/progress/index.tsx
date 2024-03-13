@@ -1,10 +1,12 @@
-import React from 'react';
-import { TinyProgressOptions } from '../../../core';
-import { CommonConfig } from '../../../interface';
+import React, {forwardRef} from 'react';
+import type {ForwardRefExoticComponent, PropsWithoutRef, RefAttributes} from 'react';
+import type {TinyProgressOptions} from '../../../core';
+import type {Chart, CommonConfig} from '../../../interface';
 import { BaseChart } from '../../base';
 
 export type TinyProgressConfig = CommonConfig<TinyProgressOptions>;
 
-const TinyProgressChart = (props: TinyProgressOptions) => <BaseChart {...props} chartType="TinyProgress" />;
+const TinyProgressChart: ForwardRefExoticComponent<PropsWithoutRef<TinyProgressConfig> & RefAttributes<Chart>> = forwardRef<Chart, TinyProgressConfig>((props, ref) =>
+  <BaseChart {...props} chartType="TinyProgress" ref={ref}/>);
 
 export default TinyProgressChart;
