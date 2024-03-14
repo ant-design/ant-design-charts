@@ -10,6 +10,16 @@ import type {
   LegendComponent,
 } from '@antv/g2';
 
+export type Primitive = number | string | boolean | Date;
+
+export type FunctionEncodeSpec = (
+  value: any,
+  index?: number,
+  array?: any[],
+) => Primitive;
+
+export type PrimitiveEncodeSpec = Primitive | FunctionEncodeSpec;
+
 export type Spec = (Mark | Composition | AxisComponent | Omit<LegendComponent, 'type'>) & {
   width?: number;
   height?: number;
@@ -21,27 +31,31 @@ export type BaseOptions = {
   /**
    * @title x轴字段
    */
-  readonly xField?: string;
+  readonly xField?: PrimitiveEncodeSpec;
   /**
    * @title y轴字段
    */
-  readonly yField?: string;
+  readonly yField?: PrimitiveEncodeSpec;
   /**
    * @title 分组字段
    */
-  readonly seriesField?: string;
+  readonly seriesField?: PrimitiveEncodeSpec;
   /**
    * @title 尺寸字段
    */
-  readonly sizeField?: string;
+  readonly sizeField?: PrimitiveEncodeSpec;
   /**
    * @title 颜色字段
    */
-  readonly colorField?: string;
+  readonly colorField?: PrimitiveEncodeSpec;
   /**
    * @title 形状字段
    */
-  readonly shapeField?: string;
+  readonly shapeField?: PrimitiveEncodeSpec;
+  /**
+   * @title 形状key值字段
+   */
+  readonly keyField?: PrimitiveEncodeSpec;
   /**
    * @title 堆积
    */
@@ -119,14 +133,14 @@ export type AttrStyle = Record<string, any>;
 export type ConnectNulls =
   | true
   | {
-      connect: true;
-      /**
-       * @title 连线样式
-       * @description 和 canvas path 一致，但需要加上 connect 前缀
-       * @example
-       *  - connectStroke: '#ccc'
-       *  - connectLineWidth: 1
-       *  - connectLineDash: [ 4, 4 ]
-       */
-      [key: string]: any;
-    };
+    connect: true;
+    /**
+     * @title 连线样式
+     * @description 和 canvas path 一致，但需要加上 connect 前缀
+     * @example
+     *  - connectStroke: '#ccc'
+     *  - connectLineWidth: 1
+     *  - connectLineDash: [ 4, 4 ]
+     */
+    [key: string]: any;
+  };

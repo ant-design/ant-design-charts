@@ -1,4 +1,4 @@
-import { flow, set, transformOptions, isNumber, get } from '../../utils';
+import { flow, set, transformOptions, isNumber, get, fieldAdapter } from '../../utils';
 import { mark } from '../../adaptor';
 import type { Adaptor } from '../../types';
 import type { RadialBarOptions } from './type';
@@ -37,13 +37,15 @@ export function adaptor(params: Params) {
   const tooltip = (params: Params) => {
     const { options } = params;
     const { tooltip, xField, yField } = options;
+
+    const getXFieldData = fieldAdapter(xField);
+    const getYFieldData = fieldAdapter(yField);
+
     if (!tooltip) {
       set(options, 'tooltip', {
         title: false,
         items: [
-          (d) => {
-            return { name: d[xField], value: d[yField] };
-          },
+          (d, i, data) => ({ name: getXFieldData(d, i, data), value: getYFieldData(d, i, data) }),
         ],
       });
     }

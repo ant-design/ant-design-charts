@@ -8,7 +8,7 @@ export type VennOptions = Options & {
   /**
    * @title 集合大小键名
    */
-  sizeField: string;
+  sizeField: string | number;
 };
 
 export enum DefaultTransformKey {
