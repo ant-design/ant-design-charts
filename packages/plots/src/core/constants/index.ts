@@ -252,10 +252,10 @@ export const SPECIAL_OPTIONS = [
       if (available) {
         origin[key].push({ [TRANSFORM_SIGN]: true, ...rest });
       } else {
-        origin[key].splice(
-          origin[key].indexOf((item) => item.type === value.type),
-          1,
-        );
+        const index = origin[key].indexOf((item) => item.type === value.type);
+        if (index !== -1) {
+          origin[key].splice(index, 1);
+        }
       }
     },
   },
