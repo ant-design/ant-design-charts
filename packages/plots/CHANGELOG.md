@@ -1,3 +1,11 @@
+## 2.1.15
+
+`2024-03-20`
+
+- 🔥 新增 `fontSizeField`，支持 `WordCloud` 根据内容调整文本大小
+- 🐞 修复 [transform percent\stack conflict](https://github.com/ant-design/ant-design-charts/issues/2456)
+- 🐞 修复 [TS type error](https://github.com/ant-design/ant-design-charts/issues/2440)
+
 ## 2.1.14
 ## 2.1.14-beta.0
 
