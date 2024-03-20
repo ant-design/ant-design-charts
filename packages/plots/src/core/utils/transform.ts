@@ -51,6 +51,8 @@ export const transformOptions = (params: Adaptor) => {
    */
   const transformShape = <T = Options>(config: T) => {
     Object.keys(config).forEach((key) => {
+      // 判断内容是否为空
+      if (!config[key]) return;
       const exist = CONFIG_SHAPE.find((item) => item.key === key);
       if (exist) {
         const { type, extend_keys } = exist;
