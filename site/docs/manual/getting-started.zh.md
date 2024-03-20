@@ -64,7 +64,7 @@ externals: {
 
 ```ts
 // 折线图，其它图表类似
-const { Line } = window.charts;
+const { Line } = window.plots;
 ```
 
 
@@ -72,7 +72,7 @@ const { Line } = window.charts;
 <!-- 下载到本地 引入本地脚本 -->
 <script src="./plots.min.js"></script>
 <script>
-  const { Line } = window.charts;
+  const { Line } = window.plots;
 </script>
 ```
 
