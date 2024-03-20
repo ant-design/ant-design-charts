@@ -72,6 +72,7 @@ export const TRANSFORM_OPTION_KEY = {
   binField: 'encode.x',
   srcField: 'encode.src',
   linkColorField: 'encode.linkColor',
+  fontSizeField: 'encode.fontSize',
   radius: 'coordinate.outerRadius',
   innerRadius: 'coordinate.innerRadius',
   startAngle: 'coordinate.startAngle',
