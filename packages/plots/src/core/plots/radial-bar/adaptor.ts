@@ -44,9 +44,7 @@ export function adaptor(params: Params) {
     if (!tooltip) {
       set(options, 'tooltip', {
         title: false,
-        items: [
-          (d, i, data) => ({ name: getXFieldData(d, i, data), value: getYFieldData(d, i, data) }),
-        ],
+        items: [(d, i, data) => ({ name: getXFieldData(d, i, data), value: getYFieldData(d, i, data) })],
       });
     }
     return params;
