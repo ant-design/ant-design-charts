@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type BidirectionalBarConfig = CommonConfig<BidirectionalBarOptions>;
 
-const BidirectionalBarChart: ForwardRefExoticComponent<PropsWithoutRef<BidirectionalBarConfig> & RefAttributes<Chart>> = forwardRef<Chart, BidirectionalBarConfig>((props, ref) =>
-  <BaseChart {...props} chartType="BidirectionalBar" ref={ref}/>);
+const BidirectionalBarChart: ForwardRefExoticComponent<PropsWithoutRef<BidirectionalBarConfig> & RefAttributes<Chart>> =
+  forwardRef<Chart, BidirectionalBarConfig>((props, ref) => (
+    <BaseChart {...props} chartType="BidirectionalBar" ref={ref}/>
+  ));
 
 export default BidirectionalBarChart;

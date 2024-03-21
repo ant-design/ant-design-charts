@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type RadialBarConfig = CommonConfig<RadialBarOptions>;
 
-const RadialBar: ForwardRefExoticComponent<PropsWithoutRef<RadialBarConfig> & RefAttributes<Chart>> = forwardRef<Chart, RadialBarConfig>((props, ref) =>
-  <BaseChart {...props} chartType="RadialBar" ref={ref}/>);
+const RadialBar: ForwardRefExoticComponent<PropsWithoutRef<RadialBarConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  RadialBarConfig
+>((props, ref) => <BaseChart {...props} chartType="RadialBar" ref={ref}/>);
 
 export default RadialBar;

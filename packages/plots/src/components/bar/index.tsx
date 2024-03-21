@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type BarConfig = CommonConfig<BarOptions>;
 
-const BarChart: ForwardRefExoticComponent<PropsWithoutRef<BarConfig> & RefAttributes<Chart>> = forwardRef<Chart, BarConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Bar" ref={ref}/>);
+const BarChart: ForwardRefExoticComponent<PropsWithoutRef<BarConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  BarConfig
+>((props, ref) => <BaseChart {...props} chartType="Bar" ref={ref}/>);
 
 export default BarChart;

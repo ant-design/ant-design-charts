@@ -7,7 +7,9 @@ import type {Chart, CommonConfig} from '../../interface';
 
 export type RadarConfig = CommonConfig<RadarOptions>;
 
-const RadarChart: ForwardRefExoticComponent<PropsWithoutRef<RadarConfig> & RefAttributes<Chart>> = forwardRef<Chart, RadarConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Radar" ref={ref}/>);
+const RadarChart: ForwardRefExoticComponent<PropsWithoutRef<RadarConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  RadarConfig
+>((props, ref) => <BaseChart {...props} chartType="Radar" ref={ref}/>);
 
 export default RadarChart;

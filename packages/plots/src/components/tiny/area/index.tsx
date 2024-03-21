@@ -6,7 +6,9 @@ import { BaseChart } from '../../base';
 
 export type TinyAreaConfig = CommonConfig<TinyAreaOptions>;
 
-const TinyAreaChart: ForwardRefExoticComponent<PropsWithoutRef<TinyAreaConfig> & RefAttributes<Chart>> = forwardRef<Chart, TinyAreaConfig>((props, ref) =>
-  <BaseChart {...props} chartType="TinyArea" ref={ref}/>);
+const TinyAreaChart: ForwardRefExoticComponent<PropsWithoutRef<TinyAreaConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  TinyAreaConfig
+>((props, ref) => <BaseChart {...props} chartType="TinyArea" ref={ref}/>);
 
 export default TinyAreaChart;

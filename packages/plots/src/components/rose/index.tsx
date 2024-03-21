@@ -7,7 +7,9 @@ import type {Chart, CommonConfig} from '../../interface';
 
 export type RoseConfig = CommonConfig<RoseOptions>;
 
-const RoseChart: ForwardRefExoticComponent<PropsWithoutRef<RoseConfig> & RefAttributes<Chart>> = forwardRef<Chart, RoseConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Rose" ref={ref}/>);
+const RoseChart: ForwardRefExoticComponent<PropsWithoutRef<RoseConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  RoseConfig
+>((props, ref) => <BaseChart {...props} chartType="Rose" ref={ref}/>);
 
 export default RoseChart;

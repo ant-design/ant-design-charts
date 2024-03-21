@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type DualAxesConfig = CommonConfig<DualAxesOptions>;
 
-const DualAxesChart: ForwardRefExoticComponent<PropsWithoutRef<DualAxesConfig> & RefAttributes<Chart>> = forwardRef<Chart, DualAxesConfig>((props, ref) =>
-  <BaseChart {...props} chartType="DualAxes" ref={ref}/>);
+const DualAxesChart: ForwardRefExoticComponent<PropsWithoutRef<DualAxesConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  DualAxesConfig
+>((props, ref) => <BaseChart {...props} chartType="DualAxes" ref={ref}/>);
 
 export default DualAxesChart;

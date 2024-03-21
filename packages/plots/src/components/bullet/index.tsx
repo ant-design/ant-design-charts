@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type BulletConfig = CommonConfig<BulletOptions>;
 
-const BulletChart: ForwardRefExoticComponent<PropsWithoutRef<BulletConfig> & RefAttributes<Chart>> = forwardRef<Chart, BulletConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Bullet" ref={ref}/>);
+const BulletChart: ForwardRefExoticComponent<PropsWithoutRef<BulletConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  BulletConfig
+>((props, ref) => <BaseChart {...props} chartType="Bullet" ref={ref}/>);
 
 export default BulletChart;

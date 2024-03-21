@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type BoxConfig = CommonConfig<BoxOptions>;
 
-const BoxChart: ForwardRefExoticComponent<PropsWithoutRef<BoxConfig> & RefAttributes<Chart>> = forwardRef<Chart, BoxConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Box" ref={ref}/>);
+const BoxChart: ForwardRefExoticComponent<PropsWithoutRef<BoxConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  BoxConfig
+>((props, ref) => <BaseChart {...props} chartType="Box" ref={ref}/>);
 
 export default BoxChart;

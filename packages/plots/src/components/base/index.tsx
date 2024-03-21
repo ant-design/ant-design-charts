@@ -5,10 +5,10 @@ import useChart from '../../hooks/useChart';
 import { Plots } from '../../core';
 import type {CommonConfig, Chart} from '../../interface';
 
-export const BaseChart: ForwardRefExoticComponent<PropsWithoutRef<CommonConfig> & RefAttributes<Chart>> = forwardRef<Chart, CommonConfig>(({
-                                                                                                                                             chartType = 'Base',
-                                                                                                                                             ...config
-                                                                                                                                           }, ref) => {
+export const BaseChart: ForwardRefExoticComponent<PropsWithoutRef<CommonConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  CommonConfig
+>(({chartType = 'Base', ...config}, ref) => {
   const {
     containerStyle = {
       height: 'inherit',

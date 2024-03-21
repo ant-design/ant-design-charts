@@ -6,7 +6,10 @@ import { BaseChart } from '../base';
 
 export type ViolinConfig = CommonConfig<ViolinOptions>;
 
-const ViolinChart: ForwardRefExoticComponent<PropsWithoutRef<ViolinConfig> & RefAttributes<Chart>> = forwardRef<Chart, ViolinConfig>((props, ref) => {
+const ViolinChart: ForwardRefExoticComponent<PropsWithoutRef<ViolinConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  ViolinConfig
+>((props, ref) => {
   return <BaseChart {...props} chartType="Violin" ref={ref}/>;
 });
 

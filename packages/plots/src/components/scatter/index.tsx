@@ -7,7 +7,9 @@ import type {Chart, CommonConfig} from '../../interface';
 
 export type ScatterConfig = CommonConfig<ScatterOptions>;
 
-const ScatterChart: ForwardRefExoticComponent<PropsWithoutRef<ScatterConfig> & RefAttributes<Chart>> = forwardRef<Chart, ScatterConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Scatter" ref={ref}/>);
+const ScatterChart: ForwardRefExoticComponent<PropsWithoutRef<ScatterConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  ScatterConfig
+>((props, ref) => <BaseChart {...props} chartType="Scatter" ref={ref}/>);
 
 export default ScatterChart;

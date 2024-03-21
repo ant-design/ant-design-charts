@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type FunnelConfig = CommonConfig<FunnelOptions>;
 
-const FunnelChart: ForwardRefExoticComponent<PropsWithoutRef<FunnelConfig> & RefAttributes<Chart>> = forwardRef<Chart, FunnelConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Funnel" ref={ref}/>);
+const FunnelChart: ForwardRefExoticComponent<PropsWithoutRef<FunnelConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  FunnelConfig
+>((props, ref) => <BaseChart {...props} chartType="Funnel" ref={ref}/>);
 
 export default FunnelChart;

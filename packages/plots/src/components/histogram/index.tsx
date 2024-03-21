@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type HistogramConfig = CommonConfig<HistogramOptions>;
 
-const HistogramChart: ForwardRefExoticComponent<PropsWithoutRef<HistogramConfig> & RefAttributes<Chart>> = forwardRef<Chart, HistogramConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Histogram" ref={ref}/>);
+const HistogramChart: ForwardRefExoticComponent<PropsWithoutRef<HistogramConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  HistogramConfig
+>((props, ref) => <BaseChart {...props} chartType="Histogram" ref={ref}/>);
 
 export default HistogramChart;

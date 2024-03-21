@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type SankeyConfig = CommonConfig<SankeyOptions>;
 
-const SankeyChart: ForwardRefExoticComponent<PropsWithoutRef<SankeyConfig> & RefAttributes<Chart>> = forwardRef<Chart, SankeyConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Sankey" ref={ref}/>);
+const SankeyChart: ForwardRefExoticComponent<PropsWithoutRef<SankeyConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  SankeyConfig
+>((props, ref) => <BaseChart {...props} chartType="Sankey" ref={ref}/>);
 
 export default SankeyChart;

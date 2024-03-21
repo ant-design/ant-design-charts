@@ -6,7 +6,9 @@ import { BaseChart } from '../../base';
 
 export type TinyLineConfig = CommonConfig<TinyLineOptions>;
 
-const TinyLineChart: ForwardRefExoticComponent<PropsWithoutRef<TinyLineConfig> & RefAttributes<Chart>> = forwardRef<Chart, TinyLineConfig>((props, ref) =>
-  <BaseChart {...props} chartType="TinyLine" ref={ref}/>);
+const TinyLineChart: ForwardRefExoticComponent<PropsWithoutRef<TinyLineConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  TinyLineConfig
+>((props, ref) => <BaseChart {...props} chartType="TinyLine" ref={ref}/>);
 
 export default TinyLineChart;

@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type TreemapConfig = CommonConfig<TreemapOptions>;
 
-const TreemapChart: ForwardRefExoticComponent<PropsWithoutRef<TreemapConfig> & RefAttributes<Chart>> = forwardRef<Chart, TreemapConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Treemap" ref={ref}/>);
+const TreemapChart: ForwardRefExoticComponent<PropsWithoutRef<TreemapConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  TreemapConfig
+>((props, ref) => <BaseChart {...props} chartType="Treemap" ref={ref}/>);
 
 export default TreemapChart;

@@ -7,7 +7,9 @@ import type {Chart, CommonConfig} from '../../interface';
 
 export type WordCloudConfig = CommonConfig<WordCloudOptions>;
 
-const WordCloudChart: ForwardRefExoticComponent<PropsWithoutRef<WordCloudConfig> & RefAttributes<Chart>> = forwardRef<Chart, WordCloudConfig>((props, ref) =>
-  <BaseChart {...props} chartType="WordCloud" ref={ref}/>);
+const WordCloudChart: ForwardRefExoticComponent<PropsWithoutRef<WordCloudConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  WordCloudConfig
+>((props, ref) => <BaseChart {...props} chartType="WordCloud" ref={ref}/>);
 
 export default WordCloudChart;

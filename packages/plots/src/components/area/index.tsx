@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type AreaConfig = CommonConfig<AreaOptions>;
 
-const AreaChart: ForwardRefExoticComponent<PropsWithoutRef<AreaConfig> & RefAttributes<Chart>> = forwardRef<Chart, AreaConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Area" ref={ref}/>);
+const AreaChart: ForwardRefExoticComponent<PropsWithoutRef<AreaConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  AreaConfig
+>((props, ref) => <BaseChart {...props} chartType="Area" ref={ref}/>);
 
 export default AreaChart;

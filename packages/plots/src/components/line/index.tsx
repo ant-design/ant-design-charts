@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type LineConfig = CommonConfig<LineOptions>;
 
-const LineChart: ForwardRefExoticComponent<PropsWithoutRef<LineConfig> & RefAttributes<Chart>> = forwardRef<Chart, LineConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Line" ref={ref}/>);
+const LineChart: ForwardRefExoticComponent<PropsWithoutRef<LineConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  LineConfig
+>((props, ref) => <BaseChart {...props} chartType="Line" ref={ref}/>);
 
 export default LineChart;

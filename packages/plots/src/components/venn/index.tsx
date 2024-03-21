@@ -6,7 +6,9 @@ import { BaseChart } from '../base';
 
 export type VennConfig = CommonConfig<VennOptions>;
 
-const VennChart: ForwardRefExoticComponent<PropsWithoutRef<VennConfig> & RefAttributes<Chart>> = forwardRef<Chart, VennConfig>((props, ref) =>
-  <BaseChart {...props} chartType="Venn" ref={ref}/>);
+const VennChart: ForwardRefExoticComponent<PropsWithoutRef<VennConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  VennConfig
+>((props, ref) => <BaseChart {...props} chartType="Venn" ref={ref}/>);
 
 export default VennChart;
