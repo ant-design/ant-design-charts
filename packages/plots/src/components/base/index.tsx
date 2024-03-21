@@ -1,10 +1,14 @@
 import React, { useImperativeHandle, forwardRef } from 'react';
+import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import { ErrorBoundary, ChartLoading } from '@ant-design/charts-util';
 import useChart from '../../hooks/useChart';
 import { Plots } from '../../core';
-import { CommonConfig, Chart } from '../../interface';
+import type { CommonConfig, Chart } from '../../interface';
 
-export const BaseChart: React.FC<any> = forwardRef(({ chartType = 'Base', ...config }: CommonConfig, ref) => {
+export const BaseChart: ForwardRefExoticComponent<PropsWithoutRef<CommonConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  CommonConfig
+>(({ chartType = 'Base', ...config }, ref) => {
   const {
     containerStyle = {
       height: 'inherit',

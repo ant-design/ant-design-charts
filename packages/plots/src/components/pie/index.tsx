@@ -1,10 +1,14 @@
-import React from 'react';
-import { PieOptions } from '../../core';
-import { CommonConfig } from '../../interface';
+import React, { forwardRef } from 'react';
+import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
+import type { PieOptions } from '../../core';
+import type { Chart, CommonConfig } from '../../interface';
 import { BaseChart } from '../base';
 
 export type PieConfig = CommonConfig<PieOptions>;
 
-const PieChart = (props: PieConfig) => <BaseChart {...props} chartType="Pie" />;
+const PieChart: ForwardRefExoticComponent<PropsWithoutRef<PieConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  PieConfig
+>((props, ref) => <BaseChart {...props} chartType="Pie" ref={ref} />);
 
 export default PieChart;

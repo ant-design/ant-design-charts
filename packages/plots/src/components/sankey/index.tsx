@@ -1,10 +1,14 @@
-import React from 'react';
-import { SankeyOptions } from '../../core';
-import { CommonConfig } from '../../interface';
+import React, { forwardRef } from 'react';
+import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
+import type { SankeyOptions } from '../../core';
+import type { Chart, CommonConfig } from '../../interface';
 import { BaseChart } from '../base';
 
 export type SankeyConfig = CommonConfig<SankeyOptions>;
 
-const SankeyChart = (props: SankeyConfig) => <BaseChart {...props} chartType="Sankey" />;
+const SankeyChart: ForwardRefExoticComponent<PropsWithoutRef<SankeyConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  SankeyConfig
+>((props, ref) => <BaseChart {...props} chartType="Sankey" ref={ref} />);
 
 export default SankeyChart;

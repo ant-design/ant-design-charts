@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
+import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import { TinyRingOptions } from '../../../core';
-import { CommonConfig } from '../../../interface';
+import { Chart, CommonConfig } from '../../../interface';
 import { BaseChart } from '../../base';
 
 export type TinyRingConfig = CommonConfig<TinyRingOptions>;
 
-const TinyRingChart = (props: TinyRingOptions) => <BaseChart {...props} chartType="TinyRing" />;
+const TinyRingChart: ForwardRefExoticComponent<PropsWithoutRef<TinyRingConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  TinyRingConfig
+>((props, ref) => <BaseChart {...props} chartType="TinyRing" ref={ref} />);
 
 export default TinyRingChart;

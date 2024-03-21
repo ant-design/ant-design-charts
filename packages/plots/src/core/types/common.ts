@@ -12,11 +12,7 @@ import type {
 
 export type Primitive = number | string | boolean | Date;
 
-export type FunctionEncodeSpec = (
-  value: any,
-  index?: number,
-  array?: any[],
-) => Primitive;
+export type FunctionEncodeSpec = (value: any, index?: number, array?: any[]) => Primitive;
 
 export type PrimitiveEncodeSpec = Primitive | FunctionEncodeSpec;
 
@@ -133,14 +129,14 @@ export type AttrStyle = Record<string, any>;
 export type ConnectNulls =
   | true
   | {
-    connect: true;
-    /**
-     * @title 连线样式
-     * @description 和 canvas path 一致，但需要加上 connect 前缀
-     * @example
-     *  - connectStroke: '#ccc'
-     *  - connectLineWidth: 1
-     *  - connectLineDash: [ 4, 4 ]
-     */
-    [key: string]: any;
-  };
+      connect: true;
+      /**
+       * @title 连线样式
+       * @description 和 canvas path 一致，但需要加上 connect 前缀
+       * @example
+       *  - connectStroke: '#ccc'
+       *  - connectLineWidth: 1
+       *  - connectLineDash: [ 4, 4 ]
+       */
+      [key: string]: any;
+    };
