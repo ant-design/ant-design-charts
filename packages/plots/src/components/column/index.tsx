@@ -1,10 +1,14 @@
-import React from 'react';
-import { ColumnOptions } from '../../core';
-import { CommonConfig } from '../../interface';
+import React, { forwardRef } from 'react';
+import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
+import type { ColumnOptions } from '../../core';
+import type { Chart, CommonConfig } from '../../interface';
 import { BaseChart } from '../base';
 
 export type ColumnConfig = CommonConfig<ColumnOptions>;
 
-const ColumnChart = (props: ColumnConfig) => <BaseChart {...props} chartType="Column" />;
+const ColumnChart: ForwardRefExoticComponent<PropsWithoutRef<ColumnConfig> & RefAttributes<Chart>> = forwardRef<
+  Chart,
+  ColumnConfig
+>((props, ref) => <BaseChart {...props} chartType="Column" ref={ref} />);
 
 export default ColumnChart;
