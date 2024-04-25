@@ -17,7 +17,6 @@ export class TinyLine extends Plot<TinyLineOptions> {
     return {
       type: 'view',
       children: [{ type: 'line', axis: false }],
-      autoFit: false,
       animate: {
         enter: { type: 'growInX', duration: 500 },
       },

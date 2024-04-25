@@ -17,7 +17,6 @@ export class TinyRing extends Plot<TinyRingOptions> {
     return {
       type: 'view',
       data: [],
-      autoFit: false,
       margin: 0,
       padding: 0,
       coordinate: { type: 'theta' },

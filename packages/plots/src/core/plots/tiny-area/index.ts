@@ -20,7 +20,6 @@ export class TinyArea extends Plot<TinyAreaOptions> {
         enter: { type: 'growInX', duration: 500 },
       },
       children: [{ type: 'area', axis: false }],
-      autoFit: false,
       padding: 0,
       margin: 0,
       tooltip: false,

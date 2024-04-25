@@ -17,7 +17,6 @@ export class TinyColumn extends Plot<TinyColumnOptions> {
     return {
       type: 'view',
       children: [{ type: 'interval', axis: false }],
-      autoFit: false,
       padding: 0,
       margin: 0,
       tooltip: false,
