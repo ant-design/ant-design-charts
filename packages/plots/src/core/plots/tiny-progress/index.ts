@@ -17,7 +17,6 @@ export class TinyProgress extends Plot<TinyProgressOptions> {
     return {
       type: 'view',
       data: [],
-      autoFit: false,
       margin: 0,
       padding: 0,
       tooltip: false,
