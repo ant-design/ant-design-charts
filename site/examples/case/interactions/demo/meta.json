@@ -1,0 +1,16 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "link.js",
+      "title": {
+        "zh": "图表联动",
+        "en": "Chart link"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*dBDRR43tju8AAAAAAAAAAAAADmJ7AQ/original"
+    }
+  ]
+}
