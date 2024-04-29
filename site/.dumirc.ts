@@ -141,6 +141,14 @@ export default defineConfig({
     ],
     examples: [
       {
+        slug: 'case',
+        icon: 'gallery',
+        title: {
+          zh: '场景案例',
+          en: 'Show Case',
+        },
+      },
+      {
         slug: 'statistics',
         icon: 'line',
         title: {

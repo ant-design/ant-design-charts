@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 15
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [latest]
     steps:
       - name: checkout code repository
         uses: actions/checkout@v3
