@@ -42,10 +42,11 @@
     "typescript": "^3.6.5"
   },
   "dependencies": {
-    "@ant-design/plots": "^2.0.0-alpha.0",
+    "@ant-design/plots": "^2.0.0",
     "antd": "^4.16.13",
     "insert-css": "^2.0.0",
     "lodash-es": "^4.17.21",
+    "rc-util": "^5.39.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   }
