@@ -1,3 +1,9 @@
+## 1.4.2
+
+`2024-06-19`
+
+- 🐞 [Cannot read properties of undefined (reading 'disconnect')](https://github.com/ant-design/ant-design-charts/issues/1925) `A->B && B -> A` 连线丢失问题
+
 ## 1.4.0
 
 `2023-02-20`

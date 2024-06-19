@@ -16,7 +16,6 @@ export default class ConversionDagreGraph extends Component<Props, any> {
   private graph: G6Graph | null;
   private shouldCacheZoomAndTranslate: boolean;
   private cacheData;
-  private resizeObserver: any;
 
   static defaultProps = {
     data: null,
@@ -172,8 +171,6 @@ export default class ConversionDagreGraph extends Component<Props, any> {
     if (this.graph && !this.graph?.destroyed) {
       // 移除布局完成监听
       this.graph.off('afterlayout', this.handleAfterLayout);
-      // 移除container resize监听
-      this.resizeObserver.disconnect();
     }
   };
 
