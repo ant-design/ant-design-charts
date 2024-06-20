@@ -44,7 +44,7 @@ const DemoDualAxes = () => {
         colorField: 'type',
         group: true,
         style: { maxWidth: 80 },
-        interaction: { elementHighlightByColor: { background: true } },
+        interaction: { elementHighlight: { background: true } },
       },
       {
         data: transformData,

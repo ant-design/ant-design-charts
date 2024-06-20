@@ -22,7 +22,7 @@ export class Column extends Plot<ColumnOptions> {
         tooltip: {
           shared: true,
         },
-        elementHighlightByColor: {
+        elementHighlight: {
           background: true,
         },
       },

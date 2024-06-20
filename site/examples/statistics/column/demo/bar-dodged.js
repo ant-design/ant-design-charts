@@ -21,7 +21,7 @@ const DemoColumn = () => {
     },
     interaction: {
       tooltip: { shared: true },
-      elementHighlightByColor: { background: true },
+      elementHighlight: { background: true },
     },
   };
   return <Column {...config} />;

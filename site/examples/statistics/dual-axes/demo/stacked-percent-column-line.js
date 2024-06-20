@@ -37,7 +37,7 @@ const DemoDualAxes = () => {
         style: { maxWidth: 80 },
         tooltip: { channel: 'y0', valueFormatter: '.0%' },
         axis: { y: { title: 'value', style: { titleFill: '#5B8FF9' } } },
-        interaction: { elementHighlightByColor: { background: true } },
+        interaction: { elementHighlight: { background: true } },
       },
       {
         data: transformData,

@@ -34,7 +34,7 @@ const DemoDualAxes = () => {
         yField: 'value',
         colorField: 'type',
         group: true,
-        interaction: { elementHighlightByColor: { background: true } },
+        interaction: { elementHighlight: { background: true } },
       },
       {
         data: transformData,
