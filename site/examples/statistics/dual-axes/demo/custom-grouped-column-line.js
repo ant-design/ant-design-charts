@@ -42,7 +42,7 @@ const DemoDualAxes = () => {
         group: true,
         style: { maxWidth: 50 },
         label: { position: 'inside' },
-        interaction: { elementHighlightByColor: { background: true } },
+        interaction: { elementHighlight: { background: true } },
       },
       {
         data: transformData,

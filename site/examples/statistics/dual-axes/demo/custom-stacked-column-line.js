@@ -45,7 +45,7 @@ const DemoDualAxes = () => {
         scale: { y: { domainMax: 1200 } },
         interaction: {
           elementHighlight: true,
-          elementHighlightByColor: { background: true },
+          elementHighlight: { background: true },
         },
       },
       {

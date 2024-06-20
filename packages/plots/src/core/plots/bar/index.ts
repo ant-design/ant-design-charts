@@ -33,7 +33,7 @@ export class Bar extends Plot<BarOptions> {
         tooltip: {
           shared: true,
         },
-        elementHighlightByColor: {
+        elementHighlight: {
           background: true,
         },
       },

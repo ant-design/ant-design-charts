@@ -26,7 +26,7 @@ export class Histogram extends Plot<HistogramOptions> {
           type: 'rect',
           transform: [{ type: 'binX', y: 'count' }],
           interaction: {
-            elementHighlightByColor: {
+            elementHighlight: {
               background: true,
             },
           },

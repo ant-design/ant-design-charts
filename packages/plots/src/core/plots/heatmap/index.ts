@@ -30,7 +30,7 @@ export class Heatmap extends Plot<HeatmapOptions> {
         {
           type: 'point',
           interaction: {
-            elementHighlightByColor: {
+            elementHighlight: {
               background: true,
             },
           },

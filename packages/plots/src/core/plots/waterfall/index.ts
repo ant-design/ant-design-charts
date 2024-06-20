@@ -32,7 +32,7 @@ export class Waterfall extends Plot<WaterfallOptions> {
         {
           type: 'interval',
           interaction: {
-            elementHighlightByColor: {
+            elementHighlight: {
               background: true,
             },
           },

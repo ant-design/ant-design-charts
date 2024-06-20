@@ -23,7 +23,7 @@ const DemoDualAxes = () => {
         label: { position: 'inside' },
         interaction: {
           elementHighlight: true,
-          elementHighlightByColor: { background: true },
+          elementHighlight: { background: true },
         },
       },
       {

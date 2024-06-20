@@ -46,7 +46,7 @@ const DemoDualAxes = () => {
         stack: true,
         style: { maxWidth: 80 },
         scale: { y: { domainMax: 1200 } },
-        interaction: { elementHighlightByColor: { background: true } },
+        interaction: { elementHighlight: { background: true } },
       },
       {
         data: transformData,
