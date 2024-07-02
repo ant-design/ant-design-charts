@@ -1,0 +1,64 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "highlight.js",
+      "title": {
+        "zh": "高亮",
+        "en": "Highlight"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*h3zzSqWMrDkAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "select.js",
+      "title": {
+        "zh": "选择",
+        "en": "Select"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*gwt_SpgIGsMAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "brush.js",
+      "title": {
+        "zh": "刷选",
+        "en": "Brush"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ESblSJqW3zYAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "brush-emit.js",
+      "title": {
+        "zh": "刷选事件",
+        "en": "Brush"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*kWbhQKMQp9wAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "chart-index.js",
+      "title": {
+        "zh": "索引图",
+        "en": "Chart Index"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*LaVjRbRk8EcAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "fisheye.js",
+      "title": {
+        "zh": "鱼眼",
+        "en": "Fisheye"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FwusQ6ohkqkAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "focus-context.js",
+      "title": {
+        "zh": "图表联动",
+        "en": "Focus and Context"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*IwNsRKKyMlgAAAAAAAAAAAAADmJ7AQ/original"
+    }
+  ]
+}
