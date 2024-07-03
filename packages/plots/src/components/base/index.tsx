@@ -12,6 +12,7 @@ export const BaseChart: ForwardRefExoticComponent<PropsWithoutRef<CommonConfig> 
   const {
     containerStyle = {
       height: 'inherit',
+      flex: 1
     },
     containerAttributes = {},
     className,
