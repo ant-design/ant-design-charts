@@ -19,7 +19,7 @@ const DemoScatter = () => {
       text: 'name',
       style: {
         stroke: '#fff',
-        textAnchor: 'start',
+        textAlign: 'start',
         textBaseline: 'middle',
         dx: 10,
         position: 'left',
