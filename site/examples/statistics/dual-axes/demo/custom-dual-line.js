@@ -31,7 +31,7 @@ const DemoDualAxes = () => {
           text: (datum) => `${datum.value}个`,
           style: {
             dy: -10,
-            textAnchor: 'middle',
+            textAlign: 'middle',
           },
         },
         axis: {
@@ -54,7 +54,7 @@ const DemoDualAxes = () => {
           text: (datum) => `${datum.count}个`,
           style: {
             dy: -10,
-            textAnchor: 'middle',
+            textAlign: 'middle',
           },
         },
         axis: {
