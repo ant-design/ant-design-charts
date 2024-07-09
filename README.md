@@ -15,7 +15,6 @@ A React chart library, based on [G2](https://github.com/antvis/G2), [G6](https:/
   <a href="https://ant-design-charts.antgroup.com/en/manual/getting-started">Quick Start</a> •
   <a href="https://ant-design-charts.antgroup.com/en/examples">Examples</a> •
   <a href="https://ant-design-charts.antgroup.com/en/manual/faq">FAQ</a> •
-  <a href="https://editor.antv.antgroup.com/">Online question answering tool</a> •
 </p>
 
 </div>
