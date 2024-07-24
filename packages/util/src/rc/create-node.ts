@@ -2,7 +2,10 @@ import React from 'react';
 import { render } from '../react/render';
 
 const mountMapping = new Map();
-mountMapping.set('tooltip', document.createElement('div'));
+
+if (typeof document !== 'undefined') {
+  mountMapping.set('tooltip', document.createElement('div'));
+}
 
 export const createNode = (children: React.ReactElement, isTooltip = false) => {
   let mount: HTMLElement = null;
