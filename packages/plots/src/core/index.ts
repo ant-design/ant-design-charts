@@ -1,4 +1,3 @@
-export * as G2 from '@antv/g2';
 export type { AreaOptions } from './plots/area';
 export type { BarOptions } from './plots/bar';
 export type { ColumnOptions } from './plots/column';
@@ -35,6 +34,8 @@ export type { SunburstOptions } from './plots/sunburst';
 
 export * from './types';
 
+import * as G2 from '@antv/g2';
+
 import { Base } from './plots/base';
 import { Area } from './plots/area';
 import { Bar } from './plots/bar';
@@ -69,6 +70,8 @@ import { BidirectionalBar } from './plots/bidirectional-bar';
 import { Venn } from './plots/venn';
 import { Mix } from './plots/mix';
 import { Sunburst } from './plots/sunburst';
+
+export { G2 };
 
 export const Plots = {
   Base,
