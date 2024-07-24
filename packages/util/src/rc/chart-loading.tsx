@@ -14,6 +14,9 @@ export interface ChartLoadingConfig {
 }
 
 const shadowLoading = (ele: HTMLElement) => {
+  if (typeof document === 'undefined') {
+    return 'loading';
+  }
   const shadowRoot = ele.attachShadow({ mode: 'open' });
   const shadowDiv = document.createElement('div');
   const shadowStyle = document.createElement('style');
