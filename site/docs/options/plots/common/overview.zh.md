@@ -24,4 +24,4 @@
 
 # 更多
 
-详见[选项](/options)
+详见[选项](/options/plots/overview)
