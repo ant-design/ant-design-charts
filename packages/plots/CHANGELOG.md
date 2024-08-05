@@ -1,7 +1,8 @@
+## 2.2.8
 ## 2.2.7
-
 `2024-08-05`
 
+- 🐞 [Webpack v4 (import * as issue) fix](https://github.com/ant-design/ant-design-charts/pull/2613)
 - 🐞 [水波图Liquid组件当percent为0时，backgroundFill不生效](https://github.com/ant-design/ant-design-charts/issues/2628)
 
 ## 2.2.6
