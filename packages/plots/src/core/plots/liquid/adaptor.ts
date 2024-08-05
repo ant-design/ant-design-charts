@@ -20,6 +20,7 @@ export function adaptor(params: Params) {
 
     if (isNumber(percent)) {
       set(params, 'options.data', percent);
+      delete params.options.percent;
     }
     return params;
   };
