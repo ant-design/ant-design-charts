@@ -1,3 +1,9 @@
+## 2.2.7
+
+`2024-08-05`
+
+- 🐞 [水波图Liquid组件当percent为0时，backgroundFill不生效](https://github.com/ant-design/ant-design-charts/issues/2628)
+
 ## 2.2.6
 
 `2024-07-24`
