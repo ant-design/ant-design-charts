@@ -11,6 +11,38 @@
         "en": "Chart link"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*dBDRR43tju8AAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "tooltip.js",
+      "title": {
+        "zh": "默认提示",
+        "en": "Default tooltip"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*vqr9QrFDTEgAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "segmented-line.js",
+      "title": {
+        "zh": "分段线",
+        "en": "Segmented line"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*wL0FRJvibpAAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "memo.js",
+      "title": {
+        "zh": "防止重复渲染",
+        "en": "Memo"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*y2aySIowQlUAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "filter.js",
+      "title": {
+        "zh": "图例过滤",
+        "en": "Legend filter"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*2e6jSoEnW60AAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
