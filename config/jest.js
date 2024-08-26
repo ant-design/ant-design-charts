@@ -8,7 +8,6 @@ const BaseJestConfig = {
     '\\.(less|css)$': 'jest-less-loader',
   },
   moduleNameMapper: {
-    '^lodash-es$': 'lodash',
     '^.+\\.(css|less)$': 'identity-obj-proxy',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

@@ -4,7 +4,7 @@ module.exports = {
   ...(process.env.DEBUG_MODE === '1' ? OnlineConfig : {}),
   moduleNameMapper: {
     '^d3-((?!linear)\\S*)': `<rootDir>/../../node_modules/d3-$1/dist/d3-$1.min.js`,
-    '^lodash-es$': 'lodash',
+    '^lodash$': 'lodash',
     '^@ant-design/charts-util': `<rootDir>/../../packages/util/src`,
   },
 };

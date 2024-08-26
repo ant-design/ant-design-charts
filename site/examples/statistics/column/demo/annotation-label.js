@@ -1,7 +1,7 @@
 import { Column } from '@ant-design/plots';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { forEach, groupBy } from 'lodash-es';
+import { forEach, groupBy } from 'lodash';
 
 const DemoColumn = () => {
   const [data, setData] = useState([]);

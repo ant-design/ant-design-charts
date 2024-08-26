@@ -1,4 +1,4 @@
-const { get } = require('lodash-es');
+const { get } = require('lodash');
 const { SHAPES, SIGN } = require('./constants');
 const { SETGLOBAL } = require('./global');
 

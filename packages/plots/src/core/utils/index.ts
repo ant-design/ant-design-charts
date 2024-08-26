@@ -28,7 +28,7 @@ export {
   memoize,
   values,
   isUndefined,
-} from 'lodash-es';
+} from 'lodash';
 export { isCompositePlot } from './is-composite-plot';
 export { transformOptions } from './transform';
 export { deleteExcessKeys } from './delete-excess-keys';

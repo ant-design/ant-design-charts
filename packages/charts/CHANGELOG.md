@@ -1,3 +1,9 @@
+## 2.2.1
+
+`2024-08-26`
+
+- 🐞 [🧐[问题]ESM packages (lodash-es) need to be imported. ](https://github.com/ant-design/ant-design-charts/issues/2489)
+
 ## 2.1.2
 
 `2024-07-24`
