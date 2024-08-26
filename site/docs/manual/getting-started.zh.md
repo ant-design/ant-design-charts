@@ -20,7 +20,6 @@ import { Line } from '@ant-design/charts';
 
 ```ts
 "peerDependencies": {
-    "lodash-es": "^4.17.20",
     "react": ">=16.8.4",
     "react-dom": ">=16.8.4"
   }
@@ -42,19 +41,17 @@ npm install @ant-design/plots --save
 <script type="text/javascript" src="https://unpkg.com/@ant-design/plots@latest/dist/plots.min.js"></script>
 ```
 
-由于 @ant-design/charts 里面 externals 了 `react` 、`react-dom` 和 `lodash-es`，使用时需要通过 CDN 的方式在 `charts.min.js` 之前引入对应包的 CDN 地址。
+由于 @ant-design/charts 里面 externals 了 `react` 、`react-dom`，使用时需要通过 CDN 的方式在 `charts.min.js` 之前引入对应包的 CDN 地址。
  
 ```ts
 // webpack.config.js
 externals: {
   react: 'React',
   'react-dom': 'ReactDOM',
-  'lodash-es': 'lodash'
 }
 // public/index.html
 <script crossorigin src="https://unpkg.com/react@latest/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/lodash@4.17.21/lodash.min.js"></script>
 
 // 按需引入
 <script type="text/javascript" src="https://unpkg.com/@ant-design/plots@latest/dist/plots.min.js"></script>
