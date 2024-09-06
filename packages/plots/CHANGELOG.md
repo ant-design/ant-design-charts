@@ -1,3 +1,12 @@
+## [2.3.2](https://github.com/ant-design/ant-design-charts/compare/2.2.1...2.3.2) (2024-09-06)
+
+
+### Bug Fixes
+
+* data update ([#2684](https://github.com/ant-design/ant-design-charts/issues/2684)) ([11379e6](https://github.com/ant-design/ant-design-charts/commit/11379e6f791318fefaa036a3640cc3f9feb089f9))
+* tooltip callback ([#2686](https://github.com/ant-design/ant-design-charts/issues/2686)) ([19d714d](https://github.com/ant-design/ant-design-charts/commit/19d714d958ab8a539c1267b28b6ee2c5ff84f735))
+
+
 ## 2.3.1
 
 `2024-08-26`

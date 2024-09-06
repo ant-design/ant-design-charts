@@ -79,6 +79,7 @@
   "sideEffects": false,
   "license": "MIT",
   "dependencies": {
+    "conventional-changelog-cli": "^5.0.0",
     "less-plugin-npm-import": "^2.1.0",
     "remark-frontmatter": "^4.0.1",
     "remark-parse": "^10.0.1",
