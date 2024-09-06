@@ -71,21 +71,10 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
 
   useEffect(() => {
     if (chart.current && !isEqual(chartOptions.current, config)) {
-      let changeData = false;
-      if (chartOptions.current) {
-        // 从 options 里面取出 data 、value 、 percent 进行比对，判断是否仅数值发生改变
-        const { data: currentData, ...currentConfig } = chartOptions.current;
-        const { data: inputData, ...inputConfig } = config;
-        changeData = isEqual(currentConfig, inputConfig);
-      }
       chartOptions.current = cloneDeep(config);
-      if (changeData) {
-        chart.current.changeData(get(config, 'data'));
-      } else {
-        processConfig(config);
-        chart.current.update(config);
-        chart.current.render();
-      }
+      processConfig(config);
+      chart.current.update(config);
+      chart.current.render();
     }
   }, [config]);
 

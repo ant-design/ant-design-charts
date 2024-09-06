@@ -18,7 +18,7 @@ export function adaptor(params: Params) {
     const { angleField, data, label, tooltip, colorField } = options;
 
     const getColorValue = fieldAdapter(colorField);
-    if (isArray(data)) {
+    if (isArray(data) && data.length > 0) {
       const sum = data.reduce((a, b) => a + b[angleField], 0);
       if (sum === 0) {
         const normalization = data.map((item) => ({ ...item, [angleField]: 1 }));
