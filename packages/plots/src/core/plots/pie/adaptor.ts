@@ -1,4 +1,4 @@
-import { flow, transformOptions, isArray, set, fieldAdapter } from '../../utils';
+import { flow, transformOptions, isArray, set, fieldAdapter, isFunction } from '../../utils';
 import type { Adaptor } from '../../types';
 import type { PieOptions } from './type';
 
@@ -30,17 +30,26 @@ export function adaptor(params: Params) {
           });
         }
         if (tooltip !== false) {
-          set(options, 'tooltip', {
-            ...tooltip,
-            items: [
-              (arg, i, d) => {
-                return {
-                  name: getColorValue(arg, i, d),
-                  value: 0,
-                };
-              },
-            ],
-          });
+          if (isFunction(tooltip)) {
+            set(options, 'tooltip', (arg, index, items) => {
+              return tooltip({
+                ...arg,
+                [angleField]: 0
+              }, index, items.map(item => ({ ...item, [angleField]: 0 })));
+            });
+          } else {
+            set(options, 'tooltip', {
+              ...tooltip,
+              items: [
+                (arg, i, d) => {
+                  return {
+                    name: getColorValue(arg, i, d),
+                    value: 0,
+                  };
+                },
+              ],
+            });
+          }
         }
       }
     }
