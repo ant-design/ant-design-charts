@@ -33,8 +33,7 @@
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "start": "npm run build:esm --w",
-    "test": "jest",
-    "type-check": "tsc --noEmit"
+    "test": "jest"
   },
   "keywords": [
     "antv",

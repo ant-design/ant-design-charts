@@ -1,1 +1,1 @@
-export {HierarchicalGraph} from './HierarchicalGraph';
+export { HierarchicalGraph } from './HierarchicalGraph';
