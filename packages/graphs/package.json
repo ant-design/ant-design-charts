@@ -1,0 +1,63 @@
+{
+  "name": "@ant-design/graphs",
+  "version": "1.0.0-alpha.0",
+  "description": "A React graph library based on G6",
+  "bugs": {
+    "url": "https://github.com/ant-design/ant-design-charts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ant-design/ant-design-charts.git"
+  },
+  "main": "lib/index.js",
+  "unpkg": "dist/graphs.min.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "dist",
+    "es",
+    "src"
+  ],
+  "scripts": {
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "ci": "run-s lint build test",
+    "clean": "rimraf lib es dist",
+    "build": "run-p build:*",
+    "build:umd": "rimraf ./dist && webpack --config webpack.config.js --mode production",
+    "build:lib": "rimraf ./lib && tsc -p tsconfig.prod.json --target ES5 --module commonjs --outDir lib",
+    "build:esm": "rimraf ./es && tsc -p tsconfig.prod.json --target ES5 --module ESNext --outDir es",
+    "lint:prettier": "npm run prettier && git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
+    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && npm run lint:prettier",
+    "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
+    "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
+    "start": "npm run build:esm --w",
+    "test": "jest",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "antv",
+    "g6",
+    "graph",
+    "graph analysis",
+    "graph editor",
+    "graph visualization",
+    "relational data",
+    "react"
+  ],
+  "dependencies": {
+    "@antv/g6": "^5.0.21",
+    "@antv/graphin": "^3.0.2",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.6",
+    "npm-run-all": "^4.1.5"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.4",
+    "react-dom": ">=16.8.4"
+  },
+  "license": "MIT"
+}

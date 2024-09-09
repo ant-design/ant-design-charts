@@ -10,7 +10,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": false,
-    "suppressImplicitAnyIndexErrors": true,
     "experimentalDecorators": true,
     "strict": false,
     "skipLibCheck": true,
