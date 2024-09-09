@@ -3,7 +3,8 @@
     "isolatedModules": true,
     "pretty": true,
     "resolveJsonModule": true,
-    "strict": true
+    "strict": true,
+    "paths": {}
   },
   "exclude": ["node_modules", "dist", "lib", "es"],
   "extends": "../../tsconfig.json",

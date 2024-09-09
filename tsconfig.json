@@ -20,7 +20,10 @@
     "noUnusedLocals": false,
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
-    "preserveSymlinks": true
+    "preserveSymlinks": true,
+    "paths": {
+      "@@/*": ["src/.umi/*"]
+    }
   },
   "exclude": [
     "node_modules",
@@ -47,8 +50,5 @@
     "jest.config.js",
     "**/fixtures",
     "./tests/no-duplicated.ts"
-  ],
-  "paths": {
-    "@@/*": ["src/.umi/*"]
-  }
+  ]
 }

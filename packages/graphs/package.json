@@ -23,6 +23,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "ci": "run-s lint build test",
     "clean": "rimraf lib es dist",
+    "dev": "vite",
     "build": "run-p build:*",
     "build:umd": "rimraf ./dist && webpack --config webpack.config.js --mode production",
     "build:lib": "rimraf ./lib && tsc -p tsconfig.prod.json --target ES5 --module commonjs --outDir lib",
@@ -53,7 +54,12 @@
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.6",
-    "npm-run-all": "^4.1.5"
+    "antd": "^5.20.5",
+    "npm-run-all": "^4.1.5",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-router-dom": "^6.26.1",
+    "vite": "^5.4.3"
   },
   "peerDependencies": {
     "react": ">=16.8.4",
