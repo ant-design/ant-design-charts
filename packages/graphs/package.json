@@ -1,7 +1,7 @@
 {
   "name": "@ant-design/graphs",
-  "version": "1.0.0-alpha.0",
-  "description": "A React graph library based on G6",
+  "version": "2.0.0-alpha.0",
+  "description": "A React graph library based on Graphin",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
   },
@@ -56,8 +56,6 @@
     "@types/react-dom": "^18.0.6",
     "antd": "^5.20.5",
     "npm-run-all": "^4.1.5",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
     "react-router-dom": "^6.26.1",
     "vite": "^5.4.3"
   },
