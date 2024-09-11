@@ -1,0 +1,88 @@
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Flex } from 'antd';
+import React from 'react';
+import styled, { css } from 'styled-components';
+
+interface OrganizationChartNodeProps {
+  name: string;
+  position: string;
+  status: string;
+  isActive?: boolean;
+}
+
+const StyledWrapper = styled.div<{ color?: string; isActive?: boolean }>`
+  height: inherit;
+  width: inherit;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  border: 3px solid transparent;
+  background-color: #fff;
+
+  ${(props) =>
+    props.isActive &&
+    css`
+      border: 3px solid #1783ff;
+    `}
+
+  .line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: ${(props) => props.color};
+    border-radius: 2px 2px 0 0;
+  }
+
+  .node-content {
+    height: inherit;
+    margin: 4px 16px 8px;
+
+    &-avatar {
+      width: 40px;
+      height: 40px;
+      margin-right: 16px;
+      background-color: ${(props) => props.color};
+    }
+
+    &-detail {
+      flex: 1;
+    }
+
+    &-name {
+      color: #242424;
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    &-post {
+      color: #616161;
+      font-size: 14px;
+    }
+  }
+`;
+
+export const OrganizationChartNode: React.FC<OrganizationChartNodeProps> = (props) => {
+  const { name, position, status, isActive } = props;
+
+  const colorMap = {
+    online: '#1783FF',
+    busy: '#00C9C9',
+    offline: '#F08F56',
+  };
+
+  return (
+    <StyledWrapper color={colorMap[status]} isActive={isActive}>
+      <div className="line"></div>
+      <Flex className="node-content" align="center">
+        <Avatar className="node-content-avatar" icon={<UserOutlined />} />
+        <Flex vertical className="node-content-detail">
+          <div className="node-content-name">{name}</div>
+          <div className="node-content-post">{position}</div>
+        </Flex>
+      </Flex>
+    </StyledWrapper>
+  );
+};

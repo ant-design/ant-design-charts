@@ -1,2 +1,2 @@
 export { HierarchicalGraph } from './hierarchical-graph';
-export { ErrorBoundary } from './error-boundary';
+export { OrganizationChart } from './organization-chart';
