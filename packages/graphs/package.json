@@ -2,6 +2,16 @@
   "name": "@ant-design/graphs",
   "version": "2.0.0-alpha.0",
   "description": "A React graph library based on Graphin",
+  "keywords": [
+    "antv",
+    "g6",
+    "graph",
+    "graph analysis",
+    "graph editor",
+    "graph visualization",
+    "relational data",
+    "react"
+  ],
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
   },
@@ -9,6 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/ant-design/ant-design-charts.git"
   },
+  "license": "MIT",
   "main": "lib/index.js",
   "unpkg": "dist/graphs.min.js",
   "module": "es/index.js",
@@ -35,20 +46,13 @@
     "start": "npm run build:esm --w",
     "test": "jest"
   },
-  "keywords": [
-    "antv",
-    "g6",
-    "graph",
-    "graph analysis",
-    "graph editor",
-    "graph visualization",
-    "relational data",
-    "react"
-  ],
   "dependencies": {
+    "@ant-design/charts-util": "workspace:*",
     "@antv/g6": "^5.0.21",
+    "@antv/g6-extension-react": "^0.1.6",
     "@antv/graphin": "^3.0.2",
-    "lodash-es": "^4.17.21"
+    "lodash": "^4.17.21",
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@types/jest": "^26.0.0",
@@ -62,6 +66,5 @@
   "peerDependencies": {
     "react": ">=16.8.4",
     "react-dom": ">=16.8.4"
-  },
-  "license": "MIT"
+  }
 }

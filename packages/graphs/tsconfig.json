@@ -4,7 +4,11 @@
     "pretty": true,
     "resolveJsonModule": true,
     "strict": true,
-    "paths": {}
+    "baseUrl": ".",
+    "paths": {
+      "@ant-design/graphs": ["./src/index.ts"],
+      "@ant-design/charts-util": ["../util/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "dist", "lib", "es"],
   "extends": "../../tsconfig.json",
