@@ -1,5 +1,5 @@
 import type { ContainerConfig } from '@ant-design/charts-util';
-import type { GraphOptions as G6GraphOptions } from '@antv/g6';
+import type { Graph, GraphOptions as G6GraphOptions } from '@antv/g6';
 
 export type GraphType = 'hierarchical-graph';
 
@@ -9,6 +9,18 @@ export interface GraphOptions extends ContainerConfig, G6GraphOptions {
    * @default true
    */
   collapsible?: boolean | CollapsibleOptions;
+  /**
+   * 当图初始化完成后（即 new Graph() 之后）执行回调
+   */
+  onInit?: (graph: Graph) => void;
+  /**
+   * 当图渲染完成后（即 graph.render() 之后）执行回调
+   */
+  onReady?: (graph: Graph) => void;
+  /**
+   * 当图销毁后（即 graph.destroy() 之后）执行回调
+   */
+  onDestroy?: () => void;
 }
 
 export type ParsedGraphOptions = Required<GraphOptions>;

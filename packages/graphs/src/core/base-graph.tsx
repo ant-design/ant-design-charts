@@ -23,7 +23,18 @@ interface BaseGraphProps extends GraphOptions {
 export const BaseGraph: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<BaseGraphProps>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<BaseGraphProps>>(({ children, ...props }, ref) => {
-  const { type, containerStyle, className, errorTemplate, loading, loadingTemplate, ...propOptions } = props;
+  const {
+    type,
+    containerStyle,
+    className,
+    onInit,
+    onReady,
+    onDestroy,
+    errorTemplate,
+    loading,
+    loadingTemplate,
+    ...propOptions
+  } = props;
   const graphRef = useRef<Graph | null>(null);
 
   const options = useOptions(type, propOptions);
@@ -34,12 +45,15 @@ export const BaseGraph: ForwardRefExoticComponent<
     <ErrorBoundary errorTemplate={errorTemplate}>
       {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
       <Graphin
-        onInit={(ref) => {
+        ref={(ref) => {
           graphRef.current = ref;
         }}
         className={className}
         style={containerStyle}
         options={options}
+        onInit={onInit}
+        onReady={onReady}
+        onDestroy={onDestroy}
       >
         {children}
       </Graphin>

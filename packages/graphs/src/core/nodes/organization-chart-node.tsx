@@ -3,10 +3,22 @@ import { Avatar, Flex } from 'antd';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface OrganizationChartNodeProps {
+interface OrganizationChartNodeProps extends Pick<React.HTMLAttributes<HTMLDivElement>, 'className' | 'style'> {
+  /**
+   * Name of the person
+   */
   name: string;
+  /**
+   * Position of the person
+   */
   position: string;
+  /**
+   * Working status of the person
+   */
   status: string;
+  /**
+   * Whether the node is hovered
+   */
   isActive?: boolean;
 }
 
@@ -65,7 +77,7 @@ const StyledWrapper = styled.div<{ color?: string; isActive?: boolean }>`
 `;
 
 export const OrganizationChartNode: React.FC<OrganizationChartNodeProps> = (props) => {
-  const { name, position, status, isActive } = props;
+  const { name, position, status, isActive, className, style } = props;
 
   const colorMap = {
     online: '#1783FF',
@@ -74,7 +86,7 @@ export const OrganizationChartNode: React.FC<OrganizationChartNodeProps> = (prop
   };
 
   return (
-    <StyledWrapper color={colorMap[status]} isActive={isActive}>
+    <StyledWrapper color={colorMap[status]} isActive={isActive} className={className} style={style}>
       <div className="line"></div>
       <Flex className="node-content" align="center">
         <Avatar className="node-content-avatar" icon={<UserOutlined />} />

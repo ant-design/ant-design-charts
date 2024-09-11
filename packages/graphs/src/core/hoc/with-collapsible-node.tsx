@@ -1,6 +1,6 @@
 import { idOf } from '@antv/g6';
-import { get, isEmpty } from 'lodash-es';
-import React, { useEffect, useState } from 'react';
+import { get, isEmpty } from 'lodash';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import type { CollapsibleOptions } from '../../types';
 import type { NodeProps } from '../nodes/types';
@@ -33,34 +33,34 @@ export const withCollapsibleNode = (NodeComponent: React.FC) => {
   return (props: CollapsibleNodeProps) => {
     const { data, graph, trigger, iconRender, iconClassName, iconStyle } = props;
     const [isCollapsed, setIsCollapsed] = useState(get(data, 'style.collapsed', false));
+    const wrapperRef = useRef(null);
+    const iconRef = useRef(null);
 
     const isIconShown = trigger === 'icon' && !isEmpty(data.children);
 
-    const nodeId = idOf(data);
     const handleClickCollapse = async (e) => {
       e.stopPropagation();
 
       const toggleExpandCollapse = isCollapsed ? 'expandElement' : 'collapseElement';
-      await graph[toggleExpandCollapse](nodeId);
+      await graph[toggleExpandCollapse](idOf(data));
       setIsCollapsed((prev) => !prev);
 
       await graph.layout();
     };
 
     useEffect(() => {
-      const target =
-        typeof trigger === 'string' ? document.getElementById(`${nodeId}-collapsible-${trigger}`) : trigger;
+      const target = trigger === 'icon' ? iconRef.current : trigger === 'node' ? wrapperRef.current : trigger;
 
       target?.addEventListener('click', handleClickCollapse);
       return () => {
         target?.removeEventListener('click', handleClickCollapse);
       };
-    }, [trigger, isCollapsed, nodeId]);
+    }, [trigger, isCollapsed]);
 
     return (
-      <StyledWrapper id={`${nodeId}-collapsible-node`}>
+      <StyledWrapper ref={wrapperRef}>
         {isIconShown && (
-          <div id={`${nodeId}-collapsible-icon`} className={`collapsible-icon ${iconClassName}`} style={iconStyle}>
+          <div ref={iconRef} className={`collapsible-icon ${iconClassName}`} style={iconStyle}>
             {iconRender?.(isCollapsed)}
           </div>
         )}

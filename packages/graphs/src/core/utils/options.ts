@@ -1,4 +1,4 @@
-import { isPlainObject } from 'lodash-es';
+import { isPlainObject } from 'lodash';
 import type { GraphOptions, ParsedGraphOptions } from '../../types';
 
 /**

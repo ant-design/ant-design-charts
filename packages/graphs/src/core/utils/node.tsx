@@ -1,7 +1,7 @@
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import type { EdgeData, EdgeDirection, GraphData, ID, NodeData } from '@antv/g6';
 import { ReactNodeStyleProps } from '@antv/g6-extension-react';
-import { get, has, isObject, set } from 'lodash-es';
+import { get, has, isObject, set } from 'lodash';
 import React from 'react';
 import type { CollapsibleOptions, GraphOptions } from '../../types';
 import { withCollapsibleNode } from '../hoc';
@@ -49,7 +49,7 @@ export function inferCollapsibleStyle(options: GraphOptions) {
 
   set(options, 'node.style.component', function (data: NodeData) {
     const CollapsibleNode = withCollapsibleNode(component);
-    // @ts-expect-error this is G6 graph instance
+    // @ts-ignore this 指向 G6 Graph 实例
     return <CollapsibleNode data={data} graph={this} {...config} />;
   });
 }
