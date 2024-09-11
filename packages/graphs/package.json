@@ -48,7 +48,6 @@
   },
   "dependencies": {
     "@ant-design/charts-util": "workspace:*",
-    "@ant-design/icons": "^5.4.0",
     "@antv/g6": "^5.0.21",
     "@antv/g6-extension-react": "^0.1.6",
     "@antv/graphin": "^3.0.2",

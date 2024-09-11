@@ -7,7 +7,6 @@ import { inferCollapsibleStyle, isCollapsible, isReactNode, parseCollapsible, up
 import { mergeOptions } from '../utils/options';
 
 const COMMON_OPTIONS: GraphOptions = {
-  collapsible: true,
   node: {
     type: 'react',
     style: {},

@@ -1,4 +1,3 @@
-import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Flex } from 'antd';
 import React from 'react';
 import styled, { css } from 'styled-components';
@@ -56,6 +55,8 @@ const StyledWrapper = styled.div<{ color?: string; isActive?: boolean }>`
       height: 40px;
       margin-right: 16px;
       background-color: ${(props) => props.color};
+      font-weight: 600;
+      font-size: 18px;
     }
 
     &-detail {
@@ -89,7 +90,7 @@ export const OrganizationChartNode: React.FC<OrganizationChartNodeProps> = (prop
     <StyledWrapper color={colorMap[status]} isActive={isActive} className={className} style={style}>
       <div className="line"></div>
       <Flex className="node-content" align="center">
-        <Avatar className="node-content-avatar" icon={<UserOutlined />} />
+        <Avatar className="node-content-avatar">{name.slice(0, 1)}</Avatar>
         <Flex vertical className="node-content-detail">
           <div className="node-content-name">{name}</div>
           <div className="node-content-post">{position}</div>

@@ -20,6 +20,7 @@ export const OrganizationChart = () => {
   }, []);
 
   const options: GraphOptions = {
+    collapsible: true,
     data,
     padding: 20,
     autoFit: 'view',

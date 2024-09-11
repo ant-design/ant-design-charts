@@ -1,4 +1,3 @@
-import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import type { EdgeData, EdgeDirection, GraphData, ID, NodeData } from '@antv/g6';
 import { ReactNodeStyleProps } from '@antv/g6-extension-react';
 import { get, has, isObject, set } from 'lodash';
@@ -33,7 +32,23 @@ export function parseCollapsible(collapsible: GraphOptions['collapsible']): Coll
   const defaultOptions: CollapsibleOptions = {
     trigger: 'icon',
     direction: 'out',
-    iconRender: (isCollapsed: boolean) => (isCollapsed ? <PlusCircleOutlined /> : <MinusCircleOutlined />),
+    iconRender: (isCollapsed: boolean) => (
+      <div
+        style={{
+          height: '16px',
+          width: '16px',
+          background: '#fff',
+          border: '2px solid #99ADD1',
+          borderRadius: '50%',
+          color: '#99ADD1',
+          fontWeight: '800',
+          lineHeight: '13px',
+          textAlign: 'center',
+        }}
+      >
+        {isCollapsed ? '+' : '-'}
+      </div>
+    ),
   };
 
   return collapsible === true ? defaultOptions : isObject(collapsible) ? { ...defaultOptions, ...collapsible } : {};

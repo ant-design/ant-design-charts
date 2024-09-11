@@ -14,10 +14,6 @@ const StyledWrapper = styled.div`
     position: absolute;
     left: 50%;
     top: calc(100% + 24px);
-    background-color: #fff;
-    border-radius: 2px;
-    color: #99add1;
-    font-size: 20px;
     transform: translate(-50%, -50%);
     z-index: 1;
 
@@ -31,7 +27,7 @@ interface CollapsibleNodeProps extends NodeProps, CollapsibleOptions {}
 
 export const withCollapsibleNode = (NodeComponent: React.FC) => {
   return (props: CollapsibleNodeProps) => {
-    const { data, graph, trigger, iconRender, iconClassName, iconStyle } = props;
+    const { data, graph, trigger, iconRender, iconClassName = '', iconStyle } = props;
     const [isCollapsed, setIsCollapsed] = useState(get(data, 'style.collapsed', false));
     const wrapperRef = useRef(null);
     const iconRef = useRef(null);
