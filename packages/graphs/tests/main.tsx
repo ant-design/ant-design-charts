@@ -1,7 +1,7 @@
 import { Alert, Flex, Select } from 'antd';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Outlet, RouterProvider, createBrowserRouter, useMatch, useNavigate } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider, useMatch, useNavigate } from 'react-router-dom';
 import * as demos from './demos';
 
 const App = () => {

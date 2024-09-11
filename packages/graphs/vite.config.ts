@@ -11,6 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@ant-design/graphs': path.resolve(__dirname, './src'),
+      '@ant-design/graphs-util': path.resolve(__dirname, '../../util/lib/index.js'),
     },
   },
 });
