@@ -1,11 +1,10 @@
 import type { ContainerConfig } from '@ant-design/charts-util';
-import type { Graph, GraphOptions as G6GraphOptions } from '@antv/g6';
-
-export type GraphType = 'hierarchical-graph';
+import type { CardinalPlacement, Graph, GraphOptions as G6GraphOptions, NodeData } from '@antv/g6';
 
 export interface GraphOptions extends ContainerConfig, G6GraphOptions {
   /**
    * 是否支持节点收起/展开
+   * @description 此属性仅在 node.type 为 'react' 时生效
    * @default true
    */
   collapsible?: boolean | CollapsibleOptions;
@@ -48,6 +47,21 @@ export interface CollapsibleOptions {
    * @returns 自定义图标
    */
   iconRender?: (isCollapsed: boolean) => React.ReactNode;
+  /**
+   * 图标相对于节点的位置
+   * @default 'bottom'
+   */
+  iconPlacement?: CardinalPlacement | ((data: NodeData) => CardinalPlacement);
+  /**
+   * 图标相对于节点的水平偏移量
+   * @default 0
+   */
+  iconOffsetX?: number | ((data: NodeData) => number);
+  /**
+   * 图标相对于节点的垂直偏移量
+   * @default 0
+   */
+  iconOffsetY?: number | ((data: NodeData) => number);
   /**
    * 指定图标的 CSS 类名
    */

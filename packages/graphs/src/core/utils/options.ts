@@ -2,34 +2,36 @@ import { isPlainObject } from 'lodash';
 import type { GraphOptions, ParsedGraphOptions } from '../../types';
 
 /**
- * 将用户配置项与默认配置项合并
- * @param options - 用户配置项
- * @param defaultOptions - 默认配置项
+ * 合并多个图配置项，优先级从左到右递增
+ * @param options 图配置项列表
  * @returns 最后用于渲染的配置项
  */
-export function mergeOptions(options: GraphOptions, defaultOptions: GraphOptions): ParsedGraphOptions {
-  const merged = { ...defaultOptions };
+export function mergeOptions(...options: GraphOptions[]): ParsedGraphOptions {
+  if (options.length === 0) return {} as ParsedGraphOptions;
 
-  for (const key in options) {
-    if (options.hasOwnProperty(key)) {
-      const propValue = options[key];
-      const defaultValue = defaultOptions[key];
+  const merged = { ...options[0] };
 
-      if (['component', 'data'].includes(key)) {
-        merged[key] = propValue;
-      } else if (typeof propValue === 'function') {
-        merged[key] = function (datum) {
-          return mergeOptions(propValue.call(this, datum), defaultValue);
-        };
-      } else if (
-        isPlainObject(propValue) &&
-        isPlainObject(defaultValue) &&
-        propValue !== null &&
-        defaultValue !== null
-      ) {
-        merged[key] = mergeOptions(propValue, defaultValue);
-      } else {
-        merged[key] = propValue;
+  for (let i = 1; i < options.length; i++) {
+    const currentOptions = options[i];
+
+    for (const key in currentOptions) {
+      if (currentOptions.hasOwnProperty(key)) {
+        const currValue = currentOptions[key];
+        const prevValue = merged[key];
+
+        if (['component', 'data'].includes(key)) {
+          merged[key] = currValue;
+        } else if (typeof currValue === 'function') {
+          merged[key] = function (datum) {
+            const value = currValue.call(this, datum);
+            if (isPlainObject(value) && value !== null) return mergeOptions(prevValue, value);
+            return value;
+          };
+        } else if (isPlainObject(currValue) && isPlainObject(prevValue) && currValue !== null && prevValue !== null) {
+          merged[key] = mergeOptions(prevValue, currValue);
+        } else {
+          merged[key] = currValue;
+        }
       }
     }
   }

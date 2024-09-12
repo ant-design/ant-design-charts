@@ -1,4 +1,4 @@
-import type { EdgeData, EdgeDirection, GraphData, ID, NodeData } from '@antv/g6';
+import type { NodeData } from '@antv/g6';
 import { ReactNodeStyleProps } from '@antv/g6-extension-react';
 import { get, has, isObject, set } from 'lodash';
 import React from 'react';
@@ -32,23 +32,6 @@ export function parseCollapsible(collapsible: GraphOptions['collapsible']): Coll
   const defaultOptions: CollapsibleOptions = {
     trigger: 'icon',
     direction: 'out',
-    iconRender: (isCollapsed: boolean) => (
-      <div
-        style={{
-          height: '16px',
-          width: '16px',
-          background: '#fff',
-          border: '2px solid #99ADD1',
-          borderRadius: '50%',
-          color: '#99ADD1',
-          fontWeight: '800',
-          lineHeight: '13px',
-          textAlign: 'center',
-        }}
-      >
-        {isCollapsed ? '+' : '-'}
-      </div>
-    ),
   };
 
   return collapsible === true ? defaultOptions : isObject(collapsible) ? { ...defaultOptions, ...collapsible } : {};
@@ -60,47 +43,14 @@ export function parseCollapsible(collapsible: GraphOptions['collapsible']): Coll
  */
 export function inferCollapsibleStyle(options: GraphOptions) {
   const config = parseCollapsible(options.collapsible);
-  const { component } = options.node!.style as unknown as ReactNodeStyleProps;
 
-  set(options, 'node.style.component', function (data: NodeData) {
-    const CollapsibleNode = withCollapsibleNode(component);
-    // @ts-ignore this 指向 G6 Graph 实例
-    return <CollapsibleNode data={data} graph={this} {...config} />;
-  });
-}
+  if (isReactNode(options)) {
+    const { component } = options.node!.style as unknown as ReactNodeStyleProps;
 
-/**
- * 获取邻居节点
- * @param nodeId - 节点 ID
- * @param edges - 边数据
- * @param direction - 边的方向
- * @returns 邻居节点 ID
- */
-export const getNeighborNodeIds = (nodeId: ID, edges: EdgeData[], direction: EdgeDirection): ID[] => {
-  const getSuccessorNodeIds = (reverse = false): ID[] => {
-    const [source, target] = reverse ? ['target', 'source'] : ['source', 'target'];
-    return edges.filter((edge) => edge[source] === nodeId).map((edge) => edge[target]) as ID[];
-  };
-
-  if (direction === 'out') return getSuccessorNodeIds();
-  if (direction === 'in') return getSuccessorNodeIds(true);
-  return getSuccessorNodeIds().concat(getSuccessorNodeIds(true));
-};
-
-/**
- * 插入或更新子节点数据，children 字段在展开/折叠节点时被消费
- * @param data - 图数据
- * @param direction - 边的方向
- * @returns 更新后的图数据
- */
-export function upsertChildrenData(data: GraphData, direction: EdgeDirection): GraphData {
-  const { nodes = [], edges = [] } = data || {};
-
-  return {
-    ...data,
-    nodes: nodes.map((node) => ({
-      ...node,
-      children: getNeighborNodeIds(node.id, edges, direction),
-    })),
-  };
+    set(options, 'node.style.component', function (data: NodeData) {
+      const CollapsibleNode = withCollapsibleNode(component);
+      // @ts-ignore this 指向 G6 Graph 实例
+      return <CollapsibleNode data={data} graph={this} {...config} />;
+    });
+  }
 }

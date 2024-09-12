@@ -35,5 +35,4 @@ export { deleteExcessKeys } from './delete-excess-keys';
 export { filterTransformed } from './filter-transformed';
 export { conversionTagFormatter } from './conversion';
 export { mergeWithArrayCoverage } from './merge-with-array-coverage';
-export { measureTextWidth } from './measure-text';
 export { fieldAdapter } from './field-adapter';
