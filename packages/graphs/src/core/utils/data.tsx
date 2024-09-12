@@ -37,3 +37,23 @@ export function upsertChildrenData(data: GraphData, direction: EdgeDirection) {
     }),
   });
 }
+
+export function assignColorToHierarchicalData(graphData: GraphData, colors = ANTV_PALETTE) {
+  const { nodes = [] } = graphData;
+
+  if (nodes.length === 0) return;
+
+  let colorIndex = 0;
+  const dfs = (nodeId: string, color?: string) => {
+    const node = nodes.find((datum) => datum.id == nodeId);
+    if (!node) return;
+
+    if (node.data?.depth !== 0) {
+      node.data!.color = color || colors[colorIndex++ % colors.length];
+    }
+
+    node.children?.forEach((childId) => dfs(childId, node.data!.color as string));
+  };
+
+  nodes.filter((node) => node.data?.depth === 0).forEach((rootNode) => dfs(rootNode.id));
+}
