@@ -1,5 +1,6 @@
 import { GraphOptions, MindMap as MindMapComponent } from '@ant-design/graphs';
-import { NodeData, TreeData, treeToGraphData } from '@antv/g6';
+import type { NodeData, TreeData } from '@antv/g6';
+import { treeToGraphData } from '@antv/g6';
 import React from 'react';
 import data from '../datasets/mind-mapping.json';
 

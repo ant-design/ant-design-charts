@@ -1,4 +1,4 @@
-import type { Graph } from '@antv/g6';
+import type { Graph, ID } from '@antv/g6';
 import { idOf } from '@antv/g6';
 import React, {
   forwardRef,
