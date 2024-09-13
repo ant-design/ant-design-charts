@@ -68,7 +68,6 @@ export const withCollapsibleNode = (NodeComponent: React.FC) => {
       iconClassName = '',
       iconStyle = {},
     } = props;
-    debugger;
     const [isCollapsed, setIsCollapsed] = useState(get(data, 'style.collapsed', false));
     const wrapperRef = useRef(null);
     const iconRef = useRef(null);

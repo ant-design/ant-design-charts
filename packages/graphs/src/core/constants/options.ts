@@ -13,4 +13,5 @@ export const COMMON_OPTIONS: GraphOptions = {
     },
   },
   transforms: ['infer-react-style'],
+  behaviors: ['drag-canvas', 'zoom-canvas'],
 };

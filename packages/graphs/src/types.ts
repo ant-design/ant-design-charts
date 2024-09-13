@@ -51,17 +51,17 @@ export interface CollapsibleOptions {
    * 图标相对于节点的位置
    * @default 'bottom'
    */
-  iconPlacement?: CardinalPlacement | ((data: NodeData) => CardinalPlacement);
+  iconPlacement?: CardinalPlacement | ((this: Graph, data: NodeData) => CardinalPlacement);
   /**
    * 图标相对于节点的水平偏移量
    * @default 0
    */
-  iconOffsetX?: number | ((data: NodeData) => number);
+  iconOffsetX?: number | ((this: Graph, data: NodeData) => number);
   /**
    * 图标相对于节点的垂直偏移量
    * @default 0
    */
-  iconOffsetY?: number | ((data: NodeData) => number);
+  iconOffsetY?: number | ((this: Graph, data: NodeData) => number);
   /**
    * 指定图标的 CSS 类名
    */

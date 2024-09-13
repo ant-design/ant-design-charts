@@ -1,7 +1,8 @@
-import { measureTextHeight, measureTextWidth } from '@ant-design/charts-util';
-import type { Size } from '@antv/g6';
+import type { NodeData } from '@antv/g6';
+import { idOf } from '@antv/g6';
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { measureTextSize } from '../utils/measure-text';
 
 const StyledWrapper = styled.div<{ depth: number }>`
   --border-width: 2px;
@@ -17,11 +18,6 @@ const StyledWrapper = styled.div<{ depth: number }>`
   font-weight: bold;
   overflow-wrap: anywhere;
 
-  .text {
-    margin: 0 6px;
-    text-align: center;
-  }
-
   ${({ depth, color }) => {
     if (depth === 0) {
       // main-topic
@@ -32,7 +28,6 @@ const StyledWrapper = styled.div<{ depth: number }>`
         font-size: 20px;
         padding: 6px;
         transform: translate(-3px, -3px);
-        letter-spacing: 0.5px;
       `;
     } else if (depth === 1) {
       // brainstorming-topic
@@ -41,7 +36,6 @@ const StyledWrapper = styled.div<{ depth: number }>`
         background-color: ${color};
         border-color: ${color};
         font-size: 18px;
-        letter-spacing: 0.5px;
       `;
     } else {
       // sub-topic
@@ -70,22 +64,18 @@ export const MindMapNode: React.FC<MindMapNodeProps> = (props) => {
   );
 };
 
-export function measureTextSize(text: string, depth: number, minWidth = 120, maxWith = 240): Size {
-  const LETTER_SPACING = 0.5;
-  const HEIGHT = 36;
-  const OFFSET = 12;
-
+export const getMindMapNodeFont = (depth: number) => {
   const fontSize = depth === 0 ? 20 : depth === 1 ? 18 : 16;
-  const font = { fontWeight: 'bold', fontSize: fontSize + 2, fontFamily: 'PingFang SC' };
-  const height = measureTextHeight(text, font);
+  const font = { fontWeight: 'bold', fontSize, fontFamily: 'PingFang SC' };
+  return font;
+};
 
-  let width = measureTextWidth(text, font);
-  if (depth < 2) {
-    const additionalSpacing = text.length * LETTER_SPACING;
-    width += additionalSpacing;
-  }
-
-  const lineNumber = Math.ceil(width / maxWith);
-
-  return [Math.max(minWidth, Math.min(maxWith, width)) + OFFSET, HEIGHT + height * (lineNumber - 1)];
-}
+/**
+ * 计算思维导图节点的尺寸，这里节点的尺寸是根据节点的文本内容来计算的
+ * @param data - 节点数据
+ * @returns 节点的尺寸
+ */
+export const measureMindMapNodeSize = (data: NodeData) => {
+  const font = getMindMapNodeFont(data.data!.depth as number);
+  return measureTextSize(idOf(data), font, 120, 240, [12, 36]);
+};

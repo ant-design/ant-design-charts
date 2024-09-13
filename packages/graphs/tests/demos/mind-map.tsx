@@ -1,4 +1,5 @@
-import { GraphOptions, MindMap as MindMapComponent } from '@ant-design/graphs';
+import type { GraphOptions } from '@ant-design/graphs';
+import { MindMap as MindMapComponent } from '@ant-design/graphs';
 import type { NodeData, TreeData } from '@antv/g6';
 import { treeToGraphData } from '@antv/g6';
 import React from 'react';
