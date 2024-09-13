@@ -20,9 +20,6 @@ export const OrganizationChart = () => {
   }, []);
 
   const options: GraphOptions = {
-    collapsible: {
-      iconOffsetY: 24,
-    },
     data,
     padding: 20,
     autoFit: 'view',
@@ -48,6 +45,10 @@ export const OrganizationChart = () => {
       nodesep: 24,
       ranksep: -20,
     },
+    transforms: (prev) => [
+      ...prev,
+      { type: 'collapse-expand-react-node', key: 'collapse-expand-react-node', iconOffsetY: 24 },
+    ],
   };
 
   return <HierarchicalGraphComponent {...options} loading={loading} />;

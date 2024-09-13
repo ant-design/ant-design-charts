@@ -19,25 +19,6 @@ export const getNeighborNodeIds = (nodeId: ID, edges: EdgeData[], direction: Edg
   return getSuccessorNodeIds().concat(getSuccessorNodeIds(true));
 };
 
-/**
- * 插入或更新子节点数据，children 字段在展开/折叠节点时被消费
- * @param data - 图数据
- * @param direction - 边的方向
- * @returns 更新后的图数据
- */
-export function upsertChildrenData(data: GraphData, direction: EdgeDirection) {
-  const { nodes = [], edges = [] } = data || {};
-
-  if (nodes.length === 0) return;
-
-  Object.assign(data, {
-    nodes: nodes.map((node) => {
-      const children = getNeighborNodeIds(node.id, edges, direction);
-      return children.length === 0 ? node : { ...node, children };
-    }),
-  });
-}
-
 export function assignColorToHierarchicalData(graphData: GraphData, colors = ANTV_PALETTE) {
   const { nodes = [] } = graphData;
 

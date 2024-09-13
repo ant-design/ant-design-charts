@@ -11,34 +11,26 @@ import React, {
 import { BaseGraph } from '../../core/base-graph';
 import { COMMON_OPTIONS } from '../../core/constants';
 import { measureMindMapNodeSize, MindMapNode } from '../../core/nodes';
-import { assignColorToHierarchicalData, upsertChildrenData } from '../../core/utils/data';
-import { getNodeSide, inferCollapsibleStyle, isCollapsible, parseCollapsible } from '../../core/utils/node';
+import { assignColorToHierarchicalData } from '../../core/utils/data';
+import { getNodeSide } from '../../core/utils/node';
 import { mergeOptions } from '../../core/utils/options';
 import type { GraphOptions } from '../../types';
 
 const DEFAULT_OPTIONS: GraphOptions = {
-  collapsible: {
-    trigger: 'node',
-    iconPlacement: function (data: NodeData) {
-      const parentData = this.getParentData(idOf(data), 'tree');
-      const side = getNodeSide(data, parentData);
-      return side === 'left' ? 'left' : 'right';
-    },
-  },
   node: {
     type: 'react',
-    style: function (data) {
-      const { depth, color } = data.data as { depth: number; color: string };
-      const parentData = this.getParentData(idOf(data), 'tree');
-      const side = getNodeSide(data, parentData);
-      const size = measureMindMapNodeSize(data);
-
-      return {
-        component: <MindMapNode text={idOf(data)} depth={depth} color={color} />,
-        size,
-        dx: side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0,
-        ports: [{ placement: 'left' }, { placement: 'right' }],
-      };
+    style: {
+      component: (data: NodeData) => (
+        <MindMapNode text={idOf(data)} depth={data.data!.depth as number} color={data.data!.color as string} />
+      ),
+      size: (data: NodeData) => measureMindMapNodeSize(data),
+      dx: function (data: NodeData) {
+        const parentData = (this as unknown as Graph).getParentData(idOf(data), 'tree');
+        const side = getNodeSide(data, parentData);
+        const size = measureMindMapNodeSize(data);
+        return side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0;
+      },
+      ports: [{ placement: 'left' }, { placement: 'right' }],
     },
   },
   edge: {
@@ -59,10 +51,22 @@ const DEFAULT_OPTIONS: GraphOptions = {
     getHGap: () => 64,
     animation: false,
   },
+  transforms: (prev) => [
+    ...prev,
+    {
+      type: 'collapse-expand-react-node',
+      key: 'collapse-expand-react-node',
+      trigger: 'node',
+      iconPlacement: function (data: NodeData) {
+        const parentData = (this as unknown as Graph).getParentData(idOf(data), 'tree');
+        const side = getNodeSide(data, parentData);
+        return side === 'left' ? 'left' : 'right';
+      },
+    },
+  ],
   animation: {
     duration: 500,
   },
-  transforms: [],
 };
 
 export const MindMap: ForwardRefExoticComponent<
@@ -70,13 +74,6 @@ export const MindMap: ForwardRefExoticComponent<
 > = forwardRef<Graph, PropsWithChildren<GraphOptions>>(({ children, ...props }, ref) => {
   const options = useMemo(() => {
     const options = mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, props);
-
-    if (isCollapsible(options)) {
-      const { direction } = parseCollapsible(options.collapsible);
-      upsertChildrenData(options.data, direction!);
-
-      inferCollapsibleStyle(options);
-    }
 
     assignColorToHierarchicalData(options.data);
 

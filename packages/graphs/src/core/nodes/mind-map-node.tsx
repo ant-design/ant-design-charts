@@ -4,7 +4,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { measureTextSize } from '../utils/measure-text';
 
-const StyledWrapper = styled.div<{ depth: number }>`
+const StyledWrapper = styled.div<{ $depth: number; $color: string }>`
   --border-width: 2px;
 
   position: relative;
@@ -18,8 +18,8 @@ const StyledWrapper = styled.div<{ depth: number }>`
   font-weight: bold;
   overflow-wrap: anywhere;
 
-  ${({ depth, color }) => {
-    if (depth === 0) {
+  ${({ $depth, $color }) => {
+    if ($depth === 0) {
       // main-topic
       return css`
         border-color: #f1f4f5;
@@ -29,20 +29,20 @@ const StyledWrapper = styled.div<{ depth: number }>`
         padding: 6px;
         transform: translate(-3px, -3px);
       `;
-    } else if (depth === 1) {
+    } else if ($depth === 1) {
       // brainstorming-topic
       return css`
         color: #fff;
-        background-color: ${color};
-        border-color: ${color};
+        background-color: ${$color};
+        border-color: ${$color};
         font-size: 18px;
       `;
     } else {
       // sub-topic
       return css`
-        color: ${color};
+        color: ${$color};
         background-color: #fff;
-        border-color: ${color};
+        border-color: ${$color};
       `;
     }
   }}
@@ -58,7 +58,7 @@ export const MindMapNode: React.FC<MindMapNodeProps> = (props) => {
   const { className, style, text, depth, color = '#1783ff' } = props;
 
   return (
-    <StyledWrapper depth={depth} color={color} className={className} style={style}>
+    <StyledWrapper $depth={depth} $color={color} className={className} style={style}>
       <div className="text">{text}</div>
     </StyledWrapper>
   );

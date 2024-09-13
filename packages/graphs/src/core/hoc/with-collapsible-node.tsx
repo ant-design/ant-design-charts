@@ -3,8 +3,8 @@ import { idOf } from '@antv/g6';
 import { get, isEmpty } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-import type { CollapsibleOptions } from '../../types';
 import type { NodeProps } from '../nodes/types';
+import type { CollapseExpandReactNodeOptions } from '../transform';
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -35,39 +35,12 @@ const StyledIcon = styled.div<{ placement: CardinalPlacement; offsetX: number; o
   }}
 `;
 
-interface CollapsibleNodeProps extends NodeProps, CollapsibleOptions {}
-
-const defaultIconRender = (isCollapsed: boolean) => (
-  <div
-    style={{
-      height: '16px',
-      width: '16px',
-      background: '#fff',
-      border: '2px solid #99ADD1',
-      borderRadius: '50%',
-      color: '#99ADD1',
-      fontWeight: '800',
-      lineHeight: '13px',
-      textAlign: 'center',
-    }}
-  >
-    {isCollapsed ? '+' : '-'}
-  </div>
-);
+interface CollapsibleNodeProps extends NodeProps, CollapseExpandReactNodeOptions {}
 
 export const withCollapsibleNode = (NodeComponent: React.FC) => {
   return (props: CollapsibleNodeProps) => {
-    const {
-      data,
-      graph,
-      trigger,
-      iconRender = defaultIconRender,
-      iconPlacement = 'bottom',
-      iconOffsetX = 0,
-      iconOffsetY = 0,
-      iconClassName = '',
-      iconStyle = {},
-    } = props;
+    const { data, graph, trigger, iconRender, iconPlacement, iconOffsetX, iconOffsetY, iconClassName, iconStyle } =
+      props;
     const [isCollapsed, setIsCollapsed] = useState(get(data, 'style.collapsed', false));
     const wrapperRef = useRef(null);
     const iconRef = useRef(null);

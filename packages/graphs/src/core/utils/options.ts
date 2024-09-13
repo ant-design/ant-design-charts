@@ -23,6 +23,8 @@ export function mergeOptions(...options: GraphOptions[]): ParsedGraphOptions {
           merged[key] = currValue;
         } else if (typeof currValue === 'function') {
           merged[key] = function (datum) {
+            if (['plugins', 'behaviors', 'transforms'].includes(key)) return currValue(prevValue || []);
+
             const value = currValue.call(this, datum);
             if (isPlainObject(value) && value !== null) return mergeOptions(prevValue, value);
             return value;

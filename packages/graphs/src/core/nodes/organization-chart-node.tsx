@@ -21,7 +21,7 @@ interface OrganizationChartNodeProps extends Pick<React.HTMLAttributes<HTMLDivEl
   isActive?: boolean;
 }
 
-const StyledWrapper = styled.div<{ color?: string; isActive?: boolean }>`
+const StyledWrapper = styled.div<{ $color?: string; $isActive?: boolean }>`
   height: inherit;
   width: inherit;
   border-radius: 4px;
@@ -31,7 +31,7 @@ const StyledWrapper = styled.div<{ color?: string; isActive?: boolean }>`
   background-color: #fff;
 
   ${(props) =>
-    props.isActive &&
+    props.$isActive &&
     css`
       border: 3px solid #1783ff;
     `}
@@ -42,7 +42,7 @@ const StyledWrapper = styled.div<{ color?: string; isActive?: boolean }>`
     left: 0;
     width: 100%;
     height: 6px;
-    background-color: ${(props) => props.color};
+    background-color: ${(props) => props.$color};
     border-radius: 2px 2px 0 0;
   }
 
@@ -54,7 +54,7 @@ const StyledWrapper = styled.div<{ color?: string; isActive?: boolean }>`
       width: 40px;
       height: 40px;
       margin-right: 16px;
-      background-color: ${(props) => props.color};
+      background-color: ${(props) => props.$color};
       font-weight: 600;
       font-size: 18px;
     }
@@ -87,7 +87,7 @@ export const OrganizationChartNode: React.FC<OrganizationChartNodeProps> = (prop
   };
 
   return (
-    <StyledWrapper color={colorMap[status]} isActive={isActive} className={className} style={style}>
+    <StyledWrapper $color={colorMap[status]} $isActive={isActive} className={className} style={style}>
       <div className="line"></div>
       <Flex className="node-content" align="center">
         <Avatar className="node-content-avatar">{name.slice(0, 1)}</Avatar>

@@ -1,5 +1,5 @@
 import { ReactNode } from '@antv/g6-extension-react';
-import { InferReactStyle } from '../transform';
+import { CollapseExpandReactNode, InferReactStyle } from '../transform';
 
 export const BUILT_IN_EXTENSIONS = {
   node: {
@@ -7,5 +7,6 @@ export const BUILT_IN_EXTENSIONS = {
   },
   transform: {
     'infer-react-style': InferReactStyle,
+    'collapse-expand-react-node': CollapseExpandReactNode,
   },
 };

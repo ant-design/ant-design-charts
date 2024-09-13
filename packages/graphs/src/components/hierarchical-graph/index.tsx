@@ -11,8 +11,6 @@ import React, {
 import { BaseGraph } from '../../core/base-graph';
 import { COMMON_OPTIONS } from '../../core/constants';
 import { PlainNode } from '../../core/nodes';
-import { upsertChildrenData } from '../../core/utils/data';
-import { inferCollapsibleStyle, isCollapsible, isReactNode, parseCollapsible } from '../../core/utils/node';
 import { mergeOptions } from '../../core/utils/options';
 import type { GraphOptions } from '../../types';
 
@@ -37,24 +35,14 @@ const DEFAULT_OPTIONS: GraphOptions = {
     type: 'antv-dagre',
     rankdir: 'TB',
   },
+  transforms: ['infer-react-style'],
   animation: false,
 };
 
 export const HierarchicalGraph: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<GraphOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<GraphOptions>>(({ children, ...props }, ref) => {
-  const options = useMemo(() => {
-    const options = mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, props);
-
-    if (isCollapsible(options)) {
-      const { direction } = parseCollapsible(options.collapsible);
-      upsertChildrenData(options.data, direction!);
-
-      if (isReactNode(options)) inferCollapsibleStyle(options);
-    }
-
-    return options;
-  }, [props]);
+  const options = useMemo(() => mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, props), [props]);
 
   return (
     <BaseGraph {...options} ref={ref}>

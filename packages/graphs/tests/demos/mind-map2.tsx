@@ -1,6 +1,6 @@
 import type { GraphOptions } from '@ant-design/graphs';
 import { getNodeSide, measureTextSize, MindMap as MindMapComponent, MindMapNode } from '@ant-design/graphs';
-import type { NodeData, TreeData } from '@antv/g6';
+import type { Graph, NodeData, TreeData } from '@antv/g6';
 import { idOf, treeToGraphData } from '@antv/g6';
 import React from 'react';
 import data from '../datasets/algorithm-category.json';
@@ -29,40 +29,44 @@ export const MindMap2 = () => {
     }),
     node: {
       type: 'react',
-      style: function (data: NodeData) {
-        const { depth, color } = data.data as { depth: number; color: string };
-        const style = {
-          height: 'inherit',
-          width: 'inherit',
-          border: 0,
-          borderBottom: `2px solid ${color}`,
-          transform: 'translateY(-1px)',
-        };
+      style: {
+        component: (data) => {
+          const { depth, color } = data.data as { depth: number; color: string };
+          const style = {
+            height: 'inherit',
+            width: 'inherit',
+            border: 0,
+            borderBottom: `2px solid ${color}`,
+            transform: 'translateY(-1px)',
+          };
 
-        if (depth > 0) {
-          Object.assign(style, {
-            borderRadius: 0,
-            padding: 0,
-            background: 'transparent',
-            color: '#252525',
-            justifyContent: 'left',
-            fontWeight: 'normal',
-          });
-        }
+          if (depth > 0) {
+            Object.assign(style, {
+              borderRadius: 0,
+              padding: 0,
+              background: 'transparent',
+              color: '#252525',
+              justifyContent: 'left',
+              fontWeight: 'normal',
+            });
+          }
 
-        const parentData = this.getParentData(idOf(data), 'tree');
-        const side = getNodeSide(data, parentData);
-        const size = measureMindMapNodeSize(data);
-
-        return {
-          component: <MindMapNode text={idOf(data)} depth={depth} color={color} style={style} />,
-          size,
-          dx: side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0,
-          ports:
-            side === 'center'
-              ? [{ placement: 'left' }, { placement: 'right' }]
-              : [{ placement: 'left-bottom' }, { placement: 'right-bottom' }],
-        };
+          return <MindMapNode text={idOf(data)} depth={depth} color={color} style={style} />;
+        },
+        size: (data: NodeData) => measureMindMapNodeSize(data),
+        dx: function (data: NodeData) {
+          const parentData = (this as unknown as Graph).getParentData(idOf(data), 'tree');
+          const side = getNodeSide(data, parentData);
+          const size = measureMindMapNodeSize(data);
+          return side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0;
+        },
+        ports: function (data: NodeData) {
+          const parentData = (this as unknown as Graph).getParentData(idOf(data), 'tree');
+          const side = getNodeSide(data, parentData);
+          return side === 'center'
+            ? [{ placement: 'left' }, { placement: 'right' }]
+            : [{ placement: 'left-bottom' }, { placement: 'right-bottom' }];
+        },
       },
     },
     edge: {
