@@ -1,5 +1,5 @@
 import { ChartLoading, ErrorBoundary } from '@ant-design/charts-util';
-import type { Graph } from '@antv/g6';
+import type { Graph, GraphOptions as G6GraphOptions } from '@antv/g6';
 import { Graphin } from '@antv/graphin';
 import { isEmpty } from 'lodash';
 import React, {
@@ -32,7 +32,7 @@ export const BaseGraph: ForwardRefExoticComponent<
           }}
           className={className}
           style={containerStyle}
-          options={options}
+          options={options as G6GraphOptions}
           onInit={onInit}
           onReady={onReady}
           onDestroy={onDestroy}
