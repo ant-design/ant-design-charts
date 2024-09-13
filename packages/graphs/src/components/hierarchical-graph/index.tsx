@@ -35,7 +35,7 @@ const DEFAULT_OPTIONS: GraphOptions = {
     type: 'antv-dagre',
     rankdir: 'TB',
   },
-  transforms: ['infer-react-style'],
+  transforms: ['translate-react-node-origin'],
   animation: false,
 };
 
