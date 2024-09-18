@@ -1,3 +1,2 @@
-import HierarchicalGraph from './hierarchical-graph';
-
-export { HierarchicalGraph };
+export { HierarchicalGraph } from './hierarchical-graph';
+export { MindMap } from './mind-map';

@@ -1,6 +1,6 @@
 import { BaseTransform, idOf } from '@antv/g6';
 
-export class InferReactStyle extends BaseTransform {
+export class TranslateReactNodeOrigin extends BaseTransform {
   public afterLayout() {
     const { graph, model, element } = this.context;
 

@@ -1,11 +1,13 @@
 import { ReactNode } from '@antv/g6-extension-react';
-import { InferReactStyle } from '../transform';
+import { AssignColorByBranch, CollapseExpandReactNode, TranslateReactNodeOrigin } from '../transform';
 
 export const BUILT_IN_EXTENSIONS = {
   node: {
     react: ReactNode,
   },
   transform: {
-    'infer-react-style': InferReactStyle,
+    'translate-react-node-origin': TranslateReactNodeOrigin,
+    'collapse-expand-react-node': CollapseExpandReactNode,
+    'assign-color-by-branch': AssignColorByBranch,
   },
 };
