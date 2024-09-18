@@ -21,7 +21,7 @@ const DEFAULT_OPTIONS: GraphOptions = {
     type: 'react',
     style: {
       component: (data: NodeData) => (
-        <MindMapNode text={idOf(data)} depth={data.data!.depth as number} color={data.data!.color as string} />
+        <MindMapNode text={idOf(data)} depth={data.data!.depth as number} color={data.style!.color as string} />
       ),
       size: (data: NodeData) => measureMindMapNodeSize(data),
       dx: function (data: NodeData) {
@@ -32,12 +32,20 @@ const DEFAULT_OPTIONS: GraphOptions = {
       },
       ports: [{ placement: 'left' }, { placement: 'right' }],
     },
+    state: {
+      active: {
+        halo: false,
+      },
+      selected: {
+        halo: false,
+      },
+    },
   },
   edge: {
     type: 'cubic-horizontal',
     style: {
       stroke: function (data) {
-        return (this.getNodeData(data.source).data!.color as string) || '#99ADD1';
+        return (this.getNodeData(data.source).style!.color as string) || '#99ADD1';
       },
       lineWidth: 2,
     },

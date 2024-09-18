@@ -22,6 +22,14 @@ const DEFAULT_OPTIONS: GraphOptions = {
       size: [80, 40],
       ports: [{ placement: 'top' }, { placement: 'bottom' }],
     },
+    state: {
+      active: {
+        halo: false,
+      },
+      selected: {
+        halo: false,
+      },
+    },
   },
   edge: {
     type: 'polyline',

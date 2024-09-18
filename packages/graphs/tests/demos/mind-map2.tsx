@@ -31,7 +31,8 @@ export const MindMap2 = () => {
       type: 'react',
       style: {
         component: (data) => {
-          const { depth, color } = data.data as { depth: number; color: string };
+          const depth = data.data?.depth;
+          const color = data.style?.color;
           const style = {
             height: 'inherit',
             width: 'inherit',
@@ -72,7 +73,7 @@ export const MindMap2 = () => {
     edge: {
       style: {
         stroke: function (data) {
-          return (this.getNodeData(data.target).data!.color as string) || '#99ADD1';
+          return (this.getNodeData(data.target).style!.color as string) || '#99ADD1';
         },
       },
     },

@@ -91,27 +91,27 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
     const { graph, element, model } = this.context;
     const { nodes = [], edges = [] } = graph.getData();
     const options = this.options;
+    let shouldDraw = false;
 
     nodes.forEach((datum) => {
       const nodeId = idOf(datum);
 
       const node = element!.getElement(nodeId);
-      if (!node) return;
+      if (!node || (datum.children && datum.children.length > 0)) return;
 
       const children = getNeighborNodeIds(nodeId, edges, this.options.direction);
       if (children.length === 0) return;
 
       model.updateNodeData([{ id: nodeId, children }]);
+      shouldDraw = true;
     });
-
-    graph.draw();
+    if (shouldDraw) graph.draw();
 
     const nodeMapper = graph.getOptions().node!;
 
     if (has(nodeMapper, 'style.component')) {
       const component = get(nodeMapper, 'style.component');
       set(nodeMapper, 'style.component', function (data: NodeData) {
-        debugger;
         const CollapsibleNode = withCollapsibleNode(component);
         // @ts-ignore this 指向 G6 Graph 实例
         return <CollapsibleNode data={data} graph={this} {...options} />;

@@ -30,10 +30,11 @@ export function assignColorToHierarchicalData(graphData: GraphData, colors = ANT
     if (!node) return;
 
     if (node.data?.depth !== 0) {
-      node.data!.color = color || colors[colorIndex++ % colors.length];
+      node.style ||= {};
+      node.style.color = color || colors[colorIndex++ % colors.length];
     }
 
-    node.children?.forEach((childId) => dfs(childId, node.data!.color as string));
+    node.children?.forEach((childId) => dfs(childId, node.style?.color as string));
   };
 
   nodes.filter((node) => node.data?.depth === 0).forEach((rootNode) => dfs(rootNode.id));
