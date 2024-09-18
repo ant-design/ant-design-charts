@@ -36,7 +36,7 @@ const StyledWrapper = styled.div<{ $color?: string; $isActive?: boolean }>`
       border: 3px solid #1783ff;
     `}
 
-  .line {
+  .org-chart-node-line {
     position: absolute;
     top: 0;
     left: 0;
@@ -46,7 +46,7 @@ const StyledWrapper = styled.div<{ $color?: string; $isActive?: boolean }>`
     border-radius: 2px 2px 0 0;
   }
 
-  .node-content {
+  .org-chart-node-content {
     height: inherit;
     margin: 4px 16px 8px;
 
@@ -88,12 +88,12 @@ export const OrganizationChartNode: React.FC<OrganizationChartNodeProps> = (prop
 
   return (
     <StyledWrapper $color={colorMap[status]} $isActive={isActive} className={className} style={style}>
-      <div className="line"></div>
-      <Flex className="node-content" align="center">
-        <Avatar className="node-content-avatar">{name.slice(0, 1)}</Avatar>
-        <Flex vertical className="node-content-detail">
-          <div className="node-content-name">{name}</div>
-          <div className="node-content-post">{position}</div>
+      <div className="org-chart-node-line"></div>
+      <Flex className="org-chart-node-content" align="center">
+        <Avatar className="org-chart-node-content-avatar">{name.slice(0, 1)}</Avatar>
+        <Flex vertical className="org-chart-node-content-detail">
+          <div className="org-chart-node-content-name">{name}</div>
+          <div className="org-chart-node-content-post">{position}</div>
         </Flex>
       </Flex>
     </StyledWrapper>

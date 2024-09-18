@@ -40,7 +40,7 @@ interface CollapsibleNodeProps extends NodeProps, CollapseExpandReactNodeOptions
 export const withCollapsibleNode = (NodeComponent: React.FC) => {
   return (props: CollapsibleNodeProps) => {
     const { data, graph, trigger, iconRender, iconPlacement, iconOffsetX, iconOffsetY, iconClassName, iconStyle } =
-      props;
+      props as Required<CollapsibleNodeProps>;
     const [isCollapsed, setIsCollapsed] = useState(get(data, 'style.collapsed', false));
     const wrapperRef = useRef(null);
     const iconRef = useRef(null);

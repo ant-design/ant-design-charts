@@ -1,5 +1,5 @@
 import { ReactNode } from '@antv/g6-extension-react';
-import { CollapseExpandReactNode, TranslateReactNodeOrigin } from '../transform';
+import { AssignColorByBranch, CollapseExpandReactNode, TranslateReactNodeOrigin } from '../transform';
 
 export const BUILT_IN_EXTENSIONS = {
   node: {
@@ -8,5 +8,6 @@ export const BUILT_IN_EXTENSIONS = {
   transform: {
     'translate-react-node-origin': TranslateReactNodeOrigin,
     'collapse-expand-react-node': CollapseExpandReactNode,
+    'assign-color-by-branch': AssignColorByBranch,
   },
 };

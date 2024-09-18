@@ -59,7 +59,7 @@ export const MindMapNode: React.FC<MindMapNodeProps> = (props) => {
 
   return (
     <StyledWrapper $depth={depth} $color={color} className={className} style={style}>
-      <div className="text">{text}</div>
+      {text}
     </StyledWrapper>
   );
 };

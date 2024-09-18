@@ -11,7 +11,6 @@ import React, {
 import { BaseGraph } from '../../core/base-graph';
 import { COMMON_OPTIONS } from '../../core/constants';
 import { measureMindMapNodeSize, MindMapNode } from '../../core/nodes';
-import { assignColorToHierarchicalData } from '../../core/utils/data';
 import { getNodeSide } from '../../core/utils/node';
 import { mergeOptions } from '../../core/utils/options';
 import type { GraphOptions } from '../../types';
@@ -61,6 +60,7 @@ const DEFAULT_OPTIONS: GraphOptions = {
   },
   transforms: (prev) => [
     ...prev,
+    'assign-color-by-branch',
     {
       type: 'collapse-expand-react-node',
       key: 'collapse-expand-react-node',
@@ -80,13 +80,7 @@ const DEFAULT_OPTIONS: GraphOptions = {
 export const MindMap: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<GraphOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<GraphOptions>>(({ children, ...props }, ref) => {
-  const options = useMemo(() => {
-    const options = mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, props);
-
-    assignColorToHierarchicalData(options.data);
-
-    return options;
-  }, [props]);
+  const options = useMemo(() => mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, props), [props]);
 
   return (
     <BaseGraph {...options} ref={ref}>

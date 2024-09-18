@@ -17,6 +17,7 @@ const measureMindMapNodeSize = (data: NodeData) => {
 
 export const MindMap2 = () => {
   const options: GraphOptions = {
+    autoFit: 'view',
     padding: 20,
     data: treeToGraphData(data, {
       getNodeData: (datum: TreeData, depth: number) => {

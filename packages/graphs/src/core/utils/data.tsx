@@ -1,5 +1,4 @@
-import type { EdgeData, EdgeDirection, GraphData, ID } from '@antv/g6';
-import { ANTV_PALETTE } from '../constants/palette';
+import type { EdgeData, EdgeDirection, ID } from '@antv/g6';
 
 /**
  * 获取邻居节点
@@ -18,24 +17,3 @@ export const getNeighborNodeIds = (nodeId: ID, edges: EdgeData[], direction: Edg
   if (direction === 'in') return getSuccessorNodeIds(true);
   return getSuccessorNodeIds().concat(getSuccessorNodeIds(true));
 };
-
-export function assignColorToHierarchicalData(graphData: GraphData, colors = ANTV_PALETTE) {
-  const { nodes = [] } = graphData;
-
-  if (nodes.length === 0) return;
-
-  let colorIndex = 0;
-  const dfs = (nodeId: string, color?: string) => {
-    const node = nodes.find((datum) => datum.id == nodeId);
-    if (!node) return;
-
-    if (node.data?.depth !== 0) {
-      node.style ||= {};
-      node.style.color = color || colors[colorIndex++ % colors.length];
-    }
-
-    node.children?.forEach((childId) => dfs(childId, node.style?.color as string));
-  };
-
-  nodes.filter((node) => node.data?.depth === 0).forEach((rootNode) => dfs(rootNode.id));
-}

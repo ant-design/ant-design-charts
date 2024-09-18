@@ -91,7 +91,6 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
     const { graph, element, model } = this.context;
     const { nodes = [], edges = [] } = graph.getData();
     const options = this.options;
-    let shouldDraw = false;
 
     nodes.forEach((datum) => {
       const nodeId = idOf(datum);
@@ -103,9 +102,7 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
       if (children.length === 0) return;
 
       model.updateNodeData([{ id: nodeId, children }]);
-      shouldDraw = true;
     });
-    if (shouldDraw) graph.draw();
 
     const nodeMapper = graph.getOptions().node!;
 
@@ -119,5 +116,6 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
     }
 
     graph.setNode(nodeMapper);
+    graph.draw();
   }
 }
