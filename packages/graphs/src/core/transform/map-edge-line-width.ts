@@ -10,11 +10,11 @@ export interface MapEdgeLineWidthOptions extends BaseTransformOptions {
   /**
    * 最小值
    */
-  minValue?: number | ((data: EdgeData, edges: Map<ID, number>) => number);
+  minValue?: number | ((data: EdgeData, edges: Record<ID, number>) => number);
   /**
    * 最大值
    */
-  maxValue?: number | ((data: EdgeData, edges: Map<ID, number>) => number);
+  maxValue?: number | ((data: EdgeData, edges: Record<ID, number>) => number);
   /**
    * 最小线宽
    */
@@ -41,8 +41,8 @@ export interface MapEdgeLineWidthOptions extends BaseTransformOptions {
 
 export class MapEdgeLineWidth extends BaseTransform {
   static defaultOptions: Partial<MapEdgeLineWidthOptions> = {
-    minValue: (edge, edges) => Math.min(...edges.values()),
-    maxValue: (edge, edges) => Math.max(...edges.values()),
+    minValue: (edge, edges) => Math.min(...Object.values(edges)),
+    maxValue: (edge, edges) => Math.max(...Object.values(edges)),
     minLineWidth: 1,
     maxLineWidth: 10,
     scale: 'linear',
@@ -57,14 +57,14 @@ export class MapEdgeLineWidth extends BaseTransform {
 
     const { maxValue, minValue, maxLineWidth, minLineWidth, scale, value } = this.options;
 
-    const values = new Map<string, number>();
-    edges.forEach((edge) => {
-      values.set(idOf(edge), typeof value === 'function' ? value.call(this.context.graph, edge) : value);
-    });
+    const values = edges.reduce((acc, edge) => {
+      acc[idOf(edge)] = typeof value === 'function' ? value.call(this.context.graph, edge) : value;
+      return acc;
+    }, {} as Record<ID, number>);
 
     edges.forEach((edge) => {
       const lineWidth = this.assignLineWidthByValue(
-        values.get(idOf(edge)) || 0,
+        values[idOf(edge)] || 0,
         typeof minValue === 'function' ? minValue(edge, values) : minValue,
         typeof maxValue === 'function' ? maxValue(edge, values) : maxValue,
         typeof minLineWidth === 'function' ? minLineWidth(edge) : minLineWidth,
