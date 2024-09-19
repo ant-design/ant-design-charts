@@ -60,6 +60,7 @@
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
+    "@antv/algorithm": "^0.1.26",
     "@types/jest": "^26.0.0",
     "@types/lodash": "^4.17.7",
     "@types/react": "^18.0.0",
