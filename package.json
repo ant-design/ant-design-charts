@@ -36,6 +36,7 @@
     "babel-preset-react-app": "^10.0.0",
     "babel-types": "^6.26.0",
     "chalk": "^4.1.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.4.0",
     "ejs": "^3.0.2",
     "enzyme": "^3.11.0",
@@ -56,7 +57,9 @@
     "prettier-plugin-packagejson": "^2.5.2",
     "pretty-quick": "^3.0.1",
     "react-dev-utils": "^12.0.1",
+    "rimraf": "^3.0.2",
     "style-loader": "^3.3.0",
+    "ts-loader": "^9.5.1",
     "typescript": "^5",
     "vfile-reporter": "^7.0.2",
     "webpack": "^5.94.0",
@@ -64,9 +67,7 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0",
     "whatwg-fetch": "^3.0.0",
-    "yorkie": "^2.0.0",
-    "cross-env": "^7.0.3",
-    "rimraf": "^3.0.2"
+    "yorkie": "^2.0.0"
   },
   "pnpm": {
     "overrides": {

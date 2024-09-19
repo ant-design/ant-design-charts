@@ -107,7 +107,7 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
     const nodeMapper = graph.getOptions().node!;
 
     if (has(nodeMapper, 'style.component')) {
-      const component = get(nodeMapper, 'style.component');
+      const component = get(nodeMapper, 'style.component') as React.FC;
       set(nodeMapper, 'style.component', function (data: NodeData) {
         const CollapsibleNode = withCollapsibleNode(component);
         // @ts-ignore this 指向 G6 Graph 实例
