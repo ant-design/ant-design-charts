@@ -12,7 +12,7 @@ const StyledWrapper = styled.div`
   width: inherit;
 `;
 
-const StyledIcon = styled.div<{ placement: CardinalPlacement; offsetX: number; offsetY: number }>`
+const StyledIcon = styled.div<{ $placement: CardinalPlacement; $offsetX: number; $offsetY: number }>`
   position: absolute;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -21,16 +21,16 @@ const StyledIcon = styled.div<{ placement: CardinalPlacement; offsetX: number; o
     cursor: pointer;
   }
 
-  ${({ placement, offsetX, offsetY }) => {
+  ${({ $placement, $offsetX, $offsetY }) => {
     const positions = {
-      top: `left: calc(50% + ${offsetX}px); top: ${offsetY}px;`,
-      bottom: `left: calc(50% + ${offsetX}px); top: calc(100% + ${offsetY}px);`,
-      right: `left: calc(100% + ${offsetX}px); top: calc(50% + ${offsetY}px);`,
-      left: `left: ${offsetX}px; top: calc(50% + ${offsetY}px);`,
+      top: `left: calc(50% + ${$offsetX}px); top: ${$offsetY}px;`,
+      bottom: `left: calc(50% + ${$offsetX}px); top: calc(100% + ${$offsetY}px);`,
+      right: `left: calc(100% + ${$offsetX}px); top: calc(50% + ${$offsetY}px);`,
+      left: `left: ${$offsetX}px; top: calc(50% + ${$offsetY}px);`,
     };
 
     return css`
-      ${positions[placement]}
+      ${positions[$placement]}
     `;
   }}
 `;
@@ -41,7 +41,7 @@ export const withCollapsibleNode = (NodeComponent: React.FC) => {
   return (props: CollapsibleNodeProps) => {
     const { data, graph, trigger, iconRender, iconPlacement, iconOffsetX, iconOffsetY, iconClassName, iconStyle } =
       props as Required<CollapsibleNodeProps>;
-    const [isCollapsed, setIsCollapsed] = useState(get(data, 'style.collapsed', false));
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(get(data, 'style.collapsed', false) as boolean);
     const wrapperRef = useRef(null);
     const iconRef = useRef(null);
 
@@ -75,9 +75,9 @@ export const withCollapsibleNode = (NodeComponent: React.FC) => {
         {isIconShown && (
           <StyledIcon
             ref={iconRef}
-            placement={computeCallbackStyle(iconPlacement)}
-            offsetX={computeCallbackStyle(iconOffsetX)}
-            offsetY={computeCallbackStyle(iconOffsetY)}
+            $placement={computeCallbackStyle(iconPlacement)}
+            $offsetX={computeCallbackStyle(iconOffsetX)}
+            $offsetY={computeCallbackStyle(iconOffsetY)}
             className={iconClassName}
             style={iconStyle}
           >

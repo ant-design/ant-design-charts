@@ -19,7 +19,7 @@ const DEFAULT_OPTIONS: GraphOptions = {
     style: {
       component: (data: NodeData) => <PlainNode isActive={data.states?.includes('active')} />,
       size: [80, 40],
-      ports: [{ placement: 'top' }, { placement: 'bottom' }],
+      ports: [{ placement: 'left' }, { placement: 'right' }],
     },
     state: {
       active: {
@@ -31,22 +31,24 @@ const DEFAULT_OPTIONS: GraphOptions = {
     },
   },
   edge: {
-    type: 'polyline',
+    type: 'cubic-horizontal',
     style: {
-      router: {
-        type: 'orth',
+      strokeOpacity: 0.5,
+    },
+    state: {
+      active: {
+        strokeOpacity: 1,
       },
     },
   },
   layout: {
     type: 'antv-dagre',
-    rankdir: 'TB',
+    rankdir: 'LR',
   },
   transforms: ['translate-react-node-origin'],
-  animation: false,
 };
 
-export const HierarchicalGraph: ForwardRefExoticComponent<
+export const FlowGraph: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<GraphOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<GraphOptions>>(({ children, ...props }, ref) => {
   const options = useMemo(() => mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, props), [props]);
