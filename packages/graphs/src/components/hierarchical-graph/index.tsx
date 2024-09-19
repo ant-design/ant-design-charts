@@ -1,5 +1,4 @@
 import type { Graph, NodeData } from '@antv/g6';
-import { idOf } from '@antv/g6';
 import React, {
   forwardRef,
   ForwardRefExoticComponent,
@@ -18,7 +17,7 @@ const DEFAULT_OPTIONS: GraphOptions = {
   node: {
     type: 'react',
     style: {
-      component: (data: NodeData) => <PlainNode text={idOf(data)} isActive={data.states?.includes('active')} />,
+      component: (data: NodeData) => <PlainNode isActive={data.states?.includes('active')} />,
       size: [80, 40],
       ports: [{ placement: 'top' }, { placement: 'bottom' }],
     },

@@ -7,11 +7,7 @@ const StyledWrapper = styled.div<{ $isActive?: boolean }>`
   position: relative;
   height: inherit;
   width: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: var(--default-color);
-  color: #fff;
   border-radius: 8px;
   cursor: pointer;
   border: 2px solid var(--default-color);
@@ -25,10 +21,6 @@ const StyledWrapper = styled.div<{ $isActive?: boolean }>`
 
 interface PlainNodeProps extends Pick<React.HTMLAttributes<HTMLDivElement>, 'className' | 'style'> {
   /**
-   * Text to display
-   */
-  text: string;
-  /**
    * Whether the node is active
    * @default false
    */
@@ -36,11 +28,7 @@ interface PlainNodeProps extends Pick<React.HTMLAttributes<HTMLDivElement>, 'cla
 }
 
 export const PlainNode: React.FC<PlainNodeProps> = (props) => {
-  const { text, isActive, className, style } = props;
+  const { isActive, className, style } = props;
 
-  return (
-    <StyledWrapper $isActive={isActive} className={className} style={style}>
-      {text}
-    </StyledWrapper>
-  );
+  return <StyledWrapper $isActive={isActive} className={className} style={style}></StyledWrapper>;
 };
