@@ -1,4 +1,5 @@
 import type { Graph } from '@antv/g6';
+import { isEmpty } from 'lodash';
 import React, {
   ForwardRefExoticComponent,
   PropsWithChildren,
@@ -53,7 +54,7 @@ export const Dendrogram: ForwardRefExoticComponent<
 });
 
 const getDendrogramOptions = (direction: 'vertical' | 'horizontal' | 'radial', compact: boolean): GraphOptions => {
-  const isLeafNode = (d) => !d.children || d.children.length === 0;
+  const isLeafNode = (d) => isEmpty(d.children);
 
   const layoutType = compact ? 'compact-box' : 'dendrogram';
   if (direction === 'vertical') {
