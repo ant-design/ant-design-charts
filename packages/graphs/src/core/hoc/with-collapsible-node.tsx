@@ -1,9 +1,8 @@
-import type { CardinalPlacement } from '@antv/g6';
+import type { CardinalPlacement, Graph, NodeData } from '@antv/g6';
 import { idOf } from '@antv/g6';
 import { get, isEmpty } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-import type { NodeProps } from '../nodes/types';
 import type { CollapseExpandReactNodeOptions } from '../transform';
 
 const StyledWrapper = styled.div`
@@ -12,10 +11,9 @@ const StyledWrapper = styled.div`
   width: inherit;
 `;
 
-const StyledIcon = styled.div<{ $placement: CardinalPlacement; $offsetX: number; $offsetY: number }>`
+const StyledIconWrapper = styled.div<{ $placement: CardinalPlacement; $offsetX: number; $offsetY: number }>`
   position: absolute;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 10;
 
   &:hover {
     cursor: pointer;
@@ -35,12 +33,31 @@ const StyledIcon = styled.div<{ $placement: CardinalPlacement; $offsetX: number;
   }}
 `;
 
-interface CollapsibleNodeProps extends NodeProps, CollapseExpandReactNodeOptions {}
+interface CollapsibleNodeProps extends CollapseExpandReactNodeOptions {
+  /**
+   * Node data
+   */
+  data: NodeData;
+  /**
+   * G6 Graph instance
+   */
+  graph: Graph;
+}
 
 export const withCollapsibleNode = (NodeComponent: React.FC) => {
   return (props: CollapsibleNodeProps) => {
-    const { data, graph, trigger, iconRender, iconPlacement, iconOffsetX, iconOffsetY, iconClassName, iconStyle } =
-      props as Required<CollapsibleNodeProps>;
+    const {
+      data,
+      graph,
+      trigger,
+      iconRender,
+      iconPlacement,
+      iconOffsetX,
+      iconOffsetY,
+      iconClassName,
+      iconStyle,
+      refreshLayout,
+    } = props as Required<CollapsibleNodeProps>;
     const [isCollapsed, setIsCollapsed] = useState<boolean>(get(data, 'style.collapsed', false) as boolean);
     const wrapperRef = useRef(null);
     const iconRef = useRef(null);
@@ -54,7 +71,9 @@ export const withCollapsibleNode = (NodeComponent: React.FC) => {
       await graph[toggleExpandCollapse](idOf(data));
       setIsCollapsed((prev) => !prev);
 
-      await graph.layout();
+      if (refreshLayout) {
+        await graph.layout();
+      }
     };
 
     useEffect(() => {
@@ -71,9 +90,9 @@ export const withCollapsibleNode = (NodeComponent: React.FC) => {
     };
 
     return (
-      <StyledWrapper ref={wrapperRef}>
+      <StyledWrapper ref={wrapperRef} className="collapsible-node-wrapper">
         {isIconShown && (
-          <StyledIcon
+          <StyledIconWrapper
             ref={iconRef}
             $placement={computeCallbackStyle(iconPlacement)}
             $offsetX={computeCallbackStyle(iconOffsetX)}
@@ -81,8 +100,8 @@ export const withCollapsibleNode = (NodeComponent: React.FC) => {
             className={iconClassName}
             style={iconStyle}
           >
-            {iconRender?.(isCollapsed)}
-          </StyledIcon>
+            {iconRender?.call(graph, isCollapsed, data)}
+          </StyledIconWrapper>
         )}
         {NodeComponent.call(graph, data)}
       </StyledWrapper>

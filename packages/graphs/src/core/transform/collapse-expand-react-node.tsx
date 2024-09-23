@@ -2,10 +2,18 @@ import type { BaseTransformOptions, CardinalPlacement, Graph, NodeData, RuntimeC
 import { BaseTransform, idOf } from '@antv/g6';
 import { get, has, set } from 'lodash';
 import React from 'react';
+import { CollapseExpandIcon } from '../base';
 import { withCollapsibleNode } from '../hoc';
 import { getNeighborNodeIds } from '../utils/data';
 
+const { PlusMinusIcon } = CollapseExpandIcon;
+
 export interface CollapseExpandReactNodeOptions extends BaseTransformOptions {
+  /**
+   * 是否启用收起/展开功能
+   * @default true
+   */
+  enable?: boolean | ((data: NodeData) => boolean);
   /**
    * 点击指定元素，触发节点收起/展开
    * - 'icon': 点击内置图标
@@ -22,12 +30,13 @@ export interface CollapseExpandReactNodeOptions extends BaseTransformOptions {
    * @default 'out'
    */
   direction?: 'in' | 'out' | 'both';
+  iconType?: 'plus-minus' | 'arrow-count';
   /**
    * 渲染函数，用于自定义收起/展开图标
    * @param isCollapsed - 当前节点是否已收起
    * @returns 自定义图标
    */
-  iconRender?: (isCollapsed: boolean) => React.ReactNode;
+  iconRender?: (this: Graph, isCollapsed: boolean, data: NodeData) => React.ReactNode;
   /**
    * 图标相对于节点的位置
    * @default 'bottom'
@@ -51,36 +60,24 @@ export interface CollapseExpandReactNodeOptions extends BaseTransformOptions {
    * 指定图标的内联样式
    */
   iconStyle?: React.CSSProperties;
+  /**
+   * 每次收起/展开节点后，是否刷新布局
+   */
+  refreshLayout?: boolean;
 }
-
-const defaultIconRender = (isCollapsed: boolean) => (
-  <div
-    style={{
-      height: '16px',
-      width: '16px',
-      background: '#fff',
-      border: '2px solid #99ADD1',
-      borderRadius: '50%',
-      color: '#99ADD1',
-      fontWeight: '800',
-      lineHeight: '13px',
-      textAlign: 'center',
-    }}
-  >
-    {isCollapsed ? '+' : '-'}
-  </div>
-);
 
 export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNodeOptions> {
   static defaultOptions: Partial<CollapseExpandReactNodeOptions> = {
+    enable: true,
     trigger: 'icon',
     direction: 'out',
-    iconRender: defaultIconRender,
+    iconRender: (isCollapsed) => <PlusMinusIcon isCollapsed={isCollapsed} />,
     iconPlacement: 'bottom',
     iconOffsetX: 0,
     iconOffsetY: 0,
     iconClassName: '',
     iconStyle: {},
+    refreshLayout: false,
   };
 
   constructor(context: RuntimeContext, options: CollapseExpandReactNodeOptions) {
@@ -90,7 +87,7 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
   public afterLayout() {
     const { graph, element, model } = this.context;
     const { nodes = [], edges = [] } = graph.getData();
-    const options = this.options;
+    const { enable, ...options } = this.options;
 
     nodes.forEach((datum) => {
       const nodeId = idOf(datum);
@@ -107,11 +104,12 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
     const nodeMapper = graph.getOptions().node!;
 
     if (has(nodeMapper, 'style.component')) {
-      const component = get(nodeMapper, 'style.component') as React.FC;
-      set(nodeMapper, 'style.component', function (data: NodeData) {
-        const CollapsibleNode = withCollapsibleNode(component);
-        // @ts-ignore this 指向 G6 Graph 实例
-        return <CollapsibleNode data={data} graph={this} {...options} />;
+      const Component = get(nodeMapper, 'style.component') as React.FC;
+      set(nodeMapper, 'style.component', (data: NodeData) => {
+        if (!(typeof enable === 'function' ? enable(data) : enable)) return Component.call(graph, data);
+
+        const CollapsibleNode = withCollapsibleNode(Component);
+        return <CollapsibleNode data={data} graph={graph} {...options} />;
       });
     }
 

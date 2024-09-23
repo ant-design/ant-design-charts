@@ -1,8 +1,7 @@
-import { Avatar, Flex } from 'antd';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface OrganizationChartNodeProps extends Pick<React.HTMLAttributes<HTMLDivElement>, 'className' | 'style'> {
+export interface OrganizationChartNodeProps extends Pick<React.HTMLAttributes<HTMLDivElement>, 'className' | 'style'> {
   /**
    * Name of the person
    */
@@ -27,19 +26,19 @@ const StyledWrapper = styled.div<{ $color?: string; $isActive?: boolean }>`
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   position: relative;
-  border: 3px solid transparent;
+  border: none;
   background-color: #fff;
+  box-sizing: content-box;
 
   ${(props) =>
     props.$isActive &&
     css`
+      height: calc(100% - 6px);
+      width: calc(100% - 6px);
       border: 3px solid #1783ff;
     `}
 
   .org-chart-node-line {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 6px;
     background-color: ${(props) => props.$color};
@@ -47,16 +46,22 @@ const StyledWrapper = styled.div<{ $color?: string; $isActive?: boolean }>`
   }
 
   .org-chart-node-content {
-    height: inherit;
-    margin: 4px 16px 8px;
+    height: calc(100% - 6px);
+    margin: 0 16px 3px;
+    display: flex;
+    align-items: center;
 
     &-avatar {
       width: 40px;
       height: 40px;
+      border-radius: 50%;
       margin-right: 16px;
       background-color: ${(props) => props.$color};
       font-weight: 600;
       font-size: 18px;
+      text-align: center;
+      line-height: 40px;
+      color: #fff;
     }
 
     &-detail {
@@ -89,13 +94,13 @@ export const OrganizationChartNode: React.FC<OrganizationChartNodeProps> = (prop
   return (
     <StyledWrapper $color={colorMap[status]} $isActive={isActive} className={className} style={style}>
       <div className="org-chart-node-line"></div>
-      <Flex className="org-chart-node-content" align="center">
-        <Avatar className="org-chart-node-content-avatar">{name.slice(0, 1)}</Avatar>
-        <Flex vertical className="org-chart-node-content-detail">
+      <div className="org-chart-node-content">
+        <div className="org-chart-node-content-avatar">{name.slice(0, 1)}</div>
+        <div className="org-chart-node-content-detail">
           <div className="org-chart-node-content-name">{name}</div>
           <div className="org-chart-node-content-post">{position}</div>
-        </Flex>
-      </Flex>
+        </div>
+      </div>
     </StyledWrapper>
   );
 };

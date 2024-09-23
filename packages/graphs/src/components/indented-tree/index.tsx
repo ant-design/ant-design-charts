@@ -10,18 +10,18 @@ import React, {
 import { BaseGraph } from '../../core/base-graph';
 import { COMMON_OPTIONS } from '../../core/constants';
 import { mergeOptions } from '../../core/utils/options';
-import { DEFAULT_OPTIONS, getMindMapOptions } from './options';
-import type { MindMapOptions } from './types';
+import { DEFAULT_OPTIONS, getIndentedTreeOptions } from './options';
+import type { IndentedTreeOptions } from './types';
 
-export const MindMap: ForwardRefExoticComponent<
-  PropsWithoutRef<PropsWithChildren<MindMapOptions>> & RefAttributes<Graph>
-> = forwardRef<Graph, PropsWithChildren<MindMapOptions>>(({ children, ...props }, ref) => {
+export const IndentedTree: ForwardRefExoticComponent<
+  PropsWithoutRef<PropsWithChildren<IndentedTreeOptions>> & RefAttributes<Graph>
+> = forwardRef<Graph, PropsWithChildren<IndentedTreeOptions>>(({ children, ...props }, ref) => {
   const options = useMemo(() => {
-    const { type = 'default', nodeMinWidth, nodeMaxWidth, mode = 'alternate', ...restProps } = props;
+    const { type = 'default', nodeMinWidth, nodeMaxWidth, mode = 'right', ...restProps } = props;
     const options = mergeOptions(
       COMMON_OPTIONS,
       DEFAULT_OPTIONS,
-      getMindMapOptions({ type, nodeMinWidth, nodeMaxWidth, mode }),
+      getIndentedTreeOptions({ type, nodeMinWidth, nodeMaxWidth, mode }),
       restProps,
     );
     return options;
@@ -34,4 +34,4 @@ export const MindMap: ForwardRefExoticComponent<
   );
 });
 
-export type { MindMapOptions };
+export type { IndentedTreeOptions };

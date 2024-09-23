@@ -21,8 +21,8 @@ export class AssignColorByBranch extends BaseTransform {
     ],
   };
 
-  constructor(runtime: RuntimeContext, options: AssignColorByBranchOptions) {
-    super(runtime, Object.assign({}, AssignColorByBranch.defaultOptions, options));
+  constructor(context: RuntimeContext, options: AssignColorByBranchOptions) {
+    super(context, Object.assign({}, AssignColorByBranch.defaultOptions, options));
   }
 
   beforeDraw(input: DrawData): DrawData {

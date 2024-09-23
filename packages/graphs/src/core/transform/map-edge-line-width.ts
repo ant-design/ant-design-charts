@@ -48,8 +48,8 @@ export class MapEdgeLineWidth extends BaseTransform {
     scale: 'linear',
   };
 
-  constructor(runtime: RuntimeContext, options: MapEdgeLineWidthOptions) {
-    super(runtime, Object.assign({}, MapEdgeLineWidth.defaultOptions, options));
+  constructor(context: RuntimeContext, options: MapEdgeLineWidthOptions) {
+    super(context, Object.assign({}, MapEdgeLineWidth.defaultOptions, options));
   }
 
   beforeDraw(input: DrawData): DrawData {
