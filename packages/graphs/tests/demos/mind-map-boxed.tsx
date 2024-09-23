@@ -1,7 +1,7 @@
 import type { MindMapOptions } from '@ant-design/graphs';
 import { G6, MindMap as MindMapComponent } from '@ant-design/graphs';
 import type { NodeData, TreeData } from '@antv/g6';
-import React, { useEffect } from 'react';
+import React from 'react';
 import data from '../datasets/algorithm-category.json';
 
 const { treeToGraphData } = G6;
