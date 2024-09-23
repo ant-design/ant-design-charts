@@ -22,13 +22,15 @@ export function mergeOptions(...options: GraphOptions[]): ParsedGraphOptions {
         if (['component', 'data'].includes(key)) {
           merged[key] = currValue;
         } else if (typeof currValue === 'function') {
-          merged[key] = function (datum) {
-            if (['plugins', 'behaviors', 'transforms'].includes(key)) return currValue(prevValue || []);
-
-            const value = currValue.call(this, datum);
-            if (isPlainObject(value) && value !== null) return mergeOptions(prevValue, value);
-            return value;
-          };
+          if (['plugins', 'behaviors', 'transforms'].includes(key)) {
+            merged[key] = currValue(prevValue || []);
+          } else {
+            merged[key] = function (datum) {
+              const value = currValue.call(this, datum);
+              if (isPlainObject(value) && value !== null) return mergeOptions(prevValue, value);
+              return value;
+            };
+          }
         } else if (isPlainObject(currValue) && isPlainObject(prevValue) && currValue !== null && prevValue !== null) {
           merged[key] = mergeOptions(prevValue, currValue);
         } else {

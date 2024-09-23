@@ -1,13 +1,13 @@
 import { ChartLoading, ErrorBoundary } from '@ant-design/charts-util';
-import type { Graph, GraphOptions as G6GraphOptions } from '@antv/g6';
+import type { GraphOptions as G6GraphOptions, Graph } from '@antv/g6';
 import { Graphin } from '@antv/graphin';
 import { isEmpty } from 'lodash';
 import React, {
-  forwardRef,
   ForwardRefExoticComponent,
   PropsWithChildren,
   PropsWithoutRef,
   RefAttributes,
+  forwardRef,
   useImperativeHandle,
   useRef,
 } from 'react';
