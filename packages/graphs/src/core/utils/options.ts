@@ -27,11 +27,11 @@ export function mergeOptions(...options: GraphOptions[]): ParsedGraphOptions {
           } else {
             merged[key] = function (datum) {
               const value = currValue.call(this, datum);
-              if (isPlainObject(value) && value !== null) return mergeOptions(prevValue, value);
+              if (isPlainObject(value)) return mergeOptions(prevValue, value);
               return value;
             };
           }
-        } else if (isPlainObject(currValue) && isPlainObject(prevValue) && currValue !== null && prevValue !== null) {
+        } else if (isPlainObject(currValue) && isPlainObject(prevValue)) {
           merged[key] = mergeOptions(prevValue, currValue);
         } else {
           merged[key] = currValue;
