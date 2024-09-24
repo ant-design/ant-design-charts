@@ -1,6 +1,6 @@
 import { HoverActivate, idOf } from '@antv/g6';
 
-export class HoverElement extends HoverActivate {
+export class HoverActivateNeighbors extends HoverActivate {
   getActiveIds(event) {
     const { model, graph } = this.context;
     const targetId = event.target.id;

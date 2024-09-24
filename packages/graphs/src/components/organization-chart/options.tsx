@@ -9,7 +9,7 @@ export const DEFAULT_OPTIONS: OrganizationChartOptions = {
   node: {
     type: 'react',
     style: {
-      component: () => <TextNode type="filled" />,
+      component: (data) => <TextNode type="filled" text={data.id} />,
       size: [80, 40],
       ports: [{ placement: 'top' }, { placement: 'bottom' }],
     },

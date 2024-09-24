@@ -1,0 +1,40 @@
+{
+  "nodes": [
+    { "id": "source", "data": { "type": "source", "name": "集群 OB" } },
+    { "id": "store-1", "data": { "type": "store", "name": "Store-11.124.115.16-9000:mysql2ob_default", "delay": "4" } },
+    { "id": "store-2", "data": { "type": "store", "name": "Store-11.124.115.16-9000:mysql2ob_default", "delay": "4" } },
+    { "id": "store-3", "data": { "type": "store", "name": "Store-11.124.115.16-9000:mysql2ob_default", "delay": "4" } },
+    { "id": "store-4", "data": { "type": "store", "name": "Store-11.124.115.16-9000:mysql2ob_default", "delay": "4" } },
+    {
+      "id": "writer-1",
+      "data": { "type": "writer", "name": "Writer-11.124.115.16-9000:mysql2ob_default", "delay": "4" }
+    },
+    {
+      "id": "writer-2",
+      "data": { "type": "writer", "name": "Writer-11.124.115.16-9000:mysql2ob_default", "delay": "4" }
+    },
+    {
+      "id": "writer-3",
+      "data": { "type": "writer", "name": "Writer-11.124.115.16-9000:mysql2ob_default", "delay": "11" }
+    },
+    {
+      "id": "writer-4",
+      "data": { "type": "writer", "name": "Writer-11.124.115.16-9000:mysql2ob_default", "delay": "4" }
+    },
+    { "id": "target", "data": { "type": "target", "name": "Platform" } }
+  ],
+  "edges": [
+    { "source": "source", "target": "store-1" },
+    { "source": "store-1", "target": "writer-1" },
+    { "source": "writer-1", "target": "target" },
+    { "source": "source", "target": "store-2" },
+    { "source": "store-2", "target": "writer-2" },
+    { "source": "writer-2", "target": "target" },
+    { "source": "source", "target": "store-3" },
+    { "source": "store-3", "target": "writer-3" },
+    { "source": "writer-3", "target": "target" },
+    { "source": "source", "target": "store-4" },
+    { "source": "store-4", "target": "writer-4" },
+    { "source": "writer-4", "target": "target" }
+  ]
+}

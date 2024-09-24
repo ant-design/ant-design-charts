@@ -1,8 +1,15 @@
 import { measureTextWidth } from '@ant-design/charts-util';
 import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
+import { darkenHexColor, hexToRgba } from '../../utils/color';
 
-const StyledWrapper = styled.div<{ $type: TextNodeProps['type']; $color: string; $borderWidth: number }>`
+const StyledWrapper = styled.div<{
+  $type: TextNodeProps['type'];
+  $color: string;
+  $borderWidth: number;
+  $isActive: boolean;
+  $isSelected: boolean;
+}>`
   position: relative;
   display: flex;
   align-items: center;
@@ -45,6 +52,15 @@ const StyledWrapper = styled.div<{ $type: TextNodeProps['type']; $color: string;
         `;
     }
   }}
+
+  ${({ $isActive, $isSelected, $borderWidth, $color }) =>
+    ($isActive || $isSelected) &&
+    css`
+      height: calc(100% - 2 * ${$borderWidth}px);
+      width: calc(100% - 2 * ${$borderWidth}px);
+      border: ${$borderWidth}px solid ${darkenHexColor($color, 100)};
+      ${$isSelected && `box-shadow: 0 0 0 2px ${hexToRgba($color, 0.1)};`}
+    `}
 `;
 
 export interface TextNodeProps extends Pick<React.HTMLAttributes<HTMLDivElement>, 'className' | 'style'> {
@@ -82,6 +98,16 @@ export interface TextNodeProps extends Pick<React.HTMLAttributes<HTMLDivElement>
     fontVariant?: number | string | undefined;
     fontWeight?: number | string | undefined;
   };
+  /**
+   * Whether the node is active
+   * @default false
+   */
+  isActive?: boolean;
+  /**
+   * Whether the node is selected
+   * @default false
+   */
+  isSelected?: boolean;
 }
 
 export const TextNode: FC<TextNodeProps> = (props) => {
@@ -94,6 +120,8 @@ export const TextNode: FC<TextNodeProps> = (props) => {
     color = '#1783ff',
     borderWidth = 2,
     maxWidth = Infinity,
+    isActive = false,
+    isSelected = false,
   } = props;
   const isMultiLine = measureTextWidth(text, font) > maxWidth;
 
@@ -102,6 +130,8 @@ export const TextNode: FC<TextNodeProps> = (props) => {
       $type={type}
       $color={color}
       $borderWidth={borderWidth}
+      $isActive={isActive}
+      $isSelected={isSelected}
       className={className}
       style={{ ...style, ...font }}
     >

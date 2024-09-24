@@ -1,5 +1,5 @@
 import type { GraphOptions } from '@ant-design/graphs';
-import { FlowGraph } from '@ant-design/graphs';
+import { FlowDirectionGraph } from '@ant-design/graphs';
 import { Flex } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
@@ -20,7 +20,7 @@ const transformData = (data) => {
 /**
  * 用户路径分析图，展示了用户从不同来源页面进入活动页面后的转化路径
  */
-export const UserFlowGraph = () => {
+export const UserFlowDirectionGraph = () => {
   const options: GraphOptions = {
     autoFit: 'view',
     padding: 20,
@@ -62,7 +62,7 @@ export const UserFlowGraph = () => {
     },
   };
 
-  return <FlowGraph {...options} />;
+  return <FlowDirectionGraph {...options} />;
 };
 
 const StyledWrapper = styled.div`

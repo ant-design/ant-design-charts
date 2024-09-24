@@ -1,6 +1,8 @@
-import { FlowGraph } from '@ant-design/graphs';
+import { FlowGraph, RCNode } from '@ant-design/graphs';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+
+const { TextNode } = RCNode;
 
 const DemoFlowGraph = () => {
   const [data, setData] = useState(undefined);
@@ -14,6 +16,15 @@ const DemoFlowGraph = () => {
   const options = {
     autoFit: 'center',
     data,
+    node: {
+      style: {
+        component: (d) => {
+          const isActive = d.states?.includes('active');
+          return <TextNode text={d.id} isActive={isActive} type="outlined" />;
+        },
+      },
+    },
+    behaviors: (prev) => [...prev, 'hover-activate-chain'],
   };
 
   return <FlowGraph {...options} />;
