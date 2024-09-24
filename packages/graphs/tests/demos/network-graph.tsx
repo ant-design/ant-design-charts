@@ -42,7 +42,6 @@ export const NetworkGraph = () => {
         inactiveState: 'inactive',
       },
     ],
-    animation: false,
   };
 
   return <NetworkGraphComponent {...options} />;

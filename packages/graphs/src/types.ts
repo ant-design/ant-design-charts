@@ -1,5 +1,5 @@
 import type { ContainerConfig } from '@ant-design/charts-util';
-import type { BehaviorOptions, Graph, GraphOptions as G6GraphOptions, PluginOptions } from '@antv/g6';
+import type { BehaviorOptions, GraphOptions as G6GraphOptions, Graph, PluginOptions } from '@antv/g6';
 import type { TransformOptions } from '@antv/g6/lib/spec';
 
 export interface GraphOptions extends ContainerConfig, Omit<G6GraphOptions, 'plugins' | 'transforms' | 'behaviors'> {
@@ -18,15 +18,15 @@ export interface GraphOptions extends ContainerConfig, Omit<G6GraphOptions, 'plu
   /**
    * 交互
    */
-  behaviors?: BehaviorOptions | ((prev: BehaviorOptions) => BehaviorOptions);
+  behaviors?: BehaviorOptions | ((this: Graph, prev: BehaviorOptions) => BehaviorOptions);
   /**
    * 画布插件
    */
-  plugins?: PluginOptions | ((prev: PluginOptions) => PluginOptions);
+  plugins?: PluginOptions | ((this: Graph, prev: PluginOptions) => PluginOptions);
   /**
    * 数据转换器
    */
-  transforms?: TransformOptions | ((prev: TransformOptions) => TransformOptions);
+  transforms?: TransformOptions | ((this: Graph, prev: TransformOptions) => TransformOptions);
 }
 
 export type ParsedGraphOptions = Required<GraphOptions>;

@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES5",
     "baseUrl": "."
   },
-  "include": ["src"],
+  "include": ["src", "typing.d.ts"],
   "exclude": ["tests", "node_modules"],
   "extends": "../../tsconfig.json"
 }

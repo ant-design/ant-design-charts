@@ -19,11 +19,6 @@
     "type": "git",
     "url": "git+https://github.com/ant-design/ant-design-charts.git"
   },
-  "publishConfig": {
-    "access": "public",
-    "tag": "beta",
-    "registry": "https://registry.npmjs.org/"
-  },
   "license": "MIT",
   "main": "lib/index.js",
   "unpkg": "dist/graphs.min.js",
@@ -36,16 +31,16 @@
     "src"
   ],
   "scripts": {
+    "build": "run-p build:*",
+    "build:esm": "rimraf ./es && tsc --module ESNext --outDir es -p tsconfig.prod.json",
+    "build:lib": "rimraf ./lib && tsc --module commonjs --outDir lib -p tsconfig.prod.json",
+    "build:umd": "rimraf ./dist && webpack --config webpack.config.js --mode production",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "ci": "run-s lint build test",
     "clean": "rimraf lib es dist",
     "dev": "vite",
-    "build": "run-p build:*",
-    "build:umd": "rimraf ./dist && webpack --config webpack.config.js --mode production",
-    "build:lib": "rimraf ./lib && tsc --module commonjs --outDir lib -p tsconfig.prod.json",
-    "build:esm": "rimraf ./es && tsc --module ESNext --outDir es -p tsconfig.prod.json",
-    "lint:prettier": "npm run prettier && git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && npm run lint:prettier",
+    "lint:prettier": "npm run prettier && git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "start": "npm run build:esm --w",
@@ -53,7 +48,7 @@
   },
   "dependencies": {
     "@ant-design/charts-util": "workspace:*",
-    "@antv/g6": "^5.0.22",
+    "@antv/g6": "^5.0.23",
     "@antv/g6-extension-react": "^0.1.6",
     "@antv/graphin": "^3.0.2",
     "lodash": "^4.17.21",
@@ -63,8 +58,6 @@
     "@antv/algorithm": "^0.1.26",
     "@types/jest": "^26.0.0",
     "@types/lodash": "^4.17.7",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.6",
     "antd": "^5.20.5",
     "react-router-dom": "^6.26.1",
     "vite": "^5.4.3"
@@ -72,5 +65,10 @@
   "peerDependencies": {
     "react": ">=16.8.4",
     "react-dom": ">=16.8.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "tag": "beta"
   }
 }

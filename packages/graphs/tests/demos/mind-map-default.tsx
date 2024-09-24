@@ -1,13 +1,13 @@
-import type { GraphOptions } from '@ant-design/graphs';
-import { MindMap as MindMapComponent } from '@ant-design/graphs';
+import type { MindMapOptions } from '@ant-design/graphs';
+import { G6, MindMap as MindMapComponent } from '@ant-design/graphs';
 import type { NodeData, TreeData } from '@antv/g6';
-import { treeToGraphData } from '@antv/g6';
 import React from 'react';
-import data from '../datasets/mind-mapping.json';
+import data from '../datasets/algorithm-category.json';
+
+const { treeToGraphData } = G6;
 
 export const MindMap = () => {
-  const options: GraphOptions = {
-    autoFit: 'view',
+  const options: MindMapOptions = {
     data: treeToGraphData(data, {
       getNodeData: (datum: TreeData, depth: number) => {
         datum.data ||= {};
@@ -17,6 +17,13 @@ export const MindMap = () => {
         return { ...restDatum, children: children.map((child) => child.id) } as NodeData;
       },
     }),
+    transforms: (prev) => [
+      ...prev.filter((transform) => (transform as any).type !== 'collapse-expand-react-node'),
+      {
+        ...(prev.find((transform) => (transform as any).type === 'collapse-expand-react-node') as any),
+        enable: true,
+      },
+    ],
   };
 
   return <MindMapComponent {...options} />;
