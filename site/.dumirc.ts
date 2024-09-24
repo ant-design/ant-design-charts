@@ -156,6 +156,14 @@ export default defineConfig({
           en: 'Statistics',
         },
       },
+      {
+        slug: 'relations',
+        icon: 'line',
+        title: {
+          zh: '关系图表',
+          en: 'Relations',
+        },
+      },
     ],
     detail: {
       engine: {

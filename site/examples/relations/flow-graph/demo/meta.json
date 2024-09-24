@@ -1,0 +1,24 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "default.js",
+      "title": {
+        "zh": "流向图",
+        "en": "Default Flow Graph"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*mjDkSo0lqpgAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "custom.js",
+      "title": {
+        "zh": "自定义流向图",
+        "en": "Custom Flow Graph"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jOEPRKWxPE0AAAAAAAAAAAAADmJ7AQ/original"
+    }
+  ]
+}
