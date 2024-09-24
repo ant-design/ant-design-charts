@@ -1,1 +1,2 @@
-export { HoverElement } from './hover-element';
+export { HoverActivateChain } from './hover-activate-chain';
+export { HoverActivateNeighbors } from './hover-activate-neighbors';

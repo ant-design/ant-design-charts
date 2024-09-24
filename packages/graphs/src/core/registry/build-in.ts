@@ -1,4 +1,5 @@
 import { ReactNode } from '@antv/g6-extension-react';
+import { HoverActivateChain, HoverActivateNeighbors } from '../behaviors';
 import { IndentedEdge } from '../edges';
 import {
   ArrangeEdgeZIndex,
@@ -14,6 +15,10 @@ export const BUILT_IN_EXTENSIONS = {
   },
   edge: {
     indented: IndentedEdge,
+  },
+  behavior: {
+    'hover-activate-neighbors': HoverActivateNeighbors,
+    'hover-activate-chain': HoverActivateChain,
   },
   transform: {
     'translate-react-node-origin': TranslateReactNodeOrigin,
