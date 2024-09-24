@@ -1,0 +1,57 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "right-children.js",
+      "title": {
+        "zh": "缩进树",
+        "en": "Indented Tree with Right Children"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*5AQcToF_ArQAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "left-children.js",
+      "title": {
+        "zh": "缩进树-子节点左侧分布",
+        "en": "Indented Tree with Left Children"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*-0joTLCuEdgAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "auto-children.js",
+      "title": {
+        "zh": "缩进树-子节点自动两侧分布",
+        "en": "Indented Tree with Auto Children"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*t1XJQ477x58AAAAAAAAAAAAADmJ7AQ/original"
+    },
+
+    {
+      "filename": "linear-type.js",
+      "title": {
+        "zh": "线条风格缩进树",
+        "en": "Indented Tree with Outlined Nodes"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*dATbQ4KqqJwAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "boxed-type.js",
+      "title": {
+        "zh": "方框风格缩进树",
+        "en": "Indented Tree with Boxed Nodes"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*JZZVT5PsWPQAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "collapse-expand.js",
+      "title": {
+        "zh": "动态展开/收起子节点",
+        "en": "Expand/Collapse Children"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*F_2pQIwP5s4AAAAAAAAAAAAADmJ7AQ/original"
+    }
+  ]
+}

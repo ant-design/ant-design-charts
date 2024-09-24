@@ -1,0 +1,40 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "default.js",
+      "title": {
+        "zh": "组织结构图",
+        "en": "Default Organization Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*DrXgSICG9EsAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "complex-node.js",
+      "title": {
+        "zh": "复杂节点的组织结构图",
+        "en": "Organization Chart with Complex Nodes"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jgGCT7cMxg8AAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "horizontal.js",
+      "title": {
+        "zh": "至左向右的组织结构图",
+        "en": "Organization Chart from Left to Right"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*9b1CQbVAYgMAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "custom-icon.js",
+      "title": {
+        "zh": "自定义收起图标",
+        "en": "Custom Collapse Icon"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*N_DyQYva2YwAAAAAAAAAAAAADmJ7AQ/original"
+    }
+  ]
+}
