@@ -6,7 +6,7 @@ const DemoFlowGraph = () => {
   const [data, setData] = useState(undefined);
 
   useEffect(() => {
-    fetch('https://site-data-pre.alipay.com/g6/flow-analysis.json')
+    fetch('https://assets.antv.antgroup.com/g6/flow-analysis.json')
       .then((res) => res.json())
       .then(setData);
   }, []);

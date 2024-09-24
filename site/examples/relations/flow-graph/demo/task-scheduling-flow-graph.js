@@ -102,7 +102,7 @@ const DemoFlowGraph = () => {
   const [data, setData] = useState(undefined);
 
   useEffect(() => {
-    fetch('https://site-data-pre.alipay.com/antd-charts/task-scheduling.json')
+    fetch('https://assets.antv.antgroup.com/antd-charts/task-scheduling.json')
       .then((res) => res.json())
       .then(setData);
   }, []);
