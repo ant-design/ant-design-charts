@@ -1,12 +1,12 @@
-import { Flowchart as FlowchartComponent, RCNode, type FlowchartOptions } from '@ant-design/graphs';
+import { FlowGraph as FlowGraphComponent, RCNode, type FlowGraphOptions } from '@ant-design/graphs';
 import type { NodeData } from '@antv/g6';
 import React from 'react';
 import data from '../datasets/task-scheduling.json';
 
 const { TextNode } = RCNode;
 
-export const Flowchart = () => {
-  const options: FlowchartOptions = {
+export const FlowGraph = () => {
+  const options: FlowGraphOptions = {
     autoFit: 'center',
     data,
     node: {
@@ -20,5 +20,5 @@ export const Flowchart = () => {
     behaviors: (prev) => [...prev, 'hover-activate-chain'],
   };
 
-  return <FlowchartComponent {...options} />;
+  return <FlowGraphComponent {...options} />;
 };

@@ -1,11 +1,19 @@
 import * as G6 from '@antv/g6';
 import './preset';
 
-export { Dendrogram, FlowGraph, Flowchart, IndentedTree, MindMap, NetworkGraph, OrganizationChart } from './components';
+export {
+  Dendrogram,
+  FlowDirectionGraph,
+  FlowGraph,
+  IndentedTree,
+  MindMap,
+  NetworkGraph,
+  OrganizationChart,
+} from './components';
 export type {
   DendrogramOptions,
+  FlowDirectionGraphOptions,
   FlowGraphOptions,
-  FlowchartOptions,
   IndentedTreeOptions,
   MindMapOptions,
   NetworkGraphOptions,

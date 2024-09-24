@@ -1,4 +1,4 @@
 ---
-title: Flow Graph
-order: 6
+title: Flowchart
+order: 7
 ---

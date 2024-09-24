@@ -1,10 +1,10 @@
 import React from 'react';
 import { RCNode } from '../../core/base';
-import type { GraphOptions } from '../../types';
+import type { FlowGraphOptions } from './types';
 
 const { TextNode } = RCNode;
 
-export const DEFAULT_OPTIONS: GraphOptions = {
+export const DEFAULT_OPTIONS: FlowGraphOptions = {
   node: {
     type: 'react',
     style: {
@@ -22,19 +22,38 @@ export const DEFAULT_OPTIONS: GraphOptions = {
     },
   },
   edge: {
-    type: 'cubic-horizontal',
+    type: 'polyline',
     style: {
-      strokeOpacity: 0.5,
-    },
-    state: {
-      active: {
-        strokeOpacity: 1,
-      },
+      lineWidth: 2,
+      endArrow: true,
+      radius: 8,
+      router: { type: 'orth' },
     },
   },
   layout: {
-    type: 'antv-dagre',
+    type: 'dagre',
     rankdir: 'LR',
+    animation: false,
   },
   transforms: ['translate-react-node-origin'],
+};
+
+export const getFlowGraphOptions = ({ direction }: Pick<FlowGraphOptions, 'direction'>): FlowGraphOptions => {
+  let options: FlowGraphOptions = {};
+
+  if (direction === 'vertical') {
+    options = {
+      node: {
+        style: {
+          ports: [{ placement: 'top' }, { placement: 'bottom' }],
+        },
+      },
+      layout: {
+        type: 'dagre',
+        rankdir: 'TB',
+      },
+    };
+  }
+
+  return options;
 };

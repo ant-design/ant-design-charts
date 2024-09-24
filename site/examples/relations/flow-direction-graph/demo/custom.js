@@ -1,4 +1,4 @@
-import { FlowGraph } from '@ant-design/graphs';
+import { FlowDirectionGraph } from '@ant-design/graphs';
 import insertCss from 'insert-css';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -502,7 +502,7 @@ const transformData = (data) => {
   return data;
 };
 
-const DemoFlowGraph = () => {
+const DemoFlowDirectionGraph = () => {
   const options = {
     autoFit: 'view',
     padding: 120,
@@ -544,7 +544,7 @@ const DemoFlowGraph = () => {
     },
   };
 
-  return <FlowGraph {...options} />;
+  return <FlowDirectionGraph {...options} />;
 };
 
-ReactDOM.render(<DemoFlowGraph />, document.getElementById('container'));
+ReactDOM.render(<DemoFlowDirectionGraph />, document.getElementById('container'));

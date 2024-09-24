@@ -1,6 +1,6 @@
 export { Dendrogram } from './dendrogram';
-export { Flowchart } from './flowchart';
-export { FlowchartTaskScheduling } from './flowchart-task-scheduling';
+export { FlowGraph } from './flow-graph';
+export { FlowGraphTaskScheduling } from './flow-graph-task-scheduling';
 export { IndentedTreeBoxed } from './indented-tree-boxed';
 export { IndentedTree } from './indented-tree-default';
 export { IndentedTreeLinear } from './indented-tree-linear';
@@ -11,4 +11,4 @@ export { MindMapLinear } from './mind-map-linear';
 export { NetworkGraph } from './network-graph';
 export { OrganizationChart } from './organization-chart';
 export { OrganizationChart2 } from './organization-chart2';
-export { UserFlowGraph } from './user-flow-graph';
+export { UserFlowDirectionGraph } from './user-flow-direction-graph';

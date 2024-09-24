@@ -1,4 +1,4 @@
-import { Flowchart } from '@ant-design/graphs';
+import { FlowGraph } from '@ant-design/graphs';
 import { Typography } from 'antd';
 import insertCss from 'insert-css';
 import React, { useEffect, useState } from 'react';
@@ -98,7 +98,7 @@ const TaskNode = (props) => {
   );
 };
 
-const DemoFlowchart = () => {
+const DemoFlowGraph = () => {
   const [data, setData] = useState(undefined);
 
   useEffect(() => {
@@ -140,7 +140,7 @@ const DemoFlowchart = () => {
     behaviors: (prev) => [...prev, 'hover-activate-chain'],
   };
 
-  return <Flowchart {...options} />;
+  return <FlowGraph {...options} />;
 };
 
-ReactDOM.render(<DemoFlowchart />, document.getElementById('container'));
+ReactDOM.render(<DemoFlowGraph />, document.getElementById('container'));

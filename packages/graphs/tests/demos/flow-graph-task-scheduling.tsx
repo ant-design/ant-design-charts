@@ -1,4 +1,4 @@
-import { Flowchart as FlowchartComponent, FlowchartOptions } from '@ant-design/graphs';
+import { FlowGraph as FlowGraphComponent, FlowGraphOptions } from '@ant-design/graphs';
 import { Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
@@ -114,8 +114,8 @@ const TaskNode: React.FC<{
   );
 };
 
-export const FlowchartTaskScheduling = () => {
-  const options: FlowchartOptions = {
+export const FlowGraphTaskScheduling = () => {
+  const options: FlowGraphOptions = {
     autoFit: 'center',
     data,
     node: {
@@ -151,5 +151,5 @@ export const FlowchartTaskScheduling = () => {
     behaviors: (prev) => [...prev, 'hover-activate-chain'],
   };
 
-  return <FlowchartComponent {...options} />;
+  return <FlowGraphComponent {...options} />;
 };

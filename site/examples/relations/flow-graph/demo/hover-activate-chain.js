@@ -1,10 +1,10 @@
-import { Flowchart, RCNode } from '@ant-design/graphs';
+import { FlowGraph, RCNode } from '@ant-design/graphs';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 const { TextNode } = RCNode;
 
-const DemoFlowchart = () => {
+const DemoFlowGraph = () => {
   const [data, setData] = useState(undefined);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const DemoFlowchart = () => {
     behaviors: (prev) => [...prev, 'hover-activate-chain'],
   };
 
-  return <Flowchart {...options} />;
+  return <FlowGraph {...options} />;
 };
 
-ReactDOM.render(<DemoFlowchart />, document.getElementById('container'));
+ReactDOM.render(<DemoFlowGraph />, document.getElementById('container'));
