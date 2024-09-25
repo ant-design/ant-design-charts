@@ -42,6 +42,7 @@
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.2",
     "eslint": "^7.32.0",
+    "file-loader": "^6.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "jest-canvas-mock": "^2.5.2",
