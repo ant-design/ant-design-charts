@@ -1,7 +1,7 @@
 import type { Graph, NodeData } from '@antv/g6';
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import arrow from '../../../../assets/arrow.png';
+import arrow from '../../../assets/arrow.png';
 
 interface ArrowCountIconProps extends Pick<React.HTMLAttributes<HTMLDivElement>, 'className' | 'style'> {
   /**

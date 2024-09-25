@@ -124,6 +124,10 @@ const getWebpackConfig = (name, library) => {
             },
           ],
         },
+        {
+          test: /\.png$/,
+          type: 'asset/inline',
+        },
       ],
     },
     plugins: [
