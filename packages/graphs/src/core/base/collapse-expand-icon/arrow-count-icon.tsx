@@ -1,7 +1,6 @@
 import type { Graph, NodeData } from '@antv/g6';
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import arrow from '../../../assets/arrow.png';
 
 interface ArrowCountIconProps extends Pick<React.HTMLAttributes<HTMLDivElement>, 'className' | 'style'> {
   /**
@@ -53,15 +52,15 @@ const StyledWrapper = styled.div<{
   }
 
   .indented-icon-circle {
-    height: 16px;
     width: 16px;
-    border-radius: 50%;
-    background-color: ${({ $color }) => $color};
+    height: 16px;
     color: #fff;
     font-weight: 600;
     font-size: 10px;
     line-height: ${({ $isCollapsed }) => ($isCollapsed ? '16px' : '14px')};
     text-align: center;
+    background-color: ${({ $color }) => $color};
+    border-radius: 50%;
   }
 
   .indented-icon-circle-arrow {
@@ -99,7 +98,21 @@ export const ArrowCountIcon: FC<ArrowCountIconProps> = (props) => {
     <StyledWrapper $color={color} $isCollapsed={isCollapsed} $placement={placement} className={className} style={style}>
       <div className="indented-icon-bar" />
       <div className="indented-icon-circle">
-        {isCollapsed ? count : <img src={arrow} alt="icon" className="indented-icon-circle-arrow" />}
+        {isCollapsed ? (
+          count
+        ) : (
+          <div className="indented-icon-circle-arrow">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M11,4 L5,8 L11,12"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+            </svg>
+          </div>
+        )}
       </div>
     </StyledWrapper>
   );

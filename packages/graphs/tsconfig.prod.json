@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "."
   },
-  "include": ["src", "typing.d.ts"],
+  "include": ["src/**/*", "typing.d.ts"],
   "exclude": ["tests", "node_modules"],
   "extends": "../../tsconfig.json"
 }
