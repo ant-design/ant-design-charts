@@ -20,6 +20,7 @@ const StyledWrapper = styled.div<{
   height: inherit;
   width: inherit;
   box-sizing: content-box;
+  font-size: 14px;
 
   ${({ $type, $color, $borderWidth }) => {
     switch ($type) {
@@ -132,7 +133,7 @@ export const TextNode: FC<TextNodeProps> = (props) => {
       $borderWidth={borderWidth}
       $isActive={isActive}
       $isSelected={isSelected}
-      className={className}
+      className={`text-node ${className}`}
       style={{ ...style, ...font }}
     >
       <div style={isMultiLine ? { width: 'calc(100% - 12px)' } : {}}>{text}</div>
