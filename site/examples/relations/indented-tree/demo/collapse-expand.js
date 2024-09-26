@@ -10,18 +10,7 @@ const DemoIndentedTree = () => {
   useEffect(() => {
     fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/algorithm-category.json')
       .then((res) => res.json())
-      .then((res) => {
-        const graphData = treeToGraphData(res, {
-          getNodeData: (datum, depth) => {
-            datum.data ||= {};
-            datum.data.depth = depth;
-            if (!datum.children) return datum;
-            const { children, ...restDatum } = datum;
-            return { ...restDatum, children: children.map((child) => child.id) };
-          },
-        });
-        setData(graphData);
-      });
+      .then((res) => setData(treeToGraphData(res)));
   }, []);
 
   const options = {

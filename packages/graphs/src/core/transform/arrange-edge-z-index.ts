@@ -9,7 +9,7 @@ export class ArrangeEdgeZIndex extends BaseTransform {
     const { model } = this.context;
     const { nodes, edges } = model.getData();
 
-    const oneLevelNodes = nodes.filter((node) => node.data?.depth === 1);
+    const oneLevelNodes = nodes.filter((node) => node.depth === 1);
     const oneLevelNodeIds = oneLevelNodes.map((node) => node.id);
 
     edges.forEach((edge) => {

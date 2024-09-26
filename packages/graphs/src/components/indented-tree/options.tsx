@@ -92,9 +92,8 @@ export const getIndentedTreeOptions = ({
     };
 
     const measureNodeSize = (data: NodeData) => {
-      const depth = data.data?.depth as number;
-      const offset = depth === 0 ? [24, 36] : [12, 24];
-      const font = getNodeFont(depth);
+      const offset = data.depth === 0 ? [24, 36] : [12, 24];
+      const font = getNodeFont(data.depth!);
       return measureTextSize(idOf(data), offset, font, minWidth, maxWidth);
     };
 
@@ -102,7 +101,7 @@ export const getIndentedTreeOptions = ({
       node: {
         style: {
           component: function (data: NodeData) {
-            const depth = data.data?.depth as number;
+            const depth = data.depth as number;
             const color = data.style?.color as string;
             const props: TextNodeProps = {
               type: depth === 0 || depth === 1 ? 'filled' : 'outlined',
@@ -160,7 +159,7 @@ export const getIndentedTreeOptions = ({
       node: {
         style: {
           component: function (data: NodeData) {
-            const depth = data.data?.depth as number;
+            const depth = data.depth as number;
             const color = data.style?.color as string;
             const props = { text: idOf(data), color, maxWidth, font: getNodeFont(depth) } as TextNodeProps;
             Object.assign(

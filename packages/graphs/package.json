@@ -41,16 +41,16 @@
     "dev": "vite",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && npm run lint:prettier",
     "lint:prettier": "npm run prettier && git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
+    "prepublishOnly": "pnpm run build",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "start": "npm run build:esm --w",
-    "test": "jest",
-    "prepublishOnly": "pnpm run build"
+    "test": "jest"
   },
   "dependencies": {
     "@ant-design/charts-util": "workspace:*",
-    "@antv/g6": "^5.0.23",
-    "@antv/g6-extension-react": "^0.1.6",
+    "@antv/g6": "^5.0.24",
+    "@antv/g6-extension-react": "^0.1.7",
     "@antv/graphin": "^3.0.2",
     "lodash": "^4.17.21",
     "styled-components": "^6.1.13"
