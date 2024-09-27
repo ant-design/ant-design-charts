@@ -40,7 +40,7 @@ export class AssignColorByBranch extends BaseTransform {
       node.children?.forEach((childId) => dfs(childId, node.style?.color as string));
     };
 
-    nodes.filter((node) => node.data?.depth === 1).forEach((rootNode) => dfs(rootNode.id));
+    nodes.filter((node) => node.depth === 1).forEach((rootNode) => dfs(rootNode.id));
 
     return input;
   }

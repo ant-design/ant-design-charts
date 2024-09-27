@@ -13,7 +13,7 @@ export interface OrganizationChartNodeProps extends Pick<React.HTMLAttributes<HT
   /**
    * Working status of the person
    */
-  status: string;
+  status?: string;
   /**
    * Whether the node is hovered
    */
@@ -33,8 +33,7 @@ const StyledWrapper = styled.div<{ $color?: string; $isActive?: boolean }>`
   ${(props) =>
     props.$isActive &&
     css`
-      height: calc(100% - 6px);
-      width: calc(100% - 6px);
+      transform: translate(-3px, -3px);
       border: 3px solid #1783ff;
     `}
 
@@ -65,7 +64,7 @@ const StyledWrapper = styled.div<{ $color?: string; $isActive?: boolean }>`
     }
 
     &-detail {
-      flex: 1;
+      width: calc(100% - 56px);
     }
 
     &-name {
@@ -73,17 +72,23 @@ const StyledWrapper = styled.div<{ $color?: string; $isActive?: boolean }>`
       font-weight: 600;
       font-size: 18px;
       margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &-post {
       color: #616161;
       font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 `;
 
 export const OrganizationChartNode: React.FC<OrganizationChartNodeProps> = (props) => {
-  const { name, position, status, isActive, className, style } = props;
+  const { name, position, status = 'online', isActive, className, style } = props;
 
   const colorMap = {
     online: '#1783FF',
@@ -98,7 +103,7 @@ export const OrganizationChartNode: React.FC<OrganizationChartNodeProps> = (prop
         <div className="org-chart-node-content-avatar">{name.slice(0, 1)}</div>
         <div className="org-chart-node-content-detail">
           <div className="org-chart-node-content-name">{name}</div>
-          <div className="org-chart-node-content-post">{position}</div>
+          {position && <div className="org-chart-node-content-post">{position}</div>}
         </div>
       </div>
     </StyledWrapper>

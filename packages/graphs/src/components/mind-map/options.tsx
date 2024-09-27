@@ -91,7 +91,7 @@ export function getMindMapOptions({
     };
 
     const measureNodeSize = (data: NodeData) => {
-      const depth = data.data?.depth as number;
+      const depth = data.depth as number;
       const offset = depth === 0 ? [24, 36] : [12, 24];
       const font = getNodeFont(depth);
       return measureTextSize(idOf(data), offset, font, minWidth, maxWidth);
@@ -101,7 +101,7 @@ export function getMindMapOptions({
       node: {
         style: {
           component: (data: NodeData) => {
-            const depth = data.data?.depth as number;
+            const depth = data.depth as number;
             const color = data.style?.color as string;
             const props = { text: idOf(data), color, maxWidth, font: getNodeFont(depth) } as TextNodeProps;
             Object.assign(
@@ -164,7 +164,7 @@ export function getMindMapOptions({
         style: {
           component: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
-            const depth = data.data?.depth as number;
+            const depth = data.depth as number;
             const color = data.style?.color as string;
             const props = { text: idOf(data), color, maxWidth, font: getNodeFont(depth) } as TextNodeProps;
             Object.assign(
@@ -213,7 +213,7 @@ export function getMindMapOptions({
         {
           ...(prev.find((t) => (t as any).key === 'collapse-expand-react-node') as any),
           iconOffsetY: (data) => {
-            if (data.data?.depth === 0) return 0;
+            if (data.depth === 0) return 0;
             return measureNodeSize(data)[1] / 2;
           },
         },

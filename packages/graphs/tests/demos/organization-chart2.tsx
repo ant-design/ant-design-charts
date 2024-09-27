@@ -42,6 +42,7 @@ export const OrganizationChart2 = () => {
         endArrow: true,
       },
     },
+    behaviors: (prev) => [...prev, 'hover-activate-neighbors'],
     transforms: (prev) => [
       ...prev.filter((t) => (t as any).type !== 'collapse-expand-react-node'),
       {

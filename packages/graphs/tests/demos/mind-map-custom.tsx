@@ -1,6 +1,6 @@
 import type { MindMapOptions } from '@ant-design/graphs';
 import { G6, getNodeSide, measureTextSize, MindMap as MindMapComponent, RCNode } from '@ant-design/graphs';
-import { Graph, type NodeData, type TreeData } from '@antv/g6';
+import { Graph, type NodeData } from '@antv/g6';
 import React from 'react';
 import data from '../datasets/algorithm-category.json';
 
@@ -9,15 +9,7 @@ const { TextNode } = RCNode;
 
 export const MindMapCustom = () => {
   const options: MindMapOptions = {
-    data: treeToGraphData(data, {
-      getNodeData: (datum: TreeData, depth: number) => {
-        datum.data ||= {};
-        datum.data.depth = depth;
-        if (!datum.children) return datum as NodeData;
-        const { children, ...restDatum } = datum;
-        return { ...restDatum, children: children.map((child) => child.id) } as NodeData;
-      },
-    }),
+    data: treeToGraphData(data),
     node: {
       style: {
         component: (data) => {
