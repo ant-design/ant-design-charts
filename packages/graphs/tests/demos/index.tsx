@@ -1,5 +1,6 @@
 export { Dendrogram } from './dendrogram';
 export { FlowGraph } from './flow-graph';
+export { FlowGraphProductActivation } from './flow-graph-product-activation';
 export { FlowGraphTaskScheduling } from './flow-graph-task-scheduling';
 export { IndentedTreeBoxed } from './indented-tree-boxed';
 export { IndentedTree } from './indented-tree-default';
