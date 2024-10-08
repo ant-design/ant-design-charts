@@ -2,7 +2,7 @@ import { FlowGraph as FlowGraphComponent, type FlowGraphOptions, type G6 } from 
 import { isBoolean } from 'lodash';
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import data from '../datasets/product-activation.json';
+import data from '../datasets/product-launch.json';
 
 interface StepData {
   name: string;
@@ -151,7 +151,7 @@ function isSingleStep(data: NodeData) {
   return !data.data.children;
 }
 
-export const FlowGraphProductActivation = () => {
+export const FlowGraphProductLaunch = () => {
   const options: FlowGraphOptions = {
     autoFit: 'view',
     data,
