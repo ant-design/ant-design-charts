@@ -4,6 +4,7 @@ import React from 'react';
 import { CollapseExpandIcon, RCNode, TextNodeProps } from '../../core/base';
 import { measureTextSize } from '../../core/utils/measure-text';
 import { getNodeSide } from '../../core/utils/node';
+import { getBoxedTextNodeStyle, getLinearTextNodeStyle } from '../../core/utils/tree';
 import type { IndentedTreeOptions } from './types';
 
 const { ArrowCountIcon } = CollapseExpandIcon;
@@ -86,17 +87,6 @@ export const getIndentedTreeOptions = ({
   const maxWidth = nodeMaxWidth || 300;
 
   if (type === 'boxed') {
-    const getNodeFont = (depth: number) => {
-      const fontSize = depth === 0 ? 20 : depth === 1 ? 18 : 16;
-      return { fontWeight: 'bold', fontSize, fontFamily: 'PingFang SC' };
-    };
-
-    const measureNodeSize = (data: NodeData) => {
-      const offset = data.depth === 0 ? [24, 36] : [12, 24];
-      const font = getNodeFont(data.depth!);
-      return measureTextSize(idOf(data), offset, font, minWidth, maxWidth);
-    };
-
     options = {
       node: {
         style: {
@@ -108,7 +98,7 @@ export const getIndentedTreeOptions = ({
               text: idOf(data),
               color: depth === 0 ? '#f1f4f5' : color,
               maxWidth,
-              font: getNodeFont(depth),
+              font: getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, depth).font,
               style: {
                 textAlign: getNodeTextAlign(this as unknown as Graph, data),
                 ...(depth === 0 ? { color: '#252525' } : {}),
@@ -116,7 +106,8 @@ export const getIndentedTreeOptions = ({
             };
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) => measureNodeSize(data),
+          size: (data: NodeData) =>
+            getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
         },
       },
       edge: {
@@ -137,31 +128,25 @@ export const getIndentedTreeOptions = ({
       layout: {
         type: 'indented',
         indent: (node) => getIndent(node, 20),
-        getWidth: (data) => measureNodeSize(data)[0],
-        getHeight: (data) => measureNodeSize(data)[1],
+        getWidth: (data) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[0],
+        getHeight: (data) =>
+          getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
         getVGap: () => 14,
       },
     };
   } else if (type === 'linear') {
-    const getNodeFont = (depth: number) => {
-      const fontSize = depth === 0 ? 20 : 16;
-      return { fontWeight: 'bold', fontSize, fontFamily: 'PingFang SC' };
-    };
-
-    const measureNodeSize = (data: NodeData) => {
-      const { depth } = data.data as { depth: number };
-      const offset = depth === 0 ? [24, 36] : [12, 12];
-      const font = getNodeFont(depth);
-      return measureTextSize(idOf(data), offset, font, minWidth, maxWidth);
-    };
-
     options = {
       node: {
         style: {
           component: function (data: NodeData) {
             const depth = data.depth as number;
             const color = data.style?.color as string;
-            const props = { text: idOf(data), color, maxWidth, font: getNodeFont(depth) } as TextNodeProps;
+            const props = {
+              text: idOf(data),
+              color,
+              maxWidth,
+              font: getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, depth).font,
+            } as TextNodeProps;
             Object.assign(
               props,
               depth === 0
@@ -173,7 +158,8 @@ export const getIndentedTreeOptions = ({
             );
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) => measureNodeSize(data),
+          size: (data: NodeData) =>
+            getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
           ports: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
             return side === 'left'
@@ -195,8 +181,10 @@ export const getIndentedTreeOptions = ({
       layout: {
         type: 'indented',
         indent: (node) => getIndent(node, 20),
-        getWidth: (data) => measureNodeSize(data)[0],
-        getHeight: (data) => measureNodeSize(data)[1],
+        getWidth: (data) =>
+          getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[0],
+        getHeight: (data) =>
+          getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
         getVGap: () => 12,
       },
       transforms: (prev) => [
