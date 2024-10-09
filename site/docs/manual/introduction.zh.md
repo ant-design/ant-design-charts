@@ -17,7 +17,46 @@ redirect_from:
 
 <br /> 像使用组件一样生成图表，开箱即用，你甚至不需要修改任何配置项就可以满足需求，真正的默认好用，有没有心动想试试的感觉。
 
-<br />![image.png](https://gw.alipayobjects.com/zos/antfincdn/TcUwTMuNxI/0a9ac684-e862-4889-b783-e0a75a0e3138.png#align=left&display=inline&height=951&name=image.png&originHeight=1901&originWidth=2000&size=968667&status=done&style=none&width=1000)
+#### 依赖关系
+
+<table style="width:100%; margin: 0">
+  <tr>
+    <td>主包</td>
+    <td>子包/依赖</td>
+    <td>描述</td>
+  </tr>
+  <tr>
+    <td rowspan="2">@ant-design/charts</td>
+    <td>@ant-design/plots</td>
+    <td>统计图表</td>
+  </tr>
+  <tr>
+    <td>@ant-design/graphs</td>
+    <td>关系图</td>
+  </tr>
+</table>
+
+#### 概览
+
+<div style="display: flex; width: 100%;">
+  <div style="flex: 1">
+     <h5 style="text-align: center; margin: 0">统计图表</h5>
+  </div>
+  <div style="flex: 1">
+    <h5 style="text-align: center; margin: 0">关系图</h5>
+  </div>
+</div>
+<div style="display: flex; width: 100%; max-height: 600px">
+  <div style="flex: 1">
+    <img style="height: 100%" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*yzh-S5AM5IEAAAAAAAAAAAAADmJ7AQ/original" />
+  </div>
+  <div style="width: 1px; margin: 0 12px; background: rgb(222 219 219)"></div>
+  <div style="flex: 1">
+    <img style="height: 100%" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*MUsJRaqx8BUAAAAAAAAAAAAADmJ7AQ/original" />
+  </div>
+</div>
+
+<!-- <br />![image.png](https://gw.alipayobjects.com/zos/antfincdn/TcUwTMuNxI/0a9ac684-e862-4889-b783-e0a75a0e3138.png#align=left&display=inline&height=951&name=image.png&originHeight=1901&originWidth=2000&size=968667&status=done&style=none&width=1000) -->
 
 ### 架构
 
