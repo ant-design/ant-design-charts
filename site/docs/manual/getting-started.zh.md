@@ -18,6 +18,7 @@ npm install @ant-design/charts --save
 import { Line } from '@ant-design/charts';
 ```
 
+前置依赖
 ```ts
 "peerDependencies": {
     "react": ">=16.8.4",
@@ -25,20 +26,12 @@ import { Line } from '@ant-design/charts';
   }
 ```
 
-在需求明确的情况下，也可仅引入相关子包
-
-```bash
-# 统计图表
-npm install @ant-design/plots --save 
-```
-
 ### 方式二：浏览器引入
 
 既可以通过将脚本下载到本地也可以直接引入在线资源。
 
 ```ts
-// Plots 相关的图表
-<script type="text/javascript" src="https://unpkg.com/@ant-design/plots@latest/dist/plots.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts.min.js"></script>
 ```
 
 由于 @ant-design/charts 里面 externals 了 `react` 、`react-dom`，使用时需要通过 CDN 的方式在 `charts.min.js` 之前引入对应包的 CDN 地址。
@@ -54,24 +47,16 @@ externals: {
 <script crossorigin src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
 
 // 按需引入
-<script type="text/javascript" src="https://unpkg.com/@ant-design/plots@latest/dist/plots.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts.min.js"></script>
 ```
 
 使用方式
 
 ```ts
 // 折线图，其它图表类似
-const { Line } = window.Plots;
+const { Line } = window.Charts;
 ```
 
-
-```html
-<!-- 下载到本地 引入本地脚本 -->
-<script src="./plots.min.js"></script>
-<script>
-  const { Line } = window.Plots;
-</script>
-```
 
 ## 快速使用
 
