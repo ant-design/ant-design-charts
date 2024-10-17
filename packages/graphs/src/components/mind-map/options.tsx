@@ -5,6 +5,7 @@ import type { TextNodeProps } from '../../core/base';
 import { CollapseExpandIcon, RCNode } from '../../core/base';
 import { measureTextSize } from '../../core/utils/measure-text';
 import { getNodeSide } from '../../core/utils/node';
+import { getBoxedTextNodeStyle, getLinearTextNodeStyle } from '../../core/utils/tree';
 import type { MindMapOptions } from './types';
 
 const { ArrowCountIcon } = CollapseExpandIcon;
@@ -85,25 +86,18 @@ export function getMindMapOptions({
     const minWidth = nodeMinWidth || 120;
     const maxWidth = nodeMaxWidth || 300;
 
-    const getNodeFont = (depth: number) => {
-      const fontSize = depth === 0 ? 20 : depth === 1 ? 18 : 16;
-      return { fontWeight: 'bold', fontSize, fontFamily: 'PingFang SC' };
-    };
-
-    const measureNodeSize = (data: NodeData) => {
-      const depth = data.depth as number;
-      const offset = depth === 0 ? [24, 36] : [12, 24];
-      const font = getNodeFont(depth);
-      return measureTextSize(idOf(data), offset, font, minWidth, maxWidth);
-    };
-
     options = {
       node: {
         style: {
           component: (data: NodeData) => {
             const depth = data.depth as number;
             const color = data.style?.color as string;
-            const props = { text: idOf(data), color, maxWidth, font: getNodeFont(depth) } as TextNodeProps;
+            const props = {
+              text: idOf(data),
+              color,
+              maxWidth,
+              font: getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, depth).font,
+            } as TextNodeProps;
             Object.assign(
               props,
               depth === 0
@@ -114,10 +108,11 @@ export function getMindMapOptions({
             );
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) => measureNodeSize(data),
+          size: (data: NodeData) =>
+            getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
           dx: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
-            const size = measureNodeSize(data);
+            const size = getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
             return side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0;
           },
           ports: [{ placement: 'left' }, { placement: 'right' }],
@@ -139,25 +134,14 @@ export function getMindMapOptions({
       ],
       layout: {
         type: 'mindmap',
-        getHeight: (data) => measureNodeSize(data)[1],
+        getHeight: (data) =>
+          getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
         getVGap: () => 14,
       },
     };
   } else if (type === 'linear') {
     const minWidth = nodeMinWidth || 0;
     const maxWidth = nodeMaxWidth || 300;
-
-    const getNodeFont = (depth: number) => {
-      const fontSize = depth === 0 ? 20 : 16;
-      return { fontWeight: 'bold', fontSize, fontFamily: 'PingFang SC' };
-    };
-
-    const measureNodeSize = (data: NodeData) => {
-      const { depth } = data.data as { depth: number };
-      const offset = depth === 0 ? [24, 36] : [12, 12];
-      const font = getNodeFont(depth);
-      return measureTextSize(idOf(data), offset, font, minWidth, maxWidth);
-    };
 
     options = {
       node: {
@@ -166,7 +150,8 @@ export function getMindMapOptions({
             const side = getNodeSide(this as unknown as Graph, data);
             const depth = data.depth as number;
             const color = data.style?.color as string;
-            const props = { text: idOf(data), color, maxWidth, font: getNodeFont(depth) } as TextNodeProps;
+            const { font } = getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, depth);
+            const props = { text: idOf(data), color, maxWidth, font } as TextNodeProps;
             Object.assign(
               props,
               depth === 0
@@ -178,10 +163,11 @@ export function getMindMapOptions({
             );
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) => measureNodeSize(data),
+          size: (data: NodeData) =>
+            getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
           dx: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
-            const size = measureNodeSize(data);
+            const size = getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
             return side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0;
           },
           ports: function (data: NodeData) {
@@ -201,7 +187,8 @@ export function getMindMapOptions({
       },
       layout: {
         type: 'mindmap',
-        getHeight: (data) => measureNodeSize(data)[1],
+        getHeight: (data) =>
+          getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
         getVGap: () => 12,
       },
       transforms: (prev) => [
@@ -214,7 +201,8 @@ export function getMindMapOptions({
           ...(prev.find((t) => (t as any).key === 'collapse-expand-react-node') as any),
           iconOffsetY: (data) => {
             if (data.depth === 0) return 0;
-            return measureNodeSize(data)[1] / 2;
+            const size = getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
+            return size[1] / 2;
           },
         },
       ],
