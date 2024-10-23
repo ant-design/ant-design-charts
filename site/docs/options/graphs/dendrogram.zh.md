@@ -21,7 +21,7 @@ import { Dendrogram } from '@ant-design/graphs';
 
 <code id="demo-dendrogram-compact" src="./demos/dendrogram/compact.tsx" description="通过 `compact` 配置紧凑模式">紧凑模式</code>
 
-<code id="demo-dendrogram-collapse-expand" src="./demos/dendrogram/collapse-expand.tsx" description="添加 G6 内置 CollapseExpand 交互，双击触发展开/收起。更多 G6 内置交互请查阅[此处](https://g6-next.antv.antgroup.com/manual/core-concept/behavior)。">展开/收起节点</code>
+<code id="demo-dendrogram-collapse-expand" src="./demos/dendrogram/collapse-expand.tsx" description="添加 G6 内置 CollapseExpand 交互，双击触发展开/收起。更多 G6 内置交互请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior)。">展开/收起节点</code>
 
 ## API
 
@@ -33,7 +33,7 @@ import { Dendrogram } from '@ant-design/graphs';
 | --- | --- | --- | --- |
 | direction | 语法糖，设置树图节点的排布方向。当设置 `layout.direction` 时会以后者为准 | `'vertical'` \| `'horizontal'` \| `'radial'` | `'horizontal'` |
 | compact | 是否为紧凑模式 | `boolean` | `false` |
-| layout | 树图布局配置 | [DendrogramLayoutOptions](https://g6-next.antv.antgroup.com/api/layouts/dendrogram-layout) | `{ type: 'dendrogram' }` |
-| behaviors | 设置用户交互事件，同样支持 G6 内置交互，了解相关配置项请查阅[此处](https://g6-next.antv.antgroup.com/api/behaviors/brush-select) | `BehaviorOptions \| ((this: Graph, behaviors: BehaviorOptions) => BehaviorOptions)` | - |
-| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件，了解相关配置项请查阅[此处](https://g6-next.antv.antgroup.com/api/plugins/background) | `PluginOptions \| ((this: Graph, plugins: PluginOptions) => PluginOptions)` | - |
-| transforms | 设置数据转换，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器，了解相关配置项请查阅[此处](https://g6-next.antv.antgroup.com/api/transforms/map-node-size) | `TransformOptions \| ((this: Graph, behaviors: TransformOptions) => TransformOptions)` | - |
+| layout | 树图布局配置 | [DendrogramLayoutOptions](https://g6.antv.antgroup.com/api/layouts/dendrogram-layout) | `{ type: 'dendrogram' }` |
+| behaviors | 设置用户交互事件，同样支持 G6 内置交互，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/behaviors/brush-select) | `BehaviorOptions \| ((this: Graph, behaviors: BehaviorOptions) => BehaviorOptions)` | - |
+| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/plugins/background) | `PluginOptions \| ((this: Graph, plugins: PluginOptions) => PluginOptions)` | - |
+| transforms | 设置数据转换，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | `TransformOptions \| ((this: Graph, behaviors: TransformOptions) => TransformOptions)` | - |
