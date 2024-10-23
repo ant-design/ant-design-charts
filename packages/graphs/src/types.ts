@@ -18,15 +18,15 @@ export interface GraphOptions extends ContainerConfig, Omit<G6GraphOptions, 'plu
   /**
    * 交互
    */
-  behaviors?: BehaviorOptions | ((this: Graph, prev: BehaviorOptions) => BehaviorOptions);
+  behaviors?: BehaviorOptions | ((this: Graph, behaviors: BehaviorOptions) => BehaviorOptions);
   /**
    * 画布插件
    */
-  plugins?: PluginOptions | ((this: Graph, prev: PluginOptions) => PluginOptions);
+  plugins?: PluginOptions | ((this: Graph, plugins: PluginOptions) => PluginOptions);
   /**
    * 数据转换器
    */
-  transforms?: TransformOptions | ((this: Graph, prev: TransformOptions) => TransformOptions);
+  transforms?: TransformOptions | ((this: Graph, transforms: TransformOptions) => TransformOptions);
 }
 
 export type ParsedGraphOptions = Required<GraphOptions>;

@@ -80,8 +80,8 @@ export const getIndentedTreeOptions = ({
   type,
   nodeMinWidth,
   nodeMaxWidth,
-  mode,
-}: Pick<IndentedTreeOptions, 'type' | 'nodeMinWidth' | 'nodeMaxWidth' | 'mode'>): IndentedTreeOptions => {
+  direction,
+}: Pick<IndentedTreeOptions, 'type' | 'nodeMinWidth' | 'nodeMaxWidth' | 'direction'>): IndentedTreeOptions => {
   let options: IndentedTreeOptions = {};
   const minWidth = nodeMinWidth || 0;
   const maxWidth = nodeMaxWidth || 300;
@@ -201,10 +201,10 @@ export const getIndentedTreeOptions = ({
     };
   }
 
-  if (mode) {
+  if (direction) {
     options.layout ||= {} as SingleLayoutOptions;
     Object.assign(options.layout as SingleLayoutOptions, {
-      direction: mode === 'alternate' ? 'H' : mode === 'left' ? 'RL' : 'LR',
+      direction: direction === 'alternate' ? 'H' : direction === 'left' ? 'RL' : 'LR',
     });
   }
 

@@ -17,11 +17,11 @@ export const IndentedTree: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<IndentedTreeOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<IndentedTreeOptions>>(({ children, ...props }, ref) => {
   const options = useMemo(() => {
-    const { type = 'default', nodeMinWidth, nodeMaxWidth, mode = 'right', ...restProps } = props;
+    const { type = 'default', nodeMinWidth, nodeMaxWidth, direction = 'right', ...restProps } = props;
     const options = mergeOptions(
       COMMON_OPTIONS,
       DEFAULT_OPTIONS,
-      getIndentedTreeOptions({ type, nodeMinWidth, nodeMaxWidth, mode }),
+      getIndentedTreeOptions({ type, nodeMinWidth, nodeMaxWidth, direction }),
       restProps,
     );
     return options;

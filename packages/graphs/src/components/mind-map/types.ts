@@ -7,10 +7,10 @@ export interface MindMapOptions extends GraphOptions {
    */
   type?: 'default' | 'linear' | 'boxed';
   /**
-   * The mode of the mind map.
+   * The direction of the mind map.
    * @default 'alternate'
    */
-  mode?: 'left' | 'right' | 'alternate';
+  direction?: 'left' | 'right' | 'alternate';
   /**
    * The minimum width of the node.
    * @default 0(default) 120(boxed)

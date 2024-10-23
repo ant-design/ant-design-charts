@@ -77,10 +77,10 @@ export const DEFAULT_OPTIONS: MindMapOptions = {
 
 export function getMindMapOptions({
   type,
-  mode,
+  direction,
   nodeMinWidth,
   nodeMaxWidth,
-}: Pick<MindMapOptions, 'type' | 'nodeMaxWidth' | 'nodeMinWidth' | 'mode'>): MindMapOptions {
+}: Pick<MindMapOptions, 'type' | 'nodeMaxWidth' | 'nodeMinWidth' | 'direction'>): MindMapOptions {
   let options: MindMapOptions = {};
   if (type === 'boxed') {
     const minWidth = nodeMinWidth || 120;
@@ -209,9 +209,9 @@ export function getMindMapOptions({
     };
   }
 
-  if (mode) {
+  if (direction) {
     options.layout ||= {} as SingleLayoutOptions;
-    (options.layout as SingleLayoutOptions).direction = mode === 'alternate' ? 'H' : mode === 'left' ? 'RL' : 'LR';
+    (options.layout as SingleLayoutOptions).direction = direction === 'alternate' ? 'H' : direction === 'left' ? 'RL' : 'LR';
   }
 
   return options;

@@ -7,10 +7,10 @@ export interface IndentedTreeOptions extends GraphOptions {
    */
   type?: 'default' | 'linear' | 'boxed';
   /**
-   * The mode of the mind map.
+   * The direction of the mind map.
    * @default 'right'
    */
-  mode?: 'left' | 'right' | 'alternate';
+  direction?: 'left' | 'right' | 'alternate';
   /**
    * The minimum width of the tree nodes. If the text of a tree node is too short, it will be centered.
    * @default 0
