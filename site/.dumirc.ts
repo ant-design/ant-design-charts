@@ -138,6 +138,14 @@ export default defineConfig({
         },
         order: 10,
       },
+      {
+        slug: 'options/graphs',
+        title: {
+          zh: '关系图',
+          en: 'Relation Graph',
+        },
+        order: 1,
+      },
     ],
     examples: [
       {
@@ -160,7 +168,7 @@ export default defineConfig({
         slug: 'relations',
         icon: 'line',
         title: {
-          zh: '关系图表',
+          zh: '关系图',
           en: 'Relations',
         },
       },
