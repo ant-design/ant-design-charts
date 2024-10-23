@@ -17,11 +17,11 @@ export const MindMap: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<MindMapOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<MindMapOptions>>(({ children, ...props }, ref) => {
   const options = useMemo(() => {
-    const { type = 'default', nodeMinWidth, nodeMaxWidth, mode = 'alternate', ...restProps } = props;
+    const { type = 'default', nodeMinWidth, nodeMaxWidth, direction = 'alternate', ...restProps } = props;
     const options = mergeOptions(
       COMMON_OPTIONS,
       DEFAULT_OPTIONS,
-      getMindMapOptions({ type, nodeMinWidth, nodeMaxWidth, mode }),
+      getMindMapOptions({ type, nodeMinWidth, nodeMaxWidth, direction }),
       restProps,
     );
     return options;

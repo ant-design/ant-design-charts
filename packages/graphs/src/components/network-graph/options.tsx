@@ -5,9 +5,6 @@ const SIZE = 32;
 export const DEFAULT_OPTIONS: NetworkGraphOptions = {
   node: {
     type: 'circle',
-    style: {
-      size: SIZE,
-    },
   },
   layout: {
     type: 'd3-force',

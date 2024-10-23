@@ -5,12 +5,12 @@ import { OrganizationChartOptions } from './types';
 const { TextNode } = RCNode;
 
 export const DEFAULT_OPTIONS: OrganizationChartOptions = {
-  padding: [20, 0, 0, 40],
+  padding: [20, 0, 0, 50],
   node: {
     type: 'react',
     style: {
       component: (data) => <TextNode type="filled" text={data.id} />,
-      size: [80, 40],
+      size: [100, 40],
       ports: [{ placement: 'top' }, { placement: 'bottom' }],
     },
     state: {
