@@ -25,7 +25,7 @@ It is suitable for displaying hierarchical data relationships, clarifying key po
 
 ## API
 
-For general configuration, refer to: [Common Graph Properties](./graphs/overview#common-graph-properties)
+For general configuration, refer to: [Common Graph Properties](./overview#common-graph-properties)
 
 ### Dendrogram
 
@@ -33,7 +33,7 @@ For general configuration, refer to: [Common Graph Properties](./graphs/overview
 | --- | --- | --- | --- |
 | direction | Syntax sugar to set the arrangement direction of tree nodes. When `layout.direction` is set, it takes precedence. | `'vertical'` \| `'horizontal'` \| `'radial'` | `'horizontal'` |
 | compact | Whether to enable compact mode | `boolean` | `false` |
-| layout | Tree layout configuration | [DendrogramLayoutOptions](https://g6.antv.antgroup.com/en/api/layouts/dendrogram-layout) | `{ type: 'dendrogram' }` |
-| behaviors | Set user interaction events. Also supports G6 built-in interactions. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) | `BehaviorOptions \| ((this: Graph, behaviors: BehaviorOptions) => BehaviorOptions)` | - |
-| plugins | Set canvas plugins for rendering logic and additional components. Also supports G6 built-in plugins. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/plugins/background) | `PluginOptions \| ((this: Graph, plugins: PluginOptions) => PluginOptions)` | - |
-| transforms | Configure data transformations to handle user input and convert it into internal data flows. Also supports G6 built-in data transformers. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | `TransformOptions \| ((this: Graph, behaviors: TransformOptions) => TransformOptions)` | - |
+| layout | Tree layout configuration | [`DendrogramLayoutOptions`](https://g6.antv.antgroup.com/en/api/layouts/dendrogram-layout) | `{ type: 'dendrogram' }` |
+| behaviors | Set user interaction events, also supports G6 built-in behaviors. For more details on behaviors, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
+| plugins   | Set canvas plugins for handling rendering logic and additional component rendering. Also supports G6 built-in plugins. For more details on plugins, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
+| transforms | Set data transformers to process user input data and convert it into internal flow data. Also supports G6 built-in data transformers. For more details on data transformation, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
