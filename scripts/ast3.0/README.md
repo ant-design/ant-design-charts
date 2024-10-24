@@ -1,4 +1,0 @@
-
-```bash
-$ node ./generator.js
-```
