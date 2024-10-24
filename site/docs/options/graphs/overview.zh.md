@@ -25,21 +25,21 @@ order: 0
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| autoFit | 是否自动适应 | `{ type: 'view'; options?: `[`FitViewOptions`](https://g6.antv.antgroup.com/api/reference/g6/fitviewoptions)`; animation?:` [`ViewportAnimationEffectTiming`](https://g6.antv.antgroup.com/api/reference/g6/viewportanimationeffecttiming)`; }` <br> \| `{ type: 'center'; animation?: ViewportAnimationEffectTiming; }` <br> \| `'view'` \| `'center'` | - |
-| animation | 启用或关闭全局动画，为动画配置项时，会启用动画，并将该动画配置作为全局动画的基础配置 | `boolean` \| [`AnimationEffectTiming`](https://g6.antv.antgroup.com/api/reference/g6/viewportanimationeffecttiming) | - |
+| autoFit | 是否自动适应 | `{ type: 'view'; options?: `[`FitViewOptions`](https://g6.antv.antgroup.com/api/reference/g6/fitviewoptions)`; animation?:` [`ViewportAnimationEffectTiming`](https://g6.antv.antgroup.com/api/reference/g6/viewportanimationeffecttiming)`}` <br> \| `{ type: 'center'; animation?:` [`ViewportAnimationEffectTiming`](https://g6.antv.antgroup.com/api/reference/g6/viewportanimationeffecttiming)`}` <br> \| `'view'` \| `'center'` | - |
+| animation | 启用或关闭全局动画，为动画配置项时，会启用动画，并将该动画配置作为全局动画的基础配置。关于动画的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/animation) | `boolean` \| [`AnimationEffectTiming`](https://g6.antv.antgroup.com/api/reference/g6/viewportanimationeffecttiming) | - |
 | autoResize | 是否自动调整画布大小 | `boolean` | `false` |
 | background | 画布背景色 | `string` | - |
-| combo | Combo，支持 G6 内置 Combo，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/elements/combos/base-combo) | [`ComboOptions`](https://g6.antv.antgroup.com/api/reference/g6/combooptions) | - |
-| container | 画布容器 | `string` \| `HTMLElement` \| `Canvas` | - |
-| cursor | 指针样式 | `Cursor` | - |
-| data | 数据 | [GraphData](https://g6.antv.antgroup.com/api/reference/g6/graphdata) | - |
+| combo | Combo，支持 G6 内置 Combo。关于 Combo 的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/element#%E7%BB%84%E5%90%88) | [`ComboOptions`](https://g6.antv.antgroup.com/api/reference/g6/combooptions) | - |
+| container | 画布容器 | `string` \| [`HTMLElement`](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement) \| [`Canvas`](https://g.antv.antgroup.com/api/renderer/canvas) | - |
+| cursor | 指针样式 | [`Cursor`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/cursor) | - |
+| data | 数据。关于图数据的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/data) | [`GraphData`](https://g6.antv.antgroup.com/api/reference/g6/graphdata) | - |
 | devicePixelRatio | 设备像素比 | `number` | - |
-| edge | 边，支持 G6 内置边，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/elements/edges/base-edge) | [`EdgeOptions`](https://g6.antv.antgroup.com/api/reference/g6/edgeoptions) | - |
+| edge | 边，支持 G6 内置边。关于边的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/element#%E8%BE%B9) | [`EdgeOptions`](https://g6.antv.antgroup.com/api/reference/g6/edgeoptions) | - |
 | height | 画布高度 | `number` | - |
-| layout | 布局，支持 G6 内置布局，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/layouts/antv-dagre-layout) | `LayoutOptions` \| `LayoutOptions[]` | - |
-| node | 节点，支持 G6 内置节点，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/elements/nodes/base-node)。 | [`NodeOptions`](https://g6.antv.antgroup.com/api/reference/g6/nodeoptions) | - |
+| layout | 布局，支持 G6 内置布局。关于图布局的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/layout) | [`LayoutOptions`](https://g6.antv.antgroup.com/examples#layout-force-directed) \| `LayoutOptions[]` | - |
+| node | 节点，支持 G6 内置节点。关于节点的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/element#%E8%8A%82%E7%82%B9)  | [`NodeOptions`](https://g6.antv.antgroup.com/api/reference/g6/nodeoptions) | - |
 | padding | 画布内边距，通常在自适应时，会根据内边距进行适配 | `number` \| `number[]` | - |
-| renderer | 获取渲染器 | `(layer: 'background' \| 'main' \| 'label' \| 'transient') => IRenderer` | - |
+| renderer | 获取渲染器 | `(layer: 'background' \| 'main' \| 'label' \| 'transient') =>`[`IRenderer`](https://g.antv.antgroup.com/api/canvas/options#renderer) | - |
 | rotation | 旋转角度 | `number` | `0` |
 | theme | 主题 | `'light'` \| `'dark'` \| `string` | - |
 | width | 画布宽度 | `number` | - |
@@ -47,12 +47,12 @@ order: 0
 | y | 视口 y 坐标 | `number` | - |
 | zoom | 缩放比例 | `number` | `1` |
 | zoomRange | 缩放范围 | `[number, number]` | `[0.01, 10]` |
-| behaviors | 设置用户交互事件，同样支持 G6 内置交互，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/behaviors/brush-select) | `BehaviorOptions \| ((this: Graph, behaviors: BehaviorOptions) => BehaviorOptions)` | 组件中查看 |
-| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/plugins/background) | `PluginOptions \| ((this: Graph, plugins: PluginOptions) => PluginOptions)` | - |
-| transforms | 设置数据转换，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器，了解相关配置项请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | `TransformOptions \| ((this: Graph, behaviors: TransformOptions) => TransformOptions)` | 组件中查看 |
+| behaviors | 设置用户交互事件，同样支持 G6 内置交互。关于交互的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | 组件中查看 |
+| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件。关于插件的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
+| transforms | 设置数据转换器，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器。关于数据转换的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | 组件中查看 |
 | onDestroy | 当图销毁后（即 `graph.destroy()` 之后）执行回调 | `() => void` | - |
-| onInit | 当图初始化完成后（即 `new Graph()` 之后）执行回调 | `(graph: Graph) => void` | - |
-| onReady | 当图渲染完成后（即 `graph.render()` 之后）执行回调 | `(graph: Graph) => void` | - |
+| onInit | 当图初始化完成后（即 `new Graph()` 之后）执行回调 | `(graph:`[`Graph`](https://g6.antv.antgroup.com/api/reference/g6/graph)`) => void` | - |
+| onReady | 当图渲染完成后（即 `graph.render()` 之后）执行回调 | `(graph:`[`Graph`](https://g6.antv.antgroup.com/api/reference/g6/graph)`) => void` | - |
 
 ## 自定义定制
 

@@ -25,34 +25,34 @@ For general configuration reference: [General Properties](./general-properties.e
 
 | Property | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| autoFit | Auto-fit settings | `{ type: 'view'; options?: `[`FitViewOptions`](https://g6.antv.antgroup.com/en/api/reference/g6/fitviewoptions)`; animation?:` [`ViewportAnimationEffectTiming`](https://g6.antv.antgroup.com/en/api/reference/g6/viewportanimationeffecttiming)`; }` <br> \| `{ type: 'center'; animation?: ViewportAnimationEffectTiming; }` <br> \| `'view'` \| `'center'` | - |
-| animation | Enable or disable global animations. If set with animation config, it enables animation and uses the config as a base for global animations. | `boolean` \| [`AnimationEffectTiming`](https://g6.antv.antgroup.com/en/api/reference/g6/viewportanimationeffecttiming) | - |
-| autoResize | Automatically adjust canvas size | `boolean` | `false` |
-| background | Canvas background color | `string` | - |
-| combo | Combo support, using G6 built-in Combo. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/elements/combos/base-combo) | [`ComboOptions`](https://g6.antv.antgroup.com/en/api/reference/g6/combooptions) | - |
-| container | Canvas container | `string` \| `HTMLElement` \| `Canvas` | - |
-| cursor | Cursor style | `Cursor` | - |
-| data | Graph data | [GraphData](https://g6.antv.antgroup.com/en/api/reference/g6/graphdata) | - |
+| autoFit | Whether to auto-fit the graph | `{ type: 'view'; options?: `[`FitViewOptions`](https://g6.antv.antgroup.com/en/api/reference/g6/fitviewoptions)`; animation?:` [`ViewportAnimationEffectTiming`](https://g6.antv.antgroup.com/en/api/reference/g6/viewportanimationeffecttiming)`}` <br> \| `{ type: 'center'; animation?:` [`ViewportAnimationEffectTiming`](https://g6.antv.antgroup.com/en/api/reference/g6/viewportanimationeffecttiming)`}` <br> \| `'view'` \| `'center'` | - |
+| animation | Enable or disable global animations. If animation config is provided, it enables animations and uses the config as the base. For more details on animations, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/animation) | `boolean` \| [`AnimationEffectTiming`](https://g6.antv.antgroup.com/en/api/reference/g6/viewportanimationeffecttiming) | - |
+| autoResize | Whether to automatically adjust the canvas size | `boolean` | `false` |
+| background | Background color of the canvas | `string` | - |
+| combo | Combo support, using G6 built-in Combos. For more details, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/element#combo) | [`ComboOptions`](https://g6.antv.antgroup.com/en/api/reference/g6/combooptions) | - |
+| container | Canvas container | `string` \| [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) \| [`Canvas`](https://g.antv.antgroup.com/en/api/renderer/canvas) | - |
+| cursor | Cursor style | [`Cursor`](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) | - |
+| data | Graph data. For more details, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/data) | [`GraphData`](https://g6.antv.antgroup.com/en/api/reference/g6/graphdata) | - |
 | devicePixelRatio | Device pixel ratio | `number` | - |
-| edge | Edge settings, using G6 built-in edges. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/elements/edges/base-edge) | [`EdgeOptions`](https://g6.antv.antgroup.com/en/api/reference/g6/edgeoptions) | - |
+| edge | Edge configuration, using G6 built-in edges. For more details, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/element#edge) | [`EdgeOptions`](https://g6.antv.antgroup.com/en/api/reference/g6/edgeoptions) | - |
 | height | Canvas height | `number` | - |
-| layout | Layout settings, using G6 built-in layouts. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/layouts/antv-dagre-layout) | `LayoutOptions` \| `LayoutOptions[]` | - |
-| node | Node settings, using G6 built-in nodes. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/elements/nodes/base-node) | [`NodeOptions`](https://g6.antv.antgroup.com/en/api/reference/g6/nodeoptions) | - |
-| padding | Canvas padding, typically applied when auto-fitting based on padding | `number` \| `number[]` | - |
-| renderer | Renderer accessor | `(layer: 'background' \| 'main' \| 'label' \| 'transient') => IRenderer` | - |
+| layout | Graph layout configuration, using G6 built-in layouts. For more details, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/layout) | [`LayoutOptions`](https://g6.antv.antgroup.com/en/examples#layout-force-directed) \| `LayoutOptions[]` | - |
+| node | Node configuration, using G6 built-in nodes. For more details, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/element#node) | [`NodeOptions`](https://g6.antv.antgroup.com/en/api/reference/g6/nodeoptions) | - |
+| padding | Canvas padding, usually applied during auto-fitting based on padding | `number` \| `number[]` | - |
+| renderer | Access renderer | `(layer: 'background' \| 'main' \| 'label' \| 'transient') =>`[`IRenderer`](https://g.antv.antgroup.com/en/api/canvas/options#renderer) | - |
 | rotation | Rotation angle | `number` | `0` |
-| theme | Theme setting | `'light'` \| `'dark'` \| `string` | - |
+| theme | Theme | `'light'` \| `'dark'` \| `string` | - |
 | width | Canvas width | `number` | - |
 | x | Viewport x-coordinate | `number` | - |
 | y | Viewport y-coordinate | `number` | - |
-| zoom | Zoom level | `number` | `1` |
+| zoom | Zoom scale | `number` | `1` |
 | zoomRange | Zoom range | `[number, number]` | `[0.01, 10]` |
-| behaviors | User interaction events, also supports G6 built-in behaviors. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) | `BehaviorOptions \| ((this: Graph, behaviors: BehaviorOptions) => BehaviorOptions)` | See component |
-| plugins | Canvas plugins, handles rendering logic and additional component rendering. Also supports G6 built-in plugins. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/plugins/background) | `PluginOptions \| ((this: Graph, plugins: PluginOptions) => PluginOptions)` | - |
-| transforms | Data transformation settings, handling user input and converting it to internal data streams for processing. Also supports G6 built-in transformers. For more configuration details, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | `TransformOptions \| ((this: Graph, behaviors: TransformOptions) => TransformOptions)` | See component |
-| onDestroy | Callback executed after graph destruction (`graph.destroy()`) | `() => void` | - |
-| onInit | Callback executed after graph initialization (`new Graph()`) | `(graph: Graph) => void` | - |
-| onReady | Callback executed after graph rendering (`graph.render()`) | `(graph: Graph) => void` | - |
+| behaviors | Set user interaction events, also supports G6 built-in interactions. For more details, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | See component |
+| plugins | Set canvas plugins to handle rendering logic and additional components. Also supports G6 built-in plugins. For more details, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
+| transforms | Set data transformers to process user input data and convert it into internal flow data. Also supports G6 built-in transformers. For more details, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | See component |
+| onDestroy | Callback executed after the graph is destroyed (`graph.destroy()`) | `() => void` | - |
+| onInit | Callback executed after the graph is initialized (`new Graph()`) | `(graph:`[`Graph`](https://g6.antv.antgroup.com/en/api/reference/g6/graph)`) => void` | - |
+| onReady | Callback executed after the graph is rendered (`graph.render()`) | `(graph:`[`Graph`](https://g6.antv.antgroup.com/en/api/reference/g6/graph)`) => void` | - |
 
 ## Customization
 
