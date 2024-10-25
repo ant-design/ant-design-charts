@@ -1,5 +1,8 @@
 ---
-title: Indented Tree
+category: Components
+type: Graph
+title: IndentedTree
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*JZZVT5PsWPQAAAAAAAAAAAAADmJ7AQ/original
 order: 2
 ---
 
@@ -16,7 +19,7 @@ import { IndentedTree } from '@ant-design/graphs';
 - **Navigation Menus**: Show hierarchical navigation menus for websites or applications.
 - **Category Hierarchy**: Represent hierarchical relationships in classification systems, such as product categories or article categories.
 
-## Code Examples
+## Examples
 
 <code id="demo-indented-tree-default" src="./demos/indented-tree/default.tsx" description="A simple demonstration.">Basic Usage</code>
 
@@ -34,7 +37,7 @@ Adjust the `collapse-expand-react-node` interaction configuration to control exp
 
 ## API
 
-For general configuration, refer to: [Common Graph Properties](./overview#common-graph-properties)
+Common props ref: [Common Graph Properties](./overview#common-graph-properties)
 
 ### IndentedTree
 

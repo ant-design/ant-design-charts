@@ -1,5 +1,8 @@
 ---
-title: Flow Direction Graph
+category: Components
+type: Graph
+title: FlowDirectionGraph
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jOEPRKWxPE0AAAAAAAAAAAAADmJ7AQ/original
 order: 6
 ---
 
@@ -13,13 +16,13 @@ import { FlowDirectionGraph } from '@ant-design/graphs';
 
 Ideal for complex information that requires clear logical relationships or decision support. It visually and clearly shows data flow and relationships, improving understanding and decision-making efficiency.
 
-## Code Examples
+## Examples
 
 <code id="demo-flow-direction-graph-default" src="./demos/flow-direction-graph/default.tsx" description="A simple demonstration.<br> Adjust `edge.style.lineWidth` via the interaction `map-edge-line-width`. It includes the following properties:<br> - `value` (number or function to compute the value of the edge)<br> - `minValue` and `maxValue` (optional, minimum and maximum values, can be numbers or functions)<br> - `minLineWidth` and `maxLineWidth` (optional, minimum and maximum line widths, can be numbers or functions)<br> - `scale` (optional, interpolation function to map values to line widths, supports `'linear'`, `'log'`, `'pow'`, `'sqrt'`, and custom interpolation functions)">Basic Usage</code>
 
 ## API
 
-For general configuration, refer to: [Common Graph Properties](./overview#common-graph-properties)
+Common props ref: [Common Graph Properties](./overview#common-graph-properties)
 
 | Property  | Description | Type | Default Value |
 | ---       | ---         | ---  | ---           |

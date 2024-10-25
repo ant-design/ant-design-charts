@@ -1,3 +1,9 @@
+/**
+ * title: 基本用法
+ * description:
+ *  zh: 简单的展示1。
+ *  en: 简单的展示。
+ */
 import { MindMap, type MindMapOptions } from '@ant-design/graphs';
 import React from 'react';
 
@@ -26,6 +32,7 @@ export default () => {
     containerStyle: { height: '200px' },
     autoFit: 'view',
     data,
+    edge: { style: { endArrow: true } },
     animation: false,
   };
   return <MindMap {...options} />;

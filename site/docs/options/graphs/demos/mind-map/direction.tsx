@@ -29,6 +29,7 @@ export default () => {
     containerStyle: { height: '200px' },
     direction,
     autoFit: 'view',
+    edge: { style: { endArrow: true } },
     data,
     animation: false,
   };

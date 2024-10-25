@@ -1,5 +1,8 @@
 ---
+category: Components
+type: Graph
 title: Dendrogram
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*mvnUTaA91H0AAAAAAAAAAAAADmJ7AQ/original
 order: 3
 ---
 
@@ -13,7 +16,7 @@ import { Dendrogram } from '@ant-design/graphs';
 
 It is suitable for displaying hierarchical data relationships, clarifying key points of an issue, and outlining logical steps to achieve a goal.
 
-## Code Examples
+## Examples
 
 <code id="demo-dendrogram-default" src="./demos/dendrogram/default.tsx" description="A simple demonstration.">Basic Usage</code>
 
@@ -25,7 +28,7 @@ It is suitable for displaying hierarchical data relationships, clarifying key po
 
 ## API
 
-For general configuration, refer to: [Common Graph Properties](./overview#common-graph-properties)
+Common props ref: [Common Graph Properties](./overview#common-graph-properties)
 
 ### Dendrogram
 

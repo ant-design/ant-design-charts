@@ -48,7 +48,7 @@ export default () => {
       },
     },
     edge: {
-      style: { stroke: '#873bf4' },
+      style: { stroke: '#873bf4', endArrow: true },
     },
     animation: false,
   };

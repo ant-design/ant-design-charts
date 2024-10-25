@@ -1,5 +1,8 @@
 ---
-title: Mind Map
+category: Components
+type: Graph
+title: MindMap
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*cce0Sa7DR3cAAAAAAAAAAAAADmJ7AQ/original
 order: 1
 ---
 
@@ -13,7 +16,7 @@ import { MindMap } from '@ant-design/graphs';
 
 When information is complex or requires clear logical relationships, organize it into a series of nodes and branches to simplify understanding.
 
-## Code Examples
+## Examples
 
 <code id="demo-mind-map-default" src="./demos/mind-map/default.tsx" description="A simple demonstration.">Basic Usage</code>
 
@@ -31,7 +34,7 @@ Adjust the `collapse-expand-react-node` interaction configuration to control exp
 
 ## API
 
-For general configuration, refer to: [Common Graph Properties](./overview#common-graph-properties)
+Common props ref: [Common Graph Properties](./overview#common-graph-properties)
 
 ### MindMap
 
