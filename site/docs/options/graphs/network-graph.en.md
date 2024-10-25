@@ -1,5 +1,8 @@
 ---
-title: Network Graph
+category: Components
+type: Graph
+title: NetworkGraph
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*q9AkRIF8fF4AAAAAAAAAAAAADmJ7AQ/original
 order: 7
 ---
 
@@ -13,7 +16,7 @@ import { NetworkGraph } from '@ant-design/graphs';
 
 Use when you need to visualize nodes and their relationships in a complex network structure, revealing connection patterns and data flow intuitively.
 
-## Code Examples
+## Examples
 
 <code id="demo-network-graph-default" src="./demos/network-graph/default.tsx" description="A simple demonstration.">Basic Usage</code>
 
@@ -23,7 +26,7 @@ Use when you need to visualize nodes and their relationships in a complex networ
 
 ## API
 
-For general configuration, refer to: [Common Graph Properties](./overview#common-graph-properties)
+Common props ref: [Common Graph Properties](./overview#common-graph-properties)
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |

@@ -1,5 +1,8 @@
 ---
-title: 生态树图
+category: Components
+type: Graph
+title: Dendrogram 生态树图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*mvnUTaA91H0AAAAAAAAAAAAADmJ7AQ/original
 order: 3
 ---
 

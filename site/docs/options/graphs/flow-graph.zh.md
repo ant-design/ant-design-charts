@@ -1,5 +1,8 @@
 ---
-title: 流程图
+category: Components
+type: Graph
+title: FlowGraph 流程图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*n9JgQIGi9BQAAAAAAAAAAAAADmJ7AQ/original
 order: 5
 ---
 

@@ -1,13 +1,17 @@
 ---
-title: Bar
+category: Components
+type: Plot
+title: Bar 条形图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*eU1cRqm_fPAAAAAAAAAAAAAADmJ7AQ/original
+link: /examples#statistics-bar
 order: 0
 ---
 
-##  特有
+## 特有
 
 ### markBackground
 
-<description>**optional** *BarOptions*</description>
+<description>**optional** _BarOptions_</description>
 
 mark 背景配置
 

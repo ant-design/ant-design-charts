@@ -1,5 +1,8 @@
 ---
-title: 思维导图
+category: Components
+type: Graph
+title: MindMap 思维导图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*cce0Sa7DR3cAAAAAAAAAAAAADmJ7AQ/original
 order: 1
 ---
 
@@ -15,7 +18,7 @@ import { MindMap } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="demo-mind-map-default" src="./demos/mind-map/default.tsx" description="简单的展示。">基本用法</code>
+<code id="demo-mind-map-default" src="./demos/mind-map/default.tsx">基本用法</code>
 
 <code id="demo-mind-map-type" src="./demos/mind-map/type.tsx" description="通过 `type` 语法糖，使用预设的风格：线条风格和方框风格。">风格</code>
 

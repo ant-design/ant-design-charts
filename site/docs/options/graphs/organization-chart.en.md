@@ -1,8 +1,9 @@
 ---
-title: Organization Chart
+category: Components
+type: Graph
+title: OrganizationChart
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jgGCT7cMxg8AAAAAAAAAAAAADmJ7AQ/original
 order: 4
-demo:
-  cols: 3
 ---
 
 Visually displays the hierarchical structure and departmental relationships within an organization.
@@ -18,7 +19,7 @@ import { OrganizationChart } from '@ant-design/graphs';
 - For project management, clarifying team members and their responsibilities.
 - For dependency analysis in scenarios like equity penetration and upstream/downstream company relationships.
 
-## Code Examples
+## Examples
 
 <code id="demo-org-chart-default" src="./demos/organization-chart/default.tsx" description="A simple demonstration.">Basic Usage</code>
 
@@ -32,7 +33,7 @@ Adjust the `collapse-expand-react-node` interaction configuration to control exp
 
 ## API
 
-For general configuration, refer to: [Common Graph Properties](./overview#common-graph-properties)
+Common props ref: [Common Graph Properties](./overview#common-graph-properties)
 
 ### OrganizationChart
 

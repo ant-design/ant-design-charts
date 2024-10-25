@@ -1,5 +1,8 @@
 ---
-title: 流向图
+category: Components
+type: Graph
+title: FlowDirectionGraph 流向图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jOEPRKWxPE0AAAAAAAAAAAAADmJ7AQ/original
 order: 6
 ---
 

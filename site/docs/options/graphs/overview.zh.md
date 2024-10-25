@@ -7,24 +7,18 @@ order: 0
 
 > 该库提供的图组件会在内部维护一套默认配置，能够满足大多数常见场景的需求。用户可以通过自定义传参轻松修改这些配置，来优化渲染效果，贴合特定业务需求。然而，针对需深度定制的复杂场景，推荐使用 G6 直接开发，充分利用其底层强大的功能与灵活性。
 
-## 图组件概览
-
-| 应用场景 | 图组件 | 效果演示 | 示例 |
-| --- | --- | --- | --- |
-| 思维导图 | `MindMap` | ![mind-map](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*cce0Sa7DR3cAAAAAAAAAAAAADmJ7AQ/original) | [示例](https://ant-design-charts.antgroup.com/examples#relations-mind-map) |
-| 生态树图 | `Dendrogram` | ![dendrogram](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*mvnUTaA91H0AAAAAAAAAAAAADmJ7AQ/original) | [示例](https://ant-design-charts.antgroup.com/examples#relations-dendrogram) |
-| 缩进树图 | `IndentedTree` | ![indented-tree](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*JZZVT5PsWPQAAAAAAAAAAAAADmJ7AQ/original) | [示例](https://ant-design-charts.antgroup.com/examples#relations-indented-tree) |
-| 组织架构图 | `OrganizationChart` | ![org-chart](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jgGCT7cMxg8AAAAAAAAAAAAADmJ7AQ/original) | [示例](https://ant-design-charts.antgroup.com/examples#relations-organization-chart) |
-| 流程图 | `FlowGraph` | ![flow-graph](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*n9JgQIGi9BQAAAAAAAAAAAAADmJ7AQ/original) | [示例](https://ant-design-charts.antgroup.com/examples#relations-flow-graph) |
-| 流向图 | `FlowDirectionGraph` | ![flow-direction-graph](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jOEPRKWxPE0AAAAAAAAAAAAADmJ7AQ/original) | [示例](https://ant-design-charts.antgroup.com/examples#relations-flow-direction-graph) |
-| 网络图 | `NetworkGraph` | ![network-graph](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*q9AkRIF8fF4AAAAAAAAAAAAADmJ7AQ/original) | [示例](https://ant-design-charts.antgroup.com/examples#relations-network-graph) |
-
 ## 图通用属性
 
-通用配置参考：[通用属性](./general-properties.zh.md)
+> Tips: 以下通用属性适用于 graphs 组件，不支持的组件会单独说明。
 
-| 属性 | 说明 | 类型 | 默认值 |
+| 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| containerStyle | 配置图表容器的样式，接受一个包含 CSS 属性和值的对象 | `React.CSSProperties` | - |
+| containerAttributes | 为图表容器添加自定义的 HTML 属性 | `Record<string, any>` | - |
+| className | 添加在组件最外层的 className | `string` | - |
+| loading | 表示图表是否处于加载状态 | `boolean` | `false` |
+| loadingTemplate | 自定义加载模板，当图表加载时显示的元素 | `React.ReactElement` | - |
+| errorTemplate | 自定义错误模板，当图表出错时调用的函数，返回显示的错误信息 | `(e: Error) => React.ReactNode` | - |
 | autoFit | 是否自动适应 | `{ type: 'view'; options?: `[`FitViewOptions`](https://g6.antv.antgroup.com/api/reference/g6/fitviewoptions)`; animation?:` [`ViewportAnimationEffectTiming`](https://g6.antv.antgroup.com/api/reference/g6/viewportanimationeffecttiming)`}` <br> \| `{ type: 'center'; animation?:` [`ViewportAnimationEffectTiming`](https://g6.antv.antgroup.com/api/reference/g6/viewportanimationeffecttiming)`}` <br> \| `'view'` \| `'center'` | - |
 | animation | 启用或关闭全局动画，为动画配置项时，会启用动画，并将该动画配置作为全局动画的基础配置。关于动画的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/animation) | `boolean` \| [`AnimationEffectTiming`](https://g6.antv.antgroup.com/api/reference/g6/viewportanimationeffecttiming) | - |
 | autoResize | 是否自动调整画布大小 | `boolean` | `false` |
@@ -37,7 +31,7 @@ order: 0
 | edge | 边，支持 G6 内置边。关于边的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/element#%E8%BE%B9) | [`EdgeOptions`](https://g6.antv.antgroup.com/api/reference/g6/edgeoptions) | - |
 | height | 画布高度 | `number` | - |
 | layout | 布局，支持 G6 内置布局。关于图布局的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/layout) | [`LayoutOptions`](https://g6.antv.antgroup.com/examples#layout-force-directed) \| `LayoutOptions[]` | - |
-| node | 节点，支持 G6 内置节点。关于节点的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/element#%E8%8A%82%E7%82%B9)  | [`NodeOptions`](https://g6.antv.antgroup.com/api/reference/g6/nodeoptions) | - |
+| node | 节点，支持 G6 内置节点。关于节点的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/element#%E8%8A%82%E7%82%B9) | [`NodeOptions`](https://g6.antv.antgroup.com/api/reference/g6/nodeoptions) | - |
 | padding | 画布内边距，通常在自适应时，会根据内边距进行适配 | `number` \| `number[]` | - |
 | renderer | 获取渲染器 | `(layer: 'background' \| 'main' \| 'label' \| 'transient') =>`[`IRenderer`](https://g.antv.antgroup.com/api/canvas/options#renderer) | - |
 | rotation | 旋转角度 | `number` | `0` |
@@ -54,7 +48,7 @@ order: 0
 | onInit | 当图初始化完成后（即 `new Graph()` 之后）执行回调 | `(graph:`[`Graph`](https://g6.antv.antgroup.com/api/reference/g6/graph)`) => void` | - |
 | onReady | 当图渲染完成后（即 `graph.render()` 之后）执行回调 | `(graph:`[`Graph`](https://g6.antv.antgroup.com/api/reference/g6/graph)`) => void` | - |
 
-## 自定义定制
+## 定制需求
 
 为了满足多样化需求，用户可以在标准图组件基础上进行扩展，实现自定义关系图。
 

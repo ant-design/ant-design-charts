@@ -1,5 +1,9 @@
 ---
+category: Components
+type: Plot
 title: RadialBar
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*-1GkR6WftskAAAAAAAAAAAAADmJ7AQ/original
+link: /examples#statistics-radial-bar
 order: 21
 ---
 

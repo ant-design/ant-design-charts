@@ -1,14 +1,17 @@
 ---
-title: Column
+category: Components
+type: Plot
+title: Column 柱状图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*X_B0Q7Co9xEAAAAAAAAAAAAADmJ7AQ/original
+link: /examples#statistics-column
 order: 1
 ---
 
-
-##  特有
+## 特有
 
 ### markBackground
 
-<description>**optional** *ColumnOptions*</description>
+<description>**optional** _ColumnOptions_</description>
 
 mark 背景配置
 

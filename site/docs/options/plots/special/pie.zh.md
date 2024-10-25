@@ -1,25 +1,27 @@
 ---
-title: Pie
+category: Components
+type: Plot
+title: Pie 饼图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*DSItR6amdjMAAAAAAAAAAAAADmJ7AQ/original
 order: 2
 ---
 
-##  特有
+## 特有
 
 ### angleField
 
-<description>**optional** *string*</description>
+<description>**optional** _string_</description>
 
 角度映射字段
 
-
 ### radius
 
-<description>**optional** *number* **default** *1*</description>
+<description>**optional** _number_ **default** _1_</description>
 
 饼图半径[0~1]
 
 ### innerRadius
 
-<description>**optional** *number*</description>
+<description>**optional** _number_</description>
 
 饼图内半径

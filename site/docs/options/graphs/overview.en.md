@@ -21,7 +21,7 @@ order: 0
 
 ## Common Graph Properties
 
-For general configuration reference: [General Properties](./general-properties.en.md)
+For general configuration reference: [Chart Container Properties](.overview#chart-container-properties)
 
 | Property | Description | Type | Default Value |
 | --- | --- | --- | --- |

@@ -1,8 +1,9 @@
 ---
-title: 组织结构图
+category: Components
+type: Graph
+title: OrganizationChart 组织结构图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jgGCT7cMxg8AAAAAAAAAAAAADmJ7AQ/original
 order: 4
-demo:
-  cols: 3
 ---
 
 直观展示组织内部的层级结构和部门关系。
