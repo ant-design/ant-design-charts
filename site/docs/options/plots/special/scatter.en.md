@@ -1,11 +1,8 @@
 ---
 category: Components
 type: Plot
-title: Stock
+title: Scatter
 cover: https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*u5aGSoyRDN8AAAAAAAAAAAAADmJ7AQ
-link: /examples#statistics-stock
-order: 10
+link: /examples#statistics-scatter
 ---
-
-
-<embed src="@/docs/options/plots/special/stock.zh.md"></embed>
+Doing...

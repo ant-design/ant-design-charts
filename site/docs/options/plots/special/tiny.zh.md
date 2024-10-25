@@ -1,5 +1,9 @@
 ---
-title: Tiny
+category: Components
+type: Plot
+title: Tiny 迷你图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*e7gFTKK4RXwAAAAAAAAAAAAADmJ7AQ/original
+link: /examples#statistics-tiny
 order: 12
 ---
 

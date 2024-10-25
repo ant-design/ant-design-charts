@@ -43,7 +43,7 @@ export default defineConfig({
         },
       },
       {
-        slug: 'docs/options/plots/overview',
+        slug: 'docs/options',
         title: {
           zh: '选项',
           en: 'Option',

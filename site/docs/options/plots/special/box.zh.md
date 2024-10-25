@@ -1,5 +1,9 @@
 ---
-title: Box
+category: Components
+type: Plot
+title: Box 箱线图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A746SrYUxbsAAAAAAAAAAAAADmJ7AQ/original
+link: /examples#statistics-box
 order: 4
 ---
 

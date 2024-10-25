@@ -1,25 +1,30 @@
 ---
-title: RadialBar
+category: Components
+type: Plot
+title: RadialBar 玉珏图
+cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*-1GkR6WftskAAAAAAAAAAAAADmJ7AQ/original
+link: /examples#statistics-radial-bar
 order: 21
 ---
 
-##  特有
+## 特有
 
 ### markBackground
 
-<description>**optional** *BarOptions*</description>
+<description>**optional** _BarOptions_</description>
 
-data参数
+data 参数
+
 ```ts
 const data = [
-  { name: 'X6', star: 297 , color:'pink'},
-  { name: 'G', star: 506 , color:'pink'},
-  { name: 'AVA', star: 805 , color:'pink'},
-  { name: 'G2Plot', star: 1478, color:'orange' },
-  { name: 'L7', star: 2029, color:'orange' },
-  { name: 'G6', star: 7100, color:'orange' },
-  { name: 'F2', star: 7346, color:'orange' },
-  { name: 'G2', star: 10178 , color:'blue'},
+  { name: 'X6', star: 297, color: 'pink' },
+  { name: 'G', star: 506, color: 'pink' },
+  { name: 'AVA', star: 805, color: 'pink' },
+  { name: 'G2Plot', star: 1478, color: 'orange' },
+  { name: 'L7', star: 2029, color: 'orange' },
+  { name: 'G6', star: 7100, color: 'orange' },
+  { name: 'F2', star: 7346, color: 'orange' },
+  { name: 'G2', star: 10178, color: 'blue' },
 ];
 ```
 
