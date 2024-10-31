@@ -20,6 +20,10 @@ Ideal for complex information that requires clear logical relationships or decis
 
 <code id="demo-flow-direction-graph-default" src="./demos/flow-direction-graph/default.tsx" description="A simple demonstration.<br> Adjust `edge.style.lineWidth` via the interaction `map-edge-line-width`. It includes the following properties:<br> - `value` (number or function to compute the value of the edge)<br> - `minValue` and `maxValue` (optional, minimum and maximum values, can be numbers or functions)<br> - `minLineWidth` and `maxLineWidth` (optional, minimum and maximum line widths, can be numbers or functions)<br> - `scale` (optional, interpolation function to map values to line widths, supports `'linear'`, `'log'`, `'pow'`, `'sqrt'`, and custom interpolation functions)">Basic Usage</code>
 
+<code id="demo-flow-direction-graph-hover-activate-neighbor" src="./demos/flow-direction-graph/hover-activate-neighbor.tsx" description="This interaction `hover-activate-neighbors` is based on the G6 built-in interaction `hover-activate` and inherits its [configuration options](https://g6.antv.antgroup.com/en/sapi/behaviors/hover-activate).">Hover Highlight Neighbors</code>
+
+<code id="demo-flow-direction-graph-custom" src="./demos/flow-direction-graph/custom.tsx">Custom</code>
+
 ## API
 
 Common props ref: [Common Graph Properties](./overview#common-graph-properties)
