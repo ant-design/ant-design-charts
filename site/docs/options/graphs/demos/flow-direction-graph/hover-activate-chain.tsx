@@ -1,9 +1,9 @@
 import { FlowDirectionGraph, type FlowDirectionGraphOptions } from '@ant-design/graphs';
 import React from 'react';
 
-const blue = '#6395FA';
-const green = '#64DAAB';
-const gray = '#595959';
+const blue = 'rgba(99, 149, 250, 1)';
+const green = 'rgba(100, 218, 171, 1)';
+const gray = 'rgba(89, 89, 89, 1)';
 
 const data = {
   "nodes": [
@@ -27,17 +27,6 @@ const data = {
   ]
 }
 
-const hexToRgba = (hex: string, alpha: number): string => {
-  hex = hex.replace('#', '');
-  if (hex.length === 3) {
-    hex = hex.split('').map(char => char + char).join('');
-  }
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
-
 const CustomNode = ({ text, isActive, color }: { text: string, isActive: boolean, color: string }) => {
   const style = {
     height: 'inherit',
@@ -46,7 +35,7 @@ const CustomNode = ({ text, isActive, color }: { text: string, isActive: boolean
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '4px',
-    backgroundColor: hexToRgba(color, isActive ? 1 : 0.2),
+    backgroundColor: !isActive ? color.replace('1)', '0.2)') : color,
     color: isActive ? '#fff' : '#000',
   };
 
