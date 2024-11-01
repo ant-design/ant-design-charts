@@ -27,7 +27,8 @@
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "lib": "run-p lib:*",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
-    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es"
+    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
     "@ant-design/graphs": "^2.0.0",
