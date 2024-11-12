@@ -1,6 +1,7 @@
 ---
 category: Components
 type: Graph
+usage: relation
 title: NetworkGraph
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*q9AkRIF8fF4AAAAAAAAAAAAADmJ7AQ/original
 order: 7

@@ -1,6 +1,7 @@
 ---
 category: Components
 type: Graph
+usage: flow,relation
 title: FlowGraph
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*n9JgQIGi9BQAAAAAAAAAAAAADmJ7AQ/original
 order: 5
