@@ -292,6 +292,7 @@ export default defineConfig({
     },
   },
   mfsu: false,
+  mako: {},
   alias: {
     // 根据自己项目结构书写绝对路径
     '@': __dirname,
