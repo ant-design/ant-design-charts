@@ -49,20 +49,22 @@
   },
   "dependencies": {
     "@ant-design/charts-util": "workspace:*",
-    "@antv/g6": "^5.0.24",
+    "@antv/g6": "^5.0.29",
     "@antv/g6-extension-react": "^0.1.7",
-    "@antv/graphin": "^3.0.2",
+    "@antv/graphin": "^3.0.4",
     "lodash": "^4.17.21",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@antv/algorithm": "^0.1.26",
-    "@types/jest": "^26.0.0",
-    "@types/lodash": "^4.17.7",
-    "antd": "^5.20.5",
-    "react-router-dom": "^6.26.1",
+    "@types/jest": "^26.0.24",
+    "@types/lodash": "^4.17.13",
+    "antd": "^5.22.0",
+    "react-router-dom": "^6.28.0",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "vite": "^5.4.3"
+    "vite": "^5.4.11"
   },
   "peerDependencies": {
     "react": ">=16.8.4",
