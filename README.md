@@ -1,4 +1,4 @@
-# @ant-design/charts
+# @ant-design/charts-test
 
 <div align="center">
 
