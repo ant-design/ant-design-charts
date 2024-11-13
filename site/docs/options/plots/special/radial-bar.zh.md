@@ -1,6 +1,7 @@
 ---
 category: Components
 type: Plot
+usage: comparison
 title: RadialBar 玉珏图
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*-1GkR6WftskAAAAAAAAAAAAADmJ7AQ/original
 link: /examples#statistics-radial-bar

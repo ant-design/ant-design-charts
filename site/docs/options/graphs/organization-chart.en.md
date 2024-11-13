@@ -1,6 +1,7 @@
 ---
 category: Components
 type: Graph
+usage: relation
 title: OrganizationChart
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*jgGCT7cMxg8AAAAAAAAAAAAADmJ7AQ/original
 order: 4
