@@ -1,6 +1,7 @@
 ---
 category: Components
 type: Graph
+usage: relation
 title: Dendrogram
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*mvnUTaA91H0AAAAAAAAAAAAADmJ7AQ/original
 order: 3

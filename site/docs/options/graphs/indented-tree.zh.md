@@ -1,6 +1,7 @@
 ---
 category: Components
 type: Graph
+usage: relation
 title: IndentedTree 缩进树图
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*JZZVT5PsWPQAAAAAAAAAAAAADmJ7AQ/original
 order: 2

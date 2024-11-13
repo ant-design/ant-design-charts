@@ -5,7 +5,7 @@ node_modules
 /npm-debug.log*
 /yarn-error.log
 /yarn.lock
-/pnpm-lock.yaml
+# /pnpm-lock.yaml
 /package-lock.json
 /pnpm-debug.log
 /**/pnpm-debug.log
