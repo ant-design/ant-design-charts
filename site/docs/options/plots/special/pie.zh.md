@@ -1,7 +1,6 @@
 ---
 category: Components
 type: Plot
-usage: proportion
 title: Pie 饼图
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*DSItR6amdjMAAAAAAAAAAAAADmJ7AQ/original
 order: 2

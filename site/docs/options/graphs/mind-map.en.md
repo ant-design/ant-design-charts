@@ -1,7 +1,6 @@
 ---
 category: Components
 type: Graph
-usage: relation
 title: MindMap
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*cce0Sa7DR3cAAAAAAAAAAAAADmJ7AQ/original
 order: 1
