@@ -7,6 +7,7 @@ const { treeToGraphData } = G6;
 
 export const IndentedTreeLinear = () => {
   const options: IndentedTreeOptions = {
+    autoFit: 'view',
     type: 'linear',
     data: treeToGraphData(data),
   };

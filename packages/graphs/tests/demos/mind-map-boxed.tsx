@@ -7,6 +7,7 @@ const { treeToGraphData } = G6;
 
 export const MindMapBoxed = () => {
   const options: MindMapOptions = {
+    autoFit: 'view',
     type: 'boxed',
     data: treeToGraphData(data),
   };

@@ -142,12 +142,6 @@ export const FlowGraphTaskScheduling = () => {
         },
       },
     },
-    layout: {
-      type: 'dagre',
-      nodeSize: [194, 58],
-      nodesep: 40,
-      ranksep: 80,
-    },
     behaviors: (prev) => [...prev, 'hover-activate-chain'],
   };
 

@@ -119,7 +119,7 @@ export const TextNode: FC<TextNodeProps> = (props) => {
     text = '',
     font,
     color = '#1783ff',
-    borderWidth = 2,
+    borderWidth = 3,
     maxWidth = Infinity,
     isActive = false,
     isSelected = false,

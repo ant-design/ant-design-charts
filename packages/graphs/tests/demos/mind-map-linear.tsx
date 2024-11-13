@@ -7,6 +7,7 @@ const { treeToGraphData } = G6;
 
 export const MindMapLinear = () => {
   const options: MindMapOptions = {
+    autoFit: 'view',
     type: 'linear',
     data: treeToGraphData(data),
   };

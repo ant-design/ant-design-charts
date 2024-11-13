@@ -7,6 +7,7 @@ const { treeToGraphData } = G6;
 
 export const MindMap = () => {
   const options: MindMapOptions = {
+    autoFit: 'view',
     data: treeToGraphData(data),
     transforms: (prev) => [
       ...prev.filter((transform) => (transform as any).type !== 'collapse-expand-react-node'),

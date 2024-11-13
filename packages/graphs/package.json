@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@ant-design/charts-util": "workspace:*",
-    "@antv/g6": "^5.0.29",
+    "@antv/g6": "^5.0.30",
     "@antv/g6-extension-react": "^0.1.7",
     "@antv/graphin": "^3.0.4",
     "lodash": "^4.17.21",

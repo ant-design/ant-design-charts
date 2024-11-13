@@ -7,6 +7,7 @@ const { treeToGraphData } = G6;
 
 export const IndentedTreeBoxed = () => {
   const options: IndentedTreeOptions = {
+    autoFit: 'view',
     type: 'boxed',
     data: treeToGraphData(data),
   };

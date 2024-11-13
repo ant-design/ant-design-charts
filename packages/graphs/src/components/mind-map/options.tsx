@@ -36,7 +36,7 @@ export const DEFAULT_OPTIONS: MindMapOptions = {
   edge: {
     type: 'cubic-horizontal',
     style: {
-      lineWidth: 2,
+      lineWidth: 3,
     },
   },
   transforms: (prev) => [
@@ -103,8 +103,8 @@ export function getMindMapOptions({
               depth === 0
                 ? { type: 'filled', color: '#f1f4f5', style: { color: '#252525' } }
                 : depth === 1
-                ? { type: 'filled' }
-                : { type: 'outlined' },
+                  ? { type: 'filled' }
+                  : { type: 'outlined' },
             );
             return <TextNode {...props} />;
           },
@@ -157,9 +157,9 @@ export function getMindMapOptions({
               depth === 0
                 ? { type: 'filled', color: '#f1f4f5', style: { color: '#252525' } }
                 : {
-                    type: 'underlined',
-                    style: side === 'left' ? { textAlign: 'right' } : side === 'center' ? { textAlign: 'center' } : {},
-                  },
+                  type: 'underlined',
+                  style: side === 'left' ? { textAlign: 'right' } : side === 'center' ? { textAlign: 'center' } : {},
+                },
             );
             return <TextNode {...props} />;
           },

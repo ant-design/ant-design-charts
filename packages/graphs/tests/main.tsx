@@ -9,7 +9,7 @@ const App = () => {
   const match = useMatch('/*');
 
   return (
-    <Flex vertical>
+    <Flex vertical style={{ height: '100vh' }}>
       <Select
         value={match?.params['*'] || Object.keys(demos)[0]}
         options={Object.keys(demos).map((label) => ({ label, value: label }))}

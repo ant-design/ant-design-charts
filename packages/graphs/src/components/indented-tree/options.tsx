@@ -6,6 +6,7 @@ import { measureTextSize } from '../../core/utils/measure-text';
 import { getNodeSide } from '../../core/utils/node';
 import { getBoxedTextNodeStyle, getLinearTextNodeStyle } from '../../core/utils/tree';
 import type { IndentedTreeOptions } from './types';
+import { update } from 'lodash';
 
 const { ArrowCountIcon } = CollapseExpandIcon;
 const { TextNode } = RCNode;
@@ -29,7 +30,7 @@ export const DEFAULT_OPTIONS: IndentedTreeOptions = {
   edge: {
     type: 'indented',
     style: {
-      lineWidth: 2,
+      lineWidth: 3,
     },
   },
   transforms: (prev) => [
@@ -152,9 +153,9 @@ export const getIndentedTreeOptions = ({
               depth === 0
                 ? { type: 'filled', color: '#f1f4f5', style: { color: '#252525' } }
                 : {
-                    type: 'underlined',
-                    style: { textAlign: getNodeTextAlign(this as unknown as Graph, data) },
-                  },
+                  type: 'underlined',
+                  style: { textAlign: getNodeTextAlign(this as unknown as Graph, data) },
+                },
             );
             return <TextNode {...props} />;
           },
@@ -165,8 +166,8 @@ export const getIndentedTreeOptions = ({
             return side === 'left'
               ? [{ placement: 'bottom' }, { placement: 'bottom-right' }]
               : side === 'center'
-              ? [{ placement: 'bottom' }]
-              : [{ placement: 'bottom' }, { placement: 'bottom-left' }];
+                ? [{ placement: 'bottom' }]
+                : [{ placement: 'bottom' }, { placement: 'bottom-left' }];
           },
         },
       },
@@ -175,7 +176,7 @@ export const getIndentedTreeOptions = ({
           stroke: function (data) {
             return (this.getNodeData(data.target).style!.color as string) || '#99ADD1';
           },
-          radius: 16,
+          radius: 24,
         },
       },
       layout: {
