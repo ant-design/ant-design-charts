@@ -4,11 +4,10 @@ import { measureTextSize } from './measure-text';
 export const getLinearTextNodeStyle = memoize(
   (text: string, minWidth: number, maxWidth: number, depth: number = 0) => {
     const font = {
-      fontWeight: 'bold',
-      fontSize: depth === 0 ? 20 : 16,
-      fontFamily: 'PingFang SC',
+      fontWeight: depth === 0 ? 600 : 400,
+      fontSize: depth === 0 ? 24 : 16,
     };
-    const offset = depth === 0 ? [24, 36] : [12, 12];
+    const offset = depth === 0 ? [64, 30] : [12, 12];
     const size = measureTextSize(text, offset, font, minWidth, maxWidth);
     return { font, size };
   },
@@ -17,11 +16,10 @@ export const getLinearTextNodeStyle = memoize(
 export const getBoxedTextNodeStyle = memoize(
   (text: string, minWidth: number, maxWidth: number, depth: number = 0) => {
     const font = {
-      fontWeight: 'bold',
-      fontSize: depth === 0 ? 20 : depth === 1 ? 18 : 16,
-      fontFamily: 'PingFang SC',
+      fontWeight: depth === 0 || depth === 1 ? 600 : 400,
+      fontSize: depth === 0 ? 24 : 16,
     };
-    const offset = depth === 0 ? [24, 36] : [12, 24];
+    const offset = depth === 0 ? [64, 30] : [36, 24];
     const size = measureTextSize(text, offset, font, minWidth, maxWidth);
     return { font, size };
   },

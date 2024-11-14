@@ -31,9 +31,11 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@ant-design/graphs": "^2.0.0",
-    "@ant-design/plots": "^2.1.3",
-    "lodash": "^4.17.21"
+    "@ant-design/graphs": "workspace:^",
+    "@ant-design/plots": "workspace:^",
+    "lodash": "^4.17.21",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "peerDependencies": {
     "react": ">=16.8.4",

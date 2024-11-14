@@ -7,15 +7,9 @@ const { treeToGraphData } = G6;
 
 export const IndentedTree = () => {
   const options: IndentedTreeOptions = {
+    autoFit: 'view',
     type: 'default',
     data: treeToGraphData(data),
-    // transforms: (prev) => [
-    //   ...prev.filter((transform) => (transform as any).type !== 'collapse-expand-react-node'),
-    //   {
-    //     ...(prev.find((transform) => (transform as any).type === 'collapse-expand-react-node') as any),
-    //     enable: true,
-    //   },
-    // ],
   };
 
   return <IndentedTreeComponent {...options} />;

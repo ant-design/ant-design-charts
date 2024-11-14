@@ -57,7 +57,7 @@ export const UserFlowDirectionGraph = () => {
     ],
     layout: {
       type: 'antv-dagre',
-      nodesep: -10,
+      nodesep: 16,
       ranksep: 100,
     },
   };

@@ -16,16 +16,14 @@ import type { IndentedTreeOptions } from './types';
 export const IndentedTree: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<IndentedTreeOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<IndentedTreeOptions>>(({ children, ...props }, ref) => {
-  const options = useMemo(() => {
-    const { type = 'default', nodeMinWidth, nodeMaxWidth, direction = 'right', ...restProps } = props;
-    const options = mergeOptions(
-      COMMON_OPTIONS,
-      DEFAULT_OPTIONS,
-      getIndentedTreeOptions({ type, nodeMinWidth, nodeMaxWidth, direction }),
-      restProps,
-    );
-    return options;
-  }, [props]);
+  const { type = 'default', nodeMinWidth, nodeMaxWidth, direction = 'right', ...restProps } = props;
+
+  const options = useMemo(() => mergeOptions(
+    COMMON_OPTIONS,
+    DEFAULT_OPTIONS,
+    getIndentedTreeOptions({ type, nodeMinWidth, nodeMaxWidth, direction }),
+    restProps,
+  ), [props]);
 
   return (
     <BaseGraph {...options} ref={ref}>
