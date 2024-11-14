@@ -5,8 +5,8 @@ export interface FishboneOptions extends GraphOptions {
   /**
    * The type of the fishbone diagram.
    * - `'decision'`: direction from left to right.
-   * - `'cause-and-effect'`: direction from right to left.
-   * @default 'cause-and-effect'
+   * - `'cause'`: direction from right to left.
+   * @default 'cause'
    */
-  type?: 'decision' | 'cause-and-effect';
+  type?: 'decision' | 'cause';
 }

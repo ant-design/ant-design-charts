@@ -79,7 +79,7 @@ export function getFishboneOptions({ type }: Pick<FishboneOptions, 'type'>): Fis
     // @ts-ignore
     options.node.style.labelPlacement = d => d.depth === 0 || d.depth === 1 ? 'center' : 'right';
     Object.assign(options.layout!, { direction: 'LR' })
-  } else if (type === 'cause-and-effect') {
+  } else if (type === 'cause') {
     // @ts-ignore
     options.node.style.labelPlacement = d => d.depth === 0 || d.depth === 1 ? 'center' : 'left';
     Object.assign(options.layout!, { direction: 'RL' })

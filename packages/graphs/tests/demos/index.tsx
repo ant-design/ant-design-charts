@@ -13,3 +13,4 @@ export { NetworkGraph } from './network-graph';
 export { OrganizationChart } from './organization-chart';
 export { OrganizationChart2 } from './organization-chart2';
 export { UserFlowDirectionGraph } from './user-flow-direction-graph';
+export { FishboneDefault } from './fishbone-default';
