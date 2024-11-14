@@ -9,6 +9,7 @@ export {
   MindMap,
   NetworkGraph,
   OrganizationChart,
+  Fishbone,
 } from './components';
 export type {
   DendrogramOptions,
@@ -18,6 +19,7 @@ export type {
   MindMapOptions,
   NetworkGraphOptions,
   OrganizationChartOptions,
+  FishboneOptions
 } from './components';
 export { CollapseExpandIcon, RCNode } from './core/base';
 export type { OrganizationChartNodeProps, TextNodeProps } from './core/base/node';

@@ -6,7 +6,6 @@ import { measureTextSize } from '../../core/utils/measure-text';
 import { getNodeSide } from '../../core/utils/node';
 import { getBoxedTextNodeStyle, getLinearTextNodeStyle } from '../../core/utils/tree';
 import type { IndentedTreeOptions } from './types';
-import { update } from 'lodash';
 
 const { ArrowCountIcon } = CollapseExpandIcon;
 const { TextNode } = RCNode;
