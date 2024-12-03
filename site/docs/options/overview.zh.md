@@ -7,4 +7,4 @@ showToc: false
 
 图表的作用，是帮助我们更好地看懂数据。选择什么图表，需要回答的首要问题是 **「我有什么数据，需要用图表做什么」** ， 而不是 **「图表长成什么样」**。因此我们从数据出发，从功能角度对图表进行分类。
 
-<code src="./demos/components-list.tsx"></code>
+<code src="./common/components-list.tsx"></code>

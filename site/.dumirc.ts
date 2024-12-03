@@ -136,15 +136,15 @@ export default defineConfig({
           zh: '专有配置 - Specal Plot',
           en: 'Specal Plot',
         },
-        order: 10,
+        order: 2,
       },
       {
         slug: 'options/graphs',
         title: {
           zh: '关系图',
-          en: 'Relation Graph',
+          en: 'Relation Graphs',
         },
-        order: 1,
+        order: 3,
       },
     ],
     examples: [
@@ -166,7 +166,7 @@ export default defineConfig({
       },
       {
         slug: 'relations',
-        icon: 'line',
+        icon: '18wangzhuangtu',
         title: {
           zh: '关系图',
           en: 'Relations',
