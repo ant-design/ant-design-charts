@@ -47,6 +47,62 @@ order: 0
 | spacing                     | 设置主标题与副标题间的垂直间距                                                                                                     | number                                                       | 2      |
 | `title${TextStyleProps}`    | 设置主标题文字样式，可参考 [TextStyleProps](https://g.antv.antgroup.com/api/basic/text) 配置。例如 titleFontSize 代表主标题字号    | [TextStyleProps](https://g.antv.antgroup.com/api/basic/text) | -      |
 | `subtitle${TextStyleProps}` | 设置副标题文字样式，可参考 [TextStyleProps](https://g.antv.antgroup.com/api/basic/text) 配置。例如 subtitleFontSize 代表副标题字号 | [TextStyleProps](https://g.antv.antgroup.com/api/basic/text) | -      |
+
+### Data
+
+定义数据源，支持下列两种数据获取方式：
+
+1. fetch 远程数据
+
+```json
+{
+  "data": {
+    "type": "fetch",
+    "value": "https://gw.alipayobjects.com/os/basement_prod/6b4aa721-b039-49b9-99d8-540b3f87d339.json"
+  }
+}
+```
+
+2. 使用本地数据
+
+```json
+{
+  "data": {
+    "type": "inline",
+    "value": [
+      { "genre": "Sports", "sold": 275 },
+      { "genre": "Strategy", "sold": 115 },
+      { "genre": "Action", "sold": 120 },
+      { "genre": "Shooter", "sold": 350 },
+      { "genre": "Other", "sold": 150 }
+    ]
+  }
+}
+```
+
+也可以使用语法糖直接指定：
+
+```json
+{
+  "data": [
+    { "genre": "Sports", "sold": 275 },
+    { "genre": "Strategy", "sold": 115 },
+    { "genre": "Action", "sold": 120 },
+    { "genre": "Shooter", "sold": 350 },
+    { "genre": "Other", "sold": 150 }
+  ]
+}
+```
+
+| 属性      | 说明                                                                                                             | 类型                                                   | 默认值   |
+| --------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | -------- |
+| type      | 获得数据的方式                                                                                                   | `fetch` \| `inline`                                    | `inline` |
+| value     | fetch 远程数据时填入请求的网络地址，inline 内联数据时写入具体的数组数据                                          | - type is `fetch`: string <br> - type is `inline`: any | -        |
+| format    | 远程文件的数据格式类型，决定用什么方式解析。仅在 type 为 `fetch` 时有用                                          | `json` \| `csv`                                        | `json`   |
+| delimiter | 如果是 csv 文件，解析时使用的分割符。仅在 type 为 `fetch` 且 format 为 `csv`时有用                               | string                                                 | `,`      |
+| autoType  | 如果是 csv 文件，解析的时候是否自动判断列数据类型。仅在 type 为 `fetch` 且 format 为 `csv`时有用                 | boolean                                                | true     |
+| transform | 对加载后的数据进行变换操作，具体配置可参考 [G2 - Data 数据转换](https://g2.antv.antgroup.com/spec/overview#data) | DataTransform                                          | []       |
+
 ## FAQ
 
 ### 如何使用 svg 来绘制图表？
