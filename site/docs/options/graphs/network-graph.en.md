@@ -19,11 +19,10 @@ Use when you need to visualize nodes and their relationships in a complex networ
 
 ## Examples
 
-<code id="demo-network-graph-default" src="./demos/network-graph/default.tsx" description="A simple demonstration.">Basic Usage</code>
-
-<code id="demo-network-graph-label" src="./demos/network-graph/label.tsx" description="Display node labels. By default, three lines of text are shown, with the full content displayed on hover.">Node Labels</code>
-
-<code id="demo-network-graph-node-importance" src="./demos/network-graph/node-importance.tsx" description="Map node importance to node size. Click [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) for more configuration options.">Node Importance</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/network-graph/default.tsx">Basic Usage</code>
+<code src="../graphs-demos/network-graph/label.tsx">Node Labels</code>
+<code src="../graphs-demos/network-graph/node-importance.tsx">Node Importance</code>
 
 ## API
 
@@ -33,5 +32,5 @@ Common props ref: [Common Graph Properties](./overview#common-graph-properties)
 | --- | --- | --- | --- |
 | layout | D3 Force layout configuration | [`D3ForceLayoutOptions`](https://g6.antv.antgroup.com/en/api/layouts/d3-force-layout) | `{ type: 'd3-force' }` |
 | behaviors | Set user interaction events, also supports G6 built-in behaviors. For more details on behaviors, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins   | Set canvas plugins for handling rendering logic and additional component rendering. Also supports G6 built-in plugins. For more details on plugins, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
+| plugins | Set canvas plugins for handling rendering logic and additional component rendering. Also supports G6 built-in plugins. For more details on plugins, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
 | transforms | Set data transformers to process user input data and convert it into internal flow data. Also supports G6 built-in data transformers. For more details on data transformation, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |

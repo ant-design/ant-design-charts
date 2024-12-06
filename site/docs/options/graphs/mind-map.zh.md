@@ -19,19 +19,13 @@ import { MindMap } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="demo-mind-map-default" src="./demos/mind-map/default.tsx">基本用法</code>
-
-<code id="demo-mind-map-type" src="./demos/mind-map/type.tsx" description="通过 `type` 语法糖，使用预设的风格：线条风格和方框风格。">风格</code>
-
-<code id="demo-mind-map-direction" src="./demos/mind-map/direction.tsx" description="通过设置 `direction` 为 `right` `left` 分别让子节点右侧、左侧分布。若不设置 `direction`，则默认自由分布。">子节点分布</code>
-
-<code id="demo-mind-map-custom-node" src="./demos/mind-map/custom-node.tsx" description="通过 `node.component` 来进行自定义节点，需要与 `node.size` 配合实现。">自定义节点</code>
-
-<code id="demo-mind-map-collapse-expand" src="./demos/mind-map/collapse-expand.tsx" description="
-通过调整 `collapse-expand-react-node` 交互配置来控制展开/收起子节点的操作。<br> - `enable`: 是否启用该交互，类型为 `boolean | ((data: NodeData) => boolean)`，默认为 `false` <br> - `trigger`: 点击指定元素，触发节点收起/展开；`'icon'` 代表点击图标触发，`'node'` 代表点击节点触发，`HTMLElement` 代表自定义元素，默认为 `'icon'` <br> - `direction`: 收起/展开指定方向上的邻居节点，`'in'` 代表前驱节点，`'out'` 代表后继节点，`'both'` 代表前驱和后继节点，默认为 `'out'` <br> - `iconType`: 内置图标语法糖，`'plus-minus'` 或 `'arrow-count'` <br> - `iconRender`: 渲染函数，用于自定义收起/展开图标，参数为 `isCollapsed`（当前节点是否已收起）和 `data`（节点数据），返回自定义图标 <br> - `iconPlacement`: 图标相对于节点的位置，可选值为 `'left'`、`'right'`、`'top'`、`'bottom'`，默认为 `'bottom'` <br> - `iconOffsetX/iconOffsetY`: 图标相对于节点的水平、垂直偏移量，默认为 `0` <br> - `iconClassName/iconStyle`: 指定图标的 CSS 类名及内联样式 <br> - `refreshLayout`: 每次收起/展开节点后，是否刷新布局
-">展开/收起子节点</code>
-
-<code id="demo-mind-map-color" src="./demos/mind-map/color.tsx" description="`assign-color-by-branch` 是内置数据转换的一个环节，可以通过修改 `colors` 来分配不同的颜色来区分思维导图的分支。">设置分支颜色</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/mind-map/default.tsx">基本用法</code>
+<code src="../graphs-demos/mind-map/type.tsx">风格</code>
+<code src="../graphs-demos/mind-map/direction.tsx">子节点分布</code>
+<code src="../graphs-demos/mind-map/custom-node.tsx">自定义节点</code>
+<code src="../graphs-demos/mind-map/collapse-expand.tsx">展开/收起子节点</code>
+<code src="../graphs-demos/mind-map/color.tsx">设置分支颜色</code>
 
 ## API
 

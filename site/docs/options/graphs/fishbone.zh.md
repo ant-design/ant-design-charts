@@ -20,11 +20,10 @@ import { Fishbone } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="default" src="./demos/fishbone/default.tsx" description="原因型鱼骨图（鱼头在右），用于分析问题。">原因型鱼骨图</code>
-
-<code id="decision" src="./demos/fishbone/decision.tsx" description="决策型鱼骨图（鱼头在左），用于解决问题。">决策型鱼骨图</code>
-
-<code id="layout" src="./demos/fishbone/layout.tsx" description="调整鱼骨分支位置。">调整布局参数</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/fishbone/default.tsx">原因型鱼骨图</code>
+<code src="../graphs-demos/fishbone/decision.tsx">决策型鱼骨图</code>
+<code src="../graphs-demos/fishbone/layout.tsx">调整布局参数</code>
 
 ## API
 

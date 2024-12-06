@@ -20,11 +20,10 @@ The basic principle of the Fishbone method is to identify the main causes of a p
 
 ## Examples
 
-<code id="default" src="./demos/fishbone/default.tsx" description="Cause-type fishbone diagram (with the head on the right), used for analyzing problems.">Cause-type Fishbone Diagram</code>
-
-<code id="decision" src="./demos/fishbone/decision.tsx" description="Decision-type fishbone diagram (with the head on the left), used for solving problems.">Decision-type Fishbone Diagram</code>
-
-<code id="layout" src="./demos/fishbone/layout.tsx" description="Adjust the position of the fishbone branches.">Adjust Layout Parameters</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/fishbone/default.tsx">Cause-type Fishbone Diagram</code>
+<code src="../graphs-demos/fishbone/decision.tsx">Decision-type Fishbone Diagram</code>
+<code src="../graphs-demos/fishbone/layout.tsx">Adjust Layout Parameters</code>
 
 ## API
 

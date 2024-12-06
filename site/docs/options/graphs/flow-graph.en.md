@@ -23,11 +23,10 @@ A flowchart shows the entire process from start to finish. Each node represents 
 
 ## Examples
 
-<code id="demo-flow-graph-default" src="./demos/flow-graph/default.tsx" description="A simple demonstration.">Basic Usage</code>
-
-<code id="demo-flow-graph-hover" src="./demos/flow-graph/hover-activate-chain.tsx" description="By adding hover-highlight interaction (registered as `hover-activate-chain`), elements and their associated chains are highlighted on hover.">Highlight Elements and Their Chains</code>
-
-<code id="demo-flow-graph-custom-node" src="./demos/flow-graph/custom-node.tsx" description="Customize nodes using `node.component`, which needs to be paired with `node.size` to work properly.">Custom Nodes</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/flow-graph/default.tsx">Basic Usage</code>
+<code src="../graphs-demos/flow-graph/hover-activate-chain.tsx">Highlight Elements and Their Chains</code>
+<code src="../graphs-demos/flow-graph/custom-node.tsx">Custom Nodes</code>
 
 ## API
 

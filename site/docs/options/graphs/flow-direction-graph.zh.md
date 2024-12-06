@@ -19,13 +19,11 @@ import { FlowDirectionGraph } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="demo-flow-direction-graph-default" src="./demos/flow-direction-graph/default.tsx" description="简单的展示。<br> 通过交互 `map-edge-line-width` 来调整 `edge.style.lineWidth`。包含以下属性：<br> - `value`（数值或函数，用于计算边的数值）<br> - `minValue` 和 `maxValue`（可选，最小值和最大值，可以是数值或函数）<br> - `minLineWidth` 和 `maxLineWidth`（可选，最小线宽和最大线宽，可以是数值或函数）<br> -  `scale`（可选，插值函数，用于将数值映射到线宽，支持 `'linear`'、'`log'`、`'pow'`、`'sqrt'` 和自定义插值函数）">基本用法</code>
-
-<code id="demo-flow-direction-graph-hover-activate-neighbor" src="./demos/flow-direction-graph/hover-activate-neighbor.tsx" description="通过添加悬浮高亮交互（注册类型：`hover-activate-neighbors`）可以高亮当前元素及其相邻元素。该交互基于 G6 内置交互 `hover-activate` 实现，并继承了其[配置项](https://g6.antv.antgroup.com/api/behaviors/hover-activate)。">高亮相邻元素</code>
-
-<code id="demo-flow-direction-graph-hover-activate-chain" src="./demos/flow-direction-graph/hover-activate-chain.tsx" description="通过添加悬浮高亮交互（注册类型：`hover-activate-chain`）可以高亮显示当前元素及其所在的链路。此交互基于 G6 内置交互 `hover-activate` 实现，并继承了其[配置项](https://g6.antv.antgroup.com/api/behaviors/hover-activate)。">高亮元素及其所在链路</code>
-
-<code id="demo-flow-direction-graph-custom" src="./demos/flow-direction-graph/custom.tsx">自定义</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/flow-direction-graph/default.tsx">基本用法</code>
+<code src="../graphs-demos/flow-direction-graph/hover-activate-neighbor.tsx">高亮相邻元素</code>
+<code src="../graphs-demos/flow-direction-graph/hover-activate-chain.tsx">高亮元素及其所在链路</code>
+<code src="../graphs-demos/flow-direction-graph/custom.tsx">自定义</code>
 
 ## API
 

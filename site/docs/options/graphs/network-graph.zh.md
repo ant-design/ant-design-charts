@@ -19,11 +19,10 @@ import { NetworkGraph } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="demo-network-graph-default" src="./demos/network-graph/default.tsx" description="简单的展示。">基本用法</code>
-
-<code id="demo-network-graph-label" src="./demos/network-graph/label.tsx" description="展示节点标签，默认显示三行文字，鼠标悬浮时显示全部内容。">节点标签</code>
-
-<code id="demo-network-graph-node-importance" src="./demos/network-graph/node-importance.tsx" description="根据节点重要性映射到节点大小，点击[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size)查看更多配置项">节点重要性</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/network-graph/default.tsx">基本用法</code>
+<code src="../graphs-demos/network-graph/label.tsx">节点标签</code>
+<code src="../graphs-demos/network-graph/node-importance.tsx">节点重要性</code>
 
 ## API
 

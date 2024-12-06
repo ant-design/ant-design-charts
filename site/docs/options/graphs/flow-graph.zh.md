@@ -23,11 +23,10 @@ import { FlowGraph } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="demo-flow-graph-default" src="./demos/flow-graph/default.tsx" description="简单的展示。">基本用法</code>
-
-<code id="demo-flow-graph-hover" src="./demos/flow-graph/hover-activate-chain.tsx" description="通过添加悬浮高亮交互（注册类型：`hover-activate-chain`），可以高亮显示元素及其所在的链路。">高亮元素及其所在链路</code>
-
-<code id="demo-flow-graph-custom-node" src="./demos/flow-graph/custom-node.tsx" description="通过 `node.component` 来进行自定义节点，需要与 `node.size` 配合实现。">自定义节点</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/flow-graph/default.tsx">基本用法</code>
+<code src="../graphs-demos/flow-graph/hover-activate-chain.tsx">高亮元素及其所在链路</code>
+<code src="../graphs-demos/flow-graph/custom-node.tsx">自定义节点</code>
 
 ## API
 
