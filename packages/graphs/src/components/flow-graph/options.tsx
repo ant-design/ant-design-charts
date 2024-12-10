@@ -5,7 +5,6 @@ import type { FlowGraphOptions } from './types';
 const { TextNode } = RCNode;
 
 export const DEFAULT_OPTIONS: FlowGraphOptions = {
-  padding: [20, 0, 0, 50],
   node: {
     type: 'react',
     style: {

@@ -7,7 +7,7 @@ const { TextNode } = RCNode;
 
 export const FlowGraph = () => {
   const options: FlowGraphOptions = {
-    autoFit: 'center',
+    autoFit: 'view',
     data,
     node: {
       style: {

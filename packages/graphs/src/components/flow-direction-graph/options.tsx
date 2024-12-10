@@ -5,7 +5,6 @@ import type { GraphOptions } from '../../types';
 const { TextNode } = RCNode;
 
 export const DEFAULT_OPTIONS: GraphOptions = {
-  padding: [20, 0, 0, 50],
   node: {
     type: 'react',
     style: {
@@ -34,8 +33,9 @@ export const DEFAULT_OPTIONS: GraphOptions = {
     },
   },
   layout: {
-    type: 'antv-dagre',
+    type: 'dagre',
     rankdir: 'LR',
+    animation: false,
   },
   transforms: ['translate-react-node-origin'],
 };

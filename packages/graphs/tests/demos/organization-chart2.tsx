@@ -23,7 +23,6 @@ export const OrganizationChart2 = () => {
 
   const options: OrganizationChartOptions = {
     data,
-    padding: [40, 0, 0, 120],
     autoFit: 'view',
     node: {
       style: {

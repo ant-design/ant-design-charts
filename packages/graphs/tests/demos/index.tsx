@@ -1,4 +1,5 @@
 export { Dendrogram } from './dendrogram';
+export { FishboneDefault } from './fishbone-default';
 export { FlowGraph } from './flow-graph';
 export { FlowGraphProductLaunch } from './flow-graph-product-launch';
 export { FlowGraphTaskScheduling } from './flow-graph-task-scheduling';
@@ -12,5 +13,5 @@ export { MindMapLinear } from './mind-map-linear';
 export { NetworkGraph } from './network-graph';
 export { OrganizationChart } from './organization-chart';
 export { OrganizationChart2 } from './organization-chart2';
+export { UserFlowDirectionDefault } from './user-flow-direction-default';
 export { UserFlowDirectionGraph } from './user-flow-direction-graph';
-export { FishboneDefault } from './fishbone-default';

@@ -23,7 +23,6 @@ const transformData = (data) => {
 export const UserFlowDirectionGraph = () => {
   const options: GraphOptions = {
     autoFit: 'view',
-    padding: 20,
     data: transformData(data),
     node: {
       style: {

@@ -103,13 +103,12 @@ export function getMindMapOptions({
               depth === 0
                 ? { type: 'filled', color: '#f1f4f5', style: { color: '#252525' } }
                 : depth === 1
-                  ? { type: 'filled' }
-                  : { type: 'outlined' },
+                ? { type: 'filled' }
+                : { type: 'outlined' },
             );
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) =>
-            getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
+          size: (data: NodeData) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
           dx: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
             const size = getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
@@ -134,8 +133,7 @@ export function getMindMapOptions({
       ],
       layout: {
         type: 'mindmap',
-        getHeight: (data) =>
-          getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
+        getHeight: (data) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
         getVGap: () => 14,
       },
     };
@@ -157,18 +155,21 @@ export function getMindMapOptions({
               depth === 0
                 ? { type: 'filled', color: '#f1f4f5', style: { color: '#252525' } }
                 : {
-                  type: 'underlined',
-                  style: side === 'left' ? { textAlign: 'right' } : side === 'center' ? { textAlign: 'center' } : {},
-                },
+                    type: 'underlined',
+                    style: side === 'left' ? { textAlign: 'right' } : side === 'center' ? { textAlign: 'center' } : {},
+                  },
             );
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) =>
-            getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
+          size: (data: NodeData) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
           dx: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
             const size = getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
             return side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0;
+          },
+          dy: function (data: NodeData) {
+            const size = getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
+            return size[1] / 2;
           },
           ports: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
@@ -187,8 +188,7 @@ export function getMindMapOptions({
       },
       layout: {
         type: 'mindmap',
-        getHeight: (data) =>
-          getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
+        getHeight: (data) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
         getVGap: () => 12,
       },
       transforms: (prev) => [
@@ -211,7 +211,8 @@ export function getMindMapOptions({
 
   if (direction) {
     options.layout ||= {} as SingleLayoutOptions;
-    (options.layout as SingleLayoutOptions).direction = direction === 'alternate' ? 'H' : direction === 'left' ? 'RL' : 'LR';
+    (options.layout as SingleLayoutOptions).direction =
+      direction === 'alternate' ? 'H' : direction === 'left' ? 'RL' : 'LR';
   }
 
   return options;
