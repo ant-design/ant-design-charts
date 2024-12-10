@@ -5,7 +5,6 @@ import { OrganizationChartOptions } from './types';
 const { TextNode } = RCNode;
 
 export const DEFAULT_OPTIONS: OrganizationChartOptions = {
-  padding: [20, 0, 0, 50],
   node: {
     type: 'react',
     style: {
@@ -27,14 +26,12 @@ export const DEFAULT_OPTIONS: OrganizationChartOptions = {
     type: 'polyline',
     style: {
       lineWidth: 2,
-      router: {
-        type: 'orth',
-      },
+      router: { type: 'orth' },
     },
     animation: false,
   },
   layout: {
-    type: 'antv-dagre',
+    type: 'dagre',
   },
   transforms: ['translate-react-node-origin'],
 };

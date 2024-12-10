@@ -106,8 +106,7 @@ export const getIndentedTreeOptions = ({
             };
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) =>
-            getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
+          size: (data: NodeData) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
         },
       },
       edge: {
@@ -129,8 +128,7 @@ export const getIndentedTreeOptions = ({
         type: 'indented',
         indent: (node) => getIndent(node, 20),
         getWidth: (data) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[0],
-        getHeight: (data) =>
-          getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
+        getHeight: (data) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
         getVGap: () => 14,
       },
     };
@@ -152,21 +150,20 @@ export const getIndentedTreeOptions = ({
               depth === 0
                 ? { type: 'filled', color: '#f1f4f5', style: { color: '#252525' } }
                 : {
-                  type: 'underlined',
-                  style: { textAlign: getNodeTextAlign(this as unknown as Graph, data) },
-                },
+                    type: 'underlined',
+                    style: { textAlign: getNodeTextAlign(this as unknown as Graph, data) },
+                  },
             );
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) =>
-            getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
+          size: (data: NodeData) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
           ports: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
             return side === 'left'
               ? [{ placement: 'bottom' }, { placement: 'bottom-right' }]
               : side === 'center'
-                ? [{ placement: 'bottom' }]
-                : [{ placement: 'bottom' }, { placement: 'bottom-left' }];
+              ? [{ placement: 'bottom' }]
+              : [{ placement: 'bottom' }, { placement: 'bottom-left' }];
           },
         },
       },
@@ -181,10 +178,8 @@ export const getIndentedTreeOptions = ({
       layout: {
         type: 'indented',
         indent: (node) => getIndent(node, 20),
-        getWidth: (data) =>
-          getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[0],
-        getHeight: (data) =>
-          getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
+        getWidth: (data) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[0],
+        getHeight: (data) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
         getVGap: () => 12,
       },
       transforms: (prev) => [

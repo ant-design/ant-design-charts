@@ -116,7 +116,7 @@ const TaskNode: React.FC<{
 
 export const FlowGraphTaskScheduling = () => {
   const options: FlowGraphOptions = {
-    autoFit: 'center',
+    autoFit: 'view',
     data,
     node: {
       style: {
