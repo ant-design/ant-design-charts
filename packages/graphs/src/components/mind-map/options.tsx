@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import React from 'react';
 import type { TextNodeProps } from '../../core/base';
 import { CollapseExpandIcon, RCNode } from '../../core/base';
+import { formatLabel } from '../../core/utils/label';
 import { measureTextSize } from '../../core/utils/measure-text';
 import { getNodeSide } from '../../core/utils/node';
 import { getBoxedTextNodeStyle, getLinearTextNodeStyle } from '../../core/utils/tree';
@@ -63,15 +64,6 @@ export const DEFAULT_OPTIONS: MindMapOptions = {
     duration: 500,
   },
 };
-
-function formatLabel(datum: NodeData, labelField: MindMapOptions['labelField']): string {
-  const label = labelField
-    ? typeof labelField === 'function'
-      ? labelField(datum)
-      : get(datum, `data.${labelField}`, datum.id)
-    : datum.id;
-  return String(label);
-}
 
 export function getMindMapOptions({
   type,
@@ -188,8 +180,8 @@ export function getMindMapOptions({
       edge: {
         style: {
           stroke: function (data) {
-            const source = this.getNodeData(data.target);
-            return get(source, 'style.color', '#99ADD1') as string;
+            const target = this.getNodeData(data.target);
+            return get(target, 'style.color', '#99ADD1') as string;
           },
         },
       },
