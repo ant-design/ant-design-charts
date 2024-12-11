@@ -46,7 +46,7 @@ const StyledWrapper = styled.div<{
   .indented-icon-bar {
     ${({ $placement }) => {
       const isVertical = $placement === 'top' || $placement === 'bottom';
-      return isVertical ? 'width: 2px; height: 8px; margin: 0 7px;' : 'width: 8px; height: 2px; margin: 7px 0;';
+      return isVertical ? 'width: 3px; height: 8px; margin: 0 7px;' : 'width: 8px; height: 3px; margin: 7px 0;';
     }}
     background-color: ${({ $color }) => $color};
   }
@@ -104,9 +104,9 @@ export const ArrowCountIcon: FC<ArrowCountIconProps> = (props) => {
           <div className="indented-icon-circle-arrow">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
-                d="M11,4 L5,8 L11,12"
+                d="M11,4 L5.5,8 L11,12"
                 stroke="white"
-                strokeWidth="2"
+                strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               ></path>

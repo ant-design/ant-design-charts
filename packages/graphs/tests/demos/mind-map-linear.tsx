@@ -10,6 +10,13 @@ export const MindMapLinear = () => {
     autoFit: 'view',
     type: 'linear',
     data: treeToGraphData(data),
+    transforms: (transforms) => [
+      ...transforms.filter((transform) => (transform as any).key !== 'collapse-expand-react-node'),
+      {
+        ...(transforms.find((transform) => (transform as any).key === 'collapse-expand-react-node') || ({} as any)),
+        enable: true,
+      },
+    ],
   };
 
   return <MindMapComponent {...options} />;

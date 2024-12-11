@@ -1,5 +1,4 @@
 import { measureTextHeight, measureTextWidth } from '@ant-design/charts-util';
-import type { Size } from '@antv/g6';
 
 /**
  * 计算文本尺寸
@@ -16,7 +15,7 @@ export function measureTextSize(
   font: any = { fontSize: 16, fontFamily: 'PingFang SC' },
   minWidth = 0,
   maxWith = Infinity,
-): Size {
+): [number, number] {
   const height = measureTextHeight(text, font);
   const width = measureTextWidth(text, font) + 4;
 
