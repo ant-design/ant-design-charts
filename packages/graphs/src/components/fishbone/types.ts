@@ -1,5 +1,5 @@
 import type { NodeData } from '@antv/g6';
-import { GraphOptions } from '../../types';
+import type { GraphOptions } from '../../types';
 
 export interface FishboneOptions extends GraphOptions {
   /**

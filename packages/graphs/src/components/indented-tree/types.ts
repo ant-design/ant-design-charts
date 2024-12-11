@@ -1,4 +1,4 @@
-import { NodeData } from '@antv/g6';
+import type { NodeData } from '@antv/g6';
 import type { GraphOptions } from '../../types';
 
 export interface IndentedTreeOptions extends GraphOptions {

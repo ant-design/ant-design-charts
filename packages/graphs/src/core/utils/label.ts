@@ -1,4 +1,4 @@
-import { NodeData } from '@antv/g6';
+import type { NodeData } from '@antv/g6';
 import { get } from 'lodash';
 
 export function formatLabel(datum: NodeData, labelField?: string | ((datum: NodeData) => string)): string {
