@@ -1,14 +1,15 @@
 import type { ID, NodeData, SingleLayoutOptions, Size } from '@antv/g6';
-import type { FishboneOptions } from "./types";
+import { get } from 'lodash';
+import { formatLabel } from '../../core/utils/label';
 import { measureTextSize } from '../../core/utils/measure-text';
+import type { FishboneOptions } from './types';
 
 export const DEFAULT_OPTIONS: FishboneOptions = {
   node: {
     style: {
       size: 10,
-      labelText: d => d.id,
       labelPlacement: 'center',
-    }
+    },
   },
   edge: {
     type: 'polyline',
@@ -34,30 +35,34 @@ const getNodeFill = (node: NodeData): string => {
   if (depth === 0) return '#EFF0F0';
   if (depth === 1) return (node.style?.color as string) || '#EFF0F0';
   return 'transparent';
-}
+};
 
-export function getFishboneOptions({ type }: Pick<FishboneOptions, 'type'>): FishboneOptions {
+export function getFishboneOptions({
+  type,
+  labelField,
+}: Pick<FishboneOptions, 'type' | 'labelField'>): FishboneOptions {
   const options: FishboneOptions = {
     node: {
       type: 'rect',
       style: {
-        fill: d => getNodeFill(d),
-        labelFill: d => d.depth === 1 ? '#fff' : '#262626',
+        fill: (d) => getNodeFill(d),
+        labelFill: (d) => (d.depth === 1 ? '#fff' : '#262626'),
         labelFillOpacity: 1,
-        labelFontSize: d => d.depth === 0 ? 24 : d.depth === 1 ? 18 : 16,
-        labelFontWeight: d => d.depth === 0 ? 600 : 400,
-        labelLineHeight: d => d.depth === 0 ? 26 : d.depth === 1 ? 20 : 18,
-        labelText: d => d.id,
+        labelFontSize: (d) => (d.depth === 0 ? 24 : d.depth === 1 ? 18 : 16),
+        labelFontWeight: (d) => (d.depth === 0 ? 600 : 400),
+        labelLineHeight: (d) => (d.depth === 0 ? 26 : d.depth === 1 ? 20 : 18),
+        labelText: (d) => formatLabel(d, labelField),
         radius: 8,
-        size: d => getNodeSize(d.id, d.depth!),
-      }
+        size: (d) => getNodeSize(d.id, d.depth!),
+      },
     },
     edge: {
       type: 'polyline',
       style: {
         lineWidth: 3,
         stroke: function (data) {
-          return (this.getNodeData(data.target).style!.color as string) || '#99ADD1';
+          const target = this.getNodeData(data.target);
+          return get(target, 'style.color', '#99ADD1') as string;
         },
       },
     },
@@ -71,18 +76,18 @@ export function getFishboneOptions({ type }: Pick<FishboneOptions, 'type'>): Fis
         type: 'arrange-edge-z-index',
         key: 'arrange-edge-z-index',
       },
-    ]
+    ],
   };
 
   options.layout ||= {} as SingleLayoutOptions;
   if (type === 'decision') {
     // @ts-ignore
-    options.node.style.labelPlacement = d => d.depth === 0 || d.depth === 1 ? 'center' : 'right';
-    Object.assign(options.layout!, { direction: 'LR' })
+    options.node.style.labelPlacement = (d) => (d.depth === 0 || d.depth === 1 ? 'center' : 'right');
+    Object.assign(options.layout!, { direction: 'LR' });
   } else if (type === 'cause') {
     // @ts-ignore
-    options.node.style.labelPlacement = d => d.depth === 0 || d.depth === 1 ? 'center' : 'left';
-    Object.assign(options.layout!, { direction: 'RL' })
+    options.node.style.labelPlacement = (d) => (d.depth === 0 || d.depth === 1 ? 'center' : 'left');
+    Object.assign(options.layout!, { direction: 'RL' });
   }
 
   return options;
