@@ -1,7 +1,15 @@
-import type { NodeData } from '@antv/g6';
+import type { GraphData, NodeData, TreeData } from '@antv/g6';
 import type { GraphOptions } from '../../types';
 
-export interface IndentedTreeOptions extends GraphOptions {
+export interface IndentedTreeOptions extends Omit<GraphOptions, 'data'> {
+  /**
+   * The data.
+   */
+  data?: GraphData | TreeData;
+  /**
+   * The default expand level. If not set, all nodes will be expanded.
+   */
+  defaultExpandLevel?: number;
   /**
    * The type of the mind map
    * @default 'default'

@@ -1,6 +1,15 @@
+import type { GraphData, TreeData } from '@antv/g6';
 import type { GraphOptions } from '../../types';
 
-export interface DendrogramOptions extends GraphOptions {
+export interface DendrogramOptions extends Omit<GraphOptions, 'data'> {
+  /**
+   * The data.
+   */
+  data?: GraphData | TreeData;
+  /**
+   * The default expand level. If not set, all nodes will be expanded.
+   */
+  defaultExpandLevel?: number;
   /**
    * The direction of the dendrogram.
    * - `'vertical'`: vertical direction (top to bottom).

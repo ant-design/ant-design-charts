@@ -1,7 +1,8 @@
 import { isEmpty } from 'lodash';
+import type { GraphOptions } from '../../types';
 import type { DendrogramOptions } from './types';
 
-export const DEFAULT_OPTIONS: DendrogramOptions = {
+export const DEFAULT_OPTIONS: GraphOptions = {
   node: {
     type: 'circle',
     style: {
@@ -13,7 +14,7 @@ export const DEFAULT_OPTIONS: DendrogramOptions = {
 export const getDendrogramOptions = ({
   direction,
   compact,
-}: Pick<DendrogramOptions, 'direction' | 'compact'>): DendrogramOptions => {
+}: Pick<DendrogramOptions, 'direction' | 'compact'>): GraphOptions => {
   const isLeafNode = (d) => isEmpty(d.children);
 
   const layoutType = compact ? 'compact-box' : 'dendrogram';

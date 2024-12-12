@@ -1,7 +1,15 @@
-import type { NodeData } from '@antv/g6';
+import type { GraphData, NodeData, TreeData } from '@antv/g6';
 import type { GraphOptions } from '../../types';
 
-export interface MindMapOptions extends GraphOptions {
+export interface MindMapOptions extends Omit<GraphOptions, 'data'> {
+  /**
+   * The data of the mind map.
+   */
+  data?: GraphData | TreeData;
+  /**
+   * The default expand level of the mind map. If not set, all nodes will be expanded.
+   */
+  defaultExpandLevel?: number;
   /**
    * The type of the mind map
    * @default 'default'

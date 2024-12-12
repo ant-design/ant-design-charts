@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import { BaseGraph } from '../../core/base-graph';
 import { COMMON_OPTIONS } from '../../core/constants';
+import { formatTreeData } from '../../core/utils/data';
 import { mergeOptions } from '../../core/utils/options';
 import { DEFAULT_OPTIONS, getFishboneOptions } from './options';
 import type { FishboneOptions } from './types';
@@ -16,10 +17,17 @@ import type { FishboneOptions } from './types';
 export const Fishbone: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<FishboneOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<FishboneOptions>>(({ children, ...props }, ref) => {
-  const { type = 'cause', labelField, ...restProps } = props;
+  const { data, defaultExpandLevel, type = 'cause', labelField, ...restProps } = props;
 
   const options = useMemo(
-    () => mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, getFishboneOptions({ type, labelField }), restProps),
+    () =>
+      mergeOptions(
+        COMMON_OPTIONS,
+        DEFAULT_OPTIONS,
+        { data: formatTreeData(data) },
+        getFishboneOptions({ type, labelField }),
+        restProps,
+      ),
     [props],
   );
 
