@@ -6,6 +6,16 @@ export default defineConfig({
     { id: 'zh', name: '中文' },
     { id: 'en', name: 'English' },
   ],
+  title: 'Ant Design Charts', // 网站header标题
+  favicons: ['https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*7svFR6wkPMoAAAAAAAAAAAAADmJ7AQ/original'], // 网站 favicon
+  metas: [
+    // 自定义 meta 标签
+    { name: 'keywords', content: 'Ant Design Charts' },
+    {
+      name: 'description',
+      content: 'AntV react component library',
+    },
+  ],
   themeConfig: {
     title: 'Ant Design Charts',
     description: 'AntV react component library',
@@ -293,6 +303,7 @@ export default defineConfig({
   },
   mfsu: false,
   mako: {},
+  jsMinifier: 'terser',
   alias: {
     // 根据自己项目结构书写绝对路径
     '@': __dirname,

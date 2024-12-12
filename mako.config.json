@@ -1,0 +1,10 @@
+{
+  "optimization": {
+    "skipModules": false,
+    "concatenateModules": false
+  },
+  "moduleIdStrategy": "hashed",
+  "experimental": {
+    "magicComment": true
+  }
+}
