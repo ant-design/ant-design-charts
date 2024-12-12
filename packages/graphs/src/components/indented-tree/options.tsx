@@ -6,12 +6,13 @@ import { formatLabel } from '../../core/utils/label';
 import { measureTextSize } from '../../core/utils/measure-text';
 import { getNodeSide } from '../../core/utils/node';
 import { getBoxedTextNodeStyle, getLinearTextNodeStyle } from '../../core/utils/tree';
+import type { GraphOptions } from '../../types';
 import type { IndentedTreeOptions } from './types';
 
 const { ArrowCountIcon } = CollapseExpandIcon;
 const { TextNode } = RCNode;
 
-export const DEFAULT_OPTIONS: IndentedTreeOptions = {
+export const DEFAULT_OPTIONS: GraphOptions = {
   node: {
     type: 'react',
     state: {
@@ -77,11 +78,8 @@ export const getIndentedTreeOptions = ({
   nodeMaxWidth,
   direction,
   labelField,
-}: Pick<
-  IndentedTreeOptions,
-  'type' | 'nodeMinWidth' | 'nodeMaxWidth' | 'direction' | 'labelField'
->): IndentedTreeOptions => {
-  let options: IndentedTreeOptions = {};
+}: Pick<IndentedTreeOptions, 'type' | 'nodeMinWidth' | 'nodeMaxWidth' | 'direction' | 'labelField'>): GraphOptions => {
+  let options: GraphOptions = {};
   const minWidth = nodeMinWidth || 0;
   const maxWidth = nodeMaxWidth || 300;
 

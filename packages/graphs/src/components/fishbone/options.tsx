@@ -2,9 +2,10 @@ import type { ID, NodeData, SingleLayoutOptions, Size } from '@antv/g6';
 import { get } from 'lodash';
 import { formatLabel } from '../../core/utils/label';
 import { measureTextSize } from '../../core/utils/measure-text';
+import type { GraphOptions } from '../../types';
 import type { FishboneOptions } from './types';
 
-export const DEFAULT_OPTIONS: FishboneOptions = {
+export const DEFAULT_OPTIONS: GraphOptions = {
   node: {
     style: {
       size: 10,
@@ -37,11 +38,8 @@ const getNodeFill = (node: NodeData): string => {
   return 'transparent';
 };
 
-export function getFishboneOptions({
-  type,
-  labelField,
-}: Pick<FishboneOptions, 'type' | 'labelField'>): FishboneOptions {
-  const options: FishboneOptions = {
+export function getFishboneOptions({ type, labelField }: Pick<FishboneOptions, 'type' | 'labelField'>): GraphOptions {
+  const options: GraphOptions = {
     node: {
       type: 'rect',
       style: {

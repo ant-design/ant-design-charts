@@ -7,12 +7,13 @@ import { formatLabel } from '../../core/utils/label';
 import { measureTextSize } from '../../core/utils/measure-text';
 import { getNodeSide } from '../../core/utils/node';
 import { getBoxedTextNodeStyle, getLinearTextNodeStyle } from '../../core/utils/tree';
+import type { GraphOptions } from '../../types';
 import type { MindMapOptions } from './types';
 
 const { ArrowCountIcon } = CollapseExpandIcon;
 const { TextNode } = RCNode;
 
-export const DEFAULT_OPTIONS: MindMapOptions = {
+export const DEFAULT_OPTIONS: GraphOptions = {
   node: {
     type: 'react',
     state: {
@@ -71,8 +72,8 @@ export function getMindMapOptions({
   nodeMinWidth,
   nodeMaxWidth,
   labelField,
-}: Pick<MindMapOptions, 'type' | 'nodeMaxWidth' | 'nodeMinWidth' | 'direction' | 'labelField'>): MindMapOptions {
-  let options: MindMapOptions = {};
+}: Pick<MindMapOptions, 'type' | 'nodeMaxWidth' | 'nodeMinWidth' | 'direction' | 'labelField'>): GraphOptions {
+  let options: GraphOptions = {};
 
   if (type === 'boxed') {
     const minWidth = nodeMinWidth || 120;

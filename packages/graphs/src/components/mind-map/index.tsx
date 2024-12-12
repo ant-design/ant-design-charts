@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import { BaseGraph } from '../../core/base-graph';
 import { COMMON_OPTIONS } from '../../core/constants';
+import { formatTreeData } from '../../core/utils/data';
 import { mergeOptions } from '../../core/utils/options';
 import { DEFAULT_OPTIONS, getMindMapOptions } from './options';
 import type { MindMapOptions } from './types';
@@ -17,10 +18,20 @@ export const MindMap: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<MindMapOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<MindMapOptions>>(({ children, ...props }, ref) => {
   const options = useMemo(() => {
-    const { type = 'default', nodeMinWidth, nodeMaxWidth, direction = 'alternate', labelField, ...restProps } = props;
+    const {
+      data,
+      type = 'default',
+      nodeMinWidth,
+      nodeMaxWidth,
+      direction = 'alternate',
+      labelField,
+      defaultExpandLevel,
+      ...restProps
+    } = props;
     const options = mergeOptions(
       COMMON_OPTIONS,
       DEFAULT_OPTIONS,
+      { data: formatTreeData(data, defaultExpandLevel) },
       getMindMapOptions({ type, nodeMinWidth, nodeMaxWidth, direction, labelField }),
       restProps,
     );
