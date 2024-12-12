@@ -55,8 +55,8 @@ export default defineConfig({
       {
         slug: 'docs/options',
         title: {
-          zh: '选项',
-          en: 'Option',
+          zh: '组件',
+          en: 'Components',
         },
       },
       {
@@ -149,12 +149,20 @@ export default defineConfig({
         order: 10,
       },
       {
-        slug: 'options/graphs',
+        slug: 'options/graphs-concepts',
         title: {
-          zh: '关系图',
-          en: 'Relation Graph',
+          zh: '关系图概念',
+          en: 'Relation Graph Concepts',
         },
         order: 1,
+      },
+      {
+        slug: 'options/graphs',
+        title: {
+          zh: '关系图组件',
+          en: 'Relation Graph Components',
+        },
+        order: 2,
       },
     ],
     examples: [

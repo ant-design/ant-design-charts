@@ -4,6 +4,7 @@ type: Graph
 usage: relation
 title: Fishbone 鱼骨图
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*olIATZ-4qMEAAAAAAAAAAAAADmJ7AQ/original
+order: 2
 ---
 
 鱼骨图，又名石川图，用于系统地分析问题根本原因的图表工具，通过将问题分解为多个因素，帮助识别和解决问题。
@@ -29,10 +30,28 @@ import { Fishbone } from '@ant-design/graphs';
 
 通用配置参考：[图通用属性](./overview#图通用属性)
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| type | 鱼骨图类型 | `'cause'` \| `'decision'` | `'cause'` |
-| layout | 鱼骨布局配置 | [`FishboneLayoutOptions`](https://g6.antv.antgroup.com/api/layouts/fishbone) | `{ type: 'fishbone' }` |
-| behaviors | 设置用户交互事件，同样支持 G6 内置交互。关于交互的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件。关于插件的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | 设置数据转换器，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器。关于数据转换的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| 属性      | 说明             | 类型                    | 默认值  |
+| --------- | ---------------- | ----------------------- | ------- |
+| type      | 鱼骨图类型       | `cause` \| `decision`   | `cause` |
+| data      | 设置数据         | [Data](#data)           | -       |
+| layout    | 设置布局配置     | [Layout](#layout)       | -       |
+| behaviors | 设置用户交互事件 | [Behaviors](#behaviors) | -       |
+| plugins   | 设置画布插件     | [Plugins](#plugins)     | -       |
+
+<embed src="../graphs-common/option-data.zh.md"></embed>
+
+### Layout
+
+鱼骨图布局，可配置参数如下：
+
+| 属性      | 说明         | 类型                       | 默认值           |
+| --------- | ------------ | -------------------------- | ---------------- |
+| type      | 布局类型     | string                     | `fishbone`       |
+| direction | 排布方向     | `RL` \| `LR`               | `RL`             |
+| vGap      | 设置垂直间距 | number                     | 默认使用节点高度 |
+| hGap      | 设置水平间距 | number                     | 默认使用节点宽度 |
+| getRibSep | 设置鱼骨间距 | (node: NodeData) => number | () => 60         |
+
+<embed src="../graphs-common/option-behaviors.zh.md"></embed>
+
+<embed src="../graphs-common/option-plugins.zh.md"></embed>

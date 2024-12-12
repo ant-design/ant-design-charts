@@ -33,9 +33,27 @@ import { Dendrogram } from '@ant-design/graphs';
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| direction | 语法糖，设置树图节点的排布方向。当设置 `layout.direction` 时会以后者为准 | `'vertical'` \| `'horizontal'` \| `'radial'` | `'horizontal'` |
-| compact | 是否为紧凑模式 | `boolean` | `false` |
-| layout | 树图布局配置 | [`DendrogramLayoutOptions`](https://g6.antv.antgroup.com/api/layouts/dendrogram-layout) | `{ type: 'dendrogram' }` |
-| behaviors | 设置用户交互事件，同样支持 G6 内置交互。关于交互的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件。关于插件的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | 设置数据转换器，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器。关于数据转换的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| direction | 语法糖，设置树图节点的排布方向。当设置 layout.direction 时会以后者为准 | `vertical` \| `horizontal` \| `radial` | `horizontal` |
+| compact | 是否为紧凑模式 | boolean | false |
+| data | 设置数据 | [Data](#data) | - |
+| layout | 设置布局配置 | [Layout](#layout) | - |
+| behaviors | 设置用户交互事件 | [Behaviors](#behaviors) | - |
+| plugins | 设置画布插件 | [Plugins](#plugins) | - |
+
+<embed src="../graphs-common/option-data.zh.md"></embed>
+
+### Layout
+
+树图布局，可配置的参数如下：
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 布局类型 | string | `dendrogram` |
+| direction | 布局方向 | `LR` \| `RL` \| `TB` \| `BT` \| `H` \| `V` | `RL` |
+| nodeSep | 节点间距 | number | 40 |
+| rankSep | 层与层之间的间距 | number | 200 |
+| radial | 是否按照辐射状布局。若 radial 为 true，建议 direction 设置为 `LR` 或 `RL` |  |  |
+
+<embed src="../graphs-common/option-behaviors.zh.md"></embed>
+
+<embed src="../graphs-common/option-plugins.zh.md"></embed>
