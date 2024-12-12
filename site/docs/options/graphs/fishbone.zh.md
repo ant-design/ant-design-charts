@@ -30,19 +30,18 @@ import { Fishbone } from '@ant-design/graphs';
 
 通用配置参考：[图通用属性](./overview#图通用属性)
 
-| 属性      | 说明             | 类型                    | 默认值  |
-| --------- | ---------------- | ----------------------- | ------- |
-| type      | 鱼骨图类型       | `cause` \| `decision`   | `cause` |
-| data      | 设置数据         | [Data](#data)           | -       |
-| layout    | 设置布局配置     | [Layout](#layout)       | -       |
-| behaviors | 设置用户交互事件 | [Behaviors](#behaviors) | -       |
-| plugins   | 设置画布插件     | [Plugins](#plugins)     | -       |
+| 属性               | 说明                               | 类型                  | 默认值  |
+| ------------------ | ---------------------------------- | --------------------- | ------- |
+| data               | 数据                               | [Data](#data)         | -       |
+| type               | 鱼骨图类型                         | `cause` \| `decision` | `cause` |
+| defaultExpandLevel | 默认展开层级，若不指定，将展开全部 | number                | -       |
+| layout             | 布局配置                           | [Layout](#layout)     | -       |
 
-<embed src="../graphs-common/graph-data.zh.md"></embed>
+<embed src="../graphs-common/tree-data.zh.md"></embed>
 
 ### Layout
 
-鱼骨图布局，可配置参数如下：
+鱼骨图布局。参数如下：
 
 | 属性      | 说明         | 类型                       | 默认值           |
 | --------- | ------------ | -------------------------- | ---------------- |
@@ -51,7 +50,3 @@ import { Fishbone } from '@ant-design/graphs';
 | vGap      | 设置垂直间距 | number                     | 默认使用节点高度 |
 | hGap      | 设置水平间距 | number                     | 默认使用节点宽度 |
 | getRibSep | 设置鱼骨间距 | (node: NodeData) => number | () => 60         |
-
-<embed src="../graphs-common/option-behaviors.zh.md"></embed>
-
-<embed src="../graphs-common/option-plugins.zh.md"></embed>

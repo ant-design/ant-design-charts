@@ -1,28 +1,23 @@
 import { CollapseExpandIcon, MindMap, type MindMapOptions } from '@ant-design/graphs';
 import { Divider } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const { PlusMinusIcon } = CollapseExpandIcon;
 
-const data = {
-  id: 'Modeling Methods',
-  children: [
-    { id: 'Classification', children: [{ id: 'Logistic regression' }, { id: 'Linear discriminant analysis' }] },
-    { id: 'Consensus', children: [{ id: 'Models diversity' }, { id: 'Methods' }, { id: 'Common' }] },
-    { id: 'Regression', children: [{ id: 'Multiple linear regression' }, { id: 'Partial least squares' }] },
-  ],
-};
-
 export default () => {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/algorithm-category.json')
+      .then((res) => res.json())
+      .then(setData);
+  }, []);
+
   const options: MindMapOptions = {
     type: 'linear',
-    containerStyle: {
-      height: '200px',
-    },
-    autoFit: 'center',
+    autoFit: 'view',
     data,
-    defaultExpandLevel: 1,
-    animation: false,
+    defaultExpandLevel: 2
   };
 
   const updateCollapseExpandBehavior = (options) => {

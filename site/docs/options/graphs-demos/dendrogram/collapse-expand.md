@@ -1,7 +1,7 @@
 ## zh
 
-添加 G6 内置 CollapseExpand 交互，双击触发展开/收起。更多 G6 内置交互请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior)。
+通过配置 G6 内置 CollapseExpand 交互 (`collapse-expand`)，双击触发展开/收起。具体可参考 [CollapseExpandOptions](https://g6.antv.antgroup.com/api/behaviors/collapse-expand) 获取详细配置说明。
 
 ## en
 
-Add G6's built-in CollapseExpand interaction, allowing nodes to expand/collapse on double-click. For more built-in interactions, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior).
+Add G6's built-in CollapseExpand interaction, allowing nodes to expand/collapse on double-click. For detailed configuration instructions, refer to [CollapseExpandOptions](https://g6.antv.antgroup.com/en/api/behaviors/collapse-expand).

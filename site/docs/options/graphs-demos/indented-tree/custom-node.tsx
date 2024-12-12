@@ -1,37 +1,5 @@
 import { IndentedTree, type IndentedTreeOptions, measureTextSize } from '@ant-design/graphs';
-import React from 'react';
-
-const data = {
-  nodes: [
-    { id: 'Modeling Methods', depth: 0, children: ['Classification', 'Consensus', 'Regression'] },
-    {
-      id: 'Classification',
-      depth: 1,
-      children: ['Logistic regression', 'Linear discriminant analysis'],
-    },
-    { id: 'Consensus', depth: 1, children: ['Models diversity', 'Methods', 'Common'] },
-    { id: 'Models diversity', depth: 2 },
-    { id: 'Methods', depth: 2 },
-    { id: 'Common', depth: 2 },
-    { id: 'Regression', depth: 1, children: ['Multiple linear regression', 'Partial least squares'] },
-    { id: 'Logistic regression', depth: 2 },
-    { id: 'Linear discriminant analysis', depth: 2 },
-    { id: 'Multiple linear regression', depth: 2 },
-    { id: 'Partial least squares', depth: 2 },
-  ],
-  edges: [
-    { source: 'Modeling Methods', target: 'Classification' },
-    { source: 'Modeling Methods', target: 'Consensus' },
-    { source: 'Modeling Methods', target: 'Regression' },
-    { source: 'Consensus', target: 'Models diversity' },
-    { source: 'Consensus', target: 'Methods' },
-    { source: 'Consensus', target: 'Common' },
-    { source: 'Classification', target: 'Logistic regression' },
-    { source: 'Classification', target: 'Linear discriminant analysis' },
-    { source: 'Regression', target: 'Multiple linear regression' },
-    { source: 'Regression', target: 'Partial least squares' },
-  ],
-};
+import React, { useEffect, useState } from 'react';
 
 const CustomNode = ({ text }: { text: string }) => {
   const prefix = text === 'Modeling Methods' ? '🔍 ' : '';
@@ -44,9 +12,10 @@ const CustomNode = ({ text }: { text: string }) => {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: '16px',
-        backgroundColor: '#f7f0fe',
-        color: '#873bf4',
-        boxShadow: '0 0 0 3px #873bf4',
+        backgroundColor: '#FFF6E3',
+        color: '#8B5DFF',
+        boxShadow: '0 0 0 2px #8B5DFF',
+        fontFamily: 'Futura',
       }}
     >
       {prefix}
@@ -56,10 +25,18 @@ const CustomNode = ({ text }: { text: string }) => {
 };
 
 export default () => {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/algorithm-category.json')
+      .then((res) => res.json())
+      .then(setData);
+  }, []);
+
   const options: IndentedTreeOptions = {
-    containerStyle: { height: '320px' },
     autoFit: 'view',
-    padding: 20,
+    padding: 8,
+    background: '#F3F3F6',
     data,
     node: {
       style: {
@@ -68,7 +45,9 @@ export default () => {
       },
     },
     edge: {
-      style: { stroke: '#873bf4' },
+      style: {
+        stroke: '#8B5DFF',
+      },
     },
     animation: false,
   };

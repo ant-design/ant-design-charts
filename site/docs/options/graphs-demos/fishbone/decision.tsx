@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { G6, Fishbone, type FishboneOptions } from '@ant-design/graphs';
-
-const { treeToGraphData } = G6;
+import { Fishbone, type FishboneOptions } from '@ant-design/graphs';
+import React from 'react';
 
 const data = {
   id: 'Overcome procrastination',
@@ -45,13 +43,11 @@ const data = {
   ],
 };
 
-
 export default () => {
   const options: FishboneOptions = {
-    containerStyle: { height: '320px' },
     autoFit: 'view',
     type: 'decision',
-    data: treeToGraphData(data),
+    data,
   };
 
   return <Fishbone {...options} />;

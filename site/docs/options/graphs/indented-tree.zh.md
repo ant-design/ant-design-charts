@@ -38,11 +38,26 @@ import { IndentedTree } from '@ant-design/graphs';
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 语法糖，设置缩进树图的展示风格。当设置 `node.component` 时以后者为准 | `'default'` \| `'linear'` \| `'boxed'` | `'default'` |
-| direction | 语法糖，设置缩进树图节点的排布方向。当设置 `layout.direction` 时会以后者为准 | `'left'` \| `'right'` \| `'alternate'` | `'right'` |
-| nodeMinWidth | 缩进树图节点的最小宽度，当文字内容不够时将居中显示 | `number` | `0` |
-| nodeMaxWidth | 缩进树图节点的最大宽度，超出部分将自动换行 | `number` | `300` |
-| layout | 缩进树布局配置 | [`IndentedLayoutOptions`](https://g6.antv.antgroup.com/api/layouts/indented-layout) | `{ type: 'indented' }` |
-| behaviors | 设置用户交互事件，同样支持 G6 内置交互。关于交互的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件。关于插件的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | 设置数据转换器，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器。关于数据转换的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| data | 数据 | [Data](#data) | - |
+| type | 语法糖，设置展示风格。当设置 `node.component` 时以后者为准 | `'default'` \| `'linear'` \| `'boxed'` | `'default'` |
+| direction | 语法糖，设置节点的排布方向。当设置 `layout.direction` 时会以后者为准 | `'left'` \| `'right'` \| `'alternate'` | `'right'` |
+| nodeMinWidth | 节点的最小宽度，当文字内容不够时将居中显示 | `number` | `0` |
+| nodeMaxWidth | 节点的最大宽度，超出部分将自动换行 | `number` | `300` |
+| defaultExpandLevel | 默认展开层级，若不指定，将展开全部 | number | - |
+| layout | 缩进树布局配置 | [Layout](#layout) | - |
+
+<embed src="../graphs-common/tree-data.zh.md"></embed>
+
+### Layout
+
+缩进树布局，树节点的层级通过水平方向的缩进量来表示。每个元素会占一行/一列。参数如下：
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 布局类型 | string | `indented` |
+| direction | 树布局的方向 | `LR` \| `RL` \| `H` | `LR` |
+| indent | 列间间距。类型为 Number 时，列间间距是固定值；类型为 Function 时，节点与根结点的间距是函数返回值 | number \| (node: NodeData) => string | 20 |
+| getWidth | 每个节点的宽度，direction 为 `H` 时有效 | (node: NodeData) => number | 默认使用节点宽度 |
+| getHeight | 每个节点的高度 | (node: NodeData) => number | 默认使用节点高度 |
+| getSide | 节点排布在根节点的左侧/右侧。若设置了该值，则所有节点会在根节点同一侧，即 direction = 'H' 不再起效。若该参数为回调函数，则可以指定每一个节点在根节点的左/右侧 | (node: NodeData) => string | - |
+| dropCap | 每个节点的第一个自节点是否位于下一行 | boolean | true |

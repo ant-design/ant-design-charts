@@ -33,18 +33,17 @@ import { Dendrogram } from '@ant-design/graphs';
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| data | 数据 | [Data](#data) | - |
 | direction | 语法糖，设置树图节点的排布方向。当设置 layout.direction 时会以后者为准 | `vertical` \| `horizontal` \| `radial` | `horizontal` |
 | compact | 是否为紧凑模式 | boolean | false |
-| data | 设置数据 | [Data](#data) | - |
-| layout | 设置布局配置 | [Layout](#layout) | - |
-| behaviors | 设置用户交互事件 | [Behaviors](#behaviors) | - |
-| plugins | 设置画布插件 | [Plugins](#plugins) | - |
+| defaultExpandLevel | 默认展开层级，若不指定，将展开全部 | number | - |
+| layout | 生态树布局配置 | [Layout](#layout) | - |
 
-<embed src="../graphs-common/graph-data.zh.md"></embed>
+<embed src="../graphs-common/tree-data.zh.md"></embed>
 
 ### Layout
 
-树图布局，可配置的参数如下：
+生态树布局，可配置的参数如下：
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -53,7 +52,3 @@ import { Dendrogram } from '@ant-design/graphs';
 | nodeSep | 节点间距 | number | 40 |
 | rankSep | 层与层之间的间距 | number | 200 |
 | radial | 是否按照辐射状布局。若 radial 为 true，建议 direction 设置为 `LR` 或 `RL` |  |  |
-
-<embed src="../graphs-common/option-behaviors.zh.md"></embed>
-
-<embed src="../graphs-common/option-plugins.zh.md"></embed>
