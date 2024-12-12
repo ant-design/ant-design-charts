@@ -127,7 +127,7 @@ export function treeData2GraphData(data: TreeData, defaultExpandLevel?: number):
       if (defaultExpandLevel) {
         datum.style.collapsed = depth >= defaultExpandLevel;
       }
-      if (!datum.children) return datum as NodeData;
+      if (!datum.children) return datum as unknown as NodeData;
       const { children, ...restDatum } = datum;
       return { ...restDatum, children: children.map((child) => child.id) };
     },
