@@ -17,8 +17,8 @@ export const FlowGraph: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<FlowGraphOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<FlowGraphOptions>>(({ children, ...props }, ref) => {
   const options = useMemo(() => {
-    const { direction = 'horizontal', ...restProps } = props;
-    return mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, getFlowGraphOptions({ direction }), restProps);
+    const { direction = 'horizontal', labelField, ...restProps } = props;
+    return mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, getFlowGraphOptions({ direction, labelField }), restProps);
   }, [props]);
 
   return (

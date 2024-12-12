@@ -1,8 +1,9 @@
 import type { Graph, NodeData, SingleLayoutOptions } from '@antv/g6';
-import { idOf } from '@antv/g6';
+import { get } from 'lodash';
 import React from 'react';
 import type { TextNodeProps } from '../../core/base';
 import { CollapseExpandIcon, RCNode } from '../../core/base';
+import { formatLabel } from '../../core/utils/label';
 import { measureTextSize } from '../../core/utils/measure-text';
 import { getNodeSide } from '../../core/utils/node';
 import { getBoxedTextNodeStyle, getLinearTextNodeStyle } from '../../core/utils/tree';
@@ -14,16 +15,6 @@ const { TextNode } = RCNode;
 export const DEFAULT_OPTIONS: MindMapOptions = {
   node: {
     type: 'react',
-    style: {
-      component: (data) => <TextNode type="filled" text={idOf(data)} />,
-      size: (data) => measureTextSize(idOf(data), [24, 16]),
-      dx: function (data: NodeData) {
-        const side = getNodeSide(this as unknown as Graph, data);
-        const size = measureTextSize(idOf(data), [24, 16]);
-        return side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0;
-      },
-      ports: [{ placement: 'left' }, { placement: 'right' }],
-    },
     state: {
       active: {
         halo: false,
@@ -66,8 +57,7 @@ export const DEFAULT_OPTIONS: MindMapOptions = {
   layout: {
     type: 'mindmap',
     direction: 'H',
-    getWidth: (data) => 120,
-    getHeight: (data) => measureTextSize(data.id, [24, 16])[1],
+    getWidth: () => 120,
     getHGap: () => 64,
   },
   animation: {
@@ -80,8 +70,10 @@ export function getMindMapOptions({
   direction,
   nodeMinWidth,
   nodeMaxWidth,
-}: Pick<MindMapOptions, 'type' | 'nodeMaxWidth' | 'nodeMinWidth' | 'direction'>): MindMapOptions {
+  labelField,
+}: Pick<MindMapOptions, 'type' | 'nodeMaxWidth' | 'nodeMinWidth' | 'direction' | 'labelField'>): MindMapOptions {
   let options: MindMapOptions = {};
+
   if (type === 'boxed') {
     const minWidth = nodeMinWidth || 120;
     const maxWidth = nodeMaxWidth || 300;
@@ -90,14 +82,11 @@ export function getMindMapOptions({
       node: {
         style: {
           component: (data: NodeData) => {
-            const depth = data.depth as number;
-            const color = data.style?.color as string;
-            const props = {
-              text: idOf(data),
-              color,
-              maxWidth,
-              font: getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, depth).font,
-            } as TextNodeProps;
+            const depth = data.depth;
+            const color = data.style?.color;
+            const label = formatLabel(data, labelField);
+            const { font } = getBoxedTextNodeStyle(label, minWidth, maxWidth, depth);
+            const props = { text: label, color, maxWidth, font } as TextNodeProps;
             Object.assign(
               props,
               depth === 0
@@ -108,11 +97,15 @@ export function getMindMapOptions({
             );
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
+          size: (data: NodeData) => {
+            const label = formatLabel(data, labelField);
+            return getBoxedTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          },
           dx: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
-            const size = getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
-            return side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0;
+            const label = formatLabel(data, labelField);
+            const [width] = getBoxedTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+            return side === 'left' ? -width : side === 'center' ? -width / 2 : 0;
           },
           ports: [{ placement: 'left' }, { placement: 'right' }],
         },
@@ -120,20 +113,19 @@ export function getMindMapOptions({
       edge: {
         style: {
           stroke: function (data) {
-            return (this.getNodeData(data.source).style!.color as string) || '#99ADD1';
+            const source = this.getNodeData(data.source);
+            return get(source, 'style.color', '#99ADD1') as string;
           },
         },
       },
-      transforms: (prev) => [
-        ...prev,
-        {
-          type: 'assign-color-by-branch',
-          key: 'assign-color-by-branch',
-        },
-      ],
+      transforms: (prev) => [...prev, { type: 'assign-color-by-branch', key: 'assign-color-by-branch' }],
       layout: {
         type: 'mindmap',
-        getHeight: (data) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
+        getHeight: (data) => {
+          const label = formatLabel(data, labelField);
+          const [, height] = getBoxedTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          return height;
+        },
         getVGap: () => 14,
       },
     };
@@ -146,10 +138,11 @@ export function getMindMapOptions({
         style: {
           component: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
-            const depth = data.depth as number;
-            const color = data.style?.color as string;
-            const { font } = getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, depth);
-            const props = { text: idOf(data), color, maxWidth, font } as TextNodeProps;
+            const depth = data.depth;
+            const color = data.style?.color;
+            const label = formatLabel(data, labelField);
+            const { font } = getLinearTextNodeStyle(label, minWidth, maxWidth, depth);
+            const props = { text: label, color, maxWidth, font } as TextNodeProps;
             Object.assign(
               props,
               depth === 0
@@ -161,15 +154,20 @@ export function getMindMapOptions({
             );
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
+          size: (data: NodeData) => {
+            const label = formatLabel(data, labelField);
+            return getLinearTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          },
           dx: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
-            const size = getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
-            return side === 'left' ? -size[0] : side === 'center' ? -size[0] / 2 : 0;
+            const label = formatLabel(data, labelField);
+            const [width] = getLinearTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+            return side === 'left' ? -width : side === 'center' ? -width / 2 : 0;
           },
           dy: function (data: NodeData) {
-            const size = getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
-            return size[1] / 2;
+            const label = formatLabel(data, labelField);
+            const [, height] = getLinearTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+            return height / 2;
           },
           ports: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
@@ -182,13 +180,18 @@ export function getMindMapOptions({
       edge: {
         style: {
           stroke: function (data) {
-            return (this.getNodeData(data.target).style!.color as string) || '#99ADD1';
+            const target = this.getNodeData(data.target);
+            return get(target, 'style.color', '#99ADD1') as string;
           },
         },
       },
       layout: {
         type: 'mindmap',
-        getHeight: (data) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
+        getHeight: (data) => {
+          const label = formatLabel(data, labelField);
+          const [, height] = getLinearTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          return height;
+        },
         getVGap: () => 12,
       },
       transforms: (prev) => [
@@ -201,11 +204,43 @@ export function getMindMapOptions({
           ...(prev.find((t) => (t as any).key === 'collapse-expand-react-node') as any),
           iconOffsetY: (data) => {
             if (data.depth === 0) return 0;
-            const size = getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size;
-            return size[1] / 2;
+            const label = formatLabel(data, labelField);
+            const [, height] = getLinearTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+            return height / 2;
           },
         },
       ],
+    };
+  } else {
+    const PADDING = [24, 16];
+    options = {
+      node: {
+        style: {
+          component: (data) => {
+            const label = formatLabel(data, labelField);
+            return <TextNode type="filled" text={label} />;
+          },
+          size: (data) => {
+            const label = formatLabel(data, labelField);
+            return measureTextSize(label, PADDING);
+          },
+          dx: function (data: NodeData) {
+            const side = getNodeSide(this as unknown as Graph, data);
+            const label = formatLabel(data, labelField);
+            const [width] = measureTextSize(label, PADDING);
+            return side === 'left' ? -width : side === 'center' ? -width / 2 : 0;
+          },
+          ports: [{ placement: 'left' }, { placement: 'right' }],
+        },
+      },
+      layout: {
+        type: 'mindmap',
+        getHeight: (data) => {
+          const label = formatLabel(data, labelField);
+          const [, height] = measureTextSize(label, PADDING);
+          return height;
+        },
+      },
     };
   }
 

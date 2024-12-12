@@ -13,16 +13,21 @@ import { mergeOptions } from '../../core/utils/options';
 import { DEFAULT_OPTIONS, getFishboneOptions } from './options';
 import type { FishboneOptions } from './types';
 
-export const Fishbone: ForwardRefExoticComponent<PropsWithoutRef<PropsWithChildren<FishboneOptions>> & RefAttributes<Graph>> = forwardRef<Graph, PropsWithChildren<FishboneOptions>>(({ children, ...props }, ref) => {
-  const { type = 'cause', ...restProps } = props;
+export const Fishbone: ForwardRefExoticComponent<
+  PropsWithoutRef<PropsWithChildren<FishboneOptions>> & RefAttributes<Graph>
+> = forwardRef<Graph, PropsWithChildren<FishboneOptions>>(({ children, ...props }, ref) => {
+  const { type = 'cause', labelField, ...restProps } = props;
 
-  const options = useMemo(() => mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, getFishboneOptions({ type }), restProps), [props]);
+  const options = useMemo(
+    () => mergeOptions(COMMON_OPTIONS, DEFAULT_OPTIONS, getFishboneOptions({ type, labelField }), restProps),
+    [props],
+  );
 
   return (
     <BaseGraph {...options} ref={ref}>
       {children}
     </BaseGraph>
   );
-})
+});
 
 export type { FishboneOptions };

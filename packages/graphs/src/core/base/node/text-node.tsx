@@ -133,7 +133,7 @@ export const TextNode: FC<TextNodeProps> = (props) => {
       $borderWidth={borderWidth}
       $isActive={isActive}
       $isSelected={isSelected}
-      className={`text-node ${className}`}
+      className={`text-node text-node-${type} ${className || ''}`}
       style={{ ...style, ...font }}
     >
       <div style={isMultiLine ? { width: 'calc(100% - 12px)' } : {}}>{text}</div>

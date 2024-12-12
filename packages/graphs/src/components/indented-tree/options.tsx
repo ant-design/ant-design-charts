@@ -1,7 +1,8 @@
 import type { Graph, NodeData, SingleLayoutOptions } from '@antv/g6';
-import { idOf } from '@antv/g6';
+import { get } from 'lodash';
 import React from 'react';
 import { CollapseExpandIcon, RCNode, TextNodeProps } from '../../core/base';
+import { formatLabel } from '../../core/utils/label';
 import { measureTextSize } from '../../core/utils/measure-text';
 import { getNodeSide } from '../../core/utils/node';
 import { getBoxedTextNodeStyle, getLinearTextNodeStyle } from '../../core/utils/tree';
@@ -13,10 +14,6 @@ const { TextNode } = RCNode;
 export const DEFAULT_OPTIONS: IndentedTreeOptions = {
   node: {
     type: 'react',
-    style: {
-      component: (data) => <TextNode type="filled" text={idOf(data)} />,
-      size: (data) => measureTextSize(idOf(data), [24, 16]),
-    },
     state: {
       active: {
         halo: false,
@@ -48,8 +45,6 @@ export const DEFAULT_OPTIONS: IndentedTreeOptions = {
     type: 'indented',
     direction: 'LR',
     indent: (node) => getIndent(node, 20),
-    getWidth: (data) => measureTextSize(idOf(data), [24, 16])[0],
-    getHeight: (data) => measureTextSize(idOf(data), [24, 16])[1],
     getVGap: () => 14,
   },
   animation: {
@@ -81,7 +76,11 @@ export const getIndentedTreeOptions = ({
   nodeMinWidth,
   nodeMaxWidth,
   direction,
-}: Pick<IndentedTreeOptions, 'type' | 'nodeMinWidth' | 'nodeMaxWidth' | 'direction'>): IndentedTreeOptions => {
+  labelField,
+}: Pick<
+  IndentedTreeOptions,
+  'type' | 'nodeMinWidth' | 'nodeMaxWidth' | 'direction' | 'labelField'
+>): IndentedTreeOptions => {
   let options: IndentedTreeOptions = {};
   const minWidth = nodeMinWidth || 0;
   const maxWidth = nodeMaxWidth || 300;
@@ -91,14 +90,16 @@ export const getIndentedTreeOptions = ({
       node: {
         style: {
           component: function (data: NodeData) {
-            const depth = data.depth as number;
+            const depth = data.depth;
             const color = data.style?.color as string;
+            const label = formatLabel(data, labelField);
+            const { font } = getBoxedTextNodeStyle(label, minWidth, maxWidth, depth);
             const props: TextNodeProps = {
               type: depth === 0 || depth === 1 ? 'filled' : 'outlined',
-              text: idOf(data),
+              text: label,
               color: depth === 0 ? '#f1f4f5' : color,
               maxWidth,
-              font: getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, depth).font,
+              font,
               style: {
                 textAlign: getNodeTextAlign(this as unknown as Graph, data),
                 ...(depth === 0 ? { color: '#252525' } : {}),
@@ -106,13 +107,17 @@ export const getIndentedTreeOptions = ({
             };
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
+          size: (data: NodeData) => {
+            const label = formatLabel(data, labelField);
+            return getBoxedTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          },
         },
       },
       edge: {
         style: {
           stroke: function (data) {
-            return (this.getNodeData(data.source).style!.color as string) || '#99ADD1';
+            const source = this.getNodeData(data.source);
+            return get(source, 'style.color', '#99ADD1') as string;
           },
           radius: 16,
         },
@@ -126,10 +131,16 @@ export const getIndentedTreeOptions = ({
       ],
       layout: {
         type: 'indented',
-        indent: (node) => getIndent(node, 20),
-        getWidth: (data) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[0],
-        getHeight: (data) => getBoxedTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
-        getVGap: () => 14,
+        getWidth: (data) => {
+          const label = formatLabel(data, labelField);
+          const [width] = getBoxedTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          return width;
+        },
+        getHeight: (data) => {
+          const label = formatLabel(data, labelField);
+          const [, height] = getBoxedTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          return height;
+        },
       },
     };
   } else if (type === 'linear') {
@@ -137,14 +148,11 @@ export const getIndentedTreeOptions = ({
       node: {
         style: {
           component: function (data: NodeData) {
-            const depth = data.depth as number;
+            const depth = data.depth;
             const color = data.style?.color as string;
-            const props = {
-              text: idOf(data),
-              color,
-              maxWidth,
-              font: getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, depth).font,
-            } as TextNodeProps;
+            const label = formatLabel(data, labelField);
+            const { font } = getLinearTextNodeStyle(label, minWidth, maxWidth, depth);
+            const props = { text: label, color, maxWidth, font } as TextNodeProps;
             Object.assign(
               props,
               depth === 0
@@ -156,7 +164,10 @@ export const getIndentedTreeOptions = ({
             );
             return <TextNode {...props} />;
           },
-          size: (data: NodeData) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size,
+          size: (data: NodeData) => {
+            const label = formatLabel(data, labelField);
+            return getLinearTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          },
           ports: function (data: NodeData) {
             const side = getNodeSide(this as unknown as Graph, data);
             return side === 'left'
@@ -170,16 +181,24 @@ export const getIndentedTreeOptions = ({
       edge: {
         style: {
           stroke: function (data) {
-            return (this.getNodeData(data.target).style!.color as string) || '#99ADD1';
+            const target = this.getNodeData(data.target);
+            return get(target, 'style.color', '#99ADD1') as string;
           },
           radius: 24,
         },
       },
       layout: {
         type: 'indented',
-        indent: (node) => getIndent(node, 20),
-        getWidth: (data) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[0],
-        getHeight: (data) => getLinearTextNodeStyle(idOf(data), minWidth, maxWidth, data.depth as number).size[1],
+        getWidth: (data) => {
+          const label = formatLabel(data, labelField);
+          const [width] = getLinearTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          return width;
+        },
+        getHeight: (data) => {
+          const label = formatLabel(data, labelField);
+          const [, height] = getLinearTextNodeStyle(label, minWidth, maxWidth, data.depth).size;
+          return height;
+        },
         getVGap: () => 12,
       },
       transforms: (prev) => [
@@ -193,6 +212,36 @@ export const getIndentedTreeOptions = ({
           key: 'arrange-edge-z-index',
         },
       ],
+    };
+  } else {
+    const PADDING = [24, 16];
+
+    options = {
+      node: {
+        style: {
+          component: (data) => {
+            const label = formatLabel(data, labelField);
+            return <TextNode type="filled" text={label} />;
+          },
+          size: (data) => {
+            const label = formatLabel(data, labelField);
+            return measureTextSize(label, PADDING);
+          },
+        },
+      },
+      layout: {
+        type: 'indented',
+        getWidth: (data) => {
+          const label = formatLabel(data, labelField);
+          const [width] = measureTextSize(label, PADDING);
+          return width;
+        },
+        getHeight: (data) => {
+          const label = formatLabel(data, labelField);
+          const [, height] = measureTextSize(label, PADDING);
+          return height;
+        },
+      },
     };
   }
 

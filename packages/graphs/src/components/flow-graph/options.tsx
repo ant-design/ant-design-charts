@@ -1,5 +1,6 @@
 import React from 'react';
 import { RCNode } from '../../core/base';
+import { formatLabel } from '../../core/utils/label';
 import type { FlowGraphOptions } from './types';
 
 const { TextNode } = RCNode;
@@ -7,11 +8,6 @@ const { TextNode } = RCNode;
 export const DEFAULT_OPTIONS: FlowGraphOptions = {
   node: {
     type: 'react',
-    style: {
-      component: (data) => <TextNode type="filled" text={data.id} />,
-      size: [100, 40],
-      ports: [{ placement: 'left' }, { placement: 'right' }],
-    },
     state: {
       active: {
         halo: false,
@@ -32,28 +28,34 @@ export const DEFAULT_OPTIONS: FlowGraphOptions = {
   },
   layout: {
     type: 'dagre',
-    rankdir: 'LR',
     animation: false,
   },
   transforms: ['translate-react-node-origin'],
 };
 
-export const getFlowGraphOptions = ({ direction }: Pick<FlowGraphOptions, 'direction'>): FlowGraphOptions => {
-  let options: FlowGraphOptions = {};
-
-  if (direction === 'vertical') {
-    options = {
-      node: {
-        style: {
-          ports: [{ placement: 'top' }, { placement: 'bottom' }],
+export const getFlowGraphOptions = ({
+  direction,
+  labelField,
+}: Pick<FlowGraphOptions, 'direction' | 'labelField'>): FlowGraphOptions => {
+  const options: FlowGraphOptions = {
+    node: {
+      style: {
+        component: (data) => {
+          const label = formatLabel(data, labelField);
+          return <TextNode type="filled" text={label} />;
         },
+        size: [100, 40],
+        ports:
+          direction === 'vertical'
+            ? [{ placement: 'top' }, { placement: 'bottom' }]
+            : [{ placement: 'left' }, { placement: 'right' }],
       },
-      layout: {
-        type: 'dagre',
-        rankdir: 'TB',
-      },
-    };
-  }
+    },
+    layout: {
+      type: 'dagre',
+      rankdir: direction === 'vertical' ? 'TB' : 'LR',
+    },
+  };
 
   return options;
 };
