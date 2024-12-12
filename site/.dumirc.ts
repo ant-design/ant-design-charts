@@ -149,14 +149,6 @@ export default defineConfig({
         order: 10,
       },
       {
-        slug: 'options/graphs-concepts',
-        title: {
-          zh: '关系图概念',
-          en: 'Relation Graph Concepts',
-        },
-        order: 1,
-      },
-      {
         slug: 'options/graphs',
         title: {
           zh: '关系图组件',

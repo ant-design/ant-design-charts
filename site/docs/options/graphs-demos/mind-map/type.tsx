@@ -3,40 +3,57 @@ import { Divider } from 'antd';
 import React from 'react';
 
 const data = {
-  nodes: [
-    { id: 'Modeling Methods', depth: 0, children: ['Classification', 'Consensus', 'Regression'] },
+  id: 'Modeling Methods',
+  children: [
     {
       id: 'Classification',
-      depth: 1,
-      children: ['Logistic regression', 'Linear discriminant analysis'],
+      children: [
+        { id: 'Logistic Regression' },
+        { id: 'Linear Discriminant Analysis', children: [{ id: "Fisher's Linear Discriminant" }] },
+        {
+          id: 'Decision Trees',
+          children: [{ id: 'CART (Classification and Regression Trees)' }, { id: 'C4.5 Algorithm' }],
+        },
+      ],
     },
-    { id: 'Consensus', depth: 1, children: ['Models diversity', 'Methods', 'Common'] },
-    { id: 'Models diversity', depth: 2 },
-    { id: 'Methods', depth: 2 },
-    { id: 'Common', depth: 2 },
-    { id: 'Regression', depth: 1, children: ['Multiple linear regression', 'Partial least squares'] },
-    { id: 'Logistic regression', depth: 2 },
-    { id: 'Linear discriminant analysis', depth: 2 },
-    { id: 'Multiple linear regression', depth: 2 },
-    { id: 'Partial least squares', depth: 2 },
-  ],
-  edges: [
-    { source: 'Modeling Methods', target: 'Classification' },
-    { source: 'Modeling Methods', target: 'Consensus' },
-    { source: 'Modeling Methods', target: 'Regression' },
-    { source: 'Consensus', target: 'Models diversity' },
-    { source: 'Consensus', target: 'Methods' },
-    { source: 'Consensus', target: 'Common' },
-    { source: 'Classification', target: 'Logistic regression' },
-    { source: 'Classification', target: 'Linear discriminant analysis' },
-    { source: 'Regression', target: 'Multiple linear regression' },
-    { source: 'Regression', target: 'Partial least squares' },
+    {
+      id: 'Regression',
+      children: [{ id: 'Linear Regression' }, { id: 'Polynomial Regression' }],
+    },
+    {
+      id: 'Clustering',
+      children: [
+        { id: 'K-Means Clustering' },
+        {
+          id: 'Hierarchical Clustering',
+          children: [{ id: 'Agglomerative Clustering' }, { id: 'Divisive Clustering' }],
+        },
+      ],
+    },
+    {
+      id: 'Dimensionality Reduction',
+      children: [
+        { id: 'Principal Component Analysis (PCA)' },
+        {
+          id: 'Feature Selection Techniques',
+          children: [{ id: 'Recursive Feature Elimination' }, { id: 'L1 Regularization' }],
+        },
+      ],
+    },
+    {
+      id: 'Ensemble Methods',
+      children: [
+        { id: 'Bagging', children: [{ id: 'Bootstrap Aggregating' }] },
+        { id: 'Stacking' },
+        { id: 'Random Forest' },
+        { id: 'Voting Classifier' },
+      ],
+    },
   ],
 };
 
 export default () => {
   const options: MindMapOptions = {
-    containerStyle: { height: '200px' },
     autoFit: 'view',
     data,
     animation: false,

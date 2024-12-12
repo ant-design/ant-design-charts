@@ -38,7 +38,7 @@ import { Fishbone } from '@ant-design/graphs';
 | behaviors | 设置用户交互事件 | [Behaviors](#behaviors) | -       |
 | plugins   | 设置画布插件     | [Plugins](#plugins)     | -       |
 
-<embed src="../graphs-common/option-data.zh.md"></embed>
+<embed src="../graphs-common/graph-data.zh.md"></embed>
 
 ### Layout
 

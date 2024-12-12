@@ -1,6 +1,6 @@
 ---
 title: FAQ
-order: 2
+order: 9
 ---
 
 ### 1.如何在组件外获取图实例？
@@ -15,7 +15,7 @@ export default () => {
 };
 ```
 
-`graph` 实例上 API 请参考 [G6 - API 列表](https://g6.antv.antgroup.com/api/graph/method)。
+Graph API 可参考 [G6 - API 列表](https://g6.antv.antgroup.com/api/graph/method)。
 
 ### 2. Graphs 支持自定义吗？
 
@@ -42,4 +42,4 @@ import { MindMap } from '@ant-design/graphs';
 export default () => {
   return <MindMap behaviors={[]} {...options} />;
 };
-````
+```
