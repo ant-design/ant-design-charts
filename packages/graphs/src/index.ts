@@ -3,23 +3,23 @@ import './preset';
 
 export {
   Dendrogram,
+  Fishbone,
   FlowDirectionGraph,
   FlowGraph,
   IndentedTree,
   MindMap,
   NetworkGraph,
   OrganizationChart,
-  Fishbone,
 } from './components';
 export type {
   DendrogramOptions,
+  FishboneOptions,
   FlowDirectionGraphOptions,
   FlowGraphOptions,
   IndentedTreeOptions,
   MindMapOptions,
   NetworkGraphOptions,
   OrganizationChartOptions,
-  FishboneOptions
 } from './components';
 export { CollapseExpandIcon, RCNode } from './core/base';
 export type { OrganizationChartNodeProps, TextNodeProps } from './core/base/node';

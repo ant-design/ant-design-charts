@@ -1,7 +1,6 @@
-import { Fishbone, FishboneOptions } from "@ant-design/graphs";
-import { treeToGraphData } from "@antv/g6";
-import React from "react";
-
+import { Fishbone, FishboneOptions } from '@ant-design/graphs';
+import { treeToGraphData } from '@antv/g6';
+import React from 'react';
 
 const data = {
   id: 'Product Profitability Below Expectations',
@@ -57,7 +56,7 @@ export const FishboneDefault = () => {
   const options: FishboneOptions = {
     autoFit: 'view',
     data: treeToGraphData(data),
-    type: 'decision'
-  }
-  return <Fishbone {...options} />
-}
+    type: 'decision',
+  };
+  return <Fishbone {...options} />;
+};
