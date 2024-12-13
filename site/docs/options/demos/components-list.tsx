@@ -6,24 +6,7 @@ import { useFullSidebarData, useLocale, useNavigate } from 'dumi';
 import { isEmpty } from 'lodash';
 import React, { Suspense, useMemo } from 'react';
 import { styled } from 'styled-components';
-
-enum ChartType {
-  PLOT = 'Plot',
-  GRAPH = 'Graph',
-}
-
-const locales = {
-  en: {
-    [ChartType.PLOT]: 'Statistics',
-    [ChartType.GRAPH]: 'Relations',
-  },
-  zh: {
-    [ChartType.PLOT]: '统计图',
-    [ChartType.GRAPH]: '关系图',
-  },
-};
-
-const URLS = ['/options/plots', '/options/graphs'];
+import { GRAPH_USAGES, URLS } from './constants';
 
 const StyledWrapper = styled.div`
   .filter-panel {
@@ -46,67 +29,8 @@ const StyledWrapper = styled.div`
   }
 .`;
 
-const usagesData = [
-  {
-    id: 'all',
-    nameZh: '全部',
-    nameEn: 'All',
-  },
-  {
-    id: 'comparison',
-    nameZh: '比较类',
-    nameEn: 'Comparison',
-  },
-  {
-    id: 'distribution',
-    nameZh: '分布类',
-    nameEn: 'Distribution',
-  },
-  {
-    id: 'flow',
-    nameZh: '流程类',
-    nameEn: 'Flow',
-  },
-  {
-    id: 'proportion',
-    nameZh: '占比类',
-    nameEn: 'Proportion',
-  },
-  {
-    id: 'interval',
-    nameZh: '区间类',
-    nameEn: 'Interval',
-  },
-  {
-    id: 'relation',
-    nameZh: '关系类',
-    nameEn: 'Relation',
-  },
-  {
-    id: 'trend',
-    nameZh: '趋势类',
-    nameEn: 'Trend',
-  },
-  {
-    id: 'time',
-    nameZh: '时间类',
-    nameEn: 'Time',
-  },
-  {
-    id: 'map',
-    nameZh: '地图类',
-    nameEn: 'Map',
-  },
-  {
-    id: 'other',
-    nameZh: '其他',
-    nameEn: 'Other',
-  },
-];
-
 export default () => {
   const lang = useLocale().id;
-  const locale = locales[lang];
   const data = useFullSidebarData();
   const navigate = useNavigate();
   const [selectedUsages, setSelectedUsages] = React.useState<string[]>(['all']);
@@ -117,7 +41,7 @@ export default () => {
         .filter((meta) => meta.frontmatter.category === 'Components')
         .map((meta) => {
           const usageIds = (meta.frontmatter.usage || '').split(',').filter((usage) => !isEmpty(usage));
-          const usages = usagesData.filter((tag) => usageIds.includes(tag.id));
+          const usages = GRAPH_USAGES.filter((tag) => usageIds.includes(tag.id));
           return {
             ...meta,
             ...meta.frontmatter,
@@ -157,7 +81,7 @@ export default () => {
         <div className="filter-panel">
           <Divider />
           <Flex gap={6} wrap align="center">
-            {usagesData.map<React.ReactNode>(({ id, nameZh, nameEn }) => (
+            {GRAPH_USAGES.map<React.ReactNode>(({ id, nameZh, nameEn }) => (
               <Tag.CheckableTag
                 className="filter-tag"
                 key={id}
@@ -180,7 +104,7 @@ export default () => {
                   onClick={() => navigate(meta.link)}
                   hoverable
                   title={meta.title}
-                  style={{ borderRadius: 6 }}
+                  style={{ borderRadius: 8 }}
                 >
                   <Flex justify="center" align="center">
                     <img alt={meta.title} src={meta.cover} height={158} />
