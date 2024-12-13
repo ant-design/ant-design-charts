@@ -37,4 +37,4 @@ import { NetworkGraph } from '@ant-design/graphs';
 
 <embed src="../graphs-common/graph-data.zh.md"></embed>
 
-<!-- https://g6.antv.antgroup.com/api/layouts/d3-force-layout -->
+<embed src="../graphs-common/d3-force-layout.zh.md"></embed>

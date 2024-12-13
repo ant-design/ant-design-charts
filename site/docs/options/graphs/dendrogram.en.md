@@ -27,15 +27,29 @@ It is suitable for displaying hierarchical data relationships, clarifying key po
 
 ## API
 
-Common props ref: [Common Graph Properties](./overview#common-graph-properties)
+For general graph properties, refer to: [General Graph Properties](./overview#general-graph-properties)
 
 ### Dendrogram
 
 | Property | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| direction | Syntax sugar to set the arrangement direction of tree nodes. When `layout.direction` is set, it takes precedence. | `'vertical'` \| `'horizontal'` \| `'radial'` | `'horizontal'` |
-| compact | Whether to enable compact mode | `boolean` | `false` |
-| layout | Tree layout configuration | [`DendrogramLayoutOptions`](https://g6.antv.antgroup.com/en/api/layouts/dendrogram-layout) | `{ type: 'dendrogram' }` |
-| behaviors | Set user interaction events, also supports G6 built-in behaviors. For more details on behaviors, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | Set canvas plugins for handling rendering logic and additional component rendering. Also supports G6 built-in plugins. For more details on plugins, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | Set data transformers to process user input data and convert it into internal flow data. Also supports G6 built-in data transformers. For more details on data transformation, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| data | The dataset | [Data](#data) | - |
+| labelField | Specifies the node label content <br> - Select a field from the data, and the corresponding field value will be used as the node label <br> - Dynamically generated: this function will be called with node data as a parameter, and its return value will be used as the node label | string \| ((node: NodeData) => string) | Node ID |
+| direction | Syntactic sugar for setting the arrangement direction of tree nodes. When `layout.direction` is set, it will take precedence | `vertical` \| `horizontal` \| `radial` | `horizontal` |
+| compact | Whether to enable compact mode | boolean | false |
+| defaultExpandLevel | The default expansion level; if not specified, all levels will be expanded | number | - |
+| layout | Configuration for the dendrogram layout | [Layout](#layout) | - |
+
+<embed src="../graphs-common/tree-data.en.md"></embed>
+
+### Layout
+
+Dendrogram layout properties are as follows:
+
+| Property | Description | Type | Default Value |
+| --- | --- | --- | --- |
+| type | Layout type | string | `dendrogram` |
+| direction | Layout direction | `LR` \| `RL` \| `TB` \| `BT` \| `H` \| `V` | `RL` |
+| nodeSep | Node separation | number | 40 |
+| rankSep | Separation between layers | number | 200 |
+| radial | Whether to arrange nodes in a radial layout. If `radial` is true, it is recommended to set `direction` to `LR` or `RL` |  |  |

@@ -30,14 +30,17 @@ import { OrganizationChart } from '@ant-design/graphs';
 
 ## API
 
-Common props ref: [Common Graph Properties](./overview#common-graph-properties)
+For general graph properties, refer to: [General Graph Properties](./overview#general-graph-properties)
 
 ### OrganizationChart
 
-| Property | Description | Type | Default |
+| Property | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| direction | Syntax sugar for node layout direction. Takes precedence over `layout.rankdir` if set | `'vertical'` \| `'horizontal'` | `'vertical'` |
-| layout | AntV Dagre layout configuration | [`AntVDagreLayoutOptions`](https://g6.antv.antgroup.com/en/api/layouts/antv-dagre-layout) | `{ type: 'antv-dagre' }` |
-| behaviors | Set user interaction events, also supports G6 built-in behaviors. For more details on behaviors, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | Set canvas plugins for handling rendering logic and additional component rendering. Also supports G6 built-in plugins. For more details on plugins, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | Set data transformers to process user input data and convert it into internal flow data. Also supports G6 built-in data transformers. For more details on data transformation, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| data | The dataset | [Data](#data) | - |
+| labelField | Specifies the node label content <br> - Select a field from the data, and the corresponding field value will be used as the node label <br> - Dynamically generated: this function will be called with node data as a parameter, and its return value will be used as the node label | string \| ((node: NodeData) => string) | Node ID |
+| direction | Syntactic sugar for setting the arrangement direction of tree nodes. When `layout.rankdir` is set, it will take precedence | `vertical` \| `horizontal` | `vertical` |
+| layout | Dagre layout configuration | [Layout](#layout) | - |
+
+<embed src="../graphs-common/graph-data.en.md"></embed>
+
+<embed src="../graphs-common/dagre-layout.en.md"></embed>

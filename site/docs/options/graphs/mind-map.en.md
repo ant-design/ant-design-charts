@@ -29,17 +29,33 @@ When information is complex or requires clear logical relationships, organize it
 
 ## API
 
-Common props ref: [Common Graph Properties](./overview#common-graph-properties)
+For general graph properties, refer to: [General Graph Properties](./overview#general-graph-properties)
 
 ### MindMap
 
-| Property | Description | Type | Default |
+| Property | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| type | Syntax sugar, sets the mind map's display style. If `node.component` is set, it takes precedence | `'default'` \| `'linear'` \| `'boxed'` | `'default'` |
-| direction | Syntax sugar, sets the layout direction of the mind map nodes. If `layout.direction` is set, it takes precedence | `'left'` \| `'right'` \| `'alternate'` | `'alternate'` |
-| nodeMinWidth | Minimum width of the mind map nodes | `number` | `0` (`default` type) <br> `120` (`boxed` type) |
-| nodeMaxWidth | Maximum width of the mind map nodes | `number` | `300` |
-| layout | Mind map layout configuration | [`MindmapLayoutOptions`](https://g6.antv.antgroup.com/en/api/layouts/mindmaplayout) | `{ type: 'mindmap' }` |
-| behaviors | Set user interaction events, also supports G6 built-in behaviors. For more details on behaviors, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | Set canvas plugins for handling rendering logic and additional component rendering. Also supports G6 built-in plugins. For more details on plugins, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | Set data transformers to process user input data and convert it into internal flow data. Also supports G6 built-in data transformers. For more details on data transformation, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| data | The dataset | [Data](#data) | - |
+| layout | Configuration for setting the layout | [Layout](#layout) | - |
+| type | Syntactic sugar for setting the display style. When `node.component` is set, it takes precedence | `'default'` \| `'linear'` \| `'boxed'` | `'default'` |
+| direction | Syntactic sugar for setting the arrangement direction of nodes. When `layout.direction` is set, it takes precedence | `'left'` \| `'right'` \| `'alternate'` | `'alternate'` |
+| nodeMinWidth | Minimum width of a node; if the text content is insufficient, it will be centered | `number` | `0` (`default` type) <br> `120` (`boxed` type) |
+| nodeMaxWidth | Maximum width of a node; excess content will automatically wrap to the next line | `number` | `300` |
+| defaultExpandLevel | The default expansion level; if not specified, all levels will be expanded | number | - |
+
+<embed src="../graphs-common/tree-data.en.md"></embed>
+
+### Layout
+
+Mind map layout, where nodes at the same depth are placed on the same level. Parameters are as follows:
+
+| Property | Description | Type | Default Value |
+| --- | --- | --- | --- |
+| type | Layout type | string | `mindmap` |
+| labelField | Specifies the node label content <br> - Select a field from the data, and the corresponding field value will be used as the node label <br> - Dynamically generated: this function will be called with node data as a parameter, and its return value will be used as the node label | string \| ((node: NodeData) => string) | Node ID |
+| direction | Direction of the tree layout | `H` \| `V` | `H` |
+| getWidth | Width of each node | (node: NodeData) => number | Default is node height |
+| getHeight | Height of each node | (node: NodeData) => number | Default is node width |
+| getHGap | Horizontal gap between each node | (node: NodeData) => number | - |
+| getVGap | Vertical gap between each node | (node: NodeData) => number | - |
+| getSide | Specifies whether nodes are arranged on the left/right side of the root node. If set, all nodes will be on the same side of the root node, making `direction = 'H'` ineffective. If this parameter is a callback function, it can specify whether each node is on the left/right side of the root node. | (node: NodeData) => string | - |

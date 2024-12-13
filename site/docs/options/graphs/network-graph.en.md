@@ -26,11 +26,15 @@ Use when you need to visualize nodes and their relationships in a complex networ
 
 ## API
 
-Common props ref: [Common Graph Properties](./overview#common-graph-properties)
+For general graph properties, refer to: [General Graph Properties](./overview#general-graph-properties)
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
-| layout | D3 Force layout configuration | [`D3ForceLayoutOptions`](https://g6.antv.antgroup.com/en/api/layouts/d3-force-layout) | `{ type: 'd3-force' }` |
-| behaviors | Set user interaction events, also supports G6 built-in behaviors. For more details on behaviors, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | Set canvas plugins for handling rendering logic and additional component rendering. Also supports G6 built-in plugins. For more details on plugins, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | Set data transformers to process user input data and convert it into internal flow data. Also supports G6 built-in data transformers. For more details on data transformation, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+### NetworkGraph
+
+| 属性   | 说明                          | 类型              | 默认值 |
+| ------ | ----------------------------- | ----------------- | ------ |
+| data   | The dataset                   | [Data](#data)     | -      |
+| layout | D3 Force layout configuration | [Layout](#layout) | -      |
+
+<embed src="../graphs-common/graph-data.en.md"></embed>
+
+<embed src="../graphs-common/d3-force-layout.en.md"></embed>
