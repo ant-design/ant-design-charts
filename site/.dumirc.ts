@@ -55,8 +55,8 @@ export default defineConfig({
       {
         slug: 'docs/options',
         title: {
-          zh: '组件',
-          en: 'Components',
+          zh: '选项',
+          en: 'Options',
         },
       },
       {
