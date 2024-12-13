@@ -23,7 +23,9 @@ export const DEFAULT_OPTIONS: FlowGraphOptions = {
       lineWidth: 2,
       endArrow: true,
       radius: 8,
-      router: { type: 'orth' },
+      router: {
+        type: 'orth',
+      },
     },
   },
   layout: {

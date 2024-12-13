@@ -52,6 +52,7 @@ import { MindMap } from '@ant-design/graphs';
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 布局类型 | string | `mindmap` |
+| labelField | 指定节点标签内容 <br> - 从数据中选择一个字段，对应字段的值作为节点的标签 <br> - 动态生成，将以节点数据为参数调用该函数，并使用返回值作为节点的标签 | string \| ((node: NodeData) => string) | 节点 ID |
 | direction | 树布局的方向 | `H` \| `V` | `H` |
 | getWidth | 每个节点的宽度 | (node: NodeData) => number | 默认使用节点高度 |
 | getHeight | 每个节点的高度 | (node: NodeData) => number | 默认使用节点宽度 |

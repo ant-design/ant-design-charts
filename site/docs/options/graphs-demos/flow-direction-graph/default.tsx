@@ -11,9 +11,9 @@ export default () => {
   }, []);
 
   const options: FlowDirectionGraphOptions = {
-    containerStyle: { height: '400px' },
     autoFit: 'view',
     data,
+    labelField: (d) => d.value.title,
     transforms: (transforms) => [
       ...transforms,
       {
@@ -26,12 +26,6 @@ export default () => {
         maxLineWidth: 24,
       },
     ],
-    layout: {
-      type: 'antv-dagre',
-      nodesep: 10,
-      ranksep: 60,
-    },
-    animation: false
   };
 
   return <FlowDirectionGraph {...options} />;

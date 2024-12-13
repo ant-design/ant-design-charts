@@ -34,6 +34,7 @@ import { Dendrogram } from '@ant-design/graphs';
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | data | 数据 | [Data](#data) | - |
+| labelField | 指定节点标签内容 <br> - 从数据中选择一个字段，对应字段的值作为节点的标签 <br> - 动态生成，将以节点数据为参数调用该函数，并使用返回值作为节点的标签 | string \| ((node: NodeData) => string) | 节点 ID |
 | direction | 语法糖，设置树图节点的排布方向。当设置 layout.direction 时会以后者为准 | `vertical` \| `horizontal` \| `radial` | `horizontal` |
 | compact | 是否为紧凑模式 | boolean | false |
 | defaultExpandLevel | 默认展开层级，若不指定，将展开全部 | number | - |

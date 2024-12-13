@@ -2,18 +2,26 @@ import { type FlowDirectionGraphOptions, FlowGraph } from '@ant-design/graphs';
 import React, { useEffect, useState } from 'react';
 
 const CustomNode = ({ text }: { text: string }) => {
-  return <div style={{
-    height: 'inherit',
-    width: 'inherit',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: '8px',
-    backgroundColor: '#f7f0fe',
-    color: '#873bf4',
-    boxShadow: '0 0 0 2px #873bf4'
-  }}>{text}</div>
-}
+  return (
+    <div
+      style={{
+        height: 'inherit',
+        width: 'inherit',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        boxSizing: 'border-box',
+        borderRadius: '16px',
+        backgroundColor: '#FFF6E3',
+        color: '#8B5DFF',
+        border: '2px solid #8B5DFF',
+        fontFamily: 'Futura',
+      }}
+    >
+      📈 {text}
+    </div>
+  );
+};
 
 export default () => {
   const [data, setData] = useState(undefined);
@@ -25,9 +33,7 @@ export default () => {
   }, []);
 
   const options: FlowDirectionGraphOptions = {
-    containerStyle: { height: '360px' },
     autoFit: 'view',
-    padding: [20, 0, 0, 60],
     data,
     node: {
       style: {
@@ -36,14 +42,15 @@ export default () => {
       },
     },
     edge: {
-      style: { stroke: '#873bf4' },
+      style: {
+        stroke: '#8B5DFF',
+      },
     },
     layout: {
       type: 'dagre',
-      rankSep: 100,
-      nodeSep: 20
+      rankSep: 130,
+      nodeSep: 60,
     },
-    animation: false
   };
 
   return <FlowGraph {...options} />;

@@ -13,41 +13,42 @@ export default () => {
   }, []);
 
   const options: FlowDirectionGraphOptions = {
-    containerStyle: { height: '400px' },
     autoFit: 'view',
-    padding: [20, 0, 0, 40],
     data,
     node: {
       style: {
         component: (d) => {
           const isActive = d.states?.includes('active');
-          return <TextNode color={isActive ? '#D580FF' : '#1783FF'} text={d.id} type="filled" />;
+          return <TextNode color={isActive ? '#5AD8A6' : '#1783FF'} text={d.value.title} type="filled" />;
         },
+        size: [120, 38],
       },
     },
     edge: {
       state: {
         active: {
-          stroke: '#D580FF',
-          halo: false
-        }
-      }
-    },
-    behaviors: (prev) => [...prev, {
-      type: 'hover-activate-chain',
-      onHover: (e) => {
-        e.view.setCursor('pointer');
+          stroke: '#5AD8A6',
+          halo: false,
+        },
       },
-      onHoverEnd: (e) => {
-        e.view.setCursor('default');
-      }
-    }],
+    },
+    behaviors: (prev) => [
+      ...prev,
+      {
+        type: 'hover-activate-chain',
+        onHover: (e) => {
+          e.view.setCursor('pointer');
+        },
+        onHoverEnd: (e) => {
+          e.view.setCursor('default');
+        },
+      },
+    ],
     layout: {
       type: 'dagre',
-      rankSep: 100,
-      nodeSep: 20
+      rankSep: 130,
+      nodeSep: 60,
     },
-    animation: false
   };
 
   return <FlowGraph {...options} />;

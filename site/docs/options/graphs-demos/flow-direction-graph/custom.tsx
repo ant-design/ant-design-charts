@@ -1,6 +1,7 @@
 import { FlowDirectionGraph, type FlowDirectionGraphOptions } from '@ant-design/graphs';
 import insertCss from 'insert-css';
 import React from 'react';
+
 const data = {
   nodes: [
     {
@@ -503,8 +504,8 @@ const transformData = (data) => {
 
 export default () => {
   const options: FlowDirectionGraphOptions = {
-    containerStyle: { height: '400px' },
     autoFit: 'view',
+    padding: 8,
     data: transformData(data),
     node: {
       style: {
@@ -537,11 +538,10 @@ export default () => {
       },
     ],
     layout: {
-      type: 'antv-dagre',
-      nodesep: -10,
-      ranksep: 100,
+      type: 'dagre',
+      nodesep: 40,
+      ranksep: 200,
     },
-    animation: false,
   };
 
   return <FlowDirectionGraph {...options} />;

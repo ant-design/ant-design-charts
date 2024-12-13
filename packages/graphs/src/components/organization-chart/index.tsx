@@ -17,11 +17,11 @@ export const OrganizationChart: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<OrganizationChartOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<OrganizationChartOptions>>(({ children, ...props }, ref) => {
   const options = useMemo(() => {
-    const { direction = 'vertical', ...restProps } = props;
+    const { direction = 'vertical', labelField, ...restProps } = props;
     const options = mergeOptions(
       COMMON_OPTIONS,
       DEFAULT_OPTIONS,
-      getOrganizationChartOptions({ direction }),
+      getOrganizationChartOptions({ direction, labelField }),
       restProps,
     );
     return options;

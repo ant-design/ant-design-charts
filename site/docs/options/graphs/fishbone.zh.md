@@ -30,12 +30,15 @@ import { Fishbone } from '@ant-design/graphs';
 
 通用配置参考：[图通用属性](./overview#图通用属性)
 
-| 属性               | 说明                               | 类型                  | 默认值  |
-| ------------------ | ---------------------------------- | --------------------- | ------- |
-| data               | 数据                               | [Data](#data)         | -       |
-| type               | 鱼骨图类型                         | `cause` \| `decision` | `cause` |
-| defaultExpandLevel | 默认展开层级，若不指定，将展开全部 | number                | -       |
-| layout             | 布局配置                           | [Layout](#layout)     | -       |
+### Fishbone
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| data | 数据 | [Data](#data) | - |
+| labelField | 指定节点标签内容 <br> - 从数据中选择一个字段，对应字段的值作为节点的标签 <br> - 动态生成，将以节点数据为参数调用该函数，并使用返回值作为节点的标签 | string \| ((node: NodeData) => string) | 节点 ID |
+| type | 鱼骨图类型 | `cause` \| `decision` | `cause` |
+| defaultExpandLevel | 默认展开层级，若不指定，将展开全部 | number | - |
+| layout | 布局配置 | [Layout](#layout) | - |
 
 <embed src="../graphs-common/tree-data.zh.md"></embed>
 

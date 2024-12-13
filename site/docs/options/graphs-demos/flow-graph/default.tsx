@@ -11,11 +11,9 @@ export default () => {
   }, []);
 
   const options: FlowGraphOptions = {
-    containerStyle: { height: '400px' },
     autoFit: 'view',
-    padding: [20, 0, 0, 40],
     data,
-    animation: false
+    labelField: (d) => d.value.title,
   };
 
   return <FlowGraph {...options} />;
