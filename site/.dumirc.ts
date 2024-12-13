@@ -56,7 +56,7 @@ export default defineConfig({
         slug: 'docs/options',
         title: {
           zh: '选项',
-          en: 'Option',
+          en: 'Options',
         },
       },
       {
@@ -151,10 +151,10 @@ export default defineConfig({
       {
         slug: 'options/graphs',
         title: {
-          zh: '关系图',
-          en: 'Relation Graph',
+          zh: '关系图组件',
+          en: 'Relation Graph Components',
         },
-        order: 1,
+        order: 2,
       },
     ],
     examples: [

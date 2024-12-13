@@ -22,15 +22,11 @@ import { OrganizationChart } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="demo-org-chart-default" src="./demos/organization-chart/default.tsx" description="简单的展示。">基本用法</code>
-
-<code id="demo-org-chart-direction" src="./demos/organization-chart/direction.tsx" description="通过设置 `direction` 为 `vertical` `horizontal` 分别让垂直（自上而下）、水平（自左而右）分布。若不设置 `direction`，则默认垂直分布。">节点排布</code>
-
-<code id="demo-org-chart-custom-node" src="./demos/organization-chart/custom-node.tsx" description="使用自定义的 React 节点进行图的渲染。此示例中使用了内置的 RC 组件 `OrganizationChartNode` 进行简单实现，你也可以自行开发 RC 组件以满足特定需求。">自定义节点</code>
-
-<code id="demo-org-chart-collapse-expand" src="./demos/organization-chart/collapse-expand.tsx" description="
-通过调整 `collapse-expand-react-node` 交互配置来控制展开/收起子节点的操作。<br> - `enable`: 是否启用该交互，类型为 `boolean | ((data: NodeData) => boolean)`，默认为 `false` <br> - `trigger`: 点击指定元素，触发节点收起/展开；`'icon'` 代表点击图标触发，`'node'` 代表点击节点触发，`HTMLElement` 代表自定义元素，默认为 `'icon'` <br> - `direction`: 收起/展开指定方向上的邻居节点，`'in'` 代表前驱节点，`'out'` 代表后继节点，`'both'` 代表前驱和后继节点，默认为 `'out'` <br> - `iconType`: 内置图标语法糖，`'plus-minus'` 或 `'arrow-count'` <br> - `iconRender`: 渲染函数，用于自定义收起/展开图标，参数为 `isCollapsed`（当前节点是否已收起）和 `data`（节点数据），返回自定义图标 <br> - `iconPlacement`: 图标相对于节点的位置，可选值为 `'left'`、`'right'`、`'top'`、`'bottom'`，默认为 `'bottom'` <br> - `iconOffsetX/iconOffsetY`: 图标相对于节点的水平、垂直偏移量，默认为 `0` <br> - `iconClassName/iconStyle`: 指定图标的 CSS 类名及内联样式 <br> - `refreshLayout`: 每次收起/展开节点后，是否刷新布局
-">展开/收起子节点</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/organization-chart/default.tsx">基本用法</code>
+<code src="../graphs-demos/organization-chart/direction.tsx">节点排布</code>
+<code src="../graphs-demos/organization-chart/custom-node.tsx">自定义节点</code>
+<code src="../graphs-demos/organization-chart/collapse-expand.tsx">展开/收起子节点</code>
 
 ## API
 
@@ -40,8 +36,11 @@ import { OrganizationChart } from '@ant-design/graphs';
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| data | 数据 | [Data](#data) | - |
+| labelField | 指定节点标签内容 <br> - 从数据中选择一个字段，对应字段的值作为节点的标签 <br> - 动态生成，将以节点数据为参数调用该函数，并使用返回值作为节点的标签 | string \| ((node: NodeData) => string) | 节点 ID |
 | direction | 语法糖，设置节点的排布方向。当设置 `layout.rankdir` 时会以后者为准 | `'vertical'` \| `'horizontal'` | `'vertical'` |
-| layout | AntV Dagre 布局配置 | [`AntVDagreLayoutOptions`](https://g6.antv.antgroup.com/api/layouts/antv-dagre-layout) | `{ type: 'antv-dagre' }` |
-| behaviors | 设置用户交互事件，同样支持 G6 内置交互。关于交互的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件。关于插件的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | 设置数据转换器，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器。关于数据转换的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| layout | Dagre 布局配置 | [Layout](#layout) | - |
+
+<embed src="../graphs-common/graph-data.zh.md"></embed>
+
+<embed src="../graphs-common/dagre-layout.zh.md"></embed>

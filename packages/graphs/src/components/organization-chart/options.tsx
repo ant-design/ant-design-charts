@@ -1,17 +1,14 @@
 import React from 'react';
 import { RCNode } from '../../core/base';
+import { formatLabel } from '../../core/utils/label';
+import type { GraphOptions } from '../../types';
 import { OrganizationChartOptions } from './types';
 
 const { TextNode } = RCNode;
 
-export const DEFAULT_OPTIONS: OrganizationChartOptions = {
+export const DEFAULT_OPTIONS: GraphOptions = {
   node: {
     type: 'react',
-    style: {
-      component: (data) => <TextNode type="filled" text={data.id} />,
-      size: [100, 40],
-      ports: [{ placement: 'top' }, { placement: 'bottom' }],
-    },
     state: {
       active: {
         halo: false,
@@ -20,69 +17,56 @@ export const DEFAULT_OPTIONS: OrganizationChartOptions = {
         halo: false,
       },
     },
-    animation: false,
   },
   edge: {
     type: 'polyline',
     style: {
       lineWidth: 2,
-      router: { type: 'orth' },
+      router: {
+        type: 'orth',
+      },
     },
-    animation: false,
   },
   layout: {
     type: 'dagre',
+    animation: false,
   },
   transforms: ['translate-react-node-origin'],
 };
 
 export function getOrganizationChartOptions({
   direction,
-}: Pick<OrganizationChartOptions, 'direction'>): OrganizationChartOptions {
-  let options = {};
-
-  if (direction === 'vertical') {
-    options = {
-      node: {
-        style: {
-          ports: [{ placement: 'top' }, { placement: 'bottom' }],
+  labelField,
+}: Pick<OrganizationChartOptions, 'direction' | 'labelField'>): GraphOptions {
+  const options: GraphOptions = {
+    node: {
+      style: {
+        component: (data) => {
+          const label = formatLabel(data, labelField);
+          return <TextNode type="filled" text={label} />;
         },
+        size: [100, 40],
+        ports:
+          direction === 'vertical'
+            ? [{ placement: 'top' }, { placement: 'bottom' }]
+            : [{ placement: 'left' }, { placement: 'right' }],
       },
-      transforms: (prev) => [
-        ...prev,
-        {
-          type: 'collapse-expand-react-node',
-          key: 'collapse-expand-react-node',
-          enable: false,
-          refreshLayout: true,
-        },
-      ],
-      layout: {
-        rankdir: 'TB',
+    },
+    transforms: (prev) => [
+      ...prev,
+      {
+        type: 'collapse-expand-react-node',
+        key: 'collapse-expand-react-node',
+        iconPlacement: direction === 'vertical' ? 'bottom' : 'right',
+        enable: false,
+        refreshLayout: true,
       },
-    };
-  } else {
-    options = {
-      node: {
-        style: {
-          ports: [{ placement: 'left' }, { placement: 'right' }],
-        },
-      },
-      transforms: (prev) => [
-        ...prev,
-        {
-          type: 'collapse-expand-react-node',
-          key: 'collapse-expand-react-node',
-          iconPlacement: 'right',
-          enable: false,
-          refreshLayout: true,
-        },
-      ],
-      layout: {
-        rankdir: 'LR',
-      },
-    };
-  }
+    ],
+    layout: {
+      type: 'dagre',
+      rankdir: direction === 'vertical' ? 'TB' : 'LR',
+    },
+  };
 
   return options;
 }

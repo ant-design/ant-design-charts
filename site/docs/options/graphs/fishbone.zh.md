@@ -4,6 +4,7 @@ type: Graph
 usage: relation
 title: Fishbone 鱼骨图
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*olIATZ-4qMEAAAAAAAAAAAAADmJ7AQ/original
+order: 2
 ---
 
 鱼骨图，又名石川图，用于系统地分析问题根本原因的图表工具，通过将问题分解为多个因素，帮助识别和解决问题。
@@ -20,20 +21,35 @@ import { Fishbone } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="default" src="./demos/fishbone/default.tsx" description="原因型鱼骨图（鱼头在右），用于分析问题。">原因型鱼骨图</code>
-
-<code id="decision" src="./demos/fishbone/decision.tsx" description="决策型鱼骨图（鱼头在左），用于解决问题。">决策型鱼骨图</code>
-
-<code id="layout" src="./demos/fishbone/layout.tsx" description="调整鱼骨分支位置。">调整布局参数</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/fishbone/default.tsx">原因型鱼骨图</code>
+<code src="../graphs-demos/fishbone/decision.tsx">决策型鱼骨图</code>
+<code src="../graphs-demos/fishbone/layout.tsx">调整布局参数</code>
 
 ## API
 
 通用配置参考：[图通用属性](./overview#图通用属性)
 
+### Fishbone
+
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 鱼骨图类型 | `'cause'` \| `'decision'` | `'cause'` |
-| layout | 鱼骨布局配置 | [`FishboneLayoutOptions`](https://g6.antv.antgroup.com/api/layouts/fishbone) | `{ type: 'fishbone' }` |
-| behaviors | 设置用户交互事件，同样支持 G6 内置交互。关于交互的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件。关于插件的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | 设置数据转换器，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器。关于数据转换的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| data | 数据 | [Data](#data) | - |
+| labelField | 指定节点标签内容 <br> - 从数据中选择一个字段，对应字段的值作为节点的标签 <br> - 动态生成，将以节点数据为参数调用该函数，并使用返回值作为节点的标签 | string \| ((node: NodeData) => string) | 节点 ID |
+| type | 鱼骨图类型 | `cause` \| `decision` | `cause` |
+| defaultExpandLevel | 默认展开层级，若不指定，将展开全部 | number | - |
+| layout | 布局配置 | [Layout](#layout) | - |
+
+<embed src="../graphs-common/tree-data.zh.md"></embed>
+
+### Layout
+
+鱼骨图布局。参数如下：
+
+| 属性      | 说明         | 类型                       | 默认值           |
+| --------- | ------------ | -------------------------- | ---------------- |
+| type      | 布局类型     | string                     | `fishbone`       |
+| direction | 排布方向     | `RL` \| `LR`               | `RL`             |
+| vGap      | 设置垂直间距 | number                     | 默认使用节点高度 |
+| hGap      | 设置水平间距 | number                     | 默认使用节点宽度 |
+| getRibSep | 设置鱼骨间距 | (node: NodeData) => number | () => 60         |

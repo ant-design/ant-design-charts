@@ -23,19 +23,23 @@ import { FlowGraph } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="demo-flow-graph-default" src="./demos/flow-graph/default.tsx" description="简单的展示。">基本用法</code>
-
-<code id="demo-flow-graph-hover" src="./demos/flow-graph/hover-activate-chain.tsx" description="通过添加悬浮高亮交互（注册类型：`hover-activate-chain`），可以高亮显示元素及其所在的链路。">高亮元素及其所在链路</code>
-
-<code id="demo-flow-graph-custom-node" src="./demos/flow-graph/custom-node.tsx" description="通过 `node.component` 来进行自定义节点，需要与 `node.size` 配合实现。">自定义节点</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/flow-graph/default.tsx">基本用法</code>
+<code src="../graphs-demos/flow-graph/hover-activate-chain.tsx">高亮元素及其所在链路</code>
+<code src="../graphs-demos/flow-graph/custom-node.tsx">自定义节点</code>
 
 ## API
 
 通用配置参考：[图通用属性](./overview#图通用属性)
 
+### FlowGraph
+
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| layout | AntV Dagre 布局配置 | [`AntVDagreLayoutOptions`](https://g6.antv.antgroup.com/api/layouts/antv-dagre-layout) | `{ type: 'antv-dagre' }` |
-| behaviors | 设置用户交互事件，同样支持 G6 内置交互。关于交互的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件。关于插件的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | 设置数据转换器，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器。关于数据转换的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| data | 数据 | [Data](#data) | - |
+| labelField | 指定节点标签内容 <br> - 从数据中选择一个字段，对应字段的值作为节点的标签 <br> - 动态生成，将以节点数据为参数调用该函数，并使用返回值作为节点的标签 | string \| ((node: NodeData) => string) | 节点 ID |
+| layout | Dagre 布局配置 | [Layout](#layout) | - |
+
+<embed src="../graphs-common/graph-data.zh.md"></embed>
+
+<embed src="../graphs-common/dagre-layout.zh.md"></embed>

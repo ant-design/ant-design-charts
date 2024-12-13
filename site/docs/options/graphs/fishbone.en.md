@@ -4,6 +4,7 @@ type: Graph
 usage: relation
 title: Fishbone
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*olIATZ-4qMEAAAAAAAAAAAAADmJ7AQ/original
+order: 2
 ---
 
 The Fishbone diagram, also known as the Ishikawa diagram, is a systematic graphical tool for analyzing the root causes of problems. By breaking a problem down into various factors, it assists in identifying and resolving issues.
@@ -20,20 +21,35 @@ The basic principle of the Fishbone method is to identify the main causes of a p
 
 ## Examples
 
-<code id="default" src="./demos/fishbone/default.tsx" description="Cause-type fishbone diagram (with the head on the right), used for analyzing problems.">Cause-type Fishbone Diagram</code>
-
-<code id="decision" src="./demos/fishbone/decision.tsx" description="Decision-type fishbone diagram (with the head on the left), used for solving problems.">Decision-type Fishbone Diagram</code>
-
-<code id="layout" src="./demos/fishbone/layout.tsx" description="Adjust the position of the fishbone branches.">Adjust Layout Parameters</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/fishbone/default.tsx">Cause-type Fishbone Diagram</code>
+<code src="../graphs-demos/fishbone/decision.tsx">Decision-type Fishbone Diagram</code>
+<code src="../graphs-demos/fishbone/layout.tsx">Adjust Layout Parameters</code>
 
 ## API
 
-Common props ref: [Common Graph Properties](./overview#common-graph-properties)
+For general graph properties, refer to: [General Graph Properties](./overview#general-graph-properties)
+
+### Fishbone
 
 | Property | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| type | The type of the fishbone diagram | `'cause'` \| `'decision'` | `'cause'` |
-| layout | Configuration for the layout of the fishbone diagram | [`FishboneLayoutOptions`](https://g6.antv.antgroup.com/api/layouts/fishbone) | `{ type: 'fishbone' }` |
-| behaviors | Set user interaction events, also supports G6 built-in behaviors. For more details on behaviors, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | Set canvas plugins for handling rendering logic and additional component rendering. Also supports G6 built-in plugins. For more details on plugins, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | Set data transformers to process user input data and convert it into internal flow data. Also supports G6 built-in data transformers. For more details on data transformation, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| data | The dataset | [Data](#data) | - |
+| labelField | Specifies the node label content <br> - Select a field from the data, and the corresponding field value will be used as the node label <br> - Dynamically generated: this function will be called with node data as a parameter, and its return value will be used as the node label | string \| ((node: NodeData) => string) | Node ID |
+| type | Type of fishbone diagram | `cause` \| `decision` | `cause` |
+| defaultExpandLevel | The default expansion level; if not specified, all levels will be expanded | number | - |
+| layout | Fishbone layout configuration | [Layout](#layout) | - |
+
+<embed src="../graphs-common/tree-data.en.md"></embed>
+
+### Layout
+
+Layout for fishbone diagrams. Parameters are as follows:
+
+| Property  | Description                                       | Type                       | Default Value          |
+| --------- | ------------------------------------------------- | -------------------------- | ---------------------- |
+| type      | Layout type                                       | string                     | `fishbone`             |
+| direction | Arrangement direction                             | `RL` \| `LR`               | `RL`                   |
+| vGap      | Vertical gap                                      | number                     | Default is node height |
+| hGap      | Horizontal gap                                    | number                     | Default is node width  |
+| getRibSep | Function to set the spacing between fishbone ribs | (node: NodeData) => number | () => 60               |

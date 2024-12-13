@@ -19,19 +19,13 @@ import { MindMap } from '@ant-design/graphs';
 
 ## 代码演示
 
-<code id="demo-mind-map-default" src="./demos/mind-map/default.tsx">基本用法</code>
-
-<code id="demo-mind-map-type" src="./demos/mind-map/type.tsx" description="通过 `type` 语法糖，使用预设的风格：线条风格和方框风格。">风格</code>
-
-<code id="demo-mind-map-direction" src="./demos/mind-map/direction.tsx" description="通过设置 `direction` 为 `right` `left` 分别让子节点右侧、左侧分布。若不设置 `direction`，则默认自由分布。">子节点分布</code>
-
-<code id="demo-mind-map-custom-node" src="./demos/mind-map/custom-node.tsx" description="通过 `node.component` 来进行自定义节点，需要与 `node.size` 配合实现。">自定义节点</code>
-
-<code id="demo-mind-map-collapse-expand" src="./demos/mind-map/collapse-expand.tsx" description="
-通过调整 `collapse-expand-react-node` 交互配置来控制展开/收起子节点的操作。<br> - `enable`: 是否启用该交互，类型为 `boolean | ((data: NodeData) => boolean)`，默认为 `false` <br> - `trigger`: 点击指定元素，触发节点收起/展开；`'icon'` 代表点击图标触发，`'node'` 代表点击节点触发，`HTMLElement` 代表自定义元素，默认为 `'icon'` <br> - `direction`: 收起/展开指定方向上的邻居节点，`'in'` 代表前驱节点，`'out'` 代表后继节点，`'both'` 代表前驱和后继节点，默认为 `'out'` <br> - `iconType`: 内置图标语法糖，`'plus-minus'` 或 `'arrow-count'` <br> - `iconRender`: 渲染函数，用于自定义收起/展开图标，参数为 `isCollapsed`（当前节点是否已收起）和 `data`（节点数据），返回自定义图标 <br> - `iconPlacement`: 图标相对于节点的位置，可选值为 `'left'`、`'right'`、`'top'`、`'bottom'`，默认为 `'bottom'` <br> - `iconOffsetX/iconOffsetY`: 图标相对于节点的水平、垂直偏移量，默认为 `0` <br> - `iconClassName/iconStyle`: 指定图标的 CSS 类名及内联样式 <br> - `refreshLayout`: 每次收起/展开节点后，是否刷新布局
-">展开/收起子节点</code>
-
-<code id="demo-mind-map-color" src="./demos/mind-map/color.tsx" description="`assign-color-by-branch` 是内置数据转换的一个环节，可以通过修改 `colors` 来分配不同的颜色来区分思维导图的分支。">设置分支颜色</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/mind-map/default.tsx">基本用法</code>
+<code src="../graphs-demos/mind-map/type.tsx">风格</code>
+<code src="../graphs-demos/mind-map/direction.tsx">节点分布</code>
+<code src="../graphs-demos/mind-map/collapse-expand.tsx">展开/收起子节点</code>
+<code src="../graphs-demos/mind-map/color.tsx">设置分支颜色</code>
+<code src="../graphs-demos/mind-map/custom-node.tsx">自定义节点</code>
 
 ## API
 
@@ -41,11 +35,27 @@ import { MindMap } from '@ant-design/graphs';
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 语法糖，设置思维导图的展示风格。当设置 `node.component` 时以后者为准 | `'default'` \| `'linear'` \| `'boxed'` | `'default'` |
-| direction | 语法糖，设置思维导图节点的排布方向。当设置 `layout.direction` 时会以后者为准 | `'left'` \| `'right'` \| `'alternate'` | `'alternate'` |
-| nodeMinWidth | 思维导图节点的最小宽度，当文字内容不足时将居中显示 | `number` | `0` (`default` 类型) <br> `120` (`boxed` 类型) |
-| nodeMaxWidth | 思维导图节点的最大宽度，超出部分将自动换行 | `number` | `300` |
-| layout | 思维导图布局配置 | [`MindmapLayoutOptions`](https://g6.antv.antgroup.com/api/layouts/mindmaplayout) | `{ type: 'mindmap' }` |
-| behaviors | 设置用户交互事件，同样支持 G6 内置交互。关于交互的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins | 设置画布插件，处理画布的渲染逻辑、额外组件渲染等，同样支持 G6 内置插件。关于插件的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | 设置数据转换器，处理用户输入数据并转换为适合后续处理的内部流转数据，同样支持 G6 内置数据转换器。关于数据转换的详细介绍，请查阅[此处](https://g6.antv.antgroup.com/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| data | 数据 | [Data](#data) | - |
+| layout | 设置布局配置 | [Layout](#layout) | - |
+| type | 语法糖，设置展示风格。当设置 `node.component` 时以后者为准 | `'default'` \| `'linear'` \| `'boxed'` | `'default'` |
+| direction | 语法糖，设置节点的排布方向。当设置 `layout.direction` 时会以后者为准 | `'left'` \| `'right'` \| `'alternate'` | `'alternate'` |
+| nodeMinWidth | 节点的最小宽度，当文字内容不足时将居中显示 | `number` | `0` (`default` 类型) <br> `120` (`boxed` 类型) |
+| nodeMaxWidth | 节点的最大宽度，超出部分将自动换行 | `number` | `300` |
+| defaultExpandLevel | 默认展开层级，若不指定，将展开全部 | number | - |
+
+<embed src="../graphs-common/tree-data.zh.md"></embed>
+
+### Layout
+
+脑图布局，深度相同的节点将会被放置在同一层。参数如下：
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 布局类型 | string | `mindmap` |
+| labelField | 指定节点标签内容 <br> - 从数据中选择一个字段，对应字段的值作为节点的标签 <br> - 动态生成，将以节点数据为参数调用该函数，并使用返回值作为节点的标签 | string \| ((node: NodeData) => string) | 节点 ID |
+| direction | 树布局的方向 | `H` \| `V` | `H` |
+| getWidth | 每个节点的宽度 | (node: NodeData) => number | 默认使用节点高度 |
+| getHeight | 每个节点的高度 | (node: NodeData) => number | 默认使用节点宽度 |
+| getHGap | 每个节点的水平间隙 | (node: NodeData) => number | - |
+| getVGap | 每个节点的垂直间隙 | (node: NodeData) => number | - |
+| getSide | 节点排布在根节点的左侧/右侧。若设置了该值，则所有节点会在根节点同一侧，即 direction = 'H' 不再起效。若该参数为回调函数，则可以指定每一个节点在根节点的左/右侧。 | (node: NodeData) => string | - |

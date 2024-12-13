@@ -22,33 +22,43 @@ import { IndentedTree } from '@ant-design/graphs';
 
 ## Examples
 
-<code id="demo-indented-tree-default" src="./demos/indented-tree/default.tsx" description="A simple demonstration.">Basic Usage</code>
-
-<code id="demo-indented-tree-type" src="./demos/indented-tree/type.tsx" description="Use the `type` syntax sugar to apply preset styles: line style or boxed style.">Styles</code>
-
-<code id="demo-indented-tree-direction" src="./demos/indented-tree/direction.tsx" description="Set `direction` to `alternate` or `left` to distribute child nodes freely or to the left. If not set, the default is `right` (right distribution).">Child Node Distribution</code>
-
-<code id="demo-indented-tree-custom-node" src="./demos/indented-tree/custom-node.tsx" description="Customize nodes using `node.component`, which must be paired with `node.size` to take effect.">Custom Nodes</code>
-
-<code id="demo-indented-tree-collapse-expand" src="./demos/indented-tree/collapse-expand.tsx" description="
-Adjust the `collapse-expand-react-node` interaction configuration to control expand/collapse behavior for child nodes.<br> - `enable`: Whether to enable the interaction, type is `boolean | ((data: NodeData) => boolean)`, default is `false` <br> - `trigger`: The element that triggers node collapse/expand; `'icon'` triggers on icon click, `'node'` triggers on node click, and `HTMLElement` allows custom elements, default is `'icon'` <br> - `direction`: Collapse/expand neighbor nodes in the specified direction, `'in'` for predecessor nodes, `'out'` for successor nodes, and `'both'` for both predecessors and successors, default is `'out'` <br> - `iconType`: Built-in icon options, either `'plus-minus'` or `'arrow-count'` <br> - `iconRender`: Render function to customize the collapse/expand icon, takes `isCollapsed` (whether the node is collapsed) and `data` (node data) as parameters, returns a custom icon <br> - `iconPlacement`: Icon position relative to the node, can be `'left'`, `'right'`, `'top'`, or `'bottom'`, default is `'bottom'` <br> - `iconOffsetX/iconOffsetY`: Horizontal/vertical offset for the icon relative to the node, default is `0` <br> - `iconClassName/iconStyle`: CSS class name and inline styles for the icon <br> - `refreshLayout`: Whether to refresh the layout after each collapse/expand operation
-">Expand/Collapse Child Nodes</code>
-
-<code id="demo-indented-tree-color" src="./demos/indented-tree/color.tsx" description="`assign-color-by-branch` is a built-in data transformation step that allows you to assign different colors to branches by modifying `colors`.">Set Branch Colors</code>
+<!-- prettier-ignore -->
+<code src="../graphs-demos/indented-tree/default.tsx">Basic Usage</code>
+<code src="../graphs-demos/indented-tree/type.tsx">Styles</code>
+<code src="../graphs-demos/indented-tree/direction.tsx">Child Node Distribution</code>
+<code src="../graphs-demos/indented-tree/custom-node.tsx">Custom Nodes</code>
+<code src="../graphs-demos/indented-tree/collapse-expand.tsx">Expand/Collapse Child Nodes</code>
+<code src="../graphs-demos/indented-tree/color.tsx">Set Branch Colors</code>
 
 ## API
 
-Common props ref: [Common Graph Properties](./overview#common-graph-properties)
+For general graph properties, refer to: [General Graph Properties](./overview#general-graph-properties)
 
 ### IndentedTree
 
-| Property      | Description | Type | Default Value |
-| ---           | ---         | ---  | ---           |
-| type          | Syntax sugar for setting the display style of the indented tree. When `node.component` is set, it takes precedence. | `'default'` \| `'linear'` \| `'boxed'` | `'default'` |
-| direction     | Syntax sugar for setting the node arrangement direction. When `layout.direction` is set, it takes precedence. | `'left'` \| `'right'` \| `'alternate'` | `'right'` |
-| nodeMinWidth  | Minimum node width in the indented tree | `number` | `0` |
-| nodeMaxWidth  | Maximum node width in the indented tree | `number` | `300` |
-| layout        | Indented tree layout configuration | [`IndentedLayoutOptions`](https://g6.antv.antgroup.com/en/api/layouts/indented-layout) | `{ type: 'indented' }` |
-| behaviors | Set user interaction events, also supports G6 built-in behaviors. For more details on behaviors, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/behavior) | [`BehaviorOptions[]`](https://g6.antv.antgroup.com/en/api/behaviors/brush-select) \| `((existingBehaviors: BehaviorOptions[]) => BehaviorOptions[])` | - |
-| plugins   | Set canvas plugins for handling rendering logic and additional component rendering. Also supports G6 built-in plugins. For more details on plugins, refer to [here](https://g6.antv.antgroup.com/en/manual/core-concept/plugin) | [`PluginOptions[]`](https://g6.antv.antgroup.com/en/api/plugins/background) \| `((existingPlugins: PluginOptions[]) => PluginOptions[])` | - |
-| transforms | Set data transformers to process user input data and convert it into internal flow data. Also supports G6 built-in data transformers. For more details on data transformation, refer to [here](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) | [`TransformOptions[]`](https://g6.antv.antgroup.com/en/api/transforms/map-node-size) \| `((existingTransforms: TransformOptions[]) => TransformOptions[])` | - |
+| Property | Description | Type | Default Value |
+| --- | --- | --- | --- |
+| data | The dataset | [Data](#data) | - |
+| labelField | Specifies the node label content <br> - Select a field from the data, and the corresponding field value will be used as the node label <br> - Dynamically generated: this function will be called with node data as a parameter, and its return value will be used as the node label | string \| ((node: NodeData) => string) | Node ID |
+| type | Syntactic sugar for setting the display style. When `node.component` is set, it takes precedence | `'default'` \| `'linear'` \| `'boxed'` | `'default'` |
+| direction | Syntactic sugar for setting the arrangement direction of nodes. When `layout.direction` is set, it takes precedence | `'left'` \| `'right'` \| `'alternate'` | `'right'` |
+| nodeMinWidth | Minimum width of a node; if the text content is not enough, it will be centered | `number` | `0` |
+| nodeMaxWidth | Maximum width of a node; excess content will automatically wrap to the next line | `number` | `300` |
+| defaultExpandLevel | The default expansion level; if not specified, all levels will be expanded | number | - |
+| layout | Configuration for the indented tree layout | [Layout](#layout) | - |
+
+<embed src="../graphs-common/tree-data.en.md"></embed>
+
+### Layout
+
+Indented tree layout, where the hierarchy of tree nodes is represented by horizontal indentation. Each element occupies a single line/column. Parameters are as follows:
+
+| Property | Description | Type | Default Value |
+| --- | --- | --- | --- |
+| type | Layout type | string | `indented` |
+| direction | Direction of the tree layout | `LR` \| `RL` \| `H` | `LR` |
+| indent | Spacing between columns. When the type is Number, the spacing is fixed; when the type is Function, the spacing between the node and the root node is the return value of the function | number \| (node: NodeData) => string | 20 |
+| getWidth | Width of each node, effective when `direction` is `H` | (node: NodeData) => number | Default is node width |
+| getHeight | Height of each node | (node: NodeData) => number | Default is node height |
+| getSide | Specifies whether nodes are arranged on the left/right side of the root node. If set, all nodes will be on the same side of the root node, making `direction = 'H'` ineffective. If this parameter is a callback function, it can specify whether each node is on the left/right side of the root node | (node: NodeData) => string | - |
+| dropCap | Whether the first child node of each node is positioned on the next line | boolean | true |
