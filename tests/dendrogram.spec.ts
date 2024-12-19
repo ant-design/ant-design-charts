@@ -1,6 +1,10 @@
 import { test } from '@playwright/test';
 import { it } from './util';
 
+test.beforeEach(async ({}, testInfo) => {
+  testInfo.snapshotSuffix = '';
+});
+
 test('use Vertical as direction', async ({ page }) => {
   await it(page, '/Dendrogram?direction=vertical&animation=false');
 });

@@ -1,6 +1,10 @@
 import { test } from '@playwright/test';
 import { it } from './util';
 
+test.beforeEach(async ({}, testInfo) => {
+  testInfo.snapshotSuffix = '';
+});
+
 test('use Default as type', async ({ page }) => {
   await it(page, '/IndentedTree?type=default');
 });
