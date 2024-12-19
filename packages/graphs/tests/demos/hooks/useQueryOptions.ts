@@ -5,9 +5,14 @@ export const useGraphOptions = <T extends Omit<GraphOptions, 'data'>>(options: T
   const [params] = useSearchParams();
   const queryParams = Object.fromEntries(params) as any;
 
-  if (queryParams.animation === 'false') {
-    queryParams.animation = false;
-  }
+  Object.keys(queryParams).forEach((key) => {
+    if (queryParams[key] === 'true') {
+      queryParams[key] = true;
+    }
+    if (queryParams[key] === 'false') {
+      queryParams[key] = false;
+    }
+  });
 
   queryParams.devicePixelRatio = 4;
 

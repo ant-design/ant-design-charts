@@ -2,25 +2,25 @@ import { test } from '@playwright/test';
 import { it } from './util';
 
 test('use Vertical as direction', async ({ page }) => {
-  await it(page, '/Dendrogram?direction=vertical');
+  await it(page, '/Dendrogram?direction=vertical&animation=false');
 });
 
 test('use Horizontal as direction', async ({ page }) => {
-  await it(page, '/Dendrogram?direction=horizontal');
+  await it(page, '/Dendrogram?direction=horizontal&animation=false');
 });
 
 test('use Radial as direction', async ({ page }) => {
-  await it(page, '/Dendrogram?direction=radial');
+  await it(page, '/Dendrogram?direction=radial&animation=false');
 });
 
 test('Compact Vertical Dendrogram', async ({ page }) => {
-  await it(page, '/Dendrogram?direction=vertical&compact=true');
+  await it(page, '/Dendrogram?direction=vertical&compact=true&animation=false');
 });
 
 test('Compact Horizontal Dendrogram', async ({ page }) => {
-  await it(page, '/Dendrogram?direction=horizontal&compact=true');
+  await it(page, '/Dendrogram?direction=horizontal&compact=true&animation=false');
 });
 
 test('Compact Radial Dendrogram', async ({ page }) => {
-  await it(page, '/Dendrogram?direction=radial&compact=true');
+  await it(page, '/Dendrogram?direction=radial&compact=true&animation=false');
 });
