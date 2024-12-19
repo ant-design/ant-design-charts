@@ -49,8 +49,8 @@
   },
   "dependencies": {
     "@ant-design/charts-util": "0.0.1-alpha.7",
-    "@antv/g6": "^5.0.30",
-    "@antv/g6-extension-react": "^0.1.7",
+    "@antv/g6": "^5.0.38",
+    "@antv/g6-extension-react": "^0.1.13",
     "@antv/graphin": "^3.0.4",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
