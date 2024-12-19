@@ -4,10 +4,12 @@
   "scripts": {
     "start": "pnpm run build:lib && pnpm -r --stream --filter=./site run start",
     "test": "pnpm -r --stream --filter=./packages/* run test",
+    "test:e2e": "pnpm exec playwright test",
     "lint": "pnpm -r --stream --filter=./packages/* run lint",
     "build": "pnpm -r --stream --filter=!./site run build",
     "build:site": "pnpm -r --stream --filter=./site run build",
     "build:lib": "pnpm -r --stream --filter=!./site run build:lib",
+    "dev:graphs": "cd packages/graphs && pnpm run dev",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "ci:version": "pnpm changeset version",
@@ -23,6 +25,7 @@
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
     "@changesets/cli": "^2.27.9",
+    "@playwright/test": "^1.49.1",
     "@swc/jest": "^0.2.37",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react-hooks": "^7.0.2",
@@ -43,6 +46,7 @@
     "enzyme-to-json": "^3.6.2",
     "eslint": "^7.32.0",
     "identity-obj-proxy": "^3.0.0",
+    "istanbul": "^0.4.5",
     "jest": "^26.6.3",
     "jest-canvas-mock": "^2.5.2",
     "jest-electron": "^0.1.12",
@@ -52,6 +56,8 @@
     "less-loader": "^10.2.0",
     "np": "^10.0.7",
     "npm-run-all": "^4.1.5",
+    "playwright-test-coverage": "^1.2.12",
+    "playwright-test-coverage-native": "^0.3.0",
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-packagejson": "^2.5.3",
@@ -84,12 +90,16 @@
   "sideEffects": false,
   "license": "MIT",
   "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
     "conventional-changelog-cli": "^5.0.0",
     "less-plugin-npm-import": "^2.1.0",
+    "nyc": "^17.1.0",
     "remark-frontmatter": "^4.0.1",
     "remark-parse": "^10.0.2",
     "remark-stringify": "^10.0.3",
     "to-vfile": "^7.2.4",
-    "unified": "^10.1.2"
+    "unified": "^10.1.2",
+    "v8-to-istanbul": "^9.3.0",
+    "vite-plugin-istanbul": "^5.0.0"
   }
 }

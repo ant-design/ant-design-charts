@@ -4,6 +4,7 @@ import {
   type OrganizationChartOptions,
 } from '@ant-design/graphs';
 import React, { useEffect, useState } from 'react';
+import { useGraphOptions } from './hooks/useQueryOptions';
 
 const { OrganizationChartNode } = RCNode;
 
@@ -21,7 +22,7 @@ export const OrganizationChart2 = () => {
       });
   }, []);
 
-  const options: OrganizationChartOptions = {
+  const options = useGraphOptions<OrganizationChartOptions>({
     data,
     autoFit: 'view',
     node: {
@@ -49,7 +50,7 @@ export const OrganizationChart2 = () => {
         enable: true,
       },
     ],
-  };
+  });
 
   return <OrganizationChartComponent {...options} loading={loading} />;
 };

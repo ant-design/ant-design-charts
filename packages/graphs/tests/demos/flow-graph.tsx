@@ -2,11 +2,12 @@ import { FlowGraph as FlowGraphComponent, RCNode, type FlowGraphOptions } from '
 import type { NodeData } from '@antv/g6';
 import React from 'react';
 import data from '../datasets/task-scheduling.json';
+import { useGraphOptions } from './hooks/useQueryOptions';
 
 const { TextNode } = RCNode;
 
 export const FlowGraph = () => {
-  const options: FlowGraphOptions = {
+  const options = useGraphOptions<FlowGraphOptions>({
     autoFit: 'view',
     data,
     node: {
@@ -18,7 +19,7 @@ export const FlowGraph = () => {
       },
     },
     behaviors: (prev) => [...prev, 'hover-activate-chain'],
-  };
+  });
 
   return <FlowGraphComponent {...options} />;
 };

@@ -43,7 +43,7 @@
       "children": [
         { "id": "Multiple linear regression" },
         { "id": "Partial least squares" },
-        { "id": "Multi-layer feed forward neural network" },
+        { "id": "Multi-layer feedforward neural network" },
         { "id": "General regression neural network" },
         { "id": "Support vector regression" }
       ]

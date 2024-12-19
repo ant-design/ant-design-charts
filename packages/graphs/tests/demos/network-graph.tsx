@@ -1,11 +1,11 @@
-import type { GraphOptions } from '@ant-design/graphs';
 import { NetworkGraph as NetworkGraphComponent } from '@ant-design/graphs';
 import { labelPropagation } from '@antv/algorithm';
 import React from 'react';
 import data from '../datasets/language-tree.json';
+import { useGraphOptions } from './hooks/useQueryOptions';
 
 export const NetworkGraph = () => {
-  const options: GraphOptions = {
+  const options = useGraphOptions({
     autoFit: 'view',
     data: {
       ...data,
@@ -42,7 +42,8 @@ export const NetworkGraph = () => {
         inactiveState: 'inactive',
       },
     ],
-  };
+    animation: false,
+  });
 
   return <NetworkGraphComponent {...options} />;
 };

@@ -1,9 +1,9 @@
-import type { GraphOptions } from '@ant-design/graphs';
 import { FlowDirectionGraph } from '@ant-design/graphs';
 import { Flex } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import data from '../datasets/user-flow.json';
+import { useGraphOptions } from './hooks/useQueryOptions';
 
 const transformData = (data) => {
   const REF_NODE_IDS = ['node-5', 'node-6'];
@@ -21,7 +21,7 @@ const transformData = (data) => {
  * 用户路径分析图，展示了用户从不同来源页面进入活动页面后的转化路径
  */
 export const UserFlowDirectionGraph = () => {
-  const options: GraphOptions = {
+  const options = useGraphOptions({
     autoFit: 'view',
     data: transformData(data),
     node: {
@@ -59,7 +59,7 @@ export const UserFlowDirectionGraph = () => {
       nodesep: 16,
       ranksep: 100,
     },
-  };
+  });
 
   return <FlowDirectionGraph {...options} />;
 };
