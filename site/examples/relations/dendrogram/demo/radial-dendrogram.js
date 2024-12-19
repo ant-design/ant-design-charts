@@ -1,8 +1,6 @@
-import { Dendrogram, G6 } from '@ant-design/graphs';
+import { Dendrogram } from '@ant-design/graphs';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-
-const { treeToGraphData } = G6;
 
 const DemoDendrogram = () => {
   const [data, setData] = useState(undefined);
@@ -10,7 +8,7 @@ const DemoDendrogram = () => {
   useEffect(() => {
     fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/algorithm-category.json')
       .then((res) => res.json())
-      .then((data) => setData(treeToGraphData(data)));
+      .then(setData);
   }, []);
 
   const options = {

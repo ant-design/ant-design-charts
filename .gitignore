@@ -35,3 +35,8 @@ logs
 
 # temp
 temp-gallery.md
+
+# Tools
+/test-results/
+/playwright-report/
+/playwright/.cache/

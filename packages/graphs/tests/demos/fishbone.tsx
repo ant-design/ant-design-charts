@@ -1,6 +1,6 @@
-import { Fishbone, FishboneOptions } from '@ant-design/graphs';
-import { treeToGraphData } from '@antv/g6';
+import { Fishbone as ADCFishbone } from '@ant-design/graphs';
 import React from 'react';
+import { useGraphOptions } from './hooks/useQueryOptions';
 
 const data = {
   id: 'Product Profitability Below Expectations',
@@ -52,11 +52,11 @@ const data = {
   ],
 };
 
-export const FishboneDefault = () => {
-  const options: FishboneOptions = {
+export const Fishbone = () => {
+  const options = useGraphOptions({
     autoFit: 'view',
-    data: treeToGraphData(data),
-    type: 'decision',
-  };
-  return <Fishbone {...options} />;
+    data
+  });
+
+  return <ADCFishbone {...options} />;
 };

@@ -1,25 +1,13 @@
 import { Dendrogram as DendrogramComponent, DendrogramOptions } from '@ant-design/graphs';
-import { treeToGraphData } from '@antv/g6';
 import React from 'react';
 import data from '../datasets/algorithm-category.json';
+import { useGraphOptions } from './hooks/useQueryOptions';
 
 export const Dendrogram = () => {
-  const options: DendrogramOptions = {
+  const options = useGraphOptions<DendrogramOptions>({
     autoFit: 'view',
-    data: treeToGraphData(data),
-    direction: 'vertical',
-    compact: true,
-    behaviors: (prev) => [
-      ...prev,
-      {
-        key: 'hover-activate',
-        type: 'hover-activate',
-        degree: Infinity,
-        direction: 'in',
-        inactiveState: 'inactive',
-      },
-    ],
-  };
+    data,
+  });
 
   return <DendrogramComponent {...options} />;
 };

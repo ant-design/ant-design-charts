@@ -48,7 +48,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ant-design/charts-util": "workspace:*",
+    "@ant-design/charts-util": "0.0.1-alpha.7",
     "@antv/g6": "^5.0.30",
     "@antv/g6-extension-react": "^0.1.7",
     "@antv/graphin": "^3.0.4",

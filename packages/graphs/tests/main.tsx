@@ -7,13 +7,12 @@ import * as demos from './demos';
 const App = () => {
   const navigate = useNavigate();
   const match = useMatch('/*');
-
   return (
-    <Flex vertical style={{ width: '500px', height: '500px', backgroundColor: '#fff' }}>
+    <Flex vertical style={{ width: 500, height: 500, backgroundColor: '#fff' }}>
       <Select
         value={match?.params['*'] || Object.keys(demos)[0]}
         options={Object.keys(demos).map((label) => ({ label, value: label }))}
-        style={{ width: 200 }}
+        style={{ position: 'absolute', width: 200, left: 500 }}
         onChange={(value) => navigate(value)}
       />
       <Outlet />

@@ -3,6 +3,7 @@ import { isBoolean } from 'lodash';
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import data from '../datasets/product-launch.json';
+import { useGraphOptions } from './hooks/useQueryOptions';
 
 interface StepData {
   name: string;
@@ -152,7 +153,7 @@ function isSingleStep(data: NodeData) {
 }
 
 export const FlowGraphProductLaunch = () => {
-  const options: FlowGraphOptions = {
+  const options = useGraphOptions<FlowGraphOptions>({
     autoFit: 'view',
     data,
     node: {
@@ -192,7 +193,7 @@ export const FlowGraphProductLaunch = () => {
       nodeSize: (data: NodeData) => (isSingleStep(data) ? 160 : 400),
       animation: false,
     },
-  };
+  });
 
   return <FlowGraphComponent {...options} />;
 };

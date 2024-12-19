@@ -43,7 +43,7 @@ const StyledWrapper = styled.div<{
     }
   }}
 
-  .indented-icon-bar {
+  .arrow-count-icon-bar {
     ${({ $placement }) => {
       const isVertical = $placement === 'top' || $placement === 'bottom';
       return isVertical ? 'width: 3px; height: 8px; margin: 0 7px;' : 'width: 8px; height: 3px; margin: 7px 0;';
@@ -51,7 +51,7 @@ const StyledWrapper = styled.div<{
     background-color: ${({ $color }) => $color};
   }
 
-  .indented-icon-circle {
+  .arrow-count-icon-circle {
     width: 16px;
     height: 16px;
     color: #fff;
@@ -63,7 +63,7 @@ const StyledWrapper = styled.div<{
     border-radius: 50%;
   }
 
-  .indented-icon-circle-arrow {
+  .arrow-count-icon-circle-arrow {
     width: 16px;
     height: 16px;
     transform: ${({ $isCollapsed, $placement }) => {
@@ -95,13 +95,19 @@ export const ArrowCountIcon: FC<ArrowCountIconProps> = (props) => {
     .length;
 
   return (
-    <StyledWrapper $color={color} $isCollapsed={isCollapsed} $placement={placement} className={className} style={style}>
-      <div className="indented-icon-bar" />
-      <div className="indented-icon-circle">
+    <StyledWrapper
+      $color={color}
+      $isCollapsed={isCollapsed}
+      $placement={placement}
+      className={`arrow-count-icon ${isCollapsed ? `arrow-count-icon-collapsed` : ''} ${className || ''}`}
+      style={style}
+    >
+      <div className="arrow-count-icon-bar" />
+      <div className="arrow-count-icon-circle">
         {isCollapsed ? (
           count
         ) : (
-          <div className="indented-icon-circle-arrow">
+          <div className="arrow-count-icon-circle-arrow">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
                 d="M11,4 L5.5,8 L11,12"

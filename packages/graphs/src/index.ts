@@ -25,5 +25,6 @@ export { CollapseExpandIcon, RCNode } from './core/base';
 export type { OrganizationChartNodeProps, TextNodeProps } from './core/base/node';
 export { measureTextSize } from './core/utils/measure-text';
 export { getNodeSide } from './core/utils/node';
+export { mergeOptions } from './core/utils/options';
 export type { GraphOptions } from './types';
 export { G6 };

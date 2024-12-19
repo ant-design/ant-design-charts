@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { hexToRgba } from '../../src/core/utils/color';
 import data from '../datasets/task-scheduling.json';
+import { useGraphOptions } from './hooks/useQueryOptions';
 
 const { Text } = Typography;
 
@@ -115,7 +116,7 @@ const TaskNode: React.FC<{
 };
 
 export const FlowGraphTaskScheduling = () => {
-  const options: FlowGraphOptions = {
+  const options = useGraphOptions<FlowGraphOptions>({
     autoFit: 'view',
     data,
     node: {
@@ -143,7 +144,7 @@ export const FlowGraphTaskScheduling = () => {
       },
     },
     behaviors: (prev) => [...prev, 'hover-activate-chain'],
-  };
+  });
 
   return <FlowGraphComponent {...options} />;
 };

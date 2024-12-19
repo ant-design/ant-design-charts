@@ -1,30 +1,28 @@
-import { BaseTransform, idOf } from '@antv/g6';
+import type { DrawData, Size } from '@antv/g6';
+import { BaseTransform, parseSize } from '@antv/g6';
 
+/**
+ * HTML 元素的默认原点位置在左上角，而 G6 的默认原点位置在中心，所以需要调整 dx 和 dy
+ */
 export class TranslateReactNodeOrigin extends BaseTransform {
-  public afterLayout() {
-    const { graph, model, element } = this.context;
+  public beforeDraw(input: DrawData): DrawData {
+    const { graph, element } = this.context;
 
-    graph.getNodeData().forEach((datum) => {
-      const nodeId = idOf(datum);
+    const {
+      add: { nodes: nodesToAdd },
+      update: { nodes: nodesToUpdate },
+    } = input;
 
-      const node = element!.getElement(nodeId);
-      if (!node) return;
-
-      const style = graph.getElementRenderStyle(nodeId);
-      const { size } = style;
-
-      model.updateNodeData([
-        {
-          id: nodeId,
-          // HTML 元素的默认原点位置在左上角，而 G6 的默认原点位置在中心，所以需要调整 dx 和 dy
-          style: {
-            dx: -size[0] / 2,
-            dy: -size[1] / 2,
-          },
-        },
-      ]);
+    [...nodesToAdd.values(), ...nodesToUpdate.values()].forEach((datum) => {
+      // @ts-expect-error private method invoke
+      element!.computeElementDefaultStyle('node', { graph, datum });
+      const style = element!.getDefaultStyle(datum.id);
+      const [width, height] = parseSize(style.size as Size);
+      if (!datum.style) datum.style = {};
+      datum.style.dx = -width / 2;
+      datum.style.dy = -height / 2;
     });
 
-    graph.draw();
+    return input;
   }
 }

@@ -10,8 +10,7 @@ export default defineConfig({
   plugins: [{ name: 'isolation' }],
   resolve: {
     alias: {
-      '@ant-design/graphs': path.resolve(__dirname, './src/index.ts'),
-      '@ant-design/graphs-util': path.resolve(__dirname, '../util/src/index.ts'),
+      '@ant-design/graphs': path.resolve(__dirname, './src/index.ts')
     },
   },
 });

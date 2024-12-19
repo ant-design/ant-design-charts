@@ -1,5 +1,6 @@
 import { OrganizationChart as OrganizationChartComponent, type OrganizationChartOptions } from '@ant-design/graphs';
 import React, { useEffect, useState } from 'react';
+import { useGraphOptions } from './hooks/useQueryOptions';
 
 export const OrganizationChart = () => {
   const [data, setData] = useState(undefined);
@@ -10,10 +11,11 @@ export const OrganizationChart = () => {
       .then(setData);
   }, []);
 
-  const options: OrganizationChartOptions = {
+  const options = useGraphOptions<OrganizationChartOptions>({
     autoFit: 'view',
     data,
-  };
+    transforms: [],
+  });
 
   return <OrganizationChartComponent {...options} />;
 };
