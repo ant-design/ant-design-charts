@@ -44,7 +44,7 @@
   "dependencies": {
     "@ant-design/graphs": "workspace:*",
     "@ant-design/plots": "workspace:*",
-    "@antv/dumi-theme-antv": "0.5.5-beta.1",
+    "@antv/dumi-theme-antv": "^0.5.5",
     "antd": "^5.22.4",
     "dumi": "^2.4.16",
     "insert-css": "^2.0.0",
