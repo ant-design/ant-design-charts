@@ -30,6 +30,10 @@ jobs:
         run: pnpm install
       - name: test
         run: pnpm test
+      - name: Run Playwright tests
+        run: |
+          pnpm exec playwright install chromium
+          pnpm exec playwright test
       # - name: Coveralls
       #   uses: coverallsapp/github-action@master
       #   with:
