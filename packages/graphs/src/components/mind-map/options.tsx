@@ -58,6 +58,7 @@ export const DEFAULT_OPTIONS: GraphOptions = {
   layout: {
     type: 'mindmap',
     direction: 'H',
+    preLayout: false,
     getWidth: () => 120,
     getHGap: () => 64,
   },
