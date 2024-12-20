@@ -1,4 +1,4 @@
-import type { BaseTransformOptions, DrawData, EdgeData, Graph, ID, RuntimeContext } from '@antv/g6';
+import type { BaseTransformOptions, DrawData, EdgeData, ID, RuntimeContext } from '@antv/g6';
 import { BaseTransform, idOf } from '@antv/g6';
 import { linear, log, pow, sqrt } from '../utils/scale';
 
@@ -6,7 +6,7 @@ export interface MapEdgeLineWidthOptions extends BaseTransformOptions {
   /**
    * 数值
    */
-  value: number | ((this: Graph, data: EdgeData) => number);
+  value: number | ((data: EdgeData) => number);
   /**
    * 最小值
    */
@@ -53,16 +53,18 @@ export class MapEdgeLineWidth extends BaseTransform {
   }
 
   beforeDraw(input: DrawData): DrawData {
-    const edges = this.context.model.getEdgeData();
-
     const { maxValue, minValue, maxLineWidth, minLineWidth, scale, value } = this.options;
 
-    const values = edges.reduce((acc, edge) => {
-      acc[idOf(edge)] = typeof value === 'function' ? value.call(this.context.graph, edge) : value;
-      return acc;
-    }, {} as Record<ID, number>);
+    const edges = this.context.model.getEdgeData();
+    const valueFunc = typeof value === 'function' ? value : () => value;
+    const values = Object.fromEntries(edges.map((edge) => [idOf(edge), valueFunc(edge)]));
 
-    edges.forEach((edge) => {
+    const {
+      add: { edges: edgesToAdd },
+      update: { edges: edgesToUpdate },
+    } = input;
+
+    [...edgesToAdd.values(), ...edgesToUpdate.values()].forEach((edge) => {
       const lineWidth = this.assignLineWidthByValue(
         values[idOf(edge)] || 0,
         typeof minValue === 'function' ? minValue(edge, values) : minValue,
@@ -74,6 +76,7 @@ export class MapEdgeLineWidth extends BaseTransform {
       edge.style ||= {};
       edge.style.lineWidth = lineWidth;
     });
+
     return input;
   }
 

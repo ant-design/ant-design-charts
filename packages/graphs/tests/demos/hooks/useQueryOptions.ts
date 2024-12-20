@@ -16,18 +16,5 @@ export const useGraphOptions = <T extends Omit<GraphOptions, 'data'>>(options: T
 
   queryParams.devicePixelRatio = 4;
 
-  queryParams.transforms = () => {
-    return (transforms) => {
-      return [
-        ...transforms.filter((transform: any) => transform.key !== 'collapse-expand-react-node'),
-        {
-          ...transforms.find((transform: any) => transform.key === 'collapse-expand-react-node'),
-          enable: queryParams.collapseExpand,
-          ...(queryParams.collapseExpandTrigger && { trigger: queryParams.collapseExpandTrigger }),
-        },
-      ];
-    };
-  };
-
   return mergeOptions(options, queryParams) as any;
 };
