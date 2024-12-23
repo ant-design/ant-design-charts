@@ -47,6 +47,7 @@ export const DEFAULT_OPTIONS: GraphOptions = {
     direction: 'LR',
     indent: (node) => getIndent(node, 20),
     getVGap: () => 14,
+    preLayout: false,
   },
   animation: {
     duration: 500,
