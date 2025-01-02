@@ -10,6 +10,4 @@ export type { TinyColumnConfig } from './column';
 export type { TinyProgressConfig } from './progress';
 export type { TinyRingConfig } from './ring';
 
-type TinyOptions = Record<string, typeof Line | typeof Area | typeof Column | typeof Progress | typeof Ring>;
-
-export const Tiny: TinyOptions = { Line, Area, Column, Progress, Ring };
+export const Tiny = { Line, Area, Column, Progress, Ring } as const;
