@@ -94,5 +94,6 @@
     "remark-stringify": "^10.0.3",
     "to-vfile": "^7.2.4",
     "unified": "^10.1.2"
-  }
+  },
+  "repository": "https://github.com/ant-design/ant-design-charts.git"
 }

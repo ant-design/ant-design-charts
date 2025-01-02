@@ -96,14 +96,13 @@ export class BidirectionalBarAxisText extends Annotaion<BidirectionalBarAxisText
     });
   }
 
+  public destroy(): void {
+    this.clear();
+  }
+
   /** 仅仅更新位置即可 */
   public update() {
-    const axisLayout = this.getBidirectionalBarAxisTextLayout();
-    axisLayout.forEach((layout) => {
-      const { x, y, key } = layout;
-      const text = this.getElementById(`text-${key}`);
-      text.setAttribute('x', x);
-      text.setAttribute('y', y);
-    });
+    this.destroy();
+    this.drawText();
   }
 }
