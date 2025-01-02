@@ -84,31 +84,15 @@ export function adaptor(params: Params) {
       );
       set(child1, 'paddingBottom', HORIZONTAL_MARGIN);
       set(child2, 'paddingTop', HORIZONTAL_MARGIN);
-      set(child2, 'axis', {
-        x: {
-          position: 'top',
-        },
-      });
-      set(child2, 'scale', {
-        y: {
-          range: [0, 1],
-        },
-      });
+      set(child2, 'axis.x.position', 'top');
+      set(child2, 'scale.y.range', [0, 1]);
     } else {
       set(options, 'paddingBottom', paddingBottom);
-      set(child1, 'scale', {
-        y: {
-          range: [0, 1],
-        },
-      });
+      set(child1, 'scale.y.range', [0, 1]);
       const { paddingRight = VERTICAL_MARGIN } = child1;
       const { paddingLeft = VERTICAL_MARGIN } = child2;
       set(child1, 'paddingRight', paddingRight);
-      set(child1, 'axis', {
-        x: {
-          position: 'right',
-        },
-      });
+      set(child1, 'axis.x.position', 'right');
       set(child2, 'paddingLeft', paddingLeft);
     }
     return params;
