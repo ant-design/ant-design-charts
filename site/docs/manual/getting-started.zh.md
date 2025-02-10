@@ -41,10 +41,12 @@ import { Line } from '@ant-design/charts';
 externals: {
   react: 'React',
   'react-dom': 'ReactDOM',
+  'lodash': 'lodash',
 }
 // public/index.html
 <script crossorigin src="https://unpkg.com/react@latest/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/lodash@4.17.21/lodash.min.js"></script>
 
 // 按需引入
 <script type="text/javascript" src="https://unpkg.com/@ant-design/charts@latest/dist/charts.min.js"></script>
