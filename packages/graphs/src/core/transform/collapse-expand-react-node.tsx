@@ -1,4 +1,4 @@
-import type { BaseTransformOptions, CardinalPlacement, DrawData, Graph, NodeData, RuntimeContext } from '@antv/g6';
+import type { BaseTransformOptions, CardinalPlacement, Graph, NodeData, RuntimeContext } from '@antv/g6';
 import { BaseTransform, idOf } from '@antv/g6';
 import { get, has, set } from 'lodash';
 import React from 'react';
@@ -84,21 +84,21 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
     super(context, Object.assign({}, CollapseExpandReactNode.defaultOptions, options));
   }
 
-  public beforeDraw(input: DrawData): DrawData {
-    const { graph, element } = this.context;
+  public afterLayout() {
+    const { graph, element, model } = this.context;
     const { nodes = [], edges = [] } = graph.getData();
     const { enable, ...options } = this.options;
 
     nodes.forEach((datum) => {
       const nodeId = idOf(datum);
 
-      const node = element!.getElement(datum.id);
+      const node = element!.getElement(nodeId);
       if (!node || (datum.children && datum.children.length > 0)) return;
 
       const children = getNeighborNodeIds(nodeId, edges, this.options.direction);
       if (children.length === 0) return;
 
-      datum.children = children;
+      model.updateNodeData([{ id: nodeId, children }]);
     });
 
     const nodeMapper = graph.getOptions().node!;
@@ -114,7 +114,6 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
     }
 
     graph.setNode(nodeMapper);
-
-    return input;
+    graph.draw();
   }
 }
