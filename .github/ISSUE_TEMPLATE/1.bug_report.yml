@@ -51,9 +51,8 @@ body:
       label: Version / 版本
       options:
         - Please select / 请选择
-        - Latest / 最新版
-        - Stable / 稳定版
-        - Legacy / 旧版本
+        - 🆕 2.x
+        - 1.x
     validations:
       required: true
   - type: checkboxes
