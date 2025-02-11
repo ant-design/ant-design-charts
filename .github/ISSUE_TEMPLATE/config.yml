@@ -1,0 +1,6 @@
+# Ref: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#configuring-the-template-chooser
+blank_issues_enabled: false
+contact_links:
+  - name: 📝 Question / 问题咨询
+    url: https://github.com/ant-design/ant-design-charts/discussions/categories/q-a
+    about: Ask the community for help / 向社区寻求帮助
