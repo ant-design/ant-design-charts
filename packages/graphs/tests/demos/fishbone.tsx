@@ -55,7 +55,7 @@ const data = {
 export const Fishbone = () => {
   const options = useGraphOptions({
     autoFit: 'view',
-    data
+    data,
   });
 
   return <ADCFishbone {...options} />;
