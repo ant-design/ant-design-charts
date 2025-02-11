@@ -29,11 +29,6 @@ export class Heatmap extends Plot<HeatmapOptions> {
       children: [
         {
           type: 'point',
-          interaction: {
-            elementHighlight: {
-              background: true,
-            },
-          },
         },
       ],
     };
