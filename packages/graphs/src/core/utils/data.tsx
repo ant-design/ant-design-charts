@@ -134,6 +134,16 @@ export function treeData2GraphData(data: TreeData, defaultExpandLevel?: number):
   });
 }
 
+/**
+ * Used in TreeGraph scene, accepts tree data or graph data that meets certain conditions
+ *
+ * Conditions are as follows:
+ * 1. There is only one root node
+ * 2. Node ID is unique
+ * 3. The source and target of the edge are in the node ID
+ * 4. No cycle
+ * 5. The indegree of the child node is 1
+ */
 export function formatTreeData(data?: GraphData | TreeData, defaultExpandLevel?: number): GraphData {
   if (!data) return EMPTY_GRAPH_DATA;
 

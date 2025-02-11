@@ -4,6 +4,7 @@ import type { GraphOptions } from '../../types';
 export interface DendrogramOptions extends Omit<GraphOptions, 'data'> {
   /**
    * The data.
+   * It can be either tree data or graph data that conforms to a tree structure.
    */
   data?: GraphData | TreeData;
   /**
