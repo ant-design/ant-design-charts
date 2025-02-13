@@ -22,6 +22,7 @@ export default defineConfig({
     defaultLanguage: 'zh',
     siteUrl: 'https://ant-design-charts.antgroup.com',
     showChinaMirror: false,
+    feedback: true,
     footerTheme: 'light', // 白色 底部主题
     githubUrl: repository.url,
     showSearch: true, // 是否显示搜索框
