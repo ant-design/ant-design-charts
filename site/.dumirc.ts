@@ -22,6 +22,7 @@ export default defineConfig({
     defaultLanguage: 'zh',
     siteUrl: 'https://ant-design-charts.antgroup.com',
     showChinaMirror: false,
+    sitePackagePath: '/site', // 官网子包所在路径
     feedback: true,
     footerTheme: 'light', // 白色 底部主题
     githubUrl: repository.url,
@@ -295,6 +296,20 @@ export default defineConfig({
       { name: 'yunos', img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*_js7SaNosUwAAAAAAAAAAABkARQnAQ' },
       { name: '菜鸟', img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*TgV-RZDODJIAAAAAAAAAAABkARQnAQ' },
     ],
+    /** 公告 */
+    announcement: {
+      title: {
+        zh: '参与 AntV 文档体验问卷，助力打造更友好的开发者文档，有机会赢取 AntV 限定周边！👉',
+        en: 'Join in the AntV Documentation Experience Survey to help us create more developer-friendly documentation, and stand a chance to win exclusive AntV merchandise! 👉',
+      },
+      link: {
+        url: 'https://www.wjx.cn/vm/Pf0XYWM.aspx#',
+        text: {
+          zh: '立即填写',
+          en: 'Fill in now',
+        },
+      },
+    },
     playground: {
       extraLib: '',
       devDependencies: {
