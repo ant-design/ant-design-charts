@@ -22,7 +22,7 @@ export default defineConfig({
     defaultLanguage: 'zh',
     siteUrl: 'https://ant-design-charts.antgroup.com',
     showChinaMirror: false,
-    sitePackagePath: '/site', // 官网子包所在路径
+    sitePackagePath: 'site', // 官网子包所在路径
     feedback: true,
     footerTheme: 'light', // 白色 底部主题
     githubUrl: repository.url,
@@ -34,6 +34,7 @@ export default defineConfig({
     showWxQrcode: true, // 是否显示头部菜单的微信公众号
     showChartResize: true, // 是否在 demo 页展示图表视图切换
     showAPIDoc: process.env.NODE_ENV === 'production', // 是否在 demo 页展示 API 说明
+    links: true, // 是否显示links研发小蜜
     versions: {
       [version]: 'https://ant-design-charts.antgroup.com',
       '1.x': 'https://ant-design-charts-v1.antgroup.com',
