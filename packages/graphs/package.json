@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/graphs",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A React graph library based on Graphin",
   "keywords": [
     "antv",
@@ -49,22 +49,22 @@
   },
   "dependencies": {
     "@ant-design/charts-util": "0.0.1-alpha.7",
-    "@antv/g6": "^5.0.38",
-    "@antv/g6-extension-react": "^0.1.13",
+    "@antv/g6": "^5.0.44",
+    "@antv/g6-extension-react": "^0.2.0",
     "@antv/graphin": "^3.0.4",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
     "@antv/algorithm": "^0.1.26",
     "@types/jest": "^26.0.24",
-    "@types/lodash": "^4.17.13",
-    "antd": "^5.22.5",
-    "react-router-dom": "^6.28.0",
+    "@types/lodash": "^4.17.16",
+    "antd": "^5.24.3",
+    "react-router-dom": "^6.30.0",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
-    "vite": "^5.4.11"
+    "vite": "^5.4.14"
   },
   "peerDependencies": {
     "react": ">=16.8.4",

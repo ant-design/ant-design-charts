@@ -32,6 +32,8 @@ logs
 .idea/
 .eslintcache
 .vscode/**
+.lh
+.history
 
 # temp
 temp-gallery.md
