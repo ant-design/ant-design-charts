@@ -42,9 +42,7 @@
     "@antv/g": "^6.1.7",
     "@antv/g2": "^5.2.7",
     "@antv/g2-extension-plot": "^0.2.1",
-    "lodash": "^4.17.21",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
     "react": ">=16.8.4",
@@ -56,6 +54,8 @@
     "@types/jest": "^26.0.24",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "react-test-renderer": "^18.3.1"
+    "react-test-renderer": "^18.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
