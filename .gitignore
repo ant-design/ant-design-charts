@@ -42,3 +42,6 @@ temp-gallery.md
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# Site server
+/site/server
