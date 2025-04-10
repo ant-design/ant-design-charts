@@ -24,7 +24,7 @@
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--max_old_space_size=12288 dumi build",
     "develop": "cross-env DUMI=true dumi dev",
-    "deploy": "pnpm run build && gh-pages -d public",
+    "deploy": "pnpm run build && gh-pages -d dist",
     "start": "cross-env NODE_OPTIONS=--max_old_space_size=8192 pnpm run develop"
   },
   "devDependencies": {
