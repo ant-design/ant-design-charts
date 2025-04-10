@@ -84,7 +84,7 @@ type RenderFunc = (text: string, datum: object, index: number) => String | HTMLE
 
 在笛卡尔坐标系下，支持 9 种位置：`'top'`, `'left'`, `'right'`, `'bottom'`, `'top-left'`, `'top-right'`, `'bottom-left'`, `'bottom-right'`, `'inside'`。非笛卡尔坐标系下，支持 `'outside'`, `'inside'` 两种。
 
-此外，针对面积图提供特殊 `area`，见 [面积图特殊标签](/zh/examples/general/area/#label)。针对 radial 类型的图标，增加了 `spider`、`surround` 两种类型。
+此外，针对面积图提供特殊 `area`，见 [面积图特殊标签](/examples/general/area/#label)。针对 radial 类型的图标，增加了 `spider`、`surround` 两种类型。
 
 | position   | 用途                                                    | 使用前                                                                                                              | 使用后                                                                                                      |
 | ---------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
