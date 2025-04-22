@@ -440,7 +440,8 @@ const data = {
   ],
 };
 
-insertCss(`
+if (typeof window !== 'undefined') {
+  insertCss(`
   .user-flow-node {
     width: calc(100% - 32px);
     height: calc(100% - 32px);
@@ -470,6 +471,7 @@ insertCss(`
     font-weight: bold;
   }
 `);
+}
 
 const UserFlowNode = ({ data }) => {
   const metrics = [

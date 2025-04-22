@@ -1,4 +1,4 @@
-if (window) {
+if (typeof window !== 'undefined' && window) {
   (window as any).insertCss = require('insert-css');
   (window as any).antd = require('antd');
   (window as any).react = require('react');

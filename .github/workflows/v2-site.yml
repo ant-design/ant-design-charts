@@ -12,9 +12,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    strategy:
-      matrix:
-        node-version: [latest]
     steps:
       - name: checkout code repository
         uses: actions/checkout@v3
@@ -22,10 +19,10 @@ jobs:
           fetch-depth: 0
       - name: Switch to site branch
         run: git checkout -b gh-pages
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
       - name: install pnpm
         run: npm i pnpm@latest -g
       - name: Setup npmrc
