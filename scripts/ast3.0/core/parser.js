@@ -1,27 +1,20 @@
 const fs = require('fs');
 const babel = require('@babel/core');
+const generate = require('@babel/generator').default;
 const chalk = require('chalk');
 const { get, pick } = require('lodash');
-const { PIPELINE } = require('./constants');
-const { SETGLOBAL, RESETGLOBAL, INGLOBALRANGE } = require('./global');
-const {
-  isShape,
-  isNewExpression,
-  isMatchType,
-  getObjectValue,
-  getValue,
-  log,
-  isFetch,
-  transformSign,
-} = require('./utils.js');
+const { PIPELINE } = require('./constants.js');
+const { SETGLOBAL, RESETGLOBAL, INGLOBALRANGE } = require('./global.js');
+const { isShape, isSpec, isNewExpression, isMatchType, getObjectValue, getValue, log, isFetch } = require('./utils.js');
 
 const meta = {
   fetchURL: '', // fetch url
   shape: '', // 图表类型
   imported: {}, // import 信息
   staticCode: [], // 静态代码
-  config: [], // 配置项
   chartConfig: {}, // 图表配置项
+  config: [], // API 模式产生的配置项
+  spec: '', // spec
   position: { min: 0, max: Infinity }, // 位置信息
   nextStatement: {}, // 下一步
   currentEnd: Infinity, // 当前结束
@@ -125,16 +118,12 @@ const availabeCode = (start, end) => {
   return false;
 };
 
-const getResult = () => {
-  return pick(meta, 'chartConfig', 'config', 'staticCode', 'imported', 'fetchURL');
-};
-
 /**
  * @param {string} params
  * @param {string} type
  * @description 解析代码，当 type 为 code 时，说明 params 是已经读取的代码，否则是文件路径
  */
-const parser = (params, type) => {
+const parser = (params, type = 'file') => {
   try {
     reset();
     meta.config.push({});
@@ -142,88 +131,116 @@ const parser = (params, type) => {
       meta.code = params;
     } else {
       meta.code = fs.readFileSync(params, 'utf-8');
-
-      const visitorExpressions = {
-        // import 信息
-        ImportDeclaration(path) {
-          const { node } = path;
-          meta.imported = {
-            ...meta.imported,
-            [get(node, 'source.value')]: get(node, 'specifiers', []).map((item) => {
-              return item.imported.name;
-            }),
-          };
-        },
-        // new Chart
-        NewExpression(path) {
-          const { node } = path;
-          // .chart
-          if (isNewExpression(node)) {
-            meta.chartConfig = Object.assign(meta.chartConfig, getObjectValue(get(node, 'arguments.0'), meta.code));
-          }
-        },
-        // 抽取静态代码 start end
-        'FunctionDeclaration|VariableDeclaration|ExpressionStatement'(path) {
-          setStaticCode(path);
-        },
-        CallExpression(path) {
-          const { node } = path;
-          const { start, end } = node;
-
-          // .shape
-          if (isShape(node)) {
-            const shape = get(node, 'callee.property.name');
-            const setMetaInfo = () => {
-              meta.shape = shape;
-              meta.position.min = start;
-              meta.position.max = end;
-            };
-            if (!meta.shape) setMetaInfo();
-            if (shape !== meta.shape) {
-              meta.config.push({});
-              setMetaInfo();
-            }
-            getConfig()['type'] = get(node, 'callee.property.name');
-          }
-          if (isFetch(node)) {
-            meta.fetchURL = get(node, 'arguments.0.value');
-          }
-
-          if (end > meta.currentEnd) {
-            const lastConfig = getConfig();
-            if (lastConfig.type) {
-              Object.assign(lastConfig, meta.nextStatement);
-            } else {
-              meta.chartConfig = Object.assign(meta.chartConfig, meta.nextStatement);
-            }
-            meta.nextStatement = {};
-          }
-
-          meta.currentEnd = end;
-
-          // 通用处理逻辑
-          PIPELINE.forEach((item) => {
-            const { key } = item;
-            if (isMatchType(node, key)) {
-              if (availabeCode(start, end)) {
-                setConfigObject(key, node, getConfig(), item);
-              } else {
-                setConfigObject(key, node, meta.nextStatement, item);
-              }
-            }
-          });
-
-          // recursive
-          // path.traverse(visitorExpressions);
-        },
-      };
-      const vistorPlugins = {
-        visitor: visitorExpressions,
-      };
-      babel.transform(fs.readFileSync(params, 'utf-8'), {
-        plugins: [vistorPlugins],
-      });
     }
+    const visitorExpressions = {
+      // import 信息
+      ImportDeclaration(path) {
+        const { node } = path;
+        meta.imported = {
+          ...meta.imported,
+          [get(node, 'source.value')]: get(node, 'specifiers', []).map((item) => {
+            return item.imported.name;
+          }),
+        };
+      },
+      // new Chart
+      NewExpression(path) {
+        const { node } = path;
+        // .chart
+        if (isNewExpression(node)) {
+          meta.chartConfig = Object.assign(meta.chartConfig, getObjectValue(get(node, 'arguments.0'), meta.code));
+        }
+      },
+      // 抽取静态代码 start end
+      'FunctionDeclaration|VariableDeclaration|ExpressionStatement|TSDeclareFunction|TSInterfaceDeclaration|TSTypeAliasDeclaration'(
+        path,
+      ) {
+        setStaticCode(path);
+      },
+      CallExpression(path) {
+        const { node } = path;
+        const { start, end } = node;
+        // spec
+        if (isSpec(node)) {
+          const arg = node.arguments[0];
+          if (arg && arg.type === 'ObjectExpression') {
+            const { code } = generate(arg, { concise: true });
+            // spec 默认只有一份
+            if (!meta.spec) meta.spec = code;
+          }
+        }
+        // .shape
+        if (isShape(node)) {
+          const shape = get(node, 'callee.property.name');
+          const setMetaInfo = () => {
+            meta.shape = shape;
+            meta.position.min = start;
+            meta.position.max = end;
+          };
+          if (!meta.shape) setMetaInfo();
+          if (shape !== meta.shape) {
+            meta.config.push({});
+            setMetaInfo();
+          }
+          getConfig()['type'] = get(node, 'callee.property.name');
+        }
+        if (isFetch(node)) {
+          meta.fetchURL = get(node, 'arguments.0.value');
+        }
+
+        if (end > meta.currentEnd) {
+          const lastConfig = getConfig();
+          if (lastConfig.type) {
+            Object.assign(lastConfig, meta.nextStatement);
+          } else {
+            meta.chartConfig = Object.assign(meta.chartConfig, meta.nextStatement);
+          }
+          meta.nextStatement = {};
+        }
+
+        meta.currentEnd = end;
+
+        // 通用处理逻辑
+        PIPELINE.forEach((item) => {
+          const { key } = item;
+          if (isMatchType(node, key)) {
+            if (availabeCode(start, end)) {
+              setConfigObject(key, node, getConfig(), item);
+            } else {
+              setConfigObject(key, node, meta.nextStatement, item);
+            }
+          }
+        });
+
+        // recursive
+        // path.traverse(visitorExpressions);
+      },
+    };
+    const vistorPlugins = {
+      visitor: visitorExpressions,
+    };
+    const babelOptions = {
+      plugins: [vistorPlugins, '@babel/plugin-transform-typescript'],
+      parserOpts: {
+        allowAwaitOutsideFunction: true,
+        allowImportExportEverywhere: true,
+        allowSuperOutsideMethod: true,
+        allowUndeclaredExports: true,
+        plugins: ['typescript', 'classProperties', 'jsx'],
+      },
+    };
+
+    // 如果是文件类型，添加文件名和预设
+    if (type === 'file') {
+      babelOptions.filename = params;
+      babelOptions.presets = ['@babel/preset-typescript'];
+    } else {
+      // 对于直接传入的代码，强制指定为 TypeScript 语法
+      babelOptions.sourceType = 'module';
+      babelOptions.filename = 'virtual.ts'; // 虚拟文件名
+    }
+
+    babel.transform(meta.code, babelOptions);
 
     const lastConfig = getConfig();
 
@@ -231,17 +248,19 @@ const parser = (params, type) => {
       Object.assign(lastConfig, meta.nextStatement);
       meta.nextStatement = {};
     }
-    log(chalk.green(`解析成功：${params}`));
-    return getResult();
-  } catch (err) {
-    log(chalk.red(`解析出错：params: ${params}; type: ${type}`));
-    log(chalk.red(`出错信息：${err}`));
+    // log(chalk.green(`解析成功：${params}`));
     return {
-      hasError: true,
+      success: true,
+      ...pick(meta, 'chartConfig', 'config', 'staticCode', 'imported', 'fetchURL', 'spec'),
+    };
+  } catch (err) {
+    log(chalk.red(`解析出错：${params}; Error: ${err}`));
+    return {
+      success: false,
       errMessage: err,
-      errPath: params,
+      code: meta.code,
     };
   }
 };
 
-module.exports = { parser, transformSign };
+module.exports = { parser };

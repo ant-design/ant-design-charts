@@ -1,26 +1,42 @@
-const { transformSign } = require('./core');
+const { transformSign, parseObjectFromCode } = require('./core');
+const { omit } = require('lodash');
 
 /**
  * @param {object} meta
  * @description 生成模板组件
  */
 const codeTemplate = (meta) => {
-  const { staticCode = [], config = [], chartConfig = {}, fetchURL, imported } = meta;
+  const { staticCode = [], config = [], chartConfig = {}, fetchURL, imported, spec, code, success } = meta;
 
-  let code = '';
+  if (!success) {
+    return code;
+  }
+
+  let insetCode = '';
 
   staticCode.forEach((str) => {
-    code += `${str}\n\n`;
+    insetCode += `${str}\n\n`;
   });
 
+  const configCode = config.map((item) => item).filter((item) => Object.keys(item).length > 0);
+
+  if (!spec && !configCode.length) {
+    return insetCode;
+  }
+
+  const plot = {
+    ...omit(chartConfig, ['container']),
+    children: spec ? [parseObjectFromCode(spec)] : configCode,
+  };
+
   return `
-    const imported = ${transformSign(JSON.stringify(imported, null, 2))};
+    import { Mix } from '@ant-design/charts';
 
-    ${code}
+    ${spec ? '' : insetCode}
 
-    const chartConfig = ${transformSign(JSON.stringify(chartConfig, null, 2))};
+    const config = ${transformSign(JSON.stringify(plot, null, 2))};
 
-    const children = ${transformSign(JSON.stringify(config, null, 2))};
+    // <Mix {...config} />
   `;
 };
 
