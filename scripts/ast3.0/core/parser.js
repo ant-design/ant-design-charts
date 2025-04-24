@@ -147,7 +147,7 @@ const parser = (params, type = 'file') => {
       NewExpression(path) {
         const { node } = path;
         // .chart
-        if (isNewExpression(node)) {
+        if (isNewExpression(node) && get(node, 'arguments.0')) {
           meta.chartConfig = Object.assign(meta.chartConfig, getObjectValue(get(node, 'arguments.0'), meta.code));
         }
       },
@@ -254,7 +254,7 @@ const parser = (params, type = 'file') => {
       ...pick(meta, 'chartConfig', 'config', 'staticCode', 'imported', 'fetchURL', 'spec'),
     };
   } catch (err) {
-    log(chalk.red(`解析出错：${params}; Error: ${err}`));
+    log(chalk.red(`解析出错: ${params}; Error: ${err}`));
     return {
       success: false,
       errMessage: err,

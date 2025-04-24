@@ -34,6 +34,7 @@ const SHAPES = [
   'rect',
   'boxplot',
   'legends',
+  'cell',
 ];
 
 const ENCODE_MAP = {

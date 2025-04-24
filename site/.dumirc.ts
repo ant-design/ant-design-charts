@@ -98,60 +98,76 @@ export default defineConfig({
         order: 2,
       },
       {
-        slug: 'options/plots/label',
+        slug: 'options/plots/core',
         title: {
-          zh: '数据标签 - Label',
-          en: 'Label',
+          zh: '核心概念 - Core',
+          en: 'Core',
         },
-        order: 3,
+        order: 3
       },
       {
-        slug: 'options/plots/scale',
+        slug: 'options/plots/core/data',
         title: {
-          zh: '比例尺 - Scale',
-          en: 'Scale',
+          zh: '数据（Data）',
+          en: 'Data',
         },
         order: 4,
       },
       {
-        slug: 'options/plots/annotation',
+        slug: 'options/plots/core/scale',
         title: {
-          zh: '标记 - Annotations',
-          en: 'Annotations',
-        },
-        order: 5,
-      },
-      {
-        slug: 'options/plots/events',
-        title: {
-          zh: '事件 - Events',
-          en: 'Events',
+          zh: '比例尺（Scale）',
+          en: 'Scale',
         },
         order: 6,
       },
       {
-        slug: 'options/plots/animation',
+        slug: 'options/plots/core/transform',
         title: {
-          zh: '动画 - Animation',
-          en: 'Animation',
+          zh: '转换（Transform）',
+          en: 'Transform',
         },
         order: 7,
       },
       {
-        slug: 'options/plots/interaction',
+        slug: 'options/plots/core/coordinate',
         title: {
-          zh: '交互 - Interaction',
-          en: 'Interaction',
+          zh: '坐标系（Coordinate）',
+          en: 'Coordinate',
         },
         order: 8,
       },
       {
-        slug: 'options/plots/theme',
+        slug: 'options/plots/core/animate',
         title: {
-          zh: '主题 - Theme',
+          zh: '动画（Animate）',
+          en: 'Animate',
+        },
+        order: 10,
+      },
+      {
+        slug: 'options/plots/core/interaction',
+        title: {
+          zh: '交互（Interaction）',
+          en: 'Interaction',
+        },
+        order: 13,
+      },
+      {
+        slug: 'options/plots/core/composition',
+        title: {
+          zh: '复合（Composition）',
+          en: 'Composition',
+        },
+        order: 14,
+      },
+      {
+        slug: 'options/plots/core/theme',
+        title: {
+          zh: '主题（Theme）',
           en: 'Theme',
         },
-        order: 9,
+        order: 15,
       },
       {
         slug: 'options/plots/special',

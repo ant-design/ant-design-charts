@@ -89,12 +89,12 @@ const parseObjectFromCode = (codeStr) => {
 
     const wrapped = `return (${fixedCodeStr});`;
     const obj = new Function(wrapped)();
-    Object.keys(ENCODE_MAP).forEach((key) => {
-      if (get(obj, key)) {
-        obj[ENCODE_MAP[key]] = get(obj, key);
-      }
-    });
-    delete obj['encode'];
+    // Object.keys(ENCODE_MAP).forEach((key) => {
+    //   if (get(obj, key)) {
+    //     obj[ENCODE_MAP[key]] = get(obj, key);
+    //   }
+    // });
+    // delete obj['encode'];
     return obj;
   } catch (err) {
     console.error('解析失败:', err);

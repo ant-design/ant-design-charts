@@ -14,7 +14,11 @@ const replacePackageName = (line) => {
 
 // 跳转路径替换
 const replacePath = (line) => {
-  const pathMaps = {};
+  const pathMaps = {
+    '/manual/core': '/options/plots/core',
+    '/manual/component': '/options/plots/component',
+    '@antv/g2': '@ant-design/charts',
+  };
   Object.keys(pathMaps).forEach((key) => {
     if (line.includes(key)) {
       line = line.replace(key, pathMaps[key]);

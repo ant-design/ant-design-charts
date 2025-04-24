@@ -1,0 +1,82 @@
+---
+title: elementSelect
+order: 13
+---
+
+选择点击的元素。
+
+## 开始使用
+
+<img alt="example" src="https://gw.alipayobjects.com/zos/raptor/1670298301906/element-select.gif" width="640">
+
+```ts
+{
+  "axis": {
+    "y": {
+      "labelFormatter": ".0%"
+    }
+  },
+  "interaction": {
+    "elementSelect": true
+  }
+}
+```
+
+## 选项
+
+| 属性                      | 描述           | 类型         | 默认值 |
+| ------------------------- | -------------- | ------------ | ------ |
+| background                | 是否高亮背景   | `boolean`    | false  |
+| offset                    | 主方向的偏移量 | `number`     | 0      |
+| `background${StyleAttrs}` | 背景的样式     | `StyleAttrs` | -      |
+| single                    | 是否单选       | `boolean`    | false  |
+| region                    | 点击空白区域是否触发       | `boolean`    | false  |
+| multipleSelectHotkey      | 多选热键的code，按住热键后变为多选，设置此属性后`single`无效    | `string` \| `string[]` | -      |
+
+## 案例
+
+### 获得数据
+
+```js
+chart.on('element:select', (event) => {
+  const { data, nativeEvent } = event;
+  if (nativeEvent) console.log('element:select', data);
+});
+
+chart.on('element:select', (event) => {
+  const { data, nativeEvent } = event;
+  if (nativeEvent) console.log('element:select', data);
+});
+
+chart.on('element:unselect', (event) => {
+  const { nativeEvent } = event;
+  if (nativeEvent) console.log('reset');
+});
+
+chart.on('element:unselect', (event) => {
+  const { nativeEvent } = event;
+  if (nativeEvent) console.log('reset');
+});
+
+chart.on('element:select', (event) => {
+  const { data, nativeEvent } = event;
+  if (nativeEvent) console.log('element:select', data);
+});
+
+chart.on('element:unselect', (event) => {
+  const { nativeEvent } = event;
+  if (nativeEvent) console.log('reset');
+});
+
+```
+
+### 触发交互
+
+```js
+chart.emit('element:select', {
+  data: { data: [{ population: 5038433 }, { population: 3983091 }] },
+});
+
+chart.emit('element:unselect', {});
+
+```
