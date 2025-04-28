@@ -69,6 +69,14 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_OHoQb0Xho8AAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "custom-tooltip.js",
+      "title": {
+        "zh": "饼图 - 自定义提示",
+        "en": "Pie Chart - Custom Tooltip"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*DSItR6amdjMAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
       "filename": "association-pie.js",
       "title": {
         "zh": "饼图联动",

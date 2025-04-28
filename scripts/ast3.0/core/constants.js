@@ -30,7 +30,29 @@ const SHAPES = [
   'geoPath',
   'text',
   'connector',
+  'density',
+  'rect',
+  'boxplot',
+  'legends',
+  'cell',
 ];
+
+const ENCODE_MAP = {
+  'encode.x': 'xField',
+  'encode.y': 'yField',
+  'encode.color': 'colorField',
+  'encode.shape': 'shapeField',
+  'encode.size': 'sizeField',
+  'encode.key': 'keyField',
+  'encode.series': 'seriesField',
+  'encode.position': 'positionField',
+  'encode.text': 'textField',
+  'encode.value': 'valueField',
+  'encode.src': 'srcField',
+  'encode.linkColor': 'linkColorField',
+  'encode.fontSize': 'fontSizeField',
+  'encode.bin': 'binField',
+};
 /**
  * 处理流程
  * @enum {string[]}
@@ -78,4 +100,5 @@ module.exports = {
   SIGN,
   SHAPES,
   PIPELINE,
+  ENCODE_MAP,
 };

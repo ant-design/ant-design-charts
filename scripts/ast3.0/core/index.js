@@ -1,3 +1,4 @@
-const { parser, transformSign } = require('./parser');
+const { parser } = require('./parser');
+const { transformSign, parseObjectFromCode } = require('./utils');
 
-module.exports = { parser, transformSign };
+module.exports = { parser, transformSign, parseObjectFromCode };

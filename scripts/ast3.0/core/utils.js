@@ -1,5 +1,5 @@
 const { get } = require('lodash');
-const { SHAPES, SIGN } = require('./constants');
+const { SHAPES, SIGN, ENCODE_MAP } = require('./constants');
 const { SETGLOBAL } = require('./global');
 
 const startRegex = new RegExp(`"${SIGN}`, 'g');
@@ -20,7 +20,7 @@ const isNullExpression = (node) => {
  * @param {*} node
  */
 const isNewExpression = (node) => {
-  return get(node, 'callee.name') === 'Chart';
+  return ['Chart', 'G2'].includes(get(node, 'callee.name'));
 };
 
 /**
@@ -37,6 +37,15 @@ const isMatchType = (node, type) => {
  */
 const isShape = (node) => {
   return SHAPES.includes(get(node, 'callee.property.name'));
+};
+
+/**
+ * Get chart spec
+ * @param {*} node
+ */
+const isSpec = (node) => {
+  const { callee } = node;
+  return callee.type === 'MemberExpression' && callee.object.name === 'chart' && callee.property.name === 'options';
 };
 
 /**
@@ -72,13 +81,35 @@ const isFetch = (node) => {
   return get(node, 'callee.name') === 'fetch';
 };
 
+const parseObjectFromCode = (codeStr) => {
+  try {
+    const fixedCodeStr = codeStr.replace(/"-FN-\[(.*?)\]-FN-"/gs, (_, code) => {
+      return `[${code.trim()}]`;
+    });
+
+    const wrapped = `return (${fixedCodeStr});`;
+    const obj = new Function(wrapped)();
+    // Object.keys(ENCODE_MAP).forEach((key) => {
+    //   if (get(obj, key)) {
+    //     obj[ENCODE_MAP[key]] = get(obj, key);
+    //   }
+    // });
+    // delete obj['encode'];
+    return obj;
+  } catch (err) {
+    console.error('解析失败:', err);
+    return null;
+  }
+};
+
 /**
  * transform sign
  * @param {string} str
  * @description 解析 meta 时，去掉 SIGN
  */
 const transformSign = (str) => {
-  return str.replace(startRegex, '').replace(endRegex, '');
+  const rs = str.replace(startRegex, '').replace(endRegex, '');
+  return JSON.stringify(parseObjectFromCode(rs), null, 2);
 };
 
 /**
@@ -157,6 +188,7 @@ module.exports = {
   isNullExpression,
   isNewExpression,
   isShape,
+  isSpec,
   isFunction,
   useSign,
   replaceEnter,
@@ -165,5 +197,6 @@ module.exports = {
   isMatchType,
   log,
   isFetch,
+  parseObjectFromCode,
   transformSign,
 };
