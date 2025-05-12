@@ -7,4 +7,4 @@ cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*fecqTpstXu0AAAAAAA
 link: /examples#statistics-sankey
 ---
 
-Doing...
+<embed src="@/docs/options/plots/special/sankey.zh.md"></embed>
