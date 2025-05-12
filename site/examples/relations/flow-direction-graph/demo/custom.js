@@ -1,7 +1,7 @@
 import { FlowDirectionGraph } from '@ant-design/graphs';
 import insertCss from 'insert-css';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const data = {
   nodes: [
@@ -547,4 +547,4 @@ const DemoFlowDirectionGraph = () => {
   return <FlowDirectionGraph {...options} />;
 };
 
-ReactDOM.render(<DemoFlowDirectionGraph />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoFlowDirectionGraph />);

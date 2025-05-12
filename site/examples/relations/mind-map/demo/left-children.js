@@ -1,6 +1,6 @@
 import { G6, MindMap } from '@ant-design/graphs';
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const { treeToGraphData } = G6;
 
@@ -21,4 +21,4 @@ const DemoMindMap = () => {
   return <MindMap {...options} />;
 };
 
-ReactDOM.render(<DemoMindMap />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoMindMap />);

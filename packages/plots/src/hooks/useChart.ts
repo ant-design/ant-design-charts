@@ -3,8 +3,8 @@ import { isFunction, isEqual, get, createNode, cloneDeep, isArray, isObject, isV
 import { CommonConfig, Chart } from '../interface';
 
 export default function useChart<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
-  const chart = useRef<T>();
-  const chartOptions = useRef<U>();
+  const chart = useRef<T>(null);
+  const chartOptions = useRef<U>(null);
   const container = useRef<HTMLDivElement>(null);
   const { onReady, onEvent } = config;
 

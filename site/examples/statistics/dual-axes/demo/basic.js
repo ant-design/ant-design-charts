@@ -1,6 +1,6 @@
 import { DualAxes } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoDualAxes = () => {
   const config = {
@@ -17,10 +17,10 @@ const DemoDualAxes = () => {
     legend: {
       color: {
         itemMarker: (v) => {
-          if (v === 'waiting') return 'rect'
-          return 'smooth'
-        }
-      }
+          if (v === 'waiting') return 'rect';
+          return 'smooth';
+        },
+      },
     },
     children: [
       {
@@ -40,4 +40,4 @@ const DemoDualAxes = () => {
   return <DualAxes {...config} />;
 };
 
-ReactDOM.render(<DemoDualAxes />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoDualAxes />);

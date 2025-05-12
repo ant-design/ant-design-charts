@@ -1,105 +1,78 @@
-import type * as React from 'react';
+import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import type { Root } from 'react-dom/client';
 
-// Let compiler not to search module usage
-const fullClone = {
-  ...ReactDOM,
-} as typeof ReactDOM & {
-  __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED?: {
-    usingClientEntryPoint?: boolean;
-  };
-  createRoot?: CreateRoot;
-};
+let version = React.version || ''
 
-type CreateRoot = (container: ContainerType) => Root;
-
-const { version, render: reactRender, unmountComponentAtNode } = fullClone;
-
-let createRoot: CreateRoot;
-try {
-  const mainVersion = Number((version || '').split('.')[0]);
-  if (mainVersion >= 18) {
-    ({ createRoot } = fullClone);
-  }
-} catch (e) {
-  // Do nothing;
-}
-
-function toggleWarning(skip: boolean) {
-  const { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } = fullClone;
-
-  if (
-    __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED &&
-    typeof __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED === 'object'
-  ) {
-    __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.usingClientEntryPoint = skip;
-  }
-}
+let createRoot: ((container: Element | DocumentFragment) => any) | undefined;
+let legacyRender: ((node: React.ReactElement, container: Element | DocumentFragment) => void) | undefined;
+let legacyUnmount: ((container: Element | DocumentFragment) => boolean) | undefined;
 
 const MARK = '__rc_react_root__';
 
-// ========================== Render ==========================
 type ContainerType = (Element | DocumentFragment) & {
-  [MARK]?: Root;
+  [MARK]?: ReturnType<NonNullable<typeof createRoot>>;
 };
 
+try {
+  const mainVersion = parseInt(version.split('.')[0], 10);
+
+  if (mainVersion >= 18) {
+    // 动态引入 React 18+ 的 API
+    const client = require('react-dom/client');
+    createRoot = client.createRoot;
+  } else {
+    // 仅在 React <18 才有 render/unmountComponentAtNode
+    legacyRender = ReactDOM.render;
+    legacyUnmount = ReactDOM.unmountComponentAtNode;
+  }
+} catch (e) {
+  // 忽略错误
+}
+
+// ========== 渲染 ==========
 function modernRender(node: React.ReactNode, container: ContainerType) {
-  toggleWarning(true);
-  const root = container[MARK] || createRoot(container);
-  toggleWarning(false);
-
-  root.render(node);
-
-  container[MARK] = root;
+  if (!container[MARK]) {
+    container[MARK] = createRoot!(container);
+  }
+  container[MARK]!.render(node);
 }
 
-function legacyRender(node: React.ReactElement, container: ContainerType) {
-  reactRender(node, container);
-}
-
-/** @private Test usage. Not work in prod */
-export function _r(node: React.ReactElement, container: ContainerType) {
-  if (process.env.NODE_ENV !== 'production') {
-    return legacyRender(node, container);
+function fallbackLegacyRender(node: React.ReactElement, container: ContainerType) {
+  if (legacyRender) {
+    legacyRender(node, container);
+  } else {
+    throw new Error('ReactDOM.render is not available in this React version');
   }
 }
 
 export function render(node: React.ReactElement, container: ContainerType) {
   if (createRoot) {
     modernRender(node, container);
-    return;
+  } else {
+    fallbackLegacyRender(node, container);
   }
-
-  legacyRender(node, container);
 }
 
-// ========================= Unmount ==========================
-async function modernUnmount(container: ContainerType) {
-  // Delay to unmount to avoid React 18 sync warning
-  return Promise.resolve().then(() => {
-    container[MARK]?.unmount();
+// ========== 卸载 ==========
+function fallbackLegacyUnmount(container: ContainerType) {
+  if (legacyUnmount) {
+    legacyUnmount(container);
+  } else {
+    throw new Error('ReactDOM.unmountComponentAtNode is not available in this React version');
+  }
+}
 
+async function modernUnmount(container: ContainerType) {
+  return Promise.resolve().then(() => {
+    container[MARK]?.unmount?.();
     delete container[MARK];
   });
 }
 
-function legacyUnmount(container: ContainerType) {
-  unmountComponentAtNode(container);
-}
-
-/** @private Test usage. Not work in prod */
-export function _u(container: ContainerType) {
-  if (process.env.NODE_ENV !== 'production') {
-    return legacyUnmount(container);
-  }
-}
-
 export async function unmount(container: ContainerType) {
-  if (createRoot !== undefined) {
-    // Delay to unmount to avoid React 18 sync warning
+  if (createRoot) {
     return modernUnmount(container);
+  } else {
+    return fallbackLegacyUnmount(container);
   }
-
-  legacyUnmount(container);
 }

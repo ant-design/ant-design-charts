@@ -2,7 +2,7 @@ import { FlowGraph } from '@ant-design/graphs';
 import { Typography } from 'antd';
 import insertCss from 'insert-css';
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const { Text } = Typography;
 
@@ -143,4 +143,4 @@ const DemoFlowGraph = () => {
   return <FlowGraph {...options} />;
 };
 
-ReactDOM.render(<DemoFlowGraph />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoFlowGraph />);

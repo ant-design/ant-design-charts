@@ -1,6 +1,6 @@
 import { Tiny } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoProgress = () => {
   const progress = 0.7;
@@ -29,4 +29,4 @@ const DemoProgress = () => {
   return <Tiny.Progress {...config} />;
 };
 
-ReactDOM.render(<DemoProgress />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoProgress />);

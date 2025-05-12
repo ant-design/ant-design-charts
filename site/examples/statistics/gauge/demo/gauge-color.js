@@ -1,6 +1,6 @@
 import { Gauge } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoGauge = () => {
   const config = {
@@ -26,4 +26,4 @@ const DemoGauge = () => {
   return <Gauge {...config} />;
 };
 
-ReactDOM.render(<DemoGauge />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoGauge />);

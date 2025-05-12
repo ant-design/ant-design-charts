@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Pie } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoPie = () => {
   const config = {
@@ -40,4 +40,4 @@ const DemoPie = () => {
   return <Pie {...config} />;
 };
 
-ReactDOM.render(<DemoPie />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoPie />);

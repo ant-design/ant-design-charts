@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Pie } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoChangeData = () => {
   const [data, setData] = React.useState([]);
@@ -37,4 +37,4 @@ const DemoChangeData = () => {
   return <Pie {...config} />;
 };
 
-ReactDOM.render(<DemoChangeData />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoChangeData />);

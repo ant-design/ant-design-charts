@@ -80,9 +80,7 @@
     "overrides": {
       "@typescript-eslint/eslint-plugin": "^4.1.1",
       "@typescript-eslint/parser": "^4.1.1",
-      "tslib": "2.6.1",
-      "react-dom": "^18.0.1",
-      "react": "^18.0.1"
+      "tslib": "2.6.1"
     }
   },
   "gitHooks": {

@@ -1,7 +1,7 @@
 import { Column } from '@ant-design/plots';
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { forEach, groupBy } from 'lodash';
+import React, { useEffect, useState } from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoColumn = () => {
   const [data, setData] = useState([]);
@@ -58,4 +58,4 @@ const DemoColumn = () => {
   return <Column {...config} />;
 };
 
-ReactDOM.render(<DemoColumn />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoColumn />);

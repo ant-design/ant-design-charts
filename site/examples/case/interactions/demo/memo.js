@@ -1,8 +1,7 @@
-import React, { memo, useState } from 'react';
 import { Pie } from '@ant-design/plots';
 import { Button } from 'antd';
-import ReactDOM from 'react-dom';
-import { isEqual } from 'lodash-es';
+import { isEqual } from 'lodash';
+import React, { memo, useState } from 'react';
 
 const DemoPie = memo(
   ({ data, onReady }) => {
@@ -76,4 +75,4 @@ const DemoMemo = () => {
   );
 };
 
-ReactDOM.render(<DemoMemo />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoMemo />);

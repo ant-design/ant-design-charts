@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Line } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoLine = () => {
   const config = {
@@ -30,4 +30,4 @@ const DemoLine = () => {
   return <Line {...config} />;
 };
 
-ReactDOM.render(<DemoLine />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoLine />);

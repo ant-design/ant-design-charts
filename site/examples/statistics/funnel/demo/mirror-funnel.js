@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Funnel } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoFunnel = () => {
   const data = [
@@ -68,4 +68,4 @@ const DemoFunnel = () => {
   return <Funnel {...config} />;
 };
 
-ReactDOM.render(<DemoFunnel />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoFunnel />);

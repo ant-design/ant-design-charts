@@ -1,6 +1,6 @@
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoScatter = () => {
   const config = {
@@ -31,4 +31,4 @@ const DemoScatter = () => {
   return <Scatter {...config} />;
 };
 
-ReactDOM.render(<DemoScatter />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoScatter />);

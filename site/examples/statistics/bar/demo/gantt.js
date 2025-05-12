@@ -1,9 +1,8 @@
 import { Bar } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoBar = () => {
-
   const events = [
     { name: 'event planning', startTime: 1, endTime: 4 },
     { name: 'layout logistics', startTime: 3, endTime: 13 },
@@ -19,9 +18,9 @@ const DemoBar = () => {
     data: events,
     xField: 'name',
     yField: ['endTime', 'startTime'],
-    colorField: 'name'
+    colorField: 'name',
   };
   return <Bar {...config} />;
 };
 
-ReactDOM.render(<DemoBar />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoBar />);

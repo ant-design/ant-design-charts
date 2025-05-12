@@ -1,6 +1,6 @@
 import { Rose } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoRose = () => {
   const config = {
@@ -32,4 +32,4 @@ const DemoRose = () => {
   return <Rose {...config} />;
 };
 
-ReactDOM.render(<DemoRose />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoRose />);

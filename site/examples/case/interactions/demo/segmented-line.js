@@ -1,6 +1,6 @@
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoSegmentedLine = () => {
   const data = [
@@ -152,4 +152,4 @@ const DemoSegmentedLine = () => {
   return <Line {...config} />;
 };
 
-ReactDOM.render(<DemoSegmentedLine />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoSegmentedLine />);

@@ -1,6 +1,6 @@
 import { Dendrogram, G6 } from '@ant-design/graphs';
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const { treeToGraphData } = G6;
 
@@ -22,4 +22,4 @@ const DemoDendrogram = () => {
   return <Dendrogram {...options} />;
 };
 
-ReactDOM.render(<DemoDendrogram />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoDendrogram />);

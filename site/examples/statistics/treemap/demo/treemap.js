@@ -1,6 +1,6 @@
 import { Treemap } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoTreemap = () => {
   const data = {
@@ -53,4 +53,4 @@ const DemoTreemap = () => {
   return <Treemap {...config} />;
 };
 
-ReactDOM.render(<DemoTreemap />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoTreemap />);

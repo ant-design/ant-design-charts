@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Box } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoBox = () => {
   const config = {
@@ -20,4 +20,4 @@ const DemoBox = () => {
   return <Box {...config} />;
 };
 
-ReactDOM.render(<DemoBox />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoBox />);

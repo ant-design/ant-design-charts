@@ -1,6 +1,6 @@
 import { RadialBar } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const data = [
   { name: 'X6', star: 297 },
@@ -28,4 +28,4 @@ const DemoRadialBar = () => {
   return <RadialBar {...config} />;
 };
 
-ReactDOM.render(<DemoRadialBar />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoRadialBar />);

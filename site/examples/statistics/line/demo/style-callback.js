@@ -1,6 +1,6 @@
 import { Line } from '@ant-design/plots';
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect, useState } from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoLine = () => {
   const [data, setData] = useState([]);
@@ -42,4 +42,4 @@ const DemoLine = () => {
   return <Line {...config} />;
 };
 
-ReactDOM.render(<DemoLine />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoLine />);

@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Heatmap } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoHeatmap = () => {
   const config = {
@@ -20,11 +20,11 @@ const DemoHeatmap = () => {
       title: 'date',
       field: 'temp_max',
       valueFormatter: '~s',
-      pointerEvents: 'none'
+      pointerEvents: 'none',
     },
   };
 
   return <Heatmap {...config} />;
 };
 
-ReactDOM.render(<DemoHeatmap />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoHeatmap />);

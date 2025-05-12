@@ -1,7 +1,7 @@
 import { Scatter } from '@ant-design/plots';
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { regressionQuad } from 'd3-regression';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const data = [
   { x: 1, y: 4.181 },
@@ -40,7 +40,7 @@ const data = [
 const lineData = regressionQuad()
   .x((d) => d.x)
   .y((d) => d.y)
-  .domain([2, 31])(data)
+  .domain([2, 31])(data);
 
 const DemoScatter = () => {
   const config = {
@@ -57,11 +57,11 @@ const DemoScatter = () => {
       data: lineData,
       xField: (d) => d[0],
       yField: (d) => d[1],
-      style: { stroke: "#c7cbc7", lineWidth: 2 },
+      style: { stroke: '#c7cbc7', lineWidth: 2 },
       tooltip: false,
     },
   };
   return <Scatter {...config} />;
 };
 
-ReactDOM.render(<DemoScatter />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoScatter />);

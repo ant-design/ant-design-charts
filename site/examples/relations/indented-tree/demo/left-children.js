@@ -1,6 +1,6 @@
 import { G6, IndentedTree } from '@ant-design/graphs';
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const { treeToGraphData } = G6;
 
@@ -21,4 +21,4 @@ const DemoIndentedTree = () => {
   return <IndentedTree {...options} />;
 };
 
-ReactDOM.render(<DemoIndentedTree />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoIndentedTree />);

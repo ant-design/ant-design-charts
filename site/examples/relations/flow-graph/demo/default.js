@@ -1,6 +1,6 @@
 import { FlowGraph } from '@ant-design/graphs';
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoFlowGraph = () => {
   const [data, setData] = useState(undefined);
@@ -19,4 +19,4 @@ const DemoFlowGraph = () => {
   return <FlowGraph {...options} />;
 };
 
-ReactDOM.render(<DemoFlowGraph />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoFlowGraph />);

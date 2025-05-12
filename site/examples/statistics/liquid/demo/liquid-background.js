@@ -1,6 +1,6 @@
 import { Liquid } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoLiquid = () => {
   const config = {
@@ -12,4 +12,4 @@ const DemoLiquid = () => {
   return <Liquid {...config} />;
 };
 
-ReactDOM.render(<DemoLiquid />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoLiquid />);

@@ -1,6 +1,6 @@
 import { Sankey } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoSankey = () => {
   const config = {
@@ -16,4 +16,4 @@ const DemoSankey = () => {
   return <Sankey {...config} />;
 };
 
-ReactDOM.render(<DemoSankey />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoSankey />);

@@ -1,6 +1,6 @@
 import { DualAxes } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoDualAxes = () => {
   const uvBillData = [
@@ -54,4 +54,4 @@ const DemoDualAxes = () => {
   return <DualAxes {...config} />;
 };
 
-ReactDOM.render(<DemoDualAxes />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoDualAxes />);

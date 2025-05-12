@@ -1,6 +1,6 @@
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoAnnotationShape = () => {
   const data = [
@@ -85,4 +85,4 @@ const DemoAnnotationShape = () => {
   return <Column {...config} />;
 };
 
-ReactDOM.render(<DemoAnnotationShape />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoAnnotationShape />);

@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Base } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const Demobase = () => {
   const config = {
@@ -41,4 +41,4 @@ const Demobase = () => {
   return <Base {...config} />;
 };
 
-ReactDOM.render(<Demobase />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<Demobase />);

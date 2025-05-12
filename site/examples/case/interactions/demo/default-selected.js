@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Bar } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoSelected = () => {
   const config = {
@@ -37,4 +37,4 @@ const DemoSelected = () => {
   return <Bar {...config} />;
 };
 
-ReactDOM.render(<DemoSelected />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoSelected />);
