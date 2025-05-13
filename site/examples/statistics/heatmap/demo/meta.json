@@ -21,6 +21,14 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ztgPRrmeh84AAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "custom-shape.js",
+      "title": {
+        "zh": "自定义形状",
+        "en": "Custom Shape"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*YDI9TKKYvZ8AAAAAAAAAAAAAemJ7AQ/fmt.webp"
+    },
+    {
       "filename": "cell-aggregated.js",
       "title": {
         "zh": "聚合热力图",
