@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 
 let version = React.version || ''
 
@@ -22,8 +21,9 @@ try {
     createRoot = client.createRoot;
   } else {
     // 仅在 React <18 才有 render/unmountComponentAtNode
-    legacyRender = ReactDOM.render;
-    legacyUnmount = ReactDOM.unmountComponentAtNode;
+    const legacyReactDOM = require('react-dom');
+    legacyRender = legacyReactDOM.render;
+    legacyUnmount = legacyReactDOM.unmountComponentAtNode;
   }
 } catch (e) {
   // 忽略错误
