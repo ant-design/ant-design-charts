@@ -7,4 +7,4 @@ cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*T2zHS6J1cGMAAAAAAA
 link: /examples#statistics-treemap
 ---
 
-Doing...
+<embed src="@/docs/options/plots/special/treemap.zh.md"></embed>
