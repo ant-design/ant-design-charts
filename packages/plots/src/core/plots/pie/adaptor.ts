@@ -1,4 +1,4 @@
-import { flow, transformOptions, isArray, set, fieldAdapter, isFunction } from '../../utils';
+import { flow, transformOptions, isArray, set, fieldAdapter, isFunction, isObject } from '../../utils';
 import type { Adaptor } from '../../types';
 import type { PieOptions } from './type';
 
@@ -55,5 +55,30 @@ export function adaptor(params: Params) {
     }
     return params;
   };
-  return flow(emptyData, transformOptions)(params);
+  /**
+   * @description Add the exceedAdjust layout to the label to prevent the label from exceeding the chart range.
+   * @link https://github.com/ant-design/ant-design-charts/issues/2818
+  */
+  const labelTransform = (params: Params) => {
+    const { options } = params;
+    const { label } = options;
+    if (label) {
+      const ensureTransform = (t?: any[]) => Array.isArray(t) ? t : [];
+
+      const newLabel = Array.isArray(label)
+        ? label.map((item) => ({
+          ...item,
+          transform: [...ensureTransform(item.transform), { type: 'exceedAdjust' }],
+        }))
+        : {
+          ...label,
+          transform: [...ensureTransform(label.transform), { type: 'exceedAdjust' }],
+        };
+
+      set(options, 'label', newLabel);
+    }
+    return params;
+  }
+
+  return flow(emptyData, labelTransform, transformOptions)(params);
 }
