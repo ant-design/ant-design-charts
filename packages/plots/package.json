@@ -33,7 +33,6 @@
     "lint:prettier": "pnpm run prettier &&  git diff && prettier --version && prettier --check \"src/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
-    "test:live": "DEBUG_MODE=1 jest --watch ./tests/plots/column-proxy-spec.tsx --no-cache",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "dependencies": {
@@ -51,6 +50,7 @@
   "sideEffects": false,
   "license": "MIT",
   "devDependencies": {
+    "@testing-library/react": "^16.3.0",
     "@types/jest": "^26.0.24",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
