@@ -1,4 +1,4 @@
-import { flow, transformOptions, isArray, set, fieldAdapter, isFunction, isObject } from '../../utils';
+import { flow, transformOptions, isArray, set, fieldAdapter, isFunction } from '../../utils';
 import type { Adaptor } from '../../types';
 import type { PieOptions } from './type';
 
