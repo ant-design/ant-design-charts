@@ -1,8 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Area } from '@ant-design/plots';
-import { useRef } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { createRoot } from 'react-dom';
 
 document.getElementById('container').innerHTML = `
 <div id="focus" ></div>
@@ -118,4 +116,4 @@ const DemoInteraction = () => {
   );
 };
 
-ReactDOM.render(<DemoInteraction />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoInteraction />);

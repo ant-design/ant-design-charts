@@ -1,6 +1,6 @@
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 function tip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
   let div;
@@ -97,4 +97,4 @@ const DemoInteraction = () => {
   );
 };
 
-ReactDOM.render(<DemoInteraction />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoInteraction />);
