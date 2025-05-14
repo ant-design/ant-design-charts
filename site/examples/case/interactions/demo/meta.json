@@ -67,6 +67,22 @@
         "en": "Default selected"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*PKwaRJj4WNsAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "custom-color.js",
+      "title": {
+        "zh": "自定义颜色",
+        "en": "Custom color"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*n4wzQaprBt0AAAAAAAAAAAAAemJ7AQ/fmt.webp"
+    },
+    {
+      "filename": "custom-single-color.js",
+      "title": {
+        "zh": "自定义单个颜色",
+        "en": "Custom single color"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*xOaPSo1iIAUAAAAAAAAAAAAAemJ7AQ/fmt.webp"
     }
   ]
 }
