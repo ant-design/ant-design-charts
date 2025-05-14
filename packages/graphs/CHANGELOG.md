@@ -1,15 +1,9 @@
-# [2.3.0](https://github.com/ant-design/ant-design-charts/compare/2.2.1...2.3.0) (2025-05-14)
+# [2.1.0](https://github.com/ant-design/ant-design-charts/compare/2.2.1...2.1.0) (2025-05-14)
 
 
 ### Bug Fixes
 
-* bidirectional bar update failed ([#2824](https://github.com/ant-design/ant-design-charts/issues/2824)) ([7549a6c](https://github.com/ant-design/ant-design-charts/commit/7549a6cd9669df58c95c5605dbe691d21ab0be89))
-* data update ([#2684](https://github.com/ant-design/ant-design-charts/issues/2684)) ([11379e6](https://github.com/ant-design/ant-design-charts/commit/11379e6f791318fefaa036a3640cc3f9feb089f9))
-* Fix the double tooltips caused by markers ([#2905](https://github.com/ant-design/ant-design-charts/issues/2905)) ([13c4e01](https://github.com/ant-design/ant-design-charts/commit/13c4e0199be62c9deb2cb7bd34df4c97e2d1468d))
 * **graphs:** update map-edge-line-width transform ([#2815](https://github.com/ant-design/ant-design-charts/issues/2815)) ([76d600a](https://github.com/ant-design/ant-design-charts/commit/76d600a1bf41f6dd8b3d3eee96c983b6132c36fe))
-* tooltip callback ([#2686](https://github.com/ant-design/ant-design-charts/issues/2686)) ([19d714d](https://github.com/ant-design/ant-design-charts/commit/19d714d958ab8a539c1267b28b6ee2c5ff84f735))
-* typo in tooltip.zh.md ([#2696](https://github.com/ant-design/ant-design-charts/issues/2696)) ([30aea23](https://github.com/ant-design/ant-design-charts/commit/30aea235dbf800bf5230c8716fa8ce122f76ab0d))
-* 修复对称柱状图无法修改属性的问题 ([#2793](https://github.com/ant-design/ant-design-charts/issues/2793)) ([a6f550a](https://github.com/ant-design/ant-design-charts/commit/a6f550a3785c3f5fabb6a167ee1835ef761f380a))
 
 
 ### Features
@@ -26,62 +20,3 @@
 * **graphs:** flowchart ([#2709](https://github.com/ant-design/ant-design-charts/issues/2709)) ([c9eabf4](https://github.com/ant-design/ant-design-charts/commit/c9eabf4e1f253e141fabfb527aa4bcd6e093733e))
 * support both tree data and graph data in tree graph scenarios ([#2802](https://github.com/ant-design/ant-design-charts/issues/2802)) ([f4e013d](https://github.com/ant-design/ant-design-charts/commit/f4e013d7ec7559c29f75de497ae4807ee38a66f2))
 * support labelField in MindMap, IndentedTree, Fishbone, FlowGraph ([#2801](https://github.com/ant-design/ant-design-charts/issues/2801)) ([26b7295](https://github.com/ant-design/ant-design-charts/commit/26b72956bdfd18a277d2e595e40f661c337d8a40))
-* sync AntV shared github config ([#2851](https://github.com/ant-design/ant-design-charts/issues/2851)) ([10a5390](https://github.com/ant-design/ant-design-charts/commit/10a5390f23c2a24645f2f139d246d4cabe5618ea))
-
-
-
-## 2.2.6
-
-`2024-12-20`
-
-- 🔥 [Graphs] 适配 G6 最新版本
-
-## 2.2.3
-
-`2024-11-11`
-
-- 🔥 已接入 8 类流程图组件
-
-## 2.2.1
-
-`2024-08-26`
-
-- 🐞 [🧐[问题]ESM packages (lodash-es) need to be imported. ](https://github.com/ant-design/ant-design-charts/issues/2489)
-
-## 2.1.2
-
-`2024-07-24`
-
-- 🔥 Support SSR
-
-## 2.1.1
-
-`2024-05-06`
-
-- 🐞 修复低版本 webpack 不支持的 `export * as` 语法
-
-## 2.1.0
-
-`2024-04-19`
-
-- 🐞 修复低版本 webpack 不支持的 `export * as` 语法
-- 🔥 暴露图表 ref 上层可通过 ref 直接获取图表实例，eg: `<Line ref={React.useRef()} />`
-
-## 2.0.3
-
-`2024-04-16`
-
-- 🔥 底层依赖升级
-- 🔥 plots 功能完善
-
-## 2.0.3
-
-`2023-12-18`
-
-- 🐞 修复 plots 依赖版本问题
-
-## 2.0.0
-
-`2023-11-22`
-
-- 🔥 2.0 正式版本发布，目前已完成统计图表的升级，关系图、地理可视化、流程图等会在后续次版本更新，[next 版本官网](https://ant-design-charts-next.antgroup.com/)

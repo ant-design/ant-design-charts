@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/charts-util",
-  "version": "0.0.1-alpha.7",
+  "version": "0.0.1",
   "description": "charts utils",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -34,7 +34,8 @@
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "jest",
     "test:live": "DEBUG_MODE=1 jest --watch ./tests/utils/use-chart.test.tsx --no-cache",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "peerDependencies": {
     "react": ">=16.8.4",

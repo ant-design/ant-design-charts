@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@ant-design/charts",
-  "version": "2.2.7",
+  "version": "2.3.0",
   "description": "AntV upper level visual component library",
   "bugs": {
     "url": "https://github.com/ant-design/ant-design-charts/issues"
@@ -29,7 +29,8 @@
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
     "prepublishOnly": "pnpm run build",
-    "tag": "node ./scripts/tag.mjs"
+    "tag": "node ./scripts/tag.mjs",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "dependencies": {
     "@ant-design/graphs": "workspace:^",

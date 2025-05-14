@@ -1,3 +1,21 @@
+# [2.4.0](https://github.com/ant-design/ant-design-charts/compare/2.2.1...2.4.0) (2025-05-14)
+
+
+### Bug Fixes
+
+* bidirectional bar update failed ([#2824](https://github.com/ant-design/ant-design-charts/issues/2824)) ([7549a6c](https://github.com/ant-design/ant-design-charts/commit/7549a6cd9669df58c95c5605dbe691d21ab0be89))
+* data update ([#2684](https://github.com/ant-design/ant-design-charts/issues/2684)) ([11379e6](https://github.com/ant-design/ant-design-charts/commit/11379e6f791318fefaa036a3640cc3f9feb089f9))
+* Fix the double tooltips caused by markers ([#2905](https://github.com/ant-design/ant-design-charts/issues/2905)) ([13c4e01](https://github.com/ant-design/ant-design-charts/commit/13c4e0199be62c9deb2cb7bd34df4c97e2d1468d))
+* tooltip callback ([#2686](https://github.com/ant-design/ant-design-charts/issues/2686)) ([19d714d](https://github.com/ant-design/ant-design-charts/commit/19d714d958ab8a539c1267b28b6ee2c5ff84f735))
+* typo in tooltip.zh.md ([#2696](https://github.com/ant-design/ant-design-charts/issues/2696)) ([30aea23](https://github.com/ant-design/ant-design-charts/commit/30aea235dbf800bf5230c8716fa8ce122f76ab0d))
+* 修复对称柱状图无法修改属性的问题 ([#2793](https://github.com/ant-design/ant-design-charts/issues/2793)) ([a6f550a](https://github.com/ant-design/ant-design-charts/commit/a6f550a3785c3f5fabb6a167ee1835ef761f380a))
+
+
+### Features
+
+* be compatible with version react19 ([#2901](https://github.com/ant-design/ant-design-charts/issues/2901)) ([00711a5](https://github.com/ant-design/ant-design-charts/commit/00711a59dd6eacc25e140dcffb8ec766a8a0ca7d))
+
+
 ## 2.3.3
 
 `2025-01-02`
