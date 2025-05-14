@@ -1,6 +1,6 @@
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoInteraction = () => {
   const config = {
@@ -21,4 +21,4 @@ const DemoInteraction = () => {
   return <Scatter {...config} />;
 };
 
-ReactDOM.render(<DemoInteraction />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoInteraction />);

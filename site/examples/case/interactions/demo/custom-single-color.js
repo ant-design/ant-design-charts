@@ -1,6 +1,6 @@
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoCustomSingleColor = () => {
   const config = {
@@ -52,4 +52,4 @@ const DemoCustomSingleColor = () => {
   return <Column {...config} />;
 };
 
-ReactDOM.render(<DemoCustomSingleColor />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoCustomSingleColor />);
