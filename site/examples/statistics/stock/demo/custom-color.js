@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import { Stock } from '@ant-design/plots';
+import React, { useEffect, useState } from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoStock = () => {
   const [data, setData] = useState([]);
@@ -30,4 +30,4 @@ const DemoStock = () => {
   return <Stock {...config} />;
 };
 
-ReactDOM.render(<DemoStock />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoStock />);

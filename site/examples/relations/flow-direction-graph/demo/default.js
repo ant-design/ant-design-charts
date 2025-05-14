@@ -1,6 +1,6 @@
 import { FlowDirectionGraph } from '@ant-design/graphs';
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect, useState } from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoFlowDirectionGraph = () => {
   const [data, setData] = useState(undefined);
@@ -36,4 +36,4 @@ const DemoFlowDirectionGraph = () => {
   return <FlowDirectionGraph {...options} />;
 };
 
-ReactDOM.render(<DemoFlowDirectionGraph />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoFlowDirectionGraph />);

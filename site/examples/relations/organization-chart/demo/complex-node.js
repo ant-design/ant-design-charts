@@ -1,6 +1,6 @@
 import { OrganizationChart, RCNode } from '@ant-design/graphs';
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const { OrganizationChartNode } = RCNode;
 
@@ -51,4 +51,4 @@ const DemoOrganizationChart = () => {
   return <OrganizationChart {...options} />;
 };
 
-ReactDOM.render(<DemoOrganizationChart />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoOrganizationChart />);

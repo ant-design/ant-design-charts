@@ -24,7 +24,7 @@ export const BaseChart: ForwardRefExoticComponent<PropsWithoutRef<CommonConfig> 
 
   const { chart, container } = useChart<Chart, CommonConfig>(Plots[chartType], rest);
 
-  useImperativeHandle(ref, () => chart.current);
+  useImperativeHandle(ref, () => chart.current!, [chart.current]);
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>

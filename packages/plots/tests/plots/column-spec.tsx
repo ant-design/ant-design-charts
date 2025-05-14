@@ -1,10 +1,8 @@
-import { renderHook } from '@testing-library/react-hooks/server';
 import { render } from '@ant-design/charts-util';
-import React, { useRef } from 'react';
-import { act } from 'react-dom/test-utils';
+import React, { act } from 'react';
 import { Column } from '../../src';
 
-const ref: any = renderHook(() => useRef());
+const ref = React.createRef();
 
 describe('Proxy config', () => {
   let container;

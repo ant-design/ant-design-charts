@@ -1,7 +1,7 @@
 import { CirclePacking } from '@ant-design/plots';
 import { interpolateHcl } from 'd3-interpolate';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 const DemoCirclePackingLabel = () => {
   const config = {
     data: {
@@ -30,4 +30,4 @@ const DemoCirclePackingLabel = () => {
   return <CirclePacking {...config} />;
 };
 
-ReactDOM.render(<DemoCirclePackingLabel />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoCirclePackingLabel />);

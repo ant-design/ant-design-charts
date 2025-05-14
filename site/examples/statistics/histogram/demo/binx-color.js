@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Histogram } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoHistogram = () => {
   const config = {
@@ -22,4 +22,4 @@ const DemoHistogram = () => {
   return <Histogram {...config} />;
 };
 
-ReactDOM.render(<DemoHistogram />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoHistogram />);

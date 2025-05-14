@@ -1,6 +1,6 @@
 import { Bar } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoBar = () => {
   const config = {
@@ -31,4 +31,4 @@ const DemoBar = () => {
   return <Bar {...config} />;
 };
 
-ReactDOM.render(<DemoBar />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoBar />);

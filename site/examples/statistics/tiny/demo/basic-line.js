@@ -1,6 +1,6 @@
 import { Tiny } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoLine = () => {
   const data = [
@@ -27,4 +27,4 @@ const DemoLine = () => {
   return <Tiny.Line {...config} />;
 };
 
-ReactDOM.render(<DemoLine />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoLine />);

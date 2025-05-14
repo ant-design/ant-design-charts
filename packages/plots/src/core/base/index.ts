@@ -83,7 +83,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
   /**
    * 获取默认的 options 配置项，每个组件都可以复写
    */
-  protected getDefaultOptions(): any {}
+  protected getDefaultOptions(): any { }
 
   /**
    * 绘制

@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoDefaultTooltip = () => {
   const config = {
@@ -30,4 +30,4 @@ const DemoDefaultTooltip = () => {
   return <Column {...config} />;
 };
 
-ReactDOM.render(<DemoDefaultTooltip />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoDefaultTooltip />);

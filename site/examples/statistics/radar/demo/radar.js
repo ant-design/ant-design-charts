@@ -1,6 +1,6 @@
 import { Radar } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const data = [
   { item: 'Design', type: 'a', score: 70 },
@@ -46,4 +46,4 @@ const DemoRadar = () => {
   return <Radar {...config} />;
 };
 
-ReactDOM.render(<DemoRadar />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoRadar />);

@@ -1,6 +1,6 @@
 import { Dendrogram } from '@ant-design/graphs';
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoDendrogram = () => {
   const [data, setData] = useState(undefined);
@@ -20,4 +20,4 @@ const DemoDendrogram = () => {
   return <Dendrogram {...options} />;
 };
 
-ReactDOM.render(<DemoDendrogram />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoDendrogram />);

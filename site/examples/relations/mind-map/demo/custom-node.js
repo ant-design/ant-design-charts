@@ -1,6 +1,6 @@
 import { G6, MindMap, RCNode, getNodeSide, measureTextSize } from '@ant-design/graphs';
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const { treeToGraphData, idOf } = G6;
 const { TextNode } = RCNode;
@@ -34,4 +34,4 @@ const DemoMindMap = () => {
   return <MindMap {...options} />;
 };
 
-ReactDOM.render(<DemoMindMap />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoMindMap />);

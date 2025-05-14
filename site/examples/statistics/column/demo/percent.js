@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const data = [
   {
@@ -128,4 +128,4 @@ const DemoArea = () => {
   return <Column {...config} />;
 };
 
-ReactDOM.render(<DemoArea />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoArea />);

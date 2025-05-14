@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { BidirectionalBar } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoBidirectionalBar = () => {
   const data = [
@@ -65,4 +65,4 @@ const DemoBidirectionalBar = () => {
   return <BidirectionalBar {...config} />;
 };
 
-ReactDOM.render(<DemoBidirectionalBar />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoBidirectionalBar />);

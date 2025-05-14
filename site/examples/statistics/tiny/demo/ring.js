@@ -1,6 +1,6 @@
 import { Tiny } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoRing = () => {
   const percent = 0.7;
@@ -27,4 +27,4 @@ const DemoRing = () => {
   return <Tiny.Ring {...config} />;
 };
 
-ReactDOM.render(<DemoRing />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoRing />);

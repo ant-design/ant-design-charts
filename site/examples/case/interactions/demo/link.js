@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
-import { Line, Column } from '@ant-design/plots';
+import { Column, Line } from '@ant-design/plots';
+import React, { useEffect, useRef, useState } from 'react';
+import { createRoot } from 'react-dom';
 
 const CHART_MAP = {};
 
@@ -80,4 +80,4 @@ const DemoLine = () => {
   );
 };
 
-ReactDOM.render(<DemoLine />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoLine />);

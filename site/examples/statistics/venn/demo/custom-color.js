@@ -1,6 +1,6 @@
 import { Venn } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoVenn = () => {
   const config = {
@@ -39,4 +39,4 @@ const DemoVenn = () => {
   return <Venn {...config} />;
 };
 
-ReactDOM.render(<DemoVenn />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoVenn />);

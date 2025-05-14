@@ -1,6 +1,6 @@
 import { Waterfall } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoWaterfall = () => {
   const config = {
@@ -45,4 +45,4 @@ const DemoWaterfall = () => {
   return <Waterfall {...config} />;
 };
 
-ReactDOM.render(<DemoWaterfall />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoWaterfall />);

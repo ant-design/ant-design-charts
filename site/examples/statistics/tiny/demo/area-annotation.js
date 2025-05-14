@@ -1,6 +1,6 @@
 import { Tiny } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const data = [
   264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513, 546, 983, 340, 539, 243, 226, 192,
@@ -47,4 +47,4 @@ const DemoArea = () => {
   return <Tiny.Area {...config} />;
 };
 
-ReactDOM.render(<DemoArea />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoArea />);

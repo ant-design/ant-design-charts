@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Bullet } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoBullet = () => {
   const data = [
@@ -44,4 +44,4 @@ const DemoBullet = () => {
   return <Bullet {...config} />;
 };
 
-ReactDOM.render(<DemoBullet />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoBullet />);

@@ -1,6 +1,6 @@
 import { Sunburst } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoSunburst = () => {
   const config = {
@@ -9,11 +9,11 @@ const DemoSunburst = () => {
       value: 'https://gw.alipayobjects.com/os/antfincdn/ryp44nvUYZ/coffee.json',
     },
     animate: {
-      enter: { type: 'waveIn' }
+      enter: { type: 'waveIn' },
     },
     innerRadius: 0,
   };
   return <Sunburst {...config} />;
 };
 
-ReactDOM.render(<DemoSunburst />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoSunburst />);

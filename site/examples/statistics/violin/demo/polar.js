@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Violin } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoViolin = () => {
   const config = {
@@ -16,4 +16,4 @@ const DemoViolin = () => {
   return <Violin {...config} />;
 };
 
-ReactDOM.render(<DemoViolin />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoViolin />);

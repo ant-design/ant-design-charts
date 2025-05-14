@@ -1,6 +1,6 @@
 import { NetworkGraph } from '@ant-design/graphs';
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const DemoNetworkGraph = () => {
   const [data, setData] = React.useState();
@@ -25,4 +25,4 @@ const DemoNetworkGraph = () => {
   return <NetworkGraph {...options} />;
 };
 
-ReactDOM.render(<DemoNetworkGraph />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoNetworkGraph />);

@@ -1,6 +1,6 @@
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
 const data = [
   { type: '抖音', sold: 275 },
@@ -77,4 +77,4 @@ const DemoColumn = () => {
   return <Column {...config} />;
 };
 
-ReactDOM.render(<DemoColumn />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoColumn />);

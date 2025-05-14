@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Area } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoArea = () => {
   const config = {
@@ -17,4 +17,4 @@ const DemoArea = () => {
   return <Area {...config} />;
 };
 
-ReactDOM.render(<DemoArea />, document.getElementById('container'));
+createRoot(document.getElementById('container')).render(<DemoArea />);
