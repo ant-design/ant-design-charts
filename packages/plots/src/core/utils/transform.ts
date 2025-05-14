@@ -1,14 +1,14 @@
-import { SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, CONFIG_SHAPE, VIEW_OPTIONS } from '../constants';
+import { CONFIG_SHAPE, SPECIAL_OPTIONS, TRANSFORM_OPTION_KEY, VIEW_OPTIONS } from '../constants';
 import {
-  omit,
-  pick,
-  isArray,
   deleteExcessKeys,
   filterTransformed,
-  mergeWithArrayCoverage,
-  set,
+  isArray,
   isObject,
   isUndefined,
+  mergeWithArrayCoverage,
+  omit,
+  pick,
+  set,
 } from './index';
 
 import type { Adaptor, Options } from '../types';
@@ -57,12 +57,22 @@ export const transformOptions = (params: Adaptor) => {
       if (exist) {
         const { type, extend_keys } = exist;
         if (type) {
-          children.push(transformConfig(mergeWithArrayCoverage({}, pick(config, extend_keys), { type }, config[key])));
+          const { tooltip } = config[key];
+          children.push(
+            transformConfig(
+              mergeWithArrayCoverage({}, pick(config, extend_keys), { type }, config[key], {
+                tooltip: tooltip ? tooltip : false,
+              }),
+            ),
+          );
         } else {
           // annotations
           if (isArray(config[key])) {
             config[key].forEach((annotation) => {
-              children.push(transformConfig(annotation));
+              children.push(transformConfig({
+                tooltip: false,
+                ...annotation
+              }));
             });
           }
         }
