@@ -28,10 +28,9 @@ export function adaptor(params: Params) {
           },
         ],
       });
-      set(options, 'colorField', setsField);
+      set(options, 'colorField', DefaultTransformKey.color);
       set(options, ['children', '0', 'encode', 'd'], DefaultTransformKey.d);
     }
-    set(params, 'options', omit(options, ['sizeField', 'setsField']));
     return params;
   };
 

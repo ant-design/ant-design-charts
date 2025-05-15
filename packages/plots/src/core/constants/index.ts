@@ -64,6 +64,7 @@ export const TRANSFORM_OPTION_KEY = {
   angleField: 'encode.y',
   keyField: 'encode.key',
   sizeField: 'encode.size',
+  setsField: 'encode.sets',
   shapeField: 'encode.shape',
   seriesField: 'encode.series',
   positionField: 'encode.position',
