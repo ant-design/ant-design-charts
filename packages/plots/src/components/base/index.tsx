@@ -28,7 +28,7 @@ export const BaseChart: ForwardRefExoticComponent<PropsWithoutRef<CommonConfig> 
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
-      {loading && <ChartLoading loadingTemplate={loadingTemplate} />}
+      {loading && <ChartLoading loadingTemplate={loadingTemplate} theme={config.theme} loading={loading} />}
       <div className={className} style={containerStyle} ref={container} {...containerAttributes} />
     </ErrorBoundary>
   );

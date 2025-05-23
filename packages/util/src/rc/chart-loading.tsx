@@ -1,21 +1,23 @@
 import React from 'react';
+import { ContainerConfig } from '../types';
 
-export interface ChartLoadingConfig {
+interface ChartLoadingConfig extends Pick<ContainerConfig, 'loadingTemplate' | 'loading'> {
   /**
    * @title 主题
    * @description 配置主题颜色
    */
-  theme?: string | object;
-  /**
-   * @title 加载模板
-   * @description 图表加载
-   */
-  loadingTemplate?: React.ReactElement;
+  theme?: string;
 }
 
-const shadowLoading = (ele: HTMLElement) => {
+const shadowLoading = (ele: HTMLElement, style = {}) => {
   if (typeof document === 'undefined') {
     return 'loading';
+  }
+  let overStyle = "";
+  if (style) {
+    Object.keys(style).forEach((key) => {
+      overStyle += `${key}: ${style[key]};\n`;
+    });
   }
   const shadowRoot = ele.attachShadow({ mode: 'open' });
   const shadowDiv = document.createElement('div');
@@ -34,6 +36,7 @@ const shadowLoading = (ele: HTMLElement) => {
     border-radius: 50%;
     background: #ccc;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    ${overStyle}
   }
   .loading div:nth-child(1) {
     left: 8px;
@@ -82,12 +85,13 @@ const shadowLoading = (ele: HTMLElement) => {
   shadowRoot.appendChild(shadowDiv);
 };
 
-export const ChartLoading = ({ loadingTemplate, theme = 'light' }: ChartLoadingConfig) => {
+export const ChartLoading = ({ loadingTemplate, theme = 'light', loading }: ChartLoadingConfig) => {
   const shadow = React.useRef<HTMLDivElement>(null);
+  const { container = {}, icon = {} } = typeof loading === 'object' ? loading : {};
 
   React.useEffect(() => {
     if (!loadingTemplate && shadow.current) {
-      shadowLoading(shadow.current);
+      shadowLoading(shadow.current, icon);
     }
   }, []);
   const renderLoading = () => {
@@ -108,7 +112,8 @@ export const ChartLoading = ({ loadingTemplate, theme = 'light' }: ChartLoadingC
         left: 0,
         top: 0,
         zIndex: 99,
-        backgroundColor: theme === 'dark' ? 'rgb(20, 20, 20)' : 'rgb(255, 255, 255)',
+        background: theme === 'dark' ? 'rgb(20, 20, 20)' : 'rgb(255, 255, 255)',
+        ...container
       }}
     >
       {renderLoading()}

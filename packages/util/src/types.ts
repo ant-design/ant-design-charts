@@ -1,3 +1,13 @@
+export type LoadingStyle = {
+  /**
+   * @title icon style
+  */
+  icon?: React.CSSProperties;
+  /**
+   * @title container style
+  */
+  container?: React.CSSProperties;
+}
 export interface ContainerConfig {
   /**
    * @title 图表样式
@@ -28,7 +38,7 @@ export interface ContainerConfig {
    * @description.en_US Is it loading
    * @default.en_US false
    */
-  loading?: boolean;
+  loading?: boolean | LoadingStyle;
   /**
    * @title 加载模板
    * @description 加载模板
