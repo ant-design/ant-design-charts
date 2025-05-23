@@ -19,12 +19,23 @@ export const BaseChart: ForwardRefExoticComponent<PropsWithoutRef<CommonConfig> 
     loading,
     loadingTemplate,
     errorTemplate,
+    onReady,
     ...rest
   } = config;
 
-  const { chart, container } = useChart<Chart, CommonConfig>(Plots[chartType], rest);
-
-  useImperativeHandle(ref, () => chart.current!, [chart.current]);
+  const { chart, container } = useChart<Chart, CommonConfig>(Plots[chartType], {
+    ...rest,
+    onReady: (chartInstance) => {
+      if (ref) {
+        if (typeof ref === 'function') {
+          ref(chartInstance);
+        } else {
+          (ref as React.MutableRefObject<Chart>).current = chartInstance;
+        }
+      }
+      onReady?.(chartInstance);
+    },
+  });
 
   return (
     <ErrorBoundary errorTemplate={errorTemplate}>
