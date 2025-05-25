@@ -91,3 +91,28 @@ const Page: React.FC = () => {
 };
 export default Page;
 ```
+
+## 获取图表实例
+
+图表实例用于后续事件监听、绑定、图表下载等，目前提供 2 种获取方式。
+
+```tsx | pure
+// 通过 onReady 配置获取
+const config = {
+  onReady: ( plot ) => {
+    const { chart } = plot;
+    chart.on('element:click', (evt) => {
+      console.log(evt.target)
+    })
+  }
+}
+
+// 通过 ref 获取
+const ref = useRef(null);
+return (
+  <div>
+    <button onClick={() => console.log(ref.current)}>点我</button>
+    <Line {...config} ref={ref} />
+  </div>
+);
+```
