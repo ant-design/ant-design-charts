@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContainerConfig } from '../types';
 
-interface ChartLoadingConfig extends Pick<ContainerConfig, 'loadingTemplate' | 'loading'> {
+export interface ChartLoadingConfig extends Pick<ContainerConfig, 'loadingTemplate' | 'loading'> {
   /**
    * @title 主题
    * @description 配置主题颜色
