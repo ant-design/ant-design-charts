@@ -1,14 +1,11 @@
-import React, { forwardRef } from 'react';
 import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import type { BidirectionalBarOptions } from '../../core';
 import type { Chart, CommonConfig } from '../../interface';
-import { BaseChart } from '../base';
+import { makeChartComp } from '../../util/makeChartComp';
 
 export type BidirectionalBarConfig = CommonConfig<BidirectionalBarOptions>;
 
 const BidirectionalBarChart: ForwardRefExoticComponent<PropsWithoutRef<BidirectionalBarConfig> & RefAttributes<Chart>> =
-  forwardRef<Chart, BidirectionalBarConfig>((props, ref) => (
-    <BaseChart {...props} chartType="BidirectionalBar" ref={ref} />
-  ));
+  makeChartComp<BidirectionalBarConfig>('BidirectionalBar');
 
 export default BidirectionalBarChart;

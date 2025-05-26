@@ -1,15 +1,10 @@
-import React, { forwardRef } from 'react';
 import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
-import { BaseChart } from '../base';
-
 import type { LiquidOptions } from '../../core';
 import type { Chart, CommonConfig } from '../../interface';
-
+import { makeChartComp } from '../../util/makeChartComp';
 export type LiquidConfig = CommonConfig<LiquidOptions>;
 
-const LiquidChart: ForwardRefExoticComponent<PropsWithoutRef<LiquidConfig> & RefAttributes<Chart>> = forwardRef<
-  Chart,
-  LiquidConfig
->((props, ref) => <BaseChart {...props} chartType="Liquid" ref={ref} />);
+const LiquidChart: ForwardRefExoticComponent<PropsWithoutRef<LiquidConfig> & RefAttributes<Chart>> =
+  makeChartComp<LiquidConfig>('Liquid');
 
 export default LiquidChart;

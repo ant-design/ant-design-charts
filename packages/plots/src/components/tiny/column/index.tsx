@@ -1,14 +1,11 @@
-import React, { forwardRef } from 'react';
 import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import type { TinyColumnOptions } from '../../../core';
 import type { Chart, CommonConfig } from '../../../interface';
-import { BaseChart } from '../../base';
+import { makeChartComp } from '../../../util/makeChartComp';
 
 export type TinyColumnConfig = CommonConfig<TinyColumnOptions>;
 
-const TinyLineChart: ForwardRefExoticComponent<PropsWithoutRef<TinyColumnConfig> & RefAttributes<Chart>> = forwardRef<
-  Chart,
-  TinyColumnConfig
->((props, ref) => <BaseChart {...props} chartType="TinyColumn" ref={ref} />);
+const TinyLineChart: ForwardRefExoticComponent<PropsWithoutRef<TinyColumnConfig> & RefAttributes<Chart>> =
+  makeChartComp<TinyColumnConfig>('TinyColumn');
 
 export default TinyLineChart;
