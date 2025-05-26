@@ -1,14 +1,11 @@
-import React, { forwardRef } from 'react';
 import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import type { HistogramOptions } from '../../core';
 import type { Chart, CommonConfig } from '../../interface';
-import { BaseChart } from '../base';
+import { makeChartComp } from '../../util/makeChartComp';
 
 export type HistogramConfig = CommonConfig<HistogramOptions>;
 
-const HistogramChart: ForwardRefExoticComponent<PropsWithoutRef<HistogramConfig> & RefAttributes<Chart>> = forwardRef<
-  Chart,
-  HistogramConfig
->((props, ref) => <BaseChart {...props} chartType="Histogram" ref={ref} />);
+const HistogramChart: ForwardRefExoticComponent<PropsWithoutRef<HistogramConfig> & RefAttributes<Chart>> =
+  makeChartComp<HistogramConfig>('Histogram');
 
 export default HistogramChart;

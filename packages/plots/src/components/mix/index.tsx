@@ -1,14 +1,11 @@
-import React, { forwardRef } from 'react';
 import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import type { MixOptions } from '../../core';
 import type { Chart, CommonConfig } from '../../interface';
-import { BaseChart } from '../base';
+import { makeChartComp } from '../../util/makeChartComp';
 
 export type MixConfig = CommonConfig<MixOptions>;
 
-const MixChart: ForwardRefExoticComponent<PropsWithoutRef<MixConfig> & RefAttributes<Chart>> = forwardRef<
-  Chart,
-  MixConfig
->((props, ref) => <BaseChart {...props} chartType="Mix" ref={ref} />);
+const MixChart: ForwardRefExoticComponent<PropsWithoutRef<MixConfig> & RefAttributes<Chart>> =
+  makeChartComp<MixConfig>('Mix');
 
 export default MixChart;

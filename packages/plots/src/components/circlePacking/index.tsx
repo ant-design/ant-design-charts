@@ -1,12 +1,11 @@
-import React, { forwardRef } from 'react';
 import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import type { CirclePackingOptions } from '../../core';
 import type { Chart, CommonConfig } from '../../interface';
-import { BaseChart } from '../base';
+import { makeChartComp } from '../../util/makeChartComp';
 
 export type CirclePackingConfig = CommonConfig<CirclePackingOptions>;
 
 const CirclePackingChart: ForwardRefExoticComponent<PropsWithoutRef<CirclePackingConfig> & RefAttributes<Chart>> =
-  forwardRef<Chart, CirclePackingConfig>((props, ref) => <BaseChart {...props} chartType="CirclePacking" ref={ref} />);
+  makeChartComp<CirclePackingConfig>('CirclePacking');
 
 export default CirclePackingChart;

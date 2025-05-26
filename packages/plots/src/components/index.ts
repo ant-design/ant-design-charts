@@ -2,6 +2,7 @@ import { BaseChart as Base } from './base';
 import Area from './area';
 import Bar from './bar';
 import Column from './column';
+import ConfigProvider from './config-provider'
 import DualAxes from './dual-axes';
 import Funnel from './funnel';
 import Line from './line';
@@ -61,6 +62,7 @@ export type { SunburstConfig } from './sunburst';
 export {
   Base,
   Column,
+  ConfigProvider,
   Line,
   Pie,
   Area,

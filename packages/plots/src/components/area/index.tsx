@@ -1,14 +1,11 @@
-import React, { forwardRef } from 'react';
-import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
+import { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import type { AreaOptions } from '../../core';
-import type { CommonConfig, Chart } from '../../interface';
-import { BaseChart } from '../base';
+import type { Chart, CommonConfig } from '../../interface';
+import { makeChartComp } from '../../util/makeChartComp';
 
 export type AreaConfig = CommonConfig<AreaOptions>;
 
-const AreaChart: ForwardRefExoticComponent<PropsWithoutRef<AreaConfig> & RefAttributes<Chart>> = forwardRef<
-  Chart,
-  AreaConfig
->((props, ref) => <BaseChart {...props} chartType="Area" ref={ref} />);
+const AreaChart: ForwardRefExoticComponent<PropsWithoutRef<AreaConfig> & RefAttributes<Chart>> =
+  makeChartComp<AreaConfig>('Area');
 
 export default AreaChart;

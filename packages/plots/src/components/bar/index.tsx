@@ -1,14 +1,12 @@
-import React, { forwardRef } from 'react';
 import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import { BarOptions } from '../../core';
-import type { CommonConfig, Chart } from '../../interface';
-import { BaseChart } from '../base';
+import type { Chart, CommonConfig } from '../../interface';
+import { makeChartComp } from '../../util/makeChartComp';
 
 export type BarConfig = CommonConfig<BarOptions>;
 
-const BarChart: ForwardRefExoticComponent<PropsWithoutRef<BarConfig> & RefAttributes<Chart>> = forwardRef<
-  Chart,
-  BarConfig
->((props, ref) => <BaseChart {...props} chartType="Bar" ref={ref} />);
+const BarChart: ForwardRefExoticComponent<PropsWithoutRef<BarConfig> & RefAttributes<Chart>> = makeChartComp<BarConfig>(
+  'Bar'
+);
 
 export default BarChart;
