@@ -9,7 +9,7 @@ order: 2
 
 <img alt="scaleOutX" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*XpI1SbHQADUAAAAAAAAAAAAADmJ7AQ/original" width="400" />
 
-```ts
+```js
 {
   "animate": {
     "exit": {

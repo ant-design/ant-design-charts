@@ -1,6 +1,6 @@
 ---
 title: 事件（Event）
-order: 17
+order: 5
 ---
 
 Ant Design Charts 对外暴露了一些事件，用于获取图表的生命周期，以及交互信息。Ant Design Charts 导出了一个 `ChartEvent` 类型，用于定义事件的类型。
@@ -8,44 +8,17 @@ Ant Design Charts 对外暴露了一些事件，用于获取图表的生命周�
 <img alt="click event" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*z61ZQ5DM5IUAAAAAAAAAAAAADmJ7AQ/original" width="800" />
 
 ```js
-null;
-
+{
+  onReady: ({ chart }) => {
+    chart.on('interval:click', (e) => {
+      console.log(e.data.data); // 展示点击的数据
+    });
+    chart.on('element:click', (e) => {
+      console.log(e.data.data); // 展示点击的数据
+    });
+  }
+}
 ```
-
-## 生命周期事件
-
-如果想要获取图表的生命周期信息，可以通过下面的方式：
-
-```js
-chart.on(ChartEvent.AFTER_RENDER, (ev) => {
-  console.log(ev);
-});
-
-```
-
-Ant Design Charts 目前提供了以下生命周期事件：
-
-| 事件名                          | 说明           |
-| ------------------------------- | -------------- |
-| `ChartEvent.`BEFORE_RENDER      | 渲染前         |
-| `ChartEvent.`BEFORE_PAINT       | 绘制前         |
-| `ChartEvent.`AFTER_PAINT        | 绘制后         |
-| `ChartEvent.`AFTER_RENDER       | 渲染后         |
-| `ChartEvent.`BEFORE_CHANGE_DATA | 更改数据前     |
-| `ChartEvent.`AFTER_CHANGE_DATA  | 更改数据后     |
-| `ChartEvent.`BEFORE_CLEAR       | 清理画布前     |
-| `ChartEvent.`AFTER_CLEAR        | 清理画布后     |
-| `ChartEvent.`BEFORE_DESTROY     | 销毁画布前     |
-| `ChartEvent.`AFTER_DESTROY      | 销毁画布后     |
-| `ChartEvent.`BEFORE_CHANGE_SIZE | 更改画布尺寸前 |
-| `ChartEvent.`AFTER_CHANGE_SIZE  | 更改画布尺寸后 |
-
-- **渲染前**：指 Ant Design Charts 着手开始处理数据，进行布局，绘制图形等操作。
-- **绘制前**： 指完成数据处理，布局，绘制图形等操作，但是还没有进行绘制。
-- **绘制后**： 指 Ant Design Charts 完成所有的绘制操作，但可能存在动画，动画结束后，图表才算真正的渲染完成。
-- **渲染后**： 指 Ant Design Charts 完成所有的绘制操作，包括动画。
-- **清理画布后**： 容器中的图表已经被清理，但是 Ant Design Charts 实例还存在，可以继续使用。
-- **销毁画布后**： Ant Design Charts 实例已经被销毁，无法再使用。
 
 ## 交互事件
 
@@ -57,7 +30,6 @@ Ant Design Charts 目前提供了以下生命周期事件：
 chart.on(`element:${ChartEvent.EventType}`, (ev) => {
   console.log(ev);
 });
-
 ```
 
 - 监听指定 `element` 事件
@@ -66,33 +38,27 @@ chart.on(`element:${ChartEvent.EventType}`, (ev) => {
 chart.on(`${markType}:${ChartEvent.EventType}`, (ev) => {
   console.log(ev);
 });
-
 chart.on(`interval:${ChartEvent.CLICK}`, (ev) => {
   console.log(ev);
 });
-
 ```
 
 - 监听 plot 区域事件
 
 ```js
 chart.on('plot:click', (event) => console.log(event));
-
 ```
-
 
 - 监听全局 component 事件
 
 ```js
 chart.on('component:click', (event) => console.log(event));
-
 ```
 
 - 监听全局 label 事件
 
 ```js
 chart.on('label:click', (event) => console.log(event));
-
 ```
 
 ### 点击事件
@@ -138,3 +104,7 @@ chart.on('label:click', (event) => console.log(event));
 | `ChartEvent.`DRAG_LEAVE | 元素被拖拽离开目标元素时     | `Event`  |
 | `ChartEvent.`DRAG_OVER  | 元素被拖拽悬停在目标元素内时 | `Event`  |
 | `ChartEvent.`DROP       | 元素被放置到目标元素内时     | `Event`  |
+
+## 典型案例
+
+详见交互-事件[示例](/examples#interaction-event)

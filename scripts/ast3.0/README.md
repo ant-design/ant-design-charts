@@ -6,6 +6,14 @@ $ node ./generator.js
 
 ### 文档生成
 
+#### Spec
+
 ```bash
-$ node ./generator-doc.js
+$ node ./generator-spec-doc.js path-to-md-file
+```
+
+#### API
+
+```bash
+$ node ./generator-api-doc.js path-to-md-file
 ```

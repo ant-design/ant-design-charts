@@ -7,7 +7,6 @@ In Ant Design Charts, the **Slider** can be used to filter data, and it can be b
 
 The slider can be configured at the mark level:
 
-
 ```js
 ({
   slider: {
@@ -15,20 +14,6 @@ The slider can be configured at the mark level:
     y: {},
   },
 });
-
-```
-
-
-The slider can also be configured at the view level:
-
-```js
-({
-  slider: {
-    x: {},
-    y: {},
-  },
-});
-
 ```
 
 ## Mark Slider
@@ -38,3 +23,6 @@ In Ant Design Charts, each mark has its own slider. If the scale corresponding t
 ## View Slider
 
 The slider has transitivity. The slider declared on the view will be passed to the mark declared by `children`. If this mark has a slider for the corresponding channel, they will merge; otherwise, it will not be affected.
+
+
+More options about slider, see the document of [slider](/options/plots/component/slider).

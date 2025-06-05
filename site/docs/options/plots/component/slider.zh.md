@@ -7,12 +7,23 @@ order: 7.4
 
 Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用户在数据量较大的情况下一次只用关注局部的数据，是一种辅助看数据的组件。它将大量数据浓缩到一个轴上，既可以缩小宏观看数据全貌，又可以放大微观看数据的片段，同时还可以拖拽观察数据在一定区间内的演变。缩略轴可以和 x 或者 y 通道绑定，用于显示不同方向的缩略轴，缩略轴默认都是关闭的。
 
+<img alt="slider" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*J-s1RLCByvYAAAAARlAAAAgAemJ7AQ/fmt.avif" />
+
 ```js
 {
-  "autoFit": true,
-  "slider": {
-    "x": {}
-  }
+    autoFit: true,
+    data: {
+      type: 'fetch',
+      value:
+        'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+    },
+    xField: 'date',
+    yField: 'close',
+    slider: {
+      x: {
+        labelFormatter: (d) => `${formatter(d)}`,
+      },
+    }
 }
 ```
 
@@ -27,19 +38,6 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
     y: {},
   },
 });
-
-```
-
-缩略轴也可以在 View 层级配置。缩略轴具有传递性。视图上声明的缩略轴会传递给 `children` 声明的标记，如果该标记有对应通道的缩略轴，就合并；否则不影响。
-
-```js
-({
-  slider: {
-    x: {},
-    y: {},
-  },
-});
-
 ```
 
 ### 何时使用
@@ -59,9 +57,15 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
 
 ```js
 {
-  "slider": {
-    "y": {}
-  }
+    data: {
+      type: 'fetch',
+      value:
+        'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+    },
+    xField: 'date',
+    yField: 'close',
+    // 开启 Y 方向缩略轴
+    slider: { y: {} }
 }
 ```
 
@@ -116,7 +120,7 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
 ({
   slider: {
     x: {
-      // 不写在style里也行，G2内部做了兼容
+      // 不写在style里也行，Ant Design Charts内部做了兼容
       style: {
         selectionFill: '#000',
         selectionFillOpacity: 0.9,
@@ -134,7 +138,6 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
     },
   },
 });
-
 ```
 
 #### track
@@ -164,7 +167,7 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
 ({
   slider: {
     x: {
-      // 不写在style里也行，G2内部做了兼容
+      // 不写在style里也行，Ant Design Charts内部做了兼容
       style: {
         trackSize: 20,
         trackFill: '#000',
@@ -183,7 +186,6 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
     },
   },
 });
-
 ```
 
 #### handle
@@ -231,7 +233,7 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
 ({
   slider: {
     x: {
-      // 不写在style里也行，G2内部做了兼容
+      // 不写在style里也行，Ant Design Charts内部做了兼容
       style: {
         //配置handleLabel的绘图属性
         handleLabelFontSize: 16,
@@ -271,7 +273,6 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
     },
   },
 });
-
 ```
 
 #### sparkline
@@ -301,7 +302,7 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
 ({
   slider: {
     x: {
-      // 不写在style里也行，G2内部做了兼容
+      // 不写在style里也行，Ant Design Charts内部做了兼容
       style: {
         sparklineType: 'line',
         sparklineColor: 'red',
@@ -309,7 +310,6 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
     },
   },
 });
-
 ```
 
 ### 事件
@@ -318,6 +318,35 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
 | ----------- | -------------------------------- | ------------------------------------- |
 | valuechange | 选区发生变化时触发，通过事件监听 | `({detail: { value: any; }}) => void` |
 
+```js
+import { Chart } from '@ant-design/charts';
+
+const chart = new Chart({
+  container: 'container',
+});
+
+chart
+  .line()
+  .data({
+    type: 'fetch',
+    value:
+      'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+  })
+  .encode('x', 'date')
+  .encode('y', 'close')
+  // 开启 X 轴缩略轴
+  .slider('x', {});
+
+chart.on('afterrender', () => {
+  const { canvas } = chart.getContext();
+  const { document } = canvas;
+  document.querySelector('.slider').addEventListener('valuechange', (evt) => {
+    console.info(evt.detail);
+  });
+});
+
+chart.render();
+```
 
 ## 示例
 
@@ -329,4 +358,16 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
 - 监听 slider 事件。
 
 第一步的的关键是通过 `chart.getCoordinate` 获得的 coordinate 对象确定 slider 的位置和长度。第二步的关键是通过 `chart.getScale` 获得 scale 对选择的范围进行 invert，最后获得选择的数据范围，然后更新 scale 的定义域。
+
+```js
+{
+    data: {
+      type: 'fetch',
+      value:
+        'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+    },
+    xField: 'date',
+    yField: 'close'
+}
+```
 

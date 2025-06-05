@@ -26,50 +26,55 @@ Ant Design Charts 中**标题（Title）** 用于指定图表的标题内容，�
     subtitle: 'world', // 副标题的文本新秀丽
   },
 });
-
-```
-
-标题也可以在 View 层级配置：
-
-```js
-({
-  title: {
-    title: 'hello',
-    subtitle: 'world',
-  },
-});
-
 ```
 
 ## 开始使用
 
-```js
-{
-  "marginTop": 40,
-  "title": {
-    "align": "center",
-    "size": 28,
-    "spacing": 4,
-    "title": "我是一个标题 I'am a title",
-    "titleFontSize": 28,
-    "titleFontFamily": "sans-serif",
-    "titleFontWeight": 600,
-    "titleFill": "#fff",
-    "titleFillOpacity": 1,
-    "titleStroke": "#000",
-    "titleLineWidth": 2,
-    "titleStrokeOpacity": 1,
-    "subtitle": "我是一个副标题 I'am a subtitle",
-    "subtitleFontSize": 16,
-    "subtitleFontFamily": "Arial",
-    "subtitleFontWeight": 300,
-    "subtitleFill": "#2989FF",
-    "subtitleFillOpacity": 1,
-    "subtitleStroke": "#000",
-    "subtitleLineWidth": 1,
-    "subtitleStrokeOpacity": 0.5
-  }
-}
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+  const config = {
+    marginTop: 40,
+    data: {
+      type: 'fetch',
+      value:
+        'https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv',
+    },
+    xField: 'letter',
+    yField: 'frequency',
+    title: {
+      align: 'center', // 图表标题的对齐方式
+      size: 28, // 图表标题的高度，默认为 36
+      spacing: 4, // 主标题和副标题之间的间距
+      // 标题
+      title: "我是一个标题 I'am a title", // 图表标题的文本
+      titleFontSize: 28, // 图表主标题的字体大小
+      titleFontFamily: 'sans-serif', // 图表主标题的字体
+      titleFontWeight: 600, // 图表主标题的字体粗细
+      titleFill: '#fff', // 图表主标题的文字颜色
+      titleFillOpacity: 1, // 图表主标题的文字透明度
+      titleStroke: '#000', // 图表主标题的文字描边颜色
+      titleLineWidth: 2, // 图表主标题的文字描边线宽
+      titleStrokeOpacity: 1, // 图表主标题的文字描边透明度
+      // 副标题
+      subtitle: "我是一个副标题 I'am a subtitle", // 图表副标题的文本
+      subtitleFontSize: 16, // 图表副标题的字体大小
+      subtitleFontFamily: 'Arial', // 图表副标题的字体
+      subtitleFontWeight: 300, // 图表副标题的字体粗细
+      subtitleFill: '#2989FF', // 图表副标题的文字颜色
+      subtitleFillOpacity: 1, // 图表副标题的文字透明度
+      subtitleStroke: '#000', // 图表副标题的文字描边颜色
+      subtitleLineWidth: 1, // 图表副标题的文字描边线宽
+      subtitleStrokeOpacity: 0.5, // 图表副标题的文字描边透明度
+    }
+};
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 标题 title 的设置，最简单的设置方式，就是直接指定一个字符串作为标题，这个时候使用默认的样式和位置。当然也可以使用完整的配置项去做一些灵活的自定义。
@@ -96,6 +101,20 @@ Ant Design Charts 中**标题（Title）** 用于指定图表的标题内容，�
 
 用于配置图表标题的的左右对齐方式，默认为 `left`，可以选择使用 `left`，`center`，`right`，分别代表着居左对齐、居中对齐、居右对齐。
 
+
+```js
+{
+    data,
+    xField: (_, idx) => idx,
+    yField: (d) => d,
+    title: {
+      align: 'center',
+      title: 'This is a chart title.',
+      subtitle: 'Displayed are sampled values.',
+    },
+    axis: false
+}
+```
 
 ### spacing
 

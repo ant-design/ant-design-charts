@@ -7,6 +7,18 @@ order: 2
 
 ## 开始使用
 
+```js
+const data = [
+  { a: 1, b: 2, c: 3 },
+  { a: 4, b: 5, c: 6 },
+];
+{
+  "data": {
+      "value": data,
+    "transform": [     {       type: 'fold',       fields: ['a', 'b'],       key: 'key',       value: 'value',     },   ]
+  }
+}
+```
 
 上述例子处理之后，数据变成为：
 
@@ -17,7 +29,6 @@ order: 2
   { a: 4, b: 5, c: 6, key: 'a', value: 4 },
   { a: 4, b: 5, c: 6, key: 'b', value: 5 },
 ];
-
 ```
 
 ## 选项

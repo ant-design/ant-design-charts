@@ -3,146 +3,229 @@ title: 概览
 order: 1
 ---
 
-Ant Design Charts 中动画是可视化中很重要的一部分，可以提高可视化的表现力。动画可以声明在标记层级：
+动画作为可视化的重要组成部分，能显著提高数据可视化的表现力。Ant Design Charts 提供了完善的动画系统，支持图形在进入（enter）、更新（update）和退出（exit）三个阶段的动画效果设置，并且能根据数据特性进行动画编码，实现丰富的交互与过渡效果。
 
-```js
-({
-  animate: {
-    enter: {
-      duration: 100,
-      delay: 10,
-    },
-    update: {},
-  },
-});
+Ant Design Charts 动画系统的核心特性：
 
+- **状态驱动**：基于图形的三种状态（进入、更新、退出）设置不同的动画效果
+- **数据驱动**：可以将数据值映射到动画属性上，如持续时间、延迟时间等
+- **过渡效果**：支持形变（morphing）、渐变、缩放等多种过渡效果
+- **时序控制**：支持设置动画的顺序、缓动函数、延迟、持续时间等参数
+
+动画属性可通过 `animate` 配置项设置，既可在图表整体配置中定义，也可针对具体标记设置。
+
+## 动画配置
+
+动画可在图表配置中通过 `animate` 属性进行设置：
+
+```js | ob { autoMount: true }
+import { Line } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value:
+          'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+      },
+      xField: 'date',
+      yField: 'close',
+      animate: { enter: { type: 'pathIn', duration: 1000 } }
+  };
+
+  return <Line {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
-```js
-{
-  "animate": {
-    "enter": {
-      "duration": 100,
-      "delay": 10
-    },
-    "update": {}
-  }
-}
+可把`type`设置为`null`、`undefined` 或 `false` 来关闭动画:
+
+```js | ob { autoMount: true }
+import { Line } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value:
+          'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+      },
+      xField: 'date',
+      yField: 'close',
+      animate: { enter: { type: 'false' } }
+  };
+
+  return <Line {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
+
+可通过`animate: false`来关闭所有动画:
+
+```js | ob { autoMount: true }
+import { Line } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value:
+          'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+      },
+      xField: 'date',
+      yField: 'close',
+      animate: false
+  };
+
+  return <Line {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
+
+## 基本使用
+
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: [
+        { genre: 'Sports', sold: 275 },
+        { genre: 'Strategy', sold: 115 },
+        { genre: 'Action', sold: 120 },
+        { genre: 'Shooter', sold: 350 },
+        { genre: 'Other', sold: 150 },
+      ],
+      xField: 'genre',
+      yField: 'sold',
+      colorField: 'genre',
+      animate: {
+        enter: { type: 'fadeIn', duration: 1000 },
+      }
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ## 动画属性
 
-标记是通过 `mark.animate` 指定动画属性的，一共有三个部分的动画可以指定：
+标记是通过`mark.animate`指定动画属性的，一共有三个部分的动画可以指定：
 
-- **enter** - 新增的图形
-- **update** - 更新的图形
-- **exit** - 删除的图形
+**enter**- 新增的图形
 
-而每部分的动画有以下的属性：
+**update**- 更新的图形
 
-- **type** - 种类
-- **duration** - 持续时间
-- **delay** - 延迟时间
-- **easing** - 缓动函数
+**exit**- 删除的图形
 
-```js
-{
-  "animate": {
-    "enter": {
-      "duration": 1000
-    }
-  }
-}
+## 配置选项
+
+### 动画配置完整选项
+
+| 属性           | 描述                         | 类型                   | 默认值     | 必选 |
+| -------------- | ---------------------------- | ---------------------- | ---------- | ---- |
+| enter          | 入场动画配置                 | `EnterAnimateOptions`  | -          |      |
+| update         | 更新动画配置                 | `UpdateAnimateOptions` | -          |      |
+| exit           | 退出动画配置                 | `ExitAnimateOptions`   | -          |      |
+| enterType      | 入场动画类型                 | `string`               | `fadeIn`   |      |
+| enterDuration  | 入场动画持续时间（毫秒）     | `number`               | `300`      |      |
+| enterDelay     | 入场动画延迟时间（毫秒）     | `number`               | `0`        |      |
+| enterEasing    | 入场动画缓动函数             | `string`               | `ease`     |      |
+| enterFill      | 入场动画非运行状态的展示效果 | `Fill`                 | `both`     |      |
+| updateType     | 更新动画类型                 | `string`               | `morphing` |      |
+| updateDuration | 更新动画持续时间（毫秒）     | `number`               | `300`      |      |
+| updateDelay    | 更新动画延迟时间（毫秒）     | `number`               | `0`        |      |
+| updateEasing   | 更新动画缓动函数             | `string`               | `ease`     |      |
+| updateFill     | 更新动画非运行状态的展示效果 | `Fill`                 | `both`     |      |
+| exitType       | 退出动画类型                 | `string`               | `fadeOut`  |      |
+| exitDuration   | 退出动画持续时间（毫秒）     | `number`               | `300`      |      |
+| exitDelay      | 退出动画延迟时间（毫秒）     | `number`               | `0`        |      |
+| exitEasing     | 退出动画缓动函数             | `string`               | `ease`     |      |
+| exitFill       | 退出动画非运行状态的展示效果 | `Fill`                 | `both`     |      |
+
+复杂类型说明：
+
+- `EnterAnimateOptions`：入场动画配置对象，包含 type、duration、delay、easing、fill 属性
+- `UpdateAnimateOptions`：更新动画配置对象，包含 type、duration、delay、easing、fill 属性
+- `ExitAnimateOptions`：退出动画配置对象，包含 type、duration、delay、easing、fill 属性
+- `Fill`：动画填充模式，可选值为 `'auto'`、`'none'`、`'forwards'`、`'backwards'`、`'both'`
+
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value: 'https://assets.antv.antgroup.com/g2/deaths.json',
+      },
+      xField: 'Month',
+      yField: 'Death',
+      colorField: 'Type',
+      transform: [
+        { type: 'stackY' },
+        { type: 'stackEnter', groupBy: ['color', 'x'], duration: 2000 },
+      ],
+      scale: { y: { type: 'sqrt' } },
+      coordinate: { type: 'polar' },
+      animate: { enter: { type: 'waveIn' } },
+      axis: { y: false }
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
-
-## 动画编码
-
-在 Ant Design Charts 中动画属性可以作为一种通道，也可以编码数据。比如下面甘特图中，每个条的出现和持续时间是和数据线性相关的。
-
-```js
-{
-  "coordinate": {
-    "transform": [
-      {
-        "type": "transpose"
-      }
-    ]
-  }
-}
-```
-
-## 分组动画
-
-Ant Design Charts 也提供了 StackEnter 标记转换来实现分组动画，该标记转换会先将图形进行分组，然后将它们的出现时间和持续时间在空间上进行堆叠，从而实现依次出现的效果。
-
-
-## 关键帧动画
-
-上面的动画都是过渡动画，不涉及到数据的更新，Ant Design Charts 也提供了制作关键帧动画的能力。使用 `chart.timingKeyframe` 创建一个时间容器，用于放置一系列视图，它会对这些视图中有关系的图形元素应用平滑的过渡效果。而对应关系通过 **key** 和 **groupKey** 两个通道指定。
-
-```js
-{
-  "attr": {
-    "duration": 1000,
-    "direction": "alternate",
-    "iterationCount": 2
-  },
-  "call": {
-    "0": "-",
-    "1": "F",
-    "2": "N",
-    "3": "-",
-    "4": "e",
-    "5": "-",
-    "6": "F",
-    "7": "N",
-    "8": "-",
-    "undefined": "finallyLoc"
-  }
-}
-```
-
-## 时序动画
-
-**时序动画（timingSequence）** 还在开发中，敬请期待。
-
-## 开始使用
-
-```ts
-{
-  "animate": {}
-}
-```
-
-## 选项
-
-关于 `animate` API 的参数，有以下，主要 3 种动画场景（enter、update、exit）和 动画 5 个属性（type、duration、delay、easing、fill）的组合。
-
-| 属性 | 描述 | 类型 | 默认值|
-| -------------| ----------------------------------------------------------- | -----------------| ----------|
-| enterType         | 动画类型                                                     | `Type`         |           |
-| enterDuration     | 动画持续时间 (ms)                                             | `number`         |           |
-| enterDelay        | 延迟执行时间 (ms)                                             | `number`         |           |
-| enterEasing       | 动画的缓动函数                                                | `Easing`           |          |
-| enterFill         | 动画处于非运行状态时的展示效果                                   | `Fill`           |           |
-| updateType        | 动画类型                                                     | `Type`         |           |
-| updateDuration    | 动画持续时间 (ms)                                             | `number`         |           |
-| updateDelay       | 延迟执行时间 (ms)                                             | `number`         |           |
-| updateEasing      | 动画的缓动函数                                                | `Easing`           |          |
-| updateFill        | 动画处于非运行状态时的展示效果                                   | `Fill`           |           |
-| exitType          | 动画类型                                                     | `Type`         |           |
-| exitDuration      | 动画持续时间 (ms)                                             | `number`         |           |
-| exitDelay         | 延迟执行时间 (ms)                                             | `number`         |           |
-| exitEasing        | 动画的缓动函数                                                | `Easing`           |          |
-| exitFill          | 动画处于非运行状态时的展示效果                                   | `Fill`           |           |
 
 ### 动画类型 Type
 
-动画类型 `Type` 本质是设置动画的方式，会影响的视觉属性。这里具体可以看对应的文档 [Animation](/api/overview#animation)。当然也可以设置为 `null`，`undefined`，`false`，代表关闭动画。
+动画类型 `Type` 决定了动画的视觉效果。Ant Design Charts 提供了多种内置动画类型，也可设置为 `null`、`undefined` 或 `false` 来关闭动画。常见的动画类型包括：
+
+| 动画类型  | 作用                       |
+| --------- | -------------------------- |
+| fadeIn    | 淡入效果，图形从透明到可见 |
+| growInX   | 沿 X 轴方向生长效果        |
+| growInY   | 沿 Y 轴方向生长效果        |
+| scaleInX  | 沿 X 轴缩放进入效果        |
+| scaleInY  | 沿 Y 轴缩放进入效果        |
+| zoomIn    | 整体缩放进入效果           |
+| pathIn    | 沿路径进入效果             |
+| waveIn    | 波浪形进入效果             |
+| morphing  | 形变效果，平滑过渡图形变化 |
+| fadeOut   | 淡出效果，图形从可见到透明 |
+| scaleOutX | 沿 X 轴缩放退出效果        |
+| scaleOutY | 沿 Y 轴缩放退出效果        |
+| zoomOut   | 整体缩放退出效果           |
 
 ### 缓动函数 Easing
 
-缓动函数指定的是动画过程中，视觉属性变化的插值函数。支持以下内置缓动函数，来自 [easings](https://easings.net/)，也可以上这个网站预览动画缓动的效果。
+缓动函数控制动画过程中视觉属性变化的插值方式。Ant Design Charts 支持以下内置缓动函数（来自 [easings.net](https://easings.net/)）：
 
 | constant   | accelerate         | decelerate     | accelerate-decelerate | decelerate-accelerate |
 | ---------- | ------------------ | -------------- | --------------------- | --------------------- |
@@ -159,14 +242,175 @@ Ant Design Charts 也提供了 StackEnter 标记转换来实现分组动画，�
 |            | in-elastic         | out-elastic    | in-out-elastic        | out-in-elastic        |
 |            | spring / spring-in | spring-out     | spring-in-out         | spring-out-in         |
 
-除此之外，还可以通过 `cubic-bezier(<number>, <number>, <number>, <number>)` 自定义形如三次贝塞尔曲线的函数。以上部分内置函数也是通过它定义完成的，例如 `ease-in-sine = cubic-bezier(0.47, 0, 0.745, 0.715)`。
-
 ### 动画填充 Fill
 
-该属性规定了图形在动画处于非运行状态（例如动画开始前，结束后）时的展示效果，可以参考 [WebAPI](https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/fill) 规范。支持以下值：
+动画填充属性规定了图形在动画非运行状态（如开始前、结束后）时的展示效果：
 
-- `auto/none` - 默认值，这意味着动画在第一帧开始前和最后一帧结束后都不会影响到图形的展示效果。例如在动画完成后图形会恢复到动画前状态，如果设置了 delay 在延迟期间也不会应用第一帧的效果。
+- `auto`/`none` - 默认值，动画在第一帧开始前和最后一帧结束后不影响图形展示效果
 - `forwards` - 动画完成后停住，不恢复到初始状态
 - `backwards` - 动画开始前应用第一帧效果
-- `both` - 为 forwards 和 backwards 的组合效果
+- `both` - 同时应用 `forwards` 和 `backwards` 的效果
 
+## 动画编码
+
+Ant Design Charts 支持将数据值映射到动画属性上，使动画也具备数据可视化的意义。通过 `encode` 可以将数据字段映射到动画属性，如 `enterDuration`、`enterDelay` 等。
+
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: [
+        { name: 'event planning', startTime: 1, endTime: 4 },
+        { name: 'layout logistics', startTime: 3, endTime: 13 },
+        { name: 'select vendors', startTime: 5, endTime: 8 },
+        { name: 'hire venue', startTime: 9, endTime: 13 },
+        { name: 'hire caterer', startTime: 10, endTime: 14 },
+        { name: 'hire event decorators', startTime: 12, endTime: 17 },
+        { name: 'rehearsal', startTime: 14, endTime: 16 },
+        { name: 'event celebration', startTime: 17, endTime: 18 },
+      ],
+      xField: 'name',
+      yField: ['endTime', 'startTime'],
+      colorField: 'name',
+      enterDurationField: (d) => (d.endTime - d.startTime) * 300,
+      enterDelayField: (d) => d.startTime * 100,
+      coordinate: { transform: [{ type: 'transpose' }] }
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
+
+## 分组动画
+
+Ant Design Charts 提供了 `stackEnter` 标记转换来实现分组动画，使图形按照特定规则依次出现。该转换会先对图形进行分组，然后将它们的出现时间和持续时间在空间上进行堆叠。
+
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value: 'https://assets.antv.antgroup.com/g2/doughnut-purchases.json',
+      },
+      children: [
+        {
+          type: 'line',
+          encode: { x: 'year', y: 'count', color: 'year', shape: 'smooth' },
+          scale: { y: { zero: true, nice: true } },
+          style: { gradient: 'x', gradientColor: 'start' },
+          animate: { enter: { type: 'pathIn', duration: 3000 } },
+          axis: { y: { labelFormatter: '~s' } },
+        },
+        {
+          type: 'point',
+          encode: { x: 'year', y: 'count', color: 'year', shape: 'point' },
+          transform: [{ type: 'stackEnter' }],
+          animate: { enter: { duration: 300 } },
+        },
+        {
+          type: 'text',
+          encode: { x: 'year', y: 'count', text: 'year' },
+          transform: [{ type: 'stackEnter' }],
+          style: { lineWidth: 5, stroke: '#fff', textAlign: 'center', dy: -8 },
+          animate: { enter: { duration: 300 } },
+        },
+      ]
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
+
+## 关键帧动画
+
+Ant Design Charts 提供了制作关键帧动画的能力，可以在不同视图间平滑过渡，展示数据变化。通过 `timingKeyframe` 创建时间容器，使用 `key` 和 `groupKey` 通道指定元素之间的对应关系。
+
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      direction: 'alternate',
+      iterationCount: 2,
+      children: [
+        {
+          type: 'interval',
+          data: [
+            { gender: 'female', height: 161.2, weight: 51.6 },
+            { gender: 'female', height: 167.5, weight: 59 },
+            { gender: 'female', height: 159.5, weight: 49.2 },
+            { gender: 'female', height: 157, weight: 63 },
+            { gender: 'female', height: 155.8, weight: 53.6 },
+            { gender: 'female', height: 170, weight: 59 },
+            { gender: 'man', height: 159.1, weight: 47.6 },
+            { gender: 'man', height: 166, weight: 69.8 },
+            { gender: 'man', height: 176.2, weight: 66.8 },
+            { gender: 'man', height: 160.2, weight: 75.2 },
+            { gender: 'man', height: 172.5, weight: 55.2 },
+          ],
+          encode: { x: 'gender', y: 'weight', color: 'gender', key: 'gender' },
+          transform: [{ type: 'groupX', y: 'mean' }],
+        },
+        {
+          type: 'point',
+          data: [
+            { gender: 'female', height: 161.2, weight: 51.6 },
+            { gender: 'female', height: 167.5, weight: 59 },
+            { gender: 'female', height: 159.5, weight: 49.2 },
+            { gender: 'female', height: 157, weight: 63 },
+            { gender: 'female', height: 155.8, weight: 53.6 },
+            { gender: 'female', height: 170, weight: 59 },
+            { gender: 'man', height: 159.1, weight: 47.6 },
+            { gender: 'man', height: 166, weight: 69.8 },
+            { gender: 'man', height: 176.2, weight: 66.8 },
+            { gender: 'man', height: 160.2, weight: 75.2 },
+            { gender: 'man', height: 172.5, weight: 55.2 },
+          ],
+          encode: {
+            x: 'height',
+            y: 'weight',
+            color: 'gender',
+            shape: 'point',
+            groupKey: 'gender',
+          },
+        },
+      ],
+      duration: 1000
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
+
+## Lottie 动画
+
+`Lottie`能极大丰富动画的描述能力。
+
+<img alt="lottie" src="https://gw.alipayobjects.com/zos/raptor/1668509306888/Nov-15-2022%25252018-48-05.gif" alt="lottie animation">
+
+具体实现可以参考：[lottie](https://g2.antv.antgroup.com/manual/extra-topics/plugin/lottie)。
+
+## 时序动画
+
+时序动画（timingSequence）还在开发中，敬请期待。

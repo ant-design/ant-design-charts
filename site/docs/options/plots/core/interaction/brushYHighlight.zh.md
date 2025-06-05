@@ -23,23 +23,35 @@ order: 6
 ({
   inactive: { opacity: 0.5 },
 });
-
 ```
 
 <img alt="example" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*haMlRIKA7GcAAAAAAAAAAAAADmJ7AQ/original" width="640">
 
-```ts
-{
-  "autoFit": true,
-  "state": {
-    "inactive": {
-      "stroke": "gray"
-    }
-  },
-  "interaction": {
-    "brushYHighlight": true
-  }
-}
+```js
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value:
+          'https://gw.alipayobjects.com/os/basement_prod/6b4aa721-b039-49b9-99d8-540b3f87d339.json',
+      },
+      xField: 'height',
+      yField: 'weight',
+      colorField: 'gender',
+      state: { inactive: { stroke: 'gray' } },
+      interaction: { brushYHighlight: true }
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ## 使用方式
@@ -52,7 +64,6 @@ order: 6
 ({
   interaction: { brushYHighlight: true },
 });
-
 ```
 
 第二种，传入 [配置项](#配置项) 对交互进行配置。
@@ -65,28 +76,18 @@ order: 6
     },
   },
 });
-
 ```
 
 ## 配置层级
 
 交互可以配置在 Mark 层级：
 
-```ts
+```js
 ({
   interaction: { brushYHighlight: true },
 });
-
 ```
 
-也可以配置在 View 层级，视图上声明的交互会传递给 `children` 声明的标记，如果该标记有声明对应的交互，就合并；否则不影响。
-
-```ts
-({
-  interaction: { brushYHighlight: true },
-});
-
-```
 
 ## 配置项
 
@@ -140,14 +141,13 @@ order: 6
     },
   },
 });
-
 ```
 
 ### maskHandle
 
 八个方向的 handle 的名字分别如下（按照东南西北命名），按照 `mask[handleName][styleAttribute]` 格式设置对应的属性，也可以通过 `maskHandleSize` 设置宽度。
 
-<img src="https://github.com/antvis/Ant Design Charts/assets/49330279/eb2d3951-7990-423c-97f3-e3a38b2baf68" width=640 alt="custom-style"/>
+<img src="https://github.com/antvis/G2/assets/49330279/eb2d3951-7990-423c-97f3-e3a38b2baf68" width=640 alt="custom-style"/>
 
 | 属性                          | 描述                                                                                                         | 类型                                    | 默认值    | 必选 |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------- | --------- | ---- |
@@ -182,7 +182,6 @@ chart.on('brush:highlight', (e) => {
   console.log(e.data.selection);
   console.log(e.nativeEvent);
 });
-
 ```
 
 ### 触发交互
@@ -194,9 +193,7 @@ chart.on('brush:highlight', (e) => {
 
 ```js
 chart.emit('brush:remove');
-
 chart.emit('brush:highlight', { data: { selection } });
-
 ```
 
 ## 示例

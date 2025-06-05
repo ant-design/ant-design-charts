@@ -9,7 +9,7 @@ order: 2
 
 <img alt="fadeIn" src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*LTRRRL8JwfQAAAAAAAAAAABkARQnAQ" width="400" />
 
-```ts
+```js
 {
   "animate": {
     "enter": {

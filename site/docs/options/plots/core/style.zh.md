@@ -1,6 +1,6 @@
 ---
 title: 样式（Style）
-order: 9
+order: 6
 ---
 
 Ant Design Charts 中**样式（Style）** 主要用来控制标记和视图的视觉样式。
@@ -22,37 +22,6 @@ Ant Design Charts 中**样式（Style）** 主要用来控制标记和视图的�
     contentFill: 'yellow',
   },
 });
-
-```
-
-```js
-{
-  "style": {
-    "stroke": "black",
-    "strokeWidth": 2
-  }
-}
-```
-
-视图可以设置自己的样式：
-
-```js
-({
-  style: {
-    viewFill: 'red',
-    contentFill: 'yellow',
-  },
-});
-
-```
-
-```js
-{
-  "style": {
-    "viewFill": "red",
-    "contentFill": "yellow"
-  }
-}
 ```
 
 ### 标记样式
@@ -62,17 +31,36 @@ Ant Design Charts 中**样式（Style）** 主要用来控制标记和视图的�
 - `mark.encode` 设置的通道会特殊一点，要么是该标记独有的，比如 image 的 src 通道；要么就是有一些特殊逻辑，比如 x 通道会影响 x 方向坐标轴的生成。
 - `mark.encode` 更倾向于去设置和数据有关的通道，但是 `mark.style` 更倾向于去设置和数据无关的通道。虽然 `mark.style` 也同样支持回调去设置数据驱动的通道。
 
-```js
-{
-  "axis": {
-    "y": {
-      "labelFormatter": ".0%"
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+    "axis": {
+      "y": {
+        "labelFormatter": ".0%"
+      }
+    },
+    "style": {
+      "stroke": (d) => (d.frequency > 0.1 ? 'red' : 'black'),
+      "strokeWidth": (d) => (d.frequency > 0.1 ? 2 : 1),
+      "fill": "steelblue"
+    },
+    "yField": "frequency",
+    "xField": "letter",
+    "data": {
+      "type": "fetch",
+      "value": "https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv"
     }
-  },
-  "style": {
-    "fill": "steelblue"
-  }
-}
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ### 视图样式
@@ -86,62 +74,56 @@ Ant Design Charts 中**样式（Style）** 主要用来控制标记和视图的�
 
 比如下图中给各个区域染色：
 
-```js
-{
-  "inset": 10,
-  "marginTop": 30,
-  "marginLeft": 40,
-  "marginBottom": 10,
-  "marginRight": 20,
-  "style": {
-    "viewFill": "#4e79a7",
-    "plotFill": "#f28e2c",
-    "mainFill": "#e15759",
-    "contentFill": "#76b7b2"
-  },
-  "children": [
-    {
-      "type": "point",
-      "data": {
-        "type": "fetch",
-        "value": "https://assets.antv.antgroup.com/g2/commits.json"
+```js | ob { autoMount: true }
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      height: 280,
+      inset: 10,
+      marginTop: 30,
+      marginLeft: 40,
+      marginBottom: 10,
+      marginRight: 20,
+      style: {
+        // 设置视图样式
+        viewFill: '#4e79a7',
+        plotFill: '#f28e2c',
+        mainFill: '#e15759',
+        contentFill: '#76b7b2',
       },
-      "encode": {
-        "size": "count",
-        "shape": "point"
-      },
-      "transform": [
+      children: [
         {
-          "type": "group",
-          "size": "sum"
+          type: 'point',
+          data: {
+            type: 'fetch',
+            value: 'https://assets.antv.antgroup.com/g2/commits.json',
+          },
+          encode: {
+            x: (d) => new Date(d.time).getUTCHours(),
+            y: (d) => new Date(d.time).getUTCDay(),
+            size: 'count',
+            shape: 'point',
+          },
+          transform: [{ type: 'group', size: 'sum' }, { type: 'sortY' }],
+          scale: { y: { type: 'point' } },
+          style: { shape: 'point', fill: '#59a14f' },
+          axis: {
+            x: { title: 'time (hours)', tickCount: 24 },
+            y: { title: 'time (day)', grid: true },
+          },
+          legend: false,
         },
-        {
-          "type": "sortY"
-        }
-      ],
-      "scale": {
-        "y": {
-          "type": "point"
-        }
-      },
-      "style": {
-        "shape": "point",
-        "fill": "#59a14f"
-      },
-      "axis": {
-        "x": {
-          "title": "time (hours)",
-          "tickCount": 24
-        },
-        "y": {
-          "title": "time (day)",
-          "grid": true
-        }
-      },
-      "legend": false
-    }
-  ]
-}
+      ]
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ## 绘图属性
@@ -190,33 +172,43 @@ Ant Design Charts 使用 [G](https://g.antv.antgroup.com/) 作为绘图引擎，
 
 类似的，我们也可以以相同的方式来配置坐标轴的网格线。
 
-```js
-{
-  "scale": {
-    "x": {
-      "range": [
-        0,
-        1
-      ]
-    },
-    "y": {
-      "domainMin": 0,
-      "nice": true
-    }
-  },
-  "axis": {
-    "y": {
-      "grid": true,
-      "gridStroke": "red",
-      "gridStrokeOpacity": 0.5,
-      "gridLineWidth": 2,
-      "gridLineDash": [
-        2,
-        4
-      ]
-    }
-  }
-}
+```js | ob { autoMount: true }
+import { Line } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      data: [
+        { year: '1991', value: 3 },
+        { year: '1992', value: 4 },
+        { year: '1993', value: 3.5 },
+        { year: '1994', value: 5 },
+        { year: '1995', value: 4.9 },
+        { year: '1996', value: 6 },
+        { year: '1997', value: 7 },
+        { year: '1998', value: 9 },
+        { year: '1999', value: 13 },
+      ],
+      xField: 'year',
+      yField: 'value',
+      scale: { x: { range: [0, 1] }, y: { domainMin: 0, nice: true } },
+      axis: {
+        y: {
+          grid: true,
+          gridStroke: 'red',
+          gridStrokeOpacity: 0.5,
+          gridLineWidth: 2,
+          gridLineDash: [2, 4],
+        },
+      }
+  };
+
+  return <Line {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ### 配置文字样式
@@ -247,48 +239,59 @@ Ant Design Charts 使用 [G](https://g.antv.antgroup.com/) 作为绘图引擎，
 
 类似的，我们也可以以相同的方式来配置标题的文字样式。
 
-```js
-{
-  "scale": {
-    "x": {
-      "range": [
-        0,
-        1
-      ]
-    },
-    "y": {
-      "domainMin": 0,
-      "nice": true
-    }
-  },
-  "title": {
-    "size": 30,
-    "title": "我是一个标题 I'am a title",
-    "align": "center",
-    "spacing": 4,
-    "titleFontSize": 30,
-    "titleFontFamily": "sans-serif",
-    "titleFontWeight": 500,
-    "titleLineHeight": 30,
-    "titleTextAlign": "center",
-    "titleTextBaseline": "middle",
-    "titleFill": "#fff",
-    "titleFillOpacity": 0.9,
-    "titleStroke": "yellow",
-    "titleStrokeOpacity": 0.9,
-    "titleLineWidth": 1,
-    "titleLineDash": [
-      1,
-      2
-    ],
-    "titleOpacity": 1,
-    "titleShadowColor": "#d3d3d3",
-    "titleShadowBlur": 10,
-    "titleShadowOffsetX": 10,
-    "titleShadowOffsetY": 10,
-    "titleCursor": "pointer"
-  }
-}
+```js | ob { autoMount: true }
+import { Line } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      data: [
+        { year: '1991', value: 3 },
+        { year: '1992', value: 4 },
+        { year: '1993', value: 3.5 },
+        { year: '1994', value: 5 },
+        { year: '1995', value: 4.9 },
+        { year: '1996', value: 6 },
+        { year: '1997', value: 7 },
+        { year: '1998', value: 9 },
+        { year: '1999', value: 13 },
+      ],
+      xField: 'year',
+      yField: 'value',
+      scale: { x: { range: [0, 1] }, y: { domainMin: 0, nice: true } },
+      title: {
+        size: 30,
+        title: "我是一个标题 I'am a title",
+        align: 'center',
+        spacing: 4,
+        // 绘图属性
+        titleFontSize: 30,
+        titleFontFamily: 'sans-serif',
+        titleFontWeight: 500,
+        titleLineHeight: 30,
+        titleTextAlign: 'center',
+        titleTextBaseline: 'middle',
+        titleFill: '#fff',
+        titleFillOpacity: 0.9,
+        titleStroke: 'yellow',
+        titleStrokeOpacity: 0.9,
+        titleLineWidth: 1,
+        titleLineDash: [1, 2],
+        titleOpacity: 1,
+        titleShadowColor: '#d3d3d3',
+        titleShadowBlur: 10,
+        titleShadowOffsetX: 10,
+        titleShadowOffsetY: 10,
+        titleCursor: 'pointer',
+      }
+  };
+
+  return <Line {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ### 配置线性渐变
@@ -299,9 +302,7 @@ Ant Design Charts 使用 [G](https://g.antv.antgroup.com/) 作为绘图引擎，
 
 ```js
 'l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff';
-
 'linear-gradient(270deg, #ffffff 0%, #7ec2f3 50%, #1890ff 100%)';
-
 ```
 
 接下来，试试配置面积图的填充颜色为线性渐变色，在下面的代码编辑器里修改属性试试效果：
@@ -316,9 +317,8 @@ Ant Design Charts 使用 [G](https://g.antv.antgroup.com/) 作为绘图引擎，
 
 > 说明：`r`  表示使用放射状渐变，绿色的字体为可变量，由用户自己填写，开始圆的 x y r 值均为相对值，0 至 1 范围。
 
-```ts
+```js
 'r(0.5, 0.5, 0.1) 0:#ffffff 1:#1890ff';
-
 ```
 
 接下来，试试配置条形图的填充颜色为环形渐变色，在下面的代码编辑器里修改属性试试效果：
@@ -337,10 +337,12 @@ Ant Design Charts 使用 [G](https://g.antv.antgroup.com/) 作为绘图引擎，
 - `y`: 该模式只在垂直方向重复；<br />
 - `n`: 该模式只显示一次（不重复）。<br />
 
+```js
 ```ts
 style: {
   fill: 'p(a)https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*58XjQY1tO7gAAAAAAAAAAABkARQnAQ',
 }
+```
 ```
 
 接下来，试试配置条形图的填充颜色为纹理，在下面的代码编辑器里修改属性试试效果：

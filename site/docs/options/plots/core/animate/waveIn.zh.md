@@ -10,7 +10,7 @@ order: 2
 <img alt="waveIn" src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*z9jjQY-lHcwAAAAAAAAAAABkARQnAQ" width="400" />
 <img alt="waveIn" src="https://mdn.alipayobjects.com/antforest/afts/img/A*FXpgRICdrXUAAAAAAAAAAAAADrd2AQ/polar-waveIn.gif" width="400" />
 
-```ts
+```js
 {
   "animate": {
     "enter": {

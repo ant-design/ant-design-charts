@@ -1,25 +1,18 @@
 const fs = require('fs');
 const path = require('path');
-const prettier = require('prettier');
 const chalk = require('chalk');
 const { parser } = require('./core');
-const { docTemplate } = require('./template-doc');
 const { flow } = require('./flow');
 
 const relativePath = '../../..';
 const targetDir = 'ant-design-charts/site/docs/options/plots';
-const excludeFolder = ['core/mark', 'core/chart'];
-const excludeFiles = ['encode'];
-const paths = ['G2/site/docs/manual/core', 'G2/site/docs/manual/component'];
+const excludeFolder = ['core/mark', 'core/chart', 'core/transform', 'core/coordinate'];
+const excludeFiles = ['encode', 'view'];
+const paths = ['G2/site/docs/manual/core'];
+const SKIP_LINES = ['<Playground ', '尝试一下：'];
+const DELETE_BLOCK = ['也可以配置在 View 层级'];
 
-const regex = /type:(\s+)?['"]\S+['"],/;
 const MAX_SPACE = 2;
-
-const isView = (blockCode) => {
-  return blockCode.some((line) => {
-    return line.includes('children') || line.includes('view');
-  });
-};
 
 /**
  * @param {string} dir 扫描目录
@@ -39,50 +32,36 @@ const scanDir = async (dir, depth = []) => {
 
       if (stats.isFile() && file.endsWith('.md') && !excludeFiles.some((item) => file.includes(item))) {
         const contents = await fs.promises.readFile(filePath, 'utf-8');
+        const lines = contents.split('\n');
         const transformedContents = [];
         let blockCode = [];
-        const lines = contents.split('\n');
-        let isCodeBlock = false;
-        let codeType = '';
+        let inCodeBlock = false;
+        let deleteBlock = false;
         for (const line of lines) {
-          if (isCodeBlock && !line.startsWith('```')) {
-            if (regex.test(line) && !isView(blockCode)) continue;
+          if (SKIP_LINES.some((skip) => line.startsWith(skip))) continue;
+          // 存在删除标识时，直到找到下一个代码块结束标识
+          if (DELETE_BLOCK.some((block) => line.includes(block))) {
+            deleteBlock = true;
+            continue;
+          }
+          if (inCodeBlock) {
             blockCode.push(line);
           }
-          if (line.startsWith('```js') || line.startsWith('```ts')) {
-            codeType = line.split(' ')[0].replace(/`/g, '');
-            isCodeBlock = true;
-          } else if (isCodeBlock && line.startsWith('```')) {
-            isCodeBlock = false;
-            const code = blockCode.join('\n');
-            const meta = parser(code, 'code');
-            let formattedCode = '';
-            if (meta.success) {
-              try {
-                template = docTemplate(meta);
-                if (template === '{}') {
-                  formattedCode = '';
-                } else {
-                  formattedCode = prettier.format(template, {
-                    semi: true,
-                    singleQuote: true,
-                    printWidth: 120,
-                    parser: 'babel',
-                  });
-                }
-              } catch (err) {
-                console.error(`Error formatting code: ${err}`);
-                formattedCode = template;
-              }
-            } else {
-              formattedCode = meta.code;
+          if (!inCodeBlock && /^```[ts|js|javascript]/.test(line.trim())) {
+            inCodeBlock = true;
+            blockCode.push(line);
+          } else if (inCodeBlock && line.startsWith('```')) {
+            if (deleteBlock) {
+              deleteBlock = false;
+              blockCode = [];
+              inCodeBlock = false;
+              continue;
             }
+            const processCode = parser(blockCode);
             blockCode = [];
-            if (formattedCode) {
-              transformedContents.push(`\`\`\`${codeType}\n${formattedCode}\n\`\`\``);
-            }
-          } else if (!isCodeBlock) {
-            if (line.startsWith('<Playground ') || line.startsWith('尝试一下：')) continue;
+            inCodeBlock = false;
+            transformedContents.push(processCode);
+          } else if (!inCodeBlock) {
             transformedContents.push(flow(line));
           }
         }
@@ -96,7 +75,7 @@ const scanDir = async (dir, depth = []) => {
           }
         }
 
-        // 遍历 transformedContents ,做多保留连续的 2 行空行
+        // 遍历 transformedContents ,最多保留连续的 2 行空行
         const newTransformedContents = [];
         let emptyLineCount = 0;
         for (const line of transformedContents) {

@@ -9,13 +9,13 @@ order: 2
 
 ## 配置项
 
-| 属性     | 描述                                   | 类型                                                                 | 默认值   | 必选   |
-|----------|----------------------------------------|----------------------------------------------------------------------|----------|--------|
-| `join`   | 需要连接的数据源                       | `object[]`                                                           | -        | 是     |
-| `on`     | 两个数据源连接的字段                   | `[string \| ((d: any) => string), string \| ((d: any) => string)]`    | -        | 是     |
-| `select` | 从被连接的数据源中选择要显示的字段      | `string[]`                                                           | `[]`     | 否     |
-| `as`     | 为 `select` 出来的字段重命名            | `string[]`                                                           | 不做重命名 | 否     |
-| `unknown`| 如果没有匹配到连接的数据，指定一个默认值 | `any`                                                                |  NaN    | 否     |
+| 属性      | 描述                                     | 类型                                                               | 默认值     | 必选 |
+| --------- | ---------------------------------------- | ------------------------------------------------------------------ | ---------- | ---- |
+| `join`    | 需要连接的数据源                         | `object[]`                                                         | -          | 是   |
+| `on`      | 两个数据源连接的字段                     | `[string \| ((d: any) => string), string \| ((d: any) => string)]` | -          | 是   |
+| `select`  | 从被连接的数据源中选择要显示的字段       | `string[]`                                                         | `[]`       | 否   |
+| `as`      | 为 `select` 出来的字段重命名             | `string[]`                                                         | 不做重命名 | 否   |
+| `unknown` | 如果没有匹配到连接的数据，指定一个默认值 | `any`                                                              | NaN        | 否   |
 
 ### 属性详细说明
 
@@ -38,45 +38,113 @@ order: 2
 ### 基础用法
 
 #### on 字段说明
+
 on: ['id', 'code']
 // 或使用函数方式
 on: [(d) => d.id, (d) => d.code]
 
 - 将两个数据源按字段连接，并从外部数据中提取字段合并：
 
+```js
+const data = [
+  { a: 1, b: 2, c: 3 },
+  { a: 4, b: 5, c: 6 },
+];
+const joinData = [
+  { c: 1, d: 2, e: 3 },
+  { c: 4, d: 5, e: 6 },
+];
+{
+    data: {
+      type: 'inline',
+      value: data,
+      transform: [
+        {
+          type: 'join',
+          join: joinData,
+          on: ['a', 'c'],
+          select: ['d', 'e'],
+        },
+      ],
+    }
+}
+```
 
 - 转换结果为：
+
 ```js
 [
   { a: 1, b: 2, c: 3, d: 2, e: 3 },
   { a: 4, b: 5, c: 6, d: 5, e: 6 },
 ];
-
 ```
 
 #### 字段重命名
+
 - 使用 as 为 select 出来的字段重命名：
+
+```js
+{
+    data: {
+      type: 'inline',
+      value: data,
+      transform: [
+        {
+          type: 'join',
+          join: joinData,
+          on: ['a', 'c'],
+          select: ['d', 'e'],
+          as: ['dd', 'ee'],
+        },
+      ],
+    }
+}
+```
+
 - 转换结果为：
+
 ```js
 [
   { a: 1, b: 2, c: 3, dd: 2, ee: 3 },
   { a: 4, b: 5, c: 6, dd: 5, ee: 6 },
 ];
-
 ```
+
 #### 设置默认值 unknown
 
 - 当两个数据源中没有匹配的数据时，使用 unknown 指定一个默认值：
+
+```js
+const data = [{ id: 1 }, { id: 2 }];
+const joinData = [{ code: 1, label: 'A' }];
+{
+    data: {
+      type: 'inline',
+      value: data,
+      transform: [
+        {
+          type: 'join',
+          join: joinData,
+          on: ['id', 'code'],
+          select: ['label'],
+          unknown: '未知',
+        },
+      ],
+    }
+}
+```
+
 - 转换结果为：
+
 ```js
 [
   { id: 1, label: 'A' },
   { id: 2, label: '未知' },
 ];
-
 ```
 
 #### tips
+
 - join 是一种 左连接（left join），意味着主数据一定保留。
 
 - select 不指定时默认不提取字段，只用于判断连接关系。

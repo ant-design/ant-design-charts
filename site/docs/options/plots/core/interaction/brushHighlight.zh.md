@@ -21,26 +21,38 @@ order: 4
 
 ```js
 ({
-  // 定义 inactive 状态下的元素透明度为0.5，注意，所有元素初始状态为 inactive
+  // 定义 inactive 状态下的元素透明度为0.5
   state: { inactive: { opacity: 0.5 } },
 });
-
 ```
 
 <img alt="example" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*wICbS6qdoJMAAAAAAAAAAAAADmJ7AQ/original" width="640">
 
-```ts
-{
-  "autoFit": true,
-  "state": {
-    "inactive": {
-      "stroke": "gray"
-    }
-  },
-  "interaction": {
-    "brushHighlight": true
-  }
-}
+```js
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value:
+          'https://gw.alipayobjects.com/os/basement_prod/6b4aa721-b039-49b9-99d8-540b3f87d339.json',
+      },
+      xField: 'height',
+      yField: 'weight',
+      colorField: 'gender',
+      state: { inactive: { stroke: 'gray' } },
+      interaction: { brushHighlight: true }
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ## 使用方式
@@ -53,7 +65,6 @@ order: 4
 ({
   interaction: { brushHighlight: true }, // 采用默认配置
 });
-
 ```
 
 第二种，传入 [配置项](#配置项) 对交互进行配置。
@@ -66,40 +77,30 @@ order: 4
     },
   },
 });
-
 ```
 
 ## 配置层级
 
 交互可以配置在 Mark 层级：
 
-```ts
+```js
 ({
   interaction: { brushHighlight: true },
 });
-
 ```
 
-也可以配置在 View 层级，视图上声明的交互会传递给 `children` 声明的标记，如果该标记有声明对应的交互，就合并；否则不影响。
-
-```ts
-({
-  interaction: { brushHighlight: true },
-});
-
-```
 
 ## 配置项
 
-| 属性            | 描述                   | 类型                          | 默认值                                                                                          | 必选 |
-| --------------- | ---------------------- | ----------------------------- | ----------------------------------------------------------------------------------------------- | ---- |
-| reverse         | brush 是否反转         | boolean                       | false                                                                                           |      |
-| series          | brush 作用的是否是系列元素，控制高亮选择元素的模式         | boolean                       | false                                                                                           |      |
-| facet           | brush 是否跨分面，控制交互方式             | boolean                       | false                                                                                           |      |
-| selectedHandles | 可以 resize 的手柄方向 | string[]                      | `['handle-n','handle-e','handle-s','handle-w','handle-nw','handle-ne','handle-se','handle-sw']` |      |
-| brushRegion     | 自定义框选区域，一般不用配置，Ant Design Charts 内部用来配置 brushXHighlight 和 brushYHighlight               | (x, y, x1, y1, extent) => any | `(x, y, x1, y1) => [x, y, x1, y1]`                                                              |      |
-| mask            | 框选区域的蒙版样式     | [mask](#mask)                 | 详见 [mask](#mask)                                                                              |      |
-| maskHandle      | 框选区域的手柄样式     | [maskHandle](#maskhandle)     | 详见 [maskHandle](#maskhandle)                                                                  |      |
+| 属性            | 描述                                                                             | 类型                          | 默认值                                                                                          | 必选 |
+| --------------- | -------------------------------------------------------------------------------- | ----------------------------- | ----------------------------------------------------------------------------------------------- | ---- |
+| reverse         | brush 是否反转                                                                   | boolean                       | false                                                                                           |      |
+| series          | brush 作用的是否是系列元素，控制高亮选择元素的模式                               | boolean                       | false                                                                                           |      |
+| facet           | brush 是否跨分面，控制交互方式                                                   | boolean                       | false                                                                                           |      |
+| selectedHandles | 可以 resize 的手柄方向                                                           | string[]                      | `['handle-n','handle-e','handle-s','handle-w','handle-nw','handle-ne','handle-se','handle-sw']` |      |
+| brushRegion     | 自定义框选区域，一般不用配置，Ant Design Charts 内部用来配置 brushXHighlight 和 brushYHighlight | (x, y, x1, y1, extent) => any | `(x, y, x1, y1) => [x, y, x1, y1]`                                                              |      |
+| mask            | 框选区域的蒙版样式                                                               | [mask](#mask)                 | 详见 [mask](#mask)                                                                              |      |
+| maskHandle      | 框选区域的手柄样式                                                               | [maskHandle](#maskhandle)     | 详见 [maskHandle](#maskhandle)                                                                  |      |
 
 ### series
 
@@ -107,66 +108,66 @@ order: 4
 
 - `series: false`
 
-```js
-(() => {
-  const chart = new G2.Chart();
-  const config = {
-    interaction: { brushHighlight: { series: false } },
-    data: [
-      { year: '1991', value: 3 },
-      { year: '1992', value: 4 },
-      { year: '1993', value: 3.5 },
-      { year: '1994', value: 5 },
-      { year: '1995', value: 4.9 },
-      { year: '1996', value: 6 },
-      { year: '1997', value: 7 },
-      { year: '1998', value: 9 },
-      { year: '1999', value: 13 },
-    ],
-    encode: { x: 'year', y: 'value' },
-    scale: { x: { range: [0, 1] }, y: { domainMin: 0, nice: true } },
-    state: { active: { stroke: 'red' } },
-    labels: [{ text: 'value', style: { dx: -10, dy: -12 } }],
-  };
-  chart.options(config);
+```js | ob {  pin: false , autoMount: true }
+import { Chart } from '@antv/g2';
 
-  chart.render();
+const chart = new Chart({
+  container: 'container',
+});
+const config = {
+  type: 'line',
+  interaction: { brushHighlight: { series: false } },
+  data: [
+    { year: '1991', value: 3 },
+    { year: '1992', value: 4 },
+    { year: '1993', value: 3.5 },
+    { year: '1994', value: 5 },
+    { year: '1995', value: 4.9 },
+    { year: '1996', value: 6 },
+    { year: '1997', value: 7 },
+    { year: '1998', value: 9 },
+    { year: '1999', value: 13 },
+  ],
+  encode: { x: 'year', y: 'value' },
+  scale: { x: { range: [0, 1] }, y: { domainMin: 0, nice: true } },
+  state: { active: { stroke: 'red' } },
+  labels: [{ text: 'value', style: { dx: -10, dy: -12 } }],
+};
+chart.options(config);
 
-  return chart.getContainer();
-})();
-
+chart.render();
 ```
 
 - `series: true`
 
-```js
-(() => {
-  const chart = new G2.Chart();
-  const config = {
-    interaction: { brushHighlight: { series: true } },
-    data: [
-      { year: '1991', value: 3 },
-      { year: '1992', value: 4 },
-      { year: '1993', value: 3.5 },
-      { year: '1994', value: 5 },
-      { year: '1995', value: 4.9 },
-      { year: '1996', value: 6 },
-      { year: '1997', value: 7 },
-      { year: '1998', value: 9 },
-      { year: '1999', value: 13 },
-    ],
-    encode: { x: 'year', y: 'value' },
-    scale: { x: { range: [0, 1] }, y: { domainMin: 0, nice: true } },
-    state: { active: { stroke: 'red' } },
-    labels: [{ text: 'value', style: { dx: -10, dy: -12 } }],
-  };
-  chart.options(config);
+```js | ob {  pin: false , autoMount: true }
+import { Chart } from '@antv/g2';
 
-  chart.render();
+const chart = new Chart({
+  container: 'container',
+});
+const config = {
+  type: 'line',
+  interaction: { brushHighlight: { series: true } },
+  data: [
+    { year: '1991', value: 3 },
+    { year: '1992', value: 4 },
+    { year: '1993', value: 3.5 },
+    { year: '1994', value: 5 },
+    { year: '1995', value: 4.9 },
+    { year: '1996', value: 6 },
+    { year: '1997', value: 7 },
+    { year: '1998', value: 9 },
+    { year: '1999', value: 13 },
+  ],
+  encode: { x: 'year', y: 'value' },
+  scale: { x: { range: [0, 1] }, y: { domainMin: 0, nice: true } },
+  state: { active: { stroke: 'red' } },
+  labels: [{ text: 'value', style: { dx: -10, dy: -12 } }],
+};
+chart.options(config);
 
-  return chart.getContainer();
-})();
-
+chart.render();
 ```
 
 ### mask
@@ -209,14 +210,13 @@ order: 4
     },
   },
 });
-
 ```
 
 ### maskHandle
 
 八个方向的 handle 的名字分别如下（按照东南西北命名），按照 `mask[handleName][styleAttribute]` 格式设置对应的属性，也可以通过 `maskHandleSize` 设置宽度。
 
-<img src="https://github.com/antvis/Ant Design Charts/assets/49330279/eb2d3951-7990-423c-97f3-e3a38b2baf68" width=640 alt="custom-style"/>
+<img src="https://github.com/antvis/G2/assets/49330279/eb2d3951-7990-423c-97f3-e3a38b2baf68" width=640 alt="custom-style"/>
 
 | 属性                          | 描述                                                                                                         | 类型                                    | 默认值    | 必选 |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------- | --------- | ---- |
@@ -236,26 +236,41 @@ order: 4
 | mask[handleName]Cursor        | 鼠标样式。同 css 的鼠标样式                                                                                  | string                                  | `default` |      |
 
 ```js
-{
-  "state": {
-    "inactive": {
-      "stroke": "gray",
-      "opacity": 0.5
-    }
-  },
-  "interaction": {
-    "brushHighlight": {
-      "maskHandleNFill": "blue",
-      "maskHandleEFill": "red",
-      "maskHandleSFill": "green",
-      "maskHandleWFill": "yellow",
-      "maskHandleNWFill": "black",
-      "maskHandleNEFill": "steelblue",
-      "maskHandleSEFill": "pink",
-      "maskHandleSWFill": "orange"
-    }
-  }
-}
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      data: {
+        type: 'fetch',
+        value: 'data/penguins.csv',
+      },
+      colorField: 'species',
+      xField: 'culmen_length_mm',
+      yField: 'culmen_depth_mm',
+      state: {
+        inactive: { stroke: 'gray', opacity: 0.5 },
+      },
+      interaction: {
+        brushHighlight: {
+          maskHandleNFill: 'blue',
+          maskHandleEFill: 'red',
+          maskHandleSFill: 'green',
+          maskHandleWFill: 'yellow',
+          maskHandleNWFill: 'black',
+          maskHandleNEFill: 'steelblue',
+          maskHandleSEFill: 'pink',
+          maskHandleSWFill: 'orange',
+        },
+      }
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ## 事件
@@ -274,7 +289,6 @@ chart.on('brush:highlight', (e) => {
   console.log(e.data.selection);
   console.log(e.nativeEvent);
 });
-
 ```
 
 ### 触发交互
@@ -286,9 +300,7 @@ chart.on('brush:highlight', (e) => {
 
 ```js
 chart.emit('brush:remove');
-
 chart.emit('brush:highlight', { data: { selection } });
-
 ```
 
 ## 示例
@@ -301,91 +313,173 @@ chart.emit('brush:highlight', { data: { selection } });
 function render(
   g, // 挂载容器
   options, // 样式属性，通过 mask[handleName][styleAttribute] 设置
-  document // 画布 document，用于创建自图形
+  document, // 画布 document，用于创建自图形
 ) {
   // 需要返回创建的图形
 }
-
 ```
 
 下面是一个创建 path handle 的例子：
 
 ```js
-null;
-
+const path = document.createElement('path');
+group.handle = path;
+group.appendChild(group.handle);
+const { handle } = group;
+const { width, height, ...rest } = options;
+{
+  "attr": rest,
+  "call": {
+    "undefined": o
+  }
+}
 ```
 
-<img src="https://github.com/antvis/Ant Design Charts/assets/49330279/d586fabe-4c34-4dfb-bffa-ef1a354b1333" width=640 alt="custom-brush"/>
+<img src="https://github.com/antvis/G2/assets/49330279/d586fabe-4c34-4dfb-bffa-ef1a354b1333" width=640 alt="custom-brush"/>
 
 ```js
-null;
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
+const Demo = () => {
+
+  const config ={
+      data: {
+        type: 'fetch',
+        value: 'data/penguins.csv',
+      },
+      colorField: 'species',
+      xField: 'culmen_length_mm',
+      yField: 'culmen_depth_mm',
+      state: {
+        inactive: { stroke: 'gray', opacity: 0.5 },
+      },
+      interaction: {
+        brushHighlight: {
+          maskHandleSize: 30,
+          maskHandleNRender: createPathRender((x, y, width, height) => {
+            return `M${x},${y + height / 2}L${x + width / 2},${y - height / 2}L${
+              x + width
+            },${y + height / 2},Z`;
+          }),
+          maskHandleERender: createPathRender(
+            (x, y, width, height) =>
+              `M${x + width / 2},${y}L${x + (width * 3) / 2},${y + height / 2}L${
+                x + width / 2
+              },${y + height},Z`,
+          ),
+          maskHandleSRender: createPathRender(
+            (x, y, width, height) =>
+              `M${x},${y + height / 2}L${x + width / 2},${y + (height / 2) * 3}L${
+                x + width
+              },${y + height / 2},Z`,
+          ),
+          maskHandleWRender: createPathRender(
+            (x, y, width, height) =>
+              `M${x + width / 2},${y}L${x - width},${y + height / 2}L${
+                x + width / 2
+              },${y + height},Z`,
+          ),
+          maskHandleNWRender: createPathRender(
+            (x, y, width, height) =>
+              `M${x},${y}L${x + width},${y + height / 2}L${x + width / 2},${
+                y + height
+              },Z`,
+          ),
+          maskHandleNERender: createPathRender(
+            (x, y, width, height) =>
+              `M${x},${y + height / 2}L${x + width},${y}L${x + width / 2},${
+                y + height
+              },Z`,
+          ),
+          maskHandleSERender: createPathRender(
+            (x, y, width, height) =>
+              `M${x + width / 2},${y}L${x + width},${y + height}L${x},${
+                y + height / 2
+              },Z`,
+          ),
+          maskHandleSWRender: createPathRender(
+            (x, y, width, height) =>
+              `M${x + width / 2},${y}L${x + width},${y + height / 2}L${x},${
+                y + height
+              },Z`,
+          ),
+          maskHandleNFill: 'blue',
+          maskHandleEFill: 'red',
+          maskHandleSFill: 'green',
+          maskHandleWFill: 'yellow',
+          maskHandleNWFill: 'black',
+          maskHandleNEFill: 'steelblue',
+          maskHandleSEFill: 'pink',
+          maskHandleSWFill: 'orange',
+        },
+      }
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ### 自定义交互状态
 
 有些交互会改变元素状态，我们可以通过配置元素状态的表现来改变交互的效果。
 
-```js
-{
-  "autoFit": true,
-  "interaction": {
-    "brushHighlight": {
-      "series": true
-    }
-  },
-  "scale": {
-    "x": {
-      "range": [
-        0,
-        1
-      ]
-    },
-    "y": {
-      "domainMin": 0,
-      "nice": true
-    }
-  },
-  "children": [
-    {
-      "type": "line",
-      "labels": [
-        {
-          "text": "value",
-          "style": {
-            "dx": -10,
-            "dy": -12
-          }
-        }
+```js | ob { autoMount: true }
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      interaction: { brushHighlight: { series: true } },
+      data: [
+        { year: '1991', value: 3 },
+        { year: '1992', value: 4 },
+        { year: '1993', value: 3.5 },
+        { year: '1994', value: 5 },
+        { year: '1995', value: 4.9 },
+        { year: '1996', value: 6 },
+        { year: '1997', value: 7 },
+        { year: '1998', value: 9 },
+        { year: '1999', value: 13 },
       ],
-      "state": {
-        "active": {
-          "lineWidth": 4,
-          "lineDash": [
-            0,
-            0
-          ]
+      xField: 'year',
+      yField: 'value',
+      scale: { x: { range: [0, 1] }, y: { domainMin: 0, nice: true } },
+      children: [
+        {
+          type: 'line',
+          labels: [{ text: 'value', style: { dx: -10, dy: -12 } }],
+          state: {
+            active: {
+              lineWidth: 4,
+              lineDash: [0, 0],
+            },
+            inactive: {
+              lineDash: [2, 4],
+            },
+          },
         },
-        "inactive": {
-          "lineDash": [
-            2,
-            4
-          ]
-        }
-      }
-    },
-    {
-      "type": "point",
-      "style": {
-        "fill": "white"
-      },
-      "tooltip": false,
-      "state": {
-        "active": {
-          "fill": "yellow"
-        }
-      }
-    }
-  ]
-}
+        {
+          type: 'point',
+          style: { fill: 'white' },
+          tooltip: false,
+          state: {
+            active: {
+              fill: 'yellow',
+            },
+          },
+        },
+      ]
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```

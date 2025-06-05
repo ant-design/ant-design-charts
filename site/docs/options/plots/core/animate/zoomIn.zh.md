@@ -9,7 +9,7 @@ order: 2
 
 <img alt="zoomIn" src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*wc4dQp4E6vkAAAAAAAAAAABkARQnAQ" width="400" />
 
-```ts
+```js
 {
   "animate": {
     "enter": {

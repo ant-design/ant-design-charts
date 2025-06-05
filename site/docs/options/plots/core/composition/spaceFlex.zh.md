@@ -12,6 +12,7 @@ order: 2
 <img alt="spaceFlex" src="https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*lLecQJkdPbIAAAAAAAAAAAAADmJ7AQ" width="600" />
 
 ```js
+```js
 import { Chart } from '@antv/g2';
 
 const chart = new Chart({
@@ -22,7 +23,7 @@ const chart = new Chart({
 const flex = chart
   .spaceFlex()
   .data({
-    value: 'https://assets.antv.antgroup.com/g2/seattle-weather.json',
+      value: 'https://assets.antv.antgroup.com/g2/seattle-weather.json',
   })
   .attr('direction', 'col')
   .attr('ratio', [1, 2]);
@@ -31,6 +32,7 @@ flex
   .interval()
   .attr('paddingBottom', 0)
   .attr('paddingRight', 300)
+  .transform({ type: 'groupX', y: 'max' })
   .axis('x', false)
   .encode('x', (d) => new Date(d.date).getUTCDate())
   .encode('y', 'temp_max')
@@ -44,6 +46,7 @@ flex
       .cell()
       .attr('paddingRight', 0)
       .attr('paddingBottom', 50)
+      .transform({ type: 'group', color: 'max' })
       .encode('x', (d) => new Date(d.date).getUTCDate())
       .encode('y', (d) => new Date(d.date).getUTCMonth())
       .encode('color', 'temp_max')
@@ -52,6 +55,7 @@ flex
       .axis('y', { title: 'Month' })
       .legend({ color: false })
       .scale('color', {
+        type: 'sequential',
         palette: 'gnBu',
       }),
   )
@@ -59,6 +63,7 @@ flex
     node
       .interval()
       .attr('paddingBottom', 50)
+      .transform({ type: 'groupX', y: 'max' })
       .coordinate({ transform: [{ type: 'transpose' }] });
       .axis('x', false)
       .encode('x', (d) => new Date(d.date).getUTCMonth())
@@ -67,6 +72,7 @@ flex
   );
 
 chart.render();
+```
 ```
 
 更多的案例，可以查看[图表示例](/examples)页面。
@@ -83,15 +89,11 @@ chart.render();
 
 `spaceFlex` 对应的配置都可以使用 API 进行设置，例如：
 
-```ts
+```js
 {
   "attr": {
     "direction": "col",
-    "ratio": [
-      1,
-      2,
-      3
-    ]
+    "ratio": [1, 2, 3]
   }
 }
 ```

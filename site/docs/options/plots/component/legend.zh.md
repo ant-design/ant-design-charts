@@ -47,7 +47,6 @@ Ant Design Charts 中 **图例（Legend）** 是图表的辅助元素，使用�
     size: {},
   },
 });
-
 ```
 
 ### 配置层级
@@ -61,19 +60,6 @@ Ant Design Charts 中 **图例（Legend）** 是图表的辅助元素，使用�
     size: {},
   },
 });
-
-```
-
-图例也可以在 View 层级配置。图例具有传递性。视图上声明的图例会传递给 `children` 声明的标记，如果该标记有对应通道的图例，就合并；否则不影响。
-
-```js
-({
-  legend: {
-    color: {},
-    size: {},
-  },
-});
-
 ```
 
 ## 配置项
@@ -128,8 +114,30 @@ Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种�
 图例的位置。默认为 `top`。
 
 ```js
-null;
-
+{
+    data: [
+      { name: 'London', 月份: 'Jan.', 月均降雨量: 18.9 },
+      { name: 'London', 月份: 'Feb.', 月均降雨量: 28.8 },
+      { name: 'London', 月份: 'Mar.', 月均降雨量: 39.3 },
+      { name: 'London', 月份: 'Apr.', 月均降雨量: 81.4 },
+      { name: 'London', 月份: 'May', 月均降雨量: 47 },
+      { name: 'London', 月份: 'Jun.', 月均降雨量: 20.3 },
+      { name: 'London', 月份: 'Jul.', 月均降雨量: 24 },
+      { name: 'London', 月份: 'Aug.', 月均降雨量: 35.6 },
+      { name: 'Berlin', 月份: 'Jan.', 月均降雨量: 12.4 },
+      { name: 'Berlin', 月份: 'Feb.', 月均降雨量: 23.2 },
+      { name: 'Berlin', 月份: 'Mar.', 月均降雨量: 34.5 },
+      { name: 'Berlin', 月份: 'Apr.', 月均降雨量: 99.7 },
+      { name: 'Berlin', 月份: 'May', 月均降雨量: 52.6 },
+      { name: 'Berlin', 月份: 'Jun.', 月均降雨量: 35.5 },
+      { name: 'Berlin', 月份: 'Jul.', 月均降雨量: 37.4 },
+      { name: 'Berlin', 月份: 'Aug.', 月均降雨量: 42.4 },
+    ],
+    xField: '月份',
+    yField: '月均降雨量',
+    colorField: 'name',
+    transform: [{ type: 'dodgeX' }]
+}
 ```
 
 ### layout
@@ -148,6 +156,13 @@ Legend 组件支持调整其在画布中的位置，通过 `layout` 属性来设
 通过配置图例的 `position` 和 `layout` ，我们可以很灵活地改变图例的位置。
 
 ```js
+// 配置一个右侧垂直居中的图例
+
+// 第一步，配置position为right
+
+// 第二步，position为right的时候主轴方向flexDirection默认为column
+
+// 第三步，要实现垂直居中，需要在column方向上对齐方式为center，因为column此时为主轴，所以配置justifyContent为center
 ({
   legend: {
     color: {
@@ -158,7 +173,6 @@ Legend 组件支持调整其在画布中的位置，通过 `layout` 属性来设
     },
   },
 });
-
 ```
 
 
@@ -248,7 +262,6 @@ Legend 组件在布局的时候的排序。默认为 `1`。Ant Design Charts 内
     },
   },
 });
-
 ```
 
 尝试一下:
@@ -367,24 +380,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
 | vhv                | 样式类型：VHV 路径     |
 
 
-```js
-{
-  "itemMarker": "bowtie",
-  "scale": {
-    "color": {
-      "domain": [
-        "a",
-        "b"
-      ],
-      "range": [
-        "steelblue",
-        "orange"
-      ]
-    }
-  }
-}
-```
-
 在 Legend 组件中配置图例项图标的时候，不是以对象的形式来配置，而是以 `itemMarker`前缀加属性的方式来配置。
 
 ```js
@@ -408,7 +403,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
     },
   },
 });
-
 ```
 
 ### itemLabel
@@ -467,7 +461,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
     },
   },
 });
-
 ```
 
 ### itemValue
@@ -526,7 +519,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
     },
   },
 });
-
 ```
 
 ### itemBackground
@@ -573,7 +565,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
     },
   },
 });
-
 ```
 
 接下来，试试结合 `itemMarker`、`itemLabel`、`itemValue`和`itemBackground`的各种属性，来配置一个自定义的图例吧：
@@ -701,7 +692,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
     },
   },
 });
-
 ```
 
 
@@ -785,7 +775,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
     },
   },
 });
-
 ```
 
 ### handle
@@ -885,7 +874,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
     },
   },
 });
-
 ```
 
 ### label
@@ -965,7 +953,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
     },
   },
 });
-
 ```
 
 ### indicator
@@ -1058,7 +1045,6 @@ _LegendIndicatorCfg_ 配置如下：
     },
   },
 });
-
 ```
 
 ## 事件
@@ -1076,24 +1062,15 @@ _LegendIndicatorCfg_ 配置如下：
 组件在图表渲染后才会出现，所以要在 `afterrender` 后挂载组件的事件，以下是一个例子：
 
 ```js
-chart.on('afterrender', () => {
-  const { canvas } = chart.getContext();
-  const { document } = canvas;
-  document.querySelector('.component').addEventListener('valuechange', (range) => {});
-});
-
-chart.on('afterrender', () => {
-  const { canvas } = chart.getContext();
-  const { document } = canvas;
-  document.querySelector('.component').addEventListener('valuechange', (range) => {});
-});
-
-chart.on('afterrender', () => {
-  const { canvas } = chart.getContext();
-  const { document } = canvas;
-  document.querySelector('.component').addEventListener('valuechange', (range) => {});
-});
-
+{
+  onReady: ({ chart }) => {
+    const { canvas } = chart.getContext();
+    const { document } = canvas;
+    document
+      .querySelector('.component')
+      .addEventListener('valuechange', (range) => {});
+  }
+}
 ```
 
 ## 示例
@@ -1113,58 +1090,120 @@ chart.on('afterrender', () => {
 首先我们来看看如何定义符号路径。一个符号路径是一个函数，该函数接受起始点的横向坐标 x、纵向坐标 y 和绘制半径，返回一个路径。
 
 ```js
-const triangle: SymbolFactor = (x, y, r) => {
+
+const triangle = (x, y, r) => {
   const diffY = r * Math.sin((1 / 3) * Math.PI);
-  return [['M', x - r, y + diffY], ['L', x, y - diffY], ['L', x + r, y + diffY], ['Z']];
-};
-
-triangle.style = ['fill'];
-
-import { type SymbolFactor } from '@antv/g2';
-
-const triangle: SymbolFactor = (x, y, r) => {
-  const diffY = r * Math.sin((1 / 3) * Math.PI);
-  return [['M', x - r, y + diffY], ['L', x, y - diffY], ['L', x + r, y + diffY], ['Z']];
+  return [
+    ['M', x - r, y + diffY],
+    ['L', x, y - diffY],
+    ['L', x + r, y + diffY],
+    ['Z'],
+  ];
 };
 triangle.style = ['fill'];
-
 ```
 
-接下来就是注册符号，通过调用 `Ant Design Charts.register('symbol.${symbol}', Symbol)` 来完成注册。其中 `symbol` 是符号的名字，`Symbol` 是定义好的符号路径。比如注册一个三角形的符号：
+接下来就是注册符号，通过调用 `G2.register('symbol.${symbol}', Symbol)` 来完成注册。其中 `symbol` 是符号的名字，`Symbol` 是定义好的符号路径。比如注册一个三角形的符号：
 
 ```js
-register('symbol.customTriangle', triangle);
+import { G2 } from '@ant-design/charts';
 
-import { register } from '@antv/g2';
-
-register('symbol.customTriangle', triangle);
-
+G2.register('symbol.customTriangle', triangle);
 ```
 
 最后就是使用该符号了
 
 ```js
-'customTriangle';
-
+legend: {
+  color: {
+    itemMarker: 'customTriangle';
+  }
+}
 ```
 
 #### 使用图片
 
 ```js
-{
-  "tooltip": false,
-  "legend": {
-    "color": {
-      "itemMarkerSize": 40,
-      "maxRows": 1
-    }
-  },
-  "scale": {
-    "y": {
-      "nice": true
-    }
-  }
-}
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const data = [
+  { type: '抖音', sold: 275 },
+  { type: '快手', sold: 115 },
+  { type: '小米', sold: 120 },
+  { type: '微信', sold: 350 },
+  { type: 'Keep', sold: 150 },
+];
+
+const DemoColumn = () => {
+  const logo = [
+    ['抖音', 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*8IXHQLvx9QkAAAAAAAAAAAAADmJ7AQ/original'],
+    ['快手', 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*swueRrrKvbcAAAAAAAAAAAAADmJ7AQ/original'],
+    ['小米', 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*79G3TIt3mBoAAAAAAAAAAAAADmJ7AQ/original'],
+    ['微信', 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_ELBTJLp0dQAAAAAAAAAAAAADmJ7AQ/original'],
+    ['Keep', 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*JzbKRpFhR14AAAAAAAAAAAAADmJ7AQ/original'],
+  ];
+  const chartRef = React.useRef();
+  const config = {
+    data,
+    xField: 'type',
+    yField: 'sold',
+    colorField: 'type',
+    onReady: ({ chart }) => {
+      chartRef.current = chart;
+    },
+    legend: {
+      color: {
+        itemMarker: (name, index) => () => {
+          const chart = chartRef.current;
+          const { canvas } = chart.getContext();
+          const { document } = canvas;
+          window.c = chartRef.current;
+          const image = document.createElement('image', {
+            style: {
+              width: 20,
+              height: 20,
+              anchor: '0.5 0.5',
+              src: logo[index][1],
+            },
+          });
+          const tooltip = document.createElement('html', {
+            style: {
+              innerHTML: `<p style="color: red; width: 80; text-align: center;line-height: 30px">${name}</p>`,
+              fill: 'white',
+              stroke: '#ccc',
+              width: 80,
+              height: 30,
+              pointerEvents: 'none',
+              visibility: 'hidden',
+            },
+          });
+          canvas.appendChild(tooltip);
+          image.addEventListener('mousemove', (e) => {
+            tooltip.setPosition(e.x, e.y);
+            tooltip.style.visibility = 'visible';
+
+            console.log('move', e.target);
+          });
+          image.addEventListener('mouseleave', (e) => {
+            tooltip.setPosition(0, 0);
+            tooltip.style.visibility = 'hidden';
+
+            console.log('leave', e.target);
+          });
+          return image;
+        },
+        itemMarkerSize: 40,
+        itemLabelText: (_, index) => logo[index][0],
+        maxRows: 1,
+      },
+    },
+  };
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<DemoColumn />);
 ```
 
 ### 自定义图例（Legend）
@@ -1179,15 +1218,18 @@ Ant Design Charts 内置的图例是用 canvas 或者 svg 绘制的，如果希�
 
 ```js
 {
-  "legend": false
+    legend: false
 }
 ```
 
 然后是等待图表渲染完成，并且调用 `legendColor` 渲染 HTML 图例：
 
 ```js
-chart.render().then(legendColor);
-
+{
+  onReady: ({ chart }) => {
+    legendColor(chart)
+  }
+}
 ```
 
 在 `legendColor` 里我们首先需要把图例画出来，下面这个例子把图例画出来后，添加到了画布前面：
@@ -1200,7 +1242,6 @@ function legendColor(chart) {
 
   // ...
 }
-
 ```
 
 画出了图例之后，我们需要绘制图例项，这个数据从对应通道的比例尺获得：`chart.getScale().color`，并且通过 scale 的 domain 和 range 获得对应的名字和值。
@@ -1213,16 +1254,99 @@ function legendColor(chart) {
   const items = domain.map(() => {});
   // ...
 }
-
-function legendColor(chart) {
-  // ...
-  const scale = chart.getScale().color;
-  const { domain } = scale.getOptions();
-  const items = domain.map(() => {});
-  // ...
-}
-
 ```
 
 绘制完图例项之后我们就应该给每个图例项通过 `item.onclick` 添加交互，收集当前选中的值，并且根据这个值去给图表的声明添加 Filter 转换，最后重新渲染图表。最后完整的实现如下：
+
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const data = [
+  { genre: 'Sports', sold: 275 },
+  { genre: 'Strategy', sold: 115 },
+  { genre: 'Action', sold: 120 },
+  { genre: 'Shooter', sold: 350 },
+  { genre: 'Other', sold: 150 },
+
+];
+
+// 添加图例
+function legendColor(chart) {
+  // 创建 Legend 并且挂载图例
+  const node = chart.getContainer();
+  const legend = document.createElement('div');
+  legend.style.display = 'flex';
+  node.insertBefore(legend, node.childNodes[0]);
+
+  // 创建并挂载 Items
+  const { color: scale } = chart.getScale();
+  const { domain } = scale.getOptions();
+  const items = domain.map((value) => {
+    const item = document.createElement('div');
+    const color = scale.map(value);
+    item.style.marginLeft = '1em';
+    item.innerHTML = `
+      <span style="
+        background-color:${color};
+        display:inline-block;
+        width:10px;
+        height:10px;"
+      ></span>
+      <span>${value}</span>
+      `;
+    return item;
+  });
+  items.forEach((d) => legend.append(d));
+
+  // 监听事件
+  const selectedValues = [...domain];
+  const options = chart.options();
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const value = domain[i];
+    item.style.cursor = 'pointer';
+    item.onclick = () => {
+      const index = selectedValues.indexOf(value);
+      if (index !== -1) {
+        selectedValues.splice(index, 1);
+        item.style.opacity = 0.5;
+      } else {
+        selectedValues.push(value);
+        item.style.opacity = 1;
+      }
+      changeColor(selectedValues);
+    };
+  }
+
+  // 重新渲染视图
+  function changeColor(value) {
+    const { transform = [] } = options;
+    const newTransform = [{ type: 'filter', color: { value } }, ...transform];
+    chart.options({
+      ...options,
+      transform: newTransform, // 指定新的 transform
+      scale: { color: { domain } },
+    });
+    chart.render(); // 重新渲染图表
+  }
+}
+
+const DemoColumn = () => {
+  const config = {
+    data,
+    xField: 'genre',
+    yField: 'sold',
+    legend: false,
+    colorField: 'genre',
+    onReady: ({chart}) => {
+      legendColor(chart)
+    }
+  };
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<DemoColumn />);
+```
 

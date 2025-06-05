@@ -3,32 +3,196 @@ title: brushFilter
 order: 6.1
 ---
 
-框选筛选元素。
+## 概述
 
-## 开始使用
+`brushFilter` 交互主要用于实现图表元素的动态范围筛选功能。通过鼠标刷选操作，用户可以在图表上划定特定区域（基于 x/y 轴坐标系），Ant Design Charts 会重新渲染该区域内符合筛选条件的图表元素。
 
 <img alt="example" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*indVQalzZEQAAAAAAAAAAAAADmJ7AQ/original" width="640">
 
-```ts
-{
-  "interaction": {
-    "brushFilter": true
-  }
-}
+典型应用场景：
+
+数据探索：快速聚焦特定数据区间进行深入分析
+
+异常检测：定位分布异常的离散数据点
+
+对比分析：横向/纵向对比不同区间的数据特征
+
+```js
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value:
+          'https://gw.alipayobjects.com/os/basement_prod/6b4aa721-b039-49b9-99d8-540b3f87d339.json',
+      },
+      xField: 'height',
+      yField: 'weight',
+      colorField: 'gender',
+      state: { inactive: { stroke: 'gray' } },
+      interaction: { brushFilter: true }
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
-## 选项
+## 使用方式
 
-| 属性                | 描述           | 类型                           | 默认值 |
-| ------------------- | -------------- | ------------------------------ | ------ |
-| reverse             | brush 是否反转 | `boolean`                      | false  |
-| `mask${StyleAttrs}` | brush 的样式   | `number             \| string` | -      |
+配置 `brushFilter` 交互有两种方式
+
+### 快速启用模式
+
+通过布尔值开启交互，使用默认配置：
+
+```js
+({
+  interaction: { brushFilter: true }, // 启用默认配置的刷选过滤
+});
+```
+
+### 自定义配置模式
+
+通过[配置项](#配置项) 精细化控制交互行为：
+
+```js
+({
+  interaction: {
+    brushFilter: {
+      reverse: false, // 关闭反向选择
+      maskFill: '#rgba(0,0,0,0.3)', // 自定义蒙版颜色
+    },
+  },
+});
+```
+
+## 配置层级
+
+交互可以配置在 Mark 层级：
+
+```js
+({
+  interaction: { brushFilter: true },
+});
+```
+
+
+## 配置项
+
+| 属性    | 描述               | 类型          | 默认值             | 必选 |
+| ------- | ------------------ | ------------- | ------------------ | ---- |
+| reverse | brush 是否反转     | boolean       | false              |      |
+| mask    | 框选区域的蒙版样式 | [mask](#mask) | 详见 [mask](#mask) |      |
+
+### mask
+
+配置框选区域的蒙版的样式。
+
+| 属性              | 描述                                                                                                         | 类型            | 默认值    | 必选 |
+| ----------------- | ------------------------------------------------------------------------------------------------------------ | --------------- | --------- | ---- |
+| maskFill          | 蒙版的填充色                                                                                                 | string          | `#777`    |      |
+| maskFillOpacity   | 蒙版的填充透明度                                                                                             | number          | 0.3       |      |
+| maskStroke        | 蒙版的描边                                                                                                   | string          | `#fff`    |      |
+| maskStrokeOpacity | 描边透明度                                                                                                   | number          |           |      |
+| maskLineWidth     | 蒙版描边的宽度                                                                                               | number          |           |      |
+| maskLineDash      | 描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 | [number,number] |           |      |
+| maskOpacity       | 蒙版的整体透明度                                                                                             | number          |           |      |
+| maskShadowColor   | 蒙版阴影颜色                                                                                                 | string          |           |      |
+| maskShadowBlur    | 蒙版阴影的高斯模糊系数                                                                                       | number          |           |      |
+| maskShadowOffsetX | 设置阴影距蒙版的水平距离                                                                                     | number          |           |      |
+| maskShadowOffsetY | 设置阴影距蒙版的垂直距离                                                                                     | number          |           |      |
+| maskCursor        | 鼠标样式。同 css 的鼠标样式                                                                                  | string          | `default` |      |
+
+在配置框选区域的蒙版样式的时候，不是以对象的形式来配置，而是以 `mask`前缀加属性的方式来配置。
+
+样式配置示例：
+
+```js
+({
+  interaction: {
+    brushFilter: {
+      maskFill: '#000',
+      maskFillOpacity: 0.2,
+      maskStroke: 'red',
+      maskStrokeOpacity: 0.9,
+      maskLineWidth: 2,
+      maskLineDash: [4, 8],
+      maskOpacity: 0.2,
+      maskShadowColor: '#d3d3d3',
+      maskShadowBlur: 10,
+      maskShadowOffsetX: 10,
+      maskShadowOffsetY: 10,
+      maskCursor: 'pointer',
+    },
+  },
+});
+```
+
+## 事件
+
+### 监听事件
+
+监听刷选过滤动作：
+
+```js
+chart.on('brush:filter', (event) => {
+  const {
+    data, // 筛选后的数据集合
+    nativeEvent, // 原始 DOM 事件
+  } = event;
+  console.log('当前选中范围:', data.selection);
+});
+chart.on('brush:filter', (event) => {
+  const {
+    data, // 筛选后的数据集合
+    nativeEvent, // 原始 DOM 事件
+  } = event;
+  console.log('当前选中范围:', data.selection);
+});
+```
+
+### 触发交互
+
+通过编程方式触发筛选：
+
+```js
+chart.emit('brush:filter', {
+  data: {
+    selection: [
+      [50, 100],
+      [20, 80],
+    ],
+  },
+});
+```
 
 ## 案例
 
-获得当前筛选数据，会在每次筛选和重置的时候触发以下事件：
-
-```js
-null;
-
+```js | ob { autoMount: true }
+{
+    autoFit: true,
+    interaction: {
+      brushFilter: {
+        maskFill: '#000',
+        maskFillOpacity: 0.2,
+        maskStroke: 'red',
+        maskStrokeOpacity: 0.9,
+        maskLineWidth: 2,
+        maskLineDash: [4, 8],
+        maskOpacity: 0.2,
+        maskShadowColor: '#d3d3d3',
+        maskShadowBlur: 10,
+        maskShadowOffsetX: 10,
+        maskShadowOffsetY: 10,
+        maskCursor: 'pointer',
+      },
+    }
+}
 ```

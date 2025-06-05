@@ -6,10 +6,15 @@ const replacePackageName = (line) => {
     return line.replace(/(?<=\@)[^/]+/g, '@ant-design/charts');
   }
   // 如果匹配到 G2，则替换为 Ant Design Charts
-  if (line.includes('G2')) {
+  if (line.includes('G2') && !line.includes('antvis/G2')) {
     return line.replace(/G2/g, 'Ant Design Charts');
   }
-  return line;
+  const marks = [`type: 'interval',`, `type: 'line',`, `type: 'cell',`];
+  let deleteLine = false;
+  marks.forEach((mark) => {
+    if (line.includes(mark)) deleteLine = true;
+  });
+  return deleteLine ? 'Delete this line.' : line;
 };
 
 // 跳转路径替换

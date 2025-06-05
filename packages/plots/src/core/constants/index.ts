@@ -63,6 +63,7 @@ export const TRANSFORM_OPTION_KEY = {
   colorField: 'encode.color',
   angleField: 'encode.y',
   keyField: 'encode.key',
+  y1Field: 'encode.y1',
   sizeField: 'encode.size',
   setsField: 'encode.sets',
   shapeField: 'encode.shape',
@@ -266,7 +267,7 @@ export const SPECIAL_OPTIONS = [
     callback: (
       origin: object,
       key: string,
-      value: { available?: boolean; text?: string | Function; [key: string]: unknown } | any[],
+      value: { available?: boolean; text?: string | Function;[key: string]: unknown } | any[],
     ) => {
       /**
        * @description 特殊情况处理

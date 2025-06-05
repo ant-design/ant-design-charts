@@ -1,6 +1,6 @@
 ---
 title: 颜色映射（Color）
-order: 18
+order: 4
 ---
 
 颜色在可视化中起着非常重要的作用。它可以帮助我们更好地理解数据、突出显示关键信息、增强视觉吸引力和提高可读性。在可视化中颜色通常具有以下作用：
@@ -29,68 +29,138 @@ order: 18
 
 当设置颜色比例尺为恒等比例尺（Identity）的时候，color 通道的数据会被作为视觉数据绘制到最后的可视化中，但是不会去生成比例尺。
 
-```js
-{
-  "scale": {
-    "color": {
-      "type": "identity"
-    }
-  }
-}
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+    "scale": {
+      "color": {
+        "type": "identity"
+      }
+    },
+    "colorField": "color",
+    "yField": "sold",
+    "xField": "genre",
+    "data": [     { genre: 'Sports', sold: 275, color: 'red' },     { genre: 'Strategy', sold: 115, color: 'blue' },     { genre: 'Action', sold: 120, color: 'green' },     { genre: 'Shooter', sold: 350, color: 'red' },     { genre: 'Other', sold: 150, color: 'black' },   ]
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ### Range
 
-```js
-{
-  "scale": {
-    "color": {
-      "range": [
-        "#7593ed",
-        "#95e3b0",
-        "#6c7893",
-        "#e7c450",
-        "#7460eb"
-      ]
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+    "scale": {
+      "color": {
+        "type": "ordinal",
+        "range": ['#7593ed', '#95e3b0', '#6c7893', '#e7c450', '#7460eb']
+      }
+    },
+    "axis": {
+      "y": {
+        "labelFormatter": ".0%"
+      }
+    },
+    "colorField": "letter",
+    "yField": "frequency",
+    "xField": "letter",
+    "data": {
+      "type": "fetch",
+      "value": "https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv"
     }
-  },
-  "axis": {
-    "y": {
-      "labelFormatter": ".0%"
-    }
-  }
-}
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ### Palette
 
 Ant Design Charts 中可以通过设置 `scale.palette` 去指定色板。这个色板可以是离散的：
 
-```js
-{
-  "scale": {
-    "color": {
-      "palette": "tableau10"
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+    "scale": {
+      "color": {
+        "palette": "tableau10"
+      }
+    },
+    "axis": {
+      "y": {
+        "labelFormatter": ".0%"
+      }
+    },
+    "colorField": "letter",
+    "yField": "frequency",
+    "xField": "letter",
+    "data": {
+      "type": "fetch",
+      "value": "https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv"
     }
-  },
-  "axis": {
-    "y": {
-      "labelFormatter": ".0%"
-    }
-  }
-}
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 同时也可以是连续的：
 
-```js
-{
-  "scale": {
-    "color": {
-      "palette": "rainbow"
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+    "scale": {
+      "color": {
+        "palette": "rainbow"
+      }
+    },
+    "colorField": "temp_max",
+    "yField": (d) => new Date(d.date).getUTCMonth(),
+    "xField": (d) => new Date(d.date).getUTCDate(),
+    "transform": [
+      {
+        "type": "group",
+        "color": "max"
+      }
+    ],
+    "data": {
+      "type": "fetch",
+      "value": "https://assets.antv.antgroup.com/g2/seattle-weather.json"
     }
-  }
-}
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 #### 内置色板
@@ -405,19 +475,41 @@ Ant Design Charts 提供了一些内置的色板，可以直接使用，并支�
 
 如果内置的色板不能满足你的要求，也可以试试自定义色板，以下是一个简单的例子，展示了如何自定义注册色板和使用。
 
-```js
-{
-  "scale": {
-    "color": {
-      "palette": "custom"
-    }
-  },
-  "axis": {
-    "y": {
-      "labelFormatter": ".0%"
-    }
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+  register('palette.custom', customPalette);
+  function customPalette() {
+    return ['#FFB3BA', '#98FF98', '#89CFF0', '#FFF9B1', '#D1A3FF'];
   }
-}
+
+  const config ={
+    "scale": {
+      "color": {
+        "palette": "custom"
+      }
+    },
+    "axis": {
+      "y": {
+        "labelFormatter": ".0%"
+      }
+    },
+    "colorField": "letter",
+    "yField": "frequency",
+    "xField": "letter",
+    "data": {
+      "type": "fetch",
+      "value": "https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv"
+    }
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ### Relations
@@ -425,16 +517,40 @@ Ant Design Charts 提供了一些内置的色板，可以直接使用，并支�
 可以通过 `scale.relations` 去指定一系列映射规则，这个优先级别会高于 domain 到 range 的默认映射方式。比如对于 color 通道来讲，如果希望特定的值映射为特定的颜色，或者处理异常值，这个配置会很有用。
 
 ```js
-null;
-
+{
+  "scale": {
+    "color": {
+      "relations": [     ['dog', 'red'], // dog 恒等映射为红色     [(d) => d === undefined, 'grey'], // 如果是值为 undefined，那么为灰色   ]
+    }
+  }
+}
 ```
 
 ## 样式
 
 通过 `mark.style` 来设置颜色，这里设置的颜色比 `encode.color` 的优先级更高，同时不会生成图例。
 
-```js
-{
-  "style": {}
-}
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+    "style": {
+      "fill": (datum, index, data) => {     const { frequency } = datum;     if (frequency > 0.1) return '#3376cd';     if (frequency > 0.05) return '#f4bb51';     return '#b43a29';   }
+    },
+    "yField": "frequency",
+    "xField": "letter",
+    "data": {
+      "type": "fetch",
+      "value": "https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv"
+    }
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```

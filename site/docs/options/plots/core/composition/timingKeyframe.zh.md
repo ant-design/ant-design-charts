@@ -10,14 +10,30 @@ order: 2
 <img src="https://gw.alipayobjects.com/zos/raptor/1669043493952/point-keyframe.gif" width=640 alt="keyframe"/>
 
 ```js
-{
-  "paddingTop": 60,
-  "paddingLeft": 100,
-  "attr": {
-    "iterationCount": 4,
-    "direction": "alternate"
-  }
-}
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+    "keyField": "gender",
+    "colorField": "gender",
+    "yField": "weight",
+    "xField": "gender",
+    "transform": [
+      {
+        "type": "groupX",
+        "y": "mean"
+      }
+    ],
+    "data": data
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ## 选项

@@ -1,9 +1,7 @@
 ---
-
 title: ema
 
 order: 2
-
 ---
 
 ## 概述
@@ -33,11 +31,11 @@ EMA（Exponential Moving Average，指数移动平均）是一种常用的数据
 
 ## 配置项
 
-| 属性  | 描述                                               | 类型    | 默认值  | 是否必选 |
-|-------|--------------------------------------------------|---------|---------|----------|
-| field | 需要平滑的字段名                                 | `string` | `'y'`  | ✓        |
-| alpha | 平滑因子，控制平滑程度（越大越平滑）             | `number` | `0.6`  |          |
-| as    | 生成的新字段名，若不指定将覆盖原字段             | `string` | 同 `field` |     |
+| 属性  | 描述                                 | 类型     | 默认值     | 是否必选 |
+| ----- | ------------------------------------ | -------- | ---------- | -------- |
+| field | 需要平滑的字段名                     | `string` | `'y'`      | ✓        |
+| alpha | 平滑因子，控制平滑程度（越大越平滑） | `number` | `0.6`      |          |
+| as    | 生成的新字段名，若不指定将覆盖原字段 | `string` | 同 `field` |          |
 
 > 若需保留原字段，建议设置 `as` 属性以输出到新字段。
 > 该默认值由组件内部定义，非来源于主题。
@@ -47,599 +45,234 @@ EMA（Exponential Moving Average，指数移动平均）是一种常用的数据
 
 以下示例展示如何在 Ant Design Charts 中对数据字段 `close` 应用 EMA 平滑变换。
 
-```js
-{
-  "children": [
-    {
-      "type": "line",
-      "data": {
-        "type": "fetch",
-        "value": "https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv",
-        "transform": [
-          {
-            "type": "ema",
-            "field": "close",
-            "alpha": 0.8,
-            "as": "emaClose"
-          }
-        ]
-      },
-      "encode": {
-        "x": "date",
-        "y": "emaClose"
-      }
-    },
-    {
-      "type": "line",
-      "style": {
-        "opacity": 0.3
-      },
-      "data": {
-        "type": "fetch",
-        "value": "https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv"
-      },
-      "encode": {
-        "x": "date",
-        "y": "close"
-      }
-    }
-  ]
-}
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      children: [
+        {
+          type: 'line',
+          data: {
+            type: 'fetch',
+            value:
+              'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+            transform: [
+              {
+                type: 'ema',
+                field: 'close',
+                alpha: 0.8,
+                as: 'emaClose',
+              },
+            ],
+          },
+          encode: {
+            x: 'date',
+            y: 'emaClose',
+          },
+        },
+        {
+          type: 'line',
+          style: {
+            opacity: 0.3,
+          },
+          data: {
+            type: 'fetch',
+            value:
+              'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+          },
+          encode: {
+            x: 'date',
+            y: 'close',
+          },
+        },
+      ]
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ### 示例一：突出趋势变化（时间序列）
 
-```js
-{
-  "children": [
-    {
-      "type": "line",
-      "data": {
-        "type": "inline",
-        "value": [
-          {
-            "t": 0,
-            "y": 100
+```js | ob {  pin:false , autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      children: [
+        {
+          type: 'line',
+          data: {
+            type: 'inline',
+            value: [
+              { t: 0, y: 100 },
+              { t: 1, y: 180 },
+              { t: 2, y: 120 },
+              { t: 3, y: 200 },
+              { t: 4, y: 150 },
+              { t: 5, y: 250 },
+            ],
+            transform: [
+              {
+                type: 'ema',
+                field: 'y',
+                alpha: 0.6,
+                as: 'emaY',
+              },
+            ],
           },
-          {
-            "t": 1,
-            "y": 180
+          encode: { x: 't', y: 'emaY' },
+          style: { stroke: '#f90' },
+        },
+        {
+          type: 'line',
+          data: {
+            type: 'inline',
+            value: [
+              { t: 0, y: 100 },
+              { t: 1, y: 180 },
+              { t: 2, y: 120 },
+              { t: 3, y: 200 },
+              { t: 4, y: 150 },
+              { t: 5, y: 250 },
+            ],
           },
-          {
-            "t": 2,
-            "y": 120
-          },
-          {
-            "t": 3,
-            "y": 200
-          },
-          {
-            "t": 4,
-            "y": 150
-          },
-          {
-            "t": 5,
-            "y": 250
-          }
-        ],
-        "transform": [
-          {
-            "type": "ema",
-            "field": "y",
-            "alpha": 0.6,
-            "as": "emaY"
-          }
-        ]
-      },
-      "encode": {
-        "x": "t",
-        "y": "emaY"
-      },
-      "style": {
-        "stroke": "#f90"
-      }
-    },
-    {
-      "type": "line",
-      "data": {
-        "type": "inline",
-        "value": [
-          {
-            "t": 0,
-            "y": 100
-          },
-          {
-            "t": 1,
-            "y": 180
-          },
-          {
-            "t": 2,
-            "y": 120
-          },
-          {
-            "t": 3,
-            "y": 200
-          },
-          {
-            "t": 4,
-            "y": 150
-          },
-          {
-            "t": 5,
-            "y": 250
-          }
-        ]
-      },
-      "encode": {
-        "x": "t",
-        "y": "y"
-      },
-      "style": {
-        "stroke": "#ccc",
-        "lineDash": [
-          4,
-          2
-        ]
-      }
-    }
-  ]
-}
+          encode: { x: 't', y: 'y' },
+          style: { stroke: '#ccc', lineDash: [4, 2] },
+        },
+      ]
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ### 示例二：金融行情走势平滑
 
+```js | ob {  pin:false , autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      children: [
+        {
+          type: 'line',
+          data: {
+            type: 'inline',
+            value: data,
+            transform: [
+              {
+                type: 'ema',
+                field: 'close',
+                alpha: 0.7,
+                as: 'emaClose',
+              },
+            ],
+          },
+          encode: {
+            x: 'date',
+            y: 'emaClose',
+          },
+          style: {
+            stroke: '#007aff',
+            lineWidth: 2,
+          },
+        },
+        {
+          type: 'line',
+          data: {
+            type: 'inline',
+            value: data,
+          },
+          encode: {
+            x: 'date',
+            y: 'close',
+          },
+          style: {
+            stroke: '#bbb',
+            lineDash: [4, 2],
+          },
+        },
+      ]
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
 
 ### 示例三：训练过程指标平滑
 
-```js
-{
-  "children": [
-    {
-      "type": "line",
-      "data": {
-        "type": "inline",
-        "value": [
-          {
-            "epoch": 0,
-            "loss": 64.27574358029807
-          },
-          {
-            "epoch": 1,
-            "loss": 68.93871936402189
-          },
-          {
-            "epoch": 2,
-            "loss": 70.6596279171568
-          },
-          {
-            "epoch": 3,
-            "loss": 74.07035014914923
-          },
-          {
-            "epoch": 4,
-            "loss": 79.05353850161633
-          },
-          {
-            "epoch": 5,
-            "loss": 77.81038477445729
-          },
-          {
-            "epoch": 6,
-            "loss": 81.98622735956309
-          },
-          {
-            "epoch": 7,
-            "loss": 82.94269334799739
-          },
-          {
-            "epoch": 8,
-            "loss": 84.90151074657861
-          },
-          {
-            "epoch": 9,
-            "loss": 79.81501187092965
-          },
-          {
-            "epoch": 10,
-            "loss": 80.19177927101524
-          },
-          {
-            "epoch": 11,
-            "loss": 80.22455950051749
-          },
-          {
-            "epoch": 12,
-            "loss": 77.44368358653878
-          },
-          {
-            "epoch": 13,
-            "loss": 72.90660872153614
-          },
-          {
-            "epoch": 14,
-            "loss": 66.88702068995354
-          },
-          {
-            "epoch": 15,
-            "loss": 64.21978742298435
-          },
-          {
-            "epoch": 16,
-            "loss": 62.893122602422686
-          },
-          {
-            "epoch": 17,
-            "loss": 59.031774896384334
-          },
-          {
-            "epoch": 18,
-            "loss": 51.48591811594204
-          },
-          {
-            "epoch": 19,
-            "loss": 48.488083410084506
-          },
-          {
-            "epoch": 20,
-            "loss": 45.12648484588463
-          },
-          {
-            "epoch": 21,
-            "loss": 44.78419921390069
-          },
-          {
-            "epoch": 22,
-            "loss": 44.93785061626392
-          },
-          {
-            "epoch": 23,
-            "loss": 43.944233812886054
-          },
-          {
-            "epoch": 24,
-            "loss": 44.46805613155186
-          },
-          {
-            "epoch": 25,
-            "loss": 44.57138970096263
-          },
-          {
-            "epoch": 26,
-            "loss": 46.00593192356595
-          },
-          {
-            "epoch": 27,
-            "loss": 49.365666215033734
-          },
-          {
-            "epoch": 28,
-            "loss": 50.24125776902406
-          },
-          {
-            "epoch": 29,
-            "loss": 50.794336283640995
-          },
-          {
-            "epoch": 30,
-            "loss": 55.17099699649226
-          },
-          {
-            "epoch": 31,
-            "loss": 60.31041715054685
-          },
-          {
-            "epoch": 32,
-            "loss": 66.25656420671811
-          },
-          {
-            "epoch": 33,
-            "loss": 68.65585047626759
-          },
-          {
-            "epoch": 34,
-            "loss": 70.10527765159934
-          },
-          {
-            "epoch": 35,
-            "loss": 74.34053089711655
-          },
-          {
-            "epoch": 36,
-            "loss": 76.66137485886145
-          },
-          {
-            "epoch": 37,
-            "loss": 81.56430204229468
-          },
-          {
-            "epoch": 38,
-            "loss": 83.84326177467092
-          },
-          {
-            "epoch": 39,
-            "loss": 83.07352756316597
-          },
-          {
-            "epoch": 40,
-            "loss": 81.50609740527615
-          },
-          {
-            "epoch": 41,
-            "loss": 82.48404859518294
-          },
-          {
-            "epoch": 42,
-            "loss": 79.6744527545032
-          },
-          {
-            "epoch": 43,
-            "loss": 75.28577602597645
-          },
-          {
-            "epoch": 44,
-            "loss": 76.0893128233248
-          },
-          {
-            "epoch": 45,
-            "loss": 72.80032621571365
-          },
-          {
-            "epoch": 46,
-            "loss": 66.5418969713427
-          },
-          {
-            "epoch": 47,
-            "loss": 62.68249824692084
-          },
-          {
-            "epoch": 48,
-            "loss": 58.31440044830662
-          },
-          {
-            "epoch": 49,
-            "loss": 54.22659245965421
-          }
-        ],
-        "transform": [
-          {
-            "type": "ema",
-            "field": "loss",
-            "alpha": 0.4,
-            "as": "emaLoss"
-          }
-        ]
-      },
-      "encode": {
-        "x": "epoch",
-        "y": "emaLoss"
-      },
-      "style": {
-        "stroke": "#52c41a"
-      }
-    },
-    {
-      "type": "line",
-      "data": {
-        "type": "inline",
-        "value": [
-          {
-            "epoch": 0,
-            "loss": 61.680363578643345
-          },
-          {
-            "epoch": 1,
-            "loss": 67.19800668233577
-          },
-          {
-            "epoch": 2,
-            "loss": 68.23146115779184
-          },
-          {
-            "epoch": 3,
-            "loss": 71.99278118718716
-          },
-          {
-            "epoch": 4,
-            "loss": 75.97840462574791
-          },
-          {
-            "epoch": 5,
-            "loss": 77.95619739790958
-          },
-          {
-            "epoch": 6,
-            "loss": 78.97351301480568
-          },
-          {
-            "epoch": 7,
-            "loss": 80.42352080456787
-          },
-          {
-            "epoch": 8,
-            "loss": 83.90899448441041
-          },
-          {
-            "epoch": 9,
-            "loss": 81.48532787021352
-          },
-          {
-            "epoch": 10,
-            "loss": 81.36203451538343
-          },
-          {
-            "epoch": 11,
-            "loss": 77.63871441165898
-          },
-          {
-            "epoch": 12,
-            "loss": 77.18851484088775
-          },
-          {
-            "epoch": 13,
-            "loss": 74.43292226655839
-          },
-          {
-            "epoch": 14,
-            "loss": 71.54189688048979
-          },
-          {
-            "epoch": 15,
-            "loss": 67.39589007033213
-          },
-          {
-            "epoch": 16,
-            "loss": 63.230557299742514
-          },
-          {
-            "epoch": 17,
-            "loss": 59.87740482297848
-          },
-          {
-            "epoch": 18,
-            "loss": 55.617755565387604
-          },
-          {
-            "epoch": 19,
-            "loss": 52.389408332436616
-          },
-          {
-            "epoch": 20,
-            "loss": 45.133649800349055
-          },
-          {
-            "epoch": 21,
-            "loss": 44.1014758924022
-          },
-          {
-            "epoch": 22,
-            "loss": 43.128319440545646
-          },
-          {
-            "epoch": 23,
-            "loss": 43.13423843359077
-          },
-          {
-            "epoch": 24,
-            "loss": 42.51637572352011
-          },
-          {
-            "epoch": 25,
-            "loss": 44.959601664842744
-          },
-          {
-            "epoch": 26,
-            "loss": 43.1367816655513
-          },
-          {
-            "epoch": 27,
-            "loss": 48.90764039676893
-          },
-          {
-            "epoch": 28,
-            "loss": 52.149353346088276
-          },
-          {
-            "epoch": 29,
-            "loss": 54.02237670073057
-          },
-          {
-            "epoch": 30,
-            "loss": 57.35157636398456
-          },
-          {
-            "epoch": 31,
-            "loss": 61.36975760690611
-          },
-          {
-            "epoch": 32,
-            "loss": 62.7727034538964
-          },
-          {
-            "epoch": 33,
-            "loss": 70.95567940628602
-          },
-          {
-            "epoch": 34,
-            "loss": 73.58328949975551
-          },
-          {
-            "epoch": 35,
-            "loss": 76.35627511664127
-          },
-          {
-            "epoch": 36,
-            "loss": 78.37482271715534
-          },
-          {
-            "epoch": 37,
-            "loss": 79.22074365373568
-          },
-          {
-            "epoch": 38,
-            "loss": 82.62073273268454
-          },
-          {
-            "epoch": 39,
-            "loss": 83.84011218045173
-          },
-          {
-            "epoch": 40,
-            "loss": 82.25549526977387
-          },
-          {
-            "epoch": 41,
-            "loss": 82.77809080005282
-          },
-          {
-            "epoch": 42,
-            "loss": 81.749597969087
-          },
-          {
-            "epoch": 43,
-            "loss": 78.4068096201802
-          },
-          {
-            "epoch": 44,
-            "loss": 72.2956332453074
-          },
-          {
-            "epoch": 45,
-            "loss": 69.07440556864682
-          },
-          {
-            "epoch": 46,
-            "loss": 65.14409277243027
-          },
-          {
-            "epoch": 47,
-            "loss": 64.49005013653431
-          },
-          {
-            "epoch": 48,
-            "loss": 60.091401469545126
-          },
-          {
-            "epoch": 49,
-            "loss": 53.01028871260833
-          }
-        ]
-      },
-      "encode": {
-        "x": "epoch",
-        "y": "loss"
-      },
-      "style": {
-        "stroke": "#ddd",
-        "lineDash": [
-          4,
-          2
-        ]
-      }
-    }
-  ]
-}
-```
+```js | ob {  pin:false , autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
+const Demo = () => {
+
+  const config ={
+      children: [
+        {
+          type: 'line',
+          data: {
+            type: 'inline',
+            value: Array.from({ length: 50 }, (_, i) => ({
+              epoch: i,
+              loss: Math.sin(i / 5) * 20 + 60 + Math.random() * 5,
+            })),
+            transform: [
+              {
+                type: 'ema',
+                field: 'loss',
+                alpha: 0.4,
+                as: 'emaLoss',
+              },
+            ],
+          },
+          encode: {
+            x: 'epoch',
+            y: 'emaLoss',
+          },
+          style: { stroke: '#52c41a' },
+        },
+        {
+          type: 'line',
+          data: {
+            type: 'inline',
+            value: Array.from({ length: 50 }, (_, i) => ({
+              epoch: i,
+              loss: Math.sin(i / 5) * 20 + 60 + Math.random() * 5,
+            })),
+          },
+          encode: {
+            x: 'epoch',
+            y: 'loss',
+          },
+          style: { stroke: '#ddd', lineDash: [4, 2] },
+        },
+      ]
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
 
 ## 尝试一下
 

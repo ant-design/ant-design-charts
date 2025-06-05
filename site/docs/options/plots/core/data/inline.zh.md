@@ -11,14 +11,50 @@ Ant Design Charts 的数据源来源有两种，一种是 `inline`，即直接�
 
 显式的指定 `type` 为 `inline`，完整的写法如下：
 
+```js
+{
+  "data": {
+      "value": [     { genre: 'Sports', sold: 275 },     { genre: 'Strategy', sold: 115 },     { genre: 'Action', sold: 120 },     { genre: 'Shooter', sold: 350 },     { genre: 'Other', sold: 150 },   ]
+  }
+}
+```
 
 因为 Ant Design Charts 默认的数据类型就是 `inline`，所以也可以简写为如下：
 
+```js
+{
+  "data": [   { genre: 'Sports', sold: 275 },   { genre: 'Strategy', sold: 115 },   { genre: 'Action', sold: 120 },   { genre: 'Shooter', sold: 350 },   { genre: 'Other', sold: 150 }, ]
+}
+```
 
 ## 开始使用
 
 举一个例子如下：
 
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      data: [
+        { genre: 'Sports', sold: 275 },
+        { genre: 'Strategy', sold: 115 },
+        { genre: 'Action', sold: 120 },
+        { genre: 'Shooter', sold: 350 },
+        { genre: 'Other', sold: 150 },
+      ],
+      xField: 'genre',
+      yField: 'sold'
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
 
 ## 配置项
 
@@ -31,3 +67,18 @@ Ant Design Charts 的数据源来源有两种，一种是 `inline`，即直接�
 
 ⚠️ Ant Design Charts 支持了一些关系图的数据结构，这些数据结构是一个 JavaScript 的 Object 类型，所以使用简写传入的时候，可能会导致 Ant Design Charts 识别出错，所以建议如果图表的数据是 Object 对象，使用完整的写法传入数据。
 
+```js
+const graphData = {
+  nodes: [
+    /** */
+  ],
+  edges: [
+    /** */
+  ],
+};
+{
+  "data": {
+      "value": graphData
+  }
+}
+```

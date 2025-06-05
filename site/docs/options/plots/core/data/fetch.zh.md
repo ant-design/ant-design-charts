@@ -13,11 +13,42 @@ Ant Design Charts 的 `fetch` 支持从远程接口获得数据，让数据源�
 
 直接在设置数据得时候，传入一个对象，并设置类型 type 为 `fetch`。
 
+```js
+{
+    type: 'point',
+    data: {
+      type: 'fetch', // 指定 fetch 类型
+      value: 'https://gw.alipayobjects.com/os/antvdemo/assets/data/scatter.json', // 远程地址
+    }
+}
+```
 
 ## 开始使用
 
 举一个例子如下：
 
+```js | ob { autoMount: true }
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      data: {
+        type: 'fetch',
+        value: 'https://gw.alipayobjects.com/os/antvdemo/assets/data/scatter.json',
+      },
+      xField: 'weight',
+      yField: 'height',
+      colorField: 'gender'
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
 
 ## 配置项
 

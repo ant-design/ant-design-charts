@@ -9,7 +9,7 @@ order: 2
 
 <img alt="fadeOut" src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*s4Y4S5JJ6WEAAAAAAAAAAABkARQnAQ" width="400" />
 
-```ts
+```js
 {
   "animate": {
     "exit": {

@@ -10,13 +10,39 @@ order: 16
 <img alt="example" src="https://gw.alipayobjects.com/zos/raptor/1669041902028/fisheye.gif" width="640">
 
 ```ts
-{
-  "style": {
-    "lineWidth": 1,
-    "fillOpacity": 0.3
-  },
-  "interaction": "fisheye"
-}
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+    "style": {
+      "lineWidth": 1,
+      "fillOpacity": 0.3
+    },
+    "scale": {
+      "size": {
+        "type": "log",
+        "range": [4, 20]
+      }
+    },
+    "shapeField": "point",
+    "colorField": "continent",
+    "sizeField": "Population",
+    "yField": "LifeExpectancy",
+    "xField": "GDP",
+    "data": {
+      "type": "fetch",
+      "value": "https://gw.alipayobjects.com/os/antvdemo/assets/data/bubble.json"
+    },
+    "interaction": "fisheye"
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ## 选项

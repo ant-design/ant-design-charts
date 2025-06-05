@@ -14,45 +14,6 @@ The axis can be configured at the mark level:
     y: { tickCount: 5 },
   },
 });
-
-```
-
-```js
-{
-  "axis": {
-    "x": {
-      "labelFormatter": "%0"
-    },
-    "y": {
-      "tickCount": 5
-    }
-  }
-}
-```
-
-The axis can also be configured at the view level:
-
-```js
-({
-  axis: {
-    x: { labelFormatter: '%0' },
-    y: { tickCount: 5 },
-  },
-});
-
-```
-
-```js
-{
-  "axis": {
-    "x": {
-      "labelFormatter": "%0"
-    },
-    "y": {
-      "tickCount": 5
-    }
-  }
-}
 ```
 
 ## Labeling Axis
@@ -71,7 +32,6 @@ Hide the axis of each channel:
 ({
   axis: { y: false }, // Hide the y-axis
 });
-
 ```
 
 Hide multiple axes:
@@ -80,5 +40,6 @@ Hide multiple axes:
 ({
   axis: false,
 });
-
 ```
+
+More options about axis, see the document of [axis](/options/plots/component/axis).

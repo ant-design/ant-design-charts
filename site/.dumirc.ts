@@ -106,12 +106,12 @@ export default defineConfig({
         order: 3
       },
       {
-        slug: 'options/plots/core/data',
+        slug: 'options/plots/core/interaction',
         title: {
-          zh: '数据（Data）',
-          en: 'Data',
+          zh: '交互（Interaction）',
+          en: 'Interaction',
         },
-        order: 4,
+        order: 1,
       },
       {
         slug: 'options/plots/core/scale',
@@ -119,23 +119,7 @@ export default defineConfig({
           zh: '比例尺（Scale）',
           en: 'Scale',
         },
-        order: 6,
-      },
-      {
-        slug: 'options/plots/core/transform',
-        title: {
-          zh: '转换（Transform）',
-          en: 'Transform',
-        },
-        order: 7,
-      },
-      {
-        slug: 'options/plots/core/coordinate',
-        title: {
-          zh: '坐标系（Coordinate）',
-          en: 'Coordinate',
-        },
-        order: 8,
+        order: 10,
       },
       {
         slug: 'options/plots/core/animate',
@@ -143,23 +127,7 @@ export default defineConfig({
           zh: '动画（Animate）',
           en: 'Animate',
         },
-        order: 10,
-      },
-      {
-        slug: 'options/plots/core/interaction',
-        title: {
-          zh: '交互（Interaction）',
-          en: 'Interaction',
-        },
-        order: 13,
-      },
-      {
-        slug: 'options/plots/core/composition',
-        title: {
-          zh: '复合（Composition）',
-          en: 'Composition',
-        },
-        order: 14,
+        order: 11,
       },
       {
         slug: 'options/plots/core/theme',
@@ -167,7 +135,23 @@ export default defineConfig({
           zh: '主题（Theme）',
           en: 'Theme',
         },
-        order: 15,
+        order: 12,
+      },
+      {
+        slug: 'options/plots/core/composition',
+        title: {
+          zh: '复合（Composition）',
+          en: 'Composition',
+        },
+        order: 13,
+      },
+      {
+        slug: 'options/plots/core/data',
+        title: {
+          zh: '数据（Data）',
+          en: 'Data',
+        },
+        order: 14,
       },
       {
         slug: 'options/plots/special',

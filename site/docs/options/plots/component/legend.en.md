@@ -14,28 +14,6 @@ The legend can be configured at the mark level:
     size: {},
   },
 });
-
-```
-
-```js
-{
-  "legend": {
-    "color": {},
-    "size": {}
-  }
-}
-```
-
-Legends can also be configured at the view level:
-
-```js
-({
-  legend: {
-    color: {},
-    size: {},
-  },
-});
-
 ```
 
 ## Mark Legend
@@ -54,7 +32,6 @@ Hide the legend of each channel:
 ({
   legend: { color: false }, // Hide the legend of the color channel
 });
-
 ```
 
 Hide multiple legends:
@@ -63,5 +40,6 @@ Hide multiple legends:
 ({
   legend: false,
 });
-
 ```
+
+More options about legend, see the document of [legend](/options/plots/component/legend).

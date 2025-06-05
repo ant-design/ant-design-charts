@@ -9,7 +9,7 @@ order: 2
 
 <img alt="growInX" src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*vhRVSLxDqU8AAAAAAAAAAABkARQnAQ" width="400" />
 
-```ts
+```js
 {
   "animate": {
     "enter": {

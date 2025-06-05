@@ -14,20 +14,6 @@ The scrollbar can be configured at the mark level:
     y: {},
   },
 });
-
-```
-
-
-The scrollbar can also be configured at the view level:
-
-```js
-({
-  scrollbar: {
-    x: {},
-    y: {},
-  },
-});
-
 ```
 
 ## Mark Scrollbar
@@ -37,3 +23,5 @@ In Ant Design Charts, each mark has its own scrollbar. If the scale correspondin
 ## View Scrollbar
 
 The scrollbar has transitivity. The scrollbar declared on the view will be passed to the `children` declared mark. If this mark has a corresponding channel scrollbar, it will merge; otherwise, it will not effect.
+
+More options about scrollbar, see the document of [scrollbar](/options/plots/component/scrollbar).

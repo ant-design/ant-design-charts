@@ -14,25 +14,7 @@ Titles can be configured at the level of mark:
     subtitle: 'world',
   },
 });
-
 ```
 
+More options about title, see the document of [title](/options/plots/component/title).
 
-Titles can also be configured at the level of view:
-
-```js
-({
-  title: {
-    title: 'hello',
-    subtitle: 'world',
-  },
-});
-
-```
-
-```js
-chart.title({ title: 'hello', subtitle: 'world' });
-
-```
-
-More options about title, see the API document of [title](/options/plots/component/title).

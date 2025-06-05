@@ -49,10 +49,43 @@ order: 2
 
 下面的示例展示了如何创建基本的密度图，展示不同物种的数据分布：
 
-```js
-{
-  "tooltip": false
-}
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      // 设置图表类型为密度图
+      data: {
+        type: 'fetch', // 指定数据类型为通过网络获取
+        value: 'https://assets.antv.antgroup.com/g2/species.json', // 设置数据的 URL 地址
+        transform: [
+          {
+            type: 'kde', // 使用核密度估计（KDE）进行数据转换
+            field: 'y', // 指定 KDE 计算的字段为 'y'
+            groupBy: ['x', 'species'], // 按 'x' 和 'species' 字段对数据进行分组
+            size: 20, // 生成 20 个数据点表示概率密度函数
+          },
+        ],
+      },
+      // 将 'x' 字段映射到 x 轴
+      xField: 'x',
+      // 将 'y' 字段映射到 y 轴
+      yField: 'y',
+      // 将 'species' 字段映射到颜色
+      colorField: 'species',
+      // 将 'size' 字段映射到图形大小
+      sizeField: 'size',
+      // 关闭图表的 tooltip 功能
+      tooltip: false
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 在这个示例中，我们将 `size` 参数设置为 20，比默认值 10 更大，从而获得更精细的密度曲线。
@@ -61,53 +94,54 @@ order: 2
 
 在极坐标系中使用 KDE 可以创建环形的小提琴图，为数据分布可视化提供新的视角：
 
-```js
-{
-  "autoFit": true,
-  "coordinate": {
-    "type": "polar"
-  },
-  "children": [
-    {
-      "type": "density",
-      "data": {
-        "transform": [
-          {
-            "type": "kde",
-            "field": "y",
-            "groupBy": [
-              "x",
-              "species"
-            ]
-          }
-        ]
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value: 'https://assets.antv.antgroup.com/g2/species.json',
       },
-      "encode": {
-        "x": "x",
-        "y": "y",
-        "series": "species",
-        "color": "species",
-        "size": "size"
-      },
-      "tooltip": false
-    },
-    {
-      "type": "boxplot",
-      "encode": {
-        "x": "x",
-        "y": "y",
-        "series": "species",
-        "color": "species",
-        "shape": "violin"
-      },
-      "style": {
-        "opacity": 0.5,
-        "strokeOpacity": 0.5,
-        "point": false
-      }
-    }
-  ]
-}
+      // 设置为极坐标系
+      coordinate: { type: 'polar' },
+      children: [
+        {
+          type: 'density', // 密度图组件
+          data: {
+            transform: [{ type: 'kde', field: 'y', groupBy: ['x', 'species'] }],
+          },
+          encode: {
+            x: 'x',
+            y: 'y',
+            series: 'species',
+            color: 'species',
+            size: 'size',
+          },
+          tooltip: false,
+        },
+        {
+          type: 'boxplot', // 箱线图组件，用于显示小提琴图
+          encode: {
+            x: 'x',
+            y: 'y',
+            series: 'species',
+            color: 'species',
+            shape: 'violin', // 设置形状为小提琴
+          },
+          style: { opacity: 0.5, strokeOpacity: 0.5, point: false },
+        },
+      ]
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 这个示例展示了如何将 KDE 与箱线图结合使用，创建小提琴图。在极坐标系中，小提琴图呈环形分布，提供了不同的视角来观察数据分布。
@@ -116,10 +150,43 @@ order: 2
 
 通过调整 KDE 的参数，可以控制密度估计的平滑程度和精度：
 
-```js
-{
-  "tooltip": false
-}
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      data: {
+        type: 'fetch',
+        value: 'https://assets.antv.antgroup.com/g2/species.json',
+        transform: [
+          {
+            type: 'kde',
+            field: 'y',
+            groupBy: ['x'],
+            size: 30, // 增加采样点数量，获得更精细的密度曲线
+            width: 3, // 增加带宽，使曲线更平滑
+            min: 0, // 指定处理范围的最小值
+            max: 8, // 指定处理范围的最大值
+            as: ['density_x', 'density_y'], // 自定义输出字段名
+          },
+        ],
+      },
+      xField: 'x',
+      // 使用自定义的输出字段
+      yField: 'density_x',
+      colorField: 'x',
+      // 使用自定义的输出字段
+      sizeField: 'density_y',
+      tooltip: false
+  };
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 这个示例展示了如何自定义 KDE 的各种参数：

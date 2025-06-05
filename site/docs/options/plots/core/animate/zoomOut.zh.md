@@ -9,7 +9,7 @@ order: 2
 
 <img alt="zoomOut" src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*PZ2gTrkV29YAAAAAAAAAAABkARQnAQ" width="400" />
 
-```ts
+```js
 {
   "animate": {
     "exit": {

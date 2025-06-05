@@ -23,23 +23,35 @@ order: 5
 ({
   inactive: { opacity: 0.5 },
 });
-
 ```
 
 <img alt="example" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*liG4Rq7bzmwAAAAAAAAAAAAADmJ7AQ/original" width="640">
 
-```ts
-{
-  "autoFit": true,
-  "state": {
-    "inactive": {
-      "stroke": "gray"
-    }
-  },
-  "interaction": {
-    "brushXHighlight": true
-  }
-}
+```js
+import { Scatter } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config ={
+      autoFit: true,
+      data: {
+        type: 'fetch',
+        value:
+          'https://gw.alipayobjects.com/os/basement_prod/6b4aa721-b039-49b9-99d8-540b3f87d339.json',
+      },
+      xField: 'height',
+      yField: 'weight',
+      colorField: 'gender',
+      state: { inactive: { stroke: 'gray' } },
+      interaction: { brushXHighlight: true }
+  };
+
+  return <Scatter {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
 
 ## 使用方式
@@ -52,7 +64,6 @@ order: 5
 ({
   interaction: { brushXHighlight: true },
 });
-
 ```
 
 第二种，传入 [配置项](#配置项) 对交互进行配置。
@@ -65,28 +76,18 @@ order: 5
     },
   },
 });
-
 ```
 
 ## 配置层级
 
 交互可以配置在 Mark 层级：
 
-```ts
+```js
 ({
   interaction: { brushXHighlight: true },
 });
-
 ```
 
-也可以配置在 View 层级，视图上声明的交互会传递给 `children` 声明的标记，如果该标记有声明对应的交互，就合并；否则不影响。
-
-```ts
-({
-  interaction: { brushXHighlight: true },
-});
-
-```
 
 ## 配置项
 
@@ -140,14 +141,13 @@ order: 5
     },
   },
 });
-
 ```
 
 ### maskHandle
 
 八个方向的 handle 的名字分别如下（按照东南西北命名），按照 `mask[handleName][styleAttribute]` 格式设置对应的属性，也可以通过 `maskHandleSize` 设置宽度。
 
-<img src="https://github.com/antvis/Ant Design Charts/assets/49330279/eb2d3951-7990-423c-97f3-e3a38b2baf68" width=640 alt="custom-style"/>
+<img src="https://github.com/antvis/G2/assets/49330279/eb2d3951-7990-423c-97f3-e3a38b2baf68" width=640 alt="custom-style"/>
 
 | 属性                          | 描述                                                                                                         | 类型                                    | 默认值    | 必选 |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------- | --------- | ---- |
@@ -182,7 +182,6 @@ chart.on('brush:highlight', (e) => {
   console.log(e.data.selection);
   console.log(e.nativeEvent);
 });
-
 ```
 
 ### 触发交互
@@ -194,17 +193,23 @@ chart.on('brush:highlight', (e) => {
 
 ```js
 chart.emit('brush:remove');
-
 chart.emit('brush:highlight', { data: { selection } });
-
 ```
 
 ## 示例
 
 ### 多视图图表联动
 
-```js
-(() => {
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
+
+const Demo = () => {
+
+  const config =```js | ob { autoMount: true }
+  import { Chart } from '@antv/g2';
+
   const container = document.createElement('div');
   const focusContainer = document.createElement('div');
   const contextContainer = document.createElement('div');
@@ -212,22 +217,24 @@ chart.emit('brush:highlight', { data: { selection } });
   container.append(contextContainer);
 
   function createPathRender(compute) {
-  return (group, options, document) => {
-    if (!group.handle) {
-      const path = document.createElement('path');
-      group.handle = path;
-      group.appendChild(group.handle);
-    }
-    const { handle } = group;
-    const { x, y, width, height, ...rest } = options;
-    if (width === undefined || height === undefined) return handle;
-    handle.attr({ ...compute(x, y, width, height), ...rest });
-    return handle;
-  };
-}
+    return (group, options, document) => {
+      if (!group.handle) {
+        const path = document.createElement('path');
+        group.handle = path;
+        group.appendChild(group.handle);
+      }
+      const { handle } = group;
+      const { x, y, width, height, ...rest } = options;
+      if (width === undefined || height === undefined) return handle;
+      handle.attr({ ...compute(x, y, width, height), ...rest });
+      return handle;
+    };
+  }
 
   // 渲染 focus 视图
-  const focus = new G2.Chart({
+
+  const focus = new Chart({
+    container: 'container',
     container: focusContainer,
     height: 360,
     paddingLeft: 50,
@@ -250,7 +257,9 @@ chart.emit('brush:highlight', { data: { selection } });
   focus.render();
 
   // 渲染 context 视图
-  const context = new G2.Chart({
+
+  const context = new Chart({
+    container: 'container',
     container: contextContainer,
     paddingLeft: 50,
     paddingTop: 0,
@@ -261,6 +270,7 @@ chart.emit('brush:highlight', { data: { selection } });
   context
     .area()
     .data({
+      type: 'fetch',
       value:
         'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
     })
@@ -318,5 +328,10 @@ chart.emit('brush:highlight', { data: { selection } });
   });
 
   return container;
-})();
+  ```;
+
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```

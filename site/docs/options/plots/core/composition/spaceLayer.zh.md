@@ -11,18 +11,20 @@ order: 2
 
 <img alt="spaceLayer" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*qPbkQb8c6F4AAAAAAAAAAAAADmJ7AQ/original" width="600" />
 
-```ts
+```js
 {
-  "attr": {
-    "paddingBottom": 200,
-    "paddingLeft": 400
-  },
-  "legend": false,
+  "colorField": "letter",
+  "yField": "frequency",
   "transform": [
     {
       "type": "stackY"
     }
   ],
+  "attr": {
+    "paddingBottom": 200,
+    "paddingLeft": 400
+  },
+  "legend": false,
   "coordinate": {
     "type": "theta"
   }
