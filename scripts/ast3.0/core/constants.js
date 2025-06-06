@@ -64,6 +64,8 @@ const PIPELINE = [
   { key: 'legend' },
   { key: 'interaction' },
   { key: 'style' },
+  { key: 'state' },
+  { key: 'viewStyle' },
   { key: 'call' },
   { key: 'attr' },
   { key: 'scale' },

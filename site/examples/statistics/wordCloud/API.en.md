@@ -1,1 +1,1 @@
-<embed src="@/docs/options/plots/common/overview.en.md"></embed>
+<embed src="@/docs/components/word-cloud.en.md"></embed>

@@ -86,9 +86,11 @@
   "sideEffects": false,
   "license": "MIT",
   "dependencies": {
+    "@babel/parser": "^7.27.5",
     "conventional-changelog-cli": "^5.0.0",
     "jest-environment-jsdom": "^29.7.0",
     "less-plugin-npm-import": "^2.1.0",
+    "recast": "^0.23.11",
     "remark-frontmatter": "^4.0.1",
     "remark-parse": "^10.0.2",
     "remark-stringify": "^10.0.3",

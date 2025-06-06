@@ -44,8 +44,14 @@ const isShape = (node) => {
  * @param {*} node
  */
 const isSpec = (node) => {
-  const { callee } = node;
-  return callee.type === 'MemberExpression' && callee.object.name === 'chart' && callee.property.name === 'options';
+  const { callee, arguments } = node;
+  return (
+    callee.type === 'MemberExpression' &&
+    callee.object.name === 'chart' &&
+    callee.property.name === 'options' &&
+    arguments.length === 1 &&
+    arguments[0].type === 'ObjectExpression'
+  );
 };
 
 /**
@@ -184,6 +190,10 @@ const getValue = (arguments, code = '') => {
   return arguments.value;
 };
 
+const replaceSign = (str) => {
+  return str.replace(/["|']?\-FN\-["|']?/g, '').replace(/(\s{0,2})?["|']?type["|']?:\s+["|'](\S+)["|'],\n/, '');
+};
+
 module.exports = {
   isNullExpression,
   isNewExpression,
@@ -199,4 +209,5 @@ module.exports = {
   isFetch,
   parseObjectFromCode,
   transformSign,
+  replaceSign,
 };

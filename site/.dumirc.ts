@@ -73,6 +73,13 @@ export default defineConfig({
         },
       },
       {
+        slug: 'docs/components',
+        title: {
+          zh: '图表组件',
+          en: 'Components',
+        },
+      },
+      {
         slug: 'examples',
         title: {
           zh: '图表示例',
@@ -90,79 +97,31 @@ export default defineConfig({
         order: 1,
       },
       {
-        slug: 'options/plots/component',
-        title: {
-          zh: '图表组件 - Component',
-          en: 'Component',
-        },
-        order: 2,
-      },
-      {
-        slug: 'options/plots/core',
-        title: {
-          zh: '核心概念 - Core',
-          en: 'Core',
-        },
-        order: 3
-      },
-      {
-        slug: 'options/plots/core/data',
-        title: {
-          zh: '数据（Data）',
-          en: 'Data',
-        },
-        order: 4,
-      },
-      {
-        slug: 'options/plots/core/scale',
-        title: {
-          zh: '比例尺（Scale）',
-          en: 'Scale',
-        },
-        order: 6,
-      },
-      {
-        slug: 'options/plots/core/transform',
-        title: {
-          zh: '转换（Transform）',
-          en: 'Transform',
-        },
-        order: 7,
-      },
-      {
-        slug: 'options/plots/core/coordinate',
-        title: {
-          zh: '坐标系（Coordinate）',
-          en: 'Coordinate',
-        },
-        order: 8,
-      },
-      {
-        slug: 'options/plots/core/animate',
-        title: {
-          zh: '动画（Animate）',
-          en: 'Animate',
-        },
-        order: 10,
-      },
-      {
-        slug: 'options/plots/core/interaction',
+        slug: 'options/plots/interaction',
         title: {
           zh: '交互（Interaction）',
           en: 'Interaction',
         },
+        order: 10,
+      },
+      {
+        slug: 'options/plots/scale',
+        title: {
+          zh: '比例尺（Scale）',
+          en: 'Scale',
+        },
         order: 13,
       },
       {
-        slug: 'options/plots/core/composition',
+        slug: 'options/plots/animate',
         title: {
-          zh: '复合（Composition）',
-          en: 'Composition',
+          zh: '动画（Animate）',
+          en: 'Animate',
         },
         order: 14,
       },
       {
-        slug: 'options/plots/core/theme',
+        slug: 'options/plots/theme',
         title: {
           zh: '主题（Theme）',
           en: 'Theme',
@@ -170,12 +129,12 @@ export default defineConfig({
         order: 15,
       },
       {
-        slug: 'options/plots/special',
+        slug: 'options/plots/data',
         title: {
-          zh: '专有配置 - Specal Plot',
-          en: 'Specal Plot',
+          zh: '数据（Data）',
+          en: 'Data',
         },
-        order: 10,
+        order: 16,
       },
       {
         slug: 'options/graphs',

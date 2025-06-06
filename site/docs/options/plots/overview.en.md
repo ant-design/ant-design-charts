@@ -14,7 +14,7 @@ Here's a simple example:
 
 The title provides a brief summary of the data displayed in the chart. It is a commonly used component and supports both main titles and subtitles, along with their style and positioning options.
 
-Refer to the [Title](/options/plots/component/title) tutorial for more information.
+Refer to the [Title](/options/plots/title) tutorial for more information.
 
 ## Axis
 
@@ -22,13 +22,13 @@ Draws the coordinate axes, currently supporting both Cartesian and polar coordin
 
 Each axis is composed of the axis line, ticks, tick labels, title, and grid lines.
 
-Refer to the [Axis](/options/plots/component/axis) tutorial for more information.
+Refer to the [Axis](/options/plots/axis) tutorial for more information.
 
 ## Legend
 
 Draws the legend, with Ant Design Charts offering two types: Category Legend and Continuous Legend, used for displaying categorical and continuous data, respectively.
 
-Refer to the [Legend](/options/plots/component/legend) tutorial for more information.
+Refer to the [Legend](/options/plots/legend) tutorial for more information.
 
 ## Scrollbar
 
@@ -36,7 +36,7 @@ The scrollbar is an interactive component that hides any overflow when the displ
 
 Whether content exceeds the display area depends on the amount of content and the size of the display area. When vertical content exceeds the display area, a vertical scrollbar should be used to control what is shown; the same logic applies to horizontal scrollbars.
 
-Refer to the [Scrollbar](/options/plots/component/scrollbar) tutorial for more information.
+Refer to the [Scrollbar](/options/plots/scrollbar) tutorial for more information.
 
 ## Slider
 
@@ -44,10 +44,10 @@ The slider is an auxiliary component for viewing data, compressing large volumes
 
 The slider compresses value-range data and is closely tied to the type of scale corresponding to the position channels x and y. Generally, it is used more frequently for time-based scales, less for continuous axes, and rarely for categorical axes.
 
-Refer to the [Slider](/options/plots/component/slider) tutorial for more information.
+Refer to the [Slider](/options/plots/slider) tutorial for more information.
 
 ## Tooltip
 
 When the mouse hovers over a point, a tooltip appears showing information related to that point, such as its value and data units. The tooltip's content can also be dynamically specified using a formatting function.
 
-Refer to the [Tooltip](/options/plots/component/tooltip) tutorial for more information.  
+Refer to the [Tooltip](/options/plots/tooltip) tutorial for more information.  

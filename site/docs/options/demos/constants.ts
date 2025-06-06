@@ -1,4 +1,4 @@
-export const URLS = ['/options/plots/special', '/options/graphs'];
+export const URLS = ['/components', '/options/graphs'];
 
 export const GRAPH_USAGES = [
   {
