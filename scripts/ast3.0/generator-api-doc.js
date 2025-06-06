@@ -5,7 +5,7 @@ const { parser } = require('./core');
 const { flow } = require('./flow');
 
 const relativePath = '../../..';
-const targetDir = 'ant-design-charts/site/docs/options/plots';
+const TARGET_DIR = 'ant-design-charts/site/docs/options/plots';
 const excludeFolder = ['core/mark', 'core/chart', 'core/transform', 'core/coordinate'];
 const excludeFiles = ['encode', 'view'];
 const paths = ['G2/site/docs/manual/core'];
@@ -19,7 +19,7 @@ const MAX_SPACE = 2;
  * @param {string[]} depth 路径深度数组
  * @description 递归扫描目录，调用 parser 方法解析代码，调用 docTemplate 方法生成代码模板
  */
-const scanDir = async (dir, depth = []) => {
+const scanDir = async (dir, depth = [], targetDir = TARGET_DIR) => {
   if (excludeFolder.some((item) => dir.includes(item))) {
     return;
   }
@@ -102,10 +102,10 @@ const scanDir = async (dir, depth = []) => {
   }
 };
 
-// scanDir(path.resolve(__dirname, './tests'));
+scanDir(path.resolve(__dirname, './tests'), [], './ant-design-charts');
 
-paths.forEach((sourceDir) => {
-  const sourcePath = path.resolve(__dirname, relativePath, sourceDir);
-  const depth = sourceDir.split('/').pop();
-  scanDir(sourcePath, [depth]);
-});
+// paths.forEach((sourceDir) => {
+//   const sourcePath = path.resolve(__dirname, relativePath, sourceDir);
+//   const depth = sourceDir.split('/').pop();
+//   scanDir(sourcePath, [depth]);
+// });

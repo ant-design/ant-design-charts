@@ -1,2 +1,1 @@
-<embed src="@/docs/options/plots/common/overview.en.md"></embed>
-<embed src="@/docs/options/plots/special/box.en.md"></embed>
+<embed src="@/docs/components/box.en.md"></embed>

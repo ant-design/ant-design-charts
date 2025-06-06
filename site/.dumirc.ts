@@ -43,7 +43,8 @@ export default defineConfig({
     showLanguageSwitcher: true, // 是否显示官网语言切换
     showWxQrcode: true, // 是否显示头部菜单的微信公众号
     showChartResize: true, // 是否在 demo 页展示图表视图切换
-    showAPIDoc: process.env.NODE_ENV === 'production', // 是否在 demo 页展示 API 说明
+    // showAPIDoc: process.env.NODE_ENV === 'production', // 是否在 demo 页展示 API 说明
+    showAPIDoc: true,
     links: true, // 是否显示links研发小蜜
     versions: {
       [version]: 'https://ant-design-charts.antgroup.com',
@@ -73,6 +74,13 @@ export default defineConfig({
         },
       },
       {
+        slug: 'docs/components',
+        title: {
+          zh: '图表组件',
+          en: 'Components',
+        },
+      },
+      {
         slug: 'examples',
         title: {
           zh: '图表示例',
@@ -90,76 +98,44 @@ export default defineConfig({
         order: 1,
       },
       {
-        slug: 'options/plots/component',
-        title: {
-          zh: '图表组件 - Component',
-          en: 'Component',
-        },
-        order: 2,
-      },
-      {
-        slug: 'options/plots/core',
-        title: {
-          zh: '核心概念 - Core',
-          en: 'Core',
-        },
-        order: 3
-      },
-      {
-        slug: 'options/plots/core/interaction',
+        slug: 'options/plots/interaction',
         title: {
           zh: '交互（Interaction）',
           en: 'Interaction',
         },
-        order: 1,
+        order: 10,
       },
       {
-        slug: 'options/plots/core/scale',
+        slug: 'options/plots/scale',
         title: {
           zh: '比例尺（Scale）',
           en: 'Scale',
         },
-        order: 10,
+        order: 13,
       },
       {
-        slug: 'options/plots/core/animate',
+        slug: 'options/plots/animate',
         title: {
           zh: '动画（Animate）',
           en: 'Animate',
         },
-        order: 11,
+        order: 14,
       },
       {
-        slug: 'options/plots/core/theme',
+        slug: 'options/plots/theme',
         title: {
           zh: '主题（Theme）',
           en: 'Theme',
         },
-        order: 12,
+        order: 15,
       },
       {
-        slug: 'options/plots/core/composition',
-        title: {
-          zh: '复合（Composition）',
-          en: 'Composition',
-        },
-        order: 13,
-      },
-      {
-        slug: 'options/plots/core/data',
+        slug: 'options/plots/data',
         title: {
           zh: '数据（Data）',
           en: 'Data',
         },
-        order: 14,
-      },
-      {
-        slug: 'options/plots/special',
-        title: {
-          zh: '专有配置 - Specal Plot',
-          en: 'Specal Plot',
-        },
-        order: 10,
+        order: 16,
       },
       {
         slug: 'options/graphs',
