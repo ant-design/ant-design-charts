@@ -5,6 +5,7 @@ usage: flow,relation
 title: Sankey 桑基图
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*fecqTpstXu0AAAAAAAAAAAAADmJ7AQ/original
 link: /examples#statistics-sankey
+order: 10
 ---
 
 桑基图 (`Sankey Diagram`)，是一种特定类型的流图，用于描述一组值到另一组值的流向。桑基图的特点如下：

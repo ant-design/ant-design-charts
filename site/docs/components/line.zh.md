@@ -5,5 +5,5 @@ usage: trend,time
 title: Line 折线图
 cover:   https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*EH-dTLnE4bcAAAAAAAAAAAAADmJ7AQ/original
 link: /examples#statistics-line
-order: 0
+order: 2
 ---

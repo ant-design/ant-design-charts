@@ -5,6 +5,7 @@ usage: comparison,distribution,relation
 title: Treemap 矩阵树图
 cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*T2zHS6J1cGMAAAAAAAAAAAAADmJ7AQ/original
 link: /examples#statistics-treemap
+order: 10
 ---
 
 矩阵树图根据每个节点的关联值递归地将空间划分为矩形，适用于展示带权的树形数据。
