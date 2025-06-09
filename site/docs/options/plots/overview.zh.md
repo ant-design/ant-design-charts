@@ -1,5 +1,5 @@
 ---
-title: 图表组成
+title: 图表概览
 order: 0
 ---
 
@@ -175,7 +175,7 @@ Ant Design Charts 内部对于图表显示区域设置了一个兜底机制，�
 
 #### autoFit
 
-如果希望图表的宽高和容器保持一致，那么可以将 `options.autoFit` 设置为 `true`，其优先级比指定宽高高。
+如果希望图表的宽高和容器保持一致，那么可以将 `options.autoFit` 设置为 `true`，其优先级低于指定宽高。
 
 
 #### viewStyle
@@ -298,4 +298,3 @@ Ant Design Charts 内部对于图表显示区域设置了一个兜底机制，�
 });
 
 ```
-

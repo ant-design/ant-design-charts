@@ -1,5 +1,5 @@
 ---
-title: Chart composition
+title: Chart overview
 order: 0
 ---
 
