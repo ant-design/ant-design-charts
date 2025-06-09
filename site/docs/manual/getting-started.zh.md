@@ -35,7 +35,7 @@ import { Line } from '@ant-design/charts';
 ```
 
 由于 @ant-design/charts 里面 externals 了 `react` 、`react-dom`，使用时需要通过 CDN 的方式在 `charts.min.js` 之前引入对应包的 CDN 地址。
- 
+
 ```ts
 // webpack.config.js
 externals: {
@@ -59,16 +59,27 @@ externals: {
 const { Line } = window.Charts;
 ```
 
+## 图表组成
+
+Ant Design Charts 只是一个空壳，里面实现非常爱单，大部分时间我们仅需安装对应依赖即可。
+
+```js
+export * from '@ant-design/graphs';
+export * from '@ant-design/plots';
+```
+
+<img alt="org.jpg" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*YEJgQo7uclsAAAAARuAAAAgAemJ7AQ/fmt.webp" />
 
 ## 快速使用
 
 在 Ant Design Charts 引入页面后，我们就已经做好了创建第一个图表的准备了，下面以一个基础折线图为例开始我们第一个图表的创建。大部分 demos 使用了父容器宽高，请确保父容器宽高或者手动设置图表宽高。
 
-```tsx | pure
+```js | ob { autoMount: true }
+import { Line } from '@ant-design/plots';
 import React from 'react';
-import { Line } from '@ant-design/charts';
+import { createRoot } from 'react-dom';
 
-const Page: React.FC = () => {
+const Demo = () => {
   const data = [
     { year: '1991', value: 3 },
     { year: '1992', value: 4 },
@@ -86,8 +97,12 @@ const Page: React.FC = () => {
     height: 400,
     xField: 'year',
     yField: 'value',
+    style: {
+      lineWidth: 2
+    }
   };
   return <Line {...config} />;
 };
-export default Page;
+
+createRoot(document.getElementById('container')).render(<Demo />);
 ```
