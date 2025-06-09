@@ -13,6 +13,14 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*EH-dTLnE4bcAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "smooth.js",
+      "title": {
+        "zh": "平滑折线图",
+        "en": "Smooth line plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*pWz1QKXbkB8AAAAAQcAAAAgAemJ7AQ/fmt.avif"
+    },
+    {
       "filename": "line-var-size.js",
       "title": {
         "zh": "变宽折线图",
@@ -83,6 +91,14 @@
         "en": "Set line style through callback"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*p1n4RI9YynkAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "area.js",
+      "title": {
+        "zh": "添加填充色",
+        "en": "Add fill color"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*JfCVTo1EtU4AAAAAQaAAAAgAemJ7AQ/fmt.avif"
     }
   ]
 }

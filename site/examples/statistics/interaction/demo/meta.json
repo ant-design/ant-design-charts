@@ -59,6 +59,22 @@
         "en": "Focus and Context"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*IwNsRKKyMlgAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "brush-filter.js",
+      "title": {
+        "zh": "刷选过滤",
+        "en": "Brush Filter"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*JTlAQrl8-fkAAAAAQ9AAAAgAemJ7AQ/fmt.avif"
+    },
+    {
+      "filename": "brush-reset.js",
+      "title": {
+        "zh": "重置刷选",
+        "en": "Brush Reset"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*UFXbSYj9UL0AAAAARTAAAAgAemJ7AQ/fmt.webp"
     }
   ]
 }
