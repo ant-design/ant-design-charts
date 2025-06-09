@@ -1,0 +1,16 @@
+{
+  "title": {
+    "zh": "中文分类",
+    "en": "Category"
+  },
+  "demos": [
+    {
+      "filename": "get-data-by-xy.js",
+      "title": {
+        "zh": "过去点击数据",
+        "en": "Get Data by XY"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*RHyqQaiL-ggAAAAAS1AAAAgAemJ7AQ/fmt.avif"
+    }
+  ]
+}
