@@ -59,17 +59,6 @@ externals: {
 const { Line } = window.Charts;
 ```
 
-## 图表组成
-
-Ant Design Charts 只是一个空壳，里面实现非常爱单，大部分时间我们仅需安装对应依赖即可。
-
-```js
-export * from '@ant-design/graphs';
-export * from '@ant-design/plots';
-```
-
-<img alt="org.jpg" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*YEJgQo7uclsAAAAARuAAAAgAemJ7AQ/fmt.webp" />
-
 ## 快速使用
 
 在 Ant Design Charts 引入页面后，我们就已经做好了创建第一个图表的准备了，下面以一个基础折线图为例开始我们第一个图表的创建。大部分 demos 使用了父容器宽高，请确保父容器宽高或者手动设置图表宽高。

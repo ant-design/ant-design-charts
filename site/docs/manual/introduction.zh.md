@@ -55,11 +55,3 @@ redirect_from:
     <img style="height: 100%" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*MUsJRaqx8BUAAAAAAAAAAAAADmJ7AQ/original" />
   </div>
 </div>
-
-<!-- <br />![image.png](https://gw.alipayobjects.com/zos/antfincdn/TcUwTMuNxI/0a9ac684-e862-4889-b783-e0a75a0e3138.png#align=left&display=inline&height=951&name=image.png&originHeight=1901&originWidth=2000&size=968667&status=done&style=none&width=1000) -->
-
-### 架构
-
-Ant Design Charts 目前已经集成了大量可视化组件，其它组件也在进一步完善中。
-
-<br />![image.png](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*THSzQoAZvz0AAAAAAAAAAAAADmJ7AQ/original)
