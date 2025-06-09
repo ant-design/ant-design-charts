@@ -1,1 +1,1 @@
-<embed src="@/docs/components/treemap.en.md"></embed>
+<embed src="@/docs/components/plots/treemap.en.md"></embed>

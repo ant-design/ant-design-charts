@@ -1,1 +1,1 @@
-<embed src="@/docs/components/box.en.md"></embed>
+<embed src="@/docs/components/plots/box.en.md"></embed>

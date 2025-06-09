@@ -1,1 +1,1 @@
-<embed src="@/docs/components/rose.zh.md"></embed>
+<embed src="@/docs/components/plots/rose.zh.md"></embed>

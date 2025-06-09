@@ -1,1 +1,1 @@
-<embed src="@/docs/components/radar.zh.md"></embed>
+<embed src="@/docs/components/plots/radar.zh.md"></embed>

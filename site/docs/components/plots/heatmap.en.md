@@ -7,4 +7,4 @@ cover: https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*oaJCT5yVPRsAAAAAAA
 order: 7
 ---
 
-<embed src="@/docs/components/heatmap.zh.md"></embed>
+<embed src="@/docs/components/plots/heatmap.zh.md"></embed>

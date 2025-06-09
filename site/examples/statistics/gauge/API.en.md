@@ -1,1 +1,1 @@
-<embed src="@/docs/components/gauge.en.md"></embed>
+<embed src="@/docs/components/plots/gauge.en.md"></embed>

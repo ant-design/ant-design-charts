@@ -66,13 +66,6 @@ export default defineConfig({
         },
       },
       {
-        slug: 'docs/options',
-        title: {
-          zh: '选项',
-          en: 'Options',
-        },
-      },
-      {
         slug: 'docs/components',
         title: {
           zh: '图表组件',
@@ -86,6 +79,13 @@ export default defineConfig({
           en: 'Examples',
         },
       },
+      {
+        slug: 'docs/options',
+        title: {
+          zh: '选项',
+          en: 'Options',
+        },
+      },
     ],
     docs: [
       {
@@ -93,6 +93,14 @@ export default defineConfig({
         title: {
           zh: '统计图表',
           en: 'Common Configuration Statistical Charts',
+        },
+        order: 1,
+      },
+      {
+        slug: 'components/plots',
+        title: {
+          zh: '统计图表',
+          en: 'Statistical Charts',
         },
         order: 1,
       },

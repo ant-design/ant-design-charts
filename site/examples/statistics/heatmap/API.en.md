@@ -1,1 +1,1 @@
-<embed src="@/docs/components/heatmap.en.md"></embed>
+<embed src="@/docs/components/plots/heatmap.en.md"></embed>

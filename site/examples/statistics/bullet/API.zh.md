@@ -1,1 +1,1 @@
-<embed src="@/docs/components/bullet.zh.md"></embed>
+<embed src="@/docs/components/plots/bullet.zh.md"></embed>

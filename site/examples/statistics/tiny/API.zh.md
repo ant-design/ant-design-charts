@@ -1,1 +1,1 @@
-<embed src="@/docs/components/tiny.zh.md"></embed>
+<embed src="@/docs/components/plots/tiny.zh.md"></embed>

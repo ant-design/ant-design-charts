@@ -46,7 +46,7 @@ redirect_from:
     <h5 style="text-align: center; margin: 0">关系图</h5>
   </div>
 </div>
-<div style="display: flex; width: 100%; max-height: 600px">
+<div style="display: flex; width: 100%;">
   <div style="flex: 1">
     <img style="height: 100%" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*yzh-S5AM5IEAAAAAAAAAAAAADmJ7AQ/original" />
   </div>

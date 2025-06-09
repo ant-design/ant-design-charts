@@ -1,1 +1,1 @@
-<embed src="@/docs/components/waterfall.en.md"></embed>
+<embed src="@/docs/components/plots/waterfall.en.md"></embed>

@@ -1,1 +1,1 @@
-<embed src="@/docs/components/stock.zh.md"></embed>
+<embed src="@/docs/components/plots/stock.zh.md"></embed>

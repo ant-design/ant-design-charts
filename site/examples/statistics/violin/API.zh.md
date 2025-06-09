@@ -1,1 +1,1 @@
-<embed src="@/docs/components/violin.zh.md"></embed>
+<embed src="@/docs/components/plots/violin.zh.md"></embed>

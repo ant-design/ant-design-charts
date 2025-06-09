@@ -1,1 +1,1 @@
-<embed src="@/docs/components/dual-axes.en.md"></embed>
+<embed src="@/docs/components/plots/dual-axes.en.md"></embed>

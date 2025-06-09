@@ -8,4 +8,4 @@ link: /examples#statistics-treemap
 order: 10
 ---
 
-<embed src="@/docs/components/treemap.zh.md"></embed>
+<embed src="@/docs/components/plots/treemap.zh.md"></embed>

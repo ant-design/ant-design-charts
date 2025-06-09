@@ -1,1 +1,1 @@
-<embed src="@/docs/components/scatter.en.md"></embed>
+<embed src="@/docs/components/plots/scatter.en.md"></embed>

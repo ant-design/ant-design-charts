@@ -1,1 +1,1 @@
-<embed src="@/docs/components/venn.en.md"></embed>
+<embed src="@/docs/components/plots/venn.en.md"></embed>
