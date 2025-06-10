@@ -82,13 +82,19 @@ body:
         pnpm install
         ```
 
-        5. 本地启动 site 站点
+        5. build lib
+
+        ```bash
+        pnpm run build:lib
+        ```
+
+        6. 本地启动 site 站点
 
         ```bash
         pnpm start
         ```
 
-        6. 优化文档并预览效果
+        7. 优化文档并预览效果
 
         - 对应文件位于 `site/docs/components/plots/xxx.zh.md` 和 `site/docs/components/graphs/xxx.zh.md`
         - 功能实现位于 `packages/xxx/xxx.ts`
