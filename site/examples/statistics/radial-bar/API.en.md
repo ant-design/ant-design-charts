@@ -1,1 +1,1 @@
-<embed src="@/docs/components/radial-bar.en.md"></embed>
+<embed src="@/docs/components/plots/radial-bar.en.md"></embed>

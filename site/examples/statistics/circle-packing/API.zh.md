@@ -1,1 +1,1 @@
-<embed src="@/docs/components/circle-packing.zh.md"></embed>
+<embed src="@/docs/components/plots/circle-packing.zh.md"></embed>

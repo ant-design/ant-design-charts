@@ -1,1 +1,1 @@
-<embed src="@/docs/components/scatter.zh.md"></embed>
+<embed src="@/docs/components/plots/scatter.zh.md"></embed>

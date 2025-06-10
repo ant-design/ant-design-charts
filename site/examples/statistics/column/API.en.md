@@ -1,1 +1,1 @@
-<embed src="@/docs/components/column.en.md"></embed>
+<embed src="@/docs/components/plots/column.en.md"></embed>

@@ -7,4 +7,4 @@ link: /examples#statistics-liquid
 order: 9
 ---
 
-<embed src="@/docs/components/liquid.zh.md"></embed>
+<embed src="@/docs/components/plots/liquid.zh.md"></embed>

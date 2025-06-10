@@ -8,4 +8,4 @@ link: /examples#statistics-radial-bar
 order: 21
 ---
 
-<embed src="@/docs/components/radial-bar.zh.md"></embed>
+<embed src="@/docs/components/plots/radial-bar.zh.md"></embed>

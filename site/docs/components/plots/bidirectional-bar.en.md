@@ -8,4 +8,4 @@ link: /examples#statistics-bidirectional-bar
 order: 10
 ---
 
-<embed src="@/docs/components/bidirectional-bar.zh.md"></embed>
+<embed src="@/docs/components/plots/bidirectional-bar.zh.md"></embed>

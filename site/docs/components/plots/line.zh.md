@@ -5,7 +5,7 @@ usage: trend,time
 title: Line 折线图
 cover:   https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*EH-dTLnE4bcAAAAAAAAAAAAADmJ7AQ/original
 link: /examples#statistics-line
-order: 0
+order: 1
 ---
 
 ## 简介
@@ -91,7 +91,7 @@ order: 0
 
 ## 方法
 
-详见[选项-方法](/options/plots/method)。
+详见[图表概览-图表方法](/components/plots/overview#图表方法)。
 
 ## 常见问题
 

@@ -1,1 +1,1 @@
-<embed src="@/docs/components/sankey.zh.md"></embed>
+<embed src="@/docs/components/plots/sankey.zh.md"></embed>

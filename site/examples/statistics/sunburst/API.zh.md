@@ -1,1 +1,1 @@
-<embed src="@/docs/components/sunburst.zh.md"></embed>
+<embed src="@/docs/components/plots/sunburst.zh.md"></embed>

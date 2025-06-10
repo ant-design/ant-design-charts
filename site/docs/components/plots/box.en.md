@@ -8,4 +8,4 @@ link: /examples#statistics-box
 order: 10
 ---
 
-<embed src="@/docs/components/box.zh.md"></embed>
+<embed src="@/docs/components/plots/box.zh.md"></embed>

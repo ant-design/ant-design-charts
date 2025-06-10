@@ -1,1 +1,1 @@
-<embed src="@/docs/components/pie.en.md"></embed>
+<embed src="@/docs/components/plots/pie.en.md"></embed>

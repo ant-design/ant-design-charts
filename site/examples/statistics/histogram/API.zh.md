@@ -1,1 +1,1 @@
-<embed src="@/docs/components/histogram.zh.md"></embed>
+<embed src="@/docs/components/plots/histogram.zh.md"></embed>

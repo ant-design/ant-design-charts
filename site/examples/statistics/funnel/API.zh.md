@@ -1,1 +1,1 @@
-<embed src="@/docs/components/funnel.zh.md"></embed>
+<embed src="@/docs/components/plots/funnel.zh.md"></embed>

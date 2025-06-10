@@ -1,1 +1,1 @@
-<embed src="@/docs/components/bidirectional-bar.en.md"></embed>
+<embed src="@/docs/components/plots/bidirectional-bar.en.md"></embed>

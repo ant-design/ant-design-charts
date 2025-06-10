@@ -8,4 +8,4 @@ link: /examples#statistics-radar
 order: 10
 ---
 
-<embed src="@/docs/components/radar.zh.md"></embed>
+<embed src="@/docs/components/plots/radar.zh.md"></embed>

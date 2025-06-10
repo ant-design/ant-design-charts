@@ -1,1 +1,1 @@
-<embed src="@/docs/components/area.zh.md"></embed>
+<embed src="@/docs/components/plots/area.zh.md"></embed>

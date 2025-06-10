@@ -8,4 +8,4 @@ link: /examples#statistics-sankey
 order: 10
 ---
 
-<embed src="@/docs/components/sankey.zh.md"></embed>
+<embed src="@/docs/components/plots/sankey.zh.md"></embed>
