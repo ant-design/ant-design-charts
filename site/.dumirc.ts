@@ -105,6 +105,14 @@ export default defineConfig({
         order: 1,
       },
       {
+        slug: 'components/graphs',
+        title: {
+          zh: '关系图组件',
+          en: 'Relation Graph Components',
+        },
+        order: 2,
+      },
+      {
         slug: 'options/plots/interaction',
         title: {
           zh: '交互（Interaction）',
@@ -143,14 +151,6 @@ export default defineConfig({
           en: 'Data',
         },
         order: 16,
-      },
-      {
-        slug: 'options/graphs',
-        title: {
-          zh: '关系图组件',
-          en: 'Relation Graph Components',
-        },
-        order: 2,
       },
     ],
     examples: [
