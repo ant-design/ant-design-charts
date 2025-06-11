@@ -13,6 +13,14 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*5u8UTb6iifcAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "background.js",
+      "title": {
+        "zh": "柱形图背景色",
+        "en": "Column plot background color"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*JmidTopluAYAAAAAQmAAAAgAemJ7AQ/fmt.avif"
+    },
+    {
       "filename": "color.js",
       "title": {
         "zh": "自定义柱状图颜色",
@@ -69,14 +77,6 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*PflbQJXr-WQAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
-      "filename": "bar-dodged.js",
-      "title": {
-        "zh": "分组条形图",
-        "en": "Dodged Bar Chart"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*3-WvRqW_iPUAAAAAAAAAAAAADmJ7AQ/original"
-    },
-    {
       "filename": "stacked.js",
       "title": {
         "zh": "堆叠柱形图",
@@ -99,6 +99,14 @@
         "en": "Show total label with annotations"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ZdrbR4mdg9sAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "group-padding.js",
+      "title": {
+        "zh": "分组柱状图",
+        "en": "Grouped Column plot"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*N3Q6TYd410QAAAAAQoAAAAgAemJ7AQ/fmt.avif"
     },
     {
       "filename": "dodge-padding.js",
