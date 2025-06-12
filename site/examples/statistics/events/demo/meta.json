@@ -19,6 +19,14 @@
         "en": "Get Data by XY on Area Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_0N2SaeLbK0AAAAAQmAAAAgAemJ7AQ/fmt.avif"
+    },
+    {
+      "filename": "click-legend.js",
+      "title": {
+        "zh": "点击图例",
+        "en": "Click Legend"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*bDLcQ4U77HoAAAAAQmAAAAgAemJ7AQ/fmt.webp"
     }
   ]
 }
