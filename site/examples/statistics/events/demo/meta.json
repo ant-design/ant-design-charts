@@ -7,10 +7,18 @@
     {
       "filename": "get-data-by-xy.js",
       "title": {
-        "zh": "过去点击数据",
+        "zh": "获取点击数据",
         "en": "Get Data by XY"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*RHyqQaiL-ggAAAAAS1AAAAgAemJ7AQ/fmt.avif"
+    },
+    {
+      "filename": "get-area-data.js",
+      "title": {
+        "zh": "获取面积图点击点数据",
+        "en": "Get Data by XY on Area Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_0N2SaeLbK0AAAAAQmAAAAgAemJ7AQ/fmt.avif"
     }
   ]
 }

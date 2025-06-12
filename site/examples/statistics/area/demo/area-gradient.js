@@ -11,6 +11,7 @@ const DemoArea = () => {
     },
     xField: (d) => new Date(d.date),
     yField: 'price',
+    shapeField: 'smooth',
     style: {
       fill: 'linear-gradient(-90deg, white 0%, darkgreen 100%)',
     },
