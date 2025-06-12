@@ -31,6 +31,7 @@ const DemoPie = () => {
     annotations: [
       {
         type: 'text',
+        data: [],
         style: {
           text: 'AntV\nCharts',
           x: '50%',

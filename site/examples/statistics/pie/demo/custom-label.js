@@ -12,11 +12,8 @@ const data = [
 ];
 
 const customLabel = (_, datum) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-    <div style={{ width: 8, height: 8, background: 'rgba(0,0,0,0.4)', borderRadius: '50%' }} />
-    <div>
-      {datum.type} : <b>{datum.value}</b>
-    </div>
+  <div style={{ color: '#fff', padding: 4 }}>
+    {datum.type} : <b>{datum.value}</b>
   </div>
 );
 
