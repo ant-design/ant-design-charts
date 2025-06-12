@@ -57,16 +57,18 @@ order: 1
 
 ## 配置项
 
+### 概览
+
 |配置项|说明|类型|默认值|
 |-----|---|----|-----|
 | data | [数据](/options/plots/data/overview) | Array | [] |
 | xField | 横轴字段 | string | - |
-| yField | 纵轴字段 | string | - |
+| yField | 纵轴字段 | string\|string[] | - |
 | seriesField | 多折线图区分字段 | string（可选） | - |
 | colorField | 和 seriesField 类似，不过会加上颜色通道，详见[color](/options/plots/color) | string（可选） | - |
 | shapeField | 绑定 line 标记的 shape 属性通道，改变图形标记的绘制形状 | `line \| smooth \| vh \| hv \| hvh \| trail` | line |
 | sizeField | 绑定 line 标记的 size 属性通道，改变图形标记的大小， 对于折线来说，size 视觉通道映射在线的宽度上 | string（可选） | - |
-| area | 开启面积图，配置和面积图基本一致，默认继承了 `Line` 的 `data` \| `xField` \| `yField` 等属性，同时关闭了 `tooltip`，通过 `style` 指定[绘图属性](/options/plots/style#绘图属性)。 | object(可选) | - |
+| area | 开启面积图，配置和[面积图](/components/plots/area)基本一致，默认继承了 `Line` 的 `data` \| `xField` \| `yField` 等属性，同时关闭了 `tooltip`，通过 `style` 指定[绘图属性](/options/plots/style#绘图属性)。 | object(可选) | - |
 | point | 标记，配置和 area 类似，也继承了上层的一些通用配置，通过 `shapeField` 指定[标记类型](/options/plots/legend#symbols-可选类型), 可通过 `sizeField` 指定标记大小，可以通过 `style` 指定[绘图属性](/options/plots/style#绘图属性)。 | object(可选) | - |
 | title | 用于指定图表的标题内容，详见[标题](/options/plots/title) | object（可选） | - |
 | axis | 用于建立数据与视觉位置的映射关系，详见[坐标轴](/options/plots/axis) | object（可选） | - |

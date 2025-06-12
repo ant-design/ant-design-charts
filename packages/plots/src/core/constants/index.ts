@@ -208,6 +208,7 @@ const EXTEND_KEYS = [
   'yField',
   'seriesField',
   'colorField',
+  'shapeField',
   'keyField',
   'positionField',
   'meta',

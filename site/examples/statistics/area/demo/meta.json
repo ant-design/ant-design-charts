@@ -13,6 +13,14 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ZxtyTrhyN4sAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "marker.js",
+      "title": {
+        "zh": "标记点面积图",
+        "en": "Area plot with markers"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_0N2SaeLbK0AAAAAQmAAAAgAemJ7AQ/fmt.avif"
+    },
+    {
       "filename": "missing-data-area.js",
       "title": {
         "zh": "数据缺失面积图",
@@ -31,8 +39,8 @@
     {
       "filename": "percentage-area.js",
       "title": {
-        "zh": "归一化堆积面积图",
-        "en": "Normalized Area, MaxIndex"
+        "zh": "百分比面积图",
+        "en": "Percentage Area Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*pC8lSIAE9g0AAAAAAAAAAAAADmJ7AQ/original"
     },
