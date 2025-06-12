@@ -12,7 +12,7 @@ const DemoBar = () => {
     yField: 'population',
     colorField: 'age',
     stack: true,
-    normalize: true,
+    percent: true,
     sort: {
       reverse: true,
       by: 'y',

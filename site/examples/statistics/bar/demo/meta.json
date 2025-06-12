@@ -45,12 +45,28 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*oDkdRodUnXwAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "group.js",
+      "title": {
+        "zh": "分组条形图",
+        "en": "Grouped Bar Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*g98_Sq4L9pYAAAAAQwAAAAgAemJ7AQ/fmt.avif"
+    },
+    {
       "filename": "gantt.js",
       "title": {
         "zh": "甘特图",
         "en": "Gantt Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*y260TK0A4UQAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "conversion-tag.js",
+      "title": {
+        "zh": "转化率条形图",
+        "en": "Conversion Rate Bar Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_z66TaKARl0AAAAAQmAAAAgAemJ7AQ/fmt.webp"
     }
   ]
 }
