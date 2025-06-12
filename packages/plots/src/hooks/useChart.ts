@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { isFunction, isEqual, get, createNode, cloneDeep, isArray, isObject, isValidElement } from '../util';
+import { isFunction, isEqual, createNode, cloneDeep, isArray, isObject, isValidElement } from '../util';
 import { CommonConfig, Chart } from '../interface';
 
 export default function useChart<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
