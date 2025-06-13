@@ -22,6 +22,7 @@ const DemoDualAxes = () => {
         },
       },
     },
+    scale: { y: { domainMax: 10 } },
     children: [
       {
         type: 'interval',

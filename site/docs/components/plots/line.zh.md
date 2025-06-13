@@ -108,3 +108,17 @@ scale: {
   }
 },
 ```
+
+2. 如何让坐标轴文本自动旋转并换行
+
+<img alt="line-1.jpg" width=600 src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*9l6xQLtRMM0AAAAAQIAAAAgAemJ7AQ/fmt.webp" />
+
+```js
+axis: {
+  x: {
+    size: 100,
+    labelAutoRotate: true,
+    labelAutoWrap: true
+  }
+},
+```
