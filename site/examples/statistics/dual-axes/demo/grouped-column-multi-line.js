@@ -36,6 +36,22 @@ const DemoDualAxes = () => {
 
   const config = {
     xField: 'time',
+    tooltip: {
+      items: [
+        (item) => {
+          if (item.name) {
+            return {
+              name: item.name,
+              value: item.count,
+            };
+          }
+          return {
+            name: item.type,
+            value: item.value,
+          };
+        },
+      ],
+    },
     children: [
       {
         data: uvBillData,
