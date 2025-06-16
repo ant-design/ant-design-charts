@@ -1,3 +1,19 @@
+# [2.5.0](https://github.com/ant-design/ant-design-charts/compare/2.3.0...2.5.0) (2025-06-16)
+
+
+### Bug Fixes
+
+* ref unable to obtain chart instance ([#2918](https://github.com/ant-design/ant-design-charts/issues/2918)) ([769755e](https://github.com/ant-design/ant-design-charts/commit/769755e62417426b9700218cf344e89bbe97e1f9))
+* The legend display of the Veen chart is abnormal ([#2910](https://github.com/ant-design/ant-design-charts/issues/2910)) ([1f7d155](https://github.com/ant-design/ant-design-charts/commit/1f7d155fbe86f5aee375e75c89bf0114ff0336fd))
+* [Bug]: 在暗色模式的主题下，图标出在loading状态的时候，背景是白色的，非常刺眼 [#2914](https://github.com/ant-design/ant-design-charts/issues/2914)
+
+### Features
+
+* **ConfigProvider:** support global configuration ([#2921](https://github.com/ant-design/ant-design-charts/issues/2921)) ([6a972a4](https://github.com/ant-design/ant-design-charts/commit/6a972a4eb4c25d37df4e18047ed6bef58b16349f))
+* loading template theme support ([#2920](https://github.com/ant-design/ant-design-charts/issues/2920)) ([34f1900](https://github.com/ant-design/ant-design-charts/commit/34f1900c08e24d4bb5777078a7383f57e1d094fd))
+
+
+
 # [2.4.0](https://github.com/ant-design/ant-design-charts/compare/2.2.1...2.4.0) (2025-05-14)
 
 
