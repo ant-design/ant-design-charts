@@ -19,6 +19,22 @@
         "en": "Gauge Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*VSrGTYrM954AAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "custom-style.js",
+      "title": {
+        "zh": "自定义仪表盘风格",
+        "en": "Custom Gauge Chart Style"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*rEH1R622m88AAAAAQmAAAAgAemJ7AQ/fmt.avif"
+    },
+    {
+      "filename": "custom-pointer.js",
+      "title": {
+        "zh": "自定义指针",
+        "en": "Custom Pointer"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*F7gPRqPPXdgAAAAAQVAAAAgAemJ7AQ/fmt.webp"
     }
   ]
 }
