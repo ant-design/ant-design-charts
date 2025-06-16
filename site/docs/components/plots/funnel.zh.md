@@ -47,7 +47,7 @@ order: 6
 | xField | 横轴字段 | string | - |
 | yField | 纵轴字段 | string \| string[] | - |
 | shapeField | 阶梯形状 | `funnel` \| `pyramid` | funnel |
-| compareField | 是否开启镜像对比 | boolean | false |
+| compareField | 对比字段。声明此字段时会自动渲染为对比漏斗图 | string | - |
 | isTransposed | 漏斗图布局是否转置 | boolean | false |
 | title | 用于指定图表的标题内容，详见[标题](/options/plots/title) | object（可选） | - |
 | legend | 图表的辅助元素，使用颜色、大小、形状区分不同的数据类型，用于图表中数据的筛选，详见[图例](/options/plots/legend) | object（可选） | - |
