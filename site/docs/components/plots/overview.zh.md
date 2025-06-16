@@ -207,48 +207,6 @@ const DemoChangeData = () => {
 
 ## 图表布局
 
-### 使用方式
-
-不管是单视图图表还是多视图图表，布局信息（图表宽高等）都可以在选项顶层进行指定。
-
-```js
-const markLevel = {
-  width: 640,
-  height: 180,
-  margin: 10,
-};
-
-const viewLevel = {
-  type: 'view',
-  width: 640,
-  height: 180,
-  margin: 10,
-  // ...
-};
-
-const compositionLevel = {
-  type: 'spaceFlex',
-  width: 640,
-  height: 180,
-  margin: 10,
-};
-
-```
-
-同时，也可以在初始化 `Chart` 对象的时候指定：
-
-
-也可以通过 `node.attr` 指定：
-
-```js
-{
-  "attr": {
-    "margin": 20,
-    "padding": 10
-  }
-}
-```
-
 ### 视图模型
 
 <img alt="chart-component" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*tFaaTbBg-_cAAAAAAAAAAAAAemJ7AQ/original" width=900/>
@@ -292,7 +250,7 @@ Ant Design Charts 在内部自己实现了一套布局算法，负责协调外�
 
 Ant Design Charts 内部对于图表显示区域设置了一个兜底机制，当视图中存在标记元素（如`line`、`interval`等），触发防挤压机制，来确保图表的主区域（Main Area）最小占比 **1/4** 。以水平方向为例，假设绘制区域的大小为 `plotWidth`，如果 `plotWidth` 减去动态计算后的左内边距 `pl0` 和 右内边距 `pr0` 后小于 `plotWidth * 1/4` 时，会优先保证主区域大小为 `plotWidth * 1/4`，将内边距等比例缩小，当用户指定 `paddingLeft` 时会动态计算 `paddingRight` 的大小，按比例分配剩余空间，尽量避免左右外边距同时设置为固定值，可能会导致自适应算法失效。垂直方向的计算规则同理。
 
-### 配置项
+### 通用配置项
 
 | 属性          | 描述                                           | 类型                    | 默认值                       | 必选 |
 | ------------- | ---------------------------------------------- | ----------------------- | ---------------------------- | ---- |

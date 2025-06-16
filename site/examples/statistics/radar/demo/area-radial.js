@@ -5,8 +5,6 @@ import { createRoot } from 'react-dom';
 const DemoRadar = () => {
   const config = {
     autoFit: false,
-    width: 954,
-    height: 954,
     data: {
       type: 'fetch',
       value: 'https://assets.antv.antgroup.com/g2/seasonal-weather.json',

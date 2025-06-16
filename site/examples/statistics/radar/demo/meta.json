@@ -10,7 +10,23 @@
         "zh": "基础雷达图",
         "en": "Basic Radar"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*okGTT7D7fBEAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*4hmoSL4PlgsAAAAAQkAAAAgAemJ7AQ/fmt.avif"
+    },
+    {
+      "filename": "grid.js",
+      "title": {
+        "zh": "带网格",
+        "en": "Grid Radar"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*KSGXSr7E-2IAAAAAQ2AAAAgAemJ7AQ/fmt.webp"
+    },
+    {
+      "filename": "background.js",
+      "title": {
+        "zh": "带底色",
+        "en": "Background Radar"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*I7RoR7ma9tUAAAAARDAAAAgAemJ7AQ/fmt.webp"
     },
     {
       "filename": "radar.js",
@@ -21,18 +37,10 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*6QupRa5exboAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
-      "filename": "parallel-radar.js",
-      "title": {
-        "zh": "雷达图(雷达图特殊极坐标 radar)",
-        "en": "Radar (coordinate radar)"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*4sqyTZUFCNkAAAAAAAAAAAAADmJ7AQ/original"
-    },
-    {
       "filename": "area-radial.js",
       "title": {
-        "zh": "径向面积图",
-        "en": "Radial Area Chart"
+        "zh": "径向雷达图",
+        "en": "Radial Radar Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*-m-2QolJUt0AAAAAAAAAAAAADmJ7AQ"
     }
