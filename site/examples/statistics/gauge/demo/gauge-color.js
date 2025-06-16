@@ -4,8 +4,6 @@ import { createRoot } from 'react-dom';
 
 const DemoGauge = () => {
   const config = {
-    width: 720,
-    height: 720,
     autoFit: true,
     data: {
       target: 159,
@@ -13,7 +11,6 @@ const DemoGauge = () => {
       name: 'score',
       thresholds: [100, 200, 400],
     },
-    legend: false,
     scale: {
       color: {
         range: ['#F4664A', '#FAAD14', 'green'],
