@@ -3,25 +3,20 @@ import React from 'react';
 import { createRoot } from 'react-dom';
 
 const data = [
-  { name: 'G2', star: 10371 },
-  { name: 'G6', star: 7380 },
-  { name: 'F2', star: 7414 },
-  { name: 'L7', star: 2140 },
-  { name: 'X6', star: 660 },
-  { name: 'AVA', star: 885 },
-  { name: 'G2Plot', star: 1626 },
+  { name: 'G2', star: 12328 },
+  { name: 'G6', star: 11536 },
+  { name: 'F2', star: 7937 },
+  { name: 'L7', star: 3831 },
+  { name: 'X6', star: 6068 },
+  { name: 'AVA', star: 1411 },
+  { name: 'Ant Deisgn Charts', star: 2024 },
 ];
 
 const DemoRadar = () => {
   const config = {
-    data: data.map((d) => ({ ...d, star: Math.sqrt(d.star) })),
+    data,
     xField: 'name',
     yField: 'star',
-    area: {
-      style: {
-        fillOpacity: 0.2,
-      },
-    },
     scale: {
       x: {
         padding: 0.5,
@@ -32,15 +27,12 @@ const DemoRadar = () => {
       },
     },
     axis: {
-      x: {
-        title: false,
-        grid: true,
-      },
       y: {
-        gridAreaFill: 'rgba(0, 0, 0, 0.04)',
-        label: false,
-        title: false,
+        labelFormatter: (v) => `${v / 1000} K`,
       },
+    },
+    style: {
+      lineWidth: 2,
     },
   };
   return <Radar {...config} />;
