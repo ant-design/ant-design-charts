@@ -4,8 +4,6 @@ import { createRoot } from 'react-dom';
 
 const DemoWordCloud = () => {
   const config = {
-    width: 1000,
-    height: 400,
     autoFit: false,
     data: {
       type: 'fetch',

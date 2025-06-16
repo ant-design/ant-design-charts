@@ -4,7 +4,6 @@ import { createRoot } from 'react-dom';
 
 const DemoWordCloud = () => {
   const config = {
-    paddingTop: 40,
     data: {
       type: 'fetch',
       value: 'https://assets.antv.antgroup.com/g2/philosophy-word.json',
