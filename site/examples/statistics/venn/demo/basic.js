@@ -13,7 +13,6 @@ const DemoVenn = () => {
       { sets: ['B', 'C'], size: 2, label: 'B&C' },
       { sets: ['A', 'B', 'C'], size: 1 },
     ],
-    setsField: 'sets',
     sizeField: 'size',
     style: { fillOpacity: 0.85 },
     label: {

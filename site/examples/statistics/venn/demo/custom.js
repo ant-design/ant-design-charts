@@ -33,14 +33,28 @@ const DemoVenn = () => {
         return `${datum.size}`;
       },
     },
+    tooltip: {
+      title: false,
+      items: [
+        (d) => {
+          return { name: d.key, value: d.size };
+        },
+      ],
+    },
     interaction: {
       tooltip: {
         // render 回调方法返回一个innerHTML 或者 DOM
         render: (event, { title, items }) => {
-          return `<div>
-          <h3 style="padding:0;margin:0">title:${title}</h3>
-          <ul>${items.map((d) => `<li><span style="color: ${d.color}">${d.name}</span> ${d.value}</li>`)}</ul>
-          </div>`;
+          return (
+            <div>
+              {items.map((d) => (
+                <p key={d.name} style={{ margin: 0 }}>
+                  <span>{d.name}</span>
+                  <span style={{ color: d.color }}> {d.value}</span>{' '}
+                </p>
+              ))}
+            </div>
+          );
         },
       },
     },
