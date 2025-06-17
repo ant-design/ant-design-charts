@@ -51,7 +51,7 @@ order: 5
 | data | [数据](/options/plots/data/overview) | Array | [] |
 | xField | 横轴字段 | string | - |
 | yField | 纵轴字段 | string \| string[] | - |
-| sizeField | 大小映射通道 | string \| number（可选） | - |
+| sizeField | 大小、大小映射通道 | string \| number（可选） | - |
 | colorField | 颜色映射通道，详见[color](/options/plots/color) | string（可选） | - |
 | shapeField | shape 属性通道，改变图形标记的[绘制形状](/options/plots/legend#symbols-可选类型) | 'point' |
 | line | 开启折线图，一般用于绘制辅助线，配置和[折线图](/components/plots/line)基本一致，默认继承了 `Scatter` 的 `data` \| `xField` \| `yField` 等属性，同时关闭了 `tooltip`，通过 `style` 指定[绘图属性](/options/plots/style#绘图属性)。 | object(可选) | - |
