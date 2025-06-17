@@ -1,7 +1,10 @@
 # .github/workflows/answer-discussions.yml
 name: Answer Discussions
+
 on:
-  discussion_created:
+  discussion:
+    types: [created]
+
 jobs:
   answer:
     runs-on: ubuntu-latest
