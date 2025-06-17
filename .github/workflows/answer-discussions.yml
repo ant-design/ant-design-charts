@@ -19,9 +19,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install openai PyGithub
+          pip install requests azure-ai-inference azure-core
       - name: Answer discussion
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}  # GitHub PAT
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: python scripts/answer_discussion.py ${{ github.event.discussion.node_id }}
+        run: python scripts/answer_discussion.py ${{ github.event.discussion.id }}
