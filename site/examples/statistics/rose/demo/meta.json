@@ -27,6 +27,30 @@
         "en": "Rose Chart, Label"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*Cx8zT7vT5bUAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "nightingale-rose.js",
+      "title": {
+        "zh": "南丁格尔玫瑰图",
+        "en": "Nightingale Rose Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*dHw7RYx7V3cAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "donut-rose.js",
+      "title": {
+        "zh": "南丁格尔玫瑰环图",
+        "en": "Nightingale Rose Donut Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FZtzRbGNkRMAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "wind-rose.js",
+      "title": {
+        "zh": "风向图",
+        "en": "Wind Rose"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*pu1LTrmzMyUAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
