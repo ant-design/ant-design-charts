@@ -21,8 +21,6 @@ const DemoBox = () => {
     xField: 'x',
     yField: 'y',
     colorField: 'x',
-    // 默认 boxType 为 box, box 预处理, boxplot 非预处理
-    boxType: 'box',
     legend: false,
     style: {
       stroke: 'black',
