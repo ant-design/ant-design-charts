@@ -29,6 +29,14 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*LJi6RaswKdkAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
+      "filename": "reflect.js",
+      "title": {
+        "zh": "反射条形图",
+        "en": "Reflected Bar Chart"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*Ah0RRpZkOiAAAAAAQyAAAAgAemJ7AQ/fmt.webp"
+    },
+    {
       "filename": "normalized-stacked.js",
       "title": {
         "zh": "归一化条形图",

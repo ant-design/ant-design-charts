@@ -46,6 +46,10 @@ conversionTag: {
 
 <Playground path="/statistics/bar/demo/conversion-tag.js" rid="bar-conversion-tag"></playground>
 
+### 反射条形图
+
+<Playground path="/statistics/bar/demo/reflect.js" rid="bar-reflect"></playground>
+
 ### 甘特图
 
 通过 `group: true` 实现，可配置为对象调整分组间距离。
