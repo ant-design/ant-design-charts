@@ -24,4 +24,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}  # GitHub PAT
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: python scripts/answer_discussion.py ${{ github.event.discussion.id }}
+        run: python scripts/answer_discussion.py ${{ github.event.discussion.node_id }}

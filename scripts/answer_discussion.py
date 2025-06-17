@@ -35,7 +35,7 @@ def answer_question(question):
 
 def get_discussion(gh, repo_name, discussion_id):
     repo = gh.get_repo(repo_name)
-    return repo.get_discussion(int(discussion_id))
+    return repo.get_discussion(discussion_id)
 
 
 def post_answer(discussion, answer):
