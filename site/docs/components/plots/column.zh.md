@@ -77,7 +77,6 @@ conversionTag: {
 | stack | 柱状图是否堆叠 | boolean\|[Stack](#stack) | false |
 | group | 柱状图是否分组 | boolean\|[Group](#group) | false |
 | percent | 堆叠状态下柱状图是否百分比展示 | boolean | false |
-| group | 柱状图是否分组 | boolean\|[Group](#group) | false |
 | conversionTag | 转化率配置 | [conversionTag](#conversiontag) | - |
 | markBackground | 元素背景配置，和配置柱子无区别，可以看做是放置于底层的 Column 组件，需要配置 `scale.y.domain` 才能生效 | [MarkBackground](#markBackground) | - |
 | title | 用于指定图表的标题内容，详见[标题](/options/plots/title) | object（可选） | - |
