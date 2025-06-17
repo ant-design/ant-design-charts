@@ -3,19 +3,19 @@ import React from 'react';
 import { createRoot } from 'react-dom';
 
 const DemoProgress = () => {
-  const progress = 0.7;
+  const percent = 0.7;
 
   const config = {
     width: 480,
     height: 60,
     autoFit: false,
-    percent: progress,
+    percent,
     color: ['#0f0f0f', '#85f231'],
     annotations: [
       {
         type: 'text',
         style: {
-          text: `${progress * 100}%`,
+          text: `${percent * 100}%`,
           x: '50%',
           y: '50%',
           textAlign: 'center',
