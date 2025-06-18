@@ -1,11 +1,11 @@
 import { flow, transformOptions, set } from '../../utils';
 import { mark } from '../../adaptor';
-import type { Adaptor } from '../../types';
+import type { Adaptor, PrimitiveEncodeSpec } from '../../types';
 import type { ViolinOptions } from './type';
 
 type Params = Adaptor<ViolinOptions>;
 
-function withField(field1: unknown, field2: unknown) {
+function withField(field1: PrimitiveEncodeSpec, field2: PrimitiveEncodeSpec) {
   if (field1) return field1;
   return field2;
 }
