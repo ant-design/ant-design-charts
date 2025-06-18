@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom';
 
 const DemoViolin = () => {
   const config = {
-    violinType: 'density',
+    boxplot: true,
     data: {
       type: 'fetch',
       value: 'https://assets.antv.antgroup.com/g2/species.json',

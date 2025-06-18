@@ -4,13 +4,14 @@ import { createRoot } from 'react-dom';
 
 const DemoViolin = () => {
   const config = {
-    violinType: 'polar',
     data: {
       type: 'fetch',
       value: 'https://assets.antv.antgroup.com/g2/species.json',
     },
     xField: 'x',
     yField: 'y',
+    coordinateType: 'polar',
+    boxplot: true,
     seriesField: 'species',
   };
   return <Violin {...config} />;
