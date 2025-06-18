@@ -9,7 +9,6 @@ const DemoCirclePackingLabel = () => {
       value: 'https://assets.antv.antgroup.com/g2/flare.json',
     },
     valueField: 'value',
-    colorField: 'depth',
     scale: {
       color: {
         domain: [0, 5],
