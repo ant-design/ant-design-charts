@@ -21,6 +21,9 @@ export class CirclePacking extends Plot<CirclePackingOptions> {
       children: [
         {
           type: 'pack',
+          encode: {
+            color: 'depth',
+          }
         },
       ],
     };
