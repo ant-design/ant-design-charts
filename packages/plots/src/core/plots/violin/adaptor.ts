@@ -44,13 +44,13 @@ export function adaptor(params: Params) {
               : item.data,
         };
       })
-      .filter((item) => options.boxplot || item.type === 'density');
+      .filter((item) => options.box || item.type === 'density');
     set(options, 'children', newChildren);
     if (coordinateType === 'polar') {
       set(options, 'coordinate', { type: 'polar' });
     }
     // 删除底层不消费的字段。
-    delete options.boxplot;
+    delete options.box;
     delete options.coordinateType;
 
     return params;

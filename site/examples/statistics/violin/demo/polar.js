@@ -11,7 +11,7 @@ const DemoViolin = () => {
     xField: 'x',
     yField: 'y',
     coordinateType: 'polar',
-    boxplot: true,
+    box: true,
     seriesField: 'species',
   };
   return <Violin {...config} />;

@@ -40,7 +40,7 @@ order: 13
 | yField | 纵轴字段 | string \| string[] | - |
 | seriesField | 分组字段 | string（可选） | - |
 | colorField | 颜色映射字段，详见[color](/options/plots/color) | string（可选） | - |
-| boxplot | 是否叠加 boxplot 图形 | boolean | false |
+| box | 是否叠加 boxplot 图形 | boolean | false |
 | coordinateType | 坐标系类型，支持直角坐标和极坐标 | cartesian \| polar | cartesian |
 | title | 用于指定图表的标题内容，详见[标题](/options/plots/title) | object（可选） | - |
 | legend | 图表的辅助元素，使用颜色、大小、形状区分不同的数据类型，用于图表中数据的筛选，详见[图例](/options/plots/legend) | object（可选） | - |
