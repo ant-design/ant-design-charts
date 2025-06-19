@@ -1,4 +1,4 @@
-import { flow, transformOptions } from '../../utils';
+import { flow, dataTransform, transformOptions } from '../../utils';
 import type { Adaptor } from '../../types';
 import type { CirclePackingOptions } from './type';
 
@@ -9,5 +9,5 @@ type Params = Adaptor<CirclePackingOptions>;
  * @param options
  */
 export function adaptor(params: Params) {
-  return flow(transformOptions)(params);
+  return flow(dataTransform, transformOptions)(params);
 }

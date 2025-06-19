@@ -1,5 +1,4 @@
-import { flow, transformOptions } from '../../utils';
-
+import { flow, transformOptions, dataTransform } from '../../utils';
 import type { Adaptor } from '../../types';
 import type { SunburstOptions } from './type';
 
@@ -10,12 +9,6 @@ type Params = Adaptor<SunburstOptions>;
  * @param options
  */
 export function adaptor(params: Params) {
-  /**
-   * 图表差异化处理
-   */
-  const init = (params: Params) => {
-    return params;
-  };
 
-  return flow(init, transformOptions)(params);
+  return flow(dataTransform, transformOptions)(params);
 }
