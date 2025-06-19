@@ -53,14 +53,6 @@
       "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*A1N1SbupvX8AAAAAAAAAAAAADmJ7AQ"
     },
     {
-      "filename": "point-jitter.js",
-      "title": {
-        "zh": "扰动散点图",
-        "en": "Jitter Scatterplot"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*PowVRZQkoZUAAAAAAAAAAAAADmJ7AQ/original"
-    },
-    {
       "filename": "point-stacked.js",
       "title": {
         "zh": "堆叠散点图",
@@ -83,22 +75,6 @@
         "en": "Log Scatterplot"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*y5UsRqFxILMAAAAAAAAAAAAADmJ7AQ/original"
-    },
-    {
-      "filename": "point-aggregated.js",
-      "title": {
-        "zh": "聚合气泡图",
-        "en": "Aggregated Bubble Chart"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*TXB6R7tfCOUAAAAAAAAAAAAADmJ7AQ/original"
-    },
-    {
-      "filename": "point-dot.js",
-      "title": {
-        "zh": "点图",
-        "en": "Dot Plot"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*RtalTb-DPdkAAAAAAAAAAAAADmJ7AQ"
     },
     {
       "filename": "line.js",

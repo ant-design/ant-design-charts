@@ -37,14 +37,6 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*Q1EUTYNZMxUAAAAAQmAAAAgAemJ7AQ/fmt.webp"
     },
     {
-      "filename": "dual-aggregated-line-area.js",
-      "title": {
-        "zh": "聚合线面双轴图",
-        "en": "Aggregated Dual Line And Area Chart"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/mdn/huamei_qa8qxu/afts/img/A*J-lVRamRfgUAAAAAAAAAAAAADmJ7AQ"
-    },
-    {
       "filename": "pareto.js",
       "title": {
         "zh": "帕累托图",

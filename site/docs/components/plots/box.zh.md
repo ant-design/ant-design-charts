@@ -97,6 +97,7 @@ p12         p11           p13
 | seriesField | 多折线图区分字段 | string（可选） | - |
 | colorField | 和 seriesField 类似，不过会加上颜色通道，详见[color](/options/plots/color) | string（可选） | - |
 | boxType | 标记类型，可选值为 `box` 和 `boxplot`。 `box` 是原子标记，需要开发者手动指定 5 个统计点的数据; `boxplot` 是高阶标记，自带数据分组和数据统计聚合功能； | box \| boxplot | `box` |
+| transpose | 是否开启坐标转置 | boolean | - |
 | title | 用于指定图表的标题内容，详见[标题](/options/plots/title) | object（可选） | - |
 | axis | 用于建立数据与视觉位置的映射关系，详见[坐标轴](/options/plots/axis) | object（可选） | - |
 | legend | 图表的辅助元素，使用颜色、大小、形状区分不同的数据类型，用于图表中数据的筛选，详见[图例](/options/plots/legend) | object（可选） | - |

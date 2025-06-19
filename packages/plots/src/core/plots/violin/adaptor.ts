@@ -20,7 +20,7 @@ export function adaptor(params: Params) {
    */
   const customTransform = (params: Params) => {
     const { options } = params;
-    const { xField, yField, colorField, seriesField, coordinateType, children } = options;
+    const { xField, yField, colorField, seriesField, children } = options;
 
     const newChildren = children
       ?.map((item) => {
@@ -46,12 +46,9 @@ export function adaptor(params: Params) {
       })
       .filter((item) => options.box || item.type === 'density');
     set(options, 'children', newChildren);
-    if (coordinateType === 'polar') {
-      set(options, 'coordinate', { type: 'polar' });
-    }
+
     // 删除底层不消费的字段。
     delete options.box;
-    delete options.coordinateType;
 
     return params;
   };

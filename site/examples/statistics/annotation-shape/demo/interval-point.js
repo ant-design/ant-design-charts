@@ -1,4 +1,4 @@
-import { Column } from '@ant-design/plots';
+import { Bar } from '@ant-design/plots';
 import React from 'react';
 import { createRoot } from 'react-dom';
 
@@ -24,7 +24,6 @@ const DemoAnnotationShape = () => {
     yField: 'value',
     paddingRight: 30,
     sizeField: 20,
-    coordinate: { transform: [{ type: 'transpose' }] },
     axis: { x: { title: false } },
     labels: [
       {
@@ -48,7 +47,7 @@ const DemoAnnotationShape = () => {
       },
     ],
   };
-  return <Column {...config} />;
+  return <Bar {...config} />;
 };
 
 createRoot(document.getElementById('container')).render(<DemoAnnotationShape />);

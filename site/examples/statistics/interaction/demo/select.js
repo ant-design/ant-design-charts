@@ -10,7 +10,6 @@ const DemoInteraction = () => {
     },
     xField: 'letter',
     yField: 'frequency',
-    transform: [{ type: 'sortX', by: 'y', reverse: true, slice: 5 }],
     state: { selected: { fill: '#f4bb51' }, unselected: { opacity: 0.6 } },
     axis: { y: { labelFormatter: '.0%' } },
     interaction: { elementSelect: true, elementHighlightByColor: false },

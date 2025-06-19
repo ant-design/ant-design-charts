@@ -26,18 +26,17 @@ order: 10
 
 <Playground path="/statistics/rose/demo/rose.js" rid="rose-basic"></playground>
 
-### 堆叠
-
-<Playground path="/statistics/rose/demo/stacked-rose.js" rid="rose-stacked"></playground>
-
 ### 添加标签
 
 <Playground path="/statistics/rose/demo/rose-label.js" rid="rose-label"></playground>
 
-### 南丁格尔玫瑰环图
+### 堆叠
+
+<Playground path="/statistics/rose/demo/stacked-rose.js" rid="rose-stacked"></playground>
+
+### 添加交互
 
 <Playground path="/statistics/rose/demo/donut-rose.js" rid="rose-donut"></playground>
-
 
 ### 风向图
 

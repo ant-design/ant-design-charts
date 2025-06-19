@@ -75,6 +75,7 @@ export const TRANSFORM_OPTION_KEY = {
   srcField: 'encode.src',
   linkColorField: 'encode.linkColor',
   fontSizeField: 'encode.fontSize',
+  coordinateType: 'coordinate.type',
   radius: 'coordinate.outerRadius',
   innerRadius: 'coordinate.innerRadius',
   startAngle: 'coordinate.startAngle',
@@ -195,6 +196,18 @@ export const TRANSFORM_OPTION_KEY = {
       return value;
     },
   },
+  /**
+   * @title 坐标转换
+   * @example
+   *  1. transpose: true -> coordinate: { transform: [{ type: 'transpose' }]}
+   *  2. transpose: false -> coordinate: { }
+   */
+  transpose: {
+    target: 'transpose',
+    value: (value: boolean | object) => {
+      return commonCallback('transpose', value);
+    },
+  },
 };
 
 /**
@@ -290,6 +303,18 @@ export const SPECIAL_OPTIONS = [
       }
       origin[key] = origin[key] || [];
       origin[key].push({ [TRANSFORM_SIGN]: true, ...value });
+    },
+  },
+  {
+    key: 'transpose',
+    callback: (origin: object, key: string, value: { type: string; available?: boolean }) => {
+      if (value.available) {
+        origin['coordinate'] = {
+          transform: [{ [TRANSFORM_SIGN]: true, ...value }],
+        };
+      } else {
+        origin['coordinate'] = {};
+      }
     },
   },
 ];
