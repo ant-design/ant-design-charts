@@ -4,7 +4,6 @@ import { createRoot } from 'react-dom';
 
 const DemoViolin = () => {
   const config = {
-    violinType: 'normal',
     data: {
       type: 'fetch',
       value: 'https://assets.antv.antgroup.com/g2/species.json',

@@ -1,9 +1,14 @@
 import { flow, transformOptions, set } from '../../utils';
 import { mark } from '../../adaptor';
-import type { Adaptor } from '../../types';
+import type { Adaptor, PrimitiveEncodeSpec } from '../../types';
 import type { ViolinOptions } from './type';
 
 type Params = Adaptor<ViolinOptions>;
+
+function withField(field1: PrimitiveEncodeSpec, field2: PrimitiveEncodeSpec) {
+  if (field1) return field1;
+  return field2;
+}
 
 /**
  * @param chart
@@ -15,7 +20,7 @@ export function adaptor(params: Params) {
    */
   const customTransform = (params: Params) => {
     const { options } = params;
-    const { xField, yField, seriesField, children } = options;
+    const { xField, yField, colorField, seriesField, coordinateType, children } = options;
 
     const newChildren = children
       ?.map((item) => {
@@ -23,30 +28,31 @@ export function adaptor(params: Params) {
           ...item,
           xField,
           yField,
-          seriesField,
-          colorField: seriesField,
+          seriesField: withField(seriesField, colorField),
+          colorField: withField(colorField, seriesField),
           data:
             item.type === 'density'
               ? {
-                  transform: [
-                    {
-                      type: 'kde',
-                      field: yField,
-                      groupBy: [xField, seriesField],
-                    },
-                  ],
-                }
+                transform: [
+                  {
+                    type: 'kde',
+                    field: yField,
+                    groupBy: [xField, withField(seriesField, colorField)],
+                  },
+                ],
+              }
               : item.data,
         };
       })
-      .filter((item) => options.violinType !== 'density' || item.type === 'density');
+      .filter((item) => options.box || item.type === 'density');
     set(options, 'children', newChildren);
-    // 默认‘normal’类型数据格式
-    if (options.violinType === 'polar') {
+    if (coordinateType === 'polar') {
       set(options, 'coordinate', { type: 'polar' });
     }
-    // 底层不消费violinType字段。
-    set(options, 'violinType', undefined);
+    // 删除底层不消费的字段。
+    delete options.box;
+    delete options.coordinateType;
+
     return params;
   };
 
