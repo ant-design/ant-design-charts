@@ -7,10 +7,18 @@
     {
       "filename": "rose.js",
       "title": {
-        "zh": "玫瑰图",
-        "en": "Rose Chart"
+        "zh": "南丁格尔玫瑰图",
+        "en": "Nightingale Rose Chart"
       },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_DeKSr3oN5sAAAAAAAAAAAAADmJ7AQ/original"
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*Tf0uTLRnoCEAAAAAQjAAAAgAemJ7AQ/fmt.webp"
+    },
+    {
+      "filename": "rose-label.js",
+      "title": {
+        "zh": "带标签南丁格尔玫瑰图",
+        "en": "Nightingale Rose Chart, Labeled"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*wIgxSpFybFEAAAAAQhAAAAgAemJ7AQ/fmt.avif"
     },
     {
       "filename": "stacked-rose.js",
@@ -21,26 +29,10 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*Lv1oT5JCtrMAAAAAAAAAAAAADmJ7AQ/original"
     },
     {
-      "filename": "rose-label.js",
-      "title": {
-        "zh": "玫瑰图标签",
-        "en": "Rose Chart, Label"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*Cx8zT7vT5bUAAAAAAAAAAAAADmJ7AQ/original"
-    },
-    {
-      "filename": "nightingale-rose.js",
-      "title": {
-        "zh": "南丁格尔玫瑰图",
-        "en": "Nightingale Rose Chart"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*dHw7RYx7V3cAAAAAAAAAAAAADmJ7AQ/original"
-    },
-    {
       "filename": "donut-rose.js",
       "title": {
-        "zh": "南丁格尔玫瑰环图",
-        "en": "Nightingale Rose Donut Chart"
+        "zh": "带交互的玫瑰图",
+        "en": "Interactive Rose Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FZtzRbGNkRMAAAAAAAAAAAAADmJ7AQ/original"
     },

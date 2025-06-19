@@ -10,7 +10,7 @@ const DemoScatter = () => {
       type: 'fetch',
       value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/scatter-point-strip.json',
     },
-    coordinate: { transform: [{ type: 'transpose' }] },
+    transpose: true, // 开启坐标转置
     xField: 'Cylinders',
     yField: 'Horsepower',
     sizeField: 20,

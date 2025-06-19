@@ -126,7 +126,7 @@ const DemoRose = () => {
     yField: 'value',
     colorField: 'level',
     sizeField: 18,
-    transform: [{ type: 'stackY' }],
+    stack: true,
     state: {
       active: {
         fill: '#288AFF',

@@ -13,7 +13,7 @@ const DemoBox = () => {
     yField: 'flipper_length_mm',
     colorField: 'sex',
     seriesField: 'sex',
-    coordinate: { transform: [{ type: 'transpose' }] },
+    transpose: true, // 开启坐标转置
   };
   return <Box {...config} />;
 };

@@ -4,30 +4,27 @@ import { createRoot } from 'react-dom';
 
 const DemoRose = () => {
   const config = {
-    width: 720,
-    height: 720,
-    autoFit: false,
-    radius: 0.85,
-    data: {
-      type: 'fetch',
-      value: 'https://render.alipay.com/p/yuyan/180020010001215413/antd-charts/rose-rose-label.json',
-    },
-    xField: 'year',
-    yField: 'people',
-    colorField: 'year',
-    transform: [{ type: 'groupX', y: 'sum' }],
-    scale: { y: { type: 'sqrt' }, x: { padding: 0 } },
-    axis: false,
-    legend: { color: { length: 400, layout: { justifyContent: 'center' } } },
-    labels: [
-      {
-        text: 'people',
-        position: 'outside',
-        formatter: '~s',
-        transform: [{ type: 'overlapDodgeY' }],
-      },
+    data: [
+      { value: 30, name: 'rose 1' },
+      { value: 28, name: 'rose 2' },
+      { value: 26, name: 'rose 3' },
+      { value: 24, name: 'rose 4' },
+      { value: 22, name: 'rose 5' },
+      { value: 20, name: 'rose 6' },
+      { value: 18, name: 'rose 7' },
+      { value: 16, name: 'rose 8' },
     ],
-    tooltip: { items: [{ channel: 'y', valueFormatter: '~s' }] },
+    xField: 'name',
+    yField: 'value',
+    colorField: 'name',
+    innerRadius: 0.2,
+    scale: { x: { padding: 0 } },
+    axis: false,
+    legend: false,
+    label: {
+      text: 'value',
+      position: 'outside',
+    },
   };
   return <Rose {...config} />;
 };

@@ -10,7 +10,6 @@ const DemoInteraction = () => {
     },
     xField: 'letter',
     yField: 'frequency',
-    transform: [{ type: 'sortX', by: 'y', reverse: true, slice: 5 }],
     axis: { y: { labelFormatter: '.0%' } },
     interaction: { elementHighlight: { background: true } },
   };

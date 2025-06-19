@@ -55,6 +55,7 @@ order: 5
 | colorField | 颜色映射通道，详见[color](/options/plots/color) | string（可选） | - |
 | shapeField | shape 属性通道，改变图形标记的[绘制形状](/options/plots/legend#symbols-可选类型) | 'point' |
 | line | 开启折线图，一般用于绘制辅助线，配置和[折线图](/components/plots/line)基本一致，默认继承了 `Scatter` 的 `data` \| `xField` \| `yField` 等属性，同时关闭了 `tooltip`，通过 `style` 指定[绘图属性](/options/plots/style#绘图属性)。 | object(可选) | - |
+| transpose | 是否开启坐标转置 | boolean | - |
 | title | 用于指定图表的标题内容，详见[标题](/options/plots/title) | object（可选） | - |
 | axis | 用于建立数据与视觉位置的映射关系，详见[坐标轴](/options/plots/axis) | object（可选） | - |
 | legend | 图表的辅助元素，使用颜色、大小、形状区分不同的数据类型，用于图表中数据的筛选，详见[图例](/options/plots/legend) | object（可选） | - |
