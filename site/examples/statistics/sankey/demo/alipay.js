@@ -41,7 +41,7 @@ const DemoSankey = () => {
     style: {
       labelFontSize: 13,
       linkFillOpacity: 0.4,
-      nodeStrokeWidth: 0,
+      nodeLineWidth: 0,
     },
   };
   return <Sankey {...config} />;

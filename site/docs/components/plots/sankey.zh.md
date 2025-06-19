@@ -8,58 +8,82 @@ link: /examples#statistics-sankey
 order: 10
 ---
 
-桑基图 (`Sankey Diagram`)，是一种特定类型的流图，用于描述一组值到另一组值的流向。桑基图的特点如下：
-起始流量和结束流量相同，所有主支宽度的总和与所有分出去的分支宽度总和相等，保持能量的平衡；
-在内部，不同的线条代表了不同的流量分流情况，它的宽度成比例地显示此分支占有的流量；
-节点不同的宽度代表了特定状态下的流量大小。
-桑基图通常应用于能源、材料成分、金融等数据的可视化分析。
+## 简介
 
-## 开始使用
+桑基图 (`Sankey Diagram`)，是一种特定类型的流图，用于描述一组值到另一组值的流向，通常应用于能源、材料成分、金融等数据的可视化分析。桑基图的特点如下：
+- 起始流量和结束流量相同，所有主支宽度的总和与所有分出去的分支宽度总和相等，保持能量的平衡；
+- 在内部，不同的线条代表了不同的流量分流情况，它的宽度成比例地显示此分支占有的流量；
+- 节点不同的宽度代表了特定状态下的流量大小；
 
-<img alt="sankey" src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*dACBR7ANcfEAAAAAAAAAAAAADmJ7AQ/original
-" width="600" />
+## 代码演示
 
-```js
-{
-  data: {
-    type: 'fetch',
-    value: 'https://assets.antv.antgroup.com/g2/energy.json',
-    transform: [
-      {
-        type: 'custom',
-        callback: (data) => ({ links: data }),
-      },
-    ],
-  },
-  style: {
-    labelSpacing: 3,
-    labelFontWeight: 'blod',
-    nodeStrokeWidth: 1.2,
-    linkFillOpacity: 0.4
-  }
-}
-```
+更多示例详见[桑基图](/examples#statistics-sankey)
 
-Ant Design Charts 中**布局（Layout）** 用于指定一些有特定布局函数标记的布局方法的参数，比如 Snakey, WordCloud 等。
+### 基础用法
 
-```js
-({
-  layout: {
-    nodeAlign: 'center',
-    nodePadding: 0.03,
-  },
-});
-```
+<Playground path="/statistics/sankey/demo/alipay.js" rid="sankey-alipay"></playground>
 
-## 选项
+### 节点排序
 
-| 属性       | 描述                                                            | 类型      | 默认值                        |
-| ---------- | --------------------------------------------------------------- | --------- | ----------------------------- |
+<Playground path="/statistics/sankey/demo/node-sort-sankey.js" rid="sankey-node-sort"></playground>
+
+### 自定义节点颜色
+
+<Playground path="/statistics/sankey/demo/color.js" rid="sankey-color"></playground>
+
+### 自定边颜色
+
+<Playground path="/statistics/sankey/demo/edge.js" rid="sankey-edge"></playground>
+
+
+## 配置项
+
+### 概览
+
+|配置项|说明|类型|默认值|
+|-----|---|----|-----|
+| data | [数据](#data) | Array | [] |
+| valueField | 值映射字段 | string（可选） | - |
 | tooltip    | 配置桑基图的 tooltip，详见 [tooltip 配置](#tooltip)             | _object_  | 详见 [tooltip 配置](#tooltip) |
 | layout     | 配置桑基图的布局方式，详见 [layout 配置](#layout)               | _object_  | 详见 [layout 配置](#layout)   |
 | style      | 配置图形样式和标签样式，详见 [style 配置](#style)               | _object_  | 详见 [style 配置](#style)     |
 | nodeLabels | 自定义节点数据标签的配置，详见 [nodeLabels 配置](##nodelabels)  | _label[]_ | []                            |
 | linkLabels | 自定义连接线数据标签的配置，详见 [linkLabels 配置](#linklabels) | _label[]_ | []                            |
+| title | 用于指定图表的标题内容，详见[标题](/options/plots/title) | object（可选） | - |
+| label | 数据标签是给图表添加标注的手段之一，详见[标签](/options/plots/label) | object（可选） | - |
+| tooltip | 用于动态展示数据点的详细信息，详见[提示](/options/plots/tooltip) | object（可选） | - |
+| style | 视觉样式，配置项详见[绘图属性](/options/plots/style#绘图属性) | object（可选） | - |
+| theme | 用于控制图表的整体外观，包括颜色、字体、边距等视觉属性，详见[主题](/options/plots/theme/overview) | string \| object（可选） | `light` |
+| onReady | 图表加载回调，用于后续的事件[事件](/options/plots/event)绑定 | Function（可选） | - |
+| scale | 将抽象数据映射为视觉数据，详见[比例尺](/options/plots/scale/overview) | object（可选） | - |
+| animate | 动画作为可视化的重要组成部分，能显著提高数据可视化的表现力，详见[动画](/options/plots/animate/overview) | object（可选） | - |
+| interaction | 提供了按需探索数据的能力，详见[交互](/options/plots/interaction/overview) | object（可选） | - |
+| state | 实现交互反馈、高亮、选中等效果，详见[状态](/options/plots/state)，不同交互下图表样式 | object（可选） | - |
+| annotations | 视图好比一个画板，`Sankey` 组件默认在其上绘制了一个桑基图，我们可以通过 annotations 在上面叠加更多的图层，详见[标注](/examples#statistics-annotation-shape) | Array（可选） | - |
+
+### data
+
+1. 数据中需要包含 `source` 和 `target` 字段，缺失则无法绘制。默认使用 `value` 进行值的映射，当数据中缺乏 `value` 字段时，需要使用 `valueField` 指定值的映射关系。
+
+```js
+[
+  { source: "Agricultural 'waste'", target: 'Bio-conversion', value: 124 },
+]
+```
+
+2. 数据中包含 `nodes` 和 `links`，一般用于处理存在环的情况。
+
+```js
+{
+  nodes: [
+    { id: 'a', key: '首页' },
+    { id: 'b', key: '页面1' },
+  ],
+  links: [
+    { source: 'a', target: 'b', value: 100 },
+  ],
+}
+```
 
 ### tooltip
 
@@ -111,290 +135,34 @@ Ant Design Charts 中**布局（Layout）** 用于指定一些有特定布局函
 });
 ```
 
-#### 💡 桑基图怎么使用 data 中的补充属性实现自定义 tooltip 的展示？
-
-和一般 `Mark` 自定义 `tooltip` 交互的方法类似，先在图形的 `tooltip` 里传入自定义属性，然后在 `interaction` 里使用。
-
-示例：
-
-```js
-  const data = {
-    nodes: [
-      { id: 'a', key: '首页', des: '节点自定义属性' },
-      { id: 'b', key: '页面1', des: '节点自定义属性' },
-      { id: 'b_1', key: '页面1', des: '节点自定义属性' },
-      { id: 'c', key: '页面2', des: '节点自定义属性' },
-      { id: 'c_1', key: '页面2', des: '节点自定义属性' },
-      { id: 'd', key: '页面3', des: '节点自定义属性' },
-      { id: 'd_1', key: '页面3', des: '节点自定义属性' },
-    ],
-    links: [
-      { source: 'a', target: 'b', value: 100 },
-      { source: 'b', target: 'c', value: 80 },
-      { source: 'b', target: 'd', value: 20 },
-      { source: 'c', target: 'b_1', value: 80 },
-      { source: 'b_1', target: 'c_1', value: 40 },
-      { source: 'b_1', target: 'd_1', value: 40 },
-    ],
-  };
-
-  const config = {
-    width: 900,
-    height: 600,
-    data: {
-      value: data,
-      transform: [
-        {
-          type: 'custom',
-          callback: (data) => ({
-            nodes: data.nodes,
-            links: data.links,
-          }),
-        },
-      ],
-    },
-    tooltip: {
-      nodeItems: [
-        (d, index, data, column) => {
-          return {
-            content: d.des,
-          };
-        },
-      ],
-      linkItems: [
-        (d, index, data, column) => {
-          return {
-            color: 'red', // 指定 item 的颜色
-            name: '连接线', // 指定 item 的名字
-            value: `${d.source.key}-${d.target.key}`, // 使用 y 通道的值
-            content: '连接线自定义属性',
-          };
-        },
-      ],
-    },
-    layout: {
-      nodeId: (d) => d.id,
-      nodeAlign: 'center',
-      nodePadding: 0.03,
-      iterations: 25,
-    },
-    style: {
-      labelSpacing: 3,
-      labelFontWeight: 'bold',
-      // linkFillOpacity: 0.2,
-      // linkFill: '#3F96FF',
-    },
-    interaction: {
-      tooltip: {
-        render: (e, { items, title }) => {
-          return `<div>${items[0].content}</div>`;
-        },
-      },
-    },
-  };
-```
-
 ### layout
 
-桑基图的布局方式。具体配置项如下：
+|配置项|说明|类型|默认值|
+|-----|---|----|-----|
+| nodeId | 节点绑定字段，在布局中作为唯一标识，如果未指定 `nodeId`，默认为 `(node) => node.key` | `(node: any) => string` | - |
+| nodeAlign | 当前节点的对齐方法。除了内置的几种类型外，还可以传递当前节点和图的总深度 `n` （最大的节点深度+1 ），并且必须返回 `0` 到 `n - 1` 之间的整数，指示节点在生成图中所需的水平位置。 | `left、right、center、justify` \| `((node: any, n: number) => number` | - |
+| nodeWidth | 节点的宽度 | number | 0.02 |
+| nodePadding | 节点的间距 | number | 0.02 |
+| nodeLabels | 节点标签[配置](#nodelabels) | object[] | - |
+| nodeDepth | 节点的深度 | `(datum: any, maxDepth: number) => number` | - |
+| nodeSort | 节点排序方式。如果未指定 `nodeSort` ，则返回当前节点排序方法，默认为 `undefined`，表示每列内的节点垂直顺序将由布局自动确定。如果 `nodeSort` 为 `null`，则顺序由输入固定。否则，由指定的排序函数确定顺序；该函数传递两个节点，如果第一个节点应位于第二个节点上方，则必须返回小于 0 的值，如果第二个节点应位于第一个节点上方，则必须返回大于 0 的值，如果未指定顺序，则返回 0。 | `((a: any, b: any) => number)` | - |
+| linkSort | 连接线排序方式。如果未指定 `linkSort` ，则返回当前连接线排序方法，默认为 `undefined`，表示每个节点内的连接线的垂直顺序将由布局自动确定。如果 `linkSort` 为 `null`，则顺序由输入固定。否则，由指定的排序函数确定顺序；该函数传递两个连接线，如果第一个连接线应位于第二个连接线上方，则必须返回小于 0 的值，如果第二个连接线应位于第一个连接线上方，则必须返回大于 0 的值，如果未指定顺序，则返回 0。 | `((a: any, b: any) => number)` | - |
+| iterations | 布局计算迭代次数，默认为 `6`, 次数越多，布局越合理。更多 `layout` 配置，详见 [d3-sankey](https://github.com/d3/d3-sankey) | number | 6 |
+| linkColorField | 连线颜色映射字段 | `(d) => d.source.key` | - |
+| linkLabels | 连线标签[配置](#linklabels) | object[] | - |
 
-#### nodeId
-
-<description>**optional** _function_ </description>
-
-回调的方式为：`(node: any) => string`，如果未指定 `nodeId`，默认为 `(node) => node.key`。
-
-节点绑定字段，在布局中作为唯一标识。
-
-#### 💡 桑基图不支持成环，那在页面流向图这种会出现重复节点的情况应该怎么配置？
-
-对于多次出现的节点，设置 id 作为唯一标识，并配置 `nodeId` 的回调方法为 `(node) => node.id`。
-
-示例：
-
-```js
-  const data = {
-    nodes: [
-      { id: 'a', key: '首页' },
-      { id: 'b', key: '页面1' },
-      { id: 'b_1', key: '页面1' },
-      { id: 'c', key: '页面2' },
-      { id: 'c_1', key: '页面2' },
-      { id: 'd', key: '页面3' },
-      { id: 'd_1', key: '页面3' },
-    ],
-    links: [
-      { source: 'a', target: 'b', value: 100 },
-      { source: 'b', target: 'c', value: 80 },
-      { source: 'b', target: 'd', value: 20 },
-      { source: 'c', target: 'b_1', value: 80 },
-      { source: 'b_1', target: 'c_1', value: 40 },
-      { source: 'b_1', target: 'd_1', value: 40 },
-    ],
-  };
-
-  const config = {
-    width: 900,
-    height: 600,
-    data: {
-      value: data,
-      transform: [
-        {
-          type: 'custom',
-          callback: (data) => ({
-            nodes: data.nodes,
-            links: data.links,
-          }),
-        },
-      ],
-    },
-    layout: {
-      nodeId: (d) => d.id,
-      nodeAlign: 'center',
-      nodePadding: 0.03,
-      iterations: 25,
-    },
-    style: {
-      labelSpacing: 3,
-      labelFontWeight: 'bold',
-      linkFillOpacity: 0.2,
-      linkFill: '#3F96FF',
-    },
-  };
-```
-
-#### nodeSort
-
-<description>**optional** _function_ </description>
-
-回调的方式为：`((a: any, b: any) => number)`
-
-节点排序方式。如果未指定 `nodeSort` ，则返回当前节点排序方法，默认为 `undefined`，表示每列内的节点垂直顺序将由布局自动确定。如果 `nodeSort` 为 `null`，则顺序由输入固定。否则，由指定的排序函数确定顺序；该函数传递两个节点，如果第一个节点应位于第二个节点上方，则必须返回小于 0 的值，如果第二个节点应位于第一个节点上方，则必须返回大于 0 的值，如果未指定顺序，则返回 0。
-
-#### linkSort
-
-<description> **optional** _function_ </description>
-
-回调的方式为：`((a: any, b: any) => number)`
-
-连接线排序方式。如果未指定 `linkSort` ，则返回当前连接线排序方法，默认为 `undefined`，表示每个节点内的连接线的垂直顺序将由布局自动确定。如果 `linkSort` 为 `null`，则顺序由输入固定。否则，由指定的排序函数确定顺序；该函数传递两个连接线，如果第一个连接线应位于第二个连接线上方，则必须返回小于 0 的值，如果第二个连接线应位于第一个连接线上方，则必须返回大于 0 的值，如果未指定顺序，则返回 0。
-
-#### nodeAlign
-
-<description>**optional** _string_ ｜ _function_ </description>
-
-内置支持的类型有： `'left' | 'right' | 'center' | 'justify'`
-
-回调的方式为：`((node: any, n: number) => number`
-
-当前节点的对齐方法。除了内置的几种类型外，还可以传递当前节点和图的总深度 `n` （最大的节点深度+1 ），并且必须返回 `0` 到 `n - 1` 之间的整数，指示节点在生成图中所需的水平位置。
-
-#### nodeWidth
-
-<description>**optional** _number_ </description>
-
-节点的宽度。默认为 `0.02`。
-
-#### nodePadding
-
-<description>**optional** _number_ </description>
-
-节点的间距。默认为 `0.02`。
-
-#### nodeDepth
-
-<description>**optional** _function_ </description>
-
-回调的方式为：`(datum: any, maxDepth: number) => number`
-
-节点的深度。
-
-#### iterations
-
-<description>**optional** _number_ </description>
-
-布局计算迭代次数，默认为 `6`, 次数越多，布局越合理。
-
-更多 `layout` 配置，详见 [d3-sankey](https://github.com/d3/d3-sankey)
 
 ### style
 
-默认 style 配置：
+样式通过 `text`、`node`、`link` 前缀区分，更多参[绘图属性](/options/plots/style#绘图属性)
 
-```js
-({
-  // label
-  labelText: (d) => d.key,
-  labelSpacing: 5,
-  labelFontSize: 10,
-  // node
-  nodeStroke: '#000',
-  // link
-  linkFillOpacity: 0.5,
-  linkStroke: undefined,
-});
-```
-
-复合图形标记需要通过不同的前缀来区分图形的配置。
-
-- `<label>`: 配置数据标签的前缀。
-
-| 属性名             | 类型                 | 介绍                                                                                                                                      |
-| ------------------ | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| labelText          | _(d: any) => string_ | 桑基图配置默认的数据标签的值，默认为 `(d) => d.key`                                                                                       |
-| labelSpacing       | _number_             | 桑基图配置数据标签的间距，默认为 `5`                                                                                                      |
-| labelFontSize      | _number_             | 桑基图数据标签文字大小                                                                                                                    |
-| labelFontFamily    | _string_             | 桑基图数据标签文字字体                                                                                                                    |
-| labelFontWeight    | _number_             | 桑基图数据标签字体粗细                                                                                                                    |
-| labelLineHeight    | _number_             | 桑基图数据标签文字的行高                                                                                                                  |
-| labelTextAlign     | _string_             | 设置桑基图数据标签文本内容的当前对齐方式, 支持的属性：`center` \| `end` \| `left` \| `right` \| `start`，默认值为`start`                  |
-| labelTextBaseline  | _string_             | 设置桑基图数据标签在绘制文本时使用的当前文本基线, 支持的属性:`top` \| `middle` \| `bottom` \| `alphabetic` \| `hanging`。默认值为`bottom` |
-| labelFill          | _string_             | 桑基图数据标签文字的填充色                                                                                                                |
-| labelFillOpacity   | _number_             | 桑基图数据标签文字的填充透明度                                                                                                            |
-| labelStroke        | _string_             | 桑基图数据标签文字的描边                                                                                                                  |
-| labelLineWidth     | _number_             | 桑基图数据标签文字描边的宽度                                                                                                              |
-| labelLineDash      | _[number,number]_    | 桑基图数据标签描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。                |
-| labelStrokeOpacity | _number_             | 桑基图数据标签描边透明度                                                                                                                  |
-| labelOpacity       | _number_             | 桑基图数据标签文字的整体透明度                                                                                                            |
-| labelShadowColor   | _string_             | 桑基图数据标签文字阴影颜色                                                                                                                |
-| labelShadowBlur    | _number_             | 桑基图数据标签文字阴影的高斯模糊系数                                                                                                      |
-| labelShadowOffsetX | _number_             | 设置桑基图数据标签阴影距文字的水平距离                                                                                                    |
-| labelShadowOffsetY | _number_             | 设置桑基图数据标签阴影距文字的垂直距离                                                                                                    |
-| labelCursor        | _string_             | 桑基图数据标签鼠标样式。同 css 的鼠标样式,默认 'default'。                                                                                |
-
-- `<node>`: 配置节点的前缀。
-
-| 属性名            | 类型              | 介绍                                                                                                                   |
-| ----------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| nodeFill          | _string_          | 桑基图节点填充色                                                                                                       |
-| nodeFillOpacity   | _number_          | 桑基图节点填充透明度                                                                                                   |
-| nodeStroke        | _string_          | 桑基图节点的描边                                                                                                       |
-| nodeStrokeOpacity | _number_          | 桑基图节点描边透明度                                                                                                   |
-| nodeLineWidth     | _number_          | 桑基图节点描边的宽度                                                                                                   |
-| nodeLineDash      | _[number,number]_ | 桑基图节点描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| nodeOpacity       | _number_          | 桑基图节点的整体透明度                                                                                                 |
-| nodeShadowColor   | _string_          | 桑基图节点阴影颜色                                                                                                     |
-| nodeShadowBlur    | _number_          | 桑基图节点阴影的高斯模糊系数                                                                                           |
-| nodeShadowOffsetX | _number_          | 设置阴影距桑基图节点的水平距离                                                                                         |
-| nodeShadowOffsetY | _number_          | 设置阴影距桑基图节点的垂直距离                                                                                         |
-| nodeCursor        | _string_          | 桑基图节点鼠标样式。同 css 的鼠标样式，默认 'default'。                                                                |
-
-- `<link>`: 配置连接线的前缀。
-
-| 属性名            | 类型              | 介绍                                                                                                                     |
-| ----------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| linkFill          | _string_          | 桑基图连接线填充色                                                                                                       |
-| linkFillOpacity   | _number_          | 桑基图连接线填充透明度                                                                                                   |
-| linkStroke        | _string_          | 桑基图连接线的描边                                                                                                       |
-| linkStrokeOpacity | _number_          | 桑基图连接线描边透明度                                                                                                   |
-| linkLineWidth     | _number_          | 桑基图连接线描边的宽度                                                                                                   |
-| linkLineDash      | _[number,number]_ | 桑基图连接线描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 |
-| linkOpacity       | _number_          | 桑基图连接线的整体透明度                                                                                                 |
-| linkShadowColor   | _string_          | 桑基图连接线阴影颜色                                                                                                     |
-| linkShadowBlur    | _number_          | 桑基图连接线阴影的高斯模糊系数                                                                                           |
-| linkShadowOffsetX | _number_          | 设置阴影距桑基图连接线的水平距离                                                                                         |
-| linkShadowOffsetY | _number_          | 设置阴影距桑基图连接线的垂直距离                                                                                         |
-| linkCursor        | _string_          | 桑基图连接线鼠标样式。同 css 的鼠标样式，默认 'default'。                                                                |
+|配置项|说明|类型|默认值|
+|-----|---|----|-----|
+| labelText | 文本内容 | `(d) => d.key` | - |
+| labelFontSize | 文本字号 | number | - |
+| labelSpacing | 文本和节点间的距离 | number | - |
+| nodeStroke | 节点描边 | string | - |
+| linkLineWidth | 连接线描边宽度 | number | - |
 
 ### nodeLabels
 
@@ -447,3 +215,84 @@ Ant Design Charts 中**布局（Layout）** 用于指定一些有特定布局函
 });
 ```
 
+## 事件
+
+详见[选项-事件](/options/plots/event)。
+
+## 方法
+
+详见[图表概览-图表方法](/components/plots/overview#图表方法)。
+
+## 常见问题
+
+1. 桑基图怎么使用 data 中的补充属性实现自定义 tooltip 的展示？
+
+和一般组件自定义 `tooltip` 交互的方法类似，先在图形的 `tooltip` 里传入自定义属性，然后在 `interaction` 里使用。
+
+示例：
+
+```js
+{
+  tooltip: {
+    nodeItems: [
+      (d, index, data, column) => {
+        return {
+          content: d.des,
+        };
+      },
+    ],
+    linkItems: [
+      (d, index, data, column) => {
+        return {
+          color: 'red', // 指定 item 的颜色
+          name: '连接线', // 指定 item 的名字
+          value: `${d.source.key}-${d.target.key}`, // 使用 y 通道的值
+          content: '连接线自定义属性',
+        };
+      },
+    ],
+  },
+  interaction: {
+    tooltip: {
+      render: (e, { items, title }) => {
+        return `<div>${items[0].content}</div>`;
+      },
+    },
+  },
+};
+```
+
+2. 桑基图不支持成环，那在页面流向图这种会出现重复节点的情况应该怎么配置？
+
+对于多次出现的节点，设置 id 作为唯一标识，并配置 `nodeId` 的回调方法为 `(node) => node.id`。
+
+```js
+const data = {
+  nodes: [
+    { id: 'a', key: '首页' },
+    { id: 'b', key: '页面1' },
+    { id: 'b_1', key: '页面1' },
+    { id: 'c', key: '页面2' },
+    { id: 'c_1', key: '页面2' },
+    { id: 'd', key: '页面3' },
+    { id: 'd_1', key: '页面3' },
+  ],
+  links: [
+    { source: 'a', target: 'b', value: 100 },
+    { source: 'b', target: 'c', value: 80 },
+    { source: 'b', target: 'd', value: 20 },
+    { source: 'c', target: 'b_1', value: 80 },
+    { source: 'b_1', target: 'c_1', value: 40 },
+    { source: 'b_1', target: 'd_1', value: 40 },
+  ],
+};
+
+const config = {
+  layout: {
+    nodeId: (d) => d.id,
+    nodeAlign: 'center',
+    nodePadding: 0.03,
+    iterations: 25,
+  },
+};
+```

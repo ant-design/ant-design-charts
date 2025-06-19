@@ -5,14 +5,6 @@
   },
   "demos": [
     {
-      "filename": "basic.js",
-      "title": {
-        "zh": "桑基图",
-        "en": "Sankey"
-      },
-      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*dACBR7ANcfEAAAAAAAAAAAAADmJ7AQ/original"
-    },
-    {
       "filename": "alipay.js",
       "title": {
         "zh": "支付宝流量桑基图",
@@ -21,10 +13,18 @@
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*fecqTpstXu0AAAAAAAAAAAAADmJ7AQ/original"
     },
     {
-      "filename": "energy.js",
+      "filename": "color.js",
       "title": {
-        "zh": "能量关系桑基图",
-        "en": "Energy sankey"
+        "zh": "自定义节点颜色",
+        "en": "Custom node Color"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*HJctQ5g8tyAAAAAARUAAAAgAemJ7AQ/fmt.webp"
+    },
+    {
+      "filename": "edge.js",
+      "title": {
+        "zh": "自定义边颜色",
+        "en": "Custom edge Color"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*8o1RQJ2fqdsAAAAAAAAAAAAADmJ7AQ/original"
     },
