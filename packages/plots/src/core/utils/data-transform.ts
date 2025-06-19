@@ -10,17 +10,10 @@ import type { Adaptor } from '../types';
  * @returns The updated parameters with transformed data.
  */
 export const dataTransform = (params: Adaptor) => {
-  console.log('11', params);
-
   const { options } = params;
   const { data } = options;
 
   if (get(data, 'value')) return params;
-
-  if (typeof data !== 'object' || data === null) {
-    console.warn('Invalid data type:', data);
-    return params;
-  }
 
   if (get(data, 'type') !== 'fetch' && isPlainObject(data)) {
     set(options, 'data.value', data);
