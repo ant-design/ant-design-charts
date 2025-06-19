@@ -36,3 +36,4 @@ export { filterTransformed } from './filter-transformed';
 export { conversionTagFormatter } from './conversion';
 export { mergeWithArrayCoverage } from './merge-with-array-coverage';
 export { fieldAdapter } from './field-adapter';
+export { dataTransform } from './data-transform';
