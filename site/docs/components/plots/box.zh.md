@@ -94,7 +94,7 @@ p12         p11           p13
 | data | [数据](#data) | Array | [] |
 | xField | 横轴字段 | string | - |
 | yField | 纵轴字段 | string \| string[] | - |
-| seriesField | 多折线图区分字段 | string（可选） | - |
+| seriesField | 多箱线图区分字段 | string（可选） | - |
 | colorField | 和 seriesField 类似，不过会加上颜色通道，详见[color](/options/plots/color) | string（可选） | - |
 | boxType | 标记类型，可选值为 `box` 和 `boxplot`。 `box` 是原子标记，需要开发者手动指定 5 个统计点的数据; `boxplot` 是高阶标记，自带数据分组和数据统计聚合功能； | box \| boxplot | `box` |
 | transpose | 是否开启坐标转置 | boolean | - |

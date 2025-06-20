@@ -30,5 +30,5 @@ export type RadialBarOptions = Options & {
    * @default null
    * @description 通过配置color指定颜色参数,必须配合scale.y.domain 指定背景轴的范围区间
    */
-  markBackground: Record<string, string>;
+  markBackground: Record<string, any>;
 };

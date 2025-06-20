@@ -21,7 +21,6 @@ const DemoRadialBar = () => {
     xField: 'term',
     yField: 'count',
     startAngle: Math.PI * 0.5,
-    maxAngle: 270, //最大旋转角度,
     radius: 1,
     innerRadius: 0.2,
     legend: false,

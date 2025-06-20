@@ -32,7 +32,6 @@ const DemoRadialBar = () => {
     height: 244,
     autoFit: false,
     appendPadding: [50, 0, 50, 0],
-    // maxAngle: 90, //最大旋转角度,
     radius: 1,
     innerRadius: 0.2,
     style: {

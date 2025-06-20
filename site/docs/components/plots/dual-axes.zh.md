@@ -55,7 +55,7 @@ order: 5
 | xField | 横轴字段 | string | - |
 | yField | 纵轴字段 | string \| string[] | - |
 | children | 图表列表 | any[] | - |
-| seriesField | 多折线图区分字段 | string（可选） | - |
+| seriesField | 多 Mark 区分字段 | string（可选） | - |
 | colorField | 和 seriesField 类似，不过会加上颜色通道，详见[color](/options/plots/color) | string（可选） | - |
 | title | 用于指定图表的标题内容，详见[标题](/options/plots/title) | object（可选） | - |
 | axis | 用于建立数据与视觉位置的映射关系，详见[坐标轴](/options/plots/axis) | object（可选） | - |
