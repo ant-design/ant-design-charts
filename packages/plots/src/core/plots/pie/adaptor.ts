@@ -1,4 +1,4 @@
-import { flow, transformOptions, isArray, set, fieldAdapter, isFunction } from '../../utils';
+import { flow, transformOptions, isArray, set, get, fieldAdapter, isFunction } from '../../utils';
 import type { Adaptor } from '../../types';
 import type { PieOptions } from './type';
 
@@ -24,9 +24,10 @@ export function adaptor(params: Params) {
         const normalization = data.map((item) => ({ ...item, [angleField]: 1 }));
         set(options, 'data', normalization);
         if (label) {
+          const isColorField = colorField === get(label, 'text');
           set(options, 'label', {
             ...label,
-            formatter: () => 0,
+            ...(isColorField ? {} : { formatter: () => 0 }),
           });
         }
         if (tooltip !== false) {
