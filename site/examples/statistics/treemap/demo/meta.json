@@ -11,6 +11,14 @@
         "en": "Treemap Chart"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*T2zHS6J1cGMAAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "drill-down.js",
+      "title": {
+        "zh": "钻取",
+        "en": "Drill Down"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FwWXQqqpc_UAAAAAAAAAAAAADmJ7AQ/original"
     }
   ]
 }
