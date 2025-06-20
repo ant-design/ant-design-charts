@@ -12,7 +12,6 @@ const DemoHistogram = () => {
       inset: 0.5,
     },
     binField: 'rate',
-    channel: 'count',
     // 分箱数量
     binNumber: 10,
   };
