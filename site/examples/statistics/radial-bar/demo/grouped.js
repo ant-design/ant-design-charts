@@ -101,7 +101,6 @@ const DemoRadialBar = () => {
     xField: 'year',
     yField: 'value',
     group: true,
-    maxAngle: 270,
     colorField: 'type',
   };
   return <RadialBar {...config} />;

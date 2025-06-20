@@ -18,7 +18,6 @@ const DemoRadialBar = () => {
     data,
     xField: 'name',
     yField: 'star',
-    maxAngle: 90,
     radius: 1,
     innerRadius: 0.2,
     style: {

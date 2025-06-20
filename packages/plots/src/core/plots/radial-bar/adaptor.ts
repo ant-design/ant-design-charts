@@ -59,15 +59,15 @@ export function adaptor(params: Params) {
     const { markBackground, children, scale, coordinate, xField } = options;
     const domain = get(scale, 'y.domain', []);
     if (markBackground) {
+      const { style, ...rest } = markBackground;
       children.unshift({
         type: 'interval',
         xField: xField,
         yField: domain[domain.length - 1],
-        colorField: markBackground.color,
-        scale: { color: { type: 'identity' } },
         style: {
-          fillOpacity: markBackground.opacity,
-          fill: markBackground.color ? undefined : '#e0e4ee', // 默认用fill填满灰色背景
+          fillOpacity: 0.4,
+          fill: '#e0e4ee', // 默认用fill填满灰色背景
+          ...style,
         },
         // 背景图需要填满整个圆
         coordinate: {
@@ -76,7 +76,7 @@ export function adaptor(params: Params) {
           endAngle: (3 / 2) * Math.PI,
         },
         animate: false,
-        ...markBackground,
+        ...rest,
       });
     }
     return params;

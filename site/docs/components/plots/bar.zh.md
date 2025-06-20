@@ -65,7 +65,7 @@ conversionTag: {
 | data | [数据](/options/plots/data/overview) | Array | [] |
 | xField | 横轴字段 | string | - |
 | yField | 纵轴字段 | string \| string[] | - |
-| seriesField | 多折线图区分字段 | string（可选） | - |
+| seriesField | 多条形图区分字段 | string（可选） | - |
 | colorField | 和 seriesField 类似，不过会加上颜色通道，详见[color](/options/plots/color) | string（可选） | - |
 | stack | 条形图是否堆叠 | boolean\|[Stack](#stack) | false |
 | group | 条形图是否分组 | boolean\|[Group](#group) | false |
