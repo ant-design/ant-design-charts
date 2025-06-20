@@ -9,7 +9,6 @@ const DemoHistogram = () => {
       value: 'https://assets.antv.antgroup.com/g2/athletes.json',
     },
     binField: 'weight',
-    channel: 'count',
     colorField: 'sex',
     stack: {
       orderBy: 'series',
