@@ -246,6 +246,11 @@ export const CONFIG_SHAPE = [
     extend_keys: EXTEND_KEYS,
   },
   {
+    key: 'connector',
+    type: 'connector',
+    extend_keys: [],
+  },
+  {
     key: 'point',
     type: 'point',
     extend_keys: EXTEND_KEYS,
