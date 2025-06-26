@@ -9,5 +9,5 @@ export type BidirectionalBarOptions = Options & {
    * @title 布局
    * @default "vertical"
    */
-  layout: 'vertical' | 'horizontal';
+  layout?: 'vertical' | 'horizontal';
 };

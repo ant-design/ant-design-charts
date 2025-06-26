@@ -73,6 +73,10 @@ export type BaseOptions = {
    * @description 待底层导出
    */
   readonly label?: false | Record<string, any>;
+  /**
+  * @title 是否转置
+  */
+  readonly transpose?: boolean;
 };
 
 export type ArcBaseOptions = {
@@ -129,14 +133,14 @@ export type AttrStyle = Record<string, any>;
 export type ConnectNulls =
   | true
   | {
-      connect: true;
-      /**
-       * @title 连线样式
-       * @description 和 canvas path 一致，但需要加上 connect 前缀
-       * @example
-       *  - connectStroke: '#ccc'
-       *  - connectLineWidth: 1
-       *  - connectLineDash: [ 4, 4 ]
-       */
-      [key: string]: any;
-    };
+    connect: true;
+    /**
+     * @title 连线样式
+     * @description 和 canvas path 一致，但需要加上 connect 前缀
+     * @example
+     *  - connectStroke: '#ccc'
+     *  - connectLineWidth: 1
+     *  - connectLineDash: [ 4, 4 ]
+     */
+    [key: string]: any;
+  };
