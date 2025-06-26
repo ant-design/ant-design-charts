@@ -5,20 +5,14 @@ import { createRoot } from 'react-dom';
 const DemoWaterfall = () => {
   const config = {
     data: [
-      { x: 'Start', value: 23000000 },
-      { x: 'Jan', value: 2200000 },
-      { x: 'Feb', value: -4600000 },
-      { x: 'Mar', value: -9100000 },
-      { x: 'Apr', value: 3700000 },
-      { x: 'May', value: -2100000 },
-      { x: 'Jun', value: 5300000 },
-      { x: 'Jul', value: 3100000 },
-      { x: 'Aug', value: -1500000 },
-      { x: 'Sep', value: 4200000 },
-      { x: 'Oct', value: 5300000 },
-      { x: 'Nov', value: -1500000 },
-      { x: 'Dec', value: 5100000 },
-      { x: 'End', isTotal: true, value: 33100000 },
+      { x: 'Net Sales', value: 5085000 },
+      { x: 'Cost of Sales', value: -1250450 },
+      { x: 'Operating Expenses', value: -2350050 },
+      { x: 'Other Income', value: 750000 },
+      { x: 'Extraordinary Gain', value: -230050 },
+      { x: 'Interest Expense', value: -500000 },
+      { x: 'Taxes', value: 490000 },
+      { x: 'Net Income', isTotal: true, value: 1994450 },
     ],
     xField: 'x',
     yField: 'value',
@@ -40,6 +34,15 @@ const DemoWaterfall = () => {
       textBaseline: (d) => (d.value > 0 ? 'bottom' : 'top'),
       fontSize: 10,
       dy: (d) => (d.value > 0 ? -4 : 4),
+    },
+    connector: {
+      label: {
+        text: (d) => `${d.y2 - d.y1}`,
+        formatter: '~s',
+        fontSize: 14,
+        dy: 2,
+      },
+      style: { stroke: '#697474', offset: 16 },
     },
   };
   return <Waterfall {...config} />;

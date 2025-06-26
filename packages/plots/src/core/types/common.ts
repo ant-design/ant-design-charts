@@ -10,7 +10,7 @@ import type {
   LegendComponent,
 } from '@antv/g2';
 
-export type Primitive = number | string | boolean | Date;
+export type Primitive = number | string | boolean | Date | string[];
 
 export type FunctionEncodeSpec = (value: any, index?: number, array?: any[]) => Primitive;
 

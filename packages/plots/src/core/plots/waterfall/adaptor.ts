@@ -1,4 +1,4 @@
-import { flow, transformOptions, fieldAdapter } from '../../utils';
+import { flow, transformOptions, fieldAdapter, isObject, set } from '../../utils';
 import { mark } from '../../adaptor';
 import { START_KEY, END_KEY, WATERFALL_VALUE } from './constants';
 import type { Adaptor } from '../../types';
@@ -69,5 +69,28 @@ export function adaptor(params: Params) {
     return params;
   };
 
-  return flow(transformData, link, mark, transformOptions)(params);
+  /**
+  * @description 连接线
+  */
+  const connectorTransform = (params: Params) => {
+    const { options } = params;
+    const { data = [], connector } = options;
+    if (!connector) return params;
+    set(options, 'connector', {
+      xField: connector.reverse ? ['x2', 'x1'] : ['x1', 'x2'],
+      yField: connector.reverse ? ['y2', 'y1'] : ['y1', 'y2'],
+      data: [
+        {
+          x1: data[0].x,
+          y1: data[0][END_KEY],
+          x2: data[data.length - 1].x,
+          y2: data[data.length - 1][END_KEY],
+        },
+      ],
+      ...(isObject(connector) ? connector : {}),
+    })
+    return params;
+  };
+
+  return flow(transformData, link, mark, connectorTransform, transformOptions)(params);
 }
