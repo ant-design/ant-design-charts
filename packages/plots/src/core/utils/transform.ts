@@ -70,6 +70,7 @@ export const transformOptions = (params: Adaptor) => {
           if (isArray(config[key])) {
             config[key].forEach((annotation) => {
               children.push(transformConfig({
+                data: [],
                 tooltip: false,
                 ...annotation
               }));
