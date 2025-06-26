@@ -37,7 +37,7 @@ const DemoAnnotationShape = () => {
         style: {
           x: '80%',
           y: '70%',
-          render: ({ x, y }, context, d) => {
+          render: ({ x, y }, context) => {
             const { document } = context;
             const g = document.createElement('g', {});
             const c1 = document.createElement('circle', {
@@ -65,6 +65,7 @@ const DemoAnnotationShape = () => {
                 x,
                 y,
                 text: '数据保密',
+                transformOrigin: 'center',
                 transform: 'rotate(30)',
                 fontSize: 20,
                 fill: 'red',
