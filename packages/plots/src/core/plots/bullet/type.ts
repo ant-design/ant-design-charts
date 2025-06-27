@@ -15,8 +15,6 @@ export type BulletOptions = Options & {
     measures: string | string[];
     target: string | string[];
   };
-  // 竖直｜水平
-  layout: 'vertical' | 'horizontal';
   range: BulletOptions;
   measure: BulletOptions;
   target: BulletOptions;

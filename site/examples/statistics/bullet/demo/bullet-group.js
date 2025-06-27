@@ -30,13 +30,11 @@ const DemoBullet = () => {
     },
   ];
 
-  const color = {
-    targets: 'red',
-  };
-
   const config = {
     data,
-    color,
+    target: {
+      style: { stroke: 'red' },
+    },
   };
   return <Bullet {...config} />;
 };
