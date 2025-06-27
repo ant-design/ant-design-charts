@@ -26,13 +26,12 @@ export class Stock extends Plot<StockOptions> {
         y: { nice: true },
       },
       children: [
-        // shadow
+        // line shadow
         {
           type: 'link',
         },
-        // real body
         {
-          type: 'link',
+          type: 'interval',
         },
       ],
       axis: {

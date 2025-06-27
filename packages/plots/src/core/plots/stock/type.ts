@@ -1,17 +1,13 @@
-import type { Options } from '../../types/common';
+import type { Options, AttrStyle } from '../../types/common';
 
 export type StockOptions = Options & {
   /**
    * @title y 轴映射
-   * @description   range  【开盘价/收盘价/最高价/最低价】，设置一个指定 [open, close, high, low]【开盘价/收盘价/最高价/最低价】字段的数组
+   * @description   设置一个指定 [open, close, low, high]【开盘价/收盘价/最低价/最高价】字段的数组
    */
   yField: [string, string, string, string];
   /**
-   * @title 上涨色
+   * @title 线影样式
    */
-  readonly risingFill?: string;
-  /**
-   * @title 下跌色
-   */
-  readonly fallingFill?: string;
+  lineStyle?: AttrStyle;
 };
