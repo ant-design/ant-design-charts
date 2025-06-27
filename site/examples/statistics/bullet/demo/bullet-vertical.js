@@ -12,7 +12,7 @@ const DemoBullet = () => {
         targets: 85,
       },
     ],
-    layout: 'vertical',
+    transpose: false,
   };
   return <Bullet {...config} />;
 };

@@ -101,6 +101,7 @@ export function adaptor(params: Params) {
    * 图表差异化处理
    */
   const init = (params: Params) => {
+    const { options } = params;
     const {
       color,
       rangeField = 'ranges',
@@ -109,7 +110,7 @@ export function adaptor(params: Params) {
       xField = 'title',
       mapField,
       data,
-    } = params.options;
+    } = options;
 
     // 数据进行拍平
     const [rangesData, rangesMaxSize] = getTransformData(data, rangeField, xField);
@@ -128,7 +129,7 @@ export function adaptor(params: Params) {
       getFieldColor(targetsMaxSize, targetsColor),
     ].flat();
 
-    params.options.children = map(params.options.children, (c, i) => {
+    options.children = map(options.children, (c, i) => {
       const datas = [rangesData, measuresData, targetsData][i];
       const yField = [rangeField, measureField, targetField][i];
 
@@ -145,19 +146,13 @@ export function adaptor(params: Params) {
             return mapField ? get(mapField, [yField, index], mapString) : mapString;
           },
         },
-        style: {
-          ...(c.style || {}),
-          // 层级
-          zIndex: (d) => -d[yField],
-        },
         // labels 对应的 yField
         labels: i !== 0 ? map(c.labels, (l) => ({ ...l, text: yField })) : undefined,
       };
     });
-
-    params.options.scale.color.range = colors;
+    set(options, 'scale.color.range', colors);
     // legend itemMarker 的形状
-    params.options.legend.color.itemMarker = (d) => {
+    options.legend.color.itemMarker = (d) => {
       if (mapField && includes(mapField?.[targetField], d)) {
         return 'line';
       }
@@ -173,9 +168,9 @@ export function adaptor(params: Params) {
    * @returns params Params
    */
   const layoutAdaptor = (params: Params) => {
-    const { layout = 'horizontal' } = params.options;
+    const { transpose = true } = params.options;
 
-    if (layout !== 'horizontal') {
+    if (!transpose) {
       set(params, 'options.children[2].shapeField', 'hyphen');
     }
 
@@ -188,8 +183,9 @@ export function adaptor(params: Params) {
    * @returns params Params
    */
   const cfgAdaptor = (params: Params) => {
-    const { range = {}, measure = {}, target = {}, children } = params.options;
-    params.options.children = [range, measure, target].map((c, i) => mergeWithArrayCoverage(children[i], c));
+    const { options } = params;
+    const { range = {}, measure = {}, target = {}, children } = options;
+    options.children = [range, measure, target].map((c, i) => mergeWithArrayCoverage(children[i], c));
     return params;
   };
 

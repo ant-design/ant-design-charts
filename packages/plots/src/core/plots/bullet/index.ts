@@ -25,7 +25,7 @@ export class Bullet extends Plot<BulletOptions> {
       legend: {
         color: {
           itemMarker: (d) => {
-            return d === 'target' ? 'line' : 'square';
+            return d === 'targets' ? 'line' : 'square';
           },
         },
       },
@@ -36,12 +36,12 @@ export class Bullet extends Plot<BulletOptions> {
       children: [
         {
           type: 'interval',
-          style: { maxWidth: 30 },
+          style: { maxWidth: 30, zIndex: -2 },
           axis: { y: { grid: true, gridLineWidth: 2 } },
         },
         {
           type: 'interval',
-          style: { maxWidth: 20 },
+          style: { maxWidth: 20, zIndex: -1 },
           transform: [{ type: 'stackY' }],
         },
         {
