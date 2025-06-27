@@ -34,7 +34,7 @@ const DemoStock = () => {
     colorField: (d) => {
       // return '#4daf4a'
       const trend = Math.sign(d.Close - d.Open);
-      return trend > 0 ? '下跌' : trend === 0 ? '不变' : '上涨';
+      return trend > 0 ? '上涨' : trend === 0 ? '不变' : '下跌';
     },
     lineStyle: {
       stroke: 'black',
