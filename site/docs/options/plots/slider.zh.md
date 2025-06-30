@@ -318,34 +318,37 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
 | ----------- | -------------------------------- | ------------------------------------- |
 | valuechange | 选区发生变化时触发，通过事件监听 | `({detail: { value: any; }}) => void` |
 
-```js
-import { Chart } from '@ant-design/charts';
+```js | ob { autoMount: true }
+import { Line } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
-const chart = new Chart({
-  container: 'container',
-});
+const DemoLine = () => {
+  const config = {
+    data:{
+      type: 'fetch',
+      value:
+        'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
+    },
+    xField: 'date',
+    yField: 'close',
+    slider: {
+      x: {}
+    },
+    onReady: ({chart}) => {
+      chart.on('afterrender', () => {
+        const { canvas } = chart.getContext();
+        const { document } = canvas;
+        document.querySelector('.slider').addEventListener('valuechange', (evt) => {
+          console.info(evt.detail);
+        });
+      });
+    },
+  };
+  return <Line {...config} />;
+};
 
-chart
-  .line()
-  .data({
-    type: 'fetch',
-    value:
-      'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv',
-  })
-  .encode('x', 'date')
-  .encode('y', 'close')
-  // 开启 X 轴缩略轴
-  .slider('x', {});
-
-chart.on('afterrender', () => {
-  const { canvas } = chart.getContext();
-  const { document } = canvas;
-  document.querySelector('.slider').addEventListener('valuechange', (evt) => {
-    console.info(evt.detail);
-  });
-});
-
-chart.render();
+createRoot(document.getElementById('container')).render(<DemoLine />);
 ```
 
 ## 示例

@@ -222,7 +222,6 @@ scale: {
   },
 }
 ```
-```
 
 这样可以确保类别按照字母顺序排列（A, B, C, D, E），而不是数据中的原始顺序。
 
@@ -231,47 +230,35 @@ scale: {
 以下是一个使用 Ant Design Charts 声明式语法（Ant Design ChartsSpec）配置 ordinal 比例尺的完整示例：
 
 ```js | ob { autoMount: true }
-import { Chart } from '@antv/g2';
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom';
 
-// 创建一个容器元素
-const container = document.createElement('div');
-container.style.width = '100%';
-container.style.height = '500px';
-
-const spec = {
-  type: 'interval',
-  data: [
+const DemoArea = () => {
+  const config = {
+    data: [
     { category: 'A', value: 40 },
     { category: 'B', value: 30 },
     { category: 'C', value: 20 },
     { category: 'D', value: 10 },
     { category: 'E', value: 25 },
-  ],
-  scale: {
-    color: {
-      type: 'ordinal',
-      domain: ['A', 'B', 'C', 'D', 'E'], // 显式指定类别顺序
-      range: ['#5B8FF9', '#5AD8A6', '#5D7092', '#F6BD16', '#E8684A'], // 自定义颜色
+    ],
+    scale: {
+      color: {
+        type: 'ordinal',
+        domain: ['A', 'B', 'C', 'D', 'E'], // 显式指定类别顺序
+        range: ['#5B8FF9', '#5AD8A6', '#5D7092', '#F6BD16', '#E8684A'], // 自定义颜色
+      },
     },
-  },
-  encode: {
-    x: 'category',
-    y: 'value',
-    color: 'category',
-  },
+    xField: 'category',
+    yField: 'value',
+    colorField: 'category'
+  };
+
+  return <Column {...config} />;
 };
 
-// 使用 Chart 渲染
-
-const chart = new Chart({
-  container: 'container',
-  container,
-  autoFit: true,
-});
-chart.options(spec);
-chart.render();
-
-return container;
+createRoot(document.getElementById('container')).render(<DemoArea />);
 ```
 
 这个示例展示了如何使用 Ant Design Charts 声明式语法创建一个使用 ordinal 比例尺的柱状图，包括以下特性：

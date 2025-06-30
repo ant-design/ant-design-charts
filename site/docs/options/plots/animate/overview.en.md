@@ -143,60 +143,6 @@ createRoot(document.getElementById('container')).render(<Demo />);
 
 The animations above are all excessive animations and do not involve data updates. Ant Design Charts also provides the ability to create keyframe animations. use `chart.timingKeyframe` to create a time container that holds a series of views and applies smooth transitions to related graphical elements within those views. The corresponding relationship is specified by two channels, **key** and **groupKey**.
 
-```js | ob { autoMount: true }
-import { Column } from '@ant-design/plots';
-import React from 'react';
-import { createRoot } from 'react-dom';
-
-const Demo = () => {
-
-  const config =```js | ob { autoMount: true }
-  import { Chart } from '@antv/g2';
-
-  (async () => {
-    const data = await fetch(
-      'https://gw.alipayobjects.com/os/antvdemo/assets/data/scatter.json',
-    ).then((res) => res.json());
-
-
-
-  const chart = new Chart({
-    container: 'container',
-  });
-
-    // Refer to the description of css animation
-    const keyframe = chart
-      .timingKeyframe() // Create container
-      .attr('iterationCount', 2) // Number of iterations
-      .attr('direction', 'alternate') // Direction
-      .attr('duration', 1000); // Duration
-
-    keyframe
-      .interval()
-      .data(data)
-      .encode('x', 'gender')
-      .encode('y', 'weight')
-      .encode('color', 'gender')
-      .encode('key', 'gender'); // Specify key
-
-    keyframe
-      .point()
-      .data(data)
-      .encode('x', 'height')
-      .encode('y', 'weight')
-      .encode('color', 'gender')
-      .encode('shape', 'point')
-      .encode('groupKey', 'gender'); // Specify groupKey
-
-    chart.render();
-  ```;
-
-  return <Column {...config} />;
-};
-
-createRoot(document.getElementById('container')).render(<Demo />);
-```
-
 ## Time Series Animation
 
 **TimingSequence** is still under development, please stay tuned.
