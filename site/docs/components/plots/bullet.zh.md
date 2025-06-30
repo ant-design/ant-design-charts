@@ -84,7 +84,7 @@ order: 10
 | -------- | ----------- | ------------ | -------- |
 | ranges    | _string\|string[]_ | 区间背景颜色 | 无       |
 | measures  | _string\|string[]_ | 实际值颜色   | 无       |
-| target   | _string\|string[]_ | 目标值颜色   | 无       |
+| targets   | _string\|string[]_ | 目标值颜色   | 无       |
 
 
 ### Shape
