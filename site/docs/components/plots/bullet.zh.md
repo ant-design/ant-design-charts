@@ -40,6 +40,8 @@ order: 10
 
 ## 配置项
 
+通用属性参考：[通用配置](/components/plots/overview#通用配置项)
+
 ### 概览
 
 |配置项|说明|类型|默认值|
@@ -82,7 +84,7 @@ order: 10
 | -------- | ----------- | ------------ | -------- |
 | ranges    | _string\|string[]_ | 区间背景颜色 | 无       |
 | measures  | _string\|string[]_ | 实际值颜色   | 无       |
-| target   | _string\|string[]_ | 目标值颜色   | 无       |
+| targets   | _string\|string[]_ | 目标值颜色   | 无       |
 
 
 ### Shape
