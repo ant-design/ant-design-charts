@@ -39,7 +39,7 @@ order: 6
 
 ## 配置项
 
-通用属性参考：[通用配置](components/plots/overview#通用配置项)
+通用属性参考：[通用配置](/components/plots/overview#通用配置项)
 
 ### 概览
 
