@@ -146,8 +146,6 @@ export function adaptor(params: Params) {
             return mapField ? get(mapField, [yField, index], mapString) : mapString;
           },
         },
-        // labels 对应的 yField
-        labels: i !== 0 ? map(c.labels, (l) => ({ ...l, text: yField })) : undefined,
       };
     });
     set(options, 'scale.color.range', colors);
