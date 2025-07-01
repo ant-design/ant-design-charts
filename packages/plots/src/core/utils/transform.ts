@@ -55,12 +55,12 @@ export const transformOptions = (params: Adaptor) => {
       if (!config[key]) return;
       const exist = CONFIG_SHAPE.find((item) => item.key === key);
       if (exist) {
-        const { type, extend_keys } = exist;
+        const { type, extend_keys, default_cfg = {} } = exist;
         if (type) {
           const { tooltip } = config[key];
           children.push(
             transformConfig(
-              mergeWithArrayCoverage({}, pick(config, extend_keys), { type }, config[key], {
+              mergeWithArrayCoverage({}, pick(config, extend_keys), default_cfg, { type }, config[key], {
                 tooltip: tooltip ? tooltip : false,
               }),
             ),

@@ -254,6 +254,9 @@ export const CONFIG_SHAPE = [
     key: 'point',
     type: 'point',
     extend_keys: EXTEND_KEYS,
+    default_cfg: {
+      shapeField: 'circle',
+    },
   },
   {
     key: 'area',
