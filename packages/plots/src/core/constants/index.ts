@@ -216,7 +216,7 @@ export const TRANSFORM_OPTION_KEY = {
  *    1. annotations: [{type: 'text'}] -> children: [{type: 'text'}]
  *    2. line: {shape: 'hvh'}-> children: [{type: 'line', style: { shape: 'hvh'}}]
  */
-const EXTEND_KEYS = [
+const EXTENDED_PROPERTIES = [
   'xField',
   'yField',
   'seriesField',
@@ -238,30 +238,30 @@ const EXTEND_KEYS = [
 export const CONFIG_SHAPE = [
   {
     key: 'annotations',
-    extend_keys: [],
+    extendedProperties: [],
   },
   {
     key: 'line',
     type: 'line',
-    extend_keys: EXTEND_KEYS,
+    extendedProperties: EXTENDED_PROPERTIES,
   },
   {
     key: 'connector',
     type: 'connector',
-    extend_keys: [],
+    extendedProperties: [],
   },
   {
     key: 'point',
     type: 'point',
-    extend_keys: EXTEND_KEYS,
-    default_cfg: {
+    extendedProperties: EXTENDED_PROPERTIES,
+    defaultShapeConfig: {
       shapeField: 'circle',
     },
   },
   {
     key: 'area',
     type: 'area',
-    extend_keys: EXTEND_KEYS,
+    extendedProperties: EXTENDED_PROPERTIES,
   },
 ];
 
