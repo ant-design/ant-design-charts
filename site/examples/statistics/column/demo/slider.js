@@ -1,5 +1,6 @@
 import { Column } from '@ant-design/plots';
 import React, { useEffect, useRef } from 'react';
+import { createRoot } from 'react-dom';
 
 const DemoColumn = () => {
   const chartRef = useRef();
