@@ -1,3 +1,45 @@
+# [2.6.0](https://github.com/ant-design/ant-design-charts/compare/2.3.0...2.6.0) (2025-07-02)
+
+
+* BREAKING CHANGE: update the configuration of the Stock (#3003) ([e71c805](https://github.com/ant-design/ant-design-charts/commit/e71c805fc50c3eb57d9dbcf10ccee9b5f66d543d)), closes [#3003](https://github.com/ant-design/ant-design-charts/issues/3003)
+* BREAKING CHANGE: update the implementation and configuration of the V… (#2984) ([64b1c2e](https://github.com/ant-design/ant-design-charts/commit/64b1c2e7a0557205a9ee4a11a3d95409d3f7437e)), closes [#2984](https://github.com/ant-design/ant-design-charts/issues/2984)
+
+
+### Bug Fixes
+
+* annotations loss caused by legend filter ([#3000](https://github.com/ant-design/ant-design-charts/issues/3000)) ([23a9123](https://github.com/ant-design/ant-design-charts/commit/23a9123790d65d758ed0a71a62efcef4baeca75e))
+* build lib ([#2953](https://github.com/ant-design/ant-design-charts/issues/2953)) ([ede61d6](https://github.com/ant-design/ant-design-charts/commit/ede61d68bb8e41fa6f7159e294add0af03f8503a))
+* demo url ([#2934](https://github.com/ant-design/ant-design-charts/issues/2934)) ([e6593b0](https://github.com/ant-design/ant-design-charts/commit/e6593b096cce425e66d3f849dc643a7b15dc393a))
+* get discussion argument ([#2971](https://github.com/ant-design/ant-design-charts/issues/2971)) ([13f90f9](https://github.com/ant-design/ant-design-charts/commit/13f90f95a1d186e9c6cf262f915302f9c670826c))
+* oscp path ([#2939](https://github.com/ant-design/ant-design-charts/issues/2939)) ([9ebab5d](https://github.com/ant-design/ant-design-charts/commit/9ebab5d7b9134e60a46d2824df1948dd587c3c95))
+* ref unable to obtain chart instance ([#2918](https://github.com/ant-design/ant-design-charts/issues/2918)) ([769755e](https://github.com/ant-design/ant-design-charts/commit/769755e62417426b9700218cf344e89bbe97e1f9))
+* remove the default label logic ([#3006](https://github.com/ant-design/ant-design-charts/issues/3006)) ([c33e81c](https://github.com/ant-design/ant-design-charts/commit/c33e81c98f865dbe8f760e6334081737ef20d184))
+* the display of labels with all - zero data is abnormal ([#2990](https://github.com/ant-design/ant-design-charts/issues/2990)) ([2fdb1d0](https://github.com/ant-design/ant-design-charts/commit/2fdb1d01156fb129f654c5d7b32100641300e10b))
+* The legend display of the Veen chart is abnormal ([#2910](https://github.com/ant-design/ant-design-charts/issues/2910)) ([1f7d155](https://github.com/ant-design/ant-design-charts/commit/1f7d155fbe86f5aee375e75c89bf0114ff0336fd))
+* unknown component shape.point.smooth ([#3009](https://github.com/ant-design/ant-design-charts/issues/3009)) ([afae06e](https://github.com/ant-design/ant-design-charts/commit/afae06ebd5f4d545b514c7c36ee898be77f9cdff))
+
+
+### Features
+
+* **ConfigProvider:** support global configuration ([#2921](https://github.com/ant-design/ant-design-charts/issues/2921)) ([6a972a4](https://github.com/ant-design/ant-design-charts/commit/6a972a4eb4c25d37df4e18047ed6bef58b16349f))
+* improve the syntactic for sunburst chart data ([#2987](https://github.com/ant-design/ant-design-charts/issues/2987)) ([cba20b4](https://github.com/ant-design/ant-design-charts/commit/cba20b43aaee63ef45701b470d43405108518627))
+* loading template theme support ([#2920](https://github.com/ant-design/ant-design-charts/issues/2920)) ([34f1900](https://github.com/ant-design/ant-design-charts/commit/34f1900c08e24d4bb5777078a7383f57e1d094fd))
+* support the coordinateType configuration ([#2988](https://github.com/ant-design/ant-design-charts/issues/2988)) ([d5a32a4](https://github.com/ant-design/ant-design-charts/commit/d5a32a4820ec6d67108ff0a848f9cf922f86a2e3))
+
+
+### BREAKING CHANGES
+
+* update the configuration of the Stock
+
+* fix: example
+* update the implementation and configuration of the Violin chart
+
+* fix; type
+
+* chore: rename boxplot to box
+
+
+
 # [2.4.0](https://github.com/ant-design/ant-design-charts/compare/2.3.0...2.4.0) (2025-06-16)
 
 
