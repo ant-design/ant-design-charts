@@ -68,9 +68,10 @@ export const transformOptions = (params: Adaptor) => {
         } else {
           // annotations
           if (isArray(config[key])) {
+            const isText = config[key].some((item) => item.type === 'text');
             config[key].forEach((annotation) => {
               children.push(transformConfig({
-                data: [],
+                ...(isText ? { data: [] } : {}),
                 tooltip: false,
                 ...annotation
               }));
