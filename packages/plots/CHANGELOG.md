@@ -1,3 +1,15 @@
+## [2.6.1](https://github.com/ant-design/ant-design-charts/compare/2.6.0...2.6.1) (2025-07-21)
+
+
+### Bug Fixes
+
+* 修复 ice 产物 react 匹配错误 ([#3017](https://github.com/ant-design/ant-design-charts/issues/3017)) ([eb2cb95](https://github.com/ant-design/ant-design-charts/commit/eb2cb95e06c07e32ad1e22a5f2bfdab29f3eafad))
+* Fix the issue where lineY cannot be drawn when data is empty ([#3013](https://github.com/ant-design/ant-design-charts/issues/3013)) ([3819d71](https://github.com/ant-design/ant-design-charts/commit/3819d71967f23170117d4cbb20fa77d7e8756f65))
+* memory overflow by event emitter ([#3018](https://github.com/ant-design/ant-design-charts/issues/3018)) ([02b92c5](https://github.com/ant-design/ant-design-charts/commit/02b92c5a053cd4cb91e4073044280f6b55f0189f))
+* reset example is abnormal ([#3014](https://github.com/ant-design/ant-design-charts/issues/3014)) ([22b833e](https://github.com/ant-design/ant-design-charts/commit/22b833e6cdc65a61e1c85369359e6aee84a943b0))
+
+
+
 # [2.6.0](https://github.com/ant-design/ant-design-charts/compare/2.3.0...2.6.0) (2025-07-02)
 
 
