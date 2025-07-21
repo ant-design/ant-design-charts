@@ -22,6 +22,10 @@ export abstract class Plot<O extends PickOptions> extends EE {
   public chart: G2Chart;
   public annotation: Annotaion<O>;
 
+  // 新增：用于跟踪事件监听器和清理资源
+  private eventListeners: Array<() => void> = [];
+  private bindedEvents: boolean = false;
+
   constructor(container: string | HTMLElement, options: O) {
     super();
     this.container = typeof container === 'string' ? document.getElementById(container) : container;
@@ -68,10 +72,16 @@ export abstract class Plot<O extends PickOptions> extends EE {
    */
   private bindEvents() {
     if (this.chart) {
-      this.chart.on('*', (e) => {
+      const eventHandler = (e) => {
         if (e?.type) {
           this.emit(e.type, e);
         }
+      };
+
+      this.chart.on('*', eventHandler);
+
+      this.eventListeners.push(() => {
+        this.chart?.off('*', eventHandler);
       });
     }
   }
@@ -98,9 +108,8 @@ export abstract class Plot<O extends PickOptions> extends EE {
     // 渲染
     this.chart.render().then(() => {
       this.annotation = new Annotaion(this.chart, this.options);
+      this.bindSizeSensor();
     });
-    // 绑定
-    this.bindSizeSensor();
   }
 
   /**
@@ -137,11 +146,22 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * 销毁
    */
   public destroy() {
+    // 清理所有事件监听器
+    this.eventListeners.forEach(cleanup => cleanup());
+    this.eventListeners = [];
+
+    // 清理 annotation
+    if (this.annotation && typeof this.annotation.destroy === 'function') {
+      this.annotation.destroy();
+    }
+    this.annotation = null;
+
     // G2 的销毁
     this.chart.destroy();
+    this.chart = null;
     // 清空已经绑定的事件
     this.off();
-
+    this.bindedEvents = false;
     this.container.removeAttribute(SOURCE_ATTRIBUTE_NAME);
   }
 
@@ -174,11 +194,22 @@ export abstract class Plot<O extends PickOptions> extends EE {
    * 绑定 dom 容器大小变化的事件
    */
   private bindSizeSensor() {
+    if (this.bindedEvents) return;
     const { autoFit = true } = this.options;
     if (autoFit) {
-      this.chart.on(ChartEvent.AFTER_CHANGE_SIZE, () => {
-        this.annotation.update();
+      const resizeHandler = () => {
+        if (this.annotation) {
+          this.annotation.update();
+        }
+      };
+
+      this.chart.on(ChartEvent.AFTER_CHANGE_SIZE, resizeHandler);
+
+      // 记录清理函数
+      this.eventListeners.push(() => {
+        this.chart?.off(ChartEvent.AFTER_CHANGE_SIZE, resizeHandler);
       });
+      this.bindedEvents = true;
     }
   }
 }

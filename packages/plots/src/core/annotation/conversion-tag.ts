@@ -149,4 +149,8 @@ export class ConversionTag extends Annotaion<ConversionTagOptions> {
       text.setAttribute('y', y);
     });
   }
+
+  public destroy(): void {
+    this.clear();
+  }
 }
