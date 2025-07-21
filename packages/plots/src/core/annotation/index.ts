@@ -41,4 +41,13 @@ export class Controller<T extends object> {
       annotationInstance?.update();
     });
   }
+  /**
+   * Dws the annotations
+   */
+  destroy() {
+    this.container.forEach((annotationInstance) => {
+      annotationInstance.destroy();
+    });
+    this.container.clear();
+  }
 }
