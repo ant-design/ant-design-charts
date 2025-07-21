@@ -22,18 +22,13 @@ export const isValidElement = (jsxCode: string): boolean => {
     return true;
   }
 
-  let match;
-  let hasValidReactElement = false;
-
-  while ((match = createElementPattern.exec(jsxCode)) !== null) {
-    const elementName = match[3];
-
-    // 如果不是 G 元素，则认为是有效的 React 元素
-    if (!GElements.has(elementName.toLowerCase())) {
-      hasValidReactElement = true;
-      break;
-    }
+  const matches = jsxCode.match(createElementPattern);
+  if (!matches) {
+    return false;
   }
 
-  return hasValidReactElement;
+  return matches.some((match) => {
+    const elementMatch = match.match(/\.createElement\(\s*(['"`])([^'"`]+)\1/);
+    return elementMatch && !GElements.has(elementMatch[2].toLowerCase());
+  });
 };
