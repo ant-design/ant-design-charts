@@ -2,6 +2,8 @@ import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from '
 import React, { forwardRef } from 'react';
 import { BaseChart } from '../components/base';
 import useConfig from '../hooks/useConfig';
+import scale from './scale';
+import { flow } from '../util';
 import type { Chart } from '../interface';
 
 export function makeChartComp<C>(
@@ -10,6 +12,9 @@ export function makeChartComp<C>(
   const configKey = chartType.charAt(0).toLowerCase() + chartType.slice(1);
   return forwardRef<Chart, C>((props, ref) => {
     const config = useConfig();
-    return <BaseChart {...config.common} {...config[configKey]} {...props} chartType={chartType} ref={ref} />;
+    const flowProps = flow([scale])(props);
+    if (!config || !config[configKey]) {
+      return <BaseChart {...config.common} {...config[configKey]} {...flowProps} chartType={chartType} ref={ref} />;
+    }
   });
 }
