@@ -14,7 +14,8 @@ export function makeChartComp<C>(
     const config = useConfig();
     const flowProps = flow([scale])(props);
     if (!config || !config[configKey]) {
-      return <BaseChart {...config.common} {...config[configKey]} {...flowProps} chartType={chartType} ref={ref} />;
+      return <BaseChart {...flowProps} chartType={chartType} ref={ref} />;
     }
+    return <BaseChart {...config.common} {...config[configKey]} {...flowProps} chartType={chartType} ref={ref} />;
   });
 }

@@ -90,7 +90,6 @@ Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种�
 | itemValue <Badge type="success">分类图例</Badge>      | 配置图例项的值                                   | [itemValue](#itemvalue)                                            | 详见[itemValue](#itemvalue)           |
 | itemBackground <Badge type="success">分类图例</Badge> | 配置图例项的背景                                 | [itemBackground](#itembackground)                                  | 详见[itemBackground](#itembackground) |
 | itemWidth <Badge type="success">分类图例</Badge>      | 配置图例项的宽度                                 | number                                                             | -                                     |
-| itemSpan <Badge type="success">分类图例</Badge>       | 配置图例项图标、标签和值的空间划分               | number \| number[]                                                 | `[1, 1, 1]`                           |
 | itemSpacing <Badge type="success">分类图例</Badge>    | 配置图例项图标、标签和值之间的间距               | number \| number[]                                                 | `[8, 8]`                              |
 | nav <Badge type="success">分类图例</Badge>            | 配置图例的分页器                                 | [nav](#nav)                                                        | 详见[nav](#nav)                       |
 | color <Badge type="warning">连续图例</Badge>          | 配置连续图例的色带颜色                           | string[] \| [d3-interpolate](https://github.com/d3/d3-interpolate) | -                                     |
@@ -576,11 +575,6 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
 
 适用于 <Badge type="success">分类图例</Badge> 。配置图例项的宽度。
 
-### itemSpan
-
-<description> _number|number[]_ **optional** </description>
-
-适用于 <Badge type="success">分类图例</Badge> 。配置图例项图标、标签和值的空间划分。默认为`[1, 1, 1]`。
 
 ### itemSpacing
 

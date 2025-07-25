@@ -158,7 +158,6 @@ export abstract class Plot<O extends PickOptions> extends EE {
 
     // G2 的销毁
     this.chart.destroy();
-    this.chart = null;
     // 清空已经绑定的事件
     this.off();
     this.bindedEvents = false;
