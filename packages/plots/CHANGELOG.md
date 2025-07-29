@@ -1,3 +1,12 @@
+## [2.6.2](https://github.com/ant-design/ant-design-charts/compare/2.6.0...2.6.2) (2025-07-27)
+
+
+### Features
+
+* add a scale processing ([#3021](https://github.com/ant-design/ant-design-charts/issues/3021)) ([fc46dd7](https://github.com/ant-design/ant-design-charts/commit/fc46dd7c1ac8dfc618605e5dc5e4326f93f8b912))
+
+
+
 ## [2.6.1](https://github.com/ant-design/ant-design-charts/compare/2.6.0...2.6.1) (2025-07-21)
 
 
