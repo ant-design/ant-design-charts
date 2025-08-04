@@ -1,3 +1,12 @@
+## [2.6.3](https://github.com/ant-design/ant-design-charts/compare/2.6.0...2.6.3) (2025-08-04)
+
+
+### Bug Fixes
+
+* chart render abnormal due to the scale ([#3029](https://github.com/ant-design/ant-design-charts/issues/3029)) ([21a27e9](https://github.com/ant-design/ant-design-charts/commit/21a27e9014a51e0cd3342ac713f24f583718017e))
+* the abnormal jsx detection in the BigFish4 dev environment ([#3030](https://github.com/ant-design/ant-design-charts/issues/3030)) ([881a648](https://github.com/ant-design/ant-design-charts/commit/881a648141bb661a4933a3d2ceb5a6c59885aa65))
+
+
 ## [2.6.2](https://github.com/ant-design/ant-design-charts/compare/2.6.0...2.6.2) (2025-07-27)
 
 
