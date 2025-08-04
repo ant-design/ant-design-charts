@@ -23,7 +23,7 @@ describe('Line scale transform', () => {
     container = null;
   });
 
-  it('render', async () => {
+  it('render with all zero data', async () => {
     const config = {
       data: [
         { year: '1991', value: 0 },
@@ -38,5 +38,35 @@ describe('Line scale transform', () => {
     const plot = await waitForAfterRender(container!, config);
     expect(plot).not.toBeNull();
     expect(plot.getScale().y.options.domainMax).toBe(1);
+  });
+
+  it('render with no data', async () => {
+    const config = {
+      data: [],
+      width: 600,
+      height: 300,
+      xField: 'year',
+      yField: 'value',
+    };
+    const plot = await waitForAfterRender(container!, config);
+    expect(plot).not.toBeNull();
+    expect(plot.getScale().y.options.domainMax).toBeUndefined();
+  });
+
+  it('render with data', async () => {
+    const config = {
+      data: [
+        { year: '1991', value: 10 },
+        { year: '1992', value: 10 },
+        { year: '1993', value: 10 },
+      ],
+      width: 600,
+      height: 300,
+      xField: 'year',
+      yField: 'value',
+    };
+    const plot = await waitForAfterRender(container!, config);
+    expect(plot).not.toBeNull();
+    expect(plot.getScale().y.options.domainMax).toBeUndefined();
   });
 });
