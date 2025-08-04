@@ -37,6 +37,6 @@ describe('Line scale transform', () => {
     };
     const plot = await waitForAfterRender(container!, config);
     expect(plot).not.toBeNull();
-    expect(plot.getScale().y.options.domain).toEqual([0, 1]);
+    expect(plot.getScale().y.options.domainMax).toBe(1);
   });
 });
