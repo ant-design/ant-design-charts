@@ -205,3 +205,13 @@ style: {
   maxWidth: 20
 }
 ```
+
+5. 如何设置组内柱子间距离
+
+```js
+style: {
+  inset: 2,
+  // insetRight: 2
+  // insetLeft: 2
+}
+```
