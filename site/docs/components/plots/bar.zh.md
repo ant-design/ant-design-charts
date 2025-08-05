@@ -162,3 +162,13 @@ style: {
   maxWidth: 20
 }
 ```
+
+2. 堆叠情况下如何设置柱子内间距[spacing in stacking bar chart](https://github.com/ant-design/ant-design-charts/discussions/2999)
+
+```js
+style: {
+  insetRight: 2,
+  // stroke: '#fff',
+  // lineWidth: 2
+}
+```
