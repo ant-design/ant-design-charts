@@ -1,7 +1,7 @@
 name: V2 Site
 
 on:
-  pull_request:
+  push:
     branches:
       - v2 # default branch
 env:
@@ -46,20 +46,11 @@ jobs:
         run: |
           find . -maxdepth 1 -type f -exec rm -f {} \;
           cp -r site/dist/* ./
-          rm -rf site
-          rm -rf node_modules
-          rm -rf packages
-          rm -rf scripts
-          rm -rf public
-          rm -rf config
-          rm -rf template
-          rm -rf .changeset
-          rm -rf .github
-          rm -rf $PNPM_STORE
+          rm -rf site node_modules packages scripts public config template .changeset .github .husky $PNPM_STORE
       - name: commit changes
         run: |
-          git config --local user.email "954055752@qq.com"
-          git config --local user.name "lxfu1"
+          git config --local user.email "${{ secrets.GH_EMAIL }}"
+          git config --local user.name "${{ secrets.GH_NAME }}"
           git add .
           git commit -m "chore: update site"
       - name: push to gh-pages branch
