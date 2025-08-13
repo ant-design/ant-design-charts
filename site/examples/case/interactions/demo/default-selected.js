@@ -26,9 +26,12 @@ const DemoSelected = () => {
       chart.on(
         'afterrender',
         () => {
-          const { document } = chart.getContext().canvas;
-          const elements = document.getElementsByClassName('element');
-          elements[0]?.emit('click');
+          // const { document } = chart.getContext().canvas;
+          // const elements = document.getElementsByClassName('element');
+          // elements[0]?.emit('click');
+          chart.emit('element:select', {
+            data: { data: [{ type: '分类一', value: 87 }] },
+          });
         },
         true,
       );
