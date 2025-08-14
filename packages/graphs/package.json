@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/graphs",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A React graph library based on Graphin",
   "keywords": [
     "antv",

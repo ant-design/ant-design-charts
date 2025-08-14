@@ -1,3 +1,23 @@
+## [2.1.1](https://github.com/ant-design/ant-design-charts/compare/2.6.0...2.1.1) (2025-08-14)
+
+
+### Bug Fixes
+
+* 修复 ice 产物 react 匹配错误 ([#3017](https://github.com/ant-design/ant-design-charts/issues/3017)) ([eb2cb95](https://github.com/ant-design/ant-design-charts/commit/eb2cb95e06c07e32ad1e22a5f2bfdab29f3eafad))
+* chart render abnormal due to the scale ([#3029](https://github.com/ant-design/ant-design-charts/issues/3029)) ([21a27e9](https://github.com/ant-design/ant-design-charts/commit/21a27e9014a51e0cd3342ac713f24f583718017e))
+* Fix the issue where lineY cannot be drawn when data is empty ([#3013](https://github.com/ant-design/ant-design-charts/issues/3013)) ([3819d71](https://github.com/ant-design/ant-design-charts/commit/3819d71967f23170117d4cbb20fa77d7e8756f65))
+* **graphs:** 优化 CollapseExpandReactNode 中节点处理逻辑，移除不必要的节点查找 ([#3045](https://github.com/ant-design/ant-design-charts/issues/3045)) ([328ed45](https://github.com/ant-design/ant-design-charts/commit/328ed4529cbd547df8c1e4c6ff9e559ec98de00a))
+* memory overflow by event emitter ([#3018](https://github.com/ant-design/ant-design-charts/issues/3018)) ([02b92c5](https://github.com/ant-design/ant-design-charts/commit/02b92c5a053cd4cb91e4073044280f6b55f0189f))
+* reset example is abnormal ([#3014](https://github.com/ant-design/ant-design-charts/issues/3014)) ([22b833e](https://github.com/ant-design/ant-design-charts/commit/22b833e6cdc65a61e1c85369359e6aee84a943b0))
+* the abnormal jsx detection in the BigFish4 dev environment ([#3030](https://github.com/ant-design/ant-design-charts/issues/3030)) ([881a648](https://github.com/ant-design/ant-design-charts/commit/881a648141bb661a4933a3d2ceb5a6c59885aa65))
+
+
+### Features
+
+* add a scale processing ([#3021](https://github.com/ant-design/ant-design-charts/issues/3021)) ([fc46dd7](https://github.com/ant-design/ant-design-charts/commit/fc46dd7c1ac8dfc618605e5dc5e4326f93f8b912))
+
+
+
 # [2.1.0](https://github.com/ant-design/ant-design-charts/compare/2.2.1...2.1.0) (2025-05-14)
 
 
