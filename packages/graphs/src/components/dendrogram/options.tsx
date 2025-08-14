@@ -18,13 +18,14 @@ export const getDendrogramOptions = ({
   labelField,
 }: Pick<DendrogramOptions, 'direction' | 'compact' | 'labelField'>): GraphOptions => {
   const isLeafNode = (d) => isEmpty(d.children);
+  const labelText = (d) => formatLabel(d, labelField); 
 
   const layoutType = compact ? 'compact-box' : 'dendrogram';
   if (direction === 'vertical') {
     return {
       node: {
         style: {
-          labelText: (d) => formatLabel(d, labelField),
+          labelText,
           labelBackground: true,
           labelPlacement: 'right',
           labelTransform: (d) => (isLeafNode(d) ? 'rotate(90deg) translate(18px)' : 'translate(18px)'),
@@ -38,7 +39,7 @@ export const getDendrogramOptions = ({
     return {
       node: {
         style: {
-          labelText: (d) => formatLabel(d, labelField),
+          labelText,
           labelBackground: true,
           labelPlacement: (d) => (isLeafNode(d) ? 'right' : 'left'),
           ports: [{ placement: 'left' }, { placement: 'right' }],
@@ -51,7 +52,7 @@ export const getDendrogramOptions = ({
     return {
       node: { 
         style: { 
-          labelText: (d) => formatLabel(d, labelField),
+          labelText,
           labelBackground: true
         } 
       },

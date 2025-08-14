@@ -1,4 +1,4 @@
-import type { GraphData, TreeData } from '@antv/g6';
+import type { GraphData, TreeData, NodeData } from '@antv/g6';
 import type { GraphOptions } from '../../types';
 
 export interface DendrogramOptions extends Omit<GraphOptions, 'data'> {
