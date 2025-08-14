@@ -92,10 +92,10 @@ export class CollapseExpandReactNode extends BaseTransform<CollapseExpandReactNo
     nodes.forEach((datum) => {
       const nodeId = idOf(datum);
 
-      const node = element!.getElement(nodeId);
-      if (!node || (datum.children && datum.children.length > 0)) return;
+      if (datum.children && datum.children.length > 0) return;
 
       const children = getNeighborNodeIds(nodeId, edges, this.options.direction);
+
       if (children.length === 0) return;
 
       model.updateNodeData([{ id: nodeId, children }]);
