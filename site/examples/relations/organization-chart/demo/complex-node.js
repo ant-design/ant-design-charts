@@ -36,8 +36,6 @@ const DemoOrganizationChart = () => {
     },
     layout: {
       type: 'antv-dagre',
-      nodesep: 24,
-      ranksep: -10,
     },
     transforms: (prev) => [
       ...prev.filter((transform) => transform.type !== 'collapse-expand-react-node'),
