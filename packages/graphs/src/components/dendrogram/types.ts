@@ -24,4 +24,11 @@ export interface DendrogramOptions extends Omit<GraphOptions, 'data'> {
    * @default false
    */
   compact?: boolean;
+    /**
+   * Selects a field from the data to use as the label for the node.
+   * If a string is provided, it will select the field as `data[labelField]`.
+   * If a function is provided, it will call the function with the data and use the returned value.
+   * @default (data) => data.id
+   */
+  labelField?: string | ((node: NodeData) => string);
 }

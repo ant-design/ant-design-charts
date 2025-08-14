@@ -1,6 +1,7 @@
 import { isEmpty } from 'lodash';
 import type { GraphOptions } from '../../types';
 import type { DendrogramOptions } from './types';
+import { formatLabel } from '../../core/utils/label';
 
 export const DEFAULT_OPTIONS: GraphOptions = {
   node: {
@@ -14,7 +15,8 @@ export const DEFAULT_OPTIONS: GraphOptions = {
 export const getDendrogramOptions = ({
   direction,
   compact,
-}: Pick<DendrogramOptions, 'direction' | 'compact'>): GraphOptions => {
+  labelField,
+}: Pick<DendrogramOptions, 'direction' | 'compact' | 'labelField'>): GraphOptions => {
   const isLeafNode = (d) => isEmpty(d.children);
 
   const layoutType = compact ? 'compact-box' : 'dendrogram';
@@ -22,6 +24,7 @@ export const getDendrogramOptions = ({
     return {
       node: {
         style: {
+          labelText: (d) => formatLabel(d, labelField),
           labelBackground: true,
           labelPlacement: 'right',
           labelTransform: (d) => (isLeafNode(d) ? 'rotate(90deg) translate(18px)' : 'translate(18px)'),
@@ -35,6 +38,7 @@ export const getDendrogramOptions = ({
     return {
       node: {
         style: {
+          labelText: (d) => formatLabel(d, labelField),
           labelBackground: true,
           labelPlacement: (d) => (isLeafNode(d) ? 'right' : 'left'),
           ports: [{ placement: 'left' }, { placement: 'right' }],
@@ -45,7 +49,12 @@ export const getDendrogramOptions = ({
     };
   } else {
     return {
-      node: { style: { labelBackground: true } },
+      node: { 
+        style: { 
+          labelText: (d) => formatLabel(d, labelField),
+          labelBackground: true
+        } 
+      },
       edge: { type: 'cubic-radial' },
       layout: {
         type: layoutType,
