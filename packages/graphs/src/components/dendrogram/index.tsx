@@ -18,13 +18,13 @@ export const Dendrogram: ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithChildren<DendrogramOptions>> & RefAttributes<Graph>
 > = forwardRef<Graph, PropsWithChildren<DendrogramOptions>>(({ children, ...props }, ref) => {
   const options = useMemo(() => {
-    const { data, defaultExpandLevel, direction = 'horizontal', compact = false, ...restProps } = props;
+    const { data, defaultExpandLevel, direction = 'horizontal', compact = false, labelField, ...restProps } = props;
 
     return mergeOptions(
       COMMON_OPTIONS,
       DEFAULT_OPTIONS,
       { data: formatTreeData(data, defaultExpandLevel) },
-      getDendrogramOptions({ direction, compact }),
+      getDendrogramOptions({ direction, compact, labelField }),
       restProps,
     );
   }, [props]);
