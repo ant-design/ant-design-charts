@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@antv/g": "^6.1.7",
+    "@antv/g-plugin-rough-canvas-renderer": "^2.0.48",
     "@types/lodash": "^4.17.15",
     "@types/react": "^16.14.62",
     "@types/react-dom": "^16.9.25",

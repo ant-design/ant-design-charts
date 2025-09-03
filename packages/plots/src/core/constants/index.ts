@@ -1,7 +1,7 @@
 import { isArray, isBoolean } from '../utils';
 
 /** new Chart options */
-export const CHART_OPTIONS = ['renderer'];
+export const CHART_OPTIONS = ['renderer', 'plugins'];
 /** There is only the view layer, no need to pass it down to children */
 export const VIEW_OPTIONS = [
   'width',
@@ -30,6 +30,7 @@ export const VIEW_OPTIONS = [
   'type',
   'data',
   'direction',
+  'plugins',
 ];
 
 /** 特殊标识，用于标识改配置来自于转换逻辑，而非用户配置 */
@@ -289,7 +290,7 @@ export const SPECIAL_OPTIONS = [
     callback: (
       origin: object,
       key: string,
-      value: { available?: boolean; text?: string | Function;[key: string]: unknown } | any[],
+      value: { available?: boolean; text?: string | Function; [key: string]: unknown } | any[],
     ) => {
       /**
        * @description 特殊情况处理
