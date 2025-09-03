@@ -11,4 +11,5 @@ if (typeof window !== 'undefined' && window) {
   (window as any).d3Interpolate = require('d3-interpolate');
   (window as any).d3Regression = require('d3-regression');
   (window as any).g = require('@antv/g');
+  (window as any).gPluginRoughCanvasRenderer = require('@antv/g-plugin-rough-canvas-renderer');
 }
