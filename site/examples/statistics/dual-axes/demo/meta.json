@@ -171,6 +171,14 @@
         "en": "Grouped column multi line"
       },
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_d314dd/afts/img/A*xzh4RYzYTFcAAAAAAAAAAAAAARQnAQ"
+    },
+    {
+      "filename": "grouped-stacked-column-line.js",
+      "title": {
+        "zh": "分组堆叠柱线图表",
+        "en": "Grouped stacked column line"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*hhUWS6yU84YAAAAAQWAAAAgAemJ7AQ/fmt.avif"
     }
   ]
 }
