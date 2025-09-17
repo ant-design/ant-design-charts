@@ -1,12 +1,12 @@
 import { Chart, AxisComponent } from '@antv/g2';
 import { get, isFunction, uniqBy, groupBy } from '../utils';
-import { Annotaion } from './core';
+import { Annotation } from './core';
 import { Text } from './shapes';
 import { VERTICAL_MARGIN } from '../plots/bidirectional-bar/constants';
 
 export type BidirectionalBarAxisTextOptions = AxisComponent;
 
-export class BidirectionalBarAxisText extends Annotaion<BidirectionalBarAxisTextOptions> {
+export class BidirectionalBarAxisText extends Annotation<BidirectionalBarAxisTextOptions> {
   static tag = 'BidirectionalBarAxisText';
   constructor(chart: Chart, options: BidirectionalBarAxisTextOptions) {
     super(chart, options, { type: BidirectionalBarAxisText.tag });

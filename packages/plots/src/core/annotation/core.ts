@@ -4,7 +4,7 @@ import { mergeWithArrayCoverage } from '../utils';
 import type { DisplayObjectConfig } from '@antv/g';
 import type { GenericAnimation, AnimationResult } from './type';
 
-export abstract class Annotaion<T extends Record<string, any>> extends CustomElement<T> {
+export abstract class Annotation<T extends Record<string, any>> extends CustomElement<T> {
   public chart: Chart;
 
   constructor(chart: Chart, config: DisplayObjectConfig<T>, defaultOptions: DisplayObjectConfig<T>) {
