@@ -83,6 +83,22 @@
         "en": "Custom single color"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*xOaPSo1iIAUAAAAAAAAAAAAAemJ7AQ/fmt.webp"
+    },
+    {
+      "filename": "segmented-area.js",
+      "title": {
+        "zh": "分段面积",
+        "en": "Segmented area"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*BuR7R5myNyoAAAAAR3AAAAgAemJ7AQ/fmt.webp"
+    },
+    {
+      "filename": "break.js",
+      "title": {
+        "zh": "断轴",
+        "en": "Break axis"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*4XzGRa_Zq0AAAAAAR3AAAAgAemJ7AQ/fmt.webp"
     }
   ]
 }
