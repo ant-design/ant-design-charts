@@ -1,7 +1,7 @@
 import { Chart } from '@antv/g2';
 import { get, isFunction } from '../utils';
 import { Text, Polygon } from './shapes';
-import { Annotaion } from './core';
+import { Annotation } from './core';
 
 type ShapeAttrs = Record<string, any>;
 
@@ -23,7 +23,7 @@ export type ConversionTagOptions = {
   style?: ShapeAttrs;
 };
 
-export class ConversionTag extends Annotaion<ConversionTagOptions> {
+export class ConversionTag extends Annotation<ConversionTagOptions> {
   static tag = 'ConversionTag';
   public direction: 'vertical' | 'horizontal';
 
@@ -33,12 +33,18 @@ export class ConversionTag extends Annotaion<ConversionTagOptions> {
 
   public getConversionTagLayout() {
     const isVertical = this.direction === 'vertical';
-    const elementsLayout = this.getElementsLayout();
-    const { x: firstX, y: firstY, height: firstHeigt, width: firstWidth, data: firstData } = elementsLayout[0];
+    // Ensure elements are sorted by their position
+    const elementsLayout = Array.from(this.getElementsLayout()).sort((a, b) => {
+      if (isVertical) {
+        return a.y - b.y;
+      }
+      return a.x - b.x;
+    });
+    const { x: firstX, y: firstY, height: firstHeight, width: firstWidth, data: firstData } = elementsLayout[0];
     const valuePath = ['items', 0, 'value'];
     let preValue = get(firstData, valuePath);
     const elementDistance = isVertical
-      ? elementsLayout[1].y - firstY - firstHeigt
+      ? elementsLayout[1].y - firstY - firstHeight
       : elementsLayout[1].x - firstX - firstWidth;
     const tagLayout = [];
     const { size = 40, arrowSize = 20, spacing = 4 } = this.attributes;
@@ -104,6 +110,7 @@ export class ConversionTag extends Annotaion<ConversionTagOptions> {
     this.direction = direction as 'vertical' | 'horizontal';
   }
 
+
   public drawConversionTag() {
     const conversionLayout = this.getConversionTagLayout();
     const {
@@ -136,18 +143,9 @@ export class ConversionTag extends Annotaion<ConversionTagOptions> {
     });
   }
 
-  /** 仅仅更新位置即可 */
   public update() {
-    const conversionLayout = this.getConversionTagLayout();
-    conversionLayout.forEach((layout) => {
-      const { points, center, key } = layout;
-      const [x, y] = center;
-      const polygon = this.getElementById(`polygon-${key}`);
-      const text = this.getElementById(`text-${key}`);
-      polygon.setAttribute('points', points);
-      text.setAttribute('x', x);
-      text.setAttribute('y', y);
-    });
+    this.clear()
+    this.drawConversionTag()
   }
 
   public destroy(): void {

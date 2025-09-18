@@ -1,7 +1,7 @@
 import EE from '@antv/event-emitter';
 import { ChartEvent } from '@antv/g2';
 import { Chart } from './chart';
-import { Controller as Annotaion } from '../annotation';
+import { Controller as Annotation } from '../annotation';
 import { CHART_OPTIONS, SKIP_DEL_CUSTOM_SIGN } from '../constants';
 import { mergeWithArrayCoverage, pick } from '../utils';
 
@@ -20,7 +20,7 @@ export abstract class Plot<O extends PickOptions> extends EE {
   public options: O;
   /** G2 chart 实例 */
   public chart: G2Chart;
-  public annotation: Annotaion<O>;
+  public annotation: Annotation<O>;
 
   // 新增：用于跟踪事件监听器和清理资源
   private eventListeners: Array<() => void> = [];
@@ -107,7 +107,11 @@ export abstract class Plot<O extends PickOptions> extends EE {
     this.chart.options(this.getSpecOptions());
     // 渲染
     this.chart.render().then(() => {
-      this.annotation = new Annotaion(this.chart, this.options);
+      if (this.annotation) {
+        this.annotation.update();
+      } else {
+        this.annotation = new Annotation(this.chart, this.options);
+      }
       this.bindSizeSensor();
     });
   }
