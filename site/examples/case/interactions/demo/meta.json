@@ -99,6 +99,14 @@
         "en": "Break axis"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*4XzGRa_Zq0AAAAAAR3AAAAgAemJ7AQ/fmt.webp"
+    },
+    {
+      "filename": "quadrants.js",
+      "title": {
+        "zh": "象限",
+        "en": "Quadrants"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*g8i_Ra_TBKkAAAAAQ3AAAAgAemJ7AQ/fmt.webp"
     }
   ]
 }
