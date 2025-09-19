@@ -27,6 +27,14 @@
         "en": "Watermark"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*LA11Rqfk2Y4AAAAAAAAAAAAADmJ7AQ/original"
+    },
+    {
+      "filename": "line.js",
+      "title": {
+        "zh": "折标记",
+        "en": "Line Annotation"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*5KFfRr4Kk3UAAAAARhAAAAgAemJ7AQ/fmt.webp"
     }
   ]
 }
