@@ -321,7 +321,7 @@ Ant Design Charts 中**缩略轴（Slider）** 可以用于过滤数据，让用
 ```js | ob { autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoLine = () => {
   const config = {

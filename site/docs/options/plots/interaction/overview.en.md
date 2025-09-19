@@ -22,7 +22,7 @@ In Ant Design Charts, you can set the interaction state of the mark through `mar
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -80,7 +80,7 @@ Take the mouse brushing selection [brushFilter](/en/options/plots/core/interacti
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   const { Chart, ChartEvent } = G2;
@@ -149,7 +149,7 @@ If the built-in interaction cannot meet your needs, you can also implement some 
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   const { Chart, PLOT_CLASS_NAME, ELEMENT_CLASS_NAME, register } = G2;

@@ -48,7 +48,7 @@ EMA（Exponential Moving Average，指数移动平均）是一种常用的数据
 ```js | ob { autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   const config = {

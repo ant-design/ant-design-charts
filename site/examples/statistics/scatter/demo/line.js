@@ -1,7 +1,7 @@
 import { Scatter } from '@ant-design/plots';
 import { regressionQuad } from 'd3-regression';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const data = [
   { x: 1, y: 4.181 },

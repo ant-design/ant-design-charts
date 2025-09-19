@@ -1,7 +1,7 @@
 import { Line } from '@ant-design/plots';
 import { Plugin } from '@antv/g-plugin-rough-canvas-renderer';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoLine = () => {
   const config = {

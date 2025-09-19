@@ -1,6 +1,6 @@
 import { Bar } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const data = [
   { year: '1951 年', value: 38 },

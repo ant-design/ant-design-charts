@@ -33,7 +33,7 @@ Ant Design Charts 中**标题（Title）** 用于指定图表的标题内容，�
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   const config = {

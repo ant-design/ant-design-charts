@@ -30,7 +30,7 @@ order: 5
 ```js
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -203,7 +203,7 @@ chart.emit('brush:highlight', { data: { selection } });
 ```js | ob { autoMount: true }
 import { Area } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   const ref1 = React.useRef(null);

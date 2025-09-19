@@ -1,6 +1,6 @@
 import { Column, Line } from '@ant-design/plots';
 import React, { useEffect, useRef, useState } from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const CHART_MAP = {};
 

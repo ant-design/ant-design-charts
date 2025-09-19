@@ -1,7 +1,7 @@
 import { Line } from '@ant-design/plots';
 import { format } from 'fecha';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoLine = () => {
   const config = {

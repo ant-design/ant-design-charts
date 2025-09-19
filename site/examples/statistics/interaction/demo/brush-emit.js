@@ -1,6 +1,6 @@
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 function tip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
   let div;

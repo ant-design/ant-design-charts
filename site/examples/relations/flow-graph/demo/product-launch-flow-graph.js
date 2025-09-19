@@ -2,7 +2,7 @@ import { FlowGraph } from '@ant-design/graphs';
 import insertCss from 'insert-css';
 import { isBoolean } from 'lodash';
 import React, { useEffect, useState } from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 insertCss(`
   .step-card-wrapper {

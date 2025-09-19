@@ -2,7 +2,7 @@ import { FlowGraph } from '@ant-design/graphs';
 import { Typography } from 'antd';
 import insertCss from 'insert-css';
 import React, { useEffect, useState } from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const { Text } = Typography;
 

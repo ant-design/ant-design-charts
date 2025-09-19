@@ -26,7 +26,7 @@ Ant Design Charts 提供了丰富的比例尺类型，可以根据数据类型�
 ```js | ob { autoMount: true  }
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -51,7 +51,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true  }
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -95,7 +95,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true  }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -128,7 +128,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true  }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -158,7 +158,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true  }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -198,7 +198,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true, pin:false  }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -236,7 +236,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true, pin:false  }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -398,7 +398,7 @@ Ant Design Charts 内部会根据数据类型以及标记的类型，去推断�
 ```js | ob { autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -436,7 +436,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true  }
 import { DualAxes } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -486,7 +486,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true  }
 import { DualAxes } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -544,7 +544,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true  }
 import { DualAxes } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 

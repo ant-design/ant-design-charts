@@ -1,6 +1,6 @@
 import { Area } from '@ant-design/plots';
 import React, { useEffect, useRef } from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 document.getElementById('container').innerHTML = `
 <div id="focus" ></div>

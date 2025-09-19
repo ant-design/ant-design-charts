@@ -2,7 +2,7 @@ import { Pie } from '@ant-design/plots';
 import { Button } from 'antd';
 import { isEqual } from 'lodash';
 import React, { memo, useState } from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoPie = memo(
   ({ data, onReady }) => {
