@@ -30,7 +30,7 @@ Ant Design Charts 的 `fetch` 支持从远程接口获得数据，让数据源�
 ```js | ob { autoMount: true }
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 

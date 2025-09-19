@@ -102,7 +102,7 @@ chart.on('poptip:hide', (event) => {
 ```js | ob {  pin : false , autoMount: true }
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   // 生成模拟数据
@@ -212,7 +212,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob {  pin : false , autoMount: true }
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   // 生成模拟数据

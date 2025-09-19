@@ -55,7 +55,7 @@ Ant Design Charts 中的**数据（Data）** 主要用于指定需要可视化�
 ```js | ob { autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -89,7 +89,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 

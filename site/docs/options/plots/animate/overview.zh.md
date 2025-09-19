@@ -21,7 +21,7 @@ Ant Design Charts 动画系统的核心特性：
 ```js | ob { autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -48,7 +48,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -75,7 +75,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -102,7 +102,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -174,7 +174,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -258,7 +258,7 @@ Ant Design Charts 支持将数据值映射到动画属性上，使动画也具�
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -295,7 +295,7 @@ Ant Design Charts 提供了 `stackEnter` 标记转换来实现分组动画，使
 ```js | ob { autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -343,7 +343,7 @@ Ant Design Charts 提供了制作关键帧动画的能力，可以在不同视�
 ```js | ob { autoMount: true }
 import { Mix } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   const config = {

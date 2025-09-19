@@ -1,6 +1,6 @@
 import { Radar } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const data = [
   { name: 'G2', star: 12328 },

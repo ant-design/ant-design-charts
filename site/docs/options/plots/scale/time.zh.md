@@ -58,7 +58,7 @@ type Interpolate = (a: number, b: number) => (t: number) => T;
 ```js | ob { autoMount: true }
 import { DualAxes } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   const config = {

@@ -1,6 +1,6 @@
 import { G2, Heatmap } from '@ant-design/plots';
 import React, { useEffect, useState } from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 // 自定义一个 Shape
 G2.register('shape.point.rect', (style, context) => {

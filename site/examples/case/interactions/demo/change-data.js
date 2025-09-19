@@ -1,6 +1,6 @@
 import { Pie } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoChangeData = () => {
   const [data, setData] = React.useState([]);

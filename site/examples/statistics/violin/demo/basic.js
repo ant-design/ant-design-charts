@@ -1,6 +1,6 @@
 import { Violin } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoViolin = () => {
   const config = {

@@ -31,7 +31,7 @@ order: 4
 ```js
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -111,7 +111,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob {  pin: false , autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoArea = () => {
   const config = {
@@ -145,7 +145,7 @@ createRoot(document.getElementById('container')).render(<DemoArea />);
 ```js | ob {  pin: false , autoMount: true }
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoArea = () => {
   const config = {
@@ -242,7 +242,7 @@ createRoot(document.getElementById('container')).render(<DemoArea />);
 ```js
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -344,7 +344,7 @@ const { width, height, ...rest } = options;
 ```js
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -434,7 +434,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 

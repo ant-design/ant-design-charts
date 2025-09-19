@@ -1,6 +1,6 @@
 import { Pie } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const data = [
   { type: '分类一', value: 27 },

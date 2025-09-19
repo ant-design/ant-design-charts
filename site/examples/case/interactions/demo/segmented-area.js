@@ -1,6 +1,6 @@
 import { Area } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const ORIGIN_DATA = [
   { x: 1246406400000, y: 0.1 },

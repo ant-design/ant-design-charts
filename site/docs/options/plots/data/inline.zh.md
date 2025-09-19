@@ -34,7 +34,7 @@ Ant Design Charts 的数据源来源有两种，一种是 `inline`，即直接�
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 

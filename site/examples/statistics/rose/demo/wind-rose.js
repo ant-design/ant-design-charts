@@ -1,6 +1,6 @@
 import { Rose } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const data = [
   { direction: 'N', level: '< 0.5 m/s', value: 1.81 },

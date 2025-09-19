@@ -1,6 +1,6 @@
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DATA = [1, 2, 3, 4, 5, 6, 7, 8];
 

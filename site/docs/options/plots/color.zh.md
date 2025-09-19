@@ -32,7 +32,7 @@ order: 8
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -59,7 +59,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -97,7 +97,7 @@ Ant Design Charts 中可以通过设置 `scale.palette` 去指定色板。这个
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -132,7 +132,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -478,7 +478,7 @@ Ant Design Charts 提供了一些内置的色板，可以直接使用，并支�
 ```js | ob { autoMount: true }
 import { Column, G2 } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 function customPalette() {
   return ['#FFB3BA', '#98FF98', '#89CFF0', '#FFF9B1', '#D1A3FF'];
@@ -534,7 +534,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 

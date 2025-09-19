@@ -38,7 +38,7 @@ Ant Design Charts 支持在 mark 层级通过 `state` 字段配置不同状态�
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
   const state = {
@@ -76,7 +76,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -125,7 +125,7 @@ default:    1
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -184,7 +184,7 @@ Ant Design Charts 提供了丰富的交互，配合状态样式可实现多种�
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -222,7 +222,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -260,7 +260,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 

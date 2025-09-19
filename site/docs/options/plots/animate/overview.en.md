@@ -55,7 +55,7 @@ Each part of the animation has the following properties:
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -85,7 +85,7 @@ Animation properties can be used as a channel in Ant Design Charts, and can also
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -114,7 +114,7 @@ Ant Design Charts also provides the StackEnter mark transform to implement group
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 

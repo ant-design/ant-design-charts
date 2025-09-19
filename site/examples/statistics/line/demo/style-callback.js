@@ -1,6 +1,6 @@
 import { Line } from '@ant-design/plots';
 import React, { useEffect, useState } from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoLine = () => {
   const [data, setData] = useState([]);

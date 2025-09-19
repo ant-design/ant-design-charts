@@ -1,6 +1,6 @@
 import { WordCloud } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoWordCloud = () => {
   const config = {

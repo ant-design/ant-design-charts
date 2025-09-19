@@ -1,6 +1,6 @@
 import { Line } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const DemoLine = () => {
   const data = [
@@ -23,13 +23,13 @@ const DemoLine = () => {
     },
     style: {
       lineWidth: 2,
-      stroke: 'darkgreen'
+      stroke: 'darkgreen',
     },
     area: {
       style: {
         fill: 'linear-gradient(-90deg, white 0%, darkgreen 100%)',
-      }
-    }
+      },
+    },
   };
 
   return <Line {...config} />;

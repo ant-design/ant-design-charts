@@ -1,6 +1,6 @@
 import { G2, Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const { ChartEvent } = G2;
 

@@ -1,7 +1,7 @@
 import { Gauge } from '@ant-design/plots';
 import { Path } from '@antv/g';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 function getOrigin(points) {
   if (points.length === 1) return points[0];

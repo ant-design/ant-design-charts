@@ -1,6 +1,6 @@
 import { RadialBar } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const data = [
   { name: 'X6', star: 297 },

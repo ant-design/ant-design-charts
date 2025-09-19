@@ -1120,7 +1120,7 @@ legend: {
 ```js
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const data = [
   { type: '抖音', sold: 275 },
@@ -1255,7 +1255,7 @@ function legendColor(chart) {
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const data = [
   { genre: 'Sports', sold: 275 },

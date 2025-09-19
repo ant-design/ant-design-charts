@@ -1,7 +1,7 @@
 import { FlowDirectionGraph } from '@ant-design/graphs';
 import insertCss from 'insert-css';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const data = {
   nodes: [

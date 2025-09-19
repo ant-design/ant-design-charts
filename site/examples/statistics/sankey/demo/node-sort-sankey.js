@@ -1,6 +1,6 @@
 import { Sankey } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const colors = [
   '#5B8FF9',

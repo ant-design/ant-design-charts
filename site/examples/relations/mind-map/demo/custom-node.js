@@ -1,6 +1,6 @@
 import { G6, MindMap, RCNode, getNodeSide, measureTextSize } from '@ant-design/graphs';
 import React, { useEffect } from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const { treeToGraphData, idOf } = G6;
 const { TextNode } = RCNode;

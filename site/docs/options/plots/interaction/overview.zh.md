@@ -21,7 +21,7 @@ Ant Design Charts 中**交互（Interaction）** 提供了按需探索数据的�
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -151,7 +151,7 @@ chart.emit('brush:filter', {
 ```js | ob { autoMount: true }
 import { Column, G2 } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const { PLOT_CLASS_NAME, ELEMENT_CLASS_NAME, register } = G2;
 

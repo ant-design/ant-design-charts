@@ -32,7 +32,7 @@ In addition to `mark.encode`, the visual properties of the mark can also be set 
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
@@ -75,7 +75,7 @@ For example, color each area in the picture below:
 ```js | ob { autoMount: true }
 import { Scatter } from '@ant-design/plots';
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const Demo = () => {
 
