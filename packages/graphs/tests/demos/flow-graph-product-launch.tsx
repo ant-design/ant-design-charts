@@ -184,8 +184,7 @@ export const FlowGraphProductLaunch = () => {
         labelFill: '#aaa',
         labelFontSize: 8,
         labelFontWeight: 500,
-        // @ts-ignore
-        labelText: (data: EdgeData) => (data.data?.elapsed_time ? `80分位耗时\n${data.data.elapsed_time}` : ''),
+        labelText: (data) => (data.data?.elapsed_time ? `80分位耗时\n${data.data.elapsed_time}` : ''),
       },
     },
     layout: {

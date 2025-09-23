@@ -1,3 +1,13 @@
+## [2.6.5](https://github.com/ant-design/ant-design-charts/compare/2.6.4...2.6.5) (2025-09-23)
+
+
+### Bug Fixes
+
+* **annotation:** update logic and fix typo ([#3065](https://github.com/ant-design/ant-design-charts/issues/3065)) ([711c295](https://github.com/ant-design/ant-design-charts/commit/711c2958b0c5f85ad3e2e0b74267b89ac908a1cb))
+* create root path ([#3069](https://github.com/ant-design/ant-design-charts/issues/3069)) ([6c3f9a4](https://github.com/ant-design/ant-design-charts/commit/6c3f9a47ad987a5582cfae7ad7004b498bbe878f))
+
+
+
 ## [2.6.4](https://github.com/ant-design/ant-design-charts/compare/2.6.0...2.6.4) (2025-09-03)
 
 
