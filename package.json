@@ -15,9 +15,9 @@
     "ci:version": "pnpm changeset version",
     "add:changelog": "pnpm changeset",
     "before:release": "pnpm run build",
-    "release": "pnpm run before:release && pnpm publish --no-git-checks -r --registry=https://registry.npmjs.org --filter @ant-design/*",
-    "release:alpha": "pnpm run before:release && pnpm publish --tag alpha --no-git-checks -r --filter @ant-design/*",
-    "release:beta": "pnpm run before:release && pnpm publish --tag beta --no-git-checks -r --filter @ant-design/*",
+    "release": "pnpm run before:release && pnpm changeset publish",
+    "release:alpha": "pnpm run before:release && pnpm changeset publish --tag alpha",
+    "release:beta": "pnpm run before:release && pnpm changeset publish --tag beta",
     "publish": "pnpm publish -r --publish-branch v2",
     "changelog": "pnpm -r --stream --filter=!./site run changelog"
   },
