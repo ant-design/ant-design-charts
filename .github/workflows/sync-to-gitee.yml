@@ -1,0 +1,22 @@
+name: Sync to Gitee
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Push to Gitee
+        run: |
+          git config --global user.name "lxfu1"
+          git config --global user.email "954055752@qq.com"
+          git remote add gitee git@gitee.com:ant-design/ant-design-charts.git
+          git push gitee gh-pages -f
+        env:
+          GIT_SSH_COMMAND: "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no"
