@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-let version = React.version || ''
+let version = React.version || '';
 
 let createRoot: ((container: Element | DocumentFragment) => any) | undefined;
 let legacyRender: ((node: React.ReactElement, container: Element | DocumentFragment) => void) | undefined;
@@ -17,11 +17,11 @@ try {
 
   if (mainVersion >= 18) {
     // 动态引入 React 18+ 的 API
-    const client = require('react-dom/client');
+    const client = await import('react-dom/client');
     createRoot = client.createRoot;
   } else {
     // 仅在 React <18 才有 render/unmountComponentAtNode
-    const legacyReactDOM = require('react-dom');
+    const legacyReactDOM = await import('react-dom');
     legacyRender = legacyReactDOM.render;
     legacyUnmount = legacyReactDOM.unmountComponentAtNode;
   }
