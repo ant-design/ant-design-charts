@@ -17,9 +17,10 @@ export class TinyLine extends Plot<TinyLineOptions> {
     return {
       type: 'view',
       children: [{ type: 'line', axis: false }],
-      animate: {
-        enter: { type: 'growInX', duration: 500 },
-      },
+      // 使用该动画，会导致线形图-连接空值 一进入页面渲染不出来，必须要更改窗口尺寸触发重新渲染。建议动画暂时使用默认
+      // animate: {
+      //   enter: { type: 'growInX', duration: 500 },
+      // },
       padding: 0,
       margin: 0,
       tooltip: false,
