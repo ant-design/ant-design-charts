@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
-    'no-console': 'error',
+    'no-console': 'warn',
     noImplicitAny: 0, // 允许 any
     'no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
     '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
