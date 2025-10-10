@@ -1,32 +1,41 @@
 import * as React from 'react';
 
-let version = React.version || ''
+const MARK = '__rc_react_root__';
 
-let createRoot: ((container: Element | DocumentFragment) => any) | undefined;
+type RootType = {
+  render: (node: React.ReactNode) => void;
+  unmount: () => void;
+};
+
+type ContainerType = (Element | DocumentFragment) & {
+  [MARK]?: RootType;
+};
+
+let createRoot: ((container: Element | DocumentFragment) => RootType) | undefined;
 let legacyRender: ((node: React.ReactElement, container: Element | DocumentFragment) => void) | undefined;
 let legacyUnmount: ((container: Element | DocumentFragment) => boolean) | undefined;
 
-const MARK = '__rc_react_root__';
+let initialized = false;
 
-type ContainerType = (Element | DocumentFragment) & {
-  [MARK]?: ReturnType<NonNullable<typeof createRoot>>;
-};
+async function ensureReactDOM() {
+  if (initialized) return;
+  initialized = true;
 
-try {
-  const mainVersion = parseInt(version.split('.')[0], 10);
+  try {
+    const version = React.version || '';
+    const mainVersion = parseInt(version.split('.')[0], 10);
 
-  if (mainVersion >= 18) {
-    // 动态引入 React 18+ 的 API
-    const client = require('react-dom/client');
-    createRoot = client.createRoot;
-  } else {
-    // 仅在 React <18 才有 render/unmountComponentAtNode
-    const legacyReactDOM = require('react-dom');
-    legacyRender = legacyReactDOM.render;
-    legacyUnmount = legacyReactDOM.unmountComponentAtNode;
+    if (mainVersion >= 18) {
+      const client = await import('react-dom/client');
+      createRoot = client.createRoot;
+    } else {
+      const legacy = await import('react-dom');
+      legacyRender = legacy.render;
+      legacyUnmount = legacy.unmountComponentAtNode;
+    }
+  } catch (e) {
+    console.warn('[react-render] Failed to load ReactDOM API:', e);
   }
-} catch (e) {
-  // 忽略错误
 }
 
 // ========== 渲染 ==========
@@ -38,41 +47,29 @@ function modernRender(node: React.ReactNode, container: ContainerType) {
 }
 
 function fallbackLegacyRender(node: React.ReactElement, container: ContainerType) {
-  if (legacyRender) {
-    legacyRender(node, container);
-  } else {
-    throw new Error('ReactDOM.render is not available in this React version');
-  }
+  if (!legacyRender) throw new Error('ReactDOM.render not available');
+  legacyRender(node, container);
 }
 
-export function render(node: React.ReactElement, container: ContainerType) {
-  if (createRoot) {
-    modernRender(node, container);
-  } else {
-    fallbackLegacyRender(node, container);
-  }
+export async function render(node: React.ReactElement, container: ContainerType) {
+  await ensureReactDOM();
+  if (createRoot) modernRender(node, container);
+  else fallbackLegacyRender(node, container);
 }
 
 // ========== 卸载 ==========
 function fallbackLegacyUnmount(container: ContainerType) {
-  if (legacyUnmount) {
-    legacyUnmount(container);
-  } else {
-    throw new Error('ReactDOM.unmountComponentAtNode is not available in this React version');
-  }
+  if (!legacyUnmount) throw new Error('ReactDOM.unmountComponentAtNode not available');
+  legacyUnmount(container);
 }
 
 async function modernUnmount(container: ContainerType) {
-  return Promise.resolve().then(() => {
-    container[MARK]?.unmount?.();
-    delete container[MARK];
-  });
+  container[MARK]?.unmount?.();
+  delete container[MARK];
 }
 
 export async function unmount(container: ContainerType) {
-  if (createRoot) {
-    return modernUnmount(container);
-  } else {
-    return fallbackLegacyUnmount(container);
-  }
+  await ensureReactDOM();
+  if (createRoot) return modernUnmount(container);
+  else return fallbackLegacyUnmount(container);
 }
