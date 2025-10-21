@@ -18,7 +18,7 @@
     "release": "pnpm run before:release && pnpm changeset publish",
     "release:alpha": "pnpm run before:release && pnpm changeset publish --tag alpha",
     "release:beta": "pnpm run before:release && pnpm changeset publish --tag beta",
-    "publish": "pnpm publish -r --publish-branch v2",
+    "publish": "pnpm publish -r --filter=!./site --publish-branch v2",
     "changelog": "pnpm -r --stream --filter=!./site run changelog"
   },
   "devDependencies": {
