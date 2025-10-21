@@ -1,3 +1,12 @@
+## [2.6.6](https://github.com/ant-design/ant-design-charts/compare/2.6.5...2.6.6) (2025-10-21)
+
+
+### Bug Fixes
+
+* config provider common invalid ([#3073](https://github.com/ant-design/ant-design-charts/issues/3073)) ([07223eb](https://github.com/ant-design/ant-design-charts/commit/07223eb67d612362bd5f7776f607783657cd78e8))
+
+
+
 ## [2.6.5](https://github.com/ant-design/ant-design-charts/compare/2.6.4...2.6.5) (2025-09-23)
 
 
