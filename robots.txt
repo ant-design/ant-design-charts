@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ant-design-charts.antgroup.com/sitemap.xml

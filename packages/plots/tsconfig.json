@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "downlevelIteration": true
-  },
-  "extends": "../../tsconfig.json",
-  "include": ["src", "tests"]
-}
