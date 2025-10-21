@@ -1,0 +1,9 @@
+import type { CanvasRenderer } from '@antv/g-canvas';
+import type { DisplayObject, ParsedLineStyleProps } from '@antv/g-lite';
+import { RoughCanvasRendererOptions } from '../util';
+export declare class LineRenderer implements CanvasRenderer.StyleRenderer {
+    private options;
+    constructor(options: RoughCanvasRendererOptions);
+    render(context: CanvasRenderingContext2D, parsedStyle: ParsedLineStyleProps, object: DisplayObject<any, any>): void;
+}
+//# sourceMappingURL=Line.d.ts.map

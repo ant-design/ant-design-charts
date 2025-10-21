@@ -1,0 +1,118 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/plugin/examples.ts
+var examples_exports = {};
+__export(examples_exports, {
+  getExamplePaths: () => getExamplePaths,
+  getExamplesPageTopics: () => getExamplesPageTopics
+});
+module.exports = __toCommonJS(examples_exports);
+var import_front_matter = __toESM(require("front-matter"));
+var fs = __toESM(require("fs-extra"));
+var glob = __toESM(require("glob"));
+var path = __toESM(require("path"));
+var import_api = require("./api");
+var examplesBaseDir = path.resolve(process.cwd(), "examples");
+var getExampleDemos = (exampleDir) => {
+  const demoMetaJSON = fs.readFileSync(path.resolve(exampleDir, "demo", "meta.json")).toString();
+  const demoMeta = JSON.parse(demoMetaJSON).demos;
+  const demos = demoMeta.map((item) => {
+    const { title, screenshot, filename, new: isNew } = item;
+    const id = filename.replace(/\.tsx?$/, "").replace(/\.ts?$/, "").replace(/\.jsx?$/, "").replace(/\.js?$/, "");
+    return {
+      id,
+      screenshot,
+      source: fs.readFileSync(path.resolve(exampleDir, "demo", filename)).toString(),
+      title,
+      filename,
+      isNew: !!isNew
+    };
+  });
+  return demos;
+};
+var getTopicExamples = (topicPath, showAPIDoc) => {
+  const examplePaths = glob.sync(`${topicPath.replace(/\\/g, "/")}/*`).filter((item) => {
+    return !item.endsWith(".js");
+  });
+  return examplePaths.map((item) => {
+    const exampleMetaZh = fs.readFileSync(path.resolve(item, "index.zh.md")).toString();
+    const exampleMetaEn = fs.readFileSync(path.resolve(item, "index.en.md")).toString();
+    let api = null;
+    if (showAPIDoc) {
+      api = {
+        zh: (0, import_api.getExampleAPI)(path.resolve(item, "API.zh.md")),
+        en: (0, import_api.getExampleAPI)(path.resolve(item, "API.en.md"))
+      };
+    }
+    const exampleMetaZhContent = (0, import_front_matter.default)(exampleMetaZh);
+    const exampleMetaEnContent = (0, import_front_matter.default)(exampleMetaEn);
+    const example = {
+      demos: getExampleDemos(item),
+      // 二级暂时无须 ICON，保留
+      icon: "",
+      id: item.split("/").pop(),
+      title: {
+        en: exampleMetaEnContent.attributes.title,
+        zh: exampleMetaZhContent.attributes.title
+      },
+      api,
+      childrenKey: "demos",
+      order: exampleMetaZhContent.attributes.order || 0
+    };
+    return example;
+  }).sort((a, b) => a.order - b.order);
+};
+var getExamplesPageTopics = (exampleTopics, showAPIDoc) => {
+  return exampleTopics.map(({ id, slug, title, icon }) => {
+    const nid = id || slug;
+    let examples = [];
+    try {
+      examples = getTopicExamples(path.join(examplesBaseDir, nid), showAPIDoc);
+    } catch (e) {
+      console.warn(e);
+    }
+    return {
+      id: nid,
+      title,
+      icon,
+      examples,
+      childrenKey: "examples"
+    };
+  });
+};
+function getExamplePaths() {
+  const exampleTopicPaths = glob.sync(`${examplesBaseDir}/*/*`);
+  const paths = exampleTopicPaths.map((p) => p.replace(process.cwd(), ""));
+  return [...paths, ...paths.map((p) => `/zh${p}`), ...paths.map((p) => `/en${p}`)];
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  getExamplePaths,
+  getExamplesPageTopics
+});

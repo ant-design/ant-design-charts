@@ -1,0 +1,103 @@
+import _extends from "@babel/runtime/helpers/esm/extends";
+import _defineProperty from "@babel/runtime/helpers/esm/defineProperty";
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import { CloseCircleFilled } from '@ant-design/icons';
+import classnames from 'classnames';
+import React, { useEffect, useState } from 'react';
+import Chat from "../Chat";
+import BubbleIcon from "../icons/BubbleIcon";
+var Assistant = function Assistant(props) {
+  var _props$showBubble = props.showBubble,
+    showBubble = _props$showBubble === void 0 ? true : _props$showBubble,
+    _props$isVisible = props.isVisible,
+    isVisible = _props$isVisible === void 0 ? false : _props$isVisible,
+    onClose = props.onClose,
+    _props$drawerWidth = props.drawerWidth,
+    drawerWidth = _props$drawerWidth === void 0 ? 500 : _props$drawerWidth,
+    _props$bottom = props.bottom,
+    bottom = _props$bottom === void 0 ? 120 : _props$bottom;
+  var _useState = useState(isVisible),
+    _useState2 = _slicedToArray(_useState, 2),
+    chatVisible = _useState2[0],
+    setChatVisible = _useState2[1];
+  var _useState3 = useState({
+      transformY: 0
+    }),
+    _useState4 = _slicedToArray(_useState3, 2),
+    position = _useState4[0],
+    setPosition = _useState4[1];
+  var toggleDrawer = function toggleDrawer() {
+    setChatVisible(!chatVisible);
+    onClose === null || onClose === void 0 || onClose();
+  };
+  var startDrag = function startDrag(e) {
+    var startY = e.clientY;
+    var initTransformY = position.transformY;
+    var onMouseMove = function onMouseMove(moveEvent) {
+      var dy = moveEvent.clientY - startY;
+      setPosition({
+        transformY: initTransformY + dy
+      });
+    };
+    var onMouseUp = function onMouseUp() {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+    e.preventDefault();
+  };
+  useEffect(function () {
+    if (typeof window === 'undefined') {
+      return;
+    }
+  }, []);
+  useEffect(function () {
+    setChatVisible(isVisible);
+  }, [isVisible]);
+  var cls = classnames('fixed top-0 h-full ease-in flex flex-row z-[999] overflow-hidden text-left text-black rounded-l-[20px] shadow-[0px_8px_32px_-12px_rgba(0,0,0,0.1)] border-[0.5px] solid  border-[#e4e4e7]', _defineProperty(_defineProperty(_defineProperty({}, "right-[-500px]", !chatVisible), "right-0", chatVisible), "transition-[right]", chatVisible));
+  return /*#__PURE__*/React.createElement("div", {
+    className: "petercat-assistant fixed",
+    style: {
+      zIndex: 9999
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: cls,
+    style: {
+      width: drawerWidth,
+      height: '100vh',
+      zIndex: 9999,
+      borderBottomLeftRadius: '20px!important',
+      boxShadow: '0px 8px 32px -12px rgba(0, 0, 0, 0.2)'
+    }
+  }, chatVisible && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Chat, _extends({
+    style: {
+      backgroundColor: '#FCFCFC'
+    }
+  }, props, {
+    drawerWidth: drawerWidth
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "absolute top-0 right-0 m-1 flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 hover:bg-gray-300 cursor-pointer transition-all duration-300",
+    onClick: toggleDrawer
+  }, /*#__PURE__*/React.createElement(CloseCircleFilled, {
+    className: "w-4 h-4 text-black"
+  })))), showBubble && !chatVisible && /*#__PURE__*/React.createElement("div", {
+    className: "fixed right-0 flex items-center justify-center rounded-full shadow-[0_8px_8px_-5px_#00000014,_0_16px_24px_-5px_#00000029] bg-white cursor-pointer transition-all duration-300 ease-in-out hover:shadow-lg",
+    onMouseDown: startDrag,
+    onClick: toggleDrawer,
+    style: {
+      transform: "translateY(".concat(position.transformY, "px)"),
+      marginRight: '24px',
+      bottom: "".concat(bottom, "px"),
+      // Use bottom as the initial position
+      zIndex: 9999
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    id: "petercat-lui-tip",
+    className: "animate-shake absolute top-[-9px] left-[-47px] px-[8px] py-[4px] w-[52px] h-[22px] bg-[#3F3F46] shadow-xl rounded-full rounded-br-none text-[10px] text-white",
+    style: {
+      boxSizing: 'border-box'
+    }
+  }, "Ask me"), /*#__PURE__*/React.createElement(BubbleIcon, null)));
+};
+export default Assistant;

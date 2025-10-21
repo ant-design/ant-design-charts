@@ -1,0 +1,51 @@
+{
+  "name": "typedoc-default-themes",
+  "description": "Default themes for TypeDoc.",
+  "version": "0.10.2",
+  "homepage": "https://typedoc.org/",
+  "main": "bin/plugin.js",
+  "files": [
+    "bin",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "rimraf bin",
+    "grunt": "grunt",
+    "build": "npm run clean && npm run grunt",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TypeStrong/typedoc-default-themes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TypeStrong/TypeDoc/issues"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">= 8"
+  },
+  "dependencies": {
+    "lunr": "^2.3.8"
+  },
+  "devDependencies": {
+    "@types/lunr": "^2.3.2",
+    "grunt": "^1.0.4",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-watch": "~1.1.0",
+    "grunt-sass": "^3.1.0",
+    "grunt-string-replace": "^1.0.0",
+    "grunt-ts": "^6.0.0-beta.22",
+    "rimraf": "^3.0.2",
+    "sass": "^1.26.3",
+    "typescript": "^3.8.3"
+  },
+  "keywords": [
+    "typescript",
+    "documentation",
+    "generator"
+  ]
+}

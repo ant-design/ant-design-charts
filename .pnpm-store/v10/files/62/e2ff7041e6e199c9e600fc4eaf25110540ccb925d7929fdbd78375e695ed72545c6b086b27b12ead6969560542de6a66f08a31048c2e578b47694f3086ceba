@@ -1,0 +1,1 @@
+.umiIconDoNotUseThisHover{display:none}.umiIconDoNotUseThis:hover svg{display:none}.umiIconDoNotUseThis:hover .umiIconDoNotUseThisHover{display:inline-block}.umiIconLoadingCircle{display:inline-block;animation:umiIconLoadingCircle 1s linear infinite}@keyframes umiIconLoadingCircle{to{transform:rotate(360deg)}}

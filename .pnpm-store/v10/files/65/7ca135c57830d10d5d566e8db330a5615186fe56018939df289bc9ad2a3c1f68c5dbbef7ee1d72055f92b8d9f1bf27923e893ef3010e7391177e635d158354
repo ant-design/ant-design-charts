@@ -1,0 +1,66 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import { useLocale } from 'dumi';
+import { get } from 'lodash-es';
+import { useEffect, useState } from 'react';
+export var useChinaMirrorHost = function useChinaMirrorHost() {
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isChinaMirrorHost = _useState2[0],
+    setIsChinaMirrorHost = _useState2[1];
+  useEffect(function () {
+    if (window.location.host.includes('gitee.io') && window.location.host.includes('antv')) {
+      setIsChinaMirrorHost(true);
+    }
+  }, []);
+  return [isChinaMirrorHost];
+};
+export var useScrollToTop = function useScrollToTop() {
+  if (typeof document !== 'undefined') {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
+};
+export var useLogoLink = function useLogoLink(_ref) {
+  var _ref$link = _ref.link,
+    link = _ref$link === void 0 ? '' : _ref$link,
+    _ref$siteUrl = _ref.siteUrl,
+    siteUrl = _ref$siteUrl === void 0 ? '' : _ref$siteUrl,
+    _ref$lang = _ref.lang,
+    lang = _ref$lang === void 0 ? '' : _ref$lang;
+  var defaultLogoLink;
+  if (link) {
+    defaultLogoLink = link;
+  } else if (siteUrl === 'https://antv.vision') {
+    defaultLogoLink = "/".concat(lang);
+  } else {
+    defaultLogoLink = "https://antv.vision/".concat(lang);
+  }
+  var _useState3 = useState(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    giteeLogoLink = _useState4[0],
+    setGiteeLogoLink = _useState4[1];
+  useEffect(function () {
+    if (window.location.host.includes('gitee.io') && window.location.host.includes('antv')) {
+      setGiteeLogoLink("https://antv.gitee.io/".concat(lang));
+    }
+  }, []);
+  return [giteeLogoLink || defaultLogoLink];
+};
+
+/**
+ * i18n .umirc config
+ * 如果是 object，则取 locale，否则直接用
+ * @param v
+ */
+export function ic(v) {
+  var locale = useLocale();
+  return icWithLocale(v, locale.id);
+}
+export function icWithLocale(v, locale) {
+  return _typeof(v) === 'object' ? get(v, [locale]) : v;
+}

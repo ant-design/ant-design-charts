@@ -1,0 +1,39 @@
+{
+  "name": "flru",
+  "version": "1.0.2",
+  "repository": "lukeed/flru",
+  "description": "A tiny (215B) and fast Least Recently Used (LRU) cache",
+  "unpkg": "dist/flru.min.js",
+  "module": "dist/flru.mjs",
+  "main": "dist/flru.js",
+  "types": "flru.d.ts",
+  "license": "MIT",
+  "author": {
+    "name": "Luke Edwards",
+    "email": "luke.edwards05@gmail.com",
+    "url": "lukeed.com"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "build": "bundt",
+    "pretest": "npm run build",
+    "test": "tape test/*.js | tap-spec"
+  },
+  "files": [
+    "*.d.ts",
+    "dist"
+  ],
+  "keywords": [
+    "lru",
+    "cache",
+    "lru-cache",
+    "mru"
+  ],
+  "devDependencies": {
+    "bundt": "^0.4.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.1"
+  }
+}

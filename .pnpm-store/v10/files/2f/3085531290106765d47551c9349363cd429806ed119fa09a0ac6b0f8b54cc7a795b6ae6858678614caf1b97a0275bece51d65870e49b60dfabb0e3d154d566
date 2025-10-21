@@ -1,0 +1,68 @@
+/**
+ * 判断是否是某种节点类型
+ * @param node
+ * @param type
+ */
+export var isNodeType = function isNodeType(node, type) {
+  if (!node) return false;
+  var nodeName = node.nodeName.toLowerCase();
+  if (typeof type === 'string') {
+    return type === nodeName;
+  }
+  return type.includes(nodeName);
+};
+
+/**
+ * 判断是否是 Text 节点
+ */
+export var isTextNode = function isTextNode(node) {
+  var textNode = false;
+  node.childNodes.forEach(function (childNode) {
+    if (childNode.nodeName.includes('text')) {
+      textNode = true;
+    }
+  });
+  return node && node.childNodes.length > 0 && textNode;
+};
+
+/**
+ * 判断是否是 Group 节点
+ */
+export var isGroupNode = function isGroupNode(node) {
+  return isNodeType(node, ['div', 'span', 'th']);
+};
+
+/**
+ * 判断是否是图片节点
+ */
+export var isImageNode = function isImageNode(node) {
+  return isNodeType(node, 'img');
+};
+
+/**
+ * 判断是否是带文本的输入框节点
+ */
+export var isTextInputNode = function isTextInputNode(node) {
+  return isNodeType(node, ['input', 'textarea']) && node.type !== 'checkbox' && node.type !== 'radio';
+};
+
+/**
+ * 判断是否是图片节点
+ */
+export var isCanvasNode = function isCanvasNode(node) {
+  return isNodeType(node, 'canvas');
+};
+
+/**
+ * 是否是 SVG 的子级
+ */
+export var isSVGChildNode = function isSVGChildNode(node) {
+  return node instanceof SVGElement && node.matches('svg *');
+};
+
+/**
+ * 判断是否是Svg节点
+ */
+export var isSvgNode = function isSvgNode(node) {
+  return isNodeType(node, 'svg');
+};

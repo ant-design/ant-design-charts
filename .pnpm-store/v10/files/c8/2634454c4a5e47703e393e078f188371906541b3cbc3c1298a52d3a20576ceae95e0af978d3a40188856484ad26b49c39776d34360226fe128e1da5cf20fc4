@@ -1,0 +1,65 @@
+{
+  "name": "tailwindcss-scoped-preflight",
+  "version": "3.4.12",
+  "description": "To avoid style conflicts (CSS collisions/interference side effects) when using Tailwind CSS with other UI libraries like Antd, Vuetify etc.",
+  "type": "module",
+  "source": "src/index.ts",
+  "module": "dist/plugin.esm.js",
+  "main": "dist/plugin.cjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "require": "./dist/plugin.cjs",
+    "default": "./dist/plugin.modern.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run build && npm run test",
+    "build": "rm -rf dist && microbundle --target node -f modern,esm,cjs",
+    "build/watch": "microbundle --target node -f modern,esm,cjs -w",
+    "test": "npm run test/build && playwright test",
+    "test/build": "npx tsx e2e/build-e2e.ts",
+    "test/watch": "npx tsx watch --include \"./dist/*\" --include \"./e2e/**/*.html\" e2e/build-e2e.ts",
+    "test/serve": "http-server ./e2e -p 8080 -c-1",
+    "test/ui": "playwright test --ui"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Roman86/tailwindcss-scoped-preflight.git"
+  },
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "plugin",
+    "preflight",
+    "scoped",
+    "local",
+    "selector",
+    "vuetify",
+    "antd"
+  ],
+  "author": "Roman Kozodoi",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@playwright/test": "^1.45.3",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^22.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "http-server": "^14.1.1",
+    "microbundle": "^0.15.1",
+    "prettier": "^3.3.3",
+    "prettier-plugin-multiline-arrays": "^3.0.6",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.0.1"
+  },
+  "peerDependencies": {
+    "postcss": "^8",
+    "tailwindcss": "^3"
+  }
+}

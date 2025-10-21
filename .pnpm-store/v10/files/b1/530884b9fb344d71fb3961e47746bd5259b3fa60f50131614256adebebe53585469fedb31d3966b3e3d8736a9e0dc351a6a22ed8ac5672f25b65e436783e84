@@ -1,0 +1,11 @@
+// 判断是否在浏览器环境
+export var isBrowser = function isBrowser() {
+  return typeof window !== 'undefined' && window;
+};
+
+// 安全访问浏览器 API
+// eslint-disable-next-line no-unused-vars
+export var safeWindow = function safeWindow(fn) {
+  if (isBrowser()) return fn(window);
+  return undefined;
+};

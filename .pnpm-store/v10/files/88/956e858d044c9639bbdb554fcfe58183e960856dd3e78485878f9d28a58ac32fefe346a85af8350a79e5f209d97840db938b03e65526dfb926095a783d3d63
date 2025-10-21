@@ -1,0 +1,8 @@
+import React from 'react';
+export interface ISpinnerProps {
+    loading?: boolean;
+    spinner?: React.ReactNode;
+    children?: React.ReactNode;
+}
+declare const MySpinner: (props: ISpinnerProps) => string | number | boolean | Iterable<React.ReactNode> | React.JSX.Element | null | undefined;
+export default MySpinner;

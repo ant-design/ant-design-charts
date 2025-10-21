@@ -1,0 +1,1 @@
+{"version":3,"file":"linear.js","sourceRoot":"","sources":["../../src/scale/linear.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,IAAI,WAAW,EAAE,MAAM,aAAa,CAAC;AAMpD,MAAM,CAAC,MAAM,MAAM,GAAsB,CAAC,OAAO,EAAE,EAAE;IACnD,OAAO,IAAI,WAAW,CAAC,OAAO,CAAC,CAAC;AAClC,CAAC,CAAC;AAEF,MAAM,CAAC,KAAK,GAAG,EAAE,CAAC"}

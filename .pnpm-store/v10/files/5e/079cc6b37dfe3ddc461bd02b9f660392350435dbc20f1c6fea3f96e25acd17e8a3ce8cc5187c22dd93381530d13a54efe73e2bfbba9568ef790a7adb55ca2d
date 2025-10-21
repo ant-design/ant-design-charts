@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "extends": "@ljharb",
+  "rules": {
+    "indent": [2, 4],
+  },
+  "overrides": [
+    {
+      "files": "test/**/*",
+      "rules": {
+        "id-length": 0,
+      },
+    },
+  ],
+}

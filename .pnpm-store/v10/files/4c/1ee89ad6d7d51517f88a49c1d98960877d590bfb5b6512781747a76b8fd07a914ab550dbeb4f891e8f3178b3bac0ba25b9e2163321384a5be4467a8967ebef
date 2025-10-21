@@ -1,0 +1,8 @@
+import { type FC } from 'react';
+import { ImageURLContentBlock } from '../../interface';
+interface IProps {
+    images: ImageURLContentBlock[];
+    text: string;
+}
+declare const UserContent: FC<IProps>;
+export default UserContent;

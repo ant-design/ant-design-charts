@@ -1,0 +1,1 @@
+{"version":3,"file":"DOMInteractionPlugin.d.ts","sourceRoot":"","sources":["../src/DOMInteractionPlugin.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EACV,aAAa,EAEb,eAAe,EACf,sBAAsB,EACvB,MAAM,cAAc,CAAC;AAItB;;GAEG;AACH,qBAAa,oBAAqB,YAAW,eAAe;IAC1D,MAAM,CAAC,GAAG,SAAoB;IAE9B,OAAO,CAAC,OAAO,CAAyB;IAExC,KAAK,CAAC,OAAO,EAAE,sBAAsB,EAAE,OAAO,EAAE,aAAa;CAkL9D"}

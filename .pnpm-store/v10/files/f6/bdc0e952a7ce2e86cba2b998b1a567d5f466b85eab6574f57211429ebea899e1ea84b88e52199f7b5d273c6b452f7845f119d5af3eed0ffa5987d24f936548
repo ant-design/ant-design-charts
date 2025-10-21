@@ -1,0 +1,1 @@
+{"version":3,"file":"DragndropPlugin.d.ts","sourceRoot":"","sources":["../src/DragndropPlugin.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAIV,eAAe,EACf,sBAAsB,EACvB,MAAM,cAAc,CAAC;AAEtB,OAAO,KAAK,EAAE,sBAAsB,EAAE,MAAM,cAAc,CAAC;AAE3D,qBAAa,eAAgB,YAAW,eAAe;IAGlC,sBAAsB,EAAE,sBAAsB;IAFjE,MAAM,CAAC,GAAG,SAAe;gBAEN,sBAAsB,EAAE,sBAAsB;IAEjE,KAAK,CAAC,OAAO,EAAE,sBAAsB;CAiKtC"}

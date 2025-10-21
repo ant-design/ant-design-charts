@@ -1,0 +1,6 @@
+import { proxy } from 'valtio';
+export var store = proxy({
+  hideMenu: false,
+  showAPI: false,
+  apiContainerWidth: 420
+});
