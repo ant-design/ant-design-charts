@@ -1,3 +1,7 @@
+## [0.0.3](https://github.com/ant-design/ant-design-charts/compare/2.6.6...0.0.3) (2025-10-23)
+
+* [Bug]:  es 构建产物里面有 cjs 语法，导致在 vite 项目下会有问题 [#3066](https://github.com/ant-design/ant-design-charts/issues/3066)
+
 ## 0.0.2
 
 `2025-06-16`
