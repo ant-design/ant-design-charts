@@ -1,0 +1,54 @@
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import React, { memo, useEffect, useState } from 'react';
+import CountCard from "./components/CountCard";
+var MemoizedCountCard = /*#__PURE__*/memo(CountCard);
+var GitInsight = function GitInsight(props) {
+  var _props$forkCount = props.forkCount,
+    forkCount = _props$forkCount === void 0 ? 0 : _props$forkCount,
+    _props$commitCount = props.commitCount,
+    commitCount = _props$commitCount === void 0 ? 0 : _props$commitCount,
+    _props$starCount = props.starCount,
+    starCount = _props$starCount === void 0 ? 0 : _props$starCount;
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    num0End = _useState2[0],
+    setNum0End = _useState2[1];
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    num1End = _useState4[0],
+    setNum1End = _useState4[1];
+  var DELAY = 333;
+  useEffect(function () {
+    var timer0 = setTimeout(function () {
+      setNum0End(true);
+    }, DELAY);
+    var timer1 = setTimeout(function () {
+      setNum1End(true);
+    }, DELAY * 2);
+    return function () {
+      clearTimeout(timer0);
+      clearTimeout(timer1);
+    };
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "petercat-assistant"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex justify-start items-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "opacity-0 transform transition-opacity duration-500 delay-200 animate-fade-in"
+  }, /*#__PURE__*/React.createElement(MemoizedCountCard, {
+    type: "star",
+    count: starCount
+  })), num0End && /*#__PURE__*/React.createElement("div", {
+    className: "opacity-0 transform transition-opacity duration-500 delay-200 animate-fade-in"
+  }, /*#__PURE__*/React.createElement(MemoizedCountCard, {
+    type: "fork",
+    count: forkCount
+  })), num1End && /*#__PURE__*/React.createElement("div", {
+    className: "opacity-0 transform transition-opacity duration-500 delay-200 animate-fade-in"
+  }, /*#__PURE__*/React.createElement(MemoizedCountCard, {
+    type: "commit",
+    count: commitCount
+  }))));
+};
+export default GitInsight;

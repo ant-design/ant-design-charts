@@ -1,0 +1,1 @@
+{"version":3,"file":"Point.d.ts","sourceRoot":"","sources":["../../src/shapes/Point.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,SAAS;IACxB,CAAC,EAAE,MAAM,CAAC;IACV,CAAC,EAAE,MAAM,CAAC;CACX;AAED,qBAAa,KAAK;IAChB,CAAC,SAAK;IACN,CAAC,SAAK;gBAEM,CAAC,SAAI,EAAE,CAAC,SAAI;IAKxB,KAAK,IAAI,KAAK;IAId,QAAQ,CAAC,CAAC,EAAE,KAAK;CAIlB"}

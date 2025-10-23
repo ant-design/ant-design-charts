@@ -1,0 +1,33 @@
+{
+  "name": "@esbuild-kit/cjs-loader",
+  "version": "2.4.4",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Node.js loader for compiling ESM & TypeScript modules to CommonJS",
+  "keywords": [
+    "esbuild",
+    "loader",
+    "node",
+    "cjs",
+    "commonjs",
+    "esm",
+    "typescript"
+  ],
+  "license": "MIT",
+  "repository": "esbuild-kit/cjs-loader",
+  "author": {
+    "name": "Hiroki Osame",
+    "email": "hiroki.osame@gmail.com"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "exports": "./dist/index.cjs",
+  "dependencies": {
+    "@esbuild-kit/core-utils": "^3.2.3",
+    "get-tsconfig": "^4.7.0"
+  }
+}

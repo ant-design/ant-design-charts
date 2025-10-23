@@ -1,0 +1,27 @@
+import React from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+// @ts-ignore
+import { vs } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import CopyButton from "./CopyButton";
+var CodeBlock = function CodeBlock(_ref) {
+  var inline = _ref.inline,
+    className = _ref.className,
+    children = _ref.children;
+  var language = (className === null || className === void 0 ? void 0 : className.replace('language-', '')) || ''; // 提取语言信息
+  var codeContent = String(children).trim();
+  if (inline) {
+    return /*#__PURE__*/React.createElement("code", {
+      className: "bg-gray-200  px-1 rounded"
+    }, children);
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    className: "relative group"
+  }, /*#__PURE__*/React.createElement(SyntaxHighlighter, {
+    language: language,
+    style: vs,
+    className: "rounded-md"
+  }, codeContent), /*#__PURE__*/React.createElement(CopyButton, {
+    content: codeContent
+  }));
+};
+export default CodeBlock;

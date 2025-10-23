@@ -1,0 +1,35 @@
+import { PageHeader } from '@ant-design/pro-components';
+import { Divider, Space } from 'antd';
+import React from 'react';
+/**
+ * 组件的 header
+ */
+var CodeHeader = function CodeHeader(_ref) {
+  var title = _ref.title,
+    relativePath = _ref.relativePath,
+    githubUrl = _ref.githubUrl;
+  return /*#__PURE__*/React.createElement(PageHeader, {
+    ghost: false,
+    title: title
+    // todo 编辑地址各种各样，需要有单独的配置，暂时关闭！
+    // subTitle={
+    //   <Tooltip title={<FormattedMessage id="在 GitHub 上编辑" />}>
+    //     <a
+    //       href={getGithubSourceURL(githubUrl, relativePath, 'examples')}
+    //       target="_blank"
+    //       rel="noopener noreferrer"
+    //       className={styles.editOnGtiHubButton}
+    //     >
+    //       <EditOutlined />
+    //     </a>
+    //   </Tooltip>
+    // }
+    ,
+    extra: /*#__PURE__*/React.createElement(Space, {
+      split: /*#__PURE__*/React.createElement(Divider, {
+        type: "vertical"
+      })
+    })
+  });
+};
+export default CodeHeader;

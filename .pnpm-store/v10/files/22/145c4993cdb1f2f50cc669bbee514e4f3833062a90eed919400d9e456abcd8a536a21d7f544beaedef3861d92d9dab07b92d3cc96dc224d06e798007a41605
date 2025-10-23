@@ -1,0 +1,25 @@
+import React from 'react';
+import GitInsightCard from "./GitInsightCard";
+import LoginCard from "./LoginCard";
+export var UITemplateRender = function UITemplateRender(_ref) {
+  var templateId = _ref.templateId,
+    apiDomain = _ref.apiDomain,
+    webDomain = _ref.webDomain,
+    token = _ref.token,
+    cardData = _ref.cardData;
+  if (templateId === 'GIT_INSIGHT') {
+    return /*#__PURE__*/React.createElement(GitInsightCard, {
+      forkCount: cardData === null || cardData === void 0 ? void 0 : cardData.forks,
+      starCount: cardData === null || cardData === void 0 ? void 0 : cardData.stars,
+      commitCount: cardData === null || cardData === void 0 ? void 0 : cardData.commits
+    });
+  }
+  if (templateId === 'LOGIN_INVITE') {
+    return /*#__PURE__*/React.createElement(LoginCard, {
+      apiDomain: apiDomain,
+      webDomain: webDomain,
+      token: token
+    });
+  }
+  return null;
+};

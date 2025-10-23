@@ -1,0 +1,1 @@
+{"version":3,"file":"is-decimal.js","sourceRoot":"","sources":["../../src/lodash/is-decimal.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,aAAa,CAAC;AAEnC;;;GAGG;AACH,MAAM,CAAC,OAAO,UAAU,SAAS,CAAC,GAAY;IAC5C,OAAO,QAAQ,CAAC,GAAG,CAAC,IAAI,GAAG,GAAG,CAAC,KAAK,CAAC,CAAC;AACxC,CAAC"}

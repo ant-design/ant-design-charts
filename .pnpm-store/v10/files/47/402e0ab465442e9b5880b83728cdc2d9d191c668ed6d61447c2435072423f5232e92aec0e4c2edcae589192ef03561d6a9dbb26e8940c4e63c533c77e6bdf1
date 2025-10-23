@@ -1,0 +1,127 @@
+{
+  "name": "nano-css",
+  "version": "5.6.2",
+  "description": "Smallest 5th gen CSS-in-JS library",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/streamich/nano-css.git"
+  },
+  "license": "Unlicense",
+  "scripts": {
+    "lint": "eslint ./index.js",
+    "lint:fix": "yarn lint --fix",
+    "start": "yarn storybook",
+    "clean": "rimraf dist && yarn test:visual:clean",
+    "test": "yarn lint && jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:visual": "npm run storybook",
+    "test:visual:build": "build-storybook",
+    "test:visual:clean": "rimraf storybook-static",
+    "demo": "webpack-dev-server --config demo/webpack.config.js",
+    "prettier": "prettier --write '**/*.ts'",
+    "precommit": "lint-staged",
+    "prepush": "yarn test",
+    "storybook": "start-storybook -p 6010"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "dependencies": {
+    "@jridgewell/sourcemap-codec": "^1.4.15",
+    "css-tree": "^1.1.2",
+    "csstype": "^3.1.2",
+    "fastest-stable-stringify": "^2.0.2",
+    "inline-style-prefixer": "^7.0.1",
+    "rtl-css-js": "^1.16.1",
+    "stacktrace-js": "^2.0.2",
+    "stylis": "^4.3.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "6.5.16",
+    "@storybook/addon-links": "6.5.16",
+    "@storybook/react": "6.5.16",
+    "@types/jest": "26.0.24",
+    "@types/node": "14.18.63",
+    "@types/prop-types": "15.7.12",
+    "@types/react": "17.0.80",
+    "eslint": "7.32.0",
+    "git-cz": "4.9.0",
+    "husky": "4.3.8",
+    "iconista": "2.16.1",
+    "jest": "26.6.3",
+    "lerna": "3.22.1",
+    "libreact": "2.13.3",
+    "lint-staged": "10.5.4",
+    "prettier": "2.8.8",
+    "prop-types": "15.8.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-test-renderer": "17.0.2",
+    "rimraf": "3.0.2",
+    "source-map-support": "0.5.19",
+    "ts-loader": "8.4.0",
+    "tslib": "2.6.3",
+    "typescript": "4.9.5",
+    "webpack": "5.92.1",
+    "webpack-bundle-analyzer": "4.10.2",
+    "webpack-dev-server": "3.11.3",
+    "yarn": "1.22.22"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
+  "jest": {
+    "transformIgnorePatterns": [],
+    "testRegex": ".*/__tests__/.*\\.(test|spec)\\.(jsx?)$",
+    "setupFiles": [
+      "./addon/__tests__/setup.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": false
+  },
+  "keywords": [
+    "css",
+    "style",
+    "styles",
+    "pico",
+    "nano",
+    "lite",
+    "react",
+    "js",
+    "in-js",
+    "css-in-js",
+    "styled",
+    "decorator",
+    "component",
+    "styled-components",
+    "jsxstyle",
+    "rule",
+    "stylesheet"
+  ]
+}

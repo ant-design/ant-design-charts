@@ -1,0 +1,35 @@
+import { Badge } from 'antd';
+import cx from 'classnames';
+import { Link, useLocale } from 'dumi';
+import React from 'react';
+import { ic } from "../../../../../slots/hooks";
+import styles from "../../../index.module.less";
+/**
+ * DEMO 的卡片预览
+ *
+ * @param {DemoCardProps} props 相关参数，详见类型定义
+ * @returns {React.FC} React.FC
+ * @author YuZhanglong <loveyzl1123@gmail.com>
+ */
+export var DemoCard = function DemoCard(props) {
+  var demo = props.demo,
+    topicId = props.topicId,
+    exampleId = props.exampleId;
+  var locale = useLocale();
+  var renderCardInternal = function renderCardInternal() {
+    var img = demo.screenshot || 'https://gw.alipayobjects.com/os/s/prod/antv/assets/image/screenshot-placeholder-b8e70.png';
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: cx('demo-card-screenshot', styles.screenshot),
+      style: {
+        backgroundImage: "url(\"".concat(img, "\")")
+      }
+    }));
+  };
+  return /*#__PURE__*/React.createElement(Link, {
+    className: styles.galleryCardLink,
+    to: "".concat(locale.id == 'zh' ? '' : '/en', "/examples/").concat(topicId, "/").concat(exampleId, "/#").concat(demo.id)
+  }, demo.isNew ? /*#__PURE__*/React.createElement(Badge.Ribbon, {
+    text: "new",
+    className: styles.customRibbon
+  }, renderCardInternal()) : renderCardInternal(), /*#__PURE__*/React.createElement("h4", null, ic(demo.title)));
+};

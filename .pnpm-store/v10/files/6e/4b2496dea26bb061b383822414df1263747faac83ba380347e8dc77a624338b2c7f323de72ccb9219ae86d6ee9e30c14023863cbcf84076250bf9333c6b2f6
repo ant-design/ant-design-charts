@@ -1,0 +1,63 @@
+{
+  "name": "deep-rename-keys",
+  "description": "Recursively rename the keys in an object.",
+  "version": "0.2.1",
+  "homepage": "https://github.com/jonschlinkert/deep-rename-keys",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/deep-rename-keys",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/deep-rename-keys/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "kind-of": "^3.0.2",
+    "rename-keys": "^1.1.2"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.9",
+    "mocha": "^2.4.5"
+  },
+  "keywords": [
+    "keys",
+    "nested",
+    "object",
+    "properties",
+    "props",
+    "recurse",
+    "recursively",
+    "rename"
+  ],
+  "verb": {
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "reflinks": [
+      "verb"
+    ],
+    "related": {
+      "list": [
+        "isobject",
+        "kind-of",
+        "rename-keys"
+      ]
+    },
+    "toc": false,
+    "layout": "default",
+    "lint": {
+      "reflinks": true
+    },
+    "tasks": [
+      "readme"
+    ]
+  }
+}

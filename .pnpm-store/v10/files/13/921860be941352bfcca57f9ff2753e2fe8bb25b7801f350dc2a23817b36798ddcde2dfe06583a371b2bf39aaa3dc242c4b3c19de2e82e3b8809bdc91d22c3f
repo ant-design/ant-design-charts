@@ -1,0 +1,49 @@
+{
+  "name": "isomorphic-rslog",
+  "version": "0.0.7",
+  "type": "commonjs",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "author": "hanric <hanric.zhang@gmail.com>",
+  "browser": "./dist/browser/index.cjs",
+  "main": "./dist/node/index.cjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "modern build && publint",
+    "preview": "bun run ./preview.ts",
+    "dev": "modern dev",
+    "build": "modern build",
+    "build:watch": "modern build -w",
+    "reset": "rimraf ./**/node_modules",
+    "test": "npm run test:node && npm run test:browser",
+    "test:node": "vitest -c vitest.node.config.ts",
+    "test:browser": "vitest -c vitest.browser.config.ts",
+    "lint": "publint"
+  },
+  "engines": {
+    "node": ">=14.17.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2heal1/isomorphic-rslog.git"
+  },
+  "devDependencies": {
+    "@modern-js/module-tools": "2.46.1",
+    "@modern-js/tsconfig": "2.46.1",
+    "@types/node": "~16.11.7",
+    "jsdom": "^25.0.1",
+    "prettier": "~2.8.1",
+    "publint": "^0.2.12",
+    "rimraf": "~3.0.2",
+    "supports-color": "^9.4.0",
+    "typescript": "~5.0.4",
+    "vitest": "2.0.5"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "isomorphic-unfetch",
+  "version": "4.0.2",
+  "description": "Switches between unfetch & node-fetch for client & server.",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "default": "./index.js"
+    },
+    "./browser": {
+      "import": "./browser.mjs",
+      "default": "./browser.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "license": "MIT",
+  "repository": "developit/unfetch",
+  "browser": "browser.js",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "node-fetch": "^3.2.0",
+    "unfetch": "^5.0.0"
+  }
+}

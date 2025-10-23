@@ -1,0 +1,64 @@
+/*!
+ * Project: Heti
+ * URL: https://github.com/sivan/heti
+ * Author: Sivan [sun.sivan@gmail.com]
+ */
+@import "font";
+@import "variables";
+@import "base";
+@import "heading";
+@import "list";
+@import "table";
+@import "inline";
+@import "modifiers/font-stack";
+@import "modifiers/writing-mode";
+@import "modifiers/column";
+@import "modifiers/ancient";
+@import "modifiers/annotation";
+@import "helpers/block";
+@import "helpers/inline";
+@import "helpers/add-on";
+
+#{$root-selector} {
+  // 中文每行展示文字（CPL）建议在 30~50 之间，默认 42
+  max-width: $line-length;
+
+  // 默认字体大小为 16px，行高 1.5
+  font-size: $font-size-normal;
+  font-weight: $font-weight-normal;
+  -webkit-font-smoothing: subpixel-antialiased;
+  line-height: $line-height-normal;
+
+  // 针对混合英文段落，采取按词折行，长单词通过连词符段行
+  // https://justmarkup.com/articles/2015-07-31-dealing-with-long-words-in-css/
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+
+  // 自动在中西文间加 1/4 空格（暂无浏览器支持）
+  //text-spacing: ideograph-alpha;
+
+  // 模块引用顺序
+
+  // 1. 引入各模块
+  // .heti h1, .heti p, .heti ul
+  @include hetiBase();
+  @include hetiHeading();
+  @include hetiList();
+  @include hetiTable();
+  @include hetiInline();
+
+  // 2. 定义所有修饰器（需与 .heti 组合使用）
+  // .heti--sans h1, .heti--vertical h1 etc.
+  @include hetiFontModifier();
+  @include hetiColumnModifier();
+  @include hetiWritingModeModifier();
+  @include hetiAncientModifier();
+  @include hetiAnnotationModifier();
+
+  // 3. 定义工具类样式（仅在 .heti 内部使用）
+  // .heti .heti-verse, .heti .heti-hang
+  @include hetiBlockHelperClasses();
+  @include hetiInlineHelperClasses();
+  @include hetiAddOns();
+}

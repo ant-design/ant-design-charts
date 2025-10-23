@@ -1,0 +1,1 @@
+{"version":3,"file":"animation.js","sourceRoot":"","sources":["../../src/constants/animation.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,MAAM,yBAAyB,GAA0B;IAC9D,QAAQ,EAAE,GAAG;CACd,CAAC;AAEF,MAAM,CAAC,MAAM,kCAAkC,GAA0B;IACvE,QAAQ,EAAE,IAAI;IACd,MAAM,EAAE,0CAA0C;IAClD,UAAU,EAAE,CAAC;IACb,IAAI,EAAE,MAAM;CACb,CAAC"}

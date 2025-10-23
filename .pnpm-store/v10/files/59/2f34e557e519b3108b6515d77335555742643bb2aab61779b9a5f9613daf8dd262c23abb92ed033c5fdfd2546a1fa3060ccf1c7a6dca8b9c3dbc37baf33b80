@@ -1,0 +1,52 @@
+{
+  "name": "hyphenate-style-name",
+  "version": "1.1.0",
+  "description": "Hyphenates a camelcased CSS property name",
+  "main": "index.cjs.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "rollup --input index.js --file index.cjs.js --format cjs",
+    "coverage": "nyc tape -- test/**/*.test.js",
+    "lint": "eslint . --ignore-path .gitignore",
+    "test": "tape test/**/*.test.js",
+    "precoverage": "npm run build",
+    "pretest": "npm run lint && npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "index.js",
+    "index.cjs.js",
+    "index.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rexxars/hyphenate-style-name.git"
+  },
+  "keywords": [
+    "hyphenate",
+    "style",
+    "css",
+    "camelcase"
+  ],
+  "author": "Espen Hovlandsdal <espen@hovlandsdal.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/rexxars/hyphenate-style-name/issues"
+  },
+  "homepage": "https://github.com/rexxars/hyphenate-style-name#readme",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "conventional-changelog-conventionalcommits": "^7.0.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-config-sanity": "^7.1.2",
+    "prettier": "^3.2.5",
+    "rollup": "^4.17.2",
+    "semantic-release": "^23.1.1",
+    "tape": "^5.7.5"
+  }
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"LoadImagePlugin.d.ts","sourceRoot":"","sources":["../src/LoadImagePlugin.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAIV,eAAe,EACf,sBAAsB,EAEvB,MAAM,cAAc,CAAC;AAGtB,OAAO,EAAE,SAAS,EAAE,MAAM,aAAa,CAAC;AAExC,qBAAa,eAAgB,YAAW,eAAe;IACrD,MAAM,CAAC,GAAG,SAAe;IAEzB,KAAK,CAAC,OAAO,EAAE,sBAAsB,GAAG;QAAE,SAAS,EAAE,SAAS,CAAA;KAAE;CAwFjE"}
