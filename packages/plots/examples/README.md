@@ -9,6 +9,7 @@
 ```bash
 # 在 packages/plots 目录下
 npm run dev
+```
 
 ### 2. 访问调试页面
 
