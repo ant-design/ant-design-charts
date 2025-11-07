@@ -1,0 +1,112 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
+import { ConfigProvider } from 'antd';
+import { Helmet, useLocation, useOutlet, useServerInsertedHTML, useSiteData } from 'dumi';
+import React, { useEffect } from 'react';
+import { getPurePathname } from "../utils/location";
+import IndexLayout from "./IndexLayout";
+import ManualLayout from "./ManualLayout";
+import GlobalStyles from "../common/GlobalStyles";
+import { defaultToken } from "../common/styles/theme";
+import "../static/style";
+
+/**
+ * DocLayout 是 dumi2 的内置 layout 入口，在这里使用页面路径进行区分成自己不同的 Layout。
+ */
+export default (function () {
+  var _useSiteData = useSiteData(),
+    themeConfig = _useSiteData.themeConfig,
+    loading = _useSiteData.loading;
+  var navs = themeConfig.navs;
+
+  // 打印控制台文案
+  useEffect(function () {
+    console.log('%cAntV 让数据栩栩如生', 'color:#5B7102; font-size: 20px;'), console.log('%c新一代数据可视化解决方案', 'color:#5B7102;'), console.log('--------------------------'), console.log('%c关注我们的微信公众号 %c"数据可视化 AntV"%c，获取我们团队最新的进展、动态、分享，也欢迎加入我们！', 'color: red', 'color: pink', 'color: red');
+  }, []);
+  var outlet = useOutlet();
+  var location = useLocation();
+  var pathname = location.pathname,
+    hash = location.hash;
+  var purePathname = getPurePathname(pathname);
+  var _React$useState = React.useState(function () {
+      return createCache();
+    }),
+    _React$useState2 = _slicedToArray(_React$useState, 1),
+    styleCache = _React$useState2[0];
+
+  // 监听 hash 变更，跳转到锚点位置
+  // 同时监听页面 loading 状态，因为路由按需加载时需要等待页面渲染完毕才能找到锚点位置
+  useEffect(function () {
+    var id = hash.replace('#', '');
+    if (id) {
+      var elm = document.getElementById(decodeURIComponent(id));
+      if (elm) document.documentElement.scrollTo(0, elm.offsetTop - 80);
+    }
+  }, [loading, hash]);
+  var content = React.useMemo(function () {
+    // 首页
+    if (['/', ''].includes(purePathname)) {
+      return /*#__PURE__*/React.createElement(IndexLayout, null, outlet);
+    }
+
+    // 匹配 navs 中的 docs 路由
+    var docsRoutes = navs.filter(function (nav) {
+      return nav.slug && nav.slug.startsWith('docs/');
+    }).map(function (nav) {
+      return nav.slug && nav.slug.split('/').find(function (item) {
+        return item !== 'docs';
+      });
+    });
+    if (docsRoutes.some(function (slug) {
+      return purePathname.startsWith("/".concat(slug)) || purePathname.startsWith("/docs/".concat(slug));
+    })) {
+      return /*#__PURE__*/React.createElement(ManualLayout, null, outlet);
+    }
+    return outlet;
+  }, [purePathname]);
+  useServerInsertedHTML(function () {
+    var styleText = extractStyle(styleCache, {
+      plain: true,
+      types: 'style'
+    });
+    // biome-ignore lint/security/noDangerouslySetInnerHtml: only used in .dumi
+    return /*#__PURE__*/React.createElement("style", {
+      "data-type": "antd-cssinjs",
+      dangerouslySetInnerHTML: {
+        __html: styleText
+      }
+    });
+  });
+  useServerInsertedHTML(function () {
+    var styleText = extractStyle(styleCache, {
+      plain: true,
+      types: ['cssVar', 'token']
+    });
+    return /*#__PURE__*/React.createElement("style", {
+      "data-type": "antd-css-var",
+      "data-rc-order": "prepend",
+      "data-rc-priority": "-9999"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: only used in .dumi
+      ,
+      dangerouslySetInnerHTML: {
+        __html: styleText
+      }
+    });
+  });
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Helmet, null, /*#__PURE__*/React.createElement("link", {
+    rel: "shortcut icon",
+    href: "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*7svFR6wkPMoAAAAAAAAAAAAADmJ7AQ/original"
+  })), /*#__PURE__*/React.createElement(StyleProvider, {
+    cache: styleCache
+  }, /*#__PURE__*/React.createElement(ConfigProvider, {
+    theme: {
+      token: defaultToken,
+      hashed: false
+    }
+  }, /*#__PURE__*/React.createElement(GlobalStyles, null), content)));
+});

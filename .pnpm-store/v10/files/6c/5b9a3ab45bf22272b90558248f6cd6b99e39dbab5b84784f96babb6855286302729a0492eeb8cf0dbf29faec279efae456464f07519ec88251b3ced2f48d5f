@@ -1,0 +1,1 @@
+{"version":3,"file":"brushXFilter.js","sourceRoot":"","sources":["../../src/interaction/brushXFilter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,eAAe,CAAC;AAC5C,OAAO,EAAE,YAAY,EAAE,MAAM,mBAAmB,CAAC;AAEjD,MAAM,UAAU,YAAY,CAAC,OAAO;IAClC,OAAO,WAAW,+BAChB,KAAK,EAAE,IAAI,IACR,OAAO,KACV,WAAW,EAAE,YAAY,IACzB,CAAC;AACL,CAAC"}

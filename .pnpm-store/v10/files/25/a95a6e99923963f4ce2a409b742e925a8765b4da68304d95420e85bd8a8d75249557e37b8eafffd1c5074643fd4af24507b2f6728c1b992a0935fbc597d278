@@ -1,0 +1,1 @@
+System.register(["react","valtio/react"],function(c){"use strict";var e,n;return{setters:[function(t){e=t.useLayoutEffect},function(t){n=t.useSnapshot}],execute:function(){c("useProxy",f);const t=Symbol();function f(u,a){const o=n(u,a);o[t];let r=!0;return e(()=>{r=!1}),new Proxy(u,{get(i,s){return r?o[s]:i[s]}})}}}});

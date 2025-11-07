@@ -1,0 +1,48 @@
+{
+  "name": "hast-util-is-conditional-comment",
+  "version": "2.0.0",
+  "description": "hast utility to check if a node is a conditional comment",
+  "license": "MIT",
+  "keywords": [
+    "unist",
+    "hast",
+    "hast-util",
+    "util",
+    "utility",
+    "html",
+    "conditional",
+    "comment"
+  ],
+  "repository": "https://github.com/rehypejs/rehype-minify/tree/main/packages/hast-util-is-conditional-comment",
+  "bugs": "https://github.com/rehypejs/rehype-minify/issues",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com>"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.d.ts",
+    "index.js"
+  ],
+  "dependencies": {
+    "@types/hast": "^2.0.0"
+  },
+  "scripts": {
+    "build": "rimraf \"*.d.ts\" && tsc && type-coverage",
+    "test": "node --conditions development test.js"
+  },
+  "xo": false,
+  "typeCoverage": {
+    "atLeast": 100,
+    "detail": true,
+    "strict": true,
+    "ignoreCatch": true
+  }
+}

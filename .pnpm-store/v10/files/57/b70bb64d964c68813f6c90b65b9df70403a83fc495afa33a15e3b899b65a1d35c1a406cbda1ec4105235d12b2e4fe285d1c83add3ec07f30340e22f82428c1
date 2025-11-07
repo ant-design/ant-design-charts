@@ -1,0 +1,599 @@
+import _defineProperty from "@babel/runtime/helpers/esm/defineProperty";
+import _regeneratorRuntime from "@babel/runtime/helpers/esm/regeneratorRuntime";
+import _objectSpread from "@babel/runtime/helpers/esm/objectSpread2";
+import _asyncToGenerator from "@babel/runtime/helpers/esm/asyncToGenerator";
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import _asyncIterator from "@babel/runtime/helpers/esm/asyncIterator";
+import { Bubble, useXAgent, useXChat, XStream } from '@ant-design/x';
+import { Flex, theme } from 'antd';
+import { isEmpty, isEqual } from 'lodash';
+import React, { memo, useEffect, useRef, useState } from 'react';
+import useSWR from 'swr';
+import SignatureIcon from "../icons/SignatureIcon";
+import { MessageTypeEnum, Role } from "../interface";
+import { BOT_INFO } from "../mock";
+import { fetcher, streamChat } from "../services/ChatController";
+import StarterList from "../StarterList";
+import ThoughtChain from "../ThoughtChain";
+import { parseStreamChunk } from "../utils";
+import InputArea from "./components/InputAreaRender";
+import LoadingStart from "./components/LoadingStart";
+import MarkdownRender from "./components/MarkdownRender";
+import MySpinner from "./components/MySpinner";
+import UserContent from "./components/UserContent";
+import { UITemplateRender } from "./template";
+var CANCEL_REASON = 'petercat user cancel';
+var Avatar = function Avatar(props) {
+  var backgroundColor = props.backgroundColor,
+    avatar = props.avatar;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "ant-avatar ant-avatar-circle ant-avatar-image w-[40px] h-[40px] rounded-full overflow-hidden flex-shrink-0",
+    style: {
+      backgroundColor: "".concat(backgroundColor),
+      backgroundImage: "url(".concat(avatar, ")"),
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat'
+    }
+  });
+};
+var Chat = /*#__PURE__*/memo(function (_ref) {
+  var _ref$helloMessage = _ref.helloMessage,
+    helloMessage = _ref$helloMessage === void 0 ? '让我们开始对话吧~' : _ref$helloMessage,
+    _ref$apiDomain = _ref.apiDomain,
+    apiDomain = _ref$apiDomain === void 0 ? 'http://127.0.0.1:8000' : _ref$apiDomain,
+    apiUrl = _ref.apiUrl,
+    _ref$drawerWidth = _ref.drawerWidth,
+    drawerWidth = _ref$drawerWidth === void 0 ? 500 : _ref$drawerWidth,
+    assistantMeta = _ref.assistantMeta,
+    starters = _ref.starters,
+    prompt = _ref.prompt,
+    token = _ref.token,
+    style = _ref.style,
+    _ref$disabled = _ref.disabled,
+    disabled = _ref$disabled === void 0 ? false : _ref$disabled,
+    _ref$hideLogo = _ref.hideLogo,
+    hideLogo = _ref$hideLogo === void 0 ? false : _ref$hideLogo,
+    disabledPlaceholder = _ref.disabledPlaceholder,
+    editBotId = _ref.editBotId,
+    getToolsResult = _ref.getToolsResult;
+  var _theme$useToken = theme.useToken(),
+    designToken = _theme$useToken.token;
+  var tokenRef = useRef(token);
+  var requestParamsRef = useRef({
+    apiDomain: apiDomain,
+    apiUrl: apiUrl,
+    prompt: prompt,
+    editBotId: editBotId
+  });
+  useEffect(function () {
+    requestParamsRef.current = {
+      apiDomain: apiDomain,
+      apiUrl: apiUrl,
+      prompt: prompt,
+      editBotId: editBotId
+    };
+  }, [tokenRef === null || tokenRef === void 0 ? void 0 : tokenRef.current, apiDomain, apiUrl, prompt, editBotId]);
+  useEffect(function () {
+    tokenRef.current = token;
+  }, [token]);
+  var messageMinWidth = drawerWidth ? "calc(".concat(drawerWidth, "px - 90px)") : '400px';
+  var _useState = useState({
+      assistantMeta: assistantMeta,
+      helloMessage: helloMessage,
+      starters: starters
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    currentBotInfo = _useState2[0],
+    setCurrentBotInfo = _useState2[1];
+  var currentBotInfoRef = useRef({
+    assistantMeta: assistantMeta,
+    helloMessage: helloMessage,
+    starters: starters
+  });
+  var _useSWR = useSWR(tokenRef !== null && tokenRef !== void 0 && tokenRef.current ? ["".concat(apiDomain, "/api/bot/detail?id=").concat(tokenRef === null || tokenRef === void 0 ? void 0 : tokenRef.current), tokenRef === null || tokenRef === void 0 ? void 0 : tokenRef.current] : null, fetcher),
+    botDetail = _useSWR.data,
+    isValidating = _useSWR.isValidating;
+  var _useState3 = useState(),
+    _useState4 = _slicedToArray(_useState3, 2),
+    abortController = _useState4[0],
+    setAbortController = _useState4[1];
+  var resetController = function resetController() {
+    if (abortController) {
+      // 在发起请求前重置控制器
+      abortController.abort();
+    }
+    var newAbortController = new AbortController();
+    setAbortController(newAbortController);
+    return newAbortController;
+  };
+  // ============================ Agent =============================
+
+  var _useXAgent = useXAgent({
+      baseURL: apiDomain,
+      request: function () {
+        var _request = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(_ref2, _ref3) {
+          var _ref2$messages, messages, onUpdate, onSuccess, newMessages, res, _requestParamsRef$cur, _apiDomain, _prompt, _apiUrl, _editBotId, _response, _iteratorAbruptCompletion, _didIteratorError, _iteratorError, _iterator, _step, chunk, _toolContent$, resContent, toolContent;
+          return _regeneratorRuntime().wrap(function _callee$(_context) {
+            while (1) switch (_context.prev = _context.next) {
+              case 0:
+                _ref2$messages = _ref2.messages, messages = _ref2$messages === void 0 ? [] : _ref2$messages;
+                onUpdate = _ref3.onUpdate, onSuccess = _ref3.onSuccess;
+                onUpdate({
+                  role: Role.loading,
+                  content: []
+                });
+                newMessages = messages.filter(function (item) {
+                  return item.role !== Role.tool && item.role !== Role.knowledge;
+                }).map(function (item) {
+                  return _objectSpread(_objectSpread({}, item), {}, {
+                    content: item.content.filter(function (item) {
+                      return item.type !== MessageTypeEnum.ERROR && item.type !== MessageTypeEnum.TOOL;
+                    })
+                  });
+                });
+                res = {
+                  role: Role.assistant,
+                  content: []
+                };
+                _context.prev = 5;
+                _requestParamsRef$cur = requestParamsRef.current, _apiDomain = _requestParamsRef$cur.apiDomain, _prompt = _requestParamsRef$cur.prompt, _apiUrl = _requestParamsRef$cur.apiUrl, _editBotId = _requestParamsRef$cur.editBotId;
+                _context.next = 9;
+                return streamChat(newMessages, _apiDomain, _apiUrl, _prompt, _editBotId || (tokenRef === null || tokenRef === void 0 ? void 0 : tokenRef.current), resetController().signal);
+              case 9:
+                _response = _context.sent;
+                if (_response.ok) {
+                  _context.next = 16;
+                  break;
+                }
+                _context.t0 = Error;
+                _context.next = 14;
+                return _response.json();
+              case 14:
+                _context.t1 = _context.sent;
+                throw new _context.t0(_context.t1);
+              case 16:
+                if (!(_response.body instanceof ReadableStream)) {
+                  _context.next = 51;
+                  break;
+                }
+                _iteratorAbruptCompletion = false;
+                _didIteratorError = false;
+                _context.prev = 19;
+                _iterator = _asyncIterator(XStream({
+                  readableStream: _response.body
+                }));
+              case 21:
+                _context.next = 23;
+                return _iterator.next();
+              case 23:
+                if (!(_iteratorAbruptCompletion = !(_step = _context.sent).done)) {
+                  _context.next = 33;
+                  break;
+                }
+                chunk = _step.value;
+                resContent = parseStreamChunk(res.content, chunk.data);
+                res = {
+                  role: Role.assistant,
+                  content: resContent
+                };
+                // @ts-ignore
+                toolContent = resContent.filter(function (i) {
+                  return i.type === 'tool';
+                });
+                if (toolContent.length > 0 && (_toolContent$ = toolContent[0]) !== null && _toolContent$ !== void 0 && _toolContent$.extra && getToolsResult !== undefined) {
+                  getToolsResult(toolContent[0].extra);
+                }
+                onUpdate(res);
+              case 30:
+                _iteratorAbruptCompletion = false;
+                _context.next = 21;
+                break;
+              case 33:
+                _context.next = 39;
+                break;
+              case 35:
+                _context.prev = 35;
+                _context.t2 = _context["catch"](19);
+                _didIteratorError = true;
+                _iteratorError = _context.t2;
+              case 39:
+                _context.prev = 39;
+                _context.prev = 40;
+                if (!(_iteratorAbruptCompletion && _iterator.return != null)) {
+                  _context.next = 44;
+                  break;
+                }
+                _context.next = 44;
+                return _iterator.return();
+              case 44:
+                _context.prev = 44;
+                if (!_didIteratorError) {
+                  _context.next = 47;
+                  break;
+                }
+                throw _iteratorError;
+              case 47:
+                return _context.finish(44);
+              case 48:
+                return _context.finish(39);
+              case 49:
+                _context.next = 61;
+                break;
+              case 51:
+                _context.t3 = Role.assistant;
+                _context.t4 = MessageTypeEnum.TEXT;
+                _context.t5 = JSON;
+                _context.next = 56;
+                return _response.json();
+              case 56:
+                _context.t6 = _context.sent;
+                _context.t7 = _context.t5.stringify.call(_context.t5, _context.t6);
+                _context.t8 = {
+                  type: _context.t4,
+                  text: _context.t7
+                };
+                _context.t9 = [_context.t8];
+                res = {
+                  role: _context.t3,
+                  content: _context.t9
+                };
+              case 61:
+                _context.next = 66;
+                break;
+              case 63:
+                _context.prev = 63;
+                _context.t10 = _context["catch"](5);
+                if (_context.t10.name === 'AbortError' || _context.t10 === CANCEL_REASON) {
+                  // ignore abort error
+                } else {
+                  res = {
+                    role: Role.assistant,
+                    content: [{
+                      type: MessageTypeEnum.ERROR,
+                      text: _context.t10.message
+                    }]
+                  };
+                }
+              case 66:
+                onSuccess(res);
+              case 67:
+              case "end":
+                return _context.stop();
+            }
+          }, _callee, null, [[5, 63], [19, 35, 39, 49], [40,, 44, 48]]);
+        }));
+        function request(_x, _x2) {
+          return _request.apply(this, arguments);
+        }
+        return request;
+      }()
+    }),
+    _useXAgent2 = _slicedToArray(_useXAgent, 1),
+    agent = _useXAgent2[0];
+
+  // ============================= Chat =============================
+  var _useXChat = useXChat({
+      agent: agent
+    }),
+    setMessages = _useXChat.setMessages,
+    messages = _useXChat.messages,
+    onRequest = _useXChat.onRequest;
+  var resetChat = function resetChat() {
+    var _currentBotInfo$start;
+    resetController();
+    var initMessages = [{
+      id: 'init',
+      status: 'success',
+      message: {
+        role: Role.init,
+        content: [{
+          type: MessageTypeEnum.TEXT,
+          text: helloMessage || BOT_INFO.helloMessage
+        }]
+      }
+    }];
+    if (currentBotInfo !== null && currentBotInfo !== void 0 && (_currentBotInfo$start = currentBotInfo.starters) !== null && _currentBotInfo$start !== void 0 && _currentBotInfo$start.length) {
+      initMessages.push({
+        id: 'suggestion',
+        status: 'success',
+        message: {
+          role: Role.starter,
+          content: currentBotInfo.starters.map(function (starterTxt) {
+            return {
+              type: MessageTypeEnum.TEXT,
+              text: starterTxt
+            };
+          })
+        }
+      });
+    }
+    // resetController may touch abort error and set Error Message
+    setTimeout(function () {
+      setMessages(initMessages);
+    }, 0);
+  };
+
+  // ============================ Event ============================
+  var handleSendMessage = function handleSendMessage(message) {
+    setMessages(function (prev) {
+      return prev.filter(function (info) {
+        return info.id !== 'init' && info.id !== 'suggestion';
+      });
+    });
+    onRequest(message);
+  };
+  useEffect(function () {
+    return function () {
+      resetController();
+    };
+  }, []);
+  useEffect(function () {
+    var _currentBotInfo$assis;
+    if (isEqual(currentBotInfo, currentBotInfoRef.current)) {
+      return;
+    }
+    if (currentBotInfo !== null && currentBotInfo !== void 0 && (_currentBotInfo$assis = currentBotInfo.assistantMeta) !== null && _currentBotInfo$assis !== void 0 && _currentBotInfo$assis.title) {
+      document.title = currentBotInfo.assistantMeta.title;
+    }
+    resetChat();
+    currentBotInfoRef.current = currentBotInfo;
+  }, [currentBotInfo]);
+  useEffect(function () {
+    setCurrentBotInfo({
+      assistantMeta: {
+        avatar: assistantMeta === null || assistantMeta === void 0 ? void 0 : assistantMeta.avatar,
+        title: assistantMeta === null || assistantMeta === void 0 ? void 0 : assistantMeta.title,
+        backgroundColor: assistantMeta === null || assistantMeta === void 0 ? void 0 : assistantMeta.backgroundColor
+      },
+      helloMessage: helloMessage,
+      starters: starters
+    });
+  }, [assistantMeta, helloMessage, starters]);
+  useEffect(function () {
+    if (isEmpty(botDetail)) {
+      return;
+    }
+    try {
+      // @ts-ignore
+      var info = botDetail === null || botDetail === void 0 ? void 0 : botDetail[0];
+      setCurrentBotInfo({
+        assistantMeta: {
+          avatar: info.avatar,
+          title: info.name
+        },
+        helloMessage: info.hello_message,
+        starters: info.starters || []
+      });
+    } catch (e) {
+      console.error('botDetail effect', e);
+    }
+  }, [botDetail]);
+
+  // ============================ Roles =============================
+  var roles = React.useMemo(function () {
+    var _currentBotInfo$assis2;
+    var _ref4 = (_currentBotInfo$assis2 = currentBotInfo === null || currentBotInfo === void 0 ? void 0 : currentBotInfo.assistantMeta) !== null && _currentBotInfo$assis2 !== void 0 ? _currentBotInfo$assis2 : {},
+      title = _ref4.title,
+      _ref4$avatar = _ref4.avatar,
+      avatar = _ref4$avatar === void 0 ? BOT_INFO.avatar : _ref4$avatar,
+      backgroundColor = _ref4.backgroundColor;
+    return _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty({}, Role.init, {
+      classNames: {
+        avatar: 'petercat-avatar',
+        header: 'petercat-header',
+        content: 'petercat-content-start'
+      },
+      placement: 'start',
+      avatar: /*#__PURE__*/React.createElement(Avatar, {
+        backgroundColor: backgroundColor,
+        avatar: avatar
+      }),
+      header: /*#__PURE__*/React.createElement(React.Fragment, null, title),
+      messageRender: function messageRender(message) {
+        try {
+          // @ts-ignore
+          var hello = message.content[0].text;
+          return /*#__PURE__*/React.createElement(MarkdownRender, {
+            content: hello
+          });
+        } catch (e) {
+          console.error('init items', e);
+        }
+      }
+    }), Role.starter, {
+      placement: 'start',
+      variant: 'borderless',
+      messageRender: function messageRender(items) {
+        try {
+          // @ts-ignore
+          var botStarters = items.content.map(function (item) {
+            return item.text;
+          });
+          return /*#__PURE__*/React.createElement(StarterList, {
+            className: "ml-[52px]",
+            starters: botStarters,
+            onClick: function onClick(item) {
+              handleSendMessage({
+                role: Role.user,
+                content: [{
+                  type: MessageTypeEnum.TEXT,
+                  text: item.trim()
+                }]
+              });
+            }
+          });
+        } catch (e) {
+          console.error('starter items', e);
+        }
+      }
+    }), Role.assistant, {
+      classNames: {
+        header: 'petercat-header',
+        avatar: 'petercat-avatar'
+      },
+      placement: 'start',
+      avatar: /*#__PURE__*/React.createElement(Avatar, {
+        backgroundColor: backgroundColor,
+        avatar: avatar
+      }),
+      variant: 'borderless',
+      header: /*#__PURE__*/React.createElement(React.Fragment, null, title),
+      messageRender: function messageRender(message) {
+        try {
+          var _tokenRef$current;
+          var toolContent = message.content.find(function (i) {
+            return i.type === 'tool';
+          });
+          var extra = toolContent === null || toolContent === void 0 ? void 0 : toolContent.extra;
+          var textContent = message.content.find(function (i) {
+            return i.type === MessageTypeEnum.TEXT;
+          });
+          var errorContent = message.content.find(function (i) {
+            return i.type === MessageTypeEnum.ERROR;
+          });
+          return /*#__PURE__*/React.createElement(React.Fragment, null, extra && /*#__PURE__*/React.createElement("div", {
+            className: "mb-2"
+          }, /*#__PURE__*/React.createElement(ThoughtChain, {
+            content: extra,
+            status: extra.status,
+            source: extra.source
+          })), textContent && /*#__PURE__*/React.createElement("div", {
+            className: "petercat-content-start"
+          }, /*#__PURE__*/React.createElement(MarkdownRender, {
+            content: textContent.text
+          })), errorContent && /*#__PURE__*/React.createElement("div", {
+            className: "petercat-content-start text-red-700"
+          }, "ops... ", errorContent.text), (extra === null || extra === void 0 ? void 0 : extra.template_id) && message.status === 'success' && /*#__PURE__*/React.createElement("div", {
+            style: {
+              maxWidth: messageMinWidth
+            },
+            className: "transition-all duration-300 ease-in-out"
+          }, UITemplateRender({
+            templateId: extra.template_id,
+            cardData: extra.data,
+            apiDomain: apiDomain,
+            token: (_tokenRef$current = tokenRef === null || tokenRef === void 0 ? void 0 : tokenRef.current) !== null && _tokenRef$current !== void 0 ? _tokenRef$current : ''
+          })));
+        } catch (e) {
+          console.error('items', message);
+        }
+      },
+      typing: {
+        step: 5
+      }
+    }), Role.user, {
+      classNames: {
+        avatar: 'petercat-avatar',
+        header: 'petercat-header',
+        content: 'petercat-content-end'
+      },
+      placement: 'end',
+      messageRender: function messageRender(message) {
+        try {
+          // @ts-ignore
+          var _message$content$redu = message.content.reduce(function (acc, item) {
+              if (item.type === 'image_url') acc.images.push(item);else if (item.type === 'text') acc.text += item.text;
+              return acc;
+            }, {
+              images: [],
+              text: ''
+            }),
+            images = _message$content$redu.images,
+            text = _message$content$redu.text;
+          return /*#__PURE__*/React.createElement(UserContent, {
+            images: images,
+            text: text
+          });
+        } catch (e) {
+          console.error('user items', e);
+          return null;
+        }
+      }
+    }), Role.loading, {
+      classNames: {
+        avatar: 'petercat-avatar',
+        header: 'petercat-header'
+      },
+      placement: 'start',
+      avatar: {
+        src: avatar
+      },
+      header: /*#__PURE__*/React.createElement("div", null, title),
+      variant: 'borderless',
+      messageRender: function messageRender() {
+        return /*#__PURE__*/React.createElement(LoadingStart, {
+          loop: true
+        });
+      }
+    });
+  }, [currentBotInfo]);
+
+  // ============================ Render ============================
+  return /*#__PURE__*/React.createElement("div", {
+    className: "petercat-assistant bg-[#FCFCFC] pt-2",
+    style: _objectSpread(_objectSpread({}, style), {}, {
+      minWidth: drawerWidth,
+      height: '100%'
+    })
+  }, /*#__PURE__*/React.createElement(MySpinner, {
+    loading: !botDetail && isValidating,
+    spinner: /*#__PURE__*/React.createElement(LoadingStart, {
+      loop: true
+    })
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "h-full w-full flex flex-col relative"
+  }, !hideLogo && /*#__PURE__*/React.createElement(SignatureIcon, {
+    className: "mx-auto my-2 flex-none"
+  }), /*#__PURE__*/React.createElement(Flex, {
+    vertical: true,
+    className: "h-full"
+  }, /*#__PURE__*/React.createElement(Bubble.List, {
+    style: {
+      flex: '1 1 0',
+      padding: designToken.padding
+    },
+    roles: roles,
+    items: disabled ? [] : messages.map(function (_ref6, index) {
+      var status = _ref6.status,
+        message = _ref6.message,
+        id = _ref6.id;
+      var role = message.role;
+      var key = id || "fixed_".concat(index);
+      return {
+        key: key,
+        role: role,
+        content: _objectSpread(_objectSpread({}, message), {}, {
+          status: status,
+          id: id
+        }),
+        typing: false
+      };
+    })
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: designToken.paddingSM
+    }
+  }, /*#__PURE__*/React.createElement(InputArea, {
+    apiDomain: apiDomain,
+    disabled: disabled,
+    disabledPlaceholder: disabledPlaceholder,
+    isShowStop: agent.isRequesting(),
+    onMessageSend: function onMessageSend(contentStr) {
+      if (agent.isRequesting()) {
+        return;
+      }
+      var message = {
+        role: Role.user,
+        content: JSON.parse(contentStr)
+      };
+      handleSendMessage(message);
+    },
+    onClear: function onClear() {
+      resetChat();
+    },
+    onStop: function onStop() {
+      abortController === null || abortController === void 0 || abortController.abort(CANCEL_REASON);
+    }
+  }))))));
+});
+export default Chat;

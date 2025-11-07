@@ -1,0 +1,226 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+var _excluded = ["columns", "bottom", "language", "isDynamicFooter", "rootDomain", "className"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+import { GithubOutlined, QuestionCircleOutlined, WeiboOutlined, ZhihuOutlined } from '@ant-design/icons';
+import { default as classnames, default as cx } from 'classnames';
+import { FormattedMessage, useLocale, useSiteData } from 'dumi';
+import { omit } from 'lodash-es';
+import { default as RCFooter } from 'rc-footer';
+import React from 'react';
+import 'rc-footer/assets/index.less';
+import styles from "./index.module.less";
+/**
+ * 底部菜单
+ * @returns
+ */
+var Footer = function Footer(props) {
+  var columns = props.columns,
+    bottom = props.bottom,
+    language = props.language,
+    isDynamicFooter = props.isDynamicFooter,
+    _props$rootDomain = props.rootDomain,
+    rootDomain = _props$rootDomain === void 0 ? '' : _props$rootDomain,
+    className = props.className,
+    restProps = _objectWithoutProperties(props, _excluded);
+  var _useSiteData = useSiteData(),
+    themeConfig = _useSiteData.themeConfig;
+  var locale = useLocale();
+  var lang = locale.id;
+  var _themeConfig$footerTh = themeConfig.footerTheme,
+    footerTheme = _themeConfig$footerTh === void 0 ? 'dark' : _themeConfig$footerTh;
+  var _restProps$theme = restProps.theme,
+    theme = _restProps$theme === void 0 ? footerTheme : _restProps$theme;
+  var getColumns = function getColumns() {
+    // 如果外部没有传入 columns，则默认展示 antv footer
+    var col1 = {
+      title: 'Resources',
+      items: [{
+        title: 'Ant Design',
+        url: 'https://ant.design',
+        openExternal: true
+      }, {
+        title: 'Galacea Effects',
+        url: 'https://galacean.antgroup.com/effects/',
+        openExternal: true
+      }, {
+        title: 'Umi',
+        description: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "React \u5E94\u7528\u5F00\u53D1\u6846\u67B6"
+        }),
+        url: 'https://umijs.org',
+        openExternal: true
+      }, {
+        title: 'Dumi',
+        description: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "\u7EC4\u4EF6/\u6587\u6863\u7814\u53D1\u5DE5\u5177"
+        }),
+        url: 'https://d.umijs.org',
+        openExternal: true
+      }, {
+        title: 'ahooks',
+        description: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "React Hooks \u5E93"
+        }),
+        url: 'https://github.com/alibaba/hooks',
+        openExternal: true
+      }]
+    };
+    var col2 = {
+      title: /*#__PURE__*/React.createElement(FormattedMessage, {
+        id: "\u793E\u533A"
+      }),
+      items: [{
+        icon: /*#__PURE__*/React.createElement(ZhihuOutlined, {
+          style: {
+            color: '#0084ff'
+          }
+        }),
+        title: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "\u4F53\u9A8C\u79D1\u6280\u4E13\u680F"
+        }),
+        url: 'http://zhuanlan.zhihu.com/xtech',
+        openExternal: true
+      }, {
+        icon: /*#__PURE__*/React.createElement("img", {
+          src: "https://gw.alipayobjects.com/zos/rmsportal/mZBWtboYbnMkTBaRIuWQ.png",
+          alt: "seeconf"
+        }),
+        title: 'SEE Conf',
+        description: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "\u8682\u8681\u4F53\u9A8C\u79D1\u6280\u5927\u4F1A"
+        }),
+        url: 'https://seeconf.antfin.com/',
+        openExternal: true
+      }]
+    };
+    var col3 = {
+      title: /*#__PURE__*/React.createElement(FormattedMessage, {
+        id: "\u5E2E\u52A9"
+      }),
+      items: [{
+        icon: /*#__PURE__*/React.createElement(GithubOutlined, null),
+        title: 'GitHub',
+        url: 'https://github.com/antvis',
+        openExternal: true
+      }, {
+        icon: /*#__PURE__*/React.createElement(QuestionCircleOutlined, null),
+        title: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "StackOverflow"
+        }),
+        url: 'http://stackoverflow.com/questions/tagged/antv',
+        openExternal: true
+      }]
+    };
+    var more = {
+      icon: /*#__PURE__*/React.createElement("img", {
+        src: "https://gw.alipayobjects.com/zos/rmsportal/nBVXkrFdWHxbZlmMbsaH.svg",
+        alt: "more products"
+      }),
+      title: /*#__PURE__*/React.createElement(FormattedMessage, {
+        id: "\u66F4\u591A\u4EA7\u54C1"
+      }),
+      items: [{
+        icon: /*#__PURE__*/React.createElement("img", {
+          src: "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
+          alt: "Ant Design"
+        }),
+        title: 'Ant Design',
+        url: 'https://ant.design',
+        description: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "\u4F01\u4E1A\u7EA7 UI \u8BBE\u8BA1\u8BED\u8A00"
+        }),
+        openExternal: true
+      }, {
+        icon: /*#__PURE__*/React.createElement("img", {
+          src: "https://gw.alipayobjects.com/zos/rmsportal/XuVpGqBFxXplzvLjJBZB.svg",
+          alt: "yuque"
+        }),
+        title: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "\u8BED\u96C0"
+        }),
+        url: 'https://yuque.com',
+        description: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "\u77E5\u8BC6\u521B\u4F5C\u4E0E\u5206\u4EAB\u5DE5\u5177"
+        }),
+        openExternal: true
+      }, {
+        icon: /*#__PURE__*/React.createElement("img", {
+          src: "https://gw.alipayobjects.com/zos/antfincdn/v2%24rh7lqpu/82f338dd-b0a6-41bc-9a86-58aaa9df217b.png",
+          alt: "Egg"
+        }),
+        title: 'Egg',
+        url: 'https://eggjs.org',
+        description: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "\u4F01\u4E1A\u7EA7 Node \u5F00\u53D1\u6846\u67B6"
+        }),
+        openExternal: true
+      }, {
+        icon: /*#__PURE__*/React.createElement("img", {
+          src: "https://gw.alipayobjects.com/zos/rmsportal/DMDOlAUhmktLyEODCMBR.ico",
+          alt: "kitchen"
+        }),
+        title: 'Kitchen',
+        description: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "Sketch \u5DE5\u5177\u96C6"
+        }),
+        url: 'https://kitchen.alipay.com',
+        openExternal: true
+      }, {
+        icon: /*#__PURE__*/React.createElement("img", {
+          src: "https://mdn.alipayobjects.com/huamei_j9rjmc/afts/img/A*3ittT5OEo2gAAAAAAAAAAAAADvGmAQ/original",
+          width: 16,
+          height: 16,
+          alt: "Galacean"
+        }),
+        title: 'Galacean',
+        description: '互动图形解决方案',
+        url: 'https://galacean.antgroup.com/',
+        openExternal: true
+      }, {
+        icon: /*#__PURE__*/React.createElement("img", {
+          src: "https://gw.alipayobjects.com/zos/rmsportal/nBVXkrFdWHxbZlmMbsaH.svg",
+          alt: "xtech"
+        }),
+        title: /*#__PURE__*/React.createElement(FormattedMessage, {
+          id: "\u8682\u8681\u4F53\u9A8C\u79D1\u6280"
+        }),
+        url: 'https://xtech.antfin.com/',
+        openExternal: true
+      }]
+    };
+    return [col1, col2, col3, more];
+  };
+  return /*#__PURE__*/React.createElement(RCFooter, _extends({
+    maxColumnsPerRow: 5,
+    theme: theme,
+    columns: columns || getColumns(),
+    className: classnames(styles.footer, className, _defineProperty(_defineProperty({}, styles.light, theme === 'light'), styles.withMenu, isDynamicFooter)),
+    bottom: bottom || /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: cx(styles.bottom, _defineProperty({}, styles.light, theme === 'light'))
+    }, theme === 'light' ? "\xA9 Copyright ".concat(new Date().getFullYear(), " Ant Group Co., Ltd..\u5907\u6848\u53F7\uFF1A\u4EACICP\u590715032932\u53F7-38") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
+      href: "https://weibo.com/antv2017",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, /*#__PURE__*/React.createElement(WeiboOutlined, null)), /*#__PURE__*/React.createElement("a", {
+      href: "https://zhuanlan.zhihu.com/aiux-antv",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, /*#__PURE__*/React.createElement(ZhihuOutlined, null)), /*#__PURE__*/React.createElement("a", {
+      href: "https://github.com/antvis",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, /*#__PURE__*/React.createElement(GithubOutlined, null)), /*#__PURE__*/React.createElement("a", {
+      href: "".concat(rootDomain, "/").concat(lang, "/about")
+    }, /*#__PURE__*/React.createElement(FormattedMessage, {
+      id: "\u5173\u4E8E\u6211\u4EEC"
+    }))), /*#__PURE__*/React.createElement("div", null, "\xA9 ", new Date().getFullYear(), " Made with \u2764 by ", /*#__PURE__*/React.createElement("a", {
+      href: "https://xtech.antfin.com/"
+    }, "AntV")))))
+  }, omit(restProps, ['githubUrl'])));
+};
+export default Footer;

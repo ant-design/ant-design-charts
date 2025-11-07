@@ -1,0 +1,1 @@
+{"version":3,"file":"DirtyCheckPlugin.d.ts","sourceRoot":"","sources":["../../src/plugins/DirtyCheckPlugin.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EACV,eAAe,EACf,sBAAsB,EACvB,MAAM,8BAA8B,CAAC;AAEtC;;GAEG;AACH,qBAAa,gBAAiB,YAAW,eAAe;IACtD,MAAM,CAAC,GAAG,SAAgB;IAE1B,KAAK,CAAC,OAAO,EAAE,sBAAsB;CAsBtC"}

@@ -1,0 +1,73 @@
+{
+  "name": "@antv/layout",
+  "version": "1.2.14-beta.9",
+  "description": "graph layout algorithm",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antvis/layout",
+    "directory": "packages/layout"
+  },
+  "main": "dist/index.min.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "unpkg": "dist/index.min.js",
+  "files": [
+    "package.json",
+    "dist",
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "keywords": [
+    "graph",
+    "layout",
+    "algorithm",
+    "antv"
+  ],
+  "dependencies": {
+    "@antv/event-emitter": "^0.1.3",
+    "@antv/graphlib": "^2.0.0",
+    "@antv/util": "^3.3.2",
+    "@naoak/workerize-transferable": "^0.1.0",
+    "comlink": "^4.4.1",
+    "d3-force": "^3.0.0",
+    "d3-force-3d": "^3.0.5",
+    "d3-octree": "^1.0.2",
+    "d3-quadtree": "^3.0.1",
+    "dagre": "^0.8.5",
+    "ml-matrix": "^6.10.4",
+    "tslib": "^2.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-react": "^7.7.4",
+    "@types/d3-force": "^3.0.4",
+    "@types/d3-quadtree": "^2.0.6",
+    "@types/dagre": "^0.7.52",
+    "babel-loader": "^8.0.6",
+    "ts-loader": "^7.0.3",
+    "typescript": "^4.0.3",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^5.0.2",
+    "workerize-loader": "^2.0.2"
+  },
+  "scripts": {
+    "clean": "rimraf dist lib tsconfig.tsbuildinfo",
+    "dev": "webpack --config webpack.dev.config.js --mode development",
+    "build": "npm run clean && run-p build:*",
+    "ci": "npm run build && npm run test",
+    "build:esm": "tsc",
+    "build:umd": "webpack --config webpack.config.js --mode production",
+    "publish:alpha": "npm publish --tag alpha",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "beta",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

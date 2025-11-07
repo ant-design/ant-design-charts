@@ -1,0 +1,202 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+import { ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
+import { Collapse, Popover } from 'antd';
+import { get, sortBy, uniq } from 'lodash-es';
+import React from 'react';
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import { useSnapshot } from 'valtio';
+import { store } from "../../model";
+import { CollapsedIcon } from "../../pages/Example/components/CollapsedIcon";
+import { getDemoInfo } from "../CodeRunner/utils";
+import styles from "./index.module.less";
+var Panel = Collapse.Panel;
+var EMPTY = /^\s*$/;
+/**
+ * API 预览
+ */
+export var API = function API(_ref) {
+  var exampleTopics = _ref.exampleTopics,
+    topic = _ref.topic,
+    example = _ref.example,
+    demo = _ref.demo,
+    _ref$language = _ref.language,
+    language = _ref$language === void 0 ? 'zh' : _ref$language;
+  var state = useSnapshot(store);
+  var demoInfo = getDemoInfo(exampleTopics, topic, example, demo);
+  var APIContent = get(demoInfo, ['api', language]);
+
+  /** 从 MD 中解析出层级数据(eg: #、##、###)作为折叠分组条件 */
+  var findHashTag = function findHashTag(lines) {
+    var tagLines = lines.filter(function (line) {
+      return line.startsWith('#');
+    });
+    var tagReg = /^#+/g;
+    var tagLengths = tagLines.map(function (line) {
+      return line.match(tagReg)[0].length;
+    });
+    return sortBy(uniq(tagLengths));
+  };
+  var getRegex = function getRegex(tagLength) {
+    return new RegExp("^".concat(new Array(tagLength).fill('#').join(''), "\\s+([^\\n]*)"));
+  };
+
+  /** 根据正则将内容切片 */
+  var setIndexTag = function setIndexTag(lines, regex) {
+    var start = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var result = [];
+    lines.forEach(function (line, index) {
+      if (regex.exec(line)) {
+        var header = regex.exec(line)[1];
+        result.push({
+          header: header,
+          start: index + start,
+          maxEndIndex: start + lines.length
+        });
+      }
+    });
+    return result;
+  };
+
+  /** 从 MD 中解析出嵌套结构, 最多支持 2 层 */
+  var getNestedDOM = function getNestedDOM(lines) {
+    var tags = findHashTag(lines);
+    var result = setIndexTag(lines, getRegex(tags[0]));
+    if (tags.length > 2) {
+      result = result.map(function (item, index) {
+        var _result;
+        var start = item.start;
+        return _objectSpread(_objectSpread({}, item), {}, {
+          children: setIndexTag(lines.slice(start + 1, (_result = result[index + 1]) === null || _result === void 0 ? void 0 : _result.start), getRegex(tags[1]), start + 1)
+        });
+      });
+    }
+    return result;
+  };
+  var MarkdownComponent = function MarkdownComponent(_ref2) {
+    var content = _ref2.content;
+    return /*#__PURE__*/React.createElement(Markdown, {
+      rehypePlugins: [rehypeRaw, remarkGfm],
+      components: {
+        // @ts-expect-error
+        description: function description(props) {
+          return /*#__PURE__*/React.createElement("span", _extends({
+            style: {
+              fontSize: 12,
+              color: '#777'
+            }
+          }, props));
+        }
+      }
+    }, content);
+  };
+
+  /** 将扁平状态的 MD 解析为嵌套结构 */
+  var renderNestedDom = function renderNestedDom(content) {
+    var _result$;
+    if (!content) {
+      return null;
+    }
+    var lines = content.split('\n');
+    var result = getNestedDOM(lines);
+
+    /** 避免无标题的情况内容丢失，内层嵌套的不做处理（不合理） */
+    var minStart = get(result, [0, 'start']);
+    return /*#__PURE__*/React.createElement(React.Fragment, null, minStart > 0 && /*#__PURE__*/React.createElement("div", {
+      className: styles.disorganized
+    }, /*#__PURE__*/React.createElement(MarkdownComponent, {
+      content: lines.slice(0, minStart).join('\n')
+    })), /*#__PURE__*/React.createElement(Collapse, {
+      bordered: false,
+      defaultActiveKey: [(_result$ = result[0]) === null || _result$ === void 0 ? void 0 : _result$.header],
+      ghost: true
+    }, result.map(function (item, index) {
+      var _children$;
+      var start = item.start,
+        header = item.header,
+        _item$children = item.children,
+        children = _item$children === void 0 ? [] : _item$children;
+      var end = index === result.length - 1 ? lines.length : result[index + 1].start;
+      return /*#__PURE__*/React.createElement(Panel, {
+        header: /*#__PURE__*/React.createElement("b", {
+          style: {
+            lineHeight: '22px',
+            fontSize: 16
+          }
+        }, header),
+        key: header
+      }, children.length > 0 ? /*#__PURE__*/React.createElement(Collapse, {
+        bordered: false,
+        defaultActiveKey: [(_children$ = children[0]) === null || _children$ === void 0 ? void 0 : _children$.header],
+        ghost: true
+      }, children.map(function (nestedItem, nestedIndex) {
+        var nestedStart = nestedItem.start,
+          nestedHeader = nestedItem.header,
+          maxEndIndex = nestedItem.maxEndIndex;
+        var nestEnd = nestedIndex === children.length - 1 ? maxEndIndex : children[nestedIndex + 1].start;
+        return /*#__PURE__*/React.createElement(Panel, {
+          header: /*#__PURE__*/React.createElement("b", {
+            style: {
+              lineHeight: '22px',
+              fontSize: 14
+            }
+          }, nestedHeader),
+          key: nestedHeader
+        }, /*#__PURE__*/React.createElement(MarkdownComponent, {
+          content: lines.slice(nestedStart + 1, nestEnd).join('\n')
+        }));
+      })) : /*#__PURE__*/React.createElement(MarkdownComponent, {
+        content: lines.slice(start + 1, end).join('\n')
+      }));
+    })));
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles.api,
+    style: {
+      width: state.showAPI ? state.apiContainerWidth : 24
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.header
+  }, /*#__PURE__*/React.createElement("p", null, "API"), /*#__PURE__*/React.createElement("div", {
+    className: styles.zoom
+  }, /*#__PURE__*/React.createElement(ZoomInOutlined, {
+    onClick: function onClick() {
+      store.apiContainerWidth += 100;
+    }
+  }), /*#__PURE__*/React.createElement(ZoomOutOutlined, {
+    style: {
+      marginLeft: 8
+    },
+    onClick: function onClick() {
+      if (state.apiContainerWidth > 150) {
+        store.apiContainerWidth -= 100;
+      }
+    }
+  })), /*#__PURE__*/React.createElement(Popover, {
+    content: language === 'zh' ? '展示文档' : 'Show docs',
+    placement: "right"
+  }, /*#__PURE__*/React.createElement(CollapsedIcon, {
+    isCollapsed: state.showAPI,
+    onClick: function onClick(show) {
+      store.showAPI = show;
+    },
+    style: {
+      left: 0,
+      top: 0
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: styles.content
+  }, !EMPTY.test(APIContent) ? renderNestedDom(APIContent) : /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: 12
+    }
+  }, /*#__PURE__*/React.createElement("h1", null, "404"), /*#__PURE__*/React.createElement("p", null, "Sorry, the API you visited does not exist."))));
+};

@@ -1,0 +1,54 @@
+import { isNumber } from '@antv/util';
+import { Base } from './base';
+import { wilkinsonExtended } from '../tick-methods/wilkinson-extended';
+import { isValid } from '../utils';
+export class Identity extends Base {
+    /**
+     * 返回需要覆盖的默认选项
+     * @returns 需要覆盖的默认选项
+     */
+    getDefaultOptions() {
+        return {
+            domain: [0, 1],
+            range: [0, 1],
+            tickCount: 5,
+            unknown: undefined,
+            tickMethod: wilkinsonExtended,
+        };
+    }
+    /**
+     * 输入和输出满足：y = x
+     * @param x 输入值
+     * @returns 输出值
+     */
+    map(x) {
+        return isValid(x) ? x : this.options.unknown;
+    }
+    /**
+     * map 的逆运算：x = y，在这里和 map 是相同方法
+     * @param x 输出值
+     * @returns 输入值
+     */
+    invert(x) {
+        return this.map(x);
+    }
+    /**
+     * 克隆 Identity Scale
+     * @returns 拥有相同选项且独立的 Identity Scale
+     */
+    clone() {
+        return new Identity(this.options);
+    }
+    /**
+     * 根据比例尺的配置去生成 ticks，该 ticks 主要用于生成坐标轴
+     * @returns 返回一个 ticks 的数组
+     */
+    getTicks() {
+        const { domain, tickCount, tickMethod } = this.options;
+        const [min, max] = domain;
+        if (!isNumber(min) || !isNumber(max))
+            return [];
+        return tickMethod(min, max, tickCount);
+    }
+}
+//# sourceMappingURL=identity.js.map

@@ -1,0 +1,184 @@
+import type {
+  AntVDagreLayoutOptions,
+  LayoutWithIterations as AntVIterativeLayout,
+  Layout as AntVNonIterativeLayout,
+  CircularLayoutOptions,
+  ConcentricLayoutOptions,
+  D3Force3DLayoutOptions,
+  D3ForceLayoutOptions,
+  DagreLayoutOptions,
+  ForceAtlas2LayoutOptions,
+  ForceLayoutOptions,
+  FruchtermanLayoutOptions,
+  GridLayoutOptions,
+  MDSLayoutOptions,
+  RadialLayoutOptions,
+  RandomLayoutOptions,
+} from '@antv/layout';
+import type { ComboData, NodeData } from '../spec/data';
+import type { BaseLayout } from './base-layout';
+import type { FishboneLayoutOptions } from './fishbone';
+import type { SnakeLayoutOptions } from './snake';
+
+export type BuiltInLayoutOptions =
+  | AntVDagreLayout
+  | CircularLayout
+  | ConcentricLayout
+  | D3ForceLayout
+  | D3Force3DLayout
+  | DagreLayout
+  | ForceAtlas2
+  | ForceLayout
+  | FruchtermanLayout
+  | GridLayout
+  | MDSLayout
+  | RadialLayout
+  | RandomLayout
+  | SnakeLayout
+  | FishboneLayout;
+
+export interface BaseLayoutOptions extends AnimationOptions, WebWorkerLayoutOptions {
+  /**
+   * <zh/> 布局类型
+   *
+   * <en/> Layout type
+   */
+  type: string;
+  /**
+   * <zh/> 参与该布局的节点
+   *
+   * <en/> Nodes involved in the layout
+   * @param node - <zh/> 节点数据 | <en/> node data
+   * @returns <zh/> 是否参与布局 | <en/> Whether to participate in the layout
+   */
+  nodeFilter?: (node: NodeData) => boolean;
+  /**
+   * <zh/> 参与该布局的combo元素
+   *
+   * <en/> Combos involved in the layout
+   * @param node - <zh/> combo数据 | <en/> combo data
+   * @returns <zh/> 是否参与布局 | <en/> Whether to participate in the layout
+   */
+  comboFilter?: (combo: ComboData) => boolean;
+  /**
+   * <zh/> 使用前布局，在初始化元素前计算布局
+   *
+   * <en/> Use pre-layout to calculate the layout before initializing the elements
+   * @remarks
+   * <zh/> 不适用于流水线布局
+   *
+   * <en/> Not applicable to pipeline layout
+   */
+  preLayout?: boolean;
+  /**
+   * <zh/> 不可见节点是否参与布局
+   *
+   * <en/> Whether invisible nodes participate in the layout
+   * @remarks
+   * <zh/> 当 preLayout 为 true 时生效
+   *
+   * <en/> Takes effect when preLayout is true
+   */
+  isLayoutInvisibleNodes?: boolean;
+  /**
+   * <zh/> 布局区域宽度，默认为画布宽度
+   *
+   * <en/> Width of the layout area, default is the canvas width
+   */
+  width?: number;
+  /**
+   * <zh/> 布局区域高度，默认为画布高度
+   *
+   * <en/> Height of the layout area, default is the canvas height
+   */
+  height?: number;
+  [key: string]: unknown;
+}
+
+interface CircularLayout extends BaseLayoutOptions, CircularLayoutOptions {
+  type: 'circular';
+}
+
+interface RandomLayout extends BaseLayoutOptions, RandomLayoutOptions {
+  type: 'random';
+}
+
+interface GridLayout extends BaseLayoutOptions, GridLayoutOptions {
+  type: 'grid';
+}
+
+interface MDSLayout extends BaseLayoutOptions, MDSLayoutOptions {
+  type: 'mds';
+}
+
+interface ConcentricLayout extends BaseLayoutOptions, ConcentricLayoutOptions {
+  type: 'concentric';
+}
+
+interface RadialLayout extends BaseLayoutOptions, RadialLayoutOptions {
+  type: 'radial';
+}
+
+interface FruchtermanLayout extends BaseLayoutOptions, FruchtermanLayoutOptions {
+  type: 'fruchterman' | 'fruchterman-gpu';
+}
+
+interface D3ForceLayout extends BaseLayoutOptions, D3ForceLayoutOptions {
+  type: 'd3-force';
+}
+
+interface D3Force3DLayout extends BaseLayoutOptions, D3Force3DLayoutOptions {
+  type: 'd3-force3d';
+}
+
+interface ForceLayout extends BaseLayoutOptions, ForceLayoutOptions {
+  type: 'force' | 'gforce';
+}
+
+interface ForceAtlas2 extends BaseLayoutOptions, ForceAtlas2LayoutOptions {
+  type: 'force-atlas2';
+}
+
+interface AntVDagreLayout extends BaseLayoutOptions, AntVDagreLayoutOptions {
+  type: 'antv-dagre';
+}
+
+interface DagreLayout extends BaseLayoutOptions, DagreLayoutOptions {
+  type: 'dagre';
+}
+
+interface SnakeLayout extends BaseLayoutOptions, SnakeLayoutOptions {
+  type: 'snake';
+}
+
+interface FishboneLayout extends BaseLayoutOptions, FishboneLayoutOptions {
+  type: 'fishbone';
+}
+
+interface AnimationOptions {
+  /**
+   * <zh/> 启用布局动画，对于迭代布局，会在两次迭代之间进行动画过渡
+   *
+   * <en/> Enable layout animation, for iterative layout, animation transition will be performed between two iterations
+   */
+  animation?: boolean;
+}
+
+export interface WebWorkerLayoutOptions {
+  /**
+   * <zh/> 是否在 WebWorker 中运行布局
+   *
+   * <en/> Whether to run the layout in WebWorker
+   */
+  enableWorker?: boolean;
+  /**
+   * <zh/> 迭代布局的迭代次数
+   *
+   * <en/> Iterations for iterable layouts
+   */
+  iterations?: number;
+}
+
+export type AntVLayout = AntVNonIterativeLayout<any> | AntVIterativeLayout<any>;
+
+export type Layout = BaseLayout | AntVLayout;

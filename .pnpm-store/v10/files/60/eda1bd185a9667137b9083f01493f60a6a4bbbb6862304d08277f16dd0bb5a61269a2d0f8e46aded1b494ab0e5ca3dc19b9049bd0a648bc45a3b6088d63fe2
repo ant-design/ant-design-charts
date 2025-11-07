@@ -1,0 +1,17 @@
+{
+  "name": "hast",
+  "version": "1.0.0",
+  "description": "Renamed to rehype",
+  "license": "MIT",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/rehype"
+  },
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://github.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://github.com)"
+  ],
+  "bugs": "https://github.com/wooorm/rehype/issues",
+  "dependencies": {}
+}

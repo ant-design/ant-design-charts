@@ -1,0 +1,53 @@
+{
+	"name": "package-json",
+	"version": "10.0.1",
+	"description": "Get metadata of a package from the npm registry",
+	"license": "MIT",
+	"repository": "sindresorhus/package-json",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"npm",
+		"registry",
+		"package",
+		"pkg",
+		"package.json",
+		"json",
+		"module",
+		"scope",
+		"scoped"
+	],
+	"dependencies": {
+		"ky": "^1.2.0",
+		"registry-auth-token": "^5.0.2",
+		"registry-url": "^6.0.1",
+		"semver": "^7.6.0"
+	},
+	"devDependencies": {
+		"@types/node": "^18",
+		"ava": "^6.1.1",
+		"private-registry-mock": "^0.3.0",
+		"tsd": "^0.30.7",
+		"xo": "^0.57.0"
+	}
+}

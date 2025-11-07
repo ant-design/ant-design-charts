@@ -1,0 +1,39 @@
+{
+  "name": "@napi-rs/nice-linux-x64-gnu",
+  "version": "1.1.1",
+  "cpu": [
+    "x64"
+  ],
+  "main": "nice.linux-x64-gnu.node",
+  "files": [
+    "nice.linux-x64-gnu.node"
+  ],
+  "description": "https://linux.die.net/man/2/nice binding for Node.js",
+  "keywords": [
+    "napi-rs",
+    "NAPI",
+    "N-API",
+    "Rust",
+    "node-addon",
+    "node-addon-api",
+    "nice"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "repository": {
+    "url": "git+ssh://git@github.com/Brooooooklyn/nice.git",
+    "type": "git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "os": [
+    "linux"
+  ],
+  "libc": [
+    "glibc"
+  ]
+}

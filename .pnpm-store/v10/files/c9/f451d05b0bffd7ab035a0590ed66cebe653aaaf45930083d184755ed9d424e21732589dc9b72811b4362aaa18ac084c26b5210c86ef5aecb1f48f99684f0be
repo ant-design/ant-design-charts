@@ -1,0 +1,17 @@
+'use client';
+
+import { Spin } from 'antd';
+import React from 'react';
+var MySpinner = function MySpinner(props) {
+  var loading = props.loading;
+  if (loading) {
+    var _props$spinner;
+    return /*#__PURE__*/React.createElement("div", {
+      className: "relative w-full h-full"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "absolute top-0 left-0 w-full h-full pointer-events-none flex justify-center items-center bg-white bg-opacity-75"
+    }, (_props$spinner = props.spinner) !== null && _props$spinner !== void 0 ? _props$spinner : /*#__PURE__*/React.createElement(Spin, null)), props.children);
+  }
+  return props.children;
+};
+export default MySpinner;

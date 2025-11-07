@@ -1,0 +1,62 @@
+{
+  "author": {
+    "name": "Hutson Betts",
+    "email": "hutson@hyper-expanse.net",
+    "url": "https://hyper-expanse.net/hutson"
+  },
+  "bin": {},
+  "bugs": "https://github.com/hyper-expanse/parse-repository-url/issues",
+  "description": "Parse repository URLs to extract, SCM platform, domain, user, and project information.",
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "files": [
+    "src/**/!(*.spec).js"
+  ],
+  "homepage": "https://github.com/hyper-expanse/parse-repository-url#readme",
+  "keywords": [
+    "parser",
+    "repository-url"
+  ],
+  "license": "Apache-2.0",
+  "main": "src/index.js",
+  "mocha": {
+    "checkLeaks": true,
+    "fullTrace": true,
+    "inlineDiffs": true,
+    "recursive": true,
+    "reporter": "progress"
+  },
+  "name": "@hutson/parse-repository-url",
+  "nyc": {
+    "all": true,
+    "exclude": [
+      "src/cli.js",
+      "src/**/*.spec.js",
+      "src/**/*.mock.js"
+    ],
+    "include": [
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyper-expanse/parse-repository-url.git"
+  },
+  "scripts": {
+    "test": "semistandard 'src/**/*.js' && nyc mocha src/**/*.spec.js"
+  },
+  "version": "5.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "debug": "^4.1.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.0.0",
+    "semistandard": "^14.0.0"
+  }
+}

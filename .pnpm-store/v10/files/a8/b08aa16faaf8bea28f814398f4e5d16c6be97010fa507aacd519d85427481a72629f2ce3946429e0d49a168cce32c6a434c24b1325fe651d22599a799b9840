@@ -1,0 +1,46 @@
+import { useIntl, useRouteMeta, useSiteData } from 'dumi';
+import path from 'path';
+import React from 'react';
+import styled from 'styled-components';
+import ContributorsList from "../../common/AvatarList";
+import { useGithubRepo } from "../../utils/github";
+import { ContributorAvatar } from "./ContributorAvatar";
+var StyledContributorsWrapper = styled.div.withConfig({
+  displayName: "StyledContributorsWrapper",
+  componentId: "dumi-theme-antv-c7ef__sc-11d631u-0"
+})(["margin-top:80px;.title{margin-bottom:14px;color:#bfbfbf;}.list{display:flex;flex-wrap:wrap;clear:both;li{height:24px;transition:all 0.3s;margin-inline-end:-8px;}&:hover{li{margin-inline-end:0;}}}"]);
+var Contributors = function Contributors() {
+  var _useIntl = useIntl(),
+    formatMessage = _useIntl.formatMessage;
+  var _useSiteData$themeCon = useSiteData().themeConfig.sitePackagePath,
+    sitePackagePath = _useSiteData$themeCon === void 0 ? '/packages/site' : _useSiteData$themeCon;
+  var _useGithubRepo = useGithubRepo(),
+    owner = _useGithubRepo.owner,
+    repo = _useGithubRepo.repo,
+    defaultBranch = _useGithubRepo.defaultBranch;
+  var meta = useRouteMeta();
+  var editable = !meta.frontmatter.readonly;
+  if (!editable || !meta.frontmatter.filename) {
+    return null;
+  }
+  return /*#__PURE__*/React.createElement(StyledContributorsWrapper, null, /*#__PURE__*/React.createElement("div", {
+    className: "title"
+  }, formatMessage({
+    id: '文档贡献者'
+  })), /*#__PURE__*/React.createElement(ContributorsList, {
+    cache: true,
+    repo: repo,
+    owner: owner,
+    fileName: path.join(sitePackagePath, meta.frontmatter.filename),
+    className: "list",
+    renderItem: function renderItem(item, loading) {
+      return /*#__PURE__*/React.createElement(ContributorAvatar, {
+        item: item,
+        loading: loading,
+        key: item === null || item === void 0 ? void 0 : item.url
+      });
+    },
+    branch: defaultBranch
+  }));
+};
+export default Contributors;

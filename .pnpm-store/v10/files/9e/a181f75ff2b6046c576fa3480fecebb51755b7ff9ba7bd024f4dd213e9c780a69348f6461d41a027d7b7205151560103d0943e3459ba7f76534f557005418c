@@ -1,0 +1,163 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    default: function() {
+        return graticule;
+    },
+    graticule10: function() {
+        return graticule10;
+    }
+});
+var _index = require("../../d3-array/src/index.js");
+var _math = require("./math.js");
+function graticuleX(y0, y1, dy) {
+    var y = (0, _index.range)(y0, y1 - _math.epsilon, dy).concat(y1);
+    return function(x) {
+        return y.map(function(y) {
+            return [
+                x,
+                y
+            ];
+        });
+    };
+}
+function graticuleY(x0, x1, dx) {
+    var x = (0, _index.range)(x0, x1 - _math.epsilon, dx).concat(x1);
+    return function(y) {
+        return x.map(function(x) {
+            return [
+                x,
+                y
+            ];
+        });
+    };
+}
+function graticule() {
+    var x1, x0, X1, X0, y1, y0, Y1, Y0, dx = 10, dy = dx, DX = 90, DY = 360, x, y, X, Y, precision = 2.5;
+    function graticule() {
+        return {
+            type: "MultiLineString",
+            coordinates: lines()
+        };
+    }
+    function lines() {
+        return (0, _index.range)((0, _math.ceil)(X0 / DX) * DX, X1, DX).map(X).concat((0, _index.range)((0, _math.ceil)(Y0 / DY) * DY, Y1, DY).map(Y)).concat((0, _index.range)((0, _math.ceil)(x0 / dx) * dx, x1, dx).filter(function(x) {
+            return (0, _math.abs)(x % DX) > _math.epsilon;
+        }).map(x)).concat((0, _index.range)((0, _math.ceil)(y0 / dy) * dy, y1, dy).filter(function(y) {
+            return (0, _math.abs)(y % DY) > _math.epsilon;
+        }).map(y));
+    }
+    graticule.lines = function() {
+        return lines().map(function(coordinates) {
+            return {
+                type: "LineString",
+                coordinates: coordinates
+            };
+        });
+    };
+    graticule.outline = function() {
+        return {
+            type: "Polygon",
+            coordinates: [
+                X(X0).concat(Y(Y1).slice(1), X(X1).reverse().slice(1), Y(Y0).reverse().slice(1))
+            ]
+        };
+    };
+    graticule.extent = function(_) {
+        if (!arguments.length) return graticule.extentMinor();
+        return graticule.extentMajor(_).extentMinor(_);
+    };
+    graticule.extentMajor = function(_) {
+        if (!arguments.length) return [
+            [
+                X0,
+                Y0
+            ],
+            [
+                X1,
+                Y1
+            ]
+        ];
+        X0 = +_[0][0], X1 = +_[1][0];
+        Y0 = +_[0][1], Y1 = +_[1][1];
+        if (X0 > X1) _ = X0, X0 = X1, X1 = _;
+        if (Y0 > Y1) _ = Y0, Y0 = Y1, Y1 = _;
+        return graticule.precision(precision);
+    };
+    graticule.extentMinor = function(_) {
+        if (!arguments.length) return [
+            [
+                x0,
+                y0
+            ],
+            [
+                x1,
+                y1
+            ]
+        ];
+        x0 = +_[0][0], x1 = +_[1][0];
+        y0 = +_[0][1], y1 = +_[1][1];
+        if (x0 > x1) _ = x0, x0 = x1, x1 = _;
+        if (y0 > y1) _ = y0, y0 = y1, y1 = _;
+        return graticule.precision(precision);
+    };
+    graticule.step = function(_) {
+        if (!arguments.length) return graticule.stepMinor();
+        return graticule.stepMajor(_).stepMinor(_);
+    };
+    graticule.stepMajor = function(_) {
+        if (!arguments.length) return [
+            DX,
+            DY
+        ];
+        DX = +_[0], DY = +_[1];
+        return graticule;
+    };
+    graticule.stepMinor = function(_) {
+        if (!arguments.length) return [
+            dx,
+            dy
+        ];
+        dx = +_[0], dy = +_[1];
+        return graticule;
+    };
+    graticule.precision = function(_) {
+        if (!arguments.length) return precision;
+        precision = +_;
+        x = graticuleX(y0, y1, 90);
+        y = graticuleY(x0, x1, precision);
+        X = graticuleX(Y0, Y1, 90);
+        Y = graticuleY(X0, X1, precision);
+        return graticule;
+    };
+    return graticule.extentMajor([
+        [
+            -180,
+            -90 + _math.epsilon
+        ],
+        [
+            180,
+            90 - _math.epsilon
+        ]
+    ]).extentMinor([
+        [
+            -180,
+            -80 - _math.epsilon
+        ],
+        [
+            180,
+            80 + _math.epsilon
+        ]
+    ]);
+}
+function graticule10() {
+    return graticule()();
+}

@@ -1,0 +1,3 @@
+# `@umijs/es-module-parser-linux-x64-musl`
+
+This is the **x86_64-unknown-linux-musl** binary for `@umijs/es-module-parser`

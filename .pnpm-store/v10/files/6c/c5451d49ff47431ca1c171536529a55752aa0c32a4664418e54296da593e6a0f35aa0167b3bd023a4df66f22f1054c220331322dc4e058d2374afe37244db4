@@ -1,0 +1,27 @@
+export var IToolStatus = /*#__PURE__*/function (IToolStatus) {
+  IToolStatus["loading"] = "loading";
+  IToolStatus["success"] = "success";
+  IToolStatus["error"] = "error";
+  IToolStatus["end"] = "end";
+  return IToolStatus;
+}({});
+export var MessageTypeEnum = /*#__PURE__*/function (MessageTypeEnum) {
+  MessageTypeEnum["TEXT"] = "text";
+  MessageTypeEnum["IMAGE_URL"] = "image_url";
+  MessageTypeEnum["TOOL"] = "tool";
+  MessageTypeEnum["ERROR"] = "error";
+  return MessageTypeEnum;
+}({});
+export var Role = /*#__PURE__*/function (Role) {
+  Role["system"] = "system";
+  Role["init"] = "init";
+  Role["assistant"] = "assistant";
+  Role["loading"] = "loading";
+  Role["starter"] = "starter";
+  Role["user"] = "user";
+  Role["tool"] = "tool";
+  Role["knowledge"] = "knowledge";
+  return Role;
+}({});
+
+// 兼容 oneapi 等发送消息的格式

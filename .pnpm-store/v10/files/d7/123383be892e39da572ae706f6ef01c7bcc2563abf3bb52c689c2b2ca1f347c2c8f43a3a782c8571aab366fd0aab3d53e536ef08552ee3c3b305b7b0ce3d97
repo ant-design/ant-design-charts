@@ -1,0 +1,9 @@
+import type { CanvasRenderer } from '@antv/g-canvas';
+import type { DisplayObject, ParsedPathStyleProps } from '@antv/g-lite';
+import { RoughCanvasRendererOptions } from '../util';
+export declare class PathRenderer implements CanvasRenderer.StyleRenderer {
+    private options;
+    constructor(options: RoughCanvasRendererOptions);
+    render(context: CanvasRenderingContext2D, parsedStyle: ParsedPathStyleProps, object: DisplayObject<any, any>): void;
+}
+//# sourceMappingURL=Path.d.ts.map

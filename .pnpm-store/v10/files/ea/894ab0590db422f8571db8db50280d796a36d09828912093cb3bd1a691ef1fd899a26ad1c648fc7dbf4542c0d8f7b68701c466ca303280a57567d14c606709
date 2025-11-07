@@ -1,0 +1,529 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw new Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator.return && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw new Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, catch: function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import { CaretDownFilled, DownOutlined, GithubOutlined, LinkOutlined, MenuOutlined, WechatOutlined } from '@ant-design/icons';
+import { Alert, Button, Dropdown, Menu, Modal, Popover } from 'antd';
+import cx from 'classnames';
+import { FormattedMessage, Link, useLocale, useSiteData } from 'dumi';
+import { get, map, size } from 'lodash-es';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useMedia } from 'react-use';
+import { getPurePathname } from "../../utils/location";
+import { ic, icWithLocale } from "../hooks";
+import { Navs } from "./Navs";
+import { Products } from "./Products";
+import { Search } from "./Search";
+import { findVersion } from "./utils";
+import { Assistant } from '@petercatai/assistant';
+import '@petercatai/assistant/style';
+import { useLocation } from 'react-router-dom';
+import { determineUserType } from "../../utils/user";
+import styles from "./index.module.less";
+function redirectChinaMirror(chinaMirrorOrigin) {
+  window.location.href = window.location.href.replace(window.location.origin, chinaMirrorOrigin);
+}
+var ANNOUNCEMENT_LOCALSTORAGE_ID = 'ANNOUNCEMENT_LOCALSTORAGE_ID';
+
+/**
+ * 头部菜单
+ */
+var HeaderComponent = function HeaderComponent(_ref) {
+  var _announcement$link;
+  var _ref$subTitle = _ref.subTitle,
+    subTitle = _ref$subTitle === void 0 ? '' : _ref$subTitle,
+    _ref$navs = _ref.navs,
+    navs = _ref$navs === void 0 ? [] : _ref$navs,
+    _ref$showSearch = _ref.showSearch,
+    showSearch = _ref$showSearch === void 0 ? true : _ref$showSearch,
+    _ref$showGithubCorner = _ref.showGithubCorner,
+    showGithubCorner = _ref$showGithubCorner === void 0 ? true : _ref$showGithubCorner,
+    _ref$showAntVProducts = _ref.showAntVProductsCard,
+    showAntVProductsCard = _ref$showAntVProducts === void 0 ? true : _ref$showAntVProducts,
+    _ref$showLanguageSwit = _ref.showLanguageSwitcher,
+    showLanguageSwitcher = _ref$showLanguageSwit === void 0 ? true : _ref$showLanguageSwit,
+    _ref$showWeavefox = _ref.showWeavefox,
+    showWeavefox = _ref$showWeavefox === void 0 ? {} : _ref$showWeavefox,
+    isInternalUser = _ref.isInternalUser,
+    logo = _ref.logo,
+    onLanguageChange = _ref.onLanguageChange,
+    _ref$showWxQrcode = _ref.showWxQrcode,
+    showWxQrcode = _ref$showWxQrcode === void 0 ? true : _ref$showWxQrcode,
+    siteUrl = _ref.siteUrl,
+    _ref$githubUrl = _ref.githubUrl,
+    githubUrl = _ref$githubUrl === void 0 ? 'https://github.com/antvis' : _ref$githubUrl,
+    defaultLanguage = _ref.defaultLanguage,
+    transparent = _ref.transparent,
+    isHomePage = _ref.isHomePage,
+    _ref$isAntVSite = _ref.isAntVSite,
+    isAntVSite = _ref$isAntVSite === void 0 ? false : _ref$isAntVSite,
+    _ref$rootDomain = _ref.rootDomain,
+    rootDomain = _ref$rootDomain === void 0 ? '' : _ref$rootDomain,
+    version = _ref.version,
+    versions = _ref.versions,
+    internalSite = _ref.internalSite,
+    ecosystems = _ref.ecosystems,
+    announcement = _ref.announcement;
+  var isAntVHome = isAntVSite && isHomePage; // 是否为AntV官网首页
+
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    bannerVisible = _useState2[0],
+    setBannerVisible = _useState2[1];
+  var showChinaMirror = !!internalSite;
+  var chinaMirrorUrl = get(internalSite, 'url');
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    chinaMirrorHintVisible = _useState4[0],
+    updateChinaMirrorHintVisible = _useState4[1];
+  var locale = useLocale();
+  var lang = locale.id;
+  useEffect(function () {
+    var timeout = setTimeout(function () {
+      if (showChinaMirror && lang === 'zh' && !localStorage.getItem('china-mirror-no-more-hint') && window.location.host.includes('antv.vision')) {
+        updateChinaMirrorHintVisible(true);
+      }
+    }, 5000);
+    return function () {
+      clearTimeout(timeout);
+    };
+  });
+  var announcementTitle = icWithLocale(announcement === null || announcement === void 0 ? void 0 : announcement.title, lang);
+  var announcementLinkTitle = icWithLocale(announcement === null || announcement === void 0 || (_announcement$link = announcement.link) === null || _announcement$link === void 0 ? void 0 : _announcement$link.text, lang);
+  useEffect(function () {
+    setBannerVisible(!!announcementTitle && localStorage.getItem(ANNOUNCEMENT_LOCALSTORAGE_ID) !== 'true');
+  }, [announcementTitle]);
+  function onBannerClose() {
+    localStorage.setItem(ANNOUNCEMENT_LOCALSTORAGE_ID, 'true');
+    setBannerVisible(false);
+  }
+  var _useState5 = useState(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    productMenuVisible = _useState6[0],
+    setProductMenuVisible = _useState6[1];
+  var productMenuHovering = false;
+  var onProductMouseEnter = function onProductMouseEnter(e) {
+    productMenuHovering = true;
+    e.persist();
+    setTimeout(function () {
+      if (e.target instanceof Element && e.target.matches(':hover')) {
+        setProductMenuVisible(true);
+      }
+    }, 200);
+  };
+  var onProductMouseLeave = function onProductMouseLeave(e) {
+    e.persist();
+    productMenuHovering = false;
+    setTimeout(function () {
+      if (productMenuHovering) {
+        return;
+      }
+      setProductMenuVisible(false);
+    }, 200);
+  };
+  var onToggleProductMenuVisible = function onToggleProductMenuVisible() {
+    setProductMenuVisible(!productMenuVisible);
+  };
+  var _useState7 = useState(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    popupMenuVisible = _useState8[0],
+    setPopupMenuVisible = _useState8[1];
+  var onTogglePopupMenuVisible = function onTogglePopupMenuVisible() {
+    setPopupMenuVisible(!popupMenuVisible);
+  };
+  var _img$link$logo = _objectSpread({
+      img: /*#__PURE__*/React.createElement("img", {
+        src: "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A-lcQbVTpjwAAAAAAAAAAAAADmJ7AQ/original",
+        alt: "logo"
+      }),
+      link: ''
+    }, logo),
+    img = _img$link$logo.img,
+    link = _img$link$logo.link;
+  var _useLocation = useLocation(),
+    pathname = _useLocation.pathname;
+  useEffect(function () {
+    if (popupMenuVisible) {
+      setPopupMenuVisible(false);
+    }
+  }, [pathname]);
+
+  // 移动端下弹出菜单时，禁止页面滚动
+  useEffect(function () {
+    if (popupMenuVisible) {
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.documentElement.style.overflow = '';
+    }
+    return function () {
+      document.documentElement.style.overflow = '';
+    };
+  }, [popupMenuVisible]);
+  var isWide = useMedia('(min-width: 767.99px)', true);
+  var menuIcon = !isWide ? /*#__PURE__*/React.createElement(MenuOutlined, {
+    className: styles.menuIcon,
+    onClick: onTogglePopupMenuVisible
+  }) : null;
+  var productItemProps = isWide ? {
+    onMouseEnter: onProductMouseEnter,
+    onMouseLeave: onProductMouseLeave,
+    onClick: onToggleProductMenuVisible
+  } : {
+    onClick: onToggleProductMenuVisible
+  };
+  var handleSwitchLanguage = function handleSwitchLanguage() {
+    onLanguageChange === null || onLanguageChange === void 0 || onLanguageChange(lang);
+  };
+  var weavefox = useMemo(function () {
+    var configKey = isInternalUser ? 'internal' : 'public';
+    var configValue = showWeavefox[configKey];
+    if (!configValue) return /*#__PURE__*/React.createElement(React.Fragment, null);
+    var defaultLink = isInternalUser ? 'https://weavefox.antgroup-inc.cn/agent/@huiyu.zjt/AntV' : 'https://weavefox.alipay.com/agent/@ufox-b8tydq-0758/202505AP7vfl00422922';
+    var href = typeof configValue === 'string' ? configValue : defaultLink;
+    return /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+      href: href,
+      target: "_blank",
+      rel: "noreferrer"
+    }, "AI\u751F\u7801"));
+  }, [isInternalUser, showWeavefox]);
+  var menu = /*#__PURE__*/React.createElement("ul", {
+    className: cx(styles.menu, _defineProperty(_defineProperty({}, styles.popup, !isWide), styles.popupHidden, !popupMenuVisible))
+  }, /** 最左侧的菜单，一般是 教程、API、示例，或者其他自定义，有配置文件中的 `navs` 决定 */
+  size(navs) ? /*#__PURE__*/React.createElement(Navs, {
+    navs: navs,
+    path: pathname
+  }) : null, weavefox, /** 生态产品 */
+  size(ecosystems) ? /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Dropdown, {
+    className: styles.ecoSystems,
+    overlay: /*#__PURE__*/React.createElement(Menu, null, map(ecosystems, function (_ref2) {
+      var url = _ref2.url,
+        ecosystemName = _ref2.name;
+      return /*#__PURE__*/React.createElement(Menu.Item, {
+        key: ecosystemName === null || ecosystemName === void 0 ? void 0 : ecosystemName[lang]
+      }, /*#__PURE__*/React.createElement("a", {
+        target: "_blank",
+        rel: "noreferrer",
+        href: url
+      }, ecosystemName === null || ecosystemName === void 0 ? void 0 : ecosystemName[lang], " ", /*#__PURE__*/React.createElement(LinkOutlined, null)));
+    }))
+  }, /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "\u5468\u8FB9\u751F\u6001"
+  }), /*#__PURE__*/React.createElement(DownOutlined, {
+    style: {
+      marginLeft: '6px'
+    }
+  })))) : null, showChinaMirror && isWide ? /*#__PURE__*/React.createElement(Popover, {
+    title: null,
+    content: /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 300
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+      role: "img",
+      "aria-labelledby": "\u4E2D\u56FD",
+      style: {
+        marginRight: '8px'
+      }
+    }, "\uD83C\uDDE8\uD83C\uDDF3"), "AntV \u7CFB\u5217\u7F51\u7AD9\u90E8\u7F72\u5728 gh-pages \u4E0A\uFF0C\u82E5\u8BBF\u95EE\u901F\u5EA6\u4E0D\u4F73\uFF0C\u53EF\u4EE5\u524D\u5F80\u56FD\u5185\u955C\u50CF\u7AD9\u70B9\u3002"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 16,
+        textAlign: 'right'
+      }
+    }, /*#__PURE__*/React.createElement(Button, {
+      onClick: function onClick() {
+        return updateChinaMirrorHintVisible(false);
+      },
+      size: "small",
+      style: {
+        marginRight: 8
+      }
+    }, "\u6682\u65F6\u5173\u95ED"), /*#__PURE__*/React.createElement(Button, {
+      type: "primary",
+      size: "small",
+      onClick: function onClick() {
+        localStorage.setItem('china-mirror-no-more-hint', Date.now().toString());
+        updateChinaMirrorHintVisible(false);
+      }
+    }, "\u4E0D\u518D\u63D0\u9192"))),
+    open: chinaMirrorHintVisible,
+    placement: "bottomRight",
+    align: {
+      offset: [-12, -16]
+    }
+  }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: chinaMirrorUrl,
+    onClick: function onClick(e) {
+      e.preventDefault();
+      redirectChinaMirror(chinaMirrorUrl);
+    }
+  }, ic(get(internalSite, 'name')), !isAntVHome && /*#__PURE__*/React.createElement(LinkOutlined, {
+    style: {
+      marginLeft: '6px'
+    }
+  })))) : null, showChinaMirror && !isWide && /*#__PURE__*/React.createElement(Modal, {
+    open: chinaMirrorHintVisible,
+    cancelText: "\u4E0D\u518D\u63D0\u9192",
+    okText: "\u7ACB\u5373\u524D\u5F80",
+    onCancel: function onCancel() {
+      updateChinaMirrorHintVisible(false);
+    },
+    onOk: function onOk() {
+      return redirectChinaMirror(chinaMirrorUrl);
+    },
+    cancelButtonProps: {
+      onClick: function onClick() {
+        localStorage.setItem('china-mirror-no-more-hint', Date.now().toString());
+        updateChinaMirrorHintVisible(false);
+      }
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.modalContent
+  }, /*#__PURE__*/React.createElement("span", {
+    role: "img",
+    "aria-labelledby": "\u4E2D\u56FD"
+  }, "\uD83C\uDDE8\uD83C\uDDF3"), "AntV \u7CFB\u5217\u7F51\u7AD9\u90E8\u7F72\u5728 gh-pages \u4E0A\uFF0C\u82E5\u8BBF\u95EE\u901F\u5EA6\u4E0D\u4F73\uFF0C\u53EF\u4EE5\u524D\u5F80", /*#__PURE__*/React.createElement("a", {
+    href: chinaMirrorUrl,
+    onClick: function onClick(e) {
+      e.preventDefault();
+      window.location.href = chinaMirrorUrl;
+    },
+    className: styles.remindHref
+  }, ic(get(internalSite, 'name')), /*#__PURE__*/React.createElement(LinkOutlined, {
+    style: {
+      marginLeft: '6px'
+    }
+  })), /*#__PURE__*/React.createElement("span", null, " \u7AD9\u70B9\u3002"))), /** 产品列表 */
+  showAntVProductsCard && /*#__PURE__*/React.createElement("li", productItemProps, /*#__PURE__*/React.createElement("a", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "\u6240\u6709\u4EA7\u54C1"
+  }), !isAntVHome ? /*#__PURE__*/React.createElement("img", {
+    src: "https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png",
+    alt: "antv logo arrow",
+    className: cx(styles.arrow, _defineProperty({}, styles.open, productMenuVisible)),
+    style: {
+      marginLeft: '6px'
+    }
+  }) : /*#__PURE__*/React.createElement(CaretDownFilled, {
+    style: {
+      top: '1px',
+      color: '#fff'
+    },
+    className: cx(styles.arrow, _defineProperty({}, styles.open, productMenuVisible))
+  })), /*#__PURE__*/React.createElement(Products, {
+    className: styles.productsMenu,
+    bannerVisible: bannerVisible,
+    show: productMenuVisible,
+    rootDomain: rootDomain,
+    language: defaultLanguage
+  })), /** 版本列表 */
+  versions && /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Dropdown, {
+    className: styles.versions,
+    menu: {
+      items: Object.keys(versions).map(function (version) {
+        return {
+          label: /*#__PURE__*/React.createElement("a", {
+            target: "_blank",
+            rel: "noreferrer",
+            href: versions[version]
+          }, version),
+          key: version
+        };
+      }),
+      selectable: true,
+      defaultSelectedKeys: [findVersion(version, Object.keys(versions))]
+    }
+  }, /*#__PURE__*/React.createElement("span", null, findVersion(version, Object.keys(versions)), /*#__PURE__*/React.createElement(DownOutlined, {
+    style: {
+      marginLeft: '6px'
+    }
+  })))), /** 切换网站语言 */
+  showLanguageSwitcher && /*#__PURE__*/React.createElement("li", {
+    className: cx(styles.navIcon, styles.languageSwitcher)
+  }, /*#__PURE__*/React.createElement(Link, {
+    to: lang === 'zh' ? '/en' : '/',
+    onClick: handleSwitchLanguage
+  }, /*#__PURE__*/React.createElement("svg", {
+    className: styles.translation,
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "24",
+    height: "24",
+    viewBox: "0 0 24 24"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"
+  })))), /** 微信公众号 */
+  showWxQrcode && /*#__PURE__*/React.createElement("li", {
+    className: cx(styles.navIcon, styles.wxQrcode)
+  }, /*#__PURE__*/React.createElement(Popover, {
+    content: /*#__PURE__*/React.createElement("img", {
+      width: "100%",
+      height: "100%",
+      src: "https://gw.alipayobjects.com/zos/antfincdn/ZKlx96dsfs/qrcode_for_gh_f52d8b6aa591_258.jpg",
+      alt: "wx-qrcode"
+    }),
+    title: "\u5FAE\u4FE1\u626B\u4E00\u626B\u5173\u6CE8",
+    styles: {
+      body: {
+        padding: 2
+      },
+      root: {
+        width: 128,
+        height: 128
+      }
+    }
+  }, /*#__PURE__*/React.createElement(WechatOutlined, null))), /** GitHub icon */
+  showGithubCorner && /*#__PURE__*/React.createElement("li", {
+    className: cx(styles.navIcon, styles.githubCorner)
+  }, /*#__PURE__*/React.createElement("a", {
+    href: githubUrl,
+    target: "_blank",
+    rel: "noreferrer"
+  }, /*#__PURE__*/React.createElement(GithubOutlined, null))));
+  return /*#__PURE__*/React.createElement("header", {
+    className: cx(styles.header, _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty({}, styles.transparent, !!transparent && !productMenuVisible), styles.isHomePage, !!isHomePage && !isAntVHome), styles.lightTheme, !!isAntVHome && !productMenuVisible && isWide), styles.isAntVHome, !!isAntVHome), styles.fixed, popupMenuVisible))
+  }, bannerVisible && announcementTitle && /*#__PURE__*/React.createElement(Alert, {
+    className: styles.banner,
+    message: /*#__PURE__*/React.createElement("div", {
+      className: styles.topAlert
+    }, (announcement === null || announcement === void 0 ? void 0 : announcement.icon) && /*#__PURE__*/React.createElement("img", {
+      src: announcement.icon
+    }), /*#__PURE__*/React.createElement("div", null, announcementTitle), announcementLinkTitle && /*#__PURE__*/React.createElement("a", {
+      href: announcement === null || announcement === void 0 ? void 0 : announcement.link.url
+    }, announcementLinkTitle)),
+    type: "info",
+    banner: true,
+    closable: true,
+    showIcon: false,
+    onClose: onBannerClose
+  }), /*#__PURE__*/React.createElement("div", {
+    className: cx(styles.container)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.left
+  }, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("a", {
+    href: siteUrl[lang] ? siteUrl[lang] : siteUrl
+  }, img)), !isAntVHome && subTitle && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+    className: styles.divider
+  }), /*#__PURE__*/React.createElement("h2", {
+    className: styles.subProduceName
+  }, /*#__PURE__*/React.createElement("a", {
+    href: pathname.startsWith('/en') ? '/en' : '/'
+  }, subTitle))), showSearch && !isAntVHome && /*#__PURE__*/React.createElement(Search, null)), /*#__PURE__*/React.createElement("nav", {
+    className: styles.nav
+  }, menu, menuIcon)));
+};
+var Header = function Header(props) {
+  var _ref3 = useSiteData(),
+    themeConfig = _ref3.themeConfig;
+  var title = themeConfig.title,
+    siteUrl = themeConfig.siteUrl,
+    githubUrl = themeConfig.githubUrl,
+    isAntVSite = themeConfig.isAntVSite,
+    subTitleHref = themeConfig.subTitleHref,
+    internalSite = themeConfig.internalSite,
+    showSearch = themeConfig.showSearch,
+    showGithubCorner = themeConfig.showGithubCorner,
+    showGithubStars = themeConfig.showGithubStars,
+    showLanguageSwitcher = themeConfig.showLanguageSwitcher,
+    showWxQrcode = themeConfig.showWxQrcode,
+    defaultLanguage = themeConfig.defaultLanguage,
+    showAntVProductsCard = themeConfig.showAntVProductsCard,
+    version = themeConfig.version,
+    versions = themeConfig.versions,
+    ecosystems = themeConfig.ecosystems,
+    navs = themeConfig.navs,
+    docsearchOptions = themeConfig.docsearchOptions,
+    announcement = themeConfig.announcement,
+    petercat = themeConfig.petercat,
+    links = themeConfig.links,
+    showWeavefox = themeConfig.showWeavefox;
+  var searchOptions = {
+    docsearchOptions: docsearchOptions
+  };
+  var _useLocation2 = useLocation(),
+    pathname = _useLocation2.pathname;
+  var isHomePage = ['/', ''].includes(getPurePathname(pathname));
+  var lang = useLocale().id;
+  var _useState9 = useState(undefined),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isInternalUser = _useState10[0],
+    setIsInternalUser = _useState10[1];
+  var headerProps = {
+    subTitle: icWithLocale(title, lang),
+    subTitleHref: subTitleHref,
+    githubUrl: githubUrl,
+    isAntVSite: isAntVSite,
+    siteUrl: siteUrl,
+    internalSite: internalSite,
+    showSearch: showSearch,
+    showGithubCorner: showGithubCorner,
+    showGithubStars: showGithubStars,
+    showLanguageSwitcher: showLanguageSwitcher,
+    showWxQrcode: showWxQrcode,
+    defaultLanguage: defaultLanguage,
+    showAntVProductsCard: showAntVProductsCard,
+    version: version,
+    versions: versions,
+    ecosystems: ecosystems,
+    navs: navs,
+    searchOptions: searchOptions,
+    isHomePage: isHomePage,
+    transparent: isHomePage && isAntVSite,
+    announcement: announcement,
+    petercat: petercat,
+    showWeavefox: showWeavefox,
+    isInternalUser: isInternalUser
+  };
+  var isPetercatShow = petercat === null || petercat === void 0 ? void 0 : petercat.show;
+  useEffect(function () {
+    var checkUserType = /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var result;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return determineUserType();
+            case 2:
+              result = _context.sent;
+              setIsInternalUser(result);
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }));
+      return function checkUserType() {
+        return _ref4.apply(this, arguments);
+      };
+    }();
+    checkUserType();
+  }, []);
+  useEffect(function () {
+    var script = null;
+    if (isInternalUser && links) {
+      script = document.createElement('script');
+      script.src = 'https://links.alipay.com/widgetInit/67a96a296b6fa80490bdf892';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    return function () {
+      if (script) {
+        document.body.removeChild(script);
+      }
+    };
+  }, [isInternalUser]);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(HeaderComponent, Object.assign({}, headerProps, props)), isPetercatShow && isInternalUser === false && /*#__PURE__*/React.createElement(Assistant, {
+    token: petercat === null || petercat === void 0 ? void 0 : petercat.token,
+    apiDomain: "https://api.petercat.ai"
+  }));
+};
+export default Header;

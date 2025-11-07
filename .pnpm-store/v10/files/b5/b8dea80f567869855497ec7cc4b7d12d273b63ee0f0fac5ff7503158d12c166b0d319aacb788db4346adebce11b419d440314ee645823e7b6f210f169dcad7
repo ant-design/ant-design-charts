@@ -1,0 +1,9 @@
+/**
+ * https://tc39.es/ecma402/#sec-getnumberoption
+ * @param options
+ * @param property
+ * @param min
+ * @param max
+ * @param fallback
+ */
+export declare function GetNumberOption<T extends object, K extends keyof T, F extends number | undefined>(options: T, property: K, minimum: number, maximum: number, fallback: F): F extends number ? number : number | undefined;

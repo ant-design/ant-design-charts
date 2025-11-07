@@ -1,0 +1,14 @@
+@collapsed-icon-size: 36px;
+
+.collapsed {
+  position: absolute;
+  z-index: 3;
+  width: 24px;
+  height: @collapsed-icon-size;
+  line-height: @collapsed-icon-size;
+  font-size: 18px;
+  color: #777;
+  cursor: pointer;
+  background: #f8f9fc;
+  text-align: center;
+}

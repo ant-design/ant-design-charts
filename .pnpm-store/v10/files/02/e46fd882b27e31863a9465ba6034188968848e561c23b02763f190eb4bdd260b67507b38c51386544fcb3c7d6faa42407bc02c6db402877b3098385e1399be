@@ -1,0 +1,43 @@
+export type TimeTransform = (d: Date, ...rest: any[]) => Date;
+type TimeRange = (start: Date, stop: Date, step: number, shouldAdjust?: boolean) => Date[];
+type TimeProcess = (d: Date, ...rest: any[]) => void;
+type TimeField = (d: Date) => number;
+export declare const DURATION_SECOND = 1000;
+export declare const DURATION_MINUTE: number;
+export declare const DURATION_HOUR: number;
+export declare const DURATION_DAY: number;
+export declare const DURATION_WEEK: number;
+export declare const DURATION_MONTH: number;
+export declare const DURATION_YEAR: number;
+export type Interval = {
+    floor: TimeTransform;
+    ceil: TimeTransform;
+    range: TimeRange;
+    duration: number;
+};
+export type IntervalMap = {
+    millisecond: Interval;
+    second: Interval;
+    minute: Interval;
+    hour: Interval;
+    day: Interval;
+    week: Interval;
+    month: Interval;
+    year: Interval;
+};
+export declare function createInterval(duration: number, floorish: TimeProcess, offseti: TimeProcess, field?: TimeField): {
+    ceil: TimeTransform;
+    floor: TimeTransform;
+    range: (start: Date, stop: Date, step: number, shouldAdjust?: boolean) => any[];
+    duration: number;
+};
+export declare const millisecond: Interval;
+export declare const second: Interval;
+export declare const minute: Interval;
+export declare const hour: Interval;
+export declare const day: Interval;
+export declare const month: Interval;
+export declare const week: Interval;
+export declare const year: Interval;
+export declare const localIntervalMap: IntervalMap;
+export {};

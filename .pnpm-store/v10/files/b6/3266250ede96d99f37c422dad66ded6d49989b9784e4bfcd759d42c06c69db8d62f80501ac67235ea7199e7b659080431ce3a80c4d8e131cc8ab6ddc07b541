@@ -1,0 +1,60 @@
+import { DislikeFilled, LikeFilled } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
+import { useIntl } from 'dumi';
+import React from 'react';
+import { styled } from 'styled-components';
+import { useSnapshot } from 'valtio';
+import { feedbackStore, invokePageFeedback, resetPageFeedback } from "../../model/feedback";
+var StyledVoteButtonsWrapper = styled.div.withConfig({
+  displayName: "StyledVoteButtonsWrapper",
+  componentId: "dumi-theme-antv-c7ef__sc-1x5fro0-0"
+})(["color:rgba(0,0,0,0.65);display:flex;align-items:center;gap:4px;font-weight:500;.button{color:rgba(0,0,0,0.65);}.active-button{color:#873bf4;background-color:#f8f1ff;}"]);
+export var PageFeedbackVoteButtons = function PageFeedbackVoteButtons() {
+  var _useIntl = useIntl(),
+    formatMessage = _useIntl.formatMessage;
+  var feedbackState = useSnapshot(feedbackStore);
+  var items = [{
+    title: formatMessage({
+      id: 'yes'
+    }),
+    icon: /*#__PURE__*/React.createElement(LikeFilled, null),
+    onClick: function onClick() {
+      if (feedbackState.rating === '1') {
+        resetPageFeedback();
+      } else {
+        invokePageFeedback(true);
+      }
+    },
+    isActive: feedbackState.rating === '1'
+  }, {
+    title: formatMessage({
+      id: 'no'
+    }),
+    icon: /*#__PURE__*/React.createElement(DislikeFilled, null),
+    onClick: function onClick() {
+      if (feedbackState.rating === '0') {
+        resetPageFeedback();
+      } else {
+        invokePageFeedback(false);
+      }
+    },
+    isActive: feedbackState.rating === '0'
+  }];
+  return /*#__PURE__*/React.createElement(StyledVoteButtonsWrapper, null, /*#__PURE__*/React.createElement("span", null, formatMessage({
+    id: '这个页面对你有帮助吗？'
+  })), items.map(function (_ref) {
+    var title = _ref.title,
+      icon = _ref.icon,
+      onClick = _ref.onClick,
+      isActive = _ref.isActive;
+    return /*#__PURE__*/React.createElement(Tooltip, {
+      key: title,
+      title: title
+    }, /*#__PURE__*/React.createElement(Button, {
+      className: "button ".concat(isActive ? 'active-button' : ''),
+      type: "text",
+      icon: icon,
+      onClick: onClick
+    }));
+  }));
+};

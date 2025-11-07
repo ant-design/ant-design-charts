@@ -1,0 +1,25 @@
+import React from 'react';
+import "../index.css";
+var ChatItemRender = function ChatItemRender(_ref) {
+  var _avatar$props, _avatar$props2;
+  var direction = _ref.direction,
+    avatar = _ref.avatar,
+    title = _ref.title,
+    content = _ref.content,
+    _ref$starter = _ref.starter,
+    starter = _ref$starter === void 0 ? /*#__PURE__*/React.createElement(React.Fragment, null) : _ref$starter;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "flex ".concat(direction === 'start' ? 'flex-row ant-pro-chat-list-item-left' : 'flex-row-reverse ant-pro-chat-list-item-right', " ant-pro-chat-list-item ant-pro-chat-list-item-message-content gap-[12px] p-[16px] chat_item_container")
+  }, direction === 'start' && /*#__PURE__*/React.createElement("div", {
+    className: "ant-avatar ant-avatar-circle ant-avatar-image w-[40px] h-[40px] rounded-full overflow-hidden flex-shrink-0",
+    style: {
+      backgroundColor: "".concat(avatar === null || avatar === void 0 || (_avatar$props = avatar.props) === null || _avatar$props === void 0 || (_avatar$props = _avatar$props.avatar) === null || _avatar$props === void 0 ? void 0 : _avatar$props.backgroundColor),
+      backgroundImage: "url(".concat(avatar === null || avatar === void 0 || (_avatar$props2 = avatar.props) === null || _avatar$props2 === void 0 || (_avatar$props2 = _avatar$props2.avatar) === null || _avatar$props2 === void 0 ? void 0 : _avatar$props2.avatar, ")"),
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat'
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "ant-pro-chat-list-item-message-container"
+  }, title, content)), starter);
+};
+export default ChatItemRender;

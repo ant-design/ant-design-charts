@@ -1,0 +1,44 @@
+{
+  "name": "conventional-changelog-core",
+  "type": "module",
+  "version": "8.0.0",
+  "description": "Core package of conventional-changelog.",
+  "author": "Steve Mao",
+  "license": "MIT",
+  "homepage": "https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-core#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conventional-changelog/conventional-changelog.git",
+    "directory": "packages/conventional-changelog-core"
+  },
+  "bugs": {
+    "url": "https://github.com/conventional-changelog/conventional-changelog/issues"
+  },
+  "keywords": [
+    "conventional-changelog",
+    "conventional",
+    "changelog",
+    "log"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": "./index.js",
+  "files": [
+    "index.js",
+    "lib",
+    "hosts"
+  ],
+  "dependencies": {
+    "@hutson/parse-repository-url": "^5.0.0",
+    "add-stream": "^1.0.0",
+    "hosted-git-info": "^7.0.0",
+    "normalize-package-data": "^6.0.0",
+    "read-pkg": "^9.0.0",
+    "read-package-up": "^11.0.0",
+    "conventional-changelog-writer": "^8.0.0",
+    "conventional-commits-parser": "^6.0.0",
+    "git-raw-commits": "^5.0.0",
+    "git-semver-tags": "^8.0.0"
+  }
+}

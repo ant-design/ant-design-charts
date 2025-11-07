@@ -1,0 +1,9 @@
+export { subscribeKey } from './utils/subscribeKey';
+export { watch } from './utils/watch';
+export { devtools } from './utils/devtools';
+export { derive, underive, unstable_deriveSubscriptions } from 'derive-valtio';
+export { addComputed_DEPRECATED as addComputed } from './utils/addComputed';
+export { proxyWithComputed_DEPRECATED as proxyWithComputed } from './utils/proxyWithComputed';
+export { proxyWithHistory_DEPRECATED as proxyWithHistory } from './utils/proxyWithHistory';
+export { proxySet } from './utils/proxySet';
+export { proxyMap } from './utils/proxyMap';

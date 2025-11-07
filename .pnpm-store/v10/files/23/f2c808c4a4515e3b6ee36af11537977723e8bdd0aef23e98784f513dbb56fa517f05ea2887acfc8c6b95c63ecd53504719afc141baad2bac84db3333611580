@@ -1,0 +1,18 @@
+import React from 'react';
+interface DataItem {
+    date: string;
+    value: number;
+    type?: string;
+}
+interface Data {
+    year: DataItem[];
+    quarter: DataItem[];
+    month: DataItem[];
+}
+interface AreaChartProps {
+    data: Data;
+    title?: string;
+    height?: number;
+}
+declare const AreaChart: React.FC<AreaChartProps>;
+export default AreaChart;

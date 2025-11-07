@@ -1,0 +1,1 @@
+{"version":3,"file":"Geometry.d.ts","sourceRoot":"","sources":["../../src/components/Geometry.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAAE,MAAM,WAAW,CAAC;AAEtC,MAAM,WAAW,QAAQ;IACvB;;OAEG;IACH,KAAK,EAAE,OAAO,CAAC;IAEf;;OAEG;IACH,aAAa,EAAE,IAAI,GAAG,SAAS,CAAC;IAEhC;;OAEG;IACH,YAAY,EAAE,IAAI,GAAG,SAAS,CAAC;CAMhC"}

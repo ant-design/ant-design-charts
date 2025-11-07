@@ -1,0 +1,37 @@
+{
+  "name": "@umijs/use-params",
+  "version": "1.0.9",
+  "keywords": [
+    "react",
+    "react-hooks",
+    "urlsearchparams",
+    "url-query",
+    "url",
+    "state"
+  ],
+  "bugs": "https://github.com/chenshuai2144/use-params/issues",
+  "repository": "https://github.com/chenshuai2144/use-params",
+  "license": "MIT",
+  "author": "rudyhuynh <rudyhuynh@>",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc && father-build"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.1",
+    "@umijs/fabric": "^2.5.6",
+    "father-build": "^1.19.1",
+    "np": "^5.2.1",
+    "typescript": "^4.0.0"
+  },
+  "peerDependencies": {
+    "react": "*"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "javascript-state-machine",
+  "description": "A simple finite state machine library",
+  "homepage": "https://github.com/jakesgordon/javascript-state-machine",
+  "keywords": [
+    "state machine",
+    "server",
+    "client"
+  ],
+  "author": "Jake Gordon <jake@codeincomplete.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jakesgordon/javascript-state-machine.git"
+  },
+  "main": "state-machine.js",
+  "devDependencies": {
+    "local-web-server": "~1.2.6",
+    "qunit": "~0.9.1",
+    "uglify-js": "^2.7.4"
+  },
+  "version": "2.4.0",
+  "scripts": {
+    "start": "ws --rewrite '/test -> /test/'",
+    "test": "node test/runner",
+    "minify": "uglifyjs state-machine.js --output state-machine.min.js --compress --mangle --stats"
+  }
+}

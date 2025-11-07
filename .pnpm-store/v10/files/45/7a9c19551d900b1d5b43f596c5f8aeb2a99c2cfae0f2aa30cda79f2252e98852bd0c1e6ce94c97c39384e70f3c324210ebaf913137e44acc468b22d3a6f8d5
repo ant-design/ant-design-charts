@@ -1,0 +1,54 @@
+import _regeneratorRuntime from "@babel/runtime/helpers/esm/regeneratorRuntime";
+import _asyncToGenerator from "@babel/runtime/helpers/esm/asyncToGenerator";
+import axios from 'axios';
+
+//  Get the public bot profile by id
+export function getUserInfo(_x, _x2) {
+  return _getUserInfo.apply(this, arguments);
+}
+function _getUserInfo() {
+  _getUserInfo = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(apiDomain, _ref) {
+    var clientId, response;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          clientId = _ref.clientId;
+          _context.next = 3;
+          return axios.get("".concat(apiDomain, "/api/auth/userinfo?clientId=").concat(clientId), {
+            withCredentials: true
+          });
+        case 3:
+          response = _context.sent;
+          return _context.abrupt("return", response.data.data);
+        case 5:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee);
+  }));
+  return _getUserInfo.apply(this, arguments);
+}
+export function requestLogout(_x3) {
+  return _requestLogout.apply(this, arguments);
+}
+function _requestLogout() {
+  _requestLogout = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(apiDomain) {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return axios.get("".concat(apiDomain, "/api/auth/logout"), {
+            withCredentials: true
+          });
+        case 2:
+          response = _context2.sent;
+          return _context2.abrupt("return", response.data);
+        case 4:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return _requestLogout.apply(this, arguments);
+}

@@ -1,0 +1,19 @@
+import React from 'react';
+interface DataItem {
+    date: string;
+    value: number;
+    type?: string;
+}
+interface Data {
+    year: DataItem[];
+    quarter: DataItem[];
+    month: DataItem[];
+}
+interface LineChartProps {
+    data: Data;
+    title?: string;
+    height?: number;
+    colors?: string[];
+}
+declare const LineChart: React.FC<LineChartProps>;
+export default LineChart;

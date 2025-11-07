@@ -1,0 +1,114 @@
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import { Runtime, corelib, extend } from '@antv/g2';
+import React, { useEffect, useRef, useState } from 'react';
+import ChartHeader from "../ChartHeader";
+import SegmentedTabs from "../SegmentedTabs";
+var Chart = extend(Runtime, corelib());
+var AreaChart = function AreaChart(_ref) {
+  var data = _ref.data,
+    _ref$title = _ref.title,
+    title = _ref$title === void 0 ? '' : _ref$title,
+    _ref$height = _ref.height,
+    height = _ref$height === void 0 ? 400 : _ref$height;
+  var chartRef = useRef(null);
+  var _useState = useState('month'),
+    _useState2 = _slicedToArray(_useState, 2),
+    timeDimension = _useState2[0],
+    setTimeDimension = _useState2[1];
+  var handleChange = function handleChange(val) {
+    setTimeDimension(val);
+  };
+  var hasTypeField = function hasTypeField(data) {
+    return data.some(function (item) {
+      return item.type !== undefined;
+    });
+  };
+  var createAreaChart = function createAreaChart(data) {
+    if (!chartRef.current) return;
+    var chart = new Chart({
+      container: chartRef.current,
+      autoFit: true
+    });
+    var chartDefinition = chart.data(data).encode('x', 'date').encode('y', 'value').scale('y', {
+      nice: true
+    }).options({
+      paddingRight: 20
+    }).axis({
+      x: {
+        title: false,
+        labelAutoRotate: false
+      },
+      y: {
+        title: false,
+        labelFormatter: function labelFormatter(d) {
+          return d >= 1000 || d <= -1000 ? d / 1000 + 'k' : d;
+        }
+      }
+    });
+    if (hasTypeField(data)) {
+      chartDefinition.encode('color', 'type');
+      chartDefinition.area().encode('shape', 'smooth').scale('color', {
+        range: ['l(90) 0:#FECC6B  1:#FECC6B4D', 'l(270) 0:#EF4444 1:#EF44444D']
+      });
+      chartDefinition.line().encode('shape', 'smooth').style('strokeWidth', 2).tooltip(false);
+    } else {
+      chartDefinition.area().encode('shape', 'smooth').style('fill', 'l(90) 0:#FECC6B 0.2:#FECC6B 1:#FECC6B08');
+      chartDefinition.line().encode('shape', 'smooth').style('strokeWidth', 2).style('stroke', '#FECC6B').tooltip(false);
+    }
+    chart.render();
+    return chart;
+  };
+  var createIntervalChart = function createIntervalChart(data) {
+    if (!chartRef.current) return;
+    var chart = new Chart({
+      container: chartRef.current,
+      autoFit: true
+    });
+    var chartDefinition = chart.interval().data(data).encode('x', 'date').encode('y', 'value').transform({
+      type: 'dodgeX'
+    }).axis({
+      x: {
+        title: false
+      },
+      y: {
+        title: false
+      }
+    });
+    if (hasTypeField(data)) {
+      chartDefinition.encode('color', 'type');
+    } else {
+      chartDefinition.encode('color', 'x');
+    }
+    chartDefinition.scale('color', {
+      range: ['#FECC6B ', '#EF4444']
+    });
+    chart.render();
+    return chart;
+  };
+  var currentData = data[timeDimension] || [];
+  useEffect(function () {
+    var chart;
+    if ((currentData === null || currentData === void 0 ? void 0 : currentData.length) > 3) {
+      chart = createAreaChart(currentData);
+    } else {
+      chart = createIntervalChart(currentData);
+    }
+    return function () {
+      var _chart;
+      (_chart = chart) === null || _chart === void 0 || _chart.destroy();
+    };
+  }, [currentData]);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(ChartHeader, {
+    title: title,
+    operation: /*#__PURE__*/React.createElement(SegmentedTabs, {
+      onChange: handleChange
+    })
+  }), /*#__PURE__*/React.createElement("div", {
+    ref: chartRef,
+    style: {
+      height: "".concat(height, "px"),
+      marginTop: 20
+    }
+  }));
+};
+export default AreaChart;

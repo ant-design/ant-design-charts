@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "../config.js",
+    "../../src/index.js"
+  ]
+}

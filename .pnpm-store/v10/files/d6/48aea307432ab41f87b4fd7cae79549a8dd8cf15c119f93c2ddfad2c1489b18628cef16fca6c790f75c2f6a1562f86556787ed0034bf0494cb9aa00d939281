@@ -1,0 +1,79 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import cx from 'classnames';
+import { FormattedMessage, useLocale } from 'dumi';
+import React from 'react';
+import { useChinaMirrorHost } from "../../hooks";
+import Product from "./Product";
+import styles from "./Product.module.less";
+import { CATEGORIES, getNewProducts } from "./getProducts";
+export var Products = function Products(_ref) {
+  var show = _ref.show,
+    language = _ref.language,
+    className = _ref.className,
+    bannerVisible = _ref.bannerVisible;
+  var locale = useLocale();
+  var _useChinaMirrorHost = useChinaMirrorHost(),
+    _useChinaMirrorHost2 = _slicedToArray(_useChinaMirrorHost, 1),
+    isChinaMirrorHost = _useChinaMirrorHost2[0];
+  var _React$useState = React.useState(CATEGORIES),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    productsCategoty = _React$useState2[0],
+    setProducts = _React$useState2[1];
+  var lang = locale.id === 'zh' ? 'zh' : 'en';
+  React.useEffect(function () {
+    getNewProducts({
+      language: lang,
+      isChinaMirrorHost: isChinaMirrorHost
+    }).then(function (data) {
+      var newProducts = CATEGORIES.map(function (_ref2) {
+        var name = _ref2.name,
+          type = _ref2.type;
+        return {
+          name: name,
+          type: type,
+          products: data.filter(function (item) {
+            return item.category === type;
+          })
+        };
+      });
+      setProducts(newProducts);
+    });
+  }, [lang, isChinaMirrorHost]);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: cx(styles.products, className, _defineProperty(_defineProperty({}, styles.show, !!show), styles.bannerVisible, !!bannerVisible))
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.container
+  }, productsCategoty.map(function (_ref3, idx) {
+    var name = _ref3.name,
+      type = _ref3.type,
+      products = _ref3.products;
+    return products.length ? /*#__PURE__*/React.createElement(React.Fragment, {
+      key: idx
+    }, /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(FormattedMessage, {
+      id: name
+    })), /*#__PURE__*/React.createElement("ul", null, products.map(function (product) {
+      var _product$links;
+      return /*#__PURE__*/React.createElement(Product, {
+        key: product.title,
+        name: product.title,
+        slogan: product.slogan || '',
+        description: product.description,
+        url: (_product$links = product.links) === null || _product$links === void 0 || (_product$links = _product$links.home) === null || _product$links === void 0 ? void 0 : _product$links.url,
+        icon: product.icon,
+        links: product.links,
+        language: language || locale.id
+      });
+    }))) : null;
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: styles.mask
+  }));
+};

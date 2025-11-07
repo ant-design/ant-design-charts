@@ -1,0 +1,103 @@
+@import (reference) '../../styles/variables.less';
+
+.@{prefix}-hero {
+  position: relative;
+  margin: -@s-header-height - 20 auto -160px auto;
+  max-width: @s-content-width;
+  height: 932px;
+  padding-top: 220px;
+  text-align: center;
+  box-sizing: border-box;
+
+  @media @mobile {
+    margin-top: -@s-header-height-m - 20;
+    padding-top: 160px;
+    height: 660px;
+  }
+
+  + * {
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.8;
+    pointer-events: none;
+    background: no-repeat center/cover;
+    background-image: url('https://gw.alipayobjects.com/zos/bmw-prod/a6c3488a-994c-4dd3-8e92-2324d9a1ca48/l9dmd9wl_w2858_h1864.png');
+
+    @{dark-selector} & {
+      opacity: 1;
+    }
+  }
+
+  > p {
+    margin: 32px;
+    color: @c-text-secondary;
+    font-size: 20px;
+    line-height: 1.6;
+
+    @{dark-selector} & {
+      color: @c-text-secondary-dark;
+    }
+
+    @media @mobile {
+      font-size: 16px;
+    }
+  }
+
+  &-actions {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+
+    > a {
+      display: inline-block;
+      height: 52px;
+      font-size: 18px;
+      line-height: 52px;
+      text-decoration: none;
+      min-width: 168px;
+      border-radius: 26px;
+      box-sizing: border-box;
+      transition: opacity 0.2s;
+
+      @media @mobile {
+        font-size: 16px;
+        height: 42px;
+        line-height: 40px;
+        min-width: 128px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:not(:first-child) {
+        margin-inline-start: 48px;
+        color: @c-primary;
+        border: 1px solid @c-primary;
+
+        @{dark-selector} & {
+          color: @c-primary-dark;
+          border-color: @c-primary-dark;
+        }
+      }
+
+      &:first-child {
+        color: #fff;
+        background-color: @c-primary;
+
+        @{dark-selector} & {
+          background-color: @c-primary-dark;
+        }
+      }
+    }
+  }
+}

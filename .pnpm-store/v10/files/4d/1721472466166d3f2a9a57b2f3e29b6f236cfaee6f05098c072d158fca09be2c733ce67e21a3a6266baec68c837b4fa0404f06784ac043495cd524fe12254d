@@ -1,0 +1,11 @@
+import React, { type FC } from 'react';
+import '../index.css';
+interface IProps {
+    direction: 'start' | 'end';
+    avatar?: any;
+    title: React.ReactNode;
+    content: React.ReactNode;
+    starter?: React.ReactNode;
+}
+declare const ChatItemRender: FC<IProps>;
+export default ChatItemRender;

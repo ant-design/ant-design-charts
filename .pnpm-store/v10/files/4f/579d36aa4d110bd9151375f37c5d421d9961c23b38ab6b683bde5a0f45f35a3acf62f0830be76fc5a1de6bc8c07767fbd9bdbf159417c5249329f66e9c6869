@@ -1,0 +1,8 @@
+import React from 'react';
+export interface GitInsightProps {
+    forkCount: number;
+    commitCount: number;
+    starCount: number;
+}
+declare const GitInsight: (props: GitInsightProps) => React.JSX.Element;
+export default GitInsight;

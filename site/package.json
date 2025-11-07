@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@ant-design/charts-site",
-  "version": "2.6.5",
+  "version": "2.6.6",
   "description": "React Visual component library",
   "keywords": [
     "antv",

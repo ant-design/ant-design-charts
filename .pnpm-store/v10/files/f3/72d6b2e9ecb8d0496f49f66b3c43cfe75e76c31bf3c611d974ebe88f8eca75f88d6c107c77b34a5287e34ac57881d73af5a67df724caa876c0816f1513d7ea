@@ -1,0 +1,933 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectOptions",
+  "description": "Top-level project options configuration This represents the root structure of project_options.json",
+  "type": "object",
+  "required": [
+    "config"
+  ],
+  "properties": {
+    "config": {
+      "description": "Main configuration object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/SchemaConfig"
+        }
+      ]
+    },
+    "projectPath": {
+      "description": "Project path relative to root",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rootPath": {
+      "description": "Root path of the project",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "definitions": {
+    "SchemaConfig": {
+      "description": "Main configuration structure that mirrors pack_core::config::Config All fields are derived from the original Config structure in pack-core",
+      "type": "object",
+      "properties": {
+        "cacheHandler": {
+          "description": "Cache handler configuration",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "define": {
+          "description": "Define variables for build-time replacement",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "entry": {
+          "description": "Entry points for the build",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/SchemaEntryOptions"
+          }
+        },
+        "experimental": {
+          "description": "Experimental features",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaExperimentalConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "externals": {
+          "description": "External dependencies configuration",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/definitions/SchemaExternalConfig"
+          }
+        },
+        "images": {
+          "description": "Image processing configuration",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaImageConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mode": {
+          "description": "Build mode",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "module": {
+          "description": "Module configuration",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaModuleConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "optimization": {
+          "description": "Build optimization settings",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaOptimizationConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "output": {
+          "description": "Output configuration",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaOutputConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "persistentCaching": {
+          "description": "Enable persistent caching",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "resolve": {
+          "description": "Resolve configuration",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaResolveConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceMaps": {
+          "description": "Enable source maps",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "styles": {
+          "description": "Style processing configuration",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaStyleConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target": {
+          "description": "Target environment",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "SchemaConfigConditionItem": {
+      "description": "Configuration condition item",
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "description": "Condition path configuration",
+          "allOf": [
+            {
+              "$ref": "#/definitions/SchemaConfigConditionPath"
+            }
+          ]
+        }
+      }
+    },
+    "SchemaConfigConditionPath": {
+      "description": "Configuration condition path",
+      "oneOf": [
+        {
+          "description": "Glob pattern for path matching",
+          "type": "object",
+          "required": [
+            "type",
+            "value"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "glob"
+              ]
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "description": "Regular expression for path matching",
+          "type": "object",
+          "required": [
+            "type",
+            "value"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "regex"
+              ]
+            },
+            "value": {
+              "$ref": "#/definitions/SchemaRegexComponents"
+            }
+          }
+        }
+      ]
+    },
+    "SchemaCopyItem": {
+      "description": "Copy item configuration",
+      "type": "object",
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "description": "Source path to copy from",
+          "type": "string"
+        },
+        "to": {
+          "description": "Destination path to copy to",
+          "type": "string"
+        }
+      }
+    },
+    "SchemaEntryOptions": {
+      "description": "Entry point configuration",
+      "type": "object",
+      "required": [
+        "import"
+      ],
+      "properties": {
+        "import": {
+          "description": "Import path for the entry point",
+          "type": "string"
+        },
+        "library": {
+          "description": "Library configuration for this entry",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaLibraryOptions"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "description": "Entry name (optional)",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "SchemaExperimentalConfig": {
+      "description": "Experimental features configuration",
+      "type": "object",
+      "properties": {
+        "cacheHandlers": {
+          "description": "Cache handlers",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "dynamicIO": {
+          "description": "Dynamic IO",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "esmExternals": {
+          "description": "ESM externals"
+        },
+        "mdxRs": {
+          "description": "MDX-RS options"
+        },
+        "ppr": {
+          "description": "Partial prerendering"
+        },
+        "reactCompiler": {
+          "description": "React compiler"
+        },
+        "serverActions": {
+          "description": "Server actions"
+        },
+        "swcPlugins": {
+          "description": "SWC plugins",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": true
+        },
+        "taint": {
+          "description": "Taint",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "useCache": {
+          "description": "Use cache",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "viewTransition": {
+          "description": "View transition",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "SchemaExternalAdvanced": {
+      "description": "Subpath external configuration",
+      "type": "object",
+      "required": [
+        "root"
+      ],
+      "properties": {
+        "root": {
+          "description": "Root name for the external",
+          "type": "string"
+        },
+        "script": {
+          "description": "Script URL for script type externals",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subPath": {
+          "description": "Sub-path configuration for complex externals",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaExternalSubPath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": {
+          "description": "Type of external",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaExternalType"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "SchemaExternalConfig": {
+      "description": "External dependency configuration",
+      "anyOf": [
+        {
+          "description": "Simple string external (e.g., \\\"react\\\" -> \\\"React\\\")",
+          "type": "string"
+        },
+        {
+          "description": "UMD external configuration",
+          "allOf": [
+            {
+              "$ref": "#/definitions/SchemaExternalUmd"
+            }
+          ]
+        },
+        {
+          "description": "Subpath external configuration (for complex path handling)",
+          "allOf": [
+            {
+              "$ref": "#/definitions/SchemaExternalAdvanced"
+            }
+          ]
+        }
+      ]
+    },
+    "SchemaExternalSubPath": {
+      "description": "Sub-path configuration for externals",
+      "type": "object",
+      "properties": {
+        "exclude": {
+          "description": "Paths to exclude",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "rules": {
+          "description": "Transformation rules",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/SchemaExternalSubPathRule"
+          }
+        }
+      }
+    },
+    "SchemaExternalSubPathRule": {
+      "description": "Sub-path transformation rule",
+      "type": "object",
+      "required": [
+        "regex",
+        "target"
+      ],
+      "properties": {
+        "regex": {
+          "description": "Regular expression to match",
+          "type": "string"
+        },
+        "target": {
+          "description": "Target replacement pattern (supports $empty and template strings)",
+          "type": "string"
+        },
+        "targetConverter": {
+          "description": "Target case converter",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaExternalTargetConverter"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "SchemaExternalTargetConverter": {
+      "description": "Target case converter",
+      "type": "string",
+      "enum": [
+        "PascalCase",
+        "CamelCase",
+        "KebabCase",
+        "SnakeCase"
+      ]
+    },
+    "SchemaExternalType": {
+      "description": "External type",
+      "type": "string",
+      "enum": [
+        "script",
+        "commonjs",
+        "esm",
+        "global"
+      ]
+    },
+    "SchemaExternalUmd": {
+      "description": "UMD external configuration",
+      "type": "object",
+      "properties": {
+        "commonjs": {
+          "description": "CommonJS module reference",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "root": {
+          "description": "Root global variable name",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "SchemaImageConfig": {
+      "description": "Image configuration",
+      "type": "object",
+      "properties": {
+        "inlineLimit": {
+          "description": "Inline limit for images in bytes",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint64",
+          "minimum": 0.0
+        }
+      }
+    },
+    "SchemaLibraryOptions": {
+      "description": "Library output configuration",
+      "type": "object",
+      "properties": {
+        "export": {
+          "description": "Export configuration",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Library name (optional)",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "SchemaModularizeImportPackageConfig": {
+      "description": "Modularize import package configuration",
+      "type": "object",
+      "required": [
+        "transform"
+      ],
+      "properties": {
+        "handleDefaultImport": {
+          "description": "Handle default import",
+          "default": false,
+          "type": "boolean"
+        },
+        "handleNamespaceImport": {
+          "description": "Handle namespace import",
+          "default": false,
+          "type": "boolean"
+        },
+        "preventFullImport": {
+          "description": "Prevent full import of the package",
+          "default": false,
+          "type": "boolean"
+        },
+        "skipDefaultConversion": {
+          "description": "Skip default conversion",
+          "default": false,
+          "type": "boolean"
+        },
+        "style": {
+          "description": "Style import configuration",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transform": {
+          "description": "Transform configuration",
+          "allOf": [
+            {
+              "$ref": "#/definitions/SchemaTransform"
+            }
+          ]
+        }
+      }
+    },
+    "SchemaModuleConfig": {
+      "description": "Module configuration",
+      "type": "object",
+      "properties": {
+        "conditions": {
+          "description": "Module conditions configuration",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/definitions/SchemaConfigConditionItem"
+          }
+        },
+        "rules": {
+          "description": "Module rules configuration",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        }
+      }
+    },
+    "SchemaModuleIds": {
+      "description": "Module ID generation strategy",
+      "type": "string",
+      "enum": [
+        "named",
+        "deterministic"
+      ]
+    },
+    "SchemaOptimizationConfig": {
+      "description": "Optimization configuration",
+      "type": "object",
+      "properties": {
+        "concatenateModules": {
+          "description": "Whether to concatenate modules when possible to reduce the number of chunks. This can improve performance by reducing the number of requests and improving caching.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "minify": {
+          "description": "Whether to minify the output",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "modularizeImports": {
+          "description": "Modularize imports configuration",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/definitions/SchemaModularizeImportPackageConfig"
+          }
+        },
+        "moduleIds": {
+          "description": "Module ID generation strategy",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaModuleIds"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "noMangling": {
+          "description": "Whether to disable name mangling",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "packageImports": {
+          "description": "Packages to optimize imports for",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "removeConsole": {
+          "description": "Console removal configuration",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaRemoveConsoleConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "splitChunks": {
+          "description": "Split chunks configuration",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/definitions/SchemaSplitChunkConfig"
+          }
+        },
+        "transpilePackages": {
+          "description": "Packages to transpile",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "treeShaking": {
+          "description": "Whether to enable tree shaking",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "SchemaOutputConfig": {
+      "description": "Output configuration",
+      "type": "object",
+      "properties": {
+        "chunkFilename": {
+          "description": "Filename pattern for chunk files",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "clean": {
+          "description": "Whether to clean output directory before build",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "copy": {
+          "description": "Copy files configuration",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/SchemaCopyItem"
+          }
+        },
+        "filename": {
+          "description": "Filename pattern for main files",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "path": {
+          "description": "Output directory path",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "description": "Output type",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SchemaOutputType"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "SchemaOutputType": {
+      "description": "Output type",
+      "type": "string",
+      "enum": [
+        "standalone",
+        "export"
+      ]
+    },
+    "SchemaRegexComponents": {
+      "description": "Regular expression components",
+      "type": "object",
+      "required": [
+        "flags",
+        "source"
+      ],
+      "properties": {
+        "flags": {
+          "description": "Regular expression flags",
+          "type": "string"
+        },
+        "source": {
+          "description": "Regular expression source",
+          "type": "string"
+        }
+      }
+    },
+    "SchemaRemoveConsoleConfig": {
+      "description": "Console removal configuration",
+      "anyOf": [
+        {
+          "description": "Simple boolean to enable/disable",
+          "type": "boolean"
+        },
+        {
+          "description": "Advanced configuration",
+          "type": "object",
+          "properties": {
+            "exclude": {
+              "description": "Methods to exclude from removal",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "SchemaResolveConfig": {
+      "description": "Resolve configuration",
+      "type": "object",
+      "properties": {
+        "alias": {
+          "description": "Resolve alias mapping",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "extensions": {
+          "description": "Resolve extensions",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "SchemaSplitChunkConfig": {
+      "description": "Split chunk configuration",
+      "type": "object",
+      "properties": {
+        "maxChunkCountPerGroup": {
+          "description": "Maximum chunk count per group",
+          "default": 40,
+          "type": "integer",
+          "format": "uint",
+          "minimum": 0.0
+        },
+        "maxMergeChunkSize": {
+          "description": "Maximum merge chunk size",
+          "default": 200000,
+          "type": "integer",
+          "format": "uint",
+          "minimum": 0.0
+        },
+        "minChunkSize": {
+          "description": "Minimum chunk size",
+          "default": 50000,
+          "type": "integer",
+          "format": "uint",
+          "minimum": 0.0
+        }
+      }
+    },
+    "SchemaStyleConfig": {
+      "description": "Style configuration",
+      "type": "object",
+      "properties": {
+        "emotion": {
+          "description": "Emotion transform configuration"
+        },
+        "inlineCss": {
+          "description": "Inline CSS configuration"
+        },
+        "less": {
+          "description": "Less configuration"
+        },
+        "sass": {
+          "description": "Sass configuration"
+        },
+        "styledComponents": {
+          "description": "Styled components configuration"
+        }
+      }
+    },
+    "SchemaTransform": {
+      "description": "Transform configuration for modularize imports",
+      "anyOf": [
+        {
+          "description": "String transform template",
+          "type": "string"
+        },
+        {
+          "description": "Vector of transformation pairs",
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "maxItems": 2,
+            "minItems": 2
+          }
+        }
+      ]
+    }
+  }
+}

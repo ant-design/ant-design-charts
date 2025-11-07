@@ -1,0 +1,64 @@
+{
+  "name": "@chenshuai2144/sketch-color",
+  "version": "1.0.9",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider dumi dev",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "build": "father-build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "es",
+    "lib",
+    "LICENSE"
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "repository": "https://github.com/chenshuai2144/sketch-color",
+  "peerDependencies": {
+    "react": ">=16.12.0"
+  },
+  "dependencies": {
+    "reactcss": "^1.2.3",
+    "tinycolor2": "^1.4.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.3",
+    "@types/lodash": "^4.14.180",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/reactcss": "^1.2.6",
+    "@types/tinycolor2": "^1.4.3",
+    "@umijs/fabric": "^2.8.1",
+    "@umijs/test": "^3.0.5",
+    "cross-env": "^7.0.3",
+    "dumi": "^1.1.0",
+    "father-build": "^1.17.2",
+    "gh-pages": "^3.0.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "yorkie": "^2.0.0"
+  }
+}

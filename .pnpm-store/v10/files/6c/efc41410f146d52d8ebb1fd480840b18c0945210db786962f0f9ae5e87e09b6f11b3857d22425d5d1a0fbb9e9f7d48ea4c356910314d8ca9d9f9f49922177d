@@ -1,0 +1,47 @@
+import { VerticalAlignTopOutlined } from '@ant-design/icons';
+import { FloatButton, Layout } from 'antd';
+import { useRouteMeta } from 'dumi';
+import React, { lazy } from 'react';
+import { useMedia } from 'react-use';
+import ClientOnly from "../../common/ClientOnly";
+import InViewSuspense from "../../common/InViewSuspense";
+import { ContentTable } from "dumi/theme/slots/ContentTable";
+import { Feedback } from "dumi/theme/slots/Feedback";
+import styles from "./index.module.less";
+import { PrevAndNext } from "./PrevAndNext";
+var PageFeedback = /*#__PURE__*/lazy(function () {
+  return import("../Feedback/PageFeedback");
+});
+var ObPreview = /*#__PURE__*/lazy(function () {
+  return import("./ObPreview");
+});
+export var Main = function Main(_ref) {
+  var children = _ref.children;
+  var meta = useRouteMeta();
+  var is991Wide = useMedia('(min-width: 991.99px)', true);
+  var showToc = is991Wide && meta.frontmatter.showToc !== false;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ClientOnly, null, /*#__PURE__*/React.createElement(ObPreview, null)), /*#__PURE__*/React.createElement(Layout.Content, {
+    className: styles.content
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.main
+  }, /*#__PURE__*/React.createElement("h1", {
+    className: styles.contentTitle
+  }, meta.frontmatter.title), /*#__PURE__*/React.createElement("div", {
+    className: styles.markdown
+  }, children), /*#__PURE__*/React.createElement(ClientOnly, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: '40px'
+    }
+  }, /*#__PURE__*/React.createElement(Feedback, null))), /*#__PURE__*/React.createElement(PrevAndNext, null)), /*#__PURE__*/React.createElement(FloatButton.BackTop, {
+    style: {
+      right: 24
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.backTop
+  }, /*#__PURE__*/React.createElement(VerticalAlignTopOutlined, null)))), showToc && /*#__PURE__*/React.createElement(Layout.Sider, {
+    theme: "light",
+    width: 260
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.toc
+  }, /*#__PURE__*/React.createElement(InViewSuspense, null, /*#__PURE__*/React.createElement(PageFeedback, null)), /*#__PURE__*/React.createElement(ContentTable, null))));
+};

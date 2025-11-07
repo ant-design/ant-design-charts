@@ -1,0 +1,1 @@
+{"version":3,"file":"threshold.js","sourceRoot":"","sources":["../../src/scale/threshold.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,IAAI,cAAc,EAAE,MAAM,aAAa,CAAC;AAM1D,MAAM,CAAC,MAAM,SAAS,GAAyB,CAAC,OAAO,EAAE,EAAE;IACzD,OAAO,IAAI,cAAc,CAAC,OAAO,CAAC,CAAC;AACrC,CAAC,CAAC;AAEF,SAAS,CAAC,KAAK,GAAG,EAAE,CAAC"}

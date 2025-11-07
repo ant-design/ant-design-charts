@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "number",
+  "oneOf": [
+    {
+      "standsFor": "Square",
+      "const": 1
+    },
+    {
+      "standsFor": "Ramp Up",
+      "const": 2
+    },
+    {
+      "standsFor": "Ramp Down",
+      "const": 3
+    },
+    {
+      "standsFor": "Triangle",
+      "const": 4
+    },
+    {
+      "standsFor": "Round",
+      "const": 5
+    },
+    {
+      "standsFor": "Smooth",
+      "const": 6
+    }
+  ],
+  "default": 1
+}

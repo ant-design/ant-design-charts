@@ -1,0 +1,61 @@
+{
+  "name": "prettier-plugin-organize-imports",
+  "version": "4.3.0",
+  "description": "Make prettier organize your imports using the TypeScript language service API.",
+  "keywords": [
+    "prettier",
+    "prettier-plugin",
+    "typescript",
+    "imports",
+    "organize-imports"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc && ava --verbose",
+    "preversion": "npm test"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "prettier.d.ts"
+  ],
+  "author": "Simon Haenisch (https://github.com/simonhaenisch)",
+  "license": "MIT",
+  "repository": "simonhaenisch/prettier-plugin-organize-imports",
+  "homepage": "https://github.com/simonhaenisch/prettier-plugin-organize-imports#readme",
+  "peerDependencies": {
+    "prettier": ">=2.0",
+    "typescript": ">=2.9",
+    "vue-tsc": "^2.1.0 || 3"
+  },
+  "peerDependenciesMeta": {
+    "vue-tsc": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "24.5.2",
+    "@vue/language-plugin-pug": "3.0.7",
+    "ava": "6.4.1",
+    "prettier": "3.6.2",
+    "typescript": "5.9.2",
+    "vue-tsc": "3.0.7"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "useTabs": true,
+    "overrides": [
+      {
+        "files": [
+          "package.json",
+          "*.md"
+        ],
+        "options": {
+          "useTabs": false
+        }
+      }
+    ]
+  }
+}

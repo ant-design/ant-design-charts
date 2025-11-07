@@ -1,0 +1,358 @@
+@import '../../../../common/styles/variables.less';
+
+.wrapper {
+  min-height: 650px;
+  max-height: 803px;
+  background: linear-gradient(225deg, #ffffff, #f0f5ff);
+  height: calc(94vh);
+  position: relative;
+  overflow: hidden;
+
+  .content {
+    .container1440;
+    height: 100%;
+    position: relative;
+  }
+
+  .text {
+    position: relative;
+    top: 26%;
+    z-index: 1;
+    margin-left: 4.5%;
+
+    .title {
+      font-size: 3.4em; //2.875em;
+      color: rgba(0, 0, 0, 1);
+      position: relative;
+      font-family: AlibabaPuHuiTiRHeavy;
+
+      .engine {
+        color: #691eff;
+      }
+    }
+
+    .description {
+      margin-top: 0.83%; //12px;
+      margin-bottom: 0px;
+      color: rgba(106, 123, 140, 1);
+      font-weight: 200;
+      position: relative;
+      width: 40%;
+      max-width: 700px;
+      font-family: AlibabaPuHuiTiR;
+      font-size: 18px;
+      color: #424e66;
+      max-height: 145px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 4;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: max(3%, 40px);
+
+      .buttonLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 12px;
+        z-index: 10;
+        position: relative;
+        transition: all 0.3s;
+        text-align: center;
+        height: 54px;
+        min-width: 166px;
+        padding: 0 10px;
+        box-shadow: 0 8px 28px 0 rgba(0, 0, 0, 0.1);
+        background-color: #691eff;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 8px 28px 0 #f2f2f2;
+        margin-right: 20px;
+        color: #ffffff;
+        overflow: hidden;
+
+        .icon {
+          width: 20px;
+          height: 20px;
+          background-image: url(https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*lo_5RYdqKLsAAAAAAAAAAAAADmJ7AQ/original);
+          margin-right: 6px;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &.primary {
+          color: #fff;
+          background-color: #ffffff;
+          color: #000;
+          border: 1px solid #e8e8e8;
+
+          .icon {
+            position: relative;
+            background-image: url(https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_xFsQbWE_AYAAAAAAAAAAAAADmJ7AQ/original);
+          }
+
+          &:hover {
+            color: #691eff;
+
+            .icon {
+              left: -80px;
+              filter: drop-shadow(#691eff 80px 0);
+            }
+          }
+        }
+      }
+
+      .githubWrapper {
+        display: flex;
+
+        :global {
+          .github-btn {
+            display: flex;
+            height: 54px;
+            cursor: pointer;
+            box-shadow: 0 8px 28px 0 rgba(0, 0, 0, 0.05);
+            background-color: #ffffff;
+            border: 1px solid #e8e8e8;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.15s;
+
+            &:hover {
+              .gh-btn {
+                > .gh-ico {
+                  filter: drop-shadow(#691eff 80px 0);
+                }
+              }
+
+              .gh-count {
+                color: #691eff;
+              }
+            }
+
+            .gh-btn {
+              padding: 16px;
+              .gh-ico {
+                display: block;
+                width: 20px;
+                height: 20px;
+                background-image: url(https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Nk9mQ48ZoZMAAAAAAAAAAABkARQnAQ);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                position: relative;
+                left: -80px;
+                filter: drop-shadow(#1d2129 80px 0);
+              }
+
+              .gh-text {
+                display: none;
+              }
+            }
+
+            .gh-count {
+              height: 54px;
+              line-height: 22px;
+              padding: 16px 16px 16px 0;
+              position: relative;
+              font-size: 18px;
+              margin-left: -8px;
+              color: #1d2129;
+              letter-spacing: 0;
+              font-family: AlibabaSans102-Medium;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .news {
+    width: 100%;
+    display: flex;
+    bottom: 30px;
+    position: absolute;
+    z-index: 3;
+    height: 128px;
+    box-sizing: border-box;
+    padding: 0 4.5%;
+  }
+
+  .teaser {
+    display: flex;
+    position: absolute;
+    right: 0;
+    margin-top: -300px;
+    width: 52%;
+    max-width: 598px;
+    height: 324px;
+    margin: auto;
+    margin-top: 0;
+    top: 0;
+    bottom: 0;
+
+    .teaserimg {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+  }
+
+  .backLeftBottom {
+    position: absolute;
+    left: -8%;
+    bottom: -20px;
+  }
+}
+
+@media (max-width: 1144px) {
+  .wrapper {
+    .teaser {
+      transition: 0.3s all;
+      margin: auto;
+      margin-top: 0;
+      top: 0;
+      bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    .content {
+      width: 91.46%;
+      margin-left: 4.27%;
+      margin-bottom: 5%;
+      position: relative;
+    }
+
+    .text {
+      top: 16.7%;
+      text-align: center;
+      margin-left: 0;
+
+      .title {
+        font-size: 2.857em;
+        margin-left: 0;
+      }
+
+      .description {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        font-size: 1em;
+      }
+
+      .buttons {
+        display: inline-flex;
+
+        .more {
+          font-size: 1em;
+        }
+
+        .githubIframe {
+          height: 40px;
+        }
+
+        .videoButtonWrapper {
+          width: fit-content;
+          height: fit-content;
+        }
+      }
+    }
+
+    .news {
+      width: 91%;
+      padding: 0;
+      display: block;
+      bottom: 10x;
+      left: 4.5%;
+    }
+
+    .teaser {
+      width: 100%;
+      max-width: 1200px;
+      margin-top: auto;
+      margin-left: unset;
+      margin-right: unset;
+      right: unset;
+      top: 30%;
+      display: flex;
+      justify-content: center;
+
+      .teaserimg {
+        width: 40%;
+        margin-left: unset;
+        margin-right: unset;
+      }
+    }
+  }
+}
+
+@media (max-width: 786px) {
+  .wrapper {
+    .text {
+      .buttons {
+        .videoButtonWrapper {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 510px) {
+  .wrapper {
+    .text {
+      .buttons {
+        margin-top: 70%;
+        position: relative;
+        top: -170px;
+
+        .githubWrapper {
+          display: none;
+        }
+
+        .buttonLink:nth-child(2) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .teaser {
+      width: 100%;
+      top: 5%;
+
+      .teaserimg {
+        width: 100%;
+      }
+    }
+
+    .backLeftBottom {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    .text {
+      height: 70%;
+    }
+
+    .news {
+      height: 160px;
+    }
+
+    .teaser {
+      top: 10%;
+    }
+  }
+}

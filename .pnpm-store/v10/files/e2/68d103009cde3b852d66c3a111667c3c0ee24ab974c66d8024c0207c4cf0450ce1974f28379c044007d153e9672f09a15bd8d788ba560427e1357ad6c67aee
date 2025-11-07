@@ -1,0 +1,20 @@
+import type { SpaceProps } from 'antd';
+import type { GroupProps } from 'antd/lib/input';
+import React from 'react';
+import type { LightWrapperProps } from '../../BaseForm';
+import type { ProFormItemProps } from '../FormItem';
+export type ProFormFieldSetProps<T = any> = {
+    value?: T[];
+    onChange?: (value: T[]) => void;
+    space?: SpaceProps | GroupProps;
+    valuePropName?: string;
+    type?: 'space' | 'group';
+    fieldProps?: any;
+    convertValue?: ProFormItemProps['convertValue'];
+    transform?: ProFormItemProps['transform'];
+    children?: ((value: T[], props: ProFormFieldSetProps) => React.ReactNode) | React.ReactNode;
+    lightProps?: LightWrapperProps;
+};
+export declare function defaultGetValueFromEvent(valuePropName: string, ...args: any): any;
+declare const _default: React.FC<Omit<ProFormItemProps, "children"> & ProFormFieldSetProps<any>>;
+export default _default;

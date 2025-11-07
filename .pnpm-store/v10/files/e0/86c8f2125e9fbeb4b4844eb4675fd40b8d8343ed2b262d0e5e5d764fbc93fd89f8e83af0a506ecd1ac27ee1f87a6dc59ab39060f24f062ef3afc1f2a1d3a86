@@ -1,0 +1,43 @@
+import { Link, useLocale } from 'dumi';
+import React from 'react';
+import { ic } from "../../../../slots/hooks";
+import styles from "./News.module.less";
+var numberImages = ['https://gw.alipayobjects.com/zos/antfincdn/IqREAm36K7/1.png', 'https://gw.alipayobjects.com/zos/antfincdn/3fG1Iqjfnz/2.png'];
+export var News = function News(_ref) {
+  var _ref$index = _ref.index,
+    index = _ref$index === void 0 ? 0 : _ref$index,
+    type = _ref.type,
+    title = _ref.title,
+    date = _ref.date,
+    subTitle = _ref.subTitle,
+    img = _ref.img,
+    _ref$link = _ref.link,
+    link = _ref$link === void 0 ? '' : _ref$link;
+  var lang = useLocale().id;
+  var children = /*#__PURE__*/React.createElement("div", {
+    className: styles.container
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.content
+  }, /*#__PURE__*/React.createElement("p", {
+    className: styles.description
+  }, img && /*#__PURE__*/React.createElement("img", {
+    src: img,
+    alt: "message_title"
+  }), type ? "".concat(ic(type), " \u2027 ") : '', ic(title)), date && /*#__PURE__*/React.createElement("p", {
+    className: styles.date
+  }, date), subTitle && /*#__PURE__*/React.createElement("p", {
+    className: styles.subTitle
+  }, ic(subTitle))));
+  if (link.startsWith('http')) {
+    return /*#__PURE__*/React.createElement("a", {
+      href: link,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: styles.news
+    }, children);
+  }
+  return /*#__PURE__*/React.createElement(Link, {
+    to: link[lang] ? link[lang] : link,
+    className: styles.news
+  }, children);
+};

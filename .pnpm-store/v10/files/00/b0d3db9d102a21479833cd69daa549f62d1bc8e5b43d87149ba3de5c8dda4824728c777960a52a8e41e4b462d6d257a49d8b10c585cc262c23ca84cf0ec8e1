@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "number",
+  "oneOf": [
+    {
+      "standsFor": "normal",
+      "const": 0
+    },
+    {
+      "standsFor": "multiply",
+      "const": 1
+    },
+    {
+      "standsFor": "screen",
+      "const": 2
+    },
+    {
+      "standsFor": "overlay",
+      "const": 3
+    },
+    {
+      "standsFor": "darken",
+      "const": 4
+    },
+    {
+      "standsFor": "lighten",
+      "const": 5
+    },
+    {
+      "standsFor": "colorDodge",
+      "const": 6
+    },
+    {
+      "standsFor": "colorBurn",
+      "const": 7
+    },
+    {
+      "standsFor": "hardLight",
+      "const": 8
+    },
+    {
+      "standsFor": "softLight",
+      "const": 9
+    },
+    {
+      "standsFor": "difference",
+      "const": 10
+    },
+    {
+      "standsFor": "exclusion",
+      "const": 11
+    },
+    {
+      "standsFor": "hue",
+      "const": 12
+    },
+    {
+      "standsFor": "saturation",
+      "const": 13
+    },
+    {
+      "standsFor": "color",
+      "const": 14
+    },
+    {
+      "standsFor": "luminosity",
+      "const": 15
+    }
+  ],
+  "default": 0
+}

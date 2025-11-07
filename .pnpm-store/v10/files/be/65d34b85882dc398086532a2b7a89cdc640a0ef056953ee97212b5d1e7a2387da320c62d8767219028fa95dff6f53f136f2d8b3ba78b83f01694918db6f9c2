@@ -1,0 +1,33 @@
+{
+  "name": "@sketch-hq/sketch-file-format-ts",
+  "description": "TypeScript types for the Sketch File Format",
+  "version": "6.5.0",
+  "main": "dist/cjs/index",
+  "types": "dist/cjs/index",
+  "module": "dist/esm/index",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "repository": "github:sketch-hq/sketch-document",
+  "keywords": [
+    "sketch",
+    "sketch files",
+    "file format",
+    "file spec",
+    "typescript",
+    "types"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@sketch-hq/sketch-file-format": "6.5.0",
+    "@types/humps": "2.0.1",
+    "humps": "2.0.1"
+  },
+  "scripts": {
+    "generate": "ts-node ./scripts/generate.ts ./src/types.ts",
+    "build": "rm -rf dist && yarn generate && tsc --project tsconfig.json && tsc --project tsconfig.esm.json",
+    "test": "jest",
+    "format-check": "prettier --check **.{ts,md,json} --ignore-path ../../.prettierignore"
+  }
+}

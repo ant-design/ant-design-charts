@@ -1,0 +1,10 @@
+import type { AnimationResult, StandardAnimationOption } from '../../../animation';
+import type { Vector2 } from '../../../types';
+import { Selection } from '../../../util';
+import type { RequiredArcAxisStyleProps, RequiredAxisStyleProps, RequiredLinearAxisStyleProps } from '../types';
+export declare function getLinearValuePos(value: number, attr: RequiredLinearAxisStyleProps): Vector2;
+export declare function getArcValuePos(value: number, attr: RequiredArcAxisStyleProps): Vector2;
+export declare function getValuePos(value: number, attr: RequiredAxisStyleProps): Vector2;
+export declare function isAxisHorizontal(attr: RequiredLinearAxisStyleProps): boolean;
+export declare function isAxisVertical(attr: RequiredLinearAxisStyleProps): boolean;
+export declare function renderAxisLine(container: Selection, attr: RequiredAxisStyleProps, animate: StandardAnimationOption): AnimationResult[];

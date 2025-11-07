@@ -1,0 +1,131 @@
+@import (reference) '../../styles/variables.less';
+
+@{dark-selector} {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: @c-site-bg;
+
+  @{dark-selector} & {
+    background-color: @c-site-bg-dark;
+  }
+}
+
+.@{prefix}-doc-layout {
+  font-family: sans-serif;
+  background-color: @c-site-bg;
+
+  @{dark-selector} & {
+    background-color: @c-site-bg-dark;
+  }
+
+  @media @mobile {
+    &::before {
+      content: '';
+      position: fixed;
+      z-index: 11; // 1 more than header
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 50%);
+      transition: all 0.1s;
+    }
+
+    &:not([data-mobile-sidebar-active])::before {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &-mobile-bar {
+    @height: 36px;
+
+    position: sticky;
+    z-index: 9; // 1 less than header
+    top: @s-header-height-m;
+    left: 0;
+    right: 0;
+    display: none;
+    align-items: center;
+    padding: 0 24px;
+    height: @height;
+    border-top: 1px solid @c-border-light;
+    background-color: fadeout(@c-site-bg, 10%);
+    backdrop-filter: blur(6px);
+
+    @{dark-selector} & {
+      border-top-color: @c-border-less-dark;
+      background-color: fadein(@c-site-bg-dark, 10%);
+    }
+
+    @media @mobile {
+      display: flex;
+    }
+
+    .@{prefix}-sidebar-btn {
+      padding: 0;
+      color: @c-text-secondary;
+      border: 0;
+      background-color: transparent;
+
+      @{dark-selector} & {
+        color: @c-text-secondary-dark;
+      }
+
+      > svg {
+        width: 16px;
+        margin-right: 6px;
+        fill: @c-text-secondary;
+        vertical-align: middle;
+
+        @{dark-selector} & {
+          fill: @c-text-secondary-dark;
+        }
+      }
+    }
+  }
+
+  > main {
+    display: flex;
+    align-items: flex-start;
+    margin: 0 auto;
+    padding: 0 24px;
+    max-width: @s-content-width;
+    box-sizing: border-box;
+
+    > section {
+      flex: 1;
+      max-width: 100%;
+    }
+
+    > .@{prefix}-doc-layout-toc-wrapper {
+      position: sticky;
+      top: @s-header-height + 30px;
+      width: @s-sidebar-width;
+      margin-inline-start: 24px;
+      max-height: 80vh;
+      overflow: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+
+      @media @mobile {
+        display: none;
+      }
+
+      > h4 {
+        margin: 0 0 8px;
+        color: @c-text-note;
+        font-size: 13px;
+        line-height: 1;
+
+        @{dark-selector} & {
+          color: @c-text-note-dark;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "jest-less-loader",
+  "version": "0.1.2",
+  "description": "Jest transformer for .less file.",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "clean": "rimraf -rf lib",
+    "lint": "eslint src/**/*.ts __tests__/**/*.ts",
+    "lint-staged": "lint-staged",
+    "test": "jest --no-cache",
+    "ci": "npm run lint && npm run test && lint-md .",
+    "start": "tsc -w",
+    "build": "rimraf ./lib && tsc --module commonjs --outDir lib",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "less": "^3.10.3"
+  },
+  "keywords": [
+    "jest",
+    "less",
+    "transformer"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.12.14",
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "jest-electron": "^0.1.7",
+    "less": "^3.10.3",
+    "lint-md-cli": "^0.1.1",
+    "lint-staged": "^9.3.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.3"
+  },
+  "jest": {
+    "runner": "jest-electron/runner",
+    "testEnvironment": "jest-electron/environment",
+    "preset": "ts-jest",
+    "collectCoverage": true,
+    "testRegex": "(/__tests__/.*\\.(test|spec))\\.ts$",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "transform": {
+      "\\.(less|css)$": "./lib/index.js"
+    }
+},
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

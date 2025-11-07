@@ -1,0 +1,56 @@
+{
+  "name": "tsconfig-paths-webpack-plugin",
+  "version": "4.2.0",
+  "description": "Load modules according to tsconfig paths in webpack.",
+  "main": "lib/index.js",
+  "types": "lib/index",
+  "author": "Jonas Kello",
+  "license": "MIT",
+  "repository": "https://github.com/dividab/tsconfig-paths-webpack-plugin",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "enhanced-resolve": "^5.7.0",
+    "tapable": "^2.2.1",
+    "tsconfig-paths": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/node": "^14.14.34",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsdoc": "^50.4.3",
+    "husky": "^5.1.3",
+    "jest": "^27.3.1",
+    "jest-mock-process": "^1.4.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.7",
+    "ts-loader": "^8.0.18",
+    "typescript": "^4.2.3",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^4.5.0"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "compile:example": "tsc -p examples/example",
+    "example": "yarn build && cd examples/example && webpack && node custom-fs.js",
+    "build": "rimraf lib && tsc -p .",
+    "lint": "eslint \"./{src,tests}/**/*.ts{,x}\" --ext .js,.ts,.tsx -f visualstudio",
+    "test": "jest",
+    "test-coverage": "jest --coverage",
+    "verify": "yarn build && yarn lint && yarn test-coverage",
+    "preversion": "yarn verify",
+    "postversion": "git push --tags && yarn publish --new-version $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\""
+  },
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint",
+    "*.{ts,tsx,json,css}": "prettier --write"
+  }
+}

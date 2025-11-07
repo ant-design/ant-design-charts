@@ -1,0 +1,9 @@
+export { default as MatrixColumnView } from './column';
+export { default as MatrixColumnSelectionView } from './columnSelection';
+export { default as MatrixFlipColumnView } from './flipColumn';
+export { default as MatrixFlipRowView } from './flipRow';
+export { default as MatrixRowView } from './row';
+export { default as MatrixRowSelectionView } from './rowSelection';
+export { default as MatrixSelectionView } from './selection';
+export { default as MatrixSubView } from './sub';
+export { default as MatrixTransposeView } from './transpose';

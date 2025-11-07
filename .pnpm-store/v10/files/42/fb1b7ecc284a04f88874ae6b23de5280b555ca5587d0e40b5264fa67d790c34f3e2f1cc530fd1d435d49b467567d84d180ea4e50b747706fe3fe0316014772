@@ -1,0 +1,13 @@
+import React from 'react';
+var ChartHeader = function ChartHeader(_ref) {
+  var title = _ref.title,
+    operation = _ref.operation;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "petercat-assistant"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex justify-between items-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-gray-800 font-bold text-[20px]"
+  }, title), /*#__PURE__*/React.createElement(React.Fragment, null, operation)));
+};
+export default ChartHeader;

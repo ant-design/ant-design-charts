@@ -1,0 +1,25 @@
+import React from 'react';
+import { ThunderIcon } from "../icons/ThunderIcon";
+var StarterList = function StarterList(_ref) {
+  var starters = _ref.starters,
+    _onClick = _ref.onClick,
+    style = _ref.style,
+    className = _ref.className;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "petercat-assistant"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col flex-wrap gap-2 items-start ".concat(className),
+    style: style
+  }, starters === null || starters === void 0 ? void 0 : starters.map(function (starterStr) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: starterStr,
+      className: "px-4 py-2 rounded-[20px] bg-[#3F3F46] shadow-md align-content-start cursor-pointer"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "text-[14px] font-[500] leading-[22px] text-white flex items-center gap-1 ",
+      onClick: function onClick() {
+        _onClick === null || _onClick === void 0 || _onClick(starterStr);
+      }
+    }, starterStr, /*#__PURE__*/React.createElement(ThunderIcon, null)));
+  })));
+};
+export default StarterList;

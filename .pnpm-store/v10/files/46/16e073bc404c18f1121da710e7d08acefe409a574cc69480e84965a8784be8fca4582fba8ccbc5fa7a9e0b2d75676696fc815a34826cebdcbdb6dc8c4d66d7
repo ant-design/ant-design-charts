@@ -1,0 +1,1 @@
+{"version":3,"file":"response.js","sourceRoot":"","sources":["../../source/types/response.ts"],"names":[],"mappings":"","sourcesContent":["export type KyResponse<T = unknown> = {\n\tjson: <J = T >() => Promise<J>;\n} & Response;\n"]}

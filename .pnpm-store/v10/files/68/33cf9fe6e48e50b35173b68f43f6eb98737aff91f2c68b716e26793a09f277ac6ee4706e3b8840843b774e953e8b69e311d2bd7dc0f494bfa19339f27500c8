@@ -1,0 +1,50 @@
+{
+  "name": "sylvanas",
+  "version": "0.6.1",
+  "description": "Covert TS to JS",
+  "repository": {
+    "url": "https://github.com/umijs/sylvanas.git"
+  },
+  "license": "MIT",
+  "author": "zombiej",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "rm -rf lib && npm run build && np --no-cleanup --yolo --no-publish --any-branch",
+    "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "npm run build && jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-syntax-decorators": "^7.8.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-typescript": "^7.9.4",
+    "@types/prettier": "^1.16.4",
+    "@umijs/fabric": "^2.2.2",
+    "eslint": "^7.7.0",
+    "fs-extra": "^8.0.1",
+    "import-fresh": "^3.1.0",
+    "prettier": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/eslint": "^7.2.2",
+    "@types/fs-extra": "^7.0.0",
+    "@types/jest": "^26.0.10",
+    "@types/node": "^12.0.3",
+    "@types/react": "^16.8.19",
+    "glob": "^7.1.4",
+    "jest": "^24.8.0",
+    "np": "^6.5.0",
+    "react": "^16.8.6",
+    "typescript": "^3.5.1"
+  }
+}

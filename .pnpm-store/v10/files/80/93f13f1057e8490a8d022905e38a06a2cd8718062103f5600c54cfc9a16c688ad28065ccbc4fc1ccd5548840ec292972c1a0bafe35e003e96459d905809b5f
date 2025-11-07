@@ -1,0 +1,9 @@
+import type { CanvasRenderer } from '@antv/g-canvas';
+import type { DisplayObject, ParsedPolylineStyleProps } from '@antv/g-lite';
+import { RoughCanvasRendererOptions } from '../util';
+export declare class PolylineRenderer implements CanvasRenderer.StyleRenderer {
+    private options;
+    constructor(options: RoughCanvasRendererOptions);
+    render(context: CanvasRenderingContext2D, parsedStyle: ParsedPolylineStyleProps, object: DisplayObject<any, any>): void;
+}
+//# sourceMappingURL=Polyline.d.ts.map

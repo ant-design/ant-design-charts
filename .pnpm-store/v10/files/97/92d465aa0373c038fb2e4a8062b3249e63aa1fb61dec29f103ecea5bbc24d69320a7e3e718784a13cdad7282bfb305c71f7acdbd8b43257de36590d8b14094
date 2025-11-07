@@ -1,0 +1,34 @@
+import cx from 'classnames';
+import React from 'react';
+import styles from "./index.module.less";
+export var Companies = function Companies(_ref) {
+  var title = _ref.title,
+    _ref$companies = _ref.companies,
+    companies = _ref$companies === void 0 ? [] : _ref$companies,
+    className = _ref.className,
+    style = _ref.style;
+  return /*#__PURE__*/React.createElement("div", {
+    className: cx(styles.wrapper, className),
+    style: style
+  }, /*#__PURE__*/React.createElement("div", {
+    key: "content",
+    className: cx(styles.content, 'container1440')
+  }, /*#__PURE__*/React.createElement("p", {
+    key: "title",
+    className: styles.title
+  }, title), /*#__PURE__*/React.createElement("div", {
+    key: "companies-container",
+    className: styles.companiesContainer
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.companiesGrid
+  }, companies.map(function (company) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: company.name,
+      className: styles.company
+    }, /*#__PURE__*/React.createElement("img", {
+      className: styles.companyimg,
+      src: company.img,
+      alt: company.name
+    }));
+  })))));
+};

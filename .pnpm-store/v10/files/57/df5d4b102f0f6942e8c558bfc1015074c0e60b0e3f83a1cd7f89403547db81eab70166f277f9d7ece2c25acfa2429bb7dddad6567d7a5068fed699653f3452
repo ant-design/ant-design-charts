@@ -1,0 +1,17 @@
+import React from 'react';
+interface DataItem {
+    date: string;
+    value: number[];
+}
+interface Data {
+    year: DataItem[];
+    quarter: DataItem[];
+    month: DataItem[];
+}
+interface BoxChartProps {
+    data: Data;
+    title?: string;
+    height?: number;
+}
+declare const BoxChart: React.FC<BoxChartProps>;
+export default BoxChart;

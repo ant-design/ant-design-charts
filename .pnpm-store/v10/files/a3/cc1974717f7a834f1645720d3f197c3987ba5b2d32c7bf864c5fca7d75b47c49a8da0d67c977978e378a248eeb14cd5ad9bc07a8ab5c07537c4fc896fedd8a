@@ -1,0 +1,12 @@
+import React from 'react';
+import { styled } from 'styled-components';
+import { PageFeedbackReasonForm } from "./PageFeedbackReasonForm";
+import { PageFeedbackVoteButtons } from "./PageFeedbackVoteButtons";
+var StyledWrapper = styled.div.withConfig({
+  displayName: "StyledWrapper",
+  componentId: "dumi-theme-antv-c7ef__sc-1vamzhw-0"
+})(["margin:2px 4px 8px 4px;box-shadow:0 2px 6px 0 rgba(0,0,0,0.08);border-radius:8px;padding:10px 12px;width:fit-content;background-color:#fff;font-size:14px;"]);
+var PageFeedback = function PageFeedback() {
+  return /*#__PURE__*/React.createElement(StyledWrapper, null, /*#__PURE__*/React.createElement(PageFeedbackVoteButtons, null), /*#__PURE__*/React.createElement(PageFeedbackReasonForm, null));
+};
+export default PageFeedback;

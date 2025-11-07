@@ -1,0 +1,13 @@
+import { ITool, MessageContent } from '../interface';
+/**
+ * parse stream chunk data to lui message json
+ * @param rawData original data
+ * @returns
+ */
+export declare const convertChunkToJson: (rawData: string) => {
+    tools: ITool[];
+    message: string;
+    errors: string[];
+};
+export declare const parseStreamChunk: (origin: MessageContent[], rawData: string) => MessageContent[];
+export declare const handleStream: (response: Response) => Promise<Response>;

@@ -1,0 +1,81 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import { SearchOutlined } from '@ant-design/icons';
+import { Popover } from 'antd';
+import { useIntl, useSiteData, useSiteSearch } from 'dumi';
+import React, { useEffect, useMemo, useState } from 'react';
+import { getSearchResults } from "./helper";
+import styles from "./index.module.less";
+import { SearchResult } from "./SearchResult";
+export var Search = function Search() {
+  var intl = useIntl();
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    open = _useState2[0],
+    setOpen = _useState2[1];
+  var _useSiteData = useSiteData(),
+    themeConfig = _useSiteData.themeConfig;
+  var _themeConfig$docsearc = themeConfig.docsearchOptions,
+    _themeConfig$docsearc2 = _themeConfig$docsearc === void 0 ? {} : _themeConfig$docsearc,
+    sort = _themeConfig$docsearc2.sort;
+
+  // useSiteSearch 错误 keywords 为空时 loading 为 true
+  var _useSiteSearch = useSiteSearch(),
+    keywords = _useSiteSearch.keywords,
+    setKeywords = _useSiteSearch.setKeywords,
+    result = _useSiteSearch.result,
+    loading = _useSiteSearch.loading;
+  useEffect(function () {
+    // keywords 为空 或 loading 为 false 查找结束， 进行开关
+    if (!keywords || !loading) {
+      setOpen(!!keywords);
+    }
+  }, [keywords, loading]);
+  useEffect(function () {
+    var close = function close(e) {
+      var _e$target;
+      var className = (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.className;
+      if (!(typeof className === 'string' && className.match(styles.input))) {
+        setOpen(false);
+      }
+    };
+    if (window) {
+      window.addEventListener('click', close);
+    }
+    return function () {
+      window.removeEventListener('click', close);
+    };
+  }, []);
+  var searchResults = useMemo(function () {
+    return getSearchResults(result, 30, sort);
+  }, [result]);
+  return /*#__PURE__*/React.createElement(Popover, {
+    open: open,
+    placement: "topLeft",
+    destroyTooltipOnHide: false,
+    content: /*#__PURE__*/React.createElement(SearchResult, {
+      results: searchResults
+    })
+  }, /*#__PURE__*/React.createElement("label", {
+    className: styles.search
+  }, /*#__PURE__*/React.createElement(SearchOutlined, {
+    className: styles.icon
+  }), /*#__PURE__*/React.createElement("input", {
+    className: styles.input,
+    value: keywords,
+    autoComplete: "off",
+    onFocus: function onFocus() {
+      return setOpen(!!(result !== null && result !== void 0 && result.length));
+    },
+    onChange: function onChange(e) {
+      return setKeywords(e.target.value);
+    },
+    placeholder: intl.formatMessage({
+      id: '搜索…'
+    })
+  })));
+};

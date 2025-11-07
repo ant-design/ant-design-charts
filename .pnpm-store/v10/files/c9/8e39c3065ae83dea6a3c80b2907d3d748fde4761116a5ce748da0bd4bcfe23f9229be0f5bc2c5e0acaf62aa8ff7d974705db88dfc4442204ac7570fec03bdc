@@ -1,0 +1,54 @@
+{
+  "name": "typedoc-plugin-markdown",
+  "version": "2.4.2",
+  "description": "A plugin for TypeDoc that enables TypeScript API documentation to be generated in Markdown.",
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "lint": "eslint ./src --ext .ts",
+    "prepublishOnly": "npm run lint && npm run build && npm run test",
+    "build": "rm -rf dist && tsc && copyfiles --up 1 ./src/**/*.hbs ./dist/",
+    "test": "jest --colors",
+    "test:update": "jest --updateSnapshot",
+    "build-and-test": "npm run build && npm run test",
+    "demos": "rm -rf ./demo && yarn run build && npm-run-all demo:*",
+    "demo:md": "typedoc --ignoreCompilerErrors  --name typedoc-demo --out ./demo/md ../../ts-samples/demo/basic/src",
+    "demo:html": "typedoc --ignoreCompilerErrors --name typedoc-demo --plugin none --out ./demo/html ../../ts-samples/demo/basic/src"
+  },
+  "author": "Thomas Grey",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/tgreyuk/typedoc-plugin-markdown/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tgreyuk/typedoc-plugin-markdown.git",
+    "directory": "packages/typedoc-plugin-markdown"
+  },
+  "homepage": "https://github.com/tgreyuk/typedoc-plugin-markdown/tree/master/packages/typedoc-plugin-markdown",
+  "keywords": [
+    "markdown",
+    "typescript",
+    "documentation",
+    "api",
+    "typedocplugin",
+    "typedoc"
+  ],
+  "peerDependencies": {
+    "typedoc": ">=0.17.0"
+  },
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "handlebars": "^4.7.6"
+  },
+  "devDependencies": {
+    "typedoc": "^0.18.0",
+    "typescript": "^3.9.7"
+  },
+  "gitHead": "cba50f585fdcd6ce14fdeb766fcca43a8fcfd37a"
+}

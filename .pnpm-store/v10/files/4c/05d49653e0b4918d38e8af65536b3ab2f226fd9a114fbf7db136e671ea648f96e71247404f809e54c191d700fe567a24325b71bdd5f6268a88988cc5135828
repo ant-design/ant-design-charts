@@ -1,0 +1,46 @@
+{
+  "name": "d3-binarytree",
+  "version": "1.0.2",
+  "description": "One-dimensional recursive spatial subdivision.",
+  "keywords": [
+    "d3",
+    "d3-module",
+    "binary",
+    "tree",
+    "kdtree"
+  ],
+  "homepage": "https://github.com/vasturiano/d3-binarytree",
+  "license": "MIT",
+  "author": {
+    "name": "Vasco Asturiano",
+    "url": "https://github.com/vasturiano"
+  },
+  "type": "module",
+  "unpkg": "dist/d3-binarytree.min.js",
+  "jsdelivr": "dist/d3-binarytree.min.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "exports": {
+    "umd": "./dist/d3-binarytree.min.js",
+    "default": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vasturiano/d3-binarytree.git"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "test": "mocha 'test/**/*-test.js' && eslint src test",
+    "prepare": "rm -rf dist && yarn test && rollup -c"
+  },
+  "files": [
+    "src/**/*.js",
+    "dist/**/*.js"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.0",
+    "eslint": "^8.33.0",
+    "mocha": "^10.2.0",
+    "rollup": "^3.14.0"
+  }
+}

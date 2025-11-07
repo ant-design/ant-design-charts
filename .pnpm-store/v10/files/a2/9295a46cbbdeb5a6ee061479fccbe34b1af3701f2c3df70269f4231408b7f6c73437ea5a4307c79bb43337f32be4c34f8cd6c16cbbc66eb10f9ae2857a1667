@@ -1,0 +1,29 @@
+{
+  "name": "conventional-changelog-ember",
+  "type": "module",
+  "version": "5.0.0",
+  "description": "Ember preset for conventional-changelog.",
+  "author": "Steve Mao",
+  "license": "ISC",
+  "homepage": "https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-ember#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conventional-changelog/conventional-changelog.git",
+    "directory": "packages/conventional-changelog-ember"
+  },
+  "bugs": {
+    "url": "https://github.com/conventional-changelog/conventional-changelog/issues"
+  },
+  "keywords": [
+    "conventional-changelog",
+    "ember",
+    "preset"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": "./src/index.js",
+  "files": [
+    "src"
+  ]
+}

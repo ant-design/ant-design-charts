@@ -1,0 +1,136 @@
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import { Runtime, corelib, extend } from '@antv/g2';
+import { ConfigProvider, Switch } from 'antd';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import ChartHeader from "../ChartHeader";
+var Chart = extend(Runtime, corelib());
+var RankChart = function RankChart(_ref) {
+  var data = _ref.data,
+    _ref$title = _ref.title,
+    title = _ref$title === void 0 ? '' : _ref$title,
+    _ref$height = _ref.height,
+    height = _ref$height === void 0 ? 400 : _ref$height;
+  var chartRef = useRef(null);
+  var _useState = useState(true),
+    _useState2 = _slicedToArray(_useState, 2),
+    filterBots = _useState2[0],
+    setFilterBots = _useState2[1];
+  var filteredData = useMemo(function () {
+    if (filterBots) {
+      var _data$filter;
+      return data === null || data === void 0 || (_data$filter = data.filter(function (item) {
+        return !item.user.includes('[bot]');
+      })) === null || _data$filter === void 0 ? void 0 : _data$filter.slice(0, 10);
+    }
+    return data === null || data === void 0 ? void 0 : data.slice(0, 10);
+  }, [filterBots, data]);
+  useEffect(function () {
+    if (!chartRef.current) return;
+    var chart = new Chart({
+      container: chartRef.current,
+      autoFit: true
+    });
+    var medal = function medal(datum, chartInstance) {
+      var document = chartInstance.getContext().canvas.document;
+      var group = document === null || document === void 0 ? void 0 : document.createElement('g', {});
+      var clipPath = document.createElement('circle', {
+        style: {
+          cx: -15,
+          cy: 0,
+          r: 15
+        }
+      });
+      var icon = document.createElement('image', {
+        style: {
+          src: "https://avatars.githubusercontent.com/".concat(datum, "?s=48&v=4"),
+          width: 30,
+          height: 30,
+          x: -30,
+          y: -15,
+          clipPath: clipPath
+        }
+      });
+      group.appendChild(clipPath);
+      group.appendChild(icon);
+      return group;
+    };
+    chart.interval().scale('x', {
+      type: 'band',
+      padding: 0.4
+    }).data(filteredData).encode('x', 'user').encode('y', 'value').axis({
+      x: {
+        title: false
+      },
+      y: {
+        title: false
+      }
+    }).style({
+      fill: '#FECC6B',
+      radius: 4,
+      margin: [10, 8, 8, 8]
+    }).label({
+      text: 'value',
+      textAlign: 'start',
+      fill: '#9CA3AF',
+      dx: 8
+    }).interaction('elementHighlight', {
+      background: true
+    }).coordinate({
+      transform: [{
+        type: 'transpose'
+      }]
+    }).scale('color', {
+      palette: 'category10'
+    }).axis({
+      x: {
+        tick: false,
+        title: false,
+        labelSpacing: 8,
+        labelAutoRotate: false,
+        labelFormatter: function labelFormatter(user) {
+          return medal(user, chart);
+        }
+      },
+      y: false
+    });
+    chart.options({
+      paddingRight: 40
+    });
+    chart.render();
+    return function () {
+      chart.destroy();
+    };
+  }, [filteredData]);
+  var operation = /*#__PURE__*/React.createElement("label", {
+    className: "flex items-center"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-gray-400 text-[12px] mr-[8px] font-medium"
+  }, "Exclude Bots"), /*#__PURE__*/React.createElement(ConfigProvider, {
+    theme: {
+      token: {
+        colorPrimary: '#000'
+      },
+      components: {
+        Switch: {
+          handleSize: 16,
+          trackPadding: 3,
+          trackMinWidth: 22
+        }
+      }
+    }
+  }, /*#__PURE__*/React.createElement(Switch, {
+    checked: filterBots,
+    onChange: setFilterBots
+  })));
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(ChartHeader, {
+    title: title,
+    operation: operation
+  }), /*#__PURE__*/React.createElement("div", {
+    ref: chartRef,
+    style: {
+      height: "".concat(height, "px"),
+      marginTop: 20
+    }
+  }));
+};
+export default RankChart;

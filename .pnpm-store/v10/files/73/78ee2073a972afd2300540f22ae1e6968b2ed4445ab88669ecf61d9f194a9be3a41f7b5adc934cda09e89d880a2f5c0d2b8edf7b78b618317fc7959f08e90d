@@ -1,0 +1,28 @@
+{
+    "name": "ascli",
+    "description": "A uniform foundation for unobtrusive (ASCII art in) cli apps.",
+    "version": "1.0.1",
+    "author": "Daniel Wirtz",
+    "repository": {
+        "type": "url",
+        "url": "https://github.com/dcodeIO/ascli.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dcodeIO/ascli/issues"
+    },
+    "keywords": [
+        "ansi",
+        "terminal",
+        "colors",
+        "ascii"
+    ],
+    "main": "./ascli.js",
+    "dependencies": {
+        "colour": "~0.7.1",
+        "optjs": "~3.2.2"
+    },
+    "scripts": {
+        "test": "node tests/test.js"
+    },
+    "license": "Apache-2.0"
+}

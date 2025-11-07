@@ -1,0 +1,9 @@
+var _templateObject;
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+import { css, Global } from '@emotion/react';
+import React from 'react';
+export default (function () {
+  return /*#__PURE__*/React.createElement(Global, {
+    styles: css(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        .ant-btn-text {\n          color: rgba(0, 0, 0, 0.85);\n          border-color: transparent;\n          background: transparent;\n          box-shadow: none;\n        }\n      "])))
+  });
+});

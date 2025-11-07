@@ -1,0 +1,118 @@
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import cx from 'classnames';
+import { FormattedMessage, Link, useLocale } from 'dumi';
+import React from 'react';
+import Slider from 'react-slick';
+import { ic, icWithLocale } from "../../../../slots/hooks";
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import styles from "./index.module.less";
+export var Cases = function Cases(_ref) {
+  var _ref$cases = _ref.cases,
+    cases = _ref$cases === void 0 ? [] : _ref$cases,
+    _ref$style = _ref.style,
+    style = _ref$style === void 0 ? {} : _ref$style,
+    className = _ref.className;
+  var lang = useLocale().id;
+  var slider = React.useRef(null);
+  var clickPrevious = function clickPrevious() {
+    var _slider$current;
+    (_slider$current = slider.current) === null || _slider$current === void 0 || _slider$current.slickPrev();
+  };
+  var clickNext = function clickNext() {
+    var _slider$current2;
+    (_slider$current2 = slider.current) === null || _slider$current2 === void 0 || _slider$current2.slickNext();
+  };
+  var getCases = function getCases() {
+    var buttons;
+    if (cases.length > 1) {
+      buttons = /*#__PURE__*/React.createElement("div", {
+        className: styles.buttons
+      }, /*#__PURE__*/React.createElement("div", {
+        className: styles.controlButton,
+        onClick: clickPrevious
+      }, /*#__PURE__*/React.createElement(ArrowLeftOutlined, {
+        className: styles.controlButtonIcon,
+        style: {
+          fontSize: '16px'
+        }
+      })), /*#__PURE__*/React.createElement("div", {
+        className: styles.controlButton,
+        onClick: clickNext,
+        style: {
+          marginLeft: '-1px'
+        }
+      }, /*#__PURE__*/React.createElement(ArrowRightOutlined, {
+        className: styles.controlButtonIcon,
+        style: {
+          fontSize: '16px'
+        }
+      })));
+    }
+    var children = cases.map(function (app) {
+      var linkDiv = /*#__PURE__*/React.createElement("div", {
+        className: styles.detailWrapper,
+        style: {
+          display: app.link ? 'block' : 'none'
+        }
+      }, app.link && app.link.startsWith('http') ? /*#__PURE__*/React.createElement("a", {
+        className: styles.detail,
+        href: app.link,
+        target: "_blank",
+        rel: "noopener noreferrer"
+      }, /*#__PURE__*/React.createElement(FormattedMessage, {
+        id: "\u67E5\u770B\u8BE6\u60C5"
+      })) : /*#__PURE__*/React.createElement(Link, {
+        className: styles.detail,
+        to: icWithLocale(app.link, lang) || ''
+      }, /*#__PURE__*/React.createElement(FormattedMessage, {
+        id: "\u67E5\u770B\u8BE6\u60C5"
+      })));
+      return /*#__PURE__*/React.createElement("div", {
+        className: styles.appWrapper,
+        key: ic(app.title)
+      }, /*#__PURE__*/React.createElement("img", {
+        className: cx(styles.appTeaser, 'index-cases-image'),
+        src: app.image,
+        alt: ic(app.title)
+      }), /*#__PURE__*/React.createElement("div", {
+        className: styles.appLeft
+      }, /*#__PURE__*/React.createElement("div", {
+        className: styles.appContent
+      }, /*#__PURE__*/React.createElement("img", {
+        className: cx(styles.appLogo, 'index-case-logo'),
+        src: app.logo,
+        alt: "logo",
+        style: {
+          borderRadius: app.isAppLogo ? '15px' : '0px',
+          boxShadow: app.isAppLogo ? '0px 12px 24px #CED4D9' : '0px 0px 0px'
+        }
+      }), /*#__PURE__*/React.createElement("p", {
+        className: styles.appTitle
+      }, ic(app.title)), /*#__PURE__*/React.createElement("p", {
+        className: styles.appDescription
+      }, ic(app.description)), linkDiv), buttons));
+    });
+    return children;
+  };
+  var sliderSettings = {
+    dots: cases.length > 1,
+    infinite: true,
+    slidesToShow: 1,
+    adaptiveHeight: true,
+    speed: 500,
+    cssEase: 'linear',
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    fade: true
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: cx(styles.wrapper, className),
+    style: style
+  }, /*#__PURE__*/React.createElement(Slider, _extends({}, sliderSettings, {
+    className: styles.slider,
+    ref: slider
+  }), getCases()));
+};

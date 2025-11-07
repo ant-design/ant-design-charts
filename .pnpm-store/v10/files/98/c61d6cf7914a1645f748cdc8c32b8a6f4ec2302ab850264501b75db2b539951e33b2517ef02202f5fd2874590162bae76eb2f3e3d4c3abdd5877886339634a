@@ -1,0 +1,53 @@
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import React, { useState } from 'react';
+var defaultTabs = [{
+  value: 'year',
+  label: 'Year'
+}, {
+  value: 'quarter',
+  label: 'Quarter'
+}, {
+  value: 'month',
+  label: 'Month'
+}];
+var SegmentedTabs = function SegmentedTabs(_ref) {
+  var _tabs$;
+  var _ref$tabs = _ref.tabs,
+    tabs = _ref$tabs === void 0 ? defaultTabs : _ref$tabs,
+    _ref$defaultValue = _ref.defaultValue,
+    defaultValue = _ref$defaultValue === void 0 ? 'month' : _ref$defaultValue,
+    onChange = _ref.onChange;
+  var initialActive = defaultValue && tabs.find(function (tab) {
+    return tab.value === defaultValue;
+  }) ? defaultValue : ((_tabs$ = tabs[0]) === null || _tabs$ === void 0 ? void 0 : _tabs$.value) || '';
+  var _useState = useState(initialActive),
+    _useState2 = _slicedToArray(_useState, 2),
+    active = _useState2[0],
+    setActive = _useState2[1];
+  var handleClick = function handleClick(value) {
+    setActive(value);
+    onChange === null || onChange === void 0 || onChange(value);
+  };
+  var getTabClass = function getTabClass(value) {
+    var isActive = active === value;
+    var base = 'flex-1 flex items-center justify-center cursor-pointer text-[14px]';
+    var normal = 'bg-white text-black border-none';
+    var selected = 'bg-[#3F3F46] text-white h-full border-2 border-[#3F3F46] rounded-[6px]';
+    return "".concat(base, " ").concat(isActive ? selected : normal);
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: " relative flex h-[28px] w-[300px] bg-white border  border-solid border-gray-300 rounded-[8px] items-center justify-between p-[4px] "
+  }, tabs.map(function (tab, index) {
+    return /*#__PURE__*/React.createElement(React.Fragment, {
+      key: tab.value
+    }, /*#__PURE__*/React.createElement("div", {
+      className: getTabClass(tab.value),
+      onClick: function onClick() {
+        return handleClick(tab.value);
+      }
+    }, tab.label), index !== tabs.length - 1 && /*#__PURE__*/React.createElement("div", {
+      className: "w-[1px] h-4 bg-gray-200"
+    }));
+  }));
+};
+export default SegmentedTabs;

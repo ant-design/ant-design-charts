@@ -1,0 +1,145 @@
+import { Layout } from 'antd';
+import { useLocale, useSiteData } from 'dumi';
+import { every, find, get } from 'lodash-es';
+import React, { useContext } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useSnapshot } from 'valtio';
+import CommonHelmet from "../../common/CommonHelmet";
+import InViewSuspense from "../../common/InViewSuspense";
+import { ThemeAntVContext } from "../../context";
+import { store } from "../../model";
+import { API } from "dumi/theme/slots/API";
+import CodeRunner from "dumi/theme/slots/CodeRunner";
+import { getDemoInfo } from "../../slots/CodeRunner/utils";
+import { CollapsedIcon } from "./components/CollapsedIcon";
+import styles from "./index.module.less";
+var Sider = Layout.Sider,
+  Content = Layout.Content;
+var Header = /*#__PURE__*/React.lazy(function () {
+  return import("dumi/theme/slots/Header");
+});
+var ExampleSider = /*#__PURE__*/React.lazy(function () {
+  return import("dumi/theme/slots/ExampleSider");
+});
+/**
+ * 解析 Example 页面的元数据
+ */
+var useExampleMeta = function useExampleMeta() {
+  var _exampleTopics$find;
+  /** 示例页面的元数据信息 */
+  var metaData = useContext(ThemeAntVContext);
+  var exampleTopics = metaData.meta.exampleTopics;
+  var _useParams = useParams(),
+    topic = _useParams.topic,
+    example = _useParams.example;
+  var _useLocation = useLocation(),
+    hash = _useLocation.hash;
+  var examples = (_exampleTopics$find = exampleTopics.find(function (_ref) {
+    var id = _ref.id;
+    return id === topic;
+  })) === null || _exampleTopics$find === void 0 ? void 0 : _exampleTopics$find.examples;
+  var exampleDemo = find(examples, function (_ref2) {
+    var id = _ref2.id;
+    return id === example;
+  });
+  // examples/case/id hash 为空，可以默认第一个 example 对应的 demo
+  var demo = hash.slice(1) || get(exampleDemo, ['demos', '0', 'id']);
+  var locale = useLocale();
+  var exampleTitle = get(exampleDemo, ['title', locale.id]);
+  var currentDemo = getDemoInfo(exampleTopics, topic, example, demo);
+  var demoTitle = get(currentDemo, ['title', locale.id]);
+  return {
+    // all example topics
+    exampleTopics: exampleTopics,
+    // topic id
+    topic: topic,
+    // example id
+    example: example,
+    // example title
+    exampleTitle: exampleTitle,
+    // demo id
+    demo: demo,
+    // current demo info
+    currentDemo: currentDemo,
+    // demo title
+    demoTitle: demoTitle
+  };
+};
+
+/**
+ * 具体单个案例的页面
+ */
+var Example = function Example() {
+  var state = useSnapshot(store);
+  var navigate = useNavigate();
+  var locale = useLocale();
+  var _useExampleMeta = useExampleMeta(),
+    exampleTopics = _useExampleMeta.exampleTopics,
+    exampleTitle = _useExampleMeta.exampleTitle,
+    currentDemo = _useExampleMeta.currentDemo,
+    topic = _useExampleMeta.topic,
+    example = _useExampleMeta.example,
+    demo = _useExampleMeta.demo,
+    demoTitle = _useExampleMeta.demoTitle;
+  var _useSiteData = useSiteData(),
+    themeConfig = _useSiteData.themeConfig;
+  var showAPI = every([get(themeConfig, 'showAPIDoc'), topic, example], Boolean);
+  if (!currentDemo) {
+    return null;
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles.example
+  }, /*#__PURE__*/React.createElement(CommonHelmet, {
+    title: exampleTitle,
+    description: demoTitle
+  }), /*#__PURE__*/React.createElement(InViewSuspense, null, /*#__PURE__*/React.createElement(Header, {
+    isHomePage: false
+  })), /*#__PURE__*/React.createElement(Layout, {
+    className: styles.container
+  }, /*#__PURE__*/React.createElement(Sider, {
+    collapsedWidth: 0,
+    width: 250,
+    trigger: null,
+    collapsible: true,
+    collapsed: state.hideMenu,
+    className: styles.menuSider,
+    theme: "light"
+  }, /*#__PURE__*/React.createElement(InViewSuspense, null, /*#__PURE__*/React.createElement(ExampleSider, {
+    showExampleDemoTitle: true,
+    currentDemo: currentDemo,
+    onDemoClicked: function onDemoClicked(example) {
+      var demoId = example.id,
+        targetExample = example.targetExample,
+        targetTopic = example.targetTopic;
+      // eg: /examples/case/area/#area1
+      var prefix = locale.id === 'en' ? '/en' : "";
+      var newURL = "".concat(prefix, "/examples/").concat(targetTopic === null || targetTopic === void 0 ? void 0 : targetTopic.id, "/").concat(targetExample === null || targetExample === void 0 ? void 0 : targetExample.id, "/#").concat(demoId);
+      navigate(newURL);
+    },
+    exampleTopics: exampleTopics
+  })), /*#__PURE__*/React.createElement(CollapsedIcon, {
+    isCollapsed: state.hideMenu,
+    onClick: function onClick(show) {
+      store.hideMenu = show;
+    },
+    style: {
+      bottom: 0,
+      right: state.hideMenu ? -24 : 0
+    }
+  })), /*#__PURE__*/React.createElement(Content, {
+    className: styles.content
+  }, /*#__PURE__*/React.createElement(CodeRunner, {
+    exampleTopics: exampleTopics,
+    topic: topic,
+    example: example,
+    demo: demo,
+    size: get(themeConfig, 'editor.size', 0.38)
+  })), showAPI && /*#__PURE__*/React.createElement(API, {
+    exampleTopics: exampleTopics,
+    topic: topic,
+    example: example,
+    demo: demo,
+    language: locale.id
+  })));
+};
+export default Example;

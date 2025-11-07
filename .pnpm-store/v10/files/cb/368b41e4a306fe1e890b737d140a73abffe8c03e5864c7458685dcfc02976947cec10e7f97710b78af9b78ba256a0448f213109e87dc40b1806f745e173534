@@ -1,0 +1,28 @@
+{
+  "name": "svg-path-parser",
+  "version": "1.1.0",
+  "description": "A parser for SVG's path syntax",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "pegjs -o parser.js grammar.peg"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hughsk/svg-path-parser.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "pegjs": "^0.10.0"
+  },
+  "readmeFilename": "README.md",
+  "keywords": [
+    "svg",
+    "path",
+    "d",
+    "attribute",
+    "parser",
+    "lines",
+    "drawing"
+  ]
+}

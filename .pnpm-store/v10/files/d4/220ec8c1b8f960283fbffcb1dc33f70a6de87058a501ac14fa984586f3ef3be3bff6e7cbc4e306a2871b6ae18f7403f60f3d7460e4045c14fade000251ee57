@@ -1,0 +1,106 @@
+{
+  "name": "leancloud-storage",
+  "version": "4.15.2",
+  "main": "./dist/node/entry/index.js",
+  "description": "LeanCloud JavaScript SDK.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leancloud/javascript-sdk"
+  },
+  "scripts": {
+    "precommit": "pretty-quick --staged",
+    "lint": "tsc storage.d.ts --strict",
+    "test": "npm run lint && npm run test:node",
+    "test:node": "cross-env NODE_ENV=test PLATFORM=NODE_JS nyc mocha --timeout 300000 test/index.js",
+    "test:real": "cross-env REAL_BACKEND=1 npm run test:node",
+    "docs": "jsdoc src README.md package.json -d docs -c .jsdocrc.json",
+    "build:node": "cross-env PLATFORM=NODE_JS babel src --out-dir dist/node",
+    "build:core": "cross-env webpack --config webpack/core.js",
+    "build:browser": "cross-env PLATFORM=Browser webpack --config webpack/browser.js",
+    "build:weapp": "cross-env PLATFORM=Weapp webpack --config webpack/weapp.js",
+    "build:platforms": "npm run build:core && npm run build:browser && npm run build:weapp",
+    "build": "rimraf dist && npm run build:node && npm run build:platforms && cross-env LIVE_QUERY=1 npm run build:platforms",
+    "prepublishOnly": "./script/check-version.js"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.18.6",
+    "@leancloud/adapter-types": "^5.0.0",
+    "@leancloud/platform-adapters-browser": "^1.5.3",
+    "@leancloud/platform-adapters-node": "^1.6.0",
+    "@leancloud/platform-adapters-weapp": "^1.6.3",
+    "debug": "^3.1.0",
+    "eventemitter3": "^2.0.3",
+    "leancloud-realtime": "^5.0.0-rc.8",
+    "leancloud-realtime-plugin-live-query": "^1.2.0",
+    "md5": "^2.0.0",
+    "promise-timeout": "^1.3.0",
+    "underscore": "^1.8.3",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.18.6",
+    "@babel/plugin-transform-runtime": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/register": "^7.18.6",
+    "@pollyjs/adapter-node-http": "^2.6.2",
+    "@pollyjs/core": "^2.6.2",
+    "@pollyjs/persister-fs": "^2.6.2",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-istanbul": "^6.1.1",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.4",
+    "cross-env": "^5.1.3",
+    "docdash": "git+https://github.com/leeyeh/docdash.git#leancloud",
+    "eslint": "^2.8.0",
+    "eslint-config-airbnb": "^8.0.0",
+    "eslint-plugin-import": "^1.6.0",
+    "eslint-plugin-jsx-a11y": "^1.0.3",
+    "eslint-plugin-react": "^5.0.1",
+    "expect.js": "^0.3.0",
+    "husky": "^0.14.3",
+    "jsdoc": "^3.5.5",
+    "mocha": "^3.0.0",
+    "nyc": "^15.1.0",
+    "prettier": "^1.11.1",
+    "pretty-quick": "^1.4.1",
+    "rimraf": "^3.0.2",
+    "should": "^11.1.0",
+    "typescript": "^3.8.3",
+    "webpack": "^3.11.0",
+    "webpack-strip-block": "^0.2.0"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "LeanCloud",
+    "email": "support@leancloud.rocks"
+  },
+  "browser": {
+    "@leancloud/platform-adapters-node": "@leancloud/platform-adapters-browser",
+    "./src/utils/parse-base64.js": "./src/utils/parse-base64-browser.js",
+    "./dist/node/entry/index.js": "./dist/av.js"
+  },
+  "react-native": {
+    "./dist/node/entry/index.js": "./dist/av-core.js"
+  },
+  "weapp": {
+    "@leancloud/platform-adapters-node": "@leancloud/platform-adapters-weapp",
+    "./dist/node/entry/index.js": "./dist/av-weapp.js"
+  },
+  "typings": "./storage.d.ts",
+  "types": "./storage.d.ts",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "nyc": {
+    "require": [
+      "@babel/register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  }
+}

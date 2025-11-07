@@ -1,0 +1,12 @@
+import React from 'react';
+export interface TabItem {
+    value: string;
+    label: string;
+}
+interface SegmentedTabsProps {
+    tabs?: TabItem[];
+    defaultValue?: string;
+    onChange?: (val: string) => void;
+}
+declare const SegmentedTabs: React.FC<SegmentedTabsProps>;
+export default SegmentedTabs;

@@ -1,0 +1,3 @@
+import { DisplayObject, Point, ImageStyleProps, RenderingPluginContext, GlobalRuntime } from '@antv/g-lite';
+export declare function isPointInPath(displayObject: DisplayObject<ImageStyleProps>, position: Point, isClipPath: boolean, isPointInPath: (displayObject: DisplayObject<ImageStyleProps>, position: Point) => boolean, renderingPluginContext: RenderingPluginContext, runtime: GlobalRuntime): boolean;
+//# sourceMappingURL=Image.d.ts.map

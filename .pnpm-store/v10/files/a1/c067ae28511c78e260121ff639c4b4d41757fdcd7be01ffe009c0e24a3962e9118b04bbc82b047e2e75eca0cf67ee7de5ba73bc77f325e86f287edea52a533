@@ -1,0 +1,1 @@
+{"version":3,"file":"is-curve-array.js","sourceRoot":"","sources":["../../../src/path/util/is-curve-array.ts"],"names":[],"mappings":";;AAUA,oCAEC;AAXD,6DAA0D;AAE1D;;;;;;GAMG;AACH,SAAgB,YAAY,CAAC,IAAwB;IACnD,OAAO,IAAA,uCAAiB,EAAC,IAAI,CAAC,IAAK,IAAkB,CAAC,KAAK,CAAC,UAAC,EAAI;YAAH,EAAE,QAAA;QAAM,OAAA,IAAI,CAAC,QAAQ,CAAC,EAAE,CAAC;IAAjB,CAAiB,CAAC,CAAC;AAC3F,CAAC"}

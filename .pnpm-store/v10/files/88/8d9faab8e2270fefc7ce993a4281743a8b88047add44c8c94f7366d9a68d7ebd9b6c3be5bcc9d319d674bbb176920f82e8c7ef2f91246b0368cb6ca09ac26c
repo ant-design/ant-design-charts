@@ -1,0 +1,130 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+import { DownOutlined, LinkOutlined } from '@ant-design/icons';
+import { Dropdown, Menu } from 'antd';
+import cx from 'classnames';
+import { Link, useLocale } from 'dumi';
+import { size } from 'lodash-es';
+import React from 'react';
+import { useMenuData } from "../../hooks/useMenu";
+import styles from "./index.module.less";
+import { getNavCategory } from "./utils";
+function getNavMeta(pathname, navs) {
+  return navs.find(function (nav) {
+    var _nav$slug;
+    return (nav === null || nav === void 0 || (_nav$slug = nav.slug) === null || _nav$slug === void 0 ? void 0 : _nav$slug.replace('docs/', '/')) === pathname;
+  });
+}
+function isExactNavLink(pathname, navs) {
+  var meta = getNavMeta(pathname, navs);
+  return !!meta && meta.exact;
+}
+
+/**
+ * 查找与路径匹配的第一个菜单项
+ */
+function findMatchingMenuItem(pathname, menuData) {
+  if (!menuData || !Array.isArray(menuData) || menuData.length === 0) {
+    return null;
+  }
+  var _iterator = _createForOfIteratorHelper(menuData),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var menuItem = _step.value;
+      if (menuItem.link) {
+        var normalizedLink = menuItem.link.startsWith('/') ? menuItem.link : "/".concat(menuItem.link);
+        if (normalizedLink === pathname || normalizedLink.startsWith(pathname)) {
+          return menuItem;
+        }
+      }
+      if (menuItem.children && menuItem.children.length > 0) {
+        var matchedChild = findMatchingMenuItem(pathname, menuItem.children);
+        if (matchedChild) return matchedChild;
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  return null;
+}
+function getNavLink(pathname, navs, menuData) {
+  if (isExactNavLink(pathname, navs)) {
+    return pathname;
+  }
+  var matchingMenuItem = findMatchingMenuItem(pathname, menuData);
+  if (matchingMenuItem) {
+    return matchingMenuItem.link;
+  }
+  return pathname;
+}
+
+/**
+ * Header 中的导航菜单
+ */
+export var Navs = function Navs(_ref) {
+  var navs = _ref.navs,
+    path = _ref.path;
+  var locale = useLocale();
+  var getMenuData = useMenuData();
+  return /*#__PURE__*/React.createElement(React.Fragment, null, navs.map(function (nav) {
+    var title = nav.title[locale.id];
+    var href = '';
+    var className = '';
+    if (nav.slug) {
+      if (nav.slug.startsWith('http')) {
+        href = nav.slug;
+      } else {
+        // 去除 docs 防止新页面 404 和 本页重新刷新。
+        href = "/".concat(nav.slug).replace(/^\/docs(?=\/)/, '');
+        if (locale.id === 'en') {
+          href = "/en".concat(href);
+        }
+        href = getNavLink(href, navs, getMenuData(href));
+      }
+      className = cx('header-menu-item-active', _defineProperty({}, styles.activeItem, getNavCategory(path) === getNavCategory(href)));
+    }
+    return size(nav.dropdownItems) ? /*#__PURE__*/React.createElement("li", {
+      key: title,
+      className: className
+    }, /*#__PURE__*/React.createElement(Dropdown, {
+      className: styles.ecoSystems,
+      placement: "bottom",
+      overlay: /*#__PURE__*/React.createElement(Menu, null, nav.dropdownItems.map(function (_ref2) {
+        var name = _ref2.name,
+          url = _ref2.url,
+          target = _ref2.target;
+        var displayName = name[locale.id];
+        return /*#__PURE__*/React.createElement(Menu.Item, {
+          key: url
+        }, target === '_blank' || url.startsWith('http') ? /*#__PURE__*/React.createElement("a", {
+          href: url,
+          target: "_blank",
+          rel: "noreferrer"
+        }, displayName, /*#__PURE__*/React.createElement(LinkOutlined, null)) : /*#__PURE__*/React.createElement(Link, {
+          to: url
+        }, displayName));
+      }))
+    }, /*#__PURE__*/React.createElement("span", null, title, /*#__PURE__*/React.createElement(DownOutlined, {
+      style: {
+        marginLeft: '6px'
+      }
+    })))) : /*#__PURE__*/React.createElement("li", {
+      key: title,
+      className: className
+    }, nav.target === '_blank' || href.startsWith('http') ? /*#__PURE__*/React.createElement("a", {
+      href: href,
+      target: "_blank",
+      rel: "noreferrer"
+    }, title, /*#__PURE__*/React.createElement(LinkOutlined, null)) : /*#__PURE__*/React.createElement(Link, {
+      to: href
+    }, title));
+  }));
+};

@@ -1,0 +1,33 @@
+{
+  "name": "@naoak/workerize-transferable",
+  "version": "0.1.0",
+  "description": "Helper functions for workerlize-loader to support transferables",
+  "main": "lib/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf coverage lib",
+    "test": "npm run build && karmatic"
+  },
+  "keywords": [
+    "webpack",
+    "loader",
+    "worker",
+    "web worker",
+    "transferable",
+    "workerize-loader"
+  ],
+  "author": "Naoaki Yamada",
+  "license": "MIT",
+  "devDependencies": {
+    "karmatic": "^2.1.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.3",
+    "webpack": "^4.44.2",
+    "workerize-loader": "^1.3.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "workerize-loader": "*"
+  }
+}

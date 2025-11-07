@@ -1,0 +1,3 @@
+import type { DisplayObject, GlobalRuntime, PathStyleProps, Point, RenderingPluginContext } from '@antv/g-lite';
+export declare function isPointInPath(displayObject: DisplayObject<PathStyleProps>, position: Point, isClipPath: boolean, isPointInPath: (displayObject: DisplayObject<PathStyleProps>, position: Point) => boolean, renderingPluginContext: RenderingPluginContext, runtime: GlobalRuntime): boolean;
+//# sourceMappingURL=Path.d.ts.map

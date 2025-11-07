@@ -1,0 +1,184 @@
+@import (reference) '../../styles/variables.less';
+
+// override prism theme for dark mode
+@{dark-selector} {
+  .token.doctype,
+  .token.punctuation,
+  .token.entity,
+  code[class*='language-'],
+  pre[class*='language-'] {
+    color: @c-text-secondary-dark;
+  }
+
+  .token.comment,
+  .token.prolog,
+  .token.cdata {
+    color: @c-text-note-dark;
+  }
+}
+
+.@{prefix}-source-code {
+  @bg-color: tint(@c-site-bg, 50%);
+
+  position: relative;
+  background-color: @bg-color;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  &-scroll-container {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-scroll-content {
+    position: relative;
+    width: max-content;
+    height: max-content;
+    min-width: 100%;
+    min-height: 100%;
+
+    > pre.prism-code {
+      width: max-content;
+      position: relative;
+      overflow: visible;
+    }
+  }
+
+  > pre.prism-code {
+    overflow: auto;
+  }
+
+  > pre.prism-code,
+  &-scroll-content > pre.prism-code {
+    margin: 0;
+    padding: 18px 24px;
+    font-size: 14px;
+    line-height: 1.58;
+    direction: ltr;
+    background: transparent;
+
+    // remove shadow from coy theme
+    &::before,
+    &::after {
+      content: none;
+    }
+
+    // highlight line
+    & > .highlighted {
+      position: relative;
+      width: calc(100% + 24px);
+      background-color: shade(@bg-color, 5%);
+
+      .line-cell {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: -24px;
+          bottom: 0;
+          width: 24px;
+          background-color: shade(@bg-color, 5%);
+        }
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -24px;
+        bottom: 0;
+        width: 24px;
+        background-color: shade(@bg-color, 5%);
+      }
+    }
+
+    & > .wrap {
+      display: table-row;
+
+      & > .token-line-num {
+        display: table-cell;
+        text-align: right;
+        padding-right: 1em;
+        user-select: none;
+        opacity: 0.5;
+      }
+
+      & > .line-cell {
+        display: table-cell;
+        width: 100%;
+      }
+    }
+  }
+
+  &-copy {
+    position: absolute;
+    z-index: 2;
+    top: 9px;
+    right: 12px;
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: fade(@bg-color, 80%);
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    > svg {
+      width: 16px;
+      fill: darken(@c-border, 20%);
+      transition: fill 0.2s;
+
+      @{dark-selector} & {
+        fill: lighten(@c-border-dark, 20%);
+      }
+    }
+
+    &:hover > svg {
+      fill: darken(@c-border, 30%);
+
+      @{dark-selector} & {
+        fill: lighten(@c-border-dark, 30%);
+      }
+    }
+
+    &[data-copied] > svg {
+      fill: @c-success;
+
+      @{dark-selector} & {
+        fill: @c-success-dark;
+      }
+    }
+  }
+
+  &:not(:hover) &-copy {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  @{dark-selector} & {
+    @bg-color: shade(@c-site-bg-dark, 50%);
+
+    background-color: @bg-color;
+
+    &-copy {
+      background-color: fadeout(@bg-color, 80%);
+    }
+
+    & > pre.prism-code > .highlighted {
+      background-color: tint(@bg-color, 10%);
+
+      &::after {
+        background-color: tint(@bg-color, 10%);
+      }
+
+      .line-cell {
+        &::after {
+          background-color: tint(@bg-color, 10%);
+        }
+      }
+    }
+  }
+}

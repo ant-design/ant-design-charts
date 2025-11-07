@@ -1,0 +1,1 @@
+{"version":3,"file":"CustomEvent.d.ts","sourceRoot":"","sources":["../../src/dom/CustomEvent.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,kBAAkB,CAAC;AAElD;;;;;;;;;;;GAWG;AACH,qBAAa,WAAY,SAAQ,cAAc;gBACjC,SAAS,EAAE,MAAM,EAAE,MAAM,CAAC,EAAE,MAAM;CAS/C"}

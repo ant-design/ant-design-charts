@@ -1,0 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = require("../types/index");
+const abstract_1 = require("./abstract");
+class ParameterReflection extends abstract_1.Reflection {
+    traverse(callback) {
+        if (this.type instanceof index_1.ReflectionType) {
+            if (callback(this.type.declaration, abstract_1.TraverseProperty.TypeLiteral) === false) {
+                return;
+            }
+        }
+        super.traverse(callback);
+    }
+    toString() {
+        return super.toString() + (this.type ? ':' + this.type.toString() : '');
+    }
+}
+exports.ParameterReflection = ParameterReflection;
+//# sourceMappingURL=parameter.js.map

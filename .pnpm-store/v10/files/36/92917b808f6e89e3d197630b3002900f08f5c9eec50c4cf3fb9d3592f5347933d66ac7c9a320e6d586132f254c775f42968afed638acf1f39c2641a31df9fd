@@ -1,0 +1,9 @@
+
+> @umijs/did-you-know@1.0.3 build /Users/chencheng/Documents/Code/github.com/umijs/umi/did-you-know
+> father build
+
+info  - Clean output directories
+info  - Bundless for src directory to cjs format
+event - Bundless src/plugin.ts to dist/plugin.js (with declaration)
+event - Generate declaration file...
+event - Transformed successfully in 186 ms (1 files)

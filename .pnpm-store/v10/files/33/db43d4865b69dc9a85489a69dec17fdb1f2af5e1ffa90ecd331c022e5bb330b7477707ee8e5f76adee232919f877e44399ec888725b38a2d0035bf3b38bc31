@@ -1,0 +1,426 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ToString = ToString;
+exports.ToNumber = ToNumber;
+exports.TimeClip = TimeClip;
+exports.ToObject = ToObject;
+exports.SameValue = SameValue;
+exports.ArrayCreate = ArrayCreate;
+exports.HasOwnProperty = HasOwnProperty;
+exports.Type = Type;
+exports.Day = Day;
+exports.WeekDay = WeekDay;
+exports.DayFromYear = DayFromYear;
+exports.TimeFromYear = TimeFromYear;
+exports.YearFromTime = YearFromTime;
+exports.DaysInYear = DaysInYear;
+exports.DayWithinYear = DayWithinYear;
+exports.InLeapYear = InLeapYear;
+exports.MonthFromTime = MonthFromTime;
+exports.DateFromTime = DateFromTime;
+exports.HourFromTime = HourFromTime;
+exports.MinFromTime = MinFromTime;
+exports.SecFromTime = SecFromTime;
+exports.OrdinaryHasInstance = OrdinaryHasInstance;
+exports.msFromTime = msFromTime;
+exports.ToPrimitive = ToPrimitive;
+var decimal_js_1 = require("decimal.js");
+var constants_1 = require("./constants");
+var utils_1 = require("./utils");
+/**
+ * https://tc39.es/ecma262/#sec-tostring
+ */
+function ToString(o) {
+    // Only symbol is irregular...
+    if (typeof o === 'symbol') {
+        throw TypeError('Cannot convert a Symbol value to a string');
+    }
+    return String(o);
+}
+/**
+ * https://tc39.es/ecma262/#sec-tonumber
+ * @param val
+ */
+function ToNumber(arg) {
+    if (typeof arg === 'number') {
+        return new decimal_js_1.Decimal(arg);
+    }
+    (0, utils_1.invariant)(typeof arg !== 'bigint' && typeof arg !== 'symbol', 'BigInt and Symbol are not supported', TypeError);
+    if (arg === undefined) {
+        return new decimal_js_1.Decimal(NaN);
+    }
+    if (arg === null || arg === 0) {
+        return constants_1.ZERO;
+    }
+    if (arg === true) {
+        return new decimal_js_1.Decimal(1);
+    }
+    if (typeof arg === 'string') {
+        try {
+            return new decimal_js_1.Decimal(arg);
+        }
+        catch (e) {
+            return new decimal_js_1.Decimal(NaN);
+        }
+    }
+    (0, utils_1.invariant)(typeof arg === 'object', 'object expected', TypeError);
+    var primValue = ToPrimitive(arg, 'number');
+    (0, utils_1.invariant)(typeof primValue !== 'object', 'object expected', TypeError);
+    return ToNumber(primValue);
+}
+/**
+ * https://tc39.es/ecma262/#sec-tointeger
+ * @param n
+ */
+function ToInteger(n) {
+    var number = ToNumber(n);
+    if (number.isNaN() || number.isZero()) {
+        return constants_1.ZERO;
+    }
+    if (number.isFinite()) {
+        return number;
+    }
+    var integer = number.abs().floor();
+    if (number.isNegative()) {
+        integer = integer.negated();
+    }
+    return integer;
+}
+/**
+ * https://tc39.es/ecma262/#sec-timeclip
+ * @param time
+ */
+function TimeClip(time) {
+    if (!time.isFinite()) {
+        return new decimal_js_1.Decimal(NaN);
+    }
+    if (time.abs().greaterThan(8.64 * 1e15)) {
+        return new decimal_js_1.Decimal(NaN);
+    }
+    return ToInteger(time);
+}
+/**
+ * https://tc39.es/ecma262/#sec-toobject
+ * @param arg
+ */
+function ToObject(arg) {
+    if (arg == null) {
+        throw new TypeError('undefined/null cannot be converted to object');
+    }
+    return Object(arg);
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-samevalue
+ * @param x
+ * @param y
+ */
+function SameValue(x, y) {
+    if (Object.is) {
+        return Object.is(x, y);
+    }
+    // SameValue algorithm
+    if (x === y) {
+        // Steps 1-5, 7-10
+        // Steps 6.b-6.e: +0 != -0
+        return x !== 0 || 1 / x === 1 / y;
+    }
+    // Step 6.a: NaN == NaN
+    return x !== x && y !== y;
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-arraycreate
+ * @param len
+ */
+function ArrayCreate(len) {
+    return new Array(len);
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-hasownproperty
+ * @param o
+ * @param prop
+ */
+function HasOwnProperty(o, prop) {
+    return Object.prototype.hasOwnProperty.call(o, prop);
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-type
+ * @param x
+ */
+function Type(x) {
+    if (x === null) {
+        return 'Null';
+    }
+    if (typeof x === 'undefined') {
+        return 'Undefined';
+    }
+    if (typeof x === 'function' || typeof x === 'object') {
+        return 'Object';
+    }
+    if (typeof x === 'number') {
+        return 'Number';
+    }
+    if (typeof x === 'boolean') {
+        return 'Boolean';
+    }
+    if (typeof x === 'string') {
+        return 'String';
+    }
+    if (typeof x === 'symbol') {
+        return 'Symbol';
+    }
+    if (typeof x === 'bigint') {
+        return 'BigInt';
+    }
+}
+var MS_PER_DAY = 86400000;
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#eqn-modulo
+ * @param x
+ * @param y
+ * @return k of the same sign as y
+ */
+function mod(x, y) {
+    return x - Math.floor(x / y) * y;
+}
+/**
+ * https://tc39.es/ecma262/#eqn-Day
+ * @param t
+ */
+function Day(t) {
+    return Math.floor(t / MS_PER_DAY);
+}
+/**
+ * https://tc39.es/ecma262/#sec-week-day
+ * @param t
+ */
+function WeekDay(t) {
+    return mod(Day(t) + 4, 7);
+}
+/**
+ * https://tc39.es/ecma262/#sec-year-number
+ * @param y
+ */
+function DayFromYear(y) {
+    if (y < 100) {
+        // Date.UTC parses 0 - 99 as 1900 - 1999
+        var date = new Date(0);
+        date.setUTCFullYear(y, 0, 1);
+        date.setUTCHours(0, 0, 0, 0);
+        return date.getTime() / MS_PER_DAY;
+    }
+    return Date.UTC(y, 0) / MS_PER_DAY;
+}
+/**
+ * https://tc39.es/ecma262/#sec-year-number
+ * @param y
+ */
+function TimeFromYear(y) {
+    return Date.UTC(y, 0);
+}
+/**
+ * https://tc39.es/ecma262/#sec-year-number
+ * @param t
+ */
+function YearFromTime(t) {
+    return new Date(t).getUTCFullYear();
+}
+function DaysInYear(y) {
+    if (y % 4 !== 0) {
+        return 365;
+    }
+    if (y % 100 !== 0) {
+        return 366;
+    }
+    if (y % 400 !== 0) {
+        return 365;
+    }
+    return 366;
+}
+function DayWithinYear(t) {
+    return Day(t) - DayFromYear(YearFromTime(t));
+}
+function InLeapYear(t) {
+    return DaysInYear(YearFromTime(t)) === 365 ? 0 : 1;
+}
+/**
+ * https://tc39.es/ecma262/#sec-month-number
+ * @param t
+ */
+function MonthFromTime(t) {
+    var dwy = DayWithinYear(t);
+    var leap = InLeapYear(t);
+    if (dwy >= 0 && dwy < 31) {
+        return 0;
+    }
+    if (dwy < 59 + leap) {
+        return 1;
+    }
+    if (dwy < 90 + leap) {
+        return 2;
+    }
+    if (dwy < 120 + leap) {
+        return 3;
+    }
+    if (dwy < 151 + leap) {
+        return 4;
+    }
+    if (dwy < 181 + leap) {
+        return 5;
+    }
+    if (dwy < 212 + leap) {
+        return 6;
+    }
+    if (dwy < 243 + leap) {
+        return 7;
+    }
+    if (dwy < 273 + leap) {
+        return 8;
+    }
+    if (dwy < 304 + leap) {
+        return 9;
+    }
+    if (dwy < 334 + leap) {
+        return 10;
+    }
+    if (dwy < 365 + leap) {
+        return 11;
+    }
+    throw new Error('Invalid time');
+}
+function DateFromTime(t) {
+    var dwy = DayWithinYear(t);
+    var mft = MonthFromTime(t);
+    var leap = InLeapYear(t);
+    if (mft === 0) {
+        return dwy + 1;
+    }
+    if (mft === 1) {
+        return dwy - 30;
+    }
+    if (mft === 2) {
+        return dwy - 58 - leap;
+    }
+    if (mft === 3) {
+        return dwy - 89 - leap;
+    }
+    if (mft === 4) {
+        return dwy - 119 - leap;
+    }
+    if (mft === 5) {
+        return dwy - 150 - leap;
+    }
+    if (mft === 6) {
+        return dwy - 180 - leap;
+    }
+    if (mft === 7) {
+        return dwy - 211 - leap;
+    }
+    if (mft === 8) {
+        return dwy - 242 - leap;
+    }
+    if (mft === 9) {
+        return dwy - 272 - leap;
+    }
+    if (mft === 10) {
+        return dwy - 303 - leap;
+    }
+    if (mft === 11) {
+        return dwy - 333 - leap;
+    }
+    throw new Error('Invalid time');
+}
+var HOURS_PER_DAY = 24;
+var MINUTES_PER_HOUR = 60;
+var SECONDS_PER_MINUTE = 60;
+var MS_PER_SECOND = 1e3;
+var MS_PER_MINUTE = MS_PER_SECOND * SECONDS_PER_MINUTE;
+var MS_PER_HOUR = MS_PER_MINUTE * MINUTES_PER_HOUR;
+function HourFromTime(t) {
+    return mod(Math.floor(t / MS_PER_HOUR), HOURS_PER_DAY);
+}
+function MinFromTime(t) {
+    return mod(Math.floor(t / MS_PER_MINUTE), MINUTES_PER_HOUR);
+}
+function SecFromTime(t) {
+    return mod(Math.floor(t / MS_PER_SECOND), SECONDS_PER_MINUTE);
+}
+function IsCallable(fn) {
+    return typeof fn === 'function';
+}
+/**
+ * The abstract operation OrdinaryHasInstance implements
+ * the default algorithm for determining if an object O
+ * inherits from the instance object inheritance path
+ * provided by constructor C.
+ * @param C class
+ * @param O object
+ * @param internalSlots internalSlots
+ */
+function OrdinaryHasInstance(C, O, internalSlots) {
+    if (!IsCallable(C)) {
+        return false;
+    }
+    if (internalSlots === null || internalSlots === void 0 ? void 0 : internalSlots.boundTargetFunction) {
+        var BC = internalSlots === null || internalSlots === void 0 ? void 0 : internalSlots.boundTargetFunction;
+        return O instanceof BC;
+    }
+    if (typeof O !== 'object') {
+        return false;
+    }
+    var P = C.prototype;
+    if (typeof P !== 'object') {
+        throw new TypeError('OrdinaryHasInstance called on an object with an invalid prototype property.');
+    }
+    return Object.prototype.isPrototypeOf.call(P, O);
+}
+function msFromTime(t) {
+    return mod(t, MS_PER_SECOND);
+}
+function OrdinaryToPrimitive(O, hint) {
+    var methodNames;
+    if (hint === 'string') {
+        methodNames = ['toString', 'valueOf'];
+    }
+    else {
+        methodNames = ['valueOf', 'toString'];
+    }
+    for (var _i = 0, methodNames_1 = methodNames; _i < methodNames_1.length; _i++) {
+        var name_1 = methodNames_1[_i];
+        var method = O[name_1];
+        if (IsCallable(method)) {
+            var result = method.call(O);
+            if (typeof result !== 'object') {
+                return result;
+            }
+        }
+    }
+    throw new TypeError('Cannot convert object to primitive value');
+}
+function ToPrimitive(input, preferredType) {
+    if (typeof input === 'object' && input != null) {
+        var exoticToPrim = Symbol.toPrimitive in input ? input[Symbol.toPrimitive] : undefined;
+        var hint = void 0;
+        if (exoticToPrim !== undefined) {
+            if (preferredType === undefined) {
+                hint = 'default';
+            }
+            else if (preferredType === 'string') {
+                hint = 'string';
+            }
+            else {
+                (0, utils_1.invariant)(preferredType === 'number', 'preferredType must be "string" or "number"');
+                hint = 'number';
+            }
+            var result = exoticToPrim.call(input, hint);
+            if (typeof result !== 'object') {
+                return result;
+            }
+            throw new TypeError('Cannot convert exotic object to primitive.');
+        }
+        if (preferredType === undefined) {
+            preferredType = 'number';
+        }
+        return OrdinaryToPrimitive(input, preferredType);
+    }
+    return input;
+}

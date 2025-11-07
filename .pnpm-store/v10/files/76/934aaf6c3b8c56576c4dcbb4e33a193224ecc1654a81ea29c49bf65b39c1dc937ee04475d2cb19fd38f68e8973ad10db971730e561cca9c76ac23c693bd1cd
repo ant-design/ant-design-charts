@@ -1,0 +1,194 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/plugin/index.ts
+var plugin_exports = {};
+__export(plugin_exports, {
+  default: () => plugin_default
+});
+module.exports = __toCommonJS(plugin_exports);
+var import_chalk = __toESM(require("chalk"));
+var import_critters_webpack_plugin = __toESM(require("critters-webpack-plugin"));
+var import_plugin_utils = require("dumi/plugin-utils");
+var path = __toESM(require("path"));
+var import_antVReactTechStack = require("./antVReactTechStack");
+var import_deadLinkChecker = __toESM(require("./deadLinkChecker"));
+var import_examples = require("./examples");
+var import_rehypeObservable = __toESM(require("./rehypeObservable"));
+var import_remarkFeedback = __toESM(require("./remarkFeedback"));
+var import_sitemapGenerator = __toESM(require("./sitemapGenerator"));
+var PAGES_DIR = (0, import_plugin_utils.winPath)(path.join(__dirname, "../pages"));
+var MOCK_META = { frontmatter: { title: "mock-meta" }, texts: [], toc: [] };
+var plugin_default = (api) => {
+  api.describe({ key: `dumi-theme:${require("../../package.json").name}` });
+  api.chainWebpack((config) => {
+    config.plugin("critters").use(import_critters_webpack_plugin.default, [
+      {
+        preload: "js-lazy",
+        inlineThreshold: 10240
+      }
+    ]);
+  });
+  api.modifyDefaultConfig((memo) => {
+    memo.resolve.codeBlockMode = "passive";
+    memo.exportStatic = {};
+    memo.exportStatic.extraRoutePaths = (0, import_examples.getExamplePaths)();
+    memo.mfsu = false;
+    memo.jsMinifier = "terser";
+    memo.favicons = ["https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*7svFR6wkPMoAAAAAAAAAAAAADmJ7AQ/original"];
+    memo.headScripts = [
+      { src: "https://ur.alipay.com/tracert_a369.js", async: true },
+      {
+        content: `
+          window.TracertCmdCache=window.TracertCmdCache||[];var t=window.Tracert||{_isRenderInit:!0,call:function(){window.TracertCmdCache.push(arguments)}},f=["call","start","config","logPv","info","err","click","expo","pageName","pageState","time","timeEnd","parse","checkExpo","stringify","report","set","before"];for(let i=0;i<f.length;i++){(function(fn){t[fn]=function(){var a=[],l=arguments.length;for (var j=0;j<l;j++) {a.push(arguments[j])}a.unshift(fn);window.TracertCmdCache.push(a)}})(f[i])}window.Tracert=t;window._to=window._to||{};
+          window.Tracert.start({});
+        `,
+        charset: "utf-8"
+      }
+    ];
+    memo.extraRehypePlugins = [import_rehypeObservable.default];
+    return memo;
+  });
+  api.modifyConfig((memo) => {
+    memo.extraRemarkPlugins = memo.themeConfig.feedback ? [import_remarkFeedback.default] : [];
+    return memo;
+  });
+  api.onGenerateFiles(() => {
+    api.writeTmpFile({
+      noPluginDir: true,
+      path: "theme-antv/ContextWrapper.tsx",
+      content: `
+import React from 'react';
+import { useOutlet, useSiteData } from 'dumi';
+import { ThemeAntVContext } from '${(0, import_plugin_utils.winPath)(path.join(__dirname, "../context"))}';
+
+export default function ThemeAntVContextWrapper() {
+  const outlet = useOutlet();
+
+  return (
+    <ThemeAntVContext.Provider
+      value={{
+        meta: ${JSON.stringify({
+        exampleTopics: (0, import_examples.getExamplesPageTopics)(
+          api.config.themeConfig.examples || [],
+          api.userConfig.themeConfig.showAPIDoc
+        )
+      })}
+      }}
+    >
+      {outlet}
+    </ThemeAntVContext.Provider>
+  );
+}
+      `
+    });
+  });
+  api.addLayouts(() => ({
+    id: "theme-antv-context",
+    file: `${api.paths.absTmpPath}/theme-antv/ContextWrapper.tsx`
+  }));
+  api.modifyRoutes((routes) => {
+    const extraRoutesList = [
+      {
+        id: "dumi-theme-antv-homepage",
+        absPath: "/",
+        path: "",
+        file: `${PAGES_DIR}/Index`
+      },
+      {
+        id: "dumi-theme-antv-homepage-en",
+        absPath: "/en/",
+        path: "en",
+        file: `${PAGES_DIR}/Index`
+      },
+      {
+        id: "dumi-theme-antv-homepage-zh",
+        absPath: "/zh/",
+        path: "zh",
+        file: `${PAGES_DIR}/Index`
+      },
+      // Examples gallery page.
+      {
+        id: "dumi-theme-antv-example-list-zh",
+        absPath: "/examples",
+        path: "examples",
+        file: `${PAGES_DIR}/Examples`
+      },
+      {
+        id: "dumi-theme-antv-example-list-en",
+        absPath: "/en/examples",
+        path: "en/examples",
+        file: `${PAGES_DIR}/Examples`
+      },
+      {
+        id: "dumi-theme-antv-example-list-lang",
+        absPath: "/:language/examples",
+        path: ":language/examples",
+        file: `${PAGES_DIR}/Examples`
+      },
+      // single example preview page.
+      {
+        id: "dumi-theme-antv-single-example-zh",
+        absPath: "/examples/:topic/:example",
+        path: "examples/:topic/:example",
+        file: `${PAGES_DIR}/Example`
+      },
+      {
+        id: "dumi-theme-antv-single-example-lang",
+        absPath: "/:language/examples/:topic/:example",
+        path: ":language/examples/:topic/:example",
+        file: `${PAGES_DIR}/Example`
+      }
+    ];
+    extraRoutesList.forEach((itemRoute) => {
+      routes[itemRoute.id] = {
+        id: itemRoute.id,
+        path: itemRoute.path,
+        absPath: itemRoute.absPath,
+        file: itemRoute.file,
+        parentId: "DocLayout",
+        meta: MOCK_META
+      };
+    });
+    routes["404"].file = `${PAGES_DIR}/404`;
+    return routes;
+  });
+  api.addTmpGenerateWatcherPaths(() => [path.resolve(process.cwd(), "examples")]);
+  api.registerTechStack(() => new import_antVReactTechStack.AntVReactTechStack());
+  const checkLinks = (0, import_deadLinkChecker.default)(api);
+  api.registerCommand({
+    name: "check-links",
+    fn: async () => await checkLinks()
+  });
+  api.onBuildHtmlComplete(async () => {
+    await checkLinks(() => {
+      console.log(import_chalk.default.green("🚀 Build completed."));
+    });
+    (0, import_sitemapGenerator.default)(api);
+  });
+};

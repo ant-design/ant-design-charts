@@ -1,0 +1,61 @@
+{
+  "name": "d3-force-3d",
+  "version": "3.0.6",
+  "description": "Force-directed graph layout in 1D, 2D or 3D using velocity Verlet integration.",
+  "homepage": "https://github.com/vasturiano/d3-force-3d",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vasturiano/d3-force-3d.git"
+  },
+  "keywords": [
+    "d3",
+    "d3-module",
+    "layout",
+    "network",
+    "graph",
+    "force",
+    "verlet",
+    "infovis",
+    "3d"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Vasco Asturiano",
+    "url": "https://github.com/vasturiano"
+  },
+  "type": "module",
+  "files": [
+    "src/**/*.js",
+    "dist/**/*.js"
+  ],
+  "module": "src/index.js",
+  "main": "src/index.js",
+  "jsdelivr": "dist/d3-force-3d.min.js",
+  "unpkg": "dist/d3-force-3d.min.js",
+  "exports": {
+    "umd": "./dist/d3-force-3d.min.js",
+    "default": "./src/index.js"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "d3-binarytree": "1",
+    "d3-dispatch": "1 - 3",
+    "d3-octree": "1",
+    "d3-quadtree": "1 - 3",
+    "d3-timer": "1 - 3"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "eslint": "^8.33.0",
+    "mocha": "^10.2.0",
+    "rollup": "^3.14.0"
+  },
+  "scripts": {
+    "test": "mocha 'test/**/*-test.js' && eslint src test",
+    "prepare": "rm -rf dist && yarn test && rollup -c"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}

@@ -1,0 +1,16 @@
+import { HomeOutlined } from '@ant-design/icons';
+import { Button, Result } from 'antd';
+import { Link } from 'dumi';
+import React from 'react';
+export var NotFound = function NotFound() {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Result, {
+    status: '404',
+    title: "404",
+    subTitle: "Sorry, the page you visited does not exist.",
+    extra: /*#__PURE__*/React.createElement(Link, {
+      to: "/"
+    }, /*#__PURE__*/React.createElement(Button, {
+      type: "primary"
+    }, /*#__PURE__*/React.createElement(HomeOutlined, null), "Back Home"))
+  }));
+};

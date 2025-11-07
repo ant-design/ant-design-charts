@@ -1,0 +1,133 @@
+@import '~antd/dist/antd.less';
+
+@primary-color: #873bf4;
+
+.ant-btn,
+.ant-input,
+.ant-notification-notice,
+.ant-select-selector {
+  border-radius: 8px !important;
+}
+
+// 段落反馈
+.comment-link {
+  float: right;
+  color: #6d7c92;
+  transform: scale(0.9);
+  transition: background 0.3s, color 0.3s;
+
+  &:hover {
+    color: #873bf4;
+    background-color: #f8f1ff;
+    cursor: pointer;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  > a[aria-hidden]:first-child {
+    float: left;
+    width: 20px;
+    font-size: 0;
+    line-height: inherit;
+    text-align: right;
+    padding-inline-end: 6px;
+    margin-inline-start: -20px;
+
+    &:hover {
+      border: 0;
+    }
+
+    > .icon-link::before {
+      font-size: 20px;
+      content: '#';
+    }
+  }
+
+  &:not(:hover) > a[aria-hidden]:first-child > .icon-link {
+    visibility: hidden;
+  }
+}
+
+.container1440() {
+  width: 1440px;
+  max-width: calc(100% - 80px);
+  margin-right: auto;
+  margin-left: auto;
+
+  @media only screen and (max-width: 931.99px) {
+    & {
+      max-width: calc(100% - 80px);
+    }
+  }
+
+  @media only screen and (max-width: 767.99px) {
+    & {
+      max-width: calc(100% - 32px);
+    }
+  }
+}
+
+// 非常关键，用于 react-split-pane 的样式，如果没有，会没有办法鼠标拖拽
+// 参考：https://codesandbox.io/s/mow7x4zyqx
+:global {
+  .Pane1,
+  .Pane2 {
+    overflow: auto;
+  }
+
+  .Resizer {
+    z-index: 1;
+    box-sizing: border-box;
+    background: #000;
+    background-clip: padding-box;
+    opacity: 0.1;
+
+    &:hover {
+      transition: all 2s ease;
+    }
+
+    &.horizontal {
+      width: 100%;
+      height: 11px;
+      margin: -5px 0;
+      border-top: 5px solid rgba(255, 255, 255, 0);
+      border-bottom: 5px solid rgba(255, 255, 255, 0);
+      cursor: row-resize;
+
+      &:hover {
+        border-top: 5px solid rgba(0, 0, 0, 0.5);
+        border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    &.vertical {
+      width: 11px;
+      margin: 0 -5px;
+      border-right: 5px solid rgba(255, 255, 255, 0);
+      border-left: 5px solid rgba(255, 255, 255, 0);
+      cursor: col-resize;
+
+      Pane2 {
+        border-left: 1px solid #e6e6e6;
+      }
+
+      &:hover {
+        border-right: 5px solid rgba(0, 0, 0, 0.5);
+        border-left: 5px solid rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+
+      &:hover {
+        border-color: transparent;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "miniprogram-api-typings",
+  "version": "2.12.0",
+  "beta": "true",
+  "description": "Type definitions for APIs of Wechat Mini Program in TypeScript",
+  "main": "./index.d.ts",
+  "types": "./index.d.ts",
+  "scripts": {
+    "test": "npm run tsd && npm run tslint",
+    "tsd": "tsd",
+    "tslint": "tslint --project ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wechat-miniprogram/api-typings.git"
+  },
+  "author": "Wechat Miniprogram <wx-miniprogram@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wechat-miniprogram/api-typings/issues"
+  },
+  "homepage": "https://github.com/wechat-miniprogram/api-typings#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "tsd": "^0.11.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.5.3"
+  },
+  "tsd": {
+    "directory": "test"
+  },
+  "files": [
+    "LICENSE",
+    "CHANGELOG.md",
+    "VERSIONS.md",
+    "README.md",
+    "README-en.md",
+    "index.d.ts",
+    "typings.json",
+    "types/"
+  ]
+}

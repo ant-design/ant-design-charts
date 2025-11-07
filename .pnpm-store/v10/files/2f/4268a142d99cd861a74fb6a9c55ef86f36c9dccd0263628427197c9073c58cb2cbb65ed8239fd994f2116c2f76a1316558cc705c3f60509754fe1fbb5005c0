@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.statesOf = statesOf;
+/**
+ * <zh/> 获取元素的状态
+ *
+ * <en/> Get the state of the element
+ * @param datum - <zh/> 元素数据 <en/> Element data
+ * @returns <zh/> 状态列表 <en/> State list
+ */
+function statesOf(datum) {
+    return datum.states || [];
+}
+//# sourceMappingURL=state.js.map

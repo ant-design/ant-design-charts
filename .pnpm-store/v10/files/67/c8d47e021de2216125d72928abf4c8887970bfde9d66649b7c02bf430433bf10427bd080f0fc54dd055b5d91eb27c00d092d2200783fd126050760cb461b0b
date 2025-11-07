@@ -1,0 +1,1 @@
+{"version":3,"file":"is-finite.js","sourceRoot":"","sources":["../../src/lodash/is-finite.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,aAAa,CAAC;AAEnC;;;GAGG;AACH,MAAM,CAAC,OAAO,WAAW,KAAa;IACpC,OAAO,QAAQ,CAAC,KAAK,CAAC,IAAI,QAAQ,CAAC,KAAK,CAAC,CAAC;AAC5C,CAAC"}

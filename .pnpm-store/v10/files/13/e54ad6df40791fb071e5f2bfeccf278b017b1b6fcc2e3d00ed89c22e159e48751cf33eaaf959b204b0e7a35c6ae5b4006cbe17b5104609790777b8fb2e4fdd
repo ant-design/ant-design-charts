@@ -1,0 +1,62 @@
+name: CI
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+  lint:
+    name: Linting Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup NodeJs
+        uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run Linting Checks
+        run: yarn lint
+
+  test:
+    name: "Test - Node: ${{ matrix.node_version }} - OS: ${{ matrix.os }}"
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        os:
+          - "ubuntu-latest"
+        node_version:
+          - "16"
+          - "18"
+          - "20"
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: yarn install
+        run: yarn install --frozen-lockfile
+
+      - name: build
+        run: yarn build
+
+      - name: test
+        run: yarn test-coverage
+
+      - name: Report coverage
+        uses: codecov/codecov-action@v1
+        with:
+          file: coverage/lcov.info
