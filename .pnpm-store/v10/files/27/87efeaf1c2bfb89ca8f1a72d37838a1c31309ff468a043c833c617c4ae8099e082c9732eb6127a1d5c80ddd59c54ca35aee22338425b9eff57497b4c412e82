@@ -1,0 +1,32 @@
+{
+  "name": "pdfast",
+  "version": "0.2.0",
+  "description": "Fast kernel density estimation library",
+  "main": "src/index.js",
+  "keywords": [
+    "pdf",
+    "kde",
+    "probabilty",
+    "density",
+    "function",
+    "estimation",
+    "kernel",
+    "estimator"
+  ],
+  "repository": "gyosh/pdfast",
+  "bugs": {
+    "url": "https://github.com/gyosh/pdfast"
+  },
+  "homepage": "https://github.com/gyosh/pdfast",
+  "scripts": {
+    "test": "mocha --timeout 10000 $(find tests -name *.spec.js)"
+  },
+  "author": "William Gozali <will.gozali@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "lodash": "^4.14.2",
+    "mocha": "^3.0.2",
+    "rewire": "^2.5.2"
+  }
+}

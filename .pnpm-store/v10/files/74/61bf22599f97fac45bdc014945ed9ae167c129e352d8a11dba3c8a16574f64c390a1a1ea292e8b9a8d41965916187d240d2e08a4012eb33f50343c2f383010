@@ -1,0 +1,96 @@
+{
+  "name": "@utoo/pack",
+  "version": "0.0.1-alpha.67",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./cjs/*": "./cjs/*",
+    "./esm/*": "./esm/*",
+    "./config_schema.json": "./config_schema.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "./cjs/*.js",
+    "./cjs/*.d.ts",
+    "./esm/*.js",
+    "./esm/*.d.ts",
+    "./config_schema.json"
+  ],
+  "napi": {
+    "name": "pack",
+    "triples": {
+      "defaults": false,
+      "additional": [
+        "aarch64-apple-darwin",
+        "x86_64-apple-darwin",
+        "aarch64-unknown-linux-gnu",
+        "aarch64-unknown-linux-musl",
+        "x86_64-unknown-linux-gnu",
+        "x86_64-unknown-linux-musl",
+        "x86_64-pc-windows-msvc"
+      ]
+    }
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@utoo/style-loader": "^1.0.0",
+    "@utoo/pack-shared": "^0.0.7",
+    "@babel/code-frame": "7.22.5",
+    "@swc/helpers": "0.5.15",
+    "find-up": "4.1.0",
+    "loader-runner": "^4.3.0",
+    "less": "^4.0.0",
+    "less-loader": "^12.0.0",
+    "nanoid": "^3.3.11",
+    "picocolors": "^1.1.1",
+    "postcss": "8.4.31",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "1.54.0",
+    "sass-loader": "^13.2.0",
+    "ws": "^8.18.1",
+    "send": "0.17.1"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.0",
+    "@types/babel__code-frame": "7.0.2",
+    "@types/node": "^20.3.0",
+    "styled-jsx": "^5.1.6",
+    "typescript": "^5.8.3",
+    "@types/ws": "^8.18.1",
+    "@types/send": "0.14.4",
+    "@types/mime-types": "3.0.1",
+    "@types/mime": "^3.0.4"
+  },
+  "peerDependencies": {
+    "@types/webpack": "^5.28.5"
+  },
+  "engines": {
+    "node": ">= 20"
+  },
+  "scripts": {
+    "pretsc": "npm run build --workspace @utoo/pack-shared",
+    "build:cjs": "rm -rf cjs && tsc -p ./tsconfig.json --module commonjs --outDir cjs && cp src/*.d.ts cjs/",
+    "build:esm": "rm -rf esm && tsc -p ./tsconfig.json --module esnext --outDir esm && cp src/*.d.ts esm/",
+    "build:local": "npm run build:binding:local && npm run pretsc && npm run build:cjs && npm run build:esm && cp src/*.node cjs/ && cp src/*.node esm/",
+    "artifacts": "napi artifacts --dir ./src --dist npm",
+    "build:binding": "napi build src --platform --release -p pack-napi --cargo-cwd ../../ --cargo-name pack_napi --features plugin --js binding.js --dts binding.d.ts",
+    "build:binding:local": "napi build src --platform --profile release-local -p pack-napi --cargo-cwd ../../ --cargo-name pack_napi --features plugin --js binding.js --dts binding.d.ts",
+    "prepublishOnly": "npm run pretsc && npm run build:esm && npm run build:cjs && napi prepublish -t npm --skip-gh-release",
+    "version": "napi version",
+    "generate-features-list": "node ./scripts/generate-feature-list.js"
+  },
+  "repository": "git@github.com:utooland/utoo.git",
+  "optionalDependencies": {
+    "@utoo/pack-darwin-arm64": "0.0.1-alpha.67",
+    "@utoo/pack-darwin-x64": "0.0.1-alpha.67",
+    "@utoo/pack-linux-arm64-gnu": "0.0.1-alpha.67",
+    "@utoo/pack-linux-arm64-musl": "0.0.1-alpha.67",
+    "@utoo/pack-linux-x64-gnu": "0.0.1-alpha.67",
+    "@utoo/pack-linux-x64-musl": "0.0.1-alpha.67",
+    "@utoo/pack-win32-x64-msvc": "0.0.1-alpha.67"
+  }
+}

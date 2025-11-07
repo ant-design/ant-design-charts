@@ -1,0 +1,216 @@
+{
+  "name": "@umijs/did-you-know",
+  "version": "1.0.4",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/umijs/umi/tree/master/did-you-know#readme",
+  "bugs": {
+    "url": "https://github.com/umijs/umi/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umijs/umi.git"
+  },
+  "license": "MIT",
+  "main": "dist/plugin.js",
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev",
+    "doctor": "father doctor",
+    "release": "father doctor && tsx ../scripts/release.ts --pkg did-you-know",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "terminal-link": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "chencheng <sorrycc@gmail.com> (https://github.com/sorrycc)"
+  ],
+  "didYouKnow": [
+    {
+      "text": "dev 模式下访问 /__umi 路由，可以发现很多有用的内部信息",
+      "majorVersion": 4
+    },
+    {
+      "text": "father 4 正式发布了",
+      "url": "https://zhuanlan.zhihu.com/p/558192063"
+    },
+    {
+      "text": "@umijs/max 是蚂蚁内网框架 Bigfish 的对外版本"
+    },
+    {
+      "text": "Umi 3 的 MFSU 可能会遇到奇怪的问题，升级到 Umi 4 后就没了",
+      "majorVersion": 3
+    },
+    {
+      "text": "如果要支持低版本浏览器，可尝试新出的 legacy 配置项",
+      "url": "https://umijs.org/blog/legacy-browser",
+      "majorVersion": 4
+    },
+    {
+      "text": "如果想点击组件跳转至编辑器源码位置，可尝试新出的 clickToComponent 配置项",
+      "url": "https://umijs.org/docs/api/config#clicktocomponent",
+      "majorVersion": 4
+    },
+    {
+      "text": "如果想检测未使用的文件和导出，可尝试新出的 deadCode 配置项",
+      "url": "https://umijs.org/docs/api/config#deadcode",
+      "majorVersion": 4
+    },
+    {
+      "text": "默认使用 esbuild 作为 JavaScript 压缩工具，也可通过 jsMinifier 配置项切换到 terser 或 uglifyJs 等",
+      "url": "https://umijs.org/docs/api/config#jsminifier-webpack",
+      "majorVersion": 4
+    },
+    {
+      "text": "%%frameworkCliName%% g tsconfig 可一键完成项目的 TypeScript 配置",
+      "majorVersion": 4
+    },
+    {
+      "text": "如果你有 MPA（多页应用）需求，可尝试新出的 mpa 配置项",
+      "url": "https://umijs.org/docs/guides/mpa",
+      "majorVersion": 4
+    },
+    {
+      "text": "如果你需要使用 Jest 来测试 Umi 项目, %%frameworkCliName%% g jest 就可以一键完成配置",
+      "url": "https://umijs.org/docs/guides/generator#jest-配置生成器",
+      "majorVersion": 4
+    },
+    {
+      "text": "如果你需要使用 Tailwind CSS, %%frameworkCliName%% g tailwindcss 就可以一键完成配置",
+      "url": "https://umijs.org/docs/guides/generator#tailwind-css-配置生成器",
+      "majorVersion": 4
+    },
+    {
+      "text": "如果你需要使用 Prettier, %%frameworkCliName%% g prettier 就可以一键完成配置",
+      "url": "https://umijs.org/docs/guides/generator#prettier-配置生成器",
+      "majorVersion": 4
+    },
+    {
+      "text": "如果你需要增加 Git 提交消息校验和自动代码格式化, %%frameworkCliName%% g precommit 就可以一键完成配置",
+      "url": "https://umijs.org/docs/guides/generator#precommit-配置生成器",
+      "majorVersion": 4
+    },
+    {
+      "text": "%%frameworkCliName%% g page 可以快速生成页面模板",
+      "url": "https://umijs.org/docs/guides/generator#页面生成器",
+      "majorVersion": 4
+    },
+    {
+      "text": "%%frameworkCliName%% g component 可以快速生成组件模板",
+      "url": "https://umijs.org/docs/guides/generator#组件生成器",
+      "majorVersion": 4
+    },
+    {
+      "text": "HMR=none %%frameworkCliName%% dev 可以关闭 Umi 开发服务器的模块热替换功能",
+      "majorVersion": 4
+    },
+    {
+      "text": "PORT=9000 %%frameworkCliName%% dev 可以指定 Umi 开发服务器的端口",
+      "majorVersion": 4
+    },
+    {
+      "text": "COMPRESS=none %%frameworkCliName%% build 可以关闭项目构建时的代码压缩功能, 方便调试项目的构建产物",
+      "majorVersion": 4
+    },
+    {
+      "text": "编写 src/loading.(jsx|tsx) 可以自定义页面的加载动画",
+      "majorVersion": 4
+    },
+    {
+      "text": "你知道可以通过 UMI_ENV 定义多个环境的配置吗",
+      "url": "https://umijs.org/docs/guides/env-variables#umi_env",
+      "majorVersion": 4
+    },
+    {
+      "text": "想快速修改 html 模板、DIY 项目？试试编写项目级插件",
+      "url": "https://umijs.org/docs/guides/directory-structure#plugints",
+      "majorVersion": 4
+    },
+    {
+      "text": "ANALYZE=1 %%frameworkCliName%% build 可以分析产物的源码构成",
+      "majorVersion": 4
+    },
+    {
+      "text": "如果想预览构建后产物, 可尝试 %%frameworkCliName%% preview",
+      "url": "https://umijs.org/docs/api/commands#preview",
+      "majorVersion": 4
+    },
+    {
+      "text": "页面加载慢、产物体积大怎么办？试试做代码拆分",
+      "url": "https://umijs.org/blog/code-splitting",
+      "majorVersion": 4
+    },
+    {
+      "text": "全局数据存储，在 React 之外修改数据怎么办？试试一键上手 valtio",
+      "url": "https://umijs.org/docs/max/valtio",
+      "majorVersion": 4
+    },
+    {
+      "text": "请求加载态、数据管理、避免竞态问题，用 react-query 帮你全部解决",
+      "url": "https://umijs.org/docs/max/react-query",
+      "majorVersion": 4
+    },
+    {
+      "text": "CSS 不够灵活、编写动态样式太繁琐怎么办？试试 styled-components 插件",
+      "url": "https://umijs.org/docs/max/styled-components",
+      "majorVersion": 4
+    },
+    {
+      "text": "需要添加全局 React Context 吗？在 src/app.(ts|tsx) 运行时配置中轻松解决",
+      "url": "https://umijs.org/docs/api/runtime-config",
+      "majorVersion": 4
+    },
+    {
+      "text": "@umijs/max 和 umi 如何选择？max 内置了很多好用的插件，即开即用，而 umi 也可以手动配置插件，独立使用",
+      "url": "https://umijs.org/docs/guides/use-plugins",
+      "majorVersion": 4,
+      "framework": [
+        "umi",
+        "@umijs/max"
+      ]
+    },
+    {
+      "text": "遇到难解的配置问题，试试从 Umi FAQ 中寻找答案",
+      "url": "https://umijs.org/docs/introduce/faq",
+      "majorVersion": 4
+    },
+    {
+      "text": "全局布局用 layout ，多层布局用 wrappers ，从文档了解更多路由的控制方法",
+      "url": "https://umijs.org/docs/guides/routes",
+      "majorVersion": 4
+    },
+    {
+      "text": "全局样式、全局脚本写在哪里？创建 src/global.(ts|css) 轻松解决",
+      "url": "https://umijs.org/docs/guides/directory-structure#globaljtsx",
+      "majorVersion": 4
+    },
+    {
+      "text": "Bigfish Doctor 发布啦！遇到问题请先 tnpx @alipay/bigfish-doctor 一下。",
+      "url": "https://yuque.antfin.com/bigfish/blog/bigfish-doctor",
+      "majorVersion": 4,
+      "framework": [
+        "@alipay/bigfish"
+      ]
+    },
+    {
+      "text": "🚀 NeoCoder CLI 发布啦！让 AI 给你的编码提提速。",
+      "url": "https://yuque.antfin.com/fe-engineering3/neocoder-cli/cheatsheet",
+      "majorVersion": 4,
+      "framework": [
+        "@alipay/bigfish"
+      ]
+    },
+    {
+      "text": "🚀 NeoCoder CLI 正式发布！我们把 AI 直接塞进了你的命令行。代码生成、Bug 修复、代码解释... 一切，只需 neo 一下。",
+      "url": "https://yuque.antfin.com/fe-engineering3/neocoder-cli/cheatsheet",
+      "majorVersion": 4,
+      "framework": [
+        "@alipay/bigfish"
+      ]
+    }
+  ]
+}

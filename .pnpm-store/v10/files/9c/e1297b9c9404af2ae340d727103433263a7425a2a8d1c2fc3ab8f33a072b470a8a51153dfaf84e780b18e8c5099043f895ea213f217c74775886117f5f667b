@@ -1,0 +1,134 @@
+{
+    "name": "@types/webpack",
+    "version": "5.28.5",
+    "description": "TypeScript definitions for webpack",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/webpack",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Qubo",
+            "githubUsername": "tkqubo",
+            "url": "https://github.com/tkqubo"
+        },
+        {
+            "name": "Benjamin Lim",
+            "githubUsername": "bumbleblym",
+            "url": "https://github.com/bumbleblym"
+        },
+        {
+            "name": "Boris Cherny",
+            "githubUsername": "bcherny",
+            "url": "https://github.com/bcherny"
+        },
+        {
+            "name": "Tommy Troy Lin",
+            "githubUsername": "tommytroylin",
+            "url": "https://github.com/tommytroylin"
+        },
+        {
+            "name": "Mohsen Azimi",
+            "githubUsername": "mohsen1",
+            "url": "https://github.com/mohsen1"
+        },
+        {
+            "name": "Jonathan Creamer",
+            "githubUsername": "jcreamer898",
+            "url": "https://github.com/jcreamer898"
+        },
+        {
+            "name": "Alan Agius",
+            "githubUsername": "alan-agius4",
+            "url": "https://github.com/alan-agius4"
+        },
+        {
+            "name": "Dennis George",
+            "githubUsername": "dennispg",
+            "url": "https://github.com/dennispg"
+        },
+        {
+            "name": "Christophe Hurpeau",
+            "githubUsername": "christophehurpeau",
+            "url": "https://github.com/christophehurpeau"
+        },
+        {
+            "name": "ZSkycat",
+            "githubUsername": "ZSkycat",
+            "url": "https://github.com/ZSkycat"
+        },
+        {
+            "name": "John Reilly",
+            "githubUsername": "johnnyreilly",
+            "url": "https://github.com/johnnyreilly"
+        },
+        {
+            "name": "Ryan Waskiewicz",
+            "githubUsername": "rwaskiewicz",
+            "url": "https://github.com/rwaskiewicz"
+        },
+        {
+            "name": "Kyle Uehlein",
+            "githubUsername": "kuehlein",
+            "url": "https://github.com/kuehlein"
+        },
+        {
+            "name": "Grgur Grisogono",
+            "githubUsername": "grgur",
+            "url": "https://github.com/grgur"
+        },
+        {
+            "name": "Rubens Pinheiro Gonçalves Cavalcante",
+            "githubUsername": "rubenspgcavalcante",
+            "url": "https://github.com/rubenspgcavalcante"
+        },
+        {
+            "name": "Anders Kaseorg",
+            "githubUsername": "andersk",
+            "url": "https://github.com/andersk"
+        },
+        {
+            "name": "Felix Haus",
+            "githubUsername": "ofhouse",
+            "url": "https://github.com/ofhouse"
+        },
+        {
+            "name": "Daniel Chin",
+            "githubUsername": "danielthank",
+            "url": "https://github.com/danielthank"
+        },
+        {
+            "name": "Daiki Ihara",
+            "githubUsername": "sasurau4",
+            "url": "https://github.com/sasurau4"
+        },
+        {
+            "name": "Dion Shi",
+            "githubUsername": "dionshihk",
+            "url": "https://github.com/dionshihk"
+        },
+        {
+            "name": "Piotr Błażejewicz",
+            "githubUsername": "peterblazejewicz",
+            "url": "https://github.com/peterblazejewicz"
+        },
+        {
+            "name": "Michał Grzegorzewski",
+            "githubUsername": "spamshaker",
+            "url": "https://github.com/spamshaker"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/webpack"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/node": "*",
+        "tapable": "^2.2.0",
+        "webpack": "^5"
+    },
+    "typesPublisherContentHash": "c66bca1496d9dda5adbfd97a25a93ac025904845ca721567ca2c7d4282a6d89c",
+    "typeScriptVersion": "4.5"
+}

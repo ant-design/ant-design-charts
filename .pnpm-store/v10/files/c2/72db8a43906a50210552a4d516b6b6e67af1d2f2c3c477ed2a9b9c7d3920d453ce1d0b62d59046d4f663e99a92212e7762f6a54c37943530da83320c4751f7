@@ -1,0 +1,1 @@
+{"version":3,"file":"base-layout.js","sourceRoot":"","sources":["../../src/layouts/base-layout.ts"],"names":[],"mappings":";;;AAIA;;;;GAIG;AACH,MAAsB,UAAU;IAO9B,YAAY,OAAuB,EAAE,OAAW;QAC9C,IAAI,CAAC,OAAO,GAAG,OAAO,CAAC;QACvB,IAAI,CAAC,OAAO,GAAG,OAAO,IAAK,EAAQ,CAAC;IACtC,CAAC;CAOF;AAjBD,gCAiBC"}

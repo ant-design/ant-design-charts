@@ -1,0 +1,11 @@
+export declare const MAIN_LAYER_CLASS_NAME = "main-layer";
+export declare const LABEL_LAYER_CLASS_NAME = "label-layer";
+export declare const ELEMENT_CLASS_NAME = "element";
+export declare const VIEW_CLASS_NAME = "view";
+export declare const PLOT_CLASS_NAME = "plot";
+export declare const COMPONENT_CLASS_NAME = "component";
+export declare const LABEL_CLASS_NAME = "label";
+export declare const AREA_CLASS_NAME = "area";
+export declare const MASK_CLASS_NAME = "mask";
+export declare const BREAK_CLASS_NAME = "axis-breaks";
+export declare const BREAK_GROUP_CLASS_NAME = "axis-breaks-group";

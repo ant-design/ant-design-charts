@@ -1,0 +1,55 @@
+{
+  "name": "@umijs/es-module-parser",
+  "version": "0.0.7",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "napi": {
+    "name": "es-module-parser",
+    "triples": {
+      "additional": [
+        "aarch64-apple-darwin",
+        "aarch64-pc-windows-msvc",
+        "aarch64-unknown-linux-gnu",
+        "x86_64-unknown-linux-musl",
+        "aarch64-unknown-linux-musl",
+        "armv7-unknown-linux-gnueabihf"
+      ]
+    }
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@napi-rs/cli": "^2.14.8",
+    "prettier": "^2.8.4",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "prettier-plugin-packagejson": "^2.4.3",
+    "vitest": "^0.29.7"
+  },
+  "ava": {
+    "timeout": "3m"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release --dts _napi_generated_index.d.ts",
+    "build:debug": "napi build --platform --dts _napi_generated_index.d.ts",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "vitest run --passWithNoTests",
+    "test:dev": "npm run build:debug && npm run test",
+    "universal": "napi universal",
+    "version": "napi version"
+  },
+  "packageManager": "yarn@3.4.1",
+  "optionalDependencies": {
+    "@umijs/es-module-parser-win32-x64-msvc": "0.0.7",
+    "@umijs/es-module-parser-darwin-x64": "0.0.7",
+    "@umijs/es-module-parser-linux-x64-gnu": "0.0.7",
+    "@umijs/es-module-parser-darwin-arm64": "0.0.7",
+    "@umijs/es-module-parser-win32-arm64-msvc": "0.0.7",
+    "@umijs/es-module-parser-linux-arm64-gnu": "0.0.7",
+    "@umijs/es-module-parser-linux-x64-musl": "0.0.7",
+    "@umijs/es-module-parser-linux-arm64-musl": "0.0.7",
+    "@umijs/es-module-parser-linux-arm-gnueabihf": "0.0.7"
+  }
+}

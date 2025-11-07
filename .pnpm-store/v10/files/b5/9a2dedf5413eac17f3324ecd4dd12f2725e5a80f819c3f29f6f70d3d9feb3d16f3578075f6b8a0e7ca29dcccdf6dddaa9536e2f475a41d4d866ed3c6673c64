@@ -1,0 +1,30 @@
+export declare const ALGORITHM: {
+    pageRank: string;
+    breadthFirstSearch: string;
+    connectedComponent: string;
+    depthFirstSearch: string;
+    detectCycle: string;
+    detectDirectedCycle: string;
+    detectAllCycles: string;
+    detectAllDirectedCycle: string;
+    detectAllUndirectedCycle: string;
+    dijkstra: string;
+    findAllPath: string;
+    findShortestPath: string;
+    floydWarshall: string;
+    getAdjMatrix: string;
+    getDegree: string;
+    getInDegree: string;
+    getNeighbors: string;
+    getOutDegree: string;
+    labelPropagation: string;
+    louvain: string;
+    GADDI: string;
+    minimumSpanningTree: string;
+    SUCCESS: string;
+    FAILURE: string;
+};
+export declare const MESSAGE: {
+    SUCCESS: string;
+    FAILURE: string;
+};

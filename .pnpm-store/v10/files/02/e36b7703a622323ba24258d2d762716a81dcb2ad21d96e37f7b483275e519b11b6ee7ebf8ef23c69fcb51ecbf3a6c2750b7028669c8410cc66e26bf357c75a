@@ -1,0 +1,106 @@
+{
+  "name": "@emotion/css",
+  "version": "11.13.5",
+  "description": "The Next Generation of CSS-in-JS.",
+  "main": "dist/emotion-css.cjs.js",
+  "module": "dist/emotion-css.esm.js",
+  "types": "dist/emotion-css.cjs.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "types",
+    "macro.*",
+    "create-instance"
+  ],
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
+  "dependencies": {
+    "@emotion/babel-plugin": "^11.13.5",
+    "@emotion/cache": "^11.13.5",
+    "@emotion/serialize": "^1.3.3",
+    "@emotion/sheet": "^1.4.0",
+    "@emotion/utils": "^1.4.2"
+  },
+  "devDependencies": {
+    "@definitelytyped/dtslint": "0.0.112",
+    "typescript": "^5.4.5"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/css",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "umd:main": "dist/emotion-css.umd.min.js",
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/emotion-css.cjs.mjs",
+        "default": "./dist/emotion-css.cjs.js"
+      },
+      "development": {
+        "module": "./dist/emotion-css.development.esm.js",
+        "import": "./dist/emotion-css.development.cjs.mjs",
+        "default": "./dist/emotion-css.development.cjs.js"
+      },
+      "module": "./dist/emotion-css.esm.js",
+      "import": "./dist/emotion-css.cjs.mjs",
+      "default": "./dist/emotion-css.cjs.js"
+    },
+    "./create-instance": {
+      "types": {
+        "import": "./create-instance/dist/emotion-css-create-instance.cjs.mjs",
+        "default": "./create-instance/dist/emotion-css-create-instance.cjs.js"
+      },
+      "development": {
+        "module": "./create-instance/dist/emotion-css-create-instance.development.esm.js",
+        "import": "./create-instance/dist/emotion-css-create-instance.development.cjs.mjs",
+        "default": "./create-instance/dist/emotion-css-create-instance.development.cjs.js"
+      },
+      "module": "./create-instance/dist/emotion-css-create-instance.esm.js",
+      "import": "./create-instance/dist/emotion-css-create-instance.cjs.mjs",
+      "default": "./create-instance/dist/emotion-css-create-instance.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./macro": {
+      "types": {
+        "import": "./macro.d.mts",
+        "default": "./macro.d.ts"
+      },
+      "default": "./macro.js"
+    }
+  },
+  "imports": {
+    "#is-development": {
+      "development": "./src/conditions/true.ts",
+      "default": "./src/conditions/false.ts"
+    }
+  },
+  "preconstruct": {
+    "umdName": "emotion",
+    "entrypoints": [
+      "./index.ts",
+      "./create-instance.ts"
+    ],
+    "exports": {
+      "extra": {
+        "./macro": {
+          "types": {
+            "import": "./macro.d.mts",
+            "default": "./macro.d.ts"
+          },
+          "default": "./macro.js"
+        }
+      }
+    }
+  }
+}

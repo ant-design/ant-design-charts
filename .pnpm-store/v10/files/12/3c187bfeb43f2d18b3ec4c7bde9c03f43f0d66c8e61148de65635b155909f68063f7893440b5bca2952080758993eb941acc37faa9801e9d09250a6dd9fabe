@@ -1,0 +1,1 @@
+{"version":3,"file":"SVGPickerPlugin.d.ts","sourceRoot":"","sources":["../src/SVGPickerPlugin.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAEV,aAAa,EAEb,eAAe,EACf,sBAAsB,EACvB,MAAM,cAAc,CAAC;AAEtB;;;;;GAKG;AACH,qBAAa,eAAgB,YAAW,eAAe;IACrD,MAAM,CAAC,GAAG,SAAe;IAEzB,KAAK,CAAC,OAAO,EAAE,sBAAsB,EAAE,OAAO,EAAE,aAAa;IAuB7D,OAAO,CAAC,IAAI;CAsCb"}

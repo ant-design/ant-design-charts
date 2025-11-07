@@ -1,0 +1,8 @@
+nodeLinker: node-modules
+supportedArchitectures:
+  os:
+    - "current"
+    - "linux"
+  cpu:
+    - "arm64"
+    - "x64"

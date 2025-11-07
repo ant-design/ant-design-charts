@@ -1,0 +1,21 @@
+import { Layout } from 'antd';
+import { useRouteMeta } from 'dumi';
+import React from 'react';
+import CommonHelmet from "../../common/CommonHelmet";
+import styles from "./index.module.less";
+import { Main } from "./Main";
+import { Sidebar } from "./Sidebar";
+export var ManualContent = function ManualContent(_ref) {
+  var children = _ref.children;
+  var meta = useRouteMeta();
+  var _meta$frontmatter = meta.frontmatter,
+    title = _meta$frontmatter.title,
+    description = _meta$frontmatter.description;
+  return /*#__PURE__*/React.createElement(Layout, {
+    hasSider: true,
+    className: styles.layout
+  }, /*#__PURE__*/React.createElement(CommonHelmet, {
+    title: title,
+    description: description
+  }), /*#__PURE__*/React.createElement(Sidebar, null), /*#__PURE__*/React.createElement(Main, null, children));
+};

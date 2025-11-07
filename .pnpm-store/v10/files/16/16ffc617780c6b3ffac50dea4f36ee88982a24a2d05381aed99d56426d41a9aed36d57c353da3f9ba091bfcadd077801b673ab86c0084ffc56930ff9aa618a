@@ -1,0 +1,77 @@
+{
+	"name": "p-memoize",
+	"version": "7.1.1",
+	"description": "Memoize promise-returning & async functions",
+	"license": "MIT",
+	"repository": "sindresorhus/p-memoize",
+	"funding": "https://github.com/sindresorhus/p-memoize?sponsor=1",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"engines": {
+		"node": ">=14.16"
+	},
+	"scripts": {
+		"test": "xo && ava && npm run build && tsd",
+		"build": "del-cli dist && tsc",
+		"prepack": "npm run build"
+	},
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"promise",
+		"memoize",
+		"mem",
+		"memoization",
+		"function",
+		"cache",
+		"caching",
+		"optimize",
+		"performance",
+		"ttl",
+		"expire",
+		"async",
+		"await",
+		"promises",
+		"time",
+		"out",
+		"cancel",
+		"bluebird"
+	],
+	"dependencies": {
+		"mimic-fn": "^4.0.0",
+		"type-fest": "^3.0.0"
+	},
+	"devDependencies": {
+		"@sindresorhus/tsconfig": "^3.0.1",
+		"@types/serialize-javascript": "^5.0.2",
+		"ava": "^4.3.3",
+		"del-cli": "^5.0.0",
+		"delay": "^5.0.0",
+		"p-defer": "^4.0.0",
+		"p-state": "^1.0.0",
+		"serialize-javascript": "^6.0.0",
+		"ts-node": "^10.9.1",
+		"tsd": "^0.24.1",
+		"xo": "^0.52.4"
+	},
+	"ava": {
+		"extensions": {
+			"ts": "module"
+		},
+		"nodeArguments": [
+			"--loader=ts-node/esm"
+		]
+	},
+	"xo": {
+		"rules": {
+			"@typescript-eslint/no-redundant-type-constituents": "off"
+		}
+	}
+}

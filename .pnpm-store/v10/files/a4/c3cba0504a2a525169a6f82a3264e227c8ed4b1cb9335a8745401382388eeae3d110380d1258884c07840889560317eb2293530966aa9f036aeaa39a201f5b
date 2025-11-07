@@ -1,0 +1,57 @@
+{
+  "name": "@antv/g-svg",
+  "version": "2.0.42",
+  "description": "A renderer implemented by SVG",
+  "keywords": [
+    "antv",
+    "g"
+  ],
+  "homepage": "https://github.com/antvis/g#readme",
+  "bugs": {
+    "url": "https://github.com/antvis/g/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antvis/g.git"
+  },
+  "license": "MIT",
+  "author": "https://github.com/orgs/antvis/people",
+  "exports": {
+    "types": "./types/index.d.ts",
+    "import": "./dist/index.esm.js",
+    "default": "./dist/index.js"
+  },
+  "main": "dist/index.js",
+  "unpkg": "dist/index.umd.min.js",
+  "module": "dist/index.esm.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "package.json",
+    "dist",
+    "types",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "@antv/util": "^3.3.5",
+    "@babel/runtime": "^7.25.6",
+    "tslib": "^2.5.3",
+    "@antv/g-lite": "2.3.2",
+    "@antv/g-plugin-dom-interaction": "2.1.27",
+    "@antv/g-plugin-svg-picker": "2.0.42",
+    "@antv/g-plugin-svg-renderer": "2.2.24"
+  },
+  "devDependencies": {
+    "@types/gl-matrix": "^2.4.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build:types": "tsc --emitDeclarationOnly --noCheck",
+    "build": "npm run clean && npm run build:types && rollup -c",
+    "clean": "rimraf dist",
+    "sync": "tnpm sync",
+    "watch": "rollup -c -w"
+  }
+}

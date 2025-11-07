@@ -1,0 +1,78 @@
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import { Runtime, corelib, extend } from '@antv/g2';
+import React, { useEffect, useRef, useState } from 'react';
+import ChartHeader from "../ChartHeader";
+import SegmentedTabs from "../SegmentedTabs";
+var Chart = extend(Runtime, corelib());
+var BoxChart = function BoxChart(_ref) {
+  var data = _ref.data,
+    _ref$title = _ref.title,
+    title = _ref$title === void 0 ? '' : _ref$title,
+    _ref$height = _ref.height,
+    height = _ref$height === void 0 ? 400 : _ref$height;
+  var chartRef = useRef(null);
+  var _useState = useState('month'),
+    _useState2 = _slicedToArray(_useState, 2),
+    timeDimension = _useState2[0],
+    setTimeDimension = _useState2[1];
+  var handleChange = function handleChange(val) {
+    setTimeDimension(val);
+  };
+  var currentData = data[timeDimension] || [];
+  useEffect(function () {
+    if (!chartRef.current) return;
+    var chart = new Chart({
+      container: chartRef.current,
+      autoFit: true
+    });
+    chart.box().data(currentData).encode('x', 'date').encode('y', 'value').scale('x', {
+      paddingInner: 0.3,
+      paddingOuter: 0
+    }).scale('y', {
+      zero: true
+    }).axis({
+      x: {
+        title: false,
+        labelAutoRotate: false
+      },
+      y: {
+        title: false
+      }
+    }).legend(false).style({
+      fill: '#FECC6B',
+      stroke: '#FECC6B'
+    }).tooltip([{
+      name: 'min',
+      channel: 'y'
+    }, {
+      name: 'p25',
+      channel: 'y1'
+    }, {
+      name: 'medium',
+      channel: 'y2'
+    }, {
+      name: 'p75',
+      channel: 'y3'
+    }, {
+      name: 'max',
+      channel: 'y4'
+    }]);
+    chart.render();
+    return function () {
+      chart === null || chart === void 0 || chart.destroy();
+    };
+  }, [currentData, chartRef.current]);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(ChartHeader, {
+    title: title,
+    operation: /*#__PURE__*/React.createElement(SegmentedTabs, {
+      onChange: handleChange
+    })
+  }), /*#__PURE__*/React.createElement("div", {
+    ref: chartRef,
+    style: {
+      height: "".concat(height, "px"),
+      marginTop: 20
+    }
+  }));
+};
+export default BoxChart;

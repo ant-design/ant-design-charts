@@ -1,0 +1,236 @@
+import _toConsumableArray from "@babel/runtime/helpers/esm/toConsumableArray";
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import { LoadingOutlined } from '@ant-design/icons';
+import { message as AntMessage, Button, Form, Image, Input, Space, Tooltip, Upload } from 'antd';
+import React, { useCallback, useMemo, useState } from 'react';
+import { DeleteIcon } from "../../icons/DeleteIcon";
+import { NewMessageIcon } from "../../icons/NewMessageIcon";
+import { SendMessageIcon } from "../../icons/SendMessageIcon";
+import { StopMessageIcon } from "../../icons/StopMessageIcon";
+import { UploadImageIcon } from "../../icons/UploadImageIcon";
+import { uploadImage } from "../../services/ChatController";
+var InputAreaRender = function InputAreaRender(props) {
+  var disabled = props.disabled,
+    disabledPlaceholder = props.disabledPlaceholder;
+  var _Form$useForm = Form.useForm(),
+    _Form$useForm2 = _slicedToArray(_Form$useForm, 1),
+    form = _Form$useForm2[0];
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    message = _useState2[0],
+    setMessage = _useState2[1];
+  var _useState3 = useState([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    fileList = _useState4[0],
+    setFileList = _useState4[1];
+  var uploadDisabled = useMemo(function () {
+    return (fileList === null || fileList === void 0 ? void 0 : fileList.length) >= 4;
+  }, [fileList]);
+  var handleMessage = useCallback(function (text) {
+    if (!props || !(props !== null && props !== void 0 && props.onMessageSend) || !text && !fileList.length || disabled) {
+      return;
+    }
+    setMessage('');
+    form.resetFields();
+    var content = text ? [{
+      type: 'text',
+      text: text
+    }] : [];
+    if (fileList.length > 0) {
+      var images = fileList.map(function (file) {
+        return {
+          type: 'image_url',
+          image_url: {
+            url: file.url,
+            detail: 'auto'
+          }
+        };
+      });
+      content = content.concat(images);
+    }
+    props.onMessageSend(JSON.stringify(content));
+    setFileList([]);
+  }, [props.onMessageSend, fileList]);
+  var handleKeyDown = function handleKeyDown(event) {
+    if (disabled) {
+      return;
+    }
+    if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
+      handleMessage(message);
+    }
+  };
+  var handleChange = function handleChange(event) {
+    if (disabled) {
+      return;
+    }
+    setMessage(event.target.value);
+  };
+  var handleUpload = function handleUpload(_ref) {
+    var file = _ref.file,
+      uid = _ref.uid;
+    if (!file || uploadDisabled || disabled) {
+      return;
+    }
+    if (fileList.length >= 4) {
+      AntMessage.warning('上传图片不能超过 4 张');
+      return;
+    }
+
+    // @ts-ignore
+    var fileId = uid !== null && uid !== void 0 ? uid : file === null || file === void 0 ? void 0 : file.uid;
+    setFileList(function (prevList) {
+      return [].concat(_toConsumableArray(prevList), [{
+        url: '',
+        uid: fileId,
+        isLoading: true
+      }]);
+    });
+    uploadImage(file, props.apiDomain).then(function (response) {
+      if (response) {
+        setFileList(function (prevList) {
+          return prevList.map(function (item) {
+            return item.uid === fileId ? {
+              url: response,
+              isLoading: false,
+              uid: fileId
+            } : item;
+          });
+        });
+      } else {
+        AntMessage.error('上传图片失败');
+        setFileList(function (prevList) {
+          return prevList.filter(function (item) {
+            return item.uid !== fileId;
+          });
+        });
+      }
+    });
+  };
+  var handleRemove = function handleRemove(uid) {
+    setFileList(fileList.filter(function (item) {
+      return item.uid !== uid;
+    }));
+  };
+  var handlePaste = function handlePaste(event) {
+    if (disabled) {
+      return;
+    }
+    var files = event.clipboardData.files;
+    if (!files.length) return;
+    var file = files[0];
+    if (!file.type.includes('image')) return;
+    var uniqueUid = "".concat(Date.now());
+    var newFile = new File([file], uniqueUid, {
+      type: file.type
+    });
+    handleUpload({
+      file: newFile,
+      uid: uniqueUid
+    });
+  };
+  return /*#__PURE__*/React.createElement(Form, {
+    form: form,
+    className: "relative px-[12px] py-[10px] rounded-[10px] lui-input-area bg-[#f1f1f1]",
+    style: {
+      opacity: disabled ? 0.6 : 1
+    }
+  }, disabled && disabledPlaceholder && /*#__PURE__*/React.createElement("div", {
+    className: "absolute top-[-14px] left-0 flex items-center justify-center h-[198px]",
+    style: {
+      width: '100%'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-gray-400 w-[182px] text-center z-[999] whitespace-pre-wrap"
+  }, disabledPlaceholder)), /*#__PURE__*/React.createElement(Form.Item, {
+    name: "question"
+  }, /*#__PURE__*/React.createElement(Input.TextArea, {
+    value: message,
+    disabled: disabled,
+    onChange: handleChange,
+    onPaste: handlePaste,
+    style: {
+      height: 100,
+      border: 'none',
+      resize: 'none',
+      backgroundColor: '#F1F1F1',
+      color: 'rgba(0, 0, 0, 0.88)'
+    },
+    onKeyDown: handleKeyDown
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "flex w-[100%]"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex-1"
+  }, /*#__PURE__*/React.createElement(Space, null, props && props.isShowStop && /*#__PURE__*/React.createElement(Button, {
+    disabled: disabled,
+    className: "bg-white hover:!bg-white shadow-md border-none rounded-[6px] leading-[0px]",
+    icon: /*#__PURE__*/React.createElement(StopMessageIcon, null),
+    onClick: function onClick() {
+      if (props && props.onStop) {
+        props.onStop();
+      }
+    }
+  }), /*#__PURE__*/React.createElement(Button, {
+    disabled: disabled,
+    className: "bg-white hover:!bg-white shadow-md border-none rounded-[6px] leading-[0px]",
+    onClick: function onClick() {
+      if (props && props.onClear) {
+        props.onClear();
+      }
+    },
+    icon: /*#__PURE__*/React.createElement(NewMessageIcon, null)
+  }), /*#__PURE__*/React.createElement(Upload, {
+    accept: "image/*",
+    disabled: disabled || uploadDisabled,
+    uploadDisabled: uploadDisabled,
+    showUploadList: false
+    // @ts-ignore
+    ,
+    customRequest: handleUpload
+  }, /*#__PURE__*/React.createElement(Tooltip, {
+    title: uploadDisabled ? '上传图片不能超过 4 张' : '',
+    trigger: "hover"
+  }, /*#__PURE__*/React.createElement(Button, {
+    disabled: disabled,
+    className: uploadDisabled ? 'cursor-not-allowed bg-white hover:!bg-white shadow-md' : 'bg-white hover:!bg-white shadow-md border-none rounded-[6px] leading-[0px]',
+    icon: /*#__PURE__*/React.createElement("div", {
+      style: uploadDisabled ? {
+        opacity: 0.6
+      } : {}
+    }, /*#__PURE__*/React.createElement(UploadImageIcon, null))
+  }))), fileList.map(function (file) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: file.uid,
+      className: "relative h-[32px]"
+    }, file.isLoading ? /*#__PURE__*/React.createElement("div", {
+      className: "rounded-lg shadow-md w-[32px] h-[32px] flex items-center justify-center border-none rounded-[6px] leading-[0px]"
+    }, /*#__PURE__*/React.createElement(LoadingOutlined, {
+      className: "text-center"
+    })) : /*#__PURE__*/React.createElement(Image, {
+      src: file.url,
+      preview: {
+        mask: false
+      },
+      width: 32,
+      height: 32,
+      alt: "uploaded",
+      className: "object-cover rounded-lg shadow-md border-none rounded-[6px] leading-[0px]"
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "absolute w-[16px] h-[16px] bg-gray-800 top-[-8px] right-[-8px] text-white rounded-full cursor-pointer",
+      style: {
+        border: '2px solid #f1f1f1'
+      },
+      onClick: function onClick() {
+        return handleRemove(file.uid);
+      }
+    }, /*#__PURE__*/React.createElement(DeleteIcon, null)));
+  }))), /*#__PURE__*/React.createElement(Button, {
+    type: "primary",
+    className: "w-[32px] bg-gray-700 hover:!bg-gray-700 shadow-md border-none rounded-[6px] leading-[0px]",
+    onClick: function onClick() {
+      handleMessage(form.getFieldValue('question'));
+    },
+    htmlType: "submit",
+    icon: /*#__PURE__*/React.createElement(SendMessageIcon, null)
+  })));
+};
+export default InputAreaRender;

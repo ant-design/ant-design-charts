@@ -1,0 +1,37 @@
+import { FormOutlined } from '@ant-design/icons';
+import { useIntl, useRouteMeta, useSiteData } from 'dumi';
+import React from 'react';
+import { useGithubRepo } from "../../utils/github";
+var EditButton = function EditButton() {
+  var meta = useRouteMeta();
+  var _useIntl = useIntl(),
+    formatMessage = _useIntl.formatMessage;
+  var _useSiteData = useSiteData(),
+    themeConfig = _useSiteData.themeConfig;
+  var githubUrl = themeConfig.githubUrl,
+    _themeConfig$sitePack = themeConfig.sitePackagePath,
+    sitePackagePath = _themeConfig$sitePack === void 0 ? 'site' : _themeConfig$sitePack;
+  var _useGithubRepo = useGithubRepo(),
+    defaultBranch = _useGithubRepo.defaultBranch;
+  var editable = !meta.frontmatter.readonly;
+  if (!editable) {
+    return null;
+  }
+  var branchUrl = "".concat(githubUrl, "/edit/").concat(defaultBranch);
+  var url = meta.frontmatter.redirect ? "".concat(branchUrl, "/").concat(meta.frontmatter.redirect) : "".concat(branchUrl, "/").concat(sitePackagePath, "/").concat(meta.frontmatter.filename || '');
+  return /*#__PURE__*/React.createElement("a", {
+    onClick: function onClick() {
+      return window.open(url, '_blank');
+    }
+  }, /*#__PURE__*/React.createElement(FormOutlined, {
+    style: {
+      fontSize: 16,
+      marginRight: 8
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "button-text"
+  }, formatMessage({
+    id: '在 GitHub 上编辑此页'
+  })));
+};
+export default EditButton;

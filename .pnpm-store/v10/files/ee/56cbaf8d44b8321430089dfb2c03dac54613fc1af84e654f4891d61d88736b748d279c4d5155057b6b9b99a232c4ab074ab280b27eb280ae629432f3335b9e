@@ -1,0 +1,21 @@
+{
+  "name": "@umijs/es-module-parser-linux-x64-musl",
+  "version": "0.0.7",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "es-module-parser.linux-x64-musl.node",
+  "files": [
+    "es-module-parser.linux-x64-musl.node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "libc": [
+    "musl"
+  ]
+}

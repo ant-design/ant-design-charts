@@ -1,0 +1,84 @@
+{
+    "name": "@types/fs-extra",
+    "version": "11.0.1",
+    "description": "TypeScript definitions for fs-extra",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/fs-extra",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Alan Agius",
+            "url": "https://github.com/alan-agius4",
+            "githubUsername": "alan-agius4"
+        },
+        {
+            "name": "midknight41",
+            "url": "https://github.com/midknight41",
+            "githubUsername": "midknight41"
+        },
+        {
+            "name": "Brendan Forster",
+            "url": "https://github.com/shiftkey",
+            "githubUsername": "shiftkey"
+        },
+        {
+            "name": "Mees van Dijk",
+            "url": "https://github.com/mees-",
+            "githubUsername": "mees-"
+        },
+        {
+            "name": "Justin Rockwood",
+            "url": "https://github.com/jrockwood",
+            "githubUsername": "jrockwood"
+        },
+        {
+            "name": "Sang Dang",
+            "url": "https://github.com/sangdth",
+            "githubUsername": "sangdth"
+        },
+        {
+            "name": "Florian Keller",
+            "url": "https://github.com/ffflorian",
+            "githubUsername": "ffflorian"
+        },
+        {
+            "name": "Piotr Błażejewicz",
+            "url": "https://github.com/peterblazejewicz",
+            "githubUsername": "peterblazejewicz"
+        },
+        {
+            "name": "Tiger Oakes",
+            "url": "https://github.com/NotWoods",
+            "githubUsername": "NotWoods"
+        },
+        {
+            "name": "BendingBender",
+            "url": "https://github.com/BendingBender",
+            "githubUsername": "BendingBender"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/fs-extra"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/jsonfile": "*",
+        "@types/node": "*"
+    },
+    "typesPublisherContentHash": "9244941e71bf5edda5456eb8aee9bd3d796ad970d74fb7991788553ac18c5d83",
+    "typeScriptVersion": "4.5",
+    "exports": {
+        ".": {
+            "types": "./index.d.ts"
+        },
+        "./esm": {
+            "types": {
+                "import": "./esm.d.mts"
+            }
+        },
+        "./package.json": "./package.json"
+    }
+}

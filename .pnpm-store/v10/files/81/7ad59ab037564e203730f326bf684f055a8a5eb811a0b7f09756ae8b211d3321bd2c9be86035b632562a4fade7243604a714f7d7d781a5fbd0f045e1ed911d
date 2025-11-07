@@ -1,0 +1,63 @@
+{
+    "name": "@types/yargs",
+    "version": "16.0.10",
+    "description": "TypeScript definitions for yargs",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/yargs",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Martin Poelstra",
+            "githubUsername": "poelstra",
+            "url": "https://github.com/poelstra"
+        },
+        {
+            "name": "Mizunashi Mana",
+            "githubUsername": "mizunashi-mana",
+            "url": "https://github.com/mizunashi-mana"
+        },
+        {
+            "name": "Jeffery Grajkowski",
+            "githubUsername": "pushplay",
+            "url": "https://github.com/pushplay"
+        },
+        {
+            "name": "Jimi (Dimitris) Charalampidis",
+            "githubUsername": "JimiC",
+            "url": "https://github.com/JimiC"
+        },
+        {
+            "name": "Steffen Viken Valvåg",
+            "githubUsername": "steffenvv",
+            "url": "https://github.com/steffenvv"
+        },
+        {
+            "name": "Emily Marigold Klassen",
+            "githubUsername": "forivall",
+            "url": "https://github.com/forivall"
+        },
+        {
+            "name": "ExE Boss",
+            "githubUsername": "ExE-Boss",
+            "url": "https://github.com/ExE-Boss"
+        },
+        {
+            "name": "Aankhen",
+            "githubUsername": "Aankhen",
+            "url": "https://github.com/Aankhen"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/yargs"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/yargs-parser": "*"
+    },
+    "peerDependencies": {},
+    "typesPublisherContentHash": "edf8cc22298706cd9fdcc4c2b3ba59aad41898d2bc2e9fd1cb9803891aed1fc1",
+    "typeScriptVersion": "5.2"
+}

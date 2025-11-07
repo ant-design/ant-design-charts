@@ -1,0 +1,5 @@
+import { AssistantProps } from './index';
+/**
+ * 命令式初始化 Assistant 组件
+ */
+export declare function initAssistant(props: AssistantProps): void;

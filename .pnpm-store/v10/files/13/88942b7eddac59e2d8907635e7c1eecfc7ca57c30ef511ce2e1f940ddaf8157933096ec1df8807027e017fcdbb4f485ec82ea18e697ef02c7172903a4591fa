@@ -1,0 +1,17 @@
+import Lottie from 'lottie-react';
+import React from 'react';
+import LoadingAnimationStart from "../../assets/bubble-start.json";
+var LoadingStart = function LoadingStart(props) {
+  var onComplete = props.onComplete,
+    _props$loop = props.loop,
+    loop = _props$loop === void 0 ? true : _props$loop;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "loading ".concat(props.className || '')
+  }, /*#__PURE__*/React.createElement(Lottie, {
+    animationData: LoadingAnimationStart,
+    loop: loop,
+    autoplay: true,
+    onComplete: onComplete
+  }));
+};
+export default LoadingStart;

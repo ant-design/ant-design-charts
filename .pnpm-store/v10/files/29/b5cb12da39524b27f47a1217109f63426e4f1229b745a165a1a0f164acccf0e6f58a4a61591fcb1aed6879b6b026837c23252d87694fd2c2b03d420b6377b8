@@ -1,0 +1,39 @@
+{
+  "title": "Babel Loader options",
+  "type": "object",
+  "properties": {
+    "cacheDirectory": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": false
+    },
+    "cacheIdentifier": {
+      "type": "string"
+    },
+    "cacheCompression": {
+      "type": "boolean",
+      "default": true
+    },
+    "customize": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": null
+    },
+    "metadataSubscribers": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

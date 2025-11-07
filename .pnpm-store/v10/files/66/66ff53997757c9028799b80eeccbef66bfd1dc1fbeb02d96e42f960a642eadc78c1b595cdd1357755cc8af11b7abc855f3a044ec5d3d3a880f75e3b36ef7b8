@@ -1,0 +1,11 @@
+import { useLocale as useDumiLocale } from 'dumi';
+/**
+ * 获取国际化
+ */
+var useLocale = function useLocale(localeMap) {
+  var _useDumiLocale = useDumiLocale(),
+    id = _useDumiLocale.id;
+  var localeType = id === 'zh' ? 'zh' : 'en';
+  return [localeMap === null || localeMap === void 0 ? void 0 : localeMap[localeType], localeType];
+};
+export default useLocale;

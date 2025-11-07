@@ -1,0 +1,64 @@
+{
+  "name": "proxy-compare",
+  "description": "Compare two objects using accessed properties with Proxy",
+  "version": "2.6.0",
+  "author": "Daishi Kato",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dai-shi/proxy-compare.git"
+  },
+  "source": "./src/index.ts",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.modern.js",
+  "react-native": "./dist/index.modern.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "module": "./dist/index.modern.js",
+      "import": "./dist/index.modern.mjs",
+      "default": "./dist/index.umd.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "compile": "microbundle build -f modern,umd",
+    "postcompile": "cp dist/index.modern.mjs dist/index.modern.js && cp dist/index.modern.mjs.map dist/index.modern.js.map",
+    "test": "run-s eslint tsc-test jest",
+    "eslint": "eslint --ext .js,.ts --ignore-pattern dist .",
+    "jest": "jest",
+    "tsc-test": "tsc --project . --noEmit",
+    "apidoc": "documentation readme src --section API --markdown-toc false --parse-extension ts"
+  },
+  "jest": {
+    "preset": "ts-jest/presets/js-with-ts"
+  },
+  "keywords": [
+    "proxy",
+    "compare",
+    "equal",
+    "shallowequal",
+    "deepequal"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "documentation": "^14.0.2",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "jest": "^29.7.0",
+    "microbundle": "^0.15.1",
+    "npm-run-all": "^4.1.5",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  }
+}
