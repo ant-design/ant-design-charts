@@ -57,7 +57,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
     size: {},
   },
   interaction: {
-    legengFilter: true, // 启用图例筛选交互
+    legendFilter: true, // 启用图例筛选交互
   },
 });
 ```
