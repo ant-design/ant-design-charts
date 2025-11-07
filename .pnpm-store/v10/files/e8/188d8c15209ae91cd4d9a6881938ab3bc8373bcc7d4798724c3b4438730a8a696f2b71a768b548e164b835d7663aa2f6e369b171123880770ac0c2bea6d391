@@ -1,0 +1,4 @@
+import React from 'react';
+import { GitInsightProps } from '../../GitInsight';
+declare const GitInsightCard: (props: GitInsightProps) => React.JSX.Element;
+export default GitInsightCard;

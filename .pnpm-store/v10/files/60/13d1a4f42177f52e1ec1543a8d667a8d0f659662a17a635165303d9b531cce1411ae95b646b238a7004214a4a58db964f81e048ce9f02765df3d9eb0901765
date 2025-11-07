@@ -1,0 +1,36 @@
+{
+  "name": "inquirer-autosubmit-prompt",
+  "version": "0.2.0",
+  "description": "Auto submit plugin for Inquirer.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaodingyd/inquirer-autosubmit-prompt.git"
+  },
+  "keywords": [
+    "Inquirer.js"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "author": "Yao Ding",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yaodingyd/inquirer-autosubmit-prompt/issues"
+  },
+  "homepage": "https://github.com/yaodingyd/inquirer-autosubmit-prompt#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "inquirer": "^6.2.1",
+    "rxjs": "^6.3.3"
+  },
+  "devDependencies": {
+    "ava": "^1.1.0",
+    "lodash": "^4.17.11",
+    "sinon": "^7.2.3",
+    "xo": "^0.24.0"
+  }
+}

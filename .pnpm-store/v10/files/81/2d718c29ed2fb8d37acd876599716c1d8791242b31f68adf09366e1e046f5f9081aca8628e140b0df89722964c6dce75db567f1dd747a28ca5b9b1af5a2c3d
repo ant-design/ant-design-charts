@@ -1,0 +1,1 @@
+{"version":3,"file":"quantize.js","sourceRoot":"","sources":["../../src/scale/quantize.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,IAAI,aAAa,EAAE,MAAM,aAAa,CAAC;AAMxD,MAAM,CAAC,MAAM,QAAQ,GAAwB,CAAC,OAAO,EAAE,EAAE;IACvD,OAAO,IAAI,aAAa,CAAC,OAAO,CAAC,CAAC;AACpC,CAAC,CAAC;AAEF,QAAQ,CAAC,KAAK,GAAG,EAAE,CAAC"}

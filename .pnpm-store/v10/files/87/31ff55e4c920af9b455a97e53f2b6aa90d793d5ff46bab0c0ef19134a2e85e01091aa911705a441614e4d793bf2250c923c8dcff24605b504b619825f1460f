@@ -1,0 +1,11 @@
+.editor {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+
+  .monaco {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+}

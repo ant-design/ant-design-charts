@@ -1,0 +1,15 @@
+import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
+import React from 'react';
+import styles from "./index.module.less";
+export var CollapsedIcon = function CollapsedIcon(props) {
+  var isCollapsed = props.isCollapsed,
+    _onClick = props.onClick,
+    style = props.style;
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles.collapsed,
+    onClick: function onClick() {
+      _onClick(!isCollapsed);
+    },
+    style: style
+  }, isCollapsed ? /*#__PURE__*/React.createElement(DoubleRightOutlined, null) : /*#__PURE__*/React.createElement(DoubleLeftOutlined, null));
+};

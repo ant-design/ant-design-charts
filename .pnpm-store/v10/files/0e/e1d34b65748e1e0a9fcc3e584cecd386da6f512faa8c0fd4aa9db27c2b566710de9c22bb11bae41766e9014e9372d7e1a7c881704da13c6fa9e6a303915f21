@@ -1,0 +1,23 @@
+export var popupCenter = function popupCenter(_ref) {
+  var url = _ref.url,
+    title = _ref.title,
+    w = _ref.w,
+    h = _ref.h;
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return;
+  }
+  var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
+  var dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
+  var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+  var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+  var systemZoom = width / window.screen.availWidth;
+
+  // 修正计算 left 和 top，使窗口能够居中
+  var left = (width - w / systemZoom) / 2 + dualScreenLeft;
+  var top = (height - h / systemZoom) / 2 + dualScreenTop;
+  var newWindow = window.open(url, title, "\n      scrollbars=none,\n      width=".concat(w / systemZoom, ", \n      height=").concat(h / systemZoom, ", \n      top=").concat(top, ", \n      left=").concat(left, "\n    "));
+  if (newWindow && newWindow.focus) {
+    newWindow.focus();
+  }
+  return newWindow;
+};

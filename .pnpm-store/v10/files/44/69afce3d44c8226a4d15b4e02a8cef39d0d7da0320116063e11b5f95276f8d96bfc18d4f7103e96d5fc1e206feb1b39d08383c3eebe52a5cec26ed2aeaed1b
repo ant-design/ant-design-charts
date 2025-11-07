@@ -1,0 +1,33 @@
+@import (reference) '../../styles/variables.less';
+
+.@{prefix}-footer {
+  margin-top: @s-content-padding;
+  border-top: 1px solid @c-border-light;
+  color: @c-text-note;
+  font-size: 15px;
+  line-height: 26px;
+  text-align: center;
+  padding: @s-content-padding * 0.6 0;
+
+  @{dark-selector} & {
+    border-top-color: @c-border-less-dark;
+    color: @c-text-note-dark;
+  }
+
+  @media @mobile {
+    padding: @s-content-padding * 0.3 0;
+    font-size: 13px;
+  }
+
+  a {
+    color: @c-primary;
+
+    @{dark-selector} & {
+      color: @c-primary-dark;
+    }
+
+    &:not(:hover) {
+      text-decoration: none;
+    }
+  }
+}

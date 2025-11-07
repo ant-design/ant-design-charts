@@ -1,0 +1,29 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import Assistant from "./index";
+
+/**
+ * 命令式初始化 Assistant 组件
+ */
+export function initAssistant(props) {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  // 创建挂载点
+  var elm = document.createElement('div');
+  document.body.appendChild(elm);
+  var AssistantContainer = function AssistantContainer() {
+    React.useEffect(function () {
+      return function () {
+        if (document.body.contains(elm)) {
+          document.body.removeChild(elm);
+        }
+      };
+    }, []);
+    return /*#__PURE__*/React.createElement(Assistant, props);
+  };
+
+  // 渲染 React 组件
+  createRoot(elm).render( /*#__PURE__*/React.createElement(AssistantContainer, null));
+}

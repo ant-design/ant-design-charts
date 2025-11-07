@@ -1,0 +1,43 @@
+import { TextShape, TextBadge, TextTag } from '../shape';
+import { MaybeTuple, MaybeVisualPosition } from '../transform';
+import { baseGeometryChannels, basePostInference, basePreInference, createBandOffset, tooltip2d, visualMark, } from './utils';
+const shape = {
+    text: TextShape,
+    badge: TextBadge,
+    tag: TextTag,
+};
+export const Text = (options) => {
+    const { cartesian = false } = options;
+    if (cartesian)
+        return visualMark;
+    return ((index, scale, value, coordinate) => {
+        const { x: X, y: Y } = value;
+        const offset = createBandOffset(scale, value, options);
+        const P = Array.from(index, (i) => {
+            const p = [+X[i], +Y[i]];
+            return [coordinate.map(offset(p, i))];
+        });
+        return [index, P];
+    });
+};
+Text.props = {
+    defaultShape: 'text',
+    defaultLabelShape: 'label',
+    composite: false,
+    shape,
+    channels: [
+        ...baseGeometryChannels({ shapes: Object.keys(shape) }),
+        { name: 'x', required: true },
+        { name: 'y', required: true },
+        { name: 'text', scale: 'identity' },
+        { name: 'fontSize', scale: 'identity' },
+        { name: 'rotate', scale: 'identity' },
+    ],
+    preInference: [
+        ...basePreInference(),
+        { type: MaybeTuple },
+        { type: MaybeVisualPosition },
+    ],
+    postInference: [...basePostInference(), ...tooltip2d()],
+};
+//# sourceMappingURL=text.js.map

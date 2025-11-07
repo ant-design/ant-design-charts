@@ -1,0 +1,12 @@
+import React from 'react';
+import Markdown from "../../Markdown";
+var MarkdownRender = /*#__PURE__*/React.memo(function (props) {
+  return /*#__PURE__*/React.createElement(Markdown, {
+    style: {
+      overflowX: 'hidden',
+      overflowY: 'auto'
+    },
+    text: props.content
+  });
+});
+export default MarkdownRender;

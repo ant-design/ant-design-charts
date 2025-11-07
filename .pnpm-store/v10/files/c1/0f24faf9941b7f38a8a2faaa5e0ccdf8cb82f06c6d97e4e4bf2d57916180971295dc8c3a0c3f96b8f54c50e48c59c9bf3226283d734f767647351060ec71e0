@@ -1,0 +1,21 @@
+{
+  "name": "@umijs/mako-linux-x64-musl",
+  "version": "0.11.10",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "mako.linux-x64-musl.node",
+  "files": [
+    "mako.linux-x64-musl.node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "libc": [
+    "musl"
+  ]
+}

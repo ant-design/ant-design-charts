@@ -1,0 +1,49 @@
+{
+	"name": "latest-version",
+	"version": "9.0.0",
+	"description": "Get the latest version of an npm package",
+	"license": "MIT",
+	"repository": "sindresorhus/latest-version",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"latest",
+		"version",
+		"npm",
+		"pkg",
+		"package",
+		"package.json",
+		"current",
+		"module"
+	],
+	"dependencies": {
+		"package-json": "^10.0.0"
+	},
+	"devDependencies": {
+		"ava": "^6.1.1",
+		"semver": "^7.6.0",
+		"semver-regex": "^4.0.5",
+		"tsd": "^0.30.7",
+		"xo": "^0.57.0"
+	}
+}

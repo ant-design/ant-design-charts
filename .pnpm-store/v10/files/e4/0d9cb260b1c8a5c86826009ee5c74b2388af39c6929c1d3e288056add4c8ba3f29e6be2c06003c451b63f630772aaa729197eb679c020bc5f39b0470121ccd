@@ -1,0 +1,1 @@
+{"version":3,"file":"clear-animation-frame.js","sourceRoot":"","sources":["../src/clear-animation-frame.ts"],"names":[],"mappings":";;AAAA,SAAwB,oBAAoB,CAAC,OAAe;IAC1D,IAAM,MAAM,GAAG,MAAM,CAAC,oBAAoB;QACxC,MAAM,CAAC,0BAA0B;QACjC,aAAa;QACb,MAAM,CAAC,uBAAuB;QAC9B,aAAa;QACb,MAAM,CAAC,sBAAsB;QAC7B,YAAY,CAAC;IAEf,MAAM,CAAC,OAAO,CAAC,CAAC;AAClB,CAAC;AAVD,uCAUC;AAAA,CAAC"}

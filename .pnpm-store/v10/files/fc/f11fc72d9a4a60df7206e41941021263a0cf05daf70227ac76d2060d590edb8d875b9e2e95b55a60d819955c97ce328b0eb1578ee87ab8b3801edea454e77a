@@ -1,0 +1,1 @@
+{"version":3,"file":"ElementSVG.d.ts","sourceRoot":"","sources":["../../src/components/ElementSVG.ts"],"names":[],"mappings":"AAAA,qBAAa,UAAU;IACrB,MAAM,CAAC,GAAG,SAAmB;IAE7B;;OAEG;IACH,GAAG,EAAE,UAAU,GAAG,IAAI,CAAC;IAEvB;;;OAGG;IACH,QAAQ,EAAE,UAAU,GAAG,IAAI,CAAC;IAE5B;;;;OAIG;IACH,aAAa,EAAE,UAAU,GAAG,IAAI,CAAC;CAClC"}

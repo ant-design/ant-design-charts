@@ -1,0 +1,7 @@
+import React from 'react';
+interface IProps {
+    className?: string;
+    content: string;
+}
+declare const MarkdownRender: React.MemoExoticComponent<(props: IProps) => React.JSX.Element>;
+export default MarkdownRender;

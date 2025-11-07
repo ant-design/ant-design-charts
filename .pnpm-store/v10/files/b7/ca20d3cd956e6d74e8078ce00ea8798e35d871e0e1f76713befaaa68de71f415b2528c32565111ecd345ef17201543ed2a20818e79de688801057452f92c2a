@@ -1,0 +1,45 @@
+{
+  "name": "@loadable/component",
+  "description": "React code splitting made easy.",
+  "version": "5.15.2",
+  "main": "dist/loadable.cjs.js",
+  "module": "dist/loadable.esm.js",
+  "repository": "git@github.com:gregberge/loadable-components.git",
+  "author": "Greg Bergé <berge.greg@gmail.com>",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "react",
+    "ssr",
+    "webpack",
+    "code-splitting",
+    "react-router",
+    "server-side-rendering",
+    "dynamic-import",
+    "react-loadable",
+    "react-async-components"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/gregberge"
+  },
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "shx rm -rf dist",
+    "build": "cross-env rollup -c",
+    "prepublishOnly": "yarn run build"
+  },
+  "peerDependencies": {
+    "react": ">=16.3.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "hoist-non-react-statics": "^3.3.1",
+    "react-is": "^16.12.0"
+  },
+  "gitHead": "711e4b6d31d185e752561a3e8c230171998a9d31"
+}

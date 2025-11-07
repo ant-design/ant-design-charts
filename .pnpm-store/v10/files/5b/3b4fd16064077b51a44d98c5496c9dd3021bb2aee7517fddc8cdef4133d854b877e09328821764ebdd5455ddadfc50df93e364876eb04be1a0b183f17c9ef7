@@ -1,0 +1,160 @@
+@import (reference) '../../styles/variables.less';
+@import '../../styles/utils.less';
+
+.@{prefix}-previewer {
+  &-actions {
+    display: flex;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+
+    &:not(:last-child) {
+      border-bottom: 1px dashed @c-border-light;
+
+      @{dark-selector} & {
+        border-bottom-color: @c-border-less-dark;
+      }
+    }
+  }
+
+  &-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    > svg {
+      width: 16px;
+      fill: darken(@c-border, 20%);
+      transition: fill 0.2s;
+
+      @{dark-selector} & {
+        fill: lighten(@c-border-dark, 20%);
+      }
+    }
+
+    &:hover > svg {
+      fill: darken(@c-border, 30%);
+
+      @{dark-selector} & {
+        fill: lighten(@c-border-dark, 30%);
+      }
+    }
+
+    &:not(:last-child) {
+      margin-inline-end: 4px;
+    }
+  }
+
+  &-action-sketch {
+    > select {
+      position: absolute;
+      appearance: none;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    &[data-copied] > svg {
+      fill: @c-success;
+    }
+  }
+
+  // hide tabs when only one tab pane
+  &-tabs-single .@{prefix}-tabs-nav {
+    display: none;
+  }
+
+  &-editor-tip-btn {
+    position: absolute;
+    appearance: none;
+    z-index: 2;
+    right: 42px;
+    top: 9px;
+    padding: 8px 12px;
+    cursor: help;
+    background: transparent;
+    border: 0;
+    transition: all 0.2s;
+
+    > svg {
+      width: 16px;
+      fill: darken(@c-border, 20%);
+
+      @{dark-selector} & {
+        fill: lighten(@c-border-dark, 20%);
+      }
+    }
+
+    &[data-readonly] {
+      > span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 16px;
+        height: 2px;
+        background: darken(@c-border, 20%);
+        transform: rotate(45deg) translate(-50%, 120%);
+      }
+    }
+
+    .@{prefix}-tabs-tabpane:not(:hover) & {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+.dumi-theme-default-tooltip {
+  position: fixed;
+  min-width: 30px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+
+  &-hidden {
+    display: none;
+  }
+
+  &-arrow {
+    border: 4px solid transparent;
+    opacity: 0.7;
+  }
+
+  &-placement-top {
+    .dumi-theme-default-tooltip-arrow {
+      border-top-color: #000;
+      transform: translate(-50%, 100%);
+    }
+  }
+
+  &-bottom {
+    .dumi-theme-default-tooltip-arrow {
+      border-bottom-color: #000;
+      transform: translateY(-50%, -100%);
+    }
+  }
+
+  &-content {
+    padding: 5px 8px;
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.1;
+    white-space: nowrap;
+    background-color: #000;
+    opacity: 0.7;
+    border-radius: 2px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 10%);
+    box-sizing: border-box;
+
+    @{dark-selector} & {
+      background-color: #222;
+    }
+  }
+}

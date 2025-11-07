@@ -1,0 +1,25 @@
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import Lottie from 'lottie-react';
+import React, { useState } from 'react';
+import LoadingAnimationEnd from "../../assets/bubble-end.json";
+var LoadingEnd = function LoadingEnd(props) {
+  var children = props.children;
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    complete = _useState2[0],
+    setComplete = _useState2[1];
+  if (complete) {
+    return children;
+  }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "loading"
+  }, /*#__PURE__*/React.createElement(Lottie, {
+    animationData: LoadingAnimationEnd,
+    autoplay: true,
+    loop: false,
+    onComplete: function onComplete() {
+      return setComplete(true);
+    }
+  })));
+};
+export default LoadingEnd;

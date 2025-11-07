@@ -1,0 +1,7 @@
+env:
+  node: true
+  es6: true
+  browser: true
+rules:
+  no-unused-vars: 2
+  indent: [2, 4, {SwitchCase: 1}]
