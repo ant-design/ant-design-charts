@@ -19,7 +19,8 @@
     "/dist"
   ],
   "scripts": {
-    "start": "pnpm lib:es --w",
+    "dev": "vite --config ./vite.config.ts --port 3001",
+    "watch": "pnpm lib:es --w",
     "build": "run-s clean lib dist",
     "build:lib": "run-s clean lib",
     "ci": "pnpm run build && pnpm run test:coverage",

@@ -1,6 +1,6 @@
 import type { ContainerConfig } from '@ant-design/charts-util';
 import type { Data as G2Data, TooltipComponent } from '@antv/g2';
-import { Options, Spec } from './core';
+import type { Options, Spec } from './core';
 
 /**
  * @title 图表浮窗配置

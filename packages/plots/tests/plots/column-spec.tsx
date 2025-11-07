@@ -4,6 +4,8 @@ import { Column } from '../../src';
 
 const ref = React.createRef();
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 describe('Proxy config', () => {
   let container;
   const data = [
@@ -42,6 +44,7 @@ describe('Proxy config', () => {
     act(() => {
       render(<Column {...config} ref={ref} />, container);
     });
+    await sleep(500);
     expect(plot).not.toBeUndefined();
   });
 });
