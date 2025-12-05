@@ -107,6 +107,11 @@ const BUILD_ASSESTS_BIGFISH_DEV2 = `(event, { items })=>{
                                         columnNumber: 24
                                     }, this);
                                 }`
+const BUILD_ASSESTS_ESBUILD = `($, _, i) => /* @__PURE__ */ jsxDEV("div", { style: { height: 1, width: 30, background: "#aaa", margin: "0 20" } }, void 0, false, {
+    fileName: "index.tsx",
+    lineNumber: 12,
+    columnNumber: 29
+  }, this)`
 
 describe('isValidElement', () => {
   it('ice build product', async () => {
@@ -123,6 +128,10 @@ describe('isValidElement', () => {
 
   it('build product with bigfish dev2', async () => {
     expect(isValidElement(BUILD_ASSESTS_BIGFISH_DEV2)).toBeTruthy();
+  });
+
+  it('build product with vite', async () => {
+    expect(isValidElement(BUILD_ASSESTS_ESBUILD)).toBeTruthy();
   });
 
   it('should return true for basic React patterns', () => {

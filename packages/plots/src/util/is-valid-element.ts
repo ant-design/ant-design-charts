@@ -1,5 +1,5 @@
 export const isValidElement = (jsxCode: string): boolean => {
-  const basicReactPatterns = [/\breact\b/i, /\.jsx/, /children:\s*\[/, /\*#__PURE__\*/];
+  const basicReactPatterns = [/\breact\b/i, /\.jsx/, /children:\s*\[/, /\*\s*[#@]__PURE__\s*\*/];
   const createElementPattern = /(\w+)?\.createElement\(\s*(['"`])([^'"`]+)\2/g;
 
   // G 元素集合
