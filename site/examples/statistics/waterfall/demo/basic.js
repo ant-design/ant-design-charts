@@ -28,7 +28,7 @@ const DemoWaterfall = () => {
     labels: [
       {
         text: (arg) => {
-          return `${arg.__end__ / 1000000} 亿`;
+          return `${arg.__end__ / 1000000} 百万`;
         },
         position: (d) => (d.value > 0 ? 'top' : 'bottom'),
         textBaseline: (d) => (d.value > 0 ? 'bottom' : 'top'),
@@ -37,7 +37,7 @@ const DemoWaterfall = () => {
       },
       {
         text: (arg) => {
-          return `${arg.value / 1000000} 亿`;
+          return `${arg.value / 1000000} 百万`;
         },
         position: 'inside',
         fontSize: 10,
