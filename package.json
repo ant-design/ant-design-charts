@@ -10,6 +10,7 @@
     "build:site": "pnpm -r --stream --filter=./site run build",
     "build:lib": "pnpm -r --stream --filter=!./site run build:lib",
     "dev:graphs": "cd packages/graphs && pnpm run dev",
+    "dev:plots": "cd packages/plots && pnpm run dev",
     "profile": "webpack --config webpack.config.js --mode production --profile --json > stats.json",
     "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "ci:version": "pnpm changeset version",
