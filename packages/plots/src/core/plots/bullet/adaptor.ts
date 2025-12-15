@@ -1,16 +1,16 @@
 import { allCoordinateLayout } from '../../adaptor';
 import {
   flow,
-  transformOptions,
-  map,
-  set,
   get,
-  isArray,
   includes,
-  isNumber,
-  mergeWithArrayCoverage,
+  isArray,
   isNil,
+  isNumber,
   isString,
+  map,
+  mergeWithArrayCoverage,
+  set,
+  transformOptions,
 } from '../../utils';
 
 import type { Adaptor } from '../../types';
@@ -150,13 +150,14 @@ export function adaptor(params: Params) {
     });
     set(options, 'scale.color.range', colors);
     // legend itemMarker 的形状
-    options.legend.color.itemMarker = (d) => {
-      if (mapField && includes(mapField?.[targetField], d)) {
-        return 'line';
-      }
-      return d?.replace(/\_\d$/, '') === targetField ? 'line' : 'square';
-    };
-
+    if (get(options, 'legend.color') && isNil(get(options, 'legend.color.itemMarker'))) {
+      options.legend.color.itemMarker = (d) => {
+        if (mapField && includes(mapField?.[targetField], d)) {
+          return 'line';
+        }
+        return d?.replace(/\_\d$/, '') === targetField ? 'line' : 'square';
+      };
+    }
     return params;
   };
 

@@ -24,7 +24,7 @@ export const DemoRadar = () => {
     },
     axis: {
       y: {
-        labelFormatter: (v) => `${v / 1000} K`,
+        labelFormatter: (v: number) => `${v / 1000} K`,
       },
     },
     style: {
