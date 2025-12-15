@@ -25,23 +25,38 @@ const DemoWaterfall = () => {
         return d.isTotal ? '#96a6a6' : d.value > 0 ? '#F56E53' : '#3CC27F';
       },
     },
-    label: [
-      {
-        text: 'value',
-        formatter: '~s',
-        position: 'inside',
-        fontSize: 10,
-      },
+    labels: [
       {
         text: (arg) => {
-          return `${arg.y1 / 10000000} 亿`;
+          return `${arg.__end__ / 1000000} 百万`;
         },
         position: (d) => (d.value > 0 ? 'top' : 'bottom'),
         textBaseline: (d) => (d.value > 0 ? 'bottom' : 'top'),
         fontSize: 10,
         dy: (d) => (d.value > 0 ? -4 : 4),
       },
+      {
+        text: (arg) => {
+          return `${arg.value / 1000000} 百万`;
+        },
+        position: 'inside',
+        fontSize: 10,
+      },
     ],
+    tooltip: {
+      items: [
+        {
+          name: 'start',
+          channel: 'y',
+          valueFormatter: '~s'
+        },
+        {
+          name: 'end',
+          channel: 'y1',
+          valueFormatter: '~s'
+        }
+      ]
+    }
   };
   return <Waterfall {...config} />;
 };
