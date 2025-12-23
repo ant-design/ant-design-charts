@@ -1,3 +1,13 @@
+## [2.6.7](https://github.com/ant-design/ant-design-charts/compare/2.6.6...2.6.7) (2025-12-23)
+
+
+### Bug Fixes
+
+* bullet legend invalid cofiguration ([#3116](https://github.com/ant-design/ant-design-charts/issues/3116)) ([cc7dfe0](https://github.com/ant-design/ant-design-charts/commit/cc7dfe08eef6022e7a26474a84c6d282b2fad22c))
+* 修复数据源更新后 tooltip 数据不更新 ([#3119](https://github.com/ant-design/ant-design-charts/issues/3119)) ([b724fab](https://github.com/ant-design/ant-design-charts/commit/b724fab35af75a02bd735e7e1d869ab3dc30e49b))
+
+
+
 ## [2.6.6](https://github.com/ant-design/ant-design-charts/compare/2.6.5...2.6.6) (2025-10-21)
 
 
