@@ -1,5 +1,5 @@
-import { flow, transformOptions, isArray, set, get, fieldAdapter, isFunction } from '../../utils';
 import type { Adaptor } from '../../types';
+import { fieldAdapter, flow, get, isArray, isFunction, set, transformOptions } from '../../utils';
 import type { PieOptions } from './type';
 
 type Params = Adaptor<PieOptions>;
@@ -33,10 +33,14 @@ export function adaptor(params: Params) {
         if (tooltip !== false) {
           if (isFunction(tooltip)) {
             set(options, 'tooltip', (arg, index, items) => {
-              return tooltip({
-                ...arg,
-                [angleField]: 0
-              }, index, items.map(item => ({ ...item, [angleField]: 0 })));
+              return tooltip(
+                {
+                  ...arg,
+                  [angleField]: 0,
+                },
+                index,
+                items.map((item) => ({ ...item, [angleField]: 0 })),
+              );
             });
           } else {
             set(options, 'tooltip', {
@@ -52,6 +56,10 @@ export function adaptor(params: Params) {
             });
           }
         }
+      } else {
+        // 恢复默认配置
+        set(options, 'tooltip', tooltip);
+        set(options, 'label', label);
       }
     }
     return params;
