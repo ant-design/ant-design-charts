@@ -10,6 +10,10 @@ const dataSource = [
     example: 'bullet-legend',
     description: '子弹图关闭图例',
   },
+  {
+    example: 'change-data',
+    description: '饼图动态更新数据',
+  },
 ].map((item, index) => ({ key: index, ...item }));
 
 export const ExampleList = () => {
