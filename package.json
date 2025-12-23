@@ -19,7 +19,7 @@
     "release": "pnpm run before:release && pnpm changeset publish",
     "release:alpha": "pnpm run before:release && pnpm changeset publish --tag alpha",
     "release:beta": "pnpm run before:release && pnpm changeset publish --tag beta",
-    "publish": "pnpm publish -r --filter=!./site --publish-branch master",
+    "publish": "pnpm publish -r --filter=!./site --publish-branch master --registry https://registry.npmjs.org/",
     "changelog": "pnpm -r --stream --filter=!./site run changelog"
   },
   "devDependencies": {
