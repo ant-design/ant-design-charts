@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
-import { isFunction, isEqual, createNode, cloneDeep, isArray, isObject, isValidElement } from '../util';
-import { CommonConfig, Chart } from '../interface';
+import { useEffect, useRef } from 'react';
+import { Chart, CommonConfig } from '../interface';
+import { cloneDeep, createNode, isArray, isEqual, isFunction, isObject, isValidElement } from '../util';
 
 export default function useChart<T extends Chart, U extends CommonConfig>(ChartClass: T, config: U) {
   const chart = useRef<T>(null);
@@ -46,6 +46,7 @@ export default function useChart<T extends Chart, U extends CommonConfig>(ChartC
    * @param {boolean} flag isTooltip
    */
   const processConfig = (cfg: object, flag = false) => {
+    if (!isObject(cfg)) return;
     const keys = Object.keys(cfg);
     let isTooltip = flag;
     keys.forEach((key) => {
