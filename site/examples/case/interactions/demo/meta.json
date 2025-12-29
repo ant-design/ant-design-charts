@@ -107,6 +107,14 @@
         "en": "Quadrants"
       },
       "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*g8i_Ra_TBKkAAAAAQ3AAAAgAemJ7AQ/fmt.webp"
+    },
+    {
+      "filename": "area-fill.js",
+      "title": {
+        "zh": "根据数值填充面积颜色",
+        "en": "According to value fill area color"
+      },
+      "screenshot": "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*NK-mRpMz-UUAAAAARNAAAAgAemJ7AQ/fmt.webp"
     }
   ]
 }
