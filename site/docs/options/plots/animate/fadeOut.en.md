@@ -3,4 +3,18 @@ title: fadeOut
 order: 2
 ---
 
-<embed src="@/docs/options/plots/animate/fadeOut.zh.md"></embed>
+`fadeOut` is a fade-out animation that affects the `opacity` transparency property.
+
+## Getting Started
+
+<img alt="fadeOut" src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*s4Y4S5JJ6WEAAAAAAAAAAABkARQnAQ" width="400" />
+
+```js
+{
+  "animate": {
+    "exit": {
+      "type": "fadeOut"
+    }
+  }
+}
+```
