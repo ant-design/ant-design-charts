@@ -114,11 +114,14 @@ const Demo = () => {
       { text: 'sold', style: { dy: -30 } }, // text maps to field sold
       { text: ({ genre }) => genre, style: { dy: -20 } }, // text custom return string type
       {
+        // innerHTML maps to field genre
+        // Note: background color might be black sometimes, need to configure fill background color
+        // color is text color, HTMLElement itself can also configure styles
         innerHTML: 'genre',
         dx: 20,
         dy: 10,
         style: { fill: '#fff', color: '#333', fontSize: 10 },
-      }, // innerHTML maps to field genre Note: background color might be black sometimes, need to configure fill background color. color is text color, HTMLElement itself can also configure styles
+      },
       {
         // innerHTML custom return HTMLElement type data
         innerHTML: ({ genre, sold }) =>

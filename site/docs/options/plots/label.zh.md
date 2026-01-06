@@ -372,7 +372,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 
 #### overflowStroke
 
-`overflowStroke` 从指定色板选择一个与标签颜色相比，对比度最优的颜色进行描边。类似字幕黑底白字原理，针对 `label` 溢出元素后可读性变差问题。
+`overflowStroke` 从指定色板中选择与标签颜色对比度最佳的颜色进行描边，解决标签溢出图形元素后可读性差的问题。类似字幕的黑底白字效果。
 
 ##### 问题案例
 
@@ -421,7 +421,7 @@ createRoot(document.getElementById('container')).render(<Demo />);
 
 ##### 配置 `overflowStroke` 优化溢出标签的描边
 
-对不明显的 `label` 标签描边进行优化
+对溢出后可读性差的 `label` 标签添加描边进行优化
 
 ```js | ob { autoMount: true }
 import { Column } from '@ant-design/plots';
@@ -469,8 +469,8 @@ createRoot(document.getElementById('container')).render(<Demo />);
 
 | 属性      | 描述                                     | 类型       | 默认值             | 必选 |
 | --------- | ---------------------------------------- | ---------- | ------------------ | ---- |
-| threshold | 溢出阈值，越大越不越容易触发描边         | `number`   | 2                  |      |
-| palette   | 描边备选的颜色色板，会自动选择与标签颜色对比度最大的颜色 | `string[]` | `['#000', '#fff']` |      |
+| threshold | 溢出阈值，越大越不容易触发描边         | `number`   | 2                  |      |
+| palette   | 描边备选的颜色色板，会自动选择与标签颜色对比度最佳的颜色 | `string[]` | `['#000', '#fff']` |      |
 
 #### overflowHide
 
