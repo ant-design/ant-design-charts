@@ -62,6 +62,18 @@ Ant Design Charts 中 **图例（Legend）** 是图表的辅助元素，使用�
 });
 ```
 
+图例也可以在 View 层级配置。图例具有传递性。视图上声明的图例会传递给 `children` 声明的标记，如果该标记有对应通道的图例，就合并；否则不影响。
+
+```js
+({
+  type: 'view',
+  legend: {
+    color: {},
+    size: {},
+  },
+});
+```
+
 ## 配置项
 
 Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种，由于这两种图例的结构不同，所以配置项也存在差异。
@@ -75,7 +87,8 @@ Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种�
 | orientation                                           | 图例朝向，对于分类图例来说即滚动方向             | `horizontal` \| `vertical`                                         | `horizontal`                          |      |
 | position                                              | 图例的位置                                       | `top` \| `right` \| `left` \| `bottom`                             | `top`                                 |      |
 | layout                                                | 调整图例的 flex 布局方式                         | [layout](#layout)                                                  | 详见[layout](#layout)                 |
-| size                                                  | 图例的尺寸                                       | number                                                             | -                                     |
+| size                                                  | 图例容器的尺寸                                       | number                                                             | -                                     |
+| length                                                | 图例容器的长度                                       | number                                                             | -                                     |
 | width                                                 | 图例的宽度                                       | number                                                             | -                                     |
 | crossPadding                                          | 图例到图表区域的距离                             | number                                                             | `12`                                  |
 | order                                                 | 图例在布局的时候的排序                           | number                                                             | `1`                                   |
@@ -90,15 +103,21 @@ Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种�
 | itemValue <Badge type="success">分类图例</Badge>      | 配置图例项的值                                   | [itemValue](#itemvalue)                                            | 详见[itemValue](#itemvalue)           |
 | itemBackground <Badge type="success">分类图例</Badge> | 配置图例项的背景                                 | [itemBackground](#itembackground)                                  | 详见[itemBackground](#itembackground) |
 | itemWidth <Badge type="success">分类图例</Badge>      | 配置图例项的宽度                                 | number                                                             | -                                     |
-| itemSpacing <Badge type="success">分类图例</Badge>    | 配置图例项图标、标签和值之间的间距               | number \| number[]                                                 | `[8, 8]`                              |
+| itemSpan <Badge type="success">分类图例</Badge>       | 配置图例项图标、标签和值的空间划分               | number \| number[]                                                 | `[1, 1, 1]`                           |
+| itemSpacing <Badge type="success">分类图例</Badge>    | 配置图例项图标、标签、值、聚焦图标之间的间距               | number \| number[]                                                 | `[8, 8, 4]`                              |
 | nav <Badge type="success">分类图例</Badge>            | 配置图例的分页器                                 | [nav](#nav)                                                        | 详见[nav](#nav)                       |
+| poptip <Badge type="success">分类图例</Badge>            | 图例项提示                                 | [poptip](#poptip)                                                        | 详见[poptip](#poptip)                       |
+| focus    <Badge type="success">分类图例</Badge>    |  是否启用图例聚焦                                                                                | boolean                     | false     |      |
+| focusMarkerSize     <Badge type="success">分类图例</Badge>   | 图例聚焦图标大小                                                                                | number                    | 12     |      |
+| defaultSelect  <Badge type="success">分类图例</Badge>| 默认选中的图例项 | string[] | - | |
+| render <Badge type="success">分类图例</Badge> | 自定义渲染图例 | (items: LegendItem[]) => HTMLElement | - | |
 | color <Badge type="warning">连续图例</Badge>          | 配置连续图例的色带颜色                           | string[] \| [d3-interpolate](https://github.com/d3/d3-interpolate) | -                                     |
 | block <Badge type="warning">连续图例</Badge>          | 连续图例是否按区间显示                           | boolean                                                            | false                                 |
 | type <Badge type="warning">连续图例</Badge>           | 配置连续图例的类型                               | `size` \|`color`                                                   | `color`                               |
 | ribbon <Badge type="warning">连续图例</Badge>         | 配置连续图例的色带                               | [ribbon](#ribbon)                                                  | 详见[ribbon](#ribbon)                 |
 | handle <Badge type="warning">连续图例</Badge>         | 配置连续图例的滑动手柄                           | [handle](#handle)                                                  | 详见[handle](#handle)                 |
 | label <Badge type="warning">连续图例</Badge>          | 配置连续图例的标签/刻度值                        | [label](#label)                                                    | 详见[label](#label)                   |
-| indicator <Badge type="warning">连续图例</Badge>      | 配置连续图例的指示器                             | [indicator](#indicator)                                            | 详见[indicator](#indicator)           |
+| indicator <Badge type="warning">连续图例</Badge>      | 配置连续图例的指示器                             | [indicator](#indicator)                                            | 详见[indicator](#indicator]           |
 
 ### orientation
 
@@ -179,7 +198,20 @@ Legend 组件支持调整其在画布中的位置，通过 `layout` 属性来设
 
 <description> _number_ **optional** </description>
 
-Legend 组件的尺寸。影响组件在交叉轴上的大小，例如水平位置的图例，影响整体高度。手动配置会导致 Ant Design Charts 内部计算逻辑失效，需要自己配置 margin、padding、inset 等大小，详见[图表布局](/options/plots/core/chart/chart-component#图表布局)。除非需要定制化的场景，否则不建议配置。
+Legend 组件容器的尺寸。影响组件在交叉轴上的大小，例如水平位置的图例，影响整体高度。手动配置会导致 Ant Design Charts 内部计算逻辑失效，需要自己配置 margin、padding、inset 等大小，详见[图表布局](/options/plots/core/chart/chart-component#图表布局)。除非需要定制化的场景，否则不建议配置。
+
+### length
+
+<description> _number_ **optional** </description>
+
+Legend 组件容器的长度，用于 Ant Design Charts 内部布局计算和空间分配。影响组件在**主轴**上的大小：
+
+- 对于水平布局的图例（`position: 'top'` 或 `'bottom'`），控制图例宽度
+- 对于垂直布局的图例（`position: 'left'` 或 `'right'`），控制图例高度
+
+<img alt="legend-overview" width=600 src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*KIXzR7Mwb1cAAAAARbAAAAgAemJ7AQ/original"/>
+
+<img alt="legend-overview" width=600 src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*ZpfMQpeB4jUAAAAARpAAAAgAemJ7AQ/original"/>
 
 ### width
 
@@ -575,18 +607,43 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
 
 适用于 <Badge type="success">分类图例</Badge> 。配置图例项的宽度。
 
+### itemSpan
+
+<description> _number|number[]_ **optional** </description>
+
+适用于 <Badge type="success">分类图例</Badge> 。配置图例项图标、标签和值的空间划分。默认为`[1, 1, 1]`。
+
 
 ### itemSpacing
 
 <description> _number|number[]_ **optional** </description>
 
-适用于 <Badge type="success">分类图例</Badge> 。配置图例项图标、标签和值之间的间距。默认为`[8, 8]`。
+适用于 <Badge type="success">分类图例</Badge> 。配置图例项图标、标签、值和聚焦图标之间的间距。默认为`[8, 8, 4]`。
 
 ### nav
 
 <description> _LegendNavCfg_ **optional** </description>
 
-适用于 <Badge type="success">分类图例</Badge> 。配置图例的分页器。在网格布局下，页面容量 = `gridRow` × `gridCol`，如果分类项数量超出此容量，则分页。在弹性布局下，页面容量动态计算，受容器宽度和高度限制。当分类项超过容器高度或宽度时，进行分页，展示分页器组件。_LegendNavCfg_ 配置如下：
+适用于 <Badge type="success">分类图例</Badge> 。配置图例的分页器。在网格布局下，页面容量 = `gridRow` × `gridCol`，如果分类项数量超出此容量，则分页。在弹性布局下，页面容量动态计算，受容器宽度和高度限制。当分类项超过容器高度或宽度时，进行分页，展示分页器组件。
+
+💡 **垂直布局图例分页配置**
+
+对于垂直布局的图例（`position: 'right'` 或 `'left'`），由于 `maxRows` 不生效，建议通过以下方式启用分页：
+
+```js
+legend: {
+  color: {
+    position: 'right',
+    size:100, // 限制图例宽度，触发分页
+    length: 200,           // 限制图例高度，触发分页
+    navOrientation: 'vertical', // 垂直方向分页器
+    navDefaultPage: 0,     // 默认显示第一页
+    navLoop: true,         // 启用循环翻页
+  }
+}
+```
+
+_LegendNavCfg_ 配置如下：
 
 <img alt="legend-nav" width=300 src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*QkXFSoUuqGYAAAAAAAAAAAAAemJ7AQ/original"/>
 
@@ -687,6 +744,72 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
   },
 });
 ```
+
+
+### poptip
+
+<description> _LegendPoptipCfg_ **optional** </description>
+
+适用于 <Badge type="success">分类图例</Badge> 。配置图例项的提示信息，一般用于图例过长，无法完全展示时。
+
+| 属性 | 描述 | 类型  | 默认值 | 必选 |
+| -------------- | -------------- | -------------- | -------------- | -------------- |
+| render                   | 可自定义渲染内容，支持 HTML 字符      |   `string` \| `() => string`   | - | - |
+| position                 | 气泡框位置，可通过 css 样式强制覆盖   | `top left right bottom top-left top-right bottom-left bottom-right left-top left-bottom right-top right-bottom` | -        |   -   |
+| offset                   | 偏移量    | [number, number] | [0, 20]         |   -   |
+| follow                   | 是否跟随鼠标。当设置为 true 时，会忽略 position 的设置  | boolean |   -      |   -   |
+| domStyles                | 容器样式   | object |   -      |   -   |
+
+domStyles 默认配置如下：
+
+```ts
+{
+  domStyles: {
+    '.component-poptip': {
+      opacity: '1',
+      padding: '8px 12px',
+      background: '#fff',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+    },
+    '.component-poptip-arrow': {
+      display: 'none',
+    },
+    '.component-poptip-text': {
+      color: '#000',
+      lineHeight: '20px',
+    },
+  },
+}
+```
+
+
+### focus
+
+<description> **optional** _boolean_ </description>
+
+适用于 <Badge type="success">分类图例</Badge> 。是否启用图例聚焦功能。默认为 `false`。
+
+当设置为 `true` 时，图例项会显示聚焦图标，用户可以通过点击聚焦图标来仅显示对应的图表元素，更好地突出关注的数据。
+
+### focusMarkerSize
+
+<description> **optional** _number_ </description>
+
+适用于 <Badge type="success">分类图例</Badge> 。配置图例项聚焦图标的大小。默认为 `12`。
+
+### render
+
+<description> **optional** _(items: LegendItem[]) => HTMLElement_ </description>
+
+适用于 <Badge type="success">分类图例</Badge> 。自定义渲染图例内容，支持通过 HTML 渲染图例。
+
+`render` 函数接收图例项数组作为参数。每个图例项包含以下属性：
+
+- `id`: 图例项的唯一标识符
+- `label`: 图例项的标签文本
+- `color`: 图例项的颜色值
+
+函数需要返回一个 HTMLElement，Ant Design Charts 会将其渲染为图例内容。
 
 
 ### color
