@@ -251,8 +251,8 @@ const Demo = () => {
     yField: 'price',
     colorField: 'symbol',
     transform: [{ type: 'groupX', y: 'mean' }],
-    labels: [{ text: 'price' }]
-};
+    labels: [{ text: 'price' }],
+  };
   return <Line {...config} />;
 };
 
@@ -281,8 +281,8 @@ const Demo = () => {
     yField: 'price',
     colorField: 'symbol',
     transform: [{ type: 'groupX', y: 'mean' }],
-    labels: [{ text: 'price', transform: [{ type: 'overlapDodgeY' }] }]
-};
+    labels: [{ text: 'price', transform: [{ type: 'overlapDodgeY' }] }],
+  };
   return <Line {...config} />;
 };
 
@@ -324,8 +324,8 @@ const Demo = () => {
     scale: {
       color: { range: ['#ff0000', '#f0d2fc', '#2b00ff', '#ff8000', '#064501'] },
     },
-    labels: [{ text: 'genre' }]
-};
+    labels: [{ text: 'genre' }],
+  };
   return <Column {...config} />;
 };
 
@@ -357,8 +357,8 @@ const Demo = () => {
     scale: {
       color: { range: ['#ff0000', '#f0d2fc', '#2b00ff', '#ff8000', '#064501'] },
     },
-    labels: [{ text: 'genre', transform: [{ type: 'contrastReverse' }] }]
-};
+    labels: [{ text: 'genre', transform: [{ type: 'contrastReverse' }] }],
+  };
   return <Column {...config} />;
 };
 
@@ -519,8 +519,8 @@ const Demo = () => {
     yField: 'price',
     colorField: 'symbol',
     transform: [{ type: 'groupX', y: 'mean' }],
-    labels: [{ text: 'price' }]
-};
+    labels: [{ text: 'price' }],
+  };
   return <Line {...config} />;
 };
 
