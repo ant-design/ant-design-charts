@@ -92,7 +92,7 @@ Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种�
 | itemBackground <Badge type="success">分类图例</Badge> | 配置图例项的背景                                 | [itemBackground](#itembackground)                                  | 详见[itemBackground](#itembackground) |
 | itemWidth <Badge type="success">分类图例</Badge>      | 配置图例项的宽度                                 | number                                                             | -                                     |
 | itemSpan <Badge type="success">分类图例</Badge>       | 配置图例项图标、标签和值的空间划分               | number \| number[]                                                 | `[1, 1, 1]`                           |
-| itemSpacing <Badge type="success">分类图例</Badge>    | 配置图例项图标、标签、值、聚焦图标之间的间距               | number \| number[]                                                 | `[8, 8, 4]`                              |
+| itemSpacing <Badge type="success">分类图例</Badge>    | 配置图例项图标、标签、值之间的间距（启用 focus 时还包括聚焦图标间距）               | number \| number[]                                                 | `[8, 8, 4]`                              |
 | nav <Badge type="success">分类图例</Badge>            | 配置图例的分页器                                 | [nav](#nav)                                                        | 详见[nav](#nav)                       |
 | poptip <Badge type="success">分类图例</Badge>            | 图例项提示                                 | [poptip](#poptip)                                                        | 详见[poptip](#poptip)                       |
 | focus <Badge type="success">分类图例</Badge>    | 是否启用图例聚焦 | boolean | false | |
@@ -606,7 +606,7 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
 
 <description> _number|number[]_ **optional** </description>
 
-适用于 <Badge type="success">分类图例</Badge> 。配置图例项图标、标签、值和聚焦图标之间的间距。默认为`[8, 8, 4]`。
+适用于 <Badge type="success">分类图例</Badge> 。配置图例项图标、标签、值之间的间距。当启用 `focus` 功能时，第四个值用于配置聚焦图标的间距。默认为`[8, 8, 4]`。
 
 ### nav
 
