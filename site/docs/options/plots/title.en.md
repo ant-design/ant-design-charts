@@ -214,7 +214,7 @@ const Demo = () => {
       align: 'right',
       title: 'Sold by genre, sorted by sold',
       titleFontSize: 15,
-      subtitle: 'It shows the sales volume of genre, sored by sold.',
+      subtitle: 'It shows the sales volume of genre, sorted by sold.',
       subtitleFill: 'red',
       subtitleFontSize: 12,
       subtitleShadowColor: 'yellow',
