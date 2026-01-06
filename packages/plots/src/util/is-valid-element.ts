@@ -1,7 +1,7 @@
 export const isValidElement = (jsxCode: string): boolean => {
   const basicReactPatterns = [
     /\breact\b/i, // "react" references
-    /\.jsx/, // .jsx extension OR .jsx/.jsxs property (BigFish prod)
+    /\.jsxs?/, // .jsx extension OR .jsx/.jsxs property (BigFish prod)
     /children:\s*\[/, // children array pattern
     /\bjsxs?\s*\(/, // jsx( or jsxs( direct calls (esbuild/vite prod)
     /\bjsxDEV\b/, // jsxDEV function (dev mode)
