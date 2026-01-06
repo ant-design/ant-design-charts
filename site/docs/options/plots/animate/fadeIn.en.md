@@ -3,4 +3,18 @@ title: fadeIn
 order: 2
 ---
 
-<embed src="@/docs/options/plots/animate/fadeIn.zh.md"></embed>
+`fadeIn` is a fade-in animation that affects the `opacity` transparency property.
+
+## Getting Started
+
+<img alt="fadeIn" src="https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*LTRRRL8JwfQAAAAAAAAAAABkARQnAQ" width="400" />
+
+```js
+{
+  "animate": {
+    "enter": {
+      "type": "fadeIn"
+    }
+  }
+}
+```
