@@ -62,18 +62,6 @@ Ant Design Charts 中 **图例（Legend）** 是图表的辅助元素，使用�
 });
 ```
 
-图例也可以在 View 层级配置。图例具有传递性。视图上声明的图例会传递给 `children` 声明的标记，如果该标记有对应通道的图例，就合并；否则不影响。
-
-```js
-({
-  type: 'view',
-  legend: {
-    color: {},
-    size: {},
-  },
-});
-```
-
 ## 配置项
 
 Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种，由于这两种图例的结构不同，所以配置项也存在差异。
@@ -635,10 +623,10 @@ legend: {
   color: {
     position: 'right',
     size: 100, // 限制图例宽度，触发分页
-    length: 200,           // 限制图例高度，触发分页
+    length: 200, // 限制图例高度，触发分页
     navOrientation: 'vertical', // 垂直方向分页器
-    navDefaultPage: 0,     // 默认显示第一页
-    navLoop: true,         // 启用循环翻页
+    navDefaultPage: 0, // 默认显示第一页
+    navLoop: true, // 启用循环翻页
   }
 }
 ```
