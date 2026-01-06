@@ -551,8 +551,8 @@ const Demo = () => {
     yField: 'price',
     colorField: 'symbol',
     transform: [{ type: 'groupX', y: 'mean' }],
-    labels: [{ text: 'price', transform: [{ type: 'overlapHide' }] }]
-};
+    labels: [{ text: 'price', transform: [{ type: 'overlapHide' }] }],
+  };
   return <Line {...config} />;
 };
 
@@ -598,8 +598,8 @@ const Demo = () => {
     yField: 'price',
     colorField: 'symbol',
     transform: [{ type: 'groupX', y: 'mean' }],
-    labels: [{ text: 'price' }]
-};
+    labels: [{ text: 'price' }],
+  };
   return <Line {...config} />;
 };
 
@@ -662,7 +662,7 @@ const Demo = () => {
     yField: 'price',
     colorField: 'symbol',
     transform: [{ type: 'groupX', y: 'mean' }],
-    labels: [{ text: 'price', transform: [{ type: 'exceedAdjust', bounds: 'main', offsetX: 15 }] }]
+    labels: [{ text: 'price', transform: [{ type: 'exceedAdjust', bounds: 'main', offsetX: 15 }] }],
   };
   return <Line {...config} />;
 };
