@@ -634,7 +634,7 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
 legend: {
   color: {
     position: 'right',
-    size:100, // 限制图例宽度，触发分页
+    size: 100, // 限制图例宽度，触发分页
     length: 200,           // 限制图例高度，触发分页
     navOrientation: 'vertical', // 垂直方向分页器
     navDefaultPage: 0,     // 默认显示第一页
@@ -810,6 +810,20 @@ domStyles 默认配置如下：
 - `color`: 图例项的颜色值
 
 函数需要返回一个 HTMLElement，Ant Design Charts 会将其渲染为图例内容。
+
+### defaultSelect
+
+<description> **optional** _string[]_ </description>
+
+适用于 <Badge type="success">分类图例</Badge> 。默认选中的图例项。通过指定图例项的标签数组，可以在首次渲染图表时只显示选中的数据系列。
+
+```js
+legend: {
+  color: {
+    defaultSelect: ['Sports', 'Strategy', 'Action'],
+  }
+}
+```
 
 
 ### color
