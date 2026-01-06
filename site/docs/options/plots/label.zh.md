@@ -630,7 +630,7 @@ const Demo = () => {
     yField: 'price',
     colorField: 'symbol',
     transform: [{ type: 'groupX', y: 'mean' }],
-    labels: [{ text: 'price', transform: [{ type: 'exceedAdjust' }] }]
+    labels: [{ text: 'price', transform: [{ type: 'exceedAdjust' }] }],
   };
   return <Line {...config} />;
 };
