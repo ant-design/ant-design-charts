@@ -188,3 +188,143 @@ For example, to configure label rotation, it's not configured under a label obje
   },
 });
 ```
+
+### title
+
+| Property           | Description                                                              | Type                                                                                                                         | Default Value | Required |
+| ------------------ | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------- | -------- |
+| title              | Turn off title or set title content                                      | `false`&#124;`string` &#124; `number` &#124; [DisplayObject](https://g.antv.antgroup.com/api/basic/display-object)           | -             |          |
+| titleSpacing       | Distance from title to axis                                              | `number` &#124; `(datum, index, data) => number`                                                                             | 10            |          |
+| titlePosition      | Title position relative to axis                                          | `'top'`&#124;`'bottom'`&#124;`'left'`&#124;`'right'`                                                                         | `'lb'`        |          |
+| titleFontSize      | Title font size                                                          | `number` &#124; `(datum, index, data) => number`                                                                             | -             |          |
+| titleFontWeight    | Title font weight                                                        | `number` &#124; `(datum, index, data) => number`                                                                             | -             |          |
+| titleFontFamily    | Title font family                                                        | `string` &#124; `(datum, index, data) => string`                                                                             | -             |          |
+| titleFill          | Title text fill color                                                    | `string` &#124; `(datum, index, data) => string`                                                                             | -             |          |
+| titleOpacity       | Title text overall opacity                                               | `number` &#124; `(datum, index, data) => number`                                                                             | 1             |          |
+
+### line
+
+| Property          | Description                                                                                                                 | Type                                                                  | Default Value | Required |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------- | -------- |
+| line              | Whether to show axis line                                                                                                   | `boolean`                                                             | false         |          |
+| arrow             | Whether to show arrow                                                                                                       | `boolean`                                                             | true          |          |
+| lineLineWidth     | Axis line stroke width                                                                                                      | `number` &#124; `(datum, index, data) => number`                      | -             |          |
+| lineStroke        | Axis line stroke color                                                                                                      | `string` &#124; `(datum, index, data) => string`                      | -             |          |
+| lineOpacity       | Axis line overall opacity                                                                                                   | `number` &#124; `(datum, index, data) => number`                      | 1             |          |
+
+### tick
+
+| Property          | Description                                                                                                            | Type                                                                                                                        | Default Value | Required |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------- | -------- |
+| tick              | Whether to show ticks                                                                                                  | `boolean`                                                                                                                   | true          |          |
+| tickCount         | Set recommended number of ticks to generate                                                                            | `number`                                                                                                                    | -             |          |
+| tickLength        | Tick length                                                                                                            | `number`&#124;`(datum, index, data)=>number`                                                                                | 15            |          |
+| tickStroke        | Tick stroke color                                                                                                      | `string` &#124; `(datum, index, data, Vector)=>string`                                                                      | -             |          |
+
+### label
+
+| Property           | Description                                                                                                                                                                                                   | Type                                                                                                                       | Default Value | Required |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------- | -------- |
+| label              | Whether to show tick labels                                                                                                                                                                                   | `boolean`                                                                                                                  | -             |          |
+| labelFontSize      | Label font size                                                                                                                                                                                               | `number` &#124; `(datum, index, data)=>number`                                                                             | -             |          |
+| labelFormatter     | Label formatting, accepts function or [d3-format](https://d3js.org/d3-format) supported string                                                                                                                | `string` \| `(datum, index, array) => string`                                                                              | -             |          |
+| labelAlign         | Label alignment: 'horizontal', 'parallel', 'perpendicular'                                                                                                                                                    | `'horizontal'` &#124; `'parallel'` &#124; `'perpendicular'`                                                                | `parallel`    |          |
+| labelFill          | Label text fill color                                                                                                                                                                                         | `string` &#124; `(datum, index, data)=>string`                                                                             | -             |          |
+
+### grid
+
+| Property          | Description                                                                                                                 | Type                                                              | Default Value | Required |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------- | -------- |
+| grid              | Whether to show grid lines                                                                                                  | `boolean`                                                         | false         |          |
+| gridStroke        | Grid line stroke color                                                                                                      | `string` &#124; `(datum, index, data)=> string`                   | -             |          |
+| gridLineWidth     | Grid line stroke width                                                                                                      | `number` &#124; `(datum, index, data)=> number`                   | -             |          |
+| gridLineDash      | Grid line stroke dash configuration                                                                                         | `[number,number]` &#124; `(datum, index, data)=> [number,number]` | -             |          |
+
+### breaks
+
+Configure axis breaks for discontinuous data ranges.
+
+```js
+{
+  breaks: [
+    {
+      start: 5000,
+      end: 50000,
+      gap: '3%',
+    }
+  ]
+}
+```
+
+### animate
+
+| Property | Description          | Type                            | Default Value | Required |
+| -------- | -------------------- | ------------------------------- | ------------- | -------- |
+| animate  | Whether to enable animation | `boolean` &#124; `EffectTiming` | -             |          |
+
+## Example
+
+```js | ob { autoMount: true }
+import { Column } from '@ant-design/plots';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+
+const Demo = () => {
+  const config = {
+    marginTop: 40,
+    data: [
+      { id: 1, label: 'X Axis Label 1', value: 200 },
+      { id: 2, label: 'X Axis Label 2', value: 300 },
+      { id: 3, label: 'X Axis Label 3', value: 400 },
+      { id: 4, label: 'X Axis Label 4', value: 500 },
+      { id: 5, label: 'X Axis Label 5', value: 600 },
+      { id: 6, label: 'X Axis Label 6', value: 700 },
+    ],
+    xField: 'label',
+    yField: 'value',
+    axis: {
+      x: {
+        position: 'bottom',
+        title: 'X Axis Title',
+        titleFontWeight: 500,
+        grid: true,
+        gridLineWidth: 2,
+        line: true,
+        lineLineWidth: 5,
+        lineStroke: '#f50',
+        tick: true,
+        tickLineWidth: 5,
+        tickLength: 10,
+        tickStroke: '#3366ff',
+        label: true,
+        labelFontSize: 12,
+        labelFill: '#009900',
+        labelFontWeight: 500,
+      },
+      y: {
+        position: 'left',
+        title: 'Y Axis Title',
+        titleFontWeight: 500,
+        grid: true,
+        gridLineWidth: 2,
+        line: true,
+        lineLineWidth: 5,
+        lineStroke: '#f50',
+        tick: true,
+        tickLineWidth: 5,
+        tickLength: 10,
+        tickStroke: '#3366ff',
+        label: true,
+        labelFontSize: 12,
+        labelFill: '#009900',
+        labelFontWeight: 500,
+      },
+    }
+  };
+  return <Column {...config} />;
+};
+
+createRoot(document.getElementById('container')).render(<Demo />);
+```
+
+For more examples, see the [Chart Examples - Axis](/examples/component/axis/#axis-x) page.
