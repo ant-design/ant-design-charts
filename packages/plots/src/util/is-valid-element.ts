@@ -1,5 +1,11 @@
 export const isValidElement = (jsxCode: string): boolean => {
-  const basicReactPatterns = [/\breact\b/i, /\.jsx/, /children:\s*\[/, /\*\s*[#@]__PURE__\s*\*/];
+  const basicReactPatterns = [
+    /\breact\b/i, // "react" references
+    /\.jsx/, // .jsx extension OR .jsx/.jsxs property (BigFish prod)
+    /children:\s*\[/, // children array pattern
+    /\bjsxs?\s*\(/, // jsx( or jsxs( direct calls (esbuild/vite prod)
+    /\bjsxDEV\b/, // jsxDEV function (dev mode)
+  ];
   const createElementPattern = /(\w+)?\.createElement\(\s*(['"`])([^'"`]+)\2/g;
 
   // G 元素集合

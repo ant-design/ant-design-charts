@@ -112,6 +112,7 @@ const BUILD_ASSESTS_ESBUILD = `($, _, i) => /* @__PURE__ */ jsxDEV("div", { styl
     lineNumber: 12,
     columnNumber: 29
   }, this)`
+const BUILD_ASSETS_ESBUILD_PROD = `($, _) => /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsxs("ul", { children: [/* @__PURE__ */ jsx("li", { children: "Item 1" }), /* @__PURE__ */ jsx("li", { children: "Item 2" })] }) })`;
 
 describe('isValidElement', () => {
   it('ice build product', async () => {
@@ -132,6 +133,10 @@ describe('isValidElement', () => {
 
   it('build product with vite', async () => {
     expect(isValidElement(BUILD_ASSESTS_ESBUILD)).toBeTruthy();
+  });
+
+  it('build product with vite/esbuild prod', async () => {
+    expect(isValidElement(BUILD_ASSETS_ESBUILD_PROD)).toBeTruthy();
   });
 
   it('should return true for basic React patterns', () => {
