@@ -1,0 +1,47 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.processHtmlEntry = processHtmlEntry;
+const domparser_rs_1 = require("domparser-rs");
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
+function processHtmlEntry(config, projectPath) {
+    if (!config.entry)
+        return;
+    const newEntries = [];
+    config.entry = config.entry.filter((entry) => {
+        if (entry.import.endsWith(".html")) {
+            const htmlPath = path_1.default.resolve(projectPath, entry.import);
+            if (fs_1.default.existsSync(htmlPath)) {
+                const content = fs_1.default.readFileSync(htmlPath, "utf-8");
+                const parser = new domparser_rs_1.DOMParser();
+                const doc = parser.parseFromString(content, "text/html");
+                const scripts = doc.querySelectorAll("script");
+                scripts.forEach((script) => {
+                    const src = script.getAttribute("src");
+                    if (src && !src.startsWith("http") && !src.startsWith("//")) {
+                        const scriptPath = path_1.default.join(path_1.default.dirname(entry.import), src);
+                        // Remove the origin script tag from the DOM
+                        if (script.parentNode) {
+                            script.parentNode.removeChild(script);
+                        }
+                        newEntries.push({
+                            import: scriptPath,
+                            html: {
+                                template: entry.import,
+                                templateContent: doc.outerHTML,
+                                filename: path_1.default.basename(entry.import),
+                            },
+                        });
+                    }
+                });
+                return false;
+            }
+        }
+        return true;
+    });
+    // Add new script entries
+    config.entry.push(...newEntries);
+}

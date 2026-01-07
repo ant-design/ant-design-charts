@@ -1,0 +1,170 @@
+{
+  "name": "@antv/g2",
+  "version": "5.4.8",
+  "description": "the Grammar of Graphics in Javascript",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "unpkg": "dist/g2.min.js",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./lib/index.js"
+    },
+    "./lib/*": {
+      "types": "./lib/*.d.ts",
+      "require": "./lib/*.js"
+    },
+    "./esm/*": {
+      "types": "./lib/*.d.ts",
+      "import": "./esm/*.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "./esm/exports.js"
+  ],
+  "files": [
+    "src",
+    "lib",
+    "esm",
+    "dist"
+  ],
+  "scripts": {
+    "start": "cd site && npm run start",
+    "dev": "cross-env TZ=Asia/Shanghai vite",
+    "dev:link": "cross-env LINK=1 vite",
+    "clean": "rimraf lib esm dist",
+    "lint-staged": "lint-staged",
+    "size": "limit-size",
+    "lint": "eslint ./src ./__tests__ && prettier ./src ./__tests__ --check ",
+    "fix": "eslint ./src ./__tests__ --fix && prettier ./src ./__tests__ --write ",
+    "test": "cross-env TZ=Asia/Shanghai vitest --coverage",
+    "test:unit": "cross-env TZ=Asia/Shanghai vitest __tests__/unit/",
+    "test:integration": "cross-env TZ=Asia/Shanghai vitest __tests__/integration/",
+    "preview": "vite preview",
+    "playground": "vite --mode playground",
+    "build:umd": "rimraf ./dist && node node_modules/rollup/dist/bin/rollup -c && npm run size",
+    "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
+    "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
+    "build": "run-p build:*",
+    "bundle-vis": "cross-env BUNDLE_VIS=1 run-p build:umd",
+    "ci": "run-s lint test build",
+    "prepare": "husky install",
+    "upload": "node scripts/upload/snapshot.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "translate": "translate -d"
+  },
+  "keywords": [
+    "antv",
+    "g2",
+    "visualization",
+    "chart",
+    "grammar",
+    "graphics",
+    "interaction",
+    "animation"
+  ],
+  "dependencies": {
+    "@antv/component": "^2.1.9",
+    "@antv/coord": "^0.4.7",
+    "@antv/event-emitter": "^0.1.3",
+    "@antv/expr": "^1.0.2",
+    "@antv/g": "^6.1.24",
+    "@antv/g-canvas": "^2.0.43",
+    "@antv/g-plugin-dragndrop": "^2.0.35",
+    "@antv/scale": "^0.5.1",
+    "@antv/util": "^3.3.10",
+    "@antv/vendor": "^1.0.11",
+    "flru": "^1.0.2",
+    "pdfast": "^0.2.0"
+  },
+  "devDependencies": {
+    "@antv/data-set": "^0.11.8",
+    "@antv/g-pattern": "^2.0.35",
+    "@antv/g-plugin-3d": "^2.0.45",
+    "@antv/g-plugin-control": "^2.0.34",
+    "@antv/g-plugin-rough-canvas-renderer": "^2.0.42",
+    "@antv/g-plugin-rough-svg-renderer": "^2.0.38",
+    "@antv/g-svg": "^2.0.38",
+    "@antv/g-webgl": "^2.0.47",
+    "@antv/g2-extension-3d": "^0.1.6",
+    "@antv/g2-extension-ava": "^0.1.1",
+    "@antv/g2-extension-plot": "^0.1.2",
+    "@antv/translator": "^1.0.1",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^17.8.1",
+    "@optimize-lodash/rollup-plugin": "^4.0.4",
+    "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.3.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/diff": "^5.2.3",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/topojson-client": "^3.1.5",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "@vitest/coverage-istanbul": "^3.1.4",
+    "conventional-changelog-cli": "^2.2.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.31.0",
+    "fecha": "^4.2.3",
+    "husky": "^7.0.4",
+    "jsdom": "^20",
+    "limit-size": "^0.1.4",
+    "lint-staged": "^10.5.4",
+    "npm-run-all": "^4.1.5",
+    "pixelmatch": "5.3.0",
+    "prettier": "^2.8.8",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.79.2",
+    "rollup-plugin-polyfill-node": "^0.8.0",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "rollup-plugin-visualizer": "^5.14.0",
+    "svgo": "^3.3.2",
+    "topojson-client": "^3.1.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.0.0",
+    "vite": "^4.5.14",
+    "vitest": "^3.1.4",
+    "xmlserializer": "^0.6.1"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "limit-size": [
+    {
+      "path": "dist/g2.min.js",
+      "limit": "400 Kb",
+      "gzip": true
+    },
+    {
+      "path": "dist/g2.min.js",
+      "limit": "1060 Kb",
+      "gzip": false
+    },
+    {
+      "path": "dist/g2.lite.min.js",
+      "limit": "295 Kb",
+      "gzip": true
+    }
+  ],
+  "author": {
+    "name": "AntV",
+    "url": "https://antv.antgroup.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antvis/g2"
+  },
+  "bugs": {
+    "url": "https://github.com/antvis/g2/issues"
+  }
+}

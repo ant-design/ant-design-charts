@@ -1,0 +1,31 @@
+{
+  "name": "@umijs/bundler-utoopack",
+  "version": "4.6.20",
+  "description": "@umijs/bundler-utoopack",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@utoo/pack": "1.1.18",
+    "compression": "^1.7.4",
+    "connect-history-api-fallback": "^2.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-http-proxy": "^2.1.1",
+    "@umijs/bundler-webpack": "4.6.20",
+    "@umijs/bundler-utils": "4.6.20"
+  },
+  "devDependencies": {
+    "father": "4.1.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "father build",
+    "build:deps": "umi-scripts bundleDeps",
+    "dev": "father dev"
+  }
+}

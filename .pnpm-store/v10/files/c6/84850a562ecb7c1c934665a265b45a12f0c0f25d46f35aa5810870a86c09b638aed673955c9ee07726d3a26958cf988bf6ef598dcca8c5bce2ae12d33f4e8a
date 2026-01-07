@@ -1,0 +1,37 @@
+// Author: Sivan [sun.sivan@gmail.com]
+// Description: define add-ons.
+@import "../variables";
+
+@mixin hetiAddOns {
+  // 用于中西文混排增加边距
+  heti-spacing {
+    display: inline;
+
+    & + sup,
+    & + sub {
+      margin-inline-start: 0;
+    }
+  }
+
+  .heti-spacing-start {
+    margin-inline-end: 0.25em;
+  }
+
+  .heti-spacing-end {
+    margin-inline-start: 0.25em;
+  }
+
+  heti-adjacent {
+    display: inline;
+    text-spacing-trim: space-all;
+    unicode-bidi: isolate; // 解决苹方等字体下标点过度挤压的问题
+  }
+
+  .heti-adjacent-half {
+    margin-inline-end: -0.5em;
+  }
+
+  .heti-adjacent-quarter {
+    margin-inline-end: -0.25em;
+  }
+}

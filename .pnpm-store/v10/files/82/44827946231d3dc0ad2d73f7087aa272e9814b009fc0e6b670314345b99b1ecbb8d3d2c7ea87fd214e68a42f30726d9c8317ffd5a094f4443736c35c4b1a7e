@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_umijs_ui=self.webpackChunk_umijs_ui||[]).push([[430],{74980:function(e,n,u){u.r(n),u.d(n,{default:function(){return t}});var s=u(29088);function t(){return(0,s.jsx)("h1",{children:"Test"})}}}]);

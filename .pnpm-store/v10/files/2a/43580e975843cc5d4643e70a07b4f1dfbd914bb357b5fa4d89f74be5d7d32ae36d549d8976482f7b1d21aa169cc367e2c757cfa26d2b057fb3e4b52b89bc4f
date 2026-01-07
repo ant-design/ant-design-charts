@@ -1,0 +1,93 @@
+{
+    "name": "@types/enzyme",
+    "version": "3.10.19",
+    "description": "TypeScript definitions for enzyme",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/enzyme",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Marian Palkus",
+            "githubUsername": "MarianPalkus",
+            "url": "https://github.com/MarianPalkus"
+        },
+        {
+            "name": "Cap3",
+            "url": "http://www.cap3.de"
+        },
+        {
+            "name": "Ivo Stratev",
+            "githubUsername": "NoHomey",
+            "url": "https://github.com/NoHomey"
+        },
+        {
+            "name": "jwbay",
+            "githubUsername": "jwbay",
+            "url": "https://github.com/jwbay"
+        },
+        {
+            "name": "huhuanming",
+            "githubUsername": "huhuanming",
+            "url": "https://github.com/huhuanming"
+        },
+        {
+            "name": "MartynasZilinskas",
+            "githubUsername": "MartynasZilinskas",
+            "url": "https://github.com/MartynasZilinskas"
+        },
+        {
+            "name": "Torgeir Hovden",
+            "githubUsername": "thovden",
+            "url": "https://github.com/thovden"
+        },
+        {
+            "name": "Martin Hochel",
+            "githubUsername": "hotell",
+            "url": "https://github.com/hotell"
+        },
+        {
+            "name": "Christian Rackerseder",
+            "githubUsername": "screendriver",
+            "url": "https://github.com/screendriver"
+        },
+        {
+            "name": "Mateusz Sokoła",
+            "githubUsername": "mateuszsokola",
+            "url": "https://github.com/mateuszsokola"
+        },
+        {
+            "name": "Braiden Cutforth",
+            "githubUsername": "braidencutforth",
+            "url": "https://github.com/braidencutforth"
+        },
+        {
+            "name": "Erick Zhao",
+            "githubUsername": "erickzhao",
+            "url": "https://github.com/erickzhao"
+        },
+        {
+            "name": "Jack Tomaszewski",
+            "githubUsername": "jtomaszewski",
+            "url": "https://github.com/jtomaszewski"
+        },
+        {
+            "name": "Jordan Harband",
+            "githubUsername": "ljharb",
+            "url": "https://github.com/ljharb"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/enzyme"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/cheerio": "<1",
+        "@types/react": "^16"
+    },
+    "peerDependencies": {},
+    "typesPublisherContentHash": "7473e5271a8bf74018c41919a05bf16ce5745a6bb0855ccbee94ac70904d0f68",
+    "typeScriptVersion": "5.1"
+}

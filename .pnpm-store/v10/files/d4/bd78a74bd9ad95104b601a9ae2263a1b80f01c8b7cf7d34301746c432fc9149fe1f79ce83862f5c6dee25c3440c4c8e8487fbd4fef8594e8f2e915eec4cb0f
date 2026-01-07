@@ -1,0 +1,142 @@
+{
+  "name": "leancloud-realtime",
+  "version": "5.0.0-rc.8",
+  "description": "LeanCloud Realtime Message JavaScript SDK",
+  "main": "./dist/im-node.js",
+  "files": [
+    "dist",
+    "*.js",
+    "*.d.ts",
+    "es-latest"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "precommit": "pretty-quick --staged",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "lint": "eslint --ignore-path .gitignore src test plugins && tsc realtime.d.ts --strict",
+    "test": "npm run lint && npm run build && npm run docs && npm run test:node && npm run test:browser",
+    "test:node": "NODE_ENV=test nyc mocha --timeout 30000 test/index.js plugins/**/test/index.js --exit",
+    "test:browser": "if [ ! -z \"$SAUCE_ACCESS_KEY\" ]; then npm run build:test && karma start karma-sauce.conf.js; else echo 'Saucelabs test skipped, set SAUCE_USERNAME and SAUCE_ACCESS_KEY to start it.\n\rTo run browser tests locally, run `npm run test:browser-local`'; fi",
+    "test:browser-local": "npm run build:test && karma start",
+    "docs": "jsdoc src README.md package.json -d docs -c .jsdocrc.json && jsdoc plugins/typed-messages/src plugins/typed-messages/package.json src/messages/message.js src/messages/typed-message.js -d plugins/typed-messages/docs -c .jsdocrc.json && jsdoc plugins/webrtc/src plugins/webrtc/package.json -d plugins/webrtc/docs -c .jsdocrc.json && jsdoc plugins/groupchat-receipts/src plugins/groupchat-receipts/package.json -d plugins/groupchat-receipts/docs -c .jsdocrc.json",
+    "build": "npm run build:realtime && BABEL_ENV=es5 npm run build:realtime && BABEL_ENV=es5 npm run build:plugins && ./script/validate-es5.js",
+    "build:realtime": "rollup -c rollup/rollup.config.realtime.js",
+    "build:plugins": "rollup -c rollup/rollup.config.plugins.js",
+    "build:test": "BABEL_ENV=es5 rollup -c rollup/rollup.config.test.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "convert-pb": "pbjs proto/message.proto -t commonjs > proto/message-compiled.js && sed -i '' 's/protobufjs/protobufjs\\/dist\\/protobuf-light/g' ./proto/message-compiled.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leancloud/js-realtime-sdk.git"
+  },
+  "keywords": [
+    "leancloud",
+    "realtime",
+    "message"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leancloud/js-realtime-sdk/issues"
+  },
+  "homepage": "https://leancloud.cn/",
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/plugin-proposal-decorators": "^7.21.0",
+    "@babel/plugin-transform-classes": "^7.21.0",
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.21.0",
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.1",
+    "@leeyeh/jsdoc-rtd": "^1.0.13",
+    "@rollup/plugin-alias": "^3.1.0",
+    "@rollup/plugin-babel": "^5.0.2",
+    "@rollup/plugin-commonjs": "^12.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "babel-eslint": "^9.0.0",
+    "babel-plugin-istanbul": "^5.1.1",
+    "conventional-changelog-cli": "^2.0.1",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "espree": "^4.0.0",
+    "husky": "^0.14.3",
+    "inherit": "^2.2.3",
+    "jsdoc": "leeyeh/jsdoc#v3.4.0",
+    "jsdoc-ignore-future": "^1.1.0",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-mocha": "^1.3.0",
+    "karma-sauce-launcher": "^1.2.0",
+    "leancloud-storage": "^3.0.0",
+    "mocha": "^5.0.0",
+    "nyc": "^13.3.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "rollup": "^1.27.8",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^5.3.0",
+    "should": "^12.0.0",
+    "should-sinon": "^0.0.6",
+    "sinon": "^6.0.1",
+    "typescript": "^3.3.3333",
+    "ws": "^7.2.5"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.21.0",
+    "@leancloud/adapter-types": "^3.0.0",
+    "@leancloud/platform-adapters-browser": "^1.1.0",
+    "@leancloud/platform-adapters-node": "^1.1.0",
+    "@leancloud/platform-adapters-weapp": "^1.2.0",
+    "base64-arraybuffer": "^0.1.5",
+    "debug": "^3.1.0",
+    "eventemitter3": "^3.0.0",
+    "javascript-state-machine": "^2.3.5",
+    "lodash": "^4.17.10",
+    "promise-timeout": "^1.3.0",
+    "protobufjs": "^5.0.1",
+    "uuid": "^3.0.0"
+  },
+  "browser": {
+    "@leancloud/platform-adapters-node": "@leancloud/platform-adapters-browser",
+    "./dist/im-node.js": "./dist/im-browser.js",
+    "./dist/es-latest/im-node.js": "./dist/es-latest/im-browser.js",
+    "./test/websocket-plus.js": false
+  },
+  "weapp": {
+    "@leancloud/platform-adapters-node": "@leancloud/platform-adapters-weapp",
+    "./dist/im-node.js": "./dist/im-weapp.js",
+    "./dist/es-latest/im-node.js": "./dist/es-latest/im-weapp.js"
+  },
+  "nyc": {
+    "require": [
+      "@babel/register"
+    ],
+    "include": [
+      "src/**",
+      "plugins/typed-messages/src/**"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "types": "./realtime.d.ts",
+  "typings": "./realtime.d.ts"
+}

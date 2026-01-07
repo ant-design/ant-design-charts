@@ -1,0 +1,1 @@
+{"version":3,"file":"EllipseUpdater.d.ts","sourceRoot":"","sources":["../../../src/services/aabb/EllipseUpdater.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EACV,OAAO,EACP,uBAAuB,EACxB,MAAM,+BAA+B,CAAC;AACvC,OAAO,KAAK,EAAE,mBAAmB,EAAE,MAAM,cAAc,CAAC;AAExD,qBAAa,cACX,YAAW,mBAAmB,CAAC,uBAAuB,CAAC;IAEvD,MAAM,CAAC,WAAW,EAAE,uBAAuB,EAAE,MAAM,EAAE,OAAO;;;;;;CAU7D"}

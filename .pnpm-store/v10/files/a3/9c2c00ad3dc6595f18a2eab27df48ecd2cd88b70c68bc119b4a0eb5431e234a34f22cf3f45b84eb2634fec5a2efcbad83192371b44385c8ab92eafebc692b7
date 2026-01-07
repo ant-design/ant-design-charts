@@ -1,0 +1,46 @@
+// Author: Sivan [sun.sivan@gmail.com]
+// Description: table styles.
+@import "variables";
+
+@mixin hetiTable {
+  table {
+    box-sizing: border-box;
+    table-layout: fixed;
+    margin-block-start: $std-block-unit * 0.5;
+    margin-block-end: $std-block-unit;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    border-collapse: collapse;
+    border-width: 1px;
+    border-style: solid;
+    border-color: hsl(0, 0%, 80%);
+    word-break: break-word;
+
+    @include darkmode-style {
+      border-color: hsl(0, 0%, 25%);
+    }
+  }
+
+  th,
+  td {
+    padding-block-start: $std-block-unit * 0.25;
+    padding-block-end: $std-block-unit * 0.25;
+    padding-inline-start: $std-inline-unit * 0.5;
+    padding-inline-end: $std-inline-unit * 0.5;
+    border-width: 1px;
+    border-style: solid;
+    border-color: hsl(0, 0%, 80%);
+
+    @include darkmode-style {
+      border-color: hsl(0, 0%, 25%);
+    }
+  }
+
+  caption {
+    caption-side: bottom;
+    margin-block-start: 2px;
+    margin-block-end: -4px;
+    font-size: $font-size-small;
+    line-height: $line-height-size-small;
+  }
+}

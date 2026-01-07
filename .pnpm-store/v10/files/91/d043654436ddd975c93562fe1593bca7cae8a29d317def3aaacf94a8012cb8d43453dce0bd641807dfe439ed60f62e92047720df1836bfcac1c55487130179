@@ -1,0 +1,1 @@
+{"version":3,"file":"RoughRendererPlugin.d.ts","sourceRoot":"","sources":["../src/RoughRendererPlugin.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,eAAe,EAAE,sBAAsB,EAAE,MAAM,cAAc,CAAC;AAK5E,qBAAa,mBAAoB,YAAW,eAAe;IACzD,MAAM,CAAC,GAAG,SAAyB;IAEnC,KAAK,CAAC,OAAO,EAAE,sBAAsB;CAoBtC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"upper-first.js","sourceRoot":"","sources":["../src/upper-first.ts"],"names":[],"mappings":";;AAAA,yCAAmC;AAEnC,IAAM,UAAU,GAAG,UAAS,KAAa;IACvC,IAAM,GAAG,GAAG,mBAAQ,CAAC,KAAK,CAAC,CAAC;IAC5B,OAAO,GAAG,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,WAAW,EAAE,GAAG,GAAG,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC;AAEF,kBAAe,UAAU,CAAC"}

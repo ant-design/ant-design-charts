@@ -1,0 +1,37 @@
+{
+	"name": "presentable-error",
+	"version": "0.0.1",
+	"description": "Make presentable errors",
+	"license": "MIT",
+	"repository": "sindresorhus/presentable-error",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"engines": {
+		"node": ">=16"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"error",
+		"presentable"
+	],
+	"devDependencies": {
+		"ava": "^5.3.1",
+		"tsd": "^0.28.1",
+		"xo": "^0.56.0"
+	}
+}

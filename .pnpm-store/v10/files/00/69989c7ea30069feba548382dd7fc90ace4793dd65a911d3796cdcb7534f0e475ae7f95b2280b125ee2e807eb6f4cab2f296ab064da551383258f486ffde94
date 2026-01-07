@@ -1,0 +1,98 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { styled } from 'styled-components';
+import { useSnapshot } from 'valtio';
+import { feedbackStore, invokeSectionFeedback, resetSectionFeedback } from "../../model/feedback";
+import { SectionFeedbackCommentForm } from "./SectionFeedbackCommentForm";
+var StyledWrapper = styled.div.withConfig({
+  displayName: "StyledWrapper",
+  componentId: "dumi-theme-antv-c7ef__sc-vcamqv-0"
+})(["background-color:#fff;border-radius:12px;box-shadow:0 0.5rem 1.2rem #f0f1f2;transition:height 0.3s ease-in-out;width:262px;position:fixed;z-index:1001;padding:10px 18px;border-radius:8px;transition:top 0.3s ease-in-out,right 0.3s ease-in-out;"]);
+var SectionFeedback = function SectionFeedback() {
+  var feedbackState = useSnapshot(feedbackStore);
+  var location = useLocation();
+  useEffect(function () {
+    var observer = new MutationObserver(function () {
+      var buttons = document.querySelectorAll('.comment-link');
+      if (!buttons || buttons.length === 0) return;
+      var focusCommentInput = function focusCommentInput(e) {
+        var button = e.target.closest('.comment-link');
+        invokeSectionFeedback(button.getAttribute('data-feedback-hash'));
+      };
+      buttons.forEach(function (button) {
+        button.addEventListener('click', focusCommentInput);
+      });
+      return function () {
+        buttons.forEach(function (button) {
+          button.removeEventListener('click', focusCommentInput);
+        });
+      };
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    return function () {
+      observer.disconnect();
+    };
+  }, []);
+  var _useState = useState({
+      top: 0,
+      right: 12
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    position = _useState2[0],
+    setPosition = _useState2[1];
+  useEffect(function () {
+    var handleClick = function handleClick(e) {
+      var target = e.target;
+      var closestCommentLink = target.closest('.comment-link');
+      if (!feedbackState.section || !closestCommentLink) return;
+      var escapedSection = CSS.escape(feedbackState.section);
+      var elements = document.querySelectorAll(".comment-link[data-feedback-hash=".concat(escapedSection, "]"));
+      var closestElement = findClosetElement(e, elements);
+      if (closestElement) {
+        var rect = closestElement.getBoundingClientRect();
+        var top = Math.min(Math.max(rect.top, 0), window.innerHeight - 380);
+        setPosition({
+          top: top,
+          right: 12
+        });
+      }
+    };
+    window.addEventListener('click', handleClick);
+    return function () {
+      window.removeEventListener('click', handleClick);
+    };
+  }, [feedbackState.section]);
+  useEffect(function () {
+    resetSectionFeedback();
+  }, [location.pathname]);
+  if (!feedbackState.section) return null;
+  return /*#__PURE__*/React.createElement(StyledWrapper, {
+    style: {
+      top: position.top,
+      right: position.right
+    }
+  }, /*#__PURE__*/React.createElement(SectionFeedbackCommentForm, null));
+};
+var findClosetElement = function findClosetElement(e, elements) {
+  var closestElement = null;
+  var closestDistance = Infinity;
+  elements.forEach(function (element) {
+    var rect = element.getBoundingClientRect();
+    var distance = Math.sqrt(Math.pow(rect.left + rect.width / 2 - e.clientX, 2) + Math.pow(rect.top + rect.height / 2 - e.clientY, 2));
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestElement = element;
+    }
+  });
+  return closestElement;
+};
+export default SectionFeedback;

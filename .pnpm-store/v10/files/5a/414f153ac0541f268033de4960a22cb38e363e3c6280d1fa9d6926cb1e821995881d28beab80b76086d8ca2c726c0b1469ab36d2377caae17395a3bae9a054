@@ -1,0 +1,19 @@
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import CodeBlock from "./CodeBlock";
+var Markdown = function Markdown(_ref) {
+  var text = _ref.text,
+    style = _ref.style;
+  return /*#__PURE__*/React.createElement("div", {
+    style: style,
+    className: "prose max-w-none petercat-assistant-markdown text-black"
+  }, /*#__PURE__*/React.createElement(ReactMarkdown, {
+    remarkPlugins: [remarkGfm],
+    components: {
+      // @ts-ignore
+      code: CodeBlock
+    }
+  }, text));
+};
+export default Markdown;

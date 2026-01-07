@@ -1,0 +1,1 @@
+{"version":3,"file":"indented.d.ts","sourceRoot":"","sources":["../../src/layout/indented.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,aAAa,EAAE,MAAM,UAAU,CAAC;AAsC9C,MAAM,CAAC,OAAO,UAAU,QAAQ,CAC9B,IAAI,EAAE,aAAa,EACnB,MAAM,EAAE,MAAM,GAAG,CAAC,CAAC,IAAI,EAAE,aAAa,KAAK,MAAM,CAAC,EAClD,OAAO,EAAE,OAAO,EAChB,KAAK,CAAC,EAAE,QAAQ,GAAG,SAAS,GAC3B,IAAI,CAMN"}

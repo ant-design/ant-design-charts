@@ -1,0 +1,46 @@
+{
+  "name": "prettier-plugin-packagejson",
+  "version": "2.4.3",
+  "description": "Prettier package.json plugin to make the order of properties nice.",
+  "keywords": [
+    "package.json",
+    "plugin",
+    "prettier"
+  ],
+  "repository": "github:matzkoh/prettier-plugin-packagejson",
+  "license": "MIT",
+  "main": "lib",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib/**/*.js",
+    "!**/*.snap",
+    "!lib/**/*.test.js"
+  ],
+  "scripts": {
+    "fix": "run-p fix:*",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "lint": "run-p lint:*",
+    "lint:prettier": "prettier -c .",
+    "test": "run-s lint test:*",
+    "test:unit": "jest"
+  },
+  "dependencies": {
+    "sort-package-json": "2.4.1",
+    "synckit": "0.8.5"
+  },
+  "devDependencies": {
+    "jest": "29.4.2",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.8.4"
+  },
+  "peerDependencies": {
+    "prettier": ">= 1.16.0"
+  },
+  "peerDependenciesMeta": {
+    "prettier": {
+      "optional": true
+    }
+  }
+}

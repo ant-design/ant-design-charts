@@ -1,0 +1,85 @@
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+import { Helmet, useLocale, useSiteData } from 'dumi';
+import { isEqual } from 'lodash-es';
+import React, { useEffect } from 'react';
+import { icWithLocale } from "../slots/hooks";
+var CommonHelmet = function CommonHelmet(_ref) {
+  var titleSuffix = _ref.titleSuffix,
+    propTitle = _ref.title,
+    propDescription = _ref.description,
+    propMeta = _ref.meta;
+  var locale = useLocale();
+  var lang = locale.id;
+  var _useSiteData = useSiteData(),
+    metas = _useSiteData.themeConfig.metas;
+  var defaultTitle = icWithLocale(metas.title, lang);
+  var defaultDescription = icWithLocale(metas.description, lang);
+  var helmetData = React.useMemo(function () {
+    var title = propTitle || '';
+    var fullTitle = "".concat(title, " | ").concat(titleSuffix || defaultTitle);
+    var description = propDescription || defaultDescription;
+    var defaultMeta = [{
+      name: "description",
+      content: description
+    },
+    // Open Graph 标签，指定页面在社交媒体上的展示效果
+    {
+      property: "og:title",
+      content: title
+    }, {
+      property: "og:description",
+      content: description
+    }, {
+      property: "og:image",
+      content: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png'
+    }, {
+      property: "og:type",
+      content: "website"
+    },
+    // Twitter 卡片
+    {
+      name: "twitter:card",
+      content: "summary"
+    }, {
+      name: "twitter:title",
+      content: title
+    }, {
+      name: "twitter:description",
+      content: description
+    }, {
+      property: "twitter:image",
+      content: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png'
+    }];
+    return {
+      title: title,
+      description: description,
+      fullTitle: fullTitle,
+      defaultMeta: defaultMeta,
+      meta: [].concat(defaultMeta, _toConsumableArray(propMeta || []))
+    };
+  }, [propTitle, propDescription, titleSuffix, propMeta]);
+  useEffect(function () {
+    // 延迟 document.title 设置标题作为备份机制
+    var timer = setTimeout(function () {
+      document.title = helmetData.fullTitle;
+    }, 100);
+    return function () {
+      return clearTimeout(timer);
+    };
+  }, [helmetData.fullTitle]);
+  return /*#__PURE__*/React.createElement(Helmet, {
+    htmlAttributes: {
+      lang: lang
+    },
+    title: helmetData.fullTitle,
+    meta: helmetData.meta
+  });
+};
+export default /*#__PURE__*/React.memo(CommonHelmet, function (prevProps, nextProps) {
+  return prevProps.title === nextProps.title && prevProps.description === nextProps.description && prevProps.titleSuffix === nextProps.titleSuffix && isEqual(prevProps.meta, nextProps.meta);
+});

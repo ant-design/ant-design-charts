@@ -1,0 +1,99 @@
+@import (reference) '../../styles/variables.less';
+
+.container-colors(@bg-color, @title-color, @text-color) {
+  background: @bg-color;
+
+  > h4,
+  > svg {
+    color: @title-color;
+  }
+
+  > section {
+    color: @text-color;
+  }
+}
+
+.@{prefix}-container.markdown {
+  padding: 18px 0;
+  padding-inline-start: 44px;
+  padding-inline-end: 16px;
+  border-radius: 4px;
+
+  &:not(:first-child) {
+    margin-bottom: 24px;
+  }
+
+  &:not(:last-child) {
+    margin-top: 32px;
+  }
+
+  > svg {
+    float: left;
+    fill: currentcolor;
+    margin-inline-start: -26px;
+    width: 18px;
+
+    [data-direction='rtl'] & {
+      float: right;
+    }
+  }
+
+  > h4 {
+    clear: none;
+    margin: 0 0 12px;
+    font-size: 15px;
+    line-height: 17px;
+  }
+
+  > section {
+    font-size: 15px;
+  }
+
+  &[data-type='info'] {
+    @color: darken(desaturate(@c-primary, 45%), 10%);
+
+    .container-colors(lighten(@c-primary, 42%), @color, desaturate(@color, 20%));
+
+    @{dark-selector} & {
+      @color: lighten(desaturate(@c-primary-dark, 45%), 20%);
+
+      .container-colors(darken(@c-primary-dark, 26%), @color, desaturate(@color, 20%));
+    }
+  }
+
+  &[data-type='warning'] {
+    @color: darken(desaturate(@c-warning, 20%), 2%);
+
+    .container-colors(lighten(@c-warning, 51%), @color, desaturate(@color, 24%));
+
+    @{dark-selector} & {
+      @color: lighten(desaturate(@c-warning, 20%), 3%);
+
+      .container-colors(darken(@c-warning-dark, 18%), @color, desaturate(@color, 20%));
+    }
+  }
+
+  &[data-type='success'] {
+    @color: darken(desaturate(@c-success, 5%), 1%);
+
+    .container-colors(lighten(@c-success, 59%), @color, desaturate(@color, 22%));
+
+    @{dark-selector} & {
+      @color: lighten(desaturate(@c-success, 5%), 5%);
+
+      .container-colors(darken(@c-success-dark, 10%), @color, desaturate(@color, 20%));
+    }
+  }
+
+  &[data-type='error'] {
+    @color: darken(desaturate(@c-error, 20%), 1%);
+
+    .container-colors(lighten(@c-error, 51%), @color, desaturate(@color, 25%));
+
+    @{dark-selector} & {
+      @color: lighten(desaturate(@c-error, 20%), 5%);
+
+      .container-colors(darken(@c-error-dark, 22%), @color, desaturate(@color, 20%));
+    }
+  }
+}

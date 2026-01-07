@@ -1,0 +1,23 @@
+export declare const LOCAL_DUMI_DIR = ".dumi";
+export declare const LOCAL_THEME_DIR: string;
+export declare const LOCAL_PAGES_DIR: string;
+export declare const THEME_PREFIX = "dumi-theme-";
+export declare const SP_ROUTE_PREFIX = "~";
+export declare const PREFERS_COLOR_ATTR = "data-prefers-color";
+export declare const PREFERS_COLOR_LS_KEY = "dumi:prefers-color";
+export declare const PICKED_PKG_FIELDS: {
+    name: string;
+    description: string;
+    version: string;
+    license: string;
+    repository: string;
+    author: string;
+    authors: string;
+};
+export declare const USELESS_TMP_FILES: string[];
+export declare const VERSION_2_LEVEL_NAV = "^2.2.0";
+export declare const VERSION_2_DEPRECATE_SOFT_BREAKS = "^2.2.0";
+export declare const DEFAULT_DEMO_MODULE_EXTENSIONS: string[];
+export declare const DEFAULT_DEMO_PLAIN_TEXT_EXTENSIONS: string[];
+export declare const FS_CACHE_DIR = "node_modules/.cache/dumi";
+export declare const SHOULD_SKIP_LIVEDEMO_ERROR: string[];

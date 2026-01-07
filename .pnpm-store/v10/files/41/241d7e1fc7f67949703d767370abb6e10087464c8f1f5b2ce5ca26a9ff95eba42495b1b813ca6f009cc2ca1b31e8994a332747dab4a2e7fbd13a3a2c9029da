@@ -1,0 +1,8 @@
+import { Layout } from 'antd';
+import React from 'react';
+import styles from "./index.module.less";
+export var Article = function Article(props) {
+  return /*#__PURE__*/React.createElement(Layout.Content, {
+    className: styles.article
+  }, /*#__PURE__*/React.createElement("article", props));
+};

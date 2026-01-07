@@ -1,0 +1,48 @@
+{
+	"name": "os-locale",
+	"version": "5.0.0",
+	"description": "Get the system locale",
+	"license": "MIT",
+	"repository": "sindresorhus/os-locale",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"locale",
+		"lang",
+		"language",
+		"system",
+		"os",
+		"string",
+		"str",
+		"user",
+		"country",
+		"id",
+		"identifier",
+		"region"
+	],
+	"dependencies": {
+		"execa": "^4.0.0",
+		"lcid": "^3.0.0",
+		"mem": "^5.0.0"
+	},
+	"devDependencies": {
+		"ava": "^2.1.0",
+		"proxyquire": "^2.1.3",
+		"tsd": "^0.11.0",
+		"xo": "^0.28.0"
+	}
+}

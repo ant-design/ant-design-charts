@@ -1,0 +1,30 @@
+{
+  "name": "stubborn-utils",
+  "repository": "github:fabiospampinato/stubborn-utils",
+  "description": "A small collection of utilities for making functions somewhat resilient against errors.",
+  "license": "MIT",
+  "version": "1.0.2",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "tsex clean",
+    "compile": "tsex compile",
+    "compile:watch": "tsex compile --watch",
+    "test": "tsex test",
+    "test:watch": "tsex test --watch",
+    "prepublishOnly": "tsex prepare"
+  },
+  "keywords": [
+    "stubborn",
+    "collection",
+    "utilities",
+    "functions"
+  ],
+  "devDependencies": {
+    "fava": "^0.3.5",
+    "tsex": "^4.0.2",
+    "typescript": "^5.9.3"
+  }
+}

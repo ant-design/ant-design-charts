@@ -1,0 +1,10 @@
+import React from 'react';
+import { ChatProps } from '../Chat';
+export interface AssistantProps extends ChatProps {
+    showBubble?: boolean;
+    isVisible?: boolean;
+    onClose?: () => void;
+    bottom?: number;
+}
+declare const Assistant: (props: AssistantProps) => React.JSX.Element;
+export default Assistant;

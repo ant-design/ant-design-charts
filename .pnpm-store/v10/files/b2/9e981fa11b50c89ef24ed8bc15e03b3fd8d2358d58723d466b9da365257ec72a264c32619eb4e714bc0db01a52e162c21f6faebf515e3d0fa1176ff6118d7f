@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
+function _default(node, x0, x1) {
+    this.node = node;
+    this.x0 = x0;
+    this.x1 = x1;
+}

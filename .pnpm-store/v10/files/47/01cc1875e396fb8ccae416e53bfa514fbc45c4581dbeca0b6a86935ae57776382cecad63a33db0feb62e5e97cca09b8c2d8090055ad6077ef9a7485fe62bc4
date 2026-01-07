@@ -1,0 +1,37 @@
+{
+  "name": "uri-parse",
+  "version": "1.0.0",
+  "description": "Mini data-uri parser for nodejs and browser. No dependencies!",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "coverage": "nyc npm test && nyc report --reporter=lcov",
+    "test": "mocha test.js",
+    "perf": "node benchmark.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hustcc/uri-parse.git"
+  },
+  "keywords": [
+    "uri-parse",
+    "data-uri",
+    "url-parse"
+  ],
+  "author": "hustcc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hustcc/uri-parse/issues"
+  },
+  "homepage": "https://github.com/hustcc/uri-parse#readme",
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "coveralls": "^2.11.6",
+    "expect": "^1.14.0",
+    "mocha": "^2.4.5",
+    "nyc": "^5.6.0",
+    "url-parse": "^1.2.0"
+  }
+}
