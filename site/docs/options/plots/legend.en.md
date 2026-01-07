@@ -28,13 +28,13 @@ First, pass a `boolean` to set whether to display the legend.
 
 ```js
 ({
-  legend: false; // Hide all legends
+  legend: false, // Hide all legends
 })
 ```
 
 ```js
 ({
-  legend: {color: false}; // Hide the legend for the color channel
+  legend: {color: false}, // Hide the legend for the color channel
 })
 ```
 
@@ -265,7 +265,7 @@ maxRows and maxCols are used to limit the maximum number of rows and columns in 
 | **Parameter** | **Horizontal Layout (top/bottom)**              | **Vertical Layout (left/right)**                 |
 | ------------- | ----------------------------------------------- | ------------------------------------------------ |
 | **maxRows**   | ✅ Limits rows, controls legend height          | ❌ **No effect**, rows auto-calculated by height |
-| **maxCols**   | ❌ **No effect**, rows auto-calculated by width | ✅ Limits columns, controls legend width         |
+| **maxCols**   | ❌ **No effect**, columns auto-calculated by width | ✅ Limits columns, controls legend width         |
 
 ⚠️ **Note**: When using `maxRows` and `maxCols`, avoid manually configuring legend container's `size` and `length`.
 
