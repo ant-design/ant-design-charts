@@ -150,52 +150,175 @@ Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种�
 
 <description> _LegendLayoutCfg_ **optional** </description>
 
-Legend 组件支持调整其在画布中的位置，通过 `layout` 属性来设置。
-目前支持基本的 Flex 布局方式，支持的属性包括: `justifyContent`, `alignItems`, `flexDirection`。_LegendLayoutCfg_ 配置如下：
+Legend 组件支持调整其在画布中的位置，通过 `layout` 属性来设置。图例布局采用 **Flexbox 布局模型**，`position` 决定图例在画布中的基础位置，而 `layout` 进一步控制图例内部的精确对齐方式。
 
-| 属性           | 描述         | 类型                                   | 默认值                                                      | 必选 |
-| -------------- | ------------ | -------------------------------------- | ----------------------------------------------------------- | ---- |
-| justifyContent | 主轴对齐方式 | `flex-start` \| `flex-end` \| `center` | `flex-start`                                                |      |
-| alignItems     | 交叉轴对齐   | `flex-start` \| `flex-end` \| `center` | `flex-start`                                                |      |
-| flexDirection  | 主轴方向     | `row` \| `column`                      | position 为`top`和`bottom`的时候为`row`，其他时候为`column` |      |
+#### 布局轴的概念
 
-通过配置图例的 `position` 和 `layout` ，我们可以很灵活地改变图例的位置。
+理解图例布局的关键是掌握**主轴**和**交叉轴**的概念：
+
+| **position** | **默认 flexDirection** | **主轴方向** | **交叉轴方向** | **主轴含义**   | **交叉轴含义**   |
+| ------------ | ---------------------- | ------------ | -------------- | -------------- | ---------------- |
+| `top`        | `row`                  | 水平 →       | 垂直 ↓         | 图例项左右排列 | 图例区域上下对齐 |
+| `bottom`     | `row`                  | 水平 →       | 垂直 ↑         | 图例项左右排列 | 图例区域上下对齐 |
+| `left`       | `column`               | 垂直 ↓       | 水平 →         | 图例项上下排列 | 图例区域左右对齐 |
+| `right`      | `column`               | 垂直 ↓       | 水平 ←         | 图例项上下排列 | 图例区域左右对齐 |
+
+#### 配置属性
+
+_LegendLayoutCfg_ 配置如下：
+
+| 属性           | 描述         | 类型                                   | 默认值                                                      | 作用轴 | 必选 |
+| -------------- | ------------ | -------------------------------------- | ----------------------------------------------------------- | ------ | ---- |
+| justifyContent | 主轴对齐方式 | `flex-start` \| `flex-end` \| `center` | `flex-start`                                                | 主轴   |      |
+| alignItems     | 交叉轴对齐   | `flex-start` \| `flex-end` \| `center` | `flex-start`                                                | 交叉轴 |      |
+| flexDirection  | 主轴方向     | `row` \| `column`                      | position 为`top`和`bottom`的时候为`row`，其他时候为`column` | -      |      |
+
+#### position + layout 组合配置
+
+通过 `position` 和 `layout` 的组合，可以实现图例的精确定位：
 
 ```js
-// 配置一个右侧垂直居中的图例
-
-// 第一步，配置position为right
-
-// 第二步，position为right的时候主轴方向flexDirection默认为column
-
-// 第三步，要实现垂直居中，需要在column方向上对齐方式为center，因为column此时为主轴，所以配置justifyContent为center
+// 1. 顶部居中图例
 ({
   legend: {
     color: {
-      position: 'right',
+      position: 'top', // 图例位于顶部
       layout: {
-        justifyContent: 'center',
+        justifyContent: 'center', // 主轴（水平）居中
+      },
+    },
+  },
+});
+
+// 2. 右侧垂直居中图例
+({
+  legend: {
+    color: {
+      position: 'right', // 图例位于右侧
+      layout: {
+        justifyContent: 'center', // 主轴（垂直）居中
+      },
+    },
+  },
+});
+
+// 3. 底部右对齐图例
+({
+  legend: {
+    color: {
+      position: 'bottom', // 图例位于底部
+      layout: {
+        justifyContent: 'flex-end', // 主轴（水平）右对齐
+      },
+    },
+  },
+});
+
+// 4. 左侧底部对齐图例
+({
+  legend: {
+    color: {
+      position: 'left', // 图例位于左侧
+      layout: {
+        justifyContent: 'flex-end', // 主轴（垂直）底部对齐
       },
     },
   },
 });
 ```
 
+#### 常见布局场景
+
+以下是一些常见的图例布局需求及其配置方式：
+
+```js
+// 🎯 场景1：顶部居中显示，适合仪表板
+({
+  legend: {
+    color: {
+      position: 'top',
+      layout: {
+        justifyContent: 'center', // 水平居中
+      },
+    },
+  },
+});
+
+// 🎯 场景2：右侧垂直居中，适合详细图表
+({
+  legend: {
+    color: {
+      position: 'right',
+      layout: {
+        justifyContent: 'center', // 垂直居中
+      },
+    },
+  },
+});
+
+// 🎯 场景3：底部左对齐，节省空间
+({
+  legend: {
+    color: {
+      position: 'bottom',
+      layout: {
+        justifyContent: 'flex-start', // 左对齐
+      },
+    },
+  },
+});
+
+// 🎯 场景4：右侧顶部对齐，紧凑布局
+({
+  legend: {
+    color: {
+      position: 'right',
+      layout: {
+        justifyContent: 'flex-start', // 顶部对齐
+      },
+    },
+  },
+});
+
+// 🎯 场景5：左侧底部对齐，与图表底部对齐
+({
+  legend: {
+    color: {
+      position: 'left',
+      layout: {
+        justifyContent: 'flex-end', // 底部对齐
+      },
+    },
+  },
+});
+```
+
+💡 **布局技巧**
+
+- **水平居中**：`position: 'top'` + `justifyContent: 'center'`
+- **垂直居中**：`position: 'right'` + `justifyContent: 'center'`
+- **紧凑布局**：使用 `flex-start` 让图例紧贴图表
+
 
 ### size
 
 <description> _number_ **optional** </description>
 
-Legend 组件容器的尺寸。影响组件在交叉轴上的大小，例如水平位置的图例，影响整体高度。手动配置会导致 Ant Design Charts 内部计算逻辑失效，需要自己配置 margin、padding、inset 等大小，详见[图表布局](/options/plots/core/chart/chart-component#图表布局)。除非需要定制化的场景，否则不建议配置。
+Legend 组件的尺寸，用于 Ant Design Charts 内部布局计算和空间分配。影响组件在**交叉轴**上的大小：
+
+- 对于水平布局图例（`position: 'top'` 或 `'bottom'`），控制图例的高度
+- 对于垂直布局图例（`position: 'left'` 或 `'right'`），控制图例的宽度
+
+手动配置会导致 Ant Design Charts 内部计算逻辑失效，需要自己配置 margin、padding、inset 等大小，详见[图表布局](/options/plots/core/chart/chart-component#图表布局)。除非需要定制化的场景，否则不建议配置。
 
 ### length
 
 <description> _number_ **optional** </description>
 
-Legend 组件容器的长度，用于 Ant Design Charts 内部布局计算和空间分配。影响组件在**主轴**上的大小：
+Legend 组件的长度，用于 Ant Design Charts 内部布局计算和空间分配。影响组件在**主轴**上的大小：
 
-- 对于水平布局的图例（`position: 'top'` 或 `'bottom'`），控制图例宽度
-- 对于垂直布局的图例（`position: 'left'` 或 `'right'`），控制图例高度
+- 对于水平布局图例（`position: 'top'` 或 `'bottom'`），控制图例的宽度
+- 对于垂直布局图例（`position: 'left'` 或 `'right'`），控制图例的高度
 
 <img alt="legend-overview" width=600 src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*KIXzR7Mwb1cAAAAARbAAAAgAemJ7AQ/original"/>
 
@@ -241,13 +364,13 @@ Legend 组件在布局的时候的排序。默认为 `1`。Ant Design Charts 内
 | titleFillOpacity   | 标题字体颜色透明度                                                                                                   | number \| (datum, index, data) => number                                                                   | `0.65`                            |      |
 | titleStroke        | 标题字体描边颜色                                                                                                     | string \| (datum, index, data) => string                                                                   | -                                 |      |
 | titleStrokeOpacity | 标题字体描边颜色透明度                                                                                               | number \| (datum, index, data) => number                                                                   | -                                 |      |
-| titleLineWidth     | 标题字体描边的宽度                                                                                                   | number \| (datum, index, data) => number                                                                   | -                                 |      |
+| titleLineWidth     | 标题描边宽度                                                                                                         | number \| (datum, index, data) => number                                                                   | -                                 |      |
 | titleLineDash      | 标题字体描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 | [number,number] \| (datum, index, data) => [number , number]                                               | -                                 |      |
 | titleOpacity       | 标题文字的整体透明度                                                                                                 | number \| (datum, index, data) => number                                                                   | -                                 |      |
 | titleShadowColor   | 标题文字阴影颜色                                                                                                     | string \| (datum, index, data) => string                                                                   | -                                 |      |
 | titleShadowBlur    | 标题文字阴影的高斯模糊系数                                                                                           | number \| (datum, index, data) => number                                                                   | -                                 |      |
-| titleShadowOffsetX | 设置阴影距标题文字的水平距离                                                                                         | number \| (datum, index, data) => number                                                                   | -                                 |      |
-| titleShadowOffsetY | 设置阴影距标题文字的垂直距离                                                                                         | number \| (datum, index, data) => number                                                                   | -                                 |      |
+| titleShadowOffsetX | 标题阴影水平偏移量                                                                                                   | number \| (datum, index, data) => number                                                                   | -                                 |      |
+| titleShadowOffsetY | 标题阴影垂直偏移量                                                                                                   | number \| (datum, index, data) => number                                                                   | -                                 |      |
 | titleCursor        | 标题鼠标样式。同 css 的鼠标样式                                                                                      | string \| (datum, index, data) => string                                                                   | `default`                         |      |
 
 在 Legend 组件中配置标题的时候，不是以对象的形式来配置，而是以 `title`前缀加属性的方式来配置。
@@ -320,28 +443,26 @@ Legend 组件在布局的时候的排序。默认为 `1`。Ant Design Charts 内
 
 适用于 <Badge type="success">分类图例</Badge> 。指定图例最大行数。默认为 `3`。
 
+⚠️ **注意**：此配置仅在**水平布局**（`position: 'top'` 或 `'bottom'`）时生效。当图例位置为 `'left'` 或 `'right'` 时，Ant Design Charts 会根据容器高度自动计算行数，`maxRows` 配置将被忽略。
+
 ### maxCols
 
 <description> _number_ **optional** </description>
 
 适用于 <Badge type="success">分类图例</Badge> 。指定图例最大列数。默认为 `3`。
 
+⚠️ **注意**：此配置仅在**垂直布局**（`position: 'left'` 或 `'right'`）时生效。当图例位置为 `'top'` 或 `'bottom'` 时，Ant Design Charts 会根据容器宽度自动计算列数，`maxCols` 配置将被忽略。
+
 💡 **maxRows 和 maxCols 是怎么作用于图例布局的？**
 
-maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码中通过 `getRows = (rows) => Math.min(rows, maxRows)`和 `getCols = (cols) => Math.min(cols, maxCols)`实现行列数限制。
+maxRows 和 maxCols 用于限制图例布局的最大行数和列数，但它们在不同布局方向下的作用效果不同：
 
-| **参数**    | **垂直布局**                     | **水平布局**                         |
-| ----------- | -------------------------------- | ------------------------------------ |
-| **maxCols** | 限制列数，控制图例宽度           | 无直接影响（列数由 `cols` 参数指定） |
-| **maxRows** | 无直接影响（行数由高度自动计算） | 限制行数，控制图例高度               |
+| **参数**    | **水平布局（top/bottom）**            | **垂直布局（left/right）**            |
+| ----------- | ------------------------------------- | ------------------------------------- |
+| **maxRows** | ✅ 限制行数，控制图例高度             | ❌ **不生效**，行数由容器高度自动计算 |
+| **maxCols** | ❌ **不生效**，行数由容器宽度自动计算 | ✅ 限制列数，控制图例宽度             |
 
-**潜在问题**
-
-- **垂直布局**：若 `maxCols` 过小，可能导致单列行数超过 `maxHeight`，引发溢出。
-
-- **水平布局**：若 `maxRows` 过小，部分项可能被截断。
-
-此时需要适当调整图表的 `margin` 和 `padding`，保证图例有足够的空间展示。
+⚠️ **注意**：当使用`maxRows` 和 `maxCols` 的时候，避免手动配置图例容器的 `size` 和 `length`。
 
 ### itemMarker
 
@@ -351,20 +472,20 @@ maxRows 和 maxCols 用于限制图例布局的最大行数和列数。在代码
 
 | 属性                    | 描述                                                                                                                   | 类型                                                         | 默认值    | 必选 |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | --------- | ---- |
-| itemMarker              | 图例项图标                                                                                                             | _Symbols_ \|(datum, index, data)=>_Symbols_                  | `circle`  |      |
-| itemMarkerSize          | 图例项图标大小                                                                                                         | number \| (datum, index, data) => number                     | `8`       |      |
-| itemMarkerFill          | 图例项图标填充色                                                                                                       | string \| (datum, index, data) => string                     | -         |      |
-| itemMarkerFillOpacity   | 图例项图标填充透明度                                                                                                   | number \| (datum, index, data) => number                     | `1`       |      |
-| itemMarkerStroke        | 图例项图标的描边                                                                                                       | string \| (datum, index, data) => string                     | -         |      |
-| itemMarkerStrokeOpacity | 图例项图标描边透明度                                                                                                   | number \| (datum, index, data) => number                     | -         |      |
-| itemMarkerLineWidth     | 图例项图标描边的宽度                                                                                                   | number \| (datum, index, data) => number                     | -         |      |
-| itemMarkerLineDash      | 图例项图标描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 | [number,number] \| (datum, index, data) => [number , number] | -         |      |
-| itemMarkerOpacity       | 图例项图标的整体透明度                                                                                                 | number \| (datum, index, data) => number                     | -         |      |
-| itemMarkerShadowColor   | 图例项图标阴影颜色                                                                                                     | string \| (datum, index, data) => string                     | -         |      |
-| itemMarkerShadowBlur    | 图例项图标阴影的高斯模糊系数                                                                                           | number \| (datum, index, data) => number                     | -         |      |
-| itemMarkerShadowOffsetX | 设置阴影距图例项图标的水平距离                                                                                         | number \| (datum, index, data) => number                     | -         |      |
-| itemMarkerShadowOffsetY | 设置阴影距图例项图标的垂直距离                                                                                         | number \| (datum, index, data) => number                     | -         |      |
-| itemMarkerCursor        | 图例项图标鼠标样式。同 css 的鼠标样式。                                                                                | string \| (datum, index, data) => string                     | `default` |      |
+| itemMarker              | 图例项图标                                                                                                             | _Symbols_ \|(datum, index, data)=>_Symbols_                  | `circle`      |      |
+| itemMarkerSize          | 图例项图标大小                                                                                                         | number \| (datum, index, data) => number                     | `8`           |      |
+| itemMarkerFill          | 图例项图标填充色                                                                                                       | string \| (datum, index, data) => string                     | -             |      |
+| itemMarkerFillOpacity   | 图例项图标填充透明度                                                                                                   | number \| (datum, index, data) => number                     | `1`           |      |
+| itemMarkerStroke        | 图例项图标的描边                                                                                                       | string \| (datum, index, data) => string                     | -             |      |
+| itemMarkerStrokeOpacity | 图例项图标描边透明度                                                                                                   | number \| (datum, index, data) => number                     | -             |      |
+| itemMarkerLineWidth     | 图例项图标描边的宽度                                                                                                   | number \| (datum, index, data) => number                     | 线形图标为`4` |      |
+| itemMarkerLineDash      | 图例项图标描边的虚线配置，第一个值为虚线每个分段的长度，第二个值为分段间隔的距离。lineDash 设为[0,0]的效果为没有描边。 | [number,number] \| (datum, index, data) => [number , number] | -             |      |
+| itemMarkerOpacity       | 图例项图标的整体透明度                                                                                                 | number \| (datum, index, data) => number                     | -             |      |
+| itemMarkerShadowColor   | 图例项图标阴影颜色                                                                                                     | string \| (datum, index, data) => string                     | -             |      |
+| itemMarkerShadowBlur    | 图例项图标阴影的高斯模糊系数                                                                                           | number \| (datum, index, data) => number                     | -             |      |
+| itemMarkerShadowOffsetX | 设置阴影距图例项图标的水平距离                                                                                         | number \| (datum, index, data) => number                     | -             |      |
+| itemMarkerShadowOffsetY | 设置阴影距图例项图标的垂直距离                                                                                         | number \| (datum, index, data) => number                     | -             |      |
+| itemMarkerCursor        | 图例项图标鼠标样式。同 css 的鼠标样式。                                                                                | string \| (datum, index, data) => string                     | `default`     |      |
 
 #### Symbols 可选类型
 
