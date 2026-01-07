@@ -1,0 +1,40 @@
+{
+  "name": "rename-keys",
+  "description": "Modify the names of the own enumerable properties (keys) of an object.",
+  "version": "1.2.0",
+  "homepage": "https://github.com/jonschlinkert/rename-keys",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "contributors": [
+    "Brian Woodward (https://twitter.com/doowb)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)",
+    "Oleg Slobodskoi (https://kof.github.io)",
+    "Palani Kumanan (https://github.com/palanik)",
+    "Robin Bullock (https://github.com/robinbullocks4rb)",
+    "Scott Ellard (http://www.anenta.com)"
+  ],
+  "repository": "jonschlinkert/rename-keys",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/rename-keys/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "keywords": [
+    "enumerable",
+    "keys",
+    "object",
+    "properties",
+    "rename"
+  ]
+}

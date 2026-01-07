@@ -1,0 +1,60 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+import { useIntl, useSiteData } from 'dumi';
+import { get, isArray, size } from 'lodash-es';
+import React from 'react';
+import CommonHelmet from "../../common/CommonHelmet";
+import { ic } from "../../slots/hooks";
+import { Cases } from "./components/Cases";
+import { Companies } from "./components/Companies";
+import { Detail } from "./components/Detail";
+import { Features } from "./components/Features";
+var Index = function Index() {
+  var _useSiteData = useSiteData(),
+    themeConfig = _useSiteData.themeConfig;
+  var title = themeConfig.metas.title,
+    githubUrl = themeConfig.githubUrl,
+    isAntVSite = themeConfig.isAntVSite,
+    showGithubStars = themeConfig.showGithubStars,
+    detail = themeConfig.detail,
+    news = themeConfig.news,
+    companies = themeConfig.companies,
+    features = themeConfig.features,
+    cases = themeConfig.cases,
+    className = themeConfig.className,
+    style = themeConfig.style,
+    id = themeConfig.id;
+  var _useIntl = useIntl(),
+    formatMessage = _useIntl.formatMessage;
+  var detailProps = _objectSpread({
+    githubUrl: githubUrl,
+    showGithubStars: showGithubStars,
+    news: news
+  }, detail);
+  var featuresProps = {
+    title: get(features, ['title']),
+    features: isArray(features) ? features : get(features, ['cards'], []),
+    className: className,
+    style: style,
+    id: id
+  };
+  var casesProps = {
+    cases: cases,
+    style: style,
+    className: className
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(CommonHelmet, {
+    title: ic(title),
+    titleSuffix: "AntV"
+  }), size(detail) ? /*#__PURE__*/React.createElement(Detail, detailProps) : null, size(featuresProps.features) ? /*#__PURE__*/React.createElement(Features, featuresProps) : null, size(cases) ? /*#__PURE__*/React.createElement(Cases, casesProps) : null, size(companies) ? /*#__PURE__*/React.createElement(Companies, {
+    title: formatMessage({
+      id: isAntVSite ? '2000+ 公司正在使用' : '感谢信赖'
+    }),
+    companies: companies
+  }) : null);
+};
+export default Index;

@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../../src/lib/utils/options/sources/index.ts"],"names":[],"mappings":";;AAAA,2CAA4C;AAAnC,oCAAA,YAAY,CAAA;AACrB,qCAA8C;AAArC,sCAAA,iBAAiB,CAAA","sourcesContent":["export { addTSOptions } from './typescript';\nexport { addTypeDocOptions } from './typedoc';\n"]}

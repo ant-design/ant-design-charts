@@ -1,0 +1,1 @@
+{"version":3,"file":"is-number-equal.js","sourceRoot":"","sources":["../src/is-number-equal.ts"],"names":[],"mappings":"AAAA,IAAM,SAAS,GAAG,OAAO,CAAC,CAAC,4CAA4C;AAEvE,MAAM,CAAC,OAAO,UAAU,aAAa,CAAC,CAAS,EAAE,CAAS,EAAE,SAA6B;IAA7B,0BAAA,EAAA,qBAA6B;IACvF,OAAO,IAAI,CAAC,GAAG,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,GAAG,SAAS,CAAC;AACvC,CAAC;AAAA,CAAC"}

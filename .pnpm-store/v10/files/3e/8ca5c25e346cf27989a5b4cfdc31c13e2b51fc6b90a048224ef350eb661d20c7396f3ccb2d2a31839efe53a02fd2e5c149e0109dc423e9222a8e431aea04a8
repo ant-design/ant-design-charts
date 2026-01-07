@@ -1,0 +1,84 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+import { useLocale } from 'dumi';
+import React from 'react';
+import styles from "../../index.module.less";
+import { getCategoryId } from "../../utils";
+import { DemoCard } from "./DemoCard";
+
+/**
+ * Examples 首页内容预览组件
+ *
+ * @param {GalleryPageContentProps} props 相关参数，详见类型定义
+ * @returns {React.FC} React.FC
+ * @author YuZhanglong <loveyzl1123@gmail.com>
+ */
+export var GalleryPageContent = function GalleryPageContent(props) {
+  var exampleTopics = props.exampleTopics;
+  var locale = useLocale();
+
+  // TODO: 公告功能待后续补充
+  // /** 获取上新的 demo. 直接用英文 title 作为 id */
+  // const demosOnTheNew = useMemo((): Array<NewDemo> => {
+  //   const result: NewDemo[] = [];
+  //   each(allDemosInCategory, (categoryDemos, category) => {
+  //     const newDemos = filter(categoryDemos, (d) => d.new);
+  //     // 大于4个新增 demo 或全部新增，则直接使用 category 作为代替
+  //     if (
+  //       size(newDemos) > 6 ||
+  //       (size(newDemos) && size(newDemos) === size(categoryDemos))
+  //     ) {
+  //       result.push({
+  //         title: category,
+  //         id: getDemoCategory(newDemos[0], 'en'),
+  //         category,
+  //       });
+  //     } else {
+  //       each(newDemos, (demo) =>
+  //         result.push({
+  //           title: demo.title[locale.id],
+  //           id: demo.title.en,
+  //           category: getDemoCategory(demo),
+  //         }),
+  //       );
+  //     }
+  //   });
+  //   return result;
+  // }, [allDemosInCategory, allDemos, locale.id]);
+
+  var flattenExamples = exampleTopics.reduce(function (prev, current) {
+    var exampleWithTopic = current.examples.map(function (item) {
+      return _objectSpread(_objectSpread({}, item), {}, {
+        targetTopic: current
+      });
+    });
+    return prev.concat(exampleWithTopic);
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles.gallery
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.galleryContent
+  }, flattenExamples.map(function (example, i) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: i
+    }, /*#__PURE__*/React.createElement("h2", {
+      id: getCategoryId(example.targetTopic.id, example.id)
+    }, example.title[locale.id]), /*#__PURE__*/React.createElement("ul", {
+      className: styles.galleryList
+    }, example.demos.map(function (demo) {
+      return /*#__PURE__*/React.createElement("li", {
+        className: styles.galleryCard,
+        key: demo.id,
+        title: demo.title[locale.id]
+      }, /*#__PURE__*/React.createElement(DemoCard, {
+        demo: demo,
+        topicId: example.targetTopic.id,
+        exampleId: example.id
+      }));
+    })));
+  })));
+};

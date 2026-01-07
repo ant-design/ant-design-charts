@@ -1,0 +1,9 @@
+import type { CanvasRenderer } from '@antv/g-canvas';
+import type { DisplayObject, ParsedEllipseStyleProps } from '@antv/g-lite';
+import { RoughCanvasRendererOptions } from '../util';
+export declare class EllipseRenderer implements CanvasRenderer.StyleRenderer {
+    private options;
+    constructor(options: RoughCanvasRendererOptions);
+    render(context: CanvasRenderingContext2D, parsedStyle: ParsedEllipseStyleProps, object: DisplayObject<any, any>): void;
+}
+//# sourceMappingURL=Ellipse.d.ts.map

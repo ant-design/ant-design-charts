@@ -1,0 +1,34 @@
+{
+  "name": "domparser-linux-x64-musl",
+  "version": "0.0.5",
+  "cpu": [
+    "x64"
+  ],
+  "main": "domparser.linux-x64-musl.node",
+  "files": [
+    "domparser.linux-x64-musl.node"
+  ],
+  "description": "A super fast html parser and manipulator written in rust.",
+  "keywords": [
+    "htmlparser",
+    "jquery",
+    "selector",
+    "scraper",
+    "parser",
+    "dom",
+    "html",
+    "rust",
+    "napi"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "repository": "https://github.com/utooland/domparser-rs",
+  "os": [
+    "linux"
+  ],
+  "libc": [
+    "musl"
+  ]
+}

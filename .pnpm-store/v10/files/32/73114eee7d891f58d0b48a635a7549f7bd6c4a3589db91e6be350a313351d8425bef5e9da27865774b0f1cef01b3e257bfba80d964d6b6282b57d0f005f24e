@@ -1,0 +1,29 @@
+/**
+ * 只在组件进入视口（可见区域）时才会加载和渲染被包裹的懒加载组件
+ */
+import { Skeleton } from 'antd';
+import React, { Suspense } from 'react';
+import { InView } from 'react-intersection-observer';
+var InViewSuspense = function InViewSuspense(_ref) {
+  var children = _ref.children,
+    _ref$fallback = _ref.fallback,
+    fallback = _ref$fallback === void 0 ? /*#__PURE__*/React.createElement(Skeleton.Input, {
+      active: true,
+      size: "small"
+    }) : _ref$fallback,
+    _ref$delay = _ref.delay,
+    delay = _ref$delay === void 0 ? 200 : _ref$delay;
+  return /*#__PURE__*/React.createElement(InView, {
+    triggerOnce: true,
+    delay: delay
+  }, function (_ref2) {
+    var inView = _ref2.inView,
+      ref = _ref2.ref;
+    return /*#__PURE__*/React.createElement("div", {
+      ref: ref
+    }, /*#__PURE__*/React.createElement(Suspense, {
+      fallback: fallback
+    }, inView ? children : /*#__PURE__*/React.createElement("span", null)));
+  });
+};
+export default InViewSuspense;

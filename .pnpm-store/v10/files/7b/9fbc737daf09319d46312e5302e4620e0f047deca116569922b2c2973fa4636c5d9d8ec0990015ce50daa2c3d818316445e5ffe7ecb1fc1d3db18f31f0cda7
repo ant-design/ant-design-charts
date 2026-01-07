@@ -1,0 +1,1 @@
+{"version":3,"file":"is-integer.js","sourceRoot":"","sources":["../../src/lodash/is-integer.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,aAAa,CAAC;AAEnC;;;GAGG;AACH,MAAM,CAAC,OAAO,UAAU,SAAS,CAAC,KAAa;IAC7C,OAAO,QAAQ,CAAC,KAAK,CAAC,IAAI,KAAK,GAAG,CAAC,KAAK,CAAC,CAAC;AAC5C,CAAC"}

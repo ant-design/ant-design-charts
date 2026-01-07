@@ -1,0 +1,15 @@
+import React from 'react';
+import GitInsight from "../../GitInsight";
+var GitInsightCard = function GitInsightCard(props) {
+  var forkCount = props.forkCount,
+    starCount = props.starCount,
+    commitCount = props.commitCount;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "overflow-hidden mt-2 rounded-[20px] p-0 bg-[#F1F1F1]"
+  }, /*#__PURE__*/React.createElement(GitInsight, {
+    forkCount: forkCount,
+    starCount: starCount,
+    commitCount: commitCount
+  }));
+};
+export default GitInsightCard;

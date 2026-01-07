@@ -1,0 +1,109 @@
+{
+  "version": "5.46.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algolia/algoliasearch-client-javascript.git"
+  },
+  "homepage": "https://github.com/algolia/algoliasearch-client-javascript/tree/main/packages/algoliasearch#readme",
+  "type": "module",
+  "license": "MIT",
+  "author": "Algolia",
+  "scripts": {
+    "build": "yarn clean && yarn tsup && yarn rollup -c rollup.config.js",
+    "clean": "rm -rf ./dist || true",
+    "test": "tsc -p __tests__/tsconfig.json && vitest --run",
+    "test:bundle": "publint . && attw --pack ."
+  },
+  "name": "algoliasearch",
+  "description": "A fully-featured and blazing-fast JavaScript API client to interact with Algolia API.",
+  "exports": {
+    ".": {
+      "node": {
+        "types": {
+          "import": "./dist/node.d.ts",
+          "module": "./dist/node.d.ts",
+          "require": "./dist/node.d.cts"
+        },
+        "import": "./dist/node.js",
+        "module": "./dist/node.js",
+        "require": "./dist/node.cjs"
+      },
+      "worker": {
+        "types": "./dist/worker.d.ts",
+        "default": "./dist/worker.js"
+      },
+      "default": {
+        "types": "./dist/browser.d.ts",
+        "module": "./dist/browser.js",
+        "import": "./dist/browser.js",
+        "default": "./dist/algoliasearch.umd.js"
+      }
+    },
+    "./lite": {
+      "node": {
+        "types": {
+          "import": "./dist/lite/node.d.ts",
+          "module": "./dist/lite/node.d.ts",
+          "require": "./dist/lite/node.d.cts"
+        },
+        "import": "./dist/lite/builds/node.js",
+        "module": "./dist/lite/builds/node.js",
+        "require": "./dist/lite/builds/node.cjs"
+      },
+      "default": {
+        "types": "./dist/lite/browser.d.ts",
+        "module": "./dist/lite/builds/browser.js",
+        "import": "./dist/lite/builds/browser.js",
+        "default": "./dist/lite/builds/browser.umd.js"
+      }
+    },
+    "./dist/*": "./dist/*.js",
+    "./dist/lite/builds/*": "./dist/lite/builds/*.js"
+  },
+  "jsdelivr": "./dist/algoliasearch.umd.js",
+  "unpkg": "./dist/algoliasearch.umd.js",
+  "react-native": {
+    ".": "./dist/browser.js",
+    "./lite": "./dist/lite/builds/browser.js"
+  },
+  "files": [
+    "dist",
+    "index.js",
+    "index.d.ts",
+    "lite.js",
+    "lite.d.ts"
+  ],
+  "dependencies": {
+    "@algolia/abtesting": "1.12.2",
+    "@algolia/client-abtesting": "5.46.2",
+    "@algolia/client-analytics": "5.46.2",
+    "@algolia/client-common": "5.46.2",
+    "@algolia/client-insights": "5.46.2",
+    "@algolia/client-personalization": "5.46.2",
+    "@algolia/client-query-suggestions": "5.46.2",
+    "@algolia/client-search": "5.46.2",
+    "@algolia/ingestion": "1.46.2",
+    "@algolia/monitoring": "1.46.2",
+    "@algolia/recommend": "5.46.2",
+    "@algolia/requester-browser-xhr": "5.46.2",
+    "@algolia/requester-fetch": "5.46.2",
+    "@algolia/requester-node-http": "5.46.2"
+  },
+  "devDependencies": {
+    "@algolia/requester-testing": "5.46.2",
+    "@arethetypeswrong/cli": "0.18.2",
+    "@cloudflare/vitest-pool-workers": "0.11.1",
+    "@cloudflare/workers-types": "4.20251115.0",
+    "@types/node": "25.0.3",
+    "jsdom": "27.3.0",
+    "publint": "0.3.16",
+    "rollup": "4.54.0",
+    "tsup": "8.5.1",
+    "typescript": "5.9.3",
+    "vitest": "4.0.16"
+  },
+  "engines": {
+    "node": ">= 14.0.0"
+  },
+  "gitHead": "a0dca1a687264e389d589b841e719a54709eb94d"
+}

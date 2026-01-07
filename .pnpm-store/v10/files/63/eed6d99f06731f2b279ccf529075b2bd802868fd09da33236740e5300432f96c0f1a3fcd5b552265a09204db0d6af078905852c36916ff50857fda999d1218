@@ -1,0 +1,1 @@
+{"version":3,"file":"dendrogram.d.ts","sourceRoot":"","sources":["../../src/layout/dendrogram.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,aAAa,EAAE,gBAAgB,EAAE,MAAM,UAAU,CAAC;AAmDhE,MAAM,CAAC,OAAO,UAAU,UAAU,CAChC,IAAI,EAAE,aAAa,EACnB,OAAO,GAAE,gBAAqB,GAC7B,aAAa,CAkEf"}

@@ -1,0 +1,131 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+import { useFullSidebarData, useLocale, useLocation, useSiteData } from 'dumi';
+import { get } from 'lodash-es';
+import React, { useCallback, useMemo } from 'react';
+import Link from "../common/Link";
+import { icWithLocale } from "../slots/hooks";
+import styles from "../slots/ManualContent/index.module.less";
+import { getBaseRoute } from "../slots/ManualContent/utils";
+import { flattenMenu } from "../utils/menu";
+
+/**
+ * 根据 baseRoute 获取特定的菜单数据（纯函数）
+ */
+export var getMenuData = function getMenuData(fullData, rootList, baseRoute, locale) {
+  var getMenuDataInternal = function getMenuDataInternal(fullData, rootList, hrefId) {
+    var fullSidebarDataToMenuData = function fullSidebarDataToMenuData(rootList, hrefId, list) {
+      // 递归
+      rootList.forEach(function (item) {
+        var href = (!baseRoute.startsWith('/en') ? "/".concat(item.slug) : "/en/".concat(item.slug)).toLocaleLowerCase();
+        var id = href.split('/').slice(0, href.split('/').length - 1).join('/');
+        if (href.includes(baseRoute)) {
+          if (id === hrefId) {
+            list.push(_objectSpread(_objectSpread({}, item), {}, {
+              key: href,
+              label: icWithLocale(item.title, locale)
+            }));
+          }
+        }
+      });
+      var _iterator = _createForOfIteratorHelper(list),
+        _step;
+      try {
+        var _loop = function _loop() {
+          var item = _step.value;
+          item.children = [];
+          fullSidebarDataToMenuData(rootList, item.key, item.children);
+          if (fullData[item.key]) {
+            var _fullData$item$key$0$;
+            (_fullData$item$key$0$ = fullData[item.key][0].children) === null || _fullData$item$key$0$ === void 0 || _fullData$item$key$0$.forEach(function (itemChild) {
+              var label = itemChild.title;
+              var key = itemChild.link;
+              var tag = get(itemChild, ['frontmatter', 'tag']);
+              item.children.push(_objectSpread(_objectSpread({}, itemChild), {}, {
+                label: tag ? /*#__PURE__*/React.createElement(Link, {
+                  to: key
+                }, /*#__PURE__*/React.createElement("div", {
+                  className: styles.memuLabel
+                }, label, /*#__PURE__*/React.createElement("div", {
+                  className: styles.tag
+                }, tag))) : /*#__PURE__*/React.createElement(Link, {
+                  to: key
+                }, label),
+                key: key
+              }));
+            });
+          }
+          // children 的 order 排序
+          item.children.sort(function (a, b) {
+            return a.order - b.order;
+          });
+          if (item.children.length === 0) delete item.children;
+        };
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          _loop();
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (hrefId === baseRoute) {
+        if (fullData[baseRoute]) {
+          var _fullData$baseRoute$;
+          (_fullData$baseRoute$ = fullData[baseRoute][0].children) === null || _fullData$baseRoute$ === void 0 || _fullData$baseRoute$.forEach(function (itemChild) {
+            var key = itemChild.link;
+            var label = itemChild.title;
+            list.push(_objectSpread(_objectSpread({}, itemChild), {}, {
+              label: /*#__PURE__*/React.createElement(Link, {
+                to: key
+              }, label),
+              key: key
+            }));
+          });
+        }
+        list.sort(function (a, b) {
+          return a.order - b.order;
+        });
+        return list;
+      }
+    };
+    return fullSidebarDataToMenuData(rootList, hrefId, []);
+  };
+  return getMenuDataInternal(fullData, rootList, baseRoute);
+};
+
+/**
+ * 通过 hooks 包装的 getMenuData
+ */
+export var useMenuData = function useMenuData() {
+  var fullData = useFullSidebarData();
+  var _useSiteData = useSiteData(),
+    docs = _useSiteData.themeConfig.docs;
+  var locale = useLocale();
+  var getter = useCallback(function (baseRoute) {
+    return getMenuData(fullData, docs, baseRoute, locale.id);
+  }, [fullData, docs, locale.id]);
+  return getter;
+};
+export var useMenu = function useMenu() {
+  var _useLocation = useLocation(),
+    pathname = _useLocation.pathname;
+  var baseRoute = getBaseRoute(pathname);
+  var getMenuDataFn = useMenuData();
+  var menuData = useMemo(function () {
+    return getMenuDataFn(baseRoute);
+  }, [getMenuDataFn, baseRoute]);
+
+  // 将菜单数据扁平化
+  var flattedMenuData = useMemo(function () {
+    return flattenMenu(menuData);
+  }, [menuData]);
+  return [menuData, pathname, flattedMenuData];
+};

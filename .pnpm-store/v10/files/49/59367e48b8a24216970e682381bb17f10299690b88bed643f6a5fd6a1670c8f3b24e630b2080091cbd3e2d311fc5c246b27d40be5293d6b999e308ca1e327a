@@ -1,0 +1,6 @@
+import React from 'react';
+interface GitInsightIconProps {
+    type?: 'fork' | 'commit' | 'star';
+}
+declare const GitInsightIcon: React.FC<GitInsightIconProps>;
+export default GitInsightIcon;

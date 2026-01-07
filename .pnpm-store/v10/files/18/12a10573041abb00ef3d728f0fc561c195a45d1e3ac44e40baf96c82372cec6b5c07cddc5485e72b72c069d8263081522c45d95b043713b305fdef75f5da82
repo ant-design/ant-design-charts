@@ -1,0 +1,118 @@
+import { handleIssues } from "@utoo/pack-shared";
+import { spawn } from "child_process";
+import fs, { existsSync } from "fs";
+import { nanoid } from "nanoid";
+import { join } from "path";
+import { resolveBundleOptions } from "../config/webpackCompat";
+import { projectFactory } from "../core/project";
+import { HtmlPlugin } from "../plugins/HtmlPlugin";
+import { blockStdout, createDefineEnv, getPackPath } from "../utils/common";
+import { findRootDir } from "../utils/find-root";
+import { processHtmlEntry } from "../utils/html-entry";
+import { xcodeProfilingReady } from "../utils/xcodeProfile";
+export function build(options, projectPath, rootPath) {
+    const bundleOptions = resolveBundleOptions(options, projectPath, rootPath);
+    if (!rootPath) {
+        // help user to find the rootDir automatically.
+        rootPath = findRootDir(projectPath || process.cwd());
+    }
+    return buildInternal(bundleOptions, projectPath, rootPath);
+}
+async function buildInternal(bundleOptions, projectPath, rootPath) {
+    var _a, _b, _c, _d, _e, _f;
+    blockStdout();
+    if (process.env.XCODE_PROFILE) {
+        await xcodeProfilingReady();
+    }
+    processHtmlEntry(bundleOptions.config, projectPath || process.cwd());
+    const createProject = projectFactory();
+    const project = await createProject({
+        processEnv: (_a = bundleOptions.processEnv) !== null && _a !== void 0 ? _a : {},
+        defineEnv: createDefineEnv({
+            config: bundleOptions.config,
+            dev: (_b = bundleOptions.dev) !== null && _b !== void 0 ? _b : false,
+            optionDefineEnv: bundleOptions.defineEnv,
+        }),
+        watch: {
+            enable: false,
+        },
+        dev: (_c = bundleOptions.dev) !== null && _c !== void 0 ? _c : false,
+        buildId: bundleOptions.buildId || nanoid(),
+        config: {
+            ...bundleOptions.config,
+            stats: Boolean(process.env.ANALYZE) ||
+                bundleOptions.config.stats ||
+                bundleOptions.config.entry.some((e) => !!e.html),
+        },
+        projectPath: projectPath || process.cwd(),
+        rootPath: rootPath || projectPath || process.cwd(),
+        packPath: getPackPath(),
+    }, {
+        persistentCaching: false,
+    });
+    const entrypoints = await project.writeAllEntrypointsToDisk();
+    handleIssues(entrypoints.issues);
+    const htmlConfigs = [
+        ...(Array.isArray(bundleOptions.config.html)
+            ? bundleOptions.config.html
+            : bundleOptions.config.html
+                ? [bundleOptions.config.html]
+                : []),
+        ...bundleOptions.config.entry.filter((e) => !!e.html).map((e) => e.html),
+    ];
+    if (htmlConfigs.length > 0) {
+        const assets = { js: [], css: [] };
+        const outputDir = ((_d = bundleOptions.config.output) === null || _d === void 0 ? void 0 : _d.path) || join(process.cwd(), "dist");
+        if (assets.js.length === 0 && assets.css.length === 0) {
+            const statsPath = join(outputDir, "stats.json");
+            if (existsSync(statsPath)) {
+                try {
+                    const stats = JSON.parse(fs.readFileSync(statsPath, "utf-8"));
+                    if (stats.assets) {
+                        stats.assets.forEach((asset) => {
+                            if (asset.name.endsWith(".js"))
+                                assets.js.push(asset.name);
+                            if (asset.name.endsWith(".css"))
+                                assets.css.push(asset.name);
+                        });
+                    }
+                }
+                catch (e) {
+                    console.warn("Failed to read stats.json for assets discovery", e);
+                }
+            }
+        }
+        const publicPath = (_e = bundleOptions.config.output) === null || _e === void 0 ? void 0 : _e.publicPath;
+        for (const config of htmlConfigs) {
+            const plugin = new HtmlPlugin(config);
+            await plugin.generate(outputDir, assets, publicPath);
+        }
+    }
+    if (process.env.ANALYZE) {
+        await analyzeBundle(((_f = bundleOptions.config.output) === null || _f === void 0 ? void 0 : _f.path) || "dist");
+    }
+    await project.shutdown();
+    // TODO: Maybe run tasks in worker is a better way, see
+    // https://github.com/vercel/next.js/blob/512d8283054407ab92b2583ecce3b253c3be7b85/packages/next/src/lib/worker.ts
+}
+async function analyzeBundle(outputPath) {
+    const statsPath = join(outputPath, "stats.json");
+    if (!existsSync(statsPath)) {
+        console.warn(`Stats file not found at ${statsPath}. Make sure to enable stats in your configuration.`);
+        return;
+    }
+    return new Promise((resolve, reject) => {
+        const analyzer = spawn("npx", ["webpack-bundle-analyzer", statsPath], {
+            stdio: "inherit",
+            shell: true,
+        });
+        analyzer.on("error", (error) => {
+            reject(new Error(`Failed to start bundle analyzer: ${error.message}`));
+        });
+        analyzer.on("close", () => {
+            // The analyzer process has finished, so we can resolve the promise
+            // to allow the build process to exit gracefully.
+            resolve();
+        });
+    });
+}

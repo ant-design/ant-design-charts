@@ -1,0 +1,45 @@
+import _regeneratorRuntime from "@babel/runtime/helpers/esm/regeneratorRuntime";
+import _asyncToGenerator from "@babel/runtime/helpers/esm/asyncToGenerator";
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import React, { useState } from 'react';
+var CopyButton = function CopyButton(_ref) {
+  var content = _ref.content;
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    copied = _useState2[0],
+    setCopied = _useState2[1];
+  var handleCopy = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return navigator.clipboard.writeText(content);
+          case 3:
+            setCopied(true);
+            setTimeout(function () {
+              return setCopied(false);
+            }, 2000);
+            _context.next = 10;
+            break;
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            console.error('copy', _context.t0);
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 7]]);
+    }));
+    return function handleCopy() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  return /*#__PURE__*/React.createElement("button", {
+    className: "absolute top-2 right-2 text-xs bg-gray-800 text-white p-1 rounded-md hover:bg-gray-700",
+    onClick: handleCopy
+  }, copied ? 'copied' : 'copy');
+};
+export default CopyButton;

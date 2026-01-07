@@ -1,0 +1,1 @@
+{"version":3,"file":"elementHighlightByColor.js","sourceRoot":"","sources":["../../src/interaction/elementHighlightByColor.ts"],"names":[],"mappings":";;AAGA,0DAEC;AALD,mCAAyC;AACzC,yDAAsD;AAEtD,SAAgB,uBAAuB,CAAC,OAAO;IAC7C,OAAO,IAAA,mCAAgB,kCAAM,OAAO,KAAE,WAAW,EAAE,sBAAc,IAAG,CAAC;AACvE,CAAC;AAED,uBAAuB,CAAC,KAAK,GAAG;IAC9B,iBAAiB,EAAE,IAAI;CACxB,CAAC"}

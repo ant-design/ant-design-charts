@@ -1,0 +1,363 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/config.ts
+var config_exports = {};
+__export(config_exports, {
+  getDevUtooPackConfig: () => getDevUtooPackConfig,
+  getProdUtooPackConfig: () => getProdUtooPackConfig
+});
+module.exports = __toCommonJS(config_exports);
+var import_bundler_webpack = require("@umijs/bundler-webpack");
+var import_utils = require("@umijs/utils");
+var import_pack = require("@utoo/pack");
+var import_path = require("path");
+function convertProcessEnvForUtoopack(webpackConfig) {
+  var _a;
+  let processEnvForUtoopack = {};
+  if (webpackConfig.plugins) {
+    const definePlugin = webpackConfig.plugins.find(
+      (plugin) => plugin.constructor.name === "DefinePlugin"
+    );
+    if ((_a = definePlugin == null ? void 0 : definePlugin.definitions) == null ? void 0 : _a["process.env"]) {
+      for (const [key, value] of Object.entries(
+        definePlugin.definitions["process.env"]
+      )) {
+        if (typeof value === "string" && value.startsWith('"') && value.endsWith('"')) {
+          processEnvForUtoopack[key] = JSON.parse(value);
+        } else {
+          processEnvForUtoopack[key] = value;
+        }
+      }
+    }
+  }
+  return processEnvForUtoopack;
+}
+function getModularizeImports(extraBabelPlugins) {
+  return extraBabelPlugins.filter((p) => /^import$|babel-plugin-import/.test(p[0])).reduce(
+    (acc, [_, v]) => {
+      const {
+        libraryName,
+        libraryDirectory,
+        style,
+        camel2DashComponentName,
+        transformToDefaultImport,
+        ...rest
+      } = v;
+      if (Object.keys(rest).length > 0) {
+        throw new Error(
+          `babel-plugin-import options ${Object.keys(
+            rest
+          )} is not supported in utoopack bundler`
+        );
+      }
+      if (typeof style === "function") {
+        throw new Error(
+          `babel-plugin-import style function is not supported in utoopack bundler`
+        );
+      }
+      let transformRule = "{{ kebabCase member }}";
+      if (camel2DashComponentName === false) {
+        transformRule = "{{ member }}";
+      }
+      const skipDefaultConversion = typeof transformToDefaultImport === "undefined" ? false : !Boolean(transformToDefaultImport);
+      acc[libraryName] = {
+        transform: `${libraryName}/${libraryDirectory}/${transformRule}`,
+        preventFullImport: false,
+        skipDefaultConversion,
+        style: typeof style === "boolean" ? "style" : style
+      };
+      return acc;
+    },
+    {}
+  );
+}
+function getNormalizedAlias(alias, rootDir) {
+  const newAlias = { ...alias };
+  for (const [key, value] of Object.entries(newAlias)) {
+    if (key.endsWith("/*") || value.endsWith("/*") || key.endsWith("/") || value.endsWith("/") || key.endsWith("$")) {
+      continue;
+    }
+    if ((0, import_path.extname)(value)) {
+      continue;
+    }
+    newAlias[`${key}/*`] = `${value}/*`;
+  }
+  newAlias[`${rootDir}/*`] = `${rootDir}/*`;
+  return newAlias;
+}
+function getNormalizedExternals(externals) {
+  return Object.entries(externals || {}).reduce(
+    (ret, [k, v]) => {
+      if (Array.isArray(v)) {
+        const [url, ...members] = v;
+        const containsScript = url.startsWith("script");
+        const script = url.replace("script ", "");
+        if (containsScript) {
+          ret[k] = {
+            // ['antd', 'Button'] => `antd.Button`
+            root: members.join("."),
+            type: "script",
+            // `script https://example.com/lib/script.js` => `https://example.com/lib/script.js`
+            script
+          };
+        } else {
+          ret[k] = {
+            root: members.join("."),
+            script
+          };
+        }
+      } else if (typeof v === "string") {
+        ret[k] = v.replace(/^window(\s+|\.)/, "");
+      } else {
+      }
+      return ret;
+    },
+    {}
+  );
+}
+function getSvgModuleRules(opts) {
+  const { svgr, svgo = {} } = opts;
+  if (!svgr) {
+    return {};
+  }
+  return {
+    module: {
+      rules: {
+        "*.svg": {
+          loaders: [
+            {
+              loader: require.resolve("@umijs/bundler-webpack/dist/loader/svgr"),
+              options: {
+                svgoConfig: {
+                  plugins: [
+                    {
+                      name: "preset-default",
+                      params: {
+                        overrides: {
+                          removeTitle: false
+                        }
+                      }
+                    },
+                    "prefixIds"
+                  ],
+                  ...typeof svgo === "object" ? svgo : {}
+                },
+                ...svgr,
+                svgo: !!svgo
+              }
+            },
+            {
+              loader: require.resolve("@umijs/bundler-webpack/compiled/url-loader")
+            }
+          ],
+          as: "*.js"
+        }
+      }
+    }
+  };
+}
+async function getProdUtooPackConfig(opts) {
+  var _a;
+  const webpackConfig = await (0, import_bundler_webpack.getConfig)({
+    cwd: opts.cwd,
+    rootDir: opts.rootDir,
+    env: "production",
+    entry: opts.entry,
+    userConfig: opts.config,
+    analyze: process.env.ANALYZE,
+    babelPreset: opts.babelPreset,
+    extraBabelPlugins: [
+      ...opts.beforeBabelPlugins || [],
+      ...opts.extraBabelPlugins || []
+    ],
+    extraBabelPresets: [
+      ...opts.beforeBabelPresets || [],
+      ...opts.extraBabelPresets || []
+    ],
+    extraBabelIncludes: opts.config.extraBabelIncludes,
+    chainWebpack: opts.chainWebpack,
+    modifyWebpackConfig: opts.modifyWebpackConfig,
+    pkg: opts.pkg,
+    disableCopy: opts.disableCopy
+  });
+  let utooBundlerOpts = (0, import_pack.compatOptionsFromWebpack)({
+    ...import_utils.lodash.omit(webpackConfig, ["target", "module", "externals"]),
+    webpackMode: true
+  });
+  const extraBabelPlugins = [
+    ...opts.extraBabelPlugins || [],
+    ...opts.config.extraBabelPlugins || []
+  ];
+  const modularizeImports = getModularizeImports(extraBabelPlugins);
+  const processEnvForUtoopack = convertProcessEnvForUtoopack(webpackConfig);
+  const {
+    publicPath,
+    runtimePublicPath,
+    externals: userExternals,
+    copy = [],
+    svgr,
+    svgo = {},
+    inlineLimit
+  } = opts.config;
+  utooBundlerOpts = {
+    ...utooBundlerOpts,
+    config: import_utils.lodash.merge(
+      utooBundlerOpts.config,
+      {
+        output: {
+          clean: opts.clean,
+          publicPath: runtimePublicPath ? "runtime" : publicPath || "/",
+          ...opts.disableCopy ? { copy: [] } : { copy: ["public"].concat(copy) }
+        },
+        optimization: {
+          modularizeImports,
+          concatenateModules: true
+        },
+        resolve: {
+          alias: getNormalizedAlias(
+            (_a = utooBundlerOpts.config.resolve) == null ? void 0 : _a.alias,
+            opts.rootDir
+          )
+        },
+        styles: {
+          less: {
+            modifyVars: opts.config.theme,
+            javascriptEnabled: true,
+            ...opts.config.lessLoader
+          },
+          sass: opts.config.sassLoader ?? void 0
+        },
+        // Override process.env for utoopack format
+        define: {
+          "process.env": JSON.stringify(processEnvForUtoopack)
+        },
+        nodePolyfill: true,
+        externals: getNormalizedExternals(userExternals),
+        ...getSvgModuleRules({ svgr, svgo, inlineLimit })
+      },
+      opts.config.utoopack || {}
+    )
+  };
+  return utooBundlerOpts;
+}
+async function getDevUtooPackConfig(opts) {
+  var _a;
+  let webpackConfig = await (0, import_bundler_webpack.getConfig)({
+    cwd: opts.cwd,
+    rootDir: opts.rootDir,
+    env: "development",
+    entry: opts.entry,
+    userConfig: opts.config,
+    babelPreset: opts.babelPreset,
+    extraBabelPlugins: [
+      ...opts.beforeBabelPlugins || [],
+      ...opts.extraBabelPlugins || []
+    ],
+    extraBabelPresets: [
+      ...opts.beforeBabelPresets || [],
+      ...opts.extraBabelPresets || []
+    ],
+    extraBabelIncludes: opts.config.extraBabelIncludes,
+    chainWebpack: opts.chainWebpack,
+    modifyWebpackConfig: opts.modifyWebpackConfig,
+    // TO avoild bundler webpack add extra entry.
+    hmr: false,
+    analyze: process.env.ANALYZE
+  });
+  let utooBundlerOpts = (0, import_pack.compatOptionsFromWebpack)({
+    ...import_utils.lodash.omit(webpackConfig, ["target", "module", "externals"]),
+    webpackMode: true
+  });
+  const extraBabelPlugins = [
+    ...opts.extraBabelPlugins || [],
+    ...opts.config.extraBabelPlugins || []
+  ];
+  const modularizeImports = getModularizeImports(extraBabelPlugins);
+  const processEnvForUtoopack = convertProcessEnvForUtoopack(webpackConfig);
+  const {
+    publicPath,
+    runtimePublicPath,
+    externals: userExternals,
+    copy = [],
+    svgr,
+    svgo = {},
+    inlineLimit
+  } = opts.config;
+  const normalizedExternals = getNormalizedExternals(userExternals);
+  debugger;
+  utooBundlerOpts = {
+    ...utooBundlerOpts,
+    config: import_utils.lodash.merge(
+      utooBundlerOpts.config,
+      {
+        output: {
+          // utoopack 的 dev 需要默认清空产物目录
+          clean: opts.clean === void 0 ? true : opts.clean,
+          publicPath: runtimePublicPath ? "runtime" : publicPath || "/",
+          ...opts.disableCopy ? { copy: [] } : { copy: ["public"].concat(copy) }
+        },
+        resolve: {
+          alias: getNormalizedAlias(
+            (_a = utooBundlerOpts.config.resolve) == null ? void 0 : _a.alias,
+            opts.rootDir
+          )
+        },
+        optimization: {
+          modularizeImports
+        },
+        styles: {
+          less: {
+            modifyVars: opts.config.theme,
+            javascriptEnabled: true,
+            ...opts.config.lessLoader
+          },
+          sass: opts.config.sassLoader ?? void 0
+        },
+        // Override process.env for utoopack format
+        define: {
+          "process.env": JSON.stringify(processEnvForUtoopack)
+        },
+        nodePolyfill: true,
+        externals: normalizedExternals,
+        ...getSvgModuleRules({ svgr, svgo, inlineLimit })
+      },
+      opts.config.utoopack || {}
+    ),
+    watch: {
+      enable: true
+    },
+    dev: true
+  };
+  return utooBundlerOpts;
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  getDevUtooPackConfig,
+  getProdUtooPackConfig
+});

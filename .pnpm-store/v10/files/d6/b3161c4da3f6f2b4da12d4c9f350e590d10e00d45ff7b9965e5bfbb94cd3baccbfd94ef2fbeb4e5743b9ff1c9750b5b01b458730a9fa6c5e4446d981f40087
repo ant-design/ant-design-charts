@@ -1,0 +1,6 @@
+import React from 'react';
+import { Antd, Common } from "./styles";
+var GlobalStyles = function GlobalStyles() {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Antd, null), /*#__PURE__*/React.createElement(Common, null));
+};
+export default GlobalStyles;

@@ -1,0 +1,18 @@
+export declare const CATEGORY_LEGEND_CLASS_NAME = "legend-category";
+export declare const CATEGORY_LEGEND_HTML_CLASS_NAME = "legend-html-category";
+export declare const CONTINUOUS_LEGEND_CLASS_NAME = "legend-continuous";
+export declare const LEGEND_ITEMS_CLASS_NAME = "items-item";
+export declare const LEGEND_MAKER_CLASS_NAME = "legend-category-item-marker";
+export declare const LEGEND_LABEL_CLASS_NAME = "legend-category-item-label";
+export declare const LEGEND_FOCUS_ICON_CLASS_NAME = "legend-category-item-focus-group";
+export declare function markerOf(item: any): any;
+export declare function labelOf(item: any): any;
+export declare function focusIconOf(item: any): any;
+export declare function itemsOf(root: any): any;
+export declare function legendsOf(root: any): any;
+export declare function legendsHtmlOf(root: any): any;
+export declare function legendsContinuousOf(root: any): any;
+export declare function legendClearSetState(root: any, setState: any): void;
+export declare function dataOf(root: any): any;
+export declare function attributesOf(root: any): any;
+export declare function LegendFilter(): (context: any, contexts: any, emitter: any) => () => void;

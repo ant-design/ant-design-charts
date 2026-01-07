@@ -1,0 +1,25 @@
+import { Image } from 'antd';
+import React from 'react';
+import MarkdownRender from "./MarkdownRender";
+var UserContent = function UserContent(_ref) {
+  var images = _ref.images,
+    text = _ref.text;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "ant-pro-chat-list-item-message-content"
+  }, images.map(function (image, index) {
+    var _image$image_url;
+    return /*#__PURE__*/React.createElement(Image, {
+      key: index,
+      src: (_image$image_url = image.image_url) === null || _image$image_url === void 0 ? void 0 : _image$image_url.url,
+      alt: "img",
+      style: {
+        maxWidth: '300px',
+        maxHeight: '400px',
+        borderRadius: '10px'
+      }
+    });
+  }), text && /*#__PURE__*/React.createElement(MarkdownRender, {
+    content: text
+  }));
+};
+export default UserContent;

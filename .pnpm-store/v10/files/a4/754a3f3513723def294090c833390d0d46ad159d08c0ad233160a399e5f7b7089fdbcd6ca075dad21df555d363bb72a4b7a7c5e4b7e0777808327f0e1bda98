@@ -1,0 +1,1 @@
+{"version":3,"file":"MobileInteractionPlugin.d.ts","sourceRoot":"","sources":["../../../src/plugins/mobile-interaction/MobileInteractionPlugin.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAEV,eAAe,EACf,sBAAsB,EACvB,MAAM,OAAO,CAAC;AACf;;GAEG;AACH,qBAAa,uBAAwB,YAAW,eAAe;IAC7D,MAAM,CAAC,GAAG,SAAuB;IAEjC,KAAK,CAAC,OAAO,EAAE,sBAAsB;CAuEtC"}

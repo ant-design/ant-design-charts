@@ -1,0 +1,44 @@
+{
+  "name": "sort-object-keys",
+  "version": "2.0.1",
+  "description": "Sort an object's keys, including an optional key list",
+  "keywords": [
+    "keys",
+    "object",
+    "sort"
+  ],
+  "homepage": "https://github.com/keithamus/sort-object-keys#readme",
+  "bugs": {
+    "url": "https://github.com/keithamus/sort-object-keys/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/keithamus/sort-object-keys.git"
+  },
+  "license": "MIT",
+  "author": "Keith Cirkel <npm@keithcirkel.co.uk> (http://keithcirkel.co.uk/)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      }
+    }
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "prepare": "husky",
+    "sort": "sort-package-json",
+    "test": "node test.js"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "sort-package-json": "^3.4.0"
+  }
+}
