@@ -1,0 +1,46 @@
+{
+  "name": "d3-regression",
+  "version": "1.3.10",
+  "description": "Calculate statistical regressions for two-dimensional data",
+  "keywords": [
+    "d3",
+    "d3-module",
+    "statistics",
+    "regressions"
+  ],
+  "scripts": {
+    "pretest": "rm -rf dist && mkdir dist && rollup -c --banner \"$(preamble)\"",
+    "test": "tape 'test/**/*-test.js'",
+    "prepublishOnly": "npm run test && uglifyjs dist/d3-regression.js -c -m -o dist/d3-regression.min.js",
+    "postpublish": "zip -j dist/d3-regression.zip -- LICENSE README.md dist/d3-regression.js dist/d3-regression.min.js dist/d3-regression.cjs.js dist/d3-regression.esm.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarryStevens/d3-regression.git"
+  },
+  "author": {
+    "name": "Harry Stevens",
+    "url": "http://harryjstevens.com/"
+  },
+  "browser": "dist/d3-regression.js",
+  "module": "dist/d3-regression.esm.js",
+  "main": "dist/d3-regression.cjs.js",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/HarryStevens/d3-regression/issues"
+  },
+  "homepage": "https://github.com/HarryStevens/d3-regression#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel": "^6.23.0",
+    "package-preamble": "^0.1.0",
+    "rollup": "^2.10.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "tape": "^4.10.1",
+    "uglify-js": "^2.8.29"
+  },
+  "dependencies": {}
+}

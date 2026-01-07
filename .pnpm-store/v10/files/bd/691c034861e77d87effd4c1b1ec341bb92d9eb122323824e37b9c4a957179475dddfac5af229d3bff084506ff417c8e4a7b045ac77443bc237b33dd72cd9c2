@@ -1,0 +1,89 @@
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import _defineProperty from "@babel/runtime/helpers/esm/defineProperty";
+import { CheckCircleOutlined, CloseCircleOutlined, DownOutlined, ExclamationCircleOutlined, LoadingOutlined, UnorderedListOutlined, UpOutlined } from '@ant-design/icons';
+import { Collapse } from 'antd';
+import React, { useCallback, useMemo, useState } from 'react';
+import { IToolStatus } from "../interface";
+var getColorClass = function getColorClass(status) {
+  var colorClasses = _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, IToolStatus.loading, 'text-blue-600'), IToolStatus.success, 'text-green-600'), IToolStatus.end, 'text-gray-500'), IToolStatus.error, 'text-red-600');
+
+  // Return the class, or a default value if the status is undefined
+  return colorClasses[status] || 'text-gray-900';
+};
+var safeJsonParse = function safeJsonParse(jsonString) {
+  try {
+    return JSON.parse(jsonString);
+  } catch (e) {
+    console.error('Parsing error:', e);
+    return null;
+  }
+};
+var ThoughtChain = function ThoughtChain(params) {
+  var content = params.content,
+    status = params.status,
+    source = params.source;
+  var _useState = useState([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    activeKey = _useState2[0],
+    setActiveKey = _useState2[1];
+  var items = useMemo(function () {
+    return [{
+      key: '1',
+      label: activeKey.length > 0 ? /*#__PURE__*/React.createElement("span", {
+        className: "flex items-center justify-between text-xs min-w-[90px] ".concat(getColorClass(status))
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "mt-px mr-4"
+      }, "Hide the process"), /*#__PURE__*/React.createElement(UpOutlined, null)) : /*#__PURE__*/React.createElement("span", {
+        className: "flex items-center justify-between text-xs min-w-[90px] mt-[2px] ".concat(getColorClass(status))
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "mt-px mr-4"
+      }, source), /*#__PURE__*/React.createElement(DownOutlined, {
+        className: "".concat(getColorClass(status))
+      })),
+      children: /*#__PURE__*/React.createElement("div", null, JSON.stringify(content === null || content === void 0 ? void 0 : content.data))
+    }];
+  }, [status, content, activeKey, source]);
+  var onChange = useCallback(function (key) {
+    // @ts-ignore
+    setActiveKey(key);
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "petercat-assistant"
+  }, /*#__PURE__*/React.createElement(Collapse, {
+    size: "small",
+    items: items,
+    activeKey: activeKey,
+    onChange: onChange,
+    style: {
+      maxWidth: '100%'
+    },
+    expandIcon: function expandIcon(panelProps) {
+      if (panelProps.isActive) {
+        return /*#__PURE__*/React.createElement(UnorderedListOutlined, {
+          className: "text-gray-900 text-xs"
+        });
+      }
+      switch (status) {
+        case IToolStatus.success:
+          return /*#__PURE__*/React.createElement(CheckCircleOutlined, {
+            className: "text-xs ".concat(getColorClass(status))
+          });
+        case IToolStatus.loading:
+          return /*#__PURE__*/React.createElement(LoadingOutlined, {
+            className: "text-xs ".concat(getColorClass(status))
+          });
+        case IToolStatus.error:
+          return /*#__PURE__*/React.createElement(CloseCircleOutlined, {
+            className: "text-xs ".concat(getColorClass(status))
+          });
+        case IToolStatus.end:
+          return /*#__PURE__*/React.createElement(ExclamationCircleOutlined, {
+            className: "text-xs ".concat(getColorClass(status))
+          });
+        default:
+          return '';
+      }
+    }
+  }));
+};
+export default ThoughtChain;

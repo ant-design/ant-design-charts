@@ -1,0 +1,54 @@
+{
+  "name": "@antv/graphin",
+  "version": "3.0.5",
+  "description": "A React toolkit for graph analysis based on g6",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antvis/Graphin.git"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "src",
+    "es",
+    "lib"
+  ],
+  "dependencies": {
+    "@antv/g6": "^5.0.28"
+  },
+  "devDependencies": {
+    "@ant-design/icons": "^4.8.3",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "antd": "^5.21.6",
+    "less": "^4.2.0",
+    "npm-run-all": "^4.1.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rimraf": "^5.0.10"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.1.0",
+    "react-dom": "^18.0.0 || ^19.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "run-s clean lib",
+    "ci": "run-s type-check lint build",
+    "clean": "rimraf lib es",
+    "dev": "vite",
+    "fix": "eslint ./src --fix && prettier ./src --write ",
+    "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
+    "lib:es": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir es",
+    "lib": "run-p lib:*",
+    "lint": "eslint ./src --quiet && prettier ./src --check",
+    "readme": "node ./scripts/copy-readme.mjs",
+    "type-check": "tsc --noEmit",
+    "watch": "pnpm lib:es --w"
+  }
+}

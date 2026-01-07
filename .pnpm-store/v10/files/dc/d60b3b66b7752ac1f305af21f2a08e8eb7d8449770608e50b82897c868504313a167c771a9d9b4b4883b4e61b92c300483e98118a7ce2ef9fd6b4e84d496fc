@@ -1,0 +1,141 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+import path from 'path';
+// @ts-ignore
+import { transform } from '@babel/standalone';
+import indentString from 'indent-string';
+export function replaceFetchUrl(sourceCode) {
+  var dataFileMatch = sourceCode.match(/fetch\('(.*)'\)/);
+  if (dataFileMatch && dataFileMatch.length > 0 && !dataFileMatch[1].startsWith('http')) {
+    return sourceCode.replace(dataFileMatch[1], path.join(location.origin || '', location.pathname || '', '..', dataFileMatch[1]));
+  }
+  return sourceCode;
+}
+
+/**
+ * 通过代码提取代码片段的 pkg 依赖
+ * @param sourceCode
+ */
+export function extractImportDeps(sourceCode) {
+  var requireMatches = sourceCode.match(/require\(['"](.*)['"]\)/g) || [];
+  var importMatches = sourceCode.match(/from\s+['"](.*)['"]/g) || [];
+  var deps = {};
+  [].concat(_toConsumableArray(requireMatches), _toConsumableArray(importMatches)).forEach(function (match) {
+    var requireMatch = match.match(/require\(['"](.*)['"]\)/);
+    if (requireMatch && requireMatch[1]) {
+      deps[requireMatch[1]] = 'latest';
+    }
+    var importMatch = match.match(/from\s+['"](.*)['"]/);
+    if (importMatch && importMatch[1]) {
+      deps[importMatch[1]] = 'latest';
+    }
+  });
+  return deps;
+}
+export function getCodeSandboxConfig(title, sourceCode, fileExtension, deps, devDependencies, playground) {
+  return {
+    files: _defineProperty(_defineProperty({
+      'package.json': {
+        content: {
+          main: "index.".concat(fileExtension),
+          dependencies: deps,
+          devDependencies: devDependencies
+        }
+      }
+    }, "index.".concat(fileExtension), {
+      content: replaceFetchUrl(sourceCode)
+    }), 'index.html', {
+      content: playground.container || '<div id="container" />'
+    })
+  };
+}
+export function getRiddleConfig(title, sourceCode, fileExtension, deps, devDependencies, playground) {
+  return {
+    title: title,
+    js: sourceCode,
+    html: playground.container || '<div id="container" />',
+    // 预填的 package.json 代码
+    json: JSON.stringify(_objectSpread({
+      dependencies: deps,
+      devDependencies: devDependencies
+    }, playground.json))
+  };
+}
+export function getStackblitzConfig(title, sourceCode, fileExtension, deps, devDependencies, playground) {
+  return {
+    title: title || '',
+    description: '',
+    template: 'create-react-app',
+    dependencies: deps,
+    files: _defineProperty(_defineProperty({}, "index.".concat(fileExtension.startsWith('ts') ? 'ts' : 'js'), sourceCode), 'index.html', playground.container || '<div id="container" />')
+  };
+}
+export function getHtmlCodeTemplate(title, sourceCode, fileExtension, deps, devDependencies, playground) {
+  var _playground$htmlCodeT = playground.htmlCodeTemplate,
+    htmlCodeTemplate = _playground$htmlCodeT === void 0 ? '' : _playground$htmlCodeT,
+    _playground$container = playground.container,
+    container = _playground$container === void 0 ? '' : _playground$container;
+  var insertCssMatcher = /insertCss\(`\s*(.*)\s*`\);/;
+  var code = replaceFetchUrl(sourceCode).replace(/import\s+.*\s+from\s+['"].*['"];?/g, '').replace(insertCssMatcher, '').replace(/^\s+|\s+$/g, '');
+  var result = htmlCodeTemplate.replace('{{code}}', indentString(code, 4)).replace('{{title}}', title || 'example');
+  var customStyles = sourceCode.match(insertCssMatcher);
+  if (customStyles && customStyles[1]) {
+    result = result.replace('</head>', "  <style>\n".concat(indentString(customStyles[1], 4), "\n    </style>\n  </head>"));
+  }
+  if (container) {
+    result = result.replace('<body>', "<body>\n".concat(indentString(container, 4)));
+  }
+  return result;
+}
+export function replaceInsertCss(str, lang) {
+  var comment = lang === 'zh' ? "// \u6211\u4EEC\u7528 insert-css \u6F14\u793A\u5F15\u5165\u81EA\u5B9A\u4E49\u6837\u5F0F\n// \u63A8\u8350\u5C06\u6837\u5F0F\u6DFB\u52A0\u5230\u81EA\u5DF1\u7684\u6837\u5F0F\u6587\u4EF6\u4E2D\n// \u82E5\u62F7\u8D1D\u5B98\u65B9\u4EE3\u7801\uFF0C\u522B\u5FD8\u4E86 npm install insert-css\ninsertCss(" : "// We use 'insert-css' to insert custom styles\n// It is recommended to add the style to your own style sheet files\n// If you want to copy the code directly, please remember to install the npm package 'insert-css\ninsertCss(";
+  // 统一增加对 insert-css 的使用注释
+  return str.replace(/^insertCss\(/gm, comment);
+}
+
+/**
+ * 执行代码
+ * @param code 运行的代码
+ * @param playgroundScriptContainer 运行的节点
+ * @param container 代码中 container dom
+ * @param replaceId rid
+ * @param cb 回调错误
+ */
+export function execute(code, playgroundScriptContainer, container) {
+  var replaceId = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'container';
+  var node = document.getElementById(playgroundScriptContainer);
+  var script = document.createElement('script');
+  // replace container id in case of multi demos in document
+  var newCode = code.replace(/'container'|"container"/, "'".concat(replaceId, "'"));
+  script.innerHTML = "\n// Can only have one anonymous define call per script file\n// \u548C monaco loader \u52A0\u8F7D\u51B2\u7A81\nvar __runnerDefine = window['define'];\nwindow['define'] = null;\ntry {\n  ".concat(newCode, "\n\n  // \u6E05\u9664\u663E\u793A\u7684\u9519\u8BEF\n  window.__reportErrorInPlayground && window.__reportErrorInPlayground(null);\n} catch(e) {\n  window.__reportErrorInPlayground && window.__reportErrorInPlayground(e);\n} finally {\n  window['define'] = __runnerDefine;\n}\n  ");
+  // 追加图表容器
+  node.innerHTML = container || "<div id=".concat(replaceId, " class=\"playgroundCodeContainer\" />");
+  // 运行 script
+  node.appendChild(script);
+}
+
+/**
+ * 编译代码
+ */
+export function compile(value, relativePath) {
+  var es5 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  var _transform = transform(value, {
+      filename: relativePath,
+      presets: ['react', 'typescript', es5 ? 'es2015' : 'es2016', ['stage-3', {
+        decoratorsBeforeExport: true
+      }]],
+      plugins: ['transform-modules-umd']
+    }),
+    code = _transform.code;
+  return code;
+}

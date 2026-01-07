@@ -1,0 +1,15 @@
+{
+  "name": "heti-findandreplacedomtext",
+  "version": "0.5.0",
+  "main": "./src/findAndReplaceDOMText.js",
+  "description": "findAndReplaceDOMText: DOM find/replace utility",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sivan/findAndReplaceDOMText.git"
+  },
+  "license": "unlicense",
+  "bugs": {
+    "url": "https://github.com/sivan/findAndReplaceDOMText/issues"
+  },
+  "homepage": "https://github.com/sivan/findAndReplaceDOMText"
+}

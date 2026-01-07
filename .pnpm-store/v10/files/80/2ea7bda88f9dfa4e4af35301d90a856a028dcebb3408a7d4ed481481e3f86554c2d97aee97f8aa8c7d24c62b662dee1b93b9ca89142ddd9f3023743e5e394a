@@ -1,0 +1,1 @@
+{"version":3,"file":"interpolation.d.ts","sourceRoot":"","sources":["../../../../src/plugins/web-animations-api/utils/interpolation.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EACV,sBAAsB,EACtB,QAAQ,EAGT,MAAM,cAAc,CAAC;AAKtB,wBAAgB,kBAAkB,CAChC,SAAS,EAAE,gBAAgB,EAAE,EAC7B,MAAM,EAAE,sBAAsB,EAC9B,MAAM,EAAE,QAAQ,GAAG,IAAI,IAWN,QAAQ,QAAQ,EAAE,UAAU,MAAM,UAsCpD"}

@@ -1,0 +1,12 @@
+import { Tag } from 'antd';
+import { FormattedMessage } from 'dumi';
+import React from 'react';
+var ReadingTime = function ReadingTime(_ref) {
+  var readingTime = _ref.readingTime;
+  return /*#__PURE__*/React.createElement(Tag, null, /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "\u9605\u8BFB\u65F6\u95F4\u7EA6"
+  }), " ", Math.ceil(readingTime / 60000), " ", /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "\u5206\u949F"
+  }));
+};
+export default ReadingTime;

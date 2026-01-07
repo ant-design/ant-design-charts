@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "../",
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "lib": ["es6", "dom"],
+    "module": "commonjs",
+    "noEmit": true,
+    "strict": true,
+    "target": "es5",
+    "typeRoots": ["../"],
+    "types": [],
+    "paths": {
+      "#is-browser": ["./src/conditions/true.ts"],
+      "#is-development": ["./src/conditions/true.ts"]
+    }
+  },
+  "include": ["./*.ts", "./*.tsx"]
+}

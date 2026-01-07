@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@@/*": [".dumi/tmp/*"],
+      "assistant": ["src"],
+      "assistant/*": ["src/*", "*"]
+    },
+    "resolveJsonModule": true
+  },
+  "include": [".dumirc.ts", "src/**/*", "tailwind.config.js"]
+}

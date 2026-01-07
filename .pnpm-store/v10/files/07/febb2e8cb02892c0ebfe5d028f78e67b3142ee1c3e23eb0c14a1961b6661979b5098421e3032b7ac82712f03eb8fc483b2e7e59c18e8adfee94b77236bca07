@@ -1,0 +1,39 @@
+/**
+ * dumi 搜索结果转页面 UI 的数据结构，默认取 30 条
+ * @param dumiResult
+ * @param limit
+ * @returns
+ */
+export function getSearchResults(dumiResults) {
+  var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 30;
+  var sort = arguments.length > 2 ? arguments[2] : undefined;
+  var flattenHints = dumiResults.flatMap(function (r) {
+    return r.hints;
+  }).map(function (_ref) {
+    var _ref$pageTitle = _ref.pageTitle,
+      pageTitle = _ref$pageTitle === void 0 ? '' : _ref$pageTitle,
+      highlightTitleTexts = _ref.highlightTitleTexts,
+      highlightTexts = _ref.highlightTexts,
+      link = _ref.link;
+    return {
+      key: pageTitle,
+      link: link,
+      subject: pageTitle,
+      title: highlightTitleTexts,
+      description: highlightTexts
+    };
+  });
+  var sorted = sort ? flattenHints.sort(function (a, b) {
+    var isMatch = function isMatch(a) {
+      return sort.some(function (pattern) {
+        return pattern.startsWith('!') ? !a.link.includes(pattern.slice(1)) : a.link.includes(pattern);
+      });
+    };
+    var linkA = isMatch(a);
+    var linkB = isMatch(b);
+    if (linkA && !linkB) return -1;
+    if (!linkA && linkB) return 1;
+    return 0;
+  }) : flattenHints;
+  return sorted.slice(0, limit);
+}

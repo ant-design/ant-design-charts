@@ -1,0 +1,55 @@
+{
+  "name": "@stackblitz/sdk",
+  "version": "1.11.0",
+  "description": "SDK for generating and embedding StackBlitz projects.",
+  "license": "MIT",
+  "author": "Eric Simons",
+  "homepage": "https://github.com/stackblitz/sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stackblitz/sdk.git"
+  },
+  "main": "./bundles/sdk.js",
+  "module": "./bundles/sdk.m.js",
+  "unpkg": "./bundles/sdk.umd.js",
+  "jsdelivr": "./bundles/sdk.umd.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "bundles",
+    "types",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npm run build:clean && npm run build:types && npm run build:lib",
+    "build:clean": "rimraf bundles temp types",
+    "build:lib": "vite build --mode lib",
+    "build:types": "tsc -p tsconfig.lib.json",
+    "format": "prettier --write 'src/**/*.ts' 'test/**/*.ts' vite.*.ts",
+    "prepack": "npm run test:unit && npm run build",
+    "start": "vite dev --mode dev --open /examples/",
+    "start:e2e": "vite dev --mode e2e",
+    "test": "vitest run --mode test --coverage",
+    "test:unit": "vitest run --mode test",
+    "test:e2e": "npx playwright test",
+    "test:format": "npx prettier --check ."
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.32.2",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@types/body-parser": "^1.19.2",
+    "@types/lodash": "^4.14.192",
+    "@vitest/coverage-c8": "^0.29.8",
+    "@vitest/ui": "^0.29.8",
+    "body-parser": "^1.20.2",
+    "happy-dom": "^9.1.0",
+    "lodash": "^4.17.21",
+    "prettier": "^2.8.7",
+    "rimraf": "^4.4.1",
+    "typescript": "~4.4.4",
+    "vite": "^4.2.1",
+    "vite-tsconfig-paths": "^4.0.8",
+    "vitest": "^0.29.8"
+  }
+}

@@ -1,0 +1,2437 @@
+/*!
+ * @antv/g-plugin-rough-canvas-renderer
+ * @description A G plugin of renderer implementation with rough.js
+ * @version 2.1.1
+ * @date 12/24/2025, 11:57:56 AM
+ * @author AntVis
+ * @docs https://g.antv.antgroup.com/
+ */
+'use strict';
+
+var _defineProperty = require('@babel/runtime/helpers/defineProperty');
+var _objectSpread = require('@babel/runtime/helpers/objectSpread2');
+var _classCallCheck = require('@babel/runtime/helpers/classCallCheck');
+var _createClass = require('@babel/runtime/helpers/createClass');
+var _callSuper = require('@babel/runtime/helpers/callSuper');
+var _inherits = require('@babel/runtime/helpers/inherits');
+var gLite = require('@antv/g-lite');
+var _slicedToArray = require('@babel/runtime/helpers/slicedToArray');
+
+function mergeOpacity(color, opacity) {
+  // since rough.js doesn't support fill/strokeOpacity
+  var colorString = color.toString();
+  if (gLite.isCSSRGB(color)) {
+    if (opacity !== 1) {
+      var r = color.r,
+        g = color.g,
+        b = color.b,
+        alpha = color.alpha;
+      colorString = "rgba(".concat(r, ",").concat(g, ",").concat(b, ",").concat(Number(alpha) * opacity, ")");
+    }
+  }
+  return colorString;
+}
+
+/**
+ * When the lineWidth is 0, the rough.js will render too many strokes which has a bad perf.
+ */
+var MIN_STROKE_WIDTH = 0.1;
+function generateRoughOptions(object) {
+  var _ref = object.parsedStyle,
+    fill = _ref.fill,
+    stroke = _ref.stroke,
+    _ref$fillOpacity = _ref.fillOpacity,
+    fillOpacity = _ref$fillOpacity === void 0 ? 1 : _ref$fillOpacity,
+    _ref$strokeOpacity = _ref.strokeOpacity,
+    strokeOpacity = _ref$strokeOpacity === void 0 ? 1 : _ref$strokeOpacity,
+    _ref$lineWidth = _ref.lineWidth,
+    lineWidth = _ref$lineWidth === void 0 ? 1 : _ref$lineWidth,
+    bowing = _ref.bowing,
+    roughness = _ref.roughness,
+    seed = _ref.seed,
+    fillStyle = _ref.fillStyle,
+    fillWeight = _ref.fillWeight,
+    hachureAngle = _ref.hachureAngle,
+    hachureGap = _ref.hachureGap,
+    curveStepCount = _ref.curveStepCount,
+    curveFitting = _ref.curveFitting,
+    lineDash = _ref.lineDash,
+    lineDashOffset = _ref.lineDashOffset,
+    fillLineDash = _ref.fillLineDash,
+    fillLineDashOffset = _ref.fillLineDashOffset,
+    disableMultiStroke = _ref.disableMultiStroke,
+    disableMultiStrokeFill = _ref.disableMultiStrokeFill,
+    simplification = _ref.simplification,
+    dashOffset = _ref.dashOffset,
+    dashGap = _ref.dashGap,
+    zigzagOffset = _ref.zigzagOffset,
+    preserveVertices = _ref.preserveVertices;
+
+  // @see https://github.com/rough-stuff/rough/wiki#options
+  var options = {
+    bowing: bowing,
+    roughness: roughness,
+    seed: seed || object.entity,
+    fill: fill ? mergeOpacity(fill, fillOpacity) : undefined,
+    stroke: stroke ? mergeOpacity(stroke, strokeOpacity) : 'none',
+    strokeWidth: lineWidth === 0 ? MIN_STROKE_WIDTH : lineWidth,
+    fillStyle: fillStyle,
+    fillWeight: fillWeight,
+    hachureAngle: hachureAngle,
+    hachureGap: hachureGap,
+    curveStepCount: curveStepCount,
+    curveFitting: curveFitting,
+    strokeLineDash: lineDash,
+    strokeLineDashOffset: lineDashOffset,
+    fillLineDash: fillLineDash,
+    fillLineDashOffset: fillLineDashOffset,
+    disableMultiStroke: disableMultiStroke,
+    disableMultiStrokeFill: disableMultiStrokeFill,
+    simplification: simplification,
+    dashOffset: dashOffset,
+    dashGap: dashGap,
+    zigzagOffset: zigzagOffset,
+    preserveVertices: preserveVertices
+  };
+
+  // remove all undefined values
+  Object.keys(options).forEach(function (key) {
+    if (options[key] === undefined) {
+      delete options[key];
+    }
+  });
+  return options;
+}
+function isRoughRendering(roughRendering, element) {
+  // default to true to avoid breaking change
+  if (roughRendering === undefined) {
+    return true;
+  }
+  if (typeof roughRendering === 'function') {
+    return roughRendering(element);
+  }
+  return roughRendering;
+}
+
+var CircleRenderer = /*#__PURE__*/function () {
+  function CircleRenderer(options) {
+    _classCallCheck(this, CircleRenderer);
+    this.options = options;
+  }
+  return _createClass(CircleRenderer, [{
+    key: "render",
+    value: function render(context, parsedStyle, object) {
+      if (isRoughRendering(this.options.roughRendering, object)) {
+        var _parsedStyle$cx = parsedStyle.cx,
+          cx = _parsedStyle$cx === void 0 ? 0 : _parsedStyle$cx,
+          _parsedStyle$cy = parsedStyle.cy,
+          cy = _parsedStyle$cy === void 0 ? 0 : _parsedStyle$cy,
+          r = parsedStyle.r;
+        // rough.js use diameter instead of radius
+        // @see https://github.com/rough-stuff/rough/wiki#circle-x-y-diameter--options
+        // @ts-ignore
+        context.roughCanvas.circle(cx, cy, r * 2, generateRoughOptions(object));
+      } else {
+        this.options.defaultStyleRendererFactory.render(context, parsedStyle, object);
+      }
+    }
+  }]);
+}();
+
+var EllipseRenderer = /*#__PURE__*/function () {
+  function EllipseRenderer(options) {
+    _classCallCheck(this, EllipseRenderer);
+    this.options = options;
+  }
+  return _createClass(EllipseRenderer, [{
+    key: "render",
+    value: function render(context, parsedStyle, object) {
+      if (isRoughRendering(this.options.roughRendering, object)) {
+        var _parsedStyle$cx = parsedStyle.cx,
+          cx = _parsedStyle$cx === void 0 ? 0 : _parsedStyle$cx,
+          _parsedStyle$cy = parsedStyle.cy,
+          cy = _parsedStyle$cy === void 0 ? 0 : _parsedStyle$cy,
+          rx = parsedStyle.rx,
+          ry = parsedStyle.ry;
+        // @ts-ignore
+        context.roughCanvas.ellipse(cx, cy, rx * 2, ry * 2, generateRoughOptions(object));
+      } else {
+        this.options.defaultStyleRendererFactory.render(context, parsedStyle, object);
+      }
+    }
+  }]);
+}();
+
+var LineRenderer = /*#__PURE__*/function () {
+  function LineRenderer(options) {
+    _classCallCheck(this, LineRenderer);
+    this.options = options;
+  }
+  return _createClass(LineRenderer, [{
+    key: "render",
+    value: function render(context, parsedStyle, object) {
+      if (isRoughRendering(this.options.roughRendering, object)) {
+        var _parsedStyle$x = parsedStyle.x1,
+          x1 = _parsedStyle$x === void 0 ? 0 : _parsedStyle$x,
+          _parsedStyle$y = parsedStyle.y1,
+          y1 = _parsedStyle$y === void 0 ? 0 : _parsedStyle$y,
+          _parsedStyle$x2 = parsedStyle.x2,
+          x2 = _parsedStyle$x2 === void 0 ? 0 : _parsedStyle$x2,
+          _parsedStyle$y2 = parsedStyle.y2,
+          y2 = _parsedStyle$y2 === void 0 ? 0 : _parsedStyle$y2;
+        // @see https://github.com/rough-stuff/rough/wiki#line-x1-y1-x2-y2--options
+        // @ts-ignore
+        context.roughCanvas.line(x1, y1, x2, y2, generateRoughOptions(object));
+      } else {
+        this.options.defaultStyleRendererFactory.render(context, parsedStyle, object);
+      }
+    }
+  }]);
+}();
+
+var PathRenderer = /*#__PURE__*/function () {
+  function PathRenderer(options) {
+    _classCallCheck(this, PathRenderer);
+    this.options = options;
+  }
+  return _createClass(PathRenderer, [{
+    key: "render",
+    value: function render(context, parsedStyle, object) {
+      if (isRoughRendering(this.options.roughRendering, object)) {
+        var d = parsedStyle.d;
+        // @ts-ignore
+        context.roughCanvas.path(gLite.translatePathToString(d.absolutePath), generateRoughOptions(object));
+      } else {
+        this.options.defaultStyleRendererFactory.render(context, parsedStyle, object);
+      }
+    }
+  }]);
+}();
+
+var PolygonRenderer = /*#__PURE__*/function () {
+  function PolygonRenderer(options) {
+    _classCallCheck(this, PolygonRenderer);
+    this.options = options;
+  }
+  return _createClass(PolygonRenderer, [{
+    key: "render",
+    value: function render(context, parsedStyle, object) {
+      if (isRoughRendering(this.options.roughRendering, object)) {
+        var points = parsedStyle.points;
+        // @see https://github.com/rough-stuff/rough/wiki#polygon-vertices--options
+        // @ts-ignore
+        context.roughCanvas.polygon(points.points.map(function (_ref) {
+          var _ref2 = _slicedToArray(_ref, 2),
+            x = _ref2[0],
+            y = _ref2[1];
+          return [x, y];
+        }), generateRoughOptions(object));
+      } else {
+        this.options.defaultStyleRendererFactory.render(context, parsedStyle, object);
+      }
+    }
+  }]);
+}();
+
+var PolylineRenderer = /*#__PURE__*/function () {
+  function PolylineRenderer(options) {
+    _classCallCheck(this, PolylineRenderer);
+    this.options = options;
+  }
+  return _createClass(PolylineRenderer, [{
+    key: "render",
+    value: function render(context, parsedStyle, object) {
+      if (isRoughRendering(this.options.roughRendering, object)) {
+        var points = parsedStyle.points;
+        // @see https://github.com/rough-stuff/rough/wiki#linearpath-points--options
+        // @ts-ignore
+        context.roughCanvas.linearPath(points.points.map(function (_ref) {
+          var _ref2 = _slicedToArray(_ref, 2),
+            x = _ref2[0],
+            y = _ref2[1];
+          return [x, y];
+        }), generateRoughOptions(object));
+      } else {
+        this.options.defaultStyleRendererFactory.render(context, parsedStyle, object);
+      }
+    }
+  }]);
+}();
+
+var RectRenderer = /*#__PURE__*/function () {
+  function RectRenderer(options) {
+    _classCallCheck(this, RectRenderer);
+    this.options = options;
+  }
+  return _createClass(RectRenderer, [{
+    key: "render",
+    value: function render(context, parsedStyle, object) {
+      if (isRoughRendering(this.options.roughRendering, object)) {
+        var _parsedStyle$x = parsedStyle.x,
+          x = _parsedStyle$x === void 0 ? 0 : _parsedStyle$x,
+          _parsedStyle$y = parsedStyle.y,
+          y = _parsedStyle$y === void 0 ? 0 : _parsedStyle$y,
+          width = parsedStyle.width,
+          height = parsedStyle.height;
+        // @see https://github.com/rough-stuff/rough/wiki#rectangle-x-y-width-height--options
+        // @ts-ignore
+        context.roughCanvas.rectangle(x, y, width, height, generateRoughOptions(object));
+      } else {
+        this.options.defaultStyleRendererFactory.render(context, parsedStyle, object);
+      }
+    }
+  }]);
+}();
+
+function rotatePoints(points, center, degrees) {
+    if (points && points.length) {
+        const [cx, cy] = center;
+        const angle = (Math.PI / 180) * degrees;
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        for (const p of points) {
+            const [x, y] = p;
+            p[0] = ((x - cx) * cos) - ((y - cy) * sin) + cx;
+            p[1] = ((x - cx) * sin) + ((y - cy) * cos) + cy;
+        }
+    }
+}
+function rotateLines(lines, center, degrees) {
+    const points = [];
+    lines.forEach((line) => points.push(...line));
+    rotatePoints(points, center, degrees);
+}
+function areSamePoints(p1, p2) {
+    return p1[0] === p2[0] && p1[1] === p2[1];
+}
+function hachureLines(polygons, hachureGap, hachureAngle, hachureStepOffset = 1) {
+    const angle = hachureAngle;
+    const gap = Math.max(hachureGap, 0.1);
+    const polygonList = (polygons[0] && polygons[0][0] && (typeof polygons[0][0] === 'number')) ? [polygons] : polygons;
+    const rotationCenter = [0, 0];
+    if (angle) {
+        for (const polygon of polygonList) {
+            rotatePoints(polygon, rotationCenter, angle);
+        }
+    }
+    const lines = straightHachureLines(polygonList, gap, hachureStepOffset);
+    if (angle) {
+        for (const polygon of polygonList) {
+            rotatePoints(polygon, rotationCenter, -angle);
+        }
+        rotateLines(lines, rotationCenter, -angle);
+    }
+    return lines;
+}
+function straightHachureLines(polygons, gap, hachureStepOffset) {
+    const vertexArray = [];
+    for (const polygon of polygons) {
+        const vertices = [...polygon];
+        if (!areSamePoints(vertices[0], vertices[vertices.length - 1])) {
+            vertices.push([vertices[0][0], vertices[0][1]]);
+        }
+        if (vertices.length > 2) {
+            vertexArray.push(vertices);
+        }
+    }
+    const lines = [];
+    gap = Math.max(gap, 0.1);
+    // Create sorted edges table
+    const edges = [];
+    for (const vertices of vertexArray) {
+        for (let i = 0; i < vertices.length - 1; i++) {
+            const p1 = vertices[i];
+            const p2 = vertices[i + 1];
+            if (p1[1] !== p2[1]) {
+                const ymin = Math.min(p1[1], p2[1]);
+                edges.push({
+                    ymin,
+                    ymax: Math.max(p1[1], p2[1]),
+                    x: ymin === p1[1] ? p1[0] : p2[0],
+                    islope: (p2[0] - p1[0]) / (p2[1] - p1[1]),
+                });
+            }
+        }
+    }
+    edges.sort((e1, e2) => {
+        if (e1.ymin < e2.ymin) {
+            return -1;
+        }
+        if (e1.ymin > e2.ymin) {
+            return 1;
+        }
+        if (e1.x < e2.x) {
+            return -1;
+        }
+        if (e1.x > e2.x) {
+            return 1;
+        }
+        if (e1.ymax === e2.ymax) {
+            return 0;
+        }
+        return (e1.ymax - e2.ymax) / Math.abs((e1.ymax - e2.ymax));
+    });
+    if (!edges.length) {
+        return lines;
+    }
+    // Start scanning
+    let activeEdges = [];
+    let y = edges[0].ymin;
+    let iteration = 0;
+    while (activeEdges.length || edges.length) {
+        if (edges.length) {
+            let ix = -1;
+            for (let i = 0; i < edges.length; i++) {
+                if (edges[i].ymin > y) {
+                    break;
+                }
+                ix = i;
+            }
+            const removed = edges.splice(0, ix + 1);
+            removed.forEach((edge) => {
+                activeEdges.push({ s: y, edge });
+            });
+        }
+        activeEdges = activeEdges.filter((ae) => {
+            if (ae.edge.ymax <= y) {
+                return false;
+            }
+            return true;
+        });
+        activeEdges.sort((ae1, ae2) => {
+            if (ae1.edge.x === ae2.edge.x) {
+                return 0;
+            }
+            return (ae1.edge.x - ae2.edge.x) / Math.abs((ae1.edge.x - ae2.edge.x));
+        });
+        // fill between the edges
+        if ((hachureStepOffset !== 1) || (iteration % gap === 0)) {
+            if (activeEdges.length > 1) {
+                for (let i = 0; i < activeEdges.length; i = i + 2) {
+                    const nexti = i + 1;
+                    if (nexti >= activeEdges.length) {
+                        break;
+                    }
+                    const ce = activeEdges[i].edge;
+                    const ne = activeEdges[nexti].edge;
+                    lines.push([
+                        [Math.round(ce.x), y],
+                        [Math.round(ne.x), y],
+                    ]);
+                }
+            }
+        }
+        y += hachureStepOffset;
+        activeEdges.forEach((ae) => {
+            ae.edge.x = ae.edge.x + (hachureStepOffset * ae.edge.islope);
+        });
+        iteration++;
+    }
+    return lines;
+}
+
+function polygonHachureLines(polygonList, o) {
+    var _a;
+    const angle = o.hachureAngle + 90;
+    let gap = o.hachureGap;
+    if (gap < 0) {
+        gap = o.strokeWidth * 4;
+    }
+    gap = Math.round(Math.max(gap, 0.1));
+    let skipOffset = 1;
+    if (o.roughness >= 1) {
+        if ((((_a = o.randomizer) === null || _a === void 0 ? void 0 : _a.next()) || Math.random()) > 0.7) {
+            skipOffset = gap;
+        }
+    }
+    return hachureLines(polygonList, gap, angle, skipOffset || 1);
+}
+
+class HachureFiller {
+    constructor(helper) {
+        this.helper = helper;
+    }
+    fillPolygons(polygonList, o) {
+        return this._fillPolygons(polygonList, o);
+    }
+    _fillPolygons(polygonList, o) {
+        const lines = polygonHachureLines(polygonList, o);
+        const ops = this.renderLines(lines, o);
+        return { type: 'fillSketch', ops };
+    }
+    renderLines(lines, o) {
+        const ops = [];
+        for (const line of lines) {
+            ops.push(...this.helper.doubleLineOps(line[0][0], line[0][1], line[1][0], line[1][1], o));
+        }
+        return ops;
+    }
+}
+
+function lineLength(line) {
+    const p1 = line[0];
+    const p2 = line[1];
+    return Math.sqrt(Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2));
+}
+
+class ZigZagFiller extends HachureFiller {
+    fillPolygons(polygonList, o) {
+        let gap = o.hachureGap;
+        if (gap < 0) {
+            gap = o.strokeWidth * 4;
+        }
+        gap = Math.max(gap, 0.1);
+        const o2 = Object.assign({}, o, { hachureGap: gap });
+        const lines = polygonHachureLines(polygonList, o2);
+        const zigZagAngle = (Math.PI / 180) * o.hachureAngle;
+        const zigzagLines = [];
+        const dgx = gap * 0.5 * Math.cos(zigZagAngle);
+        const dgy = gap * 0.5 * Math.sin(zigZagAngle);
+        for (const [p1, p2] of lines) {
+            if (lineLength([p1, p2])) {
+                zigzagLines.push([
+                    [p1[0] - dgx, p1[1] + dgy],
+                    [...p2],
+                ], [
+                    [p1[0] + dgx, p1[1] - dgy],
+                    [...p2],
+                ]);
+            }
+        }
+        const ops = this.renderLines(zigzagLines, o);
+        return { type: 'fillSketch', ops };
+    }
+}
+
+class HatchFiller extends HachureFiller {
+    fillPolygons(polygonList, o) {
+        const set = this._fillPolygons(polygonList, o);
+        const o2 = Object.assign({}, o, { hachureAngle: o.hachureAngle + 90 });
+        const set2 = this._fillPolygons(polygonList, o2);
+        set.ops = set.ops.concat(set2.ops);
+        return set;
+    }
+}
+
+class DotFiller {
+    constructor(helper) {
+        this.helper = helper;
+    }
+    fillPolygons(polygonList, o) {
+        o = Object.assign({}, o, { hachureAngle: 0 });
+        const lines = polygonHachureLines(polygonList, o);
+        return this.dotsOnLines(lines, o);
+    }
+    dotsOnLines(lines, o) {
+        const ops = [];
+        let gap = o.hachureGap;
+        if (gap < 0) {
+            gap = o.strokeWidth * 4;
+        }
+        gap = Math.max(gap, 0.1);
+        let fweight = o.fillWeight;
+        if (fweight < 0) {
+            fweight = o.strokeWidth / 2;
+        }
+        const ro = gap / 4;
+        for (const line of lines) {
+            const length = lineLength(line);
+            const dl = length / gap;
+            const count = Math.ceil(dl) - 1;
+            const offset = length - (count * gap);
+            const x = ((line[0][0] + line[1][0]) / 2) - (gap / 4);
+            const minY = Math.min(line[0][1], line[1][1]);
+            for (let i = 0; i < count; i++) {
+                const y = minY + offset + (i * gap);
+                const cx = (x - ro) + Math.random() * 2 * ro;
+                const cy = (y - ro) + Math.random() * 2 * ro;
+                const el = this.helper.ellipse(cx, cy, fweight, fweight, o);
+                ops.push(...el.ops);
+            }
+        }
+        return { type: 'fillSketch', ops };
+    }
+}
+
+class DashedFiller {
+    constructor(helper) {
+        this.helper = helper;
+    }
+    fillPolygons(polygonList, o) {
+        const lines = polygonHachureLines(polygonList, o);
+        return { type: 'fillSketch', ops: this.dashedLine(lines, o) };
+    }
+    dashedLine(lines, o) {
+        const offset = o.dashOffset < 0 ? (o.hachureGap < 0 ? (o.strokeWidth * 4) : o.hachureGap) : o.dashOffset;
+        const gap = o.dashGap < 0 ? (o.hachureGap < 0 ? (o.strokeWidth * 4) : o.hachureGap) : o.dashGap;
+        const ops = [];
+        lines.forEach((line) => {
+            const length = lineLength(line);
+            const count = Math.floor(length / (offset + gap));
+            const startOffset = (length + gap - (count * (offset + gap))) / 2;
+            let p1 = line[0];
+            let p2 = line[1];
+            if (p1[0] > p2[0]) {
+                p1 = line[1];
+                p2 = line[0];
+            }
+            const alpha = Math.atan((p2[1] - p1[1]) / (p2[0] - p1[0]));
+            for (let i = 0; i < count; i++) {
+                const lstart = i * (offset + gap);
+                const lend = lstart + offset;
+                const start = [p1[0] + (lstart * Math.cos(alpha)) + (startOffset * Math.cos(alpha)), p1[1] + lstart * Math.sin(alpha) + (startOffset * Math.sin(alpha))];
+                const end = [p1[0] + (lend * Math.cos(alpha)) + (startOffset * Math.cos(alpha)), p1[1] + (lend * Math.sin(alpha)) + (startOffset * Math.sin(alpha))];
+                ops.push(...this.helper.doubleLineOps(start[0], start[1], end[0], end[1], o));
+            }
+        });
+        return ops;
+    }
+}
+
+class ZigZagLineFiller {
+    constructor(helper) {
+        this.helper = helper;
+    }
+    fillPolygons(polygonList, o) {
+        const gap = o.hachureGap < 0 ? (o.strokeWidth * 4) : o.hachureGap;
+        const zo = o.zigzagOffset < 0 ? gap : o.zigzagOffset;
+        o = Object.assign({}, o, { hachureGap: gap + zo });
+        const lines = polygonHachureLines(polygonList, o);
+        return { type: 'fillSketch', ops: this.zigzagLines(lines, zo, o) };
+    }
+    zigzagLines(lines, zo, o) {
+        const ops = [];
+        lines.forEach((line) => {
+            const length = lineLength(line);
+            const count = Math.round(length / (2 * zo));
+            let p1 = line[0];
+            let p2 = line[1];
+            if (p1[0] > p2[0]) {
+                p1 = line[1];
+                p2 = line[0];
+            }
+            const alpha = Math.atan((p2[1] - p1[1]) / (p2[0] - p1[0]));
+            for (let i = 0; i < count; i++) {
+                const lstart = i * 2 * zo;
+                const lend = (i + 1) * 2 * zo;
+                const dz = Math.sqrt(2 * Math.pow(zo, 2));
+                const start = [p1[0] + (lstart * Math.cos(alpha)), p1[1] + lstart * Math.sin(alpha)];
+                const end = [p1[0] + (lend * Math.cos(alpha)), p1[1] + (lend * Math.sin(alpha))];
+                const middle = [start[0] + dz * Math.cos(alpha + Math.PI / 4), start[1] + dz * Math.sin(alpha + Math.PI / 4)];
+                ops.push(...this.helper.doubleLineOps(start[0], start[1], middle[0], middle[1], o), ...this.helper.doubleLineOps(middle[0], middle[1], end[0], end[1], o));
+            }
+        });
+        return ops;
+    }
+}
+
+const fillers = {};
+function getFiller(o, helper) {
+    let fillerName = o.fillStyle || 'hachure';
+    if (!fillers[fillerName]) {
+        switch (fillerName) {
+            case 'zigzag':
+                if (!fillers[fillerName]) {
+                    fillers[fillerName] = new ZigZagFiller(helper);
+                }
+                break;
+            case 'cross-hatch':
+                if (!fillers[fillerName]) {
+                    fillers[fillerName] = new HatchFiller(helper);
+                }
+                break;
+            case 'dots':
+                if (!fillers[fillerName]) {
+                    fillers[fillerName] = new DotFiller(helper);
+                }
+                break;
+            case 'dashed':
+                if (!fillers[fillerName]) {
+                    fillers[fillerName] = new DashedFiller(helper);
+                }
+                break;
+            case 'zigzag-line':
+                if (!fillers[fillerName]) {
+                    fillers[fillerName] = new ZigZagLineFiller(helper);
+                }
+                break;
+            case 'hachure':
+            default:
+                fillerName = 'hachure';
+                if (!fillers[fillerName]) {
+                    fillers[fillerName] = new HachureFiller(helper);
+                }
+                break;
+        }
+    }
+    return fillers[fillerName];
+}
+
+function randomSeed() {
+    return Math.floor(Math.random() * 2 ** 31);
+}
+class Random {
+    constructor(seed) {
+        this.seed = seed;
+    }
+    next() {
+        if (this.seed) {
+            return ((2 ** 31 - 1) & (this.seed = Math.imul(48271, this.seed))) / 2 ** 31;
+        }
+        else {
+            return Math.random();
+        }
+    }
+}
+
+const COMMAND = 0;
+const NUMBER = 1;
+const EOD = 2;
+const PARAMS = { A: 7, a: 7, C: 6, c: 6, H: 1, h: 1, L: 2, l: 2, M: 2, m: 2, Q: 4, q: 4, S: 4, s: 4, T: 2, t: 2, V: 1, v: 1, Z: 0, z: 0 };
+function tokenize(d) {
+    const tokens = new Array();
+    while (d !== '') {
+        if (d.match(/^([ \t\r\n,]+)/)) {
+            d = d.substr(RegExp.$1.length);
+        }
+        else if (d.match(/^([aAcChHlLmMqQsStTvVzZ])/)) {
+            tokens[tokens.length] = { type: COMMAND, text: RegExp.$1 };
+            d = d.substr(RegExp.$1.length);
+        }
+        else if (d.match(/^(([-+]?[0-9]+(\.[0-9]*)?|[-+]?\.[0-9]+)([eE][-+]?[0-9]+)?)/)) {
+            tokens[tokens.length] = { type: NUMBER, text: `${parseFloat(RegExp.$1)}` };
+            d = d.substr(RegExp.$1.length);
+        }
+        else {
+            return [];
+        }
+    }
+    tokens[tokens.length] = { type: EOD, text: '' };
+    return tokens;
+}
+function isType(token, type) {
+    return token.type === type;
+}
+function parsePath(d) {
+    const segments = [];
+    const tokens = tokenize(d);
+    let mode = 'BOD';
+    let index = 0;
+    let token = tokens[index];
+    while (!isType(token, EOD)) {
+        let paramsCount = 0;
+        const params = [];
+        if (mode === 'BOD') {
+            if (token.text === 'M' || token.text === 'm') {
+                index++;
+                paramsCount = PARAMS[token.text];
+                mode = token.text;
+            }
+            else {
+                return parsePath('M0,0' + d);
+            }
+        }
+        else if (isType(token, NUMBER)) {
+            paramsCount = PARAMS[mode];
+        }
+        else {
+            index++;
+            paramsCount = PARAMS[token.text];
+            mode = token.text;
+        }
+        if ((index + paramsCount) < tokens.length) {
+            for (let i = index; i < index + paramsCount; i++) {
+                const numbeToken = tokens[i];
+                if (isType(numbeToken, NUMBER)) {
+                    params[params.length] = +numbeToken.text;
+                }
+                else {
+                    throw new Error('Param not a number: ' + mode + ',' + numbeToken.text);
+                }
+            }
+            if (typeof PARAMS[mode] === 'number') {
+                const segment = { key: mode, data: params };
+                segments.push(segment);
+                index += paramsCount;
+                token = tokens[index];
+                if (mode === 'M')
+                    mode = 'L';
+                if (mode === 'm')
+                    mode = 'l';
+            }
+            else {
+                throw new Error('Bad segment: ' + mode);
+            }
+        }
+        else {
+            throw new Error('Path data ended short');
+        }
+    }
+    return segments;
+}
+
+// Translate relative commands to absolute commands
+function absolutize(segments) {
+    let cx = 0, cy = 0;
+    let subx = 0, suby = 0;
+    const out = [];
+    for (const { key, data } of segments) {
+        switch (key) {
+            case 'M':
+                out.push({ key: 'M', data: [...data] });
+                [cx, cy] = data;
+                [subx, suby] = data;
+                break;
+            case 'm':
+                cx += data[0];
+                cy += data[1];
+                out.push({ key: 'M', data: [cx, cy] });
+                subx = cx;
+                suby = cy;
+                break;
+            case 'L':
+                out.push({ key: 'L', data: [...data] });
+                [cx, cy] = data;
+                break;
+            case 'l':
+                cx += data[0];
+                cy += data[1];
+                out.push({ key: 'L', data: [cx, cy] });
+                break;
+            case 'C':
+                out.push({ key: 'C', data: [...data] });
+                cx = data[4];
+                cy = data[5];
+                break;
+            case 'c': {
+                const newdata = data.map((d, i) => (i % 2) ? (d + cy) : (d + cx));
+                out.push({ key: 'C', data: newdata });
+                cx = newdata[4];
+                cy = newdata[5];
+                break;
+            }
+            case 'Q':
+                out.push({ key: 'Q', data: [...data] });
+                cx = data[2];
+                cy = data[3];
+                break;
+            case 'q': {
+                const newdata = data.map((d, i) => (i % 2) ? (d + cy) : (d + cx));
+                out.push({ key: 'Q', data: newdata });
+                cx = newdata[2];
+                cy = newdata[3];
+                break;
+            }
+            case 'A':
+                out.push({ key: 'A', data: [...data] });
+                cx = data[5];
+                cy = data[6];
+                break;
+            case 'a':
+                cx += data[5];
+                cy += data[6];
+                out.push({ key: 'A', data: [data[0], data[1], data[2], data[3], data[4], cx, cy] });
+                break;
+            case 'H':
+                out.push({ key: 'H', data: [...data] });
+                cx = data[0];
+                break;
+            case 'h':
+                cx += data[0];
+                out.push({ key: 'H', data: [cx] });
+                break;
+            case 'V':
+                out.push({ key: 'V', data: [...data] });
+                cy = data[0];
+                break;
+            case 'v':
+                cy += data[0];
+                out.push({ key: 'V', data: [cy] });
+                break;
+            case 'S':
+                out.push({ key: 'S', data: [...data] });
+                cx = data[2];
+                cy = data[3];
+                break;
+            case 's': {
+                const newdata = data.map((d, i) => (i % 2) ? (d + cy) : (d + cx));
+                out.push({ key: 'S', data: newdata });
+                cx = newdata[2];
+                cy = newdata[3];
+                break;
+            }
+            case 'T':
+                out.push({ key: 'T', data: [...data] });
+                cx = data[0];
+                cy = data[1];
+                break;
+            case 't':
+                cx += data[0];
+                cy += data[1];
+                out.push({ key: 'T', data: [cx, cy] });
+                break;
+            case 'Z':
+            case 'z':
+                out.push({ key: 'Z', data: [] });
+                cx = subx;
+                cy = suby;
+                break;
+        }
+    }
+    return out;
+}
+
+// Normalize path to include only M, L, C, and Z commands
+function normalize(segments) {
+    const out = [];
+    let lastType = '';
+    let cx = 0, cy = 0;
+    let subx = 0, suby = 0;
+    let lcx = 0, lcy = 0;
+    for (const { key, data } of segments) {
+        switch (key) {
+            case 'M':
+                out.push({ key: 'M', data: [...data] });
+                [cx, cy] = data;
+                [subx, suby] = data;
+                break;
+            case 'C':
+                out.push({ key: 'C', data: [...data] });
+                cx = data[4];
+                cy = data[5];
+                lcx = data[2];
+                lcy = data[3];
+                break;
+            case 'L':
+                out.push({ key: 'L', data: [...data] });
+                [cx, cy] = data;
+                break;
+            case 'H':
+                cx = data[0];
+                out.push({ key: 'L', data: [cx, cy] });
+                break;
+            case 'V':
+                cy = data[0];
+                out.push({ key: 'L', data: [cx, cy] });
+                break;
+            case 'S': {
+                let cx1 = 0, cy1 = 0;
+                if (lastType === 'C' || lastType === 'S') {
+                    cx1 = cx + (cx - lcx);
+                    cy1 = cy + (cy - lcy);
+                }
+                else {
+                    cx1 = cx;
+                    cy1 = cy;
+                }
+                out.push({ key: 'C', data: [cx1, cy1, ...data] });
+                lcx = data[0];
+                lcy = data[1];
+                cx = data[2];
+                cy = data[3];
+                break;
+            }
+            case 'T': {
+                const [x, y] = data;
+                let x1 = 0, y1 = 0;
+                if (lastType === 'Q' || lastType === 'T') {
+                    x1 = cx + (cx - lcx);
+                    y1 = cy + (cy - lcy);
+                }
+                else {
+                    x1 = cx;
+                    y1 = cy;
+                }
+                const cx1 = cx + 2 * (x1 - cx) / 3;
+                const cy1 = cy + 2 * (y1 - cy) / 3;
+                const cx2 = x + 2 * (x1 - x) / 3;
+                const cy2 = y + 2 * (y1 - y) / 3;
+                out.push({ key: 'C', data: [cx1, cy1, cx2, cy2, x, y] });
+                lcx = x1;
+                lcy = y1;
+                cx = x;
+                cy = y;
+                break;
+            }
+            case 'Q': {
+                const [x1, y1, x, y] = data;
+                const cx1 = cx + 2 * (x1 - cx) / 3;
+                const cy1 = cy + 2 * (y1 - cy) / 3;
+                const cx2 = x + 2 * (x1 - x) / 3;
+                const cy2 = y + 2 * (y1 - y) / 3;
+                out.push({ key: 'C', data: [cx1, cy1, cx2, cy2, x, y] });
+                lcx = x1;
+                lcy = y1;
+                cx = x;
+                cy = y;
+                break;
+            }
+            case 'A': {
+                const r1 = Math.abs(data[0]);
+                const r2 = Math.abs(data[1]);
+                const angle = data[2];
+                const largeArcFlag = data[3];
+                const sweepFlag = data[4];
+                const x = data[5];
+                const y = data[6];
+                if (r1 === 0 || r2 === 0) {
+                    out.push({ key: 'C', data: [cx, cy, x, y, x, y] });
+                    cx = x;
+                    cy = y;
+                }
+                else {
+                    if (cx !== x || cy !== y) {
+                        const curves = arcToCubicCurves(cx, cy, x, y, r1, r2, angle, largeArcFlag, sweepFlag);
+                        curves.forEach(function (curve) {
+                            out.push({ key: 'C', data: curve });
+                        });
+                        cx = x;
+                        cy = y;
+                    }
+                }
+                break;
+            }
+            case 'Z':
+                out.push({ key: 'Z', data: [] });
+                cx = subx;
+                cy = suby;
+                break;
+        }
+        lastType = key;
+    }
+    return out;
+}
+function degToRad(degrees) {
+    return (Math.PI * degrees) / 180;
+}
+function rotate(x, y, angleRad) {
+    const X = x * Math.cos(angleRad) - y * Math.sin(angleRad);
+    const Y = x * Math.sin(angleRad) + y * Math.cos(angleRad);
+    return [X, Y];
+}
+function arcToCubicCurves(x1, y1, x2, y2, r1, r2, angle, largeArcFlag, sweepFlag, recursive) {
+    const angleRad = degToRad(angle);
+    let params = [];
+    let f1 = 0, f2 = 0, cx = 0, cy = 0;
+    if (recursive) {
+        [f1, f2, cx, cy] = recursive;
+    }
+    else {
+        [x1, y1] = rotate(x1, y1, -angleRad);
+        [x2, y2] = rotate(x2, y2, -angleRad);
+        const x = (x1 - x2) / 2;
+        const y = (y1 - y2) / 2;
+        let h = (x * x) / (r1 * r1) + (y * y) / (r2 * r2);
+        if (h > 1) {
+            h = Math.sqrt(h);
+            r1 = h * r1;
+            r2 = h * r2;
+        }
+        const sign = (largeArcFlag === sweepFlag) ? -1 : 1;
+        const r1Pow = r1 * r1;
+        const r2Pow = r2 * r2;
+        const left = r1Pow * r2Pow - r1Pow * y * y - r2Pow * x * x;
+        const right = r1Pow * y * y + r2Pow * x * x;
+        const k = sign * Math.sqrt(Math.abs(left / right));
+        cx = k * r1 * y / r2 + (x1 + x2) / 2;
+        cy = k * -r2 * x / r1 + (y1 + y2) / 2;
+        f1 = Math.asin(parseFloat(((y1 - cy) / r2).toFixed(9)));
+        f2 = Math.asin(parseFloat(((y2 - cy) / r2).toFixed(9)));
+        if (x1 < cx) {
+            f1 = Math.PI - f1;
+        }
+        if (x2 < cx) {
+            f2 = Math.PI - f2;
+        }
+        if (f1 < 0) {
+            f1 = Math.PI * 2 + f1;
+        }
+        if (f2 < 0) {
+            f2 = Math.PI * 2 + f2;
+        }
+        if (sweepFlag && f1 > f2) {
+            f1 = f1 - Math.PI * 2;
+        }
+        if (!sweepFlag && f2 > f1) {
+            f2 = f2 - Math.PI * 2;
+        }
+    }
+    let df = f2 - f1;
+    if (Math.abs(df) > (Math.PI * 120 / 180)) {
+        const f2old = f2;
+        const x2old = x2;
+        const y2old = y2;
+        if (sweepFlag && f2 > f1) {
+            f2 = f1 + (Math.PI * 120 / 180) * (1);
+        }
+        else {
+            f2 = f1 + (Math.PI * 120 / 180) * (-1);
+        }
+        x2 = cx + r1 * Math.cos(f2);
+        y2 = cy + r2 * Math.sin(f2);
+        params = arcToCubicCurves(x2, y2, x2old, y2old, r1, r2, angle, 0, sweepFlag, [f2, f2old, cx, cy]);
+    }
+    df = f2 - f1;
+    const c1 = Math.cos(f1);
+    const s1 = Math.sin(f1);
+    const c2 = Math.cos(f2);
+    const s2 = Math.sin(f2);
+    const t = Math.tan(df / 4);
+    const hx = 4 / 3 * r1 * t;
+    const hy = 4 / 3 * r2 * t;
+    const m1 = [x1, y1];
+    const m2 = [x1 + hx * s1, y1 - hy * c1];
+    const m3 = [x2 + hx * s2, y2 - hy * c2];
+    const m4 = [x2, y2];
+    m2[0] = 2 * m1[0] - m2[0];
+    m2[1] = 2 * m1[1] - m2[1];
+    if (recursive) {
+        return [m2, m3, m4].concat(params);
+    }
+    else {
+        params = [m2, m3, m4].concat(params);
+        const curves = [];
+        for (let i = 0; i < params.length; i += 3) {
+            const r1 = rotate(params[i][0], params[i][1], angleRad);
+            const r2 = rotate(params[i + 1][0], params[i + 1][1], angleRad);
+            const r3 = rotate(params[i + 2][0], params[i + 2][1], angleRad);
+            curves.push([r1[0], r1[1], r2[0], r2[1], r3[0], r3[1]]);
+        }
+        return curves;
+    }
+}
+
+const helper = {
+    randOffset,
+    randOffsetWithRange,
+    ellipse,
+    doubleLineOps: doubleLineFillOps,
+};
+function line(x1, y1, x2, y2, o) {
+    return { type: 'path', ops: _doubleLine(x1, y1, x2, y2, o) };
+}
+function linearPath(points, close, o) {
+    const len = (points || []).length;
+    if (len > 2) {
+        const ops = [];
+        for (let i = 0; i < (len - 1); i++) {
+            ops.push(..._doubleLine(points[i][0], points[i][1], points[i + 1][0], points[i + 1][1], o));
+        }
+        if (close) {
+            ops.push(..._doubleLine(points[len - 1][0], points[len - 1][1], points[0][0], points[0][1], o));
+        }
+        return { type: 'path', ops };
+    }
+    else if (len === 2) {
+        return line(points[0][0], points[0][1], points[1][0], points[1][1], o);
+    }
+    return { type: 'path', ops: [] };
+}
+function polygon(points, o) {
+    return linearPath(points, true, o);
+}
+function rectangle(x, y, width, height, o) {
+    const points = [
+        [x, y],
+        [x + width, y],
+        [x + width, y + height],
+        [x, y + height],
+    ];
+    return polygon(points, o);
+}
+function curve(inputPoints, o) {
+    if (inputPoints.length) {
+        const p1 = inputPoints[0];
+        const pointsList = (typeof p1[0] === 'number') ? [inputPoints] : inputPoints;
+        const o1 = _curveWithOffset(pointsList[0], 1 * (1 + o.roughness * 0.2), o);
+        const o2 = o.disableMultiStroke ? [] : _curveWithOffset(pointsList[0], 1.5 * (1 + o.roughness * 0.22), cloneOptionsAlterSeed(o));
+        for (let i = 1; i < pointsList.length; i++) {
+            const points = pointsList[i];
+            if (points.length) {
+                const underlay = _curveWithOffset(points, 1 * (1 + o.roughness * 0.2), o);
+                const overlay = o.disableMultiStroke ? [] : _curveWithOffset(points, 1.5 * (1 + o.roughness * 0.22), cloneOptionsAlterSeed(o));
+                for (const item of underlay) {
+                    if (item.op !== 'move') {
+                        o1.push(item);
+                    }
+                }
+                for (const item of overlay) {
+                    if (item.op !== 'move') {
+                        o2.push(item);
+                    }
+                }
+            }
+        }
+        return { type: 'path', ops: o1.concat(o2) };
+    }
+    return { type: 'path', ops: [] };
+}
+function ellipse(x, y, width, height, o) {
+    const params = generateEllipseParams(width, height, o);
+    return ellipseWithParams(x, y, o, params).opset;
+}
+function generateEllipseParams(width, height, o) {
+    const psq = Math.sqrt(Math.PI * 2 * Math.sqrt((Math.pow(width / 2, 2) + Math.pow(height / 2, 2)) / 2));
+    const stepCount = Math.ceil(Math.max(o.curveStepCount, (o.curveStepCount / Math.sqrt(200)) * psq));
+    const increment = (Math.PI * 2) / stepCount;
+    let rx = Math.abs(width / 2);
+    let ry = Math.abs(height / 2);
+    const curveFitRandomness = 1 - o.curveFitting;
+    rx += _offsetOpt(rx * curveFitRandomness, o);
+    ry += _offsetOpt(ry * curveFitRandomness, o);
+    return { increment, rx, ry };
+}
+function ellipseWithParams(x, y, o, ellipseParams) {
+    const [ap1, cp1] = _computeEllipsePoints(ellipseParams.increment, x, y, ellipseParams.rx, ellipseParams.ry, 1, ellipseParams.increment * _offset(0.1, _offset(0.4, 1, o), o), o);
+    let o1 = _curve(ap1, null, o);
+    if ((!o.disableMultiStroke) && (o.roughness !== 0)) {
+        const [ap2] = _computeEllipsePoints(ellipseParams.increment, x, y, ellipseParams.rx, ellipseParams.ry, 1.5, 0, o);
+        const o2 = _curve(ap2, null, o);
+        o1 = o1.concat(o2);
+    }
+    return {
+        estimatedPoints: cp1,
+        opset: { type: 'path', ops: o1 },
+    };
+}
+function arc(x, y, width, height, start, stop, closed, roughClosure, o) {
+    const cx = x;
+    const cy = y;
+    let rx = Math.abs(width / 2);
+    let ry = Math.abs(height / 2);
+    rx += _offsetOpt(rx * 0.01, o);
+    ry += _offsetOpt(ry * 0.01, o);
+    let strt = start;
+    let stp = stop;
+    while (strt < 0) {
+        strt += Math.PI * 2;
+        stp += Math.PI * 2;
+    }
+    if ((stp - strt) > (Math.PI * 2)) {
+        strt = 0;
+        stp = Math.PI * 2;
+    }
+    const ellipseInc = (Math.PI * 2) / o.curveStepCount;
+    const arcInc = Math.min(ellipseInc / 2, (stp - strt) / 2);
+    const ops = _arc(arcInc, cx, cy, rx, ry, strt, stp, 1, o);
+    if (!o.disableMultiStroke) {
+        const o2 = _arc(arcInc, cx, cy, rx, ry, strt, stp, 1.5, o);
+        ops.push(...o2);
+    }
+    if (closed) {
+        if (roughClosure) {
+            ops.push(..._doubleLine(cx, cy, cx + rx * Math.cos(strt), cy + ry * Math.sin(strt), o), ..._doubleLine(cx, cy, cx + rx * Math.cos(stp), cy + ry * Math.sin(stp), o));
+        }
+        else {
+            ops.push({ op: 'lineTo', data: [cx, cy] }, { op: 'lineTo', data: [cx + rx * Math.cos(strt), cy + ry * Math.sin(strt)] });
+        }
+    }
+    return { type: 'path', ops };
+}
+function svgPath(path, o) {
+    const segments = normalize(absolutize(parsePath(path)));
+    const ops = [];
+    let first = [0, 0];
+    let current = [0, 0];
+    for (const { key, data } of segments) {
+        switch (key) {
+            case 'M': {
+                current = [data[0], data[1]];
+                first = [data[0], data[1]];
+                break;
+            }
+            case 'L':
+                ops.push(..._doubleLine(current[0], current[1], data[0], data[1], o));
+                current = [data[0], data[1]];
+                break;
+            case 'C': {
+                const [x1, y1, x2, y2, x, y] = data;
+                ops.push(..._bezierTo(x1, y1, x2, y2, x, y, current, o));
+                current = [x, y];
+                break;
+            }
+            case 'Z':
+                ops.push(..._doubleLine(current[0], current[1], first[0], first[1], o));
+                current = [first[0], first[1]];
+                break;
+        }
+    }
+    return { type: 'path', ops };
+}
+// Fills
+function solidFillPolygon(polygonList, o) {
+    const ops = [];
+    for (const points of polygonList) {
+        if (points.length) {
+            const offset = o.maxRandomnessOffset || 0;
+            const len = points.length;
+            if (len > 2) {
+                ops.push({ op: 'move', data: [points[0][0] + _offsetOpt(offset, o), points[0][1] + _offsetOpt(offset, o)] });
+                for (let i = 1; i < len; i++) {
+                    ops.push({ op: 'lineTo', data: [points[i][0] + _offsetOpt(offset, o), points[i][1] + _offsetOpt(offset, o)] });
+                }
+            }
+        }
+    }
+    return { type: 'fillPath', ops };
+}
+function patternFillPolygons(polygonList, o) {
+    return getFiller(o, helper).fillPolygons(polygonList, o);
+}
+function patternFillArc(x, y, width, height, start, stop, o) {
+    const cx = x;
+    const cy = y;
+    let rx = Math.abs(width / 2);
+    let ry = Math.abs(height / 2);
+    rx += _offsetOpt(rx * 0.01, o);
+    ry += _offsetOpt(ry * 0.01, o);
+    let strt = start;
+    let stp = stop;
+    while (strt < 0) {
+        strt += Math.PI * 2;
+        stp += Math.PI * 2;
+    }
+    if ((stp - strt) > (Math.PI * 2)) {
+        strt = 0;
+        stp = Math.PI * 2;
+    }
+    const increment = (stp - strt) / o.curveStepCount;
+    const points = [];
+    for (let angle = strt; angle <= stp; angle = angle + increment) {
+        points.push([cx + rx * Math.cos(angle), cy + ry * Math.sin(angle)]);
+    }
+    points.push([cx + rx * Math.cos(stp), cy + ry * Math.sin(stp)]);
+    points.push([cx, cy]);
+    return patternFillPolygons([points], o);
+}
+function randOffset(x, o) {
+    return _offsetOpt(x, o);
+}
+function randOffsetWithRange(min, max, o) {
+    return _offset(min, max, o);
+}
+function doubleLineFillOps(x1, y1, x2, y2, o) {
+    return _doubleLine(x1, y1, x2, y2, o, true);
+}
+// Private helpers
+function cloneOptionsAlterSeed(ops) {
+    const result = Object.assign({}, ops);
+    result.randomizer = undefined;
+    if (ops.seed) {
+        result.seed = ops.seed + 1;
+    }
+    return result;
+}
+function random(ops) {
+    if (!ops.randomizer) {
+        ops.randomizer = new Random(ops.seed || 0);
+    }
+    return ops.randomizer.next();
+}
+function _offset(min, max, ops, roughnessGain = 1) {
+    return ops.roughness * roughnessGain * ((random(ops) * (max - min)) + min);
+}
+function _offsetOpt(x, ops, roughnessGain = 1) {
+    return _offset(-x, x, ops, roughnessGain);
+}
+function _doubleLine(x1, y1, x2, y2, o, filling = false) {
+    const singleStroke = filling ? o.disableMultiStrokeFill : o.disableMultiStroke;
+    const o1 = _line(x1, y1, x2, y2, o, true, false);
+    if (singleStroke) {
+        return o1;
+    }
+    const o2 = _line(x1, y1, x2, y2, o, true, true);
+    return o1.concat(o2);
+}
+function _line(x1, y1, x2, y2, o, move, overlay) {
+    const lengthSq = Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2);
+    const length = Math.sqrt(lengthSq);
+    let roughnessGain = 1;
+    if (length < 200) {
+        roughnessGain = 1;
+    }
+    else if (length > 500) {
+        roughnessGain = 0.4;
+    }
+    else {
+        roughnessGain = (-0.0016668) * length + 1.233334;
+    }
+    let offset = o.maxRandomnessOffset || 0;
+    if ((offset * offset * 100) > lengthSq) {
+        offset = length / 10;
+    }
+    const halfOffset = offset / 2;
+    const divergePoint = 0.2 + random(o) * 0.2;
+    let midDispX = o.bowing * o.maxRandomnessOffset * (y2 - y1) / 200;
+    let midDispY = o.bowing * o.maxRandomnessOffset * (x1 - x2) / 200;
+    midDispX = _offsetOpt(midDispX, o, roughnessGain);
+    midDispY = _offsetOpt(midDispY, o, roughnessGain);
+    const ops = [];
+    const randomHalf = () => _offsetOpt(halfOffset, o, roughnessGain);
+    const randomFull = () => _offsetOpt(offset, o, roughnessGain);
+    const preserveVertices = o.preserveVertices;
+    if (move) {
+        if (overlay) {
+            ops.push({
+                op: 'move', data: [
+                    x1 + (preserveVertices ? 0 : randomHalf()),
+                    y1 + (preserveVertices ? 0 : randomHalf()),
+                ],
+            });
+        }
+        else {
+            ops.push({
+                op: 'move', data: [
+                    x1 + (preserveVertices ? 0 : _offsetOpt(offset, o, roughnessGain)),
+                    y1 + (preserveVertices ? 0 : _offsetOpt(offset, o, roughnessGain)),
+                ],
+            });
+        }
+    }
+    if (overlay) {
+        ops.push({
+            op: 'bcurveTo',
+            data: [
+                midDispX + x1 + (x2 - x1) * divergePoint + randomHalf(),
+                midDispY + y1 + (y2 - y1) * divergePoint + randomHalf(),
+                midDispX + x1 + 2 * (x2 - x1) * divergePoint + randomHalf(),
+                midDispY + y1 + 2 * (y2 - y1) * divergePoint + randomHalf(),
+                x2 + (preserveVertices ? 0 : randomHalf()),
+                y2 + (preserveVertices ? 0 : randomHalf()),
+            ],
+        });
+    }
+    else {
+        ops.push({
+            op: 'bcurveTo',
+            data: [
+                midDispX + x1 + (x2 - x1) * divergePoint + randomFull(),
+                midDispY + y1 + (y2 - y1) * divergePoint + randomFull(),
+                midDispX + x1 + 2 * (x2 - x1) * divergePoint + randomFull(),
+                midDispY + y1 + 2 * (y2 - y1) * divergePoint + randomFull(),
+                x2 + (preserveVertices ? 0 : randomFull()),
+                y2 + (preserveVertices ? 0 : randomFull()),
+            ],
+        });
+    }
+    return ops;
+}
+function _curveWithOffset(points, offset, o) {
+    if (!points.length) {
+        return [];
+    }
+    const ps = [];
+    ps.push([
+        points[0][0] + _offsetOpt(offset, o),
+        points[0][1] + _offsetOpt(offset, o),
+    ]);
+    ps.push([
+        points[0][0] + _offsetOpt(offset, o),
+        points[0][1] + _offsetOpt(offset, o),
+    ]);
+    for (let i = 1; i < points.length; i++) {
+        ps.push([
+            points[i][0] + _offsetOpt(offset, o),
+            points[i][1] + _offsetOpt(offset, o),
+        ]);
+        if (i === (points.length - 1)) {
+            ps.push([
+                points[i][0] + _offsetOpt(offset, o),
+                points[i][1] + _offsetOpt(offset, o),
+            ]);
+        }
+    }
+    return _curve(ps, null, o);
+}
+function _curve(points, closePoint, o) {
+    const len = points.length;
+    const ops = [];
+    if (len > 3) {
+        const b = [];
+        const s = 1 - o.curveTightness;
+        ops.push({ op: 'move', data: [points[1][0], points[1][1]] });
+        for (let i = 1; (i + 2) < len; i++) {
+            const cachedVertArray = points[i];
+            b[0] = [cachedVertArray[0], cachedVertArray[1]];
+            b[1] = [cachedVertArray[0] + (s * points[i + 1][0] - s * points[i - 1][0]) / 6, cachedVertArray[1] + (s * points[i + 1][1] - s * points[i - 1][1]) / 6];
+            b[2] = [points[i + 1][0] + (s * points[i][0] - s * points[i + 2][0]) / 6, points[i + 1][1] + (s * points[i][1] - s * points[i + 2][1]) / 6];
+            b[3] = [points[i + 1][0], points[i + 1][1]];
+            ops.push({ op: 'bcurveTo', data: [b[1][0], b[1][1], b[2][0], b[2][1], b[3][0], b[3][1]] });
+        }
+        if (closePoint && closePoint.length === 2) {
+            const ro = o.maxRandomnessOffset;
+            ops.push({ op: 'lineTo', data: [closePoint[0] + _offsetOpt(ro, o), closePoint[1] + _offsetOpt(ro, o)] });
+        }
+    }
+    else if (len === 3) {
+        ops.push({ op: 'move', data: [points[1][0], points[1][1]] });
+        ops.push({
+            op: 'bcurveTo',
+            data: [
+                points[1][0], points[1][1],
+                points[2][0], points[2][1],
+                points[2][0], points[2][1],
+            ],
+        });
+    }
+    else if (len === 2) {
+        ops.push(..._line(points[0][0], points[0][1], points[1][0], points[1][1], o, true, true));
+    }
+    return ops;
+}
+function _computeEllipsePoints(increment, cx, cy, rx, ry, offset, overlap, o) {
+    const coreOnly = o.roughness === 0;
+    const corePoints = [];
+    const allPoints = [];
+    if (coreOnly) {
+        increment = increment / 4;
+        allPoints.push([
+            cx + rx * Math.cos(-increment),
+            cy + ry * Math.sin(-increment),
+        ]);
+        for (let angle = 0; angle <= Math.PI * 2; angle = angle + increment) {
+            const p = [
+                cx + rx * Math.cos(angle),
+                cy + ry * Math.sin(angle),
+            ];
+            corePoints.push(p);
+            allPoints.push(p);
+        }
+        allPoints.push([
+            cx + rx * Math.cos(0),
+            cy + ry * Math.sin(0),
+        ]);
+        allPoints.push([
+            cx + rx * Math.cos(increment),
+            cy + ry * Math.sin(increment),
+        ]);
+    }
+    else {
+        const radOffset = _offsetOpt(0.5, o) - (Math.PI / 2);
+        allPoints.push([
+            _offsetOpt(offset, o) + cx + 0.9 * rx * Math.cos(radOffset - increment),
+            _offsetOpt(offset, o) + cy + 0.9 * ry * Math.sin(radOffset - increment),
+        ]);
+        const endAngle = Math.PI * 2 + radOffset - 0.01;
+        for (let angle = radOffset; angle < endAngle; angle = angle + increment) {
+            const p = [
+                _offsetOpt(offset, o) + cx + rx * Math.cos(angle),
+                _offsetOpt(offset, o) + cy + ry * Math.sin(angle),
+            ];
+            corePoints.push(p);
+            allPoints.push(p);
+        }
+        allPoints.push([
+            _offsetOpt(offset, o) + cx + rx * Math.cos(radOffset + Math.PI * 2 + overlap * 0.5),
+            _offsetOpt(offset, o) + cy + ry * Math.sin(radOffset + Math.PI * 2 + overlap * 0.5),
+        ]);
+        allPoints.push([
+            _offsetOpt(offset, o) + cx + 0.98 * rx * Math.cos(radOffset + overlap),
+            _offsetOpt(offset, o) + cy + 0.98 * ry * Math.sin(radOffset + overlap),
+        ]);
+        allPoints.push([
+            _offsetOpt(offset, o) + cx + 0.9 * rx * Math.cos(radOffset + overlap * 0.5),
+            _offsetOpt(offset, o) + cy + 0.9 * ry * Math.sin(radOffset + overlap * 0.5),
+        ]);
+    }
+    return [allPoints, corePoints];
+}
+function _arc(increment, cx, cy, rx, ry, strt, stp, offset, o) {
+    const radOffset = strt + _offsetOpt(0.1, o);
+    const points = [];
+    points.push([
+        _offsetOpt(offset, o) + cx + 0.9 * rx * Math.cos(radOffset - increment),
+        _offsetOpt(offset, o) + cy + 0.9 * ry * Math.sin(radOffset - increment),
+    ]);
+    for (let angle = radOffset; angle <= stp; angle = angle + increment) {
+        points.push([
+            _offsetOpt(offset, o) + cx + rx * Math.cos(angle),
+            _offsetOpt(offset, o) + cy + ry * Math.sin(angle),
+        ]);
+    }
+    points.push([
+        cx + rx * Math.cos(stp),
+        cy + ry * Math.sin(stp),
+    ]);
+    points.push([
+        cx + rx * Math.cos(stp),
+        cy + ry * Math.sin(stp),
+    ]);
+    return _curve(points, null, o);
+}
+function _bezierTo(x1, y1, x2, y2, x, y, current, o) {
+    const ops = [];
+    const ros = [o.maxRandomnessOffset || 1, (o.maxRandomnessOffset || 1) + 0.3];
+    let f = [0, 0];
+    const iterations = o.disableMultiStroke ? 1 : 2;
+    const preserveVertices = o.preserveVertices;
+    for (let i = 0; i < iterations; i++) {
+        if (i === 0) {
+            ops.push({ op: 'move', data: [current[0], current[1]] });
+        }
+        else {
+            ops.push({ op: 'move', data: [current[0] + (preserveVertices ? 0 : _offsetOpt(ros[0], o)), current[1] + (preserveVertices ? 0 : _offsetOpt(ros[0], o))] });
+        }
+        f = preserveVertices ? [x, y] : [x + _offsetOpt(ros[i], o), y + _offsetOpt(ros[i], o)];
+        ops.push({
+            op: 'bcurveTo',
+            data: [
+                x1 + _offsetOpt(ros[i], o), y1 + _offsetOpt(ros[i], o),
+                x2 + _offsetOpt(ros[i], o), y2 + _offsetOpt(ros[i], o),
+                f[0], f[1],
+            ],
+        });
+    }
+    return ops;
+}
+
+function clone(p) {
+    return [...p];
+}
+function curveToBezier(pointsIn, curveTightness = 0) {
+    const len = pointsIn.length;
+    if (len < 3) {
+        throw new Error('A curve must have at least three points.');
+    }
+    const out = [];
+    if (len === 3) {
+        out.push(clone(pointsIn[0]), clone(pointsIn[1]), clone(pointsIn[2]), clone(pointsIn[2]));
+    }
+    else {
+        const points = [];
+        points.push(pointsIn[0], pointsIn[0]);
+        for (let i = 1; i < pointsIn.length; i++) {
+            points.push(pointsIn[i]);
+            if (i === (pointsIn.length - 1)) {
+                points.push(pointsIn[i]);
+            }
+        }
+        const b = [];
+        const s = 1 - curveTightness;
+        out.push(clone(points[0]));
+        for (let i = 1; (i + 2) < points.length; i++) {
+            const cachedVertArray = points[i];
+            b[0] = [cachedVertArray[0], cachedVertArray[1]];
+            b[1] = [cachedVertArray[0] + (s * points[i + 1][0] - s * points[i - 1][0]) / 6, cachedVertArray[1] + (s * points[i + 1][1] - s * points[i - 1][1]) / 6];
+            b[2] = [points[i + 1][0] + (s * points[i][0] - s * points[i + 2][0]) / 6, points[i + 1][1] + (s * points[i][1] - s * points[i + 2][1]) / 6];
+            b[3] = [points[i + 1][0], points[i + 1][1]];
+            out.push(b[1], b[2], b[3]);
+        }
+    }
+    return out;
+}
+
+// distance between 2 points
+function distance(p1, p2) {
+    return Math.sqrt(distanceSq(p1, p2));
+}
+// distance between 2 points squared
+function distanceSq(p1, p2) {
+    return Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2);
+}
+// Sistance squared from a point p to the line segment vw
+function distanceToSegmentSq(p, v, w) {
+    const l2 = distanceSq(v, w);
+    if (l2 === 0) {
+        return distanceSq(p, v);
+    }
+    let t = ((p[0] - v[0]) * (w[0] - v[0]) + (p[1] - v[1]) * (w[1] - v[1])) / l2;
+    t = Math.max(0, Math.min(1, t));
+    return distanceSq(p, lerp(v, w, t));
+}
+function lerp(a, b, t) {
+    return [
+        a[0] + (b[0] - a[0]) * t,
+        a[1] + (b[1] - a[1]) * t,
+    ];
+}
+// Adapted from https://seant23.wordpress.com/2010/11/12/offset-bezier-curves/
+function flatness(points, offset) {
+    const p1 = points[offset + 0];
+    const p2 = points[offset + 1];
+    const p3 = points[offset + 2];
+    const p4 = points[offset + 3];
+    let ux = 3 * p2[0] - 2 * p1[0] - p4[0];
+    ux *= ux;
+    let uy = 3 * p2[1] - 2 * p1[1] - p4[1];
+    uy *= uy;
+    let vx = 3 * p3[0] - 2 * p4[0] - p1[0];
+    vx *= vx;
+    let vy = 3 * p3[1] - 2 * p4[1] - p1[1];
+    vy *= vy;
+    if (ux < vx) {
+        ux = vx;
+    }
+    if (uy < vy) {
+        uy = vy;
+    }
+    return ux + uy;
+}
+function getPointsOnBezierCurveWithSplitting(points, offset, tolerance, newPoints) {
+    const outPoints = newPoints || [];
+    if (flatness(points, offset) < tolerance) {
+        const p0 = points[offset + 0];
+        if (outPoints.length) {
+            const d = distance(outPoints[outPoints.length - 1], p0);
+            if (d > 1) {
+                outPoints.push(p0);
+            }
+        }
+        else {
+            outPoints.push(p0);
+        }
+        outPoints.push(points[offset + 3]);
+    }
+    else {
+        // subdivide
+        const t = .5;
+        const p1 = points[offset + 0];
+        const p2 = points[offset + 1];
+        const p3 = points[offset + 2];
+        const p4 = points[offset + 3];
+        const q1 = lerp(p1, p2, t);
+        const q2 = lerp(p2, p3, t);
+        const q3 = lerp(p3, p4, t);
+        const r1 = lerp(q1, q2, t);
+        const r2 = lerp(q2, q3, t);
+        const red = lerp(r1, r2, t);
+        getPointsOnBezierCurveWithSplitting([p1, q1, r1, red], 0, tolerance, outPoints);
+        getPointsOnBezierCurveWithSplitting([red, r2, q3, p4], 0, tolerance, outPoints);
+    }
+    return outPoints;
+}
+function simplify(points, distance) {
+    return simplifyPoints(points, 0, points.length, distance);
+}
+// Ramer–Douglas–Peucker algorithm
+// https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
+function simplifyPoints(points, start, end, epsilon, newPoints) {
+    const outPoints = newPoints || [];
+    // find the most distance point from the endpoints
+    const s = points[start];
+    const e = points[end - 1];
+    let maxDistSq = 0;
+    let maxNdx = 1;
+    for (let i = start + 1; i < end - 1; ++i) {
+        const distSq = distanceToSegmentSq(points[i], s, e);
+        if (distSq > maxDistSq) {
+            maxDistSq = distSq;
+            maxNdx = i;
+        }
+    }
+    // if that point is too far, split
+    if (Math.sqrt(maxDistSq) > epsilon) {
+        simplifyPoints(points, start, maxNdx + 1, epsilon, outPoints);
+        simplifyPoints(points, maxNdx, end, epsilon, outPoints);
+    }
+    else {
+        if (!outPoints.length) {
+            outPoints.push(s);
+        }
+        outPoints.push(e);
+    }
+    return outPoints;
+}
+function pointsOnBezierCurves(points, tolerance = 0.15, distance) {
+    const newPoints = [];
+    const numSegments = (points.length - 1) / 3;
+    for (let i = 0; i < numSegments; i++) {
+        const offset = i * 3;
+        getPointsOnBezierCurveWithSplitting(points, offset, tolerance, newPoints);
+    }
+    if (distance && distance > 0) {
+        return simplifyPoints(newPoints, 0, newPoints.length, distance);
+    }
+    return newPoints;
+}
+
+function pointsOnPath(path, tolerance, distance) {
+    const segments = parsePath(path);
+    const normalized = normalize(absolutize(segments));
+    const sets = [];
+    let currentPoints = [];
+    let start = [0, 0];
+    let pendingCurve = [];
+    const appendPendingCurve = () => {
+        if (pendingCurve.length >= 4) {
+            currentPoints.push(...pointsOnBezierCurves(pendingCurve, tolerance));
+        }
+        pendingCurve = [];
+    };
+    const appendPendingPoints = () => {
+        appendPendingCurve();
+        if (currentPoints.length) {
+            sets.push(currentPoints);
+            currentPoints = [];
+        }
+    };
+    for (const { key, data } of normalized) {
+        switch (key) {
+            case 'M':
+                appendPendingPoints();
+                start = [data[0], data[1]];
+                currentPoints.push(start);
+                break;
+            case 'L':
+                appendPendingCurve();
+                currentPoints.push([data[0], data[1]]);
+                break;
+            case 'C':
+                if (!pendingCurve.length) {
+                    const lastPoint = currentPoints.length ? currentPoints[currentPoints.length - 1] : start;
+                    pendingCurve.push([lastPoint[0], lastPoint[1]]);
+                }
+                pendingCurve.push([data[0], data[1]]);
+                pendingCurve.push([data[2], data[3]]);
+                pendingCurve.push([data[4], data[5]]);
+                break;
+            case 'Z':
+                appendPendingCurve();
+                currentPoints.push([start[0], start[1]]);
+                break;
+        }
+    }
+    appendPendingPoints();
+    if (!distance) {
+        return sets;
+    }
+    const out = [];
+    for (const set of sets) {
+        const simplifiedSet = simplify(set, distance);
+        if (simplifiedSet.length) {
+            out.push(simplifiedSet);
+        }
+    }
+    return out;
+}
+
+const NOS = 'none';
+class RoughGenerator {
+    constructor(config) {
+        this.defaultOptions = {
+            maxRandomnessOffset: 2,
+            roughness: 1,
+            bowing: 1,
+            stroke: '#000',
+            strokeWidth: 1,
+            curveTightness: 0,
+            curveFitting: 0.95,
+            curveStepCount: 9,
+            fillStyle: 'hachure',
+            fillWeight: -1,
+            hachureAngle: -41,
+            hachureGap: -1,
+            dashOffset: -1,
+            dashGap: -1,
+            zigzagOffset: -1,
+            seed: 0,
+            disableMultiStroke: false,
+            disableMultiStrokeFill: false,
+            preserveVertices: false,
+            fillShapeRoughnessGain: 0.8,
+        };
+        this.config = config || {};
+        if (this.config.options) {
+            this.defaultOptions = this._o(this.config.options);
+        }
+    }
+    static newSeed() {
+        return randomSeed();
+    }
+    _o(options) {
+        return options ? Object.assign({}, this.defaultOptions, options) : this.defaultOptions;
+    }
+    _d(shape, sets, options) {
+        return { shape, sets: sets || [], options: options || this.defaultOptions };
+    }
+    line(x1, y1, x2, y2, options) {
+        const o = this._o(options);
+        return this._d('line', [line(x1, y1, x2, y2, o)], o);
+    }
+    rectangle(x, y, width, height, options) {
+        const o = this._o(options);
+        const paths = [];
+        const outline = rectangle(x, y, width, height, o);
+        if (o.fill) {
+            const points = [[x, y], [x + width, y], [x + width, y + height], [x, y + height]];
+            if (o.fillStyle === 'solid') {
+                paths.push(solidFillPolygon([points], o));
+            }
+            else {
+                paths.push(patternFillPolygons([points], o));
+            }
+        }
+        if (o.stroke !== NOS) {
+            paths.push(outline);
+        }
+        return this._d('rectangle', paths, o);
+    }
+    ellipse(x, y, width, height, options) {
+        const o = this._o(options);
+        const paths = [];
+        const ellipseParams = generateEllipseParams(width, height, o);
+        const ellipseResponse = ellipseWithParams(x, y, o, ellipseParams);
+        if (o.fill) {
+            if (o.fillStyle === 'solid') {
+                const shape = ellipseWithParams(x, y, o, ellipseParams).opset;
+                shape.type = 'fillPath';
+                paths.push(shape);
+            }
+            else {
+                paths.push(patternFillPolygons([ellipseResponse.estimatedPoints], o));
+            }
+        }
+        if (o.stroke !== NOS) {
+            paths.push(ellipseResponse.opset);
+        }
+        return this._d('ellipse', paths, o);
+    }
+    circle(x, y, diameter, options) {
+        const ret = this.ellipse(x, y, diameter, diameter, options);
+        ret.shape = 'circle';
+        return ret;
+    }
+    linearPath(points, options) {
+        const o = this._o(options);
+        return this._d('linearPath', [linearPath(points, false, o)], o);
+    }
+    arc(x, y, width, height, start, stop, closed = false, options) {
+        const o = this._o(options);
+        const paths = [];
+        const outline = arc(x, y, width, height, start, stop, closed, true, o);
+        if (closed && o.fill) {
+            if (o.fillStyle === 'solid') {
+                const fillOptions = Object.assign({}, o);
+                fillOptions.disableMultiStroke = true;
+                const shape = arc(x, y, width, height, start, stop, true, false, fillOptions);
+                shape.type = 'fillPath';
+                paths.push(shape);
+            }
+            else {
+                paths.push(patternFillArc(x, y, width, height, start, stop, o));
+            }
+        }
+        if (o.stroke !== NOS) {
+            paths.push(outline);
+        }
+        return this._d('arc', paths, o);
+    }
+    curve(points, options) {
+        const o = this._o(options);
+        const paths = [];
+        const outline = curve(points, o);
+        if (o.fill && o.fill !== NOS) {
+            if (o.fillStyle === 'solid') {
+                const fillShape = curve(points, Object.assign(Object.assign({}, o), { disableMultiStroke: true, roughness: o.roughness ? (o.roughness + o.fillShapeRoughnessGain) : 0 }));
+                paths.push({
+                    type: 'fillPath',
+                    ops: this._mergedShape(fillShape.ops),
+                });
+            }
+            else {
+                const polyPoints = [];
+                const inputPoints = points;
+                if (inputPoints.length) {
+                    const p1 = inputPoints[0];
+                    const pointsList = (typeof p1[0] === 'number') ? [inputPoints] : inputPoints;
+                    for (const points of pointsList) {
+                        if (points.length < 3) {
+                            polyPoints.push(...points);
+                        }
+                        else if (points.length === 3) {
+                            polyPoints.push(...pointsOnBezierCurves(curveToBezier([
+                                points[0],
+                                points[0],
+                                points[1],
+                                points[2],
+                            ]), 10, (1 + o.roughness) / 2));
+                        }
+                        else {
+                            polyPoints.push(...pointsOnBezierCurves(curveToBezier(points), 10, (1 + o.roughness) / 2));
+                        }
+                    }
+                }
+                if (polyPoints.length) {
+                    paths.push(patternFillPolygons([polyPoints], o));
+                }
+            }
+        }
+        if (o.stroke !== NOS) {
+            paths.push(outline);
+        }
+        return this._d('curve', paths, o);
+    }
+    polygon(points, options) {
+        const o = this._o(options);
+        const paths = [];
+        const outline = linearPath(points, true, o);
+        if (o.fill) {
+            if (o.fillStyle === 'solid') {
+                paths.push(solidFillPolygon([points], o));
+            }
+            else {
+                paths.push(patternFillPolygons([points], o));
+            }
+        }
+        if (o.stroke !== NOS) {
+            paths.push(outline);
+        }
+        return this._d('polygon', paths, o);
+    }
+    path(d, options) {
+        const o = this._o(options);
+        const paths = [];
+        if (!d) {
+            return this._d('path', paths, o);
+        }
+        d = (d || '').replace(/\n/g, ' ').replace(/(-\s)/g, '-').replace('/(\s\s)/g', ' ');
+        const hasFill = o.fill && o.fill !== 'transparent' && o.fill !== NOS;
+        const hasStroke = o.stroke !== NOS;
+        const simplified = !!(o.simplification && (o.simplification < 1));
+        const distance = simplified ? (4 - 4 * (o.simplification || 1)) : ((1 + o.roughness) / 2);
+        const sets = pointsOnPath(d, 1, distance);
+        const shape = svgPath(d, o);
+        if (hasFill) {
+            if (o.fillStyle === 'solid') {
+                if (sets.length === 1) {
+                    const fillShape = svgPath(d, Object.assign(Object.assign({}, o), { disableMultiStroke: true, roughness: o.roughness ? (o.roughness + o.fillShapeRoughnessGain) : 0 }));
+                    paths.push({
+                        type: 'fillPath',
+                        ops: this._mergedShape(fillShape.ops),
+                    });
+                }
+                else {
+                    paths.push(solidFillPolygon(sets, o));
+                }
+            }
+            else {
+                paths.push(patternFillPolygons(sets, o));
+            }
+        }
+        if (hasStroke) {
+            if (simplified) {
+                sets.forEach((set) => {
+                    paths.push(linearPath(set, false, o));
+                });
+            }
+            else {
+                paths.push(shape);
+            }
+        }
+        return this._d('path', paths, o);
+    }
+    opsToPath(drawing, fixedDecimals) {
+        let path = '';
+        for (const item of drawing.ops) {
+            const data = ((typeof fixedDecimals === 'number') && fixedDecimals >= 0) ? (item.data.map((d) => +d.toFixed(fixedDecimals))) : item.data;
+            switch (item.op) {
+                case 'move':
+                    path += `M${data[0]} ${data[1]} `;
+                    break;
+                case 'bcurveTo':
+                    path += `C${data[0]} ${data[1]}, ${data[2]} ${data[3]}, ${data[4]} ${data[5]} `;
+                    break;
+                case 'lineTo':
+                    path += `L${data[0]} ${data[1]} `;
+                    break;
+            }
+        }
+        return path.trim();
+    }
+    toPaths(drawable) {
+        const sets = drawable.sets || [];
+        const o = drawable.options || this.defaultOptions;
+        const paths = [];
+        for (const drawing of sets) {
+            let path = null;
+            switch (drawing.type) {
+                case 'path':
+                    path = {
+                        d: this.opsToPath(drawing),
+                        stroke: o.stroke,
+                        strokeWidth: o.strokeWidth,
+                        fill: NOS,
+                    };
+                    break;
+                case 'fillPath':
+                    path = {
+                        d: this.opsToPath(drawing),
+                        stroke: NOS,
+                        strokeWidth: 0,
+                        fill: o.fill || NOS,
+                    };
+                    break;
+                case 'fillSketch':
+                    path = this.fillSketch(drawing, o);
+                    break;
+            }
+            if (path) {
+                paths.push(path);
+            }
+        }
+        return paths;
+    }
+    fillSketch(drawing, o) {
+        let fweight = o.fillWeight;
+        if (fweight < 0) {
+            fweight = o.strokeWidth / 2;
+        }
+        return {
+            d: this.opsToPath(drawing),
+            stroke: o.fill || NOS,
+            strokeWidth: fweight,
+            fill: NOS,
+        };
+    }
+    _mergedShape(input) {
+        return input.filter((d, i) => {
+            if (i === 0) {
+                return true;
+            }
+            if (d.op === 'move') {
+                return false;
+            }
+            return true;
+        });
+    }
+}
+
+class RoughCanvas {
+    constructor(canvas, config) {
+        this.canvas = canvas;
+        this.ctx = this.canvas.getContext('2d');
+        this.gen = new RoughGenerator(config);
+    }
+    draw(drawable) {
+        const sets = drawable.sets || [];
+        const o = drawable.options || this.getDefaultOptions();
+        const ctx = this.ctx;
+        const precision = drawable.options.fixedDecimalPlaceDigits;
+        for (const drawing of sets) {
+            switch (drawing.type) {
+                case 'path':
+                    ctx.save();
+                    ctx.strokeStyle = o.stroke === 'none' ? 'transparent' : o.stroke;
+                    ctx.lineWidth = o.strokeWidth;
+                    if (o.strokeLineDash) {
+                        ctx.setLineDash(o.strokeLineDash);
+                    }
+                    if (o.strokeLineDashOffset) {
+                        ctx.lineDashOffset = o.strokeLineDashOffset;
+                    }
+                    this._drawToContext(ctx, drawing, precision);
+                    ctx.restore();
+                    break;
+                case 'fillPath': {
+                    ctx.save();
+                    ctx.fillStyle = o.fill || '';
+                    const fillRule = (drawable.shape === 'curve' || drawable.shape === 'polygon' || drawable.shape === 'path') ? 'evenodd' : 'nonzero';
+                    this._drawToContext(ctx, drawing, precision, fillRule);
+                    ctx.restore();
+                    break;
+                }
+                case 'fillSketch':
+                    this.fillSketch(ctx, drawing, o);
+                    break;
+            }
+        }
+    }
+    fillSketch(ctx, drawing, o) {
+        let fweight = o.fillWeight;
+        if (fweight < 0) {
+            fweight = o.strokeWidth / 2;
+        }
+        ctx.save();
+        if (o.fillLineDash) {
+            ctx.setLineDash(o.fillLineDash);
+        }
+        if (o.fillLineDashOffset) {
+            ctx.lineDashOffset = o.fillLineDashOffset;
+        }
+        ctx.strokeStyle = o.fill || '';
+        ctx.lineWidth = fweight;
+        this._drawToContext(ctx, drawing, o.fixedDecimalPlaceDigits);
+        ctx.restore();
+    }
+    _drawToContext(ctx, drawing, fixedDecimals, rule = 'nonzero') {
+        ctx.beginPath();
+        for (const item of drawing.ops) {
+            const data = ((typeof fixedDecimals === 'number') && fixedDecimals >= 0) ? (item.data.map((d) => +d.toFixed(fixedDecimals))) : item.data;
+            switch (item.op) {
+                case 'move':
+                    ctx.moveTo(data[0], data[1]);
+                    break;
+                case 'bcurveTo':
+                    ctx.bezierCurveTo(data[0], data[1], data[2], data[3], data[4], data[5]);
+                    break;
+                case 'lineTo':
+                    ctx.lineTo(data[0], data[1]);
+                    break;
+            }
+        }
+        if (drawing.type === 'fillPath') {
+            ctx.fill(rule);
+        }
+        else {
+            ctx.stroke();
+        }
+    }
+    get generator() {
+        return this.gen;
+    }
+    getDefaultOptions() {
+        return this.gen.defaultOptions;
+    }
+    line(x1, y1, x2, y2, options) {
+        const d = this.gen.line(x1, y1, x2, y2, options);
+        this.draw(d);
+        return d;
+    }
+    rectangle(x, y, width, height, options) {
+        const d = this.gen.rectangle(x, y, width, height, options);
+        this.draw(d);
+        return d;
+    }
+    ellipse(x, y, width, height, options) {
+        const d = this.gen.ellipse(x, y, width, height, options);
+        this.draw(d);
+        return d;
+    }
+    circle(x, y, diameter, options) {
+        const d = this.gen.circle(x, y, diameter, options);
+        this.draw(d);
+        return d;
+    }
+    linearPath(points, options) {
+        const d = this.gen.linearPath(points, options);
+        this.draw(d);
+        return d;
+    }
+    polygon(points, options) {
+        const d = this.gen.polygon(points, options);
+        this.draw(d);
+        return d;
+    }
+    arc(x, y, width, height, start, stop, closed = false, options) {
+        const d = this.gen.arc(x, y, width, height, start, stop, closed, options);
+        this.draw(d);
+        return d;
+    }
+    curve(points, options) {
+        const d = this.gen.curve(points, options);
+        this.draw(d);
+        return d;
+    }
+    path(d, options) {
+        const drawing = this.gen.path(d, options);
+        this.draw(drawing);
+        return drawing;
+    }
+}
+
+const SVGNS = 'http://www.w3.org/2000/svg';
+
+class RoughSVG {
+    constructor(svg, config) {
+        this.svg = svg;
+        this.gen = new RoughGenerator(config);
+    }
+    draw(drawable) {
+        const sets = drawable.sets || [];
+        const o = drawable.options || this.getDefaultOptions();
+        const doc = this.svg.ownerDocument || window.document;
+        const g = doc.createElementNS(SVGNS, 'g');
+        const precision = drawable.options.fixedDecimalPlaceDigits;
+        for (const drawing of sets) {
+            let path = null;
+            switch (drawing.type) {
+                case 'path': {
+                    path = doc.createElementNS(SVGNS, 'path');
+                    path.setAttribute('d', this.opsToPath(drawing, precision));
+                    path.setAttribute('stroke', o.stroke);
+                    path.setAttribute('stroke-width', o.strokeWidth + '');
+                    path.setAttribute('fill', 'none');
+                    if (o.strokeLineDash) {
+                        path.setAttribute('stroke-dasharray', o.strokeLineDash.join(' ').trim());
+                    }
+                    if (o.strokeLineDashOffset) {
+                        path.setAttribute('stroke-dashoffset', `${o.strokeLineDashOffset}`);
+                    }
+                    break;
+                }
+                case 'fillPath': {
+                    path = doc.createElementNS(SVGNS, 'path');
+                    path.setAttribute('d', this.opsToPath(drawing, precision));
+                    path.setAttribute('stroke', 'none');
+                    path.setAttribute('stroke-width', '0');
+                    path.setAttribute('fill', o.fill || '');
+                    if (drawable.shape === 'curve' || drawable.shape === 'polygon') {
+                        path.setAttribute('fill-rule', 'evenodd');
+                    }
+                    break;
+                }
+                case 'fillSketch': {
+                    path = this.fillSketch(doc, drawing, o);
+                    break;
+                }
+            }
+            if (path) {
+                g.appendChild(path);
+            }
+        }
+        return g;
+    }
+    fillSketch(doc, drawing, o) {
+        let fweight = o.fillWeight;
+        if (fweight < 0) {
+            fweight = o.strokeWidth / 2;
+        }
+        const path = doc.createElementNS(SVGNS, 'path');
+        path.setAttribute('d', this.opsToPath(drawing, o.fixedDecimalPlaceDigits));
+        path.setAttribute('stroke', o.fill || '');
+        path.setAttribute('stroke-width', fweight + '');
+        path.setAttribute('fill', 'none');
+        if (o.fillLineDash) {
+            path.setAttribute('stroke-dasharray', o.fillLineDash.join(' ').trim());
+        }
+        if (o.fillLineDashOffset) {
+            path.setAttribute('stroke-dashoffset', `${o.fillLineDashOffset}`);
+        }
+        return path;
+    }
+    get generator() {
+        return this.gen;
+    }
+    getDefaultOptions() {
+        return this.gen.defaultOptions;
+    }
+    opsToPath(drawing, fixedDecimalPlaceDigits) {
+        return this.gen.opsToPath(drawing, fixedDecimalPlaceDigits);
+    }
+    line(x1, y1, x2, y2, options) {
+        const d = this.gen.line(x1, y1, x2, y2, options);
+        return this.draw(d);
+    }
+    rectangle(x, y, width, height, options) {
+        const d = this.gen.rectangle(x, y, width, height, options);
+        return this.draw(d);
+    }
+    ellipse(x, y, width, height, options) {
+        const d = this.gen.ellipse(x, y, width, height, options);
+        return this.draw(d);
+    }
+    circle(x, y, diameter, options) {
+        const d = this.gen.circle(x, y, diameter, options);
+        return this.draw(d);
+    }
+    linearPath(points, options) {
+        const d = this.gen.linearPath(points, options);
+        return this.draw(d);
+    }
+    polygon(points, options) {
+        const d = this.gen.polygon(points, options);
+        return this.draw(d);
+    }
+    arc(x, y, width, height, start, stop, closed = false, options) {
+        const d = this.gen.arc(x, y, width, height, start, stop, closed, options);
+        return this.draw(d);
+    }
+    curve(points, options) {
+        const d = this.gen.curve(points, options);
+        return this.draw(d);
+    }
+    path(d, options) {
+        const drawing = this.gen.path(d, options);
+        return this.draw(drawing);
+    }
+}
+
+var rough = {
+    canvas(canvas, config) {
+        return new RoughCanvas(canvas, config);
+    },
+    svg(svg, config) {
+        return new RoughSVG(svg, config);
+    },
+    generator(config) {
+        return new RoughGenerator(config);
+    },
+    newSeed() {
+        return RoughGenerator.newSeed();
+    },
+};
+
+var RoughRendererPlugin = /*#__PURE__*/function () {
+  function RoughRendererPlugin() {
+    _classCallCheck(this, RoughRendererPlugin);
+  }
+  return _createClass(RoughRendererPlugin, [{
+    key: "apply",
+    value: function apply(context) {
+      var config = context.config,
+        contextService = context.contextService,
+        renderingService = context.renderingService;
+      renderingService.hooks.init.tap(RoughRendererPlugin.tag, function () {
+        /**
+         * disable dirtycheck & dirty rectangle rendering
+         */
+        config.renderer.getConfig().enableDirtyCheck = false;
+        config.renderer.getConfig().enableDirtyRectangleRendering = false;
+        var context = contextService.getContext();
+        // @see https://github.com/rough-stuff/rough/wiki#roughcanvas-canvaselement--config
+        context.roughCanvas = rough.canvas(contextService.getDomElement());
+      });
+      renderingService.hooks.destroy.tap(RoughRendererPlugin.tag, function () {});
+    }
+  }]);
+}();
+RoughRendererPlugin.tag = 'RoughCanvasRenderer';
+
+var Plugin = /*#__PURE__*/function (_AbstractRendererPlug) {
+  function Plugin(options) {
+    var _this;
+    _classCallCheck(this, Plugin);
+    _this = _callSuper(this, Plugin);
+    _this.name = 'rough-canvas-renderer';
+    _this.options = options;
+    return _this;
+  }
+  _inherits(Plugin, _AbstractRendererPlug);
+  return _createClass(Plugin, [{
+    key: "init",
+    value: function init() {
+      var _this$context$styleRe;
+      // @ts-ignore
+      var defaultStyleRendererFactory = this.context.defaultStyleRendererFactory;
+      var options = this.options || {};
+
+      // @ts-ignore
+      this.context.styleRendererFactory = (_this$context$styleRe = {}, _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_this$context$styleRe, gLite.Shape.CIRCLE, new CircleRenderer(_objectSpread({
+        defaultStyleRendererFactory: defaultStyleRendererFactory[gLite.Shape.CIRCLE]
+      }, options))), gLite.Shape.ELLIPSE, new EllipseRenderer(_objectSpread({
+        defaultStyleRendererFactory: defaultStyleRendererFactory[gLite.Shape.ELLIPSE]
+      }, options))), gLite.Shape.RECT, new RectRenderer(_objectSpread({
+        defaultStyleRendererFactory: defaultStyleRendererFactory[gLite.Shape.RECT]
+      }, options))), gLite.Shape.IMAGE, defaultStyleRendererFactory[gLite.Shape.IMAGE]), gLite.Shape.TEXT, defaultStyleRendererFactory[gLite.Shape.TEXT]), gLite.Shape.LINE, new LineRenderer(_objectSpread({
+        defaultStyleRendererFactory: defaultStyleRendererFactory[gLite.Shape.LINE]
+      }, options))), gLite.Shape.POLYLINE, new PolylineRenderer(_objectSpread({
+        defaultStyleRendererFactory: defaultStyleRendererFactory[gLite.Shape.POLYLINE]
+      }, options))), gLite.Shape.POLYGON, new PolygonRenderer(_objectSpread({
+        defaultStyleRendererFactory: defaultStyleRendererFactory[gLite.Shape.POLYGON]
+      }, options))), gLite.Shape.PATH, new PathRenderer(_objectSpread({
+        defaultStyleRendererFactory: defaultStyleRendererFactory[gLite.Shape.PATH]
+      }, options))), gLite.Shape.GROUP, undefined), _defineProperty(_defineProperty(_this$context$styleRe, gLite.Shape.HTML, undefined), gLite.Shape.MESH, undefined));
+      this.addRenderingPlugin(new RoughRendererPlugin());
+    }
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      // @ts-ignore
+      this.context.styleRendererFactory = this.context.defaultStyleRendererFactory;
+      this.removeAllRenderingPlugins();
+    }
+  }]);
+}(gLite.AbstractRendererPlugin);
+
+exports.Plugin = Plugin;
+//# sourceMappingURL=index.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"message-types.js","sourceRoot":"","sources":["../src/message-types.ts"],"names":[],"mappings":"AAAA,iEAAiE;AACjE,MAAM,CAAC,MAAM,6BAA6B,GAAG,kBAAkB,CAAC","sourcesContent":["/** The event name of RPC messages which support transferables */\nexport const MESSAGE_TYPE_RPC_TRANSFERABLE = 'RPC_transferable';\n"]}

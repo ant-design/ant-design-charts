@@ -1,0 +1,45 @@
+{
+  "name": "d3-octree",
+  "version": "1.1.0",
+  "description": "Three-dimensional recursive spatial subdivision.",
+  "keywords": [
+    "d3",
+    "d3-module",
+    "octree",
+    "3d"
+  ],
+  "homepage": "https://github.com/vasturiano/d3-octree",
+  "license": "MIT",
+  "author": {
+    "name": "Vasco Asturiano",
+    "url": "https://github.com/vasturiano"
+  },
+  "type": "module",
+  "unpkg": "dist/d3-octree.min.js",
+  "jsdelivr": "dist/d3-octree.min.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "exports": {
+    "umd": "./dist/d3-octree.min.js",
+    "default": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vasturiano/d3-octree.git"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "test": "mocha 'test/**/*-test.js' && eslint src test",
+    "prepare": "rm -rf dist && yarn test && rollup -c"
+  },
+  "files": [
+    "src/**/*.js",
+    "dist/**/*.js"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^8.57.1",
+    "mocha": "^11.0.1",
+    "rollup": "^4.29.1"
+  }
+}

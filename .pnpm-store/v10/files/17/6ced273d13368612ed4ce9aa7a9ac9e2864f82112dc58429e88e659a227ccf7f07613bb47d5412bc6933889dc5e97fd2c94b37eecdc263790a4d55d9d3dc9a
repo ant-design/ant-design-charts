@@ -1,0 +1,12 @@
+import React from 'react';
+export interface DataItem {
+    user: string;
+    value: number;
+}
+export interface BotFilterChartProps {
+    data: DataItem[];
+    title?: string;
+    height?: number;
+}
+declare const RankChart: React.FC<BotFilterChartProps>;
+export default RankChart;

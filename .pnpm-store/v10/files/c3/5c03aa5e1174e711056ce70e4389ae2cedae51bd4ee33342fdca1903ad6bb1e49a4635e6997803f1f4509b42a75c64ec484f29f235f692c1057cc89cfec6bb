@@ -1,0 +1,113 @@
+@import '../../common/styles/variables.less';
+
+.footer {
+  font-family: var(--font-family);
+
+  :global(.rc-footer-container),
+  :global(.rc-footer-bottom-container) {
+    .container1440;
+  }
+
+  :global(.rc-footer-bottom-container) {
+    border-top: 4px solid #f0f2ff;
+  }
+
+  &.light {
+    :global(.rc-footer-item) {
+      > a {
+        > span {
+          font-size: 16px;
+        }
+      }
+
+      > a:hover {
+        color: #691eff;
+      }
+    }
+  }
+
+  .description {
+    opacity: 0.6;
+    font-weight: normal;
+    margin-left: 0.5em;
+  }
+
+  .more {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    padding-bottom: 16px;
+    overflow: hidden;
+    flex-wrap: wrap;
+
+    .title {
+      font-size: 15px;
+      color: #fff;
+      margin-right: 8px;
+    }
+
+    :global(.anticon),
+    a {
+      margin-right: 5px;
+      color: #fff;
+    }
+
+    img {
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+      position: relative;
+      top: -2px;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+
+    :global(.anticon),
+    a {
+      margin-right: 8px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    &.light {
+      :global(.anticon),
+      a {
+        color: #424e66;
+
+        &:hover {
+          color: #691eff;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767.99px) {
+  .footer {
+    .bottom {
+      display: block;
+    }
+  }
+}
+
+.withMenu {
+  margin-left: 0;
+}
+
+@media only screen and (min-width: 767.99px) {
+  .withMenu {
+    margin-left: 240px;
+  }
+}
+
+@media only screen and (min-width: 991.99px) {
+  .withMenu {
+    margin-left: 280px;
+  }
+}

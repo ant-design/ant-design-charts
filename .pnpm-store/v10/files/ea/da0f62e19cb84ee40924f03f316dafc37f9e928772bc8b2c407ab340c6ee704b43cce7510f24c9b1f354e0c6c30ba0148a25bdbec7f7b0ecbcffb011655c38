@@ -1,0 +1,178 @@
+// Author: Sivan [sun.sivan@gmail.com]
+// Description: define variables, alias etc.
+
+// 定义赫蹏根 class 名
+$root-selector: '.heti' !default;
+$darkmode: true !default; // true | false | 'manual'
+$manualmode-auto-selector: '[data-darkmode="auto"] &' !default;
+$manualmode-dark-selector: '[data-darkmode="dark"] &' !default;
+
+// 字体 Fonts
+// 字体栈 Font Stacks
+$_font-stack-sans: "Helvetica Neue", helvetica, arial !default;
+$_font-stack-serif: "Times New Roman", times !default;
+$_font-stack-mono: "SFMono-Regular", consolas, "Liberation Mono", menlo, courier !default;
+$_font-stack-symbol: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+// 字体族 Font Families
+$font-family-hei: $_font-stack-sans, "Heti Hei", sans-serif, $_font-stack-symbol !default;
+$font-family-song: $_font-stack-serif, "Heti Song", serif, $_font-stack-symbol !default;
+$font-family-kai: $_font-stack-serif, "Heti Kai", serif, $_font-stack-symbol !default;
+$font-family-hei-black: $_font-stack-sans, "Heti Hei Black", sans-serif, $_font-stack-symbol !default;
+$font-family-song-black: $_font-stack-serif, "Heti Song Black", serif, $_font-stack-symbol !default;
+$font-family-kai-black: $_font-stack-serif, "Heti Kai Black", serif, $_font-stack-symbol !default;
+$font-family-mono: $_font-stack-mono, monospace, $_font-stack-symbol !default;
+
+// 字重 Font Weights
+$font-weight-bolder: 800 !default;
+$font-weight-bold: 600 !default;
+$font-weight-normal: 400 !default;
+$font-weight-lighter: 200 !default;
+
+// 字号 Font Sizes
+$font-size-normal: 16px !default;
+$font-size-x-large: 20px !default;
+$font-size-large: 18px !default;
+$font-size-small: 14px !default;
+$font-size-x-small: 12px !default;
+
+$font-size-h1: 32px !default;
+$font-size-h2: 24px !default;
+$font-size-h3: 20px !default;
+$font-size-h4: 18px !default;
+$font-size-h5: 16px !default;
+$font-size-h6: 14px !default;
+
+// 行 Lines
+// 行宽
+$line-length: 42em !default;
+
+// 行高 Line Heights
+$line-height-normal: 1.5 !default;
+//$line-height-expanded: 1.875 !default;
+$line-height-expanded-ultra: 2.25 !default;
+//$line-height-condensed: 1.25 !default;
+//$line-height-condensed-ultra: 1 !default;
+
+// 字符间距
+$letter-spacing-normal: 0 !default;
+$letter-spacing-small: 0.01em !default;
+$letter-spacing-medium: 0.02em !default;
+$letter-spacing-large: 0.05em !default;
+
+$line-height-size-normal: $font-size-normal * $line-height-normal !default;
+$line-height-size-large: $line-height-size-normal !default;
+$line-height-size-x-large: $font-size-x-large * $line-height-normal !default;
+$line-height-size-small: $line-height-size-normal !default;
+$line-height-size-x-small: 18px !default;
+$line-height-size-h1: 48px !default;
+$line-height-size-h2: 36px !default;
+$line-height-size-h3: 36px !default;
+$line-height-size-h4: 24px !default;
+$line-height-size-h5: 24px !default;
+$line-height-size-h6: 24px !default;
+
+// 段落 Paragraphs
+// 标准网格单位变量 Standard Length
+// 垂直方向标准单位 = 标准行高
+// 水平方向标准单位 = 标准字号
+$std-block-unit: $line-height-size-normal !default;
+$std-inline-unit: $font-size-normal !default;
+
+// 示例：缩进单位 = 二倍文字宽度
+$text-indent-length: 2em !default;
+$text-indent-size: $font-size-normal * 2 !default;
+
+// 中文引号 Chinese Quote Set
+// `cn`：中华人民共和国国家标准——GB/T 15834-2011《标点符号用法》 http://www.moe.gov.cn/ewebeditor/uploadfile/2015/01/13/20150113091548267.pdf
+// `tw`：中国台湾地区标准——《重訂標點符號手冊》 https://language.moe.gov.tw/001/Upload/FILES/SITE_CONTENT/M0001/HAU/h6.htm
+// `common`：部分中文社区（如知乎）在简体中文里亦采用与中国台湾地区标准一致的规范。
+// 注：垂直时浏览器会自动旋转，无需定义为垂直方向的字符。
+$chinese-quote-presets: (
+  "cn": (
+    "horizontal": "“" "”" "‘" "’",
+    "vertical": "『" "』" "「" "」"
+  ),
+  "tw": (
+    "horizontal": "「" "」" "『" "』",
+    "vertical": "「" "」" "『" "』"
+  ),
+  "common": (
+    "horizontal": "「" "」" "『" "』",
+    "vertical": "「" "」" "『" "』"
+  )
+) !default;
+
+$chinese-quote-set: "common" !default;
+
+// 栏 Columns
+// 分栏
+$column-count-list: (1, 2, 3, 4) !default;
+$column-width-list: (16em, 20em, 24em, 28em, 32em, 36em, 40em, 44em, 48em) !default;
+
+// 开发用配置项 Develop Configs
+/// 预设重置方案
+/// `reset`：假定 Eric Meyer 的 CSS Reset 或其它流行的 Reset
+/// `normalize`：指定为 normalize.css
+$_css-reset-scheme: "reset";
+
+// 混合 Mix-ins
+// Mix-in: Clear float
+@mixin clear-float {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+// Mix-in: Include Non-cjk styles
+@mixin non-cjk-block {
+  &:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
+  &:not(:lang(zh)) {
+    @content;
+  }
+}
+
+// Mix-in: Hang Punctuation Mark
+@mixin hang {
+  position: absolute;
+  line-height: inherit;
+  text-indent: 0;
+}
+
+@mixin darkmode-style($darkmode: $darkmode, $dark-selector: $manualmode-dark-selector, $auto-selector: $manualmode-auto-selector) {
+  // 'manual' darkmode should provide darkmode selector and auto-darkmode selector
+  @if $darkmode == 'manual' {
+    #{$dark-selector} {
+      @content;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      #{$auto-selector} {
+        @content;
+      }
+    }
+  } @else if $darkmode {
+    @media (prefers-color-scheme: dark) {
+      @content;
+    }
+  }
+}
+
+// 函数 Functions
+// Function: batch prefix/suffix list-item
+// batch-fix-list((2, 3), '#{$root-selector}--columns-') => (.heti--columns-2, .heti--columns-3)
+@function batch-fix-list($list, $prefix: '', $suffix: '') {
+  $_list: () !default;
+
+  @each $item in $list {
+    $_list: append($_list, #{$prefix}#{$item}#{$suffix}, comma);
+  }
+
+  @return $_list;
+}

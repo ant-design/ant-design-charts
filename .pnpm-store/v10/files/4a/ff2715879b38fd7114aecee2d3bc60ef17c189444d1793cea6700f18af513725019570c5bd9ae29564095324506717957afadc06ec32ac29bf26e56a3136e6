@@ -1,0 +1,10 @@
+import { build } from "./commands/build";
+import { serve } from "./commands/dev";
+export { build };
+export { serve };
+const utoopack = { build, serve };
+export default utoopack;
+export * from "./config/types";
+export * from "./config/webpackCompat";
+export * from "./core/types";
+export * from "./utils/find-root";

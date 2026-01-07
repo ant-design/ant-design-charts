@@ -1,0 +1,109 @@
+@import (reference) '../../styles/variables.less';
+
+.@{prefix}-sidebar {
+  position: sticky;
+  top: @s-header-height;
+  width: @s-sidebar-width;
+  max-height: calc(100vh - @s-header-height);
+  padding-top: 20px;
+  padding-bottom: 24px;
+  padding-inline-start: 8px;
+  padding-inline-end: 32px;
+  box-sizing: border-box;
+  overflow: auto;
+
+  @media @mobile {
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    max-height: initial;
+    padding-inline-start: 32px;
+    background-color: @c-site-bg;
+    border-top: 1px solid @c-border-light;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 10%);
+    transition: 0.2s all;
+
+    @{dark-selector} & {
+      background-color: @c-site-bg-dark;
+      border-top-color: @c-border-less-dark;
+    }
+
+    .@{prefix}-doc-layout:not([data-mobile-sidebar-active]) & {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-100%);
+    }
+  }
+
+  > dl {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+
+    > dt {
+      margin: 8px 0;
+      color: @c-text;
+      font-size: 14px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+
+      @{dark-selector} & {
+        color: @c-text-dark;
+      }
+    }
+
+    > dd {
+      margin: 0;
+      padding: 8px 0;
+
+      > a {
+        display: block;
+        color: @c-text-secondary;
+        font-size: 16px;
+        line-height: 20px;
+        text-decoration: none;
+        transition: all 0.3s;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @{dark-selector} & {
+          color: @c-text-secondary-dark;
+        }
+
+        &:hover {
+          color: @c-primary;
+
+          @{dark-selector} & {
+            color: @c-primary-dark;
+          }
+        }
+
+        &.active {
+          color: @c-primary;
+          font-weight: bold;
+
+          @{dark-selector} & {
+            color: @c-primary-dark;
+          }
+        }
+      }
+    }
+
+    // divider line & gap
+    + dl {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid @c-border;
+
+      @{dark-selector} & {
+        border-top-color: @c-border-dark;
+      }
+    }
+  }
+}

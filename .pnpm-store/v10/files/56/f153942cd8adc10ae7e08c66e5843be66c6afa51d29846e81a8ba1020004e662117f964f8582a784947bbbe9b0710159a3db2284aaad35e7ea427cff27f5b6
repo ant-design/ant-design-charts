@@ -1,0 +1,67 @@
+.card {
+  background-color: #fff;
+  height: 100%;
+  padding: 36px 70px;
+  box-sizing: border-box;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+    .icon {
+      height: 60px;
+    }
+
+    .title {
+      font-size: 1.714em;
+      color: #000;
+      margin-top: 28px;
+      margin-bottom: 11px;
+      font-family: AlibabaPuHuiTiM;
+      color: #1d2129;
+      text-align: center;
+      line-height: 32px;
+    }
+
+    .description {
+      opacity: 0.6;
+      width: 100%;
+      color: rgba(105, 123, 140, 1);
+      font-size: 1em;
+      line-height: 1.8em;
+      margin-top: 11px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .cards {
+    .cardWrapper {
+      .card {
+        margin: 84px 19px 80px 19px;
+
+        .content {
+          .icon {
+            width: 25.6%;
+          }
+
+          .title {
+            font-size: 1.4em;
+            margin-top: 28px;
+          }
+
+          .description {
+            font-size: 1em;
+            padding-bottom: 0px;
+            padding-top: 0px;
+            margin-top: 12px;
+          }
+        }
+      }
+    }
+  }
+}

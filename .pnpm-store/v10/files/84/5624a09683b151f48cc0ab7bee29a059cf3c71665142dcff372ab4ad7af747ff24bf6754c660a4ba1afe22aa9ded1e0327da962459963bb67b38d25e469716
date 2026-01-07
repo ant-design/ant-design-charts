@@ -1,0 +1,23 @@
+import { ThemeComponent as TC, Theme } from '../runtime';
+export declare const tokens: {
+    colorBlack: string;
+    colorWhite: string;
+    colorStroke: string;
+    colorDefault: string;
+    colorBackground: string;
+    category10: string[];
+    category20: string[];
+    padding1: number;
+    padding2: number;
+    padding3: number;
+    alpha90: number;
+    alpha65: number;
+    alpha45: number;
+    alpha25: number;
+    alpha10: number;
+};
+export type LightOptions = Theme;
+/**
+ * Default theme.
+ */
+export declare const Light: TC<LightOptions>;

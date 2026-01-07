@@ -1,0 +1,1 @@
+{"version":3,"file":"Cullable.d.ts","sourceRoot":"","sources":["../../src/components/Cullable.ts"],"names":[],"mappings":"AAAA;;GAEG;AACH,oBAAY,QAAQ;IAClB,QAAQ,IAAA;CACT;AAED,MAAM,WAAW,QAAQ;IACvB,QAAQ,EAAE,QAAQ,CAAC;IAEnB,mBAAmB,EAAE,MAAM,CAAC;IAE5B,OAAO,EAAE,OAAO,CAAC;IAEjB,MAAM,EAAE,OAAO,CAAC;CACjB"}

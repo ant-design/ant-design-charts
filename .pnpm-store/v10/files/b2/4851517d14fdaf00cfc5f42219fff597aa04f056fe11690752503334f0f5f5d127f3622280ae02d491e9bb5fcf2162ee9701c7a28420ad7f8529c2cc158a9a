@@ -1,0 +1,37 @@
+import { Result } from 'antd';
+import { FormattedMessage } from 'dumi';
+import React from 'react';
+import styles from "./index.module.less";
+function getErrorMessage(e) {
+  return (e.reason ? e.reason : e.message ? e.message : e).toString();
+}
+
+/**
+ * DEMO 预览页面的预览，主要包含有：
+ * 1. 一些 header 菜单
+ * 2. 错误预览
+ */
+var CodePreview = function CodePreview(_ref) {
+  var isPlayground = _ref.isPlayground,
+    exampleId = _ref.exampleId,
+    header = _ref.header,
+    error = _ref.error;
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles.preview
+  }, isPlayground ? null : /*#__PURE__*/React.createElement("div", {
+    className: styles.header
+  }, header), /*#__PURE__*/React.createElement("div", {
+    className: styles.content
+  }, /*#__PURE__*/React.createElement("div", {
+    id: "playgroundScriptContainer_".concat(exampleId),
+    className: styles.playgroundScriptContainer
+  }), error ? /*#__PURE__*/React.createElement(Result, {
+    className: styles.result,
+    status: "error",
+    title: /*#__PURE__*/React.createElement(FormattedMessage, {
+      id: "\u6F14\u793A\u4EE3\u7801\u62A5\u9519\uFF0C\u8BF7\u68C0\u67E5"
+    }),
+    subTitle: /*#__PURE__*/React.createElement("pre", null, getErrorMessage(error))
+  }) : null));
+};
+export default CodePreview;
