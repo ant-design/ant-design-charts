@@ -62,6 +62,24 @@ Ant Design Charts 中 **图例（Legend）** 是图表的辅助元素，使用�
 });
 ```
 
+## 隐藏图例
+
+隐藏各个通道的图例：
+
+```js
+({
+  legend: { color: false }, // 隐藏 color 通道的图例
+});
+```
+
+隐藏多个图例：
+
+```js
+({
+  legend: false,
+});
+```
+
 ## 配置项
 
 Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种，由于这两种图例的结构不同，所以配置项也存在差异。
@@ -92,7 +110,7 @@ Ant Design Charts 中图例分为 **连续图例** 和 **分类图例** 两种�
 | itemBackground <Badge type="success">分类图例</Badge> | 配置图例项的背景                                 | [itemBackground](#itembackground)                                  | 详见[itemBackground](#itembackground) |
 | itemWidth <Badge type="success">分类图例</Badge>      | 配置图例项的宽度                                 | number                                                             | -                                     |
 | itemSpan <Badge type="success">分类图例</Badge>       | 配置图例项图标、标签和值的空间划分               | number \| number[]                                                 | `[1, 1, 1]`                           |
-| itemSpacing <Badge type="success">分类图例</Badge>    | 配置图例项图标、标签、值之间的间距（启用 focus 时还包括聚焦图标间距）               | number \| number[]                                                 | `[8, 8, 4]`                              |
+| itemSpacing <Badge type="success">分类图例</Badge>    | 配置图例项图标、标签、值、聚焦图标之间的间距               | number \| number[]                                                 | `[8, 8, 4]`                              |
 | nav <Badge type="success">分类图例</Badge>            | 配置图例的分页器                                 | [nav](#nav)                                                        | 详见[nav](#nav)                       |
 | poptip <Badge type="success">分类图例</Badge>            | 图例项提示                                 | [poptip](#poptip)                                                        | 详见[poptip](#poptip)                       |
 | focus <Badge type="success">分类图例</Badge>    | 是否启用图例聚焦 | boolean | false | |
