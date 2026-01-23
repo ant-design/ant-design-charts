@@ -1,9 +1,9 @@
-name: V2 Site
+name: Site
 
 on:
   push:
     branches:
-      - v2 # default branch
+      - master # default branch
 env:
   CI: true
   PNPM_STORE: .pnpm-store
