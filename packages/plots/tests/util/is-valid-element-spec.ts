@@ -1,8 +1,8 @@
 import { isValidElement } from '../../src/util';
 
-const BUILD_ASSESTS = `(e,t)=>{let{title:a,items:n}=t,r=0;return n.forEach((e=>{r=e.origin.times})),r=Number(r.toFixed(1)),l().createElement("div",null,l().createElement("div",{style:{fontSize:14,fontWeight:"bold",paddingBottom:10}},a,":",l().createElement("span",{style:{float:"right",marginLeft:5}},r)),n.map((e=>{const{name:t,color:a,origin:n}=e;return l().createElement("div",{key:n.bus},l().createElement("div",{style:{margin:0,display:"flex",justifyContent:"space-between"}},l().createElement("div",null,l().createElement("span",{style:{display:"inline-block",width:6,height:6,borderRadius:"50%",backgroundColor:a,marginRight:6}}),l().createElement("span",null,n.bus)),l().createElement("b",{style:{marginLeft:10}},n.times)))})))}`
-const BUILD_ASSESTS_BIGFISH = `return(0,o.jsxs)("div",{children:[(0,o.jsxs)("div",{className:ie.header,children:[(0,o.jsx)("p",{className:ie.title,children:null==i?void 0:null===(t=i[0])||void 0===t?void 0:null===(n=t.origin)||void 0===n?void 0:n.timeDimension}),(0,o.jsx)("div",{children:null==a?void 0:a.map((e,n)=>(0,o.jsx)(t9.default,{color:"error",children:e.origin.displayLabel},n))})]}),(0,o.jsx)("div",{className:ie.content,children:null==i?void 0:i.map((e,n)=>{var t,i;return(0,o.jsxs)("div",{className:ie.items,children:[(0,o.jsxs)("div",{className:ie.left,children:[(0,o.jsx)("div",{className:ie.icon,style:{background:null==e?void 0:e.color}}),(0,o.jsxs)("span",{className:ie.desc,children:[null==e?void 0:null===(t=e.origin)||void 0===t?void 0:t.analysisDimension,"\uFF1A"]})]}),(0,o.jsx)("span",{className:ie.value,children:(0,ey.formatNumberAsThousandth)((null==e?void 0:null===(i=e.origin)||void 0===i?void 0:i.value)||0)})]},n);})})]});`
-const BUILD_ASSESTS_BIGFISH_DEV = `return /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("div", {
+const BUILD_ASSETS = `(e,t)=>{let{title:a,items:n}=t,r=0;return n.forEach((e=>{r=e.origin.times})),r=Number(r.toFixed(1)),l().createElement("div",null,l().createElement("div",{style:{fontSize:14,fontWeight:"bold",paddingBottom:10}},a,":",l().createElement("span",{style:{float:"right",marginLeft:5}},r)),n.map((e=>{const{name:t,color:a,origin:n}=e;return l().createElement("div",{key:n.bus},l().createElement("div",{style:{margin:0,display:"flex",justifyContent:"space-between"}},l().createElement("div",null,l().createElement("span",{style:{display:"inline-block",width:6,height:6,borderRadius:"50%",backgroundColor:a,marginRight:6}}),l().createElement("span",null,n.bus)),l().createElement("b",{style:{marginLeft:10}},n.times)))})))}`
+const BUILD_ASSETS_BIGFISH = `return(0,o.jsxs)("div",{children:[(0,o.jsxs)("div",{className:ie.header,children:[(0,o.jsx)("p",{className:ie.title,children:null==i?void 0:null===(t=i[0])||void 0===t?void 0:null===(n=t.origin)||void 0===n?void 0:n.timeDimension}),(0,o.jsx)("div",{children:null==a?void 0:a.map((e,n)=>(0,o.jsx)(t9.default,{color:"error",children:e.origin.displayLabel},n))})]}),(0,o.jsx)("div",{className:ie.content,children:null==i?void 0:i.map((e,n)=>{var t,i;return(0,o.jsxs)("div",{className:ie.items,children:[(0,o.jsxs)("div",{className:ie.left,children:[(0,o.jsx)("div",{className:ie.icon,style:{background:null==e?void 0:e.color}}),(0,o.jsxs)("span",{className:ie.desc,children:[null==e?void 0:null===(t=e.origin)||void 0===t?void 0:t.analysisDimension,"\uFF1A"]})]}),(0,o.jsx)("span",{className:ie.value,children:(0,ey.formatNumberAsThousandth)((null==e?void 0:null===(i=e.origin)||void 0===i?void 0:i.value)||0)})]},n);})})]});`
+const BUILD_ASSETS_BIGFISH_DEV = `return /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("div", {
                 className: _indexlessasmodule.default.header,
@@ -98,7 +98,7 @@ const BUILD_ASSESTS_BIGFISH_DEV = `return /*#__PURE__*/ (0, _jsxdevruntime.jsxDE
         lineNumber: 16,
         columnNumber: 5
     }, this);`
-const BUILD_ASSESTS_BIGFISH_DEV2 = `(event, { items })=>{
+const BUILD_ASSETS_BIGFISH_DEV2 = `(event, { items })=>{
                                     return /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_TipContent.default, {
                                         items: items
                                     }, void 0, false, {
@@ -107,31 +107,36 @@ const BUILD_ASSESTS_BIGFISH_DEV2 = `(event, { items })=>{
                                         columnNumber: 24
                                     }, this);
                                 }`
-const BUILD_ASSESTS_ESBUILD = `($, _, i) => /* @__PURE__ */ jsxDEV("div", { style: { height: 1, width: 30, background: "#aaa", margin: "0 20" } }, void 0, false, {
+const BUILD_ASSETS_ESBUILD = `($, _, i) => /* @__PURE__ */ jsxDEV("div", { style: { height: 1, width: 30, background: "#aaa", margin: "0 20" } }, void 0, false, {
     fileName: "index.tsx",
     lineNumber: 12,
     columnNumber: 29
   }, this)`
+const BUILD_ASSETS_ESBUILD_PROD = `($, _) => /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsxs("ul", { children: [/* @__PURE__ */ jsx("li", { children: "Item 1" }), /* @__PURE__ */ jsx("li", { children: "Item 2" })] }) })`;
 
 describe('isValidElement', () => {
   it('ice build product', async () => {
-    expect(isValidElement(BUILD_ASSESTS)).toBeTruthy();
+    expect(isValidElement(BUILD_ASSETS)).toBeTruthy();
   });
 
   it('build product with bigfish', async () => {
-    expect(isValidElement(BUILD_ASSESTS_BIGFISH)).toBeTruthy();
+    expect(isValidElement(BUILD_ASSETS_BIGFISH)).toBeTruthy();
   });
 
   it('build product with bigfish dev', async () => {
-    expect(isValidElement(BUILD_ASSESTS_BIGFISH_DEV)).toBeTruthy();
+    expect(isValidElement(BUILD_ASSETS_BIGFISH_DEV)).toBeTruthy();
   });
 
   it('build product with bigfish dev2', async () => {
-    expect(isValidElement(BUILD_ASSESTS_BIGFISH_DEV2)).toBeTruthy();
+    expect(isValidElement(BUILD_ASSETS_BIGFISH_DEV2)).toBeTruthy();
   });
 
   it('build product with vite', async () => {
-    expect(isValidElement(BUILD_ASSESTS_ESBUILD)).toBeTruthy();
+    expect(isValidElement(BUILD_ASSETS_ESBUILD)).toBeTruthy();
+  });
+
+  it('build product with vite/esbuild prod', async () => {
+    expect(isValidElement(BUILD_ASSETS_ESBUILD_PROD)).toBeTruthy();
   });
 
   it('should return true for basic React patterns', () => {
