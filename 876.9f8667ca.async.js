@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_ant_design_charts_site=self.webpackChunk_ant_design_charts_site||[]).push([[876],{70876:function(t,e,n){n.r(e),n.d(e,{default:function(){return s.Z}});var s=n(13546)}}]);
