@@ -1,0 +1,35 @@
+import classNames from 'classnames';
+import { history, useIntl } from 'dumi';
+import React from 'react';
+import { useScrollToTop } from "../hooks";
+import styles from "./NavigatorBanner.module.less";
+export var NavigatorBanner = function NavigatorBanner(_ref) {
+  var post = _ref.post,
+    type = _ref.type;
+  var _useIntl = useIntl(),
+    formatMessage = _useIntl.formatMessage;
+  if (!post) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: classNames(styles.button, styles.hidden)
+    });
+  }
+  var slug = post.slug,
+    title = post.title;
+  if (!slug || !title) {
+    return null;
+  }
+  function go() {
+    history.push(slug);
+    useScrollToTop();
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    className: classNames(styles.button, styles[type]),
+    onClick: go
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.label
+  }, formatMessage({
+    id: type === 'prev' ? '上一篇' : '下一篇'
+  })), /*#__PURE__*/React.createElement("div", {
+    className: styles.title
+  }, title));
+};

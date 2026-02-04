@@ -1,0 +1,64 @@
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import { Runtime, corelib, extend } from '@antv/g2';
+import React, { useEffect, useRef, useState } from 'react';
+import ChartHeader from "../ChartHeader";
+import SegmentedTabs from "../SegmentedTabs";
+var Chart = extend(Runtime, corelib());
+var Heatmap = function Heatmap(_ref) {
+  var data = _ref.data,
+    _ref$title = _ref.title,
+    title = _ref$title === void 0 ? '' : _ref$title,
+    _ref$height = _ref.height,
+    height = _ref$height === void 0 ? 400 : _ref$height;
+  var chartRef = useRef(null);
+  var _useState = useState('month'),
+    _useState2 = _slicedToArray(_useState, 2),
+    timeDimension = _useState2[0],
+    setTimeDimension = _useState2[1];
+  var handleChange = function handleChange(val) {
+    setTimeDimension(val);
+  };
+  var currentData = data[timeDimension] || [];
+  useEffect(function () {
+    if (!chartRef.current) return;
+    var chart = new Chart({
+      container: chartRef.current,
+      autoFit: true
+    });
+    chart.cell().data(currentData).transform({
+      type: 'group',
+      color: 'max'
+    }).encode('x', 'hour').encode('y', 'day').encode('color', 'value').style('inset', 0.5).axis({
+      x: {
+        title: false
+      },
+      y: {
+        title: false
+      }
+    }).scale('color', {
+      palette: 'oranges'
+    }).animate('enter', {
+      type: 'fadeIn'
+    });
+    chart.options({
+      legend: false
+    });
+    chart.render();
+    return function () {
+      chart === null || chart === void 0 || chart.destroy();
+    };
+  }, [currentData, chartRef.current]);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(ChartHeader, {
+    title: title,
+    operation: /*#__PURE__*/React.createElement(SegmentedTabs, {
+      onChange: handleChange
+    })
+  }), /*#__PURE__*/React.createElement("div", {
+    ref: chartRef,
+    style: {
+      height: "".concat(height, "px"),
+      marginTop: 20
+    }
+  }));
+};
+export default Heatmap;

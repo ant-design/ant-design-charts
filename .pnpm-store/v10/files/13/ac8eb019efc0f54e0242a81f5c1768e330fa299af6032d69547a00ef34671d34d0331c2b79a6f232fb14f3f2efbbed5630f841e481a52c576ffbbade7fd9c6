@@ -1,0 +1,7 @@
+import React from 'react';
+interface LoadingEndProps {
+    children?: React.ReactNode;
+    onComplete?: () => void;
+}
+declare const LoadingEnd: React.FC<LoadingEndProps>;
+export default LoadingEnd;

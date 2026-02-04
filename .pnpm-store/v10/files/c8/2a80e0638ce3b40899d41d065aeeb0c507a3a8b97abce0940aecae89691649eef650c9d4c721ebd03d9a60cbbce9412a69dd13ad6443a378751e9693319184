@@ -1,0 +1,9 @@
+.bannerAnnouncement {
+  background: #e6f7ff;
+  border-color: rgba(71, 118, 232, 0.65);
+  color: #4776e8;
+
+  a {
+    color: #4776e8 !important;
+  }
+}

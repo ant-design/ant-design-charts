@@ -1,0 +1,4 @@
+export declare function getUserInfo(apiDomain: string, { clientId }: {
+    clientId?: string;
+}): Promise<any>;
+export declare function requestLogout(apiDomain: string): Promise<any>;

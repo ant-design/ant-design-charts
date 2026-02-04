@@ -1,0 +1,59 @@
+{
+  "name": "reduce",
+  "version": "1.0.3",
+  "description": "A better [].reduce",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/Raynos/reduce.git",
+  "main": "index",
+  "homepage": "https://github.com/Raynos/reduce",
+  "contributors": [
+    {
+      "name": "Jake Verbaten"
+    },
+    {
+      "name": "Jordan Harband",
+      "email": "ljharb@gmail.com",
+      "url": "http://ljharb.codes"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/Raynos/reduce/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "dependencies": {
+    "object-keys": "^1.1.1"
+  },
+  "devDependencies": {
+    "@ljharb/eslint-config": "^21.1.1",
+    "aud": "^2.0.4",
+    "auto-changelog": "^2.4.0",
+    "eslint": "=8.8.0",
+    "nyc": "^10.3.2",
+    "tape": "^5.7.5"
+  },
+  "license": "MIT",
+  "testling": {
+    "files": "test/*.js"
+  },
+  "scripts": {
+    "pretest": "npm run lint",
+    "tests-only": "nyc tape 'test/**/*.js'",
+    "test": "npm run tests-only",
+    "posttest": "aud --production",
+    "lint": "eslint --ext=js,mjs .",
+    "version": "auto-changelog && git add CHANGELOG.md",
+    "postversion": "auto-changelog && git add CHANGELOG.md && git commit --no-edit --amend && git tag -f \"v$(node -e \"console.log(require('./package.json').version)\")\""
+  },
+  "engines": {
+    "node": ">= 0.4"
+  },
+  "auto-changelog": {
+    "output": "CHANGELOG.md",
+    "template": "keepachangelog",
+    "unreleased": false,
+    "commitLimit": false,
+    "backfillLimit": false,
+    "hideCredit": true
+  }
+}

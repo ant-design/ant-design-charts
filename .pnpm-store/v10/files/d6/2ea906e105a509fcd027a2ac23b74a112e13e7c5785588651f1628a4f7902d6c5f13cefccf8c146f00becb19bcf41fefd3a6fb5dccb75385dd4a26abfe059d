@@ -1,0 +1,77 @@
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { Affix, Drawer, Layout, Menu } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useMedia } from 'react-use';
+import { useMenu } from "../../hooks/useMenu";
+import { getAncestorMenuItems } from "../../utils/menu";
+import styles from "./index.module.less";
+export var Sidebar = function Sidebar() {
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    drawOpen = _useState2[0],
+    setDrawOpen = _useState2[1];
+  var _useMenu = useMenu(),
+    _useMenu2 = _slicedToArray(_useMenu, 2),
+    menuItems = _useMenu2[0],
+    selectedKey = _useMenu2[1];
+  var is767Wide = useMedia('(min-width: 767.99px)', true);
+  var _useState3 = useState([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    openKeys = _useState4[0],
+    setOpenKeys = _useState4[1];
+  useEffect(function () {
+    var items = getAncestorMenuItems(menuItems, selectedKey);
+    setOpenKeys(function (prev) {
+      return _toConsumableArray(new Set([].concat(_toConsumableArray(prev), _toConsumableArray(items.map(function (item) {
+        return item.key;
+      })))));
+    });
+  }, [menuItems, selectedKey]);
+  var menu = /*#__PURE__*/React.createElement(Menu, {
+    key: "sider-menu",
+    openKeys: openKeys,
+    onOpenChange: function onOpenChange(openKeys) {
+      return setOpenKeys(openKeys);
+    },
+    selectedKeys: [selectedKey],
+    mode: "inline",
+    items: menuItems,
+    inlineIndent: 16,
+    style: {
+      height: '100%'
+    },
+    triggerSubMenuAction: "click",
+    forceSubMenuRender: true
+  });
+  var Icon = drawOpen ? MenuFoldOutlined : MenuUnfoldOutlined;
+  return /*#__PURE__*/React.createElement(Affix, {
+    offsetTop: 0,
+    className: styles.affix,
+    style: {
+      height: is767Wide ? '100vh' : 'inherit'
+    }
+  }, is767Wide ? /*#__PURE__*/React.createElement(Layout.Sider, {
+    width: "auto",
+    theme: "light",
+    className: styles.sider
+  }, menu) : /*#__PURE__*/React.createElement(Drawer, {
+    handler: /*#__PURE__*/React.createElement(Icon, {
+      className: styles.menuSwitch
+    }),
+    wrapperClassName: styles.menuDrawer,
+    onChange: function onChange(open) {
+      return setDrawOpen(!!open);
+    },
+    width: 280
+  }, menu));
+};

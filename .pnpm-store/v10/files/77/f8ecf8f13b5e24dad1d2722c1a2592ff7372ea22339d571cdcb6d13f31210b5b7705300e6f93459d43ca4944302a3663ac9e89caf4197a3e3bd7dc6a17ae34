@@ -1,0 +1,11 @@
+import { FederationHost, type UserOptions } from '@module-federation/runtime-core';
+export { loadScript, loadScriptNode, Module, getRemoteEntry, getRemoteInfo, registerGlobalPlugins, type FederationRuntimePlugin, type Federation, } from '@module-federation/runtime-core';
+export { FederationHost };
+export declare function init(options: UserOptions): FederationHost;
+export declare function loadRemote<T>(...args: Parameters<FederationHost['loadRemote']>): Promise<T | null>;
+export declare function loadShare<T>(...args: Parameters<FederationHost['loadShare']>): Promise<false | (() => T | undefined)>;
+export declare function loadShareSync<T>(...args: Parameters<FederationHost['loadShareSync']>): () => T | never;
+export declare function preloadRemote(...args: Parameters<FederationHost['preloadRemote']>): ReturnType<FederationHost['preloadRemote']>;
+export declare function registerRemotes(...args: Parameters<FederationHost['registerRemotes']>): ReturnType<FederationHost['registerRemotes']>;
+export declare function registerPlugins(...args: Parameters<FederationHost['registerPlugins']>): ReturnType<FederationHost['registerRemotes']>;
+export declare function getInstance(): FederationHost | null;

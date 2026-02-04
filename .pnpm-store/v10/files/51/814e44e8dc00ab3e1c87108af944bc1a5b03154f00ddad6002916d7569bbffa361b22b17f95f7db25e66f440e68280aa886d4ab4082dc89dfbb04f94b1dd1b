@@ -1,0 +1,1 @@
+{"version":3,"file":"rect.js","sourceRoot":"","sources":["../../../src/shape/interval/rect.ts"],"names":[],"mappings":";;;AACA,mCAAgC;AAkBhC;;;GAGG;AACI,MAAM,IAAI,GAAoB,CAAC,OAAO,EAAE,OAAO,EAAE,EAAE;IACxD,OAAO,IAAA,aAAK,kBAAG,cAAc,EAAE,MAAM,IAAK,OAAO,GAAI,OAAO,CAAC,CAAC;AAChE,CAAC,CAAC;AAFW,QAAA,IAAI,QAEf;AAEF,YAAI,CAAC,KAAK,mCACL,aAAK,CAAC,KAAK,KACd,aAAa,EAAE,QAAQ,GACxB,CAAC"}

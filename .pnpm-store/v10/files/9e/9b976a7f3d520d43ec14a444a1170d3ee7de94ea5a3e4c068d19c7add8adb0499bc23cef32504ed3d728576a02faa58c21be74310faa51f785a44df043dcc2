@@ -1,0 +1,12 @@
+{
+    "name": "optjs",
+    "description": "Probably the sole command line option parser you'll ever need to...",
+    "version": "3.2.2",
+    "author": "Daniel Wirtz <dcode@dcode.io>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dcodeIO/opt.js.git"
+    },
+    "main": "./opt.js",
+    "license": "MIT"
+}

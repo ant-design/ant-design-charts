@@ -1,0 +1,6 @@
+import type { RenderingPlugin, RenderingPluginContext } from '@antv/g-lite';
+export declare class RoughRendererPlugin implements RenderingPlugin {
+    static tag: string;
+    apply(context: RenderingPluginContext): void;
+}
+//# sourceMappingURL=RoughRendererPlugin.d.ts.map

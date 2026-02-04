@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body, html{
+            background-color:#ccc;
+            margin: 0px;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        #pusher{
+            background-color:#ccc;
+            width:100%;
+            height:0%;
+            display:block;
+            overflow: hidden;
+            transform: translate3d(0,0,0);
+            /*display:none;*/
+        }
+
+        #lottie{
+            background-color:#ccc;
+            width:100%;
+            height:100%;
+            display:block;
+            overflow: hidden;
+            transform: translate3d(0,0,0);
+            /*display:none;*/
+        }
+
+    </style>
+    <!-- build:js lottie.js -->
+    
+    <!-- end Expressions -->
+    <!-- endbuild -->
+    <!-- <script src="js/module.js" type="module"></script> -->
+    <!-- <script src="lottie.js"></script> -->
+    <!-- <script src="bodymovin_light.js"></script> -->
+
+
+
+</head>
+<body>
+<div id="pusher"></div>
+<div id="lottie"></div>
+
+<script>
+    var anim;
+    import('./js/modules/full.js').then(({default: lottie }) => {
+        var elem = document.getElementById('lottie');
+        var animData = {
+            container: elem,
+            renderer: 'svg',
+            loop: 3,
+            autoplay: true,
+            rendererSettings: {
+                progressiveLoad:false,
+                preserveAspectRatio: 'xMidYMid meet',
+                imagePreserveAspectRatio: 'xMidYMid meet',
+                title: 'TEST TITLE',
+                description: 'TEST DESCRIPTION',
+                filterSize: {
+                    width: '500%',
+                    height: '500%',
+                    x: '-200%',
+                    y: '-200%',
+                }
+            },
+            path: 'exports/render/data.json',
+            audioFactory: createAudio,
+        };
+        // lottie.setQuality('low');
+        // anim.setSpeed(0.5)
+        // lottie.useWebWorker(true);
+        window.lottie = lottie;
+        setTimeout(() => {
+
+            anim = lottie.loadAnimation(animData);
+            anim.setSubframe(false);
+            anim.onError = function(errorType, nativeError, errorProps) {
+                console.log(errorType)
+            }
+            
+            anim.addEventListener('error', function(error) {
+                console.log(error)
+            })
+            
+            anim.addEventListener('error', function(error) {
+                console.log(error)
+            })
+            
+            anim.addEventListener('DOMLoaded', function() {
+                // setTimeout(()=>{
+                //     console.log('UPDATEING TEXT');
+                //     anim.updateDocumentData(['a_text','adwqd'], {t: 'eeee'});
+                // }, 100)
+            })
+        }, 1)
+    });
+        
+    // setTimeout(()=>anim.destroy(), 1000);
+
+    function createAudio(assetPath) {
+        return new Howl({
+            src: [assetPath]
+        })
+    }
+
+</script>
+
+</body>
+</html>

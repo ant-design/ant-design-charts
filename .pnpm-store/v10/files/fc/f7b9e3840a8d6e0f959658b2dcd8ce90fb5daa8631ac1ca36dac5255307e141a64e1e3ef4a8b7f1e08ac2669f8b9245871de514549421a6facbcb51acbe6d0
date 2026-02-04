@@ -1,0 +1,35 @@
+import cx from 'classnames';
+import React from 'react';
+import { ic } from "../../../../slots/hooks";
+import FeatureCard from "./FeatureCard";
+import styles from "./index.module.less";
+export var Features = function Features(_ref) {
+  var title = _ref.title,
+    _ref$features = _ref.features,
+    features = _ref$features === void 0 ? [] : _ref$features,
+    className = _ref.className,
+    style = _ref.style,
+    id = _ref.id;
+  return /*#__PURE__*/React.createElement("div", {
+    id: id,
+    className: cx(styles.wrapper, className),
+    style: style
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.content
+  }, /*#__PURE__*/React.createElement("div", {
+    key: "content"
+  }, /*#__PURE__*/React.createElement("p", {
+    key: "title",
+    className: styles.title
+  }, title ? ic(title) : ''), /*#__PURE__*/React.createElement("div", {
+    key: "block",
+    className: styles.cardsContainer
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.cardsGrid
+  }, features.map(function (card) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: ic(card.title),
+      className: styles.cardWrapper
+    }, /*#__PURE__*/React.createElement(FeatureCard, card));
+  }))))));
+};

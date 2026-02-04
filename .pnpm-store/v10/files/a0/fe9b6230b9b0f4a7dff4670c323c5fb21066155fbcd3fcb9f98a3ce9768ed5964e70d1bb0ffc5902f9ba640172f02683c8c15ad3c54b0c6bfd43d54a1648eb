@@ -1,0 +1,46 @@
+import { InboxOutlined } from '@ant-design/icons';
+import { useIntl } from 'dumi';
+import React from 'react';
+import styles from "./SearchResult.module.less";
+var getHighlightInfo = function getHighlightInfo(textSegments) {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, textSegments.map(function (segment) {
+    return /*#__PURE__*/React.createElement("span", {
+      className: "".concat(styles.segment, " ").concat(segment.highlighted ? styles.highlighted : '')
+    }, segment.text);
+  }));
+};
+
+/**
+ * 展示搜索结果
+ * @returns
+ */
+export var SearchResult = function SearchResult(_ref) {
+  var results = _ref.results;
+  var intl = useIntl();
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles.searchResult
+  }, results !== null && results !== void 0 && results.length ? results.map(function (r) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: styles.item
+    }, /*#__PURE__*/React.createElement("div", {
+      className: styles.subject
+    }, r.subject), /*#__PURE__*/React.createElement("div", {
+      className: styles.br
+    }), /*#__PURE__*/React.createElement("a", {
+      className: styles.result,
+      href: r.link
+    }, /*#__PURE__*/React.createElement("div", {
+      className: styles.title
+    }, getHighlightInfo(r.title)), /*#__PURE__*/React.createElement("div", {
+      className: styles.description
+    }, getHighlightInfo(r.description))));
+  }) : /*#__PURE__*/React.createElement("div", {
+    className: styles.empty
+  }, /*#__PURE__*/React.createElement(InboxOutlined, {
+    style: {
+      fontSize: 20
+    }
+  }), /*#__PURE__*/React.createElement("div", null, intl.formatMessage({
+    id: '没有找到查询结果'
+  }))));
+};

@@ -1,0 +1,270 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/plugin/deadLinkChecker.ts
+var deadLinkChecker_exports = {};
+__export(deadLinkChecker_exports, {
+  default: () => deadLinkChecker_default
+});
+module.exports = __toCommonJS(deadLinkChecker_exports);
+var import_chalk = __toESM(require("chalk"));
+var cheerio = __toESM(require("cheerio"));
+var fs = __toESM(require("fs"));
+var glob = __toESM(require("glob"));
+var import_lodash = __toESM(require("lodash.merge"));
+var import_p_limit = __toESM(require("p-limit"));
+var path = __toESM(require("path"));
+var defaultConfig = {
+  enable: true,
+  distDir: "dist",
+  checkExternalLinks: false,
+  ignorePatterns: ["^#", "^mailto:", "^tel:", "^javascript:", "^data:", ".*stackoverflow\\.com.*"],
+  fileExtensions: [".html"],
+  failOnError: false,
+  externalLinkTimeout: 1e4,
+  maxConcurrentRequests: 5
+};
+var tempCache = {};
+function processConfig(options) {
+  return {
+    ...options,
+    ignorePatterns: options.ignorePatterns.map(
+      (pattern) => typeof pattern === "string" ? new RegExp(pattern) : pattern
+    )
+  };
+}
+function collectLinks(htmlFiles, distDir) {
+  const links = [];
+  htmlFiles.forEach((htmlFile) => {
+    const filePath = path.join(distDir, htmlFile);
+    const content = fs.readFileSync(filePath, "utf-8");
+    const $ = cheerio.load(content);
+    $("a").each((_, element) => {
+      const url = $(element).attr("href");
+      if (!url)
+        return;
+      links.push({
+        url,
+        text: $(element).text().trim() || "[No text]",
+        sourceFile: htmlFile,
+        isExternal: url.startsWith("http://") || url.startsWith("https://")
+      });
+    });
+  });
+  return links;
+}
+function filterIgnoredLinks(links, ignorePatterns) {
+  return links.filter((link) => {
+    return !ignorePatterns.some((pattern) => pattern.test(link.url));
+  });
+}
+function checkInternalLinks(links, existingFiles) {
+  const deadLinks = [];
+  links.forEach((link) => {
+    if (!link.url.startsWith("/") || link.url.startsWith("//"))
+      return;
+    let normalizedLink = link.url.split("#")[0];
+    normalizedLink = normalizedLink.split("?")[0];
+    if (normalizedLink.endsWith("/")) {
+      normalizedLink += "index.html";
+    }
+    const exists = existingFiles.has(normalizedLink) || path.extname(normalizedLink) === "" && (existingFiles.has(normalizedLink + "/") || existingFiles.has(normalizedLink + "/index.html") || existingFiles.has(normalizedLink + ".html"));
+    if (!exists) {
+      deadLinks.push({
+        ...link,
+        reason: "File not found"
+      });
+    }
+  });
+  return deadLinks;
+}
+async function checkExternalLinks(links, config) {
+  const deadLinks = [];
+  const limit = (0, import_p_limit.default)(config.maxConcurrentRequests);
+  const uncachedLinks = [];
+  links.forEach((link) => {
+    if (tempCache[link.url]) {
+      if (!tempCache[link.url].success) {
+        deadLinks.push({
+          ...link,
+          reason: tempCache[link.url].reason || "未知错误"
+        });
+      }
+      console.log(import_chalk.default.gray(`  [cached] ${link.url}`));
+    } else {
+      uncachedLinks.push(link);
+    }
+  });
+  const promises = uncachedLinks.map((link) => {
+    return limit(async () => {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), config.externalLinkTimeout);
+        const response = await fetch(link.url);
+        clearTimeout(timeoutId);
+        if (response.status >= 400) {
+          tempCache[link.url] = {
+            success: false,
+            reason: `Status code ${response.status}`
+          };
+          deadLinks.push({
+            ...link,
+            reason: `Status code ${response.status}`
+          });
+        } else {
+          tempCache[link.url] = { success: true };
+        }
+      } catch (error) {
+        const reason = error instanceof Error ? error.message : String(error);
+        tempCache[link.url] = { success: false, reason };
+        deadLinks.push({
+          ...link,
+          reason
+        });
+      }
+    });
+  });
+  await Promise.all(promises);
+  return deadLinks;
+}
+async function runCheck(config) {
+  const distDir = path.resolve(process.cwd(), config.distDir);
+  if (!fs.existsSync(distDir)) {
+    return {
+      totalLinks: 0,
+      deadLinks: [],
+      success: false
+    };
+  }
+  const htmlFiles = glob.sync(`**/*+(${config.fileExtensions.join("|")})`, { cwd: distDir });
+  const existingFiles = /* @__PURE__ */ new Set();
+  glob.sync("**/*", { cwd: distDir, nodir: true }).forEach((file) => {
+    existingFiles.add("/" + file);
+  });
+  const allLinks = collectLinks(htmlFiles, distDir);
+  const linksToCheck = filterIgnoredLinks(allLinks, config.ignorePatterns);
+  const internalDeadLinks = checkInternalLinks(
+    linksToCheck.filter((link) => !link.isExternal),
+    existingFiles
+  );
+  const externalDeadLinks = config.checkExternalLinks ? await checkExternalLinks(
+    linksToCheck.filter((link) => link.isExternal),
+    config
+  ) : [];
+  const deadLinks = [...internalDeadLinks, ...externalDeadLinks];
+  return {
+    totalLinks: allLinks.length,
+    deadLinks,
+    success: deadLinks.length === 0
+  };
+}
+function generateReport(result) {
+  if (result.deadLinks.length === 0) {
+    console.log(import_chalk.default.green(`✓ Check completed: All ${result.totalLinks} links are valid`));
+    console.log();
+    return;
+  }
+  const reportFile = path.join(process.cwd(), "dead-links-report.log");
+  const linksByFile = result.deadLinks.reduce((acc, link) => {
+    if (!acc[link.sourceFile]) {
+      acc[link.sourceFile] = [];
+    }
+    acc[link.sourceFile].push(link);
+    return acc;
+  }, {});
+  const reportLines = [
+    `Dead Links Report (${(/* @__PURE__ */ new Date()).toISOString()})`,
+    `Found ${result.deadLinks.length}/${result.totalLinks} dead links in ${Object.keys(linksByFile).length} files`,
+    ""
+  ];
+  Object.entries(linksByFile).forEach(([file, links]) => {
+    reportLines.push(`File: ${file}`);
+    links.forEach((link) => {
+      reportLines.push(`  ✗ ${link.url}`);
+      reportLines.push(`    • Text: ${link.text}`);
+      reportLines.push(`    • Reason: ${link.reason}`);
+    });
+    reportLines.push("");
+  });
+  try {
+    fs.writeFileSync(reportFile, reportLines.join("\n"), "utf-8");
+    const gitignorePath = path.join(process.cwd(), ".gitignore");
+    const gitignoreContent = fs.existsSync(gitignorePath) ? fs.readFileSync(gitignorePath, "utf-8") : "";
+    if (!gitignoreContent.includes("dead-links-report.log")) {
+      fs.appendFileSync(gitignorePath, "\n# Dead links report\ndead-links-report.log\n");
+    }
+    console.log();
+    console.log(import_chalk.default.yellow("📊 Dead Links Summary:"));
+    console.log(import_chalk.default.yellow(`Found ${result.deadLinks.length} dead links in ${Object.keys(linksByFile).length} files`));
+    console.log();
+    Object.entries(linksByFile).forEach(([file, links]) => {
+      console.log(
+        import_chalk.default.red(`✗ ${file}`),
+        import_chalk.default.gray(`(${links.length} dead ${links.length === 1 ? "link" : "links"})`)
+      );
+    });
+    console.log();
+    console.log(import_chalk.default.cyan(`💡 Detailed report: ${reportFile}`));
+    console.log();
+  } catch (error) {
+    console.error(import_chalk.default.red("Failed to write report file:"), error);
+    console.log(reportLines.join("\n"));
+  }
+}
+var deadLinkChecker_default = (api) => {
+  const getConfig = () => {
+    const themeConfig = api.config.themeConfig || {};
+    let userConfig = themeConfig == null ? void 0 : themeConfig.deadLinkChecker;
+    if (!userConfig) {
+      userConfig = { enable: false };
+    }
+    const config = (0, import_lodash.default)({}, defaultConfig, userConfig);
+    if (!config.enable) {
+      return processConfig({
+        ...config,
+        // 设置为空数组，使插件不执行任何检查
+        fileExtensions: []
+      });
+    }
+    return processConfig(config);
+  };
+  const checkLinks = async (onBeforeCheck) => {
+    const config = getConfig();
+    if (config.fileExtensions.length === 0) {
+      return;
+    }
+    onBeforeCheck == null ? void 0 : onBeforeCheck();
+    console.log(import_chalk.default.gray("🔍 Checking for dead links..."));
+    const result = await runCheck(config);
+    generateReport(result);
+    if (!result.success && config.failOnError) {
+      process.exit(1);
+    }
+  };
+  return checkLinks;
+};

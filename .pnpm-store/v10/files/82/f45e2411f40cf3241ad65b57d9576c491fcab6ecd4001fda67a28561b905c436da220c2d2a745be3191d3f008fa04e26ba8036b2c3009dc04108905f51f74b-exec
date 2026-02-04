@@ -1,0 +1,32 @@
+{
+  "name": "stubborn-fs",
+  "repository": "github:fabiospampinato/stubborn-fs",
+  "description": "Stubborn versions of Node's fs functions that try really hard to do their job.",
+  "license": "MIT",
+  "version": "2.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "tsex clean",
+    "compile": "tsex compile",
+    "compile:watch": "tsex compile --watch",
+    "prepublishOnly": "tsex prepare"
+  },
+  "keywords": [
+    "fs",
+    "attempt",
+    "retry",
+    "stubborn",
+    "reliable"
+  ],
+  "dependencies": {
+    "stubborn-utils": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.39",
+    "tsex": "^4.0.2",
+    "typescript": "^5.5.2"
+  }
+}

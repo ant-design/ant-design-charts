@@ -1,0 +1,25 @@
+{
+  "name": "localstorage-memory",
+  "version": "1.0.1",
+  "homepage": "https://gr2m.github.com/localstorage-memory",
+  "authors": [
+    "Gregor Martynus"
+  ],
+  "description": "localStorage-compatible API, but only stored in memory",
+  "main": "lib/localstorage-memory.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "localStorage"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ]
+}

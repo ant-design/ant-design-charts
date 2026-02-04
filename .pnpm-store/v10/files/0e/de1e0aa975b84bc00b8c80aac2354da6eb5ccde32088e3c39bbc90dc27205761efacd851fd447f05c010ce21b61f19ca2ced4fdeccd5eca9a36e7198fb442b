@@ -1,0 +1,1 @@
+{"version":3,"file":"get-total-length.js","sourceRoot":"","sources":["../../../src/path/util/get-total-length.ts"],"names":[],"mappings":";AACA,OAAO,EAAE,iBAAiB,EAAE,MAAM,uBAAuB,CAAC;AAE1D;;;;;GAKG;AACH,MAAM,UAAU,cAAc,CAAC,SAA6B,EAAE,OAA2C;IACvG,OAAO,iBAAiB,CAAC,SAAS,EAAE,SAAS,wBAAO,OAAO,KAAE,IAAI,EAAE,KAAK,EAAE,MAAM,EAAE,IAAI,IAAG,CAAC,MAAM,CAAC;AACnG,CAAC"}

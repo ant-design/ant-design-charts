@@ -1,0 +1,10 @@
+import { Interval, IntervalMap } from './time-interval';
+export declare const utcMillisecond: Interval;
+export declare const utcSecond: Interval;
+export declare const utcMinute: Interval;
+export declare const utcHour: Interval;
+export declare const utcDay: Interval;
+export declare const utcMonth: Interval;
+export declare const utcWeek: Interval;
+export declare const utcYear: Interval;
+export declare const utcIntervalMap: IntervalMap;

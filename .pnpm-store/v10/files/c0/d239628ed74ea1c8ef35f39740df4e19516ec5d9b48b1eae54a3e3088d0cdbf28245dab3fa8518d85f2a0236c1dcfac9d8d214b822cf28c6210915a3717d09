@@ -1,0 +1,1 @@
+{"version":3,"file":"scrollbarX.js","sourceRoot":"","sources":["../../src/component/scrollbarX.ts"],"names":[],"mappings":";;;AACA,2CAA0D;AAI1D;;GAEG;AACI,MAAM,UAAU,GAA2B,CAAC,OAAO,EAAE,EAAE;IAC5D,OAAO,IAAA,qBAAS,kCAAM,OAAO,KAAE,WAAW,EAAE,YAAY,IAAG,CAAC;AAC9D,CAAC,CAAC;AAFW,QAAA,UAAU,cAErB;AAEF,kBAAU,CAAC,KAAK,mCACX,qBAAS,CAAC,KAAK,KAClB,eAAe,EAAE,QAAQ,GAC1B,CAAC"}

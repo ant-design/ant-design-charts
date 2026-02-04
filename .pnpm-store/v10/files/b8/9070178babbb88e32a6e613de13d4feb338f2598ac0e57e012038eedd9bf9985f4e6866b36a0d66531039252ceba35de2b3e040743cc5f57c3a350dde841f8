@@ -1,0 +1,7 @@
+import React from 'react';
+export interface MarkdownProps {
+    text: string;
+    style?: React.CSSProperties;
+}
+declare const Markdown: React.FC<MarkdownProps>;
+export default Markdown;

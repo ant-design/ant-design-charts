@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "number",
+  "oneOf": [
+    {
+      "standsFor": false,
+      "const": 0
+    },
+    {
+      "standsFor": true,
+      "const": 1
+    }
+  ]
+}

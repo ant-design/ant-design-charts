@@ -1,0 +1,16 @@
+{
+  "name": "current-script-polyfill",
+  "version": "1.0.0",
+  "description": "An exceptionally slim (~310kb minified) polyfill for document.currentScript in IE9+",
+  "main": "currentScript.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epicmiller/currentScript-polyfill.git"
+  },
+  "author": "Adam Miller",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {},
+  "devDependencies": {}
+}

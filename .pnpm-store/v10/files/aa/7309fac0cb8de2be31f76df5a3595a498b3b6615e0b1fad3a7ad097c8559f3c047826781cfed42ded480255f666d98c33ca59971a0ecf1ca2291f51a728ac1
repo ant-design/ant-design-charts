@@ -1,0 +1,75 @@
+{
+  "name": "react-simple-code-editor",
+  "version": "0.13.1",
+  "description": "Simple no-frills code editor with syntax highlighting",
+  "keywords": [
+    "code",
+    "editor",
+    "react"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "typescript": "tsc --noEmit",
+    "preprepare": "del lib/",
+    "prepare": "tsc --project tsconfig.build.json",
+    "example": "parcel example/index.html",
+    "gh-pages": "git branch -D gh-pages; git checkout -b gh-pages && rm -rf dist/ && parcel build example/App.js && git add -f dist/ && git commit -nm 'Publish website' && git push -fu origin gh-pages; git checkout @{-1}",
+    "release": "release-it"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satya164/react-simple-code-editor.git"
+  },
+  "author": "Satyajit Sahoo <satyajit.happy@gmail.com> (https://github.com/satya164/)",
+  "license": "MIT",
+  "devDependencies": {
+    "@arkweid/lefthook": "^0.7.7",
+    "@release-it/conventional-changelog": "^5.0.0",
+    "@types/dedent": "^0.7.0",
+    "@types/prismjs": "^1.26.0",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.5",
+    "dedent": "^0.7.0",
+    "del-cli": "^4.0.1",
+    "eslint": "^8.16.0",
+    "eslint-config-satya164": "^3.1.11",
+    "parcel": "^2.6.0",
+    "prettier": "^2.6.2",
+    "prismjs": "^1.15.0",
+    "process": "^0.11.10",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "release-it": "^15.0.0",
+    "typescript": "^4.7.2"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "eslintConfig": {
+    "extends": "satya164",
+    "env": {
+      "browser": true
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "dist/",
+    "lib/"
+  ]
+}

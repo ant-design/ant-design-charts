@@ -1,0 +1,163 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import { Alert, Button, Divider, Form, Select } from 'antd';
+import { useIntl, useLocale } from 'dumi';
+import React, { useEffect } from 'react';
+import { styled } from 'styled-components';
+import { useSnapshot } from 'valtio';
+import { feedbackStore, resetPageFeedback } from "../../model/feedback";
+import { useGithubRepo } from "../../utils/github";
+import { useFeedbackService } from "./service";
+var StyledFeedbackMessageWrapper = styled.div.withConfig({
+  displayName: "StyledFeedbackMessageWrapper",
+  componentId: "dumi-theme-antv-c7ef__sc-1xff90d-0"
+})(["display:", ";.ant-divider-horizontal{margin:16px 0;}.alert{margin:12px 0 16px;padding:16px;font-size:13px;line-height:1.8;background-color:rgba(255,251,235,0.5);border:1px solid rgba(173,104,0,0.15);border-radius:8px;.ant-alert-icon{color:#cc8800;}}.alert-link{color:#56390c;font-weight:bold;text-decoration:underline;}.ant-form-item:last-child{margin-bottom:8px;}"], function (props) {
+  return props.$rating ? 'block' : 'none';
+});
+export var PageFeedbackReasonForm = function PageFeedbackReasonForm() {
+  var _useIntl = useIntl(),
+    formatMessage = _useIntl.formatMessage;
+  var _Form$useForm = Form.useForm(),
+    _Form$useForm2 = _slicedToArray(_Form$useForm, 1),
+    form = _Form$useForm2[0];
+  var feedbackState = useSnapshot(feedbackStore);
+  var _useGithubRepo = useGithubRepo(),
+    owner = _useGithubRepo.owner,
+    repo = _useGithubRepo.repo;
+  var pageUrl = window.location.href;
+  var locale = useLocale();
+  var currentLocale = locale.id;
+  var issueUrl = "https://github.com/".concat(owner, "/").concat(repo, "/issues/new?labels=status%3A+waiting+for+maintainer%2Cdocs-feedback&template=docs-feedback.yml&title=[docs]+&page-url=").concat(pageUrl);
+  var alertMsg = /*#__PURE__*/React.createElement("div", null, formatMessage({
+    id: '如果遇到问题或发现某些功能无法正常工作，请通过'
+  }), /*#__PURE__*/React.createElement("a", {
+    onClick: function onClick() {
+      return window.open(issueUrl, '_blank');
+    },
+    className: "alert-link"
+  }, formatMessage({
+    id: '提交问题报告'
+  })), formatMessage({
+    id: '来反馈。否则，团队将无法提供进一步的答复或获取更多信息。'
+  }));
+  var _useFeedbackService = useFeedbackService(),
+    submitFeedback = _useFeedbackService.submitFeedback,
+    showFeedbackResult = _useFeedbackService.showFeedbackResult;
+  var onFinish = function onFinish(values) {
+    var params = {
+      rating: feedbackState.rating,
+      reason: values.reason
+    };
+    submitFeedback(params).then(function (f) {
+      onCancel();
+      showFeedbackResult(true);
+    }).catch(function () {
+      showFeedbackResult(false);
+    });
+  };
+  var onCancel = function onCancel() {
+    form.resetFields();
+    resetPageFeedback();
+  };
+  useEffect(function () {
+    if (!feedbackState.rating) onCancel();
+  }, [feedbackState.rating]);
+  var likeReasons = [{
+    label: formatMessage({
+      id: '容易理解'
+    }),
+    value: 'easy_to_understand'
+  }, {
+    label: formatMessage({
+      id: '解决了我的问题'
+    }),
+    value: 'solved_my_problem'
+  }, {
+    label: formatMessage({
+      id: '其它'
+    }),
+    value: 'other'
+  }];
+  var dislikeReasons = [{
+    label: formatMessage({
+      id: '缺少我需要的信息'
+    }),
+    value: 'missing_information'
+  }, {
+    label: formatMessage({
+      id: '过于复杂/步骤太多'
+    }),
+    value: 'too_complicated'
+  }, {
+    label: formatMessage({
+      id: '内容更新不及时'
+    }),
+    value: 'out_of_date'
+  }, {
+    label: formatMessage({
+      id: '示例/代码有问题'
+    }),
+    value: 'code_issue'
+  }, {
+    label: formatMessage({
+      id: '其它'
+    }),
+    value: 'other'
+  }];
+  var reasons = feedbackState.rating === '1' ? likeReasons : dislikeReasons;
+  useEffect(function () {
+    // 默认选中第一个原因
+    form === null || form === void 0 || form.setFieldsValue({
+      reason: reasons[0].value
+    });
+  }, [feedbackState.rating, currentLocale]);
+  var dislike = feedbackState.rating !== '1';
+  return /*#__PURE__*/React.createElement(StyledFeedbackMessageWrapper, {
+    $rating: feedbackState.rating
+  }, /*#__PURE__*/React.createElement(Divider, {
+    dashed: true
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "form"
+  }, /*#__PURE__*/React.createElement(Form, {
+    form: form,
+    name: "page-feedback-form",
+    onFinish: onFinish,
+    layout: "vertical"
+  }, /*#__PURE__*/React.createElement(Form.Item, {
+    name: "reason",
+    label: formatMessage({
+      id: '🚀 留下你的真实感受'
+    })
+  }, /*#__PURE__*/React.createElement(Select, {
+    options: reasons
+  })), dislike && /*#__PURE__*/React.createElement(Alert, {
+    type: "warning",
+    className: "alert",
+    message: alertMsg,
+    showIcon: true
+  }), /*#__PURE__*/React.createElement(Form.Item, {
+    style: {
+      textAlign: 'right'
+    }
+  }, /*#__PURE__*/React.createElement(Button, {
+    htmlType: "button",
+    type: "text",
+    size: "small",
+    onClick: onCancel,
+    style: {
+      marginRight: 8
+    }
+  }, formatMessage({
+    id: '取消'
+  })), /*#__PURE__*/React.createElement(Button, {
+    type: "primary",
+    htmlType: "submit",
+    size: "small"
+  }, formatMessage({
+    id: '提交'
+  }))))));
+};

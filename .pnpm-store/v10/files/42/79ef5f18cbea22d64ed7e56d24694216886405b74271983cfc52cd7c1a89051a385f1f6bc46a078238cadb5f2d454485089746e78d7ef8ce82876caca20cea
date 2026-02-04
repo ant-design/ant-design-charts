@@ -1,0 +1,9 @@
+import React, { type FC } from 'react';
+export interface IProps {
+    starters: string[];
+    onClick?: (msg: string) => void;
+    style?: React.CSSProperties;
+    className?: string;
+}
+declare const StarterList: FC<IProps>;
+export default StarterList;

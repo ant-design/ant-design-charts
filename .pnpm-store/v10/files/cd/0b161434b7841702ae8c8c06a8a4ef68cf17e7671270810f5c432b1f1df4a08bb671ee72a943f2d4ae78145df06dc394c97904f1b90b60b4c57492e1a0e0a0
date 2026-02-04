@@ -1,0 +1,1 @@
+{"version":3,"file":"legends.js","sourceRoot":"","sources":["../../src/component/legends.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,SAAS,CAAC;AAMhC,mDAAmD;AACnD,MAAM,CAAC,MAAM,OAAO,GAAwB,CAAC,OAAO,EAAE,EAAE;IACtD,OAAO,GAAG,EAAE;QACV,OAAO,IAAI,KAAK,EAAE,CAAC;IACrB,CAAC,CAAC;AACJ,CAAC,CAAC;AAEF,OAAO,CAAC,KAAK,GAAG,EAAE,CAAC"}

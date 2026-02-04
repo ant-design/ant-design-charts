@@ -1,0 +1,62 @@
+{
+  "name": "omit-deep",
+  "description": "Recursively omit the specified key or keys from an object.",
+  "version": "0.3.0",
+  "homepage": "https://github.com/jonschlinkert/omit-deep",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/omit-deep",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/omit-deep/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "is-plain-object": "^2.0.1",
+    "unset-value": "^0.1.1"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.11",
+    "mocha": "^3.2.0"
+  },
+  "keywords": [
+    "deep",
+    "delete",
+    "key",
+    "keys",
+    "object",
+    "omit",
+    "prop",
+    "properties",
+    "remove",
+    "values"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "related": {
+      "list": []
+    },
+    "reflinks": [
+      "verb",
+      "verb-generate-readme"
+    ]
+  }
+}

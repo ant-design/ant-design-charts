@@ -1,0 +1,42 @@
+import { Avatar, Skeleton, Tooltip } from 'antd';
+import React from 'react';
+var AvatarPlaceholder = function AvatarPlaceholder(_ref) {
+  var _ref$num = _ref.num,
+    num = _ref$num === void 0 ? 3 : _ref$num;
+  return /*#__PURE__*/React.createElement("li", null, Array.from({
+    length: num
+  }).map(function (_, i) {
+    return /*#__PURE__*/React.createElement(Skeleton.Avatar, {
+      size: "small",
+      active: true,
+      key: i,
+      style: {
+        marginInlineStart: i === 0 ? 0 : -8
+      }
+    });
+  }));
+};
+export var ContributorAvatar = function ContributorAvatar(props) {
+  var _props$item = props.item,
+    _props$item2 = _props$item === void 0 ? {} : _props$item,
+    username = _props$item2.username,
+    url = _props$item2.url,
+    loading = props.loading;
+  if (loading) {
+    return /*#__PURE__*/React.createElement(AvatarPlaceholder, null);
+  }
+  if (username !== null && username !== void 0 && username.includes('github-actions')) {
+    return null;
+  }
+  return /*#__PURE__*/React.createElement(Tooltip, {
+    title: username
+  }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "https://github.com/".concat(username),
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, /*#__PURE__*/React.createElement(Avatar, {
+    size: "small",
+    src: url,
+    alt: username
+  }, username))));
+};

@@ -1,0 +1,162 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import { CaretRightOutlined } from '@ant-design/icons';
+import { Modal } from 'antd';
+import classNames from 'classnames';
+import { FormattedMessage, Link, useLocale, useSiteData } from 'dumi';
+import gh from 'parse-github-url';
+import React, { useEffect, useState } from 'react';
+import GitHubButton from 'react-github-button';
+import { Player } from 'video-react';
+import Notification from "./Notification";
+import 'video-react/dist/video-react.css';
+import styles from "./index.module.less";
+var backLeftBottom = 'https://gw.alipayobjects.com/zos/basement_prod/441d5eaf-e623-47cd-b9b9-2a581d9ce1e3.svg';
+var Banner = function Banner(_ref) {
+  var coverImage = _ref.coverImage,
+    title = _ref.title,
+    description = _ref.description,
+    notifications = _ref.notifications,
+    _ref$style = _ref.style,
+    style = _ref$style === void 0 ? {} : _ref$style,
+    className = _ref.className,
+    video = _ref.video,
+    _ref$showGithubStars = _ref.showGithubStars,
+    showGithubStars = _ref$showGithubStars === void 0 ? true : _ref$showGithubStars,
+    _ref$buttons = _ref.buttons,
+    buttons = _ref$buttons === void 0 ? [] : _ref$buttons,
+    onCloseVideo = _ref.onCloseVideo,
+    onPlayVideo = _ref.onPlayVideo;
+  var locale = useLocale();
+  var lang = locale.id.includes('zh') ? 'zh' : 'en';
+  var notificationsUrl = "https://my-json-server.typicode.com/antvis/antvis-sites-data/notifications?lang=".concat(lang);
+  var _useState = useState([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    remoteNews = _useState2[0],
+    setRemoteNews = _useState2[1];
+  var _useSiteData = useSiteData(),
+    themeConfig = _useSiteData.themeConfig;
+  var githubUrl = themeConfig.githubUrl;
+  useEffect(function () {
+    fetch(notificationsUrl).then(function (res) {
+      return res.json();
+    }).then(function (data) {
+      setRemoteNews(data);
+    });
+  }, [notificationsUrl]);
+  var notificationsNode = (notifications || remoteNews).slice(0, 2).map(function (notification, i) {
+    return /*#__PURE__*/React.createElement(Notification, _extends({
+      index: i,
+      key: i
+    }, notification));
+  });
+  var showVideo = function showVideo() {
+    if (onPlayVideo) {
+      onPlayVideo();
+    }
+    Modal.info({
+      title: 'This is a notification message',
+      className: styles.videoModal,
+      onCancel: onCloseVideo,
+      content: /*#__PURE__*/React.createElement(Player, {
+        className: styles.video,
+        autoPlay: true,
+        src: video
+      }),
+      width: '70%'
+    });
+  };
+  var renderButtons = buttons.map(function (button, i) {
+    var ButtonLink = button.link.startsWith('http') || button.link.startsWith('#') ? 'a' : Link;
+    var buttonProps = {};
+    if (button.link.startsWith('http')) {
+      buttonProps.target = '_blank';
+      buttonProps.rel = 'noopener noreferrer';
+    }
+    if (ButtonLink === 'a') {
+      buttonProps.href = button.link;
+    } else {
+      buttonProps.to = button.link;
+    }
+    var _button$shape = button.shape,
+      shape = _button$shape === void 0 ? 'round' : _button$shape;
+    return /*#__PURE__*/React.createElement(ButtonLink, _extends({}, buttonProps, {
+      className: classNames(styles.buttonLink, styles[button.type || ''], button.type === 'primary' ? 'primary-button' : 'common-button'),
+      key: i,
+      style: _objectSpread({
+        borderRadius: shape === 'round' ? '1000px' : '4px'
+      }, button.style)
+    }), /*#__PURE__*/React.createElement("span", {
+      className: styles.button
+    }, button.text));
+  });
+  if (video) {
+    renderButtons.push( /*#__PURE__*/React.createElement("div", {
+      key: "video",
+      onClick: showVideo,
+      className: styles.videoButtonWrapper
+    }, /*#__PURE__*/React.createElement("div", {
+      className: styles.videoButton
+    }, /*#__PURE__*/React.createElement(CaretRightOutlined, {
+      className: styles.videoButtonIcon
+    }), /*#__PURE__*/React.createElement("p", {
+      className: styles.videoButtonText,
+      style: {
+        fontSize: '14px',
+        lineHeight: '40px'
+      }
+    }, /*#__PURE__*/React.createElement(FormattedMessage, {
+      id: "\u77E5\u6E90\u30FB\u81F4\u8FDC"
+    })))));
+  }
+  if (showGithubStars) {
+    var githubObj = gh(githubUrl);
+    if (githubObj && githubObj.owner && githubObj.name) {
+      renderButtons.push( /*#__PURE__*/React.createElement("div", {
+        key: "github",
+        className: styles.githubWrapper
+      }, /*#__PURE__*/React.createElement(GitHubButton, {
+        type: "stargazers",
+        size: "large",
+        namespace: githubObj.owner,
+        repo: githubObj.name
+      })));
+    }
+  }
+  return /*#__PURE__*/React.createElement("section", {
+    className: classNames(styles.wrapper, className),
+    style: style
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.content
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.text
+  }, /*#__PURE__*/React.createElement("div", {
+    className: classNames(styles.title, 'banner-title')
+  }, title), /*#__PURE__*/React.createElement("p", {
+    className: classNames(styles.description, 'banner-description')
+  }, description), /*#__PURE__*/React.createElement("div", {
+    className: classNames(styles.buttons, 'banner-buttons')
+  }, renderButtons)), /*#__PURE__*/React.createElement("div", {
+    className: classNames(styles.notifications, 'notifications')
+  }, notificationsNode), /*#__PURE__*/React.createElement("div", {
+    className: classNames(styles.teaser, 'teaser')
+  }, /*#__PURE__*/React.createElement("div", {
+    className: classNames(styles.teaserimg, 'teaser-img')
+  }, coverImage)), /*#__PURE__*/React.createElement("img", {
+    className: styles.backLeftBottom,
+    src: backLeftBottom,
+    alt: "back"
+  })));
+};
+export default Banner;

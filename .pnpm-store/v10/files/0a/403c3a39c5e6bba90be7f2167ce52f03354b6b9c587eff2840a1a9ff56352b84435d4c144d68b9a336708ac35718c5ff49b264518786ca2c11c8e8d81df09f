@@ -1,0 +1,17 @@
+import React from 'react';
+import Footer from "dumi/theme/slots/Footer";
+import Header from "dumi/theme/slots/Header";
+import { ManualContent } from "dumi/theme/slots/ManualContent";
+
+/**
+ * Manual 路由下的入口
+ */
+var ManualLayout = function ManualLayout(_ref) {
+  var children = _ref.children;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Header, {
+    isHomePage: false
+  }), /*#__PURE__*/React.createElement(ManualContent, null, children), /*#__PURE__*/React.createElement(Footer, {
+    isDynamicFooter: true
+  }));
+};
+export default ManualLayout;

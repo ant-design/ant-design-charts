@@ -1,0 +1,1 @@
+{"version":3,"file":"elementSelectByX.js","sourceRoot":"","sources":["../../src/interaction/elementSelectByX.ts"],"names":[],"mappings":";;AAGA,4CAEC;AALD,mCAAqC;AACrC,mDAAgD;AAEhD,SAAgB,gBAAgB,CAAC,OAAO;IACtC,OAAO,IAAA,6BAAa,kCAAM,OAAO,KAAE,WAAW,EAAE,kBAAU,IAAG,CAAC;AAChE,CAAC;AAED,gBAAgB,CAAC,KAAK,GAAG;IACvB,iBAAiB,EAAE,IAAI;CACxB,CAAC"}

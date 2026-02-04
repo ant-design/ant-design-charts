@@ -1,0 +1,76 @@
+{
+  "name": "types-ramda",
+  "version": "0.29.10",
+  "description": "Dedicated types library for ramda",
+  "author": "Harris Miller <harrismillerconsulting@gmail.com>",
+  "contributors": [
+    {
+      "name": "Harris Miller",
+      "email": "harrismillerconsulting@gmail.com",
+      "web": "https://github.com/harris-miller"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ramda/types.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ramda",
+    "functional",
+    "utils",
+    "utilities",
+    "toolkit",
+    "fp",
+    "tacit",
+    "point-free",
+    "curried",
+    "pure",
+    "fantasy-land",
+    "typescript",
+    "types",
+    "ts",
+    "@types/ramda"
+  ],
+  "sideEffects": false,
+  "files": [
+    "es",
+    "src",
+    "ts4"
+  ],
+  "types": "./es/index.d.ts",
+  "typesVersions": {
+    "<5": {
+      "*": [
+        "ts4/*"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "npm run build:types && npm run build:ts4",
+    "build:types": "node scripts/buildTypes.mjs",
+    "build:ts4": "node scripts/buildTs4.mjs",
+    "clean": "rimraf es ts4",
+    "lint": "eslint . --max-warnings=0",
+    "test": "tsd",
+    "typecheck": "tsc -p tsconfig.types.json --noEmit"
+  },
+  "tsd": {
+    "directory": "test/"
+  },
+  "dependencies": {
+    "ts-toolbelt": "^9.6.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "dox": "^1.0.0",
+    "eslint": "^8.50.0",
+    "eslint-plugin-import": "^2.28.1",
+    "ramda": "^0.29.1",
+    "rimraf": "^5.0.5",
+    "tsd": "^0.29.0",
+    "typescript": "^5.2.2",
+    "xyz": "^4.0.0"
+  }
+}

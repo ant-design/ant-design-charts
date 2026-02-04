@@ -1,0 +1,4 @@
+import { IBot } from '../interface';
+export declare const DEFAULT_HELLO_MESSAGE = "\u6211\u662F\u4F60\u7684\u79C1\u4EBA\u52A9\u7406Kate, \u6211\u6709\u8BB8\u591A\u60CA\u4EBA\u7684\u80FD\u529B\uFF0C\u6BD4\u5982\u4F60\u53EF\u4EE5\u5BF9\u6211\u8BF4\u6211\u60F3\u521B\u5EFA\u4E00\u4E2A\u673A\u5668\u4EBA";
+export declare const DEFAULT_PROMPTS: string[];
+export declare const BOTS: IBot[];

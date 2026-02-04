@@ -1,0 +1,1 @@
+{"version":3,"file":"sequential.js","sourceRoot":"","sources":["../../src/scale/sequential.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,eAAe,EAAE,MAAM,aAAa,CAAC;AAM5D,MAAM,CAAC,MAAM,UAAU,GAA0B,CAAC,OAAO,EAAE,EAAE;IAC3D,OAAO,IAAI,eAAe,CAAC,OAAO,CAAC,CAAC;AACtC,CAAC,CAAC;AAEF,UAAU,CAAC,KAAK,GAAG,EAAE,CAAC"}

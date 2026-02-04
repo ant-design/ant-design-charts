@@ -1,0 +1,12 @@
+.graphin-layout-selector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  z-index: 1;
+  margin: 10px;
+
+  .selector {
+    width: 180px;
+  }
+}

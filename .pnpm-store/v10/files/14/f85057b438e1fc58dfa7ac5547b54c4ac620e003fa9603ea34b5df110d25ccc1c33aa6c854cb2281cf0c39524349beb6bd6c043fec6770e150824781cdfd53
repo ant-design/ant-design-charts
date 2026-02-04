@@ -1,0 +1,8 @@
+import React from 'react';
+interface LoadingStartProps {
+    loop?: boolean;
+    onComplete?: () => void;
+    className?: string;
+}
+declare const LoadingStart: React.FC<LoadingStartProps>;
+export default LoadingStart;

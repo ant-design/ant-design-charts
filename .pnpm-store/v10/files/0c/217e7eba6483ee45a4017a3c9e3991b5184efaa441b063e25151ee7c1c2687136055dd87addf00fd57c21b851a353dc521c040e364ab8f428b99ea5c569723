@@ -1,0 +1,24 @@
+export declare const theme: {
+    getDesignToken: () => {
+        transitionDuration: string;
+        chatBoxBackgroundColor: string;
+        userBubbleBackgroundColor: string;
+        systemBubbleBackgroundColor: string;
+        stopButtonBackgroundColor: string;
+        stopButtonBackgroundColorHover: string;
+        stopButtonIconColor: string;
+        stopButtonIconColorHover: string;
+    };
+    useToken: () => {
+        token: {
+            transitionDuration: string;
+            chatBoxBackgroundColor: string;
+            userBubbleBackgroundColor: string;
+            systemBubbleBackgroundColor: string;
+            stopButtonBackgroundColor: string;
+            stopButtonBackgroundColorHover: string;
+            stopButtonIconColor: string;
+            stopButtonIconColorHover: string;
+        };
+    };
+};

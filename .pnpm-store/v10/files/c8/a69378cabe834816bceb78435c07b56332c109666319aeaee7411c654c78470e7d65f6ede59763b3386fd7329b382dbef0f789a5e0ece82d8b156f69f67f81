@@ -1,0 +1,113 @@
+{
+  "name": "@antv/scale",
+  "version": "0.4.16",
+  "description": "Toolkit for mapping abstract data into visual representation.",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "unpkg": "dist/scale.min.js",
+  "types": "lib/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "src",
+    "lib",
+    "esm",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf lib esm dist",
+    "lint-staged": "lint-staged",
+    "size": "limit-size",
+    "lint": "eslint ./src/**/*.ts ./__tests__/**/*.ts && prettier ./src ./__tests__ --check ",
+    "fix": "eslint ./src/**/*.ts ./__tests__/**/*.ts --fix && prettier ./src ./__tests__ --write ",
+    "test": "run-s test:timezone test:jest",
+    "test:jest": "jest --testPathIgnorePatterns=__tests__/bugs/d3-timezone.spec.ts",
+    "test:timezone": "cross-env TZ=Europe/Berlin jest __tests__/bugs/d3-timezone.spec.ts",
+    "build:umd": "rimraf ./dist && rollup -c && npm run size",
+    "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
+    "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
+    "build": "run-p build:*",
+    "ci": "run-s lint test build",
+    "prepublishOnly": "npm run ci",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "antv",
+    "visualization",
+    "mapping"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^12.0.1",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@types/color-string": "^1.5.0",
+    "@types/jest": "^26.0.20",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "cross-env": "^7.0.3",
+    "d3-scale": "^3.2.4",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "husky": "^5.0.9",
+    "jest": "^26.6.3",
+    "limit-size": "^0.1.4",
+    "lint-staged": "^10.5.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.39.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.4",
+    "ts-jest": "^26.5.1",
+    "tslib": "^2.2.0",
+    "typescript": "^4.1.5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "collectCoverage": true,
+    "testRegex": "(/__tests__/.*\\.(test|spec))\\.ts$",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "limit-size": [
+    {
+      "path": "dist/scale.min.js",
+      "limit": "12 Kb",
+      "gzip": true
+    },
+    {
+      "path": "dist/scale.min.js",
+      "limit": "40 Kb"
+    }
+  ],
+  "author": {
+    "name": "AntV",
+    "url": "https://antv.vision/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antvis/scale"
+  },
+  "bugs": {
+    "url": "https://github.com/antvis/scale/issues"
+  },
+  "dependencies": {
+    "@antv/util": "^3.3.7",
+    "color-string": "^1.5.5",
+    "fecha": "^4.2.1"
+  }
+}

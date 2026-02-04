@@ -1,0 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.rotateVector = rotateVector;
+function rotateVector(x, y, rad) {
+    var X = x * Math.cos(rad) - y * Math.sin(rad);
+    var Y = x * Math.sin(rad) + y * Math.cos(rad);
+    return { x: X, y: Y };
+}
+//# sourceMappingURL=rotate-vector.js.map

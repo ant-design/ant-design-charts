@@ -1,0 +1,111 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/plugin/sitemapGenerator.ts
+var sitemapGenerator_exports = {};
+__export(sitemapGenerator_exports, {
+  default: () => generateSitemap
+});
+module.exports = __toCommonJS(sitemapGenerator_exports);
+var import_chalk = __toESM(require("chalk"));
+var import_fs = __toESM(require("fs"));
+var import_lodash = require("lodash");
+var import_moment = __toESM(require("moment"));
+var import_path = __toESM(require("path"));
+var import_xmlbuilder = __toESM(require("xmlbuilder"));
+var defaultConfig = {
+  enable: true,
+  outputDir: "dist",
+  filename: "sitemap.xml"
+};
+var currentDateTime = (0, import_moment.default)().format("YYYY-MM-DDTHH:mm:ss+00:00");
+function generateUrls(config) {
+  const urls = [];
+  function walkDir(currentPath) {
+    const files = import_fs.default.readdirSync(currentPath);
+    files.forEach((file) => {
+      const fullPath = import_path.default.join(currentPath, file);
+      const stat = import_fs.default.statSync(fullPath);
+      if (stat.isDirectory()) {
+        walkDir(fullPath);
+      } else if (stat.isFile() && import_path.default.extname(file) === ".html") {
+        const relativePath = import_path.default.relative(config.outputDir, fullPath);
+        let url = `${config.siteUrl}/${relativePath.replace(/\\/g, "/")}`;
+        if (url.endsWith("/index.html") && !url.match(/\/:(\w+)/) && !url.includes("/zh/")) {
+          url = url.replace(/\/index\.html$/, "");
+          urls.push(url);
+        }
+      }
+    });
+  }
+  walkDir(config.outputDir);
+  return urls;
+}
+function writeSitemap(config, urls) {
+  const root = import_xmlbuilder.default.create("urlset", {
+    version: "1.0",
+    encoding: "utf-8"
+  }).att("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9").att("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance").att(
+    "xsi:schemaLocation",
+    "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+  );
+  root.comment(` Created By G6 Sitemap Generator,  Generated at: ${currentDateTime} `);
+  urls.forEach((url) => {
+    const loc = url.replace(/\/index\.html$/, "");
+    const depth = url.split("/").length - 3;
+    const priority = Math.max(0.5, 1 - depth * 0.1).toFixed(2);
+    root.ele("url").ele("loc", loc).up().ele("lastmod", currentDateTime).up().ele("priority", priority);
+  });
+  const sitemapContent = root.end({ pretty: true });
+  import_fs.default.writeFileSync(import_path.default.join(config.outputDir, config.filename), sitemapContent);
+  console.log(import_chalk.default.green(`✅ Sitemap generated including ${urls.length} urls. `));
+}
+function generateRobotsTxt(config) {
+  const robotsContent = `User-agent: *
+Allow: /
+
+Sitemap: ${config.siteUrl}/sitemap.xml`;
+  import_fs.default.writeFileSync(import_path.default.join(config.outputDir, "robots.txt"), robotsContent);
+}
+function generateSitemap(api) {
+  const getConfig = () => {
+    const themeConfig = api.config.themeConfig || {};
+    let userConfig = themeConfig == null ? void 0 : themeConfig.sitemap;
+    if (!userConfig) {
+      userConfig = { enable: false };
+    }
+    return (0, import_lodash.merge)({ siteUrl: themeConfig.siteUrl }, defaultConfig, userConfig);
+  };
+  const config = getConfig();
+  if (!config.enable) {
+    return;
+  }
+  const urls = generateUrls(config);
+  writeSitemap(config, urls);
+  generateRobotsTxt(config);
+}

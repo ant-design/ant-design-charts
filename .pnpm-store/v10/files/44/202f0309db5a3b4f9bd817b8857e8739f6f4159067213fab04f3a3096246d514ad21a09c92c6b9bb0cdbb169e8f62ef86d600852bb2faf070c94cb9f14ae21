@@ -1,0 +1,18 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.toBeValidDate = toBeValidDate;
+var _jestGetType = require("jest-get-type");
+function toBeValidDate(actual) {
+  const {
+    printReceived,
+    matcherHint
+  } = this.utils;
+  const pass = (0, _jestGetType.getType)(actual) === 'date' && !isNaN(actual) && !isNaN(actual.getTime());
+  return {
+    pass,
+    message: () => pass ? matcherHint('.not.toBeValidDate', 'received', '') + '\n\n' + 'Expected value to not be a valid date received:\n' + `  ${printReceived(actual)}` : matcherHint('.toBeValidDate', 'received', '') + '\n\n' + 'Expected value to be a valid date received:\n' + `  ${printReceived(actual)}`
+  };
+}

@@ -1,0 +1,13 @@
+declare function useUser({ apiDomain, webDomain, fingerprint, }: {
+    apiDomain: string;
+    fingerprint: string;
+    webDomain?: string;
+}): {
+    user: any;
+    isLoading: boolean;
+    actions: {
+        doLogin: () => void;
+        doLogout: () => Promise<void>;
+    };
+};
+export default useUser;

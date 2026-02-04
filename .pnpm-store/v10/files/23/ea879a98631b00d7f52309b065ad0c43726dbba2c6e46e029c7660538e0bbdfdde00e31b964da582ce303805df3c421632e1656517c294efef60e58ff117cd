@@ -1,0 +1,1 @@
+{"version":3,"file":"is-array.js","sourceRoot":"","sources":["../src/is-array.ts"],"names":[],"mappings":";;AAAA,qCAA+B;AAE/B,mBAAe,UAAC,KAAU;IACxB,OAAO,KAAK,CAAC,OAAO,CAAC,CAAC;QACpB,KAAK,CAAC,OAAO,CAAC,KAAK,CAAC,CAAC,CAAC;QACtB,iBAAM,CAAC,KAAK,EAAE,OAAO,CAAC,CAAC;AAC3B,CAAC,EAAA"}

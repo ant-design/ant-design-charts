@@ -1,0 +1,462 @@
+@import '../../common/styles/variables.less';
+
+@nav-height: 64px;
+
+.header {
+  background: #fff;
+  box-shadow: 0 2px 8px #f0f1f2;
+  padding: 0;
+  position: relative;
+  z-index: 200;
+  font-family: Avenir, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  transition: box-shadow 0.3s, background 0.3s;
+
+  &.transparent {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &.fixed {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+  }
+
+  .container {
+    max-width: calc(100% - 80px);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: @nav-height;
+    line-height: @nav-height;
+  }
+
+  &.isHomePage {
+    margin-bottom: -@nav-height;
+
+    .container {
+      .container1440;
+    }
+  }
+
+  &.lightTheme {
+    margin-bottom: -@nav-height;
+
+    nav {
+      a,
+      span,
+      .versions {
+        color: #424e66 !important;
+      }
+
+      .translation {
+        fill: #424e66 !important;
+      }
+    }
+  }
+
+  &.isAntVHome {
+    margin-bottom: -@nav-height;
+
+    .container {
+      max-width: 100%;
+      padding: 0 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav {
+      .menu {
+        > li {
+          margin-right: 8px;
+          font-size: 16px;
+
+          > :first-child {
+            display: flex;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 12px;
+            height: 32px;
+            line-height: 32px;
+            border-radius: 6px;
+            color: #424e66;
+
+            &:hover {
+              background: #fff;
+              box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+            }
+          }
+        }
+
+        .navIcon {
+          > :first-child {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            padding: 0;
+          }
+        }
+
+        .versions {
+          margin-right: 0;
+        }
+
+        .languageSwitcher {
+          position: relative;
+          top: 1px;
+        }
+
+        .wxQrcode {
+          position: relative;
+          top: 2px;
+        }
+
+        .githubCorner {
+          position: relative;
+          top: 4px;
+        }
+      }
+    }
+  }
+
+  .banner {
+    width: 100%;
+    background: #daf5eb;
+    text-align: center;
+    word-break: keep-all;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    h1 {
+      margin: 0;
+      height: 100%;
+
+      a {
+        display: block;
+        height: 100%;
+
+        svg {
+          display: inline-block;
+          vertical-align: middle;
+          position: relative;
+          top: -1.5px;
+        }
+
+        img {
+          height: 30px;
+          position: relative;
+          top: -1.5px;
+        }
+      }
+    }
+
+    .divider {
+      width: 1px;
+      height: 24px;
+      background-color: #ccc;
+      display: inline-block;
+      margin: 0 20px;
+      transition: all 0.3s;
+    }
+
+    .subProduceName {
+      margin: 0;
+      white-space: nowrap;
+      font-size: 18px;
+
+      a {
+        color: rgba(0, 0, 0, 0.85);
+        transition: all 0.3s;
+
+        &:hover {
+          color: rgba(0, 0, 0, 1);
+        }
+      }
+    }
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    .menu {
+      font-weight: normal;
+      color: #697b8c;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      white-space: nowrap;
+
+      li {
+        display: inline-block;
+        margin-right: 28px;
+        transition: box-shadow 0.3s;
+        box-shadow: 0 2px 0 transparent inset;
+
+        &.activeItem {
+          box-shadow: 0 2px 0 var(--primary-color) inset;
+
+          a {
+            color: var(--primary-color);
+          }
+        }
+
+        a {
+          color: #697b8c;
+          transition: all 0.3s;
+          display: block;
+
+          &:hover {
+            color: var(--primary-color);
+          }
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      .ecoSystems {
+        cursor: pointer;
+        transition: all 0.3s;
+
+        svg {
+          opacity: 0.3;
+        }
+
+        &:hover {
+          & {
+            color: var(--primary-color);
+          }
+
+          svg {
+            color: #697b8c;
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .githubCorner {
+        i {
+          font-size: 20px;
+          position: relative;
+          top: 2px;
+        }
+      }
+
+      .githubStar {
+        &::after {
+          display: block;
+          content: '';
+          clear: both;
+        }
+
+        > span {
+          float: left;
+          height: 28px;
+          transition: all 0.3s;
+        }
+      }
+
+      .translation {
+        fill: #697b8c;
+        width: 20px;
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
+
+        .translationIcon {
+          font-size: 20px;
+        }
+
+        &:hover {
+          fill: var(--primary-color);
+        }
+      }
+
+      .versions {
+        cursor: pointer;
+        transition: all 0.3s;
+
+        svg {
+          opacity: 0.3;
+        }
+
+        &:hover {
+          & {
+            color: var(--primary-color);
+          }
+
+          svg {
+            color: #697b8c;
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .arrow {
+        width: 14px;
+        margin-left: 2px;
+        position: relative;
+        top: -2px;
+        transition: all 0.3s;
+
+        &.open {
+          transform: rotate(180deg);
+        }
+      }
+
+      &.popup {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 8px 0;
+        text-align: center;
+        transition: all 0.3s;
+        height: calc(100vh - 64px);
+        overflow: auto;
+        opacity: 1;
+
+        li {
+          display: block;
+          line-height: 64px;
+          margin-right: 0;
+          font-size: 16px;
+
+          &.activeItem {
+            box-shadow: none;
+            background: tint(#873bf4, 90%);
+
+            a {
+              color: var(--primary-color);
+            }
+          }
+
+          .productsMenu {
+            position: static !important;
+            text-align: left;
+            max-height: none;
+            height: 0;
+
+            // hide mask
+            + div {
+              display: none;
+            }
+          }
+        }
+
+        &.popupHidden {
+          height: 0;
+          opacity: 0;
+          overflow: hidden;
+          transition: all 0.3s;
+        }
+      }
+    }
+
+    .menuIcon {
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+      padding: 0 8px;
+      transition: all 0.3s;
+
+      &:hover {
+        color: #222;
+      }
+    }
+  }
+
+  .topAlert {
+    display: flex;
+    height: 22px;
+    justify-content: center;
+    align-items: center;
+
+    > img {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+    }
+
+    > a {
+      margin-left: 8px;
+    }
+  }
+}
+
+.remindHref {
+  margin: 0px 6px 0px 5px;
+}
+
+.modalContent {
+  padding: 16px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .header {
+    .nav {
+      .menu {
+        li {
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 931.99px) {
+  .header {
+    .nav {
+      .menu {
+        li {
+          margin-right: 16px;
+        }
+      }
+    }
+
+    .left {
+      .divider {
+        margin: 0 12px;
+      }
+
+      .subProduceName {
+        font-size: 16px;
+        margin-right: 8px;
+      }
+    }
+
+    .container {
+      max-width: calc(100% - 60px);
+    }
+  }
+}
+
+@media only screen and (max-width: 767.99px) {
+  .header {
+    .container {
+      max-width: calc(100% - 32px);
+    }
+
+    .menu {
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      position: fixed;
+    }
+  }
+}

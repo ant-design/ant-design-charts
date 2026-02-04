@@ -1,0 +1,1 @@
+{"version":3,"file":"sliderX.js","sourceRoot":"","sources":["../../src/component/sliderX.ts"],"names":[],"mappings":";;;AACA,qCAAiD;AAIjD;;GAEG;AACI,MAAM,OAAO,GAAwB,CAAC,OAAO,EAAE,EAAE;IACtD,OAAO,IAAA,eAAM,kCAAM,OAAO,KAAE,WAAW,EAAE,YAAY,IAAG,CAAC;AAC3D,CAAC,CAAC;AAFW,QAAA,OAAO,WAElB;AAEF,eAAO,CAAC,KAAK,mCACR,eAAM,CAAC,KAAK,KACf,eAAe,EAAE,QAAQ,GAC1B,CAAC"}

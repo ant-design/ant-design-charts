@@ -1,0 +1,154 @@
+{
+  "name": "react-intersection-observer",
+  "version": "9.16.0",
+  "description": "Monitor if a component is inside the viewport, using IntersectionObserver API",
+  "type": "commonjs",
+  "source": "src/index.tsx",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "./test-utils": {
+      "import": {
+        "types": "./test-utils/index.d.mts",
+        "default": "./test-utils/index.mjs"
+      },
+      "require": {
+        "types": "./test-utils/index.d.ts",
+        "default": "./test-utils/index.js"
+      }
+    },
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "files": ["dist", "test-utils"],
+  "author": "Daniel Schmidt",
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thebuilder/react-intersection-observer.git"
+  },
+  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b",
+  "scripts": {
+    "prebuild": "rm -rf dist lib",
+    "build": "tsup && mkdir dist/esm && cp dist/index.mjs dist/esm/index.js",
+    "postbuild": "attw --pack && publint && size-limit",
+    "dev": "run-p dev:*",
+    "dev:package": "tsup src/index.tsx --watch",
+    "dev:storybook": "pnpm --filter storybook dev",
+    "release": "bumpp && npm publish",
+    "lint": "biome check .",
+    "version": "pnpm build",
+    "storybook:build": "pnpm build && pnpm --filter storybook build",
+    "test": "vitest",
+    "test:browser": "vitest --workspace=vitest.workspace.ts"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "hooks",
+    "viewport",
+    "intersection",
+    "observer",
+    "lazy load",
+    "inview",
+    "useInView",
+    "useIntersectionObserver"
+  ],
+  "release": {
+    "branches": [
+      "main",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,css,md,ts,tsx}": [
+      "biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true"
+    ]
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.mjs",
+      "name": "InView",
+      "import": "{ InView }",
+      "limit": "1.8 kB"
+    },
+    {
+      "path": "dist/index.mjs",
+      "name": "useInView",
+      "import": "{ useInView }",
+      "limit": "1.3 kB"
+    },
+    {
+      "path": "dist/index.mjs",
+      "name": "observe",
+      "import": "{ observe }",
+      "limit": "1 kB"
+    }
+  ],
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.4",
+    "@biomejs/biome": "^1.9.4",
+    "@size-limit/preset-small-lib": "^11.2.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/browser": "^3.0.7",
+    "@vitest/coverage-istanbul": "^3.0.7",
+    "bumpp": "^10.0.3",
+    "lint-staged": "^15.4.3",
+    "microbundle": "^0.15.1",
+    "npm-run-all": "^4.1.5",
+    "playwright": "^1.50.1",
+    "publint": "^0.3.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "simple-git-hooks": "^2.11.1",
+    "size-limit": "^11.2.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.7"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "pnpm": {
+    "allowedDeprecatedVersions": {
+      "rollup-plugin-terser": "*",
+      "sourcemap-codec": "*",
+      "source-map-resolve": "*",
+      "source-map-url": "*",
+      "stable": "*",
+      "urix": "*"
+    }
+  }
+}

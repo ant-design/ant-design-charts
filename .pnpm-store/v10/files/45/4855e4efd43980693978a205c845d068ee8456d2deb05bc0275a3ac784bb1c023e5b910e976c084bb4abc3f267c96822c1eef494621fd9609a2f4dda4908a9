@@ -1,0 +1,58 @@
+import type { CheckCardProps } from '@ant-design/pro-card';
+import type { ListGridType } from 'antd/lib/list';
+import type { ExpandableConfig } from 'antd/lib/table/interface';
+import React from 'react';
+import type { GetComponentProps } from './index';
+export type RenderExpandIconProps<RecordType> = {
+    prefixCls: string;
+    expanded: boolean;
+    expandIcon: React.ReactNode | JSX.Element | ((props: {
+        onExpand: (expanded: boolean) => void;
+        expanded: boolean;
+        record: RecordType;
+    }) => React.ReactNode);
+    onExpand: (expanded: boolean) => void;
+    record: RecordType;
+    hashId: string;
+};
+export declare function renderExpandIcon<RecordType>({ prefixCls, expandIcon, onExpand, expanded, record, hashId, }: RenderExpandIconProps<RecordType>): import("react/jsx-runtime").JSX.Element;
+export type ItemProps<RecordType> = {
+    title?: React.ReactNode;
+    subTitle?: React.ReactNode;
+    checkbox?: React.ReactNode;
+    className?: string;
+    prefixCls?: string;
+    item?: any;
+    subheader?: {
+        title: React.ReactNode;
+        actions: React.ReactNode[];
+    };
+    index: number;
+    selected?: boolean;
+    avatar?: React.ReactNode;
+    content?: React.ReactNode;
+    actions?: React.ReactNode[];
+    extra?: React.ReactNode;
+    description?: React.ReactNode;
+    loading?: boolean;
+    style?: React.CSSProperties;
+    grid?: ListGridType;
+    expand?: boolean;
+    rowSupportExpand?: boolean;
+    cardActionProps?: 'actions' | 'extra';
+    onExpand?: (expand: boolean) => void;
+    expandable?: ExpandableConfig<any>;
+    showActions?: 'hover' | 'always';
+    showExtra?: 'hover' | 'always';
+    type?: 'new' | 'top' | 'inline' | 'subheader';
+    isEditable: boolean;
+    recordKey: string | number | undefined;
+    cardProps?: CheckCardProps;
+    record: RecordType;
+    onRow?: GetComponentProps<RecordType>;
+    onItem?: GetComponentProps<RecordType>;
+    itemHeaderRender?: ((item: RecordType, index: number, defaultDom: JSX.Element | null) => React.ReactNode) | false;
+    itemTitleRender?: ((item: RecordType, index: number, defaultDom: JSX.Element | null) => React.ReactNode) | false;
+};
+declare function ProListItem<RecordType>(props: ItemProps<RecordType>): import("react/jsx-runtime").JSX.Element;
+export default ProListItem;

@@ -1,0 +1,1 @@
+{"version":3,"file":"transform-mat4.d.ts","sourceRoot":"","sources":["../../src/utils/transform-mat4.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAQ,MAAM,WAAW,CAAC;AAEvC,OAAO,EAAE,eAAe,EAAoB,MAAM,eAAe,CAAC;AAClE,OAAO,KAAK,EAAE,aAAa,EAAE,MAAM,kCAAkC,CAAC;AA+ItE,wBAAgB,qBAAqB,CACnC,SAAS,EAAE,eAAe,EAAE,EAC5B,MAAM,EAAE,aAAa,GACpB,IAAI,CAsBN"}

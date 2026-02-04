@@ -1,0 +1,18 @@
+import { build } from "./commands/build";
+import { serve } from "./commands/dev";
+import * as webpackCompat from "./config/webpackCompat";
+export { build };
+export { serve };
+declare const utoopack: {
+    build: typeof build;
+    serve: typeof serve;
+};
+export default utoopack;
+export * from "./config/types";
+export * from "./config/webpackCompat";
+export * from "./core/types";
+export * from "./utils/find-root";
+export type WebpackConfig = webpackCompat.WebpackConfig;
+declare namespace utoopack {
+    type WebpackConfig = webpackCompat.WebpackConfig;
+}

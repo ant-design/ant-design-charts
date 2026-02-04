@@ -1,0 +1,45 @@
+{
+	"name": "tempfile",
+	"version": "5.0.0",
+	"description": "Get a random temporary file path",
+	"license": "MIT",
+	"repository": "sindresorhus/tempfile",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"engines": {
+		"node": ">=14.18"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"temp",
+		"temporary",
+		"tempfile",
+		"file",
+		"path",
+		"random",
+		"uuid"
+	],
+	"dependencies": {
+		"temp-dir": "^3.0.0"
+	},
+	"devDependencies": {
+		"ava": "^5.2.0",
+		"tsd": "^0.25.0",
+		"xo": "^0.53.1"
+	}
+}

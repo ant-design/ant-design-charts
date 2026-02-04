@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_umijs_ui=self.webpackChunk_umijs_ui||[]).push([[259],{89631:function(i,n,u){u.r(n),u.d(n,{default:function(){return s}});var t=u(29088);function s(){return(0,t.jsx)("h1",{children:"Doctor"})}}}]);

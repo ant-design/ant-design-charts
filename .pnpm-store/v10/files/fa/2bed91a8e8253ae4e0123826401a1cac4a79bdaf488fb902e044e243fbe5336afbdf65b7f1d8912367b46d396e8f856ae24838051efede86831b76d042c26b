@@ -1,0 +1,89 @@
+{
+  "version": "2.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:run:firefox": "cypress run --browser firefox",
+    "semantic-release": "semantic-release",
+    "semantic-release:dry-run": "semantic-release -d"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "@makotot/ghostui",
+  "author": "makotot",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "headless",
+    "react",
+    "component",
+    "hooks",
+    "render props"
+  ],
+  "module": "dist/ghostui.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/ghostui.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/ghostui.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "13.1.0",
+    "@commitlint/config-conventional": "13.1.0",
+    "@semantic-release/changelog": "5.0.1",
+    "@semantic-release/commit-analyzer": "8.0.1",
+    "@semantic-release/git": "9.0.0",
+    "@semantic-release/github": "7.2.3",
+    "@semantic-release/npm": "7.1.3",
+    "@semantic-release/release-notes-generator": "9.0.3",
+    "@size-limit/preset-small-lib": "5.0.3",
+    "@types/react": "17.0.17",
+    "@types/react-dom": "17.0.9",
+    "@types/react-router-dom": "5.1.8",
+    "concurrently": "6.2.1",
+    "cypress": "8.2.0",
+    "husky": "7.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-router-dom": "5.2.0",
+    "semantic-release": "17.4.5",
+    "size-limit": "5.0.3",
+    "tsdx": "0.14.1",
+    "tslib": "2.3.1",
+    "typescript": "4.3.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makotot/GhostUI.git"
+  }
+}

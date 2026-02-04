@@ -1,0 +1,63 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+import { useSiteData } from 'dumi';
+import { get } from 'lodash-es';
+import React, { useContext } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ThemeAntVContext } from "../../context";
+import CodeRunner from "dumi/theme/slots/CodeRunner";
+import styles from "./index.module.less";
+/**
+ * Markdown 标签插件 Playground
+ */
+var Playground = function Playground(_ref) {
+  var rid = _ref.rid,
+    path = _ref.path,
+    ratio = _ref.ratio,
+    _ref$height = _ref.height,
+    height = _ref$height === void 0 ? 400 : _ref$height;
+  /** 示例页面的元数据信息 */
+  var _useContext = useContext(ThemeAntVContext),
+    meta = _useContext.meta;
+  var exampleTopics = meta.exampleTopics;
+  // 'case/area/demo/area5.ts'
+  var _ref2 = path.match(/([\w-]+)\/([\w-]+)\/demo\/([\w-]+)/i),
+    _ref3 = _slicedToArray(_ref2, 4),
+    _ = _ref3[0],
+    topic = _ref3[1],
+    example = _ref3[2],
+    demo = _ref3[3];
+  var themeConfig = useSiteData();
+  var defaultSize = get(themeConfig, 'editor.playgroundSize', 0.38);
+  var size = isNaN(Number(ratio)) ? defaultSize : Number(ratio);
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles.container,
+    style: {
+      height: height
+    }
+  }, /*#__PURE__*/React.createElement(CodeRunner, {
+    isPlayground: true,
+    exampleTopics: exampleTopics,
+    topic: topic,
+    example: example,
+    demo: demo,
+    size: size,
+    replaceId: rid
+  }));
+};
+function ErrorFallback(_ref4) {
+  var error = _ref4.error;
+  console.log(error);
+  return /*#__PURE__*/React.createElement("div", {
+    role: "alert"
+  }, /*#__PURE__*/React.createElement("p", null, "Something went wrong:"), /*#__PURE__*/React.createElement("pre", null, error.message));
+}
+export default (function (props) {
+  return /*#__PURE__*/React.createElement(ErrorBoundary, {
+    FallbackComponent: ErrorFallback
+  }, /*#__PURE__*/React.createElement(Playground, props));
+});

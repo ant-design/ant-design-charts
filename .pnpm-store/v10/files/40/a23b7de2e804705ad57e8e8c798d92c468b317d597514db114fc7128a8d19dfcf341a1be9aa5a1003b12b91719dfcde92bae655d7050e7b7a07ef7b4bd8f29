@@ -1,0 +1,23 @@
+import cx from 'classnames';
+import React from 'react';
+import { ic } from "../../../../slots/hooks";
+import styles from "./FeatureCard.module.less";
+var FeatureCard = function FeatureCard(_ref) {
+  var icon = _ref.icon,
+    title = _ref.title,
+    description = _ref.description;
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles.card
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.content
+  }, /*#__PURE__*/React.createElement("img", {
+    className: cx(styles.icon, 'feature-logo'),
+    src: icon,
+    alt: "advantage"
+  }), /*#__PURE__*/React.createElement("p", {
+    className: styles.title
+  }, ic(title)), /*#__PURE__*/React.createElement("p", {
+    className: styles.description
+  }, ic(description))));
+};
+export default FeatureCard;

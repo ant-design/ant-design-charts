@@ -1,0 +1,57 @@
+{
+	"name": "chalk-template",
+	"version": "1.1.2",
+	"description": "Terminal string styling with tagged template literals",
+	"license": "MIT",
+	"repository": "chalk/chalk-template",
+	"funding": "https://github.com/chalk/chalk-template?sponsor=1",
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"engines": {
+		"node": ">=14.16"
+	},
+	"scripts": {
+		"test": "xo && ava test/index.js && cross-env FORCE_COLOR=0 ava test/no-color.js && cross-env FORCE_COLOR=3 TERM=dumb ava test/full-color.js && cross-env FORCE_COLOR=3 TERM=dumb ava test/template.js && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"chalk",
+		"template",
+		"templates",
+		"templating",
+		"ansi",
+		"styles",
+		"color",
+		"colour",
+		"colors",
+		"terminal",
+		"console",
+		"string",
+		"tty",
+		"escape",
+		"formatting",
+		"rgb",
+		"256",
+		"shell",
+		"xterm",
+		"log",
+		"logging",
+		"command-line",
+		"text"
+	],
+	"dependencies": {
+		"chalk": "^5.2.0"
+	},
+	"devDependencies": {
+		"ava": "^5.2.0",
+		"cross-env": "^7.0.3",
+		"tsd": "^0.28.1",
+		"xo": "^0.54.2"
+	}
+}

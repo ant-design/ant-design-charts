@@ -1,0 +1,35 @@
+import { Component } from '../../core';
+import { Group } from '../../shapes';
+import type { NavigatorOptions, NavigatorStyleProps } from './types';
+export type { NavigatorOptions, NavigatorStyleProps };
+export declare class Navigator extends Component<NavigatorStyleProps> {
+    constructor(options: NavigatorOptions);
+    private playState;
+    private contentGroup;
+    private playWindow;
+    private get defaultPage();
+    private innerCurrPage;
+    private clipPath;
+    private prevBtnGroup;
+    private nextBtnGroup;
+    private pageInfoGroup;
+    private get pageViews();
+    private get controllerShape();
+    private get pageShape();
+    getContainer(): Group;
+    get totalPages(): number;
+    get currPage(): number;
+    getBBox(): DOMRect;
+    goTo(pageNum: number): import("@antv/g").IAnimation | null;
+    prev(): import("@antv/g").IAnimation | null;
+    next(): import("@antv/g").IAnimation | null;
+    private renderClipPath;
+    private setVisiblePages;
+    private adjustControllerLayout;
+    private updatePageInfo;
+    private getFollowingPageDiff;
+    private prepareFollowingPage;
+    private renderController;
+    render(attributes: NavigatorStyleProps, container: Group): void;
+    bindEvents(): void;
+}

@@ -1,0 +1,15 @@
+import React from 'react';
+import GitInsightIcon from "./GitInsightIcon";
+import ScrollNumber from "./ScrollNumber";
+var CountCard = function CountCard(props) {
+  var type = props.type,
+    count = props.count;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-center"
+  }, /*#__PURE__*/React.createElement(GitInsightIcon, {
+    type: type
+  }), /*#__PURE__*/React.createElement(ScrollNumber, {
+    count: count
+  }));
+};
+export default CountCard;

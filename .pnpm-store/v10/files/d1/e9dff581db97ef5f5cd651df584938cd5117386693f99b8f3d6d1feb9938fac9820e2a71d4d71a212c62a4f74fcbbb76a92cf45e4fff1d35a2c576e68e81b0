@@ -1,0 +1,101 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/plugin/antVReactTechStack.ts
+var antVReactTechStack_exports = {};
+__export(antVReactTechStack_exports, {
+  AntVReactTechStack: () => AntVReactTechStack
+});
+module.exports = __toCommonJS(antVReactTechStack_exports);
+var import_react = __toESM(require("dumi/dist/techStacks/react"));
+var import_fs = __toESM(require("fs"));
+var import_sylvanas = __toESM(require("sylvanas"));
+var import_package = require("../../package.json");
+var AntVReactTechStack = class extends import_react.default {
+  generatePreviewerProps(...[props, opts]) {
+    var _a;
+    props.pkgDependencyList = { ...import_package.devDependencies, ...import_package.dependencies };
+    props.jsx ?? (props.jsx = "");
+    if (opts.type === "code-block") {
+      props.jsx = (opts == null ? void 0 : opts.entryPointCode) ? import_sylvanas.default.parseText(opts.entryPointCode) : "";
+    }
+    if (opts.type === "external") {
+      const locale = (_a = opts.mdAbsPath.match(/[a-z-]+\.([a-z-]+)\.md$/i)) == null ? void 0 : _a[1];
+      const mdPath = opts.fileAbsPath.replace(/\.\w+$/, ".md");
+      const md = import_fs.default.existsSync(mdPath) ? import_fs.default.readFileSync(mdPath, "utf-8") : "";
+      const codePath = opts.fileAbsPath.replace(/\.\w+$/, ".tsx");
+      const code = import_fs.default.existsSync(codePath) ? import_fs.default.readFileSync(codePath, "utf-8") : "";
+      props.jsx = import_sylvanas.default.parseText(code);
+      if (md) {
+        const blocks = {};
+        const lines = md.split("\n");
+        let blockName = "";
+        let cacheList = [];
+        const getBlockName = (text) => {
+          if (text.startsWith("## ")) {
+            return text.replace("## ", "").trim();
+          }
+          if (text.startsWith("```css") || text.startsWith("<style>")) {
+            return "style";
+          }
+          return null;
+        };
+        const fillBlock = (name, lineList) => {
+          if (lineList.length) {
+            let fullText;
+            if (name === "style") {
+              fullText = lineList.join("\n").replace(/<\/?style>/g, "").replace(/```(\s*css)/g, "");
+            } else {
+              fullText = lineList.slice(1).join("\n");
+            }
+            blocks[name] = fullText;
+          }
+        };
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          const nextBlockName = getBlockName(line);
+          if (nextBlockName) {
+            fillBlock(blockName, cacheList);
+            blockName = nextBlockName;
+            cacheList = [line];
+          } else {
+            cacheList.push(line);
+          }
+        }
+        fillBlock(blockName, cacheList);
+        props.description = blocks[locale];
+        props.style = blocks.style;
+      }
+    }
+    return props;
+  }
+};
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  AntVReactTechStack
+});

@@ -1,0 +1,21 @@
+{
+  "name": "@leancloud/adapter-types",
+  "version": "3.0.0",
+  "description": "Type definitions for adaptors",
+  "author": "Lee Yeh <lee55962698@gmail.com>",
+  "homepage": "https://github.com/leancloud/adapters#readme",
+  "license": "MIT",
+  "main": "",
+  "types": "types.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leancloud/adapters.git"
+  },
+  "scripts": {
+    "test": "tsc types.d.ts"
+  },
+  "gitHead": "baaca8947c9911dec1dfbe0e8ab5bf7dcd7219f6"
+}

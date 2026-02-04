@@ -1,0 +1,11 @@
+import React from 'react';
+declare const InputAreaRender: (props: {
+    isShowStop: boolean;
+    apiDomain: string;
+    disabled?: boolean | undefined;
+    disabledPlaceholder?: string | undefined;
+    onMessageSend: (message: string) => void | Promise<any>;
+    onClear: () => void;
+    onStop: () => void;
+}) => React.JSX.Element;
+export default InputAreaRender;

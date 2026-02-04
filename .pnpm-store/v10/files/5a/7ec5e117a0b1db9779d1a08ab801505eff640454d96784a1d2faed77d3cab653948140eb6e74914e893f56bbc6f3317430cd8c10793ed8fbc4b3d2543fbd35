@@ -1,0 +1,8 @@
+import React from 'react';
+export declare const UITemplateRender: ({ templateId, apiDomain, webDomain, token, cardData }: {
+    templateId: string;
+    apiDomain: string;
+    webDomain?: string | undefined;
+    token: string;
+    cardData: any;
+}) => React.JSX.Element | null;

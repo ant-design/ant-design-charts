@@ -1,0 +1,43 @@
+{
+  "name": "@umijs/route-utils",
+  "version": "4.0.3",
+  "description": "Quickly process the routing of umi",
+  "repository": "https://github.com/umijs/route-utils",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "/lib",
+    "/es",
+    "/dist"
+  ],
+  "scripts": {
+    "build": "father-build && tsc -d -p tsconfig.build.json",
+    "lint": "npm run lint-eslint",
+    "lint-eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty",
+    "test": "umi-test",
+    "test:coverage": "umi-test ./test --coverage",
+    "tsc": "tsc --noEmit"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@umijs/fabric": "^2.0.8",
+    "eslint": "^7.0.0",
+    "father-build": "^1.18.1",
+    "np": "^6.2.3",
+    "prettier": "^2.0.5",
+    "typescript": "^3.3.3",
+    "umi-test": "^1.9.6"
+  },
+  "authors": {
+    "name": "chenshuai2144",
+    "email": "qixian.cs@outlook.com"
+  }
+}

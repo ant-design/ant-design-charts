@@ -1,0 +1,148 @@
+import _regeneratorRuntime from "@babel/runtime/helpers/esm/regeneratorRuntime";
+import _asyncToGenerator from "@babel/runtime/helpers/esm/asyncToGenerator";
+import { forEach } from 'lodash';
+import { MessageTypeEnum } from "../interface";
+
+/**
+ * parse stream chunk data to lui message json
+ * @param rawData original data
+ * @returns
+ */
+export var convertChunkToJson = function convertChunkToJson(rawData) {
+  var _rawData$trim;
+  var chunks = rawData === null || rawData === void 0 || (_rawData$trim = rawData.trim()) === null || _rawData$trim === void 0 ? void 0 : _rawData$trim.split('\n\n');
+  var tools = [];
+  var messages = [];
+  var errors = [];
+  try {
+    forEach(chunks, function (chunk) {
+      var regex = /data: (.*?})\s*$/;
+      var match = chunk.match(regex);
+      // SSE prototype
+      if (match && match[1]) {
+        var parsedChunk = JSON.parse(match[1]);
+        if (parsedChunk.type === 'tool') {
+          tools.push(parsedChunk);
+        } else if (parsedChunk.type === 'message') {
+          messages.push(parsedChunk.content);
+        } else if (parsedChunk.status === 'error') {
+          console.warn('assistant error info:', parsedChunk.message);
+          errors.push(parsedChunk.message);
+        }
+        // ignore other type
+      } else {
+        messages.push(chunk);
+      }
+    });
+    // final message
+    return {
+      tools: tools,
+      message: messages.join(''),
+      errors: errors
+    };
+  } catch (error) {
+    // it seems never happen
+    errors.push(error.message);
+    return {
+      tools: tools,
+      message: messages.join(''),
+      errors: errors
+    };
+  }
+};
+export var parseStreamChunk = function parseStreamChunk(origin, rawData) {
+  var tool = origin.find(function (item) {
+    return item.type === MessageTypeEnum.TOOL;
+  });
+  var message = origin.find(function (item) {
+    return item.type === MessageTypeEnum.TEXT;
+  });
+  var error = origin.find(function (item) {
+    return item.type === MessageTypeEnum.ERROR;
+  });
+  try {
+    var parsedChunk = JSON.parse(rawData);
+    if (parsedChunk.type === 'tool') {
+      tool = parsedChunk;
+    } else if (parsedChunk.type === 'message') {
+      var _message$text, _message;
+      message = {
+        type: MessageTypeEnum.TEXT,
+        // @ts-ignore
+        text: ((_message$text = (_message = message) === null || _message === void 0 ? void 0 : _message.text) !== null && _message$text !== void 0 ? _message$text : '') + parsedChunk.content
+      };
+    } else if (parsedChunk.status === 'error') {
+      var _error$text, _error;
+      console.warn('assistant error info:', parsedChunk.message);
+      error = {
+        type: MessageTypeEnum.ERROR,
+        // @ts-ignore
+        text: ((_error$text = (_error = error) === null || _error === void 0 ? void 0 : _error.text) !== null && _error$text !== void 0 ? _error$text : '') + parsedChunk.message
+      };
+    }
+  } catch (e) {
+    error = {
+      type: MessageTypeEnum.ERROR,
+      text: e.message
+    };
+  }
+  return [tool, message, error].filter(function (item) {
+    return !!item;
+  });
+};
+export var handleStream = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(response) {
+    var reader, decoder, encoder, readableStream;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          reader = response.body.getReader();
+          decoder = new TextDecoder('utf-8');
+          encoder = new TextEncoder();
+          readableStream = new ReadableStream({
+            start: function start(controller) {
+              return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+                var push;
+                return _regeneratorRuntime().wrap(function _callee$(_context) {
+                  while (1) switch (_context.prev = _context.next) {
+                    case 0:
+                      push = function _push() {
+                        reader.read().then(function (_ref2) {
+                          var done = _ref2.done,
+                            value = _ref2.value;
+                          if (done) {
+                            controller.close();
+                            return;
+                          }
+                          if (value) {
+                            var chunk = decoder.decode(value, {
+                              stream: true
+                            });
+                            controller.enqueue(encoder.encode(chunk));
+                            push();
+                          }
+                        }).catch(function (err) {
+                          console.error('读取流中的数据时发生错误', err);
+                          controller.error(err);
+                        });
+                      };
+                      push();
+                    case 2:
+                    case "end":
+                      return _context.stop();
+                  }
+                }, _callee);
+              }))();
+            }
+          });
+          return _context2.abrupt("return", new Response(readableStream));
+        case 5:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function handleStream(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();

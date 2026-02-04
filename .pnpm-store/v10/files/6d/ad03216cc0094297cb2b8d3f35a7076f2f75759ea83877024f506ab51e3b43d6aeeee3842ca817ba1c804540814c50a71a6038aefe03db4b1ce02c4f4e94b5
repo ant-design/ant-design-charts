@@ -1,0 +1,1 @@
+{"version":3,"file":"ellipsis.js","sourceRoot":"","sources":["../../src/util/ellipsis.ts"],"names":[],"mappings":";;AAGA,gCAEC;AAJD,+BAAqC;AAErC,SAAgB,UAAU,CAAC,IAAU,EAAE,CAAS,EAAE,MAAc;IAAd,uBAAA,EAAA,cAAc;IAC9D,IAAA,kBAAW,EAAC,IAAI,EAAE,EAAE,QAAQ,EAAE,IAAI,EAAE,aAAa,EAAE,CAAC,EAAE,QAAQ,EAAE,CAAC,EAAE,YAAY,EAAE,MAAM,EAAE,CAAC,CAAC;AAC7F,CAAC"}

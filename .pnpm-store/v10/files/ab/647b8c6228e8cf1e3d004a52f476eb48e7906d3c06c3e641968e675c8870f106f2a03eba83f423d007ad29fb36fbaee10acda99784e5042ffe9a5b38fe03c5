@@ -1,0 +1,10 @@
+import React from 'react';
+import { IToolExtraInfo, IToolStatus } from '../interface';
+export interface ThoughtChainProps {
+    content?: IToolExtraInfo;
+    status?: IToolStatus;
+    source?: string;
+    timeCost?: string;
+}
+declare const ThoughtChain: React.FC<ThoughtChainProps>;
+export default ThoughtChain;

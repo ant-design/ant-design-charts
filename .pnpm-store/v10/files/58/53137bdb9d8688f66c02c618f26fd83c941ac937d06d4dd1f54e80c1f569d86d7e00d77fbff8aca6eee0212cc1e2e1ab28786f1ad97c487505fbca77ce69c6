@@ -1,0 +1,79 @@
+{
+  "name": "svgo-browser",
+  "version": "1.3.8",
+  "description": "svgo tool for browser and node usage",
+  "keywords": [
+    "svgo",
+    "svg",
+    "optimize",
+    "minify"
+  ],
+  "homepage": "https://github.com/rtivital/svgo-browser",
+  "bugs": {
+    "url": "https://github.com/rtivital/svgo-browser/issues"
+  },
+  "author": {
+    "name": "Kir Belevich",
+    "email": "kir@belevi.ch",
+    "url": "https://github.com/deepsweet"
+  },
+  "contributors": [
+    {
+      "name": "Sergey Belov",
+      "email": "peimei@ya.ru",
+      "url": "http://github.com/arikon"
+    },
+    {
+      "name": "Lev Solntsev",
+      "email": "lev.sun@ya.ru",
+      "url": "http://github.com/GreLI"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rtivital/svgo-browser"
+  },
+  "main": "./lib/svgo.js",
+  "bin": {
+    "svgo": "./bin/svgo"
+  },
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib",
+    "example": "./examples"
+  },
+  "scripts": {
+    "test": "set NODE_ENV=test && mocha",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "coa": "^2.0.2",
+    "css-select": "^2.0.0",
+    "css-select-base-adapter": "^0.1.1",
+    "css-tree": "1.0.0-alpha.37",
+    "csso": "^4.0.2",
+    "js-yaml": "^3.13.1",
+    "mkdirp": "~0.5.1",
+    "sax": "~1.2.4",
+    "stable": "^0.1.8",
+    "unquote": "~1.1.1",
+    "util.promisify": "~1.0.0"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.7",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "fs-extra": "~8.1.0",
+    "istanbul": "~0.4.5",
+    "mocha": "~6.2.2",
+    "mocha-istanbul": "~0.3.0",
+    "mock-stdin": "~0.3.1",
+    "should": "~13.2.3"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "license": "MIT"
+}

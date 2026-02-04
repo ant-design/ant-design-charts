@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "k": {
+      "description": "Property Value keyframes",
+      "extended_name": "Keyframes",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/properties/valueKeyframe"
+      }
+    },
+    "x": {
+      "description": "Property Expression. An AE expression that modifies the value.",
+      "extended_name": "Expression",
+      "type": "string"
+    },
+    "ix": {
+      "description": "Property Index. Used for expressions.",
+      "extended_name": "Property Index",
+      "type": "string"
+    }
+  }
+}

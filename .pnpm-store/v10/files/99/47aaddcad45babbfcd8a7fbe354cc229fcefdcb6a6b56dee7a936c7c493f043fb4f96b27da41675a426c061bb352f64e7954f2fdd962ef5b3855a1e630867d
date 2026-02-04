@@ -1,0 +1,771 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inferred parser should format: foo/bar/package.json 1`] = `
+"{
+  "name": "",
+  "version": "",
+  "description": "",
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ],
+  "license": "",
+  "author": "",
+  "scripts": {
+    "prebuild": "",
+    "build": "",
+    "postbuild": "",
+    "dev": "",
+    "lint": "",
+    "start": "",
+    "pretest": "",
+    "test": "",
+    "posttest": ""
+  },
+  "dependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "devDependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "peerDependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "optionalDependencies": {
+    "A": "*",
+    "B": "*"
+  }
+}
+"
+`;
+
+exports[`inferred parser should format: package.json 1`] = `
+"{
+  "name": "",
+  "version": "",
+  "description": "",
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ],
+  "license": "",
+  "author": "",
+  "scripts": {
+    "prebuild": "",
+    "build": "",
+    "postbuild": "",
+    "dev": "",
+    "lint": "",
+    "start": "",
+    "pretest": "",
+    "test": "",
+    "posttest": ""
+  },
+  "dependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "devDependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "peerDependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "optionalDependencies": {
+    "A": "*",
+    "B": "*"
+  }
+}
+"
+`;
+
+exports[`inferred parser should not format: Package.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`inferred parser should not format: composer.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`inferred parser should not format: foo.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": ["C", "B", "A"]
+}
+"
+`;
+
+exports[`inferred parser should not format: package.JSON 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`inferred parser should not format: package.json/composer.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`inferred parser should not format: package-lock.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`json-stringify parser should format: foo/bar/package.json 1`] = `
+"{
+  "name": "",
+  "version": "",
+  "description": "",
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ],
+  "license": "",
+  "author": "",
+  "scripts": {
+    "prebuild": "",
+    "build": "",
+    "postbuild": "",
+    "dev": "",
+    "lint": "",
+    "start": "",
+    "pretest": "",
+    "test": "",
+    "posttest": ""
+  },
+  "dependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "devDependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "peerDependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "optionalDependencies": {
+    "A": "*",
+    "B": "*"
+  }
+}
+"
+`;
+
+exports[`json-stringify parser should format: package.json 1`] = `
+"{
+  "name": "",
+  "version": "",
+  "description": "",
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ],
+  "license": "",
+  "author": "",
+  "scripts": {
+    "prebuild": "",
+    "build": "",
+    "postbuild": "",
+    "dev": "",
+    "lint": "",
+    "start": "",
+    "pretest": "",
+    "test": "",
+    "posttest": ""
+  },
+  "dependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "devDependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "peerDependencies": {
+    "A": "*",
+    "B": "*"
+  },
+  "optionalDependencies": {
+    "A": "*",
+    "B": "*"
+  }
+}
+"
+`;
+
+exports[`json-stringify parser should not format: Package.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`json-stringify parser should not format: bar.js 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`json-stringify parser should not format: composer.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`json-stringify parser should not format: foo.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`json-stringify parser should not format: package.JSON 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`json-stringify parser should not format: package.json/composer.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`json-stringify parser should not format: package-lock.json 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;
+
+exports[`json-stringify parser should not format: undefined 1`] = `
+"{
+  "license": "",
+  "version": "",
+  "devDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "description": "",
+  "dependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "scripts": {
+    "posttest": "",
+    "test": "",
+    "start": "",
+    "pretest": "",
+    "build": "",
+    "postbuild": "",
+    "prebuild": "",
+    "lint": "",
+    "dev": ""
+  },
+  "peerDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "author": "",
+  "name": "",
+  "optionalDependencies": {
+    "B": "*",
+    "A": "*"
+  },
+  "keywords": [
+    "C",
+    "B",
+    "A"
+  ]
+}
+"
+`;

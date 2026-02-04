@@ -1,0 +1,21 @@
+{
+  "name": "@utoo/pack-linux-x64-musl",
+  "version": "1.1.18",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "pack.linux-x64-musl.node",
+  "files": [
+    "pack.linux-x64-musl.node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 20"
+  },
+  "libc": [
+    "musl"
+  ]
+}

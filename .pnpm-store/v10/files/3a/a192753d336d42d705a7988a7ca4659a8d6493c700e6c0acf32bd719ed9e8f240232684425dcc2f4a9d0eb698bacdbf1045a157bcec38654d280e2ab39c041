@@ -1,0 +1,73 @@
+{
+  "name": "@antv/hierarchy",
+  "version": "0.7.1",
+  "description": "layout algorithms for visualizing hierarchical data",
+  "type": "module",
+  "main": "dist/hierarchy.umd.js",
+  "module": "dist/hierarchy.es.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./dist/hierarchy.es.js",
+      "require": "./dist/hierarchy.umd.js"
+    }
+  },
+  "keywords": [
+    "antv",
+    "hierarchy"
+  ],
+  "files": [
+    "dist",
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "browserslist": [
+    "defaults and supports es6-module",
+    "maintained node versions"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.{ts,js,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,json}\"",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^20.0.0",
+    "@vitest/ui": "^3.0.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.7.4",
+    "terser": "^5.44.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.49.0",
+    "vite": "^7.2.7",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.0.0"
+  },
+  "homepage": "https://github.com/antvis/hierarchy",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:antvis/hierarchy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/antvis/hierarchy/issues"
+  },
+  "author": "https://github.com/orgs/antvis/people",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "ml-array-min",
+  "version": "1.2.3",
+  "description": "Get the minimum value in an array",
+  "main": "lib/index.js",
+  "module": "lib-es6/index.js",
+  "types": "types.d.ts",
+  "files": [
+    "lib",
+    "lib-es6",
+    "src",
+    "types.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mljs/array.git"
+  },
+  "keywords": [],
+  "author": "Michaël Zasso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mljs/array/issues"
+  },
+  "homepage": "https://github.com/mljs/array/tree/master/packages/array-min#readme",
+  "dependencies": {
+    "is-any-array": "^2.0.0"
+  },
+  "gitHead": "787f12ca8c7c39063a349e2da17152742bea67b1"
+}

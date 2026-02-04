@@ -1,0 +1,111 @@
+{
+  "name": "@petercatai/assistant",
+  "version": "2.1.0",
+  "description": "PeterCat Assistant Application",
+  "repository": "https://github.com/petercat-ai/petercat.git",
+  "license": "MIT",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./dist/esm/index.js",
+    "./style": "./dist/esm/style/global.css"
+  },
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/assistant.min.js",
+  "types": "dist/esm/index.d.ts",
+  "style": "dist/esm/style/global.css",
+  "scripts": {
+    "build": "npm run build:css && cp ./src/style/global.css ./.dumi/tmp/global.css && father build",
+    "build:css": "postcss tailwind.css -o ./src/style/global.css",
+    "build:watch": "father dev",
+    "dev": "dumi dev",
+    "docs:build": "dumi build",
+    "doctor": "father doctor",
+    "lint": "npm run lint:es && npm run lint:css",
+    "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
+    "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
+    "prepare": "dumi setup",
+    "prepublishOnly": "father doctor && npm run build",
+    "start": "npm run dev"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{md,json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "antd": "^5.15.3",
+    "@antv/g2": "^5.2.10",
+    "@ant-design/icons": "^5.3.5",
+    "@ant-design/x": "^1.0.0",
+    "@babel/runtime": "^7.18.0",
+    "antd-style": "^3.6.1",
+    "axios": "^1.6.7",
+    "classnames": "^2.5.1",
+    "dotenv": "^16.4.5",
+    "lodash": "^4.17.21",
+    "lottie-react": "^2.4.0",
+    "react-markdown": "^8.0.7",
+    "react-syntax-highlighter": "^15.6.1",
+    "rehype-highlight": "6.0.0",
+    "remark-gfm": "^3.0.1",
+    "remark-html": "^16.0.1",
+    "swr": "2.2.5",
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-scoped-preflight": "^3.2.6"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@types/antd": "^1.0.4",
+    "@types/lodash": "^4.17.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@umijs/lint": "^4.0.0",
+    "@umijs/plugins": "^4.1.5",
+    "autoprefixer": "^10.4.20",
+    "dumi": "^2.3.5",
+    "eslint": "^8.23.0",
+    "father": "^4.1.0",
+    "lint-staged": "^13.0.3",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "postcss-nested": "^7.0.2",
+    "postcss-prefix-selector": "^2.1.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.0.0",
+    "prettier-plugin-packagejson": "^2.2.18",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "stylelint": "^14.9.1"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0 <19.0.0",
+    "react-dom": ">=18.0.0 <19.0.0"
+  },
+  "resolutions": {
+    "async-function": "npm:@rollup/plugin-commonjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": []
+}

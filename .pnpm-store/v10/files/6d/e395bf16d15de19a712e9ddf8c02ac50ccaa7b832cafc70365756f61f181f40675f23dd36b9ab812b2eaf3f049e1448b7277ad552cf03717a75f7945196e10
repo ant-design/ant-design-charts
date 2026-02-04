@@ -1,0 +1,1 @@
+{"version":3,"file":"matrix.js","sourceRoot":"src/","sources":["transforms/matrix.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;AAGA;;;;;;;;GAQG;AACI,IAAM,MAAM,GAAsB,UAAC,MAAM,EAAE,CAAC,EAAE,CAAC,EAAE,KAAK,EAAE,MAAM;IAC7D,IAAA,KAAA,OAAW,MAAmB,IAAA,EAA7B,MAAM,QAAuB,CAAC;IACrC,OAAO,MAAM,CAAC;AAChB,CAAC,CAAC;AAHW,QAAA,MAAM,UAGjB"}

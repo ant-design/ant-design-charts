@@ -1,0 +1,1 @@
+{"version":3,"file":"pretty-number.js","sourceRoot":"src/","sources":["utils/pretty-number.ts"],"names":[],"mappings":";;;AAAA,kBAAkB;AAClB,SAAgB,YAAY,CAAC,CAAS;IACpC,OAAO,IAAI,CAAC,GAAG,CAAC,CAAC,CAAC,GAAG,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,UAAU,CAAC,CAAC,CAAC,OAAO,CAAC,EAAE,CAAC,CAAC,CAAC;AAC7D,CAAC;AAFD,oCAEC"}

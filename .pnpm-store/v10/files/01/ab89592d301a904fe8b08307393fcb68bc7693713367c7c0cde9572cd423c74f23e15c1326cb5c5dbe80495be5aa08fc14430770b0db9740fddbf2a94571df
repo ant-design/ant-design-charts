@@ -1,0 +1,56 @@
+@import (reference) '../../styles/variables.less';
+
+.@{prefix}-lang-switch {
+  color: @c-text-secondary;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  @{dark-selector} & {
+    color: @c-text-secondary-dark;
+  }
+
+  &:hover {
+    color: @c-primary;
+
+    @{dark-selector} & {
+      color: @c-primary-dark;
+    }
+  }
+}
+
+.@{prefix}-lang-select {
+  display: inline-flex;
+  align-items: center;
+
+  > select {
+    appearance: none;
+    padding: 6px 0;
+    padding-inline-start: 10px;
+    padding-inline-end: 18px;
+    color: @c-text-secondary;
+    text-align: right;
+    font-size: 14px;
+    line-height: 1;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    @{dark-selector} & {
+      color: @c-text-secondary-dark;
+    }
+  }
+
+  > svg {
+    margin-inline-start: -16px;
+    width: 12px;
+    fill: darken(@c-border, 10%);
+    pointer-events: none;
+
+    @{dark-selector} & {
+      fill: lighten(@c-border-dark, 10%);
+    }
+  }
+}

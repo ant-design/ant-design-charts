@@ -1,0 +1,142 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+import { CodeSandboxOutlined, PlayCircleOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import stackblitzSdk from '@stackblitz/sdk';
+import { Tooltip, Typography } from 'antd';
+import { getParameters } from 'codesandbox/lib/api/define';
+import { FormattedMessage, useLocale } from 'dumi';
+import React, { useEffect, useState } from 'react';
+import { ping } from "../utils";
+import { extractImportDeps, getCodeSandboxConfig, getRiddleConfig, getStackblitzConfig } from "./utils";
+import styles from "./Toolbar.module.less";
+var Paragraph = Typography.Paragraph;
+export var EDITOR_TABS = /*#__PURE__*/function (EDITOR_TABS) {
+  EDITOR_TABS["JAVASCRIPT"] = "JavaScript";
+  EDITOR_TABS["SPEC"] = "Spec";
+  EDITOR_TABS["DATA"] = "Data";
+  return EDITOR_TABS;
+}({});
+export var Toolbar = function Toolbar(_ref) {
+  var sourceCode = _ref.sourceCode,
+    fileExtension = _ref.fileExtension,
+    _ref$playground = _ref.playground,
+    playground = _ref$playground === void 0 ? {} : _ref$playground,
+    location = _ref.location,
+    _ref$title = _ref.title,
+    title = _ref$title === void 0 ? '' : _ref$title,
+    _ref$isFullScreen = _ref.isFullScreen,
+    isFullScreen = _ref$isFullScreen === void 0 ? false : _ref$isFullScreen,
+    editorTabs = _ref.editorTabs,
+    slots = _ref.slots,
+    currentEditorTab = _ref.currentEditorTab,
+    onEditorTabChange = _ref.onEditorTabChange,
+    _ref$onToggleFullscre = _ref.onToggleFullscreen,
+    onToggleFullscreen = _ref$onToggleFullscre === void 0 ? null : _ref$onToggleFullscre,
+    onExecuteCode = _ref.onExecuteCode;
+  var locale = useLocale();
+  var exampleTitle = _typeof(title) === 'object' ? title[locale.id] : title;
+
+  // 使用 playground.dependencies 定义的版本号
+  var dependencies = _objectSpread(_objectSpread({}, extractImportDeps(sourceCode)), playground.dependencies);
+  var devDependencies = playground.devDependencies || {};
+  var codeSandboxConfig = getCodeSandboxConfig(exampleTitle, sourceCode, fileExtension, dependencies, devDependencies, playground);
+  var riddlePrefillConfig = getRiddleConfig(exampleTitle, sourceCode, fileExtension, dependencies, devDependencies, playground);
+  var stackblitzPrefillConfig = getStackblitzConfig(exampleTitle, sourceCode, fileExtension, dependencies, devDependencies, playground);
+  // const htmlCode = getHtmlCodeTemplate(exampleTitle, sourceCode, fileExtension, dependencies, devDependencies, playground);
+
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    riddleVisible = _useState2[0],
+    updateRiddleVisible = _useState2[1];
+  useEffect(function () {
+    ping().then(function (status) {
+      return updateRiddleVisible(status === 'responded');
+    }).catch(function () {
+      return updateRiddleVisible(false);
+    });
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    className: styles.toolbar
+  }, /*#__PURE__*/React.createElement("div", {
+    className: styles.editortabs
+  }, editorTabs.map(function (tab, index) {
+    var slot = slots[tab];
+    return /*#__PURE__*/React.createElement("span", {
+      key: index,
+      className: tab === currentEditorTab ? styles.current : '',
+      onClick: function onClick() {
+        return onEditorTabChange(tab);
+      }
+    }, tab, " ", slot && slot);
+  })), riddleVisible ? /*#__PURE__*/React.createElement("form", {
+    action: "//riddle.alibaba-inc.com/riddles/define",
+    method: "POST",
+    target: "_blank"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "data",
+    value: JSON.stringify(riddlePrefillConfig)
+  }), /*#__PURE__*/React.createElement(Tooltip, {
+    title: /*#__PURE__*/React.createElement(FormattedMessage, {
+      id: "\u5728 Riddle \u4E2D\u6253\u5F00"
+    })
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "submit",
+    value: "Create New Riddle with Prefilled Data",
+    className: styles.riddle
+  }))) : null, /*#__PURE__*/React.createElement(Tooltip, {
+    title: /*#__PURE__*/React.createElement(FormattedMessage, {
+      id: "\u5728 StackBlitz \u4E2D\u6253\u5F00"
+    })
+  }, /*#__PURE__*/React.createElement(ThunderboltOutlined, {
+    className: styles.stackblitz,
+    onClick: function onClick() {
+      stackblitzSdk.openProject(stackblitzPrefillConfig);
+    }
+  })), /*#__PURE__*/React.createElement(Tooltip, {
+    title: /*#__PURE__*/React.createElement(FormattedMessage, {
+      id: "\u5728 CodeSandbox \u4E2D\u6253\u5F00"
+    })
+  }, /*#__PURE__*/React.createElement("form", {
+    action: "https://codesandbox.io/api/v1/sandboxes/define",
+    method: "POST",
+    target: "_blank"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "parameters",
+    value: getParameters(codeSandboxConfig)
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: styles.codesandbox
+  }, /*#__PURE__*/React.createElement(CodeSandboxOutlined, {
+    style: {
+      marginLeft: 8
+    }
+  })))), /*#__PURE__*/React.createElement(Paragraph, {
+    copyable: {
+      text: sourceCode
+    },
+    style: {
+      marginLeft: 6
+    }
+  }), /*#__PURE__*/React.createElement(Tooltip, {
+    title: /*#__PURE__*/React.createElement(FormattedMessage, {
+      id: "\u6267\u884C\u4EE3\u7801"
+    })
+  }, /*#__PURE__*/React.createElement(PlayCircleOutlined, {
+    onClick: onExecuteCode,
+    style: {
+      marginLeft: 12
+    }
+  })));
+};

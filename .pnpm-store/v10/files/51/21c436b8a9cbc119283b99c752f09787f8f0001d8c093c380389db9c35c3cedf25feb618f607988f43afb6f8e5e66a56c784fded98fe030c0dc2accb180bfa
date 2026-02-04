@@ -1,0 +1,1 @@
+{"version":3,"file":"get-point-at-length.js","sourceRoot":"","sources":["../../../src/path/util/get-point-at-length.ts"],"names":[],"mappings":";;AAMA,4CAMC;;AAXD,6DAA0D;AAE1D;;GAEG;AACH,SAAgB,gBAAgB,CAC9B,SAA6B,EAC7B,QAAgB,EAChB,OAA2C;IAE3C,OAAO,IAAA,uCAAiB,EAAC,SAAS,EAAE,QAAQ,wCAAO,OAAO,KAAE,IAAI,EAAE,KAAK,EAAE,MAAM,EAAE,IAAI,IAAG,CAAC,KAAK,CAAC;AACjG,CAAC"}

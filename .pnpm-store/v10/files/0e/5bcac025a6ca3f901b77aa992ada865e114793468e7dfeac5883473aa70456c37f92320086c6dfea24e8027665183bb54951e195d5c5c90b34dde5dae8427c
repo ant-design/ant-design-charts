@@ -1,0 +1,6 @@
+/**
+ * 统一去掉中英文前缀
+ */
+export function getPurePathname(pathname) {
+  return pathname.replace('/zh', '').replace('/en', '');
+}

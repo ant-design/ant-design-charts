@@ -1,0 +1,38 @@
+{
+	"name": "org-regex",
+	"version": "1.0.0",
+	"description": "Regular expression for matching npm organization names",
+	"license": "MIT",
+	"repository": "sidoshi/org-regex",
+	"author": {
+		"name": "Siddharth Doshi",
+		"email": "sidoshi510@gmail.com",
+		"url": "https://sid.sh"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"scoped",
+		"npm",
+		"package",
+		"organization",
+		"name",
+		"regex",
+		"regexp",
+		"regular",
+		"expression"
+	],
+	"devDependencies": {
+		"ava": "^2.1.0",
+		"tsd": "^0.7.2",
+		"xo": "^0.24.0"
+	}
+}

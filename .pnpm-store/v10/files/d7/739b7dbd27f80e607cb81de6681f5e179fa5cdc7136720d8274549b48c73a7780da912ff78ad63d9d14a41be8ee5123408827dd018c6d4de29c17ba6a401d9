@@ -1,0 +1,1 @@
+{"version":3,"file":"ContextRegisterPlugin.d.ts","sourceRoot":"","sources":["../src/ContextRegisterPlugin.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,sBAAsB,EAAE,MAAM,cAAc,CAAC;AAGtD,qBAAa,qBAAsB,SAAQ,sBAAsB;IAC/D,IAAI,SAA6B;IACjC,IAAI,IAAI,IAAI;IAGZ,OAAO,IAAI,IAAI;CAGhB"}

@@ -1,0 +1,110 @@
+import _regeneratorRuntime from "@babel/runtime/helpers/esm/regeneratorRuntime";
+import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+import _asyncToGenerator from "@babel/runtime/helpers/esm/asyncToGenerator";
+import axios from 'axios';
+/**
+ * Chat api
+ * @param message
+ */
+export function streamChat(_x, _x2) {
+  return _streamChat.apply(this, arguments);
+}
+function _streamChat() {
+  _streamChat = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(messages, apiDomain) {
+    var apiUrl,
+      prompt,
+      token,
+      signal,
+      _args2 = arguments;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          apiUrl = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : '/api/chat/stream_qa';
+          prompt = _args2.length > 3 && _args2[3] !== undefined ? _args2[3] : '';
+          token = _args2.length > 4 && _args2[4] !== undefined ? _args2[4] : '';
+          signal = _args2.length > 5 ? _args2[5] : undefined;
+          return _context2.abrupt("return", fetch("".concat(apiDomain).concat(apiUrl), {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+              connection: 'keep-alive',
+              'keep-alive': 'timeout=5',
+              'Authorization': "Bearer ".concat(token)
+            },
+            body: JSON.stringify({
+              messages: messages,
+              prompt: prompt,
+              bot_id: token
+            }),
+            signal: signal
+          }));
+        case 5:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return _streamChat.apply(this, arguments);
+}
+export function fetcher(_x3) {
+  return _fetcher.apply(this, arguments);
+}
+function _fetcher() {
+  _fetcher = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(_ref) {
+    var _ref2, url, token, response;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
+        case 0:
+          _ref2 = _slicedToArray(_ref, 2), url = _ref2[0], token = _ref2[1];
+          _context3.next = 3;
+          return axios.get(url, {
+            headers: {
+              'Authorization': "Bearer ".concat(token)
+            }
+          });
+        case 3:
+          response = _context3.sent;
+          return _context3.abrupt("return", response.data.data);
+        case 5:
+        case "end":
+          return _context3.stop();
+      }
+    }, _callee3);
+  }));
+  return _fetcher.apply(this, arguments);
+}
+export var uploadImage = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(file, apiDomain) {
+    var formData, _response$data, response;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          formData = new FormData();
+          formData.append('title', file === null || file === void 0 ? void 0 : file.name);
+          formData.append('file', file);
+          _context.prev = 3;
+          _context.next = 6;
+          return axios.post("".concat(apiDomain, "/api/aws/upload"), formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+        case 6:
+          response = _context.sent;
+          return _context.abrupt("return", response === null || response === void 0 || (_response$data = response.data) === null || _response$data === void 0 || (_response$data = _response$data.data) === null || _response$data === void 0 ? void 0 : _response$data.url);
+        case 10:
+          _context.prev = 10;
+          _context.t0 = _context["catch"](3);
+          console.error('Error:', _context.t0);
+          return _context.abrupt("return", '');
+        case 14:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee, null, [[3, 10]]);
+  }));
+  return function uploadImage(_x4, _x5) {
+    return _ref3.apply(this, arguments);
+  };
+}();

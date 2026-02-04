@@ -1,0 +1,16 @@
+import React from 'react';
+import Footer from "dumi/theme/slots/Footer";
+import Header from "dumi/theme/slots/Header";
+
+/**
+ * 首页布局
+ */
+var IndexLayout = function IndexLayout(props) {
+  var children = props.children;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100vh'
+    }
+  }, children), /*#__PURE__*/React.createElement(Footer, null));
+};
+export default IndexLayout;

@@ -1,0 +1,30 @@
+import type { CheckCardProps } from '@ant-design/pro-card';
+import type { ActionType } from '@ant-design/pro-table';
+import type { ListProps, TableProps } from 'antd';
+import type { GetRowKey, TableRowSelection } from 'antd/lib/table/interface';
+import React from 'react';
+import type { ItemProps } from './Item';
+import type { GetComponentProps } from './index';
+import type { AnyObject } from 'antd/es/_util/type';
+import type { PaginationConfig } from 'antd/lib/pagination';
+type AntdListProps<RecordType> = Omit<ListProps<RecordType>, 'rowKey'>;
+export type ListViewProps<RecordType> = Omit<AntdListProps<RecordType>, 'renderItem'> & Pick<TableProps<RecordType>, 'columns' | 'dataSource' | 'expandable' | 'pagination'> & {
+    rowKey?: string | keyof RecordType | GetRowKey<RecordType>;
+    showActions?: 'hover' | 'always';
+    showExtra?: 'hover' | 'always';
+    rowSelection?: TableRowSelection<RecordType>;
+    prefixCls?: string;
+    dataSource: readonly RecordType[];
+    renderItem?: (item: RecordType, index: number, defaultDom: JSX.Element) => React.ReactNode;
+    actionRef: React.MutableRefObject<ActionType | undefined>;
+    onRow?: GetComponentProps<RecordType>;
+    onItem?: GetComponentProps<RecordType>;
+    rowClassName?: string | ((item: RecordType, index: number) => string);
+    /** Render 除了 header 之后的代码 */
+    itemHeaderRender?: ItemProps<RecordType>['itemHeaderRender'];
+    itemTitleRender?: ItemProps<RecordType>['itemTitleRender'];
+    itemCardProps?: CheckCardProps;
+    pagination?: PaginationConfig;
+};
+declare function ListView<RecordType extends AnyObject>(props: ListViewProps<RecordType>): import("react/jsx-runtime").JSX.Element;
+export default ListView;

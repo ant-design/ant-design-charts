@@ -1,0 +1,2 @@
+export * from "../../dist/declarations/src/jsx-dev-runtime";
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZW1vdGlvbi1yZWFjdC1qc3gtZGV2LXJ1bnRpbWUuY2pzLmQudHMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9kaXN0L2RlY2xhcmF0aW9ucy9zcmMvanN4LWRldi1ydW50aW1lLmQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEifQ==

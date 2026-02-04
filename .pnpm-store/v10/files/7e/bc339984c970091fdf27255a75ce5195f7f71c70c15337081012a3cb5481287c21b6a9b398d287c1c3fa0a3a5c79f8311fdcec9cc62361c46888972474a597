@@ -1,0 +1,87 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/loaders/markdown/transformer/rehypeSlug.ts
+var rehypeSlug_exports = {};
+__export(rehypeSlug_exports, {
+  HEADING_TAGS: () => HEADING_TAGS,
+  default: () => rehypeSlug
+});
+module.exports = __toCommonJS(rehypeSlug_exports);
+var import_github_slugger = __toESM(require("github-slugger"));
+var import_rehypeDemo = require("./rehypeDemo");
+var visit;
+var toString;
+(async () => {
+  ({ visit } = await import("unist-util-visit"));
+  ({ toString } = await import("hast-util-to-string"));
+})();
+var HEADING_TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"];
+function rehypeSlug() {
+  return async (tree, vFile) => {
+    const slugger = new import_github_slugger.default();
+    vFile.data.toc = [];
+    visit(tree, "element", (node) => {
+      var _a, _b;
+      if (HEADING_TAGS.includes(node.tagName)) {
+        const title = toString({
+          type: "element",
+          tagName: node.tagName,
+          // discard text within Badge tag
+          children: node.children.filter(
+            (child) => child.type !== "element" || child.tagName !== "Badge"
+          )
+        }).trim();
+        const depth = Number(node.tagName.slice(1));
+        const id = slugger.slug(title);
+        node.properties.id = id;
+        vFile.data.toc.push({ id, depth, title });
+      } else if ([import_rehypeDemo.DUMI_DEMO_TAG, import_rehypeDemo.DUMI_DEMO_GRID_TAG].includes(node.tagName) && ((_a = node.data) == null ? void 0 : _a[import_rehypeDemo.DEMO_PROP_VALUE_KEY])) {
+        const demos = [].concat(
+          (_b = node.data) == null ? void 0 : _b[import_rehypeDemo.DEMO_PROP_VALUE_KEY]
+        );
+        demos.forEach(({ demo, previewerProps }) => {
+          var _a2, _b2;
+          if (!demo.inline && previewerProps.title) {
+            vFile.data.toc.push({
+              id: slugger.slug(demo.id),
+              depth: ((_b2 = (_a2 = vFile.data.frontmatter) == null ? void 0 : _a2.demo) == null ? void 0 : _b2.tocDepth) || 3,
+              title: previewerProps.title,
+              // put debug flag to control hide/show in toc
+              ...previewerProps.debug ? { _debug_demo: true } : {}
+            });
+          }
+        });
+      }
+    });
+  };
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  HEADING_TAGS
+});

@@ -1,0 +1,57 @@
+{
+	"name": "npm-name",
+	"version": "8.0.0",
+	"description": "Check whether a package or organization name is available on npm",
+	"license": "MIT",
+	"repository": "sindresorhus/npm-name",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"name",
+		"available",
+		"package",
+		"organization",
+		"npm",
+		"pkg",
+		"app",
+		"check",
+		"taken"
+	],
+	"dependencies": {
+		"is-scoped": "^3.0.0",
+		"is-url-superb": "^6.1.0",
+		"ky": "^1.2.0",
+		"lodash.zip": "^4.2.0",
+		"org-regex": "^1.0.0",
+		"p-map": "^7.0.1",
+		"registry-auth-token": "^5.0.2",
+		"registry-url": "^6.0.1",
+		"validate-npm-package-name": "^5.0.0"
+	},
+	"devDependencies": {
+		"ava": "^6.1.1",
+		"tsd": "^0.30.4",
+		"unique-string": "^3.0.0",
+		"xo": "^0.57.0"
+	}
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>findAndReplaceDOMText Test suite</title>
+	<link rel="stylesheet" href="qunit.css" type="text/css" media="screen">
+	<script src="qunit.js"></script>
+	<script src="../src/findAndReplaceDOMText.js"></script>
+	<script src="test.js"></script>
+</head>
+<body>
+	<h1 id="qunit-header">findAndReplaceDOMText Test suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="qunit-fixture">test markup</div>
+</body>
+</html>

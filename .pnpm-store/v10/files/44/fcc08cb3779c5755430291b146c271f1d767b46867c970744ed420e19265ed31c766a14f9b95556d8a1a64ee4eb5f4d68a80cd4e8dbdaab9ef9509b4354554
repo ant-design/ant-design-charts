@@ -1,0 +1,105 @@
+{
+	"name": "np",
+	"version": "10.2.0",
+	"description": "A better `npm publish`",
+	"license": "MIT",
+	"repository": "sindresorhus/np",
+	"funding": "https://github.com/sindresorhus/np?sponsor=1",
+	"type": "module",
+	"bin": "./source/cli.js",
+	"engines": {
+		"node": ">=18",
+		"npm": ">=9",
+		"git": ">=2.11.0",
+		"yarn": ">=1.7.0",
+		"pnpm": ">=8",
+		"bun": ">=1"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"source"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"npm",
+		"publish",
+		"git",
+		"push",
+		"version",
+		"bump",
+		"commit"
+	],
+	"dependencies": {
+		"chalk": "^5.4.1",
+		"chalk-template": "^1.1.0",
+		"cosmiconfig": "^8.3.6",
+		"del": "^8.0.0",
+		"escape-goat": "^4.0.0",
+		"escape-string-regexp": "^5.0.0",
+		"execa": "^8.0.1",
+		"exit-hook": "^4.0.0",
+		"github-url-from-git": "^1.5.0",
+		"hosted-git-info": "^8.0.2",
+		"ignore-walk": "^7.0.0",
+		"import-local": "^3.2.0",
+		"inquirer": "^12.3.2",
+		"is-installed-globally": "^1.0.0",
+		"is-interactive": "^2.0.0",
+		"is-scoped": "^3.0.0",
+		"issue-regex": "^4.3.0",
+		"listr": "^0.14.3",
+		"listr-input": "^0.2.1",
+		"log-symbols": "^7.0.0",
+		"meow": "^13.2.0",
+		"new-github-release-url": "^2.0.0",
+		"npm-name": "^8.0.0",
+		"onetime": "^7.0.0",
+		"open": "^10.0.4",
+		"p-memoize": "^7.1.1",
+		"p-timeout": "^6.1.4",
+		"path-exists": "^5.0.0",
+		"pkg-dir": "^8.0.0",
+		"read-package-up": "^11.0.0",
+		"read-pkg": "^9.0.1",
+		"rxjs": "^7.8.1",
+		"semver": "^7.6.0",
+		"symbol-observable": "^4.0.0",
+		"terminal-link": "^3.0.0",
+		"update-notifier": "^7.3.1"
+	},
+	"devDependencies": {
+		"@sindresorhus/is": "^7.0.1",
+		"@types/semver": "^7.5.8",
+		"ava": "^6.2.0",
+		"common-tags": "^1.8.2",
+		"esmock": "^2.7.0",
+		"fs-extra": "^11.3.0",
+		"map-obj": "^5.0.2",
+		"sinon": "^19.0.2",
+		"strip-ansi": "^7.1.0",
+		"tempy": "^3.1.0",
+		"write-package": "^7.1.0",
+		"xo": "^0.60.0"
+	},
+	"ava": {
+		"files": [
+			"!test/fixtures",
+			"!test/_helpers"
+		],
+		"environmentVariables": {
+			"FORCE_HYPERLINK": "1",
+			"HOME": "/tmp",
+			"GIT_AUTHOR_NAME": "test",
+			"GIT_COMMITTER_NAME": "test",
+			"GIT_AUTHOR_EMAIL": "test@example.com",
+			"GIT_COMMITTER_EMAIL": "test@example.com"
+		},
+		"nodeArguments": [
+			"--loader=esmock",
+			"--no-warnings=ExperimentalWarning"
+		]
+	}
+}

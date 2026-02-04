@@ -1,0 +1,8 @@
+import insertCss from 'insert-css';
+import * as _ from 'lodash-es';
+import { safeWindow } from "../utils/env";
+safeWindow(function (window) {
+  // 挂载一些全局变量
+  window.lodash = _;
+  window.insertCss = insertCss;
+});

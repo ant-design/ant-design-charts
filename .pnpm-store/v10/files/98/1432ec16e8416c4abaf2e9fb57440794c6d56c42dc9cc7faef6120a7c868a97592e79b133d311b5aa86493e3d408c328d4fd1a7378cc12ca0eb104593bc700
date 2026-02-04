@@ -1,0 +1,57 @@
+{
+  "name": "postcss-prefix-selector",
+  "description": "Prefix all CSS rules with a selector",
+  "version": "1.16.0",
+  "author": "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)",
+  "contributors": [
+    "Valentin Radulescu <hi@valentin.io> (https://valentin.io)"
+  ],
+  "license": "MIT",
+  "repository": "RadValentin/postcss-prefix-selector",
+  "bugs": "https://github.com/RadValentin/postcss-prefix-selector/issues",
+  "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
+  "peerDependencies": {
+    "postcss": ">4 <9"
+  },
+  "devDependencies": {
+    "husky": "^4.0.2",
+    "istanbul": "~0.4.5",
+    "lint-staged": "^10.0.3",
+    "mocha": "^9.2.2",
+    "postcss": "^8.0.0",
+    "postcss-nested": "^5.0.6",
+    "prettier": "^2.0.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot",
+    "lint": "prettier --write '**/*.{js,css}'"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "printWidth": 80,
+    "singleQuote": true
+  },
+  "keywords": [
+    "postcss",
+    "prefix",
+    "selectors",
+    "postcss-plugin",
+    "css",
+    "selector",
+    "plugin"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

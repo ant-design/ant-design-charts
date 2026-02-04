@@ -1,0 +1,82 @@
+
+
+.toolbar {
+  height: 36px;
+  line-height: 36px;
+  border-bottom: 1px solid #ececec;
+  width: 100%;
+  padding: 0 16px;
+  text-align: right;
+  color: #777;
+  background: #f8f9fc;
+
+  > * {
+    display: inline-block;
+    transition: all 0.3s;
+
+    &:hover {
+      color: #222;
+    }
+  }
+
+  .codesandbox {
+    border: 0;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .riddle {
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    text-indent: -9999px;
+    background: transparent url('https://gw.alipayobjects.com/zos/rmsportal/DlHbxMCyeuyOrqOdbgik.svg') center / 12px
+      no-repeat;
+    border: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    top: 0.5px;
+    line-height: 1;
+  }
+
+  .stackblitz {
+    position: relative;
+    top: 1px;
+    margin-left: 8px;
+  }
+
+  .html {
+    margin-left: 10px;
+    position: relative;
+    top: 0.5px;
+  }
+
+  :global(.ant-typography-copy:not(.ant-typography-copy-success)) {
+    color: #777;
+
+    &:hover {
+      color: #222;
+    }
+  }
+}
+
+.editortabs {
+  position: absolute;
+  left: -3px;
+
+  span {
+    display: inline-block;
+    border-top: none;
+    padding: 0 24px;
+    cursor: pointer;
+
+    &.current {
+      background: #fff;
+      color: #000;
+      border-right: #ececec solid 1px;
+      border-left: #ececec solid 1px;
+    }
+  }
+}

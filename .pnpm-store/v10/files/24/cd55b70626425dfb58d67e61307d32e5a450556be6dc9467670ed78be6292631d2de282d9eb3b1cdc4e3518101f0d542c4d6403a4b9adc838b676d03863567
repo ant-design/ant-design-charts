@@ -1,0 +1,116 @@
+<!doctype html>
+
+<meta charset="utf-8" />
+<title>findAndReplaceDOMText demo</title>
+
+<body>
+
+<style>
+em {
+	background: #000; color: #FFF; border-radius: 5px; font-style: normal;
+	box-shadow: 0 0 2px #000;
+}
+body { font: 1em sans-serif; max-width: 1200px; }
+#find { padding: 2px; font-size: 1.2em; width: 300px; }
+h3 { border-top: 3px solid #CCC; border-bottom: 3px solid #CCC; padding: 20px 0;}
+#foot { border-top: 2px solid #CCC; color: #000; padding: 10px; background: #EEE;}
+#foot a { color: #000; }
+</style>
+
+Type a regular expression here: <input id="find" /> <span id="warning" style="display:none;color:red;font-weight:700;"></span>
+
+<div id="container">
+<h3>This text is all randomly sized so you can have a go at matching "across element bounderies"!</h3>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas imperdiet consequat orci, at euismod sapien vestibulum nec. Cras pellentesque magna nec lorem tempus accumsan. Maecenas lobortis velit a turpis imperdiet ullamcorper. Cras auctor tellus eu magna tincidunt porttitor. Morbi felis justo, blandit eget vehicula sit amet, volutpat id augue. Cras cursus congue ultrices. Fusce a neque nunc, at accumsan metus. Integer ut ante purus. Vestibulum vel leo libero. Pellentesque a quam urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</p>
+<p>
+Some test numbers for you to match!
+</p>
+<ul>
+	<li>01920199999</li>
+	<li>02998366</li>
+	<li>0123333333</li>
+	<li>0000</li>
+	<li>1212121212</li>
+	<li>999888999</li>
+	<li>1234567890</li>
+</ul>
+<p>
+Phasellus ultricies varius lacus, blandit tincidunt velit aliquet in. Nam quis odio ac sapien elementum luctus et a nunc. Ut eget nulla enim. Pellentesque semper, nulla eu venenatis placerat, tellus diam condimentum arcu, nec consectetur nunc est vitae tellus. Nulla vehicula est ac odio elementum egestas. Quisque vestibulum aliquam pulvinar. Mauris varius elit eu neque ornare dictum.
+</p>
+</div>
+
+<p id="foot"><a href="https://github.com/padolsey/findAndReplaceDOMText">findAndReplaceDOMText Github repo</a> | <a href="http://james.padolsey.com/javascript/replacing-text-in-the-dom-solved/">More info</a></p>
+
+<script src="src/findAndReplaceDOMText.js"></script>
+<script>
+
+var container = document.getElementById('container');
+var warning = document.getElementById('warning');
+var input = document.getElementById('find');
+
+var colors = ['red', 'green', 'blue', 'purple', '#E67A00'];
+var instance;
+var inputHandler = function() {
+	instance && instance.revert();
+	warning.style.display = 'none';
+	if (input.value) {
+		var called = false;
+		try {
+			var regex = RegExp(input.value, 'gi');
+		} catch(e) {
+			warning.innerHTML = 'INVALID REGEX ಠ_ಠ';
+			warning.style.display = 'inline';
+			return;
+		}
+		try {
+			instance = findAndReplaceDOMText(container, {
+				find: regex,
+				replace: function(portion, match) {
+					called = true;
+					var el = document.createElement('em');
+					el.style.backgroundColor = colors[match.index % colors.length];
+					el.innerHTML = portion.text;
+					return el;
+				},
+				forceContext: findAndReplaceDOMText.NON_INLINE_PROSE
+			});
+		} catch(e) {
+			warning.innerHTML = 'Error: ' + e;
+			warning.style.display = 'inline';
+			throw e;
+			return;
+		}
+		if (!called) {
+			warning.innerHTML = 'No matches :(';
+			warning.style.display = 'inline';
+		}
+	}
+};
+
+// http://mathiasbynens.be/notes/oninput
+input.onkeyup = inputHandler;
+input.oninput = function() {
+	input.onkeyup = null;
+	inputHandler();
+};
+
+// Initial replacement to make words different sizes
+findAndReplaceDOMText(container, {
+	find: /\w+/g,
+	replace: function(portion) {
+		var el = document.createElement('span');
+		el.style.fontSize = (Math.random() + .6) + 'em';
+		el.innerHTML = portion.text;
+		return el;
+	}
+});
+
+input.value = '\\w+';
+input.onkeyup();
+
+
+</script>
+
+</body>

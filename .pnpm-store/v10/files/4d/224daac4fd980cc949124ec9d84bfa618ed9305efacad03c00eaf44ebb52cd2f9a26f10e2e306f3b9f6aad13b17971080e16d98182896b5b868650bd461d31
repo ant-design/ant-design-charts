@@ -1,0 +1,81 @@
+{
+  "name": "domparser-rs",
+  "version": "0.0.5",
+  "packageManager": "yarn@4.3.1",
+  "main": "domparser.js",
+  "types": "domparser.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "domparser.js",
+    "domparser.d.ts",
+    "README.md"
+  ],
+  "workspaces": [
+    "npm/*"
+  ],
+  "napi": {
+    "binaryName": "domparser",
+    "package": {
+      "name": "domparser"
+    },
+    "targets": [
+      "aarch64-apple-darwin",
+      "aarch64-unknown-linux-gnu",
+      "aarch64-unknown-linux-musl",
+      "aarch64-pc-windows-msvc",
+      "x86_64-unknown-linux-musl",
+      "x86_64-unknown-linux-gnu",
+      "x86_64-pc-windows-msvc",
+      "x86_64-apple-darwin"
+    ],
+    "packageName": "domparser"
+  },
+  "keywords": [
+    "htmlparser",
+    "jquery",
+    "selector",
+    "scraper",
+    "parser",
+    "dom",
+    "html",
+    "rust",
+    "napi"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@napi-rs/cli": "^3.0.0",
+    "@taplo/cli": "^0.7.0",
+    "cheerio": "^1.1.2",
+    "htmlparser-benchmark": "^1.1.3",
+    "husky": "^8.0.0",
+    "js-beautify": "^1.15.1",
+    "typescript": "^5.5.3"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release --package domparser_napi --js index.js",
+    "postbuild": "node scripts/postbuild.js",
+    "build:debug": "napi build --platform --package domparser_napi --js index.js && node scripts/postbuild.js",
+    "prepublishOnly": "napi prepublish -t npm",
+    "version": "napi version && node scripts/sync-version.js && cargo check && git add crates/domparser/Cargo.toml Cargo.lock",
+    "test": "node --test",
+    "benchmark": "node ./benchmark/benchmark.mjs",
+    "prepare": "husky install"
+  },
+  "repository": "https://github.com/utooland/domparser-rs",
+  "description": "A super fast html parser and manipulator written in rust.",
+  "optionalDependencies": {
+    "domparser-darwin-arm64": "0.0.5",
+    "domparser-linux-arm64-gnu": "0.0.5",
+    "domparser-linux-arm64-musl": "0.0.5",
+    "domparser-win32-arm64-msvc": "0.0.5",
+    "domparser-linux-x64-musl": "0.0.5",
+    "domparser-linux-x64-gnu": "0.0.5",
+    "domparser-win32-x64-msvc": "0.0.5",
+    "domparser-darwin-x64": "0.0.5"
+  }
+}

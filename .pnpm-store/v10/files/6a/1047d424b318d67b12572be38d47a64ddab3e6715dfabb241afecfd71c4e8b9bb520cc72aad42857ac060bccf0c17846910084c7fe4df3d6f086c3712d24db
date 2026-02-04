@@ -1,0 +1,60 @@
+{
+  "name": "@antv/g-canvas",
+  "version": "2.2.0",
+  "description": "A renderer implemented by Canvas 2D API",
+  "keywords": [
+    "antv",
+    "g",
+    "renderer",
+    "Canvas2D"
+  ],
+  "homepage": "https://github.com/antvis/g#readme",
+  "bugs": {
+    "url": "https://github.com/antvis/g/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antvis/g.git",
+    "directory": "packages/g-canvas"
+  },
+  "license": "MIT",
+  "author": "https://github.com/orgs/antvis/people",
+  "exports": {
+    "types": "./types/index.d.ts",
+    "import": "./dist/index.esm.js",
+    "default": "./dist/index.js"
+  },
+  "main": "dist/index.js",
+  "unpkg": "dist/index.umd.min.js",
+  "module": "dist/index.esm.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "package.json",
+    "dist",
+    "types",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "@antv/util": "^3.3.5",
+    "@babel/runtime": "^7.25.6",
+    "gl-matrix": "^3.4.3",
+    "tslib": "^2.5.3",
+    "@antv/g-lite": "2.7.0",
+    "@antv/g-math": "3.1.0"
+  },
+  "devDependencies": {
+    "@types/gl-matrix": "^2.4.5",
+    "@types/offscreencanvas": "^2019.6.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build:js": "rimraf dist && rollup -c",
+    "build:types": "rimraf types && tsc --emitDeclarationOnly --noCheck",
+    "build": "npm run build:js && npm run build:types",
+    "sync": "tnpm sync",
+    "watch": "rollup -c -w"
+  }
+}

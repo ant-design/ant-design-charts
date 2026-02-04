@@ -1,0 +1,15 @@
+{
+  "name": "less-plugin-resolve",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "release": "npm version patch && npm publish && git push origin master --tags"
+  },
+  "dependencies": {
+    "enhanced-resolve": "^5.15.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}

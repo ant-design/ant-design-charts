@@ -1,0 +1,12 @@
+import type { DisplayObject } from '@antv/g-lite';
+import type { Options } from 'roughjs/bin/core';
+import type { CanvasRenderer } from '@antv/g-canvas';
+export declare function generateRoughOptions(object: DisplayObject): Options;
+export interface RoughCanvasRendererPluginOptions {
+    roughRendering?: boolean | ((value: DisplayObject) => boolean);
+}
+export type RoughCanvasRendererOptions = Partial<RoughCanvasRendererPluginOptions> & {
+    defaultStyleRendererFactory: CanvasRenderer.DefaultRenderer;
+};
+export declare function isRoughRendering(roughRendering: boolean | ((value: DisplayObject) => boolean) | undefined, element: DisplayObject): boolean;
+//# sourceMappingURL=util.d.ts.map

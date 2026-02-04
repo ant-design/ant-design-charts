@@ -1,0 +1,65 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var less_1 = __importDefault(require("less"));
+/**
+ * transform less sync
+ * @param fileContent
+ * @param filePath
+ */
+function transformLess(fileContent, filePath) {
+    var data = fileContent.replace(/^\uFEFF/, '');
+    // handle with fileContent include @import url
+    var options = { sync: true, syncImport: true, relativeUrls: true, filename: filePath };
+    var css = '';
+    less_1.default.render(data, options, function (err, result) {
+        if (err)
+            throw err;
+        css = result.css;
+    });
+    return css;
+}
+/**
+ * inject style css into header
+ * @param css
+ */
+function injectStyle(css) {
+    var head = document.getElementsByTagName('head')[0];
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.appendChild(document.createTextNode(css));
+    head.appendChild(style);
+}
+/**
+ * the transformer entry
+ * @type {{process(*=): *}}
+ */
+module.exports = {
+    process: function (fileContent, filePath) {
+        var css = fileContent;
+        try {
+            // if .less, transform, if .css, keep it
+            css = filePath.endsWith('.less') ? transformLess(fileContent, filePath) : fileContent;
+        }
+        catch (e) {
+            // if throw, use file content
+            css = fileContent;
+            console.warn('jest-less-loader: process the file error.', { fileContent: fileContent, filePath: filePath });
+        }
+        finally {
+            // when running in nodejs env, will throw error.
+            try {
+                injectStyle(css);
+            }
+            catch (e) {
+                // do nothing
+            }
+        }
+        // no code for js module
+        return {
+            code: '',
+        };
+    },
+};

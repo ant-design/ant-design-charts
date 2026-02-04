@@ -1,0 +1,49 @@
+{
+  "name": "node-libs-browser-okam",
+  "version": "2.2.5",
+  "author": "Tobias Koppers @sokra",
+  "description": "The node core libs for in browser usage.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webpack/node-libs-browser.git"
+  },
+  "dependencies": {
+    "assert-okam": "^1.1.1",
+    "browserify-zlib": "^0.2.0",
+    "buffer-okam": "^4.3.0",
+    "console-browserify": "^1.1.0",
+    "constants-browserify": "^1.0.0",
+    "crypto-browserify": "^3.11.0",
+    "domain-browser": "^1.1.1",
+    "events-okam": "^3.0.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "0.0.1",
+    "process-okam": "^0.11.10",
+    "punycode-okam": "^1.2.4",
+    "querystring-es3": "^0.2.0",
+    "readable-stream": "^2.3.3",
+    "stream-browserify": "^2.0.1",
+    "stream-http": "^2.7.2",
+    "string_decoder-okam": "^1.0.0",
+    "timers-browserify": "^2.0.4",
+    "tty-browserify": "0.0.0",
+    "url-okam": "^0.11.0",
+    "util-okam": "^0.11.0",
+    "vm-browserify": "^1.0.1"
+  },
+  "homepage": "http://github.com/webpack/node-libs-browser",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "mock/",
+    "polyfill/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webpack/node-libs-browser/issues"
+  }
+}

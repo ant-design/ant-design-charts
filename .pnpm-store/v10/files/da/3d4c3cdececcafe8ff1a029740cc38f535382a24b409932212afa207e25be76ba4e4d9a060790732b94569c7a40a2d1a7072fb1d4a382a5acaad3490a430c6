@@ -1,0 +1,7 @@
+test
+src
+.gitignore
+.babelrc
+.nyc_output
+coverage
+logo.png

@@ -1,0 +1,27 @@
+// Author: Sivan [sun.sivan@gmail.com]
+// Description: define writing mode styles.
+@import "../variables";
+
+@mixin hetiWritingModeModifier {
+  // 定义垂直布局
+  &--vertical {
+    max-width: none;
+    max-height: $line-length;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.125em;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-align: start;
+    }
+
+    // 默认无论简繁都采用台湾规范，修改只需重新定义变量 `$chinese-quote-set` 即可。
+    q {
+      quotes: map-get(map-get($chinese-quote-presets, $chinese-quote-set), "vertical");
+    }
+  }
+}

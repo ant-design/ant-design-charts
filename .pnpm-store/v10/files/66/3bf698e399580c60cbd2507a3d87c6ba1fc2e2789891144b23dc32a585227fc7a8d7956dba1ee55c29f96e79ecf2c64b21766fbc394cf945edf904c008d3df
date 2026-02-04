@@ -1,0 +1,1 @@
+{"version":3,"file":"Sector2.d.ts","sourceRoot":"","sources":["../../../src/plugins/components/Sector2.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAgC,MAAM,cAAc,CAAC;AA0IlE,qBAAa,MAAO,SAAQ,IAAI;IAC9B,MAAM,CAAC,iBAAiB,cASrB;gBAGS,MAAM,KAAA;IAIlB,YAAY,CAAC,IAAI,KAAA,EAAE,KAAK,KAAA,EAAE,KAAK,CAAC,EAAE,OAAO;IAOzC,OAAO,CAAC,UAAU;IAgBlB,OAAO,CAAC,UAAU;CA2WnB"}

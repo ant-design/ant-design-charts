@@ -1,0 +1,2 @@
+import React from "react";
+export declare const UploadImageIcon: () => React.JSX.Element;

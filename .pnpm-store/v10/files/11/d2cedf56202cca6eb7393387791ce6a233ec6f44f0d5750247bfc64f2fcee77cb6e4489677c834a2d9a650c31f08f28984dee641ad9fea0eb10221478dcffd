@@ -1,0 +1,6 @@
+import React from 'react';
+interface NumberScrollProps {
+    count: number;
+}
+declare const NumberScroll: React.FC<NumberScrollProps>;
+export default NumberScroll;

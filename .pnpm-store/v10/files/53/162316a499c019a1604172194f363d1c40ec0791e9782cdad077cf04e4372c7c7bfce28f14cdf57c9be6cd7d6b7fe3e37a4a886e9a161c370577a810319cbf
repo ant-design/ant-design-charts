@@ -1,0 +1,4381 @@
+[
+  {
+    "packageName": "ProCard",
+    "tableData": [
+      {
+        "title": "ProCard - API",
+        "table": [
+          {
+            "参数": "title",
+            "说明": "标题",
+            "类型": "`React.ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "subTitle",
+            "说明": "副标题",
+            "类型": "`React.ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "tooltip",
+            "说明": "标题右侧图标 hover 提示信息",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "headStyle",
+            "说明": "标题的 style 样式",
+            "类型": "`CSSProperties`",
+            "默认值": "-"
+          },
+          {
+            "参数": "bodyStyle",
+            "说明": "内容区的 style 样式",
+            "类型": "`CSSProperties`",
+            "默认值": "-"
+          },
+          {
+            "参数": "extra",
+            "说明": "右上角自定义区域",
+            "类型": "`React.ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "layout",
+            "说明": "内容布局，支持垂直居中",
+            "类型": "`default` | `center`",
+            "默认值": "default"
+          },
+          {
+            "参数": "loading",
+            "说明": "加载中，支持自定义 loading 样式",
+            "类型": "`boolean` | `ReactNode`",
+            "默认值": "false"
+          },
+          {
+            "参数": "colSpan",
+            "说明": "栅格布局宽度，24 栅格，支持指定宽度 px 或百分比，支持响应式的对象写法 `{ xs: 8, sm: 16, md: 24}`, 仅在嵌套的子卡片上设置有效。",
+            "类型": "`number` | `string`",
+            "默认值": "24"
+          },
+          {
+            "参数": "gutter",
+            "说明": "数字或使用数组形式同时设置 [水平间距，垂直间距], 支持响应式的对象写法 `{ xs: 8, sm: 16, md: 24}`",
+            "类型": "`number` | `array`",
+            "默认值": "0"
+          },
+          {
+            "参数": "split",
+            "说明": "拆分卡片的方向",
+            "类型": "`vertical` | `horizontal`",
+            "默认值": "-"
+          },
+          {
+            "参数": "type",
+            "说明": "卡片类型",
+            "类型": "`inner` | `default`",
+            "默认值": "-"
+          },
+          {
+            "参数": "size",
+            "说明": "卡片尺寸",
+            "类型": "`default` | `small`",
+            "默认值": "-"
+          },
+          {
+            "参数": "actions",
+            "说明": "卡片操作组，位置在卡片底部",
+            "类型": "`Array&lt;ReactNode>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "direction",
+            "说明": "指定 Flex 方向，仅在嵌套子卡片时有效，默认方向为 row 横向",
+            "类型": "`column`",
+            "默认值": "-"
+          },
+          {
+            "参数": "wrap",
+            "说明": "是否支持换行，仅在嵌套子卡片时有效",
+            "类型": "false",
+            "默认值": "-",
+            "版本": "1.12.0"
+          },
+          {
+            "参数": "bordered",
+            "说明": "是否有边框",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "参数": "ghost",
+            "说明": "幽灵模式，即是否取消卡片内容区域的 padding 和 卡片的背景颜色。",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "参数": "headerBordered",
+            "说明": "页头是否有分割线",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "参数": "collapsed",
+            "说明": "受控属性，是否折叠",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "参数": "collapsible",
+            "说明": "配置是否可折叠或者指定可折叠触发的区域",
+            "类型": "`icon | header | boolean`,当值为`true`时默认触发区域为`header`",
+            "默认值": "false"
+          },
+          {
+            "参数": "collapsibleIconRender",
+            "说明": "替换默认折叠图标",
+            "类型": "`({ collapsed }: { collapsed: boolean }) => React.ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "defaultCollapsed",
+            "说明": "默认折叠，受控时无效",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "参数": "onCollapse",
+            "说明": "收起卡片的事件，受控时无效",
+            "类型": "`(collapsed: boolean) => void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "tabs",
+            "说明": "标签页配置",
+            "类型": "见下面 ProCardTabs",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProCard - ProCardTabs",
+        "table": [
+          {
+            "参数": "activeKey",
+            "说明": "当前选中项",
+            "类型": "string",
+            "默认值": "-"
+          },
+          {
+            "参数": "type",
+            "说明": "页签的基本样式，可选 `line`、`card`、`editable-card` 类型",
+            "类型": "string",
+            "默认值": "inline"
+          },
+          {
+            "参数": "onChange",
+            "说明": "回调",
+            "类型": "`(activeKey: string) => void;`",
+            "默认值": "-"
+          },
+          {
+            "参数": "items",
+            "说明": "基于 antd 拓展的页签的基本配置，必填",
+            "类型": "`ItemsProps`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProCard - ItemsProps",
+        "table": [
+          {
+            "参数": "cardProps",
+            "说明": "ProCard 卡片属性透传",
+            "类型": "`ProCard`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProCard - ProCard.TabPane",
+        "table": [
+          {
+            "参数": "key",
+            "说明": "对应 activeKey，用于标定是否选中和 dom 更新，一定不要重复，不然会造成表现异常",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "tab",
+            "说明": "选项卡头显示文字",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "disabled",
+            "说明": "不可用",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "参数": "cardProps",
+            "说明": "ProCard 卡片属性透传",
+            "类型": "`ProCard`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProCard - ProCard.Divider",
+        "table": [
+          {
+            "参数": "type",
+            "说明": "分隔类型",
+            "类型": "`horizontal | vertical`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProCard",
+    "tableData": [
+      {
+        "title": "ProCard - CheckCard",
+        "table": [
+          {
+            "参数": "checked",
+            "说明": "指定当前是否选中",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "bordered",
+            "说明": "是否显示边框",
+            "类型": "boolean",
+            "默认值": "true",
+            "版本": "1.20.0"
+          },
+          {
+            "参数": "value",
+            "说明": "选项值",
+            "类型": "string",
+            "默认值": "-"
+          },
+          {
+            "参数": "defaultChecked",
+            "说明": "初始是否选中",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "disabled",
+            "说明": "失效状态",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "size",
+            "说明": "选择框大小，可选 `large` `small`",
+            "类型": "string",
+            "默认值": "`default`"
+          },
+          {
+            "参数": "onChange",
+            "说明": "变化时回调函数",
+            "类型": "Function(checked)",
+            "默认值": "-"
+          },
+          {
+            "参数": "loading",
+            "说明": "当卡片内容还在加载中时，可以用 loading 展示一个占位",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "title",
+            "说明": "标题",
+            "类型": "string | ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "description",
+            "说明": "描述",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "avatar",
+            "说明": "选项元素的图片地址",
+            "类型": "link | ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "extra",
+            "说明": "动作区域",
+            "类型": "卡片右上角的操作区域",
+            "默认值": "-"
+          },
+          {
+            "参数": "cover",
+            "说明": "卡片背景图片，注意使用该选项后`title`，`description`和`avatar`失效",
+            "类型": "ReactNode",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProCard - CheckCard.Group",
+        "table": [
+          {
+            "参数": "multiple",
+            "说明": "多选",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "bordered",
+            "说明": "是否显示边框",
+            "类型": "boolean",
+            "默认值": "true",
+            "版本": "1.20.0"
+          },
+          {
+            "参数": "defaultValue",
+            "说明": "默认选中的选项",
+            "类型": "string | string[]",
+            "默认值": "-"
+          },
+          {
+            "参数": "disabled",
+            "说明": "整组失效",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "loading",
+            "说明": "当卡片组内容还在加载中时，可以用 loading 展示一个占位",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "options",
+            "说明": "指定可选项",
+            "类型": "string[] | Array<{ title: ReactNode, value: string, description?: ReactNode, avatar?: link or ReactNode, cover?:ReactNode, disabled?: boolean }>",
+            "默认值": "\\[]"
+          },
+          {
+            "参数": "value",
+            "说明": "指定选中的选项",
+            "类型": "string | string[]",
+            "默认值": "-"
+          },
+          {
+            "参数": "size",
+            "说明": "选择框大小，可选 `large` `small`",
+            "类型": "string",
+            "默认值": "`default`"
+          },
+          {
+            "参数": "onChange",
+            "说明": "变化时回调函数",
+            "类型": "Function(checkedValue)",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProCard",
+    "tableData": [
+      {
+        "title": "ProCard - StatisticCard",
+        "table": [
+          {
+            "参数": "title",
+            "说明": "卡片标题",
+            "类型": "`string|ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "extra",
+            "说明": "卡片右上角的操作区域",
+            "类型": "`string|ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "loading",
+            "说明": "当卡片内容还在加载中时，可以用 loading 展示一个占位",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "bordered",
+            "说明": "是否有边框",
+            "类型": "boolean",
+            "默认值": "true"
+          },
+          {
+            "参数": "chart",
+            "说明": "图表卡片",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "statistic",
+            "说明": "数值统计配置，布局默认为 `vertical`",
+            "类型": "参数见下 Statistic",
+            "默认值": "-"
+          },
+          {
+            "参数": "chartPlacement",
+            "说明": "图表位置，相对于 statistic 的位置",
+            "类型": "`left | right | bottom`",
+            "默认值": "-"
+          },
+          {
+            "参数": "footer",
+            "说明": "额外指标展示",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProCard - Statistic",
+        "table": [
+          {
+            "参数": "prefix",
+            "说明": "设置数值的前缀",
+            "类型": "string | ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "suffix",
+            "说明": "设置数值的后缀",
+            "类型": "string | ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "title",
+            "说明": "数值的标题",
+            "类型": "string | ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "tip",
+            "说明": "标题提示",
+            "类型": "string| ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "value",
+            "说明": "数值内容",
+            "类型": "string | number",
+            "默认值": "-"
+          },
+          {
+            "参数": "icon",
+            "说明": "图标",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "status",
+            "说明": "设置状态点，同 Badge 组件",
+            "类型": "`Enum{ 'success', 'processing, 'default', 'error', 'warning' }`",
+            "默认值": "-"
+          },
+          {
+            "参数": "valueStyle",
+            "说明": "设置数值的样式",
+            "类型": "style",
+            "默认值": "-"
+          },
+          {
+            "参数": "description",
+            "说明": "描述性标签",
+            "类型": "React.ReactNode | () => React.ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "layout",
+            "说明": "布局",
+            "类型": "`horizontal | vertical | inline`",
+            "默认值": "`inline`"
+          },
+          {
+            "参数": "trend",
+            "说明": "趋势",
+            "类型": "`up | down |`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProCard - Divider",
+        "table": [
+          {
+            "参数": "type",
+            "说明": "分隔类型",
+            "类型": "`horizontal | vertical`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProDescriptions",
+    "tableData": [
+      {
+        "title": "ProDescriptions - ProDescriptions",
+        "table": [
+          {
+            "参数": "title",
+            "说明": "描述列表的标题，显示在最顶部",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "tooltip",
+            "说明": "内容的补充描述，hover 后显示",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "loading",
+            "说明": "展示一个加载的骨架屏，骨架屏和 dom 不会一一对应",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "extra",
+            "说明": "描述列表的操作区域，显示在右上方",
+            "类型": "`string` | `ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "bordered",
+            "说明": "是否展示边框",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "column",
+            "说明": "一行的 `ProDescriptionsItems` 数量，可以写成像素值或支持响应式的对象写法 `{ xs: 1, sm: 2, md: 3}`",
+            "类型": "number",
+            "默认值": "3"
+          },
+          {
+            "参数": "size",
+            "说明": "设置列表的大小。可以设置为 `middle` 、`small`，或不填（只有设置 `bordered={true}` 生效）",
+            "类型": "`default` | `middle` | `small`",
+            "默认值": "-"
+          },
+          {
+            "参数": "layout",
+            "说明": "描述布局",
+            "类型": "`horizontal` | `vertical`",
+            "默认值": "`horizontal`"
+          },
+          {
+            "参数": "colon",
+            "说明": "配置 `ProDescriptions.Item` 的 `colon` 的默认值",
+            "类型": "boolean",
+            "默认值": "true"
+          },
+          {
+            "参数": "request",
+            "说明": "请求数据，不设置 columns 时 ProDescriptions.Item 需设置对应的 dataIndex",
+            "类型": "-",
+            "默认值": "-"
+          },
+          {
+            "参数": "onRequestError",
+            "说明": "处理 request 的错误，默认会直接抛出错误",
+            "类型": "-",
+            "默认值": "-"
+          },
+          {
+            "参数": "columns",
+            "说明": "列定义，与 request 配合使用 [columns](/components/table#columns)",
+            "类型": "-",
+            "默认值": "-"
+          },
+          {
+            "参数": "editable",
+            "说明": "编辑的相关配置",
+            "类型": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProDescriptions - editable 编辑配置",
+        "table": [
+          {
+            "属性": "form",
+            "描述": "可编辑表格的 form 实例，使用 `Form.useForm` 生成后使用",
+            "类型": "`FormInstance`",
+            "默认值": "-"
+          },
+          {
+            "属性": "formProps",
+            "描述": "可以配置 form 的属性，但是不支持 onFinish",
+            "类型": "-"
+          },
+          {
+            "属性": "editableKeys",
+            "描述": "正在编辑的行，受控属性。 默认 `key` 会使用 `rowKey` 的配置，如果没有配置会使用 `index`，建议使用 rowKey",
+            "类型": "`Key[]`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onChange",
+            "描述": "行数据被修改的时候触发",
+            "类型": "`(editableKeys: Key[], editableRows: T[]) => void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onSave",
+            "描述": "保存一行的时候触发",
+            "类型": "`(key: Key, row: T,originRow:T,newLine?:newLineConfig) => Promise<any>`",
+            "默认值": "-"
+          },
+          {
+            "属性": "saveText",
+            "描述": "保存一行的文字",
+            "类型": "`React.ReactNode`",
+            "默认值": "`保存`"
+          },
+          {
+            "属性": "onDelete",
+            "描述": "删除一行的时候触发",
+            "类型": "`(key: Key, row: T) => Promise<any>`",
+            "默认值": "-"
+          },
+          {
+            "属性": "deleteText",
+            "描述": "删除一行的文字",
+            "类型": "`React.ReactNode`",
+            "默认值": "`删除`"
+          },
+          {
+            "属性": "onCancel",
+            "描述": "取消编辑一行时触发",
+            "类型": "`(key: Key, row: T,originRow:T,newLine?:newLineConfig) => Promise<any>`",
+            "默认值": "-"
+          },
+          {
+            "属性": "cancelText",
+            "描述": "取消编辑一行的文字",
+            "类型": "`React.ReactNode`",
+            "默认值": "`取消`"
+          },
+          {
+            "属性": "actionRender",
+            "描述": "自定义编辑模式的操作栏",
+            "类型": "`(row: T, config: ActionRenderConfig,defaultDom) => ReactNode[]`",
+            "默认值": "-"
+          },
+          {
+            "属性": "deletePopconfirmMessage",
+            "描述": "删除时弹出的确认框提示消息",
+            "类型": "`ReactNode`",
+            "默认值": "`删除此项？`"
+          },
+          {
+            "属性": "onlyOneLineEditorAlertMessage",
+            "描述": "只能编辑一行的的提示",
+            "类型": "`ReactNode`",
+            "默认值": "`只能同时编辑一行`"
+          },
+          {
+            "属性": "onlyAddOneLineAlertMessage",
+            "描述": "只能同时新增一行的提示",
+            "类型": "`ReactNode`",
+            "默认值": "`只能新增一行`"
+          }
+        ]
+      },
+      {
+        "title": "ProDescriptions - ProDescriptions.Item",
+        "table": [
+          {
+            "参数": "label",
+            "说明": "内容的描述",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "tooltip",
+            "说明": "内容的补充描述，hover 后显示",
+            "类型": "string",
+            "默认值": "-"
+          },
+          {
+            "参数": "ellipsis",
+            "说明": "是否自动缩略",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "copyable",
+            "说明": "是否支持复制",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "span",
+            "说明": "包含列的数量",
+            "类型": "number",
+            "默认值": "1"
+          },
+          {
+            "参数": "valueType",
+            "说明": "格式化的类型",
+            "类型": "`ValueType`",
+            "默认值": "-"
+          },
+          {
+            "参数": "valueEnum",
+            "说明": "当前列值的枚举 [valueEnum](/components/table#valueenum)",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "request",
+            "说明": "从网络请求枚举数据",
+            "类型": "`()=>Promise<{[key:string`|`number]:any}>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "dataIndex",
+            "说明": "返回数据的 key 与 ProDescriptions 的 request 配合使用，用于配置式的定义列表",
+            "类型": "`React.Text` | `React.Text[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "editable",
+            "说明": "在编辑表格中是否可编辑的，函数的参数和 table 的 render 一样",
+            "类型": "`false` | `(text: any, record: T,index: number) => boolean`",
+            "默认值": "true"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProField",
+    "tableData": [
+      {
+        "title": "ProField - 参数",
+        "table": [
+          {
+            "参数": "text",
+            "说明": "需要格式化的值",
+            "类型": "any",
+            "默认值": "-"
+          },
+          {
+            "参数": "valueType",
+            "说明": "格式化的类型",
+            "类型": "ValueType",
+            "默认值": "-"
+          },
+          {
+            "参数": "mode",
+            "说明": "组件的模式",
+            "类型": "-",
+            "默认值": "-"
+          },
+          {
+            "参数": "plain",
+            "说明": "精简模式",
+            "类型": "-",
+            "默认值": "-"
+          },
+          {
+            "参数": "renderFormItem",
+            "说明": "自定义 `mode=update | edit` 下的 dom 表现，一般用于渲染编辑框",
+            "类型": "-",
+            "默认值": "-"
+          },
+          {
+            "参数": "render",
+            "说明": "自定义 `mode=read` 下的 dom 表现，只是单纯的表现形式",
+            "类型": "-",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProForm",
+    "tableData": []
+  },
+  {
+    "packageName": "ProForm",
+    "tableData": [
+      {
+        "title": "ProForm - 组件列表",
+        "table": [
+          {
+            "组件": "用于输入各类文本"
+          },
+          {
+            "组件": "用于输入数字，它自带了一个格式化 (保留 2 位小数，最小值为 0)，有需要你可以关掉它。"
+          },
+          {
+            "组件": "用于输入密码"
+          },
+          {
+            "组件": "用于输入多行文本"
+          },
+          {
+            "组件": "ProFormCaptcha",
+            "使用场景": "用于输入验证码， 一般需要与发送验证码接口一起使用"
+          },
+          {
+            "组件": "日期选择器用于输入日期"
+          },
+          {
+            "组件": "日期 + 时间选择器，用于输入日期和时间"
+          },
+          {
+            "组件": "日期区间选择器用于输入一个日期区间"
+          },
+          {
+            "组件": "日期 + 时间区间选择器，用于输入一个日期 + 时间的区间"
+          },
+          {
+            "组件": "支持 `request` 和 `valueEnum` 两种方式来生成子项，用于从两项以上中选择一项"
+          },
+          {
+            "组件": "支持 `request` 和 `valueEnum` 两种方式来生成子项，用于从两项以上中选择一项"
+          },
+          {
+            "组件": "在 Checkbox 基础上支持了 layout，也支持 `request` 和 `valueEnum` 两种方式来生成子项"
+          },
+          {
+            "组件": "在 Radio 基础上也支持 `request` 和 `valueEnum` 两种方式来生成子项，用于单选某项，但是可以展示出来所有选项。"
+          },
+          {
+            "组件": "当用户需要在数值区间 / 自定义区间内进行选择时，可为连续或离散值。"
+          },
+          {
+            "组件": "用于输入互斥的两个选项，一般是 true 和 false"
+          },
+          {
+            "组件": "按钮样式的上传文件"
+          },
+          {
+            "组件": "区域的上传文件，一般用于突出上传文件的表单中"
+          },
+          {
+            "组件": "ProFormMoney",
+            "使用场景": "通用金额输入组件"
+          },
+          {
+            "组件": "分段控制器"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - 通用的属性",
+        "table": [
+          {
+            "参数": "width",
+            "说明": "Field 的长度，我们归纳了常用的 Field 长度以及适合的场景，支持了一些枚举 \"xs\" , \"sm\" , \"md\" ,\"lg\" , \"xl\"",
+            "类型": "`number | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"`",
+            "默认值": "-"
+          },
+          {
+            "参数": "rowProps",
+            "说明": "开启 `grid` 模式时传递给 Row, 仅在`ProFormGroup`, `ProFormList`, `ProFormFieldSet` 中有效",
+            "类型": "{ gutter: 8 }"
+          },
+          {
+            "参数": "colProps",
+            "说明": "开启 `grid` 模式时传递给 Col",
+            "类型": "{ xs: 24 }"
+          },
+          {
+            "参数": "tooltip",
+            "说明": "会在 label 旁增加一个 icon，悬浮后展示配置的信息",
+            "类型": "`string | tooltipProps`",
+            "默认值": "-"
+          },
+          {
+            "参数": "secondary",
+            "说明": "是否是次要控件，只针对 LightFilter 下有效",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "allowClear",
+            "说明": "支持清除，针对 LightFilter 下有效，主动设置情况下同时也会透传给 `fieldProps`",
+            "类型": "`boolean`",
+            "默认值": "`true`"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormCaptcha",
+        "table": [
+          {
+            "参数": "onGetCaptcha",
+            "说明": "点击获取验证码的事件，如果配置了 phoneName 会自动注入",
+            "类型": "`(phone)=>Promise<any>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onTiming",
+            "说明": "计时数字监听",
+            "类型": "`(count: number)=>void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "captchaProps",
+            "说明": "获取验证码按钮的 props，与 antd 的 props 相同",
+            "类型": "`ButtonProps`",
+            "默认值": "-"
+          },
+          {
+            "参数": "countDown",
+            "说明": "倒计时的秒数",
+            "类型": "number",
+            "默认值": "60"
+          },
+          {
+            "参数": "captchaTextRender",
+            "说明": "渲染计时的文案",
+            "类型": "`(timing: boolean, count: number) => React.ReactNode`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormSelect",
+        "table": [
+          {
+            "参数": "valueEnum",
+            "说明": "当前列值的枚举 [valueEnum](/components/table#valueenum)",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "request",
+            "说明": "从网络请求枚举数据",
+            "类型": "`()=>Promise<{label,value}>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "debounceTime",
+            "说明": "防抖动时间，与 request 配合使用",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "params",
+            "说明": "发起网络请求的参数，与 request 配合使用",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "fieldProps",
+            "说明": "antd 组件的 props",
+            "类型": "`SelectProps `",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormTreeSelect",
+        "table": [
+          {
+            "参数": "valueEnum",
+            "说明": "当前列值的枚举 [valueEnum](/components/table#valueenum)",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "request",
+            "说明": "从网络请求枚举数据",
+            "类型": "`()=>Promise<{label,value}>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "debounceTime",
+            "说明": "防抖动时间，与 request 配合使用",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "params",
+            "说明": "发起网络请求的参数，与 request 配合使用",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "fieldProps",
+            "说明": "antd 组件的 props",
+            "类型": "`TreeSelectProps`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormCheckbox",
+        "table": [
+          {
+            "参数": "options",
+            "说明": "与 select 相同，根据 options 生成子节点，推荐使用。",
+            "类型": "`string[]` | `{label:ReactNode,value:string}[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "layout",
+            "说明": "配置 checkbox 的样子，支持垂直`vertical` 和 `horizontal`",
+            "类型": "`horizontal` | `vertical`",
+            "默认值": "-"
+          },
+          {
+            "参数": "request",
+            "说明": "从网络请求枚举数据",
+            "类型": "`()=>Promise<{label,value}>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "params",
+            "说明": "发起网络请求的参数，与 request 配合使用",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "fieldProps",
+            "说明": "antd 组件的 props",
+            "类型": "`CheckboxProps`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormRadio.Group",
+        "table": [
+          {
+            "参数": "options",
+            "说明": "与 select 相同，根据 options 生成子节点，推荐使用。",
+            "类型": "`string[]` | `{label:ReactNode,value:string}[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "request",
+            "说明": "从网络请求枚举数据",
+            "类型": "`()=>Promise<{label,value}>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "radioType",
+            "说明": "设置是按钮模式还是 radio 模式",
+            "类型": "`default`|`button`",
+            "默认值": "`default`"
+          },
+          {
+            "参数": "params",
+            "说明": "发起网络请求的参数，与 request 配合使用",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "fieldProps",
+            "说明": "antd 组件的 props",
+            "类型": "`RadioProps`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormCascader",
+        "table": [
+          {
+            "参数": "options",
+            "说明": "与 cascader 相同，根据 options 生成子节点，推荐使用。",
+            "类型": "`string[]` | `{label:ReactNode,value:string}[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "request",
+            "说明": "从网络请求枚举数据",
+            "类型": "`()=>Promise<{label,value}>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "params",
+            "说明": "发起网络请求的参数，与 request 配合使用",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "fieldProps",
+            "说明": "antd 组件的 props",
+            "类型": "`CascaderProps`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormSwitch",
+        "table": [
+          {
+            "参数": "fieldProps",
+            "说明": "antd 组件的 props",
+            "类型": "`SwitchProps`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormRate",
+        "table": [
+          {
+            "参数": "fieldProps",
+            "说明": "antd 组件的 props",
+            "类型": "`RateProps`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormSlider",
+        "table": [
+          {
+            "参数": "fieldProps",
+            "说明": "antd 组件的 props",
+            "类型": "`SliderProps`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormUploadDragger",
+        "table": [
+          {
+            "参数": "icon",
+            "说明": "Dragger 的图标",
+            "类型": "`ReactNode`",
+            "默认值": "InboxOutlined"
+          },
+          {
+            "参数": "title",
+            "说明": "Dragger 的标题",
+            "类型": "`ReactNode`",
+            "默认值": "' 单击或拖动文件到此区域进行上传'"
+          },
+          {
+            "参数": "description",
+            "说明": "Dragger 的描述",
+            "类型": "`ReactNode`",
+            "默认值": "' 支持单次或批量上传'"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormUploadButton",
+        "table": [
+          {
+            "参数": "icon",
+            "说明": "Button 的图标",
+            "类型": "`ReactNode`",
+            "默认值": "UploadOutlined"
+          },
+          {
+            "参数": "title",
+            "说明": "Button 的标题",
+            "类型": "`ReactNode`",
+            "默认值": "单击上传"
+          },
+          {
+            "参数": "max",
+            "说明": "最大上传数量，超过最大数量就会隐藏上传按钮",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "imageProps",
+            "说明": "预览 [Image](https://ant-design.antgroup.com/components/image-cn#image) 组件的额外配置，可以自定义预览行为、工具栏以及其他 Image 组件的属性。",
+            "类型": "`ImageProps`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormMoney",
+        "table": [
+          {
+            "参数": "locale",
+            "说明": "单独设置的国际化地区值，根据不同的地区显示不同的货币符号，支持地区详见下面的地区目录",
+            "类型": "`string`",
+            "默认值": "`zh-Hans-CN`"
+          },
+          {
+            "参数": "customSymbol",
+            "说明": "自定义金额符号",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "numberPopoverRender",
+            "说明": "自定义 Popover 的值，false 可以关闭他",
+            "类型": "`((props: InputNumberProps, defaultText: string) => React.ReactNode)`| `boolean`",
+            "默认值": "false"
+          },
+          {
+            "参数": "numberFormatOptions",
+            "说明": "NumberFormat 的配置，文档可以查看 [mdn](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)",
+            "类型": "NumberFormatOptions",
+            "默认值": "-"
+          },
+          {
+            "参数": "min",
+            "说明": "最小值",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "max",
+            "说明": "最大值",
+            "类型": "`number`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormSegmented",
+        "table": [
+          {
+            "参数": "valueEnum",
+            "说明": "当前列值的枚举 [valueEnum](/components/table#valueenum)",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "request",
+            "说明": "从网络请求枚举数据",
+            "类型": "`()=>Promise<{label,value}>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "debounceTime",
+            "说明": "防抖动时间，与 request 配合使用",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "params",
+            "说明": "发起网络请求的参数，与 request 配合使用",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "fieldProps",
+            "说明": "antd 组件的 props",
+            "类型": "`Segmented`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProForm",
+    "tableData": [
+      {
+        "title": "ProForm - 何时使用 ProForm？",
+        "table": [
+          {
+            "布局": "标准 Form，增加了 `onFinish` 中自动 `loading` 和根据 `request` 自动获取默认值的功能。"
+          },
+          {
+            "布局": "在 ProForm 的基础上增加了 `trigger` ，无需维护 `visible` 状态。"
+          },
+          {
+            "布局": "一般用于作为筛选表单，需要配合其他数据展示组件使用。"
+          },
+          {
+            "布局": "一般用于作为行内内置的筛选，比如卡片操作栏和表格操作栏。"
+          },
+          {
+            "布局": "分步表单，需要配置 StepForm 使用。"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProForm",
+        "table": [
+          {
+            "参数": "onFinish",
+            "说明": "提交表单且数据验证成功后回调事件，同 antd 4 `Form` 组件 API",
+            "类型": "`(values)=>Promise<void> ｜ void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onReset",
+            "说明": "点击重置按钮的回调",
+            "类型": "`(e)=>void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "submitter",
+            "说明": "提交按钮相关配置",
+            "类型": "`boolean` | `SubmitterProps`",
+            "默认值": "`true`"
+          },
+          {
+            "参数": "syncToUrl",
+            "说明": "同步参数到 url 上，url 只支持 string，在使用之前最好读一下[url 中的参数类型](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)",
+            "类型": "`true` | `(values,type)=>values`",
+            "默认值": "-"
+          },
+          {
+            "参数": "syncToInitialValues",
+            "说明": "同步结果到 initialValues，默认为 true，如果为 false，form.reset 的时候将会忽略从 url 上获取的数据",
+            "类型": "`boolean`",
+            "默认值": "`true`"
+          },
+          {
+            "参数": "dateFormatter",
+            "说明": "自动格式化数据，主要是 moment 的表单，支持 string 和 number 两种模式，此外还支持指定函数进行格式化。",
+            "类型": "`string| number | ((value: Moment, valueType: string) => string | number) | false`",
+            "默认值": "`string`"
+          },
+          {
+            "参数": "omitNil",
+            "说明": "ProForm 会自动清空 null 和 undefined 的数据，如果你约定了 nil 代表某种数据，可以设置为 false 关闭此功能",
+            "类型": "`boolean`",
+            "默认值": "`true`"
+          },
+          {
+            "参数": "params",
+            "说明": "发起网络请求的参数，与 request 配合使用",
+            "类型": "`Record`",
+            "默认值": "-"
+          },
+          {
+            "参数": "request",
+            "说明": "发起网络请求的参数，返回值会覆盖给 initialValues",
+            "类型": "`(params)=>Promise<data>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "isKeyPressSubmit",
+            "说明": "是否使用回车提交",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "formRef",
+            "说明": "获取表单所使用的 form",
+            "类型": "`MutableRefObject<Instance<T>>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "autoFocusFirstInput",
+            "说明": "自动 focus 表单第一个输入框",
+            "类型": "`boolean`",
+            "默认值": "`true`"
+          },
+          {
+            "参数": "grid",
+            "说明": "开启栅格化模式，宽度默认百分比，请使用 `colProps` 控制宽度 [查看示例](/components/form#栅格化布局)",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "rowProps",
+            "说明": "开启 `grid` 模式时传递给 `Row`, 仅在`ProFormGroup`, `ProFormList`, `ProFormFieldSet` 中有效",
+            "类型": "{ gutter: 8 }"
+          },
+          {
+            "参数": "注意 `LightFilter` 和 `QueryFilter` 仅支持除 `wrapperCol` | `labelCol` | `layout` 外的其他 antd `Form` 组件参数",
+            "说明": "-",
+            "类型": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProForm.Group",
+        "table": [
+          {
+            "参数": "title",
+            "说明": "标题",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "children",
+            "说明": "表单控件或者其他元素",
+            "类型": "`React.ReactNode`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - submitter",
+        "table": [
+          {
+            "参数": "onSubmit",
+            "说明": "提交方法",
+            "类型": "`()=>void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onReset",
+            "说明": "重置方法",
+            "类型": "`()=>void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "searchConfig",
+            "说明": "搜索的配置，一般用来配置文本",
+            "类型": "`{resetText,submitText}`",
+            "默认值": "-"
+          },
+          {
+            "参数": "submitButtonProps",
+            "说明": "提交按钮的 props",
+            "类型": "-"
+          },
+          {
+            "参数": "resetButtonProps",
+            "说明": "重置按钮的 props",
+            "类型": "-"
+          },
+          {
+            "参数": "render",
+            "说明": "自定义操作的渲染",
+            "类型": "`false`|`(props,dom:JSX[])=>ReactNode[]`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - formRef",
+        "table": [
+          {
+            "方法名": "`getFieldsFormatValue`",
+            "使用描述": "使用方法与 `FormInstance` 的 `getFieldsValue` 方法相同，将返回格式化后的所有数据"
+          },
+          {
+            "方法名": "`getFieldFormatValue`",
+            "使用描述": "使用方法与 `FormInstance` 的 `getFieldValue` 方法相同，将返回格式化后的指定数据"
+          },
+          {
+            "方法名": "`validateFieldsReturnFormatValue`",
+            "使用描述": "使用方法与 `FormInstance` 的 `validateFields` 方法相同，验证通过后将返回格式化后的所有数据"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProForm",
+    "tableData": [
+      {
+        "title": "ProForm - ProFormList API",
+        "table": [
+          {
+            "参数": "itemRender",
+            "说明": "自定义 Item，可以用来将 action 放到别的地方",
+            "类型": "`(doms,listMeta)=> ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "creatorRecord",
+            "说明": "新建一行的默认值",
+            "类型": "`Record<string, any> | () => Record<string, any>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "creatorButtonProps",
+            "说明": "新建一行按钮的配置",
+            "类型": "`buttonProps & { creatorButtonText:string,position:\"top\"|\"bottom\" }`",
+            "默认值": "`{creatorButtonText:\"新建一行\"}`"
+          },
+          {
+            "参数": "label",
+            "说明": "与 From.Item 相同",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "name",
+            "说明": "list 在 form 中的值，必填项",
+            "类型": "`NamePath`",
+            "默认值": "-"
+          },
+          {
+            "参数": "alwaysShowItemLabel",
+            "说明": "Item 中总是展示 label",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "actionRef",
+            "说明": "当前 List 的自带操作，可以增删改查列表项",
+            "类型": "`{add,remove,move,get}`",
+            "默认值": "-"
+          },
+          {
+            "参数": "actionGuard",
+            "说明": "FormItem 的拦截器，包含删除和添加的拦截，可以用 actionRef 拿到当前行的值",
+            "类型": "`{beforeAddRow:(index)=>boolean,beforeRemoveRow:(index)=>boolean}`",
+            "默认值": "-"
+          },
+          {
+            "参数": "min",
+            "说明": "最少条目，删除时如果当前数据条目少于该数则无法删除",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "max",
+            "说明": "最多条目，新增或复制时如果当前数据条目多于该数则无法新增或复制",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "copyIconProps",
+            "说明": "复制按钮的配置，false 可以取消",
+            "类型": "`{ Icon?: React.FC<any>; tooltipText?: string; } | false`",
+            "默认值": "-"
+          },
+          {
+            "参数": "deleteIconProps",
+            "说明": "删除按钮的配置，false 可以取消",
+            "类型": "`{ Icon?: React.FC<any>; tooltipText?: string; } | false`",
+            "默认值": "-"
+          },
+          {
+            "参数": "actionRender",
+            "说明": "自定义操作按钮",
+            "类型": "`(field,action,defaultActionDom,count)=>React.ReactNode[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onAfterAdd",
+            "说明": "新增数据后的钩子",
+            "类型": "`(defaultValue: StoreValue, insertIndex: number, count: number) => void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onAfterRemove",
+            "说明": "删除数据后的钩子",
+            "类型": "`(index: number, count: number) => void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "arrowSort",
+            "说明": "是否开启箭头按钮排序",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "upIconProps",
+            "说明": "向上排序按钮的配置，false 可以取消",
+            "类型": "`{ Icon?: React.FC<any>; tooltipText?: string; } | false`",
+            "默认值": "-"
+          },
+          {
+            "参数": "downIconProps",
+            "说明": "向下排序按钮的配置，false 可以取消",
+            "类型": "`{ Icon?: React.FC<any>; tooltipText?: string; } | false`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProForm",
+    "tableData": [
+      {
+        "title": "ProForm - LoginForm",
+        "table": [
+          {
+            "参数": "logo",
+            "说明": "logo 的配置，支持 ReactNode 和 string",
+            "类型": "`ReactNode | url`",
+            "默认值": "-"
+          },
+          {
+            "参数": "title",
+            "说明": "标题，可以配置为空",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "subTitle",
+            "说明": "二级标题，可以配置为空",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "actions",
+            "说明": "自定义额外的登录功能",
+            "类型": "`ReactNode`"
+          },
+          {
+            "参数": "message",
+            "说明": "form 顶部的一个提示配置，可以配置一些错误的提示信息",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - LoginFormPage",
+        "table": [
+          {
+            "参数": "logo",
+            "说明": "logo 的配置，支持 ReactNode 和 string",
+            "类型": "`ReactNode | url`",
+            "默认值": "-"
+          },
+          {
+            "参数": "title",
+            "说明": "标题，可以配置为空",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "subTitle",
+            "说明": "二级标题，可以配置为空",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "actions",
+            "说明": "自定义额外的登录功能",
+            "类型": "`ReactNode`"
+          },
+          {
+            "参数": "message",
+            "说明": "form 顶部的一个提示配置，可以配置一些错误的提示信息",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "backgroundImageUrl",
+            "说明": "整个区域的背景图片配置，手机端不会展示",
+            "类型": "`url`",
+            "默认值": "-"
+          },
+          {
+            "参数": "activityConfig",
+            "说明": "活动的配置，包含 title，subTitle，action，分别代表标题，次标题和行动按钮，也可配置 style 来控制区域的样式",
+            "类型": "`{title,subTitle,action,style}`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProForm",
+    "tableData": [
+      {
+        "title": "ProForm - ModalForm",
+        "table": [
+          {
+            "参数": "trigger",
+            "说明": "用于触发 Modal 打开的 dom，一般是 button",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "open",
+            "说明": "是否打开",
+            "类型": "`open`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onOpenChange",
+            "说明": "visible 改变时触发",
+            "类型": "`(open:boolean)=>void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "modalProps",
+            "说明": "Modal 的 props，使用方式与 [antd](https://ant.design/components/modal-cn/) 相同。注意：不支持 'visible'，请使用全局的 visible",
+            "类型": "-"
+          },
+          {
+            "参数": "title",
+            "说明": "弹框的标题",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "width",
+            "说明": "弹框的宽度",
+            "类型": "`Number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onFinish",
+            "说明": "提交数据时触发，如果返回一个 true。会关掉抽屉，如果配置了 `destroyOnClose` 还会重置表单。",
+            "类型": "`async (values)=>boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "submitTimeout",
+            "说明": "提交数据时，禁用取消按钮的超时时间（毫秒）。",
+            "类型": "`Number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "submitter",
+            "说明": "提交按钮相关配置，使用方式与 [ProForm](https://procomponents.ant.design/components/form) 相同。",
+            "类型": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - DrawerForm",
+        "table": [
+          {
+            "参数": "trigger",
+            "说明": "用于触发 Modal 打开的 dom，一般是 button",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "resize",
+            "说明": "是否调整大小",
+            "类型": "`{onResize,maxWidth,minWidth}` | `Boolean`",
+            "默认值": "{ onResize: () => { }, maxWidth: window.innerWidth * 0.8, minWidth: 300}"
+          },
+          {
+            "参数": "onOpenChange",
+            "说明": "open 改变时触发",
+            "类型": "`(open:boolean)=>void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "drawerProps",
+            "说明": "Drawer 的 props，使用方式与 [antd](https://ant.design/components/drawer-cn/) 相同。注意：不支持 'visible'，请使用全局的 visible",
+            "类型": "-"
+          },
+          {
+            "参数": "title",
+            "说明": "抽屉的标题",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "width",
+            "说明": "抽屉的宽度（受控属性，使用时权重高于 resize）",
+            "类型": "`Number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onFinish",
+            "说明": "提交数据时触发，如果返回一个 true。会关掉抽屉，如果配置了 `destroyOnClose` 还会重置表单。",
+            "类型": "`async (values)=>boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "submitTimeout",
+            "说明": "提交数据时，禁用取消按钮的超时时间（毫秒）。",
+            "类型": "`Number`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProForm",
+    "tableData": [
+      {
+        "title": "ProForm - QueryFilter",
+        "table": [
+          {
+            "参数": "collapsed",
+            "说明": "是否折叠超出的表单项，用于受控模式",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "defaultCollapsed",
+            "说明": "默认状态下是否折叠超出的表单项",
+            "类型": "`boolean`",
+            "默认值": "true"
+          },
+          {
+            "参数": "onCollapse",
+            "说明": "切换表单折叠状态时的回调",
+            "类型": "`(collapsed)=>void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "hideRequiredMark",
+            "说明": "隐藏所有表单项的必选标记，**默认隐藏**",
+            "类型": "`boolean`",
+            "默认值": "true"
+          },
+          {
+            "参数": "submitterColSpanProps",
+            "说明": "提交按钮所在 col 的 props",
+            "类型": "ColProps",
+            "默认值": "-"
+          },
+          {
+            "参数": "defaultColsNumber",
+            "说明": "自定义折叠状态下默认显示的表单控件数量，**最多只展示一行控件**，超出时展示收起/隐藏按钮",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "defaultFormItemsNumber",
+            "说明": "与 defaultColsNumber 的不同点在于，设置多少就展示多少个控件，超出时展示收起/隐藏按钮",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "参数": "labelWidth",
+            "说明": "label 宽度",
+            "类型": "`number` | `'auto'`",
+            "默认值": "`80`"
+          },
+          {
+            "参数": "span",
+            "说明": "表单项宽度",
+            "类型": "`number[0 - 24]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "split",
+            "说明": "每一行是否有分割线",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "preserve",
+            "说明": "是否能够查询收起的数据，如果设置为 false，收起后的表单数据将会丢失",
+            "类型": "`boolean`",
+            "默认值": "true"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - 默认布局时的规则",
+        "table": [
+          {
+            "容器宽度断点": "`≧ 1352px`",
+            "单行展示表单列数（包含操作区域）": "4 列",
+            "默认布局": "`horizontal`"
+          },
+          {
+            "容器宽度断点": "`≧ 1062px`",
+            "单行展示表单列数（包含操作区域）": "3 列",
+            "默认布局": "`horizontal`"
+          },
+          {
+            "容器宽度断点": "`≧ 701px && < 1063px`",
+            "单行展示表单列数（包含操作区域）": "3 列",
+            "默认布局": "`horizontal`"
+          },
+          {
+            "容器宽度断点": "`≧ 513px && < 701px`",
+            "单行展示表单列数（包含操作区域）": "2 列",
+            "默认布局": "`vertical`"
+          },
+          {
+            "容器宽度断点": "`< 513px`",
+            "单行展示表单列数（包含操作区域）": "1 列",
+            "默认布局": "`vertical`"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - 强制上下布局时的规则",
+        "table": [
+          {
+            "容器宽度断点": "`≧ 1057px`",
+            "单行展示表单列数（包含操作区域）": "4 列"
+          },
+          {
+            "容器宽度断点": "`≧ 785px && < 1057px`",
+            "单行展示表单列数（包含操作区域）": "3 列"
+          },
+          {
+            "容器宽度断点": "`≧ 513px && < 785px`",
+            "单行展示表单列数（包含操作区域）": "2 列"
+          },
+          {
+            "容器宽度断点": "`< 513px`",
+            "单行展示表单列数（包含操作区域）": "1 列"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - LightFilter",
+        "table": [
+          {
+            "参数": "collapse",
+            "说明": "是否默认折叠全部字段",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "collapseLabel",
+            "说明": "折叠区域的标签",
+            "类型": "`ReactNode`",
+            "默认值": "`更多筛选 <DownOutlined/>`"
+          },
+          {
+            "参数": "footerRender",
+            "说明": "底部内容，当不需要默认底部按钮时，可以设为 footer={false}",
+            "类型": "`(onClear?: () => void, onConfirm: () => void) => JSX.Element | false)`|`false`",
+            "默认值": "-"
+          },
+          {
+            "参数": "placement",
+            "说明": "选择框弹出的位置 ：`bottomLeft` `bottomRight` `topLeft` `topRight`",
+            "类型": "string",
+            "默认值": "bottomLeft"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProForm",
+    "tableData": [
+      {
+        "title": "ProForm - API",
+        "table": [
+          {
+            "字段名称": "`layoutType`",
+            "类型": "使用的表单布局模式"
+          },
+          {
+            "字段名称": "`steps`",
+            "类型": "`StepFormProps[]`",
+            "说明": "`layoutType=steps`中的分步表单配置，需要配置 columns 为数组使用"
+          },
+          {
+            "字段名称": "`columns`",
+            "类型": "表单的定义，一般是 json 对象，如果是分步表单，需要使用 json 数组来生成多个表单"
+          },
+          {
+            "字段名称": "`shouldUpdate`",
+            "类型": "`(newValues: Record<string, any>, oldValues: Record<string, any>) => boolean | boolean`",
+            "说明": "细粒化控制是否渲染。<br /> 为`true`时会自动重新渲染表单项。<br /> 为`false`时不会更新表单项但可以使用[dependencies 触发更新](#结合-shouldupdatefalse-和-dependencies-触发更新)，<br /> 为`function` 时根据返回值判断是否重新渲染表单项，等同直接赋值 `true` 或 `false` [参考示例](#动态控制是否重渲染)"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - ProFormLayoutType",
+        "table": [
+          {
+            "字段名称": "`Form`"
+          },
+          {
+            "字段名称": "`ModalForm`",
+            "说明": "弹框表单，配置之后支持 [ModalForm](/components/modal-form) 的所有配置"
+          },
+          {
+            "字段名称": "`DrawerForm`",
+            "说明": "抽屉表单，配置之后支持 [DrawerForm](/components/modal-form) 的所有配置"
+          },
+          {
+            "字段名称": "`StepsForm`|`StepForm`",
+            "说明": "配置之后为分步表单，有两种模式一种使用 `steps` 和 `columns` 来生成，一种是通过 `layoutType=StepsForm` 嵌套 `layoutType=StepForm` 来实现"
+          },
+          {
+            "字段名称": "`LightFilter`",
+            "说明": "轻量筛选，配置之后支持 [`LightFilter`](/components/query-filter) 的所有配置"
+          },
+          {
+            "字段名称": "`QueryFilter`",
+            "说明": "查询表单，配置之后支持 [`QueryFilter`](/components/query-filter) 的所有配置"
+          },
+          {
+            "字段名称": "`Embed`",
+            "说明": "内嵌模式，只生成表单项，不生成 Form 可以混合使用"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - Schema 定义",
+        "table": [
+          {
+            "字段名称": "`key`",
+            "类型": "`React.key`",
+            "说明": "确定这个列的唯一值，一般用于 dataIndex 重复的情况"
+          },
+          {
+            "字段名称": "`dataIndex`",
+            "类型": "`React.key` | `React.key[]`",
+            "说明": "与实体映射的 key，数组会被转化 `[a,b] => Entity.a.b`"
+          },
+          {
+            "字段名称": "`valueType`",
+            "类型": "`ProFieldValueType`",
+            "说明": "数据的渲渲染方式，我们自带了一部分，你也可以自定义 valueType"
+          },
+          {
+            "字段名称": "`title`",
+            "类型": "`ReactNode` |`(props,type,dom)=> ReactNode`",
+            "说明": "标题的内容，在 form 中是 label"
+          },
+          {
+            "字段名称": "`tooltip`",
+            "类型": "`string`",
+            "说明": "会在 title 旁边展示一个 icon，鼠标浮动之后展示"
+          },
+          {
+            "字段名称": "`valueEnum`",
+            "类型": "`(Entity)=> ValueEnum` | `ValueEnum`",
+            "说明": "支持 object 和 Map，Map 是支持其他基础类型作为 key"
+          },
+          {
+            "字段名称": "`fieldProps`",
+            "类型": "`(form,config)=>fieldProps`| `fieldProps`",
+            "说明": "传给渲染的组件的 props，自定义的时候也会传递"
+          },
+          {
+            "字段名称": "`formItemProps`",
+            "类型": "`(form,config)=>formItemProps` | `formItemProps`",
+            "说明": "传递给 Form.Item 的配置"
+          },
+          {
+            "字段名称": "`formItemProps.rules`",
+            "类型": "`Rule[]`",
+            "说明": "表单项的校验规则。需要注意的是，如果当前表单项为`formList`时，此规则仅校验列表是否为空，且仅接受元组`[{required: boolean, message: string}]`，用于开启和关闭非空校验及指定空列表提示消息"
+          },
+          {
+            "字段名称": "`proFieldProps`",
+            "类型": "`proFieldProps`",
+            "说明": "设置到 `ProField` 上面的 `props`，内部属性"
+          },
+          {
+            "字段名称": "`renderText`",
+            "类型": "`(text: any, record: Entity, index: number, action: ProCoreActionType) => any`",
+            "说明": "修改的数据是会被 valueType 定义的渲染组件消费"
+          },
+          {
+            "字段名称": "`render`",
+            "类型": "`(dom,entity,index, action, schema) => React.ReactNode`",
+            "说明": "自定义只读模式的 dom,`render` 方法只管理的只读模式，编辑模式需要使用 `renderFormItem`"
+          },
+          {
+            "字段名称": "`renderFormItem`",
+            "类型": "`(schema,config,form) => React.ReactNode`",
+            "说明": "自定义编辑模式，返回一个 ReactNode，会自动包裹 value 和 onChange。 请使用 dependency 组件控制是否渲染列"
+          },
+          {
+            "字段名称": "`request`",
+            "类型": "`(params,props) => Promise<{label,value}[]>`",
+            "说明": "从远程请求网络数据，一般用于选择类组件"
+          },
+          {
+            "字段名称": "`params`",
+            "类型": "`Record<string, any>`",
+            "说明": "额外传递给 `request` 的参数，组件不做处理，但是变化会引起`request` 重新请求数据"
+          },
+          {
+            "字段名称": "`dependencies`",
+            "类型": "`string | number | (string | number)[]`",
+            "说明": "所依赖的 values 变化后，触发 renderFormItem，fieldProps，formItemProps 重新执行，并把 values 注入到 params 里 [示例](#使用-dependencies-触发-fieldpropsformitempropsrenderformitem-更新)"
+          },
+          {
+            "字段名称": "`hideInDescriptions`",
+            "类型": "`boolean`",
+            "说明": "在 descriptions 中隐藏"
+          },
+          {
+            "字段名称": "`hideInForm`",
+            "类型": "`boolean`",
+            "说明": "在 Form 中隐藏"
+          },
+          {
+            "字段名称": "`hideInTable`",
+            "类型": "`boolean`",
+            "说明": "在 Table 中隐藏"
+          },
+          {
+            "字段名称": "`hideInSearch`",
+            "类型": "`boolean`",
+            "说明": "在 Table 的查询表格中隐藏"
+          },
+          {
+            "字段名称": "`columns`",
+            "类型": "`ProFormColumnsType[] | (values) => ProFormColumnsType[]`",
+            "说明": "嵌套子项，valueType 为 dependency 时，请使用`(values) => ProFormColumnsType[]`其他情况使用 `ProFormColumnsType[]`"
+          },
+          {
+            "字段名称": "`colProps`",
+            "类型": "在开启 grid 模式时传递给 Col"
+          },
+          {
+            "字段名称": "`rowProps`",
+            "类型": "开启栅格化模式时传递给 Row"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProForm",
+    "tableData": [
+      {
+        "title": "ProForm - StepsForm",
+        "table": [
+          {
+            "参数": "current",
+            "说明": "当前表单的步骤数，从 `0` 开始",
+            "类型": "`number`",
+            "默认值": "0"
+          },
+          {
+            "参数": "onCurrentChange",
+            "说明": "current 发生改变的事件",
+            "类型": "`(current:number)=>void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onFinish",
+            "说明": "表单最后一步提交成功触发，如果返回`true`就会自动重置表单（包括`StepForm`变回第一步）",
+            "类型": "`(values:T)=>void | boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "stepsProps",
+            "说明": "StepsForm 自带的 Steps 的 props，使用方式与 [antd](https://ant.design/components/steps-cn/) 相同，但是去掉了 current 和 onChange",
+            "类型": "-"
+          },
+          {
+            "参数": "stepFormRender",
+            "说明": "自定义当前展示的表单，返回 dom 在表单内部",
+            "类型": "`(form) => ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "stepsFormRender",
+            "说明": "自定义整个表单区域，返回的 dom 在表单的外部",
+            "类型": "`(form,submitter) => ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "stepsRender",
+            "说明": "自定义步骤器",
+            "类型": "`(steps,dom)=>ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "formRef",
+            "说明": "StepForm action 的引用，便于自定义触发",
+            "类型": "`MutableRefObject<FormInstance>`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProForm - StepForm",
+        "table": [
+          {
+            "参数": "onFinish",
+            "说明": "表单提交成功触发",
+            "类型": "`(values:T)=>Promise<false>`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": []
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": []
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": [
+      {
+        "title": "ProLayout - ProLayout",
+        "table": [
+          {
+            "参数": "title",
+            "说明": "layout 的左上角的 title",
+            "类型": "`ReactNode`",
+            "默认值": "`'Ant Design Pro'`"
+          },
+          {
+            "参数": "logo",
+            "说明": "layout 的左上角 logo 的 url",
+            "类型": "`ReactNode` | `()=> ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "pure",
+            "说明": "是否删除掉所有的自带界面",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "loading",
+            "说明": "layout 的加载态",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "location",
+            "说明": "当前应用会话的位置信息。如果你的应用创建了自定义的 history，则需要显示指定 location 属性，详见 [issue](https://github.com/ant-design/pro-components/issues/327)",
+            "类型": "isBrowser ? window.location : undefined"
+          },
+          {
+            "参数": "appList",
+            "说明": "跨站点导航列表",
+            "类型": "`{ icon, title, desc, url, target, children }[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "appListRender",
+            "说明": "自定义跨站点导航列表的 render 方法",
+            "类型": "`(props: AppListProps, defaultDom: React.ReactNode) => ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "menuHeaderRender",
+            "说明": "渲染 logo 和 title, 优先级比 `headerTitleRender` 更高",
+            "类型": "`ReactNode` | `(logo,title)=>ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "menuFooterRender",
+            "说明": "在 layout 底部渲染一个块",
+            "类型": "`(menuProps)=>ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onMenuHeaderClick",
+            "说明": "menu 菜单的头部点击事件",
+            "类型": "`(e: React.MouseEvent<HTMLDivElement>) => void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "menuExtraRender",
+            "说明": "在菜单标题的下面渲染一个区域",
+            "类型": "`(menuProps)=>ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onTopMixMenuHeaderClick",
+            "说明": "mix 模式下顶部栏的头部点击事件",
+            "类型": "`(e: React.MouseEvent<HTMLDivElement>) => void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "contentStyle",
+            "说明": "layout 的内容区 style",
+            "类型": "CSSProperties",
+            "默认值": "-"
+          },
+          {
+            "参数": "layout",
+            "说明": "layout 的菜单模式，side：右侧导航，top：顶部导航",
+            "类型": "`side` | `top`|`mix`",
+            "默认值": "`side`"
+          },
+          {
+            "参数": "contentWidth",
+            "说明": "layout 的内容模式，Fluid：自适应，Fixed：定宽 1200px",
+            "类型": "`Fluid` | `Fixed`",
+            "默认值": "`Fluid`"
+          },
+          {
+            "参数": "actionRef",
+            "说明": "layout 的常见操作，比如刷新菜单",
+            "类型": "`MutableRefObject<ActionType>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "fixedHeader",
+            "说明": "是否固定 header 到顶部",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "fixSiderbar",
+            "说明": "是否固定导航",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "breakpoint",
+            "说明": "触发响应式布局的[断点](https://ant.design/components/grid-cn/#Col)",
+            "类型": "`Enum { 'xs', 'sm', 'md', 'lg', 'xl', 'xxl' }`",
+            "默认值": "`lg`"
+          },
+          {
+            "参数": "menu",
+            "说明": "关于 [menu](#menu) 的配置，暂时只有 locale，locale 可以关闭 menu 的自带的全球化",
+            "类型": "`{ locale: true }`"
+          },
+          {
+            "参数": "iconfontUrl",
+            "说明": "使用 [IconFont](https://ant.design/components/icon-cn/#components-icon-demo-iconfont) 的图标配置",
+            "类型": "`URL`",
+            "默认值": "-"
+          },
+          {
+            "参数": "locale",
+            "说明": "当前 layout 的语言设置",
+            "类型": "`zh-CN` | `zh-TW` | `en-US`",
+            "默认值": "navigator.language"
+          },
+          {
+            "参数": "settings",
+            "说明": "layout 的设置",
+            "类型": "-"
+          },
+          {
+            "参数": "siderWidth",
+            "说明": "侧边菜单宽度",
+            "类型": "`number`",
+            "默认值": "208"
+          },
+          {
+            "参数": "suppressSiderWhenMenuEmpty",
+            "说明": "在菜单为空时隐藏 Sider",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "defaultCollapsed",
+            "说明": "默认的菜单的收起和展开，会受到 `breakpoint` 的影响，`breakpoint=false` 生效",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "collapsed",
+            "说明": "控制菜单的收起和展开",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onCollapse",
+            "说明": "菜单的折叠收起事件",
+            "类型": "`(collapsed: boolean) => void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onPageChange",
+            "说明": "页面切换时触发",
+            "类型": "`(location: Location) => void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "headerRender",
+            "说明": "自定义头的 render 方法",
+            "类型": "`(props: ProLayoutProps) => ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "headerTitleRender",
+            "说明": "自定义头标题的方法，mix 模式和 top 模式下生效",
+            "类型": "`(logo,title,props)=>ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "headerContentRender",
+            "说明": "自定义头内容的方法",
+            "类型": "`(props: ProLayoutProps) => ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "avatarProps",
+            "说明": "layout 的头像设置，不同的 layout 放在不同的位置",
+            "类型": "-"
+          },
+          {
+            "参数": "actionsRender",
+            "说明": "自定义操作列表",
+            "类型": "`(layoutProps)=>ReactNode[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "collapsedButtonRender",
+            "说明": "自定义 collapsed button 的方法",
+            "类型": "`(collapsed: boolean) => ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "footerRender",
+            "说明": "自定义页脚的 render 方法",
+            "类型": "`(props: ProLayoutProps) => JSX.Element | false`",
+            "默认值": "-"
+          },
+          {
+            "参数": "pageTitleRender",
+            "说明": "自定义页面标题的显示方法",
+            "类型": "`(props: ProLayoutProps) => string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "menuRender",
+            "说明": "自定义菜单的 render 方法",
+            "类型": "`(props: HeaderViewProps) => ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "postMenuData",
+            "说明": "在显示前对菜单数据进行查看，修改不会触发重新渲染",
+            "类型": "`(menuData: MenuDataItem[]) => MenuDataItem[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "menuItemRender",
+            "说明": "自定义菜单项的 render 方法",
+            "类型": "-"
+          },
+          {
+            "参数": "subMenuItemRender",
+            "说明": "自定义拥有子菜单菜单项的 render 方法",
+            "类型": "-"
+          },
+          {
+            "参数": "menuDataRender",
+            "说明": "menuData 的 render 方法，用来自定义 menuData",
+            "类型": "`(menuData: MenuDataItem[]) => MenuDataItem[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "breadcrumbRender",
+            "说明": "自定义面包屑的数据",
+            "类型": "`(route)=>route`",
+            "默认值": "-"
+          },
+          {
+            "参数": "breadcrumbProps",
+            "说明": "传递到 antd Breadcrumb 组件的 props, 参考 [面包屑](https://ant.design/components/breadcrumb-cn/)",
+            "类型": "`breadcrumbProps`",
+            "默认值": "undefined"
+          },
+          {
+            "参数": "route",
+            "说明": "用于生成菜单和面包屑。Umi 的 Layout 会自动带有",
+            "类型": "-"
+          },
+          {
+            "参数": "disableMobile",
+            "说明": "禁止自动切换到移动页面",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "参数": "ErrorBoundary",
+            "说明": "自带了错误处理功能，防止白屏，`ErrorBoundary=false` 关闭默认错误边界",
+            "类型": "`ReactNode`",
+            "默认值": "内置 ErrorBoundary"
+          },
+          {
+            "参数": "links",
+            "说明": "显示在菜单右下角的快捷操作",
+            "类型": "`ReactNode[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "menuProps",
+            "说明": "传递到 antd menu 组件的 props, 参考 [导航菜单](https://ant.design/components/menu-cn/)",
+            "类型": "`MenuProps`",
+            "默认值": "undefined"
+          },
+          {
+            "参数": "waterMarkProps",
+            "说明": "配置水印，水印是 PageContainer 的功能，layout 只是透传给 PageContainer",
+            "类型": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - menu",
+        "table": [
+          {
+            "参数": "locale",
+            "说明": "menu 是否使用国际化，还需要 formatMessage 的配合。",
+            "类型": "`boolean`",
+            "默认值": "`true`"
+          },
+          {
+            "参数": "defaultOpenAll",
+            "说明": "默认打开所有的菜单项，要注意只有 layout 挂载之前生效，异步加载菜单是不支持的",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "ignoreFlatMenu",
+            "说明": "是否忽略手动折叠过的菜单状态，结合 defaultOpenAll 可实现折叠按钮切换后，同样可以展开所有子菜单",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "type",
+            "说明": "菜单的类型",
+            "类型": "`sub` | `group`",
+            "默认值": "`group`"
+          },
+          {
+            "参数": "autoClose",
+            "说明": "选中菜单是否自动关闭菜单",
+            "类型": "`boolean`",
+            "默认值": "`true`"
+          },
+          {
+            "参数": "loading",
+            "说明": "菜单是否正在加载中",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "onLoadingChange",
+            "说明": "菜单的加载状态变更",
+            "类型": "`(loading)=>void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "request",
+            "说明": "远程加载菜单的方法，会自动修改 loading 状态",
+            "类型": "`(params,defaultMenuDat) => Promise<MenuDataItem[]>`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - SettingDrawer",
+        "table": [
+          {
+            "参数": "collapse",
+            "说明": "控制 SettingDrawer 的收起和展开",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onCollapseChange",
+            "说明": "SettingDrawer 的折叠收起事件",
+            "类型": "`(collapsed: boolean) => void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "settings",
+            "说明": "layout 的设置",
+            "类型": "-"
+          },
+          {
+            "参数": "onSettingChange",
+            "说明": "`(settings: [`Settings`](#Settings) ) => void`",
+            "类型": "-"
+          },
+          {
+            "参数": "hideHintAlert",
+            "说明": "删除下方的提示信息",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "hideCopyButton",
+            "说明": "不展示 copy 功能",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "disableUrlParams",
+            "说明": "禁止同步设置到查询参数",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "enableDarkTheme",
+            "说明": "打开黑色主题切换功能 ｜ `boolean`",
+            "类型": "`false`"
+          },
+          {
+            "参数": "colorList",
+            "说明": "自带的颜色切换系统 (ColorList 的 title 会作为 Tooltip 显示) ｜ `{key,color,title?}[]`",
+            "类型": "`ColorList`"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - PageLoading",
+        "table": [
+          {
+            "参数": "支持所有的 antd `Spin` 组件参数",
+            "说明": "-",
+            "类型": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - getMenuData",
+        "table": [
+          {
+            "参数": "routes",
+            "说明": "路由的配置信息",
+            "类型": "-"
+          },
+          {
+            "参数": "menu",
+            "说明": "menu 的配置项，默认 `{locale: true}`",
+            "类型": "`{ locale: boolean }`",
+            "默认值": "-"
+          },
+          {
+            "参数": "menuDataRender",
+            "说明": "menuData 的 render 方法，用来自定义 menuData",
+            "类型": "`(menuData: MenuDataItem[]) => MenuDataItem[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "formatMessage",
+            "说明": "react-intl 的 formatMessage 方法",
+            "类型": "`(data: { id: any; defaultMessage?: string }) => string;`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - getPageTitle",
+        "table": [
+          {
+            "参数": "pathname",
+            "说明": "当前的 pathname",
+            "类型": "location.pathname",
+            "默认值": "-"
+          },
+          {
+            "参数": "breadcrumb",
+            "说明": "MenuDataItem 的合集",
+            "类型": "`{ [path: string]: MenuDataItem }`",
+            "默认值": "-"
+          },
+          {
+            "参数": "menu",
+            "说明": "menu 的配置项，默认 `{locale: true}`",
+            "类型": "`{ locale: boolean }`",
+            "默认值": "-"
+          },
+          {
+            "参数": "title",
+            "说明": "title 的类型",
+            "类型": "string",
+            "默认值": "'Ant Design Pro'"
+          },
+          {
+            "参数": "formatMessage",
+            "说明": "react-intl 的 formatMessage 方法",
+            "类型": "`(data: { id: any; defaultMessage?: string }) => string;`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - GridContent",
+        "table": [
+          {
+            "参数": "contentWidth",
+            "说明": "内容模式",
+            "类型": "`Fluid` | `Fixed`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - Layout 的 token",
+        "table": [
+          {
+            "token": "bgLayout",
+            "说明": "layout 的背景颜色",
+            "默认值": "`linear-gradient(${antdToken.colorBgContainer}, ${antdToken.colorBgLayout} 28%)`"
+          },
+          {
+            "token": "colorTextAppListIcon",
+            "说明": "跨站点应用的图标颜色",
+            "默认值": "`#666`"
+          },
+          {
+            "token": "colorTextAppListIconHover",
+            "说明": "跨站点应用的图标 hover 颜色",
+            "默认值": "`rgba(0, 0, 0, 0.65)`"
+          },
+          {
+            "token": "colorBgAppListIconHover",
+            "说明": "跨站点应用的图标 hover 背景颜色",
+            "默认值": "`rgba(0, 0, 0, 0.04)`"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - Sider Token",
+        "table": [
+          {
+            "token": "colorMenuBackground",
+            "说明": "menu 的背景颜色",
+            "默认值": "`transparent`"
+          },
+          {
+            "token": "colorTextMenuTitle",
+            "说明": "sider 的标题字体颜色",
+            "默认值": "`colorTextHeading`"
+          },
+          {
+            "token": "colorMenuItemDivider",
+            "说明": "menuItem 分割线的颜色",
+            "默认值": "`colorSplit`"
+          },
+          {
+            "token": "colorTextMenu",
+            "说明": "menuItem 的字体颜色",
+            "默认值": "`colorText`"
+          },
+          {
+            "token": "colorTextMenuSecondary",
+            "说明": "menu 的二级字体颜色，比如 footer 和 action 的 icon",
+            "默认值": "`colorText`"
+          },
+          {
+            "token": "colorTextMenuSelected",
+            "说明": "menuItem 的选中字体颜色",
+            "默认值": "`rgb(0,0,0)`"
+          },
+          {
+            "token": "colorTextMenuActive",
+            "说明": "menuItem hover 的选中字体颜色",
+            "默认值": "`rgba(0, 0, 0, 0.85)`"
+          },
+          {
+            "token": "colorTextMenuItemHover",
+            "说明": "menuItem 的 hover 字体颜色",
+            "默认值": "`rgba(255,255,255,0.75)`"
+          },
+          {
+            "token": "colorBgMenuItemActive",
+            "说明": "menuItem 的点击时背景颜色",
+            "默认值": "`rgba(0, 0, 0, 0.15)`"
+          },
+          {
+            "token": "colorBgMenuItemHover",
+            "说明": "menuItem 的 hover 背景颜色",
+            "默认值": "`rgba(90, 75, 75, 0.03)`"
+          },
+          {
+            "token": "colorBgMenuItemSelected",
+            "说明": "menuItem 的选中背景颜色",
+            "默认值": "`rgba(0, 0, 0, 0.04)`"
+          },
+          {
+            "token": "colorBgMenuItemCollapsedElevated",
+            "说明": "收起 menuItem 的弹出菜单背景颜色",
+            "默认值": "`transparent`"
+          },
+          {
+            "token": "colorBgCollapsedButton",
+            "说明": "展开收起按钮背景颜色",
+            "默认值": "`#fff`"
+          },
+          {
+            "token": "colorTextCollapsedButton",
+            "说明": "展开收起按钮字体颜色",
+            "默认值": "`colorTextMenuSecondary`"
+          },
+          {
+            "token": "colorTextCollapsedButtonHover",
+            "说明": "展开收起按钮 hover 时字体颜色",
+            "默认值": "`colorTextMenu`"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - Header Token",
+        "table": [
+          {
+            "token": "colorBgHeader",
+            "说明": "header 的背景颜色",
+            "默认值": "`rgba(240, 242, 245, 0.4)`"
+          },
+          {
+            "token": "colorHeaderTitle",
+            "说明": "sider 的标题字体颜色",
+            "默认值": "`colorTextHeading`"
+          },
+          {
+            "token": "colorTextMenu",
+            "说明": "menuItem 的字体颜色",
+            "默认值": "`colorText`"
+          },
+          {
+            "token": "colorTextMenuSecondary",
+            "说明": "menu 的二级字体颜色，比如 footer 和 action 的 icon",
+            "默认值": "`colorText`"
+          },
+          {
+            "token": "colorTextMenuSelected",
+            "说明": "menuItem 的选中字体颜色",
+            "默认值": "`rgb(0,0,0)`"
+          },
+          {
+            "token": "colorTextMenuActive",
+            "说明": "menuItem hover 的选中字体颜色",
+            "默认值": "`rgba(0, 0, 0, 0.85)`"
+          },
+          {
+            "token": "colorBgMenuItemHover",
+            "说明": "menuItem 的 hover 背景颜色",
+            "默认值": "`rgba(90, 75, 75, 0.03)`"
+          },
+          {
+            "token": "colorBgMenuItemSelected",
+            "说明": "menuItem 的选中背景颜色",
+            "默认值": "`rgba(0, 0, 0, 0.04)`"
+          },
+          {
+            "token": "colorTextRightActionsItem",
+            "说明": "右上角字体颜色",
+            "默认值": "`colorTextSecondary`"
+          },
+          {
+            "token": "colorBgRightActionsItemHover",
+            "说明": "右上角选中的 hover 颜色",
+            "默认值": "`rgba(0, 0, 0, 0.03)`"
+          },
+          {
+            "token": "heightLayoutHeader",
+            "说明": "header 高度",
+            "默认值": "56"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - pageContainer Token",
+        "table": [
+          {
+            "token": "paddingBlockPageContainerContent",
+            "说明": "pageContainer 自带的 padding block",
+            "默认值": "`24`"
+          },
+          {
+            "token": "paddingInlinePageContainerContent",
+            "说明": "pageContainer 自带的 padding inline",
+            "默认值": "`40`"
+          },
+          {
+            "token": "colorBgPageContainer",
+            "说明": "pageContainer 的背景颜色",
+            "默认值": "`transparent`"
+          },
+          {
+            "token": "colorBgPageContainerFixed",
+            "说明": "pageContainer 被固定时的背景颜色",
+            "默认值": "`#FFF`"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": [
+      {
+        "title": "ProLayout - PageContainer",
+        "table": [
+          {
+            "参数": "content",
+            "说明": "内容区",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "extraContent",
+            "说明": "额外内容区，位于 content 的右侧",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "tabList",
+            "说明": "tab 标题列表",
+            "类型": "`{key: string, tab: ReactNode}[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "tabActiveKey",
+            "说明": "当前高亮的 tab 项",
+            "类型": "string",
+            "默认值": "-"
+          },
+          {
+            "参数": "onTabChange",
+            "说明": "切换面板的回调",
+            "类型": "`(key) => void`",
+            "默认值": "-"
+          },
+          {
+            "参数": "tabBarExtraContent",
+            "说明": "tab bar 上额外的元素",
+            "类型": "`React.ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "header",
+            "说明": "`PageHeaderProps`",
+            "类型": "-"
+          },
+          {
+            "参数": "ghost",
+            "说明": "配置头部区域的背景颜色为透明",
+            "类型": "boolean",
+            "默认值": "false"
+          },
+          {
+            "参数": "fixedHeader",
+            "说明": "固定 pageHeader 的内容到顶部，如果页面内容较少，最好不要使用，会有严重的遮挡问题",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "参数": "affixProps",
+            "说明": "固钉的配置，与 antd 完全相同",
+            "类型": "`AffixProps`",
+            "默认值": "-"
+          },
+          {
+            "参数": "footer",
+            "说明": "悬浮在底部的操作栏，传入一个数组，会自动加空格",
+            "类型": "`ReactNode[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "waterMarkProps",
+            "说明": "配置水印，Layout 会透传给 PageContainer，但是以 PageContainer 的配置优先",
+            "类型": "-"
+          },
+          {
+            "参数": "tabProps",
+            "说明": "Tabs 的相关属性，只有卡片样式的页签支持新增和关闭选项。使用 `closable={false}` 禁止关闭",
+            "类型": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProLayout - FooterToolbar",
+        "table": [
+          {
+            "参数": "extra",
+            "说明": "额外内容区，位于 content 的右侧",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "children",
+            "说明": "内容区域",
+            "类型": "`ReactNode`|`ReactNode[]`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": []
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": []
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": []
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": []
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": []
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": []
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": [
+      {
+        "title": "ProLayout - PageHeader",
+        "table": [
+          {
+            "参数": "avatar",
+            "说明": "标题栏旁的头像",
+            "类型": "-"
+          },
+          {
+            "参数": "backIcon",
+            "说明": "自定义 back icon ，如果为 false 不渲染 back icon",
+            "类型": "ReactNode | boolean",
+            "默认值": "\\<ArrowLeft />"
+          },
+          {
+            "参数": "breadcrumb",
+            "说明": "面包屑的配置",
+            "类型": "-"
+          },
+          {
+            "参数": "breadcrumbRender",
+            "说明": "自定义面包屑区域的内容",
+            "类型": "`(props, originBreadcrumb) => ReactNode`",
+            "默认值": "-",
+            "版本": "4.11.0"
+          },
+          {
+            "参数": "extra",
+            "说明": "操作区，位于 title 行的行尾",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "footer",
+            "说明": "PageHeader 的页脚，一般用于渲染 TabBar",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "ghost",
+            "说明": "pageHeader 的类型，将会改变背景颜色",
+            "类型": "boolean",
+            "默认值": "true"
+          },
+          {
+            "参数": "subTitle",
+            "说明": "自定义的二级标题文字",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "tags",
+            "说明": "title 旁的 tag 列表",
+            "类型": "-"
+          },
+          {
+            "参数": "title",
+            "说明": "自定义标题文字",
+            "类型": "ReactNode",
+            "默认值": "-"
+          },
+          {
+            "参数": "onBack",
+            "说明": "返回按钮的点击事件",
+            "类型": "() => void",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProLayout",
+    "tableData": [
+      {
+        "title": "ProLayout - WaterMark",
+        "table": [
+          {
+            "参数": "width",
+            "说明": "水印的宽度",
+            "类型": "number",
+            "默认值": "120",
+            "版本": "2.2.0"
+          },
+          {
+            "参数": "height",
+            "说明": "水印的高度",
+            "类型": "number",
+            "默认值": "64",
+            "版本": "2.2.0"
+          },
+          {
+            "参数": "rotate",
+            "说明": "水印绘制时，旋转的角度，单位 °",
+            "类型": "number",
+            "默认值": "-22",
+            "版本": "2.2.0"
+          },
+          {
+            "参数": "image",
+            "说明": "图片源，建议导出 2 倍或 3 倍图，优先使用图片渲染水印",
+            "类型": "`string`",
+            "默认值": "-",
+            "版本": "2.2.0"
+          },
+          {
+            "参数": "zIndex",
+            "说明": "追加的水印元素的 z-index",
+            "类型": "number",
+            "默认值": "9",
+            "版本": "2.2.0"
+          },
+          {
+            "参数": "content",
+            "说明": "水印文字内容",
+            "类型": "`string` | `string[]`",
+            "默认值": "-",
+            "版本": "2.2.0"
+          },
+          {
+            "参数": "fontColor",
+            "说明": "水印文字颜色",
+            "类型": "`string`",
+            "默认值": "`rgba(0,0,0,.15)`",
+            "版本": "2.2.0"
+          },
+          {
+            "参数": "fontSize",
+            "说明": "文字大小",
+            "类型": "`string` | `number`",
+            "默认值": "16",
+            "版本": "2.2.0"
+          },
+          {
+            "参数": "markStyle",
+            "说明": "水印层的样式",
+            "类型": "React.CSSProperties",
+            "默认值": "-",
+            "版本": "2.3.0"
+          },
+          {
+            "参数": "markClassName",
+            "说明": "水印层的类名",
+            "类型": "string",
+            "默认值": "-",
+            "版本": "2.3.0"
+          },
+          {
+            "参数": "gapX",
+            "说明": "水印之间的水平间距",
+            "类型": "number",
+            "默认值": "212",
+            "版本": "2.4.0"
+          },
+          {
+            "参数": "gapY",
+            "说明": "水印之间的垂直间距",
+            "类型": "number",
+            "默认值": "222",
+            "版本": "2.4.0"
+          },
+          {
+            "参数": "offsetLeft",
+            "说明": "水印在 canvas 画布上绘制的水平偏移量，正常情况下，水印绘制在中间位置，即 `offsetLeft = gapX / 2`",
+            "类型": "number",
+            "默认值": "`offsetLeft = gapX / 2`",
+            "版本": "2.4.0"
+          },
+          {
+            "参数": "offsetTop",
+            "说明": "水印在 canvas 画布上绘制的垂直偏移量，正常情况下，水印绘制在中间位置，即 `offsetTop = gapY / 2`",
+            "类型": "number",
+            "默认值": "`offsetTop = gapY / 2`",
+            "版本": "2.4.0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProList",
+    "tableData": [
+      {
+        "title": "ProList - ProList API",
+        "table": [
+          {
+            "参数": "dataSource",
+            "说明": "与 antd 相同的[配置](https://ant.design/components/list-cn/#API)",
+            "类型": "`any[]`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "actionRef",
+            "说明": "Table action 的引用，便于自定义触发",
+            "类型": "`MutableRefObject<ActionType>`",
+            "默认值": "-"
+          },
+          {
+            "参数": "metas",
+            "说明": "列表项配置，类似 Table 中的 columns",
+            "类型": "`Metas`",
+            "默认值": "-"
+          },
+          {
+            "参数": "rowKey",
+            "说明": "行的 key，一般是行 id",
+            "类型": "`string` | `(row,index)=>string`",
+            "默认值": "`'id'`"
+          },
+          {
+            "参数": "headerTitle",
+            "说明": "列表头部主标题",
+            "类型": "`React.ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "loading",
+            "说明": "是否加载中",
+            "类型": "`boolean` | `(item: any) => boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "split",
+            "说明": "是否有分割线",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "rowSelection",
+            "说明": "与 antd 相同的[配置](https://ant.design/components/table-cn/#rowSelection)",
+            "类型": "`object` |`boolean`",
+            "默认值": "false"
+          },
+          {
+            "参数": "expandable",
+            "说明": "与 antd 相同的[配置](https://ant.design/components/table-cn/#expandable)",
+            "类型": "`object` | `false`",
+            "默认值": "-"
+          },
+          {
+            "参数": "showActions",
+            "说明": "何时展示 actions，CardList 模式下不生效",
+            "类型": "`'hover'` | `'always'`",
+            "默认值": "`'always'`"
+          },
+          {
+            "参数": "showExtra",
+            "说明": "何时展示 extra",
+            "类型": "`'hover'` | `'always'`",
+            "默认值": "`'always'`"
+          },
+          {
+            "参数": "onRow",
+            "说明": "与 antd 相同的[配置](https://ant.design/components/table-cn/#onRow-%E7%94%A8%E6%B3%95)，用户传入`grid`属性时，列表将会以卡片模式进行渲染，此事件将不会触发，请使用`onItem`",
+            "类型": "`function(record, index)`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onItem",
+            "说明": "与 antd 相同的[配置](https://ant.design/components/table-cn/#onRow-%E7%94%A8%E6%B3%95)，在所有类型点击某个项目都会触发该事件。",
+            "类型": "`function(record, index)`",
+            "默认值": "-"
+          },
+          {
+            "参数": "rowClassName",
+            "说明": "自定义列表行的类名",
+            "类型": "`string`| `(row, index) => string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "itemHeaderRender",
+            "说明": "自定义每一列的 header，与 itemRender 不同的时，它会保留多选和展开收起",
+            "类型": "-",
+            "默认值": "-"
+          },
+          {
+            "参数": "itemCardProps",
+            "说明": "自定义卡片列表的 proCard props，只在卡片列表下生效",
+            "类型": "-",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProList - Metas.[Meta] 通用 API",
+        "table": [
+          {
+            "参数": "dataIndex",
+            "说明": "数据在数据项中对应的路径，支持通过数组查询嵌套路径",
+            "类型": "`string` | `string[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "valueType",
+            "说明": "值的类型，和 ProTable 一致",
+            "类型": "`'text'` | `'date'` ...",
+            "默认值": "`'text'`"
+          },
+          {
+            "参数": "render",
+            "说明": "自定义渲染函数",
+            "类型": "`(text: React.ReactNode,record: T,index: number) => React.ReactNode | React.ReactNode[]`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProList - Metas.type",
+        "table": [
+          {
+            "参数": "dataIndex",
+            "说明": "-",
+            "类型": "-",
+            "默认值": "`'type'`"
+          }
+        ]
+      },
+      {
+        "title": "ProList - Metas.title",
+        "table": [
+          {
+            "参数": "dataIndex",
+            "说明": "-",
+            "类型": "-",
+            "默认值": "`'title'`"
+          }
+        ]
+      },
+      {
+        "title": "ProList - Metas.subTitle",
+        "table": [
+          {
+            "参数": "dataIndex",
+            "说明": "-",
+            "类型": "-",
+            "默认值": "`'subTitle'`"
+          }
+        ]
+      },
+      {
+        "title": "ProList - Metas.description",
+        "table": [
+          {
+            "参数": "dataIndex",
+            "说明": "-",
+            "类型": "-",
+            "默认值": "`'description'`"
+          }
+        ]
+      },
+      {
+        "title": "ProList - Metas.avatar",
+        "table": [
+          {
+            "参数": "dataIndex",
+            "说明": "-",
+            "类型": "-",
+            "默认值": "`'avatar'`"
+          }
+        ]
+      },
+      {
+        "title": "ProList - Metas.actions",
+        "table": [
+          {
+            "参数": "dataIndex",
+            "说明": "-",
+            "类型": "-",
+            "默认值": "`'actions'`"
+          },
+          {
+            "参数": "cardActionProps",
+            "说明": "设置卡片列表把 action 渲染到哪里｜`extra`｜`'actions' | 'extra'`"
+          }
+        ]
+      },
+      {
+        "title": "ProList - Metas.content",
+        "table": [
+          {
+            "参数": "dataIndex",
+            "说明": "-",
+            "类型": "-",
+            "默认值": "`'content'`"
+          }
+        ]
+      },
+      {
+        "title": "ProList - Metas.extra",
+        "table": [
+          {
+            "参数": "dataIndex",
+            "说明": "-",
+            "类型": "-",
+            "默认值": "`'extra'`"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProSkeleton",
+    "tableData": [
+      {
+        "title": "ProSkeleton - API",
+        "table": [
+          {
+            "参数": "type",
+            "说明": "不同类型的骨架屏",
+            "类型": "`'list' | 'result' | 'descriptions'`",
+            "默认值": "list"
+          },
+          {
+            "参数": "active",
+            "说明": "是否显示动态",
+            "类型": "boolean",
+            "默认值": "true"
+          },
+          {
+            "参数": "pageHeader",
+            "说明": "是否显示 pageHeader 的骨架屏 descriptions 和 list 有效",
+            "类型": "-",
+            "默认值": "-"
+          },
+          {
+            "参数": "statistic",
+            "说明": "统计信息骨架屏的数量",
+            "类型": "`number` | `false`",
+            "默认值": "-"
+          },
+          {
+            "参数": "list",
+            "说明": "列表的骨架屏，可以控制数量",
+            "类型": "`number` | `false`",
+            "默认值": "-"
+          },
+          {
+            "参数": "toolbar",
+            "说明": "列表的操作栏骨架屏",
+            "类型": "boolean",
+            "默认值": "-"
+          },
+          {
+            "参数": "renderFormItem",
+            "说明": "自定义 `mode=update 或 edit` 下的 dom 表现，一般用于渲染编辑框",
+            "类型": "-",
+            "默认值": "-"
+          },
+          {
+            "参数": "render",
+            "说明": "自定义 `mode=read` 下的 dom 表现，只是单纯的表现形式",
+            "类型": "-",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProTable",
+    "tableData": [
+      {
+        "title": "ProTable - DragSortTable",
+        "table": [
+          {
+            "属性": "dragSortKey",
+            "描述": "如配置此参数，则会在该 key 对应的行显示拖拽排序把手，允许拖拽排序",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "属性": "dragSortHandlerRender",
+            "描述": "渲染自定义拖动排序把手的函数 如配置了 dragSortKey 但未配置此参数，则使用默认把手图标",
+            "类型": "`(rowData: T, idx: number) => React.ReactNode`",
+            "默认值": "`<MenuOutlined className=\"dragSortDefaultHandle\" style={{ cursor: 'grab', color: '#999' }} />`"
+          },
+          {
+            "属性": "onDragSortEnd",
+            "描述": "拖动排序完成回调",
+            "类型": "`(beforeIndex: number, afterIndex: number, newDataSource: T[]) => Promise<void> | void`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProTable",
+    "tableData": [
+      {
+        "title": "ProTable - EditableProTable",
+        "table": [
+          {
+            "属性": "`value`",
+            "描述": "同 dataSource，传入一个数组，是 table 渲染的元数据",
+            "类型": "`T[]`",
+            "默认值": "`undefined`"
+          },
+          {
+            "属性": "`onChange`",
+            "描述": "dataSource 修改时触发，删除和修改都会触发，如果设置了 value，Table 会成为一个受控组件。",
+            "类型": "`(value:T[])=>void`",
+            "默认值": "`undefined`"
+          },
+          {
+            "属性": "`recordCreatorProps`",
+            "描述": "新建一行数据的相关配置",
+            "类型": "-"
+          },
+          {
+            "属性": "`maxLength`",
+            "描述": "最大的行数，到达最大行数新建按钮会自动消失",
+            "类型": "number",
+            "默认值": "-"
+          },
+          {
+            "属性": "`editable`",
+            "描述": "可编辑表格的相关配置",
+            "类型": "-"
+          },
+          {
+            "属性": "`controlled`",
+            "描述": "是否受控，如果受控每次编辑都会触发 onChange，并且会修改 dataSource",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "属性": "`editableFormRef`",
+            "描述": "table 所有的 form，带了一些表格特有的操作",
+            "类型": "`React.Ref<EditableFormInstance<T>>`",
+            "默认值": "`undefined`"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - TableRowEditable",
+        "table": [
+          {
+            "属性": "type",
+            "描述": "可编辑表格的类型，单行编辑或者多行编辑",
+            "类型": "`single` | `multiple`",
+            "默认值": "-"
+          },
+          {
+            "属性": "form",
+            "描述": "可编辑表格的 form 实例，使用 `Form.useForm` 生成后使用",
+            "类型": "`FormInstance`",
+            "默认值": "-"
+          },
+          {
+            "属性": "formProps",
+            "描述": "可以配置 form 的属性，但是不支持 onFinish",
+            "类型": "-"
+          },
+          {
+            "属性": "editableKeys",
+            "描述": "正在编辑的行，受控属性。 默认 `key` 会使用 `rowKey` 的配置，如果没有配置会使用 `index`，建议使用 rowKey",
+            "类型": "`Key[]`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onChange",
+            "描述": "行数据被修改的时候触发",
+            "类型": "`(editableKeys: Key[], editableRows: T[]) => void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onSave",
+            "描述": "保存一行的时候触发",
+            "类型": "`(key: Key, row: T,originRow:T,newLine?:newLineConfig) => Promise<any>`",
+            "默认值": "-"
+          },
+          {
+            "属性": "saveText",
+            "描述": "保存一行的文字",
+            "类型": "`React.ReactNode`",
+            "默认值": "`保存`"
+          },
+          {
+            "属性": "onDelete",
+            "描述": "删除一行的时候触发",
+            "类型": "`(key: Key, row: T) => Promise<any>`",
+            "默认值": "-"
+          },
+          {
+            "属性": "deleteText",
+            "描述": "删除一行的文字",
+            "类型": "`React.ReactNode`",
+            "默认值": "`删除`"
+          },
+          {
+            "属性": "onCancel",
+            "描述": "取消编辑一行时触发",
+            "类型": "`(key: Key, row: T,originRow:T,newLine?:newLineConfig) => Promise<any>`",
+            "默认值": "-"
+          },
+          {
+            "属性": "cancelText",
+            "描述": "取消编辑一行的文字",
+            "类型": "`React.ReactNode`",
+            "默认值": "`取消`"
+          },
+          {
+            "属性": "actionRender",
+            "描述": "自定义编辑模式的操作栏",
+            "类型": "`(row: T, config: ActionRenderConfig<T>) => ReactNode[]`",
+            "默认值": "-"
+          },
+          {
+            "属性": "deletePopconfirmMessage",
+            "描述": "删除时弹出的确认框提示消息",
+            "类型": "`ReactNode`",
+            "默认值": "`删除此项？`"
+          },
+          {
+            "属性": "onlyOneLineEditorAlertMessage",
+            "描述": "只能编辑一行的的提示",
+            "类型": "`ReactNode`",
+            "默认值": "`只能同时编辑一行`"
+          },
+          {
+            "属性": "onlyAddOneLineAlertMessage",
+            "描述": "只能同时新增一行的提示",
+            "类型": "`ReactNode`",
+            "默认值": "`只能新增一行`"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageName": "ProTable",
+    "tableData": []
+  },
+  {
+    "packageName": "ProTable",
+    "tableData": []
+  },
+  {
+    "packageName": "ProTable",
+    "tableData": [
+      {
+        "title": "ProTable - ProTable",
+        "table": [
+          {
+            "属性": "request",
+            "描述": "获取 `dataSource` 的方法",
+            "类型": "`(params?: {pageSize,current},sort,filter) => {data,success,total}`",
+            "默认值": "-"
+          },
+          {
+            "属性": "params",
+            "描述": "用于 `request` 查询的额外参数，一旦变化会触发重新加载",
+            "类型": "`object`",
+            "默认值": "-"
+          },
+          {
+            "属性": "polling",
+            "描述": "是否轮询，polling 表示轮询的时间间隔，0 表示关闭轮询，大于 0 表示开启轮询，最小的轮询时间为 2000ms",
+            "类型": "`number | ((dataSource: columnType[]) => number) | undefined`",
+            "默认值": "-"
+          },
+          {
+            "属性": "postData",
+            "描述": "对通过 `request` 获取的数据进行处理",
+            "类型": "`(data: T[]) => T[]`",
+            "默认值": "-"
+          },
+          {
+            "属性": "defaultData",
+            "描述": "默认的数据",
+            "类型": "`T[]`",
+            "默认值": "-"
+          },
+          {
+            "属性": "dataSource",
+            "描述": "Table 的数据，ProTable 推荐使用 `request` 来加载",
+            "类型": "`T[]`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onDataSourceChange",
+            "描述": "Table 的数据发生改变时触发",
+            "类型": "`(dataSource: T[]) => void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "actionRef",
+            "描述": "Table action 的引用，便于自定义触发",
+            "类型": "`MutableRefObject<ActionType>`",
+            "默认值": "-"
+          },
+          {
+            "属性": "formRef",
+            "描述": "可以获取到查询表单的 form 实例，用于一些灵活的配置",
+            "类型": "`MutableRefObject<FormInstance>`",
+            "默认值": "-"
+          },
+          {
+            "属性": "toolBarRender",
+            "描述": "渲染工具栏，支持返回一个 dom 数组，会自动增加 margin-right",
+            "类型": "`(action) => ReactNode[]`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onLoad",
+            "描述": "数据加载完成后触发，会多次触发",
+            "类型": "`(dataSource: T[]) => void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onLoadingChange",
+            "描述": "loading 被修改时触发，一般是网络请求导致的",
+            "类型": "`(loading:boolean)=>void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onRequestError",
+            "描述": "数据加载失败时触发",
+            "类型": "`(error) => void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "tableClassName",
+            "描述": "封装的 table 的 className",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "属性": "tableStyle",
+            "描述": "封装的 table 的 style",
+            "类型": "-"
+          },
+          {
+            "属性": "options",
+            "描述": "table 工具栏，设为 false 时不显示，传入 function 会点击时触发",
+            "类型": "`{{ density?: boolean, fullScreen?: boolean | function, reload?: boolean | function, reloadIcon?: React.ReactNode, densityIcon?: React.ReactNode, setting?: boolean |` [SettingOptionType](#菜单栏-options-配置) `}}`",
+            "默认值": "`{ fullScreen: false, reload: true, density: true, setting: true }`"
+          },
+          {
+            "属性": "search",
+            "描述": "是否显示搜索表单，传入对象时为搜索表单的配置",
+            "类型": "`false` | [SearchConfig](#search-搜索表单)",
+            "默认值": "-"
+          },
+          {
+            "属性": "defaultSize",
+            "描述": "默认的 size",
+            "类型": "SizeType",
+            "默认值": "-"
+          },
+          {
+            "属性": "dateFormatter",
+            "描述": "转化 moment 格式数据为特定类型，false 不做转化",
+            "类型": "`\"string\"` | `\"number\"` | ((value: Moment, valueType: string) => string | number) | `false`",
+            "默认值": "`\"string\"`"
+          },
+          {
+            "属性": "beforeSearchSubmit",
+            "描述": "搜索之前进行一些修改",
+            "类型": "`(params:T)=>T`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onSizeChange",
+            "描述": "table 尺寸发生改变",
+            "类型": "`(size: 'default' | 'middle' | 'small') => void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "type",
+            "描述": "pro-table 类型",
+            "类型": "`\"form\"`",
+            "默认值": "-"
+          },
+          {
+            "属性": "form",
+            "描述": "antd form 的配置",
+            "类型": "-"
+          },
+          {
+            "属性": "onSubmit",
+            "描述": "提交表单时触发",
+            "类型": "`(params: U) => void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onReset",
+            "描述": "重置表单时触发",
+            "类型": "`() => void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "columnEmptyText",
+            "描述": "空值时的显示，不设置时显示 `-`， false 可以关闭此功能",
+            "类型": "`string` | `false`",
+            "默认值": "false"
+          },
+          {
+            "属性": "tableRender",
+            "描述": "自定义渲染表格函数",
+            "类型": "`(props,dom,domList:{ toolbar,alert,table}) => ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "属性": "toolbar",
+            "描述": "透传 `ListToolBar` 配置项",
+            "类型": "-"
+          },
+          {
+            "属性": "tableExtraRender",
+            "描述": "自定义表格的主体函数",
+            "类型": "`(props: ProTableProps<T, U>, dataSource: T[]) => ReactNode;`",
+            "默认值": "-"
+          },
+          {
+            "属性": "manualRequest",
+            "描述": "是否需要手动触发首次请求，配置为 `true` 时不可隐藏搜索表单",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "属性": "editable",
+            "描述": "可编辑表格的相关配置",
+            "类型": "-"
+          },
+          {
+            "属性": "cardBordered",
+            "描述": "Table 和 Search 外围 Card 组件的边框",
+            "类型": "`boolean | {search?: boolean, table?: boolean}`",
+            "默认值": "false"
+          },
+          {
+            "属性": "ghost",
+            "描述": "幽灵模式，即是否取消表格区域的 padding",
+            "类型": "`boolean`",
+            "默认值": "false"
+          },
+          {
+            "属性": "debounceTime",
+            "描述": "防抖时间",
+            "类型": "`number`",
+            "默认值": "10"
+          },
+          {
+            "属性": "revalidateOnFocus",
+            "描述": "窗口聚焦时自动重新请求",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "属性": "columnsState",
+            "描述": "受控的列状态，可以操作显示隐藏",
+            "类型": "`ColumnStateType`",
+            "默认值": "-"
+          },
+          {
+            "属性": "ErrorBoundary",
+            "描述": "自带了错误处理功能，防止白屏，`ErrorBoundary=false` 关闭默认错误边界",
+            "类型": "`ReactNode`",
+            "默认值": "内置 ErrorBoundary"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - RecordCreator",
+        "table": [
+          {
+            "属性": "record",
+            "描述": "需要新增的行数据，一般来说包含唯一 key",
+            "类型": "`T`",
+            "默认值": "`{}`"
+          },
+          {
+            "属性": "position",
+            "描述": "行增加在哪里，开始或者末尾",
+            "类型": "`top` | `bottom`",
+            "默认值": "`bottom`"
+          },
+          {
+            "属性": "(...buttonProps)",
+            "描述": "antd 的 [ButtonProps](https://ant.design/components/button-cn/#API)",
+            "类型": "ButtonProps",
+            "默认值": "—"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - ColumnStateType",
+        "table": [
+          {
+            "属性": "defaultValue",
+            "描述": "列状态的默认值，只有初次生效，并用于重置使用",
+            "类型": "`Record<string, ColumnsState>;`",
+            "默认值": "-"
+          },
+          {
+            "属性": "value",
+            "描述": "列状态的值，支持受控模式",
+            "类型": "`Record<string, ColumnsState>;`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onChange",
+            "描述": "列状态的值发生改变之后触发",
+            "类型": "`(value:Record<string, ColumnsState>)=>void`",
+            "默认值": "-"
+          },
+          {
+            "属性": "persistenceKey",
+            "描述": "持久化列的 key，用于判断是否是同一个 table",
+            "类型": "`string | number`",
+            "默认值": "-"
+          },
+          {
+            "属性": "persistenceType",
+            "描述": "持久化列的类型，localStorage 设置在关闭浏览器后也是存在的，sessionStorage 关闭浏览器后会丢失",
+            "类型": "`localStorage | sessionStorage`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - Search 搜索表单",
+        "table": [
+          {
+            "属性": "filterType",
+            "描述": "过滤表单类型",
+            "类型": "`'query'` | `'light'`",
+            "默认值": "`'query'`"
+          },
+          {
+            "属性": "searchText",
+            "描述": "查询按钮的文本",
+            "类型": "`string`",
+            "默认值": "查询"
+          },
+          {
+            "属性": "resetText",
+            "描述": "重置按钮的文本",
+            "类型": "`string`",
+            "默认值": "重置"
+          },
+          {
+            "属性": "submitText",
+            "描述": "提交按钮的文本",
+            "类型": "`string`",
+            "默认值": "提交"
+          },
+          {
+            "属性": "labelWidth",
+            "描述": "标签的宽度",
+            "类型": "`'number'` | `'auto'`",
+            "默认值": "80"
+          },
+          {
+            "属性": "span",
+            "描述": "配置查询表单的列数",
+            "类型": "`'number'` | [`'ColConfig'`](#ColConfig)",
+            "默认值": "defaultColConfig"
+          },
+          {
+            "属性": "className",
+            "描述": "封装的搜索 Form 的 className",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "属性": "collapseRender",
+            "描述": "收起按钮的 render",
+            "类型": "`((collapsed: boolean,showCollapseButton?: boolean) => ReactNode)`|`false`",
+            "默认值": "-"
+          },
+          {
+            "属性": "defaultCollapsed",
+            "描述": "默认是否收起",
+            "类型": "`boolean`",
+            "默认值": "`true`"
+          },
+          {
+            "属性": "collapsed",
+            "描述": "是否收起",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "属性": "onCollapse",
+            "描述": "收起按钮的事件",
+            "类型": "`(collapsed: boolean) => void;`",
+            "默认值": "-"
+          },
+          {
+            "属性": "optionRender",
+            "描述": "自定义操作栏",
+            "类型": "`((searchConfig,formProps,dom) => ReactNode[])`|`false`",
+            "默认值": "-"
+          },
+          {
+            "属性": "showHiddenNum",
+            "描述": "是否显示收起之后显示隐藏个数",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - Columns 列定义",
+        "table": [
+          {
+            "属性": "title",
+            "描述": "与 antd 中基本相同，但是支持通过传入一个方法",
+            "类型": "`ReactNode | ((config: ProColumnType<T>, type: ProTableTypes) => ReactNode)`",
+            "默认值": "-"
+          },
+          {
+            "属性": "tooltip",
+            "描述": "会在 title 之后展示一个 icon，hover 之后提示一些信息",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "属性": "ellipsis",
+            "描述": "是否自动缩略",
+            "类型": "`boolean` | `{showTitle?: boolean}`",
+            "默认值": "-"
+          },
+          {
+            "属性": "copyable",
+            "描述": "是否支持复制",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "属性": "valueEnum",
+            "描述": "值的枚举，会自动转化把值当成 key 来取出要显示的内容",
+            "类型": "-"
+          },
+          {
+            "属性": "valueType",
+            "描述": "值的类型，会生成不同的渲染器",
+            "类型": "`text`"
+          },
+          {
+            "属性": "order",
+            "描述": "查询表单中的权重，权重大排序靠前",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "属性": "fieldProps",
+            "描述": "查询表单的 props，会透传给表单项，如果渲染出来是 Input，就支持 Input 的所有 props，同理如果是 select，也支持 select 的所有 props。也支持方法传入",
+            "类型": "`(form,config)=>Record | Record`",
+            "默认值": "-"
+          },
+          {
+            "属性": "`formItemProps`",
+            "描述": "传递给 Form.Item 的配置，可以配置 rules，但是默认的查询表单 rules 是不生效的。需要配置 `ignoreRules`",
+            "类型": "`(form,config)=>formItemProps` | `formItemProps`",
+            "默认值": "-"
+          },
+          {
+            "属性": "renderText",
+            "描述": "类似 table 的 render，但是必须返回 string，如果只是希望转化枚举，可以使用 [valueEnum](/components/schema#valueenum)",
+            "类型": "`(text: any,record: T,index: number,action: UseFetchDataAction<T>) => string`",
+            "默认值": "-"
+          },
+          {
+            "属性": "render",
+            "描述": "类似 table 的 render，第一个参数变成了 dom，增加了第四个参数 action",
+            "类型": "`(text: ReactNode,record: T,index: number,action: UseFetchDataAction<T>) => ReactNode | ReactNode[]`",
+            "默认值": "-"
+          },
+          {
+            "属性": "renderFormItem",
+            "描述": "渲染查询表单的输入组件",
+            "类型": "`(item,{ type, defaultRender, formItemProps, fieldProps, ...rest },form) => ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "属性": "search",
+            "描述": "配置列的搜索相关，false 为隐藏",
+            "类型": "`false` | `{ transform: (value: any) => any }`",
+            "默认值": "true"
+          },
+          {
+            "属性": "search.transform",
+            "描述": "转化值的 key, 一般用于时间区间的转化",
+            "类型": "`(value: any) => any`",
+            "默认值": "-"
+          },
+          {
+            "属性": "在编辑表格中是否可编辑的，函数的参数和 table 的 render 一样",
+            "描述": "`false` | `(text: any, record: T,index: number) => boolean`",
+            "类型": "true"
+          },
+          {
+            "属性": "colSize",
+            "描述": "一个表单项占用的格子数量，`占比= colSize*span`，`colSize` 默认为 1 ，`span` 为 8，`span`是`form={{span:8}}` 全局设置的",
+            "类型": "`number`",
+            "默认值": "-"
+          },
+          {
+            "属性": "hideInSearch",
+            "描述": "在查询表单中不展示此项",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "属性": "hideInTable",
+            "描述": "在 Table 中不展示此列",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "属性": "hideInForm",
+            "描述": "在 Form 中不展示此列",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "属性": "hideInDescriptions",
+            "描述": "在 Descriptions 中不展示此列",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "属性": "filters",
+            "描述": "表头的筛选菜单项，当值为 true 时，自动使用 valueEnum 生成",
+            "类型": "`boolean` | `object[]`",
+            "默认值": "false"
+          },
+          {
+            "属性": "onFilter",
+            "描述": "筛选表单，为 true 时使用 ProTable 自带的，为 false 时关闭本地筛选",
+            "类型": "`(value, record) => boolean` | `false`",
+            "默认值": "false"
+          },
+          {
+            "属性": "request",
+            "描述": "从服务器请求枚举",
+            "类型": "-"
+          },
+          {
+            "属性": "initialValue",
+            "描述": "查询表单项初始值",
+            "类型": "`any`",
+            "默认值": "-"
+          },
+          {
+            "属性": "disable",
+            "描述": "列设置中`disabled`的状态",
+            "类型": "`boolean` | `{ checkbox: boolean; }`",
+            "默认值": "-"
+          },
+          {
+            "属性": "ignoreRules",
+            "描述": "忽略rules，LightFilter 应该不支持rules，默认是 false。",
+            "类型": "`boolean` | -"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - 批量操作",
+        "table": [
+          {
+            "属性": "alwaysShowAlert",
+            "描述": "总是展示 alert，默认无选择不展示（`rowSelection`内置属性）",
+            "类型": "`boolean`",
+            "默认值": "-"
+          },
+          {
+            "属性": "tableAlertRender",
+            "描述": "自定义批量操作工具栏左侧信息区域，false 时不显示",
+            "类型": "`({ selectedRowKeys: Key[], selectedRows: T[], onCleanSelected: ()=>void }) => ReactNode)`|`false`",
+            "默认值": "-"
+          },
+          {
+            "属性": "tableAlertOptionRender",
+            "描述": "自定义批量操作工具栏右侧选项区域，false 时不显示",
+            "类型": "`({ selectedRowKeys: Key[], selectedRows: T[], onCleanSelected: ()=>void }) => ReactNode)`|`false`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - ListToolBarProps",
+        "table": [
+          {
+            "参数": "title",
+            "说明": "标题",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "subTitle",
+            "说明": "子标题",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "tooltip",
+            "说明": "tooltip 描述",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "search",
+            "说明": "查询区",
+            "类型": "`ReactNode` | `SearchProps`",
+            "默认值": "-"
+          },
+          {
+            "参数": "actions",
+            "说明": "操作区",
+            "类型": "`ReactNode[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "settings",
+            "说明": "设置区",
+            "类型": "`(ReactNode | Setting)[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "filter",
+            "说明": "过滤区，通常配合 `LightFilter` 使用",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "multipleLine",
+            "说明": "是否多行展示",
+            "类型": "`boolean`",
+            "默认值": "`false`"
+          },
+          {
+            "参数": "menu",
+            "说明": "菜单配置",
+            "类型": "`ListToolBarMenu`",
+            "默认值": "-"
+          },
+          {
+            "参数": "tabs",
+            "说明": "标签页配置，仅当 `multipleLine` 为 true 时有效",
+            "类型": "`ListToolBarTabs`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - Setting",
+        "table": [
+          {
+            "参数": "icon",
+            "说明": "图标",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "tooltip",
+            "说明": "tooltip 描述",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "key",
+            "说明": "操作唯一标识",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onClick",
+            "说明": "设置被触发",
+            "类型": "`(key: string)=>void`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - ListToolBarMenu",
+        "table": [
+          {
+            "参数": "type",
+            "说明": "类型",
+            "类型": "`inline` | `dropdown` | `tab`",
+            "默认值": "`inline`"
+          },
+          {
+            "参数": "activeKey",
+            "说明": "当前值",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "items",
+            "说明": "菜单项",
+            "类型": "`{ key: string; label: ReactNode }[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onChange",
+            "说明": "切换菜单的回调",
+            "类型": "`(activeKey)=>void`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - ListToolBarTabs",
+        "table": [
+          {
+            "参数": "activeKey",
+            "说明": "当前选中项",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "items",
+            "说明": "菜单项",
+            "类型": "`{ key: string; tab: ReactNode }[]`",
+            "默认值": "-"
+          },
+          {
+            "参数": "onChange",
+            "说明": "切换菜单的回调",
+            "类型": "`(activeKey)=>void`",
+            "默认值": "-"
+          }
+        ]
+      },
+      {
+        "title": "ProTable - TableDropdown",
+        "table": [
+          {
+            "参数": "key",
+            "说明": "唯一标志",
+            "类型": "`string`",
+            "默认值": "-"
+          },
+          {
+            "参数": "name",
+            "说明": "内容",
+            "类型": "`ReactNode`",
+            "默认值": "-"
+          },
+          {
+            "参数": "(...Menu.Item)",
+            "说明": "antd 的 [Menu.Item](https://ant.design/components/menu-cn/#Menu.Item)",
+            "类型": "`Menu.Item`",
+            "默认值": "-"
+          }
+        ]
+      }
+    ]
+  }
+]

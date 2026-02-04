@@ -1,0 +1,1 @@
+{"version":3,"file":"difference.js","sourceRoot":"","sources":["../src/difference.ts"],"names":[],"mappings":";;AAAA,mCAA8B;AAC9B,uCAAkC;AAElC;;;;;;;;GAQG;AACH,IAAM,UAAU,GAAG,UAAY,GAAQ,EAAE,MAAgB;IAAhB,uBAAA,EAAA,WAAgB;IACvD,OAAO,gBAAM,CAAC,GAAG,EAAE,UAAC,KAAU,IAAK,OAAA,CAAC,kBAAQ,CAAC,MAAM,EAAE,KAAK,CAAC,EAAxB,CAAwB,CAAC,CAAC;AAC/D,CAAC,CAAC;AAEF,kBAAe,UAAU,CAAC"}

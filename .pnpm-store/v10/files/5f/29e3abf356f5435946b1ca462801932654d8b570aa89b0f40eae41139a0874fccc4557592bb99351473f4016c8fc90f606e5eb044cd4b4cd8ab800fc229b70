@@ -1,0 +1,20 @@
+import { useSiteData } from 'dumi';
+import React, { lazy } from 'react';
+var EditButton = /*#__PURE__*/lazy(function () {
+  return import("./EditButton");
+});
+var Contributors = /*#__PURE__*/lazy(function () {
+  return import("./Contributors");
+});
+var SectionFeedback = /*#__PURE__*/lazy(function () {
+  return import("./SectionFeedback");
+});
+export var Feedback = function Feedback() {
+  var _useSiteData = useSiteData(),
+    themeConfig = _useSiteData.themeConfig;
+  var feedback = themeConfig.feedback;
+  if (!feedback) {
+    return null;
+  }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(EditButton, null), /*#__PURE__*/React.createElement(Contributors, null), /*#__PURE__*/React.createElement(SectionFeedback, null));
+};

@@ -1,0 +1,1 @@
+{"version":3,"file":"is-object.js","sourceRoot":"","sources":["../../src/lodash/is-object.ts"],"names":[],"mappings":"AAAA,gBAAe,UAAa,KAAU;IACpC;;;;;OAKG;IACH,IAAM,IAAI,GAAG,OAAO,KAAK,CAAC;IAC1B,OAAO,CAAC,KAAK,KAAK,IAAI,IAAI,IAAI,KAAK,QAAQ,CAAC,IAAI,IAAI,KAAK,UAAU,CAAC;AACtE,CAAC,EAAC"}

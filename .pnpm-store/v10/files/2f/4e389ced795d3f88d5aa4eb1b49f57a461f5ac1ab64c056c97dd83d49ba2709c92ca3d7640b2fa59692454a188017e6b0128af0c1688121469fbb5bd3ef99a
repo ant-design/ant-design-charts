@@ -1,0 +1,32 @@
+import React from 'react';
+import { Button } from 'antd';
+import GitHubIcon from "../../icons/GitHubIcon";
+import useUser from "../../hooks/useUser";
+var LoginCard = function LoginCard(_ref) {
+  var apiDomain = _ref.apiDomain,
+    webDomain = _ref.webDomain,
+    token = _ref.token;
+  var _useUser = useUser({
+      apiDomain: apiDomain,
+      webDomain: webDomain,
+      fingerprint: token
+    }),
+    user = _useUser.user,
+    isLoading = _useUser.isLoading,
+    actions = _useUser.actions;
+  if (isLoading) {
+    return /*#__PURE__*/React.createElement(Button, {
+      disabled: true,
+      loading: true
+    }, "Loading...");
+  }
+  if (!user || user.id.startsWith('client|')) {
+    return /*#__PURE__*/React.createElement(Button, {
+      onClick: actions.doLogin,
+      type: "primary",
+      icon: /*#__PURE__*/React.createElement(GitHubIcon, null)
+    }, "Login");
+  }
+  return /*#__PURE__*/React.createElement("p", null, "\u4F60\u5DF2\u5B8C\u6210\u767B\u5F55\u3002\u53EF\u4EE5\u7EE7\u7EED\u8F93\u5165\u4E86\u3002");
+};
+export default LoginCard;

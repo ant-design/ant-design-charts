@@ -1,0 +1,107 @@
+{
+  "name": "@stylelint/postcss-css-in-js",
+  "version": "0.37.3",
+  "description": "PostCSS syntax for parsing CSS in JS literals",
+  "keywords": [
+    "postcss",
+    "syntax",
+    "emotion",
+    "aphrodite",
+    "glamor",
+    "glamorous",
+    "react-native",
+    "react-style",
+    "reactcss",
+    "styled-components",
+    "styletron-react",
+    "typestyle",
+    "css-in-js",
+    "css"
+  ],
+  "repository": "stylelint/postcss-css-in-js",
+  "license": "MIT",
+  "author": "gucong3000",
+  "main": "index.js",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {
+    "format": "prettier . --write",
+    "_postinstall": "is-ci || husky install",
+    "lint": "npm-run-all --parallel lint:*",
+    "lint:formatting": "prettier . --check",
+    "lint:js": "eslint . --cache --max-warnings=0",
+    "lint:md": "remark . --quiet --frail",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable",
+    "release": "np",
+    "test": "jest",
+    "watch": "jest --watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,md,yml}": "prettier --write"
+  },
+  "prettier": "@stylelint/prettier-config",
+  "eslintConfig": {
+    "extends": [
+      "stylelint"
+    ]
+  },
+  "remarkConfig": {
+    "plugins": [
+      "@stylelint/remark-preset"
+    ]
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!coverage/**",
+      "!test{,s}/**",
+      "!**/.{prettier,eslint,mocha}rc.{js,cjs}"
+    ],
+    "testMatch": [
+      "**/test/*.js",
+      "**/test/**/*.test.js"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.17.9"
+  },
+  "devDependencies": {
+    "@stylelint/prettier-config": "^2.0.0",
+    "@stylelint/remark-preset": "^2.0.0",
+    "autoprefixer": "^9.8.6",
+    "codecov": "^3.8.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-stylelint": "^13.1.0",
+    "husky": "^7.0.2",
+    "is-ci": "^3.0.0",
+    "jest": "^26.6.3",
+    "json5": "^2.2.0",
+    "lint-staged": "^11.1.2",
+    "np": "^7.5.0",
+    "npm-run-all": "^4.1.5",
+    "pinst": "^2.1.6",
+    "postcss": ">=7.0.32",
+    "postcss-parser-tests": "^6.5.0",
+    "postcss-safe-parser": "^4.0.2",
+    "postcss-syntax": ">=0.36.2",
+    "prettier": "^2.4.1",
+    "remark-cli": "^9.0.0"
+  },
+  "peerDependencies": {
+    "postcss": ">=7.0.0",
+    "postcss-syntax": ">=0.36.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

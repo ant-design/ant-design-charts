@@ -1,0 +1,99 @@
+.api {
+  height: 100%;
+  color: rgba(0, 0, 0, 85%);
+
+  .header {
+    position: relative;
+    height: 36px;
+    background-color: #f8f9fc;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    padding-right: 12px;
+    padding-left: 36px;
+    color: #777;
+    line-height: 36px;
+  }
+
+  .content {
+    overflow: hidden;
+    border-left: 1px solid #ececec;
+    height: calc(100% - 36px);
+    overflow-y: scroll;
+
+    .disorganized {
+      padding: 0 12px;
+
+      > :first-child {
+        margin-top: 12px;
+      }
+    }
+
+    > hr {
+      display: none;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 400;
+      margin-bottom: 0;
+      margin-top: 8px;
+      color: rgba(0, 0, 0, 85%);
+      border-top: 1px solid #f8f9fc;
+
+      &:first-child {
+        margin-top: 0;
+        border-top: none;
+      }
+    }
+
+    .border() {
+      border-width: 1px;
+      border-color: #ececec;
+    }
+
+    table {
+      .border();
+
+      border-right-style: solid;
+      border-top-style: solid;
+      margin-bottom: 6px;
+    }
+
+    td,
+    th {
+      .border();
+
+      text-align: left;
+      border-left-style: solid;
+      border-bottom-style: solid;
+      padding: 4px;
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  :global {
+    .ant-collapse-ghost > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
+      padding: 0 4px 0 24px;
+    }
+
+    .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+      padding: 8px;
+
+      .ant-collapse-arrow {
+        margin-right: 6px;
+      }
+    }
+  }
+}

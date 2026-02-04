@@ -1,0 +1,8 @@
+import { IContentMessage } from '../interface';
+/**
+ * Chat api
+ * @param message
+ */
+export declare function streamChat(messages: IContentMessage[], apiDomain: string, apiUrl?: string, prompt?: string, token?: string, signal?: AbortSignal): Promise<Response>;
+export declare function fetcher<T>([url, token]: [string, string | undefined]): Promise<T>;
+export declare const uploadImage: (file: File, apiDomain: string) => Promise<string>;

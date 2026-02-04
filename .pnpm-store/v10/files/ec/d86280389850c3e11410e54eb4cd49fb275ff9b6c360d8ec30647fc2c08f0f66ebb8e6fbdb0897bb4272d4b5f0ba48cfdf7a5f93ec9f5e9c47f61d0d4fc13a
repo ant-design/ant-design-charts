@@ -1,0 +1,18 @@
+import React from 'react';
+interface DataItem {
+    day: string;
+    hour: string;
+    value: number;
+}
+interface Data {
+    year: DataItem[];
+    quarter: DataItem[];
+    month: DataItem[];
+}
+interface HeatmapProps {
+    data: Data;
+    title?: string;
+    height?: number;
+}
+declare const Heatmap: React.FC<HeatmapProps>;
+export default Heatmap;

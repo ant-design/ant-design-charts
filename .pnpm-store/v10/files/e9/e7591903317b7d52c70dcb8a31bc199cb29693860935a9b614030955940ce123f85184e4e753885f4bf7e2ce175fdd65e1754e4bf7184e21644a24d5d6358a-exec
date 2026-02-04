@@ -1,0 +1,42 @@
+{
+    "name": "@types/ramda",
+    "version": "0.29.3",
+    "description": "TypeScript definitions for ramda",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/ramda",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Harris Miller",
+            "url": "https://github.com/harris-miller",
+            "githubUsername": "harris-miller"
+        },
+        {
+            "name": "Nicholai Nissen",
+            "url": "https://github.com/Nicholaiii",
+            "githubUsername": "Nicholaiii"
+        },
+        {
+            "name": "Kevin Wallace",
+            "url": "https://github.com/kedashoe",
+            "githubUsername": "kedashoe"
+        },
+        {
+            "name": "Wang Zengdi",
+            "url": "https://github.com/adispring",
+            "githubUsername": "adispring"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/ramda"
+    },
+    "scripts": {},
+    "dependencies": {
+        "types-ramda": "^0.29.4"
+    },
+    "typesPublisherContentHash": "a69c37960f016aa6716e94db9d09fbe07f1cea22e0cd16617737229fa7fb39c7",
+    "typeScriptVersion": "5.0"
+}

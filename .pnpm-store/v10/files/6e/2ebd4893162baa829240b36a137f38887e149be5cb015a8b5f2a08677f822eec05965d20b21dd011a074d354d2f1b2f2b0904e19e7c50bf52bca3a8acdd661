@@ -1,0 +1,49 @@
+{
+  "name": "prettier-plugin-two-style-order",
+  "version": "1.0.1",
+  "description": "Prettier plugin which sorts related style property declarations",
+  "keywords": [
+    "prettier",
+    "plugin",
+    "style",
+    "css",
+    "order",
+    "group"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Nate Moore",
+    "email": "nate@natemoo.re",
+    "url": "https://natemoo.re/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenshuai2144/prettier-plugin-two-style-order.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chenshuai2144/prettier-plugin-two-style-order/issues"
+  },
+  "homepage": "https://github.com/chenshuai2144/prettier-plugin-two-style-order",
+  "files": [
+    "src"
+  ],
+  "main": "src/index.js",
+  "directories": {
+    "src": "src",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "dependencies": {
+    "postcss": "^8.3.6",
+    "postcss-less": "^4.0.0",
+    "postcss-sorting": "6.0.0"
+  },
+  "devDependencies": {
+    "prettier": "2.x"
+  },
+  "peerDependencies": {
+    "prettier": ">= 2.0.0"
+  }
+}

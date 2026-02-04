@@ -1,0 +1,14 @@
+import { Primitive, G2Theme, G2MarkState, ChannelGroups } from './types/common';
+import { G2CoordinateOptions, G2Library, G2ScaleOptions, G2Mark, G2View } from './types/options';
+import { Scale } from './types/component';
+import { MarkChannel } from './types/mark';
+export declare function inferScale(name: string, values: Primitive[][], options: Record<string, any>, coordinates: G2CoordinateOptions[], theme: G2Theme, library: G2Library): Record<string, any>;
+export declare function applyScale(channels: ChannelGroups[], scale: Record<string, Scale>): MarkChannel;
+export declare function groupTransform(markState: Map<G2Mark, G2MarkState>, uidScale: Map<symbol, Scale>): void;
+export declare function collectScales(states: G2MarkState[], options: G2View): Record<string, any>[];
+export declare function useRelation(relations: [any, any][]): [(scale: Scale) => Scale, (scale: Scale) => Scale];
+export declare function assignScale(target: Record<string, Scale>, source: Record<string, Scale>): Record<string, Scale>;
+export declare function useRelationScale(options: Record<string, any>, library: G2Library): Scale;
+export declare function syncFacetsScales(states: Map<G2Mark, G2MarkState>[]): void;
+export declare function isPosition(name: string): boolean;
+export declare function isValidScale(scale: G2ScaleOptions): boolean;

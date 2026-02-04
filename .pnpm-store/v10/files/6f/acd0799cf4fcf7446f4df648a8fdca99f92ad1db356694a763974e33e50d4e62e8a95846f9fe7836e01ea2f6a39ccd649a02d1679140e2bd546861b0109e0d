@@ -1,0 +1,53 @@
+{
+	"name": "configstore",
+	"version": "7.1.0",
+	"description": "Easily load and save config without having to think about where and how",
+	"license": "BSD-2-Clause",
+	"repository": "sindresorhus/configstore",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"types": "./index.d.ts",
+	"sideEffects": false,
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"config",
+		"store",
+		"storage",
+		"configuration",
+		"settings",
+		"preferences",
+		"json",
+		"data",
+		"persist",
+		"persistent",
+		"save"
+	],
+	"dependencies": {
+		"atomically": "^2.0.3",
+		"dot-prop": "^9.0.0",
+		"graceful-fs": "^4.2.11",
+		"xdg-basedir": "^5.1.0"
+	},
+	"devDependencies": {
+		"ava": "^6.2.0",
+		"xo": "^0.60.0"
+	},
+	"ava": {
+		"serial": true
+	}
+}

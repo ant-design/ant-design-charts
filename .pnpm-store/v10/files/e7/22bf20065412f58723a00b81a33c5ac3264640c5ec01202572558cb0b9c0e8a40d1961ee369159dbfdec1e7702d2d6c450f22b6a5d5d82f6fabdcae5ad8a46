@@ -1,0 +1,54 @@
+import { FormattedMessage } from 'dumi';
+import React from 'react';
+import styles from "./Product.module.less";
+var getTarget = function getTarget(url) {
+  return url.startsWith('http') && !url.includes('gitee.io') && !url.includes('antv.vision') ? '_blank' : '_self';
+};
+var Product = function Product(_ref) {
+  var _links$home$title, _links$example$title;
+  var name = _ref.name,
+    icon = _ref.icon,
+    _ref$url = _ref.url,
+    url = _ref$url === void 0 ? '' : _ref$url,
+    slogan = _ref.slogan,
+    description = _ref.description,
+    _ref$links = _ref.links,
+    links = _ref$links === void 0 ? {} : _ref$links,
+    style = _ref.style,
+    language = _ref.language;
+  return /*#__PURE__*/React.createElement("li", {
+    className: styles.product,
+    style: style
+  }, /*#__PURE__*/React.createElement("a", {
+    href: url,
+    target: getTarget(url)
+  }, /*#__PURE__*/React.createElement("img", {
+    alt: name,
+    src: icon
+  })), /*#__PURE__*/React.createElement("div", {
+    className: styles.productContent
+  }, /*#__PURE__*/React.createElement("a", {
+    href: url,
+    target: getTarget(url)
+  }, /*#__PURE__*/React.createElement("h4", null, name, /*#__PURE__*/React.createElement("span", {
+    className: styles.productSlogan,
+    style: {
+      opacity: language === 'en' ? 0.7 : ''
+    }
+  }, slogan))), /*#__PURE__*/React.createElement("div", {
+    className: styles.productDescription
+  }, description), /*#__PURE__*/React.createElement("div", {
+    className: styles.productLinks
+  }, links.home && /*#__PURE__*/React.createElement("a", {
+    href: links.home.url,
+    target: getTarget(links.home.url || '')
+  }, (_links$home$title = links.home.title) !== null && _links$home$title !== void 0 ? _links$home$title : /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "\u4EA7\u54C1\u9996\u9875"
+  })), links.example && /*#__PURE__*/React.createElement("a", {
+    href: links.example.url,
+    target: getTarget(links.example.url || '')
+  }, (_links$example$title = links.example.title) !== null && _links$example$title !== void 0 ? _links$example$title : /*#__PURE__*/React.createElement(FormattedMessage, {
+    id: "\u56FE\u8868\u793A\u4F8B"
+  })))));
+};
+export default Product;

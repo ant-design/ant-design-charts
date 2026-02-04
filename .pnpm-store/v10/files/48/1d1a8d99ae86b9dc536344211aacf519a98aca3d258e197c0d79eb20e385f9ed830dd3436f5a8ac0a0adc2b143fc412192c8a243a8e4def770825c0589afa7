@@ -1,0 +1,9 @@
+import type { CanvasRenderer } from '@antv/g-canvas';
+import type { DisplayObject, ParsedRectStyleProps } from '@antv/g-lite';
+import { RoughCanvasRendererOptions } from '../util';
+export declare class RectRenderer implements CanvasRenderer.StyleRenderer {
+    private options;
+    constructor(options: RoughCanvasRendererOptions);
+    render(context: CanvasRenderingContext2D, parsedStyle: ParsedRectStyleProps, object: DisplayObject<any, any>): void;
+}
+//# sourceMappingURL=Rect.d.ts.map

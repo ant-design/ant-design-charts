@@ -1,0 +1,331 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/loaders/markdown/index.ts
+var markdown_exports = {};
+__export(markdown_exports, {
+  default: () => mdLoader
+});
+module.exports = __toCommonJS(markdown_exports);
+var import_tabs = require("../../features/tabs");
+var import_utils = require("../../utils");
+var import_fs = __toESM(require("fs"));
+var import_path = __toESM(require("path"));
+var import_plugin_utils = require("umi/plugin-utils");
+var import_transformer = __toESM(require("./transformer"));
+var import_rehypeText = require("./transformer/rehypeText");
+function getDemoSourceFiles(demos = []) {
+  return demos.reduce((ret, demo) => {
+    if ("resolveMap" in demo) {
+      ret.push(
+        ...Object.values(demo.resolveMap).filter((p) => import_path.default.isAbsolute(p))
+      );
+    }
+    return ret;
+  }, []);
+}
+function isRelativePath(path2) {
+  return /^\.{1,2}(?!\w)/.test(path2);
+}
+function emitDefault(opts, ret) {
+  const { frontmatter, demos } = ret.meta;
+  const isTabContent = (0, import_tabs.isTabRouteFile)(this.resourcePath);
+  const wrapper = isTabContent ? "" : "DumiPage";
+  if (demos && opts.onResolveDemos) {
+    opts.onResolveDemos(demos);
+  }
+  if (frontmatter.atomId && opts.onResolveAtomMeta) {
+    opts.onResolveAtomMeta(frontmatter.atomId, frontmatter);
+  }
+  const dependencies = this.getDependencies().slice(1).filter((filePath) => {
+    return !filePath.includes("node_modules");
+  });
+  return `${Object.values(opts.builtins).map((item) => `import ${item.specifier} from '${(0, import_plugin_utils.winPath)(item.source)}';`).join("\n")}
+${dependencies.filter((dep) => dep.endsWith(".md")).map(
+    (md) => `
+import '${(0, import_plugin_utils.winPath)(md)}?watch=parent';
+`
+  ).join("\n")}
+import LoadingComponent from '@@/dumi/theme/loading';
+import React, { Suspense } from 'react';
+import { DumiPage, useTabMeta, useRouteMeta } from 'dumi';
+
+function DumiMarkdownInner() {
+  const { texts: ${import_rehypeText.CONTENT_TEXTS_OBJ_NAME} } = use${isTabContent ? "TabMeta" : "RouteMeta"}();
+
+  return ${ret.content};
+}
+
+// export named function for fastRefresh
+// ref: https://github.com/pmmmwh/react-refresh-webpack-plugin/blob/main/docs/TROUBLESHOOTING.md#edits-always-lead-to-full-reload
+function DumiMarkdownContent() {
+  // wrap suspense for catch async meta data
+  return <${wrapper}><Suspense fallback={<LoadingComponent />}><DumiMarkdownInner /></Suspense></${wrapper}>;
+}
+
+export default DumiMarkdownContent;`;
+}
+function emitDemo(opts, ret) {
+  const { demos } = ret.meta;
+  const shareDepsMap = {};
+  const demoDepsMap = {};
+  const relativeDepsMap = {};
+  demos == null ? void 0 : demos.forEach((demo) => {
+    var _a, _b;
+    if ("resolveMap" in demo && "asset" in demo) {
+      const entryFileName = Object.keys(demo.asset.dependencies)[0];
+      demoDepsMap[_a = demo.id] ?? (demoDepsMap[_a] = {});
+      relativeDepsMap[_b = demo.id] ?? (relativeDepsMap[_b] = {});
+      Object.keys(demo.resolveMap).forEach((key, index) => {
+        const specifier = `${demo.id.replace(/[^\w\d]/g, "_")}_deps_${index}`;
+        if (key !== entryFileName) {
+          const isRelative = isRelativePath(key);
+          const normalizedKey = isRelative ? (0, import_plugin_utils.winPath)(demo.resolveMap[key]) : key;
+          if (!shareDepsMap[normalizedKey]) {
+            demoDepsMap[demo.id][normalizedKey] = specifier;
+            shareDepsMap[normalizedKey] = specifier;
+          } else {
+            demoDepsMap[demo.id][normalizedKey] = shareDepsMap[normalizedKey];
+          }
+          if (isRelative) {
+            relativeDepsMap[demo.id][key] = `{{{${shareDepsMap[normalizedKey] || specifier}}}}`;
+          }
+        }
+      });
+    }
+  });
+  const dedupedDemosDeps = opts.disableLiveDemo ? [] : Object.entries(demoDepsMap).reduce((acc, [, deps]) => {
+    return acc.concat(
+      Object.entries(deps).map(([key, specifier]) => {
+        const existingIndex = acc.findIndex((obj) => obj.key === key);
+        if (existingIndex === -1) {
+          return { key, specifier };
+        }
+        return void 0;
+      }).filter((item) => item !== void 0)
+    );
+  }, []);
+  return import_plugin_utils.Mustache.render(
+    `import React from 'react';
+import '${(0, import_plugin_utils.winPath)(this.getDependencies()[0])}?watch=parent';
+{{#dedupedDemosDeps}}
+import * as {{{specifier}}} from '{{{key}}}';
+{{/dedupedDemosDeps}}
+export const demos = {
+  {{#demos}}
+  '{{{id}}}': {
+    {{#component}}
+    component: {{{component}}},
+    {{/component}}
+    asset: {{{renderAsset}}},
+    context: {{{renderContext}}},
+    renderOpts: {{{renderRenderOpts}}},
+  },
+  {{/demos}}
+};`,
+    {
+      demos,
+      dedupedDemosDeps,
+      renderAsset: function renderAsset() {
+        if (!("asset" in this))
+          return "null";
+        let { asset } = this;
+        const { resolveMap } = this;
+        Object.keys(this.resolveMap).forEach((file) => {
+          var _a;
+          if (((_a = asset.dependencies[file]) == null ? void 0 : _a.type) === "FILE") {
+            let assetValue = `{{{require('-!${resolveMap[file]}?dumi-raw').default}}}`;
+            if (process.env.OKAM) {
+              assetValue = `{{{require('${resolveMap[file]}?dumi-raw').default}}}`;
+            }
+            asset = import_plugin_utils.lodash.cloneDeep(asset);
+            asset.dependencies[file].value = assetValue;
+          }
+        });
+        return JSON.stringify(asset, null, 2).replace(/"{{{|}}}"/g, "");
+      },
+      renderContext: function renderContext() {
+        if (!("resolveMap" in this) || !("asset" in this) || opts.disableLiveDemo)
+          return "undefined";
+        const context = Object.entries(demoDepsMap[this.id]).reduce(
+          (acc, [key, specifier]) => ({
+            ...acc,
+            ...{ [key]: `{{{${specifier}}}}` }
+          }),
+          relativeDepsMap[this.id]
+        );
+        return JSON.stringify(context, null, 2).replace(/"{{{|}}}"/g, "");
+      },
+      renderRenderOpts: function renderRenderOpts() {
+        if (!("renderOpts" in this) || opts.disableLiveDemo) {
+          return "undefined";
+        }
+        const renderOpts = this.renderOpts;
+        const propertyArray = [];
+        if (renderOpts.compilePath) {
+          propertyArray.push(`
+          compile: async (...args) => {
+            return (await import('${(0, import_plugin_utils.winPath)(
+            renderOpts.compilePath
+          )}')).default(...args);
+          },`);
+        }
+        if (renderOpts.rendererPath) {
+          propertyArray.push(`
+            renderer: (await import('${(0, import_plugin_utils.winPath)(
+            renderOpts.rendererPath
+          )}')).default,`);
+        }
+        if (renderOpts.preflightPath) {
+          propertyArray.push(`
+            preflight: (await import('${(0, import_plugin_utils.winPath)(
+            renderOpts.preflightPath
+          )}')).default,`);
+        }
+        if (propertyArray.length === 0)
+          return "undefined";
+        return `{
+          ${propertyArray.join("\n")}
+        }`;
+      }
+    }
+  );
+}
+function emitDemoIndex(opts, ret) {
+  const { demos } = ret.meta;
+  return import_plugin_utils.Mustache.render(
+    `
+    import '${(0, import_plugin_utils.winPath)(this.getDependencies()[0])}?watch=parent';
+    export const demoIndex = {
+  ids: {{{ids}}},
+  getter: {{{getter}}}
+};`,
+    {
+      ids: JSON.stringify(demos == null ? void 0 : demos.map((demo) => demo.id)),
+      getter: `() => import(/* webpackChunkName: "${(0, import_utils.generateMetaChunkName)(
+        this.resourcePath,
+        opts.cwd,
+        opts.locales.map(({ id }) => id)
+      )}" */'${(0, import_plugin_utils.winPath)(this.resourcePath)}?type=demo')`
+    }
+  );
+}
+function emitFrontmatter(opts, ret) {
+  const { frontmatter, toc } = ret.meta;
+  return import_plugin_utils.Mustache.render(
+    `
+    import '${(0, import_plugin_utils.winPath)(this.getDependencies()[0])}?watch=parent';
+    export const toc = {{{toc}}};
+export const frontmatter = {{{frontmatter}}};`,
+    {
+      toc: JSON.stringify(toc),
+      frontmatter: JSON.stringify(frontmatter)
+    }
+  );
+}
+function emitText(opts, ret) {
+  const { texts } = ret.meta;
+  return import_plugin_utils.Mustache.render(
+    `
+  import '${(0, import_plugin_utils.winPath)(this.getDependencies()[0])}?watch=parent';
+  export const texts = {{{texts}}};
+  `,
+    {
+      texts: JSON.stringify(texts)
+    }
+  );
+}
+function emit(opts, ret) {
+  const { demos, embeds } = ret.meta;
+  embeds.forEach((file) => this.addDependency(file));
+  getDemoSourceFiles(demos).forEach((file) => this.addDependency(file));
+  switch (opts.mode) {
+    case "demo":
+      return emitDemo.call(this, opts, ret);
+    case "demo-index":
+      return emitDemoIndex.call(this, opts, ret);
+    case "frontmatter":
+      return emitFrontmatter.call(this, opts, ret);
+    case "text":
+      return emitText.call(this, opts, ret);
+    default:
+      return emitDefault.call(this, opts, ret);
+  }
+}
+function getDepsCacheKey(deps = []) {
+  return JSON.stringify(
+    deps.map(
+      (file) => `${file}:${(0, import_utils.getContentHash)(import_fs.default.readFileSync(file, "utf-8"))}`
+    )
+  );
+}
+var deferrer = {};
+var depsMapping = {};
+function mdLoader(content) {
+  const opts = this.getOptions();
+  const cb = this.async();
+  if (process.env.NODE_ENV === "production" && ["onResolveDemos", "onResolveAtomMeta"].some((k) => k in opts)) {
+    this.cacheable(false);
+  }
+  const cache = (0, import_utils.getCache)("md-loader");
+  const baseCacheKey = [
+    this.resourcePath,
+    (0, import_utils.getContentHash)(content),
+    JSON.stringify(import_plugin_utils.lodash.omit(opts, ["mode", "builtins", "onResolveDemos"]))
+  ].join(":");
+  const cacheKey = [
+    baseCacheKey,
+    getDepsCacheKey(depsMapping[this.resourcePath])
+  ].join(":");
+  const cacheRet = cache.getSync(cacheKey, "");
+  if (cacheRet) {
+    cb(null, emit.call(this, opts, cacheRet));
+    return;
+  } else if (cacheKey in deferrer) {
+    deferrer[cacheKey].then((res) => {
+      cb(null, emit.call(this, opts, res));
+    }).catch(cb);
+    return;
+  }
+  deferrer[cacheKey] = (0, import_transformer.default)(content, {
+    ...import_plugin_utils.lodash.omit(opts, ["mode", "builtins", "onResolveDemos"]),
+    fileAbsPath: (0, import_plugin_utils.winPath)(this.resourcePath)
+  });
+  deferrer[cacheKey].then((ret) => {
+    depsMapping[this.resourcePath] = ret.meta.embeds.concat(
+      getDemoSourceFiles(ret.meta.demos)
+    );
+    const finalCacheKey = [
+      baseCacheKey,
+      getDepsCacheKey(depsMapping[this.resourcePath])
+    ].join(":");
+    cache.setSync(finalCacheKey, ret);
+    cb(null, emit.call(this, opts, ret));
+    delete deferrer[cacheKey];
+  }).catch(cb);
+}

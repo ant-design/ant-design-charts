@@ -1,0 +1,1 @@
+{"version":3,"file":"custom.js","sourceRoot":"src/","sources":["transforms/custom.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;AAEA;;;;;;;;GAQG;AACH,MAAM,CAAC,IAAM,MAAM,GAAsB,UAAC,MAAM,EAAE,CAAC,EAAE,CAAC,EAAE,KAAK,EAAE,MAAM;IAC7D,IAAA,KAAA,OAAa,MAA6B,IAAA,EAAzC,QAAQ,QAAiC,CAAC;IACjD,OAAO,QAAQ,CAAC,CAAC,EAAE,CAAC,EAAE,KAAK,EAAE,MAAM,CAAC,CAAC;AACvC,CAAC,CAAC"}

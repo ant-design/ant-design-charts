@@ -1,0 +1,87 @@
+{
+  "name": "zod-validation-error",
+  "version": "2.1.0",
+  "description": "Wrap zod validation errors in user-friendly readable messages",
+  "keywords": [
+    "zod",
+    "error",
+    "validation"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/causaly/zod-validation-error.git"
+  },
+  "author": {
+    "name": "Causaly Team",
+    "email": "front-end@causaly.com",
+    "url": "https://www.causaly.com"
+  },
+  "contributors": [
+    {
+      "name": "Dimitrios C. Michalakos",
+      "email": "dimitris@jmike.gr",
+      "url": "https://github.com/jmike"
+    }
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build:cjs": "tsc -p ./tsconfig.build-cjs.json",
+    "build:esm": "tsc -p ./tsconfig.build-esm.json",
+    "build:types": "tsc -p ./tsconfig.build-types.json",
+    "build": "rimraf dist && concurrently \"npm run build:types\" \"npm run build:esm\" \"npm run build:cjs\"",
+    "lint": "eslint lib --ext .ts",
+    "format": "prettier --config ./.prettierrc --ignore-path .gitignore -w .",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "changeset": "changeset",
+    "prerelease": "npm run build && npm run test",
+    "release": "changeset publish",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --config ./.prettierrc --write"
+    ]
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.4.2",
+    "@changesets/cli": "^2.18.1",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
+    "@types/jest": "^29.2.4",
+    "@types/node": "^20.5.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^8.0.3",
+    "jest": "^29.3.1",
+    "lint-staged": "^15.0.1",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
+    "ts-jest": "^29.0.3",
+    "typescript": "^5.1.6",
+    "zod": "^3.20.0"
+  },
+  "peerDependencies": {
+    "zod": "^3.18.0"
+  }
+}

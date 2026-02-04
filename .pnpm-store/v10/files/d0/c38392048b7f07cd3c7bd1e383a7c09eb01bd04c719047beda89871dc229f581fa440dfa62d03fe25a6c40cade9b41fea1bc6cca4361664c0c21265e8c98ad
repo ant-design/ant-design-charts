@@ -1,0 +1,90 @@
+{
+  "name": "git-hooks-list",
+  "version": "3.2.0",
+  "description": "List of Git hooks",
+  "keywords": [
+    "git",
+    "hooks",
+    "list"
+  ],
+  "homepage": "https://github.com/fisker/git-hooks-list#readme",
+  "bugs": {
+    "url": "https://github.com/fisker/git-hooks-list/issues"
+  },
+  "repository": "fisker/git-hooks-list",
+  "funding": "https://github.com/fisker/git-hooks-list?sponsor=1",
+  "license": "MIT",
+  "author": {
+    "name": "fisker Cheung",
+    "email": "lionkay@gmail.com",
+    "url": "https://www.fiskercheung.com/"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "require": "./index.json",
+    "default": "./index.js"
+  },
+  "main": "index.json",
+  "jsdelivr": "index.json",
+  "unpkg": "index.json",
+  "browser": "index.json",
+  "files": [
+    "index.json",
+    "index.js"
+  ],
+  "scripts": {
+    "clean": "run-p \"clean:*\"",
+    "clean:dist": "del-cli dist",
+    "dist": "run-p \"dist:*\"",
+    "dist:npm": "np --yolo --no-yarn",
+    "fix": "run-p \"fix:*\"",
+    "fix:eslint": "yarn lint:eslint --fix",
+    "fix:markdown": "markdownlint-cli2 --fix",
+    "fix:package-json": "sort-package-json \"package.json\" \"packages/*/package.json\"",
+    "fix:prettier": "yarn lint:prettier --write",
+    "lint": "run-p \"lint:*\"",
+    "lint:eslint": "eslint",
+    "lint:markdown": "markdownlint-cli2",
+    "lint:package-json": "yarn run fix:package-json --check",
+    "lint:prettier": "prettier . --check",
+    "prepare": "husky install",
+    "release": "run-s lint test fix dist",
+    "test": "ava",
+    "test-coverage": "c8 yarn test",
+    "update": "node scripts/update.js"
+  },
+  "ava": {
+    "verbose": true
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "lcov"
+    ]
+  },
+  "devDependencies": {
+    "@fisker/eslint-config": "13.1.3",
+    "@fisker/husky-config": "4.1.3",
+    "@fisker/lint-staged-config": "3.3.2",
+    "@fisker/markdownlint-cli2-config": "0.0.3",
+    "@fisker/prettier-config": "5.1.1",
+    "ava": "6.2.0",
+    "c8": "10.1.3",
+    "cheerio": "1.0.0",
+    "del-cli": "6.0.0",
+    "eslint": "9.19.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.4.3",
+    "markdownlint-cli2": "0.17.2",
+    "npm-run-all2": "7.0.2",
+    "prettier": "3.4.2",
+    "sort-package-json": "2.14.0",
+    "write-prettier-file": "3.0.3"
+  },
+  "packageManager": "yarn@4.6.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

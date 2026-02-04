@@ -1,0 +1,60 @@
+{
+  "name": "@antv/g6-extension-react",
+  "version": "0.2.6",
+  "description": "Using React Component to Define Your G6 Graph Node",
+  "keywords": [
+    "antv",
+    "g6",
+    "extension",
+    "react",
+    "node"
+  ],
+  "repository": "https://github.com/antvis/G6.git",
+  "license": "MIT",
+  "author": "Aarebecca",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "src",
+    "esm",
+    "lib",
+    "dist",
+    "README"
+  ],
+  "dependencies": {
+    "@antv/g": "^6.1.24",
+    "@antv/g-svg": "^2.0.38"
+  },
+  "devDependencies": {
+    "@ant-design/icons": "^5.6.1",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "antd": "^5.25.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^6.30.0",
+    "styled-components": "^6.1.18",
+    "@antv/g6": "5.0.50"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8",
+    "@antv/g6": "^5.0.50"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "run-p build:*",
+    "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib -p tsconfig.build.json",
+    "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm -p tsconfig.build.json",
+    "build:umd": "rimraf ./dist && rollup -c",
+    "ci": "run-s lint type-check test build",
+    "dev": "vite",
+    "lint": "eslint ./src __tests__ --quiet && prettier ./src __tests__ --check",
+    "test": "jest",
+    "type-check": "tsc --noEmit -p tsconfig.test.json"
+  }
+}

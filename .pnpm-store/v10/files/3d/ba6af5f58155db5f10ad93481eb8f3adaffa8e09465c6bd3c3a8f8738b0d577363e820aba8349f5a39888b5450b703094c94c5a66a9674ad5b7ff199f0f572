@@ -1,0 +1,7 @@
+import React from 'react';
+interface ChartHeaderProps {
+    title: string;
+    operation?: React.ReactNode;
+}
+declare const ChartHeader: React.FC<ChartHeaderProps>;
+export default ChartHeader;

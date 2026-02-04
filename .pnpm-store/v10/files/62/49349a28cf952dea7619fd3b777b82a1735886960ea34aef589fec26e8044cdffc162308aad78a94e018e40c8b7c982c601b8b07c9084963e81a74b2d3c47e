@@ -1,0 +1,36 @@
+{
+  "name": "run-async",
+  "version": "4.0.6",
+  "description": "Utility method to run function either synchronously or asynchronously using the common `this.async()` style.",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node --test test.js",
+    "lint": "npx oxlint && npx prettier --check ."
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "repository": "SBoudrias/run-async",
+  "keywords": [
+    "flow",
+    "flow-control",
+    "async"
+  ],
+  "author": "Simon Boudrias <admin@simonboudrias.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "oxlint": "^1.2.0",
+    "prettier": "^3.5.3"
+  }
+}

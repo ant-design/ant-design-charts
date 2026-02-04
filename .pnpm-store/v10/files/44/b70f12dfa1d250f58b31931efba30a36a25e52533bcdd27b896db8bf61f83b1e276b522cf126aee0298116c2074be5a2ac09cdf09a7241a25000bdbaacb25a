@@ -1,0 +1,97 @@
+{
+  "name": "valtio",
+  "private": false,
+  "version": "1.13.2",
+  "description": "💊 Valtio makes proxy-state simple for React and Vanilla",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "typesVersions": {
+    "<4.5": {
+      "esm/*": [
+        "ts3.4/*"
+      ],
+      "*": [
+        "ts3.4/*"
+      ]
+    }
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./esm/index.d.mts",
+        "default": "./esm/index.mjs"
+      },
+      "module": {
+        "types": "./esm/index.d.ts",
+        "default": "./esm/index.js"
+      },
+      "default": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      }
+    },
+    "./*": {
+      "import": {
+        "types": "./esm/*.d.mts",
+        "default": "./esm/*.mjs"
+      },
+      "module": {
+        "types": "./esm/*.d.ts",
+        "default": "./esm/*.js"
+      },
+      "default": {
+        "types": "./*.d.ts",
+        "default": "./*.js"
+      }
+    }
+  },
+  "files": [
+    "**"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=12.20.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmndrs/valtio.git"
+  },
+  "keywords": [
+    "react",
+    "state",
+    "manager",
+    "management",
+    "mobx",
+    "proxy",
+    "store"
+  ],
+  "author": "Daishi Kato",
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pmndrs/valtio/issues"
+  },
+  "homepage": "https://github.com/pmndrs/valtio",
+  "dependencies": {
+    "proxy-compare": "2.6.0",
+    "derive-valtio": "0.1.0",
+    "use-sync-external-store": "1.2.0"
+  },
+  "resolutions": {
+    "@types/react": "18.2.56"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.8",
+    "react": ">=16.8"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "packageManager": "yarn@1.22.1"
+}

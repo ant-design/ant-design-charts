@@ -1,0 +1,51 @@
+{
+  "name": "animated-scroll-to",
+  "version": "2.3.2",
+  "description": "Simple, plain JavaScript animated window scroll",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "clean": "del-cli ./dist",
+    "build:esm": "tsc -p tsconfig.json && echo '{ \"type\": \"module\" }' > dist/esm/package.json",
+    "build:cjs": "tsc -p tsconfig-cjs.json && echo '{ \"type\": \"commonjs\" }' > dist/cjs/package.json",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:docs",
+    "prepublishOnly": "npm test && npm run build",
+    "start": "esbuild docs/docs.ts --bundle --tsconfig=tsconfig-demo.json --servedir=docs --outdir=docs/animated-scroll-to",
+    "build:docs": "esbuild docs/docs.ts --bundle --tsconfig=tsconfig-demo.json --outdir=docs --minify --sourcemap",
+    "test": "node test.js",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stanko/animated-scroll-to.git"
+  },
+  "keywords": [
+    "scroll",
+    "scrollTo"
+  ],
+  "author": "Stanko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Stanko/animated-scroll-to/issues"
+  },
+  "homepage": "https://github.com/Stanko/animated-scroll-to#readme",
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "cypress": "^13.17.0",
+    "del-cli": "^6.0.0",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.7.3"
+  },
+  "files": [
+    "dist/",
+    "CHANGELOG.md"
+  ]
+}

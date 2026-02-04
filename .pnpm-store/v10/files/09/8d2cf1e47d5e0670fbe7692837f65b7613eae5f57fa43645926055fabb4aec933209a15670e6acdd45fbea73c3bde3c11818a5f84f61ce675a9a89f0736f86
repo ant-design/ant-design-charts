@@ -1,0 +1,51 @@
+{
+  "name": "@algolia/requester-browser-xhr",
+  "version": "5.46.2",
+  "description": "Promise-based request library for browser using xhr.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algolia/algoliasearch-client-javascript.git"
+  },
+  "homepage": "https://github.com/algolia/algoliasearch-client-javascript#readme",
+  "license": "MIT",
+  "author": "Algolia",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/requester.xhr.d.ts",
+      "import": "./dist/requester.xhr.js",
+      "module": "./dist/requester.xhr.js",
+      "default": "./dist/requester.xhr.js"
+    },
+    "./src/*": "./src/*.ts"
+  },
+  "react-native": "./dist/requester.xhr.js",
+  "files": [
+    "dist",
+    "index.d.ts",
+    "index.js"
+  ],
+  "scripts": {
+    "build": "yarn clean && yarn tsup",
+    "clean": "rm -rf ./dist || true",
+    "test": "tsc --noEmit && vitest --run",
+    "test:bundle": "publint . && attw --pack . --ignore-rules cjs-resolves-to-esm"
+  },
+  "dependencies": {
+    "@algolia/client-common": "5.46.2"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.2",
+    "@types/node": "24.10.4",
+    "jsdom": "27.3.0",
+    "publint": "0.3.16",
+    "tsup": "8.5.1",
+    "typescript": "5.9.3",
+    "vitest": "4.0.16",
+    "xhr-mock": "2.5.1"
+  },
+  "engines": {
+    "node": ">= 14.0.0"
+  },
+  "gitHead": "a0dca1a687264e389d589b841e719a54709eb94d"
+}

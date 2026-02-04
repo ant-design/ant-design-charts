@@ -1,0 +1,27 @@
+import Lottie from 'lottie-react';
+import React, { useMemo } from 'react';
+import * as Commit from "../../assets/commit.json";
+import * as Fork from "../../assets/fork.json";
+import * as Star from "../../assets/star.json";
+var GitInsightIcon = function GitInsightIcon(props) {
+  var type = props.type;
+  var animationData = useMemo(function () {
+    if (type === 'fork') {
+      return Fork;
+    }
+    if (type === 'commit') {
+      return Commit;
+    }
+    return Star;
+  }, [type]);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lottie, {
+    style: {
+      width: 'auto',
+      height: '68px'
+    },
+    animationData: animationData,
+    autoplay: true,
+    loop: false
+  })));
+};
+export default GitInsightIcon;

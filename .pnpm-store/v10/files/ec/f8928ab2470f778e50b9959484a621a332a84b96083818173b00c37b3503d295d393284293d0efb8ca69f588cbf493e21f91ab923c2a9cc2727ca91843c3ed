@@ -1,0 +1,12 @@
+import type { DisplayObject } from '../../../shapes';
+import { Text } from '../../../shapes';
+import type { AxisStyleProps, LabelOverlapCfg } from '../types';
+import type { Utils as EllipsisUtils } from './autoEllipsis';
+import type { Utils as HideUtils } from './autoHide';
+import type { Utils as RotateUtils } from './autoRotate';
+import type { Utils as WrapUtils } from './autoWrap';
+export type OverlapCallback = (labels: Text[], overlapCfg: any, cfg: AxisStyleProps, utils: any) => any;
+export type OverlapUtilsType = EllipsisUtils & HideUtils & RotateUtils & WrapUtils;
+export declare const OverlapUtils: Map<string, any>;
+export declare function canProcessOverlap(labels: DisplayObject[], attr: Required<AxisStyleProps>, type: LabelOverlapCfg['type']): boolean;
+export declare function processOverlap(labels: DisplayObject[], attr: Required<AxisStyleProps>, main: DisplayObject, utils: OverlapUtilsType): void;

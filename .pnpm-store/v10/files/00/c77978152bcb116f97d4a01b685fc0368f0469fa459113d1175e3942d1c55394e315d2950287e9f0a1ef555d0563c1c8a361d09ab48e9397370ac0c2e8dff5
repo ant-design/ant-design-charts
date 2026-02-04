@@ -1,0 +1,1 @@
+{"version":3,"file":"elementSelectByColor.js","sourceRoot":"","sources":["../../src/interaction/elementSelectByColor.ts"],"names":[],"mappings":";;AAGA,oDAEC;AALD,mCAAyC;AACzC,mDAAgD;AAEhD,SAAgB,oBAAoB,CAAC,OAAO;IAC1C,OAAO,IAAA,6BAAa,kCAAM,OAAO,KAAE,WAAW,EAAE,sBAAc,IAAG,CAAC;AACpE,CAAC;AAED,oBAAoB,CAAC,KAAK,GAAG;IAC3B,iBAAiB,EAAE,IAAI;CACxB,CAAC"}
